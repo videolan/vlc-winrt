@@ -57,6 +57,7 @@ cd contrib/winrt
     --disable-gnutls \
     --disable-projectM \
     --disable-ass \
+    --disable-qt4 \
     --disable-gpl
 
 make fetch
