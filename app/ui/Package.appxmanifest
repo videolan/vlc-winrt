@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
+  <Identity Name="9519ba58-7ad6-4c4e-97ed-bfc2135a0d19" Publisher="CN=Kellen" Version="1.0.0.0" />
+  <Properties>
+    <DisplayName>VLC_WINRT</DisplayName>
+    <PublisherDisplayName>Kellen</PublisherDisplayName>
+    <Logo>Assets\StoreLogo.png</Logo>
+  </Properties>
+  <Prerequisites>
+    <OSMinVersion>6.2.1</OSMinVersion>
+    <OSMaxVersionTested>6.2.1</OSMaxVersionTested>
+  </Prerequisites>
+  <Resources>
+    <Resource Language="x-generate" />
+  </Resources>
+  <Applications>
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="VLC_WINRT.App">
+      <VisualElements DisplayName="VLC_WINRT" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="VLC_WINRT" ForegroundText="light" BackgroundColor="#464646">
+        <DefaultTile ShowName="allLogos" ShortName="VLC for WinRT" />
+        <SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="#F09609" />
+      </VisualElements>
+      <Extensions>
+        <Extension Category="windows.fileTypeAssociation">
+          <FileTypeAssociation Name="vlcmedia">
+            <SupportedFileTypes>
+              <FileType>.mkv,avi,mp4,wmv</FileType>
+            </SupportedFileTypes>
+          </FileTypeAssociation>
+        </Extension>
+      </Extensions>
+    </Application>
+  </Applications>
+  <Capabilities>
+    <Capability Name="removableStorage" />
+    <Capability Name="videosLibrary" />
+    <Capability Name="musicLibrary" />
+    <Capability Name="internetClientServer" />
+    <Capability Name="internetClient" />
+  </Capabilities>
+</Package>
