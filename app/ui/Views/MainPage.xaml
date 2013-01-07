@@ -30,8 +30,15 @@
                 <StackPanel Grid.Column="1" Style="{StaticResource ColumnStackPanelStyle}">
                     <TextBlock x:Uid="Music" Text="music"  Style="{StaticResource ColumnHeaderTextStyle}"></TextBlock>
                 </StackPanel>
-                <StackPanel Grid.Column="2" Style="{StaticResource ColumnStackPanelStyle}">
+                <StackPanel Grid.Column="2" Style="{StaticResource ColumnStackPanelStyle}" DataContext="{Binding VideoVM}">
                     <TextBlock x:Uid="Movies" Text="movies" Style="{StaticResource ColumnHeaderTextStyle}"></TextBlock>
+                    <ItemsControl ItemsSource="{Binding Media}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
                 </StackPanel>
             </Grid>
         </ScrollViewer>
