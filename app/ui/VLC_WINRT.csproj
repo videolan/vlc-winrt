@@ -107,6 +107,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Common\AlwaysExecutableCommand.cs" />
     <Compile Include="Common\DispatchHelper.cs" />
     <Compile Include="Common\KnownVLCLocation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -116,7 +117,8 @@
     <Compile Include="Common\LayoutAwarePage.cs" />
     <Compile Include="Common\RichTextColumns.cs" />
     <Compile Include="Common\SuspensionManager.cs" />
-    <Compile Include="Services\MediaFolderScanner.cs" />
+    <Compile Include="Utility\Commands\PlayVideoCommand.cs" />
+    <Compile Include="Utility\Services\MediaFolderScanner.cs" />
     <Compile Include="ViewModels\MainPage\LastViewedViewModel.cs" />
     <Compile Include="ViewModels\MainPage\LibraryViewModel.cs" />
     <Compile Include="ViewModels\MainPage\MainPageViewModel.cs" />

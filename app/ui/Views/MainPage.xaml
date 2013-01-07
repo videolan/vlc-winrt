@@ -8,7 +8,7 @@
    DataContext="{StaticResource MainViewModel}">
 
     <Grid Background="#FF1D1D1D">
-        <Grid Margin="10,10,10,0">
+        <Grid Margin="30,20,10,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
@@ -46,60 +46,51 @@
                                 Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}"
                                 DataContext="{Binding LastViewedVM}" 
                                 Margin="5">
-                                <Image x:Name="LastVideoViewed" Source="{Binding Image}"></Image>
+                                <Grid>
+                                    <Image Source="{Binding Image}"></Image>
+                                    <StackPanel VerticalAlignment="Bottom">
+                                        <TextBlock Text="{Binding Title}" Margin="10" Style="{StaticResource GroupHeaderTextStyle}"  FontWeight="Bold"></TextBlock>
+                                        <TextBlock Text="{Binding Subtitle}" Margin="10" Style="{StaticResource BodyTextStyle}"></TextBlock>
+                                    </StackPanel>
+                                    
+                                </Grid>
+                                
                             </Border>
 
                             <Border Grid.Row="2" Grid.Column="0"
                                 Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}"
                                      DataContext="{Binding SecondLastViewedVM}"
                                     Margin="5">
-                                <Image x:Name="BotLeftLastViewed" Source="{Binding Image}"></Image>
+                                <Grid>
+                                    <Image Source="{Binding Image}"></Image>
+                                    <StackPanel VerticalAlignment="Bottom">
+                                        <TextBlock Text="{Binding Title}" Margin="10" Style="{StaticResource GroupHeaderTextStyle}" FontWeight="Bold"></TextBlock>
+                                        <TextBlock Text="{Binding Subtitle}" Margin="10" Style="{StaticResource BodyTextStyle}"></TextBlock>
+                                    </StackPanel>
+
+                                </Grid>
+
                             </Border>
                             
                             <Border Grid.Row="2" Grid.Column="1"
                                 Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}"
                                      DataContext="{Binding ThirdLastViewedVM}"
                                     Margin="5">
-                                <Image x:Name="BotRightLastViewed" Source="{Binding Image}"></Image>
+                                <Grid>
+                                    <Image Source="{Binding Image}"></Image>
+                                    <StackPanel VerticalAlignment="Bottom">
+                                        <TextBlock Text="{Binding Title}" Margin="10" Style="{StaticResource GroupHeaderTextStyle}"  FontWeight="Bold"></TextBlock>
+                                        <TextBlock Text="{Binding Subtitle}" Margin="10" Style="{StaticResource BodyTextStyle}"></TextBlock>
+                                    </StackPanel>
+
+                                </Grid>
+
                             </Border>
 
                         </Grid>
                         
                     </StackPanel>
                     <StackPanel Grid.Column="1" Style="{StaticResource ColumnStackPanelStyle}"
-                                DataContext="{Binding MusicVM}">
-                        <TextBlock x:Uid="Music" Text="music" Style="{StaticResource ColumnHeaderTextStyle}"></TextBlock>
-                        <ItemsControl ItemsSource="{Binding Media}">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid HorizontalAlignment="Left" Height="100" Margin="5">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="100"></ColumnDefinition>
-                                            <ColumnDefinition Width="300"></ColumnDefinition>
-                                        </Grid.ColumnDefinitions>
-                                        <Border Grid.Column="0"
-                                                Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}"
-                                                Width="100">
-                                            <Image Source="{Binding Image}" Stretch="UniformToFill"
-                                                   AutomationProperties.Name="{Binding Title}" />
-                                        </Border>
-                                        <StackPanel Grid.Column="1"
-                                                    Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}">
-                                            <TextBlock Text="{Binding Title}"
-                                                       Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}"
-                                                       Style="{StaticResource TitleTextStyle}" Height="60"
-                                                       Margin="15,0,15,0" />
-                                            <TextBlock Text="{Binding Subtitle}"
-                                                       Foreground="{StaticResource ListViewItemOverlaySecondaryForegroundThemeBrush}"
-                                                       Style="{StaticResource CaptionTextStyle}" TextWrapping="NoWrap"
-                                                       Margin="15,0,15,10" />
-                                        </StackPanel>
-                                    </Grid>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                    </StackPanel>
-                    <StackPanel Grid.Column="2" Style="{StaticResource ColumnStackPanelStyle}"
                                 DataContext="{Binding VideoVM}">
                         <TextBlock x:Uid="Movies" Text="movies" Style="{StaticResource ColumnHeaderTextStyle}"></TextBlock>
                         <ItemsControl ItemsSource="{Binding Media}">
@@ -132,6 +123,40 @@
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
                     </StackPanel>
+                    <StackPanel Grid.Column="2" Style="{StaticResource ColumnStackPanelStyle}"
+                                DataContext="{Binding MusicVM}">
+                        <TextBlock x:Uid="Music" Text="music" Style="{StaticResource ColumnHeaderTextStyle}"></TextBlock>
+                        <ItemsControl ItemsSource="{Binding Media}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid HorizontalAlignment="Left" Height="100" Margin="5">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="100"></ColumnDefinition>
+                                            <ColumnDefinition Width="300"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Border Grid.Column="0"
+                                                Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}"
+                                                Width="100">
+                                            <Image Source="{Binding Image}" Stretch="UniformToFill"
+                                                   AutomationProperties.Name="{Binding Title}" />
+                                        </Border>
+                                        <StackPanel Grid.Column="1"
+                                                    Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}">
+                                            <TextBlock Text="{Binding Title}"
+                                                       Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}"
+                                                       Style="{StaticResource TitleTextStyle}" Height="60"
+                                                       Margin="15,0,15,0" />
+                                            <TextBlock Text="{Binding Subtitle}"
+                                                       Foreground="{StaticResource ListViewItemOverlaySecondaryForegroundThemeBrush}"
+                                                       Style="{StaticResource CaptionTextStyle}" TextWrapping="NoWrap"
+                                                       Margin="15,0,15,10" />
+                                        </StackPanel>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                   
                 </Grid>
             </ScrollViewer>
         </Grid>

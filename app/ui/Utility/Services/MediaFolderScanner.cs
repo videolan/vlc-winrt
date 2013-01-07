@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.Search;
 
-namespace VLC_WINRT.Services
+namespace VLC_WINRT.Utility.Services
 {
     public class MediaFolderScanner
     {

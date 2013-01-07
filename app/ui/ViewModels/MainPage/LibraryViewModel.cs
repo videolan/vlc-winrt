@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using VLC_WINRT.Common;
-using VLC_WINRT.Services;
+using VLC_WINRT.Utility.Services;
 using Windows.Foundation;
 using Windows.Storage;
 using Windows.Storage.Search;

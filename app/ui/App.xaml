@@ -22,7 +22,7 @@
                 <Setter Property="FontSize" Value="30"></Setter>
             </Style>
             <Style x:Key="ColumnStackPanelStyle" TargetType="StackPanel">
-                <Setter Property="Margin" Value="0,0,10,0"></Setter>
+                <Setter Property="Margin" Value="0,20,10,0"></Setter>
                 <Setter Property="MinWidth" Value="300"></Setter>
             </Style>
 
