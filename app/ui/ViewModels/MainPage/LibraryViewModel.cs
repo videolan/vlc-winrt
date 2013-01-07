@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using VLC_WINRT.Common;
+using VLC_WINRT.Services;
 using Windows.Foundation;
 using Windows.Storage;
 using Windows.Storage.Search;
@@ -12,8 +11,6 @@ namespace VLC_WINRT.ViewModels.MainPage
 {
     public class LibraryViewModel : BindableBase
     {
-        //TODO: provide a better way to describe to the app what file types are supported
-        private readonly List<string> ValidFiles = new List<string> {".m4v", ".mp4", ".mp3", ".avi"};
         private StorageFolder _location;
         private ObservableCollection<MediaViewModel> _media;
 
@@ -40,16 +37,11 @@ namespace VLC_WINRT.ViewModels.MainPage
 
         private async void GetMedia(IAsyncAction operation)
         {
-            IReadOnlyList<StorageFile> files = await _location.GetFilesAsync(CommonFileQuery.OrderByDate);
-            IEnumerable<StorageFile> validFiles = files.Where(file => ValidFiles.Contains(file.FileType)).Take(5);
-
-            foreach (StorageFile storageFile in validFiles)
+            var scanner = new MediaFolderScanner();
+            IEnumerable<StorageFile> files = await scanner.GetMediaFromFolder(_location, 5, CommonFileQuery.OrderByDate);
+            foreach (StorageFile storageFile in files)
             {
-                var mediaVM = new MediaViewModel();
-
-                mediaVM.Title = storageFile.Name;
-                mediaVM.Subtitle = storageFile.FileType.ToUpper() + " File";
-                mediaVM.File = storageFile;
+                var mediaVM = new MediaViewModel(storageFile);
 
                 // Get back to UI thread
                 DispatchHelper.Invoke(() => Media.Add(mediaVM));

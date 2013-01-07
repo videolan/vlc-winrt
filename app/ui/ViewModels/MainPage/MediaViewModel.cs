@@ -17,6 +17,13 @@ namespace VLC_WINRT.ViewModels.MainPage
         private string _subtitle = string.Empty;
         private string _title = string.Empty;
 
+        public MediaViewModel(StorageFile storageFile)
+        {
+            Title = storageFile.Name;
+            Subtitle = storageFile.FileType.ToUpper() + " File";
+            File = storageFile;
+        }
+
         public string Title
         {
             get { return _title; }
@@ -61,7 +68,7 @@ namespace VLC_WINRT.ViewModels.MainPage
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("Error gettign thumbnail");
+                Debug.WriteLine("Error getting thumbnail");
                 Debug.WriteLine(ex);
             }
         }

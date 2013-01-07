@@ -2,8 +2,7 @@
     x:Class="VLC_WINRT.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:VLC_WINRT"
-    xmlns:localData="using:VLC_WINRT.Data">
+    xmlns:mainPage="using:VLC_WINRT.ViewModels.MainPage">
 
     <Application.Resources>
         <ResourceDictionary>
@@ -28,6 +27,10 @@
             </Style>
 
             <x:String x:Key="AppName">VLC_WINRT</x:String>
+            
+            
+            <!-- View Models -->
+            <mainPage:MainPageViewModel x:Key="MainViewModel"></mainPage:MainPageViewModel>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

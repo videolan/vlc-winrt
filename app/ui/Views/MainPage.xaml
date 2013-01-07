@@ -4,7 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+   DataContext="{StaticResource MainViewModel}">
 
     <Grid Background="#FF1D1D1D">
         <Grid Margin="10,10,10,0">
@@ -27,7 +28,7 @@
                         <ColumnDefinition Width="Auto"></ColumnDefinition>
                         <ColumnDefinition Width="Auto"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <StackPanel Grid.Column="0" Style="{StaticResource ColumnStackPanelStyle}">
+                    <StackPanel Grid.Column="0" Style="{StaticResource ColumnStackPanelStyle}" DataContext="{Binding LastViewedVM}">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"></RowDefinition>
@@ -42,18 +43,21 @@
                             <Button Margin="5,0" Style="{StaticResource TextButtonStyle}" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" Content="Clear"></Button>
 
                             <Border Grid.Row="1" Grid.ColumnSpan="2"
-                                Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}">
-                                <Image x:Name="LastVideoViewed" ></Image>
+                                Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}"
+                                DataContext="{Binding LastViewedVM}"    >
+                                <Image x:Name="LastVideoViewed" Source="{Binding Image}"></Image>
                             </Border>
 
                             <Border Grid.Row="2" Grid.Column="0"
-                                Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}">
-                                <Image x:Name="BotLeftLastViewed" ></Image>
+                                Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}"
+                                     DataContext="{Binding SecondLastViewedVM}">
+                                <Image x:Name="BotLeftLastViewed" Source="{Binding Image}"></Image>
                             </Border>
                             
                             <Border Grid.Row="2" Grid.Column="1"
-                                Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}">
-                                <Image x:Name="BotRightLastViewed" ></Image>
+                                Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}"
+                                     DataContext="{Binding ThirdLastViewedVM}">
+                                <Image x:Name="BotRightLastViewed" Source="{Binding Image}"></Image>
                             </Border>
 
                         </Grid>

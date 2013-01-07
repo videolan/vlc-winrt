@@ -12,6 +12,7 @@ namespace VLC_WINRT.ViewModels.MainPage
         {
             VideoVM = new LibraryViewModel(KnownVLCLocation.VideosLibrary);
             MusicVM = new LibraryViewModel(KnownVLCLocation.MusicLibrary);
+            LastViewedVM = new LastViewedViewModel();
         }
 
         public LibraryViewModel VideoVM
