@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using VLC_WINRT.Common;
+using VLC_WINRT.Utility.Commands;
 using VLC_WINRT.Utility.Services;
 using Windows.Foundation;
 using Windows.Storage;
@@ -47,5 +48,13 @@ namespace VLC_WINRT.ViewModels.MainPage
                 DispatchHelper.Invoke(() => Media.Add(mediaVM));
             }
         }
+
+        private PlayCommand _play;
+
+        public PlayCommand Play
+        {
+            get { return _play; }
+            set { SetProperty(ref _play, value); }
+        } 
     }
 }

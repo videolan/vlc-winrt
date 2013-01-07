@@ -117,7 +117,7 @@
     <Compile Include="Common\LayoutAwarePage.cs" />
     <Compile Include="Common\RichTextColumns.cs" />
     <Compile Include="Common\SuspensionManager.cs" />
-    <Compile Include="Utility\Commands\PlayVideoCommand.cs" />
+    <Compile Include="Utility\Commands\PlayCommand.cs" />
     <Compile Include="Utility\Services\MediaFolderScanner.cs" />
     <Compile Include="ViewModels\MainPage\LastViewedViewModel.cs" />
     <Compile Include="ViewModels\MainPage\LibraryViewModel.cs" />
