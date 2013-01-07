@@ -24,7 +24,7 @@
             <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled" Grid.Row="1">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="500"></ColumnDefinition>
+                        <ColumnDefinition Width="550"></ColumnDefinition>
                         <ColumnDefinition Width="Auto"></ColumnDefinition>
                         <ColumnDefinition Width="Auto"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
@@ -44,19 +44,22 @@
 
                             <Border Grid.Row="1" Grid.ColumnSpan="2"
                                 Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}"
-                                DataContext="{Binding LastViewedVM}"    >
+                                DataContext="{Binding LastViewedVM}" 
+                                Margin="5">
                                 <Image x:Name="LastVideoViewed" Source="{Binding Image}"></Image>
                             </Border>
 
                             <Border Grid.Row="2" Grid.Column="0"
                                 Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}"
-                                     DataContext="{Binding SecondLastViewedVM}">
+                                     DataContext="{Binding SecondLastViewedVM}"
+                                    Margin="5">
                                 <Image x:Name="BotLeftLastViewed" Source="{Binding Image}"></Image>
                             </Border>
                             
                             <Border Grid.Row="2" Grid.Column="1"
                                 Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}"
-                                     DataContext="{Binding ThirdLastViewedVM}">
+                                     DataContext="{Binding ThirdLastViewedVM}"
+                                    Margin="5">
                                 <Image x:Name="BotRightLastViewed" Source="{Binding Image}"></Image>
                             </Border>
 
