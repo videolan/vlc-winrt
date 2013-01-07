@@ -46,11 +46,12 @@ cd contrib/winrt
     --disable-vorbis \
     --disable-sidplay2 \
     --disable-samplerate \
-    --disable-faad2 \
+    --enable-faad2 \
     --disable-harfbuzz \
     --enable-iconv \
     --disable-goom \
     --disable-flac \
+    --enable-dca \
     --disable-fontconfig \
     --disable-gcrypt \
     --disable-gpg-error \
@@ -69,7 +70,7 @@ echo "Bootstraping"
 ../bootstrap
 
 echo "Configuring"
-../extras/package/win32/configure.sh --host=${TARGET_TUPLE}
+../../configure.sh --host=${TARGET_TUPLE}
 
 echo "Building"
 make
