@@ -8,6 +8,36 @@
     mc:Ignorable="d">
 
     <Grid Background="#FF1D1D1D">
-        <TextBlock Text="VLC for Windows 8" Style="{StaticResource GroupHeaderTextStyle}" HorizontalAlignment="Center" Margin="50"></TextBlock>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" 
+                   Text="VLC for Windows 8" 
+                   Style="{StaticResource GroupHeaderTextStyle}" 
+                   HorizontalAlignment="Center" 
+                   Margin="50"></TextBlock>
+        <ScrollViewer Grid.Row="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0">
+                    <TextBlock Text="last viewed" Style="{StaticResource ColumnHeaderTextStyle}"></TextBlock>
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <TextBlock Text="music" Style="{StaticResource ColumnHeaderTextStyle}"></TextBlock>
+                </StackPanel>
+                <StackPanel Grid.Column="2">
+                    <TextBlock Text="movies" Style="{StaticResource ColumnHeaderTextStyle}"></TextBlock>
+                </StackPanel>
+            </Grid>
+         
+            
+            
+        </ScrollViewer>
+      
     </Grid>
 </Page>

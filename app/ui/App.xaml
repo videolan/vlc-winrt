@@ -17,6 +17,10 @@
             </ResourceDictionary.MergedDictionaries>
 
             <!-- Application-specific resources -->
+            <Style x:Key="ColumnHeaderTextStyle" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="LightGray"></Setter>
+                <Setter Property="FontSize" Value="30"></Setter>
+            </Style>
 
             <x:String x:Key="AppName">VLC_WINRT</x:String>
         </ResourceDictionary>
