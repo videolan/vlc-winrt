@@ -81,6 +81,8 @@ make install
 mkdir tmp
 find _win32/bin -name "*.dll" -exec cp -v {} tmp \;
 
+cp -r _win32/include tmp/
+
 cp -r _win32/lib/vlc/plugins tmp/
 find tmp -name "*.la" -exec rm -v {} \;
 find tmp -name "*.a" -exec rm -v {} \;
