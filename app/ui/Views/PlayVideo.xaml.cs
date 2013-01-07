@@ -1,4 +1,9 @@
-﻿using Windows.UI.Xaml.Controls;
+﻿using System;
+using VLC_WINRT.ViewModels.MainPage;
+using Windows.Storage.Streams;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
@@ -10,6 +15,8 @@ namespace VLC_WINRT.Views
     /// </summary>
     public sealed partial class PlayVideo : Page
     {
+        private bool _playing;
+
         public PlayVideo()
         {
             InitializeComponent();
@@ -22,8 +29,37 @@ namespace VLC_WINRT.Views
         ///     Event data that describes how this page was reached.  The Parameter
         ///     property is typically used to configure the page.
         /// </param>
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
+            IRandomAccessStreamWithContentType source = await ((MediaViewModel) DataContext).File.OpenReadAsync();
+            VideoSurface.SetSource(source, "video/mp4");
+            VideoSurface.Play();
+            _playing = true;
+        }
+
+        private void PlayVideo_Click(object sender, RoutedEventArgs e)
+        {
+            if (_playing)
+            {
+                VideoSurface.Pause();
+                _playing = false;
+            }
+
+            else
+            {
+                VideoSurface.Play();
+                _playing = true;
+            }
+        }
+
+        private void Slider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.GoBack();
         }
     }
 }

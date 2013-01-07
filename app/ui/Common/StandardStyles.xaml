@@ -406,7 +406,7 @@
         Uncomment any style you reference (as not all may be required).
     -->
 
-    <!--
+  
     
     <Style x:Key="SkipBackAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
         <Setter Property="AutomationProperties.AutomationId" Value="SkipBackAppBarButton"/>
@@ -518,9 +518,8 @@
         <Setter Property="AutomationProperties.Name" Value="Settings"/>
         <Setter Property="Content" Value="&#xE115;"/>
     </Style>
-    -->
 
-    <!--
+  
     <Style x:Key="VideoAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
         <Setter Property="AutomationProperties.AutomationId" Value="VideoAppBarButton"/>
         <Setter Property="AutomationProperties.Name" Value="Video"/>
@@ -611,7 +610,6 @@
         <Setter Property="AutomationProperties.Name" Value="Open Pane"/>
         <Setter Property="Content" Value="&#xE127;"/>
     </Style>
-    -->
 
     <!--
     <Style x:Key="WorldAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
@@ -1235,7 +1233,6 @@
     </Style>
     -->
 
-    <!--
     <Style x:Key="CellphoneAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
         <Setter Property="AutomationProperties.AutomationId" Value="CellphoneAppBarButton"/>
         <Setter Property="AutomationProperties.Name" Value="Cellphone"/>
@@ -1316,9 +1313,8 @@
         <Setter Property="AutomationProperties.Name" Value="Back to Window"/>
         <Setter Property="Content" Value="&#xE1D8;"/>
     </Style>
-    -->
 
-    <!--
+ 
     <Style x:Key="FullScreenAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
         <Setter Property="AutomationProperties.AutomationId" Value="FullScreenAppBarButton"/>
         <Setter Property="AutomationProperties.Name" Value="Full Screen"/>
@@ -1399,8 +1395,6 @@
         <Setter Property="AutomationProperties.Name" Value="Four Bars"/>
         <Setter Property="Content" Value="&#xE1E9;"/>
     </Style>
-
-    -->
 
     <!-- Title area styles -->
 
