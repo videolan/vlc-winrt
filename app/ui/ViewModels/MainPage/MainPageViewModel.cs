@@ -1,10 +1,10 @@
 ﻿using VLC_WINRT.Common;
-using Windows.Storage;
 
 namespace VLC_WINRT.ViewModels.MainPage
 {
     public class MainPageViewModel : BindableBase
     {
+        private LastViewedViewModel _lastViewedVM;
         private LibraryViewModel _musicVM;
         private LibraryViewModel _videoVM;
 
@@ -24,6 +24,12 @@ namespace VLC_WINRT.ViewModels.MainPage
         {
             get { return _musicVM; }
             set { SetProperty(ref _musicVM, value); }
+        }
+
+        public LastViewedViewModel LastViewedVM
+        {
+            get { return _lastViewedVM; }
+            set { SetProperty(ref _lastViewedVM, value); }
         }
     }
 }

@@ -28,7 +28,35 @@
                         <ColumnDefinition Width="Auto"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <StackPanel Grid.Column="0" Style="{StaticResource ColumnStackPanelStyle}">
-                        <TextBlock x:Uid="LastViewed" Text="last viewed" Style="{StaticResource ColumnHeaderTextStyle}"></TextBlock>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="2*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Row="0" Grid.Column="0" x:Uid="LastViewed" Text="last viewed" Style="{StaticResource ColumnHeaderTextStyle}"></TextBlock>
+                            <Button Margin="5,0" Style="{StaticResource TextButtonStyle}" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" Content="Clear"></Button>
+
+                            <Border Grid.Row="1" Grid.ColumnSpan="2"
+                                Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}">
+                                <Image x:Name="LastVideoViewed" ></Image>
+                            </Border>
+
+                            <Border Grid.Row="2" Grid.Column="0"
+                                Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}">
+                                <Image x:Name="BotLeftLastViewed" ></Image>
+                            </Border>
+                            
+                            <Border Grid.Row="2" Grid.Column="1"
+                                Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}">
+                                <Image x:Name="BotRightLastViewed" ></Image>
+                            </Border>
+
+                        </Grid>
                         
                     </StackPanel>
                     <StackPanel Grid.Column="1" Style="{StaticResource ColumnStackPanelStyle}"
