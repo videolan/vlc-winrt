@@ -1,5 +1,6 @@
 ﻿using System;
 using VLC_WINRT.ViewModels.MainPage;
+using Windows.Storage;
 using Windows.Storage.Streams;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -15,6 +16,8 @@ namespace VLC_WINRT.Views
     /// </summary>
     public sealed partial class PlayVideo : Page
     {
+        public static StorageFile CurrentFile;
+
         private bool _playing;
 
         public PlayVideo()
@@ -31,10 +34,13 @@ namespace VLC_WINRT.Views
         /// </param>
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
-            IRandomAccessStreamWithContentType source = await ((MediaViewModel) DataContext).File.OpenReadAsync();
-            VideoSurface.SetSource(source, "video/mp4");
-            VideoSurface.Play();
-            _playing = true;
+            if (CurrentFile != null)
+            {
+                IRandomAccessStreamWithContentType source = await CurrentFile.OpenReadAsync();
+                VideoSurface.SetSource(source, "video/mp4");
+                VideoSurface.Play();
+                _playing = true;
+            }
         }
 
         private void PlayVideo_Click(object sender, RoutedEventArgs e)

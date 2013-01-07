@@ -45,7 +45,8 @@ namespace VLC_WINRT.ViewModels.MainPage
             var rand = new Random();
             var scanner = new MediaFolderScanner();
             List<StorageFile> files =
-                await scanner.GetMediaFromFolder(KnownVLCLocation.VideosLibrary, int.MaxValue, CommonFileQuery.OrderByTitle);
+                await
+                scanner.GetMediaFromFolder(KnownVLCLocation.VideosLibrary, int.MaxValue, CommonFileQuery.OrderByTitle);
 
             if (files.Count > 3)
             {

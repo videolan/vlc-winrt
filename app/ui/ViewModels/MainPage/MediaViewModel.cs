@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using VLC_WINRT.Common;
+using VLC_WINRT.Utility.Commands;
 using Windows.Foundation;
 using Windows.Storage;
 using Windows.Storage.FileProperties;
@@ -14,6 +15,7 @@ namespace VLC_WINRT.ViewModels.MainPage
     {
         private StorageFile _file;
         private ImageSource _imageBrush;
+        private PlayCommand _play;
         private string _subtitle = string.Empty;
         private string _title = string.Empty;
 
@@ -22,6 +24,7 @@ namespace VLC_WINRT.ViewModels.MainPage
             Title = storageFile.Name;
             Subtitle = storageFile.FileType.ToUpper() + " File";
             File = storageFile;
+            Play = new PlayCommand();
         }
 
         public string Title
@@ -50,6 +53,12 @@ namespace VLC_WINRT.ViewModels.MainPage
         {
             get { return _subtitle; }
             set { SetProperty(ref _subtitle, value); }
+        }
+
+        public PlayCommand Play
+        {
+            get { return _play; }
+            set { SetProperty(ref _play, value); }
         }
 
         private async void GenerateThumbnail(IAsyncAction operation)

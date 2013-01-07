@@ -15,7 +15,8 @@ namespace VLC_WINRT.Utility.Commands
                 throw new ArgumentException("Expecting to see a Media View Model for this command");
 
             var vm = (MediaViewModel) parameter;
-            ((Page) Window.Current.Content).Frame.Navigate(typeof (PlayVideo));
+            PlayVideo.CurrentFile = vm.File;
+            ((Frame) Window.Current.Content).Navigate(typeof (PlayVideo));
         }
     }
 }
