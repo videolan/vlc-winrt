@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:VLC_WINRT.Views.Controls"
     mc:Ignorable="d">
 
     <Grid Background="#FF1D1D1D">
@@ -35,7 +36,7 @@
                     <ItemsControl ItemsSource="{Binding Media}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                
+                                <controls:Thumbnail></controls:Thumbnail>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>

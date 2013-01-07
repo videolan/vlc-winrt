@@ -10,7 +10,7 @@ using Windows.System.Threading;
 
 namespace VLC_WINRT.ViewModels.MainPage
 {
-    public abstract class LibraryViewModel : BindableBase
+    public class LibraryViewModel : BindableBase
     {
         private readonly List<string> ValidFiles = new List<string> {".mkv", ".m4v", ".mp4", ".mp3", ".avi"};
         private StorageFolder _location;
@@ -18,7 +18,7 @@ namespace VLC_WINRT.ViewModels.MainPage
         private string _subtitle = String.Empty;
         private string _title = String.Empty;
 
-        protected LibraryViewModel(string title, string subtitle, StorageFolder location)
+        public LibraryViewModel(string title, string subtitle, StorageFolder location)
         {
             Title = title;
             Subtitle = subtitle;
