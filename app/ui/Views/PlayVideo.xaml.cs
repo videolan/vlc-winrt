@@ -1,5 +1,6 @@
 ﻿using System;
-using VLC_WINRT.ViewModels.MainPage;
+using System.Diagnostics;
+using Windows.Media;
 using Windows.Storage;
 using Windows.Storage.Streams;
 using Windows.UI.Xaml;
@@ -23,7 +24,26 @@ namespace VLC_WINRT.Views
         public PlayVideo()
         {
             InitializeComponent();
+
+            VideoSurface.AutoPlay = true;
+
+            this.Loaded += ImLoaded;
         }
+
+        private async void ImLoaded(object sender, RoutedEventArgs e)
+        {
+            if (CurrentFile != null)
+            {
+                Debug.WriteLine("Playing video: " + CurrentFile.Path);
+                IRandomAccessStream stream = await CurrentFile.OpenAsync(FileAccessMode.Read);
+                MediaControl.TrackName = CurrentFile.DisplayName;
+                VideoSurface.SetSource(stream, CurrentFile.ContentType);
+              
+                _playing = true;
+            }
+        }
+
+       
 
         /// <summary>
         ///     Invoked when this page is about to be displayed in a Frame.
@@ -32,30 +52,20 @@ namespace VLC_WINRT.Views
         ///     Event data that describes how this page was reached.  The Parameter
         ///     property is typically used to configure the page.
         /// </param>
-        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        protected override  void OnNavigatedTo(NavigationEventArgs e)
         {
-            if (CurrentFile != null)
-            {
-                IRandomAccessStreamWithContentType source = await CurrentFile.OpenReadAsync();
-                VideoSurface.SetSource(source, "video/mp4");
-                VideoSurface.Play();
-                _playing = true;
-            }
         }
 
-        private void PlayVideo_Click(object sender, RoutedEventArgs e)
+        private async void PlayVideo_Click(object sender, RoutedEventArgs e)
         {
-            if (_playing)
-            {
-                VideoSurface.Pause();
-                _playing = false;
-            }
-
-            else
-            {
-                VideoSurface.Play();
-                _playing = true;
-            }
+          if (_playing)
+          {
+              VideoSurface.Pause();
+          }
+          else
+          {
+              VideoSurface.Play();
+          }
         }
 
         private void Slider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)

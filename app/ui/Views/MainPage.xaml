@@ -186,4 +186,11 @@
             </ScrollViewer>
         </Grid>
     </Grid>
+    <Page.BottomAppBar>
+        <AppBar Padding="10,0,10,0">
+            <Grid>
+            <Button Style="{StaticResource VideoAppBarButtonStyle}" Command="{Binding PickVideo}"></Button>
+            </Grid>
+        </AppBar>
+    </Page.BottomAppBar>
 </Page>
