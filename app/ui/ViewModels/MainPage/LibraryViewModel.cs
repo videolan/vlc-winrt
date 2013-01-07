@@ -12,34 +12,18 @@ namespace VLC_WINRT.ViewModels.MainPage
 {
     public class LibraryViewModel : BindableBase
     {
-        private readonly List<string> ValidFiles = new List<string> {".mkv", ".m4v", ".mp4", ".mp3", ".avi"};
+        //TODO: provide a better way to describe to the app what file types are supported
+        private readonly List<string> ValidFiles = new List<string> {".m4v", ".mp4", ".mp3", ".avi"};
         private StorageFolder _location;
         private ObservableCollection<MediaViewModel> _media;
-        private string _subtitle = String.Empty;
-        private string _title = String.Empty;
 
-        public LibraryViewModel(string title, string subtitle, StorageFolder location)
+        public LibraryViewModel(StorageFolder location)
         {
-            Title = title;
-            Subtitle = subtitle;
-
             Media = new ObservableCollection<MediaViewModel>();
             Location = location;
 
             //Get off UI thread
             ThreadPool.RunAsync(GetMedia);
-        }
-
-        public string Title
-        {
-            get { return _title; }
-            set { SetProperty(ref _title, value); }
-        }
-
-        public string Subtitle
-        {
-            get { return _subtitle; }
-            set { SetProperty(ref _subtitle, value); }
         }
 
         public StorageFolder Location
@@ -57,7 +41,7 @@ namespace VLC_WINRT.ViewModels.MainPage
         private async void GetMedia(IAsyncAction operation)
         {
             IReadOnlyList<StorageFile> files = await _location.GetFilesAsync(CommonFileQuery.OrderByDate);
-            IEnumerable<StorageFile> validFiles = files.Where(file => ValidFiles.Contains(file.FileType)).Take(20);
+            IEnumerable<StorageFile> validFiles = files.Where(file => ValidFiles.Contains(file.FileType)).Take(5);
 
             foreach (StorageFile storageFile in validFiles)
             {

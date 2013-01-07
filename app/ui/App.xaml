@@ -23,7 +23,7 @@
                 <Setter Property="FontSize" Value="30"></Setter>
             </Style>
             <Style x:Key="ColumnStackPanelStyle" TargetType="StackPanel">
-                <Setter Property="Margin" Value="10,0"></Setter>
+                <Setter Property="Margin" Value="0,0,10,0"></Setter>
             </Style>
 
             <x:String x:Key="AppName">VLC_WINRT</x:String>

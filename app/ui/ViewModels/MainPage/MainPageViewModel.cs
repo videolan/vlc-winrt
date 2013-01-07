@@ -10,8 +10,8 @@ namespace VLC_WINRT.ViewModels.MainPage
 
         public MainPageViewModel()
         {
-            VideoVM = new LibraryViewModel("Videos", "", KnownVLCLocation.VideosLibrary);
-            MusicVM = new LibraryViewModel("Music", "", KnownVLCLocation.MusicLibrary);
+            VideoVM = new LibraryViewModel(KnownVLCLocation.VideosLibrary);
+            MusicVM = new LibraryViewModel(KnownVLCLocation.MusicLibrary);
         }
 
         public LibraryViewModel VideoVM
