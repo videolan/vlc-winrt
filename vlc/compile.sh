@@ -82,6 +82,8 @@ mkdir tmp
 find _win32/bin -name "*.dll" -exec cp -v {} tmp \;
 
 cp -r _win32/lib/vlc/plugins tmp/
-find tmp -name "*.la" -o -name "*.a" -exec rm {} \;
+find tmp -name "*.la" -exec rm -v {} \;
+find tmp -name "*.a" -exec rm -v {} \;
 
-cd tmp && zip -r -9 ../vlc.zip *
+cd tmp && zip -r -9 ../vlc.zip * && cd ..
+rm -rf tmp
