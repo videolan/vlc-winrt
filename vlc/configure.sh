@@ -4,7 +4,7 @@ OPTIONS="
       --enable-lua
       --disable-vlm --disable-sout
       --enable-faad
-      --enable-flac
+      --disable-flac
       --enable-theora
       --disable-twolame
       --enable-quicktime
