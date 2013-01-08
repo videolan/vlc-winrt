@@ -522,7 +522,7 @@
   
     <Style x:Key="VideoAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
         <Setter Property="AutomationProperties.AutomationId" Value="VideoAppBarButton"/>
-        <Setter Property="AutomationProperties.Name" Value="Video"/>
+        <Setter Property="AutomationProperties.Name" Value="Open Video"/>
         <Setter Property="Content" Value="&#xE116;"/>
     </Style>
     <Style x:Key="RefreshAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">

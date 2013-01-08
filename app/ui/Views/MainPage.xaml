@@ -36,8 +36,8 @@
                     <Grid Grid.Column="0" DataContext="{Binding LastViewedVM}" Style="{StaticResource ColumnGridStyle}">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"></RowDefinition>
-                            <RowDefinition Height="440"></RowDefinition>
-                            <RowDefinition Height="220"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
+                            <RowDefinition Height="Auto"></RowDefinition>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -49,68 +49,66 @@
                         <Button Margin="5,0" Style="{StaticResource TextButtonStyle}" Grid.Row="0" Grid.Column="1"
                                 HorizontalAlignment="Right" Content="Clear">
                         </Button>
-
-                        <Border Grid.Row="1" Grid.ColumnSpan="2"
-                                DataContext="{Binding LastViewedVM}"
-                                Margin="5">
-                            <Button Command="{Binding Play}" CommandParameter="{Binding}"  BorderThickness="0">
-                                <Grid>
-                                    <Image Source="{Binding Image}"></Image>
-                                    <StackPanel VerticalAlignment="Bottom">
-                                        <TextBlock Text="{Binding Title}" Margin="10"
-                                                   Style="{StaticResource GroupHeaderTextStyle}" FontWeight="Bold">
-                                        </TextBlock>
-                                        <TextBlock Text="{Binding Subtitle}" Margin="10"
-                                                   Style="{StaticResource BodyTextStyle}">
-                                        </TextBlock>
-                                    </StackPanel>
-
-                                </Grid>
-                            </Button>
-
-                        </Border>
-
-                        <Border Grid.Row="2" Grid.Column="0"
+                        
+                        <Button Grid.Row="1" 
+                                Grid.ColumnSpan="2"
+                                DataContext="{Binding LastViewedVM}" 
+                                Command="{Binding Play}" 
+                                CommandParameter="{Binding}" 
+                                BorderThickness="0"
+                                Padding="4">
+                            <Grid>
+                                <Image Source="{Binding Image}"></Image>
+                                <StackPanel VerticalAlignment="Bottom">
+                                    <TextBlock Text="{Binding Title}" Margin="10"
+                                                Style="{StaticResource GroupHeaderTextStyle}" FontWeight="Bold">
+                                    </TextBlock>
+                                    <TextBlock Text="{Binding Subtitle}" Margin="10"
+                                                Style="{StaticResource BodyTextStyle}">
+                                    </TextBlock>
+                                </StackPanel>
+                            </Grid>
+                        </Button>
+                      
+                        <Button Grid.Row="2" 
+                                Grid.Column="0"
                                 DataContext="{Binding SecondLastViewedVM}"
-                                Margin="5">
-                            <Button Command="{Binding Play}" CommandParameter="{Binding}"  BorderThickness="0">
-                                <Grid>
-                                    <Image Source="{Binding Image}"></Image>
-                                    <StackPanel VerticalAlignment="Bottom">
-                                        <TextBlock Text="{Binding Title}" Margin="10"
-                                                   Style="{StaticResource GroupHeaderTextStyle}" FontWeight="Bold">
-                                        </TextBlock>
-                                        <TextBlock Text="{Binding Subtitle}" Margin="10"
-                                                   Style="{StaticResource BodyTextStyle}">
-                                        </TextBlock>
-                                    </StackPanel>
-
-                                </Grid>
-                            </Button>
-
-                        </Border>
-
-                        <Border Grid.Row="2" Grid.Column="1"
-                                DataContext="{Binding ThirdLastViewedVM}"
-                                Margin="5">
-                            <Button Command="{Binding Play}" CommandParameter="{Binding}"  BorderThickness="0">
-                                <Grid>
-                                    <Image Source="{Binding Image}"></Image>
-                                    <StackPanel VerticalAlignment="Bottom">
-                                        <TextBlock Text="{Binding Title}" Margin="10"
-                                                   Style="{StaticResource GroupHeaderTextStyle}" FontWeight="Bold">
-                                        </TextBlock>
-                                        <TextBlock Text="{Binding Subtitle}" Margin="10"
-                                                   Style="{StaticResource BodyTextStyle}">
-                                        </TextBlock>
-                                    </StackPanel>
-
-                                </Grid>
-                            </Button>
-
-
-                        </Border>
-
+                                Command="{Binding Play}" 
+                                CommandParameter="{Binding}" 
+                                BorderThickness="0"
+                                Padding="4">
+                            <Grid>
+                                <Image Source="{Binding Image}"></Image>
+                                <StackPanel VerticalAlignment="Bottom">
+                                    <TextBlock Text="{Binding Title}" Margin="10"
+                                                Style="{StaticResource GroupHeaderTextStyle}" FontWeight="Bold">
+                                    </TextBlock>
+                                    <TextBlock Text="{Binding Subtitle}" Margin="10"
+                                                Style="{StaticResource BodyTextStyle}">
+                                    </TextBlock>
+                                </StackPanel>
+                            </Grid>
+                        </Button>
+                       
+                        <Button Grid.Row="2" 
+                                Grid.Column="1"
+                                DataContext="{Binding ThirdLastViewedVM}" 
+                                Command="{Binding Play}" 
+                                CommandParameter="{Binding}" 
+                                BorderThickness="0"
+                                Padding="4">
+                            <Grid>
+                                <Image Source="{Binding Image}"></Image>
+                                <StackPanel VerticalAlignment="Bottom">
+                                    <TextBlock Text="{Binding Title}" Margin="10"
+                                                Style="{StaticResource GroupHeaderTextStyle}" FontWeight="Bold">
+                                    </TextBlock>
+                                    <TextBlock Text="{Binding Subtitle}" Margin="10"
+                                                Style="{StaticResource BodyTextStyle}">
+                                    </TextBlock>
+                                </StackPanel>
+                            </Grid>
+                        </Button>
                     </Grid>
 
 
