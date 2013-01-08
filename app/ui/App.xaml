@@ -38,6 +38,7 @@
             
             <!-- Converters -->
             <converters:TimespanShortStringConverter x:Key="TimeSpanShortStringConverter"></converters:TimespanShortStringConverter>
+            <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter"></converters:NullToVisibilityConverter>
           </ResourceDictionary>
     </Application.Resources>
 </Application>

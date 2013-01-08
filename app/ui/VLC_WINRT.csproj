@@ -118,6 +118,7 @@
     <Compile Include="Common\SuspensionManager.cs" />
     <Compile Include="Utility\Commands\PickVideoCommand.cs" />
     <Compile Include="Utility\Commands\PlayCommand.cs" />
+    <Compile Include="Utility\Converters\NullToVisibilityConverter.cs" />
     <Compile Include="Utility\Converters\TimespanShortStringConverter.cs" />
     <Compile Include="Utility\Services\MediaFolderScanner.cs" />
     <Compile Include="ViewModels\MainPage\LastViewedViewModel.cs" />

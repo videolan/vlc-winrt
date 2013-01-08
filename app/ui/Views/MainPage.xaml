@@ -53,12 +53,14 @@
 
                         <mainPage:LastViewedThumbnail Grid.Row="1"
                                                       Grid.ColumnSpan="2"
-                                                      DataContext="{Binding LastViewedVM}">
+                                                      DataContext="{Binding LastViewedVM}"
+                                                      >
                         </mainPage:LastViewedThumbnail>
 
                         <mainPage:LastViewedThumbnail Grid.Row="2"
                                                       Grid.Column="0"
-                                                      DataContext="{Binding SecondLastViewedVM}">
+                                                      DataContext="{Binding SecondLastViewedVM}"
+                                                      >
                         </mainPage:LastViewedThumbnail>
 
                         <mainPage:LastViewedThumbnail Grid.Row="2"
