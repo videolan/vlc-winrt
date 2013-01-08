@@ -2,7 +2,7 @@
     x:Class="VLC_WINRT.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:mainPage="using:VLC_WINRT.ViewModels.MainPage">
+    xmlns:mainPage="using:VLC_WINRT.ViewModels.MainPage" xmlns:converters="using:VLC_WINRT.Utility.Converters">
 
     <Application.Resources>
         <ResourceDictionary>
@@ -35,6 +35,9 @@
             
             <!-- View Models -->
             <mainPage:MainPageViewModel x:Key="MainViewModel"></mainPage:MainPageViewModel>
-        </ResourceDictionary>
+            
+            <!-- Converters -->
+            <converters:TimespanShortStringConverter x:Key="TimeSpanShortStringConverter"></converters:TimespanShortStringConverter>
+          </ResourceDictionary>
     </Application.Resources>
 </Application>

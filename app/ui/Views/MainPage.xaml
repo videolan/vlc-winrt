@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mainPage="using:VLC_WINRT.Views.Controls.MainPage"
     mc:Ignorable="d"
     d:DesignHeight="768"
     DataContext="{StaticResource MainViewModel}">
@@ -50,81 +51,20 @@
                                 HorizontalAlignment="Right" Content="Clear">
                         </Button>
 
-                        <Button Grid.Row="1"
-                                Grid.ColumnSpan="2"
-                                DataContext="{Binding LastViewedVM}"
-                                Command="{Binding Play}"
-                                CommandParameter="{Binding}"
-                                BorderThickness="0"
-                                Padding="4">
-                            <Grid>
+                        <mainPage:LastViewedThumbnail Grid.Row="1"
+                                                      Grid.ColumnSpan="2"
+                                                      DataContext="{Binding LastViewedVM}">
+                        </mainPage:LastViewedThumbnail>
 
-                                <Image Source="{Binding Image}"></Image>
-                                <Grid VerticalAlignment="Bottom">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"></RowDefinition>
-                                        <RowDefinition Height="Auto"></RowDefinition>
-                                    </Grid.RowDefinitions>
-                                    <TextBlock Text="{Binding Title}" Margin="10"
-                                               Style="{StaticResource GroupHeaderTextStyle}" FontWeight="Bold">
-                                    </TextBlock>
+                        <mainPage:LastViewedThumbnail Grid.Row="2"
+                                                      Grid.Column="0"
+                                                      DataContext="{Binding SecondLastViewedVM}">
+                        </mainPage:LastViewedThumbnail>
 
-                                    <TextBlock Text="{Binding Subtitle}"
-                                               Margin="10"
-                                               Style="{StaticResource BodyTextStyle}"
-                                               Grid.Row="1"
-                                               TextAlignment="Left">
-                                    </TextBlock>
-                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="1">
-                                        <TextBlock>
-                                            <Run Text="{Binding TimeWatched}"></Run>
-                                            <Run Text=" / "></Run>
-                                            <Run Text="{Binding Duration}"></Run>
-                                        </TextBlock>
-                                    </StackPanel>
-                                </Grid>
-                            </Grid>
-                        </Button>
-
-                        <Button Grid.Row="2"
-                                Grid.Column="0"
-                                DataContext="{Binding SecondLastViewedVM}"
-                                Command="{Binding Play}"
-                                CommandParameter="{Binding}"
-                                BorderThickness="0"
-                                Padding="4">
-                            <Grid>
-                                <Image Source="{Binding Image}"></Image>
-                                <StackPanel VerticalAlignment="Bottom">
-                                    <TextBlock Text="{Binding Title}" Margin="10"
-                                               Style="{StaticResource GroupHeaderTextStyle}" FontWeight="Bold">
-                                    </TextBlock>
-                                    <TextBlock Text="{Binding Subtitle}" Margin="10"
-                                               Style="{StaticResource BodyTextStyle}">
-                                    </TextBlock>
-                                </StackPanel>
-                            </Grid>
-                        </Button>
-
-                        <Button Grid.Row="2"
-                                Grid.Column="1"
-                                DataContext="{Binding ThirdLastViewedVM}"
-                                Command="{Binding Play}"
-                                CommandParameter="{Binding}"
-                                BorderThickness="0"
-                                Padding="4">
-                            <Grid>
-                                <Image Source="{Binding Image}"></Image>
-                                <StackPanel VerticalAlignment="Bottom">
-                                    <TextBlock Text="{Binding Title}" Margin="10"
-                                               Style="{StaticResource GroupHeaderTextStyle}" FontWeight="Bold">
-                                    </TextBlock>
-                                    <TextBlock Text="{Binding Subtitle}" Margin="10"
-                                               Style="{StaticResource BodyTextStyle}">
-                                    </TextBlock>
-                                </StackPanel>
-                            </Grid>
-                        </Button>
+                        <mainPage:LastViewedThumbnail Grid.Row="2"
+                                                      Grid.Column="1"
+                                                      DataContext="{Binding ThirdLastViewedVM}">
+                        </mainPage:LastViewedThumbnail>
                     </Grid>
 
 
