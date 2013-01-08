@@ -25,6 +25,10 @@
                 <Setter Property="Margin" Value="0,20,10,0"></Setter>
                 <Setter Property="MinWidth" Value="300"></Setter>
             </Style>
+            <Style x:Key="ColumnGridStyle" TargetType="Grid">
+                <Setter Property="Margin" Value="0,20,10,0"></Setter>
+                <Setter Property="MinWidth" Value="300"></Setter>
+            </Style>
 
             <x:String x:Key="AppName">VLC_WINRT</x:String>
             

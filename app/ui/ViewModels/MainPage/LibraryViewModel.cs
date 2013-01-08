@@ -38,7 +38,7 @@ namespace VLC_WINRT.ViewModels.MainPage
         private async void GetMedia(IAsyncAction operation)
         {
             var scanner = new MediaFolderScanner();
-            IEnumerable<StorageFile> files = await scanner.GetMediaFromFolder(_location, 5, CommonFileQuery.OrderByDate);
+            IEnumerable<StorageFile> files = await scanner.GetMediaFromFolder(_location, 6, CommonFileQuery.OrderByDate);
             foreach (StorageFile storageFile in files)
             {
                 var mediaVM = new MediaViewModel(storageFile);
