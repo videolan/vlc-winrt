@@ -61,6 +61,7 @@ namespace VLC_WINRT.ViewModels.MainPage
             set { SetProperty(ref _play, value); }
         }
 
+
         private async void GenerateThumbnail(IAsyncAction operation)
         {
             //TODO: make this whole thing keyed on an enum

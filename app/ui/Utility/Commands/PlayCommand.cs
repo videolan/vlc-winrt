@@ -11,7 +11,7 @@ namespace VLC_WINRT.Utility.Commands
     {
         public override void Execute(object parameter)
         {
-            if (parameter.GetType() != typeof(MediaViewModel))
+            if (parameter.GetType() != typeof(MediaViewModel) && parameter.GetType() != typeof(ViewedVideoViewModel))
                 throw new ArgumentException("Expecting to see a Media View Model for this command");
 
             var vm = (MediaViewModel) parameter;

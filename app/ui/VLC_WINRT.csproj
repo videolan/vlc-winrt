@@ -112,18 +112,20 @@
     <Compile Include="Common\KnownVLCLocation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Common\BindableBase.cs" />
-    <Compile Include="Common\BooleanToVisibilityConverter.cs" />
-    <Compile Include="Common\BooleanNegationConverter.cs" />
+    <Compile Include="Utility\Converters\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Utility\Converters\BooleanNegationConverter.cs" />
     <Compile Include="Common\LayoutAwarePage.cs" />
     <Compile Include="Common\RichTextColumns.cs" />
     <Compile Include="Common\SuspensionManager.cs" />
     <Compile Include="Utility\Commands\PickVideoCommand.cs" />
     <Compile Include="Utility\Commands\PlayCommand.cs" />
+    <Compile Include="Utility\Converters\TimespanShortStringConverter.cs" />
     <Compile Include="Utility\Services\MediaFolderScanner.cs" />
     <Compile Include="ViewModels\MainPage\LastViewedViewModel.cs" />
     <Compile Include="ViewModels\MainPage\LibraryViewModel.cs" />
     <Compile Include="ViewModels\MainPage\MainPageViewModel.cs" />
     <Compile Include="ViewModels\MainPage\MediaViewModel.cs" />
+    <Compile Include="ViewModels\MainPage\ViewedVideoViewModel.cs" />
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>

@@ -11,9 +11,9 @@ namespace VLC_WINRT.ViewModels.MainPage
 {
     public class LastViewedViewModel : BindableBase
     {
-        private MediaViewModel _lastViewedVM;
-        private MediaViewModel _secondLastViewedVM;
-        private MediaViewModel _thirdLastViewedVM;
+        private ViewedVideoViewModel _lastViewedVM;
+        private ViewedVideoViewModel _secondLastViewedVM;
+        private ViewedVideoViewModel _thirdLastViewedVM;
 
         public LastViewedViewModel()
         {
@@ -22,19 +22,19 @@ namespace VLC_WINRT.ViewModels.MainPage
             ThreadPool.RunAsync(AddRandomVideos);
         }
 
-        public MediaViewModel LastViewedVM
+        public ViewedVideoViewModel LastViewedVM
         {
             get { return _lastViewedVM; }
             set { SetProperty(ref _lastViewedVM, value); }
         }
 
-        public MediaViewModel SecondLastViewedVM
+        public ViewedVideoViewModel SecondLastViewedVM
         {
             get { return _secondLastViewedVM; }
             set { SetProperty(ref _secondLastViewedVM, value); }
         }
 
-        public MediaViewModel ThirdLastViewedVM
+        public ViewedVideoViewModel ThirdLastViewedVM
         {
             get { return _thirdLastViewedVM; }
             set { SetProperty(ref _thirdLastViewedVM, value); }
@@ -54,9 +54,9 @@ namespace VLC_WINRT.ViewModels.MainPage
                 StorageFile secondFile = files[rand.Next(files.Count)];
                 StorageFile thirdFile = files[rand.Next(files.Count)];
 
-                DispatchHelper.Invoke(() => { LastViewedVM = new MediaViewModel(firstFile); });
-                DispatchHelper.Invoke(() => { SecondLastViewedVM = new MediaViewModel(secondFile); });
-                DispatchHelper.Invoke(() => { ThirdLastViewedVM = new MediaViewModel(thirdFile); });
+                DispatchHelper.Invoke(() => { LastViewedVM = new ViewedVideoViewModel(firstFile); });
+                DispatchHelper.Invoke(() => { SecondLastViewedVM = new ViewedVideoViewModel(secondFile); });
+                DispatchHelper.Invoke(() => { ThirdLastViewedVM = new ViewedVideoViewModel(thirdFile); });
             }
         }
     }
