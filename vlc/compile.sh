@@ -26,6 +26,12 @@ EOF
     fi
 fi
 
+MAKEFLAGS=
+if which nproc >/dev/null
+then
+MAKEFLAGS=-j`nproc`
+fi
+
 TARGET_TUPLE=i686-w64-mingw32
 
 echo "Building the contribs"
@@ -62,7 +68,7 @@ cd contrib/winrt
     --disable-gpl
 
 make fetch
-make
+make $MAKEFLAGS
 
 cd ../.. && mkdir -p winrt && cd winrt
 
@@ -73,7 +79,7 @@ echo "Configuring"
 ../../configure.sh --host=${TARGET_TUPLE}
 
 echo "Building"
-make
+make $MAKEFLAGS
 
 echo "Package"
 make install
