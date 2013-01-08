@@ -1,5 +1,7 @@
 #! /bin/sh
 
+set -e
+
 # 1/ libvlc, libvlccore and its plugins
 TESTED_HASH=aaf991f
 if [ ! -d "vlc" ]; then
