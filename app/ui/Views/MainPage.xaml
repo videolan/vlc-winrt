@@ -144,7 +144,12 @@
     <Page.BottomAppBar>
         <AppBar Padding="10,0,10,0">
             <Grid>
-                <Button Style="{StaticResource VideoAppBarButtonStyle}" Command="{Binding PickVideo}"></Button>
+                <Button Style="{StaticResource VideoAppBarButtonStyle}" 
+                        Command="{Binding PickVideo}"
+                        HorizontalAlignment="Left"></Button>
+                <Button Style="{StaticResource CalculatorAppBarButtonStyle}"
+                        Click="Calculator_Click"
+                        HorizontalAlignment="Right"></Button>
             </Grid>
         </AppBar>
     </Page.BottomAppBar>

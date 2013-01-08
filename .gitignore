@@ -15,10 +15,13 @@ Thumbs.db
 *.suo
 *.tlb
 *.tlh
+*.ipch
 *.bak
 *.cache
 *.ilk
 *.log
+*.sdf
+*.opensdf
 [Bb]in
 [Dd]ebug*/
 *.sbr
@@ -26,3 +29,4 @@ obj/
 [Rr]elease*/
 _ReSharper*/
 [Tt]est[Rr]esult*
+

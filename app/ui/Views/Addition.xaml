@@ -1,0 +1,29 @@
+﻿<Page
+    x:Class="VLC_WINRT.Views.Addition"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:VLC_WINRT.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <StackPanel Margin="200" Background="Black">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="X is: " Style="{StaticResource PageHeaderTextStyle}" Margin="20"></TextBlock>
+                <TextBox x:Name="XValue" Width="200" Margin="20" FontSize="34"></TextBox>
+                <TextBlock Text="Y is: " Style="{StaticResource PageHeaderTextStyle}" Margin="20"></TextBlock>
+                <TextBox x:Name="YValue" Width="200" Margin="20" FontSize="34"></TextBox>
+                <Button Click="Add_Click">
+                    <Button.Content>
+                        <TextBlock Text="Add" Style="{StaticResource PageHeaderTextStyle}" Margin="20"></TextBlock>
+                    </Button.Content>
+                </Button>
+            </StackPanel>
+            <TextBlock x:Name="Result" Margin="20" 
+                       Style="{StaticResource PageHeaderTextStyle}" 
+                       VerticalAlignment="Bottom" 
+                       HorizontalAlignment="Center"></TextBlock>
+        </StackPanel>
+    </Grid>
+</Page>

@@ -1,4 +1,5 @@
-﻿using Windows.UI.Xaml;
+﻿using VLC_Wrapper;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
@@ -9,9 +10,9 @@ namespace VLC_WINRT.Views
     /// <summary>
     ///     An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class MainPage : Page
+    public sealed partial class Addition : Page
     {
-        public MainPage()
+        public Addition()
         {
             InitializeComponent();
         }
@@ -27,9 +28,14 @@ namespace VLC_WINRT.Views
         {
         }
 
-        private void Calculator_Click(object sender, RoutedEventArgs e)
+        private void Add_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof (Addition));
+            int x, y;
+            int.TryParse(XValue.Text, out x);
+            int.TryParse(YValue.Text, out y);
+
+            Math myMath = new Math();
+            Result.Text = myMath.DoSomeMath(x, y).ToString();
         }
     }
 }
