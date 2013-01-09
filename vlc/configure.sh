@@ -3,7 +3,7 @@
 OPTIONS="
       --enable-lua
       --disable-vlm --disable-sout
-      --enable-faad
+      --disable-faad
       --disable-flac
       --enable-theora
       --disable-twolame

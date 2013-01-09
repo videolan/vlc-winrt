@@ -54,7 +54,7 @@ cd contrib/winrt
     --disable-vorbis \
     --disable-sidplay2 \
     --disable-samplerate \
-    --enable-faad2 \
+    --disable-faad2 \
     --disable-harfbuzz \
     --enable-iconv \
     --disable-goom \
