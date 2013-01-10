@@ -86,7 +86,7 @@ make $MAKEFLAGS
 echo "Package"
 make install
 
-mkdir tmp
+rm -rf tmp && mkdir tmp
 find _win32/bin -name "*.dll" -exec cp -v {} tmp \;
 
 cp -r _win32/include tmp/
