@@ -87,6 +87,7 @@ echo "Package"
 make install
 
 rm -rf tmp && mkdir tmp
+find _win32/bin -name "*.dll" -exec ../extras/package/win32/peflags.pl {} \;
 find _win32/bin -name "*.dll" -exec cp -v {} tmp \;
 
 cp -r _win32/include tmp/
