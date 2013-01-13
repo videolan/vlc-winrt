@@ -47,7 +47,14 @@ namespace VLC_WINRT.Utility.Commands
             {
                 Debug.WriteLine("Opening file: " + file.Path);
                 PlayVideo.CurrentFile = file;
-                ((Frame) Window.Current.Content).Navigate(typeof (PlayVideo));
+                if (parameter.ToString() == "VLC")
+                {
+                    ((Frame)Window.Current.Content).Navigate(typeof(DemoVLC));
+                }
+                else
+                {
+                    ((Frame)Window.Current.Content).Navigate(typeof(PlayVideo));
+                }
             }
             else
             {

@@ -5,13 +5,22 @@
       <UniqueIdentifier>c8448b46-3fb0-40e4-910e-da2bb5d93b70</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="plugins">
+      <UniqueIdentifier>{f51cec2d-4d1d-4c12-9c79-8d20d23badf6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
     <ClCompile Include="Math.cpp" />
+    <ClCompile Include="Player.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
     <ClInclude Include="Math.h" />
+    <ClInclude Include="Player.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\vlc\libvlc.dll" />
+    <None Include="..\..\vlc\libvlccore.dll" />
   </ItemGroup>
 </Project>

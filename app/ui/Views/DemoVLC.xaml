@@ -1,0 +1,61 @@
+﻿<Page
+    x:Class="VLC_WINRT.Views.DemoVLC"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:VLC_WINRT.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <!--TODO: put in D3D interop here and invoke to libVLC -->
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Grid.RowSpan="2" Background="Black">
+            <MediaElement x:Name="VideoSurface"></MediaElement>
+        </Grid>
+    </Grid>
+    <Page.TopAppBar>
+        <AppBar>
+            <Button Style="{StaticResource BackButtonStyle}" ></Button>
+        </AppBar>
+    </Page.TopAppBar>
+    <Page.BottomAppBar>
+        <AppBar Padding="10,0,10,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Slider x:Name="VideoPositionSlider"  Grid.Row="0" Grid.ColumnSpan="2" Margin="30,0" />
+                <StackPanel  Grid.Row="1" Grid.Column="0">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <TextBlock x:Name="ElapsedTime" Text="0:00" Style="{StaticResource CaptionTextStyle}" Margin="2"></TextBlock>
+                        <TextBlock  Text="/" Style="{StaticResource CaptionTextStyle}" Margin="2"></TextBlock>
+                        <TextBlock x:Name="TotalTime" Text="0:00" Style="{StaticResource CaptionTextStyle}" Margin="2"></TextBlock>
+                    </StackPanel>
+
+                    <TextBlock x:Name="VideoTitle" Style="{StaticResource GroupHeaderTextStyle}" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                </StackPanel>
+                <StackPanel Margin="5,0,5,10" Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="1">
+                    <Button Style="{StaticResource SkipBackAppBarButtonStyle}">
+                    </Button>
+                    <Button x:Name="PlayButton" Style="{StaticResource PlayAppBarButtonStyle}">
+                    </Button>
+                    <Button Style="{StaticResource SkipAheadAppBarButtonStyle}">
+                    </Button>
+                    <Button Style="{StaticResource FullScreenAppBarButtonStyle}">
+                    </Button>
+                    <Button Style="{StaticResource BackToWindowAppBarButtonStyle}">
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </AppBar>
+    </Page.BottomAppBar>
+</Page>

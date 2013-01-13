@@ -1,4 +1,5 @@
-﻿using Windows.UI.Xaml;
+﻿using System.Diagnostics;
+using VLC_Wrapper;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
@@ -9,9 +10,11 @@ namespace VLC_WINRT.Views
     /// <summary>
     ///     An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class MainPage : Page
+    public sealed partial class DemoVLC : Page
     {
-        public MainPage()
+        private Player _vlcPlayer;
+
+        public DemoVLC()
         {
             InitializeComponent();
         }
@@ -25,16 +28,9 @@ namespace VLC_WINRT.Views
         /// </param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-        }
-
-        private void Calculator_Click(object sender, RoutedEventArgs e)
-        {
-            Frame.Navigate(typeof (Addition));
-        }
-
-        private void DemoVLC_Click(object sender, RoutedEventArgs e)
-        {
-            Frame.Navigate(typeof (DemoVLC));
+            Debug.WriteLine("Starting VLC");
+            _vlcPlayer = new Player();
+            Debug.WriteLine("VLC Started");
         }
     }
 }
