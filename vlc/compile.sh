@@ -97,5 +97,5 @@ cp -r _win32/lib/vlc/plugins tmp/
 find tmp -name "*.la" -exec rm -v {} \;
 find tmp -name "*.a" -exec rm -v {} \;
 
-cd tmp && zip -r -9 ../vlc.zip * && cd ..
+cd tmp && 7z a ../vlc.zip * && cd ..
 rm -rf tmp
