@@ -133,11 +133,13 @@
       <PrecompiledHeaderOutputFile>$(IntDir)pch.pch</PrecompiledHeaderOutputFile>
       <AdditionalUsingDirectories>$(WindowsSDK_WindowsMetadata);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>C:\winrt\vlc\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>runtimeobject.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libvlc.lib;runtimeobject.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <AdditionalLibraryDirectories>C:\winrt\vlc;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
@@ -204,7 +206,6 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Math.h" />
-    <ClInclude Include="VLCD3dImageSource.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Player.cpp" />
@@ -217,7 +218,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Math.cpp" />
-    <ClCompile Include="VLCD3dImageSource.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\vlc\libvlc.dll">
