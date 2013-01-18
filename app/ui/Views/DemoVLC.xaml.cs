@@ -1,6 +1,8 @@
 ﻿using System.Diagnostics;
 using VLC_Wrapper;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
@@ -17,6 +19,13 @@ namespace VLC_WINRT.Views
         public DemoVLC()
         {
             InitializeComponent();
+            this.Loaded += ImLoaded;
+           
+        }
+
+        private void ImLoaded(object sender, RoutedEventArgs e)
+        {
+            VideoSurface.Source = new SurfaceImageSource((int)VideoSurface.ActualWidth, (int)VideoSurface.ActualHeight, true);
         }
 
         /// <summary>

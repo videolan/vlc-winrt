@@ -13,11 +13,13 @@
     <ClCompile Include="pch.cpp" />
     <ClCompile Include="Math.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="VLCD3dImageSource.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
     <ClInclude Include="Math.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="VLCD3dImageSource.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\vlc\libvlc.dll" />

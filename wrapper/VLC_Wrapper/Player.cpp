@@ -3,6 +3,7 @@
 
 using namespace VLC_Wrapper;
 using namespace Platform;
+using namespace Windows::UI::Xaml::Media::Imaging;
 
 
 
@@ -20,5 +21,4 @@ Player::Player(void)
 	mp = libvlc_media_player_new_from_media (m);
 	libvlc_media_release (m);
 	libvlc_media_player_play (mp);
-
 }
