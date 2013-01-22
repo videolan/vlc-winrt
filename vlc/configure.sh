@@ -1,6 +1,7 @@
 #!/bin/sh
 
 OPTIONS="
+      --enable-winstore-app
       --enable-lua
       --disable-vlm --disable-sout
       --disable-faad
