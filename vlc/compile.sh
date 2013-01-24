@@ -35,6 +35,7 @@ MAKEFLAGS=-j`nproc`
 fi
 
 TARGET_TUPLE=i686-w64-mingw32
+[ $# = 1 ] && TARGET_TUPLE=$1
 
 echo "Building the contribs"
 mkdir -p contrib/winrt
