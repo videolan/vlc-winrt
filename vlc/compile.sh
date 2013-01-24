@@ -37,6 +37,9 @@ fi
 TARGET_TUPLE=i686-w64-mingw32
 [ $# = 1 ] && TARGET_TUPLE=$1
 
+EXTRA_CPPFLAGS="-D_WIN32_WINNT=0x602"
+EXTRA_LDFLAGS="-lwinstorecompat"
+
 echo "Building the contribs"
 mkdir -p contrib/winrt
 cd contrib/winrt
@@ -70,6 +73,10 @@ cd contrib/winrt
     --disable-qt4 \
     --disable-gpl
 
+echo "EXTRA_CFLAGS=-g ${EXTRA_CPPFLAGS}" >> config.mak
+echo "EXTRA_LDFLAGS=${EXTRA_LDFLAGS}" >> config.mak
+
+
 make fetch
 make $MAKEFLAGS
 
@@ -79,7 +86,9 @@ echo "Bootstraping"
 ../bootstrap
 
 echo "Configuring"
-CPPFLAGS="$CPPFLAGS -D_WIN32_WINNT=0x602" ../../configure.sh --host=${TARGET_TUPLE}
+CPPFLAGS="${EXTRA_CPPFLAGS}" \
+LDFLAGS="${EXTRA_LDFLAGS}" \
+../../configure.sh --host=${TARGET_TUPLE}
 
 echo "Building"
 make $MAKEFLAGS
