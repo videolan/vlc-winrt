@@ -3,7 +3,7 @@
 set -e
 
 # 1/ libvlc, libvlccore and its plugins
-TESTED_HASH=8378d01f
+TESTED_HASH=7d575ec68e
 if [ ! -d "vlc" ]; then
     echo "VLC source not found, cloning"
     git clone git://git.videolan.org/vlc.git vlc
@@ -78,7 +78,7 @@ echo "Bootstraping"
 ../bootstrap
 
 echo "Configuring"
-../../configure.sh --host=${TARGET_TUPLE}
+CPPFLAGS="$CPPFLAGS -D_WIN32_WINNT=0x602" ../../configure.sh --host=${TARGET_TUPLE}
 
 echo "Building"
 make $MAKEFLAGS
