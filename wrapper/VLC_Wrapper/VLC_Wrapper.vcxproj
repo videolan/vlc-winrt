@@ -219,12 +219,6 @@
     </ClCompile>
     <ClCompile Include="Math.cpp" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\vlc\libvlc.dll">
-      <DeploymentContent>true</DeploymentContent>
-    </None>
-    <None Include="..\..\vlc\libvlccore.dll" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
