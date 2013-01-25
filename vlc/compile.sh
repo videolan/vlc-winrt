@@ -107,5 +107,11 @@ cp -r _win32/lib/vlc/plugins tmp/
 find tmp -name "*.la" -exec rm -v {} \;
 find tmp -name "*.a" -exec rm -v {} \;
 
-cd tmp && 7z a ../vlc.7z * && cd ..
+cd tmp
+${TARGET_TUPLE}-dlltool libvlc.dll -l libvlc.lib -d ../lib/.libs/libvlc.def libvlc.dll
+${TARGET_TUPLE}-dlltool libvlccore.dll -l libvlccore.lib -d ../src/.libs/libvlccore.def libvlccore.dll
+
+7z a ../vlc.7z *
+
+cd ..
 rm -rf tmp
