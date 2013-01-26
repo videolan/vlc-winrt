@@ -12,9 +12,17 @@ Player::Player(void)
 	libvlc_instance_t *inst;
 	libvlc_media_player_t *mp;
 	libvlc_media_t *m;
-	
-	// Create an instance of vlc
-	inst =  libvlc_new(0, NULL);
+
+	/* Don't add any invalid options, otherwise it causes LibVLC to fail */
+	static const char *argv[] = {
+		"-I", "dummy",
+		"--no-osd",
+		"--verbose=2",
+		"--no-video-title-show",
+		"--no-stats",
+		"--no-drop-late-frames",
+	};
+	inst = libvlc_new(sizeof(argv) / sizeof(*argv), argv);
 
 	// add a hard-coded http source for videos to play
 	m = libvlc_media_new_location(inst, "http://media.ch9.ms/ch9/e869/9d2a7276-5398-4fdd-9639-263a3a08e869/4-103.mp4");
