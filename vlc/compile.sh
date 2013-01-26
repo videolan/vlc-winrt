@@ -108,8 +108,10 @@ find tmp -name "*.la" -exec rm -v {} \;
 find tmp -name "*.a" -exec rm -v {} \;
 
 cd tmp
-${TARGET_TUPLE}-dlltool libvlc.dll -l libvlc.lib -d ../lib/.libs/libvlc.def libvlc.dll
-${TARGET_TUPLE}-dlltool libvlccore.dll -l libvlccore.lib -d ../src/.libs/libvlccore.def libvlccore.dll
+cp ../lib/.libs/libvlc.def ../src/.libs/libvlccore.def .
+
+${TARGET_TUPLE}-dlltool libvlc.dll -l libvlc.lib -d libvlc.def libvlc.dll
+${TARGET_TUPLE}-dlltool libvlccore.dll -l libvlccore.lib -d libvlccore.def libvlccore.dll
 
 7z a ../vlc.7z *
 
