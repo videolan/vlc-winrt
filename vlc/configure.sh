@@ -29,7 +29,7 @@ OPTIONS="
       --disable-sqlite
       --disable-mad
       --disable-a52
-      --disable-vlc
+      --enable-vlc
       --disable-libgcrypt
       --disable-dirac"
 

@@ -96,16 +96,15 @@ make $MAKEFLAGS
 echo "Package"
 make install
 
-find _win32 -name "*.dll" -exec ../extras/package/win32/peflags.pl {} \;
-
 rm -rf tmp && mkdir tmp
-find _win32/bin -name "*.dll" -exec cp -v {} tmp \;
 
+find _win32/bin \( -name "*.dll" -o -name "*.exe" \) -exec cp -v {} tmp \;
 cp -r _win32/include tmp/
-
 cp -r _win32/lib/vlc/plugins tmp/
+
 find tmp -name "*.la" -exec rm -v {} \;
 find tmp -name "*.a" -exec rm -v {} \;
+find tmp \( -name "*.dll" -o -name "*.exe" \) -exec ../extras/package/win32/peflags.pl {} \;
 
 cd tmp
 cp ../lib/.libs/libvlc.dll.def ../src/.libs/libvlccore.dll.def .
