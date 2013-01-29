@@ -1,4 +1,4 @@
-﻿using System.Diagnostics;
+using System.Diagnostics;
 using VLC_Wrapper;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -38,8 +38,18 @@ namespace VLC_WINRT.Views
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             Debug.WriteLine("Starting VLC");
-            _vlcPlayer = new Player();
-            Debug.WriteLine("VLC Started");
+            try
+            {
+                _vlcPlayer = new Player();
+                Debug.WriteLine("VLC Started");
+            }
+            catch (System.Exception ex)
+            {
+                Debug.WriteLine("Couldn't start VLC: " + ex.ToString());
+                return;
+            }
+            Debug.WriteLine("Testing a media");
+            _vlcPlayer.TestMedia();
         }
     }
 }
