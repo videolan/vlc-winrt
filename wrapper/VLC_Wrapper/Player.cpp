@@ -14,13 +14,12 @@ Player::Player(void)
 	libvlc_media_t *m;
 
 	/* Don't add any invalid options, otherwise it causes LibVLC to fail */
-	const char *argv[] = {
+	static const char *argv[] = {
         "-I", "dummy",
         "--no-osd",
         "--verbose=2",
         "--no-video-title-show",
         "--no-stats",
-        "--no-plugins-cache",
         "--no-drop-late-frames",
         //"--avcodec-fast"
     };
