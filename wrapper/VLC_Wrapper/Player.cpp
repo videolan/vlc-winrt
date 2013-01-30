@@ -7,13 +7,34 @@ using namespace VLC_Wrapper;
 using namespace Platform;
 using namespace Windows::UI::Xaml::Media::Imaging;
 
+void *Player::Lock(void* opqaue, void** planes){
+	//do some stuff
+	int k = 234+32;
+
+	return NULL;
+}
+
+void Player::Unlock(void* opaque, void* picture, void** planes){
+	//do some more stuff
+	int i = 5+3;
+
+	return;
+}
+void Player::Display(void* opaque, void* picture){
+	//do even more stuff
+
+	int v= 324+32;
+	
+
+	return;
+}
 Player::Player(void)
 {
 	/* Don't add any invalid options, otherwise it causes LibVLC to fail */
 	static const char *argv[] = {
 		"-I", "dummy",
 		"--no-osd",
-		"--verbose=2",
+        //"--verbose=2",
 		"--no-video-title-show",
 		"--no-stats",
 		"--no-drop-late-frames",
@@ -43,9 +64,13 @@ void Player::TestMedia() {
 	unsigned int pitch = width*bitsPerPixel / 8;
 
 
-	//libvlc_video_set_format(mp, "RV32", width, height, pitch);
-	//libvlc_video_set_callbacks(mp,   winrtlock, winrtunlock, winrtdisplay, pixeldata);
-
+	libvlc_video_set_format(mp, "RV32", width, height, pitch);
+	libvlc_video_set_callbacks(mp, (libvlc_video_lock_cb)(this->Lock), 
+		(libvlc_video_unlock_cb)(this->Unlock), 
+		(libvlc_video_display_cb)(this->Display), NULL);
+	
 	libvlc_media_release (m);
 	libvlc_media_player_play (mp);
 }
+
+

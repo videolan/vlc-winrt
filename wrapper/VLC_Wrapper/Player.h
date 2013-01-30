@@ -9,6 +9,10 @@ namespace VLC_Wrapper {
 		void TestMedia();
 	private:
 		libvlc_instance_t* p_instance;
+		static void *Lock(void* opaque, void** planes);
+		static void Unlock(void* opaque, void* picture, void** planes);
+		static void Display(void* opaque, void* picture);
+
 	};
 }
 
