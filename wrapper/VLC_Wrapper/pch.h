@@ -6,7 +6,7 @@
 #pragma once
 
 #include <wrl.h>
-#include <wrl\client.h>
+#include <wrl/client.h>
 
 #include <dxgi.h>
 #include <dxgi1_2.h>

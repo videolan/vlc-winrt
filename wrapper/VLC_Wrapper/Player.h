@@ -1,5 +1,5 @@
 #pragma once
-#include "vlc/vlc.h"
+#include <vlc/vlc.h>
 
 namespace VLC_Wrapper {
 	public ref class Player sealed
