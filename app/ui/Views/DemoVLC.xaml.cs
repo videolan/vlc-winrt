@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Diagnostics;
 using VLC_Wrapper;
 using Windows.UI.Xaml.Controls;
@@ -33,7 +33,7 @@ namespace VLC_WINRT.Views
             Debug.WriteLine("Starting VLC");
             try
             {
-                var brush = new ImageBrush();
+                ImageBrush brush = new ImageBrush();
                 VideoSurface.Fill = brush;
                 _vlcPlayer = new Player(brush);
 
@@ -41,7 +41,7 @@ namespace VLC_WINRT.Views
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("Couldn't start VLC: " + ex);
+                Debug.WriteLine("Couldn't start VLC: " + ex.ToString());
                 return;
             }
             Debug.WriteLine("Testing a media");
