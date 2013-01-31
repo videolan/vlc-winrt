@@ -105,7 +105,7 @@ void VLCD2dImageSource::DrawFrame(UINT width, UINT height, UINT bufferSize, byte
 	IWICBitmap* wicbmp = NULL;
     HRESULT hr = m_WicFactory->CreateBitmapFromMemory(	width, 
 												height, 
-												GUID_WICPixelFormat32bppRGB, 
+												GUID_WICPixelFormat32bppBGR,
 												width*4, 
 												bufferSize, 
 												frameBuffer, 
