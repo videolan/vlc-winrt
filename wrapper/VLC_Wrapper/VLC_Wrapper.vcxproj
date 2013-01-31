@@ -222,6 +222,10 @@
     <ClCompile Include="Math.cpp" />
     <ClCompile Include="VLCD2dImageSource.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\vlc\libvlc.dll" />
+    <None Include="..\..\vlc\libvlccore.dll" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

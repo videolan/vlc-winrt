@@ -98,6 +98,18 @@ make install
 
 rm -rf tmp && mkdir tmp
 
+# Compiler shared DLLs, when using compilers built with --enable-shared
+# The shared DLLs may not necessarily be in the first LIBRARY_PATH, we
+# should check them all.
+library_path_list=`$(TARGET_TUPLE)-g++ -v /dev/null 2>&1 | grep ^LIBRARY_PATH|cut -d= -f2` ;
+OLD_IFS="$IFS"
+IFS=':';
+for x in $library_path_list;
+do
+	cp "$x/libstdc++-6.dll" "$x/libgcc_s_sjlj-1.dll" "tmp/" ; true ;
+done
+IFS="$OLD_IFS"
+
 find _win32/bin \( -name "*.dll" -o -name "*.exe" \) -exec cp -v {} tmp \;
 cp -r _win32/include tmp/
 cp -r _win32/lib/vlc/plugins tmp/

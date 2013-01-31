@@ -166,6 +166,14 @@
       <Link>libvlccore.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="..\..\vlc\libstdc++-6.dll">
+      <Link>libstdc++-6.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\vlc\libgcc_s_sjlj-1.dll">
+      <Link>libgcc_s_sjlj-1.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="..\..\vlc\plugins\access\libaccess_attachment_plugin.dll">
       <Link>plugins\access\libaccess_attachment_plugin.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

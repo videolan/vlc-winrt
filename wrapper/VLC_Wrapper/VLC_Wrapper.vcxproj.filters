@@ -19,4 +19,12 @@
     <ClInclude Include="VLCD2dImageSource.h" />
     <ClInclude Include="DirectXHelper.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\vlc\libvlc.dll">
+      <Filter>Resources</Filter>
+    </None>
+    <None Include="..\..\vlc\libvlccore.dll">
+      <Filter>Resources</Filter>
+    </None>
+  </ItemGroup>
 </Project>
