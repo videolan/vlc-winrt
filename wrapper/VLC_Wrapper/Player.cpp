@@ -29,31 +29,32 @@ void Player::Display(void* opaque, void* picture){
 
 	WaitForSingleObjectEx(displayMutex, 5000L, true);
 	//do even more stuff
-	vlcImageSource->Dispatcher->RunAsync(CoreDispatcherPriority::Normal, ref new DispatchedHandler( [] 
+	vlcImageSource->Dispatcher->RunAsync(CoreDispatcherPriority::Normal, ref new DispatchedHandler( []
 	{
 		vlcImageSource->BeginDraw(Windows::Foundation::Rect(0, 0, (float)480, (float)270));
 		vlcImageSource->Clear(Windows::UI::Colors::HotPink);
 		vlcImageSource->EndDraw();
 	}));
-	
+
 	ReleaseMutex(displayMutex);
 	return;
 }
 
 Player::Player(Windows::UI::Xaml::Media::ImageBrush^ brush, int height, int width)
 {
+	OutputDebugStringA("Hello, Player!");
 	/* Don't add any invalid options, otherwise it causes LibVLC to fail */
 	static const char *argv[] = {
 		"-I", "dummy",
 		"--no-osd",
-        //"--verbose=2",
+		"--verbose=2",
 		"--no-video-title-show",
 		"--no-stats",
 		"--no-drop-late-frames",
-        //"--avcodec-fast"
-    };
+		//"--avcodec-fast"
+	};
 
-    p_instance = libvlc_new(sizeof(argv) / sizeof(*argv), argv);
+	p_instance = libvlc_new(sizeof(argv) / sizeof(*argv), argv);
 	if(!p_instance) {
 		throw new std::exception("Could not initialise libvlc!",1);
 		return;
@@ -83,10 +84,10 @@ void Player::TestMedia() {
 	pixelData = new byte[width*height*bytesPerPixel];
 
 	libvlc_video_set_format(mp, "RV32", width, height, pitch);
-	libvlc_video_set_callbacks(mp, (libvlc_video_lock_cb)(this->Lock), 
-		(libvlc_video_unlock_cb)(this->Unlock), 
+	libvlc_video_set_callbacks(mp, (libvlc_video_lock_cb)(this->Lock),
+		(libvlc_video_unlock_cb)(this->Unlock),
 		(libvlc_video_display_cb)(this->Display), NULL);
-	
+
 	libvlc_media_release (m);
 	libvlc_media_player_play (mp);
 }
