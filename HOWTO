@@ -1,0 +1,71 @@
+How to compile VLC for WinRT:
+-----------------------------
+
+Compiled and tested by Edward Wang
+
+1) Cross-compile libvlc for WinRT
+You need:
+* A very, very, very recent Linux
+* build-essentials and all related build tools (make, autotools, git, etc...)
+* Visual Studio 2012
+* Windows 8
+* Prodigious patience and tenacity :)
+
+Build and install mingw-w64 SVN rev 5568 or higher (for libwinstorecompat).
+
+Run ./compile.sh and generate vlc.7z
+Extract the contents to vlc/
+
+2) Fix .lib
+Use VS command-line ("Developer Command Prompt for VS2012") to generate .def and .lib: http://wiki.videolan.org/GenerateLibFromDll (do not use the "for" script there)
+
+This will let us avoid the dreaded FileNotFoundException.
+
+3) Build and package the front-end
+Open Package.appxmanifest, and generate a self-signed cert
+
+Compile VLC_WRAPPER and then VLC_WINRT in Visual Studio.
+
+Project → Store → Create App Packages...
+Select target "Debug (Win32)"
+Build the package.
+
+Now we have to import the self-signed cert into the local computer:
+
+Open MMC
+File → Add/Remove Snap In...
+Certificates → Add
+Select "Computer account"
+Select "Local computer" (already selected), press Finish
+OK to close "Add/Remove Snap-ins" dialog
+Certificates (Local Computer) → Trusted Root Certification Authorities → Certificates
+Right click, All Tasks... → Import...
+Next
+Select your "VLC_WINRT_1.0.0.0_x86_Debug.cer"
+Next
+Finish
+
+4) Deploy the package
+Start → Programs → Microsoft Visual Studio 2012 → Visual Studio Tools → Debuggable Package Manager
+
+Install VCRT dependency:
+Add-AppxPackage Dependencies/x86/*
+( or Add-AppxPackage Dependencies/x86/Microsoft.VCLibs.x86.Debug.11.00.appx if you feel like it )
+
+Deploy VLC appx:
+Add-AppxPackage VLC_WINRT_1.0.0.0_x86_Debug.appx
+
+Enable debug mode for the app:
+(note: use Get-AppxPackage to look up the full name of the app)
+Enable-AppxDebug  9519ba58-7ad6-4c4e-97ed-bfc2135a0d19_1.0.0.0_x86__2c7ztm58ext6g
+# Debugging has been enabled for 9519ba58-7ad6-4c4e-97ed-bfc2135a0d19_1.0.0.0_x86__2c7ztm58ext6g.
+
+Congratulations, you have installed VLC for WinRT.
+
+5) Helpful snippets and tools
+Use http://technet.microsoft.com/en-us/sysinternals/bb896647 DebugView to view the debug logs
+And Procmon ( http://technet.microsoft.com/en-ca/sysinternals/bb896645.aspx ) helps to see and debug events (like loading DLLs/modules/etc)
+
+Quick one-liners to remove ugly mode changes and ugly CR-LF line endings.
+git status -s | grep "^ M " | awk '{ print $2; }' | xargs chmod 644
+git status -s | grep "^ M " | awk '{ print $2; }' | xargs dos2unix
