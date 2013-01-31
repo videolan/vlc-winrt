@@ -13,8 +13,14 @@
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0" Grid.RowSpan="2" Background="Black">
-            <Image x:Name="VideoSurface"></Image>
+        <Grid Grid.Row="0" Grid.RowSpan="2" Background="Green">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Rectangle x:Name="VideoSurface" Fill="LightGray"></Rectangle>
         </Grid>
     </Grid>
     <Page.TopAppBar>

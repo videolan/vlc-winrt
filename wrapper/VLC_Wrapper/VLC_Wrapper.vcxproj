@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|ARM">
@@ -120,7 +120,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <AdditionalDependencies>runtimeobject.lib;libvlc.lib;d3d11.lib;dxgi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>runtimeobject.lib;libvlc.lib;d3d11.lib;d2d1.lib;dxgi.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <AdditionalLibraryDirectories>$(ProjectDir)\..\..\vlc;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
@@ -203,9 +203,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="DirectXHelper.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Math.h" />
+    <ClInclude Include="VLCD2dImageSource.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Player.cpp" />
@@ -218,6 +220,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Math.cpp" />
+    <ClCompile Include="VLCD2dImageSource.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
