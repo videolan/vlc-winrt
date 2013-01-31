@@ -1,5 +1,7 @@
 #include "pch.h"
 #include "VLCD2dImageSource.h"
+#include <wincodec.h>
+//#include <atlbase.h>
 
 using namespace VLC_Wrapper;
 using namespace Platform;
@@ -20,6 +22,15 @@ void VLCD2dImageSource::CreateDeviceIndependentResources()
 {
     // Query for ISurfaceImageSourceNative interface.
     reinterpret_cast<IUnknown*>(this)->QueryInterface(IID_PPV_ARGS(&m_sisNative));
+
+
+	HRESULT hr = CoCreateInstance(
+		CLSID_WICImagingFactory,
+		NULL,
+		CLSCTX_INPROC_SERVER,
+		IID_IWICImagingFactory,
+		(LPVOID*)&m_WicFactory
+		);
 }
 
 // Initialize hardware-dependent resources.
@@ -86,6 +97,35 @@ void VLCD2dImageSource::CreateDeviceResources()
     // Associate the DXGI device with the SurfaceImageSource.
    
     m_sisNative->SetDevice(dxgiDevice.Get());
+}
+
+//Only works for 32 bits per pixel at the moment
+void VLCD2dImageSource::DrawFrame(UINT width, UINT height, UINT bufferSize, byte* frameBuffer, Windows::Foundation::Rect updateRect){
+
+	IWICBitmap* wicbmp = NULL;
+    HRESULT hr = m_WicFactory->CreateBitmapFromMemory(	width, 
+												height, 
+												GUID_WICPixelFormat32bppRGB, 
+												width*4, 
+												bufferSize, 
+												frameBuffer, 
+												&wicbmp);
+	if (SUCCEEDED(hr))
+    {
+		ID2D1Bitmap* d2dbmp;
+		hr = m_d2dContext->CreateBitmapFromWicBitmap(wicbmp, &d2dbmp);
+	
+		m_d2dContext->DrawBitmap(d2dbmp, 
+										D2D1::RectF(static_cast<LONG>(updateRect.Left),
+													static_cast<LONG>(updateRect.Top),
+													static_cast<LONG>(updateRect.Right),
+													static_cast<LONG>(updateRect.Bottom)
+													)
+		);
+		wicbmp->Release();
+    } 
+
+	
 }
 
 // Sets the current DPI.

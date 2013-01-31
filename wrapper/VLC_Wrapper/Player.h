@@ -6,7 +6,7 @@ namespace VLC_Wrapper {
 	public ref class Player sealed
 	{
 	public:
-		Player(Windows::UI::Xaml::Media::ImageBrush^ brush, int height, int width);
+		Player::Player(Windows::UI::Xaml::Media::ImageBrush^ brush);
 		void TestMedia();
 
 	private:

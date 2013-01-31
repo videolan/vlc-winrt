@@ -7,15 +7,19 @@ using namespace VLC_Wrapper;
 using namespace Platform;
 using namespace Windows::UI::Xaml::Media::Imaging;
 using namespace Windows::UI::Core;
+using namespace Windows::UI;
 using namespace Windows::Foundation;
 
 static HANDLE displayMutex = CreateMutexEx(NULL,NULL,0,MUTEX_ALL_ACCESS);
 static byte* pixelData;
 static VLCD2dImageSource^ vlcImageSource;
+static const int frameWidth = 480;
+static const int frameHeight = 270;
+static int pixelBufferSize;
 
 void *Player::Lock(void* opqaue, void** planes){
-
 	WaitForSingleObjectEx(displayMutex, 5000L, true);
+	
 	*planes = pixelData;
 
 	return NULL;
@@ -31,16 +35,17 @@ void Player::Display(void* opaque, void* picture){
 	//do even more stuff
 	vlcImageSource->Dispatcher->RunAsync(CoreDispatcherPriority::Normal, ref new DispatchedHandler( []
 	{
-		vlcImageSource->BeginDraw(Windows::Foundation::Rect(0, 0, (float)480, (float)270));
-		vlcImageSource->Clear(Windows::UI::Colors::HotPink);
+		vlcImageSource->BeginDraw(Rect(0, 0, (float)frameWidth, (float)frameHeight));
+		vlcImageSource->DrawFrame(frameWidth,frameHeight,pixelBufferSize, pixelData, Rect(0, 0, (float)frameWidth, (float)frameHeight));
 		vlcImageSource->EndDraw();
+		ReleaseMutex(displayMutex);
 	}));
 
-	ReleaseMutex(displayMutex);
+	
 	return;
 }
 
-Player::Player(Windows::UI::Xaml::Media::ImageBrush^ brush, int height, int width)
+Player::Player(Windows::UI::Xaml::Media::ImageBrush^ brush)
 {
 	OutputDebugStringA("Hello, Player!");
 	/* Don't add any invalid options, otherwise it causes LibVLC to fail */
@@ -60,7 +65,7 @@ Player::Player(Windows::UI::Xaml::Media::ImageBrush^ brush, int height, int widt
 		return;
 	}
 
-	vlcImageSource = ref new VLCD2dImageSource(width, height, false);
+	vlcImageSource = ref new VLCD2dImageSource(frameWidth, frameHeight, true);
 	brush->ImageSource = vlcImageSource;
 }
 
@@ -74,16 +79,15 @@ void Player::TestMedia() {
 
 
 	//we're using vmem so format is always RGB
-	unsigned int width = 480;
-	unsigned int height = 270;
 	unsigned int bitsPerPixel = 32; // hard coded for RV32 videos
 	unsigned int bytesPerPixel = bitsPerPixel/8;
-	unsigned int pitch = width*bytesPerPixel;
+	unsigned int pitch = frameWidth*bytesPerPixel;
 
 	//hard coded pixel data allocation for sample video
-	pixelData = new byte[width*height*bytesPerPixel];
+	pixelBufferSize = frameWidth*frameHeight*bytesPerPixel;
+	pixelData = new byte[pixelBufferSize];
 
-	libvlc_video_set_format(mp, "RV32", width, height, pitch);
+	libvlc_video_set_format(mp, "RV32", frameWidth, frameHeight, pitch);
 	libvlc_video_set_callbacks(mp, (libvlc_video_lock_cb)(this->Lock),
 		(libvlc_video_unlock_cb)(this->Unlock),
 		(libvlc_video_display_cb)(this->Display), NULL);

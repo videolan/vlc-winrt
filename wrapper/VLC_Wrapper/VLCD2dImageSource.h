@@ -17,6 +17,7 @@ namespace VLC_Wrapper {
 
 		void Clear(Windows::UI::Color color);
 		void FillSolidRect(Windows::UI::Color color, Windows::Foundation::Rect rect);
+		void VLCD2dImageSource::DrawFrame(UINT width, UINT height, UINT bufferSize, byte* frameBuffer, Windows::Foundation::Rect updateRect);
 
 	private protected:
 		void CreateDeviceIndependentResources();
@@ -33,6 +34,7 @@ namespace VLC_Wrapper {
 
 		int                                                 m_width;
 		int                                                 m_height;
+		IWICImagingFactory*									m_WicFactory;
     };
 };
 
