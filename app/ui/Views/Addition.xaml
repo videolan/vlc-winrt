@@ -25,5 +25,6 @@
                        VerticalAlignment="Bottom" 
                        HorizontalAlignment="Center"></TextBlock>
         </StackPanel>
+        <Button x:Name="btnGoBack" Content="Go back" HorizontalAlignment="Left" Margin="72,59,0,0" VerticalAlignment="Top" RenderTransformOrigin="-3.614,0.62" Height="56" Width="204" FontFamily="Arial" FontSize="24" Click="btnGoBack_Click"/>
     </Grid>
 </Page>
