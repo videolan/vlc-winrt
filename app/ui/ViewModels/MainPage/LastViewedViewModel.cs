@@ -48,7 +48,7 @@ namespace VLC_WINRT.ViewModels.MainPage
                 await
                 scanner.GetMediaFromFolder(KnownVLCLocation.VideosLibrary, int.MaxValue, CommonFileQuery.OrderByTitle);
 
-            if (files.Count > 3)
+            if (files.Count >= 3)
             {
                 StorageFile firstFile = files[rand.Next(files.Count)];
                 StorageFile secondFile = files[rand.Next(files.Count)];
