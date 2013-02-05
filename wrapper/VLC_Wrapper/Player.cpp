@@ -13,14 +13,16 @@ using namespace Windows::Foundation;
 static HANDLE displayMutex = CreateMutexEx(NULL,NULL,0,MUTEX_ALL_ACCESS);
 static byte* pixelData;
 static VLCD2dImageSource^ vlcImageSource;
-static const int frameWidth = 480;
-static const int frameHeight = 270;
+static const UINT frameWidth = 300;
+static const UINT frameHeight = 240;
+static UINT pitch;
 static int pixelBufferSize;
 
 void *Player::Lock(void* opqaue, void** planes){
 	WaitForSingleObjectEx(displayMutex, 5000L, true);
 	
 	*planes = pixelData;
+
 
 	return NULL;
 }
@@ -36,7 +38,7 @@ void Player::Display(void* opaque, void* picture){
 	vlcImageSource->Dispatcher->RunAsync(CoreDispatcherPriority::Normal, ref new DispatchedHandler( []
 	{
 		vlcImageSource->BeginDraw(Rect(0, 0, (float)frameWidth, (float)frameHeight));
-		vlcImageSource->DrawFrame(frameWidth,frameHeight,pixelBufferSize, pixelData, Rect(0, 0, (float)frameWidth, (float)frameHeight));
+		vlcImageSource->DrawFrame(frameHeight, frameWidth, pixelData, pitch, Rect(0, 0, (float)frameWidth, (float)frameHeight));
 		vlcImageSource->EndDraw();
 		ReleaseMutex(displayMutex);
 	}));
@@ -52,7 +54,7 @@ Player::Player(Windows::UI::Xaml::Media::ImageBrush^ brush)
 	static const char *argv[] = {
 		"-I", "dummy",
 		"--no-osd",
-		"--verbose=2",
+		"--verbose=0",
 		"--no-video-title-show",
 		"--no-stats",
 		"--no-drop-late-frames",
@@ -74,20 +76,20 @@ void Player::TestMedia() {
 	libvlc_media_t *m;
 
 	// add a hard-coded http source for videos to play
-	m = libvlc_media_new_location(this->p_instance, "http://media.ch9.ms/ch9/e869/9d2a7276-5398-4fdd-9639-263a3a08e869/4-103.mp4");
+	m = libvlc_media_new_location(this->p_instance, "http://localhost/xfactor.mp4");
 	mp = libvlc_media_player_new_from_media(m);
 
 
 	//we're using vmem so format is always RGB
 	unsigned int bitsPerPixel = 32; // hard coded for RV32 videos
-	unsigned int bytesPerPixel = bitsPerPixel/8;
-	unsigned int pitch = frameWidth*bytesPerPixel;
+	pitch = (frameWidth*bitsPerPixel)/8;
 
 	//hard coded pixel data allocation for sample video
-	pixelBufferSize = frameWidth*frameHeight*bytesPerPixel;
+	pixelBufferSize = (frameWidth*frameHeight*bitsPerPixel)/8;
 	pixelData = new byte[pixelBufferSize];
 
 	libvlc_video_set_format(mp, "RV32", frameWidth, frameHeight, pitch);
+	//libvlc_video_set_format_callbacks(
 	libvlc_video_set_callbacks(mp, (libvlc_video_lock_cb)(this->Lock),
 		(libvlc_video_unlock_cb)(this->Unlock),
 		(libvlc_video_display_cb)(this->Display), NULL);

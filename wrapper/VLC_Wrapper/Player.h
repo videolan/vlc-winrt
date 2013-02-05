@@ -14,6 +14,7 @@ namespace VLC_Wrapper {
 		static void *Lock(void* opaque, void** planes);
 		static void Unlock(void* opaque, void* picture, void** planes);
 		static void Display(void* opaque, void* picture);
+		
 	};
 }
 

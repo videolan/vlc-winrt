@@ -7,6 +7,7 @@ using namespace VLC_Wrapper;
 using namespace Platform;
 using namespace Microsoft::WRL;
 
+
 VLCD2dImageSource::VLCD2dImageSource(int pixelWidth, int pixelHeight, bool isOpaque) :
     SurfaceImageSource(pixelWidth, pixelHeight, isOpaque)
 {
@@ -100,32 +101,32 @@ void VLCD2dImageSource::CreateDeviceResources()
 }
 
 //Only works for 32 bits per pixel at the moment
-void VLCD2dImageSource::DrawFrame(UINT width, UINT height, UINT bufferSize, byte* frameBuffer, Windows::Foundation::Rect updateRect){
+void VLCD2dImageSource::DrawFrame(UINT height, UINT width, byte* sourceData, UINT pitch, Windows::Foundation::Rect updateRect){
 
-	IWICBitmap* wicbmp = NULL;
-    HRESULT hr = m_WicFactory->CreateBitmapFromMemory(	width, 
-												height, 
-												GUID_WICPixelFormat32bppBGR,
-												width*4, 
-												bufferSize, 
-												frameBuffer, 
-												&wicbmp);
-	if (SUCCEEDED(hr))
-    {
+		D2D1_BITMAP_PROPERTIES props;
+		D2D1_PIXEL_FORMAT pixFormat;
+		D2D1_SIZE_U size;
 		ID2D1Bitmap* d2dbmp;
-		hr = m_d2dContext->CreateBitmapFromWicBitmap(wicbmp, &d2dbmp);
-	
-		m_d2dContext->DrawBitmap(d2dbmp, 
-										D2D1::RectF(static_cast<LONG>(updateRect.Left),
+
+		float dpi = Windows::Graphics::Display::DisplayProperties::LogicalDpi;
+		size.height = height;
+		size.width = width;
+
+		pixFormat.alphaMode = D2D1_ALPHA_MODE_IGNORE;
+
+		//pixFormat.format = DXGI_FORMAT_420_OPAQUE;
+		pixFormat.format = DXGI_FORMAT_B8G8R8A8_UNORM;
+
+		props.pixelFormat = pixFormat;
+		props.dpiX = dpi;
+		props.dpiY = dpi;
+
+		m_d2dContext->CreateBitmap(size,sourceData, pitch, props, &d2dbmp);
+
+		m_d2dContext->DrawBitmap(d2dbmp,D2D1::RectF(static_cast<LONG>(updateRect.Left),
 													static_cast<LONG>(updateRect.Top),
 													static_cast<LONG>(updateRect.Right),
-													static_cast<LONG>(updateRect.Bottom)
-													)
-		);
-		wicbmp->Release();
-    } 
-
-	
+													static_cast<LONG>(updateRect.Bottom)));
 }
 
 // Sets the current DPI.
