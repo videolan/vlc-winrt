@@ -34,7 +34,6 @@ namespace VLC_Wrapper {
 
 		int                                                 m_width;
 		int                                                 m_height;
-		IWICImagingFactory*									m_WicFactory;
     };
 };
 

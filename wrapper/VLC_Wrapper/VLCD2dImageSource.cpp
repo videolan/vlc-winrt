@@ -23,15 +23,6 @@ void VLCD2dImageSource::CreateDeviceIndependentResources()
 {
     // Query for ISurfaceImageSourceNative interface.
     reinterpret_cast<IUnknown*>(this)->QueryInterface(IID_PPV_ARGS(&m_sisNative));
-
-
-	HRESULT hr = CoCreateInstance(
-		CLSID_WICImagingFactory,
-		NULL,
-		CLSCTX_INPROC_SERVER,
-		IID_IWICImagingFactory,
-		(LPVOID*)&m_WicFactory
-		);
 }
 
 // Initialize hardware-dependent resources.
