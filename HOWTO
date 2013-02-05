@@ -12,6 +12,11 @@ You need:
 * Prodigious patience and tenacity :)
 
 Build and install mingw-w64 SVN rev 5568 or higher (for libwinstorecompat).
+Be sure to pass --disable-shared when configuring GCC.
+
+Why? Statically linking to
+libgcc.a will ensure that all unused methods get stripped. It will drastically
+reduce the number of forbidden calls.
 
 Run ./compile.sh and generate vlc.7z
 Extract the contents to vlc/
