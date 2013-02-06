@@ -34,6 +34,8 @@ namespace VLC_Wrapper {
 
 		int                                                 m_width;
 		int                                                 m_height;
+		
+		ID2D1Bitmap*										d2dbmp;
     };
 };
 
