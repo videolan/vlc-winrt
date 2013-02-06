@@ -146,10 +146,6 @@
                     <Button Style="{StaticResource VideoAppBarButtonStyle}"
                             Command="{Binding PickVideo}">
                     </Button>
-                    <Button Style="{StaticResource VideoAppBarButtonStyle}"
-                            Click="DemoVLC_Click"
-                            AutomationProperties.Name="Demo VLC">
-                    </Button>
                 </StackPanel>
 
                 <Button Style="{StaticResource CalculatorAppBarButtonStyle}"

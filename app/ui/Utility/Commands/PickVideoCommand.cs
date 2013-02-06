@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Windows.Input;
-using VLC_WINRT.Common;
 using VLC_WINRT.Views;
 using Windows.Storage;
 using Windows.Storage.Pickers;
@@ -12,12 +11,12 @@ namespace VLC_WINRT.Utility.Commands
 {
     public class PickVideoCommand : ICommand
     {
-        private static readonly object locker = new object();
+        private static readonly object Locker = new object();
         private bool _canExecute = true;
 
         public bool CanExecute(object parameter)
         {
-            lock (locker)
+            lock (Locker)
             {
                 return _canExecute;
             }
@@ -25,7 +24,7 @@ namespace VLC_WINRT.Utility.Commands
 
         public async void Execute(object parameter)
         {
-            lock (locker)
+            lock (Locker)
             {
                 _canExecute = false;
                 CanExecuteChanged(this, new EventArgs());
@@ -37,7 +36,6 @@ namespace VLC_WINRT.Utility.Commands
                                  SuggestedStartLocation = PickerLocationId.VideosLibrary
                              };
 
-
             //TODO: add more supported types
             picker.FileTypeFilter.Add(".avi");
             picker.FileTypeFilter.Add(".mp4");
@@ -47,21 +45,14 @@ namespace VLC_WINRT.Utility.Commands
             {
                 Debug.WriteLine("Opening file: " + file.Path);
                 PlayVideo.CurrentFile = file;
-                if (parameter.ToString() == "VLC")
-                {
-                    ((Frame)Window.Current.Content).Navigate(typeof(DemoVLC));
-                }
-                else
-                {
-                    ((Frame)Window.Current.Content).Navigate(typeof(PlayVideo));
-                }
+                ((Frame) Window.Current.Content).Navigate(typeof (PlayVideo));
             }
             else
             {
                 Debug.WriteLine("Cancelled");
             }
 
-            lock (locker)
+            lock (Locker)
             {
                 _canExecute = true;
                 CanExecuteChanged(this, new EventArgs());

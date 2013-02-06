@@ -143,9 +143,6 @@
     <Compile Include="Views\PlayVideo.xaml.cs">
       <DependentUpon>PlayVideo.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\DemoVLC.xaml.cs">
-      <DependentUpon>DemoVLC.xaml</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -1093,10 +1090,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\PlayVideo.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\DemoVLC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

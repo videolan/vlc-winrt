@@ -31,10 +31,5 @@ namespace VLC_WINRT.Views
         {
             Frame.Navigate(typeof (Addition));
         }
-
-        private void DemoVLC_Click(object sender, RoutedEventArgs e)
-        {
-            Frame.Navigate(typeof (DemoVLC));
-        }
     }
 }

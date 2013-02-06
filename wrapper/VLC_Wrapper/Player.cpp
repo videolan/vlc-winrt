@@ -29,7 +29,8 @@ void *Player::Lock(void* opqaue, void** planes){
 }
 
 void Player::Unlock(void* opaque, void* picture, void** planes){
-	WaitForSingleObjectEx(xamlLock, INFINITE, false);
+	
+	WaitForSingleObjectEx(xamlLock, 5000, false);
 	return;
 }
 void Player::Display(void* opaque, void* picture){
@@ -52,7 +53,7 @@ Player::Player(Windows::UI::Xaml::Media::ImageBrush^ brush)
 	static const char *argv[] = {
 		"-I", "dummy",
 		"--no-osd",
-		"--verbose=0",
+		"--verbose=2",
 		"--no-video-title-show",
 		"--no-stats",
 		"--no-drop-late-frames",
@@ -70,32 +71,46 @@ Player::Player(Windows::UI::Xaml::Media::ImageBrush^ brush)
 }
 
 void Player::TestMedia() {
-	ThreadPool::RunAsync(ref new WorkItemHandler([this] (IAsyncAction ^){
-		libvlc_media_player_t *mp;
-		libvlc_media_t *m;
+	// add a hard-coded http source for videos to play
+	libvlc_media_t* m = libvlc_media_new_location(this->p_instance, "http://mirror.cessen.com/blender.org/peach/trailer/trailer_iphone.m4v");
+	p_mp = libvlc_media_player_new_from_media(m);
 
-		// add a hard-coded http source for videos to play
-		m = libvlc_media_new_location(this->p_instance, "http://mirror.cessen.com/blender.org/peach/trailer/trailer_iphone.m4v");
-		mp = libvlc_media_player_new_from_media(m);
+	//we're using vmem so format is always RGB
+	unsigned int bitsPerPixel = 32; // hard coded for RV32 videos
+	pitch = (frameWidth*bitsPerPixel)/8;
 
+	//hard coded pixel data allocation for sample video
+	pixelBufferSize = (frameWidth*frameHeight*bitsPerPixel)/8;
+	pixelData = new byte[pixelBufferSize];
 
-		//we're using vmem so format is always RGB
-		unsigned int bitsPerPixel = 32; // hard coded for RV32 videos
-		pitch = (frameWidth*bitsPerPixel)/8;
+	libvlc_video_set_format(p_mp, "RV32", frameWidth, frameHeight, pitch);
+	//libvlc_video_set_format_callbacks(
+	libvlc_video_set_callbacks(p_mp, (libvlc_video_lock_cb)(this->Lock),
+		(libvlc_video_unlock_cb)(this->Unlock),
+		(libvlc_video_display_cb)(this->Display), NULL);
 
-		//hard coded pixel data allocation for sample video
-		pixelBufferSize = (frameWidth*frameHeight*bitsPerPixel)/8;
-		pixelData = new byte[pixelBufferSize];
+	libvlc_media_release (m);
+}
 
-		libvlc_video_set_format(mp, "RV32", frameWidth, frameHeight, pitch);
-		//libvlc_video_set_format_callbacks(
-		libvlc_video_set_callbacks(mp, (libvlc_video_lock_cb)(this->Lock),
-			(libvlc_video_unlock_cb)(this->Unlock),
-			(libvlc_video_display_cb)(this->Display), NULL);
+void Player::Stop(){
+	libvlc_media_player_stop(p_mp);
+	return;
+}
 
-		libvlc_media_release (m);
-		libvlc_media_player_play (mp);
-	}, CallbackContext::Any));
+void Player::Pause(){
+	libvlc_media_player_pause(p_mp);
+	return;
+}
+
+void Player::Play(){
+	libvlc_media_player_play(p_mp);
+	return;
+}
+
+Player::~Player(){
+	libvlc_media_player_release(p_mp);
+	libvlc_release(p_instance);
+	delete(pixelData);
 }
 
 
