@@ -12,10 +12,15 @@ using namespace Windows::Foundation;
 using namespace Windows::System::Threading;
 
 //Dont begin copying new frames into memory until the old one is rendered on the UI thread.
-static HANDLE xamlLock = CreateSemaphoreExW( NULL,           // default security attributes
-									0,  // initial count
+//start 2 signalled.
+static HANDLE displayLock = CreateSemaphoreExW( NULL,           // default security attributes
+									1,  // initial count
 									4,  // maximum count
 									L"displaysem",0,SYNCHRONIZE|SEMAPHORE_MODIFY_STATE); 
+static HANDLE xamlLock = CreateSemaphoreExW( NULL,           // default security attributes
+									1,  // initial count
+									4,  // maximum count
+									L"xamlsem",0,SYNCHRONIZE|SEMAPHORE_MODIFY_STATE); 
 static byte* pixelData;
 static VLCD2dImageSource^ vlcImageSource;
 static const UINT frameWidth = 480;
@@ -23,14 +28,19 @@ static const UINT frameHeight = 270;
 static UINT pitch;
 static int pixelBufferSize;
 
+
 void *Player::Lock(void* opqaue, void** planes){
+	//Wait for multiple
+	WaitForSingleObjectEx(displayLock, INFINITE, false);
+	WaitForSingleObjectEx(xamlLock, INFINITE, false);
+
 	*planes = pixelData;
 	return NULL;
 }
 
 void Player::Unlock(void* opaque, void* picture, void** planes){
-	
-	WaitForSingleObjectEx(xamlLock, 5000, false);
+	//signal
+	ReleaseSemaphore(displayLock, 1, NULL);
 	return;
 }
 void Player::Display(void* opaque, void* picture){
@@ -40,6 +50,7 @@ void Player::Display(void* opaque, void* picture){
 		vlcImageSource->BeginDraw(Rect(0, 0, (float)frameWidth, (float)frameHeight));
 		vlcImageSource->DrawFrame(frameHeight, frameWidth, pixelData, pitch, Rect(0, 0, (float)frameWidth, (float)frameHeight));
 		vlcImageSource->EndDraw();
+		//signal
 		ReleaseSemaphore(xamlLock, 1, NULL);
 	}));
 
@@ -108,6 +119,7 @@ void Player::Play(){
 }
 
 Player::~Player(){
+	libvlc_media_player_stop(p_mp);
 	libvlc_media_player_release(p_mp);
 	libvlc_release(p_instance);
 	delete(pixelData);
