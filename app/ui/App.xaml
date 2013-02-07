@@ -35,6 +35,7 @@
             
             <!-- View Models -->
             <mainPage:MainPageViewModel x:Key="MainViewModel"></mainPage:MainPageViewModel>
+            <mainPage:ThumbnailsViewModel x:Key="ThumbnailsViewModel"></mainPage:ThumbnailsViewModel>
             
             <!-- Converters -->
             <converters:TimespanShortStringConverter x:Key="TimeSpanShortStringConverter"></converters:TimespanShortStringConverter>

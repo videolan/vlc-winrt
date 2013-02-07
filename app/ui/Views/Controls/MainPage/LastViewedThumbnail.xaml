@@ -8,13 +8,11 @@
     d:DesignHeight="300"
     d:DesignWidth="400">
     <Grid Visibility="{Binding Image, Converter={StaticResource  NullToVisibilityConverter}}" >
-
         <Button Command="{Binding Play}"
                 CommandParameter="{Binding}"
                 BorderThickness="0"
                 Padding="4">
             <Grid>
-
                 <Image Source="{Binding Image}"></Image>
                 <Grid VerticalAlignment="Bottom">
                     <Grid.RowDefinitions>
