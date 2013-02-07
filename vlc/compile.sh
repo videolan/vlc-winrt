@@ -37,7 +37,7 @@ fi
 TARGET_TUPLE=i686-w64-mingw32
 [ $# = 1 ] && TARGET_TUPLE=$1
 
-EXTRA_CPPFLAGS="-D_WIN32_WINNT=0x602"
+EXTRA_CPPFLAGS="-D_WIN32_WINNT=0x602 -D_UNICODE -DUNICODE"
 EXTRA_LDFLAGS="-lwinstorecompat"
 
 echo "Building the contribs"
