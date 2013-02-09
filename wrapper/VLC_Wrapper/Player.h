@@ -7,7 +7,7 @@ namespace VLC_Wrapper {
 	{
 	public:
 		Player::Player(Windows::UI::Xaml::Media::ImageBrush^ brush);
-		void TestMedia();
+		void Open(Platform::String^ mrl);
 		void Stop();
 		void Pause();
 		void Play();

@@ -38,7 +38,7 @@ namespace VLC_WINRT.Views
             VideoSurface.Fill = brush;
             _vlcPlayer = new Player(brush);
             VideoSurface.Fill = brush;
-            _vlcPlayer.TestMedia();
+            _vlcPlayer.Open("http://localhost/tears_of_steel_720p.mkv");
             _vlcPlayer.Play();
             _playing = true;
         }

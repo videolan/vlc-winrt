@@ -222,17 +222,3 @@ void VLCD2dImageSource::Clear(Windows::UI::Color color)
 {
     m_d2dContext->Clear(DX::ConvertToColorF(color));
 }
-
-// Draws a filled rectangle with the given color and position.
-void VLCD2dImageSource::FillSolidRect(Windows::UI::Color color, Windows::Foundation::Rect rect)
-{
-    // Create a solid color D2D brush.
-    ComPtr<ID2D1SolidColorBrush> brush;
-    m_d2dContext->CreateSolidColorBrush(
-        DX::ConvertToColorF(color),
-        &brush
-        );
-
-    // Draw a filled rectangle.
-    m_d2dContext->FillRectangle(DX::ConvertToRectF(rect), brush.Get());
-}

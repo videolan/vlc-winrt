@@ -23,8 +23,8 @@ static HANDLE xamlLock = CreateSemaphoreExW( NULL,           // default security
 									L"xamlsem",0,SYNCHRONIZE|SEMAPHORE_MODIFY_STATE); 
 static byte* pixelData;
 static VLCD2dImageSource^ vlcImageSource;
-static const UINT frameWidth = 480;
-static const UINT frameHeight = 270;
+static const UINT frameWidth = 2560;
+static const UINT frameHeight = 1440;
 static UINT pitch;
 static int pixelBufferSize;
 
@@ -81,9 +81,14 @@ Player::Player(Windows::UI::Xaml::Media::ImageBrush^ brush)
 	brush->ImageSource = vlcImageSource;
 }
 
-void Player::TestMedia() {
+void Player::Open(Platform::String^ mrl) {
+
+	size_t len = WideCharToMultiByte (CP_UTF8, 0, mrl->Data(), -1, NULL, 0, NULL, NULL);
+	char* p_mrl = new char[len];
+	WideCharToMultiByte (CP_UTF8, 0, mrl->Data(), -1, p_mrl, len, NULL, NULL);
+
 	// add a hard-coded http source for videos to play
-	libvlc_media_t* m = libvlc_media_new_location(this->p_instance, "http://mirror.cessen.com/blender.org/peach/trailer/trailer_iphone.m4v");
+	libvlc_media_t* m = libvlc_media_new_location(this->p_instance, p_mrl);
 	p_mp = libvlc_media_player_new_from_media(m);
 
 	//we're using vmem so format is always RGB
@@ -95,12 +100,12 @@ void Player::TestMedia() {
 	pixelData = new byte[pixelBufferSize];
 
 	libvlc_video_set_format(p_mp, "RV32", frameWidth, frameHeight, pitch);
-	//libvlc_video_set_format_callbacks(
 	libvlc_video_set_callbacks(p_mp, (libvlc_video_lock_cb)(this->Lock),
 		(libvlc_video_unlock_cb)(this->Unlock),
 		(libvlc_video_display_cb)(this->Display), NULL);
 
 	libvlc_media_release (m);
+	delete[](p_mrl);
 }
 
 void Player::Stop(){
