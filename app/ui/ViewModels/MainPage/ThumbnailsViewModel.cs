@@ -43,7 +43,11 @@ namespace VLC_WINRT.ViewModels.MainPage
             for (int i = 0; i < 300; i++)
             {
                 int index = rand.Next(files.Count);
-                Thumbnails.Add(new ThumbnailViewModel(files[index]));
+                DispatchHelper.Invoke(() =>
+                                          {
+                                              Thumbnails.Add(new ThumbnailViewModel(files[index]));
+                                          });
+                
             }
         }
     }

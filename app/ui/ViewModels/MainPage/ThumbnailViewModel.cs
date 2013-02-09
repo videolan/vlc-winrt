@@ -42,13 +42,16 @@ namespace VLC_WINRT.ViewModels.MainPage
             try
             {
                 StorageItemThumbnail thumb = await File.GetThumbnailAsync(ThumbnailMode.VideosView);
-
-                DispatchHelper.Invoke(() =>
+                if (thumb != null)
+                {
+                       DispatchHelper.Invoke(() =>
                                           {
                                               var image = new BitmapImage();
                                               image.SetSource(thumb);
                                               Image = image;
                                           });
+                }
+             
             }
             catch (Exception ex)
             {
