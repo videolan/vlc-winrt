@@ -16,7 +16,6 @@ namespace VLC_Wrapper {
 		void SetDpi(float dpi);
 
 		void Clear(Windows::UI::Color color);
-		void FillSolidRect(Windows::UI::Color color, Windows::Foundation::Rect rect);
 		void VLCD2dImageSource::DrawFrame(UINT height, UINT width, byte* sourceData, UINT pitch, Windows::Foundation::Rect updateRect);
 
 	private protected:
