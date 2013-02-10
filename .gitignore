@@ -33,4 +33,4 @@ _ReSharper*/
 *.orig
 *.vspx
 *.psess
-
+app/packages

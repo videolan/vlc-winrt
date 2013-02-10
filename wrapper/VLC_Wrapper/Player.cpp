@@ -23,8 +23,8 @@ static HANDLE xamlLock = CreateSemaphoreExW( NULL,           // default security
 									L"xamlsem",0,SYNCHRONIZE|SEMAPHORE_MODIFY_STATE); 
 static byte* pixelData;
 static VLCD2dImageSource^ vlcImageSource;
-static const UINT frameWidth = 2560;
-static const UINT frameHeight = 1440;
+static const UINT frameWidth = 1280;
+static const UINT frameHeight = 720;
 static UINT pitch;
 static int pixelBufferSize;
 

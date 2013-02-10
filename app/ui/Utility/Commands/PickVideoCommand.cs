@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Windows.Input;
+using VLC_WINRT.ViewModels;
 using VLC_WINRT.Views;
 using Windows.Storage;
 using Windows.Storage.Pickers;
@@ -44,8 +45,9 @@ namespace VLC_WINRT.Utility.Commands
             if (file != null)
             {
                 Debug.WriteLine("Opening file: " + file.Path);
-                PlayVideo.CurrentFile = file;
+                ViewModelLocator.PlayVideoVM.CurrentFile = file;
                 ((Frame) Window.Current.Content).Navigate(typeof (PlayVideo));
+                ViewModelLocator.PlayVideoVM.VLCPlayer.Play();
             }
             else
             {

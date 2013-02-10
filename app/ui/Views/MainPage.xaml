@@ -7,7 +7,7 @@
     xmlns:mainPage="using:VLC_WINRT.Views.Controls.MainPage"
     mc:Ignorable="d"
     d:DesignHeight="768"
-    DataContext="{StaticResource MainViewModel}">
+    DataContext="{Binding Source={StaticResource Locator}, Path=MainPageVM}">
 
     <Grid Background="Black">
        

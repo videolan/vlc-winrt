@@ -1,11 +1,8 @@
 ﻿using System;
-using VLC_Wrapper;
-using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
@@ -15,12 +12,8 @@ namespace VLC_WINRT.Views
     /// <summary>
     ///     An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class PlayVideo : Page, IDisposable
+    public sealed partial class PlayVideo : Page
     {
-        public static StorageFile CurrentFile;
-        private bool _playing;
-        private Player _vlcPlayer;
-
         public PlayVideo()
         {
             InitializeComponent();
@@ -29,18 +22,9 @@ namespace VLC_WINRT.Views
 
         private void ImLoaded(object sender, RoutedEventArgs e)
         {
-            if (CurrentFile != null)
-            {
-                //Play actual file here once hooked up
-            }
-
-            var brush = new ImageBrush();
-            VideoSurface.Fill = brush;
-            _vlcPlayer = new Player(brush);
-            VideoSurface.Fill = brush;
-            _vlcPlayer.Open("http://localhost/tears_of_steel_720p.mkv");
-            _vlcPlayer.Play();
-            _playing = true;
+            //_vlcPlayer.Open("http://localhost/tears_of_steel_720p.mkv");
+            //_vlcPlayer.Play();
+            //_playing = true;
         }
 
 
@@ -55,17 +39,17 @@ namespace VLC_WINRT.Views
         {
         }
 
-        private async void PlayVideo_Click(object sender, RoutedEventArgs e)
+        private void PlayVideo_Click(object sender, RoutedEventArgs e)
         {
-            if (_playing)
-            {
-                _vlcPlayer.Pause();
-            }
-            else
-            {
-                _vlcPlayer.Play();
-            }
-            _playing = !_playing;
+            //if (_playing)
+            //{
+            //    _vlcPlayer.Pause();
+            //}
+            //else
+            //{
+            //    _vlcPlayer.Play();
+            //}
+            //_playing = !_playing;
         }
 
         private void Slider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
@@ -75,23 +59,17 @@ namespace VLC_WINRT.Views
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-            Frame.GoBack(); 
-            _vlcPlayer.Stop();
+            //VideoSurface.Fill = null;
+            //Frame.GoBack(); 
+            //_vlcPlayer.Stop();
         }
 
         private void ScreenTapped(object sender, TappedRoutedEventArgs e)
         {
-            if (BottomAppBar != null && !BottomAppBar.IsOpen)
-                BottomAppBar.IsOpen = true;
-            if (TopAppBar != null && !TopAppBar.IsOpen)
-                TopAppBar.IsOpen = true;
-        }
-
-        public void Dispose()
-        {
-            _vlcPlayer.Stop(); 
-            _vlcPlayer.Dispose();
-            _vlcPlayer = null;
+            //if (BottomAppBar != null && !BottomAppBar.IsOpen)
+            //    BottomAppBar.IsOpen = true;
+            //if (TopAppBar != null && !TopAppBar.IsOpen)
+            //    TopAppBar.IsOpen = true;
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using GalaSoft.MvvmLight;
 using Windows.Foundation.Metadata;
 
 namespace VLC_WINRT.Common
@@ -9,12 +10,12 @@ namespace VLC_WINRT.Common
     ///     Implementation of <see cref="INotifyPropertyChanged" /> to simplify models.
     /// </summary>
     [WebHostHidden]
-    public abstract class BindableBase : INotifyPropertyChanged
+    public abstract class BindableBase : ViewModelBase, INotifyPropertyChanged
     {
         /// <summary>
         ///     Multicast event for property change notifications.
         /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
+        public new event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>
         ///     Checks if a property already matches a desired value.  Sets the property and

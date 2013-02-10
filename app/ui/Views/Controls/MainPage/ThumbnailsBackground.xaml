@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     d:DesignHeight="768"
-    DataContext="{StaticResource ThumbnailsViewModel}"
+    DataContext="{Binding Source={StaticResource Locator}, Path=ThumbnailsVM}"
     >
     <!-- TOOD: Do a zoom and clip transform to get rid of any black space -->
     <Grid>

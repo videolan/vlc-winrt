@@ -8,7 +8,7 @@
     d:DesignHeight="300"
     d:DesignWidth="400">
     <Grid Visibility="{Binding Image, Converter={StaticResource  NullToVisibilityConverter}}" >
-        <Button Command="{Binding Play}"
+        <Button Command="{Binding OpenFile}"
                 CommandParameter="{Binding}"
                 BorderThickness="0"
                 Padding="4">
