@@ -23,7 +23,11 @@
         <Extension Category="windows.fileTypeAssociation">
           <FileTypeAssociation Name="vlcmedia">
             <SupportedFileTypes>
-              <FileType>.mkv,avi,mp4,wmv</FileType>
+              <FileType ContentType="video/x-matroska">.mkv</FileType>
+              <FileType ContentType="video/x-msvideo">.avi</FileType>
+              <FileType ContentType="video/mp4">.mp4</FileType>
+              <FileType ContentType="audio/x-ms-wmv">.wmv</FileType>
+              <FileType ContentType="application/ogg">.ogg</FileType>
             </SupportedFileTypes>
           </FileTypeAssociation>
         </Extension>
