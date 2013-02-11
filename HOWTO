@@ -8,6 +8,9 @@ You need:
 * A very, very, very recent Linux
 * build-essentials and all related build tools (make, autotools, git, etc...)
 * Visual Studio 2012
+* MvvmLight framework.
+  * Download and install the latest release from http://mvvmlight.codeplex.com/releases
+  * Add "C:\Program Files\Laurent Bugnion (GalaSoft)\Mvvm Light Toolkit\Binaries\Win8\" to the project's "Reference Paths"
 * Windows 8
 * Prodigious patience and tenacity :)
 
