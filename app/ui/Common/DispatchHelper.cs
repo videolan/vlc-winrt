@@ -12,7 +12,7 @@ namespace VLC_WINRT.Common
             //for some reason this crashes the designer (so dont do it in design mode)
             if (DesignMode.DesignModeEnabled) return;
 
-            if (CoreApplication.MainView.CoreWindow.Dispatcher.HasThreadAccess)
+            if (CoreApplication.MainView.CoreWindow == null || CoreApplication.MainView.CoreWindow.Dispatcher.HasThreadAccess)
             {
                 action();
             }

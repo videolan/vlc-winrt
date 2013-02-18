@@ -57,6 +57,8 @@ namespace VLC_WINRT.Utility.Services
         {
             try
             {
+                CloseWriterAndReader();
+
                 _reader = new DataReader(args.Socket.InputStream);
                 _writer = new DataWriter(args.Socket.OutputStream);
 
@@ -100,7 +102,7 @@ namespace VLC_WINRT.Utility.Services
             header += "Accept-Ranges: bytes\r\n";
             //TODO: Get actual last modified
             header += "Last-Modified: Fri, 16 Sep 2011 04:19:05 GMT\r\n";
-            header += "Server: KellenD 1.0\r\n";
+            header += "Server: VlcTempD 1.0\r\n";
             //TODO: Get actual content length
             if (end != 0)
                 header += "Content-Range: bytes " + start + "-" + end + "/" + videoFile.Size + "\r\n";

@@ -40,6 +40,7 @@ namespace VLC_WINRT.Utility.Commands
             //TODO: add more supported types
             picker.FileTypeFilter.Add(".avi");
             picker.FileTypeFilter.Add(".mp4");
+            picker.FileTypeFilter.Add(".mkv");
 
             StorageFile file = await picker.PickSingleFileAsync();
             if (file != null)
