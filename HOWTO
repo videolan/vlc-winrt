@@ -25,8 +25,7 @@ Run ./compile.sh and generate vlc.7z
 Extract the contents to vlc/
 
 2) Generate .def and .lib
-Use VS command-line ("Developer Command Prompt for VS2012")
-to run vlc/makelib.bat, from the directory where libvlc.dll is present.
+Use VS command-line ("Developer Command Prompt for VS2012") to run vlc/makelib.bat, from the directory where libvlc.dll is present. (Adapted from http://wiki.videolan.org/GenerateLibFromDll )
 
 This will let us avoid the dreaded FileNotFoundException.
 
