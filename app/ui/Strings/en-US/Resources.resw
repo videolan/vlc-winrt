@@ -129,4 +129,7 @@
   <data name="Music.Text" xml:space="preserve">
     <value>music</value>
   </data>
+  <data name="Videos.Text" xml:space="preserve">
+    <value>videos</value>
+  </data>
 </root>

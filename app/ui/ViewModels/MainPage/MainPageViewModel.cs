@@ -1,4 +1,5 @@
-﻿using VLC_WINRT.Common;
+﻿using System.Collections.ObjectModel;
+using VLC_WINRT.Common;
 using VLC_WINRT.Utility.Commands;
 
 namespace VLC_WINRT.ViewModels.MainPage
@@ -8,6 +9,10 @@ namespace VLC_WINRT.ViewModels.MainPage
         private LastViewedViewModel _lastViewedVM;
         private LibraryViewModel _musicVM;
         private PickVideoCommand _pickVideoCommand;
+
+        private ObservableCollection<LibraryViewModel> _removableStorageVMs =
+            new ObservableCollection<LibraryViewModel>();
+
         private LibraryViewModel _videoVM;
 
         public MainPageViewModel()
@@ -40,6 +45,12 @@ namespace VLC_WINRT.ViewModels.MainPage
         {
             get { return _pickVideoCommand; }
             set { SetProperty(ref _pickVideoCommand, value); }
+        }
+
+        public ObservableCollection<LibraryViewModel> RemovableStorageVMs
+        {
+            get { return _removableStorageVMs; }
+            set { SetProperty(ref _removableStorageVMs, value); }
         }
     }
 }

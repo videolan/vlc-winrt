@@ -29,12 +29,9 @@ namespace VLC_WINRT.ViewModels.MainPage
 
         private async void GetMedia(IAsyncAction operation)
         {
-            //Todo: add other sources of videos
-            var scanner = new MediaFolderScanner();
-
             //Pick 
-            IList<StorageFile> files =
-                await scanner.GetMediaFromFolder(KnownVLCLocation.VideosLibrary, 10, CommonFileQuery.OrderByDate);
+            IReadOnlyList<StorageFile> files =
+                await MediaScanner.GetMediaFromFolder(KnownVLCLocation.VideosLibrary, 10, CommonFileQuery.OrderByDate);
 
             //build a grid of 30 or so random images
             List<StorageFile> randomFiles = new List<StorageFile>();

@@ -1,8 +1,10 @@
 ﻿using System;
 using VLC_WINRT.Common;
+using VLC_WINRT.Utility.Services;
 using VLC_WINRT.Views;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
+using Windows.Devices.Enumeration;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -15,6 +17,8 @@ namespace VLC_WINRT
     /// </summary>
     sealed partial class App : Application
     {
+        private MediaScanner _mediaScanner = null;
+
         /// <summary>
         ///     Initializes the singleton Application object.  This is the first line of authored code
         ///     executed, and as such is the logical equivalent of main() or WinMain().
@@ -71,6 +75,9 @@ namespace VLC_WINRT
                 {
                     throw new Exception("Failed to create initial page");
                 }
+
+                if (_mediaScanner == null)
+                    _mediaScanner = MediaScanner.Instance;
             }
             // Ensure the current window is active
             Window.Current.Activate();

@@ -13,11 +13,13 @@ namespace VLC_WINRT.ViewModels.MainPage
     {
         private StorageFolder _location;
         private ObservableCollection<MediaViewModel> _media;
+        private string _name;
 
         public LibraryViewModel(StorageFolder location)
         {
             Media = new ObservableCollection<MediaViewModel>();
             Location = location;
+            Name = location.DisplayName;
 
             //Get off UI thread
             ThreadPool.RunAsync(GetMedia);
@@ -35,10 +37,16 @@ namespace VLC_WINRT.ViewModels.MainPage
             set { SetProperty(ref _media, value); }
         }
 
-        private async void GetMedia(IAsyncAction operation)
+        public string Name
         {
-            var scanner = new MediaFolderScanner();
-            IEnumerable<StorageFile> files = await scanner.GetMediaFromFolder(_location, 6, CommonFileQuery.OrderByDate);
+            get { return _name; }
+            set { SetProperty(ref _name, value); }
+        }
+
+        protected async void GetMedia(IAsyncAction operation)
+        {
+            IEnumerable<StorageFile> files =
+                await MediaScanner.GetMediaFromFolder(_location, 6, CommonFileQuery.OrderByDate);
             foreach (StorageFile storageFile in files)
             {
                 var mediaVM = new MediaViewModel(storageFile);

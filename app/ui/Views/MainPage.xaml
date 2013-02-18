@@ -78,7 +78,7 @@
 
                     <StackPanel Grid.Column="1" Style="{StaticResource ColumnStackPanelStyle}"
                                 DataContext="{Binding VideoVM}">
-                        <TextBlock x:Uid="Movies" Text="Videos" Style="{StaticResource ColumnHeaderTextStyle}"></TextBlock>
+                        <TextBlock Text="{Binding Name}" Style="{StaticResource ColumnHeaderTextStyle}"></TextBlock>
                         <ItemsControl ItemsSource="{Binding Media}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
@@ -112,7 +112,7 @@
                     
                     <StackPanel Grid.Column="2" Style="{StaticResource ColumnStackPanelStyle}"
                                 DataContext="{Binding MusicVM}">
-                        <TextBlock x:Uid="Music" Text="SD Cards" Style="{StaticResource ColumnHeaderTextStyle}"></TextBlock>
+                        <TextBlock Text="{Binding Name}" Style="{StaticResource ColumnHeaderTextStyle}"></TextBlock>
                         <ItemsControl ItemsSource="{Binding Media}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
@@ -146,7 +146,7 @@
 
                     <StackPanel Grid.Column="3" Style="{StaticResource ColumnStackPanelStyle}"
                                 DataContext="{Binding MusicVM}">
-                        <TextBlock x:Uid="Music" Text="USB" Style="{StaticResource ColumnHeaderTextStyle}"></TextBlock>
+                        <TextBlock Text="{Binding Name}" Style="{StaticResource ColumnHeaderTextStyle}"></TextBlock>
                         <ItemsControl ItemsSource="{Binding Media}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>

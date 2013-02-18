@@ -127,7 +127,7 @@
     <Compile Include="Utility\Converters\NullToVisibilityConverter.cs" />
     <Compile Include="Utility\Converters\TimespanShortStringConverter.cs" />
     <Compile Include="Utility\Services\HttpListener.cs" />
-    <Compile Include="Utility\Services\MediaFolderScanner.cs" />
+    <Compile Include="Utility\Services\MediaScanner.cs" />
     <Compile Include="ViewModels\MainPage\LastViewedViewModel.cs" />
     <Compile Include="ViewModels\MainPage\LibraryViewModel.cs" />
     <Compile Include="ViewModels\MainPage\MainPageViewModel.cs" />

@@ -43,10 +43,9 @@ namespace VLC_WINRT.ViewModels.MainPage
         private async void AddRandomVideos(IAsyncAction operation)
         {
             var rand = new Random();
-            var scanner = new MediaFolderScanner();
-            List<StorageFile> files =
+            IReadOnlyList<StorageFile> files =
                 await
-                scanner.GetMediaFromFolder(KnownVLCLocation.VideosLibrary, int.MaxValue, CommonFileQuery.OrderByTitle);
+                MediaScanner.GetMediaFromFolder(KnownVLCLocation.VideosLibrary, uint.MaxValue, CommonFileQuery.OrderByTitle);
 
             if (files.Count >= 3)
             {
