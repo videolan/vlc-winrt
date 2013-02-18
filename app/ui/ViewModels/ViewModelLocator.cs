@@ -35,8 +35,8 @@ namespace VLC_WINRT.ViewModels
             ////}
 
             SimpleIoc.Default.Register<PlayVideoViewModel>(true);
-            SimpleIoc.Default.Register<MainPageViewModel>(true);
-            SimpleIoc.Default.Register<ThumbnailsViewModel>(true);
+            SimpleIoc.Default.Register<MainPageViewModel>();
+            SimpleIoc.Default.Register<ThumbnailsViewModel>();
         }
 
         public static ThumbnailsViewModel ThumbnailsVM
