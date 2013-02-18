@@ -24,8 +24,9 @@ reduce the number of forbidden calls.
 Run ./compile.sh and generate vlc.7z
 Extract the contents to vlc/
 
-2) Fix .lib
-Use VS command-line ("Developer Command Prompt for VS2012") to generate .def and .lib: http://wiki.videolan.org/GenerateLibFromDll (do not use the "for" script there)
+2) Generate .def and .lib
+Use VS command-line ("Developer Command Prompt for VS2012")
+to run vlc/makelib.bat, from the directory where libvlc.dll is present.
 
 This will let us avoid the dreaded FileNotFoundException.
 
