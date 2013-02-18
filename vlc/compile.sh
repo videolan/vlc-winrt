@@ -130,10 +130,7 @@ find tmp \( -name "*.dll" -o -name "*.exe" \) -exec ../extras/package/win32/pefl
 
 cd tmp
 cp ../lib/.libs/libvlc.dll.def libvlc.def
-cp ../src/.libs/libvlccore.dll.def libvlccore.def
-
 ${TARGET_TUPLE}-dlltool libvlc.dll -l libvlc.lib -d libvlc.def libvlc.dll
-${TARGET_TUPLE}-dlltool libvlccore.dll -l libvlccore.lib -d libvlccore.def libvlccore.dll
 
 7z a ../vlc.7z *
 
