@@ -1,4 +1,5 @@
 cls
+call "%VS110COMNTOOLS%\VsDevCmd.bat"
 del libvlc.def
 echo EXPORTS > libvlc.def
 for /f "usebackq tokens=4,* delims=_ " %%i in (`dumpbin /exports libvlc.dll`) do @if %%i==libvlc echo %%i_%%j >> libvlc.def
