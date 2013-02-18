@@ -45,6 +45,7 @@ mkdir -p contrib/winrt
 cd contrib/winrt
 ../bootstrap --host=${TARGET_TUPLE} --disable-disc --disable-sout \
     --disable-sdl \
+    --disable-modplug \
     --disable-SDL_image \
     --disable-fontconfig \
     --disable-zvbi \
