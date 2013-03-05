@@ -12,17 +12,23 @@ namespace VLC_WINRT.ViewModels.MainPage
     public class LibraryViewModel : BindableBase
     {
         private StorageFolder _location;
-        private ObservableCollection<MediaViewModel> _media;
-        private string _name;
+        private ObservableCollection<MediaViewModel> _media; 
+        private string _title;
 
         public LibraryViewModel(StorageFolder location)
         {
             Media = new ObservableCollection<MediaViewModel>();
             Location = location;
-            Name = location.DisplayName;
+            Title = location.DisplayName;
 
             //Get off UI thread
             ThreadPool.RunAsync(GetMedia);
+        }
+
+        public string Title
+        {
+            get { return _title; }
+            set { SetProperty(ref _title, value); }
         }
 
         public StorageFolder Location
@@ -35,12 +41,6 @@ namespace VLC_WINRT.ViewModels.MainPage
         {
             get { return _media; }
             set { SetProperty(ref _media, value); }
-        }
-
-        public string Name
-        {
-            get { return _name; }
-            set { SetProperty(ref _name, value); }
         }
 
         protected async void GetMedia(IAsyncAction operation)

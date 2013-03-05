@@ -126,8 +126,11 @@
     <Compile Include="Utility\Commands\OpenFileCommand.cs" />
     <Compile Include="Utility\Converters\NullToVisibilityConverter.cs" />
     <Compile Include="Utility\Converters\TimespanShortStringConverter.cs" />
-    <Compile Include="Utility\Services\HttpListener.cs" />
-    <Compile Include="Utility\Services\MediaScanner.cs" />
+    <Compile Include="Utility\Services\DesignTime\ThumbnailService.cs" />
+    <Compile Include="Utility\Services\Interface\IThumbnailService.cs" />
+    <Compile Include="Utility\Services\RunTime\HttpListener.cs" />
+    <Compile Include="Utility\Services\RunTime\MediaScanner.cs" />
+    <Compile Include="Utility\Services\RunTime\ThumbnailService.cs" />
     <Compile Include="ViewModels\MainPage\LastViewedViewModel.cs" />
     <Compile Include="ViewModels\MainPage\LibraryViewModel.cs" />
     <Compile Include="ViewModels\MainPage\MainPageViewModel.cs" />
@@ -142,6 +145,9 @@
     </Compile>
     <Compile Include="Views\Controls\MainPage\LastViewedThumbnail.xaml.cs">
       <DependentUpon>LastViewedThumbnail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\MainPage\MediaColumn.xaml.cs">
+      <DependentUpon>MediaColumn.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Controls\MainPage\Thumbnail.xaml.cs">
       <DependentUpon>Thumbnail.xaml</DependentUpon>
@@ -1064,7 +1070,9 @@
       <Link>plugins\visualization\libvisual_plugin.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Logo.png" />
+    <Content Include="Assets\Logo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Assets\SmallLogo.png" />
     <Content Include="Assets\SplashScreen.png" />
     <Content Include="Assets\StoreLogo.png" />
@@ -1083,6 +1091,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Controls\MainPage\LastViewedThumbnail.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\MainPage\MediaColumn.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1110,15 +1122,16 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="GalaSoft.MvvmLight.Extras.Win8">
-      <HintPath>..\packages\MvvmLight.4.1.26.1\lib\netcore45\GalaSoft.MvvmLight.Extras.Win8.dll</HintPath>
+      <HintPath>..\packages\MvvmLightLibs.4.1.27.0\lib\netcore45\GalaSoft.MvvmLight.Extras.Win8.dll</HintPath>
     </Reference>
     <Reference Include="GalaSoft.MvvmLight.Win8">
-      <HintPath>..\packages\MvvmLight.4.1.26.1\lib\netcore45\GalaSoft.MvvmLight.Win8.dll</HintPath>
+      <HintPath>..\packages\MvvmLightLibs.4.1.27.0\lib\netcore45\GalaSoft.MvvmLight.Win8.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation">
-      <HintPath>..\packages\MvvmLight.4.1.26.1\lib\netcore45\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <HintPath>..\packages\MvvmLightLibs.4.1.27.0\lib\netcore45\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">
     <VisualStudioVersion>11.0</VisualStudioVersion>
   </PropertyGroup>

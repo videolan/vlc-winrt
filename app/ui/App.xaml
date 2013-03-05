@@ -1,36 +1,47 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Application xmlns:mainPage="using:VLC_WINRT.ViewModels.MainPage" xmlns:converters="using:VLC_WINRT.Utility.Converters" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" x:Class="VLC_WINRT.App" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:vm="clr-namespace:VLC_WINRT.ViewModel"
+
+<Application  xmlns:converters="using:VLC_WINRT.Utility.Converters"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" x:Class="VLC_WINRT.App"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModels="using:VLC_WINRT.ViewModels" mc:Ignorable="d">
-  <Application.Resources>
-    <ResourceDictionary>
-      <ResourceDictionary.MergedDictionaries>
-        <!-- 
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!-- 
                     Styles that define common aspects of the platform look and feel
                     Required by Visual Studio project and item templates
                  -->
-        <ResourceDictionary Source="Common/StandardStyles.xaml" />
-      </ResourceDictionary.MergedDictionaries>
-      <!-- Application-specific resources -->
-      <!-- Main Page Styles -->
-      <Style p6:Key="ColumnHeaderTextStyle" TargetType="TextBlock" xmlns:p6="http://schemas.microsoft.com/winfx/2006/xaml">
-        <Setter Property="Foreground" Value="LightGray"></Setter>
-        <Setter Property="FontSize" Value="30"></Setter>
-      </Style>
-      <Style p6:Key="ColumnStackPanelStyle" TargetType="StackPanel" xmlns:p6="http://schemas.microsoft.com/winfx/2006/xaml">
-        <Setter Property="Margin" Value="0,20,10,0"></Setter>
-        <Setter Property="MinWidth" Value="300"></Setter>
-      </Style>
-      <Style p6:Key="ColumnGridStyle" TargetType="Grid" xmlns:p6="http://schemas.microsoft.com/winfx/2006/xaml">
-        <Setter Property="Margin" Value="0,20,10,0"></Setter>
-        <Setter Property="MinWidth" Value="300"></Setter>
-      </Style>
-      <String p6:Key="AppName" xmlns:p6="http://schemas.microsoft.com/winfx/2006/xaml" xmlns="http://schemas.microsoft.com/winfx/2006/xaml">VLC_WINRT</String>
-     
-        <!-- Converters -->
-      <converters:TimespanShortStringConverter p6:Key="TimeSpanShortStringConverter" xmlns:p6="http://schemas.microsoft.com/winfx/2006/xaml"></converters:TimespanShortStringConverter>
-      <converters:NullToVisibilityConverter p6:Key="NullToVisibilityConverter" xmlns:p6="http://schemas.microsoft.com/winfx/2006/xaml"></converters:NullToVisibilityConverter>
-      
-        <viewModels:ViewModelLocator x:Key="Locator" d:IsDataSource="True" />
-    </ResourceDictionary>
-  </Application.Resources>
+                <ResourceDictionary Source="Common/StandardStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <!-- Application-specific resources -->
+            <!-- Main Page Styles -->
+            <Style x:Key="ColumnHeaderTextStyle" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="LightGray"></Setter>
+                <Setter Property="FontSize" Value="30"></Setter>
+            </Style>
+            <Style x:Key="ColumnStackPanelStyle" TargetType="StackPanel">
+                <Setter Property="Margin" Value="0,20,10,0"></Setter>
+                <Setter Property="MinWidth" Value="300"></Setter>
+            </Style>
+            <Style x:Key="ColumnGridStyle" TargetType="Grid">
+                <Setter Property="Margin" Value="0,20,10,0"></Setter>
+                <Setter Property="MinWidth" Value="300"></Setter>
+            </Style>
+            <Style x:Key="MainButtonStyle" TargetType="Button">
+                <Setter Property="BorderThickness" Value="0"></Setter>
+                <Setter Property="Padding" Value="4"></Setter>
+            </Style>
+            <String x:Key="AppName" xmlns="http://schemas.microsoft.com/winfx/2006/xaml">VLC_WINRT</String>
+
+            <!-- Converters -->
+            <converters:TimespanShortStringConverter x:Key="TimeSpanShortStringConverter">
+            </converters:TimespanShortStringConverter>
+            <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter">
+            </converters:NullToVisibilityConverter>
+
+            <viewModels:ViewModelLocator x:Key="Locator" d:IsDataSource="True" />
+        </ResourceDictionary>
+    </Application.Resources>
 </Application>

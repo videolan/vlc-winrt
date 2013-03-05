@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Diagnostics;
+using GalaSoft.MvvmLight.Ioc;
 using VLC_WINRT.Common;
+using VLC_WINRT.Utility.Services.Interface;
 using Windows.Foundation;
 using Windows.Storage;
 using Windows.Storage.FileProperties;
@@ -12,13 +14,16 @@ namespace VLC_WINRT.ViewModels.MainPage
 {
     public class ThumbnailViewModel : BindableBase
     {
+        private StorageFile _file;
+        private ImageSource _imageBrush;
+        private readonly IThumbnailService _thumbsService;
+
+
         public ThumbnailViewModel(StorageFile storageFile)
         {
             File = storageFile;
+            _thumbsService = SimpleIoc.Default.GetInstance<IThumbnailService>();
         }
-
-        private StorageFile _file;
-        private ImageSource _imageBrush;
 
         public ImageSource Image
         {
@@ -38,25 +43,24 @@ namespace VLC_WINRT.ViewModels.MainPage
 
         private async void GenerateThumbnail(IAsyncAction operation)
         {
-            //TODO: make this whole thing keyed on an enum
+            StorageItemThumbnail thumb = null;
             try
             {
-                StorageItemThumbnail thumb = await File.GetThumbnailAsync(ThumbnailMode.VideosView);
-                if (thumb != null)
-                {
-                       DispatchHelper.Invoke(() =>
-                                          {
-                                              var image = new BitmapImage();
-                                              image.SetSource(thumb);
-                                              Image = image;
-                                          });
-                }
-             
+                thumb = await _thumbsService.GetThumbnail(File);
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("Error getting thumbnail");
-                Debug.WriteLine(ex);
+                Debug.WriteLine(ex.ToString());
+            }
+            
+            if (thumb != null)
+            {
+                DispatchHelper.Invoke(() =>
+                                          {
+                                              var image = new BitmapImage();
+                                              image.SetSourceAsync(thumb);
+                                              Image = image;
+                                          });
             }
         }
     }

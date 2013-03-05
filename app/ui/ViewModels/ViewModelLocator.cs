@@ -3,8 +3,10 @@
   DataContext="{Binding Source={StaticResource Locator}, Path=ViewModelName}"
 */
 
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
+using VLC_WINRT.Utility.Services.Interface;
 using VLC_WINRT.ViewModels.MainPage;
 using VLC_WINRT.ViewModels.PlayVideo;
 
@@ -23,20 +25,23 @@ namespace VLC_WINRT.ViewModels
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
-            ////if (ViewModelBase.IsInDesignModeStatic)
-            ////{
-            ////    // Create design time view services and models
-            ////    SimpleIoc.Default.Register<IDataService, DesignDataService>();
-            ////}
-            ////else
-            ////{
-            ////    // Create run time view services and models
-            ////    SimpleIoc.Default.Register<IDataService, DataService>();
-            ////}
+            if (ViewModelBase.IsInDesignModeStatic)
+            {
+                // Create design time view services and models
+                SimpleIoc.Default.Register<IThumbnailService, Utility.Services.DesignTime.ThumbnailService>();
+            
+            }
+            else
+            {
+                // Create run time view services and models
+                SimpleIoc.Default.Register<IThumbnailService, Utility.Services.RunTime.ThumbnailService>();
+            }
 
             SimpleIoc.Default.Register<PlayVideoViewModel>(true);
             SimpleIoc.Default.Register<MainPageViewModel>();
             SimpleIoc.Default.Register<ThumbnailsViewModel>();
+            SimpleIoc.Default.Register<LibraryViewModel>();
+
         }
 
         public static ThumbnailsViewModel ThumbnailsVM
@@ -60,6 +65,14 @@ namespace VLC_WINRT.ViewModels
             get
             {
                 return ServiceLocator.Current.GetInstance<MainPageViewModel>();
+            }
+        }
+
+        public static LibraryViewModel LibraryVM
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<LibraryViewModel>();
             }
         }
     }

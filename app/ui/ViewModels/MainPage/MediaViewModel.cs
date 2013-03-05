@@ -11,10 +11,13 @@ namespace VLC_WINRT.ViewModels.MainPage
 
         public MediaViewModel(StorageFile storageFile) : base(storageFile)
         {
-            Title = storageFile.Name;
-            Subtitle = storageFile.FileType.ToUpper() + " File";
+            if (storageFile != null)
+            {
+                Title = storageFile.Name;
+                Subtitle = storageFile.FileType.ToUpper() + " File";
             
-            OpenFile = new OpenFileCommand();
+                OpenFile = new OpenFileCommand();
+            }
         }
 
         public string Title
