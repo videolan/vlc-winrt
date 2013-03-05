@@ -20,7 +20,11 @@ namespace VLC_WINRT.ViewModels.MainPage
         public TimeSpan TimeWatched
         {
             get { return _timeWatched; }
-            set { SetProperty(ref _timeWatched, value); }
+            set
+            {
+                SetProperty(ref _timeWatched, value);
+                OnPropertyChanged("PortionWatched");
+            }
         }
 
         public TimeSpan Duration
@@ -29,19 +33,28 @@ namespace VLC_WINRT.ViewModels.MainPage
             set { SetProperty(ref _duration, value); }
         }
 
+        public double PortionWatched
+        {
+            get
+            {
+                double timeWatchedms = TimeWatched.TotalMilliseconds;
+                double totalms = Duration.TotalMilliseconds;
+                return (timeWatchedms/totalms)*100.0f;
+            }
+        }
+
         private async void GatherTimeInformation(IAsyncAction operation)
         {
             VideoProperties videoProps = await File.Properties.GetVideoPropertiesAsync();
             TimeSpan duration = videoProps.Duration;
-            Random rand = new Random();
-            var seconds = rand.Next((int)duration.TotalSeconds);
+            var rand = new Random();
+            int seconds = rand.Next((int) duration.TotalSeconds);
 
             DispatchHelper.Invoke(() =>
                                       {
                                           Duration = duration;
                                           TimeWatched = TimeSpan.FromSeconds(seconds);
                                       });
-            
         }
     }
 }

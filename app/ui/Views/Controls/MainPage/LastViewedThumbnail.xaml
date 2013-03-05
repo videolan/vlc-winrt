@@ -6,7 +6,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     d:DesignHeight="300"
-    d:DesignWidth="400">
+    d:DesignWidth="400"
+    d:DataContext="">
     <Grid Visibility="{Binding Image, Converter={StaticResource  NullToVisibilityConverter}}" >
         <Button Command="{Binding OpenFile}"
                 CommandParameter="{Binding}"
@@ -18,17 +19,17 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"></RowDefinition>
                         <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <TextBlock Text="{Binding Title}" Margin="10"
-                               Style="{StaticResource GroupHeaderTextStyle}" FontWeight="Bold">
+                    <TextBlock Text="{Binding Title}" FontSize="20" Margin="10" >
                     </TextBlock>
-
+                    <ProgressBar Grid.Row="1" Value="{Binding PortionWatched}" Margin="10,0" Foreground="#F09609"></ProgressBar>
                     <TextBlock Text="{Binding Subtitle}"
                                Margin="10"
-                               Grid.Row="1"
+                               Grid.Row="2"
                                TextAlignment="Left">
                     </TextBlock>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="1" Margin="10">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="2" Margin="10">
                         <TextBlock>
                             <Run Text="{Binding TimeWatched, Converter={StaticResource TimeSpanShortStringConverter}}"></Run>
                             <Run Text=" / "></Run>
