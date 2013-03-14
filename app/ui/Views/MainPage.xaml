@@ -8,13 +8,13 @@
     mc:Ignorable="d"
     d:DesignHeight="768"
     DataContext="{Binding Source={StaticResource Locator}, Path=MainPageVM}">
-    
+
     <Grid Background="Black">
         <!-- Grid for Gradient -->
         <!-- Rectangle for Thumbnail Board -->
         <mainPage:ThumbnailsBackground Grid.ColumnSpan="4"></mainPage:ThumbnailsBackground>
 
-        <Grid Margin="30,20,10,0" >
+        <Grid Margin="30,20,10,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
@@ -38,38 +38,12 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"></RowDefinition>
                     </Grid.RowDefinitions>
-                    
+
                     <Grid Grid.Column="0" DataContext="{Binding LastViewedVM}" Style="{StaticResource ColumnGridStyle}">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"></RowDefinition>
-                            <RowDefinition Height="Auto"></RowDefinition>
-                            <RowDefinition Height="Auto"></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Row="0" Grid.Column="0" x:Uid="LastViewed" Text="last viewed"
-                                   Style="{StaticResource ColumnHeaderTextStyle}">
-                        </TextBlock>
-                        <Button Margin="5,0" Style="{StaticResource TextButtonStyle}" Grid.Row="0" Grid.Column="1"
-                                HorizontalAlignment="Right" Content="Clear">
-                        </Button>
-
-                        <mainPage:LastViewedThumbnail Grid.Row="1"
-                                                      Grid.ColumnSpan="2"
-                                                      DataContext="{Binding LastViewedVM}">
-                        </mainPage:LastViewedThumbnail>
-
-                        <mainPage:LastViewedThumbnail Grid.Row="2"
-                                                      Grid.Column="0"
-                                                      DataContext="{Binding SecondLastViewedVM}">
-                        </mainPage:LastViewedThumbnail>
-
-                        <mainPage:LastViewedThumbnail Grid.Row="2"
-                                                      Grid.Column="1"
-                                                      DataContext="{Binding ThirdLastViewedVM}">
-                        </mainPage:LastViewedThumbnail>
+                        <mainPage:Welcome></mainPage:Welcome>
+                        <mainPage:LastViewed Visibility="Collapsed">
+                            <!--<mainPage:LastViewed Visibility="{Binding LastViewedVisible, Converter={StaticResource BooleanToVisibilityConverter}}">-->
+                        </mainPage:LastViewed>
                     </Grid>
 
                     <mainPage:MediaColumn Grid.Column="1" DataContext="{Binding VideoVM}">
@@ -81,7 +55,7 @@
                     <ItemsControl Grid.Column="3" ItemsSource="{Binding RemovableStorageVMs}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <mainPage:MediaColumn >
+                                <mainPage:MediaColumn>
                                 </mainPage:MediaColumn>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>

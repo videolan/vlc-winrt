@@ -123,6 +123,27 @@
   <data name="AddContentCont.Text" xml:space="preserve">
     <value>in order to use this section.</value>
   </data>
+  <data name="CurrentFeatures.Text" xml:space="preserve">
+    <value>Current Features:</value>
+  </data>
+  <data name="FeaturesCalcualtor.Text" xml:space="preserve">
+    <value>Has excellent calculator with addition.</value>
+  </data>
+  <data name="FeaturesOpen.Text" xml:space="preserve">
+    <value>Open a video from anywhere on your device. Swipe up or right click to open a file from the App Bar.</value>
+  </data>
+  <data name="FeaturesSomething.Text" xml:space="preserve">
+    <value>Plays something (plays anything after the bugs are fixed).</value>
+  </data>
+  <data name="FeaturesUSB.Text" xml:space="preserve">
+    <value>USB and SD Card support.</value>
+  </data>
+  <data name="FeaturesVidLib.Text" xml:space="preserve">
+    <value>Videos Library support.  Add files to your Videos Library and play them directly.</value>
+  </data>
+  <data name="IntroPara.Text" xml:space="preserve">
+    <value>This app is our attempt to bring the VLC media player to Microsoft's newest OS. The app is currently under development so not all features have been included, and many existing features have bugs.</value>
+  </data>
   <data name="ItsLonely.Text" xml:space="preserve">
     <value>It's lonely here.</value>
   </data>
@@ -146,5 +167,8 @@
   </data>
   <data name="Videos.Text" xml:space="preserve">
     <value>videos</value>
+  </data>
+  <data name="Welcome.Text" xml:space="preserve">
+    <value>Welcome to the VLC for WinRT Beta!</value>
   </data>
 </root>

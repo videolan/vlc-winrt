@@ -143,6 +143,9 @@
     <Compile Include="Views\Addition.xaml.cs">
       <DependentUpon>Addition.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Controls\MainPage\LastViewed.xaml.cs">
+      <DependentUpon>LastViewed.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Controls\MainPage\LastViewedThumbnail.xaml.cs">
       <DependentUpon>LastViewedThumbnail.xaml</DependentUpon>
     </Compile>
@@ -154,6 +157,9 @@
     </Compile>
     <Compile Include="Views\Controls\MainPage\ThumbnailsBackground.xaml.cs">
       <DependentUpon>ThumbnailsBackground.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\MainPage\Welcome.xaml.cs">
+      <DependentUpon>Welcome.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -1073,6 +1079,9 @@
     <Content Include="Assets\Logo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\ShinyPylon\300_340.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Assets\SmallLogo.png" />
     <Content Include="Assets\SplashScreen.png" />
     <Content Include="Assets\StoreLogo.png" />
@@ -1090,6 +1099,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Controls\MainPage\LastViewed.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Controls\MainPage\LastViewedThumbnail.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1103,6 +1116,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Controls\MainPage\ThumbnailsBackground.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\MainPage\Welcome.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

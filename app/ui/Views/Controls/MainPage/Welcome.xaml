@@ -1,0 +1,95 @@
+﻿<UserControl
+    x:Class="VLC_WINRT.Views.Controls.MainPage.Welcome"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="768"
+    d:DesignWidth="550">
+    <StackPanel Visibility="{Binding WelcomeSectionVisibile, Converter={StaticResource BooleanToVisibilityConverter}}">
+        <Image Height="340" Width="300" Source="../../../Assets/ShinyPylon/300_340.png"></Image>
+        <TextBlock TextWrapping="Wrap"
+                   Style="{StaticResource GroupHeaderTextStyle}"
+                   Margin="10"
+                   HorizontalAlignment="Center"
+                   x:Uid="Welcome"
+                   Text="Welcome to the VLC for WinRT Beta!">
+        </TextBlock>
+        <TextBlock TextWrapping="Wrap"
+                   Style="{StaticResource BasicTextStyle}"
+                   Margin="10"
+                   x:Uid="IntroPara.Text"
+                   Text="This app is our attempt to bring the VLC media player to Microsoft's newest OS. The app is currently under development so not all features have been included, and many existing features have bugs.">
+        </TextBlock>
+        <TextBlock TextWrapping="Wrap"
+                   Style="{StaticResource BasicTextStyle}"
+                   FontWeight="Bold"
+                   x:Uid="CurrentFeatures"
+                   Text="Current Features:"
+                   Margin="10,10,10,0">
+        </TextBlock>
+        <Grid Margin="10,0,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBlock Text="*" Grid.Row="0" Grid.Column="0" Margin="5" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="*" Grid.Row="1" Grid.Column="0" Margin="5" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="*" Grid.Row="2" Grid.Column="0" Margin="5" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="*" Grid.Row="3" Grid.Column="0" Margin="5" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="*" Grid.Row="4" Grid.Column="0" Margin="5" VerticalAlignment="Center"></TextBlock>
+            <TextBlock
+                Text="Videos Library support.  Add files to your Videos Library and play them directly."
+                x:Uid="FeaturesVidLib"
+                Style="{StaticResource BasicTextStyle}"
+                TextWrapping="Wrap"
+                Margin="5"
+                Grid.Row="0"
+                Grid.Column="1">
+            </TextBlock>
+            <TextBlock Text="USB and SD Card support."
+                       x:Uid="FeaturesUSB"
+                       Style="{StaticResource BasicTextStyle}"
+                       TextWrapping="Wrap"
+                       Margin="5"
+                       Grid.Row="1"
+                       Grid.Column="1">
+            </TextBlock>
+            <TextBlock
+                Text="Open a video from anywhere on your device. Either swipe up or right click to open a file from the App Bar."
+                Style="{StaticResource BasicTextStyle}"
+                x:Uid="FeaturesOpen"
+                TextWrapping="Wrap"
+                Margin="5"
+                Grid.Row="2"
+                Grid.Column="1">
+            </TextBlock>
+            <TextBlock
+                Text="Plays something (plays anything after the bugs are fixed)"
+                Style="{StaticResource BasicTextStyle}"
+                x:Uid="FeaturesSomething"
+                TextWrapping="Wrap"
+                Margin="5"
+                Grid.Row="3"
+                Grid.Column="1">
+            </TextBlock>
+            <TextBlock
+                Text="Has excellent calculator with addition"
+                x:Uid="FeaturesCalculator"
+                Style="{StaticResource BasicTextStyle}"
+                TextWrapping="Wrap"
+                Margin="5"
+                Grid.Row="4"
+                Grid.Column="1">
+            </TextBlock>
+        </Grid>
+    </StackPanel>
+</UserControl>

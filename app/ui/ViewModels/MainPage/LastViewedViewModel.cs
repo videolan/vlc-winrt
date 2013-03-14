@@ -12,11 +12,16 @@ namespace VLC_WINRT.ViewModels.MainPage
     public class LastViewedViewModel : BindableBase
     {
         private ViewedVideoViewModel _lastViewedVM;
+        private bool _lastViewedVisible;
         private ViewedVideoViewModel _secondLastViewedVM;
         private ViewedVideoViewModel _thirdLastViewedVM;
+        private bool _welcomeSectionVisible;
 
         public LastViewedViewModel()
         {
+            LastViewedVisible = false;
+            WelcomeSectionVisibile = true;
+
             //TODO: implement actual last viewed functionaliy
             //Get off UI thread
             ThreadPool.RunAsync(AddRandomVideos);
@@ -40,12 +45,25 @@ namespace VLC_WINRT.ViewModels.MainPage
             set { SetProperty(ref _thirdLastViewedVM, value); }
         }
 
+        public bool WelcomeSectionVisibile
+        {
+            get { return _welcomeSectionVisible; }
+            set { SetProperty(ref _welcomeSectionVisible, value); }
+        }
+
+        public bool LastViewedVisible
+        {
+            get { return _lastViewedVisible; }
+            set { SetProperty(ref _lastViewedVisible, value); }
+        }
+
         private async void AddRandomVideos(IAsyncAction operation)
         {
             var rand = new Random();
             IReadOnlyList<StorageFile> files =
                 await
-                MediaScanner.GetMediaFromFolder(KnownVLCLocation.VideosLibrary, uint.MaxValue, CommonFileQuery.OrderByTitle);
+                MediaScanner.GetMediaFromFolder(KnownVLCLocation.VideosLibrary, uint.MaxValue,
+                                                CommonFileQuery.OrderByTitle);
 
             if (files.Count >= 3)
             {
