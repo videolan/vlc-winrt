@@ -129,7 +129,7 @@ find tmp -name "*.a" -exec rm -v {} \;
 find tmp \( -name "*.dll" -o -name "*.exe" \) -exec ../extras/package/win32/peflags.pl {} \;
 
 cd tmp
-cp ../lib/.libs/libvlc.dll.def libvlc.def
+gendef libvlc.dll
 ${TARGET_TUPLE}-dlltool libvlc.dll -l libvlc.lib -d libvlc.def libvlc.dll
 
 7z a ../vlc.7z *

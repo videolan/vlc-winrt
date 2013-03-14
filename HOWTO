@@ -24,12 +24,7 @@ reduce the number of forbidden calls.
 Run ./compile.sh and generate vlc.7z
 Extract the contents to vlc/
 
-2) Generate .def and .lib
-Use VS command-line ("Developer Command Prompt for VS2012") to run vlc/makelib.bat, from the directory where libvlc.dll is present. (Adapted from http://wiki.videolan.org/GenerateLibFromDll )
-
-This will let us avoid the dreaded FileNotFoundException.
-
-3) Build and package the front-end
+2) Build and package the front-end
 Open Package.appxmanifest, and generate a self-signed cert
 
 Compile VLC_WRAPPER and then VLC_WINRT in Visual Studio.
@@ -53,7 +48,7 @@ Select your "VLC_WINRT_1.0.0.0_x86_Debug.cer"
 Next
 Finish
 
-4) Deploy the package
+3) Deploy the package
 Start → Programs → Microsoft Visual Studio 2012 → Visual Studio Tools → Debuggable Package Manager
 
 Install VCRT dependency:
@@ -70,7 +65,7 @@ Enable-AppxDebug  9519ba58-7ad6-4c4e-97ed-bfc2135a0d19_1.0.0.0_x86__2c7ztm58ext6
 
 Congratulations, you have installed VLC for WinRT.
 
-5) Helpful snippets and tools
+4) Helpful snippets and tools
 Use http://technet.microsoft.com/en-us/sysinternals/bb896647 DebugView to view the debug logs
 And Procmon ( http://technet.microsoft.com/en-ca/sysinternals/bb896645.aspx ) helps to see and debug events (like loading DLLs/modules/etc)
 
