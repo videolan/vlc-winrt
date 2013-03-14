@@ -40,6 +40,10 @@
             </converters:TimespanShortStringConverter>
             <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter">
             </converters:NullToVisibilityConverter>
+            <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter">
+            </converters:BooleanToVisibilityConverter>
+            <converters:BooleanNegationConverter x:Key="BooleanNegationConverter">
+            </converters:BooleanNegationConverter>
 
             <viewModels:ViewModelLocator x:Key="Locator" d:IsDataSource="True" />
         </ResourceDictionary>

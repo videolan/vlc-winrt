@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using VLC_WINRT.Common;
+using VLC_WINRT.Utility.Commands;
 using VLC_WINRT.Utility.Services;
 using Windows.Foundation;
 using Windows.Storage;
@@ -11,18 +12,31 @@ namespace VLC_WINRT.ViewModels.MainPage
 {
     public class LibraryViewModel : BindableBase
     {
+        private bool _hasNoMedia;
         private StorageFolder _location;
-        private ObservableCollection<MediaViewModel> _media; 
+        private ObservableCollection<MediaViewModel> _media;
+        private PickVideoCommand _pickCommand = new PickVideoCommand();
         private string _title;
 
         public LibraryViewModel(StorageFolder location)
         {
             Media = new ObservableCollection<MediaViewModel>();
             Location = location;
+
             Title = location.DisplayName;
+            if (!string.IsNullOrEmpty(location.DisplayType))
+                Title += " " + location.DisplayType;
+
+            Title = Title.ToLower();
 
             //Get off UI thread
             ThreadPool.RunAsync(GetMedia);
+        }
+
+        public bool HasNoMedia
+        {
+            get { return _hasNoMedia; }
+            set { SetProperty(ref _hasNoMedia, value); }
         }
 
         public string Title
@@ -43,10 +57,27 @@ namespace VLC_WINRT.ViewModels.MainPage
             set { SetProperty(ref _media, value); }
         }
 
+        public PickVideoCommand PickCommand
+        {
+            get { return _pickCommand; }
+            set { SetProperty(ref _pickCommand, value); }
+        }
+
         protected async void GetMedia(IAsyncAction operation)
         {
-            IEnumerable<StorageFile> files =
+            IReadOnlyList<StorageFile> files =
                 await MediaScanner.GetMediaFromFolder(_location, 6, CommonFileQuery.OrderByDate);
+
+            if (files.Count > 0)
+            {
+                DispatchHelper.Invoke(() => HasNoMedia = false);
+            }
+            else
+            {
+                DispatchHelper.Invoke(() => HasNoMedia = true);
+            }
+
+
             foreach (StorageFile storageFile in files)
             {
                 var mediaVM = new MediaViewModel(storageFile);

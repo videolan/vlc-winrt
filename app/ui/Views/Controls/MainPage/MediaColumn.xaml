@@ -11,7 +11,8 @@
     <StackPanel Style="{StaticResource ColumnStackPanelStyle}">
         <TextBlock Text="{Binding Title}" Style="{StaticResource ColumnHeaderTextStyle}"></TextBlock>
 
-        <StackPanel x:Name="NoContentPanel" Margin="10" MaxWidth="400" Background="Black">
+        <StackPanel x:Name="NoContentPanel" 
+                    Visibility="{Binding HasNoMedia, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="10" MaxWidth="400" Background="Black">
             <TextBlock x:Uid="ItsLonely"
                        Margin="5" 
                        Style="{StaticResource  GroupHeaderTextStyle}"
@@ -31,7 +32,9 @@
                            Margin="10,20"
                            HorizontalAlignment="Center"></TextBlock>
 
-                <Button HorizontalAlignment="Center" Margin="10">
+                <Button HorizontalAlignment="Center" 
+                        Margin="10" 
+                        Command="{Binding PickCommand}">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition></ColumnDefinition>
