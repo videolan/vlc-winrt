@@ -7,11 +7,54 @@
     mc:Ignorable="d"
     d:DesignHeight="768"
     d:DesignWidth="400"
-    d:DataContext="{Binding Source={StaticResource Locator}, Path=LibraryVM}"
-    >
-
+    d:DataContext="{Binding Source={StaticResource Locator}, Path=LibraryVM}">
     <StackPanel Style="{StaticResource ColumnStackPanelStyle}">
         <TextBlock Text="{Binding Title}" Style="{StaticResource ColumnHeaderTextStyle}"></TextBlock>
+
+        <StackPanel x:Name="NoContentPanel" Margin="10" MaxWidth="400" Background="Black">
+            <TextBlock x:Uid="ItsLonely"
+                       Margin="5" 
+                       Style="{StaticResource  GroupHeaderTextStyle}"
+                       HorizontalAlignment="Center"></TextBlock>
+            <StackPanel Margin="10,50,10,10">
+                <TextBlock TextWrapping="Wrap"
+                           Style="{StaticResource BasicTextStyle}"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center">
+                    <Run x:Uid="AddContent"></Run>
+                    <Run Text="{Binding Title}"></Run>
+                    <Run x:Uid="AddContentCont"></Run>
+                </TextBlock>
+                <TextBlock x:Uid="Or" 
+                           Text="or" 
+                           Style="{StaticResource GroupHeaderTextStyle}" 
+                           Margin="10,20"
+                           HorizontalAlignment="Center"></TextBlock>
+
+                <Button HorizontalAlignment="Center" Margin="10">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="1"
+                                   Text="&#xE197;"
+                                   Margin="5"
+                                   FontFamily="Segoe UI Symbol"
+                                   VerticalAlignment="Center"
+                                   FontSize="25"/>
+                        <TextBlock Grid.Column="0" Margin="5"
+                                   x:Uid="OpenFile"
+                                   VerticalAlignment="Center"
+                                   Style="{StaticResource BasicTextStyle}" />
+                    </Grid>
+
+                </Button>
+
+
+            </StackPanel>
+        </StackPanel>
+
         <ItemsControl ItemsSource="{Binding Media}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>

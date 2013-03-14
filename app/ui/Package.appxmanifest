@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
-  <Identity Name="9519ba58-7ad6-4c4e-97ed-bfc2135a0d19" Publisher="CN=Kellen" Version="1.0.0.0" />
+  <Identity Name="9519ba58-7ad6-4c4e-97ed-bfc2135a0d19" Publisher="CN=Kellen" Version="1.0.12.2" />
   <Properties>
     <DisplayName>VLC_WINRT</DisplayName>
     <PublisherDisplayName>Kellen</PublisherDisplayName>

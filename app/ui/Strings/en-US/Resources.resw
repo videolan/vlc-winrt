@@ -117,6 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AddContent.Text" xml:space="preserve">
+    <value>Add content to the </value>
+  </data>
+  <data name="AddContentCont.Text" xml:space="preserve">
+    <value>on your device in order to use this section.</value>
+  </data>
+  <data name="ItsLonely.Text" xml:space="preserve">
+    <value>It's lonely here.</value>
+  </data>
   <data name="LastViewed.Text" xml:space="preserve">
     <value>last viewed</value>
   </data>
@@ -128,6 +137,12 @@
   </data>
   <data name="Music.Text" xml:space="preserve">
     <value>music</value>
+  </data>
+  <data name="OpenFile.Text" xml:space="preserve">
+    <value>Open a file</value>
+  </data>
+  <data name="Or.Text" xml:space="preserve">
+    <value>or</value>
   </data>
   <data name="Videos.Text" xml:space="preserve">
     <value>videos</value>
