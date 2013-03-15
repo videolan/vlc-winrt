@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using VLC_WINRT.Common;
 using VLC_WINRT.Utility.Services;
+using VLC_WINRT.Utility.Services.RunTime;
 using Windows.Foundation;
 using Windows.Storage;
 using Windows.Storage.Search;
@@ -19,9 +20,15 @@ namespace VLC_WINRT.ViewModels.MainPage
 
         public LastViewedViewModel()
         {
-            LastViewedVisible = false;
-            WelcomeSectionVisibile = true;
-
+            var history = new HistoryService();
+            if (history.FileCount() > 0)
+            {
+                LastViewedVisible = true;
+            }
+            else
+            {
+                WelcomeSectionVisibile = true;
+            }
             //TODO: implement actual last viewed functionaliy
             //Get off UI thread
             ThreadPool.RunAsync(AddRandomVideos);

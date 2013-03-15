@@ -40,10 +40,8 @@
                     </Grid.RowDefinitions>
 
                     <Grid Grid.Column="0" DataContext="{Binding LastViewedVM}" Style="{StaticResource ColumnGridStyle}">
-                        <mainPage:Welcome></mainPage:Welcome>
-                        <mainPage:LastViewed Visibility="Collapsed">
-                            <!--<mainPage:LastViewed Visibility="{Binding LastViewedVisible, Converter={StaticResource BooleanToVisibilityConverter}}">-->
-                        </mainPage:LastViewed>
+                        <mainPage:Welcome Visibility="{Binding WelcomeSectionVisibile, Converter={StaticResource BooleanToVisibilityConverter}}"></mainPage:Welcome>
+                        <mainPage:LastViewed Visibility="{Binding LastViewedVisible, Converter={StaticResource BooleanToVisibilityConverter}}"></mainPage:LastViewed>
                     </Grid>
 
                     <mainPage:MediaColumn Grid.Column="1" DataContext="{Binding VideoVM}">
