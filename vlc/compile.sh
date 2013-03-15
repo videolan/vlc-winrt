@@ -37,6 +37,9 @@ fi
 TARGET_TUPLE=i686-w64-mingw32
 [ $# = 1 ] && TARGET_TUPLE=$1
 
+${TARGET_TUPLE}-gcc -dumpspecs | sed -e 's/-lmingwex/-lmingwex -lwinstorecompat/' > ../newspecfile
+NEWSPECFILE="`pwd`/../newspecfile"
+
 EXTRA_CPPFLAGS="-D_WIN32_WINNT=0x602 -D_UNICODE -DUNICODE"
 EXTRA_LDFLAGS="-lnormaliz -lwinstorecompat"
 
@@ -98,6 +101,8 @@ echo "Bootstraping"
 echo "Configuring"
 CPPFLAGS="${EXTRA_CPPFLAGS}" \
 LDFLAGS="${EXTRA_LDFLAGS}" \
+CC="${TARGET_TUPLE}-gcc -specs=$NEWSPECFILE" \
+CXX="${TARGET_TUPLE}-g++ -specs=$NEWSPECFILE" \
 ../../configure.sh --host=${TARGET_TUPLE}
 
 echo "Building"
