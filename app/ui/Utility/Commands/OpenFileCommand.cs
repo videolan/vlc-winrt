@@ -1,5 +1,6 @@
 ﻿using System;
 using VLC_WINRT.Common;
+using VLC_WINRT.Utility.Services.RunTime;
 using VLC_WINRT.ViewModels;
 using VLC_WINRT.ViewModels.MainPage;
 using VLC_WINRT.Views;
@@ -15,8 +16,11 @@ namespace VLC_WINRT.Utility.Commands
             if (parameter.GetType() != typeof(MediaViewModel) && parameter.GetType() != typeof(ViewedVideoViewModel))
                 throw new ArgumentException("Expecting to see a Media View Model for this command");
 
+            HistoryService history = new HistoryService();
             var vm = (MediaViewModel) parameter;
+          
             ViewModelLocator.PlayVideoVM.CurrentFile = vm.File;
+            history.Add(vm.File);
             ((Frame) Window.Current.Content).Navigate(typeof (PlayVideo));
             ViewModelLocator.PlayVideoVM.VLCPlayer.Play();
         }

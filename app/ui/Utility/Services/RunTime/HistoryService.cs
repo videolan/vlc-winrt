@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Serialization;
@@ -18,20 +20,40 @@ namespace VLC_WINRT.Utility.Services.RunTime
     {
         private const string HistoryFileName = "histories.xml";
         private static List<MediaHistory> _histories;
+        private readonly ManualResetEvent _fileReadEvent = new ManualResetEvent(false);
+        private static readonly object HistoryFileLock = new object();
 
         public HistoryService()
         {
-            if (_histories == null)
+            lock (HistoryFileLock)
             {
-                ThreadPool.RunAsync(GetHistory);
+                //only allow one instance to read file
+                if (_histories == null)
+                {
+                    ThreadPool.RunAsync(GetHistory);
+
+                    //Wait for our file to be read
+                    _fileReadEvent.WaitOne(int.MaxValue);
+                } 
             }
         }
 
         public void Add(IStorageItem file)
         {
-            string mru = StorageApplicationPermissions.MostRecentlyUsedList.Add(file);
-            MediaHistory history = CreateHistory(file, mru);
-            _histories.Insert(0, history);
+            MediaHistory previouslySavedMedia = _histories.FirstOrDefault(h => h.Filename == file.Name);
+
+            if (previouslySavedMedia == null)
+            {
+                string mru = StorageApplicationPermissions.MostRecentlyUsedList.Add(file);
+                MediaHistory history = CreateHistory(file, mru);
+                _histories.Insert(0, history);
+            }
+            else
+            {
+                _histories.Remove(previouslySavedMedia);
+                _histories.Insert(0, previouslySavedMedia);
+            }
+
             SaveHistory();
         }
 
@@ -61,23 +83,40 @@ namespace VLC_WINRT.Utility.Services.RunTime
 
         private async void GetHistory(IAsyncAction operation)
         {
-            StorageFile historyFile = await ApplicationData.Current.LocalFolder.CreateFileAsync(HistoryFileName,
-                                                                                                CreationCollisionOption
-                                                                                                    .OpenIfExists);
-
-            using (IRandomAccessStreamWithContentType stream = await historyFile.OpenReadAsync())
+            try
             {
-                if (stream.Size > 0)
+                StorageFile historyFile = await ApplicationData.Current.LocalFolder.CreateFileAsync(HistoryFileName,
+                                                                                                    CreationCollisionOption
+                                                                                                        .OpenIfExists);
+
+                using (IRandomAccessStreamWithContentType stream = await historyFile.OpenReadAsync())
                 {
-                    var serializer = new XmlSerializer(typeof(List<MediaHistory>));
-                    XmlReader reader = XmlReader.Create(stream.AsStreamForRead());
-                    _histories = (List<MediaHistory>)serializer.Deserialize(reader);
+                    if (stream.Size > 0)
+                    {
+                        try
+                        {
+                            var serializer = new XmlSerializer(typeof (List<MediaHistory>));
+                            XmlReader reader = XmlReader.Create(stream.AsStreamForRead());
+                            _histories = (List<MediaHistory>) serializer.Deserialize(reader);
+                        }
+                        catch (Exception ex)
+                        {
+                            Debug.WriteLine("Error retrieving history file");
+                            Debug.WriteLine(ex.ToString());
+                            _histories = new List<MediaHistory>();
+                        }
+                       
+                    }
+                    else
+                    {
+                        //if the file is empty must be a first run, create new history
+                        _histories = new List<MediaHistory>();
+                    }
                 }
-                else
-                {
-                    //if the file is empty must be a first run, create new history
-                    _histories = new List<MediaHistory>();
-                }
+            }
+            finally
+            {
+                _fileReadEvent.Set();
             }
         }
 
@@ -85,7 +124,7 @@ namespace VLC_WINRT.Utility.Services.RunTime
         {
             StorageFile historyFile = await ApplicationData.Current.LocalFolder.CreateFileAsync(HistoryFileName,
                                                                                                 CreationCollisionOption
-                                                                                                    .OpenIfExists);
+                                                                                                    .ReplaceExisting);
             using (Stream stream = await historyFile.OpenStreamForWriteAsync())
             {
                 var serializer = new XmlSerializer(_histories.GetType());

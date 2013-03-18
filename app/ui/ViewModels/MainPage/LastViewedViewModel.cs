@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using VLC_WINRT.Common;
-using VLC_WINRT.Utility.Services;
+﻿using VLC_WINRT.Common;
+using VLC_WINRT.Utility.Commands;
 using VLC_WINRT.Utility.Services.RunTime;
 using Windows.Foundation;
 using Windows.Storage;
-using Windows.Storage.Search;
 using Windows.System.Threading;
 
 namespace VLC_WINRT.ViewModels.MainPage
 {
     public class LastViewedViewModel : BindableBase
     {
+        private ClearHistoryCommand _clearHistoryCommand;
         private ViewedVideoViewModel _lastViewedVM;
         private bool _lastViewedVisible;
         private ViewedVideoViewModel _secondLastViewedVM;
@@ -29,9 +27,11 @@ namespace VLC_WINRT.ViewModels.MainPage
             {
                 WelcomeSectionVisibile = true;
             }
-            //TODO: implement actual last viewed functionaliy
+
+            _clearHistoryCommand = new ClearHistoryCommand();
+
             //Get off UI thread
-            ThreadPool.RunAsync(AddRandomVideos);
+            ThreadPool.RunAsync(GetLastViewedMedia);
         }
 
         public ViewedVideoViewModel LastViewedVM
@@ -52,6 +52,12 @@ namespace VLC_WINRT.ViewModels.MainPage
             set { SetProperty(ref _thirdLastViewedVM, value); }
         }
 
+        public ClearHistoryCommand ClearHistory
+        {
+            get { return _clearHistoryCommand; }
+            set { SetProperty(ref _clearHistoryCommand, value); }
+        }
+
         public bool WelcomeSectionVisibile
         {
             get { return _welcomeSectionVisible; }
@@ -64,24 +70,23 @@ namespace VLC_WINRT.ViewModels.MainPage
             set { SetProperty(ref _lastViewedVisible, value); }
         }
 
-        private async void AddRandomVideos(IAsyncAction operation)
+        private async void GetLastViewedMedia(IAsyncAction operation)
         {
-            var rand = new Random();
-            IReadOnlyList<StorageFile> files =
-                await
-                MediaScanner.GetMediaFromFolder(KnownVLCLocation.VideosLibrary, uint.MaxValue,
-                                                CommonFileQuery.OrderByTitle);
+            var histserv = new HistoryService();
 
-            if (files.Count >= 3)
-            {
-                StorageFile firstFile = files[rand.Next(files.Count)];
-                StorageFile secondFile = files[rand.Next(files.Count)];
-                StorageFile thirdFile = files[rand.Next(files.Count)];
+            StorageFile firstFile = await histserv.RetrieveFileAt(0);
+            StorageFile secondFile = await histserv.RetrieveFileAt(1);
+            StorageFile thirdFile = await histserv.RetrieveFileAt(2);
 
-                DispatchHelper.Invoke(() => { LastViewedVM = new ViewedVideoViewModel(firstFile); });
-                DispatchHelper.Invoke(() => { SecondLastViewedVM = new ViewedVideoViewModel(secondFile); });
-                DispatchHelper.Invoke(() => { ThirdLastViewedVM = new ViewedVideoViewModel(thirdFile); });
-            }
+            DispatchHelper.Invoke(() =>
+                                      {
+                                          if (firstFile != null)
+                                              LastViewedVM = new ViewedVideoViewModel(firstFile);
+                                          if (secondFile != null)
+                                              SecondLastViewedVM = new ViewedVideoViewModel(secondFile);
+                                          if (thirdFile != null)
+                                              ThirdLastViewedVM = new ViewedVideoViewModel(thirdFile);
+                                      });
         }
     }
 }

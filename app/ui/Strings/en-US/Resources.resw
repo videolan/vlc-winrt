@@ -123,6 +123,9 @@
   <data name="AddContentCont.Text" xml:space="preserve">
     <value>in order to use this section.</value>
   </data>
+  <data name="Clear.Text" xml:space="preserve">
+    <value>Clear</value>
+  </data>
   <data name="CurrentFeatures.Text" xml:space="preserve">
     <value>Current Features:</value>
   </data>
