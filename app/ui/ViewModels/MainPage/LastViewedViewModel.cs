@@ -11,7 +11,7 @@ namespace VLC_WINRT.ViewModels.MainPage
     {
         private ClearHistoryCommand _clearHistoryCommand;
         private ViewedVideoViewModel _lastViewedVM;
-        private bool _lastViewedVisible;
+        private bool _lastViewedSectionVisible;
         private ViewedVideoViewModel _secondLastViewedVM;
         private ViewedVideoViewModel _thirdLastViewedVM;
         private bool _welcomeSectionVisible;
@@ -21,7 +21,7 @@ namespace VLC_WINRT.ViewModels.MainPage
             var history = new HistoryService();
             if (history.FileCount() > 0)
             {
-                LastViewedVisible = true;
+                LastViewedSectionVisible = true;
             }
             else
             {
@@ -64,10 +64,10 @@ namespace VLC_WINRT.ViewModels.MainPage
             set { SetProperty(ref _welcomeSectionVisible, value); }
         }
 
-        public bool LastViewedVisible
+        public bool LastViewedSectionVisible
         {
-            get { return _lastViewedVisible; }
-            set { SetProperty(ref _lastViewedVisible, value); }
+            get { return _lastViewedSectionVisible; }
+            set { SetProperty(ref _lastViewedSectionVisible, value); }
         }
 
         private async void GetLastViewedMedia(IAsyncAction operation)

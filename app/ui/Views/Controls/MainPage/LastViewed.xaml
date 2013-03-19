@@ -18,31 +18,39 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
+        
         <TextBlock Grid.Row="0" Grid.Column="0" x:Uid="LastViewed" Text="last viewed"
-                                       Style="{StaticResource ColumnHeaderTextStyle}">
+                   Style="{StaticResource ColumnHeaderTextStyle}">
         </TextBlock>
-        <Button Margin="5,0" 
-                Style="{StaticResource TextButtonStyle}" 
-                Grid.Row="0" 
+        
+        <Button Margin="5,0"
+                Style="{StaticResource TextButtonStyle}"
+                Grid.Row="0"
                 Grid.Column="1"
                 HorizontalAlignment="Right"
                 Command="{Binding ClearHistory}">
-                <TextBlock x:Uid="Clear" Text="Clear"></TextBlock>
+            <TextBlock x:Uid="Clear" Text="Clear"></TextBlock>
         </Button>
 
-        <local:LastViewedThumbnail Grid.Row="1"
-                                                          Grid.ColumnSpan="2"
-                                                          DataContext="{Binding LastViewedVM}">
-        </local:LastViewedThumbnail>
+        <Grid Grid.Row="1"
+              Grid.ColumnSpan="2"
+              Visibility="{Binding LastViewedVM, Converter={StaticResource NullToVisibilityConverter}}">
+            <local:LastViewedThumbnail DataContext="{Binding LastViewedVM}">
+            </local:LastViewedThumbnail>
+        </Grid>
 
-        <local:LastViewedThumbnail Grid.Row="2"
-                                                          Grid.Column="0"
-                                                          DataContext="{Binding SecondLastViewedVM}">
-        </local:LastViewedThumbnail>
+        <Grid Grid.Row="2"
+              Grid.Column="0"
+              Visibility="{Binding SecondLastViewedVM, Converter={StaticResource NullToVisibilityConverter}}">
+            <local:LastViewedThumbnail DataContext="{Binding SecondLastViewedVM}">
+            </local:LastViewedThumbnail>
+        </Grid>
 
-        <local:LastViewedThumbnail Grid.Row="2"
-                                                          Grid.Column="1"
-                                                          DataContext="{Binding ThirdLastViewedVM}">
-        </local:LastViewedThumbnail>
+        <Grid Grid.Row="2"
+              Grid.Column="1"
+              Visibility="{Binding ThirdLastViewedVM, Converter={StaticResource NullToVisibilityConverter}}">
+            <local:LastViewedThumbnail DataContext="{Binding ThirdLastViewedVM}">
+            </local:LastViewedThumbnail>
+        </Grid>
     </Grid>
 </UserControl>
