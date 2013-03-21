@@ -10,7 +10,7 @@ namespace VLC_WINRT.ViewModels.PlayVideo
 {
     public class PlayVideoViewModel : BindableBase, IDisposable
     {
-        private readonly Player _vlcPlayer;
+        private Player _vlcPlayer;
         private ImageBrush _brush;
         private StorageFile _currentFile;
         private bool _isPlaying;
@@ -18,15 +18,23 @@ namespace VLC_WINRT.ViewModels.PlayVideo
         private PlayPauseCommand _playOrPause;
         private SkipAheadCommand _skipAhead;
         private SkipBackCommand _skipBack;
+        private StopVideoCommand _stopVideoCommand;
+        private string _title;
 
         public PlayVideoViewModel()
         {
-            Brush = new ImageBrush();
-            _vlcPlayer = new Player(Brush);
+            InitializeVLC();
             _listener = new HttpListener();
             _playOrPause = new PlayPauseCommand();
             _skipAhead = new SkipAheadCommand();
             _skipBack = new SkipBackCommand();
+            _stopVideoCommand = new StopVideoCommand();
+        }
+
+        private void InitializeVLC()
+        {
+            Brush = new ImageBrush();
+            _vlcPlayer = new Player(Brush);
         }
 
         public StorageFile CurrentFile
@@ -36,6 +44,7 @@ namespace VLC_WINRT.ViewModels.PlayVideo
             {
                 SetProperty(ref _currentFile, value);
                 _vlcPlayer.Open("http://localhost:8000/" + _currentFile.Name);
+                Title = _currentFile.Name;
             }
         }
 
@@ -69,6 +78,18 @@ namespace VLC_WINRT.ViewModels.PlayVideo
             set { SetProperty(ref _skipBack, value); }
         }
 
+        public string Title
+        {
+            get { return _title; }
+            set { SetProperty(ref _title, value); }
+        }
+
+        public StopVideoCommand StopVideo
+        {
+            get { return _stopVideoCommand; }
+            set { SetProperty(ref _stopVideoCommand, value); }
+        }
+
         public void Dispose()
         {
             if (_listener != null)
@@ -76,6 +97,14 @@ namespace VLC_WINRT.ViewModels.PlayVideo
                 _listener.Stop();
                 _listener.Dispose();
                 _listener = null;
+            }
+                
+            Brush = null;
+
+            if (_vlcPlayer != null)
+            {
+                _vlcPlayer.Dispose();
+                _vlcPlayer = null;
             }
         }
 
@@ -88,6 +117,12 @@ namespace VLC_WINRT.ViewModels.PlayVideo
         public void Pause()
         {
             _vlcPlayer.Pause();
+            IsPlaying = false;
+        }
+
+        public void Stop()
+        {
+            _vlcPlayer.Stop();
             IsPlaying = false;
         }
     }

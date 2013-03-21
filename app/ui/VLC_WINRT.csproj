@@ -121,6 +121,7 @@
     <Compile Include="Utility\Commands\PlayPauseCommand.cs" />
     <Compile Include="Utility\Commands\SkipAheadCommand.cs" />
     <Compile Include="Utility\Commands\SkipBackCommand.cs" />
+    <Compile Include="Utility\Commands\StopVideoCommand.cs" />
     <Compile Include="Utility\Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="Utility\Converters\BooleanNegationConverter.cs" />
     <Compile Include="Common\LayoutAwarePage.cs" />

@@ -1,5 +1,4 @@
 ﻿using System;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
@@ -33,13 +32,6 @@ namespace VLC_WINRT.Views
         private void Slider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
             throw new NotImplementedException();
-        }
-
-        private void Back_Click(object sender, RoutedEventArgs e)
-        {
-            //VideoSurface.Fill = null;
-            //Frame.GoBack(); 
-            //_vlcPlayer.Stop();
         }
 
         private void ScreenTapped(object sender, TappedRoutedEventArgs e)
