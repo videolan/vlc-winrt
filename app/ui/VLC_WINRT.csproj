@@ -118,7 +118,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Common\BindableBase.cs" />
     <Compile Include="Utility\Commands\ClearHistoryCommand.cs" />
-    <Compile Include="Utility\Commands\PlayCommand.cs" />
+    <Compile Include="Utility\Commands\PlayPauseCommand.cs" />
+    <Compile Include="Utility\Commands\SkipAheadCommand.cs" />
+    <Compile Include="Utility\Commands\SkipBackCommand.cs" />
     <Compile Include="Utility\Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="Utility\Converters\BooleanNegationConverter.cs" />
     <Compile Include="Common\LayoutAwarePage.cs" />
@@ -126,6 +128,7 @@
     <Compile Include="Common\SuspensionManager.cs" />
     <Compile Include="Utility\Commands\PickVideoCommand.cs" />
     <Compile Include="Utility\Commands\OpenFileCommand.cs" />
+    <Compile Include="Utility\Converters\NegatedBooleanToVisibilityConverter.cs" />
     <Compile Include="Utility\Converters\NullToVisibilityConverter.cs" />
     <Compile Include="Utility\Converters\TimespanShortStringConverter.cs" />
     <Compile Include="Utility\Services\DesignTime\ThumbnailService.cs" />

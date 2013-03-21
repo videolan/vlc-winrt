@@ -1,19 +1,18 @@
 ﻿using System;
 using System.Windows.Input;
-using VLC_WINRT.ViewModels;
 
 namespace VLC_WINRT.Utility.Commands
 {
-    internal class PlayCommand : ICommand
+    public class SkipBackCommand : ICommand
     {
         public bool CanExecute(object parameter)
         {
-            return true;
+            return false;
         }
 
         public void Execute(object parameter)
         {
-            ViewModelLocator.PlayVideoVM.VLCPlayer.Play();
+            throw new NotImplementedException();
         }
 
         public event EventHandler CanExecuteChanged;

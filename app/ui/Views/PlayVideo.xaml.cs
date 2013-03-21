@@ -17,16 +17,7 @@ namespace VLC_WINRT.Views
         public PlayVideo()
         {
             InitializeComponent();
-            Loaded += ImLoaded;
         }
-
-        private void ImLoaded(object sender, RoutedEventArgs e)
-        {
-            //_vlcPlayer.Open("http://localhost/tears_of_steel_720p.mkv");
-            //_vlcPlayer.Play();
-            //_playing = true;
-        }
-
 
         /// <summary>
         ///     Invoked when this page is about to be displayed in a Frame.
@@ -37,19 +28,6 @@ namespace VLC_WINRT.Views
         /// </param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-        }
-
-        private void PlayVideo_Click(object sender, RoutedEventArgs e)
-        {
-            //if (_playing)
-            //{
-            //    _vlcPlayer.Pause();
-            //}
-            //else
-            //{
-            //    _vlcPlayer.Play();
-            //}
-            //_playing = !_playing;
         }
 
         private void Slider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
@@ -66,10 +44,10 @@ namespace VLC_WINRT.Views
 
         private void ScreenTapped(object sender, TappedRoutedEventArgs e)
         {
-            //if (BottomAppBar != null && !BottomAppBar.IsOpen)
-            //    BottomAppBar.IsOpen = true;
-            //if (TopAppBar != null && !TopAppBar.IsOpen)
-            //    TopAppBar.IsOpen = true;
+            if (BottomAppBar != null && !BottomAppBar.IsOpen)
+                BottomAppBar.IsOpen = true;
+            if (TopAppBar != null && !TopAppBar.IsOpen)
+                TopAppBar.IsOpen = true;
         }
     }
 }

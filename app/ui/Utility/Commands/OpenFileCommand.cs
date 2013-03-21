@@ -13,16 +13,16 @@ namespace VLC_WINRT.Utility.Commands
     {
         public override void Execute(object parameter)
         {
-            if (parameter.GetType() != typeof(MediaViewModel) && parameter.GetType() != typeof(ViewedVideoViewModel))
+            if (parameter.GetType() != typeof (MediaViewModel) && parameter.GetType() != typeof (ViewedVideoViewModel))
                 throw new ArgumentException("Expecting to see a Media View Model for this command");
 
-            HistoryService history = new HistoryService();
+            var history = new HistoryService();
             var vm = (MediaViewModel) parameter;
-          
+
             ViewModelLocator.PlayVideoVM.CurrentFile = vm.File;
             history.Add(vm.File);
             ((Frame) Window.Current.Content).Navigate(typeof (PlayVideo));
-            ViewModelLocator.PlayVideoVM.VLCPlayer.Play();
+            ViewModelLocator.PlayVideoVM.Play();
         }
     }
 }

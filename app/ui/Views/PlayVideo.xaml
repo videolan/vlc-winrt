@@ -2,7 +2,6 @@
     x:Class="VLC_WINRT.Views.PlayVideo"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:VLC_WINRT.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
@@ -39,15 +38,24 @@
                         <TextBlock  Text="/" Style="{StaticResource CaptionTextStyle}" Margin="2"></TextBlock>
                         <TextBlock x:Name="TotalTime" Text="0:00" Style="{StaticResource CaptionTextStyle}" Margin="2"></TextBlock>
                     </StackPanel>
-
                     <TextBlock x:Name="VideoTitle" Style="{StaticResource GroupHeaderTextStyle}" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
                 </StackPanel>
                 <StackPanel Margin="5,0,5,10" Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="1">
-                    <Button Style="{StaticResource SkipBackAppBarButtonStyle}">
+                    <Button Style="{StaticResource SkipBackAppBarButtonStyle}" Command="{Binding SkipBack}">
                     </Button>
-                    <Button x:Name="PlayButton" Click="PlayVideo_Click" Style="{StaticResource PlayAppBarButtonStyle}">
+                    <Button Style="{StaticResource PlayAppBarButtonStyle}" 
+                            Command="{Binding PlayOrPause}" 
+                            CommandParameter="{Binding}"
+                            Visibility="{Binding IsPlaying, Converter={StaticResource NegatedBooleanToVisibilityConverter}}"
+                            >
                     </Button>
-                    <Button Style="{StaticResource SkipAheadAppBarButtonStyle}">
+                    <Button Style="{StaticResource PauseAppBarButtonStyle}" 
+                            Command="{Binding PlayOrPause}" 
+                            CommandParameter="{Binding}"
+                            Visibility="{Binding IsPlaying, Converter={StaticResource BooleanToVisibilityConverter}}"
+                            >
+                    </Button>
+                    <Button Style="{StaticResource SkipAheadAppBarButtonStyle}" Command="{Binding SkipAhead}">
                     </Button>
                     <Button Style="{StaticResource FullScreenAppBarButtonStyle}">
                     </Button>

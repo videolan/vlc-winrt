@@ -46,13 +46,13 @@ namespace VLC_WINRT.Utility.Commands
             StorageFile file = await picker.PickSingleFileAsync();
             if (file != null)
             {
-                HistoryService history = new HistoryService();
+                var history = new HistoryService();
                 history.Add(file);
 
                 Debug.WriteLine("Opening file: " + file.Path);
                 ViewModelLocator.PlayVideoVM.CurrentFile = file;
                 ((Frame) Window.Current.Content).Navigate(typeof (PlayVideo));
-                ViewModelLocator.PlayVideoVM.VLCPlayer.Play();
+                ViewModelLocator.PlayVideoVM.Play();
             }
             else
             {
