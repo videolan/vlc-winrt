@@ -41,4 +41,6 @@ then
     OPTIONS="${OPTIONS} --disable-taglib --disable-mkv"
 fi
 
-sh ../configure ${OPTIONS} $*
+# We want the getpid replacement (GetCurrentProcessId), since getpid() is wrong on Windows.
+ac_cv_func_getpid=no \ 
+ sh ../configure ${OPTIONS} $*
