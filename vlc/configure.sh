@@ -42,5 +42,5 @@ then
 fi
 
 # We want the getpid replacement (GetCurrentProcessId), since getpid() is wrong on Windows.
-ac_cv_func_getpid=no \ 
+ac_cv_func_getpid=no \
  sh ../configure ${OPTIONS} $*
