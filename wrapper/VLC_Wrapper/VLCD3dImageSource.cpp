@@ -1,3 +1,23 @@
+/*****************************************************************************
+ * Copyright © 2013 VideoLAN
+ *
+ * Authors: Kellen Sunderland
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation; either version 2.1 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program; if not, write to the Free Software Foundation,
+ * Inc., 51 Franklin Street, Fifth Floor, Boston MA 02110-1301, USA.
+ *****************************************************************************/
+
 #include "pch.h"
 #include "VLCD3dImageSource.h"
 
@@ -9,10 +29,10 @@ using namespace VLC_Wrapper;
 VLCD3dImageSource::VLCD3dImageSource(int pixelWidth, int pixelHeight, bool isOpaque):
     SurfaceImageSource(pixelWidth, pixelHeight, isOpaque)
 {
-	m_width = pixelWidth;
-	m_height = pixelHeight;
+    m_width = pixelWidth;
+    m_height = pixelHeight;
 
-	CreateDeviceIndependentResources();
+    CreateDeviceIndependentResources();
     CreateDeviceResources();
 }
 
@@ -21,7 +41,7 @@ VLCD3dImageSource::VLCD3dImageSource(int pixelWidth, int pixelHeight, bool isOpa
 void VLCD3dImageSource::CreateDeviceIndependentResources()
 {
     // Query for ISurfaceImageSourceNative interface.
-	reinterpret_cast<IUnknown*>(this)->QueryInterface(IID_PPV_ARGS(&m_sisNative));
+    reinterpret_cast<IUnknown*>(this)->QueryInterface(IID_PPV_ARGS(&m_sisNative));
 }
 
 
@@ -30,9 +50,9 @@ void VLCD3dImageSource::CreateDeviceResources()
 {
     // This flag adds support for surfaces with a different color channel ordering
     // than the API default.
-    UINT creationFlags = D3D11_CREATE_DEVICE_BGRA_SUPPORT; 
+    UINT creationFlags = D3D11_CREATE_DEVICE_BGRA_SUPPORT;
 
-#if defined(_DEBUG)    
+#if defined(_DEBUG)
     // If the project is in a debug build, enable debugging via SDK Layers.
     creationFlags |= D3D11_CREATE_DEVICE_DEBUG;
 #endif
@@ -68,12 +88,12 @@ void VLCD3dImageSource::CreateDeviceResources()
 
     // Get the Direct3D 11.1 API device.
     ComPtr<IDXGIDevice> dxgiDevice;
-	m_d3dDevice.As(&dxgiDevice);
+    m_d3dDevice.As(&dxgiDevice);
 
     // Associate the DXGI device with the SurfaceImageSource.
-	m_sisNative->SetDevice(dxgiDevice.Get());
+    m_sisNative->SetDevice(dxgiDevice.Get());
 
-   
+
 
     // Create the constant buffer.
     const CD3D11_BUFFER_DESC constantBufferDesc = CD3D11_BUFFER_DESC(sizeof(ModelViewProjectionConstantBuffer), D3D11_BIND_CONSTANT_BUFFER);
@@ -82,11 +102,11 @@ void VLCD3dImageSource::CreateDeviceResources()
         nullptr,
         &m_constantBuffer
         );
-  
+
 
     // Calculate the aspect ratio and field of view.
     float aspectRatio = (float)m_width / (float)m_height;
-    
+
     float fovAngleY = 70.0f * XM_PI / 180.0f;
     if (aspectRatio < 1.0f)
     {
@@ -115,7 +135,7 @@ void VLCD3dImageSource::BeginDraw()
     ComPtr<IDXGISurface> surface;
 
     // Express target area as a native RECT type.
-    RECT updateRectNative; 
+    RECT updateRectNative;
     updateRectNative.left = 0;
     updateRectNative.top = 0;
     updateRectNative.right = m_width;
@@ -155,7 +175,7 @@ void VLCD3dImageSource::BeginDraw()
 
     // Create depth/stencil buffer descriptor.
     CD3D11_TEXTURE2D_DESC depthStencilDesc(
-        DXGI_FORMAT_D24_UNORM_S8_UINT, 
+        DXGI_FORMAT_D24_UNORM_S8_UINT,
         m_width,
         m_height,
         1,
@@ -168,9 +188,9 @@ void VLCD3dImageSource::BeginDraw()
     m_d3dDevice->CreateTexture2D(&depthStencilDesc, nullptr, &depthStencil);
 
     // Create depth/stencil view based on depth/stencil buffer.
-    const CD3D11_DEPTH_STENCIL_VIEW_DESC depthStencilViewDesc = CD3D11_DEPTH_STENCIL_VIEW_DESC(D3D11_DSV_DIMENSION_TEXTURE2D);    
-	
-	m_d3dDevice->CreateDepthStencilView(
+    const CD3D11_DEPTH_STENCIL_VIEW_DESC depthStencilViewDesc = CD3D11_DEPTH_STENCIL_VIEW_DESC(D3D11_DSV_DIMENSION_TEXTURE2D);
+
+    m_d3dDevice->CreateDepthStencilView(
             depthStencil.Get(),
             &depthStencilViewDesc,
             &m_depthStencilView
@@ -178,7 +198,7 @@ void VLCD3dImageSource::BeginDraw()
 }
 
 
-// Clears the surface with the given color.  This must be called 
+// Clears the surface with the given color.  This must be called
 // after BeginDraw and before EndDraw for a given update.
 void VLCD3dImageSource::Clear(Color color)
 {
@@ -191,5 +211,5 @@ void VLCD3dImageSource::Clear(Color color)
 // Ends drawing updates started by a previous BeginDraw call.
 void VLCD3dImageSource::EndDraw()
 {
-	m_sisNative->EndDraw();
+    m_sisNative->EndDraw();
 }

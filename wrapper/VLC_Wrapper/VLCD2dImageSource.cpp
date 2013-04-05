@@ -1,3 +1,23 @@
+/*****************************************************************************
+ * Copyright © 2013 VideoLAN
+ *
+ * Authors: Kellen Sunderland
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation; either version 2.1 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program; if not, write to the Free Software Foundation,
+ * Inc., 51 Franklin Street, Fifth Floor, Boston MA 02110-1301, USA.
+ *****************************************************************************/
+
 #include "pch.h"
 #include "VLCD2dImageSource.h"
 #include <wincodec.h>
@@ -30,9 +50,9 @@ void VLCD2dImageSource::CreateDeviceResources()
 {
     // This flag adds support for surfaces with a different color channel ordering
     // than the API default. It is required for compatibility with Direct2D.
-    UINT creationFlags = D3D11_CREATE_DEVICE_BGRA_SUPPORT; 
+    UINT creationFlags = D3D11_CREATE_DEVICE_BGRA_SUPPORT;
 
-#if defined(_DEBUG)    
+#if defined(_DEBUG)
     // If the project is in a debug build, enable debugging via SDK Layers.
     creationFlags |= D3D11_CREATE_DEVICE_DEBUG;
 #endif
@@ -77,7 +97,7 @@ void VLCD2dImageSource::CreateDeviceResources()
         &m_d2dDevice
         );
 
-    
+
     m_d2dDevice->CreateDeviceContext(
         D2D1_DEVICE_CONTEXT_OPTIONS_NONE,
         &m_d2dContext
@@ -87,46 +107,46 @@ void VLCD2dImageSource::CreateDeviceResources()
     SetDpi(Windows::Graphics::Display::DisplayProperties::LogicalDpi);
 
     // Associate the DXGI device with the SurfaceImageSource.
-   
+
     m_sisNative->SetDevice(dxgiDevice.Get());
 }
 
 //Only works for 32 bits per pixel at the moment
 void VLCD2dImageSource::DrawFrame(UINT height, UINT width, byte* sourceData, UINT pitch, Windows::Foundation::Rect updateRect){
 
-		if (d2dbmp == NULL){
-			D2D1_BITMAP_PROPERTIES props;
-			D2D1_PIXEL_FORMAT pixFormat;
-			D2D1_SIZE_U size;
+        if (d2dbmp == NULL){
+            D2D1_BITMAP_PROPERTIES props;
+            D2D1_PIXEL_FORMAT pixFormat;
+            D2D1_SIZE_U size;
 
-			float dpi = Windows::Graphics::Display::DisplayProperties::LogicalDpi;
-			size.height = height;
-			size.width = width;
+            float dpi = Windows::Graphics::Display::DisplayProperties::LogicalDpi;
+            size.height = height;
+            size.width = width;
 
-			pixFormat.alphaMode = D2D1_ALPHA_MODE_IGNORE;
+            pixFormat.alphaMode = D2D1_ALPHA_MODE_IGNORE;
 
-			//pixFormat.format = DXGI_FORMAT_420_OPAQUE;
-			pixFormat.format = DXGI_FORMAT_B8G8R8A8_UNORM;
+            //pixFormat.format = DXGI_FORMAT_420_OPAQUE;
+            pixFormat.format = DXGI_FORMAT_B8G8R8A8_UNORM;
 
-			props.pixelFormat = pixFormat;
-			props.dpiX = dpi;
-			props.dpiY = dpi;
+            props.pixelFormat = pixFormat;
+            props.dpiX = dpi;
+            props.dpiY = dpi;
 
-			//only create the first time, then copy.
-			m_d2dContext->CreateBitmap(size,sourceData, pitch, props, &d2dbmp);
-		}
-		else
-		{
-			d2dbmp->CopyFromMemory(&D2D1::RectU(static_cast<UINT>(updateRect.Left),
-													static_cast<UINT>(updateRect.Top),
-													static_cast<UINT>(updateRect.Right),
-													static_cast<UINT>(updateRect.Bottom)), sourceData, pitch);
-		}
+            //only create the first time, then copy.
+            m_d2dContext->CreateBitmap(size,sourceData, pitch, props, &d2dbmp);
+        }
+        else
+        {
+            d2dbmp->CopyFromMemory(&D2D1::RectU(static_cast<UINT>(updateRect.Left),
+                                                    static_cast<UINT>(updateRect.Top),
+                                                    static_cast<UINT>(updateRect.Right),
+                                                    static_cast<UINT>(updateRect.Bottom)), sourceData, pitch);
+        }
 
-		m_d2dContext->DrawBitmap(d2dbmp,D2D1::RectF(static_cast<LONG>(updateRect.Left),
-													static_cast<LONG>(updateRect.Top),
-													static_cast<LONG>(updateRect.Right),
-													static_cast<LONG>(updateRect.Bottom)));
+        m_d2dContext->DrawBitmap(d2dbmp,D2D1::RectF(static_cast<LONG>(updateRect.Left),
+                                                    static_cast<LONG>(updateRect.Top),
+                                                    static_cast<LONG>(updateRect.Right),
+                                                    static_cast<LONG>(updateRect.Bottom)));
 }
 
 // Sets the current DPI.
@@ -138,12 +158,12 @@ void VLCD2dImageSource::SetDpi(float dpi)
 
 // Begins drawing, allowing updates to content in the specified area.
 void VLCD2dImageSource::BeginDraw(Windows::Foundation::Rect updateRect)
-{    
+{
     POINT offset;
     ComPtr<IDXGISurface> surface;
 
     // Express target area as a native RECT type.
-    RECT updateRectNative; 
+    RECT updateRectNative;
     updateRectNative.left = static_cast<LONG>(updateRect.Left);
     updateRectNative.top = static_cast<LONG>(updateRect.Top);
     updateRectNative.right = static_cast<LONG>(updateRect.Right);
@@ -151,7 +171,7 @@ void VLCD2dImageSource::BeginDraw(Windows::Foundation::Rect updateRect)
 
     // Begin drawing - returns a target surface and an offset to use as the top left origin when drawing.
     HRESULT beginDrawHR = m_sisNative->BeginDraw(updateRectNative, &surface, &offset);
- 
+
     if (beginDrawHR == DXGI_ERROR_DEVICE_REMOVED || beginDrawHR == DXGI_ERROR_DEVICE_RESET)
     {
         // If the device has been removed or reset, attempt to recreate it and continue drawing.
@@ -161,18 +181,18 @@ void VLCD2dImageSource::BeginDraw(Windows::Foundation::Rect updateRect)
     else
     {
         // Notify the caller by throwing an exception if any other error was encountered.
-		DX::ThrowIfFailed(beginDrawHR);
+        DX::ThrowIfFailed(beginDrawHR);
     }
 
     // Create render target.
     ComPtr<ID2D1Bitmap1> bitmap;
-    
+
     m_d2dContext->CreateBitmapFromDxgiSurface(
         surface.Get(),
         nullptr,
         &bitmap
         );
-    
+
     // Set context's render target.
     m_d2dContext->SetTarget(bitmap.Get());
 
@@ -183,16 +203,16 @@ void VLCD2dImageSource::BeginDraw(Windows::Foundation::Rect updateRect)
     // This is required to ensure coordinates within the target surface remain
     // consistent by taking into account the offset returned by BeginDraw, and
     // can also improve performance by optimizing the area that is drawn by D2D.
-    // Apps should always account for the offset output parameter returned by 
+    // Apps should always account for the offset output parameter returned by
     // BeginDraw, since it may not match the passed updateRect input parameter's location.
     m_d2dContext->PushAxisAlignedClip(
         D2D1::RectF(
-            static_cast<float>(offset.x),  
-            static_cast<float>(offset.y),  
+            static_cast<float>(offset.x),
+            static_cast<float>(offset.y),
             static_cast<float>(offset.x + updateRect.Width),
-            static_cast<float>(offset.y + updateRect.Height)  
-            ),  
-        D2D1_ANTIALIAS_MODE_ALIASED  
+            static_cast<float>(offset.y + updateRect.Height)
+            ),
+        D2D1_ANTIALIAS_MODE_ALIASED
         );
 
     m_d2dContext->SetTransform(
