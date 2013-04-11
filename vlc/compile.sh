@@ -85,15 +85,6 @@ echo "EXTRA_LDFLAGS=${EXTRA_LDFLAGS}" >> config.mak
 make fetch
 make $MAKEFLAGS
 
-cd lua/src
-make clean
-make $MAKEFLAGS liblua.a
-ranlib liblua.a
-make $MAKEFLAGS luac
-cp luac ../../../${TARGET_TUPLE}/bin
-cd ../..
-
-
 cd ../.. && mkdir -p winrt && cd winrt
 
 echo "Bootstraping"
