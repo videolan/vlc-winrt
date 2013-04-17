@@ -108,7 +108,7 @@ rm -rf tmp && mkdir tmp
 # Compiler shared DLLs, when using compilers built with --enable-shared
 # The shared DLLs may not necessarily be in the first LIBRARY_PATH, we
 # should check them all.
-library_path_list=`$(TARGET_TUPLE)-g++ -v /dev/null 2>&1 | grep ^LIBRARY_PATH|cut -d= -f2` ;
+library_path_list=`${TARGET_TUPLE}-g++ -v /dev/null 2>&1 | grep ^LIBRARY_PATH|cut -d= -f2` ;
 OLD_IFS="$IFS"
 IFS=':';
 for x in $library_path_list;
