@@ -111,9 +111,11 @@ rm -rf tmp && mkdir tmp
 library_path_list=`${TARGET_TUPLE}-g++ -v /dev/null 2>&1 | grep ^LIBRARY_PATH|cut -d= -f2` ;
 OLD_IFS="$IFS"
 IFS=':';
-for x in $library_path_list;
-do
-	cp "$x/libstdc++-6.dll" "$x/libgcc_s_sjlj-1.dll" "tmp/" ; true ;
+for x in $library_path_list
+do for f in stdc++-6 gcc_s_sjlj-1
+    do
+        [ -f "$x/lib$f.dll" ] && cp "$x/lib$f.dll" "tmp/"
+    done
 done
 IFS="$OLD_IFS"
 
