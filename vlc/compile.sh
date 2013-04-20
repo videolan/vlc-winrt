@@ -125,6 +125,23 @@ cp -r _win32/lib/vlc/plugins tmp/
 
 find tmp -name "*.la" -exec rm -v {} \;
 find tmp -name "*.a" -exec rm -v {} \;
+blacklist="
+wingdi
+waveout
+dshow
+"
+regexp=
+for i in ${blacklist}
+do
+    if [ -z "${regexp}" ]
+    then
+        regexp="${i}"
+    else
+        regexp="${regexp}|${i}"
+    fi
+done
+rm `find tmp/plugins -name 'lib*plugin.dll' | grep -E "lib(${regexp})_plugin.dll"`
+
 find tmp \( -name "*.dll" -o -name "*.exe" \) -exec ../extras/package/win32/peflags.pl {} \;
 
 cp lib/.libs/libvlc.dll.a tmp/libvlc.lib
