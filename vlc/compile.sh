@@ -129,6 +129,17 @@ blacklist="
 wingdi
 waveout
 dshow
+directdraw
+windrive
+globalhotkeys
+direct2d
+ntservice
+dxva2
+dtv
+vcd
+cdda
+quicktime
+atmo
 "
 regexp=
 for i in ${blacklist}
