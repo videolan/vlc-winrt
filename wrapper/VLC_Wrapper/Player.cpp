@@ -79,7 +79,7 @@ void Player::Display(void* opaque, void* picture){
 
 Player::Player(Windows::UI::Xaml::Media::ImageBrush^ brush)
 {
-    OutputDebugStringA("Hello, Player!");
+    OutputDebugStringW(L"Hello, Player!");
     /* Don't add any invalid options, otherwise it causes LibVLC to fail */
     static const char *argv[] = {
         "-I", "dummy",
