@@ -119,7 +119,7 @@ do for f in stdc++-6 gcc_s_sjlj-1
 done
 IFS="$OLD_IFS"
 
-find _win32/bin \( -name "*.dll" -o -name "*.exe" \) -exec cp -v {} tmp \;
+find _win32/bin -name "*.dll" -exec cp -v {} tmp \;
 cp -r _win32/include tmp/
 cp -r _win32/lib/vlc/plugins tmp/
 
