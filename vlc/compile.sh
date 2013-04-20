@@ -153,7 +153,7 @@ do
 done
 rm `find tmp/plugins -name 'lib*plugin.dll' | grep -E "lib(${regexp})_plugin.dll"`
 
-find tmp \( -name "*.dll" -o -name "*.exe" \) -exec ../extras/package/win32/peflags.pl {} \;
+find tmp \( -name "*.dll" -o -name "*.exe" \) -exec ../extras/package/win32/peflags.pl -AppContainer {} \;
 
 cp lib/.libs/libvlc.dll.a tmp/libvlc.lib
 
