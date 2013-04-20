@@ -235,18 +235,6 @@
       <Link>plugins\access\libaccess_vdr_plugin.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\..\vlc\plugins\access\libcdda_plugin.dll">
-      <Link>plugins\access\libcdda_plugin.dll</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\..\vlc\plugins\access\libdshow_plugin.dll">
-      <Link>plugins\access\libdshow_plugin.dll</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\..\vlc\plugins\access\libdtv_plugin.dll">
-      <Link>plugins\access\libdtv_plugin.dll</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="..\..\vlc\plugins\access\libfilesystem_plugin.dll">
       <Link>plugins\access\libfilesystem_plugin.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -269,10 +257,6 @@
     </Content>
     <Content Include="..\..\vlc\plugins\access\libstream_filter_rar_plugin.dll">
       <Link>plugins\access\libstream_filter_rar_plugin.dll</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\..\vlc\plugins\access\libvcd_plugin.dll">
-      <Link>plugins\access\libvcd_plugin.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="..\..\vlc\plugins\access\libzip_plugin.dll">
@@ -399,10 +383,6 @@
       <Link>plugins\audio_output\libmmdevice_plugin.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\..\vlc\plugins\audio_output\libwaveout_plugin.dll">
-      <Link>plugins\audio_output\libwaveout_plugin.dll</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="..\..\vlc\plugins\codec\liba52_plugin.dll">
       <Link>plugins\codec\liba52_plugin.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -451,10 +431,6 @@
       <Link>plugins\codec\libdvbsub_plugin.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\..\vlc\plugins\codec\libdxva2_plugin.dll">
-      <Link>plugins\codec\libdxva2_plugin.dll</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="..\..\vlc\plugins\codec\libg711_plugin.dll">
       <Link>plugins\codec\libg711_plugin.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -473,10 +449,6 @@
     </Content>
     <Content Include="..\..\vlc\plugins\codec\libpng_plugin.dll">
       <Link>plugins\codec\libpng_plugin.dll</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\..\vlc\plugins\codec\libquicktime_plugin.dll">
-      <Link>plugins\codec\libquicktime_plugin.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="..\..\vlc\plugins\codec\librawvideo_plugin.dll">
@@ -531,20 +503,12 @@
       <Link>plugins\control\libgestures_plugin.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\..\vlc\plugins\control\libglobalhotkeys_plugin.dll">
-      <Link>plugins\control\libglobalhotkeys_plugin.dll</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="..\..\vlc\plugins\control\libhotkeys_plugin.dll">
       <Link>plugins\control\libhotkeys_plugin.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="..\..\vlc\plugins\control\libnetsync_plugin.dll">
       <Link>plugins\control\libnetsync_plugin.dll</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\..\vlc\plugins\control\libntservice_plugin.dll">
-      <Link>plugins\control\libntservice_plugin.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="..\..\vlc\plugins\control\liboldrc_plugin.dll">
@@ -787,10 +751,6 @@
       <Link>plugins\services_discovery\libsap_plugin.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\..\vlc\plugins\services_discovery\libwindrive_plugin.dll">
-      <Link>plugins\services_discovery\libwindrive_plugin.dll</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="..\..\vlc\plugins\sse2\libi420_rgb_sse2_plugin.dll">
       <Link>plugins\sse2\libi420_rgb_sse2_plugin.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -869,10 +829,6 @@
     </Content>
     <Content Include="..\..\vlc\plugins\video_filter\libantiflicker_plugin.dll">
       <Link>plugins\video_filter\libantiflicker_plugin.dll</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\..\vlc\plugins\video_filter\libatmo_plugin.dll">
-      <Link>plugins\video_filter\libatmo_plugin.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="..\..\vlc\plugins\video_filter\libaudiobargraph_v_plugin.dll">
@@ -1047,16 +1003,8 @@
       <Link>plugins\video_filter\libyuvp_plugin.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\..\vlc\plugins\video_output\libdirect2d_plugin.dll">
-      <Link>plugins\video_output\libdirect2d_plugin.dll</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="..\..\vlc\plugins\video_output\libdirect3d_plugin.dll">
       <Link>plugins\video_output\libdirect3d_plugin.dll</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\..\vlc\plugins\video_output\libdirectdraw_plugin.dll">
-      <Link>plugins\video_output\libdirectdraw_plugin.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="..\..\vlc\plugins\video_output\libdrawable_plugin.dll">
@@ -1069,10 +1017,6 @@
     </Content>
     <Content Include="..\..\vlc\plugins\video_output\libvmem_plugin.dll">
       <Link>plugins\video_output\libvmem_plugin.dll</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\..\vlc\plugins\video_output\libwingdi_plugin.dll">
-      <Link>plugins\video_output\libwingdi_plugin.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="..\..\vlc\plugins\video_output\libyuv_plugin.dll">
