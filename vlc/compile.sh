@@ -140,6 +140,10 @@ vcd
 cdda
 quicktime
 atmo
+logger
+oldrc
+dmo
+panoramix
 "
 regexp=
 for i in ${blacklist}
