@@ -74,8 +74,15 @@ namespace VLC_WINRT.Utility.Services.RunTime
             if (index < _histories.Count)
             {
                 MediaHistory history = _histories[index];
-                StorageFile file = await StorageApplicationPermissions.MostRecentlyUsedList.GetFileAsync(history.Token);
-                return file;
+                try
+                {
+                    StorageFile file = await StorageApplicationPermissions.MostRecentlyUsedList.GetFileAsync(history.Token);
+                    return file;
+                }
+                catch (FileNotFoundException)
+                {
+                    return null;
+                }
             }
             else
                 return null;
