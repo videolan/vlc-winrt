@@ -37,14 +37,14 @@ namespace VLC_WINRT.ViewModels.MainPage
             List<StorageFile> randomFiles = new List<StorageFile>();
             Random rand = new Random();
 
-            for (int i = 0; i < 300; i++)
+            for (int i = 0; i < Math.Min(300, files.Count); i++)
             {
                 int index = rand.Next(files.Count);
                 DispatchHelper.Invoke(() =>
                                           {
                                               Thumbnails.Add(new ThumbnailViewModel(files[index]));
                                           });
-                
+
             }
         }
     }
