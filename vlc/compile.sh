@@ -78,7 +78,7 @@ cd contrib/winrt
     --disable-qt4 \
     --disable-gpl
 
-echo "EXTRA_CFLAGS=-g ${EXTRA_CPPFLAGS}" >> config.mak
+echo "EXTRA_CFLAGS=-g -DNDEBUG ${EXTRA_CPPFLAGS}" >> config.mak
 echo "EXTRA_LDFLAGS=${EXTRA_LDFLAGS}" >> config.mak
 
 
