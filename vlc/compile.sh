@@ -144,6 +144,7 @@ logger
 oldrc
 dmo
 panoramix
+netsync
 "
 regexp=
 for i in ${blacklist}
