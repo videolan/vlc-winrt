@@ -26,7 +26,6 @@ OPTIONS="
       --enable-sse --enable-mmx
       --disable-libcddb
       --disable-zvbi --disable-telx
-      --disable-sqlite
       --disable-mad
       --disable-a52
       --enable-vlc
