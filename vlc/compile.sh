@@ -128,6 +128,7 @@ cp -r _win32/lib/vlc/plugins tmp/
 find tmp -name "*.la" -exec rm -v {} \;
 find tmp -name "*.a" -exec rm -v {} \;
 blacklist="
+audioscrobbler
 audiobargraph_a
 wingdi
 waveout
