@@ -49,6 +49,7 @@ cd contrib/winrt
 ../bootstrap --host=${TARGET_TUPLE} --disable-disc --disable-sout \
     --disable-sdl \
     --disable-schroedinger \
+    --disable-vncserver \
     --disable-chromaprint \
     --disable-modplug \
     --disable-SDL_image \
