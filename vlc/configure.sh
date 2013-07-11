@@ -14,7 +14,6 @@ OPTIONS="
       --enable-mpc
       --enable-libass
       --disable-x264
-      --enable-schroedinger
       --enable-realrtsp
       --enable-live555
       --enable-shout
