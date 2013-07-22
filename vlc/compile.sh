@@ -46,7 +46,7 @@ EXTRA_LDFLAGS="-lnormaliz -lwinstorecompat"
 echo "Building the contribs"
 mkdir -p contrib/winrt
 cd contrib/winrt
-../bootstrap --host=${TARGET_TUPLE} --disable-disc --disable-sout \
+../bootstrap --host=${TARGET_TUPLE} --disable-disc --disable-sout --disable-net \
     --disable-sdl \
     --disable-schroedinger \
     --disable-vncserver \
