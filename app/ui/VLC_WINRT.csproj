@@ -823,12 +823,12 @@
       <Link>plugins\video_filter\libcanvas_plugin.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\..\vlc\plugins\video_filter\libchain_plugin.dll">
-      <Link>plugins\video_filter\libchain_plugin.dll</Link>
+    <Content Include="..\..\vlc\plugins\video_chroma\libchain_plugin.dll">
+      <Link>plugins\video_chroma\libchain_plugin.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\..\vlc\plugins\video_filter\libclone_plugin.dll">
-      <Link>plugins\video_filter\libclone_plugin.dll</Link>
+    <Content Include="..\..\vlc\plugins\video_splitter\libclone_plugin.dll">
+      <Link>plugins\video_splitter\libclone_plugin.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="..\..\vlc\plugins\video_filter\libcolorthres_plugin.dll">
@@ -947,16 +947,16 @@
       <Link>plugins\video_filter\libsubsdelay_plugin.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\..\vlc\plugins\video_filter\libswscale_plugin.dll">
-      <Link>plugins\video_filter\libswscale_plugin.dll</Link>
+    <Content Include="..\..\vlc\plugins\video_chroma\libswscale_plugin.dll">
+      <Link>plugins\video_chroma\libswscale_plugin.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="..\..\vlc\plugins\video_filter\libtransform_plugin.dll">
       <Link>plugins\video_filter\libtransform_plugin.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\..\vlc\plugins\video_filter\libwall_plugin.dll">
-      <Link>plugins\video_filter\libwall_plugin.dll</Link>
+    <Content Include="..\..\vlc\plugins\video_splitter\libwall_plugin.dll">
+      <Link>plugins\video_splitter\libwall_plugin.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="..\..\vlc\plugins\video_filter\libwave_plugin.dll">
