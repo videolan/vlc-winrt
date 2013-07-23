@@ -147,6 +147,7 @@ atmo
 logger
 oldrc
 dmo
+sap
 panoramix
 netsync
 "

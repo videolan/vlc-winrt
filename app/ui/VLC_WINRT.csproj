@@ -719,10 +719,6 @@
       <Link>plugins\services_discovery\libpodcast_plugin.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\..\vlc\plugins\services_discovery\libsap_plugin.dll">
-      <Link>plugins\services_discovery\libsap_plugin.dll</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="..\..\vlc\plugins\sse2\libi420_rgb_sse2_plugin.dll">
       <Link>plugins\sse2\libi420_rgb_sse2_plugin.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
