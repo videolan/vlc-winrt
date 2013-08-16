@@ -37,11 +37,11 @@ fi
 TARGET_TUPLE=i686-w64-mingw32
 [ $# = 1 ] && TARGET_TUPLE=$1
 
-${TARGET_TUPLE}-gcc -dumpspecs | sed -e 's/-lmingwex/-lwinstorecompat -lmingwex -lwinstorecompat/' -e 's/-lmsvcrt/-lmsvcr110/' > ../newspecfile
+${TARGET_TUPLE}-gcc -dumpspecs | sed -e 's/-lmingwex/-lwinstorecompat -lmingwex -lwinstorecompat -lruntimeobject/' -e 's/-lmsvcrt/-lmsvcr110/' > ../newspecfile
 NEWSPECFILE="`pwd`/../newspecfile"
 
 EXTRA_CPPFLAGS="-D_WIN32_WINNT=0x602 -D_UNICODE -DUNICODE"
-EXTRA_LDFLAGS="-lnormaliz -lwinstorecompat"
+EXTRA_LDFLAGS="-lnormaliz -lwinstorecompat -lruntimeobject"
 
 echo "Building the contribs"
 mkdir -p contrib/winrt
