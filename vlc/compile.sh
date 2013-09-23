@@ -40,8 +40,9 @@ TARGET_TUPLE=i686-w64-mingw32
 ${TARGET_TUPLE}-gcc -dumpspecs | sed -e 's/-lmingwex/-lwinstorecompat -lmingwex -lwinstorecompat -lruntimeobject/' -e 's/-lmsvcrt/-lmsvcr110/' > ../newspecfile
 NEWSPECFILE="`pwd`/../newspecfile"
 
+WINRTSOCK=`cd ../../winrtsock/winrtsock-86646-build;pwd`
 EXTRA_CPPFLAGS="-D_WIN32_WINNT=0x602 -D_UNICODE -DUNICODE"
-EXTRA_LDFLAGS="-lnormaliz -lwinstorecompat -lruntimeobject"
+EXTRA_LDFLAGS="-lnormaliz -lwinstorecompat -lruntimeobject -L$WINRTSOCK"
 
 echo "Building the contribs"
 mkdir -p contrib/winrt
@@ -99,6 +100,7 @@ CC="${TARGET_TUPLE}-gcc -specs=$NEWSPECFILE -Wl,--disable-runtime-pseudo-reloc" 
 CXX="${TARGET_TUPLE}-g++ -specs=$NEWSPECFILE -Wl,--disable-runtime-pseudo-reloc" \
 ../../configure.sh --host=${TARGET_TUPLE}
 
+find . -name Makefile -exec sed -i s/^SOCKET_LIBS.\*/'SOCKET_LIBS = -lwinrtsock -lws2_32'/ {} \;
 echo "Building"
 make $MAKEFLAGS
 
