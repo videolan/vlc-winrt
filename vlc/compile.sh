@@ -98,9 +98,9 @@ CPPFLAGS="${EXTRA_CPPFLAGS}" \
 LDFLAGS="${EXTRA_LDFLAGS}" \
 CC="${TARGET_TUPLE}-gcc -specs=$NEWSPECFILE -Wl,--disable-runtime-pseudo-reloc" \
 CXX="${TARGET_TUPLE}-g++ -specs=$NEWSPECFILE -Wl,--disable-runtime-pseudo-reloc" \
+ac_cv_search_connect="-lwinrtsock -lws2_32" \
 ../../configure.sh --host=${TARGET_TUPLE}
 
-find . -name Makefile -exec sed -i s/^SOCKET_LIBS.\*/'SOCKET_LIBS = -lwinrtsock -lws2_32'/ {} \;
 echo "Building"
 make $MAKEFLAGS
 
