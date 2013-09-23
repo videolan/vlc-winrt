@@ -195,44 +195,44 @@
       <Link>libvlccore.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\..\vlc\plugins\access\libaccess_attachment_plugin.dll">
-      <Link>plugins\access\libaccess_attachment_plugin.dll</Link>
+    <Content Include="..\..\vlc\plugins\access\libattachment_plugin.dll">
+      <Link>plugins\access\libattachment_plugin.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="..\..\vlc\plugins\access\libaccess_bd_plugin.dll">
       <Link>plugins\access\libaccess_bd_plugin.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\..\vlc\plugins\access\libaccess_ftp_plugin.dll">
-      <Link>plugins\access\libaccess_ftp_plugin.dll</Link>
+    <Content Include="..\..\vlc\plugins\access\libftp_plugin.dll">
+      <Link>plugins\access\libftp_plugin.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\..\vlc\plugins\access\libaccess_http_plugin.dll">
-      <Link>plugins\access\libaccess_http_plugin.dll</Link>
+    <Content Include="..\..\vlc\plugins\access\libhttp_plugin.dll">
+      <Link>plugins\access\libhttp_plugin.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\..\vlc\plugins\access\libaccess_imem_plugin.dll">
-      <Link>plugins\access\libaccess_imem_plugin.dll</Link>
+    <Content Include="..\..\vlc\plugins\access\libimem_plugin.dll">
+      <Link>plugins\access\libimem_plugin.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="..\..\vlc\plugins\access\libaccess_mms_plugin.dll">
       <Link>plugins\access\libaccess_mms_plugin.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\..\vlc\plugins\access\libaccess_rar_plugin.dll">
-      <Link>plugins\access\libaccess_rar_plugin.dll</Link>
+    <Content Include="..\..\vlc\plugins\access\librar_plugin.dll">
+      <Link>plugins\access\librar_plugin.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\..\vlc\plugins\access\libaccess_tcp_plugin.dll">
-      <Link>plugins\access\libaccess_tcp_plugin.dll</Link>
+    <Content Include="..\..\vlc\plugins\access\libtcp_plugin.dll">
+      <Link>plugins\access\libtcp_plugin.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\..\vlc\plugins\access\libaccess_udp_plugin.dll">
-      <Link>plugins\access\libaccess_udp_plugin.dll</Link>
+    <Content Include="..\..\vlc\plugins\access\libudp_plugin.dll">
+      <Link>plugins\access\libudp_plugin.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\..\vlc\plugins\access\libaccess_vdr_plugin.dll">
-      <Link>plugins\access\libaccess_vdr_plugin.dll</Link>
+    <Content Include="..\..\vlc\plugins\access\libvdr_plugin.dll">
+      <Link>plugins\access\libvdr_plugin.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="..\..\vlc\plugins\access\libfilesystem_plugin.dll">
@@ -255,8 +255,8 @@
       <Link>plugins\access\libshm_plugin.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\..\vlc\plugins\access\libstream_filter_rar_plugin.dll">
-      <Link>plugins\access\libstream_filter_rar_plugin.dll</Link>
+    <Content Include="..\..\vlc\plugins\access\librar_plugin.dll">
+      <Link>plugins\access\librar_plugin.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="..\..\vlc\plugins\access\libzip_plugin.dll">
@@ -523,8 +523,8 @@
       <Link>plugins\demux\libdemux_stl_plugin.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\..\vlc\plugins\demux\libdirac_plugin.dll">
-      <Link>plugins\demux\libdirac_plugin.dll</Link>
+    <Content Include="..\..\vlc\plugins\demux\libdiracsys_plugin.dll">
+      <Link>plugins\demux\libdiracsys_plugin.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="..\..\vlc\plugins\demux\libes_plugin.dll">
@@ -667,16 +667,16 @@
       <Link>plugins\misc\libxml_plugin.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\..\vlc\plugins\mmx\libi420_rgb_mmx_plugin.dll">
-      <Link>plugins\mmx\libi420_rgb_mmx_plugin.dll</Link>
+    <Content Include="..\..\vlc\plugins\video_chroma\libi420_rgb_mmx_plugin.dll">
+      <Link>plugins\video_chroma\libi420_rgb_mmx_plugin.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\..\vlc\plugins\mmx\libi420_yuy2_mmx_plugin.dll">
-      <Link>plugins\mmx\libi420_yuy2_mmx_plugin.dll</Link>
+    <Content Include="..\..\vlc\plugins\video_chroma\libi420_yuy2_mmx_plugin.dll">
+      <Link>plugins\video_chroma\libi420_yuy2_mmx_plugin.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\..\vlc\plugins\mmx\libi422_yuy2_mmx_plugin.dll">
-      <Link>plugins\mmx\libi422_yuy2_mmx_plugin.dll</Link>
+    <Content Include="..\..\vlc\plugins\video_chroma\libi422_yuy2_mmx_plugin.dll">
+      <Link>plugins\video_chroma\libi422_yuy2_mmx_plugin.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="..\..\vlc\plugins\packetizer\libpacketizer_dirac_plugin.dll">
@@ -719,16 +719,16 @@
       <Link>plugins\services_discovery\libpodcast_plugin.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\..\vlc\plugins\sse2\libi420_rgb_sse2_plugin.dll">
-      <Link>plugins\sse2\libi420_rgb_sse2_plugin.dll</Link>
+    <Content Include="..\..\vlc\plugins\video_chroma\libi420_rgb_sse2_plugin.dll">
+      <Link>plugins\video_chroma\libi420_rgb_sse2_plugin.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\..\vlc\plugins\sse2\libi420_yuy2_sse2_plugin.dll">
-      <Link>plugins\sse2\libi420_yuy2_sse2_plugin.dll</Link>
+    <Content Include="..\..\vlc\plugins\video_chroma\libi420_yuy2_sse2_plugin.dll">
+      <Link>plugins\video_chroma\libi420_yuy2_sse2_plugin.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\..\vlc\plugins\sse2\libi422_yuy2_sse2_plugin.dll">
-      <Link>plugins\sse2\libi422_yuy2_sse2_plugin.dll</Link>
+    <Content Include="..\..\vlc\plugins\video_chroma\libi422_yuy2_sse2_plugin.dll">
+      <Link>plugins\video_chroma\libi422_yuy2_sse2_plugin.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="..\..\vlc\plugins\stream_filter\libdash_plugin.dll">
