@@ -375,10 +375,6 @@
       <Link>plugins\audio_output\libamem_plugin.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\..\vlc\plugins\audio_output\libdirectsound_plugin.dll">
-      <Link>plugins\audio_output\libdirectsound_plugin.dll</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="..\..\vlc\plugins\audio_output\libmmdevice_plugin.dll">
       <Link>plugins\audio_output\libmmdevice_plugin.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
