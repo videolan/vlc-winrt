@@ -88,6 +88,7 @@ Player::Player(Windows::UI::Xaml::Media::ImageBrush^ brush)
         "--no-video-title-show",
         "--no-stats",
         "--no-drop-late-frames",
+        "--no-audio", // FIXME
         //"--avcodec-fast"
     };
 
