@@ -1,10 +1,6 @@
-﻿using System;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
+﻿using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
-
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace VLC_WINRT.Views
 {
@@ -27,11 +23,6 @@ namespace VLC_WINRT.Views
         /// </param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-        }
-
-        private void Slider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
-        {
-            throw new NotImplementedException();
         }
 
         private void ScreenTapped(object sender, TappedRoutedEventArgs e)

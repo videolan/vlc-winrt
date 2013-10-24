@@ -1,17 +1,18 @@
 ﻿using System;
+using Windows.Storage;
 using Windows.Storage.AccessCache;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Media;
 using VLC_WINRT.Common;
 using VLC_WINRT.Utility.Commands;
 using VLC_WINRT.Utility.Services;
 using VLC_Wrapper;
-using Windows.Storage;
-using Windows.UI.Xaml.Media;
 
 namespace VLC_WINRT.ViewModels.PlayVideo
 {
     public class PlayVideoViewModel : BindableBase, IDisposable
     {
-        private Player _vlcPlayer;
+        private readonly DispatcherTimer _timer = new DispatcherTimer();
         private ImageBrush _brush;
         private StorageFile _currentFile;
         private bool _isPlaying;
@@ -21,6 +22,7 @@ namespace VLC_WINRT.ViewModels.PlayVideo
         private SkipBackCommand _skipBack;
         private StopVideoCommand _stopVideoCommand;
         private string _title;
+        private Player _vlcPlayer;
 
 
         public PlayVideoViewModel()
@@ -31,13 +33,11 @@ namespace VLC_WINRT.ViewModels.PlayVideo
             _skipAhead = new SkipAheadCommand();
             _skipBack = new SkipBackCommand();
             _stopVideoCommand = new StopVideoCommand();
+
+            _timer.Tick += UpdatePosition;
+            _timer.Interval = TimeSpan.FromMilliseconds((1.0d/60.0d));
         }
 
-        private void InitializeVLC()
-        {
-            Brush = new ImageBrush();
-            _vlcPlayer = new Player(Brush);
-        }
 
         public StorageFile CurrentFile
         {
@@ -58,6 +58,12 @@ namespace VLC_WINRT.ViewModels.PlayVideo
             set { SetProperty(ref _brush, value); }
         }
 
+        public double Position
+        {
+            get { return (_vlcPlayer.GetPosition()); }
+            set { _vlcPlayer.Seek((float) value); }
+        }
+
         public PlayPauseCommand PlayOrPause
         {
             get { return _playOrPause; }
@@ -67,7 +73,18 @@ namespace VLC_WINRT.ViewModels.PlayVideo
         public bool IsPlaying
         {
             get { return _isPlaying; }
-            set { SetProperty(ref _isPlaying, value); }
+            set
+            {
+                SetProperty(ref _isPlaying, value);
+                if (value)
+                {
+                    _timer.Start();
+                }
+                else
+                {
+                    _timer.Stop();
+                }
+            }
         }
 
         public SkipAheadCommand SkipAhead
@@ -102,7 +119,7 @@ namespace VLC_WINRT.ViewModels.PlayVideo
                 _listener.Dispose();
                 _listener = null;
             }
-                
+
             Brush = null;
 
             if (_vlcPlayer != null)
@@ -110,6 +127,17 @@ namespace VLC_WINRT.ViewModels.PlayVideo
                 _vlcPlayer.Dispose();
                 _vlcPlayer = null;
             }
+        }
+
+        private void InitializeVLC()
+        {
+            Brush = new ImageBrush();
+            _vlcPlayer = new Player(Brush);
+        }
+
+        private void UpdatePosition(object sender, object e)
+        {
+            OnPropertyChanged("Position");
         }
 
         public void Play()
@@ -128,6 +156,11 @@ namespace VLC_WINRT.ViewModels.PlayVideo
         {
             _vlcPlayer.Stop();
             IsPlaying = false;
+        }
+
+        public void Seek(float position)
+        {
+            _vlcPlayer.Seek(position);
         }
     }
 }

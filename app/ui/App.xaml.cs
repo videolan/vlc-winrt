@@ -4,7 +4,6 @@ using VLC_WINRT.Utility.Services;
 using VLC_WINRT.Views;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
-using Windows.Devices.Enumeration;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 

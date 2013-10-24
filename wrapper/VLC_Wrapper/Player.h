@@ -31,6 +31,8 @@ namespace VLC_Wrapper {
         void Stop();
         void Pause();
         void Play();
+		void Seek(float position);
+		float GetPosition();
         virtual ~Player();
 
     private:

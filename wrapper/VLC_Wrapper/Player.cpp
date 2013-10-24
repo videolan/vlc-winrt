@@ -144,6 +144,14 @@ void Player::Play(){
     return;
 }
 
+void Player::Seek(float position){
+	libvlc_media_player_set_position(p_mp, position);
+}
+
+float Player::GetPosition(){
+	return libvlc_media_player_get_position(p_mp);
+}
+
 Player::~Player(){
     libvlc_media_player_stop(p_mp);
     libvlc_media_player_release(p_mp);

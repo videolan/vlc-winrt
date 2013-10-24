@@ -150,6 +150,7 @@
     <Compile Include="ViewModels\MainPage\ThumbnailsViewModel.cs" />
     <Compile Include="ViewModels\MainPage\ThumbnailViewModel.cs" />
     <Compile Include="ViewModels\MainPage\ViewedVideoViewModel.cs" />
+    <Compile Include="ViewModels\NavSupportingViewModel.cs" />
     <Compile Include="ViewModels\PlayVideo\PlayVideoViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
     <Compile Include="Views\Addition.xaml.cs">
@@ -1011,9 +1012,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Common\SliderStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
     <Page Include="Common\StandardStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
     <Page Include="Views\Addition.xaml">
       <SubType>Designer</SubType>
