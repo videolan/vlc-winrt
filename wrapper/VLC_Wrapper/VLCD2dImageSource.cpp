@@ -126,7 +126,7 @@ void VLCD2dImageSource::DrawFrame(UINT height, UINT width, byte* sourceData, UIN
             pixFormat.alphaMode = D2D1_ALPHA_MODE_IGNORE;
 
             //pixFormat.format = DXGI_FORMAT_420_OPAQUE;
-            pixFormat.format = DXGI_FORMAT_B8G8R8A8_UNORM;
+            pixFormat.format = DXGI_FORMAT_B8G8R8X8_UNORM;
 
             props.pixelFormat = pixFormat;
             props.dpiX = dpi;

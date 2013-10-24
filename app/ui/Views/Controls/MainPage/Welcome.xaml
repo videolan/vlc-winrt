@@ -16,14 +16,12 @@
                    x:Uid="Welcome"
                    Text="Welcome to the VLC for WinRT Beta!">
         </TextBlock>
-        <TextBlock TextWrapping="Wrap"
-                   Style="{StaticResource BasicTextStyle}"
+        <TextBlock Style="{StaticResource BasicTextStyle}"
                    Margin="10"
                    x:Uid="IntroPara.Text"
                    Text="This app is our attempt to bring the VLC media player to Microsoft's newest OS. The app is currently under development so not all features have been included, and many existing features have bugs.">
         </TextBlock>
-        <TextBlock TextWrapping="Wrap"
-                   Style="{StaticResource BasicTextStyle}"
+        <TextBlock Style="{StaticResource BasicTextStyle}"
                    FontWeight="Bold"
                    x:Uid="CurrentFeatures"
                    Text="Current Features:"
@@ -44,13 +42,10 @@
             <TextBlock Text="*" Grid.Row="0" Grid.Column="0" Margin="5" VerticalAlignment="Center"></TextBlock>
             <TextBlock Text="*" Grid.Row="1" Grid.Column="0" Margin="5" VerticalAlignment="Center"></TextBlock>
             <TextBlock Text="*" Grid.Row="2" Grid.Column="0" Margin="5" VerticalAlignment="Center"></TextBlock>
-            <TextBlock Text="*" Grid.Row="3" Grid.Column="0" Margin="5" VerticalAlignment="Center"></TextBlock>
-            <TextBlock Text="*" Grid.Row="4" Grid.Column="0" Margin="5" VerticalAlignment="Center"></TextBlock>
             <TextBlock
                 Text="Videos Library support.  Add files to your Videos Library and play them directly."
                 x:Uid="FeaturesVidLib"
                 Style="{StaticResource BasicTextStyle}"
-                TextWrapping="Wrap"
                 Margin="5"
                 Grid.Row="0"
                 Grid.Column="1">
@@ -58,7 +53,6 @@
             <TextBlock Text="USB and SD Card support."
                        x:Uid="FeaturesUSB"
                        Style="{StaticResource BasicTextStyle}"
-                       TextWrapping="Wrap"
                        Margin="5"
                        Grid.Row="1"
                        Grid.Column="1">
@@ -67,27 +61,8 @@
                 Text="Open a video from anywhere on your device. Either swipe up or right click to open a file from the App Bar."
                 Style="{StaticResource BasicTextStyle}"
                 x:Uid="FeaturesOpen"
-                TextWrapping="Wrap"
                 Margin="5"
                 Grid.Row="2"
-                Grid.Column="1">
-            </TextBlock>
-            <TextBlock
-                Text="Plays something (plays anything after the bugs are fixed)"
-                Style="{StaticResource BasicTextStyle}"
-                x:Uid="FeaturesSomething"
-                TextWrapping="Wrap"
-                Margin="5"
-                Grid.Row="3"
-                Grid.Column="1">
-            </TextBlock>
-            <TextBlock
-                Text="Has excellent calculator with addition"
-                x:Uid="FeaturesCalculator"
-                Style="{StaticResource BasicTextStyle}"
-                TextWrapping="Wrap"
-                Margin="5"
-                Grid.Row="4"
                 Grid.Column="1">
             </TextBlock>
         </Grid>

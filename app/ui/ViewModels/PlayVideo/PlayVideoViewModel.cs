@@ -1,4 +1,5 @@
 ﻿using System;
+using Windows.Storage.AccessCache;
 using VLC_WINRT.Common;
 using VLC_WINRT.Utility.Commands;
 using VLC_WINRT.Utility.Services;
@@ -20,6 +21,7 @@ namespace VLC_WINRT.ViewModels.PlayVideo
         private SkipBackCommand _skipBack;
         private StopVideoCommand _stopVideoCommand;
         private string _title;
+
 
         public PlayVideoViewModel()
         {
@@ -43,7 +45,9 @@ namespace VLC_WINRT.ViewModels.PlayVideo
             set
             {
                 SetProperty(ref _currentFile, value);
-                _vlcPlayer.Open("http://localhost:8000/" + _currentFile.Name);
+                string token = StorageApplicationPermissions.FutureAccessList.Add(value);
+                //  Tell the player to play the video based on its token
+                _vlcPlayer.Open("winrt://" + token);
                 Title = _currentFile.Name;
             }
         }

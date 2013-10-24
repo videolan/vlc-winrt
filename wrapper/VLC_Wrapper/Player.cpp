@@ -44,7 +44,7 @@ static HANDLE xamlLock = CreateSemaphoreExW( NULL,           // default security
 static byte* pixelData;
 static VLCD2dImageSource^ vlcImageSource;
 static const UINT frameWidth = 1280;
-static const UINT frameHeight = 720;
+static const UINT frameHeight = 534;
 static UINT pitch;
 static int pixelBufferSize;
 
@@ -88,7 +88,7 @@ Player::Player(Windows::UI::Xaml::Media::ImageBrush^ brush)
         "--no-video-title-show",
         "--no-stats",
         "--no-drop-late-frames",
-        "--no-audio", // FIXME
+        //"--no-audio", // FIXME
         //"--avcodec-fast"
     };
 

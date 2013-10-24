@@ -3,7 +3,7 @@ using Windows.UI.Xaml.Data;
 
 namespace VLC_WINRT.Utility.Converters
 {
-    internal class TimespanShortStringConverter : IValueConverter
+    public class TimespanShortStringConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {

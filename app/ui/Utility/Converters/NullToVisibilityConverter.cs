@@ -4,7 +4,7 @@ using Windows.UI.Xaml.Data;
 
 namespace VLC_WINRT.Utility.Converters
 {
-    internal class NullToVisibilityConverter : IValueConverter
+    public class NullToVisibilityConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
