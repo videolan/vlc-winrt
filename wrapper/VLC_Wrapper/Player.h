@@ -33,6 +33,7 @@ namespace VLC_Wrapper {
         void Play();
 		void Seek(float position);
 		float GetPosition();
+		int64 GetLength();
         virtual ~Player();
 
     private:

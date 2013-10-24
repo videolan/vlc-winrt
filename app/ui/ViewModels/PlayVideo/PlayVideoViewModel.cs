@@ -21,6 +21,8 @@ namespace VLC_WINRT.ViewModels.PlayVideo
         private SkipAheadCommand _skipAhead;
         private SkipBackCommand _skipBack;
         private StopVideoCommand _stopVideoCommand;
+        private TimeSpan _elapsedTime = TimeSpan.Zero;
+        private TimeSpan _timeTotal = TimeSpan.Zero;
         private string _title;
         private Player _vlcPlayer;
 
@@ -111,6 +113,18 @@ namespace VLC_WINRT.ViewModels.PlayVideo
             set { SetProperty(ref _stopVideoCommand, value); }
         }
 
+        public TimeSpan TimeTotal
+        {
+            get { return _timeTotal; }
+            set { SetProperty(ref _timeTotal, value); }
+        }
+
+        public TimeSpan ElapsedTime
+        {
+            get { return _elapsedTime; }
+            set { SetProperty(ref _elapsedTime, value); }
+        }
+
         public void Dispose()
         {
             if (_listener != null)
@@ -138,6 +152,13 @@ namespace VLC_WINRT.ViewModels.PlayVideo
         private void UpdatePosition(object sender, object e)
         {
             OnPropertyChanged("Position");
+
+            if (_timeTotal == TimeSpan.Zero)
+            {
+                TimeTotal = TimeSpan.FromMilliseconds(_vlcPlayer.GetLength());
+            }
+
+            ElapsedTime = TimeSpan.FromMilliseconds(TimeTotal.TotalMilliseconds * Position);
         }
 
         public void Play()

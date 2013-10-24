@@ -43,11 +43,11 @@
                         Grid.ColumnSpan="2" Margin="30,0" Value="{Binding Position, Mode=TwoWay}" />
                 <StackPanel Grid.Row="1" Grid.Column="0">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                        <TextBlock x:Name="ElapsedTime" Text="0:00" Style="{StaticResource CaptionTextStyle}"
+                        <TextBlock x:Name="ElapsedTime" Text="{Binding ElapsedTime, Converter={StaticResource TimeSpanShortStringConverter}}" Style="{StaticResource CaptionTextStyle}" 
                                    Margin="2">
                         </TextBlock>
                         <TextBlock Text="/" Style="{StaticResource CaptionTextStyle}" Margin="2"></TextBlock>
-                        <TextBlock x:Name="TotalTime" Text="0:00" Style="{StaticResource CaptionTextStyle}" Margin="2"></TextBlock>
+                        <TextBlock x:Name="TotalTime" Text="{Binding TimeTotal, Converter={StaticResource TimeSpanShortStringConverter}}" Style="{StaticResource CaptionTextStyle}" Margin="2"></TextBlock>
                     </StackPanel>
                     <TextBlock Text="{Binding Title}" Style="{StaticResource GroupHeaderTextStyle}"
                                VerticalAlignment="Center" HorizontalAlignment="Center">

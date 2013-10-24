@@ -10,7 +10,15 @@ namespace VLC_WINRT.Utility.Converters
             if (value is TimeSpan)
             {
                 var ts = (TimeSpan) value;
-                return ts.Hours + ":" + ts.Minutes +":" + ts.Seconds;
+                if (ts.Hours > 0)
+                {
+                    return ts.Hours + ":" + ts.Minutes + ":" + ts.Seconds;
+                }
+                else
+                {
+                    return ts.Minutes + ":" + ts.Seconds;
+                }
+                
             }
             else
             {

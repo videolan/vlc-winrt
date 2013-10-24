@@ -152,6 +152,10 @@ float Player::GetPosition(){
 	return libvlc_media_player_get_position(p_mp);
 }
 
+int64 Player::GetLength(){
+	return libvlc_media_player_get_length(p_mp);
+}
+
 Player::~Player(){
     libvlc_media_player_stop(p_mp);
     libvlc_media_player_release(p_mp);
