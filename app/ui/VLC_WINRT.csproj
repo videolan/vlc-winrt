@@ -651,10 +651,6 @@
       <Link>plugins\meta_engine\libfolder_plugin.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\..\vlc\plugins\meta_engine\libtaglib_plugin.dll">
-      <Link>plugins\meta_engine\libtaglib_plugin.dll</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="..\..\vlc\plugins\misc\libexport_plugin.dll">
       <Link>plugins\misc\libexport_plugin.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

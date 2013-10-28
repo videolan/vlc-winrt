@@ -62,6 +62,7 @@ cd contrib/winrt
     --disable-mpcdec \
     --disable-upnp \
     --disable-gme \
+    --disable-taglib \
     --disable-tremor \
     --disable-vorbis \
     --disable-sidplay2 \
