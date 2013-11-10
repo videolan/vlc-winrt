@@ -34,3 +34,5 @@ _ReSharper*/
 *.vspx
 *.psess
 app/packages
+app/VLC_WINRT.sln.DotSettings
+vlc/plugins/plugins.dat

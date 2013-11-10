@@ -1,0 +1,4 @@
+MainPackage=C:\winrt\app\UI\bin\x86\Debug\VLC_WINRT_0.0.1.3_Bundle\VLC_WINRT_0.0.1.3_x86_Debug.appx
+SymbolPackage=C:\winrt\app\UI\AppPackages\VLC_WINRT_0.0.1.3_Debug_Test\VLC_WINRT_0.0.1.3_x86_Debug.appxsym
+ResourcePack=C:\winrt\app\UI\bin\x86\Debug\VLC_WINRT_0.0.1.3_Bundle\VLC_WINRT_0.0.1.3_language-de.appx
+ResourcePack=C:\winrt\app\UI\bin\x86\Debug\VLC_WINRT_0.0.1.3_Bundle\VLC_WINRT_0.0.1.3_language-fr.appx

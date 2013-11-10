@@ -43,10 +43,11 @@ static HANDLE xamlLock = CreateSemaphoreExW( NULL,           // default security
                                     L"xamlsem",0,SYNCHRONIZE|SEMAPHORE_MODIFY_STATE);
 static byte* pixelData;
 static VLCD2dImageSource^ vlcImageSource;
-static const UINT frameWidth = 1280;
-static const UINT frameHeight = 534;
+static UINT frameWidth = 1024;
+static UINT frameHeight = 768;
 static UINT pitch;
 static int pixelBufferSize;
+Windows::UI::Xaml::Media::ImageBrush^ target;
 
 
 void *Player::Lock(void* opqaue, void** planes){
@@ -80,6 +81,12 @@ void Player::Display(void* opaque, void* picture){
 Player::Player(Windows::UI::Xaml::Media::ImageBrush^ brush)
 {
     OutputDebugStringW(L"Hello, Player!");
+
+	ComPtr<MMDeviceLocator> audioReg = Make<MMDeviceLocator>();
+	audioReg->RegisterForWASAPI();
+	//do some stuff
+	audioReg = nullptr;
+
     /* Don't add any invalid options, otherwise it causes LibVLC to fail */
     static const char *argv[] = {
         "-I", "dummy",
@@ -98,19 +105,24 @@ Player::Player(Windows::UI::Xaml::Media::ImageBrush^ brush)
         return;
     }
 
-    vlcImageSource = ref new VLCD2dImageSource(frameWidth, frameHeight, true);
-    brush->ImageSource = vlcImageSource;
+	target = brush;
+  
 }
 
-void Player::Open(Platform::String^ mrl) {
+void Player::Open(Platform::String^ mrl, int width, int height) {
+
+	frameHeight = height;
+	frameWidth = width;
 
     size_t len = WideCharToMultiByte (CP_UTF8, 0, mrl->Data(), -1, NULL, 0, NULL, NULL);
     char* p_mrl = new char[len];
     WideCharToMultiByte (CP_UTF8, 0, mrl->Data(), -1, p_mrl, len, NULL, NULL);
-
-    // add a hard-coded http source for videos to play
+    
     libvlc_media_t* m = libvlc_media_new_location(this->p_instance, p_mrl);
     p_mp = libvlc_media_player_new_from_media(m);
+
+	vlcImageSource = ref new VLCD2dImageSource(frameWidth, frameHeight, true);
+	target->ImageSource = vlcImageSource;
 
     //we're using vmem so format is always RGB
     unsigned int bitsPerPixel = 32; // hard coded for RV32 videos

@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.AccessCache;
+using Windows.Storage.FileProperties;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 using VLC_WINRT.Common;
@@ -47,9 +49,35 @@ namespace VLC_WINRT.ViewModels.PlayVideo
             set
             {
                 SetProperty(ref _currentFile, value);
-                string token = StorageApplicationPermissions.FutureAccessList.Add(value);
+                string token = StorageApplicationPermissions.FutureAccessList.Add(_currentFile);
                 //  Tell the player to play the video based on its token
-                _vlcPlayer.Open("winrt://" + token);
+
+                int height = (int)Window.Current.Bounds.Height;
+                int width = (int)Window.Current.Bounds.Width;
+                VideoProperties props = null;
+
+                try
+                {
+                    var videoTask = _currentFile.Properties.GetVideoPropertiesAsync().AsTask();
+                    videoTask.Wait();
+                    if (videoTask.Status == TaskStatus.RanToCompletion)
+                    {
+                        props = videoTask.Result;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    
+                }
+
+
+                if (props != null && props.Height > 0 && props.Width > 0)
+                {
+                    height = (int)props.Height;
+                    width = (int)props.Width;
+                }
+
+                _vlcPlayer.Open("winrt://" + token, height, width);
                 Title = _currentFile.Name;
             }
         }

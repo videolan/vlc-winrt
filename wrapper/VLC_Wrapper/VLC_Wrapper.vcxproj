@@ -118,11 +118,11 @@
       <PrecompiledHeaderOutputFile>$(IntDir)pch.pch</PrecompiledHeaderOutputFile>
       <AdditionalUsingDirectories>$(WindowsSDK_WindowsMetadata);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalIncludeDirectories>C:\vlc\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\..\..\vlc\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <AdditionalDependencies>runtimeobject.lib;libvlc.lib;d3d11.lib;d2d1.lib;dxgi.lib;WindowsCodecs.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>runtimeobject.lib;libvlc.lib;d3d11.lib;d2d1.lib;dxgi.lib;MMDevAPI.lib;MFuuid.lib;MFReadWrite.lib;MFplat.lib;uuid.lib;WindowsCodecs.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <AdditionalLibraryDirectories>$(ProjectDir)\..\..\vlc;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
@@ -210,6 +210,7 @@
     <ClInclude Include="pch.h" />
     <ClInclude Include="Math.h" />
     <ClInclude Include="VLCD2dImageSource.h" />
+    <ClInclude Include="MMDeviceLocator.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Player.cpp" />
@@ -223,6 +224,7 @@
     </ClCompile>
     <ClCompile Include="Math.cpp" />
     <ClCompile Include="VLCD2dImageSource.cpp" />
+    <ClCompile Include="MMDeviceLocator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\vlc\libvlc.dll" />

@@ -27,6 +27,8 @@
 
 #include <wrl.h>
 #include <wrl/client.h>
+//#include <collection.h>
+//#include <ppltasks.h>
 
 #include <dxgi.h>
 #include <dxgi1_2.h>

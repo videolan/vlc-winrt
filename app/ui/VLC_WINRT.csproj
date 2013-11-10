@@ -150,7 +150,6 @@
     <Compile Include="ViewModels\MainPage\ThumbnailsViewModel.cs" />
     <Compile Include="ViewModels\MainPage\ThumbnailViewModel.cs" />
     <Compile Include="ViewModels\MainPage\ViewedVideoViewModel.cs" />
-    <Compile Include="ViewModels\NavSupportingViewModel.cs" />
     <Compile Include="ViewModels\PlayVideo\PlayVideoViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
     <Compile Include="Views\Addition.xaml.cs">
@@ -193,10 +192,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\..\..\Users\Kellen\Documents\Visual Studio 2013\Projects\libaccess_winrt_plugin\Debug\libaccess_winrt_plugin\libaccess_winrt_plugin.dll">
-      <Link>plugins\access\libaccess_winrt_plugin.dll</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="..\..\vlc\libvlc.dll">
       <Link>libvlc.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -1006,6 +1001,7 @@
     <Content Include="Assets\SmallLogo.png" />
     <Content Include="Assets\SplashScreen.png" />
     <Content Include="Assets\StoreLogo.png" />
+    <Content Include="plugins\access\libaccess_winrt_plugin.dll" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
