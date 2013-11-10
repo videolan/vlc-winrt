@@ -107,6 +107,10 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <ProjectReference Include="..\..\modules\libaccess_winrt_plugin\libaccess_winrt_plugin.vcxproj">
+      <Project>{a3345ed6-a13a-487b-9ef3-412fed4916d1}</Project>
+      <Name>libaccess_winrt_plugin</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\wrapper\VLC_Wrapper\VLC_Wrapper.vcxproj">
       <Project>{22532381-be8b-40e0-a881-22ce24342d5a}</Project>
       <Name>VLC_Wrapper</Name>
@@ -182,10 +186,8 @@
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
-      <SubType>Designer</SubType>
     </AppxManifest>
     <None Include="Common\ReadMe.txt" />
-    <None Include="VLC_WINRT_TemporaryKey.pfx" />
     <PRIResource Include="Strings\de-DE\Resources.resw" />
     <PRIResource Include="Strings\en-US\Resources.resw" />
     <PRIResource Include="Strings\fr-FR\Resources.resw" />
@@ -679,6 +681,7 @@
     </Content>
     <Content Include="..\..\vlc\plugins\misc\libaudioscrobbler_plugin.dll">
       <Link>plugins\misc\libaudioscrobbler_plugin.dll</Link>
+    </Content>
     <Content Include="..\..\vlc\plugins\misc\libexport_plugin.dll">
       <Link>plugins\misc\libexport_plugin.dll</Link>
     </Content>
@@ -1001,7 +1004,6 @@
     <Content Include="Assets\SmallLogo.png" />
     <Content Include="Assets\SplashScreen.png" />
     <Content Include="Assets\StoreLogo.png" />
-    <Content Include="plugins\access\libaccess_winrt_plugin.dll" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
