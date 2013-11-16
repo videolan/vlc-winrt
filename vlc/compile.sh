@@ -41,7 +41,7 @@ ${TARGET_TUPLE}-gcc -dumpspecs | sed -e 's/-lmingwex/-lwinstorecompat -lmingwex 
 NEWSPECFILE="`pwd`/../newspecfile"
 
 WINRTSOCK=`cd ../../winrtsock/winrtsock-86646-build;pwd`
-EXTRA_CPPFLAGS="-D_WIN32_WINNT=0x602 -D_UNICODE -DUNICODE"
+EXTRA_CPPFLAGS="-D_WIN32_WINNT=0x602 -DWINVER=0x602 -DWINSTORECOMPAT -D_UNICODE -DUNICODE"
 EXTRA_LDFLAGS="-lnormaliz -lwinstorecompat -lruntimeobject -L$WINRTSOCK"
 
 echo "Building the contribs"
