@@ -23,7 +23,7 @@ class MMDeviceLocator :
 	public RuntimeClass< RuntimeClassFlags< ClassicCom >, FtmBase, IActivateAudioInterfaceCompletionHandler >
 {
 public:
-	HRESULT RegisterForWASAPI();
+	STDMETHOD(RegisterForWASAPI)();
 	STDMETHOD(ActivateCompleted)(IActivateAudioInterfaceAsyncOperation *operation);
 	IAudioClient           *m_AudioClient;
 };
