@@ -523,9 +523,6 @@
     <Content Include="..\..\vlc\plugins\stream_filter\libsmooth_plugin.dll">
       <Link>plugins\stream_filter\libsmooth_plugin.dll</Link>
     </Content>
-    <Content Include="..\..\vlc\plugins\text_renderer\libfreetype_plugin.dll">
-      <Link>plugins\text_renderer\libfreetype_plugin.dll</Link>
-    </Content>
     <Content Include="..\..\vlc\plugins\text_renderer\libtdummy_plugin.dll">
       <Link>plugins\text_renderer\libtdummy_plugin.dll</Link>
     </Content>
@@ -678,9 +675,6 @@
     </Content>
     <Content Include="..\..\vlc\plugins\video_filter\libyuvp_plugin.dll">
       <Link>plugins\video_filter\libyuvp_plugin.dll</Link>
-    </Content>
-    <Content Include="..\..\vlc\plugins\video_output\libdirect3d_plugin.dll">
-      <Link>plugins\video_output\libdirect3d_plugin.dll</Link>
     </Content>
     <Content Include="..\..\vlc\plugins\video_output\libdrawable_plugin.dll">
       <Link>plugins\video_output\libdrawable_plugin.dll</Link>
