@@ -82,20 +82,30 @@ Player::Player(Windows::UI::Xaml::Media::ImageBrush^ brush)
 {
     OutputDebugStringW(L"Hello, Player!");
 
-	ComPtr<MMDeviceLocator> audioReg = Make<MMDeviceLocator>();
-	audioReg->RegisterForWASAPI();
-	//do some stuff
-	audioReg = nullptr;
+    ComPtr<MMDeviceLocator> audioReg = Make<MMDeviceLocator>();
+    audioReg->m_AudioClient = NULL;
+    audioReg->RegisterForWASAPI();
+    while (!audioReg->m_AudioClient) {
+        // FIXME: use event
+    }
+
+    char ptr_string[40];
+    sprintf_s(ptr_string, "--mmdevice-audioclient=0x%p", audioReg->m_AudioClient);
 
     /* Don't add any invalid options, otherwise it causes LibVLC to fail */
-    static const char *argv[] = {
+    const char *argv[] = {
         "-I", "dummy",
         "--no-osd",
         "--verbose=2",
         "--no-video-title-show",
         "--no-stats",
         "--no-drop-late-frames",
-        "--no-audio", // FIXME
+#if 1
+        "--no-audio",
+#else
+        "--aout=mmdevice",
+        ptr_string,
+#endif
         //"--avcodec-fast"
     };
 
