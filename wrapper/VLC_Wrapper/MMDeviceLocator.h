@@ -25,9 +25,6 @@ class MMDeviceLocator :
 public:
 	HRESULT RegisterForWASAPI();
 	STDMETHOD(ActivateCompleted)(IActivateAudioInterfaceAsyncOperation *operation);
-
-private:
-
 	IAudioClient           *m_AudioClient;
 };
 
