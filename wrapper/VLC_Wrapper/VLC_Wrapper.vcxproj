@@ -122,7 +122,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <AdditionalDependencies>runtimeobject.lib;libvlc.lib;d3d11.lib;d2d1.lib;dxgi.lib;MMDevAPI.lib;MFuuid.lib;MFReadWrite.lib;MFplat.lib;uuid.lib;WindowsCodecs.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>runtimeobject.lib;synchronization.lib;libvlc.lib;d3d11.lib;d2d1.lib;dxgi.lib;MMDevAPI.lib;MFuuid.lib;MFReadWrite.lib;MFplat.lib;uuid.lib;WindowsCodecs.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <AdditionalLibraryDirectories>$(ProjectDir)\..\..\vlc;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
@@ -139,7 +139,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <AdditionalDependencies>runtimeobject.lib;libvlc.lib;d3d11.lib;dxgi.lib;MMDevAPI.lib;d2d1.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>runtimeobject.lib;synchronization.lib;libvlc.lib;d3d11.lib;dxgi.lib;MMDevAPI.lib;d2d1.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <AdditionalLibraryDirectories>$(ProjectDir)\..\..\vlc;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>

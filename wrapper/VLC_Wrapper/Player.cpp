@@ -85,8 +85,10 @@ Player::Player(Windows::UI::Xaml::Media::ImageBrush^ brush)
     ComPtr<MMDeviceLocator> audioReg = Make<MMDeviceLocator>();
     audioReg->m_AudioClient = NULL;
     audioReg->RegisterForWASAPI();
-    while (!audioReg->m_AudioClient) {
-        // FIXME: use event
+
+    void *addr = NULL;
+    while (!WaitOnAddress(&audioReg->m_AudioClient, &addr, sizeof(void*), 1000)) {
+        OutputDebugStringW(L"Waiting for audio\n");
     }
 
     char ptr_string[40];
