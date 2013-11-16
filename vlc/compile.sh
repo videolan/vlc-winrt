@@ -3,7 +3,7 @@
 set -e
 
 # 1/ libvlc, libvlccore and its plugins
-TESTED_HASH=86de045d
+TESTED_HASH=45df8a6415
 if [ ! -d "vlc" ]; then
     echo "VLC source not found, cloning"
     git clone git://git.videolan.org/vlc.git vlc

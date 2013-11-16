@@ -102,12 +102,8 @@ Player::Player(Windows::UI::Xaml::Media::ImageBrush^ brush)
         "--no-video-title-show",
         "--no-stats",
         "--no-drop-late-frames",
-#if 1
-        "--no-audio",
-#else
         "--aout=mmdevice",
         ptr_string,
-#endif
         //"--avcodec-fast"
     };
 
