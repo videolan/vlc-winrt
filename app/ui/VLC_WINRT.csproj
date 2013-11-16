@@ -232,9 +232,6 @@
     <Content Include="..\..\vlc\plugins\audio_filter\liba52tospdif_plugin.dll">
       <Link>plugins\audio_filter\liba52tospdif_plugin.dll</Link>
     </Content>
-    <Content Include="..\..\vlc\plugins\audio_filter\libaudiobargraph_a_plugin.dll">
-      <Link>plugins\audio_filter\libaudiobargraph_a_plugin.dll</Link>
-    </Content>
     <Content Include="..\..\vlc\plugins\audio_filter\libaudio_format_plugin.dll">
       <Link>plugins\audio_filter\libaudio_format_plugin.dll</Link>
     </Content>
@@ -370,9 +367,6 @@
     <Content Include="..\..\vlc\plugins\codec\librawvideo_plugin.dll">
       <Link>plugins\codec\librawvideo_plugin.dll</Link>
     </Content>
-    <Content Include="..\..\vlc\plugins\codec\libschroedinger_plugin.dll">
-      <Link>plugins\codec\libschroedinger_plugin.dll</Link>
-    </Content>
     <Content Include="..\..\vlc\plugins\codec\libscte27_plugin.dll">
       <Link>plugins\codec\libscte27_plugin.dll</Link>
     </Content>
@@ -408,9 +402,6 @@
     </Content>
     <Content Include="..\..\vlc\plugins\control\libhotkeys_plugin.dll">
       <Link>plugins\control\libhotkeys_plugin.dll</Link>
-    </Content>
-    <Content Include="..\..\vlc\plugins\control\libnetsync_plugin.dll">
-      <Link>plugins\control\libnetsync_plugin.dll</Link>
     </Content>
     <Content Include="..\..\vlc\plugins\demux\libaiff_plugin.dll">
       <Link>plugins\demux\libaiff_plugin.dll</Link>
@@ -516,9 +507,6 @@
     </Content>
     <Content Include="..\..\vlc\plugins\demux\libxa_plugin.dll">
       <Link>plugins\demux\libxa_plugin.dll</Link>
-    </Content>
-    <Content Include="..\..\vlc\plugins\misc\libaudioscrobbler_plugin.dll">
-      <Link>plugins\misc\libaudioscrobbler_plugin.dll</Link>
     </Content>
     <Content Include="..\..\vlc\plugins\misc\libexport_plugin.dll">
       <Link>plugins\misc\libexport_plugin.dll</Link>
