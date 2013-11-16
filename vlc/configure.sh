@@ -2,6 +2,7 @@
 
 OPTIONS="
       --enable-winstore-app
+      --disable-vlc
       --enable-lua
       --disable-vlm --disable-sout
       --disable-faad
