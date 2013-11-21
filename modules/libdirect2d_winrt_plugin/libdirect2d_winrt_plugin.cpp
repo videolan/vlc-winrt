@@ -138,7 +138,8 @@ static int Open(vlc_object_t *object)
 
 
 
-	return CreateDeviceResources(vd);
+	//return CreateDeviceResources(vd);
+	return VLC_SUCCESS;
 }
 
 static void Close(vlc_object_t * object){

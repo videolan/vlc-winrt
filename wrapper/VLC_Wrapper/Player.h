@@ -38,7 +38,8 @@ namespace VLC_Wrapper {
     public ref class Player sealed
     {
     public:
-		Player(SwapChainPanel^ swapChainPanel);
+		Player(SwapChainPanel^ panel);
+		void	        Initialize();
 		void            Open(Platform::String^ mrl);
         void			Stop();
         void			Pause();
@@ -49,8 +50,10 @@ namespace VLC_Wrapper {
         virtual			~Player();
 
     private:
+		void			        InitializeVLC();
         libvlc_instance_t       *p_instance;
         libvlc_media_player_t   *p_mp;
+		SwapChainPanel			^p_panel;
     };
 }
 

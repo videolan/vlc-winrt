@@ -135,6 +135,7 @@ namespace VLC_WINRT.ViewModels.PlayVideo
         public void InitializeVLC(SwapChainPanel renderPanel)
         {
             _vlcPlayer = new Player(renderPanel);
+            _vlcPlayer.Initialize();
             _vlcPlayer.Open("winrt://" + _fileToken);
         }
 

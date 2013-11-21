@@ -32,44 +32,143 @@ using namespace Windows::Foundation;
 using namespace Windows::System::Threading;
 
 
-Player::Player(Windows::UI::Xaml::Controls::SwapChainPanel^ swapChainPanel)
+Player::Player(SwapChainPanel^ panel)
 {
     OutputDebugStringW(L"Hello, Player!");
+	p_panel = panel;
+}
 
-    ComPtr<MMDeviceLocator> audioReg = Make<MMDeviceLocator>();
-    audioReg->m_AudioClient = NULL;
-    audioReg->RegisterForWASAPI();
+void Player::Initialize(){
+	HRESULT hr;
+	ComPtr<IDXGIFactory2> dxgiFactory;
+	ComPtr<IDXGIAdapter> dxgiAdapter;
+	ComPtr<IDXGIDevice1> dxgiDevice;
+	ComPtr<ID3D11Device> d3dDevice;
+	ComPtr<IDXGISwapChain1> swapChain1;
 
-    void *addr = NULL;
-    while (!WaitOnAddress(&audioReg->m_AudioClient, &addr, sizeof(void*), 1000)) {
-        OutputDebugStringW(L"Waiting for audio\n");
-    }
+	UINT creationFlags = D3D11_CREATE_DEVICE_BGRA_SUPPORT;
 
-    char ptr_astring[40];
+	// Feature sets supported
+	const D3D_FEATURE_LEVEL featureLevels[] =
+	{
+		D3D_FEATURE_LEVEL_11_1,
+		D3D_FEATURE_LEVEL_11_0,
+		D3D_FEATURE_LEVEL_10_1,
+		D3D_FEATURE_LEVEL_10_0,
+		D3D_FEATURE_LEVEL_9_3,
+		D3D_FEATURE_LEVEL_9_2,
+		D3D_FEATURE_LEVEL_9_1,
+	};
+
+	hr = D3D11CreateDevice(
+		nullptr,
+		D3D_DRIVER_TYPE_HARDWARE,
+		nullptr,
+		creationFlags,
+		featureLevels,
+		ARRAYSIZE(featureLevels),
+		D3D11_SDK_VERSION,
+		&d3dDevice,
+		nullptr,
+		nullptr
+		);
+	if (hr != S_OK) {
+		throw new std::exception("Could not initialise libvlc!", hr);
+	}
+
+	hr = d3dDevice.As(&dxgiDevice);
+	if (hr != S_OK) {
+		throw new std::exception("Could not initialise libvlc!", hr);
+	}
+
+	hr = dxgiDevice->GetAdapter(&dxgiAdapter);
+	if (hr != S_OK) {
+		throw new std::exception("Could not initialise libvlc!", hr);
+	}
+
+	hr = dxgiAdapter->GetParent(IID_PPV_ARGS(&dxgiFactory));
+	if (hr != S_OK) {
+		throw new std::exception("Could not initialise libvlc!", hr);
+	}
+
+	//Create the swapchain
+	DXGI_SWAP_CHAIN_DESC1 swapChainDesc = { 0 };
+	//TODO: try panel height
+	swapChainDesc.Width = p_panel->ActualWidth;      // Match the size of the panel.
+	swapChainDesc.Height = p_panel->ActualHeight;
+	swapChainDesc.Format = DXGI_FORMAT_B8G8R8A8_UNORM;                  // This is the most common swap chain format.
+	swapChainDesc.Stereo = false;
+	swapChainDesc.SampleDesc.Count = 1;                                 // Don't use multi-sampling.
+	swapChainDesc.SampleDesc.Quality = 0;
+	swapChainDesc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
+	swapChainDesc.BufferCount = 2;                                      // Use double buffering to enable flip.
+	swapChainDesc.SwapEffect = DXGI_SWAP_EFFECT_FLIP_SEQUENTIAL;        // All Windows Store apps must use this SwapEffect.
+	swapChainDesc.Flags = 0;
+	swapChainDesc.AlphaMode = DXGI_ALPHA_MODE_UNSPECIFIED;
+
+	ComPtr<IDXGISwapChain1> swapChain;
+	hr = dxgiFactory->CreateSwapChainForComposition(
+		d3dDevice.Get(),
+		&swapChainDesc,
+		nullptr,
+		&swapChain
+		);
+	if (hr != S_OK) {
+		throw new std::exception("Could not initialise libvlc!", hr);
+	}
+
+
+	ComPtr<ISwapChainPanelNative> panelNative;
+	hr = reinterpret_cast<IUnknown*>(p_panel)->QueryInterface(IID_PPV_ARGS(&panelNative));
+	if (hr != S_OK) {
+		throw new std::exception("Could not initialise libvlc!", hr);
+	}
+
+	// Associate swap chain with SwapChainPanel.  This must be done on the UI thread.
+	hr = panelNative->SetSwapChain(swapChain.Get());
+	if (hr != S_OK) {
+		throw new std::exception("Could not initialise libvlc!", hr);
+	}
+
+	//Todo: don't block UI during initialization
+	this->InitializeVLC();
+}
+
+void Player::InitializeVLC(){
+	ComPtr<MMDeviceLocator> audioReg = Make<MMDeviceLocator>();
+	audioReg->m_AudioClient = NULL;
+	audioReg->RegisterForWASAPI();
+
+	void *addr = NULL;
+	while (!WaitOnAddress(&audioReg->m_AudioClient, &addr, sizeof(void*), 1000)) {
+		OutputDebugStringW(L"Waiting for audio\n");
+	}
+
+	char ptr_astring[40];
 	sprintf_s(ptr_astring, "--mmdevice-audioclient=0x%p", audioReg->m_AudioClient);
 
 	char ptr_vstring[40];
-	sprintf_s(ptr_vstring, "--winrt-swapchainpanel=0x%p", swapChainPanel);
+	sprintf_s(ptr_vstring, "--winrt-swapchainpanel=0x%p", p_panel);
 
-    /* Don't add any invalid options, otherwise it causes LibVLC to fail */
-    const char *argv[] = {
-        "-I", "dummy",
-        "--no-osd",
-        "--verbose=2",
-        "--no-video-title-show",
-        "--no-stats",
-        "--no-drop-late-frames",
+	/* Don't add any invalid options, otherwise it causes LibVLC to fail */
+	const char *argv[] = {
+		"-I", "dummy",
+		"--no-osd",
+		"--verbose=2",
+		"--no-video-title-show",
+		"--no-stats",
+		"--no-drop-late-frames",
 		ptr_vstring
-        //"--aout=mmdevice",
-        //ptr_astring,
-        //"--avcodec-fast"
-    };
+		//"--aout=mmdevice",
+		//ptr_astring,
+		//"--avcodec-fast"
+	};
 
-    p_instance = libvlc_new(sizeof(argv) / sizeof(*argv), argv);
-    if(!p_instance) {
-        throw new std::exception("Could not initialise libvlc!",1);
-        return;
-    }
+	p_instance = libvlc_new(sizeof(argv) / sizeof(*argv), argv);
+	if (!p_instance) {
+		throw new std::exception("Could not initialise libvlc!", 1);
+		return;
+	}
 }
 
 void Player::Open(Platform::String^ mrl) {
