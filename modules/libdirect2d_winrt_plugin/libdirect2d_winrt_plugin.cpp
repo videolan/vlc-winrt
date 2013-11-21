@@ -3,7 +3,8 @@
 *
 * Authors: Kellen Sunderland <kellen _DOT_ sunderland _AT_ gmail _DOT_ com>
 *
-* This code is based on directfb.c, vmem.c, thanks VideoLAN team.
+* This code is based on directfb.c, vmem.c, direct2d thanks VideoLAN team.
+* Code also based on Microsoft DirectX / Xaml interop samples, thanks MS.
 *
 * This program is free software; you can redistribute it and/or modify it
 * under the terms of the GNU Lesser General Public License as published by
@@ -77,7 +78,7 @@ static void           Display(vout_display_t *vd, picture_t *picture, subpicture
 static int            Control(vout_display_t *vd, int query, va_list args);
 static void           Manage(vout_display_t *vd);
 static void           Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpicture);
-static void           CreateDeviceResources(vout_display_t* vd);
+static int           CreateDeviceResources(vout_display_t* vd);
 
 /* */
 struct vout_display_sys_t {
@@ -131,9 +132,7 @@ static int Open(vlc_object_t *object)
 	vd->manage = Manage;
 	vd->control = Control;
 
-	CreateDeviceResources(vd);
-
-	return 0;
+	return CreateDeviceResources(vd);
 }
 
 static void Close(vlc_object_t * object){
@@ -212,7 +211,8 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
 {
 	vout_display_sys_t *sys = vd->sys;
 
-	if (sys->d2dbmp) {
+	if (sys->d2dbmp) 
+	{
 		HRESULT hr =  sys->d2dbmp->CopyFromMemory(NULL, picture->p[0].p_pixels, picture->p[0].i_pitch);
 
 		if (hr != S_OK)
@@ -234,18 +234,18 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
 
 
 // Initialize hardware-dependent resources.
-static void CreateDeviceResources(vout_display_t* vd)
+static int CreateDeviceResources(vout_display_t* vd)
 {
+	D2D1_BITMAP_PROPERTIES props;
+	D2D1_PIXEL_FORMAT pixFormat;
+	D2D1_SIZE_U size;
+	HRESULT hr;
+	ComPtr<IDXGIDevice> dxgiDevice;
 	vout_display_sys_t *sys = vd->sys;
-
-	// This flag adds support for surfaces with a different color channel ordering
-	// than the API default. It is required for compatibility with Direct2D.
 	UINT creationFlags = D3D11_CREATE_DEVICE_BGRA_SUPPORT;
+	float dpi = DisplayProperties::LogicalDpi;
 
-	// This array defines the set of DirectX hardware feature levels this app will support.
-	// Note the ordering should be preserved.
-	// Don't forget to declare your application's minimum required feature level in its
-	// description.  All applications are assumed to support 9.1 unless otherwise stated.
+	// Feature sets supported
 	const D3D_FEATURE_LEVEL featureLevels[] =
 	{
 		D3D_FEATURE_LEVEL_11_1,
@@ -258,40 +258,60 @@ static void CreateDeviceResources(vout_display_t* vd)
 	};
 
 	// Create the Direct3D 11 API device object.
-	D3D11CreateDevice(
-		nullptr,                        // Specify nullptr to use the default adapter.
+	hr = D3D11CreateDevice(
+		nullptr,
 		D3D_DRIVER_TYPE_HARDWARE,
 		nullptr,
-		creationFlags,                  // Set debug and Direct2D compatibility flags.
-		featureLevels,                  // List of feature levels this app can support.
+		creationFlags,
+		featureLevels,
 		ARRAYSIZE(featureLevels),
-		D3D11_SDK_VERSION,              // Always set this to D3D11_SDK_VERSION for Metro style apps.
-		&(sys->d3dDevice),                   // Returns the Direct3D device created.
+		D3D11_SDK_VERSION,
+		&(sys->d3dDevice),
 		nullptr,
 		nullptr
 		);
+	if (hr != S_OK)
+		return VLC_EGENERIC;
 
 	// Get the Direct3D 11.1 API device.
-	ComPtr<IDXGIDevice> dxgiDevice;
-	sys->d3dDevice.As(&dxgiDevice);
+	hr = sys->d3dDevice.As(&dxgiDevice);
+	if (hr != S_OK)
+		return VLC_EGENERIC;
 
 	// Create the Direct2D device object and a corresponding context.
-	D2D1CreateDevice(
+	hr = D2D1CreateDevice(
 		dxgiDevice.Get(),
 		nullptr,
 		&(sys->d2dDevice)
 		);
+	if (hr != S_OK)
+		return VLC_EGENERIC;
 
-
-	sys->d2dDevice->CreateDeviceContext(
+	hr = sys->d2dDevice->CreateDeviceContext(
 		D2D1_DEVICE_CONTEXT_OPTIONS_NONE,
 		&(sys->d2dContext)
 		);
+	if (hr != S_OK)
+		return VLC_EGENERIC;
 
 	// Set DPI to the display's current DPI.
-	sys->d2dContext->SetDpi(DisplayProperties::LogicalDpi, DisplayProperties::LogicalDpi);
+	sys->d2dContext->SetDpi(dpi, dpi);
 
 	// Associate the DXGI device with the SurfaceImageSource.
 	//TODO: this with SwapChainPanel
 	//m_sisNative->SetDevice(dxgiDevice.Get());
+
+	size.width = vd->fmt.i_width;
+	size.height = vd->fmt.i_height;
+	pixFormat.alphaMode = D2D1_ALPHA_MODE_IGNORE;
+	pixFormat.format = DXGI_FORMAT_B8G8R8X8_UNORM;
+	props.pixelFormat = pixFormat;
+	props.dpiX = dpi;
+	props.dpiY = dpi;
+	
+	hr = sys->d2dContext->CreateBitmap(size, props, &sys->d2dbmp);
+	if (hr != S_OK)
+		return VLC_EGENERIC;
+
+	return VLC_SUCCESS;
 }
