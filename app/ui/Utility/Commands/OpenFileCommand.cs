@@ -1,11 +1,11 @@
 ﻿using System;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using VLC_WINRT.Common;
 using VLC_WINRT.Utility.Services.RunTime;
 using VLC_WINRT.ViewModels;
 using VLC_WINRT.ViewModels.MainPage;
 using VLC_WINRT.Views;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
 
 namespace VLC_WINRT.Utility.Commands
 {
@@ -22,7 +22,6 @@ namespace VLC_WINRT.Utility.Commands
             ViewModelLocator.PlayVideoVM.CurrentFile = vm.File;
             history.Add(vm.File);
             ((Frame) Window.Current.Content).Navigate(typeof (PlayVideo));
-            ViewModelLocator.PlayVideoVM.Play();
         }
     }
 }

@@ -20,6 +20,7 @@ namespace VLC_WINRT.Views
         private void IntializeVLC(object sender, RoutedEventArgs routedEventArgs)
         {
             ViewModelLocator.PlayVideoVM.InitializeVLC(VLCSwapChainPanel);
+            ViewModelLocator.PlayVideoVM.Play();
         }
 
         /// <summary>
