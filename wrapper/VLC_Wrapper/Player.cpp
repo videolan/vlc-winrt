@@ -125,17 +125,17 @@ void Player::Open(Platform::String^ mrl) {
     p_mp = libvlc_media_player_new_from_media(m);
 
     //we're using vmem so format is always RGB
-    unsigned int bitsPerPixel = 32; // hard coded for RV32 videos
-    pitch = (frameWidth*bitsPerPixel)/8;
+    //unsigned int bitsPerPixel = 32; // hard coded for RV32 videos
+    //pitch = (frameWidth*bitsPerPixel)/8;
 
     //hard coded pixel data allocation for sample video
-    pixelBufferSize = (frameWidth*frameHeight*bitsPerPixel)/8;
-    pixelData = new byte[pixelBufferSize];
+    //pixelBufferSize = (frameWidth*frameHeight*bitsPerPixel)/8;
+    //pixelData = new byte[pixelBufferSize];
 
-    libvlc_video_set_format(p_mp, "RV32", frameWidth, frameHeight, pitch);
-    libvlc_video_set_callbacks(p_mp, (libvlc_video_lock_cb)(this->Lock),
-        (libvlc_video_unlock_cb)(this->Unlock),
-        (libvlc_video_display_cb)(this->Display), NULL);
+   // libvlc_video_set_format(p_mp, "RV32", frameWidth, frameHeight, pitch);
+   // libvlc_video_set_callbacks(p_mp, (libvlc_video_lock_cb)(this->Lock),
+    //    (libvlc_video_unlock_cb)(this->Unlock),
+    //    (libvlc_video_display_cb)(this->Display), NULL);
 
     libvlc_media_release (m);
     delete[](p_mrl);
