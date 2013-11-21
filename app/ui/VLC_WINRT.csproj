@@ -680,18 +680,6 @@
     <Content Include="..\..\vlc\plugins\video_filter\libyuvp_plugin.dll">
       <Link>plugins\video_filter\libyuvp_plugin.dll</Link>
     </Content>
-    <Content Include="..\..\vlc\plugins\video_output\libdrawable_plugin.dll">
-      <Link>plugins\video_output\libdrawable_plugin.dll</Link>
-    </Content>
-    <Content Include="..\..\vlc\plugins\video_output\libvdummy_plugin.dll">
-      <Link>plugins\video_output\libvdummy_plugin.dll</Link>
-    </Content>
-    <Content Include="..\..\vlc\plugins\video_output\libvmem_plugin.dll">
-      <Link>plugins\video_output\libvmem_plugin.dll</Link>
-    </Content>
-    <Content Include="..\..\vlc\plugins\video_output\libyuv_plugin.dll">
-      <Link>plugins\video_output\libyuv_plugin.dll</Link>
-    </Content>
     <Content Include="..\..\vlc\plugins\visualization\libvisual_plugin.dll">
       <Link>plugins\visualization\libvisual_plugin.dll</Link>
     </Content>
