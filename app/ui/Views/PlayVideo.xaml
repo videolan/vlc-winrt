@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:libdirect2DWinrtPlugin="using:libdirect2d_winrt_plugin"
     mc:Ignorable="d"
     DataContext="{Binding Source={StaticResource Locator}, Path=PlayVideoVM}">
     <Page.Resources>
@@ -18,8 +19,8 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0" Background="{Binding Brush}" Tapped="ScreenTapped">
-
+        <Grid Grid.Row="0" Tapped="ScreenTapped">
+            <libdirect2DWinrtPlugin:D2DPanel x:Name="VLCSwapChainPanel"></libdirect2DWinrtPlugin:D2DPanel>
         </Grid>
     </Grid>
     <Page.TopAppBar>

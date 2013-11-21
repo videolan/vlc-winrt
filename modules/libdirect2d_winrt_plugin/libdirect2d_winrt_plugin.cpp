@@ -44,13 +44,11 @@
 using namespace concurrency;
 using namespace Platform;
 
-extern "C"
-{
+
 #include <vlc_common.h>
 #include <vlc_plugin.h>
 #include <vlc_vout_display.h>
 #include <vlc_picture_pool.h>
-}
 
 /*****************************************************************************
 * Module descriptor
@@ -76,7 +74,7 @@ vlc_module_end()
 /* */
 struct vout_display_sys_t {
 	/* */
-	VLCWINRT::D2DPanel^             d2dPanel;
+	libdirect2d_winrt_plugin::D2DPanel^             d2dPanel;
 
 	/* */
 	int width;
@@ -92,10 +90,16 @@ struct vout_display_sys_t {
 * Renders video to a SwapChainPanel in WinRT Environments
 * Currently this module only supports RGB
 */
-int Open(vlc_object_t *object)
+static int Open(vlc_object_t *object)
 {
 	vout_display_t *vd = (vout_display_t *) object;
 	vout_display_sys_t *sys;
+
+	return 0;
+}
+
+static void Close(vlc_object_t *){
+	return;
 }
 
 static int OpenDisplay(vout_display_t *vd)

@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.AccessCache;
-using Windows.Storage.FileProperties;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Controls;
 using VLC_WINRT.Common;
 using VLC_WINRT.Utility.Commands;
 using VLC_WINRT.Utility.Services;
@@ -15,15 +13,15 @@ namespace VLC_WINRT.ViewModels.PlayVideo
     public class PlayVideoViewModel : BindableBase, IDisposable
     {
         private readonly DispatcherTimer _timer = new DispatcherTimer();
-        private ImageBrush _brush;
         private StorageFile _currentFile;
+        private TimeSpan _elapsedTime = TimeSpan.Zero;
+        private string _fileToken;
         private bool _isPlaying;
         private HttpListener _listener;
         private PlayPauseCommand _playOrPause;
         private SkipAheadCommand _skipAhead;
         private SkipBackCommand _skipBack;
         private StopVideoCommand _stopVideoCommand;
-        private TimeSpan _elapsedTime = TimeSpan.Zero;
         private TimeSpan _timeTotal = TimeSpan.Zero;
         private string _title;
         private Player _vlcPlayer;
@@ -31,7 +29,6 @@ namespace VLC_WINRT.ViewModels.PlayVideo
 
         public PlayVideoViewModel()
         {
-            InitializeVLC();
             _listener = new HttpListener();
             _playOrPause = new PlayPauseCommand();
             _skipAhead = new SkipAheadCommand();
@@ -49,43 +46,9 @@ namespace VLC_WINRT.ViewModels.PlayVideo
             set
             {
                 SetProperty(ref _currentFile, value);
-                string token = StorageApplicationPermissions.FutureAccessList.Add(_currentFile);
-                //  Tell the player to play the video based on its token
-
-                int height = (int)Window.Current.Bounds.Height;
-                int width = (int)Window.Current.Bounds.Width;
-                VideoProperties props = null;
-
-                try
-                {
-                    var videoTask = _currentFile.Properties.GetVideoPropertiesAsync().AsTask();
-                    videoTask.Wait();
-                    if (videoTask.Status == TaskStatus.RanToCompletion)
-                    {
-                        props = videoTask.Result;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    
-                }
-
-
-                if (props != null && props.Height > 0 && props.Width > 0)
-                {
-                    height = (int)props.Height;
-                    width = (int)props.Width;
-                }
-
-                _vlcPlayer.Open("winrt://" + token, height, width);
+                _fileToken = StorageApplicationPermissions.FutureAccessList.Add(_currentFile);
                 Title = _currentFile.Name;
             }
-        }
-
-        public ImageBrush Brush
-        {
-            get { return _brush; }
-            set { SetProperty(ref _brush, value); }
         }
 
         public double Position
@@ -162,8 +125,6 @@ namespace VLC_WINRT.ViewModels.PlayVideo
                 _listener = null;
             }
 
-            Brush = null;
-
             if (_vlcPlayer != null)
             {
                 _vlcPlayer.Dispose();
@@ -171,10 +132,10 @@ namespace VLC_WINRT.ViewModels.PlayVideo
             }
         }
 
-        private void InitializeVLC()
+        public void InitializeVLC(SwapChainPanel renderPanel)
         {
-            Brush = new ImageBrush();
-            _vlcPlayer = new Player(Brush);
+            _vlcPlayer = new Player(renderPanel);
+            _vlcPlayer.Open("winrt://" + _fileToken);
         }
 
         private void UpdatePosition(object sender, object e)
@@ -186,7 +147,7 @@ namespace VLC_WINRT.ViewModels.PlayVideo
                 TimeTotal = TimeSpan.FromMilliseconds(_vlcPlayer.GetLength());
             }
 
-            ElapsedTime = TimeSpan.FromMilliseconds(TimeTotal.TotalMilliseconds * Position);
+            ElapsedTime = TimeSpan.FromMilliseconds(TimeTotal.TotalMilliseconds*Position);
         }
 
         public void Play()

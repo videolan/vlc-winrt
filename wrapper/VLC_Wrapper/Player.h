@@ -32,13 +32,14 @@
 
 using namespace Microsoft::WRL;
 using namespace Windows::Media::Devices;
+using namespace Windows::UI::Xaml::Controls;
 
 namespace VLC_Wrapper {
     public ref class Player sealed
     {
     public:
-        Player(Windows::UI::Xaml::Media::ImageBrush^ brush);
-		void            Open(Platform::String^ mrl, int width, int height);
+		Player(SwapChainPanel^ swapChainPanel);
+		void            Open(Platform::String^ mrl);
         void			Stop();
         void			Pause();
         void			Play();
@@ -50,6 +51,7 @@ namespace VLC_Wrapper {
     private:
         libvlc_instance_t       *p_instance;
         libvlc_media_player_t   *p_mp;
+		SwapChainPanel			^p_swapChainPanel;
         static void             *Lock(void* opaque, void** planes);
         static void             Unlock(void* opaque, void* picture, void** planes);
         static void             Display(void* opaque, void* picture);

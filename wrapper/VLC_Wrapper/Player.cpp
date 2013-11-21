@@ -47,7 +47,6 @@ static UINT frameWidth = 1024;
 static UINT frameHeight = 768;
 static UINT pitch;
 static int pixelBufferSize;
-Windows::UI::Xaml::Media::ImageBrush^ target;
 
 
 void *Player::Lock(void* opqaue, void** planes){
@@ -78,7 +77,7 @@ void Player::Display(void* opaque, void* picture){
     return;
 }
 
-Player::Player(Windows::UI::Xaml::Media::ImageBrush^ brush)
+Player::Player(Windows::UI::Xaml::Controls::SwapChainPanel^ swapChainPanel)
 {
     OutputDebugStringW(L"Hello, Player!");
 
@@ -113,14 +112,10 @@ Player::Player(Windows::UI::Xaml::Media::ImageBrush^ brush)
         return;
     }
 
-	target = brush;
-  
+	p_swapChainPanel = swapChainPanel;
 }
 
-void Player::Open(Platform::String^ mrl, int width, int height) {
-
-	frameHeight = height;
-	frameWidth = width;
+void Player::Open(Platform::String^ mrl) {
 
     size_t len = WideCharToMultiByte (CP_UTF8, 0, mrl->Data(), -1, NULL, 0, NULL, NULL);
     char* p_mrl = new char[len];
@@ -128,9 +123,6 @@ void Player::Open(Platform::String^ mrl, int width, int height) {
     
     libvlc_media_t* m = libvlc_media_new_location(this->p_instance, p_mrl);
     p_mp = libvlc_media_player_new_from_media(m);
-
-	vlcImageSource = ref new VLCD2dImageSource(frameWidth, frameHeight, true);
-	target->ImageSource = vlcImageSource;
 
     //we're using vmem so format is always RGB
     unsigned int bitsPerPixel = 32; // hard coded for RV32 videos

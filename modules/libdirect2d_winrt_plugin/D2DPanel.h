@@ -2,27 +2,20 @@
 #include "pch.h"
 #include <concrt.h>
 
-namespace VLCWINRT{
+namespace libdirect2d_winrt_plugin{
 	[Windows::Foundation::Metadata::WebHostHidden]
-	public ref class D2DPanel sealed
+	public ref class D2DPanel sealed : public Windows::UI::Xaml::Controls::SwapChainPanel
 	{
 	public:
 		D2DPanel();
 
 	private protected:
 
-		virtual void CreateDeviceIndependentResources();
-		virtual void CreateDeviceResources();
-		virtual void CreateSizeDependentResources();
-
-		virtual void OnDeviceLost();
-		virtual void OnSizeChanged(Platform::Object^ sender, Windows::UI::Xaml::SizeChangedEventArgs^ e);
-		virtual void OnCompositionScaleChanged(Windows::UI::Xaml::Controls::SwapChainPanel ^sender, Platform::Object ^args);
-		virtual void OnSuspending(Platform::Object^ sender, Windows::ApplicationModel::SuspendingEventArgs^ e);
-		virtual void OnResuming(Platform::Object^ sender, Platform::Object^ args) { };
-
-		virtual void Render() { };
-		virtual void Present();
+		void CreateDeviceIndependentResources();
+		void CreateDeviceResources();
+		void CreateSizeDependentResources();
+		void Render();
+		void Present();
 
 		Microsoft::WRL::ComPtr<ID3D11Device1>                               m_d3dDevice;
 		Microsoft::WRL::ComPtr<ID3D11DeviceContext1>                        m_d3dContext;

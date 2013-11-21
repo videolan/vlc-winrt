@@ -111,6 +111,10 @@
       <Project>{a3345ed6-a13a-487b-9ef3-412fed4916d1}</Project>
       <Name>libaccess_winrt_plugin</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\modules\libdirect2d_winrt_plugin\libdirect2d_winrt_plugin.vcxproj">
+      <Project>{231dfaab-c462-49bf-8611-1fa6ee39983d}</Project>
+      <Name>libdirect2d_winrt_plugin</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\wrapper\VLC_Wrapper\VLC_Wrapper.vcxproj">
       <Project>{22532381-be8b-40e0-a881-22ce24342d5a}</Project>
       <Name>VLC_Wrapper</Name>
@@ -705,6 +709,7 @@
     <Content Include="Assets\SplashScreen.png" />
     <Content Include="Assets\StoreLogo.png" />
     <Content Include="plugins\access\libaccess_winrt_plugin.dll" />
+    <Content Include="plugins\video_output\libdirect2d_winrt_plugin.dll" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">

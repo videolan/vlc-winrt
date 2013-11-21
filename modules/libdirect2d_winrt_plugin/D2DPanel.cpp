@@ -27,7 +27,7 @@ using namespace Windows::UI::Xaml::Interop;
 using namespace Concurrency;
 using namespace DirectX;
 using namespace D2D1;
-using namespace VLCWINRT;
+using namespace libdirect2d_winrt_plugin;
 using namespace DX;
 
 static const float m_dipsPerInch = 96.0f;
@@ -41,10 +41,6 @@ m_compositionScaleY(1.0f),
 m_height(1.0f),
 m_width(1.0f)
 {
-	this->SizeChanged += ref new Windows::UI::Xaml::SizeChangedEventHandler(this, &DirectXPanelBase::OnSizeChanged);
-	this->CompositionScaleChanged += ref new Windows::Foundation::TypedEventHandler<SwapChainPanel^, Object^>(this, &DirectXPanelBase::OnCompositionScaleChanged);
-	Application::Current->Suspending += ref new SuspendingEventHandler(this, &DirectXPanelBase::OnSuspending);
-	Application::Current->Resuming += ref new EventHandler<Object^>(this, &DirectXPanelBase::OnResuming);
 }
 
 void D2DPanel::CreateDeviceIndependentResources()
@@ -171,7 +167,6 @@ void D2DPanel::CreateSizeDependentResources()
 		if (hr == DXGI_ERROR_DEVICE_REMOVED || hr == DXGI_ERROR_DEVICE_RESET)
 		{
 			// If the device was removed for any reason, a new device and swap chain will need to be created.
-			OnDeviceLost();
 			return;
 
 		}
@@ -298,7 +293,7 @@ void D2DPanel::Present()
 
 	if (hr == DXGI_ERROR_DEVICE_REMOVED || hr == DXGI_ERROR_DEVICE_RESET)
 	{
-		OnDeviceLost();
+		return;
 	}
 	else
 	{
@@ -306,63 +301,3 @@ void D2DPanel::Present()
 	}
 }
 
-void D2DPanel::OnSuspending(Object^ sender, SuspendingEventArgs^ e)
-{
-	critical_section::scoped_lock lock(m_criticalSection);
-	ComPtr<IDXGIDevice3> dxgiDevice;
-	m_d3dDevice.As(&dxgiDevice);
-
-	// Hints to the driver that the app is entering an idle state and that its memory can be used temporarily for other apps.
-	dxgiDevice->Trim();
-}
-
-void D2DPanel::OnSizeChanged(Object^ sender, SizeChangedEventArgs^ e)
-{
-	if (m_width != e->NewSize.Width || m_height != e->NewSize.Height)
-	{
-		critical_section::scoped_lock lock(m_criticalSection);
-
-		// Store values so they can be accessed from a background thread.
-		m_width = max(e->NewSize.Width, 1.0f);
-		m_height = max(e->NewSize.Height, 1.0f);
-
-		// Recreate size-dependent resources when the panel's size changes.
-		CreateSizeDependentResources();
-	}
-}
-
-void D2DPanel::OnCompositionScaleChanged(SwapChainPanel ^sender, Object ^args)
-{
-	if (m_compositionScaleX != CompositionScaleX || m_compositionScaleY != CompositionScaleY)
-	{
-		critical_section::scoped_lock lock(m_criticalSection);
-
-		// Store values so they can be accessed from a background thread.
-		m_compositionScaleX = this->CompositionScaleX;
-		m_compositionScaleY = this->CompositionScaleY;
-
-		// Recreate size-dependent resources when the composition scale changes.
-		CreateSizeDependentResources();
-	}
-}
-
-void D2DPanel::OnDeviceLost()
-{
-	m_loadingComplete = false;
-
-	m_swapChain = nullptr;
-
-	// Make sure the rendering state has been released.
-	m_d3dContext->OMSetRenderTargets(0, nullptr, nullptr);
-
-	m_d2dContext->SetTarget(nullptr);
-	m_d2dTargetBitmap = nullptr;
-
-	m_d2dContext = nullptr;
-	m_d2dDevice = nullptr;
-
-	m_d3dContext->Flush();
-
-	CreateDeviceResources();
-	CreateSizeDependentResources();
-}

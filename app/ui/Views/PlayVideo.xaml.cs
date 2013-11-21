@@ -1,6 +1,8 @@
-﻿using Windows.UI.Xaml.Controls;
+﻿using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
+using VLC_WINRT.ViewModels;
 
 namespace VLC_WINRT.Views
 {
@@ -12,6 +14,12 @@ namespace VLC_WINRT.Views
         public PlayVideo()
         {
             InitializeComponent();
+            this.Loaded += IntializeVLC;
+        }
+
+        private void IntializeVLC(object sender, RoutedEventArgs routedEventArgs)
+        {
+            ViewModelLocator.PlayVideoVM.InitializeVLC(VLCSwapChainPanel);
         }
 
         /// <summary>
