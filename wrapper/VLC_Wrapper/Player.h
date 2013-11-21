@@ -50,10 +50,11 @@ namespace VLC_Wrapper {
         virtual			~Player();
 
     private:
-		void			        InitializeVLC();
-        libvlc_instance_t       *p_instance;
-        libvlc_media_player_t   *p_mp;
-		SwapChainPanel			^p_panel;
+		void			           InitializeVLC();
+        libvlc_instance_t          *p_instance;
+        libvlc_media_player_t      *p_mp;
+		SwapChainPanel			   ^p_panel;
+		ComPtr<ID2D1DeviceContext> cp_d2dContext;
     };
 }
 

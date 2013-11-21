@@ -38,6 +38,7 @@ Player::Player(SwapChainPanel^ panel)
 	p_panel = panel;
 }
 
+//Todo: don't block UI during initialization
 void Player::Initialize(){
 	HRESULT hr;
 	ComPtr<IDXGIFactory2> dxgiFactory;
@@ -45,8 +46,10 @@ void Player::Initialize(){
 	ComPtr<IDXGIDevice1> dxgiDevice;
 	ComPtr<ID3D11Device> d3dDevice;
 	ComPtr<IDXGISwapChain1> swapChain1;
+	ComPtr<ID2D1Device> d2dDevice;
 
 	UINT creationFlags = D3D11_CREATE_DEVICE_BGRA_SUPPORT;
+	float dpi = Windows::Graphics::Display::DisplayProperties::LogicalDpi;
 
 	// Feature sets supported
 	const D3D_FEATURE_LEVEL featureLevels[] =
@@ -117,7 +120,12 @@ void Player::Initialize(){
 		throw new std::exception("Could not initialise libvlc!", hr);
 	}
 
+	hr = dxgiDevice->SetMaximumFrameLatency(1);
+	if (hr != S_OK) {
+		throw new std::exception("Could not initialise libvlc!", hr);
+	}
 
+	//TODO: perform the next 2 calls on the UI thread
 	ComPtr<ISwapChainPanelNative> panelNative;
 	hr = reinterpret_cast<IUnknown*>(p_panel)->QueryInterface(IID_PPV_ARGS(&panelNative));
 	if (hr != S_OK) {
@@ -130,7 +138,27 @@ void Player::Initialize(){
 		throw new std::exception("Could not initialise libvlc!", hr);
 	}
 
-	//Todo: don't block UI during initialization
+	// Create the Direct2D device object and a corresponding context.
+	hr = D2D1CreateDevice(
+		dxgiDevice.Get(),
+		nullptr,
+		&(d2dDevice)
+		);
+	if (hr != S_OK) {
+		throw new std::exception("Could not initialise libvlc!", hr);
+	}
+
+	hr = d2dDevice->CreateDeviceContext(
+		D2D1_DEVICE_CONTEXT_OPTIONS_NONE,
+		&cp_d2dContext
+		);
+	if (hr != S_OK) {
+		throw new std::exception("Could not initialise libvlc!", hr);
+	}
+
+	// Set DPI to the display's current DPI.
+	cp_d2dContext->SetDpi(dpi, dpi);
+
 	this->InitializeVLC();
 }
 
@@ -148,7 +176,7 @@ void Player::InitializeVLC(){
 	sprintf_s(ptr_astring, "--mmdevice-audioclient=0x%p", audioReg->m_AudioClient);
 
 	char ptr_vstring[40];
-	sprintf_s(ptr_vstring, "--winrt-swapchainpanel=0x%p", p_panel);
+	sprintf_s(ptr_vstring, "--winrt-d2dcontext=0x%p", cp_d2dContext);
 
 	/* Don't add any invalid options, otherwise it causes LibVLC to fail */
 	const char *argv[] = {

@@ -67,7 +67,7 @@ vlc_module_begin()
     set_category(CAT_VIDEO)
 	set_subcategory(SUBCAT_VIDEO_VOUT)
 	set_capability("vout display", 60)
-	add_integer("winrt-swapchainpanel", 0x0, NULL, NULL, true);
+	add_integer("winrt-d2dcontext", 0x0, NULL, NULL, true);
 
     set_callbacks(Open, Close)
 vlc_module_end()
@@ -92,14 +92,7 @@ struct vout_display_sys_t {
 	//TODO: check to see if these are all needed
 	picture_pool_t             *pool;
 	ID2D1Bitmap                *d2dbmp;
-	ComPtr<ID3D11Device>       d3dDevice;
-	ComPtr<ID2D1Device>        d2dDevice;
 	ComPtr<ID2D1DeviceContext> d2dContext;
-	ComPtr<IDXGISwapChain2>    d2dPanel;
-	ComPtr<IDXGIAdapter>       dxgiAdapter;
-	ComPtr<IDXGIFactory2>      dxgiFactory;
-	ComPtr<IDXGISwapChain2>    swapChain;
-	ComPtr<IDXGIDevice1>       dxgiDevice;
 };
 
 
@@ -136,10 +129,7 @@ static int Open(vlc_object_t *object)
 	vd->manage = Manage;
 	vd->control = Control;
 
-
-
-	//return CreateDeviceResources(vd);
-	return VLC_SUCCESS;
+	return CreateDeviceResources(vd);
 }
 
 static void Close(vlc_object_t * object){
@@ -170,6 +160,9 @@ static void Display(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
 {
 	vout_display_sys_t *sys = vd->sys;
 	//TODO: d2d magic
+
+	vd->sys->d2dContext->BeginDraw();
+	vd->sys->d2dContext->EndDraw();
 }
 
 static int Control(vout_display_t *vd, int query, va_list args)
@@ -248,106 +241,11 @@ static int CreateDeviceResources(vout_display_t* vd)
 	D2D1_SIZE_U size;
 	HRESULT hr;
 	vout_display_sys_t *sys = vd->sys;
-	UINT creationFlags = D3D11_CREATE_DEVICE_BGRA_SUPPORT;
 	float dpi = DisplayProperties::LogicalDpi;
 
-	// Feature sets supported
-	const D3D_FEATURE_LEVEL featureLevels[] =
-	{
-		D3D_FEATURE_LEVEL_11_1,
-		D3D_FEATURE_LEVEL_11_0,
-		D3D_FEATURE_LEVEL_10_1,
-		D3D_FEATURE_LEVEL_10_0,
-		D3D_FEATURE_LEVEL_9_3,
-		D3D_FEATURE_LEVEL_9_2,
-		D3D_FEATURE_LEVEL_9_1,
-	};
 
-	// Create the Direct3D 11 API device object.
-	hr = D3D11CreateDevice(
-		nullptr,
-		D3D_DRIVER_TYPE_HARDWARE,
-		nullptr,
-		creationFlags,
-		featureLevels,
-		ARRAYSIZE(featureLevels),
-		D3D11_SDK_VERSION,
-		&(sys->d3dDevice),
-		nullptr,
-		nullptr
-		);
-	if (hr != S_OK)
-		return VLC_EGENERIC;
-
-	// Get the Direct3D 11.1 API device.
-	hr = sys->d3dDevice.As(&sys->dxgiDevice);
-	if (hr != S_OK)
-		return VLC_EGENERIC;
-
-
-	// Get adapter.
-	hr = sys->dxgiDevice->GetAdapter(&sys->dxgiAdapter);
-	if (hr != S_OK)
-		return VLC_EGENERIC;
-
-	// Get factory.
-	hr = sys->dxgiAdapter->GetParent(IID_PPV_ARGS(&sys->dxgiFactory));
-	if (hr != S_OK)
-		return VLC_EGENERIC;
-
-	//Create the swapchain
-	DXGI_SWAP_CHAIN_DESC1 swapChainDesc = { 0 };
-	//TODO: try panel height
-	swapChainDesc.Width = vd->fmt.i_width;      // Match the size of the panel.
-	swapChainDesc.Height = vd->fmt.i_height;
-	swapChainDesc.Format = DXGI_FORMAT_B8G8R8A8_UNORM;                  // This is the most common swap chain format.
-	swapChainDesc.Stereo = false;
-	swapChainDesc.SampleDesc.Count = 1;                                 // Don't use multi-sampling.
-	swapChainDesc.SampleDesc.Quality = 0;
-	swapChainDesc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
-	swapChainDesc.BufferCount = 2;                                      // Use double buffering to enable flip.
-	swapChainDesc.SwapEffect = DXGI_SWAP_EFFECT_FLIP_SEQUENTIAL;        // All Windows Store apps must use this SwapEffect.
-	swapChainDesc.Flags = 0;
-	swapChainDesc.AlphaMode = DXGI_ALPHA_MODE_UNSPECIFIED;
-
-	// Create swap chain.
-	ComPtr<IDXGISwapChain1> swapChain;
-	hr = sys->dxgiFactory->CreateSwapChainForComposition(
-		sys->d3dDevice.Get(),
-		&swapChainDesc,
-		nullptr,
-		&swapChain
-		);
-	if (hr != S_OK)
-		return VLC_EGENERIC;
-
-	hr = swapChain.As(&sys->swapChain);
-	if (hr != S_OK)
-		return VLC_EGENERIC;
-
-
-	// Create the Direct2D device object and a corresponding context.
-	hr = D2D1CreateDevice(
-		sys->dxgiDevice.Get(),
-		nullptr,
-		&(sys->d2dDevice)
-		);
-	if (hr != S_OK)
-		return VLC_EGENERIC;
-
-	hr = sys->d2dDevice->CreateDeviceContext(
-		D2D1_DEVICE_CONTEXT_OPTIONS_NONE,
-		&(sys->d2dContext)
-		);
-	if (hr != S_OK)
-		return VLC_EGENERIC;
-
-	// Set DPI to the display's current DPI.
-	sys->d2dContext->SetDpi(dpi, dpi);
-
-	// Associate the DXGI device with the SurfaceImageSource.
-	//TODO: this with SwapChainPanel
-	//m_sisNative->SetDevice(dxgiDevice.Get());
+	int panelInt = var_CreateGetInteger(vd, "winrt-d2dcontext");
+	reinterpret_cast<IUnknown*>(panelInt)->QueryInterface(IID_PPV_ARGS(&sys->d2dContext));
 
 	size.width = vd->fmt.i_width;
 	size.height = vd->fmt.i_height;
@@ -360,24 +258,6 @@ static int CreateDeviceResources(vout_display_t* vd)
 	hr = sys->d2dContext->CreateBitmap(size, props, &sys->d2dbmp);
 	if (hr != S_OK)
 		return VLC_EGENERIC;
-
-	hr = sys->dxgiDevice->SetMaximumFrameLatency(1);
-	if (hr != S_OK)
-		return VLC_EGENERIC;
-
-	CoreDispatcher^ dispatcher = CoreApplication::GetCurrentView()->Dispatcher;
-	IDXGISwapChain2 *targetChain = sys->swapChain.Get();
-
-	dispatcher->RunAsync(CoreDispatcherPriority::Normal,
-		ref new DispatchedHandler([=]()
-	{
-		int panelInt = var_CreateGetInteger(vd, "winrt-swapchainpanel");
-		ComPtr<ISwapChainPanelNative> panelNative;
-		reinterpret_cast<IUnknown*>(panelInt)->QueryInterface(IID_PPV_ARGS(&panelNative));
-
-		// Associate swap chain with SwapChainPanel.  This must be done on the UI thread.
-		panelNative->SetSwapChain(targetChain);
-	}, CallbackContext::Any));
 
 	return VLC_SUCCESS;
 }
