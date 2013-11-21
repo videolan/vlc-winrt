@@ -30,6 +30,7 @@ using namespace Windows::UI::Core;
 using namespace Windows::UI;
 using namespace Windows::Foundation;
 using namespace Windows::System::Threading;
+using namespace D2D1;
 
 
 Player::Player(SwapChainPanel^ panel)
@@ -47,9 +48,17 @@ void Player::Initialize(){
 	ComPtr<ID3D11Device> d3dDevice;
 	ComPtr<IDXGISwapChain1> swapChain1;
 	ComPtr<ID2D1Device> d2dDevice;
+	ComPtr<ID2D1Bitmap1> d2dTargetBitmap;
 
 	UINT creationFlags = D3D11_CREATE_DEVICE_BGRA_SUPPORT;
 	float dpi = Windows::Graphics::Display::DisplayProperties::LogicalDpi;
+
+	D2D1_BITMAP_PROPERTIES1 bitmapProperties =
+		BitmapProperties1(
+		D2D1_BITMAP_OPTIONS_TARGET | D2D1_BITMAP_OPTIONS_CANNOT_DRAW,
+		PixelFormat(DXGI_FORMAT_B8G8R8A8_UNORM, D2D1_ALPHA_MODE_PREMULTIPLIED),
+		dpi,
+		dpi);
 
 	// Feature sets supported
 	const D3D_FEATURE_LEVEL featureLevels[] =
@@ -158,6 +167,28 @@ void Player::Initialize(){
 
 	// Set DPI to the display's current DPI.
 	cp_d2dContext->SetDpi(dpi, dpi);
+
+	ComPtr<IDXGISurface> dxgiBackBuffer;
+	hr = swapChain->GetBuffer(0, IID_PPV_ARGS(&dxgiBackBuffer));
+	if (hr != S_OK) {
+		throw new std::exception("Could not initialise libvlc!", hr);
+	}
+
+	
+	
+
+	//set d2d target
+	hr = cp_d2dContext->CreateBitmapFromDxgiSurface(
+		dxgiBackBuffer.Get(),
+		&bitmapProperties,
+		&d2dTargetBitmap
+		);
+
+	if (hr != S_OK) {
+		throw new std::exception("Could not initialise libvlc!", hr);
+	}
+
+	cp_d2dContext->SetTarget(d2dTargetBitmap.Get());
 
 	this->InitializeVLC();
 }

@@ -162,7 +162,8 @@ static void Display(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
 	//TODO: d2d magic
 
 	vd->sys->d2dContext->BeginDraw();
-	vd->sys->d2dContext->EndDraw();
+	vd->sys->d2dContext->DrawBitmap(sys->d2dbmp, NULL);
+	HRESULT hr = vd->sys->d2dContext->EndDraw();
 }
 
 static int Control(vout_display_t *vd, int query, va_list args)
