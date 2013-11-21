@@ -174,9 +174,6 @@ void Player::Initialize(){
 		throw new std::exception("Could not initialise libvlc!", hr);
 	}
 
-	
-	
-
 	//set d2d target
 	hr = cp_d2dContext->CreateBitmapFromDxgiSurface(
 		dxgiBackBuffer.Get(),

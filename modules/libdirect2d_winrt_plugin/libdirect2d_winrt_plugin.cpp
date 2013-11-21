@@ -153,17 +153,7 @@ static int OpenDisplay(vout_display_t *vd)
 
 static void CloseDisplay(vout_display_t *vd)
 {
-
-}
-
-static void Display(vout_display_t *vd, picture_t *picture, subpicture_t *subpicture)
-{
 	vout_display_sys_t *sys = vd->sys;
-	//TODO: d2d magic
-
-	vd->sys->d2dContext->BeginDraw();
-	vd->sys->d2dContext->DrawBitmap(sys->d2dbmp, NULL);
-	HRESULT hr = vd->sys->d2dContext->EndDraw();
 }
 
 static int Control(vout_display_t *vd, int query, va_list args)
@@ -204,7 +194,6 @@ static picture_pool_t *Pool(vout_display_t *vd, unsigned count)
 	return sys->pool;
 }
 
-
 /**
 * Performs set up of ID2D1Bitmap memory ready for blitting
 */
@@ -225,14 +214,23 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
 			static_cast<UINT>(updateRect.Right),
 			static_cast<UINT>(updateRect.Bottom)), picture->p[0].p_pixels, picture->p[0].i_pitch);*/
 
-#ifndef NDEBUG
-		msg_Dbg(vd, "Bitmap dbg: pitch = %d, bitmap = %p", picture->p[0].i_pitch, sys->d2dbmp);
-#endif
 	}
 
 	VLC_UNUSED(subpicture);
 }
 
+static void Display(vout_display_t *vd, picture_t *picture, subpicture_t *subpicture)
+{
+	vout_display_sys_t *sys = vd->sys;
+	//TODO: d2d magic
+
+	vd->sys->d2dContext->BeginDraw();
+	vd->sys->d2dContext->DrawBitmap(sys->d2dbmp, NULL);
+	HRESULT hr = vd->sys->d2dContext->EndDraw();
+
+	picture_Release(picture);
+	VLC_UNUSED(subpicture);
+}
 
 // Initialize hardware-dependent resources.
 static int CreateDeviceResources(vout_display_t* vd)

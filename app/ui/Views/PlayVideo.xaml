@@ -22,8 +22,6 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <SwapChainPanel x:Name="VLCSwapChainPanel" ></SwapChainPanel>
-        <Grid Tapped="ScreenTapped">
-        </Grid>
     </Grid>
     <Page.TopAppBar>
         <AppBar>
