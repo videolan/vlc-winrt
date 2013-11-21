@@ -43,6 +43,8 @@
 
 using namespace concurrency;
 using namespace Platform;
+using namespace Microsoft::WRL;
+using namespace Windows::Graphics::Display;
 
 
 #include <vlc_common.h>
@@ -75,6 +77,7 @@ static void           Display(vout_display_t *vd, picture_t *picture, subpicture
 static int            Control(vout_display_t *vd, int query, va_list args);
 static void           Manage(vout_display_t *vd);
 static void           Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpicture);
+static void           CreateDeviceResources(vout_display_t* vd);
 
 /* */
 struct vout_display_sys_t {
@@ -86,7 +89,12 @@ struct vout_display_sys_t {
 	int height;
 
 	/* */
-	picture_pool_t *pool;
+	//TODO: check to see if these are all needed
+	picture_pool_t             *pool;
+	ID2D1Bitmap                *d2dbmp;
+	ComPtr<ID3D11Device>       d3dDevice;
+	ComPtr<ID2D1Device>        d2dDevice;
+	ComPtr<ID2D1DeviceContext> d2dContext;
 };
 
 
@@ -123,10 +131,19 @@ static int Open(vlc_object_t *object)
 	vd->manage = Manage;
 	vd->control = Control;
 
+	CreateDeviceResources(vd);
+
 	return 0;
 }
 
-static void Close(vlc_object_t *){
+static void Close(vlc_object_t * object){
+	vout_display_t *vd = (vout_display_t *) object;
+
+	if (vd->sys->pool)
+		picture_pool_Delete(vd->sys->pool);
+
+	free(vd->sys);
+
 	return;
 }
 
@@ -194,22 +211,87 @@ static picture_pool_t *Pool(vout_display_t *vd, unsigned count)
 static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpicture)
 {
 	vout_display_sys_t *sys = vd->sys;
-//
-//	if (sys->d2_render_target && sys->d2_bitmap) {
-//
-//		HRESULT hr = ID2D1Bitmap_CopyFromMemory(sys->d2_bitmap,
-//			NULL /*&r_src*/,
-//			picture->p[0].p_pixels,
-//			picture->p[0].i_pitch);
-//		if (hr != S_OK)
-//			msg_Err(vd, "Failed to copy bitmap memory (hr = 0x%x)!",
-//			(unsigned) hr);
-//
-//#ifndef NDEBUG
-//		/*msg_Dbg(vd, "Bitmap dbg: target = %p, pitch = %d, bitmap = %p",
-//		sys->d2_render_target, pitch, sys->d2_bitmap);*/
-//#endif
-//	}
+
+	if (sys->d2dbmp) {
+		HRESULT hr =  sys->d2dbmp->CopyFromMemory(NULL, picture->p[0].p_pixels, picture->p[0].i_pitch);
+
+		if (hr != S_OK)
+			msg_Err(vd, "Failed to copy bitmap memory (hr = 0x%x)!",
+			(unsigned) hr);
+
+	/*	HRESULT hr = sys->d2dbmp->CopyFromMemory(&D2D1::RectU(static_cast<UINT>(updateRect.Left),
+			static_cast<UINT>(updateRect.Top),
+			static_cast<UINT>(updateRect.Right),
+			static_cast<UINT>(updateRect.Bottom)), picture->p[0].p_pixels, picture->p[0].i_pitch);*/
+
+#ifndef NDEBUG
+		msg_Dbg(vd, "Bitmap dbg: pitch = %d, bitmap = %p", picture->p[0].i_pitch, sys->d2dbmp);
+#endif
+	}
 
 	VLC_UNUSED(subpicture);
+}
+
+
+// Initialize hardware-dependent resources.
+static void CreateDeviceResources(vout_display_t* vd)
+{
+	vout_display_sys_t *sys = vd->sys;
+
+	// This flag adds support for surfaces with a different color channel ordering
+	// than the API default. It is required for compatibility with Direct2D.
+	UINT creationFlags = D3D11_CREATE_DEVICE_BGRA_SUPPORT;
+
+	// This array defines the set of DirectX hardware feature levels this app will support.
+	// Note the ordering should be preserved.
+	// Don't forget to declare your application's minimum required feature level in its
+	// description.  All applications are assumed to support 9.1 unless otherwise stated.
+	const D3D_FEATURE_LEVEL featureLevels[] =
+	{
+		D3D_FEATURE_LEVEL_11_1,
+		D3D_FEATURE_LEVEL_11_0,
+		D3D_FEATURE_LEVEL_10_1,
+		D3D_FEATURE_LEVEL_10_0,
+		D3D_FEATURE_LEVEL_9_3,
+		D3D_FEATURE_LEVEL_9_2,
+		D3D_FEATURE_LEVEL_9_1,
+	};
+
+	// Create the Direct3D 11 API device object.
+	D3D11CreateDevice(
+		nullptr,                        // Specify nullptr to use the default adapter.
+		D3D_DRIVER_TYPE_HARDWARE,
+		nullptr,
+		creationFlags,                  // Set debug and Direct2D compatibility flags.
+		featureLevels,                  // List of feature levels this app can support.
+		ARRAYSIZE(featureLevels),
+		D3D11_SDK_VERSION,              // Always set this to D3D11_SDK_VERSION for Metro style apps.
+		&(sys->d3dDevice),                   // Returns the Direct3D device created.
+		nullptr,
+		nullptr
+		);
+
+	// Get the Direct3D 11.1 API device.
+	ComPtr<IDXGIDevice> dxgiDevice;
+	sys->d3dDevice.As(&dxgiDevice);
+
+	// Create the Direct2D device object and a corresponding context.
+	D2D1CreateDevice(
+		dxgiDevice.Get(),
+		nullptr,
+		&(sys->d2dDevice)
+		);
+
+
+	sys->d2dDevice->CreateDeviceContext(
+		D2D1_DEVICE_CONTEXT_OPTIONS_NONE,
+		&(sys->d2dContext)
+		);
+
+	// Set DPI to the display's current DPI.
+	sys->d2dContext->SetDpi(DisplayProperties::LogicalDpi, DisplayProperties::LogicalDpi);
+
+	// Associate the DXGI device with the SurfaceImageSource.
+	//TODO: this with SwapChainPanel
+	//m_sisNative->SetDevice(dxgiDevice.Get());
 }
