@@ -29,7 +29,7 @@
 #include "pch.h"
 #include "targetver.h"
 #include <ppltasks.h>
-#include "D2DPanel.h"
+#include <windows.ui.xaml.media.dxinterop.h>
 
 #ifndef WIN32_LEAN_AND_MEAN
 #define WIN32_LEAN_AND_MEAN /* Exclude rarely-used stuff from Windows headers */
@@ -46,7 +46,8 @@ using namespace concurrency;
 using namespace Platform;
 using namespace Microsoft::WRL;
 using namespace Windows::Graphics::Display;
-
+using namespace Windows::ApplicationModel::Core;
+using namespace Windows::UI::Core;
 
 #include <vlc_common.h>
 #include <vlc_plugin.h>
@@ -66,6 +67,7 @@ vlc_module_begin()
     set_category(CAT_VIDEO)
 	set_subcategory(SUBCAT_VIDEO_VOUT)
 	set_capability("vout display", 60)
+	add_integer("winrt-swapchainpanel", 0x0, NULL, NULL, true);
 
     set_callbacks(Open, Close)
 vlc_module_end()
@@ -78,13 +80,10 @@ static void           Display(vout_display_t *vd, picture_t *picture, subpicture
 static int            Control(vout_display_t *vd, int query, va_list args);
 static void           Manage(vout_display_t *vd);
 static void           Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpicture);
-static int           CreateDeviceResources(vout_display_t* vd);
+static int            CreateDeviceResources(vout_display_t* vd);
 
 /* */
 struct vout_display_sys_t {
-	/* */
-	libdirect2d_winrt_plugin::D2DPanel^ d2dPanel;
-
 	/* */
 	int width;
 	int height;
@@ -96,6 +95,11 @@ struct vout_display_sys_t {
 	ComPtr<ID3D11Device>       d3dDevice;
 	ComPtr<ID2D1Device>        d2dDevice;
 	ComPtr<ID2D1DeviceContext> d2dContext;
+	ComPtr<IDXGISwapChain2>    d2dPanel;
+	ComPtr<IDXGIAdapter>       dxgiAdapter;
+	ComPtr<IDXGIFactory2>      dxgiFactory;
+	ComPtr<IDXGISwapChain2>    swapChain;
+	ComPtr<IDXGIDevice1>       dxgiDevice;
 };
 
 
@@ -131,6 +135,8 @@ static int Open(vlc_object_t *object)
 	vd->display = Display;
 	vd->manage = Manage;
 	vd->control = Control;
+
+
 
 	return CreateDeviceResources(vd);
 }
@@ -240,7 +246,6 @@ static int CreateDeviceResources(vout_display_t* vd)
 	D2D1_PIXEL_FORMAT pixFormat;
 	D2D1_SIZE_U size;
 	HRESULT hr;
-	ComPtr<IDXGIDevice> dxgiDevice;
 	vout_display_sys_t *sys = vd->sys;
 	UINT creationFlags = D3D11_CREATE_DEVICE_BGRA_SUPPORT;
 	float dpi = DisplayProperties::LogicalDpi;
@@ -274,13 +279,55 @@ static int CreateDeviceResources(vout_display_t* vd)
 		return VLC_EGENERIC;
 
 	// Get the Direct3D 11.1 API device.
-	hr = sys->d3dDevice.As(&dxgiDevice);
+	hr = sys->d3dDevice.As(&sys->dxgiDevice);
 	if (hr != S_OK)
 		return VLC_EGENERIC;
 
+
+	// Get adapter.
+	hr = sys->dxgiDevice->GetAdapter(&sys->dxgiAdapter);
+	if (hr != S_OK)
+		return VLC_EGENERIC;
+
+	// Get factory.
+	hr = sys->dxgiAdapter->GetParent(IID_PPV_ARGS(&sys->dxgiFactory));
+	if (hr != S_OK)
+		return VLC_EGENERIC;
+
+	//Create the swapchain
+	DXGI_SWAP_CHAIN_DESC1 swapChainDesc = { 0 };
+	//TODO: try panel height
+	swapChainDesc.Width = vd->fmt.i_width;      // Match the size of the panel.
+	swapChainDesc.Height = vd->fmt.i_height;
+	swapChainDesc.Format = DXGI_FORMAT_B8G8R8A8_UNORM;                  // This is the most common swap chain format.
+	swapChainDesc.Stereo = false;
+	swapChainDesc.SampleDesc.Count = 1;                                 // Don't use multi-sampling.
+	swapChainDesc.SampleDesc.Quality = 0;
+	swapChainDesc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
+	swapChainDesc.BufferCount = 2;                                      // Use double buffering to enable flip.
+	swapChainDesc.SwapEffect = DXGI_SWAP_EFFECT_FLIP_SEQUENTIAL;        // All Windows Store apps must use this SwapEffect.
+	swapChainDesc.Flags = 0;
+	swapChainDesc.AlphaMode = DXGI_ALPHA_MODE_UNSPECIFIED;
+
+	// Create swap chain.
+	ComPtr<IDXGISwapChain1> swapChain;
+	hr = sys->dxgiFactory->CreateSwapChainForComposition(
+		sys->d3dDevice.Get(),
+		&swapChainDesc,
+		nullptr,
+		&swapChain
+		);
+	if (hr != S_OK)
+		return VLC_EGENERIC;
+
+	hr = swapChain.As(&sys->swapChain);
+	if (hr != S_OK)
+		return VLC_EGENERIC;
+
+
 	// Create the Direct2D device object and a corresponding context.
 	hr = D2D1CreateDevice(
-		dxgiDevice.Get(),
+		sys->dxgiDevice.Get(),
 		nullptr,
 		&(sys->d2dDevice)
 		);
@@ -312,6 +359,24 @@ static int CreateDeviceResources(vout_display_t* vd)
 	hr = sys->d2dContext->CreateBitmap(size, props, &sys->d2dbmp);
 	if (hr != S_OK)
 		return VLC_EGENERIC;
+
+	hr = sys->dxgiDevice->SetMaximumFrameLatency(1);
+	if (hr != S_OK)
+		return VLC_EGENERIC;
+
+	CoreDispatcher^ dispatcher = CoreApplication::GetCurrentView()->Dispatcher;
+	IDXGISwapChain2 *targetChain = sys->swapChain.Get();
+
+	dispatcher->RunAsync(CoreDispatcherPriority::Normal,
+		ref new DispatchedHandler([=]()
+	{
+		int panelInt = var_CreateGetInteger(vd, "winrt-swapchainpanel");
+		ComPtr<ISwapChainPanelNative> panelNative;
+		reinterpret_cast<IUnknown*>(panelInt)->QueryInterface(IID_PPV_ARGS(&panelNative));
+
+		// Associate swap chain with SwapChainPanel.  This must be done on the UI thread.
+		panelNative->SetSwapChain(targetChain);
+	}, CallbackContext::Any));
 
 	return VLC_SUCCESS;
 }

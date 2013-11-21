@@ -31,51 +31,6 @@ using namespace Windows::UI;
 using namespace Windows::Foundation;
 using namespace Windows::System::Threading;
 
-//Dont begin copying new frames into memory until the old one is rendered on the UI thread.
-//start 2 signalled.
-static HANDLE displayLock = CreateSemaphoreExW( NULL,           // default security attributes
-                                    1,  // initial count
-                                    4,  // maximum count
-                                    L"displaysem",0,SYNCHRONIZE|SEMAPHORE_MODIFY_STATE);
-static HANDLE xamlLock = CreateSemaphoreExW( NULL,           // default security attributes
-                                    1,  // initial count
-                                    4,  // maximum count
-                                    L"xamlsem",0,SYNCHRONIZE|SEMAPHORE_MODIFY_STATE);
-static byte* pixelData;
-static VLCD2dImageSource^ vlcImageSource;
-static UINT frameWidth = 1024;
-static UINT frameHeight = 768;
-static UINT pitch;
-static int pixelBufferSize;
-
-
-void *Player::Lock(void* opqaue, void** planes){
-    //Wait for multiple
-    WaitForSingleObjectEx(displayLock, INFINITE, false);
-    WaitForSingleObjectEx(xamlLock, INFINITE, false);
-
-    *planes = pixelData;
-    return NULL;
-}
-
-void Player::Unlock(void* opaque, void* picture, void** planes){
-    //signal
-    ReleaseSemaphore(displayLock, 1, NULL);
-    return;
-}
-void Player::Display(void* opaque, void* picture){
-    //do even more stuff
-    vlcImageSource->Dispatcher->RunAsync(CoreDispatcherPriority::Normal, ref new DispatchedHandler( []
-    {
-        vlcImageSource->BeginDraw(Rect(0, 0, (float)frameWidth, (float)frameHeight));
-        vlcImageSource->DrawFrame(frameHeight, frameWidth, pixelData, pitch, Rect(0, 0, (float)frameWidth, (float)frameHeight));
-        vlcImageSource->EndDraw();
-        //signal
-        ReleaseSemaphore(xamlLock, 1, NULL);
-    }));
-
-    return;
-}
 
 Player::Player(Windows::UI::Xaml::Controls::SwapChainPanel^ swapChainPanel)
 {
@@ -90,8 +45,11 @@ Player::Player(Windows::UI::Xaml::Controls::SwapChainPanel^ swapChainPanel)
         OutputDebugStringW(L"Waiting for audio\n");
     }
 
-    char ptr_string[40];
-    sprintf_s(ptr_string, "--mmdevice-audioclient=0x%p", audioReg->m_AudioClient);
+    char ptr_astring[40];
+	sprintf_s(ptr_astring, "--mmdevice-audioclient=0x%p", audioReg->m_AudioClient);
+
+	char ptr_vstring[40];
+	sprintf_s(ptr_vstring, "--winrt-swapchainpanel=0x%p", swapChainPanel);
 
     /* Don't add any invalid options, otherwise it causes LibVLC to fail */
     const char *argv[] = {
@@ -101,8 +59,9 @@ Player::Player(Windows::UI::Xaml::Controls::SwapChainPanel^ swapChainPanel)
         "--no-video-title-show",
         "--no-stats",
         "--no-drop-late-frames",
-        "--aout=mmdevice",
-        ptr_string,
+		ptr_vstring
+        //"--aout=mmdevice",
+        //ptr_astring,
         //"--avcodec-fast"
     };
 
@@ -111,8 +70,6 @@ Player::Player(Windows::UI::Xaml::Controls::SwapChainPanel^ swapChainPanel)
         throw new std::exception("Could not initialise libvlc!",1);
         return;
     }
-
-	p_swapChainPanel = swapChainPanel;
 }
 
 void Player::Open(Platform::String^ mrl) {
@@ -123,19 +80,6 @@ void Player::Open(Platform::String^ mrl) {
     
     libvlc_media_t* m = libvlc_media_new_location(this->p_instance, p_mrl);
     p_mp = libvlc_media_player_new_from_media(m);
-
-    //we're using vmem so format is always RGB
-    //unsigned int bitsPerPixel = 32; // hard coded for RV32 videos
-    //pitch = (frameWidth*bitsPerPixel)/8;
-
-    //hard coded pixel data allocation for sample video
-    //pixelBufferSize = (frameWidth*frameHeight*bitsPerPixel)/8;
-    //pixelData = new byte[pixelBufferSize];
-
-   // libvlc_video_set_format(p_mp, "RV32", frameWidth, frameHeight, pitch);
-   // libvlc_video_set_callbacks(p_mp, (libvlc_video_lock_cb)(this->Lock),
-    //    (libvlc_video_unlock_cb)(this->Unlock),
-    //    (libvlc_video_display_cb)(this->Display), NULL);
 
     libvlc_media_release (m);
     delete[](p_mrl);
@@ -169,10 +113,9 @@ int64 Player::GetLength(){
 }
 
 Player::~Player(){
-    libvlc_media_player_stop(p_mp);
-    libvlc_media_player_release(p_mp);
-    libvlc_release(p_instance);
-    delete(pixelData);
+	libvlc_media_player_stop(p_mp);
+	libvlc_media_player_release(p_mp);
+	libvlc_release(p_instance);
 }
 
 

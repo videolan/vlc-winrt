@@ -51,10 +51,6 @@ namespace VLC_Wrapper {
     private:
         libvlc_instance_t       *p_instance;
         libvlc_media_player_t   *p_mp;
-		SwapChainPanel			^p_swapChainPanel;
-        static void             *Lock(void* opaque, void** planes);
-        static void             Unlock(void* opaque, void* picture, void** planes);
-        static void             Display(void* opaque, void* picture);
     };
 }
 

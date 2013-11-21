@@ -20,7 +20,7 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" Tapped="ScreenTapped">
-            <libdirect2DWinrtPlugin:D2DPanel x:Name="VLCSwapChainPanel"></libdirect2DWinrtPlugin:D2DPanel>
+            <SwapChainPanel x:Name="VLCSwapChainPanel"></SwapChainPanel>
         </Grid>
     </Grid>
     <Page.TopAppBar>
