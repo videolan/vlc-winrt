@@ -14,13 +14,15 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
-    <!--TODO: put in D3D interop here and invoke to libVLC -->
     <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0" Tapped="ScreenTapped">
-            <SwapChainPanel x:Name="VLCSwapChainPanel"></SwapChainPanel>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <SwapChainPanel x:Name="VLCSwapChainPanel" ></SwapChainPanel>
+        <Grid Tapped="ScreenTapped">
         </Grid>
     </Grid>
     <Page.TopAppBar>
