@@ -46,7 +46,6 @@ void Player::Initialize(){
 	ComPtr<IDXGIAdapter> dxgiAdapter;
 	ComPtr<IDXGIDevice1> dxgiDevice;
 	ComPtr<ID3D11Device> d3dDevice;
-	ComPtr<IDXGISwapChain1> swapChain1;
 	ComPtr<ID2D1Device> d2dDevice;
 	ComPtr<ID2D1Bitmap1> d2dTargetBitmap;
 
@@ -118,12 +117,11 @@ void Player::Initialize(){
 	swapChainDesc.Flags = 0;
 	swapChainDesc.AlphaMode = DXGI_ALPHA_MODE_UNSPECIFIED;
 
-	ComPtr<IDXGISwapChain1> swapChain;
 	hr = dxgiFactory->CreateSwapChainForComposition(
 		d3dDevice.Get(),
 		&swapChainDesc,
 		nullptr,
-		&swapChain
+		&cp_swapChain
 		);
 	if (hr != S_OK) {
 		throw new std::exception("Could not initialise libvlc!", hr);
@@ -142,7 +140,7 @@ void Player::Initialize(){
 	}
 
 	// Associate swap chain with SwapChainPanel.  This must be done on the UI thread.
-	hr = panelNative->SetSwapChain(swapChain.Get());
+	hr = panelNative->SetSwapChain(cp_swapChain.Get());
 	if (hr != S_OK) {
 		throw new std::exception("Could not initialise libvlc!", hr);
 	}
@@ -169,7 +167,7 @@ void Player::Initialize(){
 	cp_d2dContext->SetDpi(dpi, dpi);
 
 	ComPtr<IDXGISurface> dxgiBackBuffer;
-	hr = swapChain->GetBuffer(0, IID_PPV_ARGS(&dxgiBackBuffer));
+	hr = cp_swapChain->GetBuffer(0, IID_PPV_ARGS(&dxgiBackBuffer));
 	if (hr != S_OK) {
 		throw new std::exception("Could not initialise libvlc!", hr);
 	}
@@ -203,18 +201,23 @@ void Player::InitializeVLC(){
 	char ptr_astring[40];
 	sprintf_s(ptr_astring, "--mmdevice-audioclient=0x%p", audioReg->m_AudioClient);
 
-	char ptr_vstring[40];
-	sprintf_s(ptr_vstring, "--winrt-d2dcontext=0x%p", cp_d2dContext);
+	char ptr_d2dstring[40];
+	sprintf_s(ptr_d2dstring, "--winrt-d2dcontext=0x%p", cp_d2dContext);
+
+	char ptr_scstring[40];
+	sprintf_s(ptr_scstring, "--winrt-swapchain=0x%p", cp_swapChain);
 
 	/* Don't add any invalid options, otherwise it causes LibVLC to fail */
 	const char *argv[] = {
 		"-I", "dummy",
 		"--no-osd",
-		"--verbose=2",
+		"--verbose=3",
 		"--no-video-title-show",
 		"--no-stats",
 		"--no-drop-late-frames",
-		ptr_vstring
+		ptr_d2dstring,
+		ptr_scstring
+
 		//"--aout=mmdevice",
 		//ptr_astring,
 		//"--avcodec-fast"

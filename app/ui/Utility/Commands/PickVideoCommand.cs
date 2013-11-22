@@ -52,7 +52,6 @@ namespace VLC_WINRT.Utility.Commands
                 Debug.WriteLine("Opening file: " + file.Path);
                 ViewModelLocator.PlayVideoVM.CurrentFile = file;
                 ((Frame) Window.Current.Content).Navigate(typeof (PlayVideo));
-                ViewModelLocator.PlayVideoVM.Play();
             }
             else
             {

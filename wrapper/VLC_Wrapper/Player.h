@@ -55,6 +55,7 @@ namespace VLC_Wrapper {
         libvlc_media_player_t      *p_mp;
 		SwapChainPanel			   ^p_panel;
 		ComPtr<ID2D1DeviceContext> cp_d2dContext;
+		ComPtr<IDXGISwapChain1>    cp_swapChain;
     };
 }
 

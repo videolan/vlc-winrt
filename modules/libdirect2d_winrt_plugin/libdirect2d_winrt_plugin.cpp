@@ -68,6 +68,7 @@ vlc_module_begin()
 	set_subcategory(SUBCAT_VIDEO_VOUT)
 	set_capability("vout display", 60)
 	add_integer("winrt-d2dcontext", 0x0, NULL, NULL, true);
+	add_integer("winrt-swapchain", 0x0, NULL, NULL, true);
 
     set_callbacks(Open, Close)
 vlc_module_end()
@@ -93,6 +94,7 @@ struct vout_display_sys_t {
 	picture_pool_t             *pool;
 	ID2D1Bitmap                *d2dbmp;
 	ComPtr<ID2D1DeviceContext> d2dContext;
+	ComPtr<IDXGISwapChain2>    swapChain;
 };
 
 
@@ -129,7 +131,13 @@ static int Open(vlc_object_t *object)
 	vd->manage = Manage;
 	vd->control = Control;
 
-	return CreateDeviceResources(vd);
+	int panelInt = var_CreateGetInteger(vd, "winrt-d2dcontext");
+	reinterpret_cast<IUnknown*>(panelInt)->QueryInterface(IID_PPV_ARGS(&sys->d2dContext));
+
+	int swapChainInt = var_CreateGetInteger(vd, "winrt-swapchain");
+	reinterpret_cast<IUnknown*>(swapChainInt)->QueryInterface(IID_PPV_ARGS(&sys->swapChain));
+
+	return VLC_SUCCESS;
 }
 
 static void Close(vlc_object_t * object){
@@ -200,63 +208,70 @@ static picture_pool_t *Pool(vout_display_t *vd, unsigned count)
 static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpicture)
 {
 	vout_display_sys_t *sys = vd->sys;
+	D2D1_BITMAP_PROPERTIES props;
+	D2D1_PIXEL_FORMAT pixFormat;
+	D2D1_SIZE_U size;
+	HRESULT hr;
+	float dpi = DisplayProperties::LogicalDpi;
+	
+	vd->sys->d2dContext->BeginDraw();
+	vd->sys->d2dContext->Clear(D2D1::ColorF(D2D1::ColorF::CornflowerBlue));
 
-	if (sys->d2dbmp) 
+	/*if (sys->d2dbmp)
 	{
-		HRESULT hr =  sys->d2dbmp->CopyFromMemory(NULL, picture->p[0].p_pixels, picture->p[0].i_pitch);
+		
+		HRESULT hr = sys->d2dbmp->CopyFromMemory(&D2D1::RectU(static_cast<UINT>(0),
+			static_cast<UINT>(picture->format.i_height),
+			static_cast<UINT>(picture->format.i_width),
+			static_cast<UINT>(0)), picture->p[0].p_pixels, picture->p[0].i_pitch);
 
 		if (hr != S_OK)
 			msg_Err(vd, "Failed to copy bitmap memory (hr = 0x%x)!",
 			(unsigned) hr);
 
-	/*	HRESULT hr = sys->d2dbmp->CopyFromMemory(&D2D1::RectU(static_cast<UINT>(updateRect.Left),
-			static_cast<UINT>(updateRect.Top),
-			static_cast<UINT>(updateRect.Right),
-			static_cast<UINT>(updateRect.Bottom)), picture->p[0].p_pixels, picture->p[0].i_pitch);*/
-
 	}
+	else{*/
+
+		size.width = vd->fmt.i_width;
+		size.height = vd->fmt.i_height;
+		pixFormat.alphaMode = D2D1_ALPHA_MODE_IGNORE;
+		pixFormat.format = DXGI_FORMAT_B8G8R8X8_UNORM;
+		props.pixelFormat = pixFormat;
+		props.dpiX = dpi;
+		props.dpiY = dpi;
+
+		hr = sys->d2dContext->CreateBitmap(size, picture->p[0].p_pixels, picture->p[0].i_pitch, props, &sys->d2dbmp);
+	//}
+
+
+		D2D1_RECT_F r_src{ 0.0f, picture->format.i_height, picture->format.i_width, 0.0f };
+
+		//TODO: d2d magic
+
+		
+		vd->sys->d2dContext->DrawBitmap(sys->d2dbmp, r_src);
+
+		hr = vd->sys->d2dContext->EndDraw();
+
 
 	VLC_UNUSED(subpicture);
 }
+
+static int frameCount = 0;
 
 static void Display(vout_display_t *vd, picture_t *picture, subpicture_t *subpicture)
 {
-	vout_display_sys_t *sys = vd->sys;
-	//TODO: d2d magic
+	
 
-	vd->sys->d2dContext->BeginDraw();
-	vd->sys->d2dContext->DrawBitmap(sys->d2dbmp, NULL);
-	HRESULT hr = vd->sys->d2dContext->EndDraw();
+	//swap chain present!
+	DXGI_PRESENT_PARAMETERS parameters = { 0 };
+	parameters.DirtyRectsCount = 0;
+	parameters.pDirtyRects = nullptr;
+	parameters.pScrollRect = nullptr;
+	parameters.pScrollOffset = nullptr;
+
+	HRESULT hr = vd->sys->swapChain->Present1(1, 0, &parameters);
 
 	picture_Release(picture);
 	VLC_UNUSED(subpicture);
-}
-
-// Initialize hardware-dependent resources.
-static int CreateDeviceResources(vout_display_t* vd)
-{
-	D2D1_BITMAP_PROPERTIES props;
-	D2D1_PIXEL_FORMAT pixFormat;
-	D2D1_SIZE_U size;
-	HRESULT hr;
-	vout_display_sys_t *sys = vd->sys;
-	float dpi = DisplayProperties::LogicalDpi;
-
-
-	int panelInt = var_CreateGetInteger(vd, "winrt-d2dcontext");
-	reinterpret_cast<IUnknown*>(panelInt)->QueryInterface(IID_PPV_ARGS(&sys->d2dContext));
-
-	size.width = vd->fmt.i_width;
-	size.height = vd->fmt.i_height;
-	pixFormat.alphaMode = D2D1_ALPHA_MODE_IGNORE;
-	pixFormat.format = DXGI_FORMAT_B8G8R8X8_UNORM;
-	props.pixelFormat = pixFormat;
-	props.dpiX = dpi;
-	props.dpiY = dpi;
-	
-	hr = sys->d2dContext->CreateBitmap(size, props, &sys->d2dbmp);
-	if (hr != S_OK)
-		return VLC_EGENERIC;
-
-	return VLC_SUCCESS;
 }
