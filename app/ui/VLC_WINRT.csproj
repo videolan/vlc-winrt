@@ -548,6 +548,9 @@
     <Content Include="..\..\vlc\plugins\video_chroma\librv32_plugin.dll">
       <Link>plugins\video_chroma\librv32_plugin.dll</Link>
     </Content>
+    <Content Include="..\..\vlc\plugins\video_chroma\libswscale_plugin.dll">
+      <Link>plugins\video_chroma\libswscale_plugin.dll</Link>
+    </Content>
     <Content Include="..\..\vlc\plugins\video_chroma\libyuy2_i420_plugin.dll">
       <Link>plugins\video_chroma\libyuy2_i420_plugin.dll</Link>
     </Content>
