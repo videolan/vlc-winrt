@@ -218,47 +218,36 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
 	HRESULT hr;
 	float dpi = DisplayProperties::LogicalDpi;
 	double aspectRatio;
+
+	if (sys->d2dbmp){
+		// cleanup previous bmp
+		sys->d2dbmp->Release();
+		sys->d2dbmp = nullptr;
+	}
 	
 	sys->d2dContext->BeginDraw();
 	sys->d2dContext->Clear(D2D1::ColorF(D2D1::ColorF::Black));
 
-	//if (sys->d2dbmp)
-	//{
-	//	
-	//	HRESULT hr = sys->d2dbmp->CopyFromMemory(&D2D1::RectU(static_cast<UINT>(0),
-	//		static_cast<UINT>(picture->format.i_height),
-	//		static_cast<UINT>(picture->format.i_width),
-	//		static_cast<UINT>(0)), picture->p[0].p_pixels, picture->p[0].i_pitch);
+	size.width = cfg->display.width;
+	size.height = cfg->display.height;
+	aspectRatio = ((double) size.width) / ((double) size.height);
+	pixFormat.alphaMode = D2D1_ALPHA_MODE_IGNORE;
+	pixFormat.format = DXGI_FORMAT_B8G8R8X8_UNORM;
+	props.pixelFormat = pixFormat;
+	props.dpiX = dpi;
+	props.dpiY = dpi;
+	hr = sys->d2dContext->CreateBitmap(size, picture->p[0].p_pixels, picture->p[0].i_pitch, props, &sys->d2dbmp);
+	unsigned int swapChainWidth;
+	unsigned int swapChainHeight;
+	sys->swapChain->GetSourceSize(&swapChainWidth, &swapChainHeight);
+	double frameWidth = swapChainWidth;
+	double frameHeight = ((double) frameWidth) / aspectRatio;
+	double offset = ((double) swapChainHeight - frameHeight) / 2.0;
+	D2D1_RECT_F r_src{ 0, frameHeight, swapChainWidth, 0};
+	vd->sys->d2dContext->SetTransform(D2D1::Matrix3x2F::Translation(0.0f, offset));
+	vd->sys->d2dContext->DrawBitmap(sys->d2dbmp, r_src);
 
-	//	if (hr != S_OK)
-	//		msg_Err(vd, "Failed to copy bitmap memory (hr = 0x%x)!",
-	//		(unsigned) hr);
-
-	//}
-	//else{
-
-		size.width = cfg->display.width;
-		size.height = cfg->display.height;
-		aspectRatio = ((double) size.width) / ((double) size.height);
-		pixFormat.alphaMode = D2D1_ALPHA_MODE_IGNORE;
-		pixFormat.format = DXGI_FORMAT_B8G8R8X8_UNORM;
-		props.pixelFormat = pixFormat;
-		props.dpiX = dpi;
-		props.dpiY = dpi;
-		hr = sys->d2dContext->CreateBitmap(size, picture->p[0].p_pixels, picture->p[0].i_pitch, props, &sys->d2dbmp);
-		unsigned int swapChainWidth;
-		unsigned int swapChainHeight;
-		sys->swapChain->GetSourceSize(&swapChainWidth, &swapChainHeight);
-		double frameWidth = swapChainWidth;
-		double frameHeight = ((double) frameWidth) / aspectRatio;
-		double offset = ((double) swapChainHeight - frameHeight) / 2.0;
-		D2D1_RECT_F r_src{ 0, frameHeight, swapChainWidth, 0};
-		vd->sys->d2dContext->SetTransform(D2D1::Matrix3x2F::Translation(0.0f, offset));
-		vd->sys->d2dContext->DrawBitmap(sys->d2dbmp, r_src);
-
-		hr = vd->sys->d2dContext->EndDraw();
-
-		//}
+	hr = vd->sys->d2dContext->EndDraw();
 
 	VLC_UNUSED(subpicture);
 }
