@@ -207,15 +207,6 @@ void Player::InitializeVLC(){
 	char ptr_scstring[40];
 	sprintf_s(ptr_scstring, "--winrt-swapchain=0x%p", cp_swapChain);
 
-/*
-	Window::Current::CoreWindow.Bounds
-
-	char ptr_dwstring[40];
-	sprintf_s(ptr_scstring, "--winrt-displaywidth=0x%p", );
-
-	char ptr_dhstring[40];
-	sprintf_s(ptr_scstring, "--winrt-displayheight=0x%p", );*/
-
 	/* Don't add any invalid options, otherwise it causes LibVLC to fail */
 	const char *argv[] = {
 		"-I", "dummy",
