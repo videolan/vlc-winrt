@@ -202,9 +202,6 @@ static picture_pool_t *Pool(vout_display_t *vd, unsigned count)
 	return sys->pool;
 }
 
-/**
-* Performs set up of ID2D1Bitmap memory ready for blitting
-*/
 static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpicture)
 {
 	vout_display_sys_t *sys = vd->sys;

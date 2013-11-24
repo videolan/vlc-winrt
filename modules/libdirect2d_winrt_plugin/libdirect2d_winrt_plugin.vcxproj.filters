@@ -9,12 +9,10 @@
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
     <ClCompile Include="libdirect2d_winrt_plugin.cpp" />
-    <ClCompile Include="D2DPanel.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
     <ClInclude Include="targetver.h" />
-    <ClInclude Include="D2DPanel.h" />
     <ClInclude Include="DirectXHelper.h" />
   </ItemGroup>
 </Project>
