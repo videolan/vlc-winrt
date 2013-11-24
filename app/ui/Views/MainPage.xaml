@@ -70,11 +70,6 @@
                             Command="{Binding PickVideo}">
                     </Button>
                 </StackPanel>
-
-                <Button Style="{StaticResource CalculatorAppBarButtonStyle}"
-                        Click="Calculator_Click"
-                        HorizontalAlignment="Right">
-                </Button>
             </Grid>
         </AppBar>
     </Page.BottomAppBar>
