@@ -31,9 +31,14 @@ Player::Player(SwapChainPanel^ panel)
 }
 
 //Todo: don't block UI during initialization
-void Player::Initialize(){
+IAsyncAction^ Player::Initialize(){
 	p_dxManager->CreateSwapPanel(p_panel);
-	this->InitializeVLC();
+
+	IAsyncAction^ vlcInitTask = ThreadPool::RunAsync(ref new WorkItemHandler([=](IAsyncAction^ operation)
+	{
+		this->InitializeVLC();
+	}, Platform::CallbackContext::Any));
+	return vlcInitTask;
 }
 
 void Player::InitializeVLC(){

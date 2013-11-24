@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.AccessCache;
 using Windows.UI.Xaml;
@@ -132,10 +133,10 @@ namespace VLC_WINRT.ViewModels.PlayVideo
             }
         }
 
-        public void InitializeVLC(SwapChainPanel renderPanel)
+        public async Task InitializeVLC(SwapChainPanel renderPanel)
         {
             _vlcPlayer = new Player(renderPanel);
-            _vlcPlayer.Initialize();
+            await _vlcPlayer.Initialize();
             _vlcPlayer.Open("winrt://" + _fileToken);
         }
 

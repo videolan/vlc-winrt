@@ -1,4 +1,5 @@
-﻿using Windows.UI.Xaml;
+﻿using Windows.UI.Core;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
@@ -14,13 +15,16 @@ namespace VLC_WINRT.Views
         public PlayVideo()
         {
             InitializeComponent();
-            this.Loaded += IntializeVLC;
+            Loaded += IntializeVLC;
         }
 
         private void IntializeVLC(object sender, RoutedEventArgs routedEventArgs)
         {
-            ViewModelLocator.PlayVideoVM.InitializeVLC(VLCSwapChainPanel);
-            ViewModelLocator.PlayVideoVM.Play();
+            Dispatcher.RunAsync(CoreDispatcherPriority.High, async () =>
+            {
+                await ViewModelLocator.PlayVideoVM.InitializeVLC(VLCSwapChainPanel);
+                ViewModelLocator.PlayVideoVM.Play();
+            });
         }
 
         /// <summary>

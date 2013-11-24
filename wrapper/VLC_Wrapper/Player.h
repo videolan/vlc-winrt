@@ -28,21 +28,23 @@
 using namespace Microsoft::WRL;
 using namespace Windows::Media::Devices;
 using namespace Windows::UI::Xaml::Controls;
+using namespace Windows::System::Threading;
+using namespace Windows::Foundation;
 
 namespace VLC_Wrapper {
     public ref class Player sealed
     {
     public:
 		Player(SwapChainPanel^ panel);
-		void    Initialize();
-		void    Open(Platform::String^ mrl);
-        void    Stop();
-        void    Pause();
-        void    Play();
-		void    Seek(float position);
-		float   GetPosition();
-		int64   GetLength();
-        virtual ~Player();
+		IAsyncAction^ Initialize();
+		void          Open(Platform::String^ mrl);
+        void          Stop();
+        void          Pause();
+        void          Play();
+		void          Seek(float position);
+		float         GetPosition();
+		int64         GetLength();
+        virtual       ~Player();
 
     private:
 		void			           InitializeVLC();
