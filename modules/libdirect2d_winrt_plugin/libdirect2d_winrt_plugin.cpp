@@ -61,7 +61,7 @@ static int  Open(vlc_object_t *);
 static void Close(vlc_object_t *);
 
 vlc_module_begin()
-    set_description(N_("Windows 8.1 video output"))
+    set_description(N_("Windows 8 video output"))
 	set_shortname(N_("Video winrt"))
 
     set_category(CAT_VIDEO)
@@ -136,9 +136,6 @@ static int Open(vlc_object_t *object)
 
 	int swapChainInt = var_CreateGetInteger(vd, "winrt-swapchain");
 	reinterpret_cast<IUnknown*>(swapChainInt)->QueryInterface(IID_PPV_ARGS(&sys->swapChain));
-	
-	/*sys->displayWidth = var_CreateGetInteger(vd, "winrt-displaywidth");
-	sys->displayHeight = var_CreateGetInteger(vd, "winrt-displayheight");*/
 
 	return VLC_SUCCESS;
 }
@@ -228,9 +225,8 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
 	sys->d2dContext->BeginDraw();
 	sys->d2dContext->Clear(D2D1::ColorF(D2D1::ColorF::Black));
 
-	size.width = cfg->display.width;
-	size.height = cfg->display.height;
-	aspectRatio = ((double) size.width) / ((double) size.height);
+	size.width = picture->format.i_width;
+	size.height = picture->format.i_height;
 	pixFormat.alphaMode = D2D1_ALPHA_MODE_IGNORE;
 	pixFormat.format = DXGI_FORMAT_B8G8R8X8_UNORM;
 	props.pixelFormat = pixFormat;
@@ -240,9 +236,12 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
 	unsigned int swapChainWidth;
 	unsigned int swapChainHeight;
 	sys->swapChain->GetSourceSize(&swapChainWidth, &swapChainHeight);
+
+	aspectRatio = ((double) cfg->display.width) / ((double) cfg->display.height);
 	double frameWidth = swapChainWidth;
 	double frameHeight = ((double) frameWidth) / aspectRatio;
 	double offset = ((double) swapChainHeight - frameHeight) / 2.0;
+
 	D2D1_RECT_F r_src{ 0, frameHeight, swapChainWidth, 0};
 	vd->sys->d2dContext->SetTransform(D2D1::Matrix3x2F::Translation(0.0f, offset));
 	vd->sys->d2dContext->DrawBitmap(sys->d2dbmp, r_src);
@@ -254,8 +253,6 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
 
 static void Display(vout_display_t *vd, picture_t *picture, subpicture_t *subpicture)
 {
-	
-
 	//swap chain present!
 	DXGI_PRESENT_PARAMETERS parameters = { 0 };
 	parameters.DirtyRectsCount = 0;
