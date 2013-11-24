@@ -21,14 +21,12 @@
 #pragma once
 
 #include <vlc/vlc.h>
-#include "VLCD2dImageSource.h"
 #include "MMDeviceLocator.h"
-
-#include <Windows.h>
+#include "DirectXManger.h"
 #include <mfapi.h>
 #include <AudioClient.h>
 #include <mmdeviceapi.h>
-#include <wrl\implements.h>
+#include <exception>
 
 using namespace Microsoft::WRL;
 using namespace Windows::Media::Devices;
@@ -39,23 +37,22 @@ namespace VLC_Wrapper {
     {
     public:
 		Player(SwapChainPanel^ panel);
-		void	        Initialize();
-		void            Open(Platform::String^ mrl);
-        void			Stop();
-        void			Pause();
-        void			Play();
-		void			Seek(float position);
-		float			GetPosition();
-		int64			GetLength();
-        virtual			~Player();
+		void    Initialize();
+		void    Open(Platform::String^ mrl);
+        void    Stop();
+        void    Pause();
+        void    Play();
+		void    Seek(float position);
+		float   GetPosition();
+		int64   GetLength();
+        virtual ~Player();
 
     private:
 		void			           InitializeVLC();
         libvlc_instance_t          *p_instance;
         libvlc_media_player_t      *p_mp;
 		SwapChainPanel			   ^p_panel;
-		ComPtr<ID2D1DeviceContext> cp_d2dContext;
-		ComPtr<IDXGISwapChain1>    cp_swapChain;
+		DirectXManger              *p_dxManager;
     };
 }
 

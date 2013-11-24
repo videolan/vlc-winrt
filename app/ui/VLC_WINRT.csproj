@@ -160,9 +160,6 @@
     <Compile Include="ViewModels\MainPage\ViewedVideoViewModel.cs" />
     <Compile Include="ViewModels\PlayVideo\PlayVideoViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
-    <Compile Include="Views\Addition.xaml.cs">
-      <DependentUpon>Addition.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\Controls\MainPage\LastViewed.xaml.cs">
       <DependentUpon>LastViewed.xaml</DependentUpon>
     </Compile>
@@ -190,6 +187,7 @@
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
+      <SubType>Designer</SubType>
     </AppxManifest>
     <None Include="Common\ReadMe.txt" />
     <PRIResource Include="Strings\de-DE\Resources.resw" />
@@ -716,10 +714,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Page>
-    <Page Include="Views\Addition.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Controls\MainPage\LastViewed.xaml">
       <SubType>Designer</SubType>
