@@ -205,7 +205,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="DirectXHelper.h" />
     <ClInclude Include="DirectXManger.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="pch.h" />

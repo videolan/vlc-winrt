@@ -15,7 +15,6 @@
   <ItemGroup>
     <ClInclude Include="pch.h" />
     <ClInclude Include="Player.h" />
-    <ClInclude Include="DirectXHelper.h" />
     <ClInclude Include="MMDeviceLocator.h" />
     <ClInclude Include="DirectXManger.h" />
   </ItemGroup>
