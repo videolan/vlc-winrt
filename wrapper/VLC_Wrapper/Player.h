@@ -23,9 +23,6 @@
 #include <vlc/vlc.h>
 #include "MMDeviceLocator.h"
 #include "DirectXManger.h"
-#include <mfapi.h>
-#include <AudioClient.h>
-#include <mmdeviceapi.h>
 #include <exception>
 
 using namespace Microsoft::WRL;
