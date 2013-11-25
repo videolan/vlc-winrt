@@ -36,7 +36,7 @@ DirectXManger::DirectXManger()
 }
 
 
-void DirectXManger::CreateSwapPanel(SwapChainPanel^ panel){
+void DirectXManger::CreateSwapPanel(SwapChainBackgroundPanel^ panel){
 	HRESULT hr;
 	ComPtr<IDXGIFactory2> dxgiFactory;
 	ComPtr<IDXGIAdapter> dxgiAdapter;
@@ -151,7 +151,7 @@ void DirectXManger::CreateSwapPanel(SwapChainPanel^ panel){
 	}
 
 	//TODO: perform the next 2 calls on the UI thread
-	ComPtr<ISwapChainPanelNative> panelNative;
+	ComPtr<ISwapChainBackgroundPanelNative> panelNative;
 	hr = reinterpret_cast<IUnknown*>(panel)->QueryInterface(IID_PPV_ARGS(&panelNative));
 	if (hr != S_OK) {
 		throw new std::exception("Could not initialise libvlc!", hr);
@@ -162,8 +162,6 @@ void DirectXManger::CreateSwapPanel(SwapChainPanel^ panel){
 	if (hr != S_OK) {
 		throw new std::exception("Could not initialise libvlc!", hr);
 	}
-
-	
 
 	ComPtr<IDXGISurface> dxgiBackBuffer;
 	hr = cp_swapChain->GetBuffer(0, IID_PPV_ARGS(&dxgiBackBuffer));

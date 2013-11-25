@@ -23,7 +23,7 @@
 
 using namespace VLC_Wrapper;
 
-Player::Player(SwapChainPanel^ panel)
+Player::Player(SwapChainBackgroundPanel^ panel)
 {
     OutputDebugStringW(L"Hello, Player!");
 	p_panel = panel;

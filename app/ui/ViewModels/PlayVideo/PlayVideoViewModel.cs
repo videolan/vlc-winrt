@@ -137,7 +137,7 @@ namespace VLC_WINRT.ViewModels.PlayVideo
             }
         }
 
-        public async Task InitializeVLC(SwapChainPanel renderPanel)
+        public async Task InitializeVLC(SwapChainBackgroundPanel renderPanel)
         {
             _vlcPlayer = new Player(renderPanel);
             await _vlcPlayer.Initialize();

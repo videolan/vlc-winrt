@@ -14,5 +14,6 @@
     <ClInclude Include="pch.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="DirectXHelper.h" />
+    <ClInclude Include="inttypes.h" />
   </ItemGroup>
 </Project>

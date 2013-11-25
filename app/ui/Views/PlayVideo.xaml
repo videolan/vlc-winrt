@@ -20,7 +20,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <SwapChainPanel x:Name="VLCSwapChainPanel" ></SwapChainPanel>
+        <!--<SwapChainPanel x:Name="VLCSwapChainPanel" ></SwapChainPanel>-->
     </Grid>
     <Page.TopAppBar>
         <AppBar>

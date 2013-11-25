@@ -91,7 +91,7 @@ struct vout_display_sys_t {
 	picture_pool_t              *pool;
 	ID2D1Bitmap                 *d2dbmp;
 	ComPtr<ID2D1DeviceContext>  d2dContext;
-	ComPtr<IDXGISwapChain2>     swapChain;
+	ComPtr<IDXGISwapChain1>     swapChain;
 };
 
 
@@ -193,8 +193,9 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
 	D2D1_BITMAP_PROPERTIES props;
 	D2D1_PIXEL_FORMAT pixFormat;
 	D2D1_SIZE_U size;
-	unsigned int swapChainWidth;
-	unsigned int swapChainHeight;
+	//Todo: get window size
+	unsigned int swapChainWidth =1;
+	unsigned int swapChainHeight = 1;
 	D2D1::Matrix3x2F scaleTransform;
 	D2D1::Matrix3x2F translateTransform;
 	float dpi = DisplayProperties::LogicalDpi;
@@ -223,7 +224,7 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
 	props.dpiX = dpi;
 	props.dpiY = dpi;
 	sys->d2dContext->CreateBitmap(size, picture->p[0].p_pixels, picture->p[0].i_pitch, props, &sys->d2dbmp);
-	sys->swapChain->GetSourceSize(&swapChainWidth, &swapChainHeight);
+	//sys->swapChain->GetSourceSize(&swapChainWidth, &swapChainHeight);
 
 	swapchainAspectRatio = (double) swapChainWidth / (double)swapChainHeight;
 	pictureAspectRation = (double) cfg->display.width / (double) cfg->display.height;

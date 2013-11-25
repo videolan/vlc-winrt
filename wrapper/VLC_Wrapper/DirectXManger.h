@@ -31,7 +31,7 @@ namespace VLC_Wrapper {
 	{
 	public:
 		DirectXManger();
-		void CreateSwapPanel(SwapChainPanel^ panel);
+		void CreateSwapPanel(SwapChainBackgroundPanel^ panel);
 
 		ComPtr<ID2D1DeviceContext> cp_d2dContext;
 		ComPtr<IDXGISwapChain1>    cp_swapChain;

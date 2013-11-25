@@ -7,3 +7,4 @@
 
 #include <collection.h>
 #include <ppltasks.h>
+#include "inttypes.h"

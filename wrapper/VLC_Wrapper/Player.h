@@ -35,7 +35,7 @@ namespace VLC_Wrapper {
     public ref class Player sealed
     {
     public:
-		Player(SwapChainPanel^ panel);
+		Player(SwapChainBackgroundPanel^ panel);
 		IAsyncAction^ Initialize();
 		void          Open(Platform::String^ mrl);
         void          Stop();
@@ -50,7 +50,7 @@ namespace VLC_Wrapper {
 		void			           InitializeVLC();
         libvlc_instance_t          *p_instance;
         libvlc_media_player_t      *p_mp;
-		SwapChainPanel			   ^p_panel;
+		SwapChainBackgroundPanel   ^p_panel;
 		DirectXManger              *p_dxManager;
     };
 }
