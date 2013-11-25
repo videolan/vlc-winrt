@@ -70,11 +70,10 @@ void Player::InitializeVLC(){
 		"--no-stats",
 		"--no-drop-late-frames",
 		ptr_d2dstring,
-		ptr_scstring
-
-		//"--aout=mmdevice",
-		//ptr_astring,
-		//"--avcodec-fast"
+		ptr_scstring,
+		"--aout=mmdevice",
+		ptr_astring,
+		"--avcodec-fast"
 	};
 
 	p_instance = libvlc_new(sizeof(argv) / sizeof(*argv), argv);
