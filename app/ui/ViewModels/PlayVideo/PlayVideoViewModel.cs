@@ -26,6 +26,7 @@ namespace VLC_WINRT.ViewModels.PlayVideo
         private TimeSpan _timeTotal = TimeSpan.Zero;
         private string _title;
         private Player _vlcPlayer;
+        private bool _isVLCInitialized = false;
 
 
         public PlayVideoViewModel()
@@ -54,7 +55,10 @@ namespace VLC_WINRT.ViewModels.PlayVideo
 
         public double Position
         {
-            get { return (_vlcPlayer.GetPosition()); }
+            get 
+            {
+                return _isVLCInitialized ? _vlcPlayer.GetPosition() : 0.0d;
+            }
             set { _vlcPlayer.Seek((float) value); }
         }
 
@@ -137,6 +141,7 @@ namespace VLC_WINRT.ViewModels.PlayVideo
         {
             _vlcPlayer = new Player(renderPanel);
             await _vlcPlayer.Initialize();
+            _isVLCInitialized = true;
             _vlcPlayer.Open("winrt://" + _fileToken);
         }
 
