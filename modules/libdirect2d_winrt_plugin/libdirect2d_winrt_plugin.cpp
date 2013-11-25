@@ -86,10 +86,6 @@ static int            CreateDeviceResources(vout_display_t* vd);
 /* */
 struct vout_display_sys_t {
 	/* */
-	int width;
-	int height;
-
-	/* */
 	//TODO: check to see if these are all needed
 	picture_pool_t              *pool;
 	ID2D1Bitmap                 *d2dbmp;
