@@ -225,26 +225,27 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
 	sys->swapChain->GetSourceSize(&swapChainWidth, &swapChainHeight);
 
 	swapchainAspectRatio = (double) swapChainWidth / (double)swapChainHeight;
-	pictureAspectRation = (double) picture->format.i_width / (double) picture->format.i_height;
+	pictureAspectRation = (double) cfg->display.width / (double) cfg->display.height;
 
 	if (swapchainAspectRatio >= pictureAspectRation){
 		//scale by height
-		scale = (double) swapChainHeight / (double) picture->format.i_height;
-		offsetx = (((double) swapChainWidth - ((double) picture->format.i_width * scale)) / 2.0) / scale;
+		scale = (double) swapChainHeight / (double) cfg->display.height;
+		offsetx = (((double) swapChainWidth - ((double) cfg->display.width * scale)) / 2.0) / scale;
 	}
 	else{
 		//scale by width
-		scale = (double) swapChainWidth / (double) picture->format.i_width;
-		offsety = (((double) swapChainHeight - ((double) picture->format.i_height * scale)) / 2.0) / scale;
+		scale = (double) swapChainWidth / (double) cfg->display.width;
+		offsety = (((double) swapChainHeight - ((double) cfg->display.height * scale)) / 2.0) / scale;
 	}
-
+	
 	scale = scale / ((double)DisplayProperties::ResolutionScale / 100.0f);
 
 	scaleTransform = D2D1::Matrix3x2F::Scale(scale, scale, D2D1::Point2F(0.0f, 0.0f));
 	translateTransform = D2D1::Matrix3x2F::Translation(offsetx, offsety);
 
+	D2D1_RECT_F displayRect = { 0.0f, (double) cfg->display.height, (double) cfg->display.width, 0.0f };
 	vd->sys->d2dContext->SetTransform(translateTransform *scaleTransform);
-	vd->sys->d2dContext->DrawBitmap(sys->d2dbmp, NULL);
+	vd->sys->d2dContext->DrawBitmap(sys->d2dbmp, displayRect);
 	vd->sys->d2dContext->EndDraw();
 
 	VLC_UNUSED(subpicture);
