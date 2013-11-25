@@ -40,6 +40,7 @@
 #define strdup _strdup
 #define ssize_t SSIZE_T
 #define N_(x) x
+int poll(struct pollfd *, unsigned, int);
 #endif
 
 using namespace concurrency;
