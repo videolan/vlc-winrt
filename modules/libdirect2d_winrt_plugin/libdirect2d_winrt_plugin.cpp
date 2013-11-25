@@ -147,19 +147,6 @@ static void Close(vlc_object_t * object){
 	return;
 }
 
-static int OpenDisplay(vout_display_t *vd)
-{
-	//TODO: call callback and populate SwapChainPanel
-	//TODO: intialize dependant and independant resources
-
-	vout_display_sys_t *sys = vd->sys;
-}
-
-static void CloseDisplay(vout_display_t *vd)
-{
-	vout_display_sys_t *sys = vd->sys;
-}
-
 static int Control(vout_display_t *vd, int query, va_list args)
 {
 	//TODO: do we care about resizes?  Windows 8 should take care of it
@@ -205,9 +192,18 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
 	D2D1_BITMAP_PROPERTIES props;
 	D2D1_PIXEL_FORMAT pixFormat;
 	D2D1_SIZE_U size;
-	HRESULT hr;
+	unsigned int swapChainWidth;
+	unsigned int swapChainHeight;
+	D2D1::Matrix3x2F scaleTransform;
+	D2D1::Matrix3x2F translateTransform;
 	float dpi = DisplayProperties::LogicalDpi;
-	double aspectRatio;
+	double swapchainAspectRatio;
+	double pictureAspectRation;
+	float scale = 0;
+	double offsetx = 0;
+	double offsety = 0;
+	
+	double displayAspectRatio;
 
 	if (sys->d2dbmp){
 		// cleanup previous bmp
@@ -225,21 +221,31 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
 	props.pixelFormat = pixFormat;
 	props.dpiX = dpi;
 	props.dpiY = dpi;
-	hr = sys->d2dContext->CreateBitmap(size, picture->p[0].p_pixels, picture->p[0].i_pitch, props, &sys->d2dbmp);
-	unsigned int swapChainWidth;
-	unsigned int swapChainHeight;
+	sys->d2dContext->CreateBitmap(size, picture->p[0].p_pixels, picture->p[0].i_pitch, props, &sys->d2dbmp);
 	sys->swapChain->GetSourceSize(&swapChainWidth, &swapChainHeight);
 
-	aspectRatio = ((double) cfg->display.width) / ((double) cfg->display.height);
-	double frameWidth = swapChainWidth;
-	double frameHeight = ((double) frameWidth) / aspectRatio;
-	double offset = ((double) swapChainHeight - frameHeight) / 2.0;
+	swapchainAspectRatio = (double) swapChainWidth / (double)swapChainHeight;
+	pictureAspectRation = (double) picture->format.i_width / (double) picture->format.i_height;
 
-	D2D1_RECT_F r_src{ 0, frameHeight, swapChainWidth, 0};
-	vd->sys->d2dContext->SetTransform(D2D1::Matrix3x2F::Translation(0.0f, offset));
-	vd->sys->d2dContext->DrawBitmap(sys->d2dbmp, r_src);
+	if (swapchainAspectRatio >= pictureAspectRation){
+		//scale by height
+		scale = (double) swapChainHeight / (double) picture->format.i_height;
+		offsetx = (((double) swapChainWidth - ((double) picture->format.i_width * scale)) / 2.0) / scale;
+	}
+	else{
+		//scale by width
+		scale = (double) swapChainWidth / (double) picture->format.i_width;
+		offsety = (((double) swapChainHeight - ((double) picture->format.i_height * scale)) / 2.0) / scale;
+	}
 
-	hr = vd->sys->d2dContext->EndDraw();
+	scale = scale / ((double)DisplayProperties::ResolutionScale / 100.0f);
+
+	scaleTransform = D2D1::Matrix3x2F::Scale(scale, scale, D2D1::Point2F(0.0f, 0.0f));
+	translateTransform = D2D1::Matrix3x2F::Translation(offsetx, offsety);
+
+	vd->sys->d2dContext->SetTransform(translateTransform *scaleTransform);
+	vd->sys->d2dContext->DrawBitmap(sys->d2dbmp, NULL);
+	vd->sys->d2dContext->EndDraw();
 
 	VLC_UNUSED(subpicture);
 }

@@ -29,6 +29,7 @@ using namespace Windows::UI;
 using namespace Windows::Foundation;
 using namespace Windows::System::Threading;
 using namespace D2D1;
+using namespace Windows::Graphics::Display;
 
 DirectXManger::DirectXManger()
 {
@@ -97,11 +98,33 @@ void DirectXManger::CreateSwapPanel(SwapChainPanel^ panel){
 		throw new std::exception("Could not initialise libvlc!", hr);
 	}
 
+	// Create the Direct2D device object and a corresponding context.
+	hr = D2D1CreateDevice(
+		dxgiDevice.Get(),
+		nullptr,
+		&(d2dDevice)
+		);
+	if (hr != S_OK) {
+		throw new std::exception("Could not initialise libvlc!", hr);
+	}
+
+	hr = d2dDevice->CreateDeviceContext(
+		D2D1_DEVICE_CONTEXT_OPTIONS_NONE,
+		&cp_d2dContext
+		);
+	if (hr != S_OK) {
+		throw new std::exception("Could not initialise libvlc!", hr);
+	}
+
+	// Set DPI to the display's current DPI.
+	cp_d2dContext->SetDpi(dpi, dpi);
+	cp_d2dContext->SetUnitMode(D2D1_UNIT_MODE_PIXELS);
+
 	//Create the swapchain
 	DXGI_SWAP_CHAIN_DESC1 swapChainDesc = { 0 };
 	//TODO: try panel height
-	swapChainDesc.Width = panel->ActualWidth;      // Match the size of the panel.
-	swapChainDesc.Height = panel->ActualHeight;
+	swapChainDesc.Width = panel->ActualWidth * (double) DisplayProperties::ResolutionScale/100.0f;      // Match the size of the panel.
+	swapChainDesc.Height = panel->ActualHeight * (double) DisplayProperties::ResolutionScale/100.0f;
 	swapChainDesc.Format = DXGI_FORMAT_B8G8R8A8_UNORM;
 	swapChainDesc.Stereo = false;
 	swapChainDesc.SampleDesc.Count = 1;
@@ -140,26 +163,7 @@ void DirectXManger::CreateSwapPanel(SwapChainPanel^ panel){
 		throw new std::exception("Could not initialise libvlc!", hr);
 	}
 
-	// Create the Direct2D device object and a corresponding context.
-	hr = D2D1CreateDevice(
-		dxgiDevice.Get(),
-		nullptr,
-		&(d2dDevice)
-		);
-	if (hr != S_OK) {
-		throw new std::exception("Could not initialise libvlc!", hr);
-	}
-
-	hr = d2dDevice->CreateDeviceContext(
-		D2D1_DEVICE_CONTEXT_OPTIONS_NONE,
-		&cp_d2dContext
-		);
-	if (hr != S_OK) {
-		throw new std::exception("Could not initialise libvlc!", hr);
-	}
-
-	// Set DPI to the display's current DPI.
-	cp_d2dContext->SetDpi(dpi, dpi);
+	
 
 	ComPtr<IDXGISurface> dxgiBackBuffer;
 	hr = cp_swapChain->GetBuffer(0, IID_PPV_ARGS(&dxgiBackBuffer));
