@@ -21,7 +21,7 @@ namespace VLC_WINRT.Utility.Commands
 
             ViewModelLocator.PlayVideoVM.CurrentFile = vm.File;
             history.Add(vm.File);
-            ((Frame) Window.Current.Content).Navigate(typeof (PlayVideo));
+            Window.Current.Content = new PlayVideo();
         }
     }
 }

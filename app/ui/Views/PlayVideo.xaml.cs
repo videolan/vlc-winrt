@@ -22,8 +22,8 @@ namespace VLC_WINRT.Views
         {
             Dispatcher.RunAsync(CoreDispatcherPriority.High, async () =>
             {
-               // await ViewModelLocator.PlayVideoVM.InitializeVLC(VLCSwapChainPanel);
-                //ViewModelLocator.PlayVideoVM.Play();
+                await ViewModelLocator.PlayVideoVM.InitializeVLC(Panel);
+                ViewModelLocator.PlayVideoVM.Play();
             });
         }
 

@@ -28,6 +28,8 @@ Player::Player(SwapChainBackgroundPanel^ panel)
     OutputDebugStringW(L"Hello, Player!");
 	p_panel = panel;
 	p_dxManager = new DirectXManger();
+	m_displayWidth = p_panel->ActualWidth;
+	m_displayHeight = p_panel->ActualHeight;
 }
 
 //Todo: don't block UI during initialization
@@ -61,16 +63,24 @@ void Player::InitializeVLC(){
 	char ptr_scstring[40];
 	sprintf_s(ptr_scstring, "--winrt-swapchain=0x%p", p_dxManager->cp_swapChain);
 
+	char widthstring[40];
+	sprintf_s(widthstring, "--winrt-width=%d", m_displayWidth);
+
+	char heightstring[40];
+	sprintf_s(heightstring, "--winrt-height=%d", m_displayHeight);
+
 	/* Don't add any invalid options, otherwise it causes LibVLC to fail */
 	const char *argv[] = {
 		"-I", "dummy",
 		"--no-osd",
-		"--verbose=3",
+		"--verbose=2",
 		"--no-video-title-show",
 		"--no-stats",
 		"--no-drop-late-frames",
 		ptr_d2dstring,
 		ptr_scstring,
+		widthstring,
+		heightstring,
 		"--aout=mmdevice",
 		ptr_astring,
 		"--avcodec-fast"

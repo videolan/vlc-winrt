@@ -70,6 +70,8 @@ vlc_module_begin()
 	set_capability("vout display", 60)
 	add_integer("winrt-d2dcontext", 0x0, NULL, NULL, true);
 	add_integer("winrt-swapchain", 0x0, NULL, NULL, true);
+	add_integer("winrt-width", 0x0, NULL, NULL, true);
+	add_integer("winrt-height", 0x0, NULL, NULL, true);
 
     set_callbacks(Open, Close)
 vlc_module_end()
@@ -87,6 +89,9 @@ static int            CreateDeviceResources(vout_display_t* vd);
 /* */
 struct vout_display_sys_t {
 	/* */
+	int                         displayWidth;
+	int                         displayHeight;
+
 	//TODO: check to see if these are all needed
 	picture_pool_t              *pool;
 	ID2D1Bitmap                 *d2dbmp;
@@ -127,6 +132,9 @@ static int Open(vlc_object_t *object)
 	vd->display = Display;
 	vd->manage = Manage;
 	vd->control = Control;
+
+	sys->displayWidth = var_CreateGetInteger(vd, "winrt-width");
+	sys->displayHeight = var_CreateGetInteger(vd, "winrt-height");
 
 	int panelInt = var_CreateGetInteger(vd, "winrt-d2dcontext");
 	reinterpret_cast<IUnknown*>(panelInt)->QueryInterface(IID_PPV_ARGS(&sys->d2dContext));
@@ -193,19 +201,16 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
 	D2D1_BITMAP_PROPERTIES props;
 	D2D1_PIXEL_FORMAT pixFormat;
 	D2D1_SIZE_U size;
-	//Todo: get window size
-	unsigned int swapChainWidth =1;
-	unsigned int swapChainHeight = 1;
 	D2D1::Matrix3x2F scaleTransform;
 	D2D1::Matrix3x2F translateTransform;
 	float dpi = DisplayProperties::LogicalDpi;
-	double swapchainAspectRatio;
 	double pictureAspectRation;
 	float scale = 0;
 	double offsetx = 0;
 	double offsety = 0;
-	
 	double displayAspectRatio;
+	double displayWidth;
+	double displayHeight;
 
 	if (sys->d2dbmp){
 		// cleanup previous bmp
@@ -224,20 +229,21 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
 	props.dpiX = dpi;
 	props.dpiY = dpi;
 	sys->d2dContext->CreateBitmap(size, picture->p[0].p_pixels, picture->p[0].i_pitch, props, &sys->d2dbmp);
-	//sys->swapChain->GetSourceSize(&swapChainWidth, &swapChainHeight);
 
-	swapchainAspectRatio = (double) swapChainWidth / (double)swapChainHeight;
+	displayHeight = (double)sys->displayHeight;
+	displayWidth = (double)sys->displayWidth;
+	displayAspectRatio = displayWidth / displayHeight;
 	pictureAspectRation = (double) cfg->display.width / (double) cfg->display.height;
 
-	if (swapchainAspectRatio >= pictureAspectRation){
+	if (displayAspectRatio >= pictureAspectRation){
 		//scale by height
-		scale = (double) swapChainHeight / (double) cfg->display.height;
-		offsetx = (((double) swapChainWidth - ((double) cfg->display.width * scale)) / 2.0) / scale;
+		scale = displayHeight / (double) cfg->display.height;
+		offsetx = ((displayWidth - ((double) cfg->display.width * scale)) / 2.0) / scale;
 	}
 	else{
 		//scale by width
-		scale = (double) swapChainWidth / (double) cfg->display.width;
-		offsety = (((double) swapChainHeight - ((double) cfg->display.height * scale)) / 2.0) / scale;
+		scale = displayWidth / (double) cfg->display.width;
+		offsety = ((displayHeight - ((double) cfg->display.height * scale)) / 2.0) / scale;
 	}
 	
 	scale = scale / ((double)DisplayProperties::ResolutionScale / 100.0f);
@@ -255,6 +261,8 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
 
 static void Display(vout_display_t *vd, picture_t *picture, subpicture_t *subpicture)
 {
+	//Prepare(vd, picture, subpicture);
+
 	//swap chain present!
 	DXGI_PRESENT_PARAMETERS parameters = { 0 };
 	parameters.DirtyRectsCount = 0;

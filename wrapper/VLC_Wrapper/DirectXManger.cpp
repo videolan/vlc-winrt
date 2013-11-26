@@ -122,7 +122,6 @@ void DirectXManger::CreateSwapPanel(SwapChainBackgroundPanel^ panel){
 
 	//Create the swapchain
 	DXGI_SWAP_CHAIN_DESC1 swapChainDesc = { 0 };
-	//TODO: try panel height
 	swapChainDesc.Width = panel->ActualWidth * (double) DisplayProperties::ResolutionScale/100.0f;      // Match the size of the panel.
 	swapChainDesc.Height = panel->ActualHeight * (double) DisplayProperties::ResolutionScale/100.0f;
 	swapChainDesc.Format = DXGI_FORMAT_B8G8R8A8_UNORM;

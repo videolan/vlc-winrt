@@ -13,15 +13,7 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
-    <Grid Background="Black">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"></RowDefinition>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-        <!--<SwapChainPanel x:Name="VLCSwapChainPanel" ></SwapChainPanel>-->
-    </Grid>
+    <SwapChainBackgroundPanel x:Name="Panel"></SwapChainBackgroundPanel>
     <Page.TopAppBar>
         <AppBar>
             <Button Style="{StaticResource BackButtonStyle}" Command="{Binding StopVideo}" CommandParameter="{Binding}"></Button>
