@@ -39,6 +39,7 @@ namespace VLC_WINRT.ViewModels
             }
 
             SimpleIoc.Default.Register<HistoryService>();
+            SimpleIoc.Default.Register<MouseService>();
 
             SimpleIoc.Default.Register<PlayVideoViewModel>(true);
             SimpleIoc.Default.Register<MainPageViewModel>();

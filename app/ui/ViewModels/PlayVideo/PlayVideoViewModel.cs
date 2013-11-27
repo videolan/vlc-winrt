@@ -107,9 +107,11 @@ namespace VLC_WINRT.ViewModels.PlayVideo
             set
             {
                 SetProperty(ref _isPlaying, value);
+                var mouseService = ServiceLocator.Current.GetInstance<MouseService>();
                 if (value)
                 {
                     _sliderPositionTimer.Start();
+                    mouseService.HideMouse();
 
                     if (_displayAlwaysOnRequest != null)
                     {
@@ -119,6 +121,7 @@ namespace VLC_WINRT.ViewModels.PlayVideo
                 else
                 {
                     _sliderPositionTimer.Stop();
+                    mouseService.RestoreMouse();
 
                     if (_displayAlwaysOnRequest != null)
                     {

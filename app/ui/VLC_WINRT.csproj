@@ -142,6 +142,7 @@
     <Compile Include="Utility\Services\Interface\IThumbnailService.cs" />
     <Compile Include="Utility\Services\RunTime\HistoryService.cs" />
     <Compile Include="Utility\Services\RunTime\MediaScanner.cs" />
+    <Compile Include="Utility\Services\RunTime\MouseService.cs" />
     <Compile Include="Utility\Services\RunTime\ThumbnailService.cs" />
     <Compile Include="ViewModels\MainPage\LastViewedViewModel.cs" />
     <Compile Include="ViewModels\MainPage\LibraryViewModel.cs" />
