@@ -9,7 +9,7 @@
     d:DesignHeight="768"
     DataContext="{Binding Source={StaticResource Locator}, Path=MainPageVM}">
 
-    <Grid Background="Black">
+    <Grid>
         <!-- Grid for Gradient -->
         <!-- Rectangle for Thumbnail Board -->
         <mainPage:ThumbnailsBackground Grid.ColumnSpan="4"></mainPage:ThumbnailsBackground>
@@ -23,8 +23,8 @@
                        x:Uid="MainPageTitle"
                        Text="VLC for WinRT"
                        Style="{StaticResource TitleTextStyle}"
-                       Foreground="White"
-                       FontSize="26"
+                       Foreground="#FFFF8402"
+                       FontSize="20"
                        Margin="0,10">
             </TextBlock>
             <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" Grid.Row="1">

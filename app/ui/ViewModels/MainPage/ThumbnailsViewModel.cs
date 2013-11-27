@@ -18,7 +18,8 @@ namespace VLC_WINRT.ViewModels.MainPage
         {
             Thumbnails = new ObservableCollection<ThumbnailViewModel>();
 
-            ThreadPool.RunAsync(GetMedia);
+            // Don't get thumbnails until we're using the VLC implementation
+            //ThreadPool.RunAsync(GetMedia);
         }
 
         public ObservableCollection<ThumbnailViewModel> Thumbnails

@@ -28,10 +28,7 @@
         </GridView>
         <Grid>
             <Grid.Background>
-                <LinearGradientBrush EndPoint="0.8,1" StartPoint="0.8,0">
-                    <GradientStop Color="#DD551508"/>
-                    <GradientStop Color="#CC000000" Offset="1"/>
-                </LinearGradientBrush>
+                <ImageBrush ImageSource="ms-appx:///Assets/BackgroundLarge.jpg"></ImageBrush>
             </Grid.Background>
         </Grid>
     </Grid>
