@@ -16,7 +16,7 @@ using Windows.System.Threading;
 
 namespace VLC_WINRT.Utility.Services.RunTime
 {
-    public class HistoryService
+    public class HistoryService : IDisposable
     {
         private const string HistoryFileName = "histories.xml";
         private static List<MediaHistory> _histories;
@@ -180,6 +180,14 @@ namespace VLC_WINRT.Utility.Services.RunTime
             var mediaHistory = _histories.FirstOrDefault(h => h.Token == fileToken);
             if (mediaHistory != null)
                 mediaHistory.TotalWatchedMilliseconds = totalWatched.TotalMilliseconds;
+        }
+
+        public void Dispose()
+        {
+            if (_fileReadEvent != null)
+            {
+                _fileReadEvent.Dispose();
+            }
         }
     }
 }

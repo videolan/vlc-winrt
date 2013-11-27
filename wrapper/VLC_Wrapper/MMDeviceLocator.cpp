@@ -41,7 +41,7 @@ HRESULT MMDeviceLocator::ActivateCompleted(IActivateAudioInterfaceAsyncOperation
 	IUnknown *audioInterface = nullptr;
 
 	hr = operation->GetActivateResult(&hrActivateResult, &audioInterface);
-	if (SUCCEEDED(hr) && SUCCEEDED(hrActivateResult))
+	if (SUCCEEDED(hr) && SUCCEEDED(hrActivateResult) && audioInterface != nullptr)
 	{
 		audioInterface->QueryInterface(IID_PPV_ARGS(&m_AudioClient));
 		if (nullptr == m_AudioClient)
