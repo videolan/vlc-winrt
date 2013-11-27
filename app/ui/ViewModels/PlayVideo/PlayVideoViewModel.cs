@@ -29,7 +29,7 @@ namespace VLC_WINRT.ViewModels.PlayVideo
         private Player _vlcPlayer;
         private bool _isVLCInitialized = false;
         private readonly DisplayRequest _displayAlwaysOnRequest;
-        private HistoryService _historyService;
+        private readonly HistoryService _historyService;
 
 
         public PlayVideoViewModel()
@@ -59,7 +59,7 @@ namespace VLC_WINRT.ViewModels.PlayVideo
             _stopVideoCommand = new StopVideoCommand();
 
             _sliderPositionTimer.Tick += UpdatePosition;
-            _sliderPositionTimer.Interval = TimeSpan.FromMilliseconds((1.0d/60.0d));
+            _sliderPositionTimer.Interval = TimeSpan.FromMilliseconds(16);
 
             _fiveSecondTimer.Tick += UpdateDate;
             _fiveSecondTimer.Interval = TimeSpan.FromSeconds(5);
@@ -78,13 +78,20 @@ namespace VLC_WINRT.ViewModels.PlayVideo
             OnPropertyChanged("Now");
         }
 
-        public double Position
+        public double PositionInSeconds
         {
             get 
             {
-                return _isVLCInitialized ? _vlcPlayer.GetPosition() : 0.0d;
+                if (_isVLCInitialized)
+                {
+                    return _vlcPlayer.GetPosition()*TimeTotal.TotalSeconds;
+                }
+                else
+                {
+                    return 0.0d;
+                }
             }
-            set { _vlcPlayer.Seek((float) value); }
+            set { _vlcPlayer.Seek((float) (value / TimeTotal.TotalSeconds)); }
         }
 
         public string Now
@@ -195,14 +202,14 @@ namespace VLC_WINRT.ViewModels.PlayVideo
 
         private void UpdatePosition(object sender, object e)
         {
-            OnPropertyChanged("Position");
+            OnPropertyChanged("PositionInSeconds");
 
             if (_timeTotal == TimeSpan.Zero)
             {
                 TimeTotal = TimeSpan.FromMilliseconds(_vlcPlayer.GetLength());
             }
 
-            ElapsedTime = TimeSpan.FromMilliseconds(TimeTotal.TotalMilliseconds*Position);
+            ElapsedTime = TimeSpan.FromSeconds(PositionInSeconds);
         }
 
         public void Play()

@@ -46,6 +46,8 @@
             </converters:BooleanNegationConverter>
             <converters:NegatedBooleanToVisibilityConverter x:Key="NegatedBooleanToVisibilityConverter">
             </converters:NegatedBooleanToVisibilityConverter>
+            <converters:SecondsStringConverter x:Key="SecondsStringConverter">
+            </converters:SecondsStringConverter>
 
             <viewModels:ViewModelLocator x:Key="Locator" d:IsDataSource="True" />
         </ResourceDictionary>

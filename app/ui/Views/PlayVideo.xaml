@@ -35,8 +35,12 @@
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Slider x:Name="VideoPositionSlider" Grid.Row="0" 
-                        Style="{StaticResource VlcSlider}" StepFrequency="0.001" Maximum="1" 
-                        Grid.ColumnSpan="2" Margin="30,0" Value="{Binding Position, Mode=TwoWay}" 
+                        Style="{StaticResource VlcSlider}" 
+                        StepFrequency="0.001" 
+                        Maximum="{Binding TimeTotalSeconds}" 
+                        Grid.ColumnSpan="2" Margin="30,0" 
+                        Value="{Binding PositionInSeconds, Mode=TwoWay}" 
+                        ThumbToolTipValueConverter="{StaticResource SecondsStringConverter}"
                         Height="40"/>
                 <TextBlock x:Name="ElapsedTime" 
                            Grid.Row="1"
