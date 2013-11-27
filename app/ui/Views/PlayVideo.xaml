@@ -13,16 +13,20 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
-    <SwapChainBackgroundPanel x:Name="Panel"></SwapChainBackgroundPanel>
+    <SwapChainBackgroundPanel x:Name="Panel" Tapped="ScreenTapped"></SwapChainBackgroundPanel>
     <Page.TopAppBar>
-        <AppBar>
-            <Button Style="{StaticResource BackButtonStyle}" Command="{Binding StopVideo}" CommandParameter="{Binding}"></Button>
+        <AppBar  Background="#AA000000">
+            <Grid>
+                <Button Style="{StaticResource BackButtonStyle}" Command="{Binding StopVideo}" CommandParameter="{Binding}" Margin="30"></Button>
+                <TextBlock Margin="30" HorizontalAlignment="Right" Text="{Binding Now}" Style="{StaticResource PageHeaderTextStyle}"></TextBlock>
+            </Grid>
         </AppBar>
     </Page.TopAppBar>
     <Page.BottomAppBar>
-        <AppBar Padding="10,0,10,0">
+        <AppBar Padding="10,0,10,0" Background="#AA000000">
             <Grid>
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>
                 </Grid.RowDefinitions>
@@ -32,20 +36,29 @@
                 </Grid.ColumnDefinitions>
                 <Slider x:Name="VideoPositionSlider" Grid.Row="0" 
                         Style="{StaticResource VlcSlider}" StepFrequency="0.001" Maximum="1" 
-                        Grid.ColumnSpan="2" Margin="30,0" Value="{Binding Position, Mode=TwoWay}" />
-                <StackPanel Grid.Row="1" Grid.Column="0">
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                        <TextBlock x:Name="ElapsedTime" Text="{Binding ElapsedTime, Converter={StaticResource TimeSpanShortStringConverter}}" Style="{StaticResource CaptionTextStyle}" 
-                                   Margin="2">
-                        </TextBlock>
-                        <TextBlock Text="/" Style="{StaticResource CaptionTextStyle}" Margin="2"></TextBlock>
-                        <TextBlock x:Name="TotalTime" Text="{Binding TimeTotal, Converter={StaticResource TimeSpanShortStringConverter}}" Style="{StaticResource CaptionTextStyle}" Margin="2"></TextBlock>
-                    </StackPanel>
+                        Grid.ColumnSpan="2" Margin="30,0" Value="{Binding Position, Mode=TwoWay}" 
+                        Height="40"/>
+                <TextBlock x:Name="ElapsedTime" 
+                           Grid.Row="1"
+                           Grid.Column="0"
+                           Margin="30,0,0,0"
+                           Text="{Binding ElapsedTime, Converter={StaticResource TimeSpanShortStringConverter}}" 
+                           Style="{StaticResource ItemTextStyle}" 
+                           >
+                </TextBlock>
+                <TextBlock x:Name="TotalTime" HorizontalAlignment="Right"
+                           Grid.Row="1"
+                           Grid.Column="1"
+                           Margin="0,0,30,0"
+                           Text="{Binding TimeTotal, Converter={StaticResource TimeSpanShortStringConverter}}" 
+                           Style="{StaticResource ItemTextStyle}"></TextBlock>
+
+                <StackPanel Grid.Row="2" Grid.Column="0">
                     <TextBlock Text="{Binding Title}" Style="{StaticResource GroupHeaderTextStyle}"
                                VerticalAlignment="Center" HorizontalAlignment="Center">
                     </TextBlock>
                 </StackPanel>
-                <StackPanel Margin="5,0,5,10" Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="1"
+                <StackPanel Margin="5,0,5,10" Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="2"
                             Grid.Column="1">
                     <Button Style="{StaticResource SkipBackAppBarButtonStyle}" Command="{Binding SkipBack}">
                     </Button>
@@ -59,12 +72,14 @@
                             CommandParameter="{Binding}"
                             Visibility="{Binding IsPlaying, Converter={StaticResource BooleanToVisibilityConverter}}">
                     </Button>
-                    <Button Style="{StaticResource SkipAheadAppBarButtonStyle}" Command="{Binding SkipAhead}">
+                   <Button Style="{StaticResource SkipAheadAppBarButtonStyle}" Command="{Binding SkipAhead}">
                     </Button>
+                     <!--
+                    Commented out until implemented
                     <Button Style="{StaticResource FullScreenAppBarButtonStyle}">
                     </Button>
                     <Button Style="{StaticResource BackToWindowAppBarButtonStyle}">
-                    </Button>
+                    </Button>-->
                 </StackPanel>
             </Grid>
         </AppBar>

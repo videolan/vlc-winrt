@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Globalization;
 using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.AccessCache;
+using Windows.System.Display;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using GalaSoft.MvvmLight.Command;
 using VLC_WINRT.Common;
 using VLC_WINRT.Utility.Commands;
 using VLC_WINRT.Utility.Services;
@@ -20,25 +23,46 @@ namespace VLC_WINRT.ViewModels.PlayVideo
         private bool _isPlaying;
         private HttpListener _listener;
         private PlayPauseCommand _playOrPause;
-        private SkipAheadCommand _skipAhead;
-        private SkipBackCommand _skipBack;
+        private RelayCommand _skipAhead;
+        private RelayCommand _skipBack;
         private StopVideoCommand _stopVideoCommand;
         private TimeSpan _timeTotal = TimeSpan.Zero;
         private string _title;
         private Player _vlcPlayer;
         private bool _isVLCInitialized = false;
+        private DisplayRequest _displayAlwaysOnRequest;
 
 
         public PlayVideoViewModel()
         {
             _listener = new HttpListener();
             _playOrPause = new PlayPauseCommand();
-            _skipAhead = new SkipAheadCommand();
-            _skipBack = new SkipBackCommand();
+            _skipAhead = new RelayCommand(() =>
+            {
+                TimeSpan seekTo = ElapsedTime + TimeSpan.FromSeconds(10);
+                double relativePosition = seekTo.TotalMilliseconds/TimeTotal.TotalMilliseconds;
+                if (relativePosition > 1.0f)
+                {
+                    relativePosition = 1.0f;
+                }
+                _vlcPlayer.Seek((float)relativePosition);
+            });
+            _skipBack = new RelayCommand(() =>
+            {
+                TimeSpan seekTo = ElapsedTime - TimeSpan.FromSeconds(10);
+                double relativePosition = seekTo.TotalMilliseconds / TimeTotal.TotalMilliseconds;
+                if (relativePosition < 0.0f)
+                {
+                    relativePosition = 0.0f;
+                }
+                _vlcPlayer.Seek((float)relativePosition);
+            });
             _stopVideoCommand = new StopVideoCommand();
 
             _timer.Tick += UpdatePosition;
             _timer.Interval = TimeSpan.FromMilliseconds((1.0d/60.0d));
+
+            _displayAlwaysOnRequest = new DisplayRequest();
         }
 
 
@@ -62,6 +86,14 @@ namespace VLC_WINRT.ViewModels.PlayVideo
             set { _vlcPlayer.Seek((float) value); }
         }
 
+        public string Now
+        {
+            get
+            {
+                return DateTime.Now.ToString(CultureInfo.CurrentCulture.DateTimeFormat.ShortTimePattern);
+            }
+        }
+
         public PlayPauseCommand PlayOrPause
         {
             get { return _playOrPause; }
@@ -77,21 +109,31 @@ namespace VLC_WINRT.ViewModels.PlayVideo
                 if (value)
                 {
                     _timer.Start();
+
+                    if (_displayAlwaysOnRequest != null)
+                    {
+                        _displayAlwaysOnRequest.RequestActive();
+                    }
                 }
                 else
                 {
                     _timer.Stop();
+
+                    if (_displayAlwaysOnRequest != null)
+                    {
+                        _displayAlwaysOnRequest.RequestRelease();
+                    }
                 }
             }
         }
 
-        public SkipAheadCommand SkipAhead
+        public RelayCommand SkipAhead
         {
             get { return _skipAhead; }
             set { SetProperty(ref _skipAhead, value); }
         }
 
-        public SkipBackCommand SkipBack
+        public RelayCommand SkipBack
         {
             get { return _skipBack; }
             set { SetProperty(ref _skipBack, value); }
@@ -135,6 +177,8 @@ namespace VLC_WINRT.ViewModels.PlayVideo
                 _vlcPlayer.Dispose();
                 _vlcPlayer = null;
             }
+
+            IsPlaying = false;
         }
 
         public async Task InitializeVLC(SwapChainBackgroundPanel renderPanel)

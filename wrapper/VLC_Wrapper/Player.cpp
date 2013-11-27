@@ -125,7 +125,10 @@ void Player::Play(){
 }
 
 void Player::Seek(float position){
-	libvlc_media_player_set_position(p_mp, position);
+	if (libvlc_media_player_is_seekable(p_mp))
+	{
+		libvlc_media_player_set_position(p_mp, position);
+	}
 }
 
 float Player::GetPosition(){
