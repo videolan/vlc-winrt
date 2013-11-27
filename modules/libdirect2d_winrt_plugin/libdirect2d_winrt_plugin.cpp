@@ -233,25 +233,23 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
 	displayHeight = (double)sys->displayHeight;
 	displayWidth = (double)sys->displayWidth;
 	displayAspectRatio = displayWidth / displayHeight;
-	pictureAspectRation = (double) cfg->display.width / (double) cfg->display.height;
+	pictureAspectRation = (double) picture->format.i_width / (double) picture->format.i_height;
 
 	if (displayAspectRatio >= pictureAspectRation){
 		//scale by height
-		scale = displayHeight / (double) cfg->display.height;
-		offsetx = ((displayWidth - ((double) cfg->display.width * scale)) / 2.0) / scale;
+		scale = displayHeight / (double) picture->format.i_height;
+		offsetx = ((displayWidth - ((double) picture->format.i_width  * scale)) / 2.0);
 	}
 	else{
 		//scale by width
-		scale = displayWidth / (double) cfg->display.width;
-		offsety = ((displayHeight - ((double) cfg->display.height * scale)) / 2.0) / scale;
+		scale = displayWidth / (double) picture->format.i_width;
+		offsety = ((displayHeight - ((double) picture->format.i_height * scale)) / 2.0);
 	}
-	
-	scale = scale / ((double)DisplayProperties::ResolutionScale / 100.0f);
 
 	scaleTransform = D2D1::Matrix3x2F::Scale(scale, scale, D2D1::Point2F(0.0f, 0.0f));
 	translateTransform = D2D1::Matrix3x2F::Translation(offsetx, offsety);
 
-	D2D1_RECT_F displayRect = { 0.0f, (double) cfg->display.height, (double) cfg->display.width, 0.0f };
+	D2D1_RECT_F displayRect = { 0.0f, (double) picture->format.i_height, (double) picture->format.i_width, 0.0f };
 	vd->sys->d2dContext->SetTransform(translateTransform *scaleTransform);
 	vd->sys->d2dContext->DrawBitmap(sys->d2dbmp, displayRect);
 	vd->sys->d2dContext->EndDraw();

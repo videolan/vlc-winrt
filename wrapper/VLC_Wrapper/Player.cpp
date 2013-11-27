@@ -22,14 +22,17 @@
 #include "Player.h"
 
 using namespace VLC_Wrapper;
+using namespace Windows::Graphics::Display;
 
 Player::Player(SwapChainBackgroundPanel^ panel)
 {
     OutputDebugStringW(L"Hello, Player!");
 	p_panel = panel;
 	p_dxManager = new DirectXManger();
-	m_displayWidth = p_panel->ActualWidth;
-	m_displayHeight = p_panel->ActualHeight;
+
+	
+	m_displayWidth = p_panel->ActualWidth * (double)DisplayProperties::ResolutionScale / 100.0f;
+	m_displayHeight = p_panel->ActualHeight * (double) DisplayProperties::ResolutionScale / 100.0f;
 }
 
 //Todo: don't block UI during initialization
