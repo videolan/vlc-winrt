@@ -16,7 +16,8 @@ namespace VLC_WINRT.ViewModels.PlayVideo
 {
     public class PlayVideoViewModel : BindableBase, IDisposable
     {
-        private readonly DispatcherTimer _timer = new DispatcherTimer();
+        private readonly DispatcherTimer _sliderPositionTimer = new DispatcherTimer();
+        private readonly DispatcherTimer _currentTimeTimer = new DispatcherTimer();
         private StorageFile _currentFile;
         private TimeSpan _elapsedTime = TimeSpan.Zero;
         private string _fileToken;
@@ -59,12 +60,20 @@ namespace VLC_WINRT.ViewModels.PlayVideo
             });
             _stopVideoCommand = new StopVideoCommand();
 
-            _timer.Tick += UpdatePosition;
-            _timer.Interval = TimeSpan.FromMilliseconds((1.0d/60.0d));
+            _sliderPositionTimer.Tick += UpdatePosition;
+            _sliderPositionTimer.Interval = TimeSpan.FromMilliseconds((1.0d/60.0d));
+
+            _currentTimeTimer.Tick += UpdateDate;
+            _currentTimeTimer.Interval = TimeSpan.FromSeconds(10);
+            _currentTimeTimer.Start();
 
             _displayAlwaysOnRequest = new DisplayRequest();
         }
 
+        private void UpdateDate(object sender, object e)
+        {
+            OnPropertyChanged("Now");
+        }
 
         public StorageFile CurrentFile
         {
@@ -108,7 +117,7 @@ namespace VLC_WINRT.ViewModels.PlayVideo
                 SetProperty(ref _isPlaying, value);
                 if (value)
                 {
-                    _timer.Start();
+                    _sliderPositionTimer.Start();
 
                     if (_displayAlwaysOnRequest != null)
                     {
@@ -117,7 +126,7 @@ namespace VLC_WINRT.ViewModels.PlayVideo
                 }
                 else
                 {
-                    _timer.Stop();
+                    _sliderPositionTimer.Stop();
 
                     if (_displayAlwaysOnRequest != null)
                     {

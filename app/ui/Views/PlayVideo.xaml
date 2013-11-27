@@ -15,7 +15,7 @@
     </Page.Resources>
     <SwapChainBackgroundPanel x:Name="Panel" Tapped="ScreenTapped"></SwapChainBackgroundPanel>
     <Page.TopAppBar>
-        <AppBar  Background="#AA000000">
+        <AppBar  Background="#AA000000" BorderBrush="#AA000000">
             <Grid>
                 <Button Style="{StaticResource BackButtonStyle}" Command="{Binding StopVideo}" CommandParameter="{Binding}" Margin="30"></Button>
                 <TextBlock Margin="30" HorizontalAlignment="Right" Text="{Binding Now}" Style="{StaticResource PageHeaderTextStyle}"></TextBlock>
@@ -23,7 +23,7 @@
         </AppBar>
     </Page.TopAppBar>
     <Page.BottomAppBar>
-        <AppBar Padding="10,0,10,0" Background="#AA000000">
+        <AppBar Padding="10,0,10,0" Background="#AA000000" BorderBrush="#AA000000">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"></RowDefinition>
