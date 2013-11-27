@@ -12,13 +12,13 @@ namespace VLC_WINRT.Utility.Converters
                 var ts = (TimeSpan) value;
                 if (ts.Hours > 0)
                 {
-                    return ts.Hours + ":" + ts.Minutes + ":" + ts.Seconds;
+
+                    return String.Format("{0:hh\\:mm\\:ss}", ts);
                 }
                 else
                 {
-                    return ts.Minutes + ":" + ts.Seconds;
+                    return String.Format("{0:mm\\:ss}", ts);
                 }
-                
             }
             else
             {
