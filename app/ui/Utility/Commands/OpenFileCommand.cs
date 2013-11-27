@@ -1,6 +1,6 @@
 ﻿using System;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
+using Microsoft.Practices.ServiceLocation;
 using VLC_WINRT.Common;
 using VLC_WINRT.Utility.Services.RunTime;
 using VLC_WINRT.ViewModels;
@@ -16,11 +16,11 @@ namespace VLC_WINRT.Utility.Commands
             if (parameter.GetType() != typeof (MediaViewModel) && parameter.GetType() != typeof (ViewedVideoViewModel))
                 throw new ArgumentException("Expecting to see a Media View Model for this command");
 
-            var history = new HistoryService();
+            var historyService = ServiceLocator.Current.GetInstance<HistoryService>();
             var vm = (MediaViewModel) parameter;
 
-            string token = history.Add(vm.File);
-            ViewModelLocator.PlayVideoVM.Title = vm.File.Name;
+            string token = historyService.Add(vm.File);
+            ViewModelLocator.PlayVideoVM.SetActiveVideoInfo(token, vm.File.Name);
             Window.Current.Content = new PlayVideo();
         }
     }

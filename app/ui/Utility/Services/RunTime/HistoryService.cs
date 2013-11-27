@@ -147,7 +147,7 @@ namespace VLC_WINRT.Utility.Services.RunTime
             }
         }
 
-        public async void SaveHistory()
+        public async Task SaveHistory()
         {
             StorageFile historyFile = await ApplicationData.Current.LocalFolder.CreateFileAsync(HistoryFileName,
                                                                                                 CreationCollisionOption
@@ -168,10 +168,18 @@ namespace VLC_WINRT.Utility.Services.RunTime
                               {
                                   Token = token,
                                   Filename = item.Name,
-                                  LastPlayed = DateTime.Now
+                                  LastPlayed = DateTime.Now,
+                                  TotalWatchedMilliseconds = 0
                               };
 
             return history;
+        }
+
+        public void UpdateMediaHistory(string fileToken, TimeSpan totalWatched)
+        {
+            var mediaHistory = _histories.FirstOrDefault(h => h.Token == fileToken);
+            if (mediaHistory != null)
+                mediaHistory.TotalWatchedMilliseconds = totalWatched.TotalMilliseconds;
         }
     }
 }

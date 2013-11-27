@@ -7,6 +7,9 @@ using Windows.Storage;
 using Windows.Storage.Streams;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Microsoft.Practices.ServiceLocation;
+using VLC_WINRT.Utility.Services.RunTime;
+using VLC_WINRT.ViewModels.MainPage;
 
 namespace VLC_WINRT.Common
 {
@@ -66,33 +69,8 @@ namespace VLC_WINRT.Common
         {
             try
             {
-                // Save the navigation state for all registered frames
-                foreach (var weakFrameReference in _registeredFrames)
-                {
-                    Frame frame;
-                    if (weakFrameReference.TryGetTarget(out frame))
-                    {
-                        SaveFrameNavigationState(frame);
-                    }
-                }
-
-                // Serialize the session state synchronously to avoid asynchronous access to shared
-                // state
-                var sessionData = new MemoryStream();
-                var serializer = new DataContractSerializer(typeof (Dictionary<string, object>), _knownTypes);
-                serializer.WriteObject(sessionData, _sessionState);
-
-                // Get an output stream for the SessionState file and write the state asynchronously
-                StorageFile file =
-                    await
-                    ApplicationData.Current.LocalFolder.CreateFileAsync(sessionStateFilename,
-                                                                        CreationCollisionOption.ReplaceExisting);
-                using (Stream fileStream = await file.OpenStreamForWriteAsync())
-                {
-                    sessionData.Seek(0, SeekOrigin.Begin);
-                    await sessionData.CopyToAsync(fileStream);
-                    await fileStream.FlushAsync();
-                }
+                var historyService = ServiceLocator.Current.GetInstance<HistoryService>();
+                await historyService.SaveHistory();
             }
             catch (Exception e)
             {
@@ -113,29 +91,9 @@ namespace VLC_WINRT.Common
         /// </returns>
         public static async Task RestoreAsync()
         {
-            _sessionState = new Dictionary<String, Object>();
-
             try
             {
-                // Get the input stream for the SessionState file
-                StorageFile file = await ApplicationData.Current.LocalFolder.GetFileAsync(sessionStateFilename);
-                using (IInputStream inStream = await file.OpenSequentialReadAsync())
-                {
-                    // Deserialize the Session State
-                    var serializer = new DataContractSerializer(typeof (Dictionary<string, object>), _knownTypes);
-                    _sessionState = (Dictionary<string, object>) serializer.ReadObject(inStream.AsStreamForRead());
-                }
-
-                // Restore any registered frames to their saved state
-                foreach (var weakFrameReference in _registeredFrames)
-                {
-                    Frame frame;
-                    if (weakFrameReference.TryGetTarget(out frame))
-                    {
-                        frame.ClearValue(FrameSessionStateProperty);
-                        RestoreFrameNavigationState(frame);
-                    }
-                }
+                var historyService = ServiceLocator.Current.GetInstance<HistoryService>();
             }
             catch (Exception e)
             {

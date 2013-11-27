@@ -47,10 +47,10 @@ namespace VLC_WINRT.Utility.Commands
             if (file != null)
             {
                 var history = new HistoryService();
-                history.Add(file);
+                string token = history.Add(file);
 
                 Debug.WriteLine("Opening file: " + file.Path);
-                ViewModelLocator.PlayVideoVM.Title = file.Name;
+                ViewModelLocator.PlayVideoVM.SetActiveVideoInfo(token, file.Name);
                 Window.Current.Content = new PlayVideo();
             }
             else

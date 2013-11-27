@@ -1,5 +1,5 @@
 ﻿using System;
-using Windows.Storage.Streams;
+using Microsoft.Practices.ServiceLocation;
 using VLC_WINRT.Common;
 using VLC_WINRT.Utility.Commands;
 using VLC_WINRT.Utility.Services.RunTime;
@@ -17,11 +17,13 @@ namespace VLC_WINRT.ViewModels.MainPage
         private ViewedVideoViewModel _secondLastViewedVM;
         private ViewedVideoViewModel _thirdLastViewedVM;
         private bool _welcomeSectionVisible;
+        private readonly HistoryService _historyService;
 
         public LastViewedViewModel()
         {
-            var history = new HistoryService();
-            if (history.FileCount() > 0)
+            _historyService = ServiceLocator.Current.GetInstance<HistoryService>();
+
+            if (_historyService.FileCount() > 0)
             {
                 LastViewedSectionVisible = true;
             }
@@ -74,23 +76,22 @@ namespace VLC_WINRT.ViewModels.MainPage
 
         private async void GetLastViewedMedia(IAsyncAction operation)
         {
-            var historyServive = new HistoryService();
 
-            string firstToken = historyServive.GetTokenAtPosition(0);
-            string secondToken = historyServive.GetTokenAtPosition(1);
-            string thirdToken = historyServive.GetTokenAtPosition(2);
+            string firstToken = _historyService.GetTokenAtPosition(0);
+            string secondToken = _historyService.GetTokenAtPosition(1);
+            string thirdToken = _historyService.GetTokenAtPosition(2);
 
             StorageFile firstFile = null;
             if (!string.IsNullOrEmpty(firstToken))
-                firstFile = await historyServive.RetrieveFile(firstToken);
+                firstFile = await _historyService.RetrieveFile(firstToken);
 
             StorageFile secondFile = null;
             if (!string.IsNullOrEmpty(secondToken))
-                secondFile  = await historyServive.RetrieveFile(secondToken);
+                secondFile = await _historyService.RetrieveFile(secondToken);
 
             StorageFile thirdFile = null;
             if (!string.IsNullOrEmpty(thirdToken))
-                thirdFile = await historyServive.RetrieveFile(thirdToken);
+                thirdFile = await _historyService.RetrieveFile(thirdToken);
 
             DispatchHelper.Invoke(() =>
                                       {

@@ -141,7 +141,6 @@
     <Compile Include="Utility\Services\DesignTime\ThumbnailService.cs" />
     <Compile Include="Utility\Services\Interface\IThumbnailService.cs" />
     <Compile Include="Utility\Services\RunTime\HistoryService.cs" />
-    <Compile Include="Utility\Services\RunTime\HttpListener.cs" />
     <Compile Include="Utility\Services\RunTime\MediaScanner.cs" />
     <Compile Include="Utility\Services\RunTime\ThumbnailService.cs" />
     <Compile Include="ViewModels\MainPage\LastViewedViewModel.cs" />

@@ -7,6 +7,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
 using VLC_WINRT.Utility.Services.Interface;
+using VLC_WINRT.Utility.Services.RunTime;
 using VLC_WINRT.ViewModels.MainPage;
 using VLC_WINRT.ViewModels.PlayVideo;
 
@@ -37,11 +38,12 @@ namespace VLC_WINRT.ViewModels
                 SimpleIoc.Default.Register<IThumbnailService, Utility.Services.RunTime.ThumbnailService>();
             }
 
+            SimpleIoc.Default.Register<HistoryService>();
+
             SimpleIoc.Default.Register<PlayVideoViewModel>(true);
             SimpleIoc.Default.Register<MainPageViewModel>();
             SimpleIoc.Default.Register<ThumbnailsViewModel>();
             SimpleIoc.Default.Register<LibraryViewModel>();
-
         }
 
         public static ThumbnailsViewModel ThumbnailsVM

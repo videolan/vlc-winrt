@@ -1,5 +1,6 @@
 ﻿using System;
 using Windows.Storage;
+using Microsoft.Practices.ServiceLocation;
 using VLC_WINRT.Common;
 using Windows.Foundation;
 using Windows.Storage.FileProperties;
@@ -52,13 +53,13 @@ namespace VLC_WINRT.ViewModels.MainPage
         {
             VideoProperties videoProps = await File.Properties.GetVideoPropertiesAsync();
             TimeSpan duration = videoProps.Duration;
-            HistoryService historyService = new HistoryService();
+            var historyService = ServiceLocator.Current.GetInstance<HistoryService>();
             MediaHistory history=  historyService.GetHistory(_token);
 
             DispatchHelper.Invoke(() =>
                                       {
                                           Duration = duration;
-                                          TimeWatched = history.TotalWatched;
+                                          TimeWatched = TimeSpan.FromMilliseconds(history.TotalWatchedMilliseconds);
                                       });
         }
     }

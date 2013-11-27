@@ -5,9 +5,9 @@ using Windows.System.Display;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using GalaSoft.MvvmLight.Command;
+using Microsoft.Practices.ServiceLocation;
 using VLC_WINRT.Common;
 using VLC_WINRT.Utility.Commands;
-using VLC_WINRT.Utility.Services;
 using VLC_WINRT.Utility.Services.RunTime;
 using VLC_Wrapper;
 
@@ -16,11 +16,10 @@ namespace VLC_WINRT.ViewModels.PlayVideo
     public class PlayVideoViewModel : BindableBase, IDisposable
     {
         private readonly DispatcherTimer _sliderPositionTimer = new DispatcherTimer();
-        private readonly DispatcherTimer _currentTimeTimer = new DispatcherTimer();
+        private readonly DispatcherTimer _fiveSecondTimer = new DispatcherTimer();
         private TimeSpan _elapsedTime = TimeSpan.Zero;
         private string _fileToken;
         private bool _isPlaying;
-        private HttpListener _listener;
         private PlayPauseCommand _playOrPause;
         private RelayCommand _skipAhead;
         private RelayCommand _skipBack;
@@ -35,9 +34,8 @@ namespace VLC_WINRT.ViewModels.PlayVideo
 
         public PlayVideoViewModel()
         {
-            _listener = new HttpListener();
             _playOrPause = new PlayPauseCommand();
-            _historyService = new HistoryService();
+            _historyService = ServiceLocator.Current.GetInstance<HistoryService>();
             _skipAhead = new RelayCommand(() =>
             {
                 TimeSpan seekTo = ElapsedTime + TimeSpan.FromSeconds(10);
@@ -63,15 +61,20 @@ namespace VLC_WINRT.ViewModels.PlayVideo
             _sliderPositionTimer.Tick += UpdatePosition;
             _sliderPositionTimer.Interval = TimeSpan.FromMilliseconds((1.0d/60.0d));
 
-            _currentTimeTimer.Tick += UpdateDate;
-            _currentTimeTimer.Interval = TimeSpan.FromSeconds(10);
-            _currentTimeTimer.Start();
+            _fiveSecondTimer.Tick += UpdateDate;
+            _fiveSecondTimer.Interval = TimeSpan.FromSeconds(5);
+            _fiveSecondTimer.Start();
 
             _displayAlwaysOnRequest = new DisplayRequest();
         }
 
         private void UpdateDate(object sender, object e)
         {
+            if (!string.IsNullOrEmpty(_fileToken))
+            {
+                _historyService.UpdateMediaHistory(_fileToken, ElapsedTime);
+            }
+            
             OnPropertyChanged("Now");
         }
 
@@ -140,7 +143,13 @@ namespace VLC_WINRT.ViewModels.PlayVideo
         public string Title
         {
             get { return _title; }
-            set { SetProperty(ref _title, value); }
+            private set { SetProperty(ref _title, value); }
+        }
+
+        public void SetActiveVideoInfo(string token, string title)
+        {
+            _fileToken = token;
+            Title = title;
         }
 
         public StopVideoCommand StopVideo
@@ -163,13 +172,6 @@ namespace VLC_WINRT.ViewModels.PlayVideo
 
         public void Dispose()
         {
-            if (_listener != null)
-            {
-                _listener.Stop();
-                _listener.Dispose();
-                _listener = null;
-            }
-
             if (_vlcPlayer != null)
             {
                 _vlcPlayer.Dispose();
