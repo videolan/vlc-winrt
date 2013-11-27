@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using Windows.Storage;
+using VLC_WINRT.Utility.Services.RunTime;
 using VLC_WINRT.ViewModels;
 using Windows.Foundation;
 using Windows.Networking.Sockets;
@@ -88,10 +90,10 @@ namespace VLC_WINRT.Utility.Services
 
         private async void WriteVideoToOutput(ulong start, ulong end)
         {
-            
-            var mediaFile =ViewModelLocator.PlayVideoVM.CurrentFile;
-            string mimetype = GetMimeType(mediaFile.FileType);
-            IRandomAccessStreamWithContentType videoFile = await mediaFile.OpenReadAsync();
+            HistoryService historyService = new HistoryService();
+            StorageFile file = await historyService.RetrieveFileAt(0);
+            string mimetype = GetMimeType(file.FileType);
+            IRandomAccessStreamWithContentType videoFile = await file.OpenReadAsync();
             videoFile.Seek(start);
 
             //construct http header 

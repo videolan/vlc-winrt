@@ -1,9 +1,11 @@
 ﻿using System;
+using Windows.Storage;
 using VLC_WINRT.Common;
 using Windows.Foundation;
-using Windows.Storage;
 using Windows.Storage.FileProperties;
 using Windows.System.Threading;
+using VLC_WINRT.Model;
+using VLC_WINRT.Utility.Services.RunTime;
 
 namespace VLC_WINRT.ViewModels.MainPage
 {
@@ -11,9 +13,12 @@ namespace VLC_WINRT.ViewModels.MainPage
     {
         private TimeSpan _duration;
         private TimeSpan _timeWatched;
+        private string _token;
 
-        public ViewedVideoViewModel(StorageFile storageFile) : base(storageFile)
+        public ViewedVideoViewModel(string token, StorageFile file)
+            : base(file)
         {
+            _token = token;
             ThreadPool.RunAsync(GatherTimeInformation);
         }
 
@@ -47,13 +52,13 @@ namespace VLC_WINRT.ViewModels.MainPage
         {
             VideoProperties videoProps = await File.Properties.GetVideoPropertiesAsync();
             TimeSpan duration = videoProps.Duration;
-            var rand = new Random();
-            int seconds = rand.Next((int) duration.TotalSeconds);
+            HistoryService historyService = new HistoryService();
+            MediaHistory history=  historyService.GetHistory(_token);
 
             DispatchHelper.Invoke(() =>
                                       {
                                           Duration = duration;
-                                          TimeWatched = TimeSpan.FromSeconds(seconds);
+                                          TimeWatched = history.TotalWatched;
                                       });
         }
     }

@@ -1,4 +1,6 @@
-﻿using VLC_WINRT.Common;
+﻿using System;
+using Windows.Storage.Streams;
+using VLC_WINRT.Common;
 using VLC_WINRT.Utility.Commands;
 using VLC_WINRT.Utility.Services.RunTime;
 using Windows.Foundation;
@@ -72,20 +74,32 @@ namespace VLC_WINRT.ViewModels.MainPage
 
         private async void GetLastViewedMedia(IAsyncAction operation)
         {
-            var histserv = new HistoryService();
+            var historyServive = new HistoryService();
 
-            StorageFile firstFile = await histserv.RetrieveFileAt(0);
-            StorageFile secondFile = await histserv.RetrieveFileAt(1);
-            StorageFile thirdFile = await histserv.RetrieveFileAt(2);
+            string firstToken = historyServive.GetTokenAtPosition(0);
+            string secondToken = historyServive.GetTokenAtPosition(1);
+            string thirdToken = historyServive.GetTokenAtPosition(2);
+
+            StorageFile firstFile = null;
+            if (!string.IsNullOrEmpty(firstToken))
+                firstFile = await historyServive.RetrieveFile(firstToken);
+
+            StorageFile secondFile = null;
+            if (!string.IsNullOrEmpty(secondToken))
+                secondFile  = await historyServive.RetrieveFile(secondToken);
+
+            StorageFile thirdFile = null;
+            if (!string.IsNullOrEmpty(thirdToken))
+                thirdFile = await historyServive.RetrieveFile(thirdToken);
 
             DispatchHelper.Invoke(() =>
                                       {
                                           if (firstFile != null)
-                                              LastViewedVM = new ViewedVideoViewModel(firstFile);
+                                              LastViewedVM = new ViewedVideoViewModel(firstToken, firstFile);
                                           if (secondFile != null)
-                                              SecondLastViewedVM = new ViewedVideoViewModel(secondFile);
+                                              SecondLastViewedVM = new ViewedVideoViewModel(secondToken, secondFile);
                                           if (thirdFile != null)
-                                              ThirdLastViewedVM = new ViewedVideoViewModel(thirdFile);
+                                              ThirdLastViewedVM = new ViewedVideoViewModel(thirdToken, thirdFile);
                                       });
         }
     }

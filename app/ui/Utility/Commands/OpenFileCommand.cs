@@ -19,8 +19,8 @@ namespace VLC_WINRT.Utility.Commands
             var history = new HistoryService();
             var vm = (MediaViewModel) parameter;
 
-            ViewModelLocator.PlayVideoVM.CurrentFile = vm.File;
-            history.Add(vm.File);
+            string token = history.Add(vm.File);
+            ViewModelLocator.PlayVideoVM.Title = vm.File.Name;
             Window.Current.Content = new PlayVideo();
         }
     }

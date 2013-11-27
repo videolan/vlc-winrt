@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Globalization;
 using System.Threading.Tasks;
-using Windows.Storage;
-using Windows.Storage.AccessCache;
 using Windows.System.Display;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -10,6 +8,7 @@ using GalaSoft.MvvmLight.Command;
 using VLC_WINRT.Common;
 using VLC_WINRT.Utility.Commands;
 using VLC_WINRT.Utility.Services;
+using VLC_WINRT.Utility.Services.RunTime;
 using VLC_Wrapper;
 
 namespace VLC_WINRT.ViewModels.PlayVideo
@@ -18,7 +17,6 @@ namespace VLC_WINRT.ViewModels.PlayVideo
     {
         private readonly DispatcherTimer _sliderPositionTimer = new DispatcherTimer();
         private readonly DispatcherTimer _currentTimeTimer = new DispatcherTimer();
-        private StorageFile _currentFile;
         private TimeSpan _elapsedTime = TimeSpan.Zero;
         private string _fileToken;
         private bool _isPlaying;
@@ -31,13 +29,15 @@ namespace VLC_WINRT.ViewModels.PlayVideo
         private string _title;
         private Player _vlcPlayer;
         private bool _isVLCInitialized = false;
-        private DisplayRequest _displayAlwaysOnRequest;
+        private readonly DisplayRequest _displayAlwaysOnRequest;
+        private HistoryService _historyService;
 
 
         public PlayVideoViewModel()
         {
             _listener = new HttpListener();
             _playOrPause = new PlayPauseCommand();
+            _historyService = new HistoryService();
             _skipAhead = new RelayCommand(() =>
             {
                 TimeSpan seekTo = ElapsedTime + TimeSpan.FromSeconds(10);
@@ -73,17 +73,6 @@ namespace VLC_WINRT.ViewModels.PlayVideo
         private void UpdateDate(object sender, object e)
         {
             OnPropertyChanged("Now");
-        }
-
-        public StorageFile CurrentFile
-        {
-            get { return _currentFile; }
-            set
-            {
-                SetProperty(ref _currentFile, value);
-                _fileToken = StorageApplicationPermissions.FutureAccessList.Add(_currentFile);
-                Title = _currentFile.Name;
-            }
         }
 
         public double Position
@@ -195,7 +184,8 @@ namespace VLC_WINRT.ViewModels.PlayVideo
             _vlcPlayer = new Player(renderPanel);
             await _vlcPlayer.Initialize();
             _isVLCInitialized = true;
-            _vlcPlayer.Open("winrt://" + _fileToken);
+            string token =  _historyService.GetTokenAtPosition(0);
+            _vlcPlayer.Open("winrt://" + token);
         }
 
         private void UpdatePosition(object sender, object e)

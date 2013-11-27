@@ -50,7 +50,7 @@ namespace VLC_WINRT.Utility.Commands
                 history.Add(file);
 
                 Debug.WriteLine("Opening file: " + file.Path);
-                ViewModelLocator.PlayVideoVM.CurrentFile = file;
+                ViewModelLocator.PlayVideoVM.Title = file.Name;
                 Window.Current.Content = new PlayVideo();
             }
             else
