@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Globalization;
 using System.Threading.Tasks;
 using Windows.System.Display;
@@ -44,17 +45,17 @@ namespace VLC_WINRT.ViewModels.PlayVideo
                 {
                     relativePosition = 1.0f;
                 }
-                _vlcPlayer.Seek((float)relativePosition);
+                _vlcPlayer.Seek((float) relativePosition);
             });
             _skipBack = new RelayCommand(() =>
             {
                 TimeSpan seekTo = ElapsedTime - TimeSpan.FromSeconds(10);
-                double relativePosition = seekTo.TotalMilliseconds / TimeTotal.TotalMilliseconds;
+                double relativePosition = seekTo.TotalMilliseconds/TimeTotal.TotalMilliseconds;
                 if (relativePosition < 0.0f)
                 {
                     relativePosition = 0.0f;
                 }
-                _vlcPlayer.Seek((float)relativePosition);
+                _vlcPlayer.Seek((float) relativePosition);
             });
             _stopVideoCommand = new StopVideoCommand();
 
@@ -74,13 +75,13 @@ namespace VLC_WINRT.ViewModels.PlayVideo
             {
                 _historyService.UpdateMediaHistory(_fileToken, ElapsedTime);
             }
-            
+
             OnPropertyChanged("Now");
         }
 
         public double PositionInSeconds
         {
-            get 
+            get
             {
                 if (_isVLCInitialized)
                 {
@@ -91,7 +92,7 @@ namespace VLC_WINRT.ViewModels.PlayVideo
                     return 0.0d;
                 }
             }
-            set { _vlcPlayer.Seek((float) (value / TimeTotal.TotalSeconds)); }
+            set { _vlcPlayer.Seek((float) (value/TimeTotal.TotalSeconds)); }
         }
 
         public string Now
@@ -119,22 +120,39 @@ namespace VLC_WINRT.ViewModels.PlayVideo
                 {
                     _sliderPositionTimer.Start();
                     mouseService.HideMouse();
-
-                    if (_displayAlwaysOnRequest != null)
-                    {
-                        _displayAlwaysOnRequest.RequestActive();
-                    }
+                    ProtectedDisplayCall(true);
                 }
                 else
                 {
                     _sliderPositionTimer.Stop();
                     mouseService.RestoreMouse();
-
-                    if (_displayAlwaysOnRequest != null)
-                    {
-                        _displayAlwaysOnRequest.RequestRelease();
-                    }
+                    ProtectedDisplayCall(false);
                 }
+            }
+
+        }
+
+        private void ProtectedDisplayCall(bool shouldActivate)
+        {
+            if (_displayAlwaysOnRequest == null) return;
+            try
+            {
+                if (shouldActivate)
+                {
+                    _displayAlwaysOnRequest.RequestActive();
+                }
+                else
+                {
+                    _displayAlwaysOnRequest.RequestRelease();
+                }
+            }
+
+            catch (ArithmeticException badMathEx)
+            {
+                //  Work around for platform bug 
+
+                Debug.WriteLine("display request failed again");
+                Debug.WriteLine(badMathEx.ToString());
             }
         }
 
