@@ -186,9 +186,7 @@
       <SubType>Designer</SubType>
     </AppxManifest>
     <None Include="Common\ReadMe.txt" />
-    <PRIResource Include="Strings\de-DE\Resources.resw" />
     <PRIResource Include="Strings\en-US\Resources.resw" />
-    <PRIResource Include="Strings\fr-FR\Resources.resw" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
