@@ -30,8 +30,8 @@ Player::Player(SwapChainBackgroundPanel^ panel)
 	p_panel = panel;
 	p_dxManager = new DirectXManger();
 	
-	m_displayWidth = p_panel->ActualWidth * (double)DisplayProperties::ResolutionScale / (double)100.0f;
-	m_displayHeight = p_panel->ActualHeight * (double) DisplayProperties::ResolutionScale / 100.0f;
+	m_displayWidth = (float)(p_panel->ActualWidth * (float)DisplayProperties::ResolutionScale / 100.0f);
+	m_displayHeight = (float)(p_panel->ActualHeight * (float) DisplayProperties::ResolutionScale / 100.0f);
 }
 
 //Todo: don't block UI during initialization

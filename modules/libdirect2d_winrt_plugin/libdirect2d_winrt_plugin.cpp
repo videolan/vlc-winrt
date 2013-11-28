@@ -136,10 +136,10 @@ static int Open(vlc_object_t *object)
 	sys->displayWidth = var_CreateGetFloat(vd, "winrt-width");
 	sys->displayHeight = var_CreateGetFloat(vd, "winrt-height");
 
-	int panelInt = var_CreateGetInteger(vd, "winrt-d2dcontext");
+	unsigned int panelInt = var_CreateGetInteger(vd, "winrt-d2dcontext");
 	reinterpret_cast<IUnknown*>(panelInt)->QueryInterface(IID_PPV_ARGS(&sys->d2dContext));
 
-	int swapChainInt = var_CreateGetInteger(vd, "winrt-swapchain");
+	unsigned int swapChainInt = var_CreateGetInteger(vd, "winrt-swapchain");
 	reinterpret_cast<IUnknown*>(swapChainInt)->QueryInterface(IID_PPV_ARGS(&sys->swapChain));
 
 	return VLC_SUCCESS;
