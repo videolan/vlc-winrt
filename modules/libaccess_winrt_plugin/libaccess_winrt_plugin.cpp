@@ -148,12 +148,18 @@ ssize_t Read(access_t *access, uint8_t *buffer, size_t size)
 			WriteOnlyArray<unsigned char, 1U>^ bufferArray = ref new Array<unsigned char, 1U>(numBytesLoaded);
 			dataReader->ReadBytes(bufferArray);
 			memcpy(buffer, bufferArray->begin(), bufferArray->end() - bufferArray->begin());
-
 			totalRead = numBytesLoaded;
+			
 		}).wait(); /* block with wait since we're in a worker thread */
 	}
 	catch (int ex){
 		OutputDebugString(L"Exception in read\n");
+	}
+
+	access->info.i_pos += totalRead;
+	access->info.b_eof = readStream->Position >= readStream->Size;
+	if (access->info.b_eof){
+		OutputDebugString(L"End of file reached");
 	}
 
 	return totalRead;
@@ -166,7 +172,7 @@ int Seek(access_t *access, uint64_t position)
 	{
 		readStream->Seek(position);
 		access->info.i_pos = position;
-		access->info.b_eof = false;
+		access->info.b_eof = readStream->Position >= readStream->Size;
 	}
 	catch (int ex)
 	{
