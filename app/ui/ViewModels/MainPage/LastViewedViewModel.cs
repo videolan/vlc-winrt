@@ -1,23 +1,26 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Threading.Tasks;
+using Windows.Foundation;
+using Windows.Storage;
+using Windows.System.Threading;
 using Microsoft.Practices.ServiceLocation;
 using VLC_WINRT.Common;
 using VLC_WINRT.Utility.Commands;
 using VLC_WINRT.Utility.Services.RunTime;
-using Windows.Foundation;
-using Windows.Storage;
-using Windows.System.Threading;
 
 namespace VLC_WINRT.ViewModels.MainPage
 {
     public class LastViewedViewModel : BindableBase
     {
+        private readonly HistoryService _historyService;
         private ClearHistoryCommand _clearHistoryCommand;
-        private ViewedVideoViewModel _lastViewedVM;
         private bool _lastViewedSectionVisible;
+        private ViewedVideoViewModel _lastViewedVM;
         private ViewedVideoViewModel _secondLastViewedVM;
         private ViewedVideoViewModel _thirdLastViewedVM;
         private bool _welcomeSectionVisible;
-        private readonly HistoryService _historyService;
 
         public LastViewedViewModel()
         {
@@ -76,32 +79,43 @@ namespace VLC_WINRT.ViewModels.MainPage
 
         private async void GetLastViewedMedia(IAsyncAction operation)
         {
-
-            string firstToken = _historyService.GetTokenAtPosition(0);
-            string secondToken = _historyService.GetTokenAtPosition(1);
-            string thirdToken = _historyService.GetTokenAtPosition(2);
-
-            StorageFile firstFile = null;
-            if (!string.IsNullOrEmpty(firstToken))
-                firstFile = await _historyService.RetrieveFile(firstToken);
-
-            StorageFile secondFile = null;
-            if (!string.IsNullOrEmpty(secondToken))
-                secondFile = await _historyService.RetrieveFile(secondToken);
-
-            StorageFile thirdFile = null;
-            if (!string.IsNullOrEmpty(thirdToken))
-                thirdFile = await _historyService.RetrieveFile(thirdToken);
+            var viewedMedia = await GetRecentMedia();
 
             DispatchHelper.Invoke(() =>
-                                      {
-                                          if (firstFile != null)
-                                              LastViewedVM = new ViewedVideoViewModel(firstToken, firstFile);
-                                          if (secondFile != null)
-                                              SecondLastViewedVM = new ViewedVideoViewModel(secondToken, secondFile);
-                                          if (thirdFile != null)
-                                              ThirdLastViewedVM = new ViewedVideoViewModel(thirdToken, thirdFile);
-                                      });
+            {
+                if (viewedMedia.Count > 0)
+                    LastViewedVM = viewedMedia[0];
+                if (viewedMedia.Count > 1)
+                    SecondLastViewedVM = viewedMedia[1];
+                if (viewedMedia.Count > 2)
+                    ThirdLastViewedVM = viewedMedia[2];
+            });
+        }
+
+        private async Task<List<ViewedVideoViewModel>> GetRecentMedia()
+        {
+            var viewedVideos = new List<ViewedVideoViewModel>();
+            for (int i = 0; i < 3; i++)
+            {
+                try
+                {
+                    string token = _historyService.GetTokenAtPosition(i);
+                    StorageFile file = null;
+                    if (!string.IsNullOrEmpty(token))
+                    {
+                        file = await _historyService.RetrieveFile(token);
+                    }
+                    if (file == null) continue;
+
+                    viewedVideos.Add(new ViewedVideoViewModel(token, file));
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine("Couldn't load file from history, we may no longer have acces to it.");
+                    Debug.WriteLine(ex.ToString());
+                }
+            }
+            return viewedVideos;
         }
     }
 }
