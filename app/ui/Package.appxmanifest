@@ -18,6 +18,10 @@
       <Extensions>
         <Extension Category="windows.fileTypeAssociation">
           <FileTypeAssociation Name="vlcmedia">
+            <DisplayName>VLC for WinRT</DisplayName>
+            <Logo>Assets\Logo.png</Logo>
+            <InfoTip>Play with VLC</InfoTip>
+            <EditFlags OpenIsSafe="true" />
             <SupportedFileTypes>
               <FileType ContentType="video/x-matroska">.mkv</FileType>
               <FileType ContentType="video/x-msvideo">.avi</FileType>
@@ -29,7 +33,7 @@
         </Extension>
       </Extensions>
       <VisualElements DisplayName="VLC_WINRT" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="VLC_WINRT" ForegroundText="light" BackgroundColor="#464646">
-        <DefaultTile ShowName="allLogos" ShortName="VLC for WinRT" />
+        <DefaultTile ShowName="logoOnly" ShortName="VLC for WinRT" />
         <SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="#F09609" />
       </VisualElements>
     </Application>
