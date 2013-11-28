@@ -38,7 +38,7 @@
                 <Slider x:Name="VideoPositionSlider" Grid.Row="0" 
                         Style="{StaticResource VlcSlider}" 
                         StepFrequency="0.001" 
-                        Maximum="{Binding TimeTotalSeconds}" 
+                        Maximum="{Binding TimeTotal, Converter={StaticResource TimeSpanSecondsDoubleConverter}}" 
                         Grid.ColumnSpan="2" Margin="30,0" 
                         Value="{Binding PositionInSeconds, Mode=TwoWay}" 
                         ThumbToolTipValueConverter="{StaticResource SecondsStringConverter}"

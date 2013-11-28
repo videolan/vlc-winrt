@@ -138,6 +138,7 @@
     <Compile Include="Utility\Converters\NegatedBooleanToVisibilityConverter.cs" />
     <Compile Include="Utility\Converters\NullToVisibilityConverter.cs" />
     <Compile Include="Utility\Converters\SecondsStringConverter.cs" />
+    <Compile Include="Utility\Converters\TimeSpanSecondsDoubleConverter.cs" />
     <Compile Include="Utility\Converters\TimespanShortStringConverter.cs" />
     <Compile Include="Utility\Services\DesignTime\ThumbnailService.cs" />
     <Compile Include="Utility\Services\Interface\IThumbnailService.cs" />
