@@ -70,8 +70,8 @@ vlc_module_begin()
 	set_capability("vout display", 60)
 	add_integer("winrt-d2dcontext", 0x0, NULL, NULL, true);
 	add_integer("winrt-swapchain", 0x0, NULL, NULL, true);
-	add_integer("winrt-width", 0x0, NULL, NULL, true);
-	add_integer("winrt-height", 0x0, NULL, NULL, true);
+	add_float("winrt-width", 0x0, NULL, NULL, true);
+	add_float("winrt-height", 0x0, NULL, NULL, true);
 
     set_callbacks(Open, Close)
 vlc_module_end()
@@ -89,8 +89,8 @@ static int            CreateDeviceResources(vout_display_t* vd);
 /* */
 struct vout_display_sys_t {
 	/* */
-	int                         displayWidth;
-	int                         displayHeight;
+	float                         displayWidth;
+	float                         displayHeight;
 
 	//TODO: check to see if these are all needed
 	picture_pool_t              *pool;
@@ -133,8 +133,8 @@ static int Open(vlc_object_t *object)
 	vd->manage = Manage;
 	vd->control = Control;
 
-	sys->displayWidth = var_CreateGetInteger(vd, "winrt-width");
-	sys->displayHeight = var_CreateGetInteger(vd, "winrt-height");
+	sys->displayWidth = var_CreateGetFloat(vd, "winrt-width");
+	sys->displayHeight = var_CreateGetFloat(vd, "winrt-height");
 
 	int panelInt = var_CreateGetInteger(vd, "winrt-d2dcontext");
 	reinterpret_cast<IUnknown*>(panelInt)->QueryInterface(IID_PPV_ARGS(&sys->d2dContext));
@@ -230,9 +230,6 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
 
 static void Display(vout_display_t *vd, picture_t *picture, subpicture_t *subpicture)
 {
-	//Prepare(vd, picture, subpicture);
-
-	//swap chain present!
 	DXGI_PRESENT_PARAMETERS parameters = { 0 };
 	parameters.DirtyRectsCount = 0;
 	parameters.pDirtyRects = nullptr;

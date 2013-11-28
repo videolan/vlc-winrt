@@ -52,8 +52,8 @@ namespace VLC_Wrapper {
         libvlc_media_player_t      *p_mp;
 		SwapChainBackgroundPanel   ^p_panel;
 		DirectXManger              *p_dxManager;
-		int                        m_displayWidth;
-		int                        m_displayHeight;
+		float                        m_displayWidth;
+		float                        m_displayHeight;
     };
 }
 

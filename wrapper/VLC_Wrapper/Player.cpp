@@ -29,9 +29,8 @@ Player::Player(SwapChainBackgroundPanel^ panel)
     OutputDebugStringW(L"Hello, Player!");
 	p_panel = panel;
 	p_dxManager = new DirectXManger();
-
 	
-	m_displayWidth = p_panel->ActualWidth * (double)DisplayProperties::ResolutionScale / 100.0f;
+	m_displayWidth = p_panel->ActualWidth * (double)DisplayProperties::ResolutionScale / (double)100.0f;
 	m_displayHeight = p_panel->ActualHeight * (double) DisplayProperties::ResolutionScale / 100.0f;
 }
 
@@ -67,10 +66,10 @@ void Player::InitializeVLC(){
 	sprintf_s(ptr_scstring, "--winrt-swapchain=0x%p", p_dxManager->cp_swapChain);
 
 	char widthstring[40];
-	sprintf_s(widthstring, "--winrt-width=%d", m_displayWidth);
+	sprintf_s(widthstring, "--winrt-width=%f", m_displayWidth);
 
 	char heightstring[40];
-	sprintf_s(heightstring, "--winrt-height=%d", m_displayHeight);
+	sprintf_s(heightstring, "--winrt-height=%f", m_displayHeight);
 
 	/* Don't add any invalid options, otherwise it causes LibVLC to fail */
 	const char *argv[] = {
