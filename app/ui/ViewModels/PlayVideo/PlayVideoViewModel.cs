@@ -27,7 +27,7 @@ namespace VLC_WINRT.ViewModels.PlayVideo
         private TimeSpan _timeTotal = TimeSpan.Zero;
         private string _title;
         private Player _vlcPlayer;
-        private bool _isVLCInitialized = false;
+        private bool _isVLCInitialized;
         private readonly DisplayRequest _displayAlwaysOnRequest;
         private readonly HistoryService _historyService;
 
