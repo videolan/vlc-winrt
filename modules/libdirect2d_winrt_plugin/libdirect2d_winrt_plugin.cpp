@@ -196,11 +196,13 @@ static picture_pool_t *Pool(vout_display_t *vd, unsigned count)
 
 static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpicture)
 {
-	vout_display_sys_t *sys = vd->sys;
+	vout_display_sys_t     *sys = vd->sys;
 	D2D1_BITMAP_PROPERTIES props;
-	D2D1_PIXEL_FORMAT pixFormat;
-	D2D1_SIZE_U size;
-	float dpi = DisplayProperties::LogicalDpi;
+	D2D1_PIXEL_FORMAT      pixFormat;
+	D2D1_SIZE_U            size;
+	float                  dpi = DisplayProperties::LogicalDpi;
+	ComPtr<ID2D1Effect>    scaleEffect;
+	float                  scale;
 
 	if (sys->d2dbmp){
 		// cleanup previous bmp
@@ -220,9 +222,16 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
 	props.dpiY = dpi;
 	sys->d2dContext->CreateBitmap(size, picture->p[0].p_pixels, picture->p[0].i_pitch, props, &sys->d2dbmp);
 
+	scale = (double) sys->displayWidth / (double) picture->format.i_width;
+	sys->d2dContext->CreateEffect(CLSID_D2D1Scale, &scaleEffect);
+	scaleEffect->SetInput(0, sys->d2dbmp);
+	scaleEffect->SetValue(D2D1_SCALE_PROP_CENTER_POINT, D2D1::Vector2F(0.0f,0.0f));
+	scaleEffect->SetValue(D2D1_SCALE_PROP_SCALE, D2D1::Vector2F(scale, scale));
 	D2D1_RECT_F displayRect = { 0.0f, (double) sys->displayHeight, (double) sys->displayWidth, 0.0f };
 	D2D1_RECT_F pictureRect = { 0.0f, picture->format.i_height, (double) picture->format.i_width, 0.0f };
-	vd->sys->d2dContext->DrawBitmap(sys->d2dbmp, displayRect, 1.0f, D2D1_INTERPOLATION_MODE_LINEAR, pictureRect);
+	D2D1_POINT_2F offset = {0.0f, ((double) sys->displayHeight - (((double)picture->format.i_height)*scale))/2.0f};
+
+	vd->sys->d2dContext->DrawImage(scaleEffect.Get(), offset);
 	vd->sys->d2dContext->EndDraw();
 
 	VLC_UNUSED(subpicture);
