@@ -6,6 +6,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:views="using:VLC_WINRT.Views"
     mc:Ignorable="d"
+    d:DesignWidth="1024"
+    d:DesignHeight="768"
     DataContext="{Binding Source={StaticResource Locator}, Path=PlayVideoVM}">
     <Page.Resources>
         <ResourceDictionary >
@@ -27,20 +29,20 @@
                                Style="{StaticResource SubheaderTextStyle}"
                                Margin="10">
                     </TextBlock>
-                    <ComboBox Margin="10" Width="200"  MaxWidth="200" SelectedIndex="0">
-                        <x:String>English 5.1</x:String>
-                        <x:String>Item 2</x:String>
-                        <x:String>Item 3</x:String>
+                    <ComboBox Margin="10" 
+                              Width="120"
+                              ItemsSource="{Binding Subtitles}"
+                              SelectedItem="{Binding CurrentSubtitle}">
                     </ComboBox>
                     <TextBlock Text="Subtitle Track: " 
-                               Style="{StaticResource SubheaderTextStyle}"
-                               Margin="10"></TextBlock>
-                    <ComboBox Margin="10" Width="200" MaxWidth="200"  SelectedIndex="0">
-                        <x:String>None</x:String>
-                        <x:String>English</x:String>
-                        <x:String>Frenchs</x:String>
+                            Style="{StaticResource SubheaderTextStyle}"
+                            Margin="10"></TextBlock>
+                    <ComboBox Margin="10" 
+                              Width="120"
+                              ItemsSource="{Binding Subtitles}"
+                              SelectedItem="{Binding CurrentSubtitle}">
                     </ComboBox>
-                    <TextBlock Margin="60,10,30,10" 
+                    <TextBlock Margin="40,10,30,10" 
                                HorizontalAlignment="Right" 
                                Text="{Binding Now}" 
                                Style="{StaticResource PageHeaderTextStyle}"></TextBlock>

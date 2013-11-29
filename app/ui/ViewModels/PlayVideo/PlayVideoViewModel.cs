@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Globalization;
 using System.Threading.Tasks;
@@ -6,6 +8,7 @@ using Windows.System.Display;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using Windows.Web.Syndication;
 using GalaSoft.MvvmLight.Command;
 using Microsoft.Practices.ServiceLocation;
 using VLC_WINRT.Utility.Commands;
@@ -33,7 +36,8 @@ namespace VLC_WINRT.ViewModels.PlayVideo
         private readonly DisplayRequest _displayAlwaysOnRequest;
         private readonly HistoryService _historyService;
         private SwapChainBackgroundPanel _panel;
-
+        private ObservableCollection<Subtitle> _subtitles;
+        private Subtitle _currentSubtitle;
 
         public PlayVideoViewModel()
         {
@@ -41,6 +45,7 @@ namespace VLC_WINRT.ViewModels.PlayVideo
             _historyService = ServiceLocator.Current.GetInstance<HistoryService>();
             _stopVideoCommand = new StopVideoCommand();
             _displayAlwaysOnRequest = new DisplayRequest();
+            _subtitles = new ObservableCollection<Subtitle>();
 
             _sliderPositionTimer.Tick += UpdatePosition;
             _sliderPositionTimer.Interval = TimeSpan.FromMilliseconds(16);
@@ -98,6 +103,12 @@ namespace VLC_WINRT.ViewModels.PlayVideo
 
             RaisePropertyChanged("TimeTotal");
       
+
+            //TODO: Remove
+            
+            Subtitles.Add( new Subtitle(){Id = 1, Name = "English"});
+            Subtitles.Add( new Subtitle(){Id = 2, Name = "French"});
+            Subtitles.Add( new Subtitle(){Id = 3, Name = "German"});
         }
 
         public override void OnNavigatedFrom()
@@ -232,6 +243,12 @@ namespace VLC_WINRT.ViewModels.PlayVideo
             set { SetProperty(ref _stopVideoCommand, value); }
         }
 
+        public Subtitle CurrentSubtitle
+        {
+            get { return _currentSubtitle; }
+            set { SetProperty(ref _currentSubtitle, value); }
+        }
+
         public TimeSpan TimeTotal
         {
             get { return _timeTotal; }
@@ -243,6 +260,18 @@ namespace VLC_WINRT.ViewModels.PlayVideo
             get { return _elapsedTime; }
             set { SetProperty(ref _elapsedTime, value); }
         }
+
+        public ObservableCollection<Subtitle> Subtitles
+        {
+            get
+            {
+                return _subtitles;
+            }
+            private set
+            {
+                SetProperty(ref _subtitles, value);
+            }
+        } 
 
         private void UpdatePosition(object sender, object e)
         {
@@ -263,6 +292,8 @@ namespace VLC_WINRT.ViewModels.PlayVideo
         {
             _vlcPlayer.Play();
             IsPlaying = true;
+            int numOfSubs = _vlcPlayer.GetSubtitleCount();
+            Debug.WriteLine(numOfSubs);
         }
 
         public void Pause()
@@ -291,6 +322,17 @@ namespace VLC_WINRT.ViewModels.PlayVideo
         {
             await InitializeVLC();
             Play();
+        }
+    }
+
+    public class Subtitle
+    {
+        public int Id;
+        public string Name;
+
+        public override string ToString()
+        {
+            return Id + ": " + Name;
         }
     }
 }
