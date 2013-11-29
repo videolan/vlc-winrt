@@ -24,7 +24,7 @@
 using namespace VLC_Wrapper;
 using namespace Windows::Graphics::Display;
 
-Player::Player(SwapChainBackgroundPanel^ panel)
+Player::Player(SwapChainBackgroundPanel^ panel) :p_mp(NULL), p_instance(NULL)
 {
     OutputDebugStringW(L"Hello, Player!");
 	p_panel = panel;
@@ -35,7 +35,8 @@ Player::Player(SwapChainBackgroundPanel^ panel)
 }
 
 //Todo: don't block UI during initialization
-IAsyncAction^ Player::Initialize(){
+IAsyncAction^ Player::Initialize()
+{
 	p_dxManager->CreateSwapPanel(p_panel);
 
 	IAsyncAction^ vlcInitTask = ThreadPool::RunAsync(ref new WorkItemHandler([=](IAsyncAction^ operation)
@@ -45,7 +46,8 @@ IAsyncAction^ Player::Initialize(){
 	return vlcInitTask;
 }
 
-void Player::InitializeVLC(){
+void Player::InitializeVLC()
+{
 	ComPtr<MMDeviceLocator> audioReg = Make<MMDeviceLocator>();
 
 	audioReg->m_AudioClient = NULL;
@@ -95,50 +97,81 @@ void Player::InitializeVLC(){
 	}
 }
 
-void Player::Open(Platform::String^ mrl) {
-
+void Player::Open(Platform::String^ mrl) 
+{
     size_t len = WideCharToMultiByte (CP_UTF8, 0, mrl->Data(), -1, NULL, 0, NULL, NULL);
     char* p_mrl = new char[len];
     WideCharToMultiByte (CP_UTF8, 0, mrl->Data(), -1, p_mrl, len, NULL, NULL);
     
-    libvlc_media_t* m = libvlc_media_new_location(this->p_instance, p_mrl);
-    p_mp = libvlc_media_player_new_from_media(m);
-
-    libvlc_media_release (m);
+	if (p_instance){
+		libvlc_media_t* m = libvlc_media_new_location(this->p_instance, p_mrl);
+		p_mp = libvlc_media_player_new_from_media(m);
+		libvlc_media_release(m);
+	}
+    
     delete[](p_mrl);
 }
 
-void Player::Stop(){
-    libvlc_media_player_stop(p_mp);
-    return;
-}
-
-void Player::Pause(){
-    libvlc_media_player_pause(p_mp);
-    return;
-}
-
-void Player::Play(){
-    libvlc_media_player_play(p_mp);
-    return;
-}
-
-void Player::Seek(float position){
-	if (libvlc_media_player_is_seekable(p_mp))
+void Player::Stop()
+{
+	if (p_mp)
 	{
-		libvlc_media_player_set_position(p_mp, position);
+		libvlc_media_player_stop(p_mp);
+	}
+    return;
+}
+
+void Player::Pause()
+{
+	if (p_mp)
+	{
+		libvlc_media_player_pause(p_mp);
+	}
+    return;
+}
+
+void Player::Play()
+{
+	if (p_mp)
+	{
+		libvlc_media_player_play(p_mp);
+	}
+    return;
+}
+
+void Player::Seek(float position)
+{
+	if (p_mp)
+	{
+		if (libvlc_media_player_is_seekable(p_mp))
+		{
+			libvlc_media_player_set_position(p_mp, position);
+		}
 	}
 }
 
-float Player::GetPosition(){
-	return libvlc_media_player_get_position(p_mp);
+float Player::GetPosition()
+{
+	float position = 0.0f;
+	if (p_mp)
+	{
+		position = libvlc_media_player_get_position(p_mp);
+	}
+	return position;
 }
 
-int64 Player::GetLength(){
-	return libvlc_media_player_get_length(p_mp);
+int64 Player::GetLength()
+{
+	int64 length = 0;
+	if (p_mp)
+	{
+		length = libvlc_media_player_get_length(p_mp);
+	}
+	return length;
 }
 
-Player::~Player(){
+Player::~Player()
+{
 	libvlc_media_player_stop(p_mp);
 	libvlc_media_player_release(p_mp);
 	libvlc_release(p_instance);
