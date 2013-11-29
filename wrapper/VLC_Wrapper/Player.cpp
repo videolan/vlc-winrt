@@ -75,19 +75,20 @@ void Player::InitializeVLC()
 
 	/* Don't add any invalid options, otherwise it causes LibVLC to fail */
 	const char *argv[] = {
-		"-I", "dummy",
+		"-I", 
+		"dummy",
 		"--no-osd",
 		"--verbose=2",
 		"--no-video-title-show",
 		"--no-stats",
-		"--no-drop-late-frames",
 		ptr_d2dstring,
 		ptr_scstring,
 		widthstring,
 		heightstring,
 		"--aout=mmdevice",
 		ptr_astring,
-		"--avcodec-fast"
+		"--avcodec-fast",
+		//"--freetype-font=segoeui.ttf"
 	};
 
 	p_instance = libvlc_new(sizeof(argv) / sizeof(*argv), argv);
@@ -157,6 +158,7 @@ float Player::GetPosition()
 	{
 		position = libvlc_media_player_get_position(p_mp);
 	}
+
 	return position;
 }
 
@@ -168,6 +170,24 @@ int64 Player::GetLength()
 		length = libvlc_media_player_get_length(p_mp);
 	}
 	return length;
+}
+
+int Player::GetSubtitleCount(){
+	int subtitleTrackCount = 0;
+	if (p_mp)
+	{
+		subtitleTrackCount = libvlc_video_get_spu_count(p_mp);
+	}
+	return subtitleTrackCount;
+}
+
+int Player::SetSubtitleTrack(int track){
+	int spuDelay = 0;
+	if (p_mp)
+	{
+		spuDelay = libvlc_video_set_spu(p_mp, track);
+	}
+	return spuDelay;
 }
 
 Player::~Player()

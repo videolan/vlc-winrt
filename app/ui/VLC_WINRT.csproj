@@ -188,6 +188,7 @@
       <SubType>Designer</SubType>
     </AppxManifest>
     <None Include="Common\ReadMe.txt" />
+    <Content Include="segoeui.ttf" />
     <PRIResource Include="Strings\en-US\Resources.resw" />
     <None Include="packages.config" />
   </ItemGroup>

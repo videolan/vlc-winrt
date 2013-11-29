@@ -18,8 +18,33 @@
     <Page.TopAppBar>
         <AppBar  Background="#AA000000" BorderBrush="#AA000000">
             <Grid>
-                <Button Style="{StaticResource BackButtonStyle}" Command="{Binding StopVideo}" CommandParameter="{Binding}" Margin="30"></Button>
-                <TextBlock Margin="30" HorizontalAlignment="Right" Text="{Binding Now}" Style="{StaticResource PageHeaderTextStyle}"></TextBlock>
+                <Button Style="{StaticResource BackButtonStyle}" 
+                        Command="{Binding StopVideo}" 
+                        CommandParameter="{Binding}" 
+                        Margin="30,10"></Button>
+                <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center" Orientation="Horizontal">
+                    <TextBlock Text="Audio Track: " 
+                               Style="{StaticResource SubheaderTextStyle}"
+                               Margin="10">
+                    </TextBlock>
+                    <ComboBox Margin="10" Width="200"  MaxWidth="200" SelectedIndex="0">
+                        <x:String>English 5.1</x:String>
+                        <x:String>Item 2</x:String>
+                        <x:String>Item 3</x:String>
+                    </ComboBox>
+                    <TextBlock Text="Subtitle Track: " 
+                               Style="{StaticResource SubheaderTextStyle}"
+                               Margin="10"></TextBlock>
+                    <ComboBox Margin="10" Width="200" MaxWidth="200"  SelectedIndex="0">
+                        <x:String>None</x:String>
+                        <x:String>English</x:String>
+                        <x:String>Frenchs</x:String>
+                    </ComboBox>
+                    <TextBlock Margin="60,10,30,10" 
+                               HorizontalAlignment="Right" 
+                               Text="{Binding Now}" 
+                               Style="{StaticResource PageHeaderTextStyle}"></TextBlock>
+                </StackPanel>
             </Grid>
         </AppBar>
     </Page.TopAppBar>
@@ -59,8 +84,8 @@
                            Style="{StaticResource ItemTextStyle}"></TextBlock>
 
                 <StackPanel Grid.Row="2" Grid.Column="0">
-                    <TextBlock Text="{Binding Title}" Style="{StaticResource GroupHeaderTextStyle}"
-                               VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock Margin="30" Text="{Binding Title}" Style="{StaticResource GroupHeaderTextStyle}"
+                               VerticalAlignment="Center" HorizontalAlignment="Left">
                     </TextBlock>
                 </StackPanel>
                 <StackPanel Margin="5,0,5,10" Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="2"

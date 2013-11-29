@@ -85,6 +85,10 @@ static int            Control(vout_display_t *vd, int query, va_list args);
 static void           Manage(vout_display_t *vd);
 static void           Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpicture);
 static int            CreateDeviceResources(vout_display_t* vd);
+static const vlc_fourcc_t d2d_subpicture_chromas[] = {
+	VLC_CODEC_RGBA,
+	0
+};
 
 /* */
 struct vout_display_sys_t {
@@ -120,6 +124,7 @@ static int Open(vlc_object_t *object)
 	info.has_double_click = true;
 	info.has_hide_mouse = false;
 	info.has_pictures_invalid = false;
+	info.subpicture_chromas = d2d_subpicture_chromas;
 	vd->info = info;
 
 	vd->fmt.i_chroma = VLC_CODEC_RGB32; /* masks change this to BGR32 for ID2D1Bitmap */

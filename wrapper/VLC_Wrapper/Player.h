@@ -44,16 +44,18 @@ namespace VLC_Wrapper {
 		void          Seek(float position);
 		float         GetPosition();
 		int64         GetLength();
+		int           GetSubtitleCount();
+		int           SetSubtitleTrack(int track);
         virtual       ~Player();
 
     private:
-		void			           InitializeVLC();
-        libvlc_instance_t          *p_instance;
-        libvlc_media_player_t      *p_mp;
-		SwapChainBackgroundPanel   ^p_panel;
-		DirectXManger              *p_dxManager;
-		float                        m_displayWidth;
-		float                        m_displayHeight;
+		void			         InitializeVLC();
+        libvlc_instance_t        *p_instance;
+        libvlc_media_player_t    *p_mp;
+		SwapChainBackgroundPanel ^p_panel;
+		DirectXManger            *p_dxManager;
+		float                    m_displayWidth;
+		float                    m_displayHeight;
     };
 }
 
