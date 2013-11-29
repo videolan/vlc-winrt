@@ -19,7 +19,7 @@ namespace VLC_WINRT.Utility.Commands
             var vm = (MediaViewModel) parameter;
 
             string token = historyService.Add(vm.File);
-            ViewModelLocator.PlayVideoVM.SetActiveVideoInfo(token, vm.File.Name);
+            Locator.PlayVideoVM.SetActiveVideoInfo(token, vm.File.Name);
             NavigationService.NavigateTo(new PlayVideo());
         }
     }

@@ -9,26 +9,17 @@ namespace VLC_WINRT.Views
     /// <summary>
     ///     An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class PlayVideo : BasePage, IVideoPage
+    public sealed partial class PlayVideo : BasePage
     {
         public PlayVideo()
         {
             InitializeComponent();
-            this.Loaded += ImLoaded;
+            this.Loaded += PanelLoaded;
         }
 
-        private void ImLoaded(object sender, RoutedEventArgs e)
+        private void PanelLoaded(object sender, RoutedEventArgs e)
         {
-            if (PageLoaded != null)
-            {
-                PageLoaded(this, e);
-            }
-        }
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            ViewModelLocator.PlayVideoVM.SetVideoPage(this);
-            base.OnNavigatedTo(e);
+            Locator.PlayVideoVM.RegisterPanel(SwapChainPanel);
         }
 
         public override void SetDataContext()
@@ -53,12 +44,5 @@ namespace VLC_WINRT.Views
             }
         }
 
-        public event RoutedEventHandler PageLoaded;
-    }
-
-    public interface IVideoPage
-    {
-        SwapChainBackgroundPanel Panel { get; }
-        event RoutedEventHandler PageLoaded;
     }
 }

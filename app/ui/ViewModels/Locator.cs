@@ -17,12 +17,12 @@ namespace VLC_WINRT.ViewModels
     /// This class contains static references to all the view models in the
     /// application and provides an entry point for the bindings.
     /// </summary>
-    public class ViewModelLocator
+    public class Locator
     {
         /// <summary>
-        /// Initializes a new instance of the ViewModelLocator class.
+        /// Initializes a new instance of the Locator class.
         /// </summary>
-        static ViewModelLocator()
+        static Locator()
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
@@ -40,6 +40,7 @@ namespace VLC_WINRT.ViewModels
 
             SimpleIoc.Default.Register<HistoryService>();
             SimpleIoc.Default.Register<MouseService>();
+            SimpleIoc.Default.Register<MediaPlayerService>();
 
             SimpleIoc.Default.Register<PlayVideoViewModel>(true);
             SimpleIoc.Default.Register<MainPageViewModel>();

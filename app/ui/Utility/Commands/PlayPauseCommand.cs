@@ -1,5 +1,6 @@
-﻿using VLC_WINRT.Common;
-using VLC_WINRT.ViewModels;
+﻿using Microsoft.Practices.ServiceLocation;
+using VLC_WINRT.Common;
+using VLC_WINRT.Utility.Services.RunTime;
 
 namespace VLC_WINRT.Utility.Commands
 {
@@ -7,13 +8,14 @@ namespace VLC_WINRT.Utility.Commands
     {
         public override void Execute(object parameter)
         {
-            if (ViewModelLocator.PlayVideoVM.IsPlaying)
+            var playerService = ServiceLocator.Current.GetInstance<MediaPlayerService>();
+            if (playerService.CurrentState == MediaPlayerService.MediaPlayerState.Playing)
             {
-                ViewModelLocator.PlayVideoVM.Pause();
+                playerService.Pause();
             }
             else
             {
-                ViewModelLocator.PlayVideoVM.Play();
+                playerService.Play();
             }
         }
     }

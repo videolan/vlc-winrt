@@ -51,7 +51,7 @@
             <converters:TimeSpanSecondsDoubleConverter x:Key="TimeSpanSecondsDoubleConverter">
             </converters:TimeSpanSecondsDoubleConverter>
 
-            <viewModels:ViewModelLocator x:Key="Locator" d:IsDataSource="True" />
+            <viewModels:Locator x:Key="Locator" d:IsDataSource="True" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>

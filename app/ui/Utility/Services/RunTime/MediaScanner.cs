@@ -61,7 +61,7 @@ namespace VLC_WINRT.Utility.Services
             Debug.WriteLine("Device Removed.");
             DeviceInformationCollection devices =
                 await DeviceInformation.FindAllAsync(DeviceClass.PortableStorageDevice);
-            MainPageViewModel mainVM = ViewModelLocator.MainPageVM;
+            MainPageViewModel mainVM = Locator.MainPageVM;
 
 
             foreach (LibraryViewModel removableStorageVM in mainVM.RemovableStorageVMs)
@@ -86,7 +86,7 @@ namespace VLC_WINRT.Utility.Services
         {
             DeviceInformationCollection devices =
                 await DeviceInformation.FindAllAsync(DeviceClass.PortableStorageDevice);
-            MainPageViewModel mainVM = ViewModelLocator.MainPageVM;
+            MainPageViewModel mainVM = Locator.MainPageVM;
 
             foreach (DeviceInformation device in devices)
             {

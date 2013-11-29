@@ -11,7 +11,7 @@ namespace VLC_WINRT.Utility.Commands
         public override void Execute(object parameter)
         {
             var historyService = ServiceLocator.Current.GetInstance<HistoryService>();
-            LastViewedViewModel lastViewedVM = ViewModelLocator.MainPageVM.LastViewedVM;
+            LastViewedViewModel lastViewedVM = Locator.MainPageVM.LastViewedVM;
             historyService.Clear();
             lastViewedVM.LastViewedVM = null;
             lastViewedVM.SecondLastViewedVM = null;
