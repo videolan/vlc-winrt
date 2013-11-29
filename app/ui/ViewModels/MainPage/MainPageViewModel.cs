@@ -4,7 +4,7 @@ using VLC_WINRT.Utility.Commands;
 
 namespace VLC_WINRT.ViewModels.MainPage
 {
-    public class MainPageViewModel : BindableBase
+    public class MainPageViewModel : NavigateableViewModel
     {
         private LastViewedViewModel _lastViewedVM;
         private LibraryViewModel _musicVM;

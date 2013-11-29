@@ -145,6 +145,7 @@
     <Compile Include="Utility\Services\RunTime\HistoryService.cs" />
     <Compile Include="Utility\Services\RunTime\MediaScanner.cs" />
     <Compile Include="Utility\Services\RunTime\MouseService.cs" />
+    <Compile Include="Utility\Services\RunTime\NavigationService.cs" />
     <Compile Include="Utility\Services\RunTime\ThumbnailService.cs" />
     <Compile Include="ViewModels\MainPage\LastViewedViewModel.cs" />
     <Compile Include="ViewModels\MainPage\LibraryViewModel.cs" />
@@ -177,6 +178,7 @@
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\NavigateableViewModel.cs" />
     <Compile Include="Views\PlayVideo.xaml.cs">
       <DependentUpon>PlayVideo.xaml</DependentUpon>
     </Compile>

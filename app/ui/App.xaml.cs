@@ -1,6 +1,7 @@
 ﻿using System;
 using VLC_WINRT.Common;
 using VLC_WINRT.Utility.Services;
+using VLC_WINRT.Utility.Services.RunTime;
 using VLC_WINRT.Views;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
@@ -36,7 +37,7 @@ namespace VLC_WINRT
         /// <param name="args">Details about the launch request and process.</param>
         protected override async void OnLaunched(LaunchActivatedEventArgs args)
         {
-            Window.Current.Content = new MainPage();
+            NavigationService.NavigateTo(new MainPage());
             Window.Current.Activate();
 
         }

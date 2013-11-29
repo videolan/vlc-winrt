@@ -14,7 +14,7 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
-    <SwapChainBackgroundPanel x:Name="Panel" Tapped="ScreenTapped"></SwapChainBackgroundPanel>
+    <SwapChainBackgroundPanel x:Name="SwapChainPanel" Tapped="ScreenTapped"></SwapChainBackgroundPanel>
     <Page.TopAppBar>
         <AppBar  Background="#AA000000" BorderBrush="#AA000000">
             <Grid>

@@ -1,5 +1,4 @@
-﻿using Windows.UI.Core;
-using Windows.UI.Xaml;
+﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
@@ -10,32 +9,32 @@ namespace VLC_WINRT.Views
     /// <summary>
     ///     An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class PlayVideo : BasePage 
+    public sealed partial class PlayVideo : BasePage, IVideoPage
     {
         public PlayVideo()
         {
             InitializeComponent();
-            Loaded += IntializeVLC;
+            this.Loaded += ImLoaded;
         }
 
-        private void IntializeVLC(object sender, RoutedEventArgs routedEventArgs)
+        private void ImLoaded(object sender, RoutedEventArgs e)
         {
-            Dispatcher.RunAsync(CoreDispatcherPriority.High, async () =>
+            if (PageLoaded != null)
             {
-                await ViewModelLocator.PlayVideoVM.InitializeVLC(Panel);
-                ViewModelLocator.PlayVideoVM.Play();
-            });
+                PageLoaded(this, e);
+            }
         }
 
-        /// <summary>
-        ///     Invoked when this page is about to be displayed in a Frame.
-        /// </summary>
-        /// <param name="e">
-        ///     Event data that describes how this page was reached.  The Parameter
-        ///     property is typically used to configure the page.
-        /// </param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            ViewModelLocator.PlayVideoVM.SetVideoPage(this);
+            base.OnNavigatedTo(e);
+        }
+
+        public override void SetDataContext()
+        {
+            _vm = (NavigateableViewModel) DataContext;
+            base.SetDataContext();
         }
 
         private void ScreenTapped(object sender, TappedRoutedEventArgs e)
@@ -45,5 +44,21 @@ namespace VLC_WINRT.Views
             if (TopAppBar != null && !TopAppBar.IsOpen)
                 TopAppBar.IsOpen = true;
         }
+
+        public SwapChainBackgroundPanel Panel
+        {
+            get
+            {
+                return SwapChainPanel;
+            }
+        }
+
+        public event RoutedEventHandler PageLoaded;
+    }
+
+    public interface IVideoPage
+    {
+        SwapChainBackgroundPanel Panel { get; }
+        event RoutedEventHandler PageLoaded;
     }
 }

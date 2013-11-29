@@ -1,5 +1,4 @@
 ﻿using System;
-using Windows.UI.Xaml;
 using Microsoft.Practices.ServiceLocation;
 using VLC_WINRT.Common;
 using VLC_WINRT.Utility.Services.RunTime;
@@ -21,7 +20,7 @@ namespace VLC_WINRT.Utility.Commands
 
             string token = historyService.Add(vm.File);
             ViewModelLocator.PlayVideoVM.SetActiveVideoInfo(token, vm.File.Name);
-            Window.Current.Content = new PlayVideo();
+            NavigationService.NavigateTo(new PlayVideo());
         }
     }
 }

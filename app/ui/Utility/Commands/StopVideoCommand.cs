@@ -1,5 +1,5 @@
-﻿using Windows.UI.Xaml;
-using VLC_WINRT.Common;
+﻿using VLC_WINRT.Common;
+using VLC_WINRT.Utility.Services.RunTime;
 using VLC_WINRT.ViewModels.PlayVideo;
 using VLC_WINRT.Views;
 
@@ -11,7 +11,7 @@ namespace VLC_WINRT.Utility.Commands
         {
             var vm = (PlayVideoViewModel) parameter;
             vm.Stop();
-            Window.Current.Content = new MainPage();
+            NavigationService.NavigateTo(new MainPage());
         }
     }
 }
