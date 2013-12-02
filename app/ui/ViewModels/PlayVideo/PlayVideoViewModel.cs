@@ -26,7 +26,6 @@ namespace VLC_WINRT.ViewModels.PlayVideo
         private TimeSpan _elapsedTime = TimeSpan.Zero;
         private string _fileToken;
         private bool _isPlaying;
-        private bool _isVLCInitialized;
         private PlayPauseCommand _playOrPause;
         private RelayCommand _skipAhead;
         private RelayCommand _skipBack;
@@ -77,11 +76,14 @@ namespace VLC_WINRT.ViewModels.PlayVideo
         {
             get
             {
-                if (_isVLCInitialized && _vlcPlayerService != null)
+                if (_vlcPlayerService != null)
                 {
-                    return _vlcPlayerService.GetPosition().Result * TimeTotal.TotalSeconds;
+                    return _vlcPlayerService.GetPosition().Result*TimeTotal.TotalSeconds;
                 }
-                return 0.0d;
+                else
+                {
+                    return 0.0d;
+                }
             }
             set { _vlcPlayerService.Seek((float) (value/TimeTotal.TotalSeconds)); }
         }
@@ -177,6 +179,7 @@ namespace VLC_WINRT.ViewModels.PlayVideo
             Subtitles.Add(new Subtitle {Id = 1, Name = "English"});
             Subtitles.Add(new Subtitle {Id = 2, Name = "French"});
             Subtitles.Add(new Subtitle {Id = 3, Name = "German"});
+
             _vlcPlayerService.Play();
         }
 
@@ -190,8 +193,6 @@ namespace VLC_WINRT.ViewModels.PlayVideo
         {
             _fiveSecondTimer.Stop();
             _sliderPositionTimer.Stop();
-
-            _isVLCInitialized = false;
 
             _vlcPlayerService.Stop();
             _vlcPlayerService.Close();
