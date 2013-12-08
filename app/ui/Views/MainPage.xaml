@@ -29,7 +29,7 @@
                        FontSize="20"
                        Margin="0,10">
             </TextBlock>
-            <HyperlinkButton HorizontalAlignment="Right"  Foreground="#FFFF8402">
+            <HyperlinkButton Grid.Row="0" HorizontalAlignment="Right"  Foreground="#FFFF8402" Command="{Binding ShowAppBarCommand}">
                 <HyperlinkButton.Content>
                     <TextBlock Text="Open File ..."></TextBlock>
                 </HyperlinkButton.Content>
@@ -70,7 +70,7 @@
         </Grid>
     </Grid>
     <Page.BottomAppBar>
-        <AppBar Padding="10,0,10,0">
+        <AppBar Padding="10,0,10,0" IsOpen="{Binding IsAppBarVisible, Mode=TwoWay}">
             <Grid>
                 <Grid Visibility="{Binding ToggleNetworkAppBarVisibility, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <Grid.RowDefinitions>

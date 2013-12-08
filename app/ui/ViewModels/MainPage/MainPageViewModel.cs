@@ -7,16 +7,18 @@ namespace VLC_WINRT.ViewModels.MainPage
 {
     public class MainPageViewModel : NavigateableViewModel
     {
+        private bool _isAppBarVisible;
         private LastViewedViewModel _lastViewedVM;
         private LibraryViewModel _musicVM;
-        private bool _toggleNetworkAppBarVisibility;
         private PickVideoCommand _pickVideoCommand;
 
         private ObservableCollection<LibraryViewModel> _removableStorageVMs =
             new ObservableCollection<LibraryViewModel>();
 
-        private LibraryViewModel _videoVM;
         private RelayCommand _showNetworkAppBarCommand;
+        private bool _toggleNetworkAppBarVisibility;
+        private LibraryViewModel _videoVM;
+        private RelayCommand _showAppBarCommand;
 
         public MainPageViewModel()
         {
@@ -26,9 +28,12 @@ namespace VLC_WINRT.ViewModels.MainPage
             LastViewedVM = new LastViewedViewModel();
             PickVideo = new PickVideoCommand();
 
-            _showNetworkAppBarCommand = new RelayCommand(() =>
+            _showNetworkAppBarCommand =
+                new RelayCommand(() => { ToggleNetworkAppBarVisibility = !ToggleNetworkAppBarVisibility; });
+
+            _showAppBarCommand = new RelayCommand(() =>
             {
-                this.ToggleNetworkAppBarVisibility = !this.ToggleNetworkAppBarVisibility;
+                IsAppBarVisible = true;
             });
         }
 
@@ -62,6 +67,12 @@ namespace VLC_WINRT.ViewModels.MainPage
             set { SetProperty(ref _pickVideoCommand, value); }
         }
 
+        public RelayCommand ShowAppBarCommand
+        {
+            get { return _showAppBarCommand; }
+            set { SetProperty(ref _showAppBarCommand, value); }
+        }
+
         public RelayCommand ShowNetworkAppBarCommand
         {
             get { return _showNetworkAppBarCommand; }
@@ -72,6 +83,12 @@ namespace VLC_WINRT.ViewModels.MainPage
         {
             get { return _removableStorageVMs; }
             set { SetProperty(ref _removableStorageVMs, value); }
+        }
+
+        public bool IsAppBarVisible
+        {
+            get { return _isAppBarVisible; }
+            set { SetProperty(ref _isAppBarVisible, value); }
         }
     }
 }
