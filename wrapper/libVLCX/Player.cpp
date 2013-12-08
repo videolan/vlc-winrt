@@ -21,7 +21,7 @@
 #include "pch.h"
 #include "Player.h"
 
-using namespace VLC_Wrapper;
+using namespace libVLCX;
 using namespace Windows::Graphics::Display;
 
 Player::Player(SwapChainBackgroundPanel^ panel) :p_mp(NULL), p_instance(NULL)

@@ -110,9 +110,9 @@
       <Project>{231dfaab-c462-49bf-8611-1fa6ee39983d}</Project>
       <Name>libdirect2d_winrt_plugin</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\wrapper\VLC_Wrapper\VLC_Wrapper.vcxproj">
+    <ProjectReference Include="..\..\wrapper\libVLCX\libVLCX.vcxproj">
       <Project>{22532381-be8b-40e0-a881-22ce24342d5a}</Project>
-      <Name>VLC_Wrapper</Name>
+      <Name>libVLCX</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

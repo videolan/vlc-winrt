@@ -31,7 +31,7 @@ using namespace Windows::UI::Xaml::Controls;
 using namespace Windows::System::Threading;
 using namespace Windows::Foundation;
 
-namespace VLC_Wrapper {
+namespace libVLCX {
     public ref class Player sealed
     {
     public:

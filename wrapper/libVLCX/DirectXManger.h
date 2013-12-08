@@ -26,7 +26,7 @@ using namespace Microsoft::WRL;
 using namespace Windows::Media::Devices;
 using namespace Windows::UI::Xaml::Controls;
 
-namespace VLC_Wrapper {
+namespace libVLCX {
 	class DirectXManger
 	{
 	public:

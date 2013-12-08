@@ -29,8 +29,8 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{22532381-be8b-40e0-a881-22ce24342d5a}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <ProjectName>VLC_Wrapper</ProjectName>
-    <RootNamespace>VLC_Wrapper</RootNamespace>
+    <ProjectName>libVLCX</ProjectName>
+    <RootNamespace>libVLCX</RootNamespace>
     <DefaultLanguage>en-US</DefaultLanguage>
     <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
     <AppContainerApplication>true</AppContainerApplication>

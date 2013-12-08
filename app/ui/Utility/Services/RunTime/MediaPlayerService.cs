@@ -2,8 +2,7 @@
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
-using VLC_WINRT.ViewModels;
-using VLC_Wrapper;
+using libVLCX;
 
 namespace VLC_WINRT.Utility.Services.RunTime
 {
