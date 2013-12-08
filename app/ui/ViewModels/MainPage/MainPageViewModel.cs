@@ -13,6 +13,8 @@ namespace VLC_WINRT.ViewModels.MainPage
         private ObservableCollection<LibraryViewModel> _dlnaVMs =
             new ObservableCollection<LibraryViewModel>();
 
+        private ExternalStorageViewModel _externalStorageVM;
+
         private bool _isAppBarOpen;
         private bool _isNetworkAppBarShown;
         private LastViewedViewModel _lastViewedVM;
@@ -20,12 +22,7 @@ namespace VLC_WINRT.ViewModels.MainPage
         private string _networkMRL = string.Empty;
         private PickVideoCommand _pickVideoCommand;
         private PlayNetworkMRLCommand _playNetworkMRL;
-
-        private ObservableCollection<LibraryViewModel> _removableStorageVMs =
-            new ObservableCollection<LibraryViewModel>();
-
         private ActionCommand _showAppBarCommand;
-
         private ActionCommand _toggleNetworkAppBarCommand;
         private LibraryViewModel _videoVM;
 
@@ -33,6 +30,7 @@ namespace VLC_WINRT.ViewModels.MainPage
         {
             VideoVM = new LibraryViewModel(KnownVLCLocation.VideosLibrary);
             MusicVM = new LibraryViewModel(KnownVLCLocation.MusicLibrary);
+            ExternalStorageVM = new ExternalStorageViewModel();
 
             Task<IReadOnlyList<StorageFolder>> dlnaFolders = KnownVLCLocation.MediaServers.GetFoldersAsync().AsTask();
             dlnaFolders.ContinueWith(t =>
@@ -59,6 +57,12 @@ namespace VLC_WINRT.ViewModels.MainPage
         {
             get { return _videoVM; }
             set { SetProperty(ref _videoVM, value); }
+        }
+
+        public ExternalStorageViewModel ExternalStorageVM
+        {
+            get { return _externalStorageVM; }
+            set { SetProperty(ref _externalStorageVM, value); }
         }
 
         public LibraryViewModel MusicVM
@@ -103,11 +107,6 @@ namespace VLC_WINRT.ViewModels.MainPage
             set { SetProperty(ref _toggleNetworkAppBarCommand, value); }
         }
 
-        public ObservableCollection<LibraryViewModel> RemovableStorageVMs
-        {
-            get { return _removableStorageVMs; }
-            set { SetProperty(ref _removableStorageVMs, value); }
-        }
 
         public bool IsAppBarOpen
         {

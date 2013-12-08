@@ -6,7 +6,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     d:DesignHeight="768"
-    DataContext="{Binding Source={StaticResource Locator}, Path=ThumbnailsVM}"
     >
     <!-- TOOD: Do a zoom and clip transform to get rid of any black space -->
     <Grid>
@@ -16,15 +15,6 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <!-- TODO: Add some manipulation parallax motion -->
-        <!--<GridView ItemsSource="{Binding Thumbnails}">
-            <GridView.ItemTemplate>
-                <DataTemplate>
-                    --><!-- binds to Image --><!--
-                    <local:Thumbnail Margin="-5" Width="200" Height="150"></local:Thumbnail>
-                </DataTemplate>
-            </GridView.ItemTemplate>
-        </GridView>-->
         <Grid>
             <Grid.Background>
                 <ImageBrush ImageSource="ms-appx:///Assets/BackgroundLarge.jpg"></ImageBrush>

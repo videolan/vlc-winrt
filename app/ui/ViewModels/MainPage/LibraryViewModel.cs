@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.Threading.Tasks;
 using VLC_WINRT.Common;
 using VLC_WINRT.Utility.Commands;
 using VLC_WINRT.Utility.Services;
@@ -67,7 +70,7 @@ namespace VLC_WINRT.ViewModels.MainPage
         protected async void GetMedia(IAsyncAction operation)
         {
             IReadOnlyList<StorageFile> files =
-                await MediaScanner.GetMediaFromFolder(_location, 6, CommonFileQuery.OrderByDate);
+                await GetMediaFromFolder(_location, 6, CommonFileQuery.OrderByDate);
 
             if (files.Count > 0)
             {
@@ -86,6 +89,35 @@ namespace VLC_WINRT.ViewModels.MainPage
                 // Get back to UI thread
                 DispatchHelper.Invoke(() => Media.Add(mediaVM));
             }
+        }
+
+        private static async Task<IReadOnlyList<StorageFile>> GetMediaFromFolder(StorageFolder folder, uint numberOfFiles,
+                                                                            CommonFileQuery query)
+        {
+            IReadOnlyList<StorageFile> files = null;
+            StorageFileQueryResult fileQuery;
+            var queryOptions = new QueryOptions(query,
+                                               new List<string> { ".mkv", ".mp4", ".m4v", ".avi", ".mp3", ".wav" });
+            try
+            {
+                fileQuery = folder.CreateFileQueryWithOptions(queryOptions);
+
+                files = await fileQuery.GetFilesAsync(0, numberOfFiles);
+            }
+            catch (ArgumentException ex)
+            {
+                Debug.WriteLine("exception listing files");
+                Debug.WriteLine(ex.ToString());
+            }
+
+            // DLNA folders don't support advanced file listings, us a basic file query
+            if (files == null)
+            {
+                fileQuery = folder.CreateFileQuery(CommonFileQuery.OrderByName);
+                files = await fileQuery.GetFilesAsync();
+            }
+
+            return files;
         }
     }
 }

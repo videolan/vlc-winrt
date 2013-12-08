@@ -37,15 +37,10 @@ namespace VLC_WINRT.ViewModels
             IoC.Register<HistoryService>();
             IoC.Register<MouseService>();
             IoC.Register<MediaPlayerService>();
+            IoC.Register<ExternalDeviceService>(true);
 
             IoC.Register<PlayVideoViewModel>(true);
             IoC.Register<MainPageViewModel>();
-            IoC.Register<ThumbnailsViewModel>();
-        }
-
-        public static ThumbnailsViewModel ThumbnailsVM
-        {
-            get { return IoC.GetInstance<ThumbnailsViewModel>(); }
         }
 
         public static PlayVideoViewModel PlayVideoVM

@@ -58,7 +58,7 @@
                     <mainPage:MediaColumn Grid.Column="2" DataContext="{Binding MusicVM}">
                     </mainPage:MediaColumn>
 
-                    <ItemsControl Grid.Column="3" ItemsSource="{Binding RemovableStorageVMs}">
+                    <ItemsControl Grid.Column="3" ItemsSource="{Binding ExternalStorageVM.RemovableStorageVMs}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <mainPage:MediaColumn>

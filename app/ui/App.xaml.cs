@@ -16,7 +16,6 @@ namespace VLC_WINRT
     /// </summary>
     sealed partial class App : Application
     {
-        private MediaScanner _mediaScanner = null;
 
         /// <summary>
         ///     Initializes the singleton Application object.  This is the first line of authored code
