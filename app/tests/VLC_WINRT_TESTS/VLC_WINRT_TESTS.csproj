@@ -99,9 +99,6 @@
       <Name>VLC_WINRT</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="VLC_WINRT_TESTS_TemporaryKey.pfx" />
-  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">
     <VisualStudioVersion>11.0</VisualStudioVersion>
   </PropertyGroup>
