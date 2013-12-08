@@ -142,7 +142,7 @@
     <value>USB and SD Card support.</value>
   </data>
   <data name="FeaturesVidLib.Text" xml:space="preserve">
-    <value>Videos Library support.  Add files to your Videos Library and play them directly.</value>
+    <value>Video Library support. Add files to your Video Library and play them directly.</value>
   </data>
   <data name="IntroPara.Text" xml:space="preserve">
     <value>This app is our attempt to bring the VLC media player to Microsoft's newest OS. The app is currently under development so not all features have been included, and many existing features have bugs.</value>
