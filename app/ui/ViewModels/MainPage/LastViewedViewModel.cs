@@ -12,7 +12,7 @@ using VLC_WINRT.Utility.Services.RunTime;
 
 namespace VLC_WINRT.ViewModels.MainPage
 {
-    public class LastViewedViewModel : BindableBase
+    public class LastViewedViewModel : BindableBase, IDisposable
     {
         private readonly HistoryService _historyService;
         private ClearHistoryCommand _clearHistoryCommand;
@@ -36,8 +36,21 @@ namespace VLC_WINRT.ViewModels.MainPage
             }
 
             _clearHistoryCommand = new ClearHistoryCommand();
+            _historyService.HistoryUpdated += UpdateHistory;
+            UpdateHistory();
+        }
+        public void Dispose()
+        {
+            _historyService.HistoryUpdated -= UpdateHistory;
+        }
 
-            //Get off UI thread
+        private void UpdateHistory(object sender, EventArgs e)
+        {
+            UpdateHistory();   
+        }
+
+        private void UpdateHistory()
+        {
             ThreadPool.RunAsync(GetLastViewedMedia);
         }
 

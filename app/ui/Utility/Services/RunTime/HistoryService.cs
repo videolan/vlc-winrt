@@ -7,12 +7,12 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Serialization;
-using VLC_WINRT.Model;
 using Windows.Foundation;
 using Windows.Storage;
 using Windows.Storage.AccessCache;
 using Windows.Storage.Streams;
 using Windows.System.Threading;
+using VLC_WINRT.Model;
 
 namespace VLC_WINRT.Utility.Services.RunTime
 {
@@ -20,8 +20,9 @@ namespace VLC_WINRT.Utility.Services.RunTime
     {
         private const string HistoryFileName = "histories.xml";
         private static List<MediaHistory> _histories;
-        private readonly ManualResetEvent _fileReadEvent = new ManualResetEvent(false);
         private static readonly object HistoryFileLock = new object();
+        private readonly ManualResetEvent _fileReadEvent = new ManualResetEvent(false);
+        public event EventHandler HistoryUpdated;
 
         public HistoryService()
         {
@@ -34,7 +35,15 @@ namespace VLC_WINRT.Utility.Services.RunTime
 
                     //Wait for our file to be read
                     _fileReadEvent.WaitOne(int.MaxValue);
-                } 
+                }
+            }
+        }
+
+        public void Dispose()
+        {
+            if (_fileReadEvent != null)
+            {
+                _fileReadEvent.Dispose();
             }
         }
 
@@ -89,8 +98,7 @@ namespace VLC_WINRT.Utility.Services.RunTime
                     return null;
                 }
             }
-            else
-                return null;
+            return null;
         }
 
         public MediaHistory GetHistory(string token)
@@ -102,6 +110,7 @@ namespace VLC_WINRT.Utility.Services.RunTime
         {
             return index < _histories.Count ? _histories[index].Token : null;
         }
+
         public IAsyncOperation<StorageFile> RetrieveFile(string token)
         {
             if (string.IsNullOrEmpty(token)) return null;
@@ -113,8 +122,8 @@ namespace VLC_WINRT.Utility.Services.RunTime
             try
             {
                 StorageFile historyFile = await ApplicationData.Current.LocalFolder.CreateFileAsync(HistoryFileName,
-                                                                                                    CreationCollisionOption
-                                                                                                        .OpenIfExists);
+                    CreationCollisionOption
+                        .OpenIfExists);
 
                 using (IRandomAccessStreamWithContentType stream = await historyFile.OpenReadAsync())
                 {
@@ -132,7 +141,6 @@ namespace VLC_WINRT.Utility.Services.RunTime
                             Debug.WriteLine(ex.ToString());
                             _histories = new List<MediaHistory>();
                         }
-                       
                     }
                     else
                     {
@@ -150,8 +158,8 @@ namespace VLC_WINRT.Utility.Services.RunTime
         public async Task SaveHistory()
         {
             StorageFile historyFile = await ApplicationData.Current.LocalFolder.CreateFileAsync(HistoryFileName,
-                                                                                                CreationCollisionOption
-                                                                                                    .ReplaceExisting);
+                CreationCollisionOption
+                    .ReplaceExisting);
             using (Stream stream = await historyFile.OpenStreamForWriteAsync())
             {
                 var serializer = new XmlSerializer(_histories.GetType());
@@ -160,33 +168,36 @@ namespace VLC_WINRT.Utility.Services.RunTime
                 _histories = _histories.Take(50).ToList();
                 serializer.Serialize(stream, _histories);
             }
+
+            PublishUpdate();
         }
 
         private MediaHistory CreateHistory(IStorageItem item, string token)
         {
             var history = new MediaHistory
-                              {
-                                  Token = token,
-                                  Filename = item.Name,
-                                  LastPlayed = DateTime.Now,
-                                  TotalWatchedMilliseconds = 0
-                              };
+            {
+                Token = token,
+                Filename = item.Name,
+                LastPlayed = DateTime.Now,
+                TotalWatchedMilliseconds = 0
+            };
 
             return history;
         }
 
         public void UpdateMediaHistory(string fileToken, TimeSpan totalWatched)
         {
-            var mediaHistory = _histories.FirstOrDefault(h => h.Token == fileToken);
+            MediaHistory mediaHistory = _histories.FirstOrDefault(h => h.Token == fileToken);
             if (mediaHistory != null)
                 mediaHistory.TotalWatchedMilliseconds = totalWatched.TotalMilliseconds;
+            PublishUpdate();
         }
 
-        public void Dispose()
+        private void PublishUpdate()
         {
-            if (_fileReadEvent != null)
+            if (HistoryUpdated != null)
             {
-                _fileReadEvent.Dispose();
+                HistoryUpdated(this, new EventArgs());
             }
         }
     }
