@@ -10,15 +10,18 @@ namespace VLC_WINRT.ViewModels.MainPage
         private bool _isAppBarVisible;
         private LastViewedViewModel _lastViewedVM;
         private LibraryViewModel _musicVM;
+        private string _networkMRL = string.Empty;
         private PickVideoCommand _pickVideoCommand;
+        private PlayNetworkMRLCommand _playNetworkMRL;
 
         private ObservableCollection<LibraryViewModel> _removableStorageVMs =
             new ObservableCollection<LibraryViewModel>();
 
+        private RelayCommand _showAppBarCommand;
+
         private RelayCommand _showNetworkAppBarCommand;
         private bool _toggleNetworkAppBarVisibility;
         private LibraryViewModel _videoVM;
-        private RelayCommand _showAppBarCommand;
 
         public MainPageViewModel()
         {
@@ -27,14 +30,12 @@ namespace VLC_WINRT.ViewModels.MainPage
 
             LastViewedVM = new LastViewedViewModel();
             PickVideo = new PickVideoCommand();
+            PlayNetworkMRL = new PlayNetworkMRLCommand();
 
             _showNetworkAppBarCommand =
                 new RelayCommand(() => { ToggleNetworkAppBarVisibility = !ToggleNetworkAppBarVisibility; });
 
-            _showAppBarCommand = new RelayCommand(() =>
-            {
-                IsAppBarVisible = true;
-            });
+            _showAppBarCommand = new RelayCommand(() => { IsAppBarVisible = true; });
         }
 
         public LibraryViewModel VideoVM
@@ -89,6 +90,18 @@ namespace VLC_WINRT.ViewModels.MainPage
         {
             get { return _isAppBarVisible; }
             set { SetProperty(ref _isAppBarVisible, value); }
+        }
+
+        public PlayNetworkMRLCommand PlayNetworkMRL
+        {
+            get { return _playNetworkMRL; }
+            set { SetProperty(ref _playNetworkMRL, value); }
+        }
+
+        public string NetworkMRL
+        {
+            get { return _networkMRL; }
+            set { SetProperty(ref _networkMRL, value); }
         }
     }
 }

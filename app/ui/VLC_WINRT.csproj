@@ -154,6 +154,7 @@
     <Compile Include="ViewModels\MainPage\LibraryViewModel.cs" />
     <Compile Include="ViewModels\MainPage\MainPageViewModel.cs" />
     <Compile Include="ViewModels\MainPage\MediaViewModel.cs" />
+    <Compile Include="Utility\Commands\PlayNetworkMRLCommand.cs" />
     <Compile Include="ViewModels\MainPage\ThumbnailsViewModel.cs" />
     <Compile Include="ViewModels\MainPage\ThumbnailViewModel.cs" />
     <Compile Include="ViewModels\MainPage\ViewedVideoViewModel.cs" />

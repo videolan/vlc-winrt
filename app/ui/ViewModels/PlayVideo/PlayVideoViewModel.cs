@@ -2,7 +2,6 @@
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Globalization;
-using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Windows.System.Display;
 using Windows.UI.Xaml;
@@ -21,18 +20,19 @@ namespace VLC_WINRT.ViewModels.PlayVideo
         private readonly DispatcherTimer _fiveSecondTimer = new DispatcherTimer();
         private readonly HistoryService _historyService;
         private readonly DispatcherTimer _sliderPositionTimer = new DispatcherTimer();
-        private MediaPlayerService _vlcPlayerService;
         private Subtitle _currentSubtitle;
         private TimeSpan _elapsedTime = TimeSpan.Zero;
         private string _fileToken;
+        private StopVideoCommand _goBackCommand;
         private bool _isPlaying;
+        private string _mrl;
         private PlayPauseCommand _playOrPause;
         private RelayCommand _skipAhead;
         private RelayCommand _skipBack;
-        private StopVideoCommand _goBackCommand;
         private ObservableCollection<Subtitle> _subtitles;
         private TimeSpan _timeTotal = TimeSpan.Zero;
         private string _title;
+        private MediaPlayerService _vlcPlayerService;
 
         public PlayVideoViewModel()
         {
@@ -42,7 +42,7 @@ namespace VLC_WINRT.ViewModels.PlayVideo
             _displayAlwaysOnRequest = new DisplayRequest();
             _subtitles = new ObservableCollection<Subtitle>();
 
-            _sliderPositionTimer.Tick += FirePositionUpdate; 
+            _sliderPositionTimer.Tick += FirePositionUpdate;
             _sliderPositionTimer.Interval = TimeSpan.FromMilliseconds(16);
 
             _fiveSecondTimer.Tick += UpdateDate;
@@ -55,23 +55,6 @@ namespace VLC_WINRT.ViewModels.PlayVideo
             _skipBack = new RelayCommand(() => _vlcPlayerService.SkipBack());
         }
 
-        private void FirePositionUpdate(object sender, object e)
-        {
-            UpdatePosition(this, e);
-        }
-
-        private void PlayerStateChanged(object sender, MediaPlayerService.MediaPlayerState e)
-        {
-            if (e == MediaPlayerService.MediaPlayerState.Playing)
-            {
-                IsPlaying = true;
-            }
-            else
-            {
-                IsPlaying = false;
-            }
-        }
-
         public double PositionInSeconds
         {
             get
@@ -80,10 +63,7 @@ namespace VLC_WINRT.ViewModels.PlayVideo
                 {
                     return _vlcPlayerService.GetPosition().Result*TimeTotal.TotalSeconds;
                 }
-                else
-                {
-                    return 0.0d;
-                }
+                return 0.0d;
             }
             set { _vlcPlayerService.Seek((float) (value/TimeTotal.TotalSeconds)); }
         }
@@ -169,9 +149,40 @@ namespace VLC_WINRT.ViewModels.PlayVideo
             private set { SetProperty(ref _subtitles, value); }
         }
 
+        public void Dispose()
+        {
+            if (_vlcPlayerService != null)
+            {
+                _vlcPlayerService.StatusChanged -= PlayerStateChanged;
+                _vlcPlayerService.Stop();
+                _vlcPlayerService.Close();
+                _vlcPlayerService = null;
+            }
+
+            _skipAhead = null;
+            _skipBack = null;
+        }
+
+        private void FirePositionUpdate(object sender, object e)
+        {
+            UpdatePosition(this, e);
+        }
+
+        private void PlayerStateChanged(object sender, MediaPlayerService.MediaPlayerState e)
+        {
+            if (e == MediaPlayerService.MediaPlayerState.Playing)
+            {
+                IsPlaying = true;
+            }
+            else
+            {
+                IsPlaying = false;
+            }
+        }
+
         public async Task RegisterPanel(SwapChainBackgroundPanel panel)
         {
-            await _vlcPlayerService.Initialize(panel);
+            await _vlcPlayerService.Initialize(panel, _mrl);
             _fiveSecondTimer.Start();
             RaisePropertyChanged("TimeTotal");
 
@@ -186,7 +197,14 @@ namespace VLC_WINRT.ViewModels.PlayVideo
         public void SetActiveVideoInfo(string token, string title)
         {
             _fileToken = token;
+            _mrl = "winrt://" + token;
             Title = title;
+        }
+
+        public void SetActiveVideoInfo(string mrl)
+        {
+            _fileToken = null;
+            _mrl = mrl;
         }
 
         public override void OnNavigatedFrom()
@@ -243,20 +261,6 @@ namespace VLC_WINRT.ViewModels.PlayVideo
             }
 
             ElapsedTime = TimeSpan.FromSeconds(PositionInSeconds);
-        }
-
-        public void Dispose()
-        {
-            if (_vlcPlayerService != null)
-            {
-                _vlcPlayerService.StatusChanged -= PlayerStateChanged;
-                _vlcPlayerService.Stop();
-                _vlcPlayerService.Close();
-                _vlcPlayerService = null;
-            }
-
-            _skipAhead = null;
-            _skipBack = null;
         }
     }
 }

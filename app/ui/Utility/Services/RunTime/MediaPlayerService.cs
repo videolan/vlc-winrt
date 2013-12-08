@@ -89,13 +89,15 @@ namespace VLC_WINRT.Utility.Services.RunTime
             });
         }
 
-        public async Task Initialize(SwapChainBackgroundPanel panel)
+        public async Task Initialize(SwapChainBackgroundPanel panel, string mrl)
         {
             _vlcPlayer = new Player(panel);
             _vlcInitializeTask = _vlcPlayer.Initialize().AsTask();
             await _vlcInitializeTask;
-            string token = _historyService.GetTokenAtPosition(0);
-            _vlcPlayer.Open("winrt://" + token);
+            _vlcPlayer.Open(mrl);
+
+            //string token = _historyService.GetTokenAtPosition(0);
+            //_vlcPlayer.Open("winrt://" + token);
         }
 
         public void SkipAhead()
