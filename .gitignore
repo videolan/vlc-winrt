@@ -22,6 +22,8 @@ Thumbs.db
 *.log
 *.sdf
 *.opensdf
+*.ncrunchsolution
+*.ncrunchproject
 AppPackages/
 [Bb]in
 [Dd]ebug*/
