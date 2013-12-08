@@ -7,7 +7,7 @@ namespace VLC_WINRT.ViewModels.MainPage
 {
     public class MainPageViewModel : NavigateableViewModel
     {
-        private bool _isAppBarVisible;
+        private bool _isAppBarOpen;
         private LastViewedViewModel _lastViewedVM;
         private LibraryViewModel _musicVM;
         private string _networkMRL = string.Empty;
@@ -19,8 +19,8 @@ namespace VLC_WINRT.ViewModels.MainPage
 
         private RelayCommand _showAppBarCommand;
 
-        private RelayCommand _showNetworkAppBarCommand;
-        private bool _toggleNetworkAppBarVisibility;
+        private RelayCommand _toggleNetworkAppBarCommand;
+        private bool _isNetworkAppBarShown;
         private LibraryViewModel _videoVM;
 
         public MainPageViewModel()
@@ -32,10 +32,10 @@ namespace VLC_WINRT.ViewModels.MainPage
             PickVideo = new PickVideoCommand();
             PlayNetworkMRL = new PlayNetworkMRLCommand();
 
-            _showNetworkAppBarCommand =
-                new RelayCommand(() => { ToggleNetworkAppBarVisibility = !ToggleNetworkAppBarVisibility; });
+            _toggleNetworkAppBarCommand =
+                new RelayCommand(() => { IsNetworkAppBarShown = !IsNetworkAppBarShown; });
 
-            _showAppBarCommand = new RelayCommand(() => { IsAppBarVisible = true; });
+            _showAppBarCommand = new RelayCommand(() => { IsAppBarOpen = true; });
         }
 
         public LibraryViewModel VideoVM
@@ -56,10 +56,10 @@ namespace VLC_WINRT.ViewModels.MainPage
             set { SetProperty(ref _lastViewedVM, value); }
         }
 
-        public bool ToggleNetworkAppBarVisibility
+        public bool IsNetworkAppBarShown
         {
-            get { return _toggleNetworkAppBarVisibility; }
-            set { SetProperty(ref _toggleNetworkAppBarVisibility, value); }
+            get { return _isNetworkAppBarShown; }
+            set { SetProperty(ref _isNetworkAppBarShown, value); }
         }
 
         public PickVideoCommand PickVideo
@@ -74,10 +74,10 @@ namespace VLC_WINRT.ViewModels.MainPage
             set { SetProperty(ref _showAppBarCommand, value); }
         }
 
-        public RelayCommand ShowNetworkAppBarCommand
+        public RelayCommand ToggleNetworkAppBarCommand
         {
-            get { return _showNetworkAppBarCommand; }
-            set { SetProperty(ref _showNetworkAppBarCommand, value); }
+            get { return _toggleNetworkAppBarCommand; }
+            set { SetProperty(ref _toggleNetworkAppBarCommand, value); }
         }
 
         public ObservableCollection<LibraryViewModel> RemovableStorageVMs
@@ -86,10 +86,18 @@ namespace VLC_WINRT.ViewModels.MainPage
             set { SetProperty(ref _removableStorageVMs, value); }
         }
 
-        public bool IsAppBarVisible
+        public bool IsAppBarOpen
         {
-            get { return _isAppBarVisible; }
-            set { SetProperty(ref _isAppBarVisible, value); }
+            get { return _isAppBarOpen; }
+            set
+            {
+                SetProperty(ref _isAppBarOpen, value);
+                if (value == false)
+                {
+                    // hide open network portion of appbar whenever app bar is dissmissed.
+                    IsNetworkAppBarShown = false;
+                }
+            }
         }
 
         public PlayNetworkMRLCommand PlayNetworkMRL

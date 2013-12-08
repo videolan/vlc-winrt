@@ -70,9 +70,9 @@
         </Grid>
     </Grid>
     <Page.BottomAppBar>
-        <AppBar Padding="10,0,10,0" IsOpen="{Binding IsAppBarVisible, Mode=TwoWay}">
+        <AppBar Padding="10,0,10,0" IsOpen="{Binding IsAppBarOpen, Mode=TwoWay}">
             <Grid>
-                <Grid Visibility="{Binding ToggleNetworkAppBarVisibility, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <Grid Visibility="{Binding IsNetworkAppBarShown, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"></RowDefinition>
                         <RowDefinition Height="Auto"></RowDefinition>
@@ -92,17 +92,17 @@
                         <Button Grid.Column="2" Margin="10,5" Command="{Binding PlayNetworkMRL}" CommandParameter="{Binding NetworkMRL}">
                             <TextBlock Text="Go" Style="{StaticResource BasicTextStyle}"  FontSize="16"></TextBlock>
                         </Button>
-                        <Button Grid.Column="3" Margin="10,5" Command="{Binding ShowNetworkAppBarCommand}">
+                        <Button Grid.Column="3" Margin="10,5" Command="{Binding ToggleNetworkAppBarCommand}">
                             <TextBlock Text="Cancel" Style="{StaticResource BasicTextStyle}"  FontSize="16"></TextBlock>
                         </Button>
                     </Grid>
                 </Grid>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,0,10,0" Visibility="{Binding ToggleNetworkAppBarVisibility, Converter={StaticResource NegatedBooleanToVisibilityConverter}}">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,0,10,0" Visibility="{Binding IsNetworkAppBarShown, Converter={StaticResource NegatedBooleanToVisibilityConverter}}">
                     <Button Style="{StaticResource VideoAppBarButtonStyle}"
                             Command="{Binding PickVideo}">
                     </Button>
                     <Button Style="{StaticResource NetworkAppBarButtonStyle}" Margin="10,0"
-                            Command="{Binding ShowNetworkAppBarCommand}">
+                            Command="{Binding ToggleNetworkAppBarCommand}">
                     </Button>
                 </StackPanel>
             </Grid>
