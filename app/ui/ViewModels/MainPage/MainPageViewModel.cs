@@ -1,5 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using GalaSoft.MvvmLight.Command;
 using VLC_WINRT.Common;
 using VLC_WINRT.Utility.Commands;
 
@@ -17,9 +16,9 @@ namespace VLC_WINRT.ViewModels.MainPage
         private ObservableCollection<LibraryViewModel> _removableStorageVMs =
             new ObservableCollection<LibraryViewModel>();
 
-        private RelayCommand _showAppBarCommand;
+        private ActionCommand _showAppBarCommand;
 
-        private RelayCommand _toggleNetworkAppBarCommand;
+        private ActionCommand _toggleNetworkAppBarCommand;
         private bool _isNetworkAppBarShown;
         private LibraryViewModel _videoVM;
 
@@ -33,9 +32,9 @@ namespace VLC_WINRT.ViewModels.MainPage
             PlayNetworkMRL = new PlayNetworkMRLCommand();
 
             _toggleNetworkAppBarCommand =
-                new RelayCommand(() => { IsNetworkAppBarShown = !IsNetworkAppBarShown; });
+                new ActionCommand(() => { IsNetworkAppBarShown = !IsNetworkAppBarShown; });
 
-            _showAppBarCommand = new RelayCommand(() => { IsAppBarOpen = true; });
+            _showAppBarCommand = new ActionCommand(() => { IsAppBarOpen = true; });
         }
 
         public LibraryViewModel VideoVM
@@ -68,13 +67,13 @@ namespace VLC_WINRT.ViewModels.MainPage
             set { SetProperty(ref _pickVideoCommand, value); }
         }
 
-        public RelayCommand ShowAppBarCommand
+        public ActionCommand ShowAppBarCommand
         {
             get { return _showAppBarCommand; }
             set { SetProperty(ref _showAppBarCommand, value); }
         }
 
-        public RelayCommand ToggleNetworkAppBarCommand
+        public ActionCommand ToggleNetworkAppBarCommand
         {
             get { return _toggleNetworkAppBarCommand; }
             set { SetProperty(ref _toggleNetworkAppBarCommand, value); }

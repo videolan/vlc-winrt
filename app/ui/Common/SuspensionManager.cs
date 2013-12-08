@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
-using Windows.Storage;
-using Windows.Storage.Streams;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Microsoft.Practices.ServiceLocation;
+using VLC_WINRT.Utility.IoC;
 using VLC_WINRT.Utility.Services.RunTime;
-using VLC_WINRT.ViewModels.MainPage;
+using VLC_WINRT.ViewModels;
 
 namespace VLC_WINRT.Common
 {
@@ -23,16 +20,16 @@ namespace VLC_WINRT.Common
     internal sealed class SuspensionManager
     {
         private const string sessionStateFilename = "_sessionState.xml";
-        private static Dictionary<string, object> _sessionState = new Dictionary<string, object>();
+        private static readonly Dictionary<string, object> _sessionState = new Dictionary<string, object>();
         private static readonly List<Type> _knownTypes = new List<Type>();
 
         private static readonly DependencyProperty FrameSessionStateKeyProperty =
             DependencyProperty.RegisterAttached("_FrameSessionStateKey", typeof (String), typeof (SuspensionManager),
-                                                null);
+                null);
 
         private static readonly DependencyProperty FrameSessionStateProperty =
             DependencyProperty.RegisterAttached("_FrameSessionState", typeof (Dictionary<String, Object>),
-                                                typeof (SuspensionManager), null);
+                typeof (SuspensionManager), null);
 
         private static readonly List<WeakReference<Frame>> _registeredFrames = new List<WeakReference<Frame>>();
 
@@ -69,7 +66,7 @@ namespace VLC_WINRT.Common
         {
             try
             {
-                var historyService = ServiceLocator.Current.GetInstance<HistoryService>();
+                var historyService = IoC.GetInstance<HistoryService>();
                 await historyService.SaveHistory();
             }
             catch (Exception e)
@@ -93,7 +90,7 @@ namespace VLC_WINRT.Common
         {
             try
             {
-                var historyService = ServiceLocator.Current.GetInstance<HistoryService>();
+                var historyService = IoC.GetInstance<HistoryService>();
             }
             catch (Exception e)
             {
@@ -153,12 +150,12 @@ namespace VLC_WINRT.Common
             // Remove session state and remove the frame from the list of frames whose navigation
             // state will be saved (along with any weak references that are no longer reachable)
             SessionState.Remove((String) frame.GetValue(FrameSessionStateKeyProperty));
-            _registeredFrames.RemoveAll((weakFrameReference) =>
-                                            {
-                                                Frame testFrame;
-                                                return !weakFrameReference.TryGetTarget(out testFrame) ||
-                                                       testFrame == frame;
-                                            });
+            _registeredFrames.RemoveAll(weakFrameReference =>
+            {
+                Frame testFrame;
+                return !weakFrameReference.TryGetTarget(out testFrame) ||
+                       testFrame == frame;
+            });
         }
 
         /// <summary>

@@ -1,5 +1,4 @@
 ﻿using System;
-using Microsoft.Practices.ServiceLocation;
 using VLC_WINRT.Common;
 using VLC_WINRT.Utility.Services.RunTime;
 using VLC_WINRT.ViewModels;
@@ -15,7 +14,7 @@ namespace VLC_WINRT.Utility.Commands
             if (parameter.GetType() != typeof (MediaViewModel) && parameter.GetType() != typeof (ViewedVideoViewModel))
                 throw new ArgumentException("Expecting to see a Media View Model for this command");
 
-            var historyService = ServiceLocator.Current.GetInstance<HistoryService>();
+            var historyService = IoC.IoC.GetInstance<HistoryService>();
             var vm = (MediaViewModel) parameter;
 
             string token = historyService.Add(vm.File);

@@ -149,16 +149,19 @@
     <Compile Include="Utility\Services\RunTime\MouseService.cs" />
     <Compile Include="Utility\Services\RunTime\NavigationService.cs" />
     <Compile Include="Utility\Services\RunTime\ThumbnailService.cs" />
+    <Compile Include="Utility\IoC\IoC.cs" />
     <Compile Include="ViewModels\Locator.cs" />
     <Compile Include="ViewModels\MainPage\LastViewedViewModel.cs" />
     <Compile Include="ViewModels\MainPage\LibraryViewModel.cs" />
     <Compile Include="ViewModels\MainPage\MainPageViewModel.cs" />
     <Compile Include="ViewModels\MainPage\MediaViewModel.cs" />
     <Compile Include="Utility\Commands\PlayNetworkMRLCommand.cs" />
+    <Compile Include="Utility\Commands\ActionCommand.cs" />
     <Compile Include="ViewModels\MainPage\ThumbnailsViewModel.cs" />
     <Compile Include="ViewModels\MainPage\ThumbnailViewModel.cs" />
     <Compile Include="ViewModels\MainPage\ViewedVideoViewModel.cs" />
     <Compile Include="ViewModels\PlayVideo\PlayVideoViewModel.cs" />
+    <Compile Include="Utility\IoC\ResolutionException.cs" />
     <Compile Include="Views\BasePage.cs" />
     <Compile Include="Views\Controls\MainPage\LastViewed.xaml.cs">
       <DependentUpon>LastViewed.xaml</DependentUpon>
@@ -193,7 +196,6 @@
     <None Include="Common\ReadMe.txt" />
     <Content Include="segoeui.ttf" />
     <PRIResource Include="Strings\en-US\Resources.resw" />
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\..\vlc\libvlc.dll">
@@ -754,20 +756,6 @@
     <Folder Include="plugins\meta_engine\" />
     <Folder Include="plugins\packetizer\" />
     <Folder Include="plugins\services_discovery\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="GalaSoft.MvvmLight.Extras.Win8, Version=4.1.27.22661, Culture=neutral, PublicKeyToken=33a77f5c33c10a68, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MvvmLightLibs.4.1.27.1\lib\netcore45\GalaSoft.MvvmLight.Extras.Win8.dll</HintPath>
-    </Reference>
-    <Reference Include="GalaSoft.MvvmLight.Win8, Version=4.1.27.22661, Culture=neutral, PublicKeyToken=7f0ea4153a3589fc, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MvvmLightLibs.4.1.27.1\lib\netcore45\GalaSoft.MvvmLight.Win8.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=619affe60327fc48, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\MvvmLightLibs.4.1.27.1\lib\netcore45\Microsoft.Practices.ServiceLocation.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <SDKReference Include="Microsoft.VCLibs, Version=11.0">

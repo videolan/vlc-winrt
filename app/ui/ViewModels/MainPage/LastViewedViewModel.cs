@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Storage;
 using Windows.System.Threading;
-using Microsoft.Practices.ServiceLocation;
 using VLC_WINRT.Common;
 using VLC_WINRT.Utility.Commands;
+using VLC_WINRT.Utility.IoC;
 using VLC_WINRT.Utility.Services.RunTime;
 
 namespace VLC_WINRT.ViewModels.MainPage
@@ -24,7 +24,7 @@ namespace VLC_WINRT.ViewModels.MainPage
 
         public LastViewedViewModel()
         {
-            _historyService = ServiceLocator.Current.GetInstance<HistoryService>();
+            _historyService = IoC.GetInstance<HistoryService>();
 
             if (_historyService.FileCount() > 0)
             {

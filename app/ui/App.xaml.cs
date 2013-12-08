@@ -1,12 +1,10 @@
-﻿using System;
-using VLC_WINRT.Common;
+﻿using VLC_WINRT.Common;
 using VLC_WINRT.Utility.Services;
 using VLC_WINRT.Utility.Services.RunTime;
 using VLC_WINRT.Views;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
 
 // The Split App template is documented at http://go.microsoft.com/fwlink/?LinkId=234228
 

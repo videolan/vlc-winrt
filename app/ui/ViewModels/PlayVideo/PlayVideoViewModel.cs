@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 using Windows.System.Display;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using GalaSoft.MvvmLight.Command;
-using Microsoft.Practices.ServiceLocation;
 using VLC_WINRT.Model;
 using VLC_WINRT.Utility.Commands;
+using VLC_WINRT.Utility.IoC;
 using VLC_WINRT.Utility.Services.RunTime;
 
 namespace VLC_WINRT.ViewModels.PlayVideo
@@ -27,17 +26,18 @@ namespace VLC_WINRT.ViewModels.PlayVideo
         private bool _isPlaying;
         private string _mrl;
         private PlayPauseCommand _playOrPause;
-        private RelayCommand _skipAhead;
-        private RelayCommand _skipBack;
+        private ActionCommand _skipAhead;
+        private ActionCommand _skipBack;
         private ObservableCollection<Subtitle> _subtitles;
         private TimeSpan _timeTotal = TimeSpan.Zero;
         private string _title;
         private MediaPlayerService _vlcPlayerService;
+        private MouseService _mouseService;
 
         public PlayVideoViewModel()
         {
             _playOrPause = new PlayPauseCommand();
-            _historyService = ServiceLocator.Current.GetInstance<HistoryService>();
+            _historyService = IoC.GetInstance<HistoryService>();
             _goBackCommand = new StopVideoCommand();
             _displayAlwaysOnRequest = new DisplayRequest();
             _subtitles = new ObservableCollection<Subtitle>();
@@ -48,11 +48,13 @@ namespace VLC_WINRT.ViewModels.PlayVideo
             _fiveSecondTimer.Tick += UpdateDate;
             _fiveSecondTimer.Interval = TimeSpan.FromSeconds(5);
 
-            _vlcPlayerService = ServiceLocator.Current.GetInstance<MediaPlayerService>();
+            _vlcPlayerService = IoC.GetInstance<MediaPlayerService>();
             _vlcPlayerService.StatusChanged += PlayerStateChanged;
 
-            _skipAhead = new RelayCommand(() => _vlcPlayerService.SkipAhead());
-            _skipBack = new RelayCommand(() => _vlcPlayerService.SkipBack());
+            _mouseService = IoC.GetInstance<MouseService>();
+
+            _skipAhead = new ActionCommand(() => _vlcPlayerService.SkipAhead());
+            _skipBack = new ActionCommand(() => _vlcPlayerService.SkipBack());
         }
 
         public double PositionInSeconds
@@ -85,29 +87,28 @@ namespace VLC_WINRT.ViewModels.PlayVideo
             set
             {
                 SetProperty(ref _isPlaying, value);
-                var mouseService = ServiceLocator.Current.GetInstance<MouseService>();
                 if (value)
                 {
                     _sliderPositionTimer.Start();
-                    mouseService.HideMouse();
+                    _mouseService.HideMouse();
                     ProtectedDisplayCall(true);
                 }
                 else
                 {
                     _sliderPositionTimer.Stop();
-                    mouseService.RestoreMouse();
+                    _mouseService.RestoreMouse();
                     ProtectedDisplayCall(false);
                 }
             }
         }
 
-        public RelayCommand SkipAhead
+        public ActionCommand SkipAhead
         {
             get { return _skipAhead; }
             set { SetProperty(ref _skipAhead, value); }
         }
 
-        public RelayCommand SkipBack
+        public ActionCommand SkipBack
         {
             get { return _skipBack; }
             set { SetProperty(ref _skipBack, value); }
@@ -184,7 +185,7 @@ namespace VLC_WINRT.ViewModels.PlayVideo
         {
             await _vlcPlayerService.Initialize(panel, _mrl);
             _fiveSecondTimer.Start();
-            RaisePropertyChanged("TimeTotal");
+            OnPropertyChanged("TimeTotal");
 
             //TODO: Remove
             Subtitles.Add(new Subtitle {Id = 1, Name = "English"});

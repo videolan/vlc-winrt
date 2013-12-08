@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
-using Microsoft.Practices.ServiceLocation;
+using VLC_WINRT.ViewModels;
 using VLC_Wrapper;
 
 namespace VLC_WINRT.Utility.Services.RunTime
@@ -27,7 +27,7 @@ namespace VLC_WINRT.Utility.Services.RunTime
         public MediaPlayerService()
         {
             CurrentState = MediaPlayerState.Stopped;
-            _historyService = ServiceLocator.Current.GetInstance<HistoryService>();
+            _historyService = IoC.IoC.GetInstance<HistoryService>();
         }
 
         public event EventHandler<MediaPlayerState> StatusChanged;

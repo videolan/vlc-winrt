@@ -5,7 +5,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" x:Class="VLC_WINRT.App"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:viewModels="using:VLC_WINRT.ViewModels" mc:Ignorable="d">
+             xmlns:viewModels="using:VLC_WINRT.ViewModels"
+             mc:Ignorable="d">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -51,7 +52,7 @@
             <converters:TimeSpanSecondsDoubleConverter x:Key="TimeSpanSecondsDoubleConverter">
             </converters:TimeSpanSecondsDoubleConverter>
 
-            <viewModels:Locator x:Key="Locator" d:IsDataSource="True" />
+            <viewModels:Locator x:Key="Locator"></viewModels:Locator>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

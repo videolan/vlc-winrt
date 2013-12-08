@@ -1,11 +1,11 @@
 ﻿using System;
 using Windows.Storage;
-using Microsoft.Practices.ServiceLocation;
 using VLC_WINRT.Common;
 using Windows.Foundation;
 using Windows.Storage.FileProperties;
 using Windows.System.Threading;
 using VLC_WINRT.Model;
+using VLC_WINRT.Utility.IoC;
 using VLC_WINRT.Utility.Services.RunTime;
 
 namespace VLC_WINRT.ViewModels.MainPage
@@ -53,7 +53,7 @@ namespace VLC_WINRT.ViewModels.MainPage
         {
             VideoProperties videoProps = await File.Properties.GetVideoPropertiesAsync();
             TimeSpan duration = videoProps.Duration;
-            var historyService = ServiceLocator.Current.GetInstance<HistoryService>();
+            var historyService = IoC.GetInstance<HistoryService>();
             MediaHistory history=  historyService.GetHistory(_token);
 
             DispatchHelper.Invoke(() =>

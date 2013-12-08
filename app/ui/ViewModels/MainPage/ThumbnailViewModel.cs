@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
-using GalaSoft.MvvmLight.Ioc;
 using VLC_WINRT.Common;
+using VLC_WINRT.Utility.IoC;
 using VLC_WINRT.Utility.Services.Interface;
 using Windows.Foundation;
 using Windows.Storage;
@@ -22,7 +22,7 @@ namespace VLC_WINRT.ViewModels.MainPage
         public ThumbnailViewModel(StorageFile storageFile)
         {
             File = storageFile;
-            _thumbsService = SimpleIoc.Default.GetInstance<IThumbnailService>();
+            _thumbsService = IoC.GetInstance<IThumbnailService>();
         }
 
         public ImageSource Image
