@@ -37,13 +37,6 @@ You can regenerate it using https://wiki.videolan.org/GenerateLibFromDll/
 ----------------------------------
 Open the VLC_WinRT solution in app/VLC_WINRT.sln 
 
-3) Install MvvMLight through NuGet
-----------------------------------
-
-- Tools -> Library Package Manager -> Package Manager Console
-
-In the console, click "Restore"
-
 4a) Get your developer signature from your account
 --------------------------------------------------
 If you don't have a dev account, see the next paragraph
