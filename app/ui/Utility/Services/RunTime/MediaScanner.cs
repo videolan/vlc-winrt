@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using VLC_WINRT.Common;
-using VLC_WINRT.ViewModels;
-using VLC_WINRT.ViewModels.MainPage;
 using Windows.Devices.Enumeration;
 using Windows.Devices.Portable;
 using Windows.Storage;
 using Windows.Storage.Search;
+using VLC_WINRT.Common;
+using VLC_WINRT.ViewModels;
+using VLC_WINRT.ViewModels.MainPage;
 
-namespace VLC_WINRT.Utility.Services
+namespace VLC_WINRT.Utility.Services.RunTime
 {
     public class MediaScanner : IDisposable
     {
@@ -48,11 +48,29 @@ namespace VLC_WINRT.Utility.Services
         public static async Task<IReadOnlyList<StorageFile>> GetMediaFromFolder(StorageFolder folder, uint numberOfFiles,
                                                                                 CommonFileQuery query)
         {
-            var queryOptions = new QueryOptions(CommonFileQuery.OrderByName,
-                                                new List<string> {".mkv", ".mp4", ".m4v", ".avi", ".mp3", ".wav"});
-            StorageFileQueryResult imageFileQuery = folder.CreateFileQueryWithOptions(queryOptions);
+            IReadOnlyList<StorageFile> files = null;
+            StorageFileQueryResult fileQuery;
+            var queryOptions = new QueryOptions(query,
+                                               new List<string> { ".mkv", ".mp4", ".m4v", ".avi", ".mp3", ".wav" });
+            try
+            {
+                fileQuery = folder.CreateFileQueryWithOptions(queryOptions);
 
-            IReadOnlyList<StorageFile> files = await imageFileQuery.GetFilesAsync(0, numberOfFiles);
+                files = await fileQuery.GetFilesAsync(0, numberOfFiles);
+            }
+            catch (ArgumentException ex)
+            {
+                Debug.WriteLine("exception listing files");
+                Debug.WriteLine(ex.ToString());
+            }
+
+            // DLNA folders don't support advanced file listings, us a basic file query
+            if (files == null)
+            {
+                fileQuery = folder.CreateFileQuery(CommonFileQuery.OrderByName);
+                files = await fileQuery.GetFilesAsync();
+            }
+
             return files;
         }
 

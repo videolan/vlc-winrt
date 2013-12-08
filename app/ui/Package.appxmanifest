@@ -45,5 +45,6 @@
     <Capability Name="musicLibrary" />
     <Capability Name="internetClientServer" />
     <Capability Name="internetClient" />
+    <Capability Name="picturesLibrary" />
   </Capabilities>
 </Package>

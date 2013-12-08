@@ -7,6 +7,7 @@ using Windows.Foundation;
 using Windows.Storage;
 using Windows.Storage.Search;
 using Windows.System.Threading;
+using VLC_WINRT.Utility.Services.RunTime;
 
 namespace VLC_WINRT.ViewModels.MainPage
 {

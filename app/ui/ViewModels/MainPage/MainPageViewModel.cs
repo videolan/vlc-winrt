@@ -1,4 +1,8 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Threading.Tasks;
+using Windows.Storage;
 using VLC_WINRT.Common;
 using VLC_WINRT.Utility.Commands;
 
@@ -6,7 +10,11 @@ namespace VLC_WINRT.ViewModels.MainPage
 {
     public class MainPageViewModel : NavigateableViewModel
     {
+        private ObservableCollection<LibraryViewModel> _dlnaVMs =
+            new ObservableCollection<LibraryViewModel>();
+
         private bool _isAppBarOpen;
+        private bool _isNetworkAppBarShown;
         private LastViewedViewModel _lastViewedVM;
         private LibraryViewModel _musicVM;
         private string _networkMRL = string.Empty;
@@ -19,13 +27,23 @@ namespace VLC_WINRT.ViewModels.MainPage
         private ActionCommand _showAppBarCommand;
 
         private ActionCommand _toggleNetworkAppBarCommand;
-        private bool _isNetworkAppBarShown;
         private LibraryViewModel _videoVM;
 
         public MainPageViewModel()
         {
             VideoVM = new LibraryViewModel(KnownVLCLocation.VideosLibrary);
             MusicVM = new LibraryViewModel(KnownVLCLocation.MusicLibrary);
+
+            Task<IReadOnlyList<StorageFolder>> dlnaFolders = KnownVLCLocation.MediaServers.GetFoldersAsync().AsTask();
+            dlnaFolders.ContinueWith(t =>
+            {
+                IReadOnlyList<StorageFolder> folders = t.Result;
+                foreach (StorageFolder storageFolder in folders)
+                {
+                    StorageFolder newFolder = storageFolder;
+                    DispatchHelper.Invoke(() => DLNAVMs.Add(new LibraryViewModel(newFolder)));
+                }
+            });
 
             LastViewedVM = new LastViewedViewModel();
             PickVideo = new PickVideoCommand();
@@ -47,6 +65,12 @@ namespace VLC_WINRT.ViewModels.MainPage
         {
             get { return _musicVM; }
             set { SetProperty(ref _musicVM, value); }
+        }
+
+        public ObservableCollection<LibraryViewModel> DLNAVMs
+        {
+            get { return _dlnaVMs; }
+            set { SetProperty(ref _dlnaVMs, value); }
         }
 
         public LastViewedViewModel LastViewedVM

@@ -41,6 +41,7 @@
                         <ColumnDefinition Width="Auto"></ColumnDefinition>
                         <ColumnDefinition Width="Auto"></ColumnDefinition>
                         <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"></RowDefinition>
@@ -65,6 +66,16 @@
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
+
+                    <ItemsControl Grid.Column="4" ItemsSource="{Binding DLNAVMs}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <mainPage:MediaColumn>
+                                </mainPage:MediaColumn>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                  
                 </Grid>
             </ScrollViewer>
         </Grid>
