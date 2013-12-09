@@ -61,7 +61,7 @@ namespace VLC_WINRT.ViewModels.PlayVideo
         {
             get
             {
-                if (_vlcPlayerService != null)
+                if (_vlcPlayerService != null && _vlcPlayerService.CurrentState == MediaPlayerService.MediaPlayerState.Playing)
                 {
                     return _vlcPlayerService.GetPosition().Result*TimeTotal.TotalSeconds;
                 }

@@ -169,7 +169,11 @@ namespace VLC_WINRT.Utility.Services.RunTime
             lock (_controlLock)
             {
                 {
-                    position = _vlcPlayer.GetPosition();
+                    if (CurrentState == MediaPlayerState.Playing)
+                    {
+                        position = _vlcPlayer.GetPosition();
+                    }
+                    else return 0;
                 }
             }
             return position;
