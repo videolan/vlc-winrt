@@ -192,8 +192,13 @@ int Player::SetSubtitleTrack(int track){
 
 Player::~Player()
 {
-	libvlc_media_player_release(p_mp);
-	libvlc_release(p_instance);
+	if (p_mp){
+		libvlc_media_player_release(p_mp);
+	}
+	if (p_instance){
+		libvlc_release(p_instance);
+	}
+	
 
 	/*if (p_dxManager){
 		delete p_dxManager;
