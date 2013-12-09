@@ -137,10 +137,14 @@ namespace VLC_WINRT.Utility.Services.RunTime
                     Stop();
                 }
 
-                if (_vlcInitializeTask != null)
+                lock (_controlLock)
                 {
-                    _vlcInitializeTask.Wait(20000);
-                    _vlcInitializeTask = null;
+                    if (_vlcInitializeTask != null)
+                    {
+                        _vlcInitializeTask.Wait(20000);
+                        _vlcInitializeTask = null;
+                        GC.Collect();
+                    }
                 }
 
                 lock (_controlLock)
