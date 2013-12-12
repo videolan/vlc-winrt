@@ -1,3 +1,12 @@
+This project is about the port of VLC to the WinRT platform.
+
+The goal is to target Windows 8/8.1 Modern environment, on x86 and ARM (Windows RT).
+But also Windows Phone 8/8.1 and other devices running the WinRT platform.
+
+Most of the media code engine is licensed under LGPL, like libVLC.
+The application is dual-licensed under GPLv2/MPL and the license might change later,
+if need be.
+
 How to compile VLC for WinRT:
 -----------------------------
 
