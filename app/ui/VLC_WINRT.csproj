@@ -265,18 +265,6 @@
     <Content Include="..\..\vlc\plugins\audio_mixer\libinteger_mixer_plugin.dll">
       <Link>plugins\audio_mixer\libinteger_mixer_plugin.dll</Link>
     </Content>
-    <Content Include="..\..\vlc\plugins\audio_output\libadummy_plugin.dll">
-      <Link>plugins\audio_output\libadummy_plugin.dll</Link>
-    </Content>
-    <Content Include="..\..\vlc\plugins\audio_output\libafile_plugin.dll">
-      <Link>plugins\audio_output\libafile_plugin.dll</Link>
-    </Content>
-    <Content Include="..\..\vlc\plugins\audio_output\libamem_plugin.dll">
-      <Link>plugins\audio_output\libamem_plugin.dll</Link>
-    </Content>
-    <Content Include="..\..\vlc\plugins\audio_output\libdirectsound_plugin.dll">
-      <Link>plugins\audio_output\libdirectsound_plugin.dll</Link>
-    </Content>
     <Content Include="..\..\vlc\plugins\audio_output\libmmdevice_plugin.dll">
       <Link>plugins\audio_output\libmmdevice_plugin.dll</Link>
     </Content>
