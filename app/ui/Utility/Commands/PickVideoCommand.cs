@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Windows.Input;
+using Windows.Storage;
+using Windows.Storage.Pickers;
 using VLC_WINRT.Utility.Services.RunTime;
 using VLC_WINRT.ViewModels;
 using VLC_WINRT.Views;
-using Windows.Storage;
-using Windows.Storage.Pickers;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
 
 namespace VLC_WINRT.Utility.Commands
 {
@@ -33,10 +31,10 @@ namespace VLC_WINRT.Utility.Commands
             }
 
             var picker = new FileOpenPicker
-                             {
-                                 ViewMode = PickerViewMode.Thumbnail,
-                                 SuggestedStartLocation = PickerLocationId.VideosLibrary
-                             };
+            {
+                ViewMode = PickerViewMode.Thumbnail,
+                SuggestedStartLocation = PickerLocationId.VideosLibrary
+            };
 
             //TODO: add more supported types
             picker.FileTypeFilter.Add(".avi");
@@ -51,7 +49,7 @@ namespace VLC_WINRT.Utility.Commands
 
                 Debug.WriteLine("Opening file: " + file.Path);
                 Locator.PlayVideoVM.SetActiveVideoInfo(token, file.Name);
-                NavigationService.NavigateTo(new PlayVideo());
+                NavigationService.NavigateTo(typeof (PlayVideo));
             }
             else
             {

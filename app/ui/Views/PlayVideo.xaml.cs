@@ -1,6 +1,4 @@
-﻿using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Input;
+﻿using Windows.UI.Xaml.Input;
 using VLC_WINRT.ViewModels;
 
 namespace VLC_WINRT.Views
@@ -13,12 +11,6 @@ namespace VLC_WINRT.Views
         public PlayVideo()
         {
             InitializeComponent();
-            this.Loaded += PanelLoaded;
-        }
-
-        private void PanelLoaded(object sender, RoutedEventArgs e)
-        {
-            Locator.PlayVideoVM.RegisterPanel(SwapChainPanel);
         }
 
         public override void SetDataContext()
@@ -34,14 +26,5 @@ namespace VLC_WINRT.Views
             if (TopAppBar != null && !TopAppBar.IsOpen)
                 TopAppBar.IsOpen = true;
         }
-
-        public SwapChainBackgroundPanel Panel
-        {
-            get
-            {
-                return SwapChainPanel;
-            }
-        }
-
     }
 }

@@ -14,8 +14,9 @@ namespace VLC_WINRT.Utility.Commands
             if (string.IsNullOrEmpty(mrl))
                 throw new ArgumentException("Expecting to see a string mrl for this command");
 
-            Locator.PlayVideoVM.SetActiveVideoInfo(mrl);
-            NavigationService.NavigateTo(new PlayVideo());
+            //TODO: pass MRL to vlc
+           // Locator.PlayVideoVM.SetActiveVideoInfo(mrl);
+            NavigationService.NavigateTo(typeof(PlayVideo));
         }
     }
 }

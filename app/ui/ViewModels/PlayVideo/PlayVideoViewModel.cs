@@ -181,18 +181,9 @@ namespace VLC_WINRT.ViewModels.PlayVideo
             }
         }
 
-        public async Task RegisterPanel(SwapChainBackgroundPanel panel)
+        public void RegisterPanel()
         {
-            await _vlcPlayerService.Initialize(panel, _mrl);
-            _fiveSecondTimer.Start();
-            OnPropertyChanged("TimeTotal");
-
-            //TODO: Remove
-            Subtitles.Add(new Subtitle {Id = 1, Name = "English"});
-            Subtitles.Add(new Subtitle {Id = 2, Name = "French"});
-            Subtitles.Add(new Subtitle {Id = 3, Name = "German"});
-
-            _vlcPlayerService.Play();
+        
         }
 
         public void SetActiveVideoInfo(string token, string title)
@@ -200,6 +191,12 @@ namespace VLC_WINRT.ViewModels.PlayVideo
             _fileToken = token;
             _mrl = "winrt://" + token;
             Title = title;
+
+            _vlcPlayerService.Open(_mrl);
+            _fiveSecondTimer.Start();
+            OnPropertyChanged("TimeTotal");
+
+            _vlcPlayerService.Play();
         }
 
         public void SetActiveVideoInfo(string mrl)
@@ -212,9 +209,7 @@ namespace VLC_WINRT.ViewModels.PlayVideo
         {
             _fiveSecondTimer.Stop();
             _sliderPositionTimer.Stop();
-
             _vlcPlayerService.Stop();
-            _vlcPlayerService.Close();
         }
 
         private void UpdateDate(object sender, object e)

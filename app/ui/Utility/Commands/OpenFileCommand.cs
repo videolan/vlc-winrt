@@ -19,7 +19,8 @@ namespace VLC_WINRT.Utility.Commands
 
             string token = historyService.Add(vm.File);
             Locator.PlayVideoVM.SetActiveVideoInfo(token, vm.File.Name);
-            NavigationService.NavigateTo(new PlayVideo());
+            NavigationService.NavigateTo(typeof(PlayVideo));
+
         }
     }
 }

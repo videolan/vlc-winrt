@@ -8,10 +8,7 @@ namespace VLC_WINRT.Utility.Commands
     {
         public override void Execute(object parameter)
         {
-            var mediaplayerService = IoC.IoC.GetInstance<MediaPlayerService>();
-            mediaplayerService.Stop();
-            mediaplayerService.Close();
-            NavigationService.NavigateTo(new MainPage());
+            NavigationService.NavigateTo(typeof (MainPage));
         }
     }
 }

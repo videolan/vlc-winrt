@@ -1,11 +1,10 @@
-﻿using System.Diagnostics;
-using VLC_WINRT.Common;
-using VLC_WINRT.Utility.Services;
-using VLC_WINRT.Utility.Services.RunTime;
-using VLC_WINRT.Views;
-using Windows.ApplicationModel;
+﻿using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using VLC_WINRT.Common;
+using VLC_WINRT.Utility.Services.RunTime;
+using VLC_WINRT.Views;
 
 // The Split App template is documented at http://go.microsoft.com/fwlink/?LinkId=234228
 
@@ -16,7 +15,6 @@ namespace VLC_WINRT
     /// </summary>
     sealed partial class App : Application
     {
-
         /// <summary>
         ///     Initializes the singleton Application object.  This is the first line of authored code
         ///     executed, and as such is the logical equivalent of main() or WinMain().
@@ -27,6 +25,15 @@ namespace VLC_WINRT
             Suspending += OnSuspending;
         }
 
+        public Frame ApplicationFrame
+        {
+            get
+            {
+                var root = Window.Current.Content as RootPage;
+                return root != null ? root.MainFrame : null;
+            }
+        }
+
         /// <summary>
         ///     Invoked when the application is launched normally by the end user.  Other entry points
         ///     will be used when the application is launched to open a specific file, to display
@@ -35,7 +42,8 @@ namespace VLC_WINRT
         /// <param name="args">Details about the launch request and process.</param>
         protected override async void OnLaunched(LaunchActivatedEventArgs args)
         {
-            NavigationService.NavigateTo(new MainPage());
+            Window.Current.Content = new RootPage();
+            NavigationService.NavigateTo(typeof(MainPage));
             Window.Current.Activate();
         }
 

@@ -9,15 +9,15 @@
     d:DesignWidth="1024"
     d:DesignHeight="768"
     DataContext="{Binding Source={StaticResource Locator}, Path=PlayVideoVM}">
-    <Page.Resources>
+    <views:BasePage.Resources>
         <ResourceDictionary >
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../Common/SliderStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
-    </Page.Resources>
-    <SwapChainBackgroundPanel x:Name="SwapChainPanel" Tapped="ScreenTapped"></SwapChainBackgroundPanel>
-    <Page.TopAppBar>
+    </views:BasePage.Resources>
+    <Grid></Grid>
+    <views:BasePage.TopAppBar>
         <AppBar  Background="#AA000000" BorderBrush="#AA000000">
             <Grid>
                 <Button Style="{StaticResource BackButtonStyle}" 
@@ -49,8 +49,8 @@
                 </StackPanel>
             </Grid>
         </AppBar>
-    </Page.TopAppBar>
-    <Page.BottomAppBar>
+    </views:BasePage.TopAppBar>
+    <views:BasePage.BottomAppBar>
         <AppBar Padding="10,0,10,0" Background="#AA000000" BorderBrush="#AA000000">
             <Grid>
                 <Grid.RowDefinitions>
@@ -106,14 +106,8 @@
                     </Button>
                    <Button Style="{StaticResource SkipAheadAppBarButtonStyle}" Command="{Binding SkipAhead}">
                     </Button>
-                     <!--
-                    Commented out until implemented
-                    <Button Style="{StaticResource FullScreenAppBarButtonStyle}">
-                    </Button>
-                    <Button Style="{StaticResource BackToWindowAppBarButtonStyle}">
-                    </Button>-->
                 </StackPanel>
             </Grid>
         </AppBar>
-    </Page.BottomAppBar>
+    </views:BasePage.BottomAppBar>
 </views:BasePage>
