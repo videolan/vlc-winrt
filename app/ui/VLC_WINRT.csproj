@@ -69,6 +69,10 @@
       <Project>{231dfaab-c462-49bf-8611-1fa6ee39983d}</Project>
       <Name>libdirect2d_winrt_plugin</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\modules\libxaudio2_winrt_plugin\libxaudio2_winrt_plugin.vcxproj">
+      <Project>{542c7405-778d-4ac6-a43d-d2a6baf70b09}</Project>
+      <Name>libxaudio2_winrt_plugin</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\wrapper\libVLCX\libVLCX.vcxproj">
       <Project>{22532381-be8b-40e0-a881-22ce24342d5a}</Project>
       <Name>libVLCX</Name>
