@@ -39,9 +39,6 @@ If you skipped step 0), take the nightly build vlc.7z
 
 Extract the libVLC contents from vlc.7z to vlc/
 
-You need to add a libvlccore.lib if it is missing from the package.
-You can regenerate it using https://wiki.videolan.org/GenerateLibFromDll
-
 2) Build and package the front-end
 ----------------------------------
 Open the VLC_WinRT solution in app/VLC_WINRT.sln 

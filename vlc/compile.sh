@@ -168,7 +168,8 @@ rm `find tmp/plugins -name 'lib*plugin.dll' | grep -E "lib(${regexp})_plugin.dll
 
 find tmp \( -name "*.dll" -o -name "*.exe" \) -exec ../../appcontainer.pl {} \;
 
-cp lib/.libs/libvlc.dll.a tmp/libvlc.lib
+cp lib/.libs/libvlc.dll.a tmp/vlc.lib
+cp src/.libs/libvlccore.dll.a tmp/vlccore.lib
 
 cd tmp
 7z a ../vlc.7z *
