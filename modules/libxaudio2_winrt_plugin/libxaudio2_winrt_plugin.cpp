@@ -55,6 +55,7 @@ using namespace Windows::UI::Core;
 static int  Open(vlc_object_t *);
 static void Close(vlc_object_t *);
 
+
 vlc_module_begin()
 set_description(N_("XAudio2 audio output"))
 set_shortname(N_("XAudio2"))
@@ -69,6 +70,15 @@ vlc_module_end()
 /*****************************************************************************
 * Local prototypes
 *****************************************************************************/
+static int  Start(audio_output_t *p_aout, audio_sample_format_t *__restrict fmt);
+static void Stop(audio_output_t *);
+static void Play(audio_output_t *, block_t *);
+static int  MuteSet(audio_output_t *, bool);
+static void Flush(audio_output_t *, bool);
+static void Pause(audio_output_t *, bool, mtime_t);
+static int  VolumeSet(audio_output_t *p_aout, float volume);
+//static int  TimeGet(audio_output_t *, mtime_t *);
+
 struct aout_sys_t
 {
 	struct
@@ -92,6 +102,15 @@ static int Open(vlc_object_t *object)
 	if (!sys)
 		return VLC_ENOMEM;
 
+	aout->start = Start;
+	aout->stop = Stop;
+	aout->volume_set = VolumeSet;
+	aout->mute_set = MuteSet;
+	aout->pause = Pause;
+	aout->play = Play;
+	aout->flush = Flush;
+	aout->time_get = NULL;
+
 	return VLC_SUCCESS;
 }
 
@@ -100,4 +119,28 @@ static void Close(vlc_object_t * object){
 	free(aout->sys);
 
 	return;
+}
+
+static int  Start(audio_output_t *p_aout, audio_sample_format_t *__restrict fmt){
+	aout_sys_t *aout = p_aout->sys;
+
+	return VLC_SUCCESS;
+};
+static void Stop(audio_output_t *){
+	return;
+}
+static void Play(audio_output_t *, block_t *){
+	return;
+}
+static int  MuteSet(audio_output_t *, bool){
+	return VLC_SUCCESS;
+}
+static void Flush(audio_output_t *, bool){
+	return;
+}
+static void Pause(audio_output_t *, bool, mtime_t){
+	return;
+}
+static int  VolumeSet(audio_output_t *p_aout, float volume){
+	return VLC_SUCCESS;
 }

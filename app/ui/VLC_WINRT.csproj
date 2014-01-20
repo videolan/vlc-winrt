@@ -161,6 +161,7 @@
       <SubType>Designer</SubType>
     </AppxManifest>
     <None Include="Common\ReadMe.txt" />
+    <Content Include="plugins\audio_output\libxaudio2_winrt_plugin.dll" />
     <Content Include="segoeui.ttf" />
     <PRIResource Include="Strings\en-US\Resources.resw" />
   </ItemGroup>
@@ -271,9 +272,6 @@
     </Content>
     <Content Include="..\..\vlc\plugins\audio_mixer\libinteger_mixer_plugin.dll">
       <Link>plugins\audio_mixer\libinteger_mixer_plugin.dll</Link>
-    </Content>
-    <Content Include="..\..\vlc\plugins\audio_output\libmmdevice_plugin.dll">
-      <Link>plugins\audio_output\libmmdevice_plugin.dll</Link>
     </Content>
     <Content Include="..\..\vlc\plugins\codec\liba52_plugin.dll">
       <Link>plugins\codec\liba52_plugin.dll</Link>
@@ -481,9 +479,6 @@
     </Content>
     <Content Include="..\..\vlc\plugins\stream_filter\libsmooth_plugin.dll">
       <Link>plugins\stream_filter\libsmooth_plugin.dll</Link>
-    </Content>
-    <Content Include="..\..\vlc\plugins\text_renderer\libtdummy_plugin.dll">
-      <Link>plugins\text_renderer\libtdummy_plugin.dll</Link>
     </Content>
     <Content Include="..\..\vlc\plugins\video_chroma\libgrey_yuv_plugin.dll">
       <Link>plugins\video_chroma\libgrey_yuv_plugin.dll</Link>
@@ -715,6 +710,7 @@
     <Folder Include="plugins\meta_engine\" />
     <Folder Include="plugins\packetizer\" />
     <Folder Include="plugins\services_discovery\" />
+    <Folder Include="plugins\text_renderer\" />
   </ItemGroup>
   <ItemGroup>
     <SDKReference Include="Microsoft.VCLibs, Version=11.0">

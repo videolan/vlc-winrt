@@ -41,3 +41,4 @@ app/VLC_WINRT.sln.DotSettings
 vlc/plugins/plugins.dat
 app/ui/plugins/access/libaccess_winrt_plugin.dll
 app/ui/plugins/video_output/libdirect2d_winrt_plugin.dll
+app/ui/plugins/audio_output/libxaudio2_winrt_plugin.dll
