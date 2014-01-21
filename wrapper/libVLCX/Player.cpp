@@ -72,6 +72,7 @@ void Player::InitializeVLC()
 		ptr_scstring,
 		widthstring,
 		heightstring,
+		"--avcodec-fast",
 		"--no-avcodec-dr",
 		//"--freetype-font=segoeui.ttf"
 	};
