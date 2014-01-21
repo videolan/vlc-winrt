@@ -90,6 +90,7 @@ struct aout_sys_t
 	int channels;
 	SoundCallbackHander* callbackHandler;
 	bool isPlaying;
+	int bufferSampleSize;
 
 	struct
 	{
@@ -268,6 +269,9 @@ static void Play(audio_output_t * p_aout, block_t * block){
 		hr = asys->sourceVoice->Start(0, XAUDIO2_COMMIT_NOW);
 	}
 
+	asys->isPlaying = true;
+	asys->bufferSampleSize = block->i_nb_samples;
+
 	//block_Release(block);
 
 	return;
@@ -306,23 +310,19 @@ static void Pause(audio_output_t *, bool, mtime_t){
 //	return 0;
 //}
 
-static int TimeGet(audio_output_t * p_aout, mtime_t * delay)
+static int TimeGet(audio_output_t * p_aout, mtime_t * drift)
 {
 	aout_sys_t *asys = p_aout->sys;
-	uint32_t read;
-	mtime_t size;
 
+	if (!asys->isPlaying)
+		return -1;
 
 	XAUDIO2_VOICE_STATE state;
 	asys->sourceVoice->GetState(&state);
 
-	/*read %= DS_BUF_SIZE;
+	//Assuming 10ms buffers, like android.  Need to find correct buffer size in ms
 
-	size = (mtime_t) aout->sys->i_write - (mtime_t) read;
-	if (size < 0)
-		size += DS_BUF_SIZE;
-
-	*delay = (size / aout->sys->i_bytes_per_sample) * CLOCK_FREQ / aout->sys->i_rate;*/
+	*drift = (CLOCK_FREQ * 10 * state.BuffersQueued / 1000) + state.SamplesPlayed * CLOCK_FREQ / asys->sampleRate;
 
 	return 0;
 }
