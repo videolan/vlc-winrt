@@ -28,6 +28,8 @@
 #include <ppltasks.h>
 #include "xaudio2.h"
 #include "SoundCallbackHandler.h"
+#include <chrono>
+#include <thread>
 
 #ifndef WIN32_LEAN_AND_MEAN
 #define WIN32_LEAN_AND_MEAN /* Exclude rarely-used stuff from Windows headers */
@@ -107,6 +109,8 @@ static const uint32_t chans_in[] = {
 	SPEAKER_FRONT_CENTER, SPEAKER_LOW_FREQUENCY, 0
 };
 
+static const int MaximumBufferSize = 2;
+
 static void vlc_ToWave(WAVEFORMATEXTENSIBLE * __restrict wf,
 	audio_sample_format_t *__restrict audio)
 {
@@ -166,7 +170,7 @@ static int Open(vlc_object_t *object)
 	aout->stop = Stop;
 	aout->volume_set = NULL;
 	aout->mute_set = MuteSet;
-	aout->pause = Pause;
+	aout->pause = NULL;
 	aout->play = Play;
 	aout->flush = Flush;
 	//aout->time_get = TimeGet;
@@ -254,8 +258,19 @@ static void Stop(audio_output_t * p_aout){
 
 	return;
 }
+
 static void Play(audio_output_t * p_aout, block_t * block){
 	aout_sys_t *asys = p_aout->sys;
+
+	XAUDIO2_VOICE_STATE state;
+	asys->sourceVoice->GetState(&state, XAUDIO2_VOICE_NOSAMPLESPLAYED);
+	
+	while (state.BuffersQueued > MaximumBufferSize)
+	{
+		//Todo: wait for event from callback manager
+		std::this_thread::sleep_for(std::chrono::milliseconds(2));
+		asys->sourceVoice->GetState(&state, XAUDIO2_VOICE_NOSAMPLESPLAYED);
+	}
 
 	XAUDIO2_BUFFER playBuffer = { 0 };
 	playBuffer.AudioBytes = block->i_buffer;
@@ -276,9 +291,22 @@ static void Play(audio_output_t * p_aout, block_t * block){
 
 	return;
 }
-static int  MuteSet(audio_output_t *, bool){
-	return VLC_SUCCESS;
+
+static int  MuteSet(audio_output_t * p_aout, bool){
+
+	aout_sys_t *asys = p_aout->sys;
+	HRESULT hr = asys->masteringVoice->SetVolume(0);
+
+	if (hr == S_OK)
+	{
+		return VLC_SUCCESS;
+	}
+	else 
+	{
+		return VLC_EGENERIC;
+	}
 }
+
 static void Flush(audio_output_t * p_aout, bool wait){
 	if (!wait)
 	{
@@ -288,27 +316,6 @@ static void Flush(audio_output_t * p_aout, bool wait){
 	
 	return;
 }
-static void Pause(audio_output_t *, bool, mtime_t){
-	return;
-}
-
-//static int TimeGet(audio_output_t * aout, mtime_t * delay)
-//{
-//	uint32_t read;
-//	mtime_t size;
-//
-//	if (IDirectSoundBuffer_GetCurrentPosition(aout->sys->p_dsbuffer, (LPDWORD) &read, NULL) != DS_OK)
-//		return 1;
-//
-//	read %= DS_BUF_SIZE;
-//
-//	size = (mtime_t) aout->sys->i_write - (mtime_t) read;
-//	if (size < 0)
-//		size += DS_BUF_SIZE;
-//
-//	*delay = (size / aout->sys->i_bytes_per_sample) * CLOCK_FREQ / aout->sys->i_rate;
-//	return 0;
-//}
 
 static int TimeGet(audio_output_t * p_aout, mtime_t * drift)
 {
