@@ -24,7 +24,7 @@
                         Command="{Binding GoBack}" 
                         CommandParameter="{Binding}" 
                         Margin="30,10"></Button>
-                <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center" Orientation="Horizontal">
+                <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center" Orientation="Horizontal" Visibility="Collapsed">
                     <TextBlock Text="Audio Track: " 
                                Style="{StaticResource SubheaderTextStyle}"
                                Margin="10">
