@@ -27,7 +27,6 @@
 #include "targetver.h"
 #include <ppltasks.h>
 #include "xaudio2.h"
-#include "SoundCallbackHandler.h"
 #include <chrono>
 #include <thread>
 
@@ -83,6 +82,25 @@ static void Pause(audio_output_t *, bool, mtime_t);
 static int  VolumeSet(audio_output_t *p_aout, float volume);
 static int  TimeGet(audio_output_t *, mtime_t *);
 
+class VoiceCallback : public IXAudio2VoiceCallback
+{
+public:
+	void __stdcall OnBufferEnd(void * pBufferContext)
+	{
+		// Cleanup audio buffers
+		block_Release((block_t*) pBufferContext);
+		return;
+	}
+
+	// Unused for now
+	void __stdcall OnVoiceProcessingPassEnd() {  }
+	void __stdcall OnVoiceProcessingPassStart(UINT32 SamplesRequired) {  }
+	void __stdcall OnBufferStart(void * pBufferContext) {  }
+	void __stdcall OnLoopEnd(void * pBufferContext) {  }
+	void __stdcall OnVoiceError(void * pBufferContext, HRESULT Error) {  }
+	void __stdcall OnStreamEnd() { }
+};
+
 struct aout_sys_t
 {
 	IXAudio2* audioEngine;
@@ -90,7 +108,7 @@ struct aout_sys_t
 	IXAudio2SourceVoice* sourceVoice;
 	int sampleRate;
 	int channels;
-	SoundCallbackHander* callbackHandler;
+	VoiceCallback* callbackHandler;
 	bool isPlaying;
 	int bufferSampleSize;
 
@@ -196,10 +214,7 @@ static int  Start(audio_output_t *p_aout, audio_sample_format_t *__restrict fmt)
 	asys->sampleRate = fmt->i_rate;
 	asys->channels = fmt->i_channels;
 	asys->isPlaying = false;
-	asys->callbackHandler = new SoundCallbackHander(&asys->isPlaying);
-
-	//TODO: Set physical channels
-	//TODO: Set maximum sample rate
+	asys->callbackHandler = new VoiceCallback();
 
 	// Initialize XAudio2
 	UINT32 flags = 0;
@@ -213,7 +228,7 @@ static int  Start(audio_output_t *p_aout, audio_sample_format_t *__restrict fmt)
 		(WAVEFORMATEX*)&wf,
 		0,
 		XAUDIO2_DEFAULT_FREQ_RATIO,
-		nullptr,
+		asys->callbackHandler,
 		nullptr,
 		nullptr
 		);
@@ -275,8 +290,7 @@ static void Play(audio_output_t * p_aout, block_t * block){
 	XAUDIO2_BUFFER playBuffer = { 0 };
 	playBuffer.AudioBytes = block->i_buffer;
 	playBuffer.pAudioData = block->p_buffer;
-	//playBuffer.pAudioData = audioData->Data;
-	//playBuffer.Flags = XAUDIO2_END_OF_STREAM;
+	playBuffer.pContext = block;
 
 	HRESULT hr = asys->sourceVoice->SubmitSourceBuffer(&playBuffer);
 	if (SUCCEEDED(hr))
@@ -286,8 +300,6 @@ static void Play(audio_output_t * p_aout, block_t * block){
 
 	asys->isPlaying = true;
 	asys->bufferSampleSize = block->i_nb_samples;
-
-	//block_Release(block);
 
 	return;
 }
@@ -317,6 +329,7 @@ static void Flush(audio_output_t * p_aout, bool wait){
 	return;
 }
 
+//  Not currently used
 static int TimeGet(audio_output_t * p_aout, mtime_t * drift)
 {
 	aout_sys_t *asys = p_aout->sys;
