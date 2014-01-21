@@ -32,6 +32,7 @@ using namespace Windows::System::Threading;
 using namespace Windows::Foundation;
 
 namespace libVLCX {
+	public delegate void MediaEndedHandler();
     public ref class Player sealed
     {
     public:
@@ -46,7 +47,14 @@ namespace libVLCX {
 		int64         GetLength();
 		int           GetSubtitleCount();
 		int           SetSubtitleTrack(int track);
-        virtual       ~Player();
+		virtual       ~Player();
+		void		  DetachEvent();
+
+	public:
+		event MediaEndedHandler^ MediaEnded;
+
+	internal:
+		void MediaEndedCall();
 
     private:
 		void			         InitializeVLC();
@@ -56,6 +64,18 @@ namespace libVLCX {
 		DirectXManger            *p_dxManager;
 		float                    m_displayWidth;
 		float                    m_displayHeight;
-    };
+	};
+
+	class PlayerPointerWrapper
+	{
+	public:
+		Player^ player;
+
+	public:
+		PlayerPointerWrapper(Player^ player)
+		{
+			this->player = player;
+		}
+	};
 }
 
