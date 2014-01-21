@@ -8,7 +8,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
-    <ClCompile Include="libxaudio2_winrt_plugin.cpp" />
+    <ClCompile Include="libxaudio2_winrt_plugin.h" />
+    <ClCompile Include="SoundCallbackHandler.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
