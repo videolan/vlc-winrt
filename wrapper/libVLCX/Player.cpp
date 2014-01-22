@@ -94,7 +94,6 @@ void vlc_event_callback(const libvlc_event_t *ev, void *data)
 	if (ev->type == libvlc_MediaPlayerEndReached)
 	{
 		player->DetachEvent();
-		OutputDebugStringW(L"Hey, media ended!");
 		player->MediaEndedCall();
 	}
 }
