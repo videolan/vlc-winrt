@@ -76,8 +76,9 @@
             </ScrollViewer>
         </Grid>
     </Grid>
+
     <Page.BottomAppBar>
-        <AppBar Padding="10,0,10,0" IsOpen="{Binding IsAppBarOpen, Mode=TwoWay}">
+        <AppBar x:Name="BottomAppBar" Padding="10,0,10,0" Background="#e67e22" IsOpen="{Binding IsAppBarOpen, Mode=TwoWay}">
             <Grid>
                 <Grid Visibility="{Binding IsNetworkAppBarShown, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <Grid.RowDefinitions>
