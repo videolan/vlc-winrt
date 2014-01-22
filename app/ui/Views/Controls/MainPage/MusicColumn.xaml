@@ -5,12 +5,28 @@
     xmlns:local="using:VLC_WINRT.Views.Controls.MainPage"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:converters="using:VLC_WINRT.Utility.Converters"
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400"
     d:DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
-    
-    <Grid>
 
-    </Grid>
+    <UserControl.Resources>
+        <CollectionViewSource x:Name="albumsCollection" Source="{Binding Artist}" ItemsPath="Albums" IsSourceGrouped="True" />
+        <converters:StringToUpperConverter x:Key="StringToUpperConverter"/>
+        <Storyboard x:Name="FadeInAlbumPlaylist">
+            <DoubleAnimationUsingKeyFrames EnableDependentAnimation="True" Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="AlbumPlaylistListView">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <ExponentialEase EasingMode="EaseInOut" Exponent="4"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.7" Value="320">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <ExponentialEase EasingMode="EaseInOut" Exponent="4"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </UserControl.Resources>
 </UserControl>
