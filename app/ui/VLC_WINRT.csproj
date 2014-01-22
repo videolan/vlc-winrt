@@ -145,8 +145,8 @@
     <Compile Include="Views\Controls\MainPage\LastViewedThumbnail.xaml.cs">
       <DependentUpon>LastViewedThumbnail.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\MainPage\MediaColumn.xaml.cs">
-      <DependentUpon>MediaColumn.xaml</DependentUpon>
+    <Compile Include="Views\Controls\MainPage\VideoColumn.xaml.cs">
+      <DependentUpon>VideoColumn.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Controls\MainPage\Thumbnail.xaml.cs">
       <DependentUpon>Thumbnail.xaml</DependentUpon>
@@ -694,7 +694,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Controls\MainPage\MediaColumn.xaml">
+    <Page Include="Views\Controls\MainPage\VideoColumn.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

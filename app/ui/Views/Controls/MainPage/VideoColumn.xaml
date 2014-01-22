@@ -1,0 +1,56 @@
+﻿<UserControl
+    x:Class="VLC_WINRT.Views.Controls.MainPage.VideoColumn"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:dataTemplateSelectors="using:VLC_WINRT.Utility.DataTemplateSelectors"
+    xmlns:controls="using:VLC_WINRT.Views.Controls"
+    xmlns:wrapPanelControl="using:VLC_WINRT.Views.Controls.WrapPanelControl"
+    mc:Ignorable="d"
+    d:DesignHeight="768"
+    d:DesignWidth="400">
+    <UserControl.Resources>
+        <dataTemplateSelectors:MediaItemDataTemplateSelector WideMovieTemplate="{StaticResource WideMovieTemplate}"
+                                                                NormalMovieTemplate="{StaticResource NormaleMovieTemplate}"
+                                                                x:Key="MediaItemDataTemplateSelector" />
+    </UserControl.Resources>
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <ListView x:Name="SectionsHeaderListView" SelectionMode="None" IsItemClickEnabled="True" ItemClick="SectionsHeaderListView_OnItemClick" ItemsSource="{Binding Panels}">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <wrapPanelControl:WrapPanel Margin="50,0,0,0" Orientation="Horizontal" >
+                        <wrapPanelControl:WrapPanel.ChildrenTransitions>
+                            <TransitionCollection>
+                                <EntranceThemeTransition FromHorizontalOffset="100"/>
+                                <AddDeleteThemeTransition />
+                            </TransitionCollection>
+                        </wrapPanelControl:WrapPanel.ChildrenTransitions>
+                    </wrapPanelControl:WrapPanel>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Title}" Opacity="{Binding Opacity}" TextWrapping="NoWrap" TextTrimming="None" Style="{StaticResource ColumnHeaderTextStyle}"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Grid Grid.Row="1" x:Name="SectionsGrid">
+            <controls:VariableSizedItemsGridView ItemsSource="{Binding Media}" ItemTemplateSelector="{StaticResource MediaItemDataTemplateSelector}" >
+                <GridView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VariableSizedWrapGrid Margin="50,0,0,0" ItemHeight="172" ItemWidth="280" />
+                    </ItemsPanelTemplate>
+                </GridView.ItemsPanel>
+            </controls:VariableSizedItemsGridView>
+            <Grid>
+                <TextBlock Text="still not done" Foreground="Blue"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

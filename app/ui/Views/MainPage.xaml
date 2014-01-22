@@ -91,17 +91,16 @@
                         <mainPage:LastViewed DataContext="{Binding LastViewedVM}" />
                     </Grid>
 
-                    <mainPage:MediaColumn Grid.Column="1" DataContext="{Binding VideoVM}">
-                    </mainPage:MediaColumn>
+                    <mainPage:VideoColumn Grid.Column="1" DataContext="{Binding VideoVM}" />
 
-                    <mainPage:MediaColumn Grid.Column="2" DataContext="{Binding MusicVM}">
-                    </mainPage:MediaColumn>
+                    <mainPage:VideoColumn Grid.Column="2" DataContext="{Binding MusicVM}">
+                    </mainPage:VideoColumn>
 
                     <ItemsControl Grid.Column="3" ItemsSource="{Binding ExternalStorageVM.RemovableStorageVMs}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <mainPage:MediaColumn>
-                                </mainPage:MediaColumn>
+                                <mainPage:VideoColumn>
+                                </mainPage:VideoColumn>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
@@ -109,8 +108,8 @@
                     <ItemsControl Grid.Column="4" ItemsSource="{Binding DLNAVMs}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <mainPage:MediaColumn>
-                                </mainPage:MediaColumn>
+                                <mainPage:VideoColumn>
+                                </mainPage:VideoColumn>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>

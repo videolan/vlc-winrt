@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using VLC_WINRT.Common;
+using VLC_WINRT.Model;
 using VLC_WINRT.Utility.Commands;
 using VLC_WINRT.Utility.Services;
 using Windows.Foundation;
@@ -16,6 +17,7 @@ namespace VLC_WINRT.ViewModels.MainPage
 {
     public class VideoLibraryViewModel : BindableBase
     {
+        private ObservableCollection<Panel> _panels = new ObservableCollection<Panel>(); 
         private bool _hasNoMedia;
         private StorageFolder _location;
         private ObservableCollection<MediaViewModel> _media;
@@ -35,8 +37,19 @@ namespace VLC_WINRT.ViewModels.MainPage
 
             //Get off UI thread
             ThreadPool.RunAsync(GetMedia);
+            Panels.Add(new Panel("ALL", 0, 1));
+            Panels.Add(new Panel("NEVER SEEN BEFORE", 1, 0.4));
+            Panels.Add(new Panel("FAVORITE", 2, 0.4));
         }
 
+        public ObservableCollection<Panel> Panels
+        {
+            get { return _panels; }
+            set
+            {
+                SetProperty(ref _panels, value);
+            }
+        } 
         public bool HasNoMedia
         {
             get { return _hasNoMedia; }
