@@ -4,12 +4,14 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Windows.Storage;
 using VLC_WINRT.Common;
+using VLC_WINRT.Model;
 using VLC_WINRT.Utility.Commands;
 
 namespace VLC_WINRT.ViewModels.MainPage
 {
     public class MainPageViewModel : NavigateableViewModel
     {
+        private ObservableCollection<Panel> _panels = new ObservableCollection<Panel>();
         private ObservableCollection<VideoLibraryViewModel> _dlnaVMs =
             new ObservableCollection<VideoLibraryViewModel>();
 
@@ -18,6 +20,7 @@ namespace VLC_WINRT.ViewModels.MainPage
         private bool _isAppBarOpen;
         private bool _isNetworkAppBarShown;
         private LastViewedViewModel _lastViewedVM;
+        private MusicLibraryViewModel _musicLibraryVm;
         private VideoLibraryViewModel _musicVM;
         private string _networkMRL = string.Empty;
         private PickVideoCommand _pickVideoCommand;
@@ -29,7 +32,7 @@ namespace VLC_WINRT.ViewModels.MainPage
         public MainPageViewModel()
         {
             VideoVM = new VideoLibraryViewModel(KnownVLCLocation.VideosLibrary);
-            MusicVM = new VideoLibraryViewModel(KnownVLCLocation.MusicLibrary);
+            MusicLibraryVm = new MusicLibraryViewModel();
             ExternalStorageVM = new ExternalStorageViewModel();
 
             Task<IReadOnlyList<StorageFolder>> dlnaFolders = KnownVLCLocation.MediaServers.GetFoldersAsync().AsTask();
@@ -51,8 +54,22 @@ namespace VLC_WINRT.ViewModels.MainPage
                 new ActionCommand(() => { IsNetworkAppBarShown = !IsNetworkAppBarShown; });
 
             _showAppBarCommand = new ActionCommand(() => { IsAppBarOpen = true; });
+
+            Panels.Add(new Panel("home", 0, 1));
+            Panels.Add(new Panel("videos", 1, 0.4));
+            Panels.Add(new Panel("music", 2, 0.4));
+            Panels.Add(new Panel("removable storage", 3, 0.4));
+            Panels.Add(new Panel("dlna", 4, 0.4));
         }
 
+        public ObservableCollection<Panel> Panels
+        {
+            get { return _panels; }
+            set
+            {
+                SetProperty(ref _panels, value);
+            }
+        } 
         public VideoLibraryViewModel VideoVM
         {
             get { return _videoVM; }
@@ -64,13 +81,12 @@ namespace VLC_WINRT.ViewModels.MainPage
             get { return _externalStorageVM; }
             set { SetProperty(ref _externalStorageVM, value); }
         }
-
-        public VideoLibraryViewModel MusicVM
+        
+        public MusicLibraryViewModel MusicLibraryVm
         {
-            get { return _musicVM; }
-            set { SetProperty(ref _musicVM, value); }
+            get { return _musicLibraryVm; }
+            set { SetProperty(ref _musicLibraryVm, value); }
         }
-
         public ObservableCollection<VideoLibraryViewModel> DLNAVMs
         {
             get { return _dlnaVMs; }

@@ -10,8 +10,10 @@
     mc:Ignorable="d"
     d:DesignHeight="768"
     DataContext="{Binding Source={StaticResource Locator}, Path=MainPageVM}">
+    
     <views:BasePage.Resources>
     </views:BasePage.Resources>
+    
     <Grid Background="#FFFAFAFA" >
         <Grid Margin="30,20,10,0">
             <Grid.RowDefinitions>

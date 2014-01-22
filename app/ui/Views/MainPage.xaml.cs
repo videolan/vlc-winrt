@@ -18,5 +18,10 @@ namespace VLC_WINRT.Views
         {
             _vm = (NavigateableViewModel) DataContext;
         }
+
+        private void SectionsHeaderListView_OnItemClick(object sender, Windows.UI.Xaml.Controls.ItemClickEventArgs e)
+        {
+
+        }
     }
 }
