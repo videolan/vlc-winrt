@@ -85,6 +85,34 @@ void Player::InitializeVLC()
 }
 
 
+void Player::MediaEndedCall(){
+	MediaEnded();
+}
+void vlc_event_callback(const libvlc_event_t *ev, void *data)
+{
+	Player ^player = ((PlayerPointerWrapper*)data)->player;
+	if (ev->type == libvlc_MediaPlayerEndReached)
+	{
+		player->DetachEvent();
+		OutputDebugStringW(L"Hey, media ended!");
+		player->MediaEndedCall();
+	}
+}
+void Player::DetachEvent(){
+	libvlc_event_manager_t *ev = libvlc_media_player_event_manager(p_mp);
+	static const libvlc_event_type_t mp_events[] = {
+		libvlc_MediaPlayerPlaying,
+		libvlc_MediaPlayerPaused,
+		libvlc_MediaPlayerEndReached,
+		libvlc_MediaPlayerStopped,
+		libvlc_MediaPlayerVout,
+		libvlc_MediaPlayerPositionChanged,
+		libvlc_MediaPlayerEncounteredError
+	};
+	for (int i = 0; i < (sizeof(mp_events) / sizeof(*mp_events)); i++)
+		libvlc_event_detach(ev, mp_events[i], vlc_event_callback, new PlayerPointerWrapper(this));
+}
+
 void Player::Open(Platform::String^ mrl) 
 {
     size_t len = WideCharToMultiByte (CP_UTF8, 0, mrl->Data(), -1, NULL, 0, NULL, NULL);
@@ -196,33 +224,6 @@ int Player::SetSubtitleTrack(int track){
 }
 
 
-void Player::MediaEndedCall(){
-	MediaEnded();
-}
-void vlc_event_callback(const libvlc_event_t *ev, void *data)
-{
-	Player ^player = ((PlayerPointerWrapper*)data)->player;
-	if (ev->type == libvlc_MediaPlayerEndReached)
-	{
-		player->DetachEvent();
-		OutputDebugStringW(L"Hey, media ended!");
-		player->MediaEndedCall();
-	}
-}
-void Player::DetachEvent(){
-	libvlc_event_manager_t *ev = libvlc_media_player_event_manager(p_mp);
-	static const libvlc_event_type_t mp_events[] = {
-		libvlc_MediaPlayerPlaying,
-		libvlc_MediaPlayerPaused,
-		libvlc_MediaPlayerEndReached,
-		libvlc_MediaPlayerStopped,
-		libvlc_MediaPlayerVout,
-		libvlc_MediaPlayerPositionChanged,
-		libvlc_MediaPlayerEncounteredError
-	};
-	for (int i = 0; i < (sizeof(mp_events) / sizeof(*mp_events)); i++)
-		libvlc_event_detach(ev, mp_events[i], vlc_event_callback, new PlayerPointerWrapper(this));
-}
 Player::~Player()
 {
 	if (p_mp){
