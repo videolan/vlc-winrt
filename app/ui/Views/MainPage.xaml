@@ -6,6 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:mainPage="using:VLC_WINRT.Views.Controls.MainPage"
     xmlns:views="using:VLC_WINRT.Views"
+    xmlns:wrapPanelControl="using:VLC_WINRT.Views.Controls.WrapPanelControl"
     mc:Ignorable="d"
     d:DesignHeight="768"
     DataContext="{Binding Source={StaticResource Locator}, Path=MainPageVM}">
@@ -17,14 +18,60 @@
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0"
-                       x:Uid="MainPageTitle"
-                       Text="VLC for WinRT Beta"
+
+            <Grid Grid.Row="0" Margin="50,50,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid x:Name="HeaderGrid">
+                    <Grid.Projection>
+                        <PlaneProjection/>
+                    </Grid.Projection>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <!--<Polygon Fill="#e67e22" Points="285,0 265,50 270,50 290,0"/>-->
+                    <StackPanel Orientation="Horizontal" >
+                        <Image Source="ms-appx:///Assets/Logo.png" Height="60"/>
+                        <TextBlock Margin="20,0,0,0" Foreground="#e67e22">
+                        <Run Text="VLC" FontSize="36" FontWeight="SemiLight"/>
+                        <LineBreak/>
+                        <Run Text="for WinRT Beta" FontSize="18"/>
+                        </TextBlock>
+                        <TextBlock
+                       VerticalAlignment="Center"
                        Style="{StaticResource TitleTextStyle}"
-                       Foreground="#FFFF8402"
+                       Foreground="White"
                        FontSize="20"
-                       Margin="0,10">
-            </TextBlock>
+                       Margin="10,0" >
+                        </TextBlock>
+                    </StackPanel>
+                </Grid>
+                <ListView x:Name="SectionsHeaderListView" Grid.Row="1" VerticalAlignment="Center" SelectionMode="None" IsItemClickEnabled="True" ItemClick="SectionsHeaderListView_OnItemClick" ItemsSource="{Binding Panels}" RenderTransformOrigin="0.5,0.5">
+                    <ListView.RenderTransform>
+                        <CompositeTransform/>
+                    </ListView.RenderTransform>
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <wrapPanelControl:WrapPanel Orientation="Horizontal" >
+                                <wrapPanelControl:WrapPanel.ChildrenTransitions>
+                                    <TransitionCollection>
+                                        <EntranceThemeTransition FromHorizontalOffset="100"/>
+                                        <AddDeleteThemeTransition />
+                                    </TransitionCollection>
+                                </wrapPanelControl:WrapPanel.ChildrenTransitions>
+                            </wrapPanelControl:WrapPanel>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Title}" Opacity="{Binding Opacity}" TextWrapping="NoWrap" TextTrimming="None" Style="{StaticResource SubheaderTextStyle}" Foreground="Black"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
             <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" Grid.Row="1">
                 <Grid>
                     <Grid.ColumnDefinitions>

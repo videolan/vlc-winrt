@@ -156,6 +156,8 @@
     <Compile Include="Views\Controls\MainPage\Welcome.xaml.cs">
       <DependentUpon>Welcome.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Controls\WrapPanelControl\OrientedSize.cs" />
+    <Compile Include="Views\Controls\WrapPanelControl\WrapPanel.cs" />
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
