@@ -93,8 +93,7 @@
 
                     <mainPage:VideoColumn Grid.Column="1" DataContext="{Binding VideoVM}" />
 
-                    <mainPage:VideoColumn Grid.Column="2" DataContext="{Binding MusicVM}">
-                    </mainPage:VideoColumn>
+                    <mainPage:MusicColumn Grid.Column="2" DataContext="{Binding MusicLibraryVM}"/>
 
                     <ItemsControl Grid.Column="3" ItemsSource="{Binding ExternalStorageVM.RemovableStorageVMs}">
                         <ItemsControl.ItemTemplate>
