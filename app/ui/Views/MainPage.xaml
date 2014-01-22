@@ -7,6 +7,7 @@
     xmlns:mainPage="using:VLC_WINRT.Views.Controls.MainPage"
     xmlns:views="using:VLC_WINRT.Views"
     xmlns:wrapPanelControl="using:VLC_WINRT.Views.Controls.WrapPanelControl"
+    xmlns:controls="using:VLC_WINRT.Views.Controls"
     mc:Ignorable="d"
     d:DesignHeight="768"
     DataContext="{Binding Source={StaticResource Locator}, Path=MainPageVM}">
@@ -210,13 +211,15 @@
         </Storyboard>
     </views:BasePage.Resources>
 
-    <Grid Background="#FFFAFAFA"  >
+    
+    <Grid Background="WhiteSmoke">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
+        <!--<controls:AnimatedBackground Grid.RowSpan="4"/>-->
         <!--<HyperlinkButton Grid.Row="0" HorizontalAlignment="Right"  Foreground="#FFFF8402" Command="{Binding ShowAppBarCommand}">
             <HyperlinkButton.Content>
                 <TextBlock Text="Open File ..."></TextBlock>

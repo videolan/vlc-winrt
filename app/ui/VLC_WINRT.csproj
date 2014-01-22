@@ -140,6 +140,9 @@
     <Compile Include="ViewModels\PlayVideo\PlayVideoViewModel.cs" />
     <Compile Include="Utility\IoC\ResolutionException.cs" />
     <Compile Include="Views\BasePage.cs" />
+    <Compile Include="Views\Controls\AnimatedBackground.xaml.cs">
+      <DependentUpon>AnimatedBackground.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Controls\MainPage\LastViewed.xaml.cs">
       <DependentUpon>LastViewed.xaml</DependentUpon>
     </Compile>
@@ -689,6 +692,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="Views\Controls\AnimatedBackground.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Controls\MainPage\LastViewed.xaml">
       <SubType>Designer</SubType>
