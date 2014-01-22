@@ -8,7 +8,7 @@
     d:DesignHeight="768"
     d:DesignWidth="400"
     d:DataContext="{Binding Source={StaticResource Locator}, Path=LibraryVM}">
-    <StackPanel Style="{StaticResource ColumnStackPanelStyle}">
+    <Grid Style="{StaticResource ColumnStackPanelStyle}">
         <TextBlock Text="{Binding Title}" Style="{StaticResource ColumnHeaderTextStyle}"></TextBlock>
 
         <StackPanel x:Name="NoContentPanel" 
@@ -61,7 +61,7 @@
         <ItemsControl ItemsSource="{Binding Media}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Button Style="{StaticResource MainButtonStyle}"
+                    <Button Template="{StaticResource MainButtonStyle}"
                             Command="{Binding OpenFile}"
                             CommandParameter="{Binding}">
                         <Grid HorizontalAlignment="Left" Height="100">
@@ -91,5 +91,5 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
-    </StackPanel>
+    </Grid>
 </UserControl>
