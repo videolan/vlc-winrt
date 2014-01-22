@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:dataTemplateSelectors="using:VLC_WINRT.Utility.DataTemplateSelectors"
+    xmlns:controls="using:VLC_WINRT.Views.Controls"
     mc:Ignorable="d"
     d:DesignHeight="768"
     d:DesignWidth="550">
@@ -15,49 +16,59 @@
                                                                 NormalMovieTemplate="{StaticResource NormaleMovieTemplate}"
                                                                 x:Key="MediaItemDataTemplateSelector" />
     </UserControl.Resources>
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-        
-        <TextBlock Grid.Row="0" Grid.Column="0" x:Uid="LastViewed" Text="last viewed"
-                   Style="{StaticResource ColumnHeaderTextStyle}">
-        </TextBlock>
-        
-        <Button Margin="5,0"
+    <Grid x:Name="RootGrid">
+        <ScrollViewer VerticalScrollMode="Disabled"
+                      VerticalScrollBarVisibility="Disabled"
+                      HorizontalScrollMode="Auto"
+                      HorizontalScrollBarVisibility="Auto"
+                      VerticalContentAlignment="Center"
+                      HorizontalContentAlignment="Center"
+                      ZoomMode="Disabled">
+            <StackPanel Orientation="Horizontal" >
+                <local:Welcome Margin="50,0,0,0" />
+                <!--Visibility="{Binding WelcomeSectionVisible, Converter={StaticResource BooleanToVisibilityConverter}}"-->
+                <Grid Margin="40,0,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Text="last videos" Foreground="#e67e22" Margin="0,20" FontSize="42" FontWeight="Light" />
+                    <controls:VariableSizedItemsGridView Grid.Row="1" ItemsSource="{Binding LastViewedVideoVM}" ItemTemplateSelector="{StaticResource MediaItemDataTemplateSelector}" >
+                        <GridView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <VariableSizedWrapGrid ItemHeight="172" ItemWidth="280" MaximumRowsOrColumns="2" />
+                            </ItemsPanelTemplate>
+                        </GridView.ItemsPanel>
+                    </controls:VariableSizedItemsGridView>
+                </Grid>
+                <Grid Margin="40,0,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Text="last music" Foreground="#e67e22" Margin="0,20" FontSize="42" FontWeight="Light" />
+                    <ListView Grid.Row="1" ItemsSource="{Binding LastViewedMusicVM}" >
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Style="{StaticResource PlayLittleAppBarButtonStyle}" Foreground="Black"/>
+                                    <TextBlock Margin="10,0,0,0" Foreground="Black">
+                                        <Run Text="{Binding Name}" FontSize="22"/>
+                                        <LineBreak />
+                                        <Run Text="{Binding ArtistName}"/>
+                                    </TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+                <Button Margin="5,0"
                 Style="{StaticResource TextButtonStyle}"
-                Grid.Row="0"
-                Grid.Column="1"
                 HorizontalAlignment="Right"
                 Command="{Binding ClearHistory}">
-            <TextBlock x:Uid="Clear" Text="Clear"></TextBlock>
-        </Button>
-
-        <Grid Grid.Row="1"
-              Grid.ColumnSpan="2"
-              Visibility="{Binding LastViewedVM, Converter={StaticResource NullToVisibilityConverter}}">
-            <local:LastViewedThumbnail DataContext="{Binding LastViewedVM}">
-            </local:LastViewedThumbnail>
-        </Grid>
-
-        <Grid Grid.Row="2"
-              Grid.Column="0"
-              Visibility="{Binding SecondLastViewedVM, Converter={StaticResource NullToVisibilityConverter}}">
-            <local:LastViewedThumbnail DataContext="{Binding SecondLastViewedVM}">
-            </local:LastViewedThumbnail>
-        </Grid>
-
-        <Grid Grid.Row="2"
-              Grid.Column="1"
-              Visibility="{Binding ThirdLastViewedVM, Converter={StaticResource NullToVisibilityConverter}}">
-            <local:LastViewedThumbnail DataContext="{Binding ThirdLastViewedVM}">
-            </local:LastViewedThumbnail>
-        </Grid>
+                    <TextBlock x:Uid="Clear" Text="Clear"/>
+                </Button>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </UserControl>

@@ -87,9 +87,8 @@
                         <RowDefinition Height="*"></RowDefinition>
                     </Grid.RowDefinitions>
 
-                    <Grid Grid.Column="0" DataContext="{Binding LastViewedVM}" Style="{StaticResource ColumnGridStyle}">
-                        <mainPage:Welcome Visibility="{Binding WelcomeSectionVisibile, Converter={StaticResource BooleanToVisibilityConverter}}"></mainPage:Welcome>
-                        <mainPage:LastViewed Visibility="{Binding LastViewedSectionVisible, Converter={StaticResource BooleanToVisibilityConverter}}"></mainPage:LastViewed>
+                    <Grid Grid.Column="0" Style="{StaticResource ColumnGridStyle}">
+                        <mainPage:LastViewed DataContext="{Binding LastViewedVM}" />
                     </Grid>
 
                     <mainPage:MediaColumn Grid.Column="1" DataContext="{Binding VideoVM}">
