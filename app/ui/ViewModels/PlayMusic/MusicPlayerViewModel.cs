@@ -281,7 +281,7 @@ namespace VLC_WINRT.ViewModels.PlayMusic
             Artist = track.ArtistName;
 
             _vlcPlayerService.Open(_mrl);
-            _fiveSecondTimer.Start();
+            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>_fiveSecondTimer.Start());
             OnPropertyChanged("TimeTotal");
 
             _vlcPlayerService.Play();

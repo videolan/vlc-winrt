@@ -455,7 +455,6 @@ namespace VLC_WINRT.ViewModels.MainPage
                 }
                 catch (Exception e)
                 {
-                    new MessageDialog(e.ToString()).ShowAsync();
                 }
             }
         }

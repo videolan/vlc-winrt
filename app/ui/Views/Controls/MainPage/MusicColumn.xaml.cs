@@ -39,7 +39,7 @@ namespace VLC_WINRT.Views.Controls.MainPage
         private void AlbumGridView_ItemClick(object sender, ItemClickEventArgs e)
         {
             var album = e.ClickedItem as MusicLibraryViewModel.AlbumItem;
-            AlbumPlaylistListView.Header = album.Tracks.Count;
+            AlbumPlaylistListView.Header = album;
             AlbumPlaylistListView.ItemsSource = album.Tracks;
             if (AlbumPlaylistListView.Width == 0)
                 FadeInAlbumPlaylist.Begin();

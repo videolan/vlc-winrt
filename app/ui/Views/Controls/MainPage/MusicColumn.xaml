@@ -150,11 +150,16 @@
                 <ListView Grid.Column="4" x:Name="AlbumPlaylistListView" Width="0">
                     <ListView.HeaderTemplate>
                         <DataTemplate>
+                            <StackPanel>
                             <TextBlock Margin="20,5,0,10"
                                 Style="{StaticResource ColumnHeaderTextStyle}" Foreground="Black" FontSize="17">
-                                <Run Text="{Binding}"/>
+                                <Run Text="{Binding Tracks.Count}"/>
                                 <Run Text="tracks"/>
-                            </TextBlock>
+                                </TextBlock>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Content="Play album" Command="{Binding PlayAlbum}" CommandParameter="{Binding}"/>
+                                </StackPanel>
+                            </StackPanel>
                         </DataTemplate>
                     </ListView.HeaderTemplate>
                     <ListView.ItemTemplate>
