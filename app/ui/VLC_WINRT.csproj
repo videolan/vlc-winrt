@@ -107,6 +107,7 @@
     <Compile Include="Utility\Converters\SecondsStringConverter.cs" />
     <Compile Include="Utility\Converters\TimeSpanSecondsDoubleConverter.cs" />
     <Compile Include="Utility\Converters\TimespanShortStringConverter.cs" />
+    <Compile Include="Utility\DataTemplateSelectors\MediaItemDataTemplateSelector.cs" />
     <Compile Include="Utility\Helpers\DoesFileExistHelper.cs" />
     <Compile Include="Utility\Helpers\SerializationHelper.cs" />
     <Compile Include="Utility\Helpers\StoryboardExtensions.cs" />
@@ -156,6 +157,7 @@
     <Compile Include="Views\Controls\MainPage\Welcome.xaml.cs">
       <DependentUpon>Welcome.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Controls\VariableSizedItemsGridView.cs" />
     <Compile Include="Views\Controls\WrapPanelControl\OrientedSize.cs" />
     <Compile Include="Views\Controls\WrapPanelControl\WrapPanel.cs" />
     <Compile Include="Views\MainPage.xaml.cs">
