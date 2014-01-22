@@ -14,7 +14,7 @@ using VLC_WINRT.Utility.Services.RunTime;
 
 namespace VLC_WINRT.ViewModels.MainPage
 {
-    public class LibraryViewModel : BindableBase
+    public class VideoLibraryViewModel : BindableBase
     {
         private bool _hasNoMedia;
         private StorageFolder _location;
@@ -22,7 +22,7 @@ namespace VLC_WINRT.ViewModels.MainPage
         private PickVideoCommand _pickCommand = new PickVideoCommand();
         private string _title;
 
-        public LibraryViewModel(StorageFolder location)
+        public VideoLibraryViewModel(StorageFolder location)
         {
             Media = new ObservableCollection<MediaViewModel>();
             Location = location;

@@ -31,6 +31,7 @@ namespace VLC_WINRT.Utility.Services.RunTime
 
         public event EventHandler<MediaPlayerState> StatusChanged;
 
+        public event EventHandler<Player> MediaEnded;
         private void UpdateStatus(MediaPlayerState status)
         {
             if (CurrentState != status)
@@ -92,7 +93,12 @@ namespace VLC_WINRT.Utility.Services.RunTime
         {
             _vlcPlayer = new Player(panel);
             _vlcInitializeTask = _vlcPlayer.Initialize().AsTask();
+            _vlcPlayer.MediaEnded += _vlcPlayer_MediaEnded;
             await _vlcInitializeTask;
+        }
+        private void _vlcPlayer_MediaEnded()
+        {
+            MediaEnded(this, _vlcPlayer);
         }
 
         public void Open(string mrl)

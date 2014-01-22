@@ -10,26 +10,26 @@ namespace VLC_WINRT.ViewModels.MainPage
 {
     public class MainPageViewModel : NavigateableViewModel
     {
-        private ObservableCollection<LibraryViewModel> _dlnaVMs =
-            new ObservableCollection<LibraryViewModel>();
+        private ObservableCollection<VideoLibraryViewModel> _dlnaVMs =
+            new ObservableCollection<VideoLibraryViewModel>();
 
         private ExternalStorageViewModel _externalStorageVM;
 
         private bool _isAppBarOpen;
         private bool _isNetworkAppBarShown;
         private LastViewedViewModel _lastViewedVM;
-        private LibraryViewModel _musicVM;
+        private VideoLibraryViewModel _musicVM;
         private string _networkMRL = string.Empty;
         private PickVideoCommand _pickVideoCommand;
         private PlayNetworkMRLCommand _playNetworkMRL;
         private ActionCommand _showAppBarCommand;
         private ActionCommand _toggleNetworkAppBarCommand;
-        private LibraryViewModel _videoVM;
+        private VideoLibraryViewModel _videoVM;
 
         public MainPageViewModel()
         {
-            VideoVM = new LibraryViewModel(KnownVLCLocation.VideosLibrary);
-            MusicVM = new LibraryViewModel(KnownVLCLocation.MusicLibrary);
+            VideoVM = new VideoLibraryViewModel(KnownVLCLocation.VideosLibrary);
+            MusicVM = new VideoLibraryViewModel(KnownVLCLocation.MusicLibrary);
             ExternalStorageVM = new ExternalStorageViewModel();
 
             Task<IReadOnlyList<StorageFolder>> dlnaFolders = KnownVLCLocation.MediaServers.GetFoldersAsync().AsTask();
@@ -39,7 +39,7 @@ namespace VLC_WINRT.ViewModels.MainPage
                 foreach (StorageFolder storageFolder in folders)
                 {
                     StorageFolder newFolder = storageFolder;
-                    DispatchHelper.Invoke(() => DLNAVMs.Add(new LibraryViewModel(newFolder)));
+                    DispatchHelper.Invoke(() => DLNAVMs.Add(new VideoLibraryViewModel(newFolder)));
                 }
             });
 
@@ -53,7 +53,7 @@ namespace VLC_WINRT.ViewModels.MainPage
             _showAppBarCommand = new ActionCommand(() => { IsAppBarOpen = true; });
         }
 
-        public LibraryViewModel VideoVM
+        public VideoLibraryViewModel VideoVM
         {
             get { return _videoVM; }
             set { SetProperty(ref _videoVM, value); }
@@ -65,13 +65,13 @@ namespace VLC_WINRT.ViewModels.MainPage
             set { SetProperty(ref _externalStorageVM, value); }
         }
 
-        public LibraryViewModel MusicVM
+        public VideoLibraryViewModel MusicVM
         {
             get { return _musicVM; }
             set { SetProperty(ref _musicVM, value); }
         }
 
-        public ObservableCollection<LibraryViewModel> DLNAVMs
+        public ObservableCollection<VideoLibraryViewModel> DLNAVMs
         {
             get { return _dlnaVMs; }
             set { SetProperty(ref _dlnaVMs, value); }

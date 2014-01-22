@@ -91,7 +91,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Common\BindableBase.cs" />
     <Compile Include="Utility\Commands\ClearHistoryCommand.cs" />
+    <Compile Include="Utility\Commands\PlayAlbumCommand.cs" />
     <Compile Include="Utility\Commands\PlayPauseCommand.cs" />
+    <Compile Include="Utility\Commands\PlayTrackComand.cs" />
     <Compile Include="Utility\Commands\StopVideoCommand.cs" />
     <Compile Include="Utility\Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="Utility\Converters\BooleanNegationConverter.cs" />
@@ -105,6 +107,11 @@
     <Compile Include="Utility\Converters\SecondsStringConverter.cs" />
     <Compile Include="Utility\Converters\TimeSpanSecondsDoubleConverter.cs" />
     <Compile Include="Utility\Converters\TimespanShortStringConverter.cs" />
+    <Compile Include="Utility\Helpers\DoesFileExistHelper.cs" />
+    <Compile Include="Utility\Helpers\SerializationHelper.cs" />
+    <Compile Include="Utility\Helpers\StoryboardExtensions.cs" />
+    <Compile Include="Utility\Helpers\UIAnimationHelper.cs" />
+    <Compile Include="Utility\Helpers\VisualTreeHelperExtensions.cs" />
     <Compile Include="Utility\Services\DesignTime\ThumbnailService.cs" />
     <Compile Include="Utility\Services\Interface\IThumbnailService.cs" />
     <Compile Include="Utility\Services\RunTime\HistoryService.cs" />
@@ -117,14 +124,17 @@
     <Compile Include="ViewModels\Locator.cs" />
     <Compile Include="ViewModels\MainPage\ExternalStorageViewModel.cs" />
     <Compile Include="ViewModels\MainPage\LastViewedViewModel.cs" />
-    <Compile Include="ViewModels\MainPage\LibraryViewModel.cs" />
+    <Compile Include="ViewModels\MainPage\VideoLibraryViewModel.cs" />
     <Compile Include="ViewModels\MainPage\MainPageViewModel.cs" />
     <Compile Include="ViewModels\MainPage\MediaViewModel.cs" />
     <Compile Include="Utility\Commands\PlayNetworkMRLCommand.cs" />
     <Compile Include="Utility\Commands\ActionCommand.cs" />
+    <Compile Include="ViewModels\MainPage\MusicLibraryViewModel.cs" />
     <Compile Include="ViewModels\MainPage\RemovableLibraryViewModel.cs" />
     <Compile Include="ViewModels\MainPage\ThumbnailViewModel.cs" />
     <Compile Include="ViewModels\MainPage\ViewedVideoViewModel.cs" />
+    <Compile Include="ViewModels\PlayMusic\MusicPlayerViewModel.cs" />
+    <Compile Include="ViewModels\PlayMusic\TrackCollectionViewModel.cs" />
     <Compile Include="ViewModels\PlayVideo\PlayVideoViewModel.cs" />
     <Compile Include="Utility\IoC\ResolutionException.cs" />
     <Compile Include="Views\BasePage.cs" />
@@ -150,6 +160,9 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\NavigateableViewModel.cs" />
+    <Compile Include="Views\PlayMusic.xaml.cs">
+      <DependentUpon>PlayMusic.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\PlayVideo.xaml.cs">
       <DependentUpon>PlayVideo.xaml</DependentUpon>
     </Compile>
@@ -694,6 +707,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PlayMusic.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

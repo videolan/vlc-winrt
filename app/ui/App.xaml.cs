@@ -1,5 +1,8 @@
 ﻿using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
+using Windows.Foundation.Collections;
+using Windows.Storage;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using VLC_WINRT.Common;
@@ -15,6 +18,10 @@ namespace VLC_WINRT
     /// </summary>
     sealed partial class App : Application
     {
+        public static CoreDispatcher Dispatcher;
+        public static IPropertySet LocalSettings = ApplicationData.Current.LocalSettings.Values;
+        public static string ApiKeyLastFm = "a8eba7d40559e6f3d15e7cca1bfeaa1c";
+        
         /// <summary>
         ///     Initializes the singleton Application object.  This is the first line of authored code
         ///     executed, and as such is the logical equivalent of main() or WinMain().
@@ -25,7 +32,7 @@ namespace VLC_WINRT
             Suspending += OnSuspending;
         }
 
-        public Frame ApplicationFrame
+        public static Frame ApplicationFrame
         {
             get
             {
@@ -43,6 +50,7 @@ namespace VLC_WINRT
         protected override async void OnLaunched(LaunchActivatedEventArgs args)
         {
             Window.Current.Content = new RootPage();
+            Dispatcher = Window.Current.Content.Dispatcher;
             NavigationService.NavigateTo(typeof(MainPage));
             Window.Current.Activate();
         }
