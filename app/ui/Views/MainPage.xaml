@@ -11,11 +11,7 @@
     DataContext="{Binding Source={StaticResource Locator}, Path=MainPageVM}">
     <views:BasePage.Resources>
     </views:BasePage.Resources>
-    <Grid>
-        <!-- Grid for Gradient -->
-        <!-- Rectangle for Thumbnail Board -->
-        <mainPage:ThumbnailsBackground Grid.ColumnSpan="4"></mainPage:ThumbnailsBackground>
-
+    <Grid Background="#FFFAFAFA" >
         <Grid Margin="30,20,10,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"></RowDefinition>
