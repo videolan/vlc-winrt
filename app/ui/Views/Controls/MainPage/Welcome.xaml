@@ -7,7 +7,7 @@
     mc:Ignorable="d"
     d:DesignHeight="768"
     d:DesignWidth="550">
-    <StackPanel>
+    <StackPanel Width="500">
         <Image Height="340" Width="300" Source="../../../Assets/ShinyPylon/300_340.png"></Image>
         <TextBlock TextWrapping="Wrap"
                    Style="{StaticResource GroupHeaderTextStyle}"
