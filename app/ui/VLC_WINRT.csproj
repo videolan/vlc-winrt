@@ -164,6 +164,9 @@
     <Compile Include="Views\Controls\MainPage\Welcome.xaml.cs">
       <DependentUpon>Welcome.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Controls\MiniPlayer.xaml.cs">
+      <DependentUpon>MiniPlayer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Controls\VariableSizedItemsGridView.cs" />
     <Compile Include="Views\Controls\WrapPanelControl\OrientedSize.cs" />
     <Compile Include="Views\Controls\WrapPanelControl\WrapPanel.cs" />
@@ -722,6 +725,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Controls\MainPage\Welcome.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\MiniPlayer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
