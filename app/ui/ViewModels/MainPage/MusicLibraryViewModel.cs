@@ -20,6 +20,7 @@ using VLC_WINRT.Common;
 using VLC_WINRT.Model;
 using VLC_WINRT.Utility.Commands;
 using VLC_WINRT.Utility.Helpers;
+using System.Text.RegularExpressions;
 
 namespace VLC_WINRT.ViewModels.MainPage
 {
@@ -121,6 +122,7 @@ namespace VLC_WINRT.ViewModels.MainPage
                         var artist = new ArtistItemViewModel(albumQuery);
                         artist.Name = artistProperties.Artist;
                         _artists.Add(artist);
+                        OnPropertyChanged("Track");
                         OnPropertyChanged("Artist");
                     }
                 }
@@ -262,17 +264,24 @@ namespace VLC_WINRT.ViewModels.MainPage
             {
                 try
                 {
-                    HttpClient Fond = new HttpClient();
-                    var reponse = await Fond.GetStringAsync("http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&api_key=" + App.ApiKeyLastFm + "&artist=" + artist);
+                    HttpClient Bio = new HttpClient();
+                    var reponse = await Bio.GetStringAsync("http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&api_key=" + App.ApiKeyLastFm + "&artist=" + artist);
                     {
                         var xml1 = XDocument.Parse(reponse);
+                        var bio = xml1.Root.Descendants("bio").Elements("summary").FirstOrDefault();
+                        if (bio != null)
+                        {
+                            // Deleting the html tags
+                            Biography = Regex.Replace(bio.Value, "<.*?>", string.Empty);
+                            if (Biography != null)
+                            {
+                                // Removes the "Read more about ... on last.fm" message
+                                Biography = Biography.Remove(Biography.Length - "Read more about  on Last.fm".Length - artist.Length - 6);
+                            }
+                        }
                         var img = xml1.Root.Descendants("image").ElementAt(3);
                         if (img != null)
                             Picture = img.Value;
-
-                        var bio = xml1.Root.Descendants("bio").Elements("summary").FirstOrDefault();
-                        if (bio != null)
-                            Biography = bio.Value;
                     }
                 }
                 catch
@@ -420,6 +429,7 @@ namespace VLC_WINRT.ViewModels.MainPage
                     var trackInfos = await track.Properties.GetMusicPropertiesAsync();
                     TrackItem trackItem = new TrackItem();
                     trackItem.ArtistName = artist;
+                    trackItem.AlbumName = Name;
                     trackItem.Name = trackInfos.Title;
                     trackItem.Path = track.Path;
                     trackItem.Duration = trackInfos.Duration;
@@ -428,6 +438,7 @@ namespace VLC_WINRT.ViewModels.MainPage
                     OnPropertyChanged("Tracks");
                     OnPropertyChanged("Albums");
                     Locator.MusicLibraryVM.Track.Add(trackItem);
+                    OnPropertyChanged("Track");
                 }
             }
 
@@ -463,6 +474,7 @@ namespace VLC_WINRT.ViewModels.MainPage
         public class TrackItem : BindableBase
         {
             private string _artistName;
+            private string _albumName;
             private string _name;
             private string _path;
             private int _index;
@@ -476,7 +488,11 @@ namespace VLC_WINRT.ViewModels.MainPage
                 get { return _artistName; }
                 set { SetProperty(ref _artistName, value); }
             }
-
+            public string AlbumName
+            {
+                get { return _albumName; }
+                set { SetProperty(ref _albumName, value); }
+            }
             public string Name
             {
                 get { return _name; }

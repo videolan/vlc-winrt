@@ -21,7 +21,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <ListView x:Name="SectionsHeaderListView" SelectionMode="None" IsItemClickEnabled="True" ItemClick="SectionsHeaderListView_OnItemClick" ItemsSource="{Binding Panels}">
+        <!--<ListView x:Name="SectionsHeaderListView" Margin="0,10,0,0" ItemContainerStyle="{StaticResource PostListViewItemContainerStyle}" SelectionMode="None" IsItemClickEnabled="True" ItemClick="SectionsHeaderListView_OnItemClick" ItemsSource="{Binding Panels}">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <wrapPanelControl:WrapPanel Margin="50,0,0,0" Orientation="Horizontal" >
@@ -39,7 +39,7 @@
                     <TextBlock Text="{Binding Title}" Opacity="{Binding Opacity}" TextWrapping="NoWrap" TextTrimming="None" Style="{StaticResource ColumnHeaderTextStyle}"/>
                 </DataTemplate>
             </ListView.ItemTemplate>
-        </ListView>
+        </ListView>-->
         <Grid Grid.Row="1" x:Name="SectionsGrid">
             <controls:VariableSizedItemsGridView ItemsSource="{Binding Media}" ItemTemplateSelector="{StaticResource MediaItemDataTemplateSelector}" >
                 <GridView.ItemsPanel>

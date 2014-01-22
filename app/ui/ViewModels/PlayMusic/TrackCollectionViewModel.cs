@@ -45,13 +45,16 @@ namespace VLC_WINRT.ViewModels.PlayMusic
                 TrackCollection.Add(track);
         }
 
-        public bool CanGoPrevious()
+        public bool CanGoPrevious
         {
-            return CurrentTrack >= 0;
+            get { return  CurrentTrack >= 0; }
         }
-        public bool CanGoNext()
+        public bool CanGoNext
         {
-            return CurrentTrack < TrackCollection.Count;
+            get 
+            {
+                return CurrentTrack < TrackCollection.Count;
+            }
         }
         public void ResetCollection()
         {

@@ -34,7 +34,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <ListView x:Name="SectionsHeaderListView" ItemContainerStyle="{StaticResource PostListViewItemContainerStyle}" SelectionMode="None" IsItemClickEnabled="True" ItemClick="SectionsHeaderListView_OnItemClick" ItemsSource="{Binding Panels}">
+        <ListView x:Name="SectionsHeaderListView" Margin="0,10,0,0" ItemContainerStyle="{StaticResource PostListViewItemContainerStyle}" SelectionMode="None" IsItemClickEnabled="True" ItemClick="SectionsHeaderListView_OnItemClick" ItemsSource="{Binding Panels}">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <wrapPanelControl:WrapPanel Margin="50,0,0,0" Orientation="Horizontal" >
