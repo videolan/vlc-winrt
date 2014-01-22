@@ -6,10 +6,10 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:converters="using:VLC_WINRT.Utility.Converters"
+    xmlns:wrapPanelControl="using:VLC_WINRT.Views.Controls.WrapPanelControl"
     mc:Ignorable="d"
     d:DesignHeight="300"
-    d:DesignWidth="400"
-    d:DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
+    d:DesignWidth="400">
 
     <UserControl.Resources>
         <CollectionViewSource x:Name="albumsCollection" Source="{Binding Artist}" ItemsPath="Albums" IsSourceGrouped="True" />
@@ -29,4 +29,193 @@
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
     </UserControl.Resources>
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <ListView x:Name="SectionsHeaderListView" SelectionMode="None" IsItemClickEnabled="True" ItemClick="SectionsHeaderListView_OnItemClick" ItemsSource="{Binding Panels}">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <wrapPanelControl:WrapPanel Margin="50,0,0,0" Orientation="Horizontal" >
+                        <wrapPanelControl:WrapPanel.ChildrenTransitions>
+                            <TransitionCollection>
+                                <EntranceThemeTransition FromHorizontalOffset="100"/>
+                                <AddDeleteThemeTransition />
+                            </TransitionCollection>
+                        </wrapPanelControl:WrapPanel.ChildrenTransitions>
+                    </wrapPanelControl:WrapPanel>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Title}" Opacity="{Binding Opacity}" TextWrapping="NoWrap" TextTrimming="None" Style="{StaticResource ColumnHeaderTextStyle}"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Grid Grid.Row="1" x:Name="SectionsGrid" Margin="50,0,0,0">
+            <Grid x:Name="ArtistPanel" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="320" />
+                    <ColumnDefinition Width="1"/>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="1"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <ListView Grid.Column="0" Margin="-15,0,0,0" Header="{Binding Artist.Count}" ItemsSource="{Binding Artist}" SelectionMode="Single" SelectionChanged="OnSelectedArtist_Changed">
+                    <ListView.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock Margin="20,5,0,10"
+                                Style="{StaticResource ColumnHeaderTextStyle}" Foreground="Black" FontSize="17">
+                                <Run Text="{Binding}"/>
+                                <Run Text="artists"/>
+                            </TextBlock>
+                        </DataTemplate>
+                    </ListView.HeaderTemplate>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="16,0,0,0" >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="50"/>
+                                    <ColumnDefinition Width="10"/>
+                                    <ColumnDefinition Width="270"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Source="{Binding Picture}" Height="50" Stretch="UniformToFill"/>
+                                <StackPanel Grid.Column="2" VerticalAlignment="Center">
+                                    <TextBlock Text="{Binding Name, Converter={StaticResource StringToUpperConverter}}" Foreground="Black" TextWrapping="NoWrap" TextTrimming="WordEllipsis" FontSize="18"/>
+                                </StackPanel>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Border Width="1" Grid.Column="1" Background="#663E3E3E" />
+                <ListView x:Name="AlbumsByArtistListView" Grid.Column="2" ItemsSource="{Binding Source={StaticResource albumsCollection}}" SelectedIndex="0" SelectionMode="None" IsItemClickEnabled="True" ItemClick="AlbumGridView_ItemClick">
+                    <ListView.GroupStyle>
+                        <GroupStyle>
+                            <GroupStyle.Panel>
+                                <ItemsPanelTemplate>
+                                    <wrapPanelControl:WrapPanel Margin="10,0,0,0" Orientation="Horizontal">
+                                        <wrapPanelControl:WrapPanel.ChildrenTransitions>
+                                            <TransitionCollection>
+                                                <AddDeleteThemeTransition/>
+                                                <RepositionThemeTransition />
+                                                <EntranceThemeTransition FromHorizontalOffset="250"/>
+                                            </TransitionCollection>
+                                        </wrapPanelControl:WrapPanel.ChildrenTransitions>
+                                    </wrapPanelControl:WrapPanel>
+                                </ItemsPanelTemplate>
+                            </GroupStyle.Panel>
+                            <GroupStyle.HeaderTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name, Converter={StaticResource StringToUpperConverter}}" Foreground="Black" TextWrapping="NoWrap" TextTrimming="WordEllipsis" Margin="10" FontSize="23" />
+                                </DataTemplate>
+                            </GroupStyle.HeaderTemplate>
+                        </GroupStyle>
+                    </ListView.GroupStyle>
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="Padding" Value="0"/>
+                            <Setter Property="Margin" Value="0"/>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel />
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Height="150" Width="150">
+                                <Image Source="{Binding Picture}" Stretch="UniformToFill"/>
+                                <Grid Height="80" VerticalAlignment="Bottom">
+                                    <Grid.Background>
+                                        <LinearGradientBrush StartPoint="1,0">
+                                            <GradientStopCollection>
+                                                <GradientStop Color="#990A0A0A" Offset="1"/>
+                                                <GradientStop Color="#00020202" />
+                                            </GradientStopCollection>
+                                        </LinearGradientBrush>
+                                    </Grid.Background>
+                                    <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="5">
+                                        <TextBlock Text="{Binding Name}" TextWrapping="NoWrap" TextTrimming="WordEllipsis" FontSize="18" FontWeight="Light" />
+                                        <!--<TextBlock Text="{Binding Year}" FontSize="14" Foreground="#7FF5F5F5"/>-->
+                                    </StackPanel>
+                                </Grid>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+                <Border Width="1" Grid.Column="3" Background="#663E3E3E"/>
+                <ListView Grid.Column="4" x:Name="AlbumPlaylistListView" Width="0">
+                    <ListView.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock Margin="20,5,0,10"
+                                Style="{StaticResource ColumnHeaderTextStyle}" Foreground="Black" FontSize="17">
+                                <Run Text="{Binding}"/>
+                                <Run Text="tracks"/>
+                            </TextBlock>
+                        </DataTemplate>
+                    </ListView.HeaderTemplate>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Button Template="{StaticResource MainButtonStyle}"
+                                Command="{Binding PlayTrack}"
+                                CommandParameter="{Binding}">
+                                <StackPanel Orientation="Horizontal" Width="300">
+                                    <TextBlock Text="{Binding Index}" Foreground="Black"  FontSize="22" FontWeight="SemiBold" />
+                                    <TextBlock Text="{Binding Name}" Foreground="Black"  VerticalAlignment="Bottom" Margin="5,0,0,2"/>
+                                </StackPanel>
+                            </Button>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+            <Grid x:Name="TracksPanel">
+                <ListView ItemsSource="{Binding Track}">
+                    <ListView.HeaderTemplate>
+                        <DataTemplate>
+                            <Grid Margin="5,0,0,5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="250"/>
+                                    <ColumnDefinition Width="15"/>
+                                    <ColumnDefinition Width="200"/>
+                                    <ColumnDefinition Width="15"/>
+                                    <ColumnDefinition Width="200"/>
+                                    <ColumnDefinition Width="15"/>
+                                    <ColumnDefinition Width="15"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="track" Foreground="Black" Style="{StaticResource TitleTextStyle}"/>
+                                <TextBlock Grid.Column="2" Text="artist" Foreground="Black" Style="{StaticResource TitleTextStyle}"/>
+                                <TextBlock Grid.Column="4" Text="album" Foreground="Black" Style="{StaticResource TitleTextStyle}"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.HeaderTemplate>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Button Template="{StaticResource MainButtonStyle}"
+                                Command="{Binding PlayTrack}"
+                                CommandParameter="{Binding}" Padding="4">
+                                <Grid  VerticalAlignment="Center">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="250"/>
+                                        <ColumnDefinition Width="15"/>
+                                        <ColumnDefinition Width="200"/>
+                                        <ColumnDefinition Width="15"/>
+                                        <ColumnDefinition Width="200"/>
+                                        <ColumnDefinition Width="15"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" Text="{Binding Name}" Style="{StaticResource BodyTextStyle}" Foreground="Black"/>
+                                    <TextBlock Grid.Column="2" Text="{Binding ArtistName}" Style="{StaticResource BodyTextStyle}" Foreground="Black"/>
+                                    <TextBlock Grid.Column="4" Text="album" Style="{StaticResource BodyTextStyle}" Foreground="Black"/>
+                                    <TextBlock Grid.Column="6" Text="" FontSize="22" Foreground="DimGray" FontFamily="Segoe UI Symbol" Visibility="{Binding IsFavorite, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                </Grid>
+                            </Button>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+        </Grid>
+    </Grid>
 </UserControl>
