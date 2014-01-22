@@ -11,6 +11,6 @@
     DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
     
     <Grid Background="Black">
-        <Image Source="{Binding ImageSources}" Stretch="UniformToFill" Opacity="0.4"/>
+        <Image Source="http://musicimage.xboxlive.com/content/music.C61C0000-0200-11DB-89CA-0019B92A3933/image?locale=fr-FR" Stretch="UniformToFill" Opacity="0.3"/>
     </Grid>
 </UserControl>

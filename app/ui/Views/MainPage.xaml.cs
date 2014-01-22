@@ -34,10 +34,6 @@ namespace VLC_WINRT.Views
         private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
         {
             var width = Window.Current.Bounds.Width;
-            if (SectionsHeaderListView.ActualWidth + HeaderGrid.ActualWidth >= width)
-            {
-
-            }
         }
 
         public override void SetDataContext()

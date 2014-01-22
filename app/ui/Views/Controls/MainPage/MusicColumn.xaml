@@ -34,7 +34,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <ListView x:Name="SectionsHeaderListView" SelectionMode="None" IsItemClickEnabled="True" ItemClick="SectionsHeaderListView_OnItemClick" ItemsSource="{Binding Panels}">
+        <ListView x:Name="SectionsHeaderListView" ItemContainerStyle="{StaticResource PostListViewItemContainerStyle}" SelectionMode="None" IsItemClickEnabled="True" ItemClick="SectionsHeaderListView_OnItemClick" ItemsSource="{Binding Panels}">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <wrapPanelControl:WrapPanel Margin="50,0,0,0" Orientation="Horizontal" >
@@ -66,7 +66,7 @@
                     <ListView.HeaderTemplate>
                         <DataTemplate>
                             <TextBlock Margin="20,5,0,10"
-                                Style="{StaticResource ColumnHeaderTextStyle}" Foreground="Black" FontSize="17">
+                                Style="{StaticResource ColumnHeaderTextStyle}" FontSize="17">
                                 <Run Text="{Binding}"/>
                                 <Run Text="artists"/>
                             </TextBlock>
@@ -82,7 +82,7 @@
                                 </Grid.ColumnDefinitions>
                                 <Image Source="{Binding Picture}" Height="50" Stretch="UniformToFill"/>
                                 <StackPanel Grid.Column="2" VerticalAlignment="Center">
-                                    <TextBlock Text="{Binding Name, Converter={StaticResource StringToUpperConverter}}" Foreground="Black" TextWrapping="NoWrap" TextTrimming="WordEllipsis" FontSize="18"/>
+                                    <TextBlock Text="{Binding Name, Converter={StaticResource StringToUpperConverter}}" TextWrapping="NoWrap" TextTrimming="WordEllipsis" FontSize="18"/>
                                 </StackPanel>
                             </Grid>
                         </DataTemplate>
@@ -107,7 +107,7 @@
                             </GroupStyle.Panel>
                             <GroupStyle.HeaderTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Name, Converter={StaticResource StringToUpperConverter}}" Foreground="Black" TextWrapping="NoWrap" TextTrimming="WordEllipsis" Margin="10" FontSize="23" />
+                                    <TextBlock Text="{Binding Name, Converter={StaticResource StringToUpperConverter}}" TextWrapping="NoWrap" TextTrimming="WordEllipsis" Margin="10" FontSize="23" />
                                 </DataTemplate>
                             </GroupStyle.HeaderTemplate>
                         </GroupStyle>
@@ -152,7 +152,7 @@
                         <DataTemplate>
                             <StackPanel>
                             <TextBlock Margin="20,5,0,10"
-                                Style="{StaticResource ColumnHeaderTextStyle}" Foreground="Black" FontSize="17">
+                                Style="{StaticResource ColumnHeaderTextStyle}" FontSize="17">
                                 <Run Text="{Binding Tracks.Count}"/>
                                 <Run Text="tracks"/>
                                 </TextBlock>
@@ -168,8 +168,8 @@
                                 Command="{Binding PlayTrack}"
                                 CommandParameter="{Binding}">
                                 <StackPanel Orientation="Horizontal" Width="300">
-                                    <TextBlock Text="{Binding Index}" Foreground="Black"  FontSize="22" FontWeight="SemiBold" />
-                                    <TextBlock Text="{Binding Name}" Foreground="Black"  VerticalAlignment="Bottom" Margin="5,0,0,2"/>
+                                    <TextBlock Text="{Binding Index}" FontSize="22" FontWeight="SemiBold" />
+                                    <TextBlock Text="{Binding Name}" VerticalAlignment="Bottom" Margin="5,0,0,2"/>
                                 </StackPanel>
                             </Button>
                         </DataTemplate>
@@ -190,9 +190,9 @@
                                     <ColumnDefinition Width="15"/>
                                     <ColumnDefinition Width="15"/>
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Grid.Column="0" Text="track" Foreground="Black" Style="{StaticResource TitleTextStyle}"/>
-                                <TextBlock Grid.Column="2" Text="artist" Foreground="Black" Style="{StaticResource TitleTextStyle}"/>
-                                <TextBlock Grid.Column="4" Text="album" Foreground="Black" Style="{StaticResource TitleTextStyle}"/>
+                                <TextBlock Grid.Column="0" Text="track" Style="{StaticResource TitleTextStyle}"/>
+                                <TextBlock Grid.Column="2" Text="artist" Style="{StaticResource TitleTextStyle}"/>
+                                <TextBlock Grid.Column="4" Text="album" Style="{StaticResource TitleTextStyle}"/>
                             </Grid>
                         </DataTemplate>
                     </ListView.HeaderTemplate>
@@ -211,10 +211,10 @@
                                         <ColumnDefinition Width="15"/>
                                         <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock Grid.Column="0" Text="{Binding Name}" Style="{StaticResource BodyTextStyle}" Foreground="Black"/>
-                                    <TextBlock Grid.Column="2" Text="{Binding ArtistName}" Style="{StaticResource BodyTextStyle}" Foreground="Black"/>
-                                    <TextBlock Grid.Column="4" Text="album" Style="{StaticResource BodyTextStyle}" Foreground="Black"/>
-                                    <TextBlock Grid.Column="6" Text="" FontSize="22" Foreground="DimGray" FontFamily="Segoe UI Symbol" Visibility="{Binding IsFavorite, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                    <TextBlock Grid.Column="0" Text="{Binding Name}" Style="{StaticResource BodyTextStyle}" />
+                                    <TextBlock Grid.Column="2" Text="{Binding ArtistName}" Style="{StaticResource BodyTextStyle}"/>
+                                    <TextBlock Grid.Column="4" Text="album" Style="{StaticResource BodyTextStyle}"/>
+                                    <TextBlock Grid.Column="6" Text="" FontSize="22" FontFamily="Segoe UI Symbol" Visibility="{Binding IsFavorite, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                                 </Grid>
                             </Button>
                         </DataTemplate>

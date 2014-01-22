@@ -62,54 +62,6 @@
                     </EasingDoubleKeyFrame.EasingFunction>
                 </EasingDoubleKeyFrame>
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.RotationZ)" Storyboard.TargetName="HeaderGrid">
-                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="0">
-                    <EasingDoubleKeyFrame.EasingFunction>
-                        <ExponentialEase EasingMode="EaseIn" Exponent="5"/>
-                    </EasingDoubleKeyFrame.EasingFunction>
-                </EasingDoubleKeyFrame>
-                <EasingDoubleKeyFrame KeyTime="0:0:1.2" Value="0">
-                    <EasingDoubleKeyFrame.EasingFunction>
-                        <ExponentialEase EasingMode="EaseIn" Exponent="5"/>
-                    </EasingDoubleKeyFrame.EasingFunction>
-                </EasingDoubleKeyFrame>
-            </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.RotationY)" Storyboard.TargetName="HeaderGrid">
-                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="0">
-                    <EasingDoubleKeyFrame.EasingFunction>
-                        <ExponentialEase EasingMode="EaseIn" Exponent="5"/>
-                    </EasingDoubleKeyFrame.EasingFunction>
-                </EasingDoubleKeyFrame>
-                <EasingDoubleKeyFrame KeyTime="0:0:1.2" Value="0">
-                    <EasingDoubleKeyFrame.EasingFunction>
-                        <ExponentialEase EasingMode="EaseIn" Exponent="5"/>
-                    </EasingDoubleKeyFrame.EasingFunction>
-                </EasingDoubleKeyFrame>
-            </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.GlobalOffsetZ)" Storyboard.TargetName="HeaderGrid">
-                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="0">
-                    <EasingDoubleKeyFrame.EasingFunction>
-                        <ExponentialEase EasingMode="EaseIn" Exponent="5"/>
-                    </EasingDoubleKeyFrame.EasingFunction>
-                </EasingDoubleKeyFrame>
-                <EasingDoubleKeyFrame KeyTime="0:0:1.2" Value="-250">
-                    <EasingDoubleKeyFrame.EasingFunction>
-                        <ExponentialEase EasingMode="EaseIn" Exponent="5"/>
-                    </EasingDoubleKeyFrame.EasingFunction>
-                </EasingDoubleKeyFrame>
-            </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="HeaderGrid">
-                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="1">
-                    <EasingDoubleKeyFrame.EasingFunction>
-                        <ExponentialEase EasingMode="EaseIn" Exponent="5"/>
-                    </EasingDoubleKeyFrame.EasingFunction>
-                </EasingDoubleKeyFrame>
-                <EasingDoubleKeyFrame KeyTime="0:0:1.2" Value="0">
-                    <EasingDoubleKeyFrame.EasingFunction>
-                        <ExponentialEase EasingMode="EaseIn" Exponent="5"/>
-                    </EasingDoubleKeyFrame.EasingFunction>
-                </EasingDoubleKeyFrame>
-            </DoubleAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Name="FadeInPage">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="SectionsGrid">
@@ -160,102 +112,30 @@
                     </EasingDoubleKeyFrame.EasingFunction>
                 </EasingDoubleKeyFrame>
             </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.RotationZ)" Storyboard.TargetName="HeaderGrid">
-                <EasingDoubleKeyFrame KeyTime="0" Value="0">
-                    <EasingDoubleKeyFrame.EasingFunction>
-                        <ExponentialEase EasingMode="EaseOut" Exponent="5"/>
-                    </EasingDoubleKeyFrame.EasingFunction>
-                </EasingDoubleKeyFrame>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0">
-                    <EasingDoubleKeyFrame.EasingFunction>
-                        <ExponentialEase EasingMode="EaseOut" Exponent="5"/>
-                    </EasingDoubleKeyFrame.EasingFunction>
-                </EasingDoubleKeyFrame>
-            </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.RotationY)" Storyboard.TargetName="HeaderGrid">
-                <EasingDoubleKeyFrame KeyTime="0" Value="0">
-                    <EasingDoubleKeyFrame.EasingFunction>
-                        <ExponentialEase EasingMode="EaseOut" Exponent="5"/>
-                    </EasingDoubleKeyFrame.EasingFunction>
-                </EasingDoubleKeyFrame>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0">
-                    <EasingDoubleKeyFrame.EasingFunction>
-                        <ExponentialEase EasingMode="EaseOut" Exponent="5"/>
-                    </EasingDoubleKeyFrame.EasingFunction>
-                </EasingDoubleKeyFrame>
-            </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.GlobalOffsetZ)" Storyboard.TargetName="HeaderGrid">
-                <EasingDoubleKeyFrame KeyTime="0" Value="-250">
-                    <EasingDoubleKeyFrame.EasingFunction>
-                        <ExponentialEase EasingMode="EaseOut" Exponent="5"/>
-                    </EasingDoubleKeyFrame.EasingFunction>
-                </EasingDoubleKeyFrame>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0">
-                    <EasingDoubleKeyFrame.EasingFunction>
-                        <ExponentialEase EasingMode="EaseOut" Exponent="5"/>
-                    </EasingDoubleKeyFrame.EasingFunction>
-                </EasingDoubleKeyFrame>
-            </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="HeaderGrid">
-                <EasingDoubleKeyFrame KeyTime="0" Value="0">
-                    <EasingDoubleKeyFrame.EasingFunction>
-                        <ExponentialEase EasingMode="EaseOut" Exponent="5"/>
-                    </EasingDoubleKeyFrame.EasingFunction>
-                </EasingDoubleKeyFrame>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1">
-                    <EasingDoubleKeyFrame.EasingFunction>
-                        <ExponentialEase EasingMode="EaseOut" Exponent="5"/>
-                    </EasingDoubleKeyFrame.EasingFunction>
-                </EasingDoubleKeyFrame>
-            </DoubleAnimationUsingKeyFrames>
         </Storyboard>
     </views:BasePage.Resources>
 
     
-    <Grid Background="WhiteSmoke">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <!--<controls:AnimatedBackground Grid.RowSpan="4"/>-->
+        <controls:AnimatedBackground Grid.RowSpan="4"/>
         <!--<HyperlinkButton Grid.Row="0" HorizontalAlignment="Right"  Foreground="#FFFF8402" Command="{Binding ShowAppBarCommand}">
             <HyperlinkButton.Content>
                 <TextBlock Text="Open File ..."></TextBlock>
             </HyperlinkButton.Content>
         </HyperlinkButton>-->
-        <Grid Grid.Row="0" Margin="50,50,0,0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-            <Grid x:Name="HeaderGrid">
-                <Grid.Projection>
-                    <PlaneProjection/>
-                </Grid.Projection>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
-                <!--<Polygon Fill="#e67e22" Points="285,0 265,50 270,50 290,0"/>-->
-                <StackPanel Orientation="Horizontal" >
-                    <Image Source="ms-appx:///Assets/Logo.png" Height="60"/>
-                    <TextBlock Margin="20,0,0,0" Foreground="#e67e22">
-                        <Run Text="VLC" FontSize="36" FontWeight="SemiLight"/>
-                        <LineBreak/>
-                        <Run Text="for WinRT Beta" FontSize="18"/>
-                    </TextBlock>
-                    <TextBlock
-                       VerticalAlignment="Center"
-                       Style="{StaticResource TitleTextStyle}"
-                       Foreground="White"
-                       FontSize="20"
-                       Margin="10,0" >
-                    </TextBlock>
-                </StackPanel>
-            </Grid>
-            <ListView x:Name="SectionsHeaderListView" Grid.Row="1" VerticalAlignment="Center" SelectionMode="None" IsItemClickEnabled="True" ItemClick="SectionsHeaderListView_OnItemClick" ItemsSource="{Binding Panels}" RenderTransformOrigin="0.5,0.5">
+        <Grid Grid.Row="0" Margin="40,30,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Image Source="ms-appx:///Assets/Logo.png" Height="50"/>
+            <ListView ItemContainerStyle="{StaticResource PostListViewItemContainerStyle}" x:Name="SectionsHeaderListView" Grid.Column="1" VerticalAlignment="Center" SelectionMode="None" IsItemClickEnabled="True" ItemClick="SectionsHeaderListView_OnItemClick" ItemsSource="{Binding Panels}" RenderTransformOrigin="0.5,0.5">
                 <ListView.RenderTransform>
                     <CompositeTransform/>
                 </ListView.RenderTransform>
@@ -273,7 +153,7 @@
                 </ListView.ItemsPanel>
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding Title}" Opacity="{Binding Opacity}" TextWrapping="NoWrap" TextTrimming="None" Style="{StaticResource SubheaderTextStyle}" Foreground="Black"/>
+                        <TextBlock Text="{Binding Title}" Opacity="{Binding Opacity}" TextWrapping="NoWrap" TextTrimming="None" Style="{StaticResource SubheaderTextStyle}" Foreground="WhiteSmoke"/>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
