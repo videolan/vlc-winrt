@@ -83,12 +83,6 @@
                                     </wrapPanelControl:WrapPanel>
                                 </ItemsPanelTemplate>
                             </ListView.ItemsPanel>
-                            <ListView.ItemContainerStyle>
-                                <Style TargetType="ListView">
-                                    <Setter Property="Padding" Value="-3"/>
-                                    <Setter Property="Margin" Value="0"/>
-                                </Style>
-                            </ListView.ItemContainerStyle>
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <Grid Height="150" Width="150">

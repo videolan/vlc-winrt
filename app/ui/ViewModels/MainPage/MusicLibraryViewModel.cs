@@ -377,6 +377,41 @@ namespace VLC_WINRT.ViewModels.MainPage
                             });
                         }
                     }
+                    else
+                    {
+                        HttpClient lastFmClient = new HttpClient();
+                        var response =
+                            await
+                                lastFmClient.GetStringAsync(
+                                    "http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&limit=6&api_key=" +
+                                    App.ApiKeyLastFm + "&artist=" + artist);
+                        var xml = XDocument.Parse(response);
+                        var topAlbums = from results in xml.Descendants("album")
+                            select new OnlineAlbumItem
+                            {
+                                Name = results.Element("name").Value.ToString(),
+                                Picture = results.Elements("image").ElementAt(3).Value,
+                            };
+
+                        OnlinePopularAlbumItems = topAlbums.ToList();
+
+
+                        lastFmClient = new HttpClient();
+                        response =
+                            await
+                                lastFmClient.GetStringAsync(
+                                    "http://ws.audioscrobbler.com/2.0/?method=artist.getsimilar&api_key=" +
+                                    App.ApiKeyLastFm + "&artist=" + artist);
+                        xml = XDocument.Parse(response);
+                        var similarArtists = from results in xml.Descendants("artist")
+                                        select new ArtistItemViewModel
+                                        {
+                                            Name = results.Element("name").Value.ToString(),
+                                            Picture = results.Elements("image").ElementAt(3).Value,
+                                        };
+
+                        OnlineRelatedArtists = similarArtists.ToList();
+                    }
                 }
                 catch (Exception e)
                 {

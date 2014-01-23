@@ -32,7 +32,7 @@ namespace VLC_WINRT.ViewModels.MainPage
         public MainPageViewModel()
         {
             VideoVM = new VideoLibraryViewModel(KnownVLCLocation.VideosLibrary);
-            MusicLibraryVm = new MusicLibraryViewModel();
+            MusicLibraryVm = Locator.MusicLibraryVM;
             ExternalStorageVM = new ExternalStorageViewModel();
 
             Task<IReadOnlyList<StorageFolder>> dlnaFolders = KnownVLCLocation.MediaServers.GetFoldersAsync().AsTask();
