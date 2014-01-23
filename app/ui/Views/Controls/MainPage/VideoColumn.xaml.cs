@@ -1,4 +1,7 @@
-﻿using Windows.UI.Xaml.Controls;
+﻿using System;
+using Windows.UI.Core;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 
 // The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
 using VLC_WINRT.Utility.Helpers;
@@ -18,6 +21,32 @@ namespace VLC_WINRT.Views.Controls.MainPage
                     UIAnimationHelper.FadeOut(SectionsGrid.Children[i]);
                 }
             };
+            this.SizeChanged += OnSizeChanged;
+        }
+        
+        private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
+        {
+            Dispatcher.RunAsync(CoreDispatcherPriority.High, () =>
+            {
+                if (sizeChangedEventArgs.NewSize.Width < 1080)
+                {
+                }
+                else
+                {
+                }
+
+
+                if (sizeChangedEventArgs.NewSize.Width == 320)
+                {
+                    FirstPanelListView.Visibility = Visibility.Visible;
+                    FirstPanelGridView.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    FirstPanelListView.Visibility = Visibility.Collapsed;
+                    FirstPanelGridView.Visibility = Visibility.Visible;
+                }
+            });
         }
         private void SectionsHeaderListView_OnItemClick(object sender, ItemClickEventArgs e)
         {
