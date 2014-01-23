@@ -111,7 +111,7 @@
                                 </Style>
                             </ListView.ItemContainerStyle>
                         </ListView>
-                        <ListView Margin="10,0" Width="350" HeaderTemplate="{StaticResource ColumnHeaderDataTemplate}" Header="popular albums" ItemsSource="{Binding Artist.OnlinePopularAlbumItems}">
+                        <ListView Margin="10,0" Width="350" SelectionMode="None" IsItemClickEnabled="True" HeaderTemplate="{StaticResource ColumnHeaderDataTemplate}" Header="popular albums" ItemsSource="{Binding Artist.OnlinePopularAlbumItems}">
                             <ListView.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <WrapGrid Orientation="Horizontal" />
