@@ -9,7 +9,7 @@
     xmlns:wrapPanelControl="using:VLC_WINRT.Views.Controls.WrapPanelControl"
     mc:Ignorable="d"
     d:DesignHeight="300"
-    d:DesignWidth="400">
+    d:DesignWidth="600">
 
     <UserControl.Resources>
         <CollectionViewSource x:Name="albumsCollection" Source="{Binding Artist}" ItemsPath="Albums" IsSourceGrouped="True" />
@@ -133,17 +133,20 @@
                 </ListView>
 
                 <Border Width="1" Grid.Column="3" Background="#663E3E3E"/>
-                <ListView Grid.Column="4" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" x:Name="AlbumPlaylistListView" >
+                <ListView Grid.Column="4" Margin="10,0,0,0" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" x:Name="AlbumPlaylistListView" >
                     <ListView.HeaderTemplate>
                         <DataTemplate>
                             <StackPanel>
-                            <TextBlock Margin="20,5,0,10"
-                                Style="{StaticResource ColumnHeaderTextStyle}" FontSize="17">
-                                <Run Text="{Binding Tracks.Count}"/>
-                                <Run Text="tracks"/>
-                                </TextBlock>
                                 <StackPanel Orientation="Horizontal">
-                                    <Button Content="Play album" Command="{Binding PlayAlbum}" CommandParameter="{Binding}"/>
+                                    <Button Content="" FontSize="24" Style="{StaticResource ModernAppBarButtonStyle}" Command="{Binding PlayAlbum}" CommandParameter="{Binding}" Margin="0,0,10,0"/>
+                                    <Button Template="{StaticResource MainButtonStyle}" Command="{Binding PlayAlbum}" CommandParameter="{Binding}">
+                                        <TextBlock>
+                                            <Run Text="Play album" FontWeight="Light" FontSize="20"/>
+                                            <LineBreak />
+                                            <Run Text="{Binding Tracks.Count}" Foreground="#B2FFFFFF" FontWeight="SemiBold" FontSize="12"/>
+                                            <Run Text="TRACKS" Foreground="#B2FFFFFF" FontFamily="Segoe UI" FontWeight="SemiBold" FontSize="12"/>
+                                        </TextBlock>
+                                    </Button>
                                 </StackPanel>
                             </StackPanel>
                         </DataTemplate>
