@@ -43,8 +43,8 @@ namespace VLC_WINRT.Views
                 }
                 else
                 {
-                    MiniPlayer.Margin = new Thickness(0);
-                    MainLogoHeader.Visibility = Visibility.Visible;
+                    MainLogoHeader.Margin = new Thickness(0);
+                    MiniPlayer.Visibility = Visibility.Visible;
                 }
             });
         }

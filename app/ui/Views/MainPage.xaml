@@ -200,6 +200,7 @@
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
         </Grid>
+        <controls:MinimizedAppBar Grid.Row="3"/>
     </Grid>
 
     <Page.BottomAppBar>
