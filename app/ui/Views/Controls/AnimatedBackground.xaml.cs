@@ -34,17 +34,15 @@ namespace VLC_WINRT.Views.Controls
 
         void SetSourceToImages()
         {
-            TimeSpan period = TimeSpan.FromSeconds(20);
+            TimeSpan period = TimeSpan.FromSeconds(28);
             _periodicTimer = ThreadPoolTimer.CreatePeriodicTimer((source) =>
             {
                 int i = new Random().Next(0, Locator.MusicLibraryVM.ImgCollection.Count);
-                int y = new Random().Next(0, Locator.MusicLibraryVM.ImgCollection.Count);
                 App.Dispatcher.RunAsync(CoreDispatcherPriority.High,
                     () =>
                     {
                         FirstImage.Source = new BitmapImage(new Uri(Locator.MusicLibraryVM.ImgCollection[i], UriKind.RelativeOrAbsolute));
-                        SecondImage.Source = new BitmapImage(new Uri(Locator.MusicLibraryVM.ImgCollection[y]));
-                        
+                        ZoomAnimation1.Begin();
                     });
 
             }, period);
