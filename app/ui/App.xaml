@@ -18,6 +18,9 @@
             </ResourceDictionary.MergedDictionaries>
             <!-- Application-specific resources -->
             <!-- Main Page Styles -->
+            <DataTemplate x:Key="ColumnHeaderDataTemplate">
+                <TextBlock Text="{Binding}" Foreground="#e67e22" Margin="0,10,0,0" FontSize="32" FontWeight="Light" TextWrapping="Wrap"/>
+            </DataTemplate>
             <Style x:Key="ColumnHeaderTextStyle" TargetType="TextBlock">
                 <Setter Property="FontWeight" Value="SemiBold"/>
                 <Setter Property="FontSize" Value="20"/>

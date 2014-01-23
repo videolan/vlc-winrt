@@ -30,9 +30,15 @@
                 <TextBlock Grid.Column="1" Text="{Binding Artist.Name}" Foreground="#e67e22" Margin="0,10,0,0" FontSize="42" FontWeight="Light" />
             </Grid>
             <Grid Grid.Row="1">
-                <ScrollViewer ZoomMode="Disabled"
-                              HorizontalScrollMode="Enabled"
-                              VerticalScrollMode="Disabled">
+                <ScrollViewer VerticalScrollMode="Disabled"
+                      VerticalScrollBarVisibility="Disabled"
+                      HorizontalScrollMode="Auto"
+                      HorizontalScrollBarVisibility="Auto"
+                      VerticalContentAlignment="Center"
+                      HorizontalContentAlignment="Center"
+                      ZoomMode="Enabled"
+                      MaxZoomFactor="1"
+                      MinZoomFactor="0.5">
                     <StackPanel Orientation="Horizontal">
                         <Grid Margin="100,0,0,0">
                             <Grid.RowDefinitions>
@@ -46,8 +52,8 @@
                                 </Grid.ColumnDefinitions>
                                 <Image Height="250" Width="200" VerticalAlignment="Top" Source="{Binding Artist.CurrentAlbumItem.Picture}"/>
                                 <StackPanel Grid.Column="1" Margin="10,0">
-                                    <TextBlock Text="{Binding Artist.CurrentAlbumItem.Name}" Foreground="#e67e22" Margin="0,10,0,0" FontSize="32" FontWeight="Light"/>
-                                    <TextBlock Text="{Binding Title, Converter={StaticResource StringToUpperConverter}}" Foreground="WhiteSmoke" Margin="0,10,0,0" FontSize="20" FontWeight="SemiBold"/>
+                                    <TextBlock Text="{Binding Artist.CurrentAlbumItem.Name}" Foreground="#e67e22" Margin="0,10,0,0" FontSize="32" FontWeight="Light" TextWrapping="Wrap"/>
+                                    <TextBlock Text="{Binding Title, Converter={StaticResource StringToUpperConverter}}" Foreground="WhiteSmoke" Margin="0,10,0,0" FontSize="20" FontWeight="SemiBold" TextWrapping="Wrap"/>
                                 </StackPanel>
                             </Grid>
 
@@ -71,18 +77,10 @@
                                 </ListView.ItemTemplate>
                             </ListView>
                         </Grid>
-                        <ListView Margin="10,0" Width="400" Header="similar artists" ItemsSource="{Binding Artist.OnlineRelatedArtists}" SelectedIndex="0" SelectionMode="None" IsItemClickEnabled="True" >
+                        <ListView Margin="10,0" Width="350" HeaderTemplate="{StaticResource ColumnHeaderDataTemplate}" Header="similar artists" ItemsSource="{Binding Artist.OnlineRelatedArtists}" SelectedIndex="0" SelectionMode="None" IsItemClickEnabled="True" >
                             <ListView.ItemsPanel>
                                 <ItemsPanelTemplate>
-                                    <wrapPanelControl:WrapPanel Margin="10,0,0,0" Orientation="Horizontal">
-                                        <wrapPanelControl:WrapPanel.ChildrenTransitions>
-                                            <TransitionCollection>
-                                                <AddDeleteThemeTransition />
-                                                <RepositionThemeTransition />
-                                                <EntranceThemeTransition FromHorizontalOffset="250"/>
-                                            </TransitionCollection>
-                                        </wrapPanelControl:WrapPanel.ChildrenTransitions>
-                                    </wrapPanelControl:WrapPanel>
+                                    <WrapGrid Orientation="Horizontal" />
                                 </ItemsPanelTemplate>
                             </ListView.ItemsPanel>
                             <ListView.ItemTemplate>
@@ -108,21 +106,49 @@
                             </ListView.ItemTemplate>
                             <ListView.ItemContainerStyle>
                                 <Style TargetType="ListViewItem">
-                                    <Setter Property="Padding" Value="-4"/>
+                                    <Setter Property="Padding" Value="-5"/>
+                                    <Setter Property="Margin" Value="0"/>
                                 </Style>
                             </ListView.ItemContainerStyle>
                         </ListView>
-                        <ListView ItemsSource="{Binding Artist.OnlinePopularAlbumItems}">
+                        <ListView Margin="10,0" Width="350" HeaderTemplate="{StaticResource ColumnHeaderDataTemplate}" Header="popular albums" ItemsSource="{Binding Artist.OnlinePopularAlbumItems}">
+                            <ListView.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapGrid Orientation="Horizontal" />
+                                </ItemsPanelTemplate>
+                            </ListView.ItemsPanel>
                             <ListView.ItemTemplate>
                                 <DataTemplate>
-                                    <Grid Background="Red" Height="30" Width="300" />
+                                    <Grid Height="150" Width="150">
+                                        <Image Source="{Binding Picture}" Stretch="UniformToFill"/>
+                                        <Grid Height="80" VerticalAlignment="Bottom">
+                                            <Grid.Background>
+                                                <LinearGradientBrush StartPoint="1,0">
+                                                    <GradientStopCollection>
+                                                        <GradientStop Color="#990A0A0A" Offset="1"/>
+                                                        <GradientStop Color="#00020202" />
+                                                    </GradientStopCollection>
+                                                </LinearGradientBrush>
+                                            </Grid.Background>
+                                            <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="5">
+                                                <TextBlock Text="{Binding Name}" TextWrapping="NoWrap" TextTrimming="WordEllipsis" FontSize="18" FontWeight="Light" />
+                                                <!--<TextBlock Text="{Binding Year}" FontSize="14" Foreground="#7FF5F5F5"/>-->
+                                            </StackPanel>
+                                        </Grid>
+                                    </Grid>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="ListViewItem">
+                                    <Setter Property="Padding" Value="-5"/>
+                                    <Setter Property="Margin" Value="0"/>
+                                </Style>
+                            </ListView.ItemContainerStyle>
                         </ListView>
                         <TextBlock Margin="10,0" Width="450" FontSize="42" TextWrapping="Wrap">
                             <Run Text="❝" Foreground="Orange" FontFamily="Segoe UI Symbol"/>
                             <Run Text="{Binding Artist.Biography}" FontSize="18"/>
-                            <Run Text="❞" Foreground="Orange" FontFamily="Segoe UI Symbol"/>                            
+                            <Run Text="❞" Foreground="Orange" FontFamily="Segoe UI Symbol"/>
                         </TextBlock>
                     </StackPanel>
                 </ScrollViewer>
