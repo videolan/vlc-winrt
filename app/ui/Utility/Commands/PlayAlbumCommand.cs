@@ -28,7 +28,7 @@ namespace VLC_WINRT.Utility.Commands
                 if (sB != null)
                 {
                     await sB.BeginAsync();
-                    NavigationService.NavigateTo(typeof(PlayMusic));
+                    NavigationService.NavigateTo(typeof (PlayMusic));
                 }
             }
         }

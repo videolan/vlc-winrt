@@ -1,5 +1,7 @@
 ﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
+using VLC_WINRT.Utility.Helpers;
 using VLC_WINRT.Utility.Services.RunTime;
 
 namespace VLC_WINRT.Views
@@ -14,8 +16,15 @@ namespace VLC_WINRT.Views
             this.InitializeComponent();
         }
 
-        private void GoBack_Click(object sender, RoutedEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            base.OnNavigatedTo(e);
+            FadeInPage.Begin();
+        }
+
+        private async void GoBack_Click(object sender, RoutedEventArgs e)
+        {
+            await FadeOutPage.BeginAsync();
             NavigationService.NavigateTo(typeof(MainPage));
         }
     }
