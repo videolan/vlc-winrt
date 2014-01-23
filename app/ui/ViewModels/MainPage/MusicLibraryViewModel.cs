@@ -356,24 +356,18 @@ namespace VLC_WINRT.ViewModels.MainPage
                         }
                         foreach (var artists in xBoxArtistItem.RelatedArtists.Items)
                         {
-                            var OnlinePopularAlbums = new List<OnlineAlbumItem>();
-                            foreach (var albums in artists.Albums.Items)
+                            var onlinePopularAlbums = artists.Albums.Items.Select(albums => new OnlineAlbumItem()
                             {
-                                OnlinePopularAlbums.Add(new OnlineAlbumItem()
-                                {
-                                    Artist = artists.Name,
-                                    Name = albums.Name,
-                                    Picture = albums.ImageUrl,
-                                });
-                            }
+                                Artist = artists.Name, Name = albums.Name, Picture = albums.ImageUrl,
+                            }).ToList();
 
-                            var ArtistPic = new List<string>();
-                            ArtistPic.Add(artists.ImageUrl);
+                            var artistPic = new List<string>();
+                            artistPic.Add(artists.ImageUrl);
                             OnlineRelatedArtists.Add(new ArtistItemViewModel()
                             {
                                 Name = artists.Name,
-                                OnlinePopularAlbumItems = OnlinePopularAlbums,
-                                HdPicturesList = ArtistPic,
+                                OnlinePopularAlbumItems = onlinePopularAlbums,
+                                HdPicturesList = artistPic,
                             });
                         }
                     }
@@ -393,14 +387,15 @@ namespace VLC_WINRT.ViewModels.MainPage
                                 Picture = results.Elements("image").ElementAt(3).Value,
                             };
 
-                        OnlinePopularAlbumItems = topAlbums.ToList();
+                        foreach (var item in topAlbums)
+                            OnlinePopularAlbumItems.Add(item);
 
 
                         lastFmClient = new HttpClient();
                         response =
                             await
                                 lastFmClient.GetStringAsync(
-                                    "http://ws.audioscrobbler.com/2.0/?method=artist.getsimilar&api_key=" +
+                                    "http://ws.audioscrobbler.com/2.0/?method=artist.getsimilar&limit=6&api_key=" +
                                     App.ApiKeyLastFm + "&artist=" + artist);
                         xml = XDocument.Parse(response);
                         var similarArtists = from results in xml.Descendants("artist")
@@ -409,9 +404,11 @@ namespace VLC_WINRT.ViewModels.MainPage
                                             Name = results.Element("name").Value.ToString(),
                                             Picture = results.Elements("image").ElementAt(3).Value,
                                         };
-
-                        OnlineRelatedArtists = similarArtists.ToList();
+                        foreach (var item in similarArtists)
+                            OnlineRelatedArtists.Add(item);
                     }
+                    OnPropertyChanged("OnlineRelatedArtists");
+                    OnPropertyChanged("OnlinePopularAlbumItems");
                 }
                 catch (Exception e)
                 {

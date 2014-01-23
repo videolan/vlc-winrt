@@ -20,7 +20,7 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <StackPanel Orientation="Horizontal" Width="290">
+        <StackPanel Orientation="Horizontal" Width="290" Tapped="InformationsCurrentPlayingGrid_Tapped">
             <Image Height="60" Stretch="UniformToFill" Source="{Binding Artist.CurrentAlbumItem.Picture}" />
             <StackPanel Margin="10,0,0,0">
                 <TextBlock Style="{StaticResource BodyTextStyle}" Foreground="White" >

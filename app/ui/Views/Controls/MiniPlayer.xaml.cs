@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 // Pour en savoir plus sur le modèle d'élément Contrôle utilisateur, consultez la page http://go.microsoft.com/fwlink/?LinkId=234236
+using VLC_WINRT.Utility.Services.RunTime;
 
 namespace VLC_WINRT.Views.Controls
 {
@@ -44,6 +45,11 @@ namespace VLC_WINRT.Views.Controls
 
         private void UserControl_SizeChanged_1(object sender, SizeChangedEventArgs e)
         {
+        }
+
+        private void InformationsCurrentPlayingGrid_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            NavigationService.NavigateTo(typeof(PlayMusic));
         }
     }
 }
