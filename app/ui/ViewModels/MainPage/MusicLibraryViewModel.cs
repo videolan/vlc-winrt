@@ -172,7 +172,7 @@ namespace VLC_WINRT.ViewModels.MainPage
             private string _name;
             private string _picture;
             private ObservableCollection<AlbumItem> _albumItems = new ObservableCollection<AlbumItem>();
-            private int _currentAlbumIndex;
+            private int _currentAlbumIndex = 0;
 
             // more informations
             private string _biography;
@@ -415,12 +415,12 @@ namespace VLC_WINRT.ViewModels.MainPage
             public AlbumItem(IReadOnlyList<StorageFile> tracks, string name, string artist)
             {
                 if (tracks == null) return;
-                LoadTracks(tracks, artist);
+                LoadTracks(tracks, artist, name);
                 ChargementAlbumBio(name, artist);
             }
             public AlbumItem() { }
 
-            public async Task LoadTracks(IReadOnlyList<StorageFile> tracks, string artist)
+            public async Task LoadTracks(IReadOnlyList<StorageFile> tracks, string artist, string album)
             {
                 int i = 0;
                 foreach (var track in tracks)
@@ -429,7 +429,7 @@ namespace VLC_WINRT.ViewModels.MainPage
                     var trackInfos = await track.Properties.GetMusicPropertiesAsync();
                     TrackItem trackItem = new TrackItem();
                     trackItem.ArtistName = artist;
-                    trackItem.AlbumName = Name;
+                    trackItem.AlbumName = album;
                     trackItem.Name = trackInfos.Title;
                     trackItem.Path = track.Path;
                     trackItem.Duration = trackInfos.Duration;

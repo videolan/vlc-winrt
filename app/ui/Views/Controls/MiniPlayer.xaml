@@ -15,7 +15,7 @@
         <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     </UserControl.Resources>
 
-    <Grid HorizontalAlignment="Right" Visibility="{Binding IsPlaying, Converter={StaticResource BooleanToVisibilityConverter}}">
+    <Grid HorizontalAlignment="Right" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
@@ -27,8 +27,10 @@
                     <Run Text="{Binding Title}" FontWeight="SemiBold"/>
                     <LineBreak />
                     <Run Text="{Binding Artist.Name}"/>
+                    <LineBreak />
+                    <Run Text="{Binding PositionInSeconds}"/>
                 </TextBlock>
-                <ProgressBar Margin="0,10,0,0" HorizontalAlignment="Stretch" Value="{Binding PositionInSeconds}" Maximum="{Binding TimeTotal}" IsEnabled="True" IsIndeterminate="True"/>
+                <ProgressBar Margin="0,10,0,0" HorizontalAlignment="Stretch" Value="{Binding PositionInSeconds}" Maximum="{Binding TimeTotal}" IsEnabled="True" />
             </StackPanel>
         </StackPanel>
         <Grid Grid.Column="1" >

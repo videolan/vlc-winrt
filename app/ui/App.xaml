@@ -624,9 +624,9 @@
 
             <!--CustomizedAppBarButton ala Windows 8.1-->
             <Style x:Key="ModernAppBarButtonStyle" TargetType="Button" BasedOn="{StaticResource TextButtonStyle}">
-                <Setter Property="Foreground" Value="DimGray"/>
+                <Setter Property="Foreground" Value="WhiteSmoke"/>
                 <Setter Property="FontFamily" Value="Segoe UI Symbol"/>
-                <Setter Property="FontSize" Value="26"/>
+                <Setter Property="FontSize" Value="38"/>
                 <Setter Property="HorizontalAlignment" Value="Center"/>
                 <Setter Property="VerticalAlignment" Value="Center"/>
                 <Setter Property="Margin" Value="0,0,30,0"/>
