@@ -1,5 +1,6 @@
 ﻿// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
@@ -33,7 +34,19 @@ namespace VLC_WINRT.Views
 
         private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
         {
-            var width = Window.Current.Bounds.Width;
+            Dispatcher.RunAsync(CoreDispatcherPriority.High, () =>
+            {
+                if (sizeChangedEventArgs.NewSize.Width < 1080)
+                {
+                    MainLogoHeader.Margin = new Thickness(-43,0,0,0);
+                    MiniPlayer.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    MiniPlayer.Margin = new Thickness(0);
+                    MainLogoHeader.Visibility = Visibility.Visible;
+                }
+            });
         }
 
         public override void SetDataContext()
