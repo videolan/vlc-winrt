@@ -136,7 +136,7 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <Image Source="ms-appx:///Assets/Logo.png" Height="50"/>
-            <ListView ItemContainerStyle="{StaticResource PostListViewItemContainerStyle}" x:Name="SectionsHeaderListView" Grid.Column="1" VerticalAlignment="Center" SelectionMode="None" IsItemClickEnabled="True" ItemClick="SectionsHeaderListView_OnItemClick" ItemsSource="{Binding Panels}" RenderTransformOrigin="0.5,0.5">
+            <ListView ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" x:Name="SectionsHeaderListView" Grid.Column="1" VerticalAlignment="Center" SelectionMode="None" IsItemClickEnabled="True" ItemClick="SectionsHeaderListView_OnItemClick" ItemsSource="{Binding Panels}" RenderTransformOrigin="0.5,0.5">
                 <ListView.RenderTransform>
                     <CompositeTransform/>
                 </ListView.RenderTransform>

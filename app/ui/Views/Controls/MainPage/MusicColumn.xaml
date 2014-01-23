@@ -20,7 +20,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <ListView x:Name="SectionsHeaderListView" Margin="0,10,0,0" ItemContainerStyle="{StaticResource PostListViewItemContainerStyle}" SelectionMode="None" IsItemClickEnabled="True" ItemClick="SectionsHeaderListView_OnItemClick" ItemsSource="{Binding Panels}">
+        <ListView x:Name="SectionsHeaderListView" Margin="0,10,0,0" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" SelectionMode="None" IsItemClickEnabled="True" ItemClick="SectionsHeaderListView_OnItemClick" ItemsSource="{Binding Panels}">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <wrapPanelControl:WrapPanel Margin="50,0,0,0" Orientation="Horizontal" >
@@ -48,7 +48,7 @@
                     <ColumnDefinition Width="1"/>
                     <ColumnDefinition Width="320"/>
                 </Grid.ColumnDefinitions>
-                <ListView Grid.Column="0" Margin="-15,0,0,0" Header="{Binding Artist.Count}" ItemsSource="{Binding Artist}" SelectionMode="Single" SelectionChanged="OnSelectedArtist_Changed">
+                <ListView Grid.Column="0" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" Margin="-15,0,0,0" Header="{Binding Artist.Count}" ItemsSource="{Binding Artist}" SelectionMode="Single" SelectionChanged="OnSelectedArtist_Changed">
                     <ListView.HeaderTemplate>
                         <DataTemplate>
                             <TextBlock Margin="20,5,0,10"
@@ -100,7 +100,7 @@
                     </ListView.GroupStyle>
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">
-                            <Setter Property="Padding" Value="0"/>
+                            <Setter Property="Padding" Value="-5"/>
                             <Setter Property="Margin" Value="0"/>
                         </Style>
                     </ListView.ItemContainerStyle>
@@ -133,7 +133,7 @@
                 </ListView>
 
                 <Border Width="1" Grid.Column="3" Background="#663E3E3E"/>
-                <ListView Grid.Column="4" x:Name="AlbumPlaylistListView" >
+                <ListView Grid.Column="4" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" x:Name="AlbumPlaylistListView" >
                     <ListView.HeaderTemplate>
                         <DataTemplate>
                             <StackPanel>
