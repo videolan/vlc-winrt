@@ -128,14 +128,9 @@
                                 <DataTemplate>
                                     <Grid Width="280" Height="156">
                                         <Image Source="{Binding Group.Picture}" Stretch="UniformToFill"/>
-                                        <Grid VerticalAlignment="Bottom" Height="35"  Margin="0,0,0,20" HorizontalAlignment="Left">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto" />
-                                                <ColumnDefinition Width="*" />
-                                            </Grid.ColumnDefinitions>
-                                            <Polygon Fill="{StaticResource MainColor}" Points="0,0 0,35 180,35 200,0" Grid.ColumnSpan="2"/>
-                                            <TextBlock Grid.Column="0" MaxWidth="190" Text="{Binding Group.Name}" Foreground="White" TextWrapping="NoWrap" TextTrimming="WordEllipsis" Margin="10,0" FontSize="22" VerticalAlignment="Center" />
-                                            <TextBlock Grid.Column="1" Text="&#xE097;" FontFamily="Segoe UI Symbol" FontSize="20" VerticalAlignment="Bottom" Margin="0,0,0,5" />
+                                        <Grid VerticalAlignment="Bottom" Height="35" Margin="0,0,0,20" HorizontalAlignment="Left">
+                                            <Polygon Fill="{StaticResource MainColor}" Points="0,0 0,35 180,35 200,0" />
+                                            <TextBlock MaxWidth="160" Text="{Binding Group.Name}" Foreground="White" TextWrapping="NoWrap" TextTrimming="WordEllipsis" Margin="10,0" FontSize="22" VerticalAlignment="Center" />
                                         </Grid>
                                     </Grid>
                                 </DataTemplate>
@@ -215,7 +210,7 @@
                 </ListView>
             </Grid>
             <Grid x:Name="TracksPanel">
-                <ListView ItemsSource="{Binding Track}">
+                <ListView ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" ItemsSource="{Binding Track}">
                     <ListView.HeaderTemplate>
                         <DataTemplate>
                             <Grid Margin="5,0,0,5">
@@ -251,7 +246,7 @@
                                     </Grid.ColumnDefinitions>
                                     <TextBlock Grid.Column="0" Text="{Binding Name}" Style="{StaticResource BodyTextStyle}" />
                                     <TextBlock Grid.Column="2" Text="{Binding ArtistName}" Style="{StaticResource BodyTextStyle}"/>
-                                    <TextBlock Grid.Column="4" Text="album" Style="{StaticResource BodyTextStyle}"/>
+                                    <TextBlock Grid.Column="4" Text="{Binding AlbumName}" Style="{StaticResource BodyTextStyle}"/>
                                     <TextBlock Grid.Column="6" Text="" FontSize="22" FontFamily="Segoe UI Symbol" Visibility="{Binding IsFavorite, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                                 </Grid>
                             </Button>
