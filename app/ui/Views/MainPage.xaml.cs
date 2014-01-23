@@ -38,11 +38,13 @@ namespace VLC_WINRT.Views
             {
                 if (sizeChangedEventArgs.NewSize.Width < 1080)
                 {
+                    MainLogoHeader.VerticalAlignment = VerticalAlignment.Top;
                     MainLogoHeader.Margin = new Thickness(-43,0,0,0);
                     MiniPlayer.Visibility = Visibility.Collapsed;
                 }
                 else
                 {
+                    MainLogoHeader.VerticalAlignment = VerticalAlignment.Center;
                     MainLogoHeader.Margin = new Thickness(0);
                     MiniPlayer.Visibility = Visibility.Visible;
                 }
