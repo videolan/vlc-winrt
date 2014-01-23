@@ -9,6 +9,7 @@
     d:DesignWidth="1024"
     d:DesignHeight="768"
     DataContext="{Binding Source={StaticResource Locator}, Path=PlayVideoVM}">
+    
     <views:BasePage.Resources>
         <ResourceDictionary >
             <ResourceDictionary.MergedDictionaries>

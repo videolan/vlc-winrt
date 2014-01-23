@@ -14,6 +14,12 @@ namespace VLC_WINRT.Views
         {
             InitializeComponent();
             this.SizeChanged += OnSizeChanged;
+            this.PointerMoved += OnPointerMoved;
+        }
+
+        private void OnPointerMoved(object sender, PointerRoutedEventArgs pointerRoutedEventArgs)
+        {
+
         }
 
         private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
