@@ -7,6 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:VLC_WINRT.Views.Controls"
     xmlns:converters="using:VLC_WINRT.Utility.Converters"
+    xmlns:wrapPanelControl="using:VLC_WINRT.Views.Controls.WrapPanelControl"
     mc:Ignorable="d"
     DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}">
 
@@ -68,6 +69,48 @@
                                 </ListView.ItemTemplate>
                             </ListView>
                         </Grid>
+                        <ListView Margin="10,0" ItemsSource="{Binding Artist.OnlineRelatedArtists}" SelectedIndex="0" SelectionMode="None" IsItemClickEnabled="True" >
+                            <ListView.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <wrapPanelControl:WrapPanel Margin="10,0,0,0" Orientation="Horizontal">
+                                        <wrapPanelControl:WrapPanel.ChildrenTransitions>
+                                            <TransitionCollection>
+                                                <AddDeleteThemeTransition />
+                                                <RepositionThemeTransition />
+                                                <EntranceThemeTransition FromHorizontalOffset="250"/>
+                                            </TransitionCollection>
+                                        </wrapPanelControl:WrapPanel.ChildrenTransitions>
+                                    </wrapPanelControl:WrapPanel>
+                                </ItemsPanelTemplate>
+                            </ListView.ItemsPanel>
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="ListView">
+                                    <Setter Property="Padding" Value="-3"/>
+                                    <Setter Property="Margin" Value="0"/>
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Height="150" Width="150">
+                                        <Image Source="{Binding Picture}" Stretch="UniformToFill"/>
+                                        <Grid Height="80" VerticalAlignment="Bottom">
+                                            <Grid.Background>
+                                                <LinearGradientBrush StartPoint="1,0">
+                                                    <GradientStopCollection>
+                                                        <GradientStop Color="#990A0A0A" Offset="1"/>
+                                                        <GradientStop Color="#00020202" />
+                                                    </GradientStopCollection>
+                                                </LinearGradientBrush>
+                                            </Grid.Background>
+                                            <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="5">
+                                                <TextBlock Text="{Binding Name}" TextWrapping="NoWrap" TextTrimming="WordEllipsis" FontSize="18" FontWeight="Light" />
+                                                <!--<TextBlock Text="{Binding Year}" FontSize="14" Foreground="#7FF5F5F5"/>-->
+                                            </StackPanel>
+                                        </Grid>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
                         <TextBlock Margin="10,0" Width="450" FontSize="42" TextWrapping="Wrap">
                             <Run Text="❝" Foreground="Orange" FontFamily="Segoe UI Symbol"/>
                             <Run Text="{Binding Artist.Biography}" FontSize="18"/>

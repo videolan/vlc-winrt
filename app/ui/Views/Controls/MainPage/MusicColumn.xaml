@@ -83,7 +83,7 @@
                                     <wrapPanelControl:WrapPanel Margin="10,0,0,0" Orientation="Horizontal">
                                         <wrapPanelControl:WrapPanel.ChildrenTransitions>
                                             <TransitionCollection>
-                                                <AddDeleteThemeTransition/>
+                                                <AddDeleteThemeTransition />
                                                 <RepositionThemeTransition />
                                                 <EntranceThemeTransition FromHorizontalOffset="250"/>
                                             </TransitionCollection>
@@ -100,7 +100,7 @@
                     </ListView.GroupStyle>
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">
-                            <Setter Property="Padding" Value="-5"/>
+                            <Setter Property="Padding" Value="-3"/>
                             <Setter Property="Margin" Value="0"/>
                         </Style>
                     </ListView.ItemContainerStyle>

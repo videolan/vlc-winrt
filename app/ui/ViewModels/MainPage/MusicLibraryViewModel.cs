@@ -171,7 +171,6 @@ namespace VLC_WINRT.ViewModels.MainPage
                 OnPropertyChanged("Artist");
                 OnPropertyChanged("Albums");
                 OnPropertyChanged("Tracks");
-
             }
         }
 
@@ -332,47 +331,57 @@ namespace VLC_WINRT.ViewModels.MainPage
             {
                 try
                 {
-                    var token = await Locator.MusicLibraryVM.XboxMusicHelper.GetAccessToken("5bf9b614-1651-4b49-98ee-1831ae58fb99",
-                        "copuMsVkCAFLQlP38bV3y+Azysz/crELZ5NdQU7+ddg=");
-                    Locator.MusicLibraryVM.XboxMusic = await Locator.MusicLibraryVM.XboxMusicHelper.SearchMediaCatalog(token, artist, 3);
-                    var xBoxArtistItem = Locator.MusicLibraryVM.XboxMusic.Artists.Items.FirstOrDefault(x => x.Name == artist);
+                    var token =
+                        await
+                            Locator.MusicLibraryVM.XboxMusicHelper.GetAccessToken(
+                                "5bf9b614-1651-4b49-98ee-1831ae58fb99",
+                                "copuMsVkCAFLQlP38bV3y+Azysz/crELZ5NdQU7+ddg=");
+                    Locator.MusicLibraryVM.XboxMusic =
+                        await Locator.MusicLibraryVM.XboxMusicHelper.SearchMediaCatalog(token, artist, 3);
+                    var xBoxArtistItem =
+                        Locator.MusicLibraryVM.XboxMusic.Artists.Items.FirstOrDefault(x => x.Name == artist);
                     Locator.MusicLibraryVM.ImgCollection.Add(xBoxArtistItem.ImageUrl);
+
                     HdPicturesList.Add(xBoxArtistItem.ImageUrl);
-                    foreach (var album in xBoxArtistItem.Albums.Items)
+                    if (xBoxArtistItem.Albums != null)
                     {
-                        OnlinePopularAlbumItems.Add(new OnlineAlbumItem()
+                        foreach (var album in xBoxArtistItem.Albums.Items)
                         {
-                            Artist = xBoxArtistItem.Name,
-                            Name = album.Name,
-                            Picture = album.ImageUrl,
-                        });
-                    }
-                    foreach (var artists in xBoxArtistItem.RelatedArtists.Items)
-                    {
-                        var OnlinePopularAlbums = new List<OnlineAlbumItem>();
-                        foreach (var albums in artists.Albums.Items)
-                        {
-                            OnlinePopularAlbums.Add(new OnlineAlbumItem()
+                            OnlinePopularAlbumItems.Add(new OnlineAlbumItem()
                             {
-                                Artist = artists.Name,
-                                Name = albums.Name,
-                                Picture = albums.ImageUrl,
+                                Artist = xBoxArtistItem.Name,
+                                Name = album.Name,
+                                Picture = album.ImageUrl,
                             });
                         }
-
-                        var ArtistPic = new List<string>();
-                        ArtistPic.Add(artists.ImageUrl);
-                        OnlineRelatedArtists.Add(new ArtistItemViewModel()
+                        foreach (var artists in xBoxArtistItem.RelatedArtists.Items)
                         {
-                            Name = artists.Name,
-                            OnlinePopularAlbumItems = OnlinePopularAlbums,
-                            HdPicturesList = ArtistPic,
-                        });
-                    }
+                            var OnlinePopularAlbums = new List<OnlineAlbumItem>();
+                            foreach (var albums in artists.Albums.Items)
+                            {
+                                OnlinePopularAlbums.Add(new OnlineAlbumItem()
+                                {
+                                    Artist = artists.Name,
+                                    Name = albums.Name,
+                                    Picture = albums.ImageUrl,
+                                });
+                            }
 
+                            var ArtistPic = new List<string>();
+                            ArtistPic.Add(artists.ImageUrl);
+                            OnlineRelatedArtists.Add(new ArtistItemViewModel()
+                            {
+                                Name = artists.Name,
+                                OnlinePopularAlbumItems = OnlinePopularAlbums,
+                                HdPicturesList = ArtistPic,
+                            });
+                        }
+                    }
                 }
-                catch
-                { }
+                catch (Exception e)
+                {
+                    Debug.WriteLine("XBOX Error\n" + e.ToString());
+                }
             }
         }
 
