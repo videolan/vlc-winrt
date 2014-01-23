@@ -1,4 +1,6 @@
-﻿using Windows.UI.Xaml.Input;
+﻿using System;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Input;
 using VLC_WINRT.ViewModels;
 
 namespace VLC_WINRT.Views
@@ -11,6 +13,14 @@ namespace VLC_WINRT.Views
         public PlayVideo()
         {
             InitializeComponent();
+            this.SizeChanged += OnSizeChanged;
+        }
+
+        private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
+        {
+            var x = Window.Current.Bounds.Width;
+            var y = Window.Current.Bounds.Height;
+            Locator.PlayVideoVM.SetSizeVideoPlayer((uint)x,(uint)y);
         }
 
         public override void SetDataContext()

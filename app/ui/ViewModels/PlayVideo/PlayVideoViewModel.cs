@@ -50,7 +50,7 @@ namespace VLC_WINRT.ViewModels.PlayVideo
 
             _vlcPlayerService = IoC.GetInstance<MediaPlayerService>();
             _vlcPlayerService.StatusChanged += PlayerStateChanged;
-
+            
             _mouseService = IoC.GetInstance<MouseService>();
 
             _skipAhead = new ActionCommand(() => _vlcPlayerService.SkipAhead());
@@ -257,6 +257,11 @@ namespace VLC_WINRT.ViewModels.PlayVideo
             }
 
             ElapsedTime = TimeSpan.FromSeconds(PositionInSeconds);
+        }
+
+        public async Task SetSizeVideoPlayer(uint x, uint y)
+        {
+            _vlcPlayerService.SetSizeVideoPlayer(x, y);
         }
     }
 }

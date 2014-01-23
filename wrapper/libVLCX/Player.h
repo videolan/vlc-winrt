@@ -49,6 +49,7 @@ namespace libVLCX {
 		int           SetSubtitleTrack(int track);
 		virtual       ~Player();
 		void		  DetachEvent();
+		void	      UpdateSize(unsigned int x, unsigned int y);
 
 	public:
 		event MediaEndedHandler^ MediaEnded;

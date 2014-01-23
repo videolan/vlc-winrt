@@ -373,7 +373,6 @@ namespace VLC_WINRT.ViewModels.PlayMusic
             }
         }
 
-
         private async Task UpdatePosition(object sender, object e)
         {
             OnPropertyChanged("PositionInSeconds");

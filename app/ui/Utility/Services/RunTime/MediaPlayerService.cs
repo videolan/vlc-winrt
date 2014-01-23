@@ -203,5 +203,17 @@ namespace VLC_WINRT.Utility.Services.RunTime
             }
             return length;
         }
+
+        public async Task SetSizeVideoPlayer(uint x, uint y)
+        {
+            if (_vlcPlayer == null || _vlcInitializeTask == null)
+                return;
+            await _vlcInitializeTask;
+
+            lock (_controlLock)
+            {
+                _vlcPlayer.UpdateSize(x, y);
+            }
+        }
     }
 }

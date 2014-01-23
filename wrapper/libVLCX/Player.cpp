@@ -85,6 +85,11 @@ void Player::InitializeVLC()
 }
 
 
+void Player::UpdateSize(unsigned int x, unsigned int y)
+{
+	// Have to update the size there
+}
+
 void Player::MediaEndedCall(){
 	MediaEnded();
 }
