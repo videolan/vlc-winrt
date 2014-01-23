@@ -15,14 +15,17 @@ using Windows.Storage.Streams;
 using Windows.System.Threading;
 using Windows.UI.Core;
 using Windows.UI.Popups;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media.Imaging;
 using VLC_WINRT.Common;
-using VLC_WINRT.Model;
 using VLC_WINRT.Utility.Commands;
 using VLC_WINRT.Utility.Helpers;
 using System.Text.RegularExpressions;
+using VLC_WINRT.Views.Controls.MainPage;
 using XboxMusicLibrary;
 using XboxMusicLibrary.Models;
+using Panel = VLC_WINRT.Model.Panel;
 
 namespace VLC_WINRT.ViewModels.MainPage
 {
@@ -30,7 +33,7 @@ namespace VLC_WINRT.ViewModels.MainPage
     {
         private ObservableCollection<Panel> _panels = new ObservableCollection<Panel>();
         public int nbOfFiles = 0;
-        private ObservableCollection<ArtistItemViewModel> _artists;
+        private ObservableCollection<ArtistItemViewModel> _artists = new ObservableCollection<ArtistItemViewModel>();
         private ObservableCollection<string> _albumsCover = new ObservableCollection<string>();
         private ObservableCollection<TrackItem> _tracks = new ObservableCollection<TrackItem>();
 
@@ -128,7 +131,7 @@ namespace VLC_WINRT.ViewModels.MainPage
 
                 }, period);
 
-                _artists = new ObservableCollection<ArtistItemViewModel>();
+                Artist = new ObservableCollection<ArtistItemViewModel>();
                 foreach (var artistItem in musicFolder)
                 {
                     MusicProperties artistProperties = null;
@@ -150,6 +153,7 @@ namespace VLC_WINRT.ViewModels.MainPage
                         OnPropertyChanged("Artist");
                     }
                 }
+                ExecuteSemanticZoom();
             }
             else
             {
@@ -168,9 +172,27 @@ namespace VLC_WINRT.ViewModels.MainPage
                         }
                     }
                 }
+                ExecuteSemanticZoom();
                 OnPropertyChanged("Artist");
                 OnPropertyChanged("Albums");
                 OnPropertyChanged("Tracks");
+            }
+        }
+
+        void ExecuteSemanticZoom()
+        {
+            var page = App.ApplicationFrame.Content as Views.MainPage;
+            if (page != null)
+            {
+                var albumsByArtistSemanticZoom = page.GetFirstDescendantOfType<SemanticZoom>() as SemanticZoom;
+                var musicColumn = page.GetFirstDescendantOfType<MusicColumn>() as MusicColumn;
+                var albumsCollection = musicColumn.Resources["albumsCollection"] as CollectionViewSource;
+                if (albumsByArtistSemanticZoom != null)
+                {
+                    var listviewbase = albumsByArtistSemanticZoom.ZoomedOutView as ListViewBase;
+                    if (albumsCollection != null)
+                        listviewbase.ItemsSource = albumsCollection.View.CollectionGroups;
+                }
             }
         }
 

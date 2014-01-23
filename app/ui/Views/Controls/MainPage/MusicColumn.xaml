@@ -42,13 +42,13 @@
         <Grid Grid.Row="1" x:Name="SectionsGrid" Margin="50,0,0,0">
             <Grid x:Name="ArtistPanel" >
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="320" />
+                    <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="1"/>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="1"/>
-                    <ColumnDefinition Width="320"/>
+                    <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <ListView Grid.Column="0" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" Margin="-15,0,0,0" Header="{Binding Artist.Count}" ItemsSource="{Binding Artist}" SelectionMode="Single" SelectionChanged="OnSelectedArtist_Changed">
+                <ListView x:Name="ArtistListView" Grid.Column="0" IsSwipeEnabled="False" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" Margin="-15,0,0,0" Header="{Binding Artist.Count}" ItemsSource="{Binding Artist}" SelectionMode="Single" SelectionChanged="OnSelectedArtist_Changed">
                     <ListView.HeaderTemplate>
                         <DataTemplate>
                             <TextBlock Margin="20,5,0,10"
@@ -75,65 +75,95 @@
                     </ListView.ItemTemplate>
                 </ListView>
                 <Border Width="1" Grid.Column="1" Background="#663E3E3E" />
-                <ListView x:Name="AlbumsByArtistListView" Grid.Column="2" ItemsSource="{Binding Source={StaticResource albumsCollection}}" SelectedIndex="0" SelectionMode="None" IsItemClickEnabled="True" ItemClick="AlbumGridView_ItemClick">
-                    <ListView.GroupStyle>
-                        <GroupStyle>
-                            <GroupStyle.Panel>
-                                <ItemsPanelTemplate>
-                                    <wrapPanelControl:WrapPanel Margin="10,0,0,0" Orientation="Horizontal">
-                                        <wrapPanelControl:WrapPanel.ChildrenTransitions>
-                                            <TransitionCollection>
-                                                <AddDeleteThemeTransition />
-                                                <RepositionThemeTransition />
-                                                <EntranceThemeTransition FromHorizontalOffset="250"/>
-                                            </TransitionCollection>
-                                        </wrapPanelControl:WrapPanel.ChildrenTransitions>
-                                    </wrapPanelControl:WrapPanel>
-                                </ItemsPanelTemplate>
-                            </GroupStyle.Panel>
-                            <GroupStyle.HeaderTemplate>
+                <SemanticZoom Grid.Column="2" x:Name="AlbumsByArtistSemanticZoom" 
+                              ViewChangeCompleted="AlbumsByArtistSemanticZoom_OnViewChangeCompleted"
+                              ScrollViewer.HorizontalScrollMode="Disabled"
+                              ScrollViewer.VerticalScrollMode="Disabled"
+                              ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                              ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                    <SemanticZoom.ZoomedOutView>
+                        <GridView IsSwipeEnabled="False" VerticalAlignment="Center">
+                            <GridView.ItemTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Name, Converter={StaticResource StringToUpperConverter}}" TextWrapping="NoWrap" TextTrimming="WordEllipsis" Margin="10" FontSize="23" />
+                                    <Grid Width="300" Height="170">
+                                        <Image Source="{Binding Group.Picture}" Stretch="UniformToFill"/>
+                                        <Grid VerticalAlignment="Bottom" Height="35"  Margin="0,0,0,20" HorizontalAlignment="Left">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Polygon Fill="{StaticResource MainColor}" Points="0,0 0,35 200,35 220,0" Grid.ColumnSpan="2"/>
+                                            <TextBlock Grid.Column="0" MaxWidth="190" Text="{Binding Group.Name}" Foreground="White" TextWrapping="NoWrap" TextTrimming="WordEllipsis" Margin="10,4,10,0" FontSize="25" FontWeight="Light" VerticalAlignment="Center" />
+                                            <TextBlock Grid.Column="1" Text="&#xE097;" FontFamily="Segoe UI Symbol" FontSize="20" VerticalAlignment="Bottom" Margin="0,0,0,5" />
+                                        </Grid>
+
+                                    </Grid>
                                 </DataTemplate>
-                            </GroupStyle.HeaderTemplate>
-                        </GroupStyle>
-                    </ListView.GroupStyle>
-                    <ListView.ItemContainerStyle>
-                        <Style TargetType="ListViewItem">
-                            <Setter Property="Padding" Value="-3"/>
-                            <Setter Property="Margin" Value="0"/>
-                        </Style>
-                    </ListView.ItemContainerStyle>
-                    <ListView.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <StackPanel />
-                        </ItemsPanelTemplate>
-                    </ListView.ItemsPanel>
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <Grid Height="150" Width="150">
-                                <Image Source="{Binding Picture}" Stretch="UniformToFill"/>
-                                <Grid Height="80" VerticalAlignment="Bottom">
-                                    <Grid.Background>
-                                        <LinearGradientBrush StartPoint="1,0">
-                                            <GradientStopCollection>
-                                                <GradientStop Color="#990A0A0A" Offset="1"/>
-                                                <GradientStop Color="#00020202" />
-                                            </GradientStopCollection>
-                                        </LinearGradientBrush>
-                                    </Grid.Background>
-                                    <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="5">
-                                        <TextBlock Text="{Binding Name}" TextWrapping="NoWrap" TextTrimming="WordEllipsis" FontSize="18" FontWeight="Light" />
-                                        <!--<TextBlock Text="{Binding Year}" FontSize="14" Foreground="#7FF5F5F5"/>-->
-                                    </StackPanel>
-                                </Grid>
-                            </Grid>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                            </GridView.ItemTemplate>
+                        </GridView>
+                    </SemanticZoom.ZoomedOutView>
+                    <SemanticZoom.ZoomedInView>
+                        <ListView x:Name="AlbumsByArtistListView" IsSwipeEnabled="False" ItemsSource="{Binding Source={StaticResource albumsCollection}}" SelectedIndex="0" SelectionMode="None" IsItemClickEnabled="True" ItemClick="AlbumGridView_ItemClick">
+                            <ListView.GroupStyle>
+                                <GroupStyle>
+                                    <GroupStyle.Panel>
+                                        <ItemsPanelTemplate>
+                                            <wrapPanelControl:WrapPanel Margin="10,0,0,0" Orientation="Horizontal">
+                                                <wrapPanelControl:WrapPanel.ChildrenTransitions>
+                                                    <TransitionCollection>
+                                                        <AddDeleteThemeTransition />
+                                                        <RepositionThemeTransition />
+                                                        <EntranceThemeTransition FromHorizontalOffset="250"/>
+                                                    </TransitionCollection>
+                                                </wrapPanelControl:WrapPanel.ChildrenTransitions>
+                                            </wrapPanelControl:WrapPanel>
+                                        </ItemsPanelTemplate>
+                                    </GroupStyle.Panel>
+                                    <GroupStyle.HeaderTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Name, Converter={StaticResource StringToUpperConverter}}" TextWrapping="NoWrap" TextTrimming="WordEllipsis" Margin="10" FontSize="23" />
+                                        </DataTemplate>
+                                    </GroupStyle.HeaderTemplate>
+                                </GroupStyle>
+                            </ListView.GroupStyle>
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="ListViewItem">
+                                    <Setter Property="Padding" Value="-3"/>
+                                    <Setter Property="Margin" Value="0"/>
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                            <ListView.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel />
+                                </ItemsPanelTemplate>
+                            </ListView.ItemsPanel>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Height="150" Width="150">
+                                        <Image Source="{Binding Picture}" Stretch="UniformToFill"/>
+                                        <Grid Height="80" VerticalAlignment="Bottom">
+                                            <Grid.Background>
+                                                <LinearGradientBrush StartPoint="1,0">
+                                                    <GradientStopCollection>
+                                                        <GradientStop Color="#990A0A0A" Offset="1"/>
+                                                        <GradientStop Color="#00020202" />
+                                                    </GradientStopCollection>
+                                                </LinearGradientBrush>
+                                            </Grid.Background>
+                                            <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="5">
+                                                <TextBlock Text="{Binding Name}" TextWrapping="NoWrap" TextTrimming="WordEllipsis" FontSize="18" FontWeight="Light" />
+                                                <!--<TextBlock Text="{Binding Year}" FontSize="14" Foreground="#7FF5F5F5"/>-->
+                                            </StackPanel>
+                                        </Grid>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </SemanticZoom.ZoomedInView>
+                </SemanticZoom>
 
                 <Border Width="1" Grid.Column="3" Background="#663E3E3E"/>
-                <ListView Grid.Column="4" Margin="10,0,0,0" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" x:Name="AlbumPlaylistListView" FontFamily="Segoe UI" >
+                <ListView Grid.Column="4" IsSwipeEnabled="False" Margin="10,0,0,0" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" x:Name="AlbumPlaylistListView" FontFamily="Segoe UI" >
                     <ListView.HeaderTemplate>
                         <DataTemplate>
                             <StackPanel>

@@ -41,6 +41,7 @@ namespace VLC_WINRT.Views.Controls
                 App.Dispatcher.RunAsync(CoreDispatcherPriority.High,
                     () =>
                     {
+                        if (!Locator.MusicLibraryVM.ImgCollection.Any()) return;
                         FirstImage.Source = new BitmapImage(new Uri(Locator.MusicLibraryVM.ImgCollection[i], UriKind.RelativeOrAbsolute));
                         ZoomAnimation1.Begin();
                     });
