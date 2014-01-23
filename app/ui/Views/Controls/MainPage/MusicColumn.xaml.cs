@@ -78,7 +78,7 @@ namespace VLC_WINRT.Views.Controls.MainPage
 
             AlbumPlaylistListView.Header = album;
             AlbumPlaylistListView.ItemsSource = album.Tracks;
-
+            AlbumPlaylistListView.Width = 320;
             if (Window.Current.Bounds.Width < 1080)
             {
                 new PlayAlbumCommand().Execute(album);
