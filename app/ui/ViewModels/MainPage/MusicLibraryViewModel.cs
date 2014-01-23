@@ -161,7 +161,8 @@ namespace VLC_WINRT.ViewModels.MainPage
 
                 foreach (ArtistItemViewModel artist in Artist)
                 {
-                    ImgCollection.Add(artist.HdPicturesList[0]);
+                    if(artist.HdPicturesList != null && artist.HdPicturesList.Any())
+                        ImgCollection.Add(artist.HdPicturesList[0]);
                     foreach (AlbumItem album in artist.Albums)
                     {
                         AlbumCover.Add(album.Picture);

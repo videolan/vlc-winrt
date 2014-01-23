@@ -11,9 +11,11 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 
 // Pour en savoir plus sur le modèle d'élément Contrôle utilisateur, consultez la page http://go.microsoft.com/fwlink/?LinkId=234236
+using VLC_WINRT.Utility.Helpers;
 using VLC_WINRT.Utility.Services.RunTime;
 
 namespace VLC_WINRT.Views.Controls
@@ -24,32 +26,19 @@ namespace VLC_WINRT.Views.Controls
         {
             this.InitializeComponent();
         }
-        private void PreviousButton_Click(object sender, RoutedEventArgs e)
+        private async void InformationsCurrentPlayingGrid_Tapped(object sender, TappedRoutedEventArgs e)
         {
-        }
-
-        private void NextButton_Click(object sender, RoutedEventArgs e)
-        {
-        }
-
-        private void PauseButton_Click(object sender, RoutedEventArgs e)
-        {
-        }
-
-        private void PlayButton_Click(object sender, RoutedEventArgs e)
-        {
-        }
-        private async void PlayerAppBarSection_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-        }
-
-        private void UserControl_SizeChanged_1(object sender, SizeChangedEventArgs e)
-        {
-        }
-
-        private void InformationsCurrentPlayingGrid_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            NavigationService.NavigateTo(typeof(PlayMusic));
+            var frame = App.ApplicationFrame;
+            var page = frame.Content as Views.MainPage;
+            if (page != null)
+            {
+                var sB = page.Resources["FadeOutPage"] as Storyboard;
+                if (sB != null)
+                {
+                    await sB.BeginAsync();
+                    NavigationService.NavigateTo(typeof(PlayMusic));
+                }
+            }
         }
     }
 }

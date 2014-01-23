@@ -8,7 +8,7 @@
     xmlns:controls="using:VLC_WINRT.Views.Controls"
     mc:Ignorable="d">
     <SwapChainBackgroundPanel x:Name="SwapChainPanel">
-        <controls:AnimatedBackground />
-        <Frame x:Name="MainFrame" x:FieldModifier="public" />
+        <controls:AnimatedBackground x:Name="AnimatedBackground"/>
+        <Frame x:Name="MainFrame" x:FieldModifier="public" Navigated="MainFrame_OnNavigated"/>
     </SwapChainBackgroundPanel>
 </Page>

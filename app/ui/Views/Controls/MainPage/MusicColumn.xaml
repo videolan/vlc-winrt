@@ -93,10 +93,9 @@
                                                 <ColumnDefinition Width="*" />
                                             </Grid.ColumnDefinitions>
                                             <Polygon Fill="{StaticResource MainColor}" Points="0,0 0,35 200,35 220,0" Grid.ColumnSpan="2"/>
-                                            <TextBlock Grid.Column="0" MaxWidth="190" Text="{Binding Group.Name}" Foreground="White" TextWrapping="NoWrap" TextTrimming="WordEllipsis" Margin="10,4,10,0" FontSize="25" FontWeight="Light" VerticalAlignment="Center" />
+                                            <TextBlock Grid.Column="0" MaxWidth="190" Text="{Binding Group.Name}" Foreground="White" TextWrapping="NoWrap" TextTrimming="WordEllipsis" Margin="10,0" FontSize="22" VerticalAlignment="Center" />
                                             <TextBlock Grid.Column="1" Text="&#xE097;" FontFamily="Segoe UI Symbol" FontSize="20" VerticalAlignment="Bottom" Margin="0,0,0,5" />
                                         </Grid>
-
                                     </Grid>
                                 </DataTemplate>
                             </GridView.ItemTemplate>
@@ -152,7 +151,6 @@
                                             </Grid.Background>
                                             <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="5">
                                                 <TextBlock Text="{Binding Name}" TextWrapping="NoWrap" TextTrimming="WordEllipsis" FontSize="18" FontWeight="Light" />
-                                                <!--<TextBlock Text="{Binding Year}" FontSize="14" Foreground="#7FF5F5F5"/>-->
                                             </StackPanel>
                                         </Grid>
                                     </Grid>

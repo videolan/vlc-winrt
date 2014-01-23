@@ -71,6 +71,7 @@ namespace VLC_WINRT.Views.Controls.MainPage
 
         private async void AlbumsByArtistSemanticZoom_OnViewChangeCompleted(object sender, SemanticZoomViewChangedEventArgs e)
         {
+
         }
     }
 }
