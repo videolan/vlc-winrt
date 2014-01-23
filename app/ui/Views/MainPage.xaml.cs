@@ -55,10 +55,7 @@ namespace VLC_WINRT.Views
         {
             _vm = (NavigateableViewModel)DataContext;
         }
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            base.OnNavigatedTo(e);
-        }
+
         private void SectionsHeaderListView_OnItemClick(object sender, ItemClickEventArgs e)
         {
             var i = ((Model.Panel)e.ClickedItem).Index;
