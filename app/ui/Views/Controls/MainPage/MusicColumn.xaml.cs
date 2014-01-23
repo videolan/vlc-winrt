@@ -41,8 +41,6 @@ namespace VLC_WINRT.Views.Controls.MainPage
             var album = e.ClickedItem as MusicLibraryViewModel.AlbumItem;
             AlbumPlaylistListView.Header = album;
             AlbumPlaylistListView.ItemsSource = album.Tracks;
-            if (AlbumPlaylistListView.Width == 0)
-                FadeInAlbumPlaylist.Begin();
             //Locator.MainPageVM.MusicVM.CurrentArtist.CurrentAlbumIndex = Locator.MainPageVM.MusicVM.CurrentArtist.Albums.IndexOf(album);
         }
 

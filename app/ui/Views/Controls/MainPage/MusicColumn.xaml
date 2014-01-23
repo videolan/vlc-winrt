@@ -14,20 +14,6 @@
     <UserControl.Resources>
         <CollectionViewSource x:Name="albumsCollection" Source="{Binding Artist}" ItemsPath="Albums" IsSourceGrouped="True" />
         <converters:StringToUpperConverter x:Key="StringToUpperConverter"/>
-        <Storyboard x:Name="FadeInAlbumPlaylist">
-            <DoubleAnimationUsingKeyFrames EnableDependentAnimation="True" Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="AlbumPlaylistListView">
-                <EasingDoubleKeyFrame KeyTime="0" Value="0">
-                    <EasingDoubleKeyFrame.EasingFunction>
-                        <ExponentialEase EasingMode="EaseInOut" Exponent="4"/>
-                    </EasingDoubleKeyFrame.EasingFunction>
-                </EasingDoubleKeyFrame>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.7" Value="320">
-                    <EasingDoubleKeyFrame.EasingFunction>
-                        <ExponentialEase EasingMode="EaseInOut" Exponent="4"/>
-                    </EasingDoubleKeyFrame.EasingFunction>
-                </EasingDoubleKeyFrame>
-            </DoubleAnimationUsingKeyFrames>
-        </Storyboard>
     </UserControl.Resources>
     <Grid >
         <Grid.RowDefinitions>
@@ -60,7 +46,7 @@
                     <ColumnDefinition Width="1"/>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="1"/>
-                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="320"/>
                 </Grid.ColumnDefinitions>
                 <ListView Grid.Column="0" Margin="-15,0,0,0" Header="{Binding Artist.Count}" ItemsSource="{Binding Artist}" SelectionMode="Single" SelectionChanged="OnSelectedArtist_Changed">
                     <ListView.HeaderTemplate>
@@ -147,7 +133,7 @@
                 </ListView>
 
                 <Border Width="1" Grid.Column="3" Background="#663E3E3E"/>
-                <ListView Grid.Column="4" x:Name="AlbumPlaylistListView" Width="0">
+                <ListView Grid.Column="4" x:Name="AlbumPlaylistListView" >
                     <ListView.HeaderTemplate>
                         <DataTemplate>
                             <StackPanel>
