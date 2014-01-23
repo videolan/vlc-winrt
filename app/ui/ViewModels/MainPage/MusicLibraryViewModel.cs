@@ -56,13 +56,18 @@ namespace VLC_WINRT.ViewModels.MainPage
 
         private void XboxMusicHelperOnFailed(object sender, ErrorEventArgs errorEventArgs)
         {
-            new MessageDialog(errorEventArgs.ToString()).ShowAsync();
+
         }
 
         public ObservableCollection<string> ImgCollection
         {
             get { return _imgCollection; }
-            set { SetProperty(ref _imgCollection, value); }
+            set
+            {
+                if (App.LocalSettings.ContainsKey("ImgCollection")) App.LocalSettings.Remove("ImgCollection");
+                App.LocalSettings.Add("ImgCollection", value);
+                SetProperty(ref _imgCollection, value);
+            }
         }
 
         public ObservableCollection<Panel> Panels
@@ -167,6 +172,9 @@ namespace VLC_WINRT.ViewModels.MainPage
                 OnPropertyChanged("Artist");
                 OnPropertyChanged("Albums");
                 OnPropertyChanged("Tracks");
+
+                if(App.LocalSettings.ContainsKey("ImgCollection"))
+                    ImgCollection = App.LocalSettings["ImgCollection"] as ObservableCollection<string>;
             }
         }
 
@@ -331,7 +339,7 @@ namespace VLC_WINRT.ViewModels.MainPage
                         "copuMsVkCAFLQlP38bV3y+Azysz/crELZ5NdQU7+ddg=");
                     Locator.MusicLibraryVM.XboxMusic = await Locator.MusicLibraryVM.XboxMusicHelper.SearchMediaCatalog(token, artist, 3);
                     var xBoxArtistItem = Locator.MusicLibraryVM.XboxMusic.Artists.Items.FirstOrDefault(x => x.Name == artist);
-
+                    Locator.MusicLibraryVM.ImgCollection.Add(xBoxArtistItem.ImageUrl);
                     HdPicturesList.Add(xBoxArtistItem.ImageUrl);
                     foreach (var album in xBoxArtistItem.Albums.Items)
                     {

@@ -11,6 +11,8 @@
     DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
     
     <Grid Background="Black">
-        <Image Source="{Binding ImgCollection[0]}" Stretch="UniformToFill" Opacity="0.3"/>
+        <Image Source="ms-appx:///Assets/BackgroundLarge.jpg" Stretch="UniformToFill"/>
+        <Image x:Name="FirstImage" Stretch="UniformToFill" Opacity="0.2"/>
+        <Image x:Name="SecondImage" Stretch="UniformToFill" Opacity="0.2" />
     </Grid>
 </UserControl>
