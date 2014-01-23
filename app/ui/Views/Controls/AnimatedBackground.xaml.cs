@@ -34,7 +34,7 @@ namespace VLC_WINRT.Views.Controls
 
         void SetSourceToImages()
         {
-            TimeSpan period = TimeSpan.FromSeconds(28);
+            TimeSpan period = TimeSpan.FromSeconds(25);
             _periodicTimer = ThreadPoolTimer.CreatePeriodicTimer((source) =>
             {
                 int i = new Random().Next(0, Locator.MusicLibraryVM.ImgCollection.Count);

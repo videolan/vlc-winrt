@@ -15,7 +15,6 @@
         <converters:StringToUpperConverter x:Key="StringToUpperConverter"/>
     </Page.Resources>
     <Grid>
-        <controls:AnimatedBackground />
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />

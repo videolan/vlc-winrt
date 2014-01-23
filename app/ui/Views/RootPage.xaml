@@ -5,8 +5,10 @@
     xmlns:local="using:VLC_WINRT.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:VLC_WINRT.Views.Controls"
     mc:Ignorable="d">
     <SwapChainBackgroundPanel x:Name="SwapChainPanel">
+        <controls:AnimatedBackground />
         <Frame x:Name="MainFrame" x:FieldModifier="public" />
     </SwapChainBackgroundPanel>
 </Page>

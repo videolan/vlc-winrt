@@ -123,7 +123,6 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <controls:AnimatedBackground Grid.RowSpan="4"/>
         <!--<HyperlinkButton Grid.Row="0" HorizontalAlignment="Right"  Foreground="#FFFF8402" Command="{Binding ShowAppBarCommand}">
             <HyperlinkButton.Content>
                 <TextBlock Text="Open File ..."></TextBlock>
