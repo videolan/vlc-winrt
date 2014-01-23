@@ -85,14 +85,14 @@
                         <GridView IsSwipeEnabled="False" VerticalAlignment="Center">
                             <GridView.ItemTemplate>
                                 <DataTemplate>
-                                    <Grid Width="300" Height="170">
+                                    <Grid Width="280" Height="156">
                                         <Image Source="{Binding Group.Picture}" Stretch="UniformToFill"/>
                                         <Grid VerticalAlignment="Bottom" Height="35"  Margin="0,0,0,20" HorizontalAlignment="Left">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="Auto" />
                                                 <ColumnDefinition Width="*" />
                                             </Grid.ColumnDefinitions>
-                                            <Polygon Fill="{StaticResource MainColor}" Points="0,0 0,35 200,35 220,0" Grid.ColumnSpan="2"/>
+                                            <Polygon Fill="{StaticResource MainColor}" Points="0,0 0,35 180,35 200,0" Grid.ColumnSpan="2"/>
                                             <TextBlock Grid.Column="0" MaxWidth="190" Text="{Binding Group.Name}" Foreground="White" TextWrapping="NoWrap" TextTrimming="WordEllipsis" Margin="10,0" FontSize="22" VerticalAlignment="Center" />
                                             <TextBlock Grid.Column="1" Text="&#xE097;" FontFamily="Segoe UI Symbol" FontSize="20" VerticalAlignment="Bottom" Margin="0,0,0,5" />
                                         </Grid>

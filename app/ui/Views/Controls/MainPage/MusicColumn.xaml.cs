@@ -37,6 +37,21 @@ namespace VLC_WINRT.Views.Controls.MainPage
                     UIAnimationHelper.FadeOut(SectionsGrid.Children[i]);
                 }
             };
+            this.SizeChanged += OnSizeChanged;
+        }
+
+        private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
+        {
+            if (sizeChangedEventArgs.NewSize.Width < 1080)
+            {
+                ArtistListView.Visibility = Visibility.Collapsed;
+                AlbumPlaylistListView.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                ArtistListView.Visibility = Visibility.Visible;
+                AlbumsByArtistListView.Visibility = Visibility.Visible;
+            }
         }
 
         private void AlbumGridView_ItemClick(object sender, ItemClickEventArgs e)
