@@ -64,8 +64,6 @@ namespace VLC_WINRT.ViewModels.MainPage
             get { return _imgCollection; }
             set
             {
-                if (App.LocalSettings.ContainsKey("ImgCollection")) App.LocalSettings.Remove("ImgCollection");
-                App.LocalSettings.Add("ImgCollection", value);
                 SetProperty(ref _imgCollection, value);
             }
         }
@@ -159,6 +157,7 @@ namespace VLC_WINRT.ViewModels.MainPage
 
                 foreach (ArtistItemViewModel artist in Artist)
                 {
+                    ImgCollection.Add(artist.HdPicturesList[0]);
                     foreach (AlbumItem album in artist.Albums)
                     {
                         AlbumCover.Add(album.Picture);
@@ -173,8 +172,6 @@ namespace VLC_WINRT.ViewModels.MainPage
                 OnPropertyChanged("Albums");
                 OnPropertyChanged("Tracks");
 
-                if(App.LocalSettings.ContainsKey("ImgCollection"))
-                    ImgCollection = App.LocalSettings["ImgCollection"] as ObservableCollection<string>;
             }
         }
 
