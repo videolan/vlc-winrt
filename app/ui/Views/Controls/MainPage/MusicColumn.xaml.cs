@@ -17,6 +17,7 @@ using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 
 // Pour en savoir plus sur le modèle d'élément Contrôle utilisateur, consultez la page http://go.microsoft.com/fwlink/?LinkId=234236
+using VLC_WINRT.Utility.Commands;
 using VLC_WINRT.Utility.Helpers;
 using VLC_WINRT.ViewModels;
 using VLC_WINRT.ViewModels.MainPage;
@@ -42,23 +43,46 @@ namespace VLC_WINRT.Views.Controls.MainPage
 
         private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
         {
-            if (sizeChangedEventArgs.NewSize.Width < 1080)
+            Dispatcher.RunAsync(CoreDispatcherPriority.High, () =>
             {
-                ArtistListView.Visibility = Visibility.Collapsed;
-                AlbumPlaylistListView.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                ArtistListView.Visibility = Visibility.Visible;
-                AlbumsByArtistListView.Visibility = Visibility.Visible;
-            }
+                if (sizeChangedEventArgs.NewSize.Width < 1080)
+                {
+                    SectionsGrid.Margin = new Thickness(40, 0, 0, 0);
+                    ArtistListView.Visibility = Visibility.Collapsed;
+                    AlbumPlaylistListView.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    SectionsGrid.Margin = new Thickness(50, 0, 0, 0);
+                    ArtistListView.Visibility = Visibility.Visible;
+                    AlbumPlaylistListView.Visibility = Visibility.Visible;
+                }
+
+
+                if (sizeChangedEventArgs.NewSize.Width == 320)
+                {
+                    AlbumsByArtistListView.ItemTemplate = LittleSizedAlbumDataTemplate;
+                    SectionsGrid.Margin = new Thickness(0);
+                }
+                else
+                {
+                    AlbumsByArtistListView.ItemTemplate = NormalSizedAlbumDataTemplate;
+                    SectionsGrid.Margin = new Thickness(50, 0, 0, 0);
+                }
+            });
         }
 
         private void AlbumGridView_ItemClick(object sender, ItemClickEventArgs e)
         {
             var album = e.ClickedItem as MusicLibraryViewModel.AlbumItem;
+
             AlbumPlaylistListView.Header = album;
             AlbumPlaylistListView.ItemsSource = album.Tracks;
+
+            if (Window.Current.Bounds.Width < 1080)
+            {
+                new PlayAlbumCommand().Execute(album);
+            }
             //Locator.MainPageVM.MusicVM.CurrentArtist.CurrentAlbumIndex = Locator.MainPageVM.MusicVM.CurrentArtist.Albums.IndexOf(album);
         }
 
