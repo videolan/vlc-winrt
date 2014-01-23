@@ -569,12 +569,7 @@
                                 </LinearGradientBrush>
                             </Grid.Background>
                             <Grid VerticalAlignment="Bottom">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*" />
-                                    <RowDefinition Height="Auto" />
-                                </Grid.RowDefinitions>
                                 <TextBlock Grid.Row="0" Text="{Binding Title}" Foreground="White" FontSize="40" FontWeight="Light" Margin="5,0,0,0" VerticalAlignment="Bottom"/>
-                                <TextBlock Grid.Row="1" Text="{Binding Subtitle}" Foreground="#CCFFFFFF" FontSize="17" FontWeight="Normal" Margin="5,5,0,5" VerticalAlignment="Bottom"/>
                             </Grid>
                         </Grid>
                     </Grid>
@@ -582,21 +577,28 @@
             </DataTemplate>
             <DataTemplate x:Name="NormaleMovieTemplate">
                 <Button Template="{StaticResource MainButtonStyle}"
-                            Height="172" Width="280"
                             Command="{Binding OpenFile}"
                             CommandParameter="{Binding}">
-                    <Grid>
+                    <Grid >
                         <Image Source="{Binding Image}" Stretch="UniformToFill"
                                        AutomationProperties.Name="{Binding Title}" />
-                        <Grid Height="40" VerticalAlignment="Bottom" Background="#CC000000">
-                            <TextBlock Text="{Binding Title}" Foreground="White" FontSize="18" FontWeight="SemiLight" Margin="5,0,0,5" VerticalAlignment="Center"/>
-                            <Polygon Points="215,0 280,0 280,40 192,40" StrokeThickness="0" Fill="#FFF09609" Grid.ColumnSpan="2" Opacity="1" />
-                            <Border HorizontalAlignment="Right"/>
-                            <TextBlock Text="02:01:51" Foreground="WhiteSmoke" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,15,2" />
+                        <Grid Height="150" VerticalAlignment="Bottom">
+                            <Grid.Background>
+                                <LinearGradientBrush StartPoint="1,0">
+                                    <GradientStopCollection>
+                                        <GradientStop Color="#990A0A0A" Offset="1"/>
+                                        <GradientStop Color="#00020202" />
+                                    </GradientStopCollection>
+                                </LinearGradientBrush>
+                            </Grid.Background>
+                            <Grid VerticalAlignment="Bottom">
+                                <TextBlock Grid.Row="0" Text="{Binding Title}" Foreground="White" TextWrapping="NoWrap" TextTrimming="WordEllipsis" FontWeight="SemiLight" FontSize="20" Margin="5,0,0,0" VerticalAlignment="Bottom"/>
+                            </Grid>
                         </Grid>
                     </Grid>
                 </Button>
             </DataTemplate>
+            
             <!--Converters-->
             <converters:TimespanShortStringConverter x:Key="TimeSpanShortStringConverter">
             </converters:TimespanShortStringConverter>

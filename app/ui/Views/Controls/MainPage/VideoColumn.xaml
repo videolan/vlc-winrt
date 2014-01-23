@@ -45,7 +45,7 @@
                 <controls:VariableSizedItemsGridView x:Name="FirstPanelGridView" ItemsSource="{Binding Media}" ItemTemplateSelector="{StaticResource MediaItemDataTemplateSelector}" >
                     <GridView.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <VariableSizedWrapGrid VerticalAlignment="Center" Margin="50,0,0,0" ItemHeight="172" ItemWidth="280" />
+                            <VariableSizedWrapGrid VerticalAlignment="Center" Margin="50,0,0,0" ItemHeight="158" ItemWidth="280" />
                         </ItemsPanelTemplate>
                     </GridView.ItemsPanel>
                 </controls:VariableSizedItemsGridView>

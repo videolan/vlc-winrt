@@ -1,5 +1,7 @@
 ﻿using System;
+using Windows.UI.Xaml.Media.Animation;
 using VLC_WINRT.Common;
+using VLC_WINRT.Utility.Helpers;
 using VLC_WINRT.Utility.Services.RunTime;
 using VLC_WINRT.ViewModels;
 using VLC_WINRT.ViewModels.MainPage;
@@ -9,7 +11,7 @@ namespace VLC_WINRT.Utility.Commands
 {
     public class OpenFileCommand : AlwaysExecutableCommand
     {
-        public override void Execute(object parameter)
+        public async override void Execute(object parameter)
         {
             if (parameter.GetType() != typeof (MediaViewModel) && parameter.GetType() != typeof (ViewedVideoViewModel))
                 throw new ArgumentException("Expecting to see a Media View Model for this command");
@@ -18,9 +20,19 @@ namespace VLC_WINRT.Utility.Commands
             var vm = (MediaViewModel) parameter;
 
             string token = historyService.Add(vm.File);
-            Locator.PlayVideoVM.SetActiveVideoInfo(token, vm.File.Name);
-            NavigationService.NavigateTo(typeof(PlayVideo));
 
+            var frame = App.ApplicationFrame;
+            var page = frame.Content as MainPage;
+            if (page != null)
+            {
+                var sB = page.Resources["FadeOutPage"] as Storyboard;
+                if (sB != null)
+                {
+                    await sB.BeginAsync();
+                }
+            }
+            NavigationService.NavigateTo(typeof(PlayVideo));
+            Locator.PlayVideoVM.SetActiveVideoInfo(token, vm.File.Name);
         }
     }
 }

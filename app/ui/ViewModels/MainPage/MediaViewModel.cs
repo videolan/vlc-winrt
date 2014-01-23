@@ -13,7 +13,7 @@ namespace VLC_WINRT.ViewModels.MainPage
         {
             if (storageFile != null)
             {
-                Title = storageFile.Name;
+                Title = storageFile.DisplayName;
                 Subtitle = storageFile.FileType.ToUpper() + " File";
             
                 OpenFile = new OpenFileCommand();
