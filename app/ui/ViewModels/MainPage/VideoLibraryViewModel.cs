@@ -83,7 +83,7 @@ namespace VLC_WINRT.ViewModels.MainPage
         protected async void GetMedia(IAsyncAction operation)
         {
             IReadOnlyList<StorageFile> files =
-                await GetMediaFromFolder(_location, 6, CommonFileQuery.OrderByDate);
+                await GetMediaFromFolder(_location, CommonFileQuery.OrderByDate);
 
             if (files.Count > 0)
             {
@@ -104,7 +104,7 @@ namespace VLC_WINRT.ViewModels.MainPage
             }
         }
 
-        private static async Task<IReadOnlyList<StorageFile>> GetMediaFromFolder(StorageFolder folder, uint numberOfFiles,
+        private static async Task<IReadOnlyList<StorageFile>> GetMediaFromFolder(StorageFolder folder,
                                                                             CommonFileQuery query)
         {
             IReadOnlyList<StorageFile> files = null;
@@ -115,7 +115,7 @@ namespace VLC_WINRT.ViewModels.MainPage
             {
                 fileQuery = folder.CreateFileQueryWithOptions(queryOptions);
 
-                files = await fileQuery.GetFilesAsync(0, numberOfFiles);
+                files = await fileQuery.GetFilesAsync();
             }
             catch (ArgumentException ex)
             {
