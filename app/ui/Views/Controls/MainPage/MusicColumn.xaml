@@ -76,7 +76,7 @@
             </ListView.ItemTemplate>
         </ListView>
         <Grid Grid.Row="1" x:Name="SectionsGrid" Margin="50,0,0,0">
-            <Grid x:Name="ArtistPanel" >
+            <Grid x:Name="ArtistPanel">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="1"/>
@@ -118,7 +118,12 @@
                               ScrollViewer.VerticalScrollBarVisibility="Disabled"
                               ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                     <SemanticZoom.ZoomedOutView>
-                        <GridView IsSwipeEnabled="False" VerticalAlignment="Center">
+                        <GridView IsSwipeEnabled="False" >
+                            <GridView.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapGrid VerticalAlignment="Center"/>
+                                </ItemsPanelTemplate>
+                            </GridView.ItemsPanel>
                             <GridView.ItemTemplate>
                                 <DataTemplate>
                                     <Grid Width="280" Height="156">
