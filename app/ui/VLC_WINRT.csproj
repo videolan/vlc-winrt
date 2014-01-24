@@ -61,6 +61,10 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <ProjectReference Include="..\XboxMusicLibrary\XboxMusicLibrary.csproj">
+      <Project>{a75b4447-63c0-497a-8c32-bfd6db36fee9}</Project>
+      <Name>XboxMusicLibrary</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\modules\libaccess_winrt_plugin\libaccess_winrt_plugin.vcxproj">
       <Project>{a3345ed6-a13a-487b-9ef3-412fed4916d1}</Project>
       <Name>libaccess_winrt_plugin</Name>
