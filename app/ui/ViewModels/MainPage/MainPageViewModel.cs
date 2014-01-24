@@ -6,6 +6,7 @@ using Windows.Storage;
 using VLC_WINRT.Common;
 using VLC_WINRT.Model;
 using VLC_WINRT.Utility.Commands;
+using VLC_WINRT.Utility.Commands.MainPage;
 
 namespace VLC_WINRT.ViewModels.MainPage
 {
@@ -28,6 +29,7 @@ namespace VLC_WINRT.ViewModels.MainPage
         private ActionCommand _showAppBarCommand;
         private ActionCommand _toggleNetworkAppBarCommand;
         private VideoLibraryViewModel _videoVM;
+        private GoToPanelCommand _goToPanelCommand;
 
         public MainPageViewModel()
         {
@@ -60,6 +62,13 @@ namespace VLC_WINRT.ViewModels.MainPage
             Panels.Add(new Panel("music", 2, 0.4));
             Panels.Add(new Panel("removable storage", 3, 0.4));
             Panels.Add(new Panel("dlna", 4, 0.4));
+            _goToPanelCommand = new GoToPanelCommand();
+        }
+
+        public GoToPanelCommand GoToPanel
+        {
+            get { return _goToPanelCommand; }
+            set { SetProperty(ref _goToPanelCommand, value); }
         }
 
         public ObservableCollection<Panel> Panels

@@ -16,7 +16,6 @@ namespace VLC_WINRT.ViewModels.PlayVideo
     public class PlayVideoViewModel : NavigateableViewModel, IDisposable
     {
         private readonly DisplayRequest _displayAlwaysOnRequest;
-        private readonly DispatcherTimer _fiveSecondTimer = new DispatcherTimer();
         private readonly HistoryService _historyService;
         private readonly DispatcherTimer _sliderPositionTimer = new DispatcherTimer();
         private Subtitle _currentSubtitle;
@@ -44,10 +43,7 @@ namespace VLC_WINRT.ViewModels.PlayVideo
 
             _sliderPositionTimer.Tick += FirePositionUpdate;
             _sliderPositionTimer.Interval = TimeSpan.FromMilliseconds(16);
-
-            _fiveSecondTimer.Tick += UpdateDate;
-            _fiveSecondTimer.Interval = TimeSpan.FromSeconds(5);
-
+            
             _vlcPlayerService = IoC.GetInstance<MediaPlayerService>();
             _vlcPlayerService.StatusChanged += PlayerStateChanged;
             
@@ -193,7 +189,6 @@ namespace VLC_WINRT.ViewModels.PlayVideo
             Title = title;
 
             _vlcPlayerService.Open(_mrl);
-            _fiveSecondTimer.Start();
             OnPropertyChanged("TimeTotal");
 
             _vlcPlayerService.Play();
@@ -207,12 +202,12 @@ namespace VLC_WINRT.ViewModels.PlayVideo
 
         public override void OnNavigatedFrom()
         {
-            _fiveSecondTimer.Stop();
+            UpdateDate();
             _sliderPositionTimer.Stop();
             _vlcPlayerService.Stop();
         }
 
-        private void UpdateDate(object sender, object e)
+        private void UpdateDate()
         {
             if (!string.IsNullOrEmpty(_fileToken))
             {

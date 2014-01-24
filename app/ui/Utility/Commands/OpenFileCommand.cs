@@ -22,7 +22,7 @@ namespace VLC_WINRT.Utility.Commands
             string token = historyService.Add(vm.File);
 
             var frame = App.ApplicationFrame;
-            var page = frame.Content as MainPage;
+            var page = frame.Content as Views.MainPage;
             if (page != null)
             {
                 var sB = page.Resources["FadeOutPage"] as Storyboard;

@@ -22,12 +22,15 @@ namespace VLC_WINRT.ViewModels.MainPage
         private bool _hasNoMedia;
         private StorageFolder _location;
         private ObservableCollection<MediaViewModel> _media;
+        private ObservableCollection<MediaViewModel> _mediaRandom;
         private PickVideoCommand _pickCommand = new PickVideoCommand();
         private string _title;
 
         public VideoLibraryViewModel(StorageFolder location)
         {
             Media = new ObservableCollection<MediaViewModel>();
+            MediaRandom = new ObservableCollection<MediaViewModel>();
+
             Location = location;
 
             Title = location.DisplayName;
@@ -80,6 +83,12 @@ namespace VLC_WINRT.ViewModels.MainPage
             set { SetProperty(ref _media, value); }
         }
 
+        public ObservableCollection<MediaViewModel> MediaRandom
+        {
+            get { return _mediaRandom; }
+            set { SetProperty(ref _mediaRandom, value); }
+        }
+
         public PickVideoCommand PickCommand
         {
             get { return _pickCommand; }
@@ -100,13 +109,22 @@ namespace VLC_WINRT.ViewModels.MainPage
                 DispatchHelper.Invoke(() => HasNoMedia = true);
             }
 
-
+            int j = 0;
             foreach (StorageFile storageFile in files)
             {
                 var mediaVM = new MediaViewModel(storageFile);
 
                 // Get back to UI thread
                 DispatchHelper.Invoke(() => Media.Add(mediaVM));
+                DispatchHelper.Invoke(() =>
+                {
+                        int i = new Random().Next(0, files.Count - 1);
+                        if (j < 5 && i <= (files.Count - 1) / 2)
+                        {
+                            DispatchHelper.Invoke(() => MediaRandom.Add(mediaVM));
+                            j++;
+                        }
+                });
             }
         }
 

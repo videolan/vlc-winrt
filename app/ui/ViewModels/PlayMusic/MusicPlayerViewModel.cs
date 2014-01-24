@@ -26,7 +26,6 @@ namespace VLC_WINRT.ViewModels.PlayMusic
     public class MusicPlayerViewModel : NavigateableViewModel, IDisposable
     {
         private readonly DisplayRequest _displayAlwaysOnRequest;
-        private readonly DispatcherTimer _fiveSecondTimer = new DispatcherTimer();
         private readonly HistoryService _historyService;
         private readonly DispatcherTimer _sliderPositionTimer = new DispatcherTimer();
         private TimeSpan _elapsedTime = TimeSpan.Zero;
@@ -54,8 +53,6 @@ namespace VLC_WINRT.ViewModels.PlayMusic
             _sliderPositionTimer.Tick += FirePositionUpdate;
             _sliderPositionTimer.Interval = TimeSpan.FromMilliseconds(16);
 
-            _fiveSecondTimer.Tick += UpdateDate;
-            _fiveSecondTimer.Interval = TimeSpan.FromSeconds(5);
 
             _vlcPlayerService = IoC.GetInstance<MediaPlayerService>();
             _vlcPlayerService.StatusChanged += PlayerStateChanged;
@@ -329,7 +326,6 @@ namespace VLC_WINRT.ViewModels.PlayMusic
             Artist = Locator.MusicLibraryVM.Artist.FirstOrDefault(x=>x.Name == track.ArtistName);
             Artist.CurrentAlbumIndex = _artist.Albums.IndexOf(_artist.Albums.FirstOrDefault(x => x.Name == track.AlbumName));
             _vlcPlayerService.Open(_mrl);
-            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>_fiveSecondTimer.Start());
             OnPropertyChanged("TimeTotal");
 
             _vlcPlayerService.Play();
@@ -337,7 +333,6 @@ namespace VLC_WINRT.ViewModels.PlayMusic
 
         public override void OnNavigatedFrom()
         {
-            _fiveSecondTimer.Stop();
             _sliderPositionTimer.Stop();
             _vlcPlayerService.Stop();
         }

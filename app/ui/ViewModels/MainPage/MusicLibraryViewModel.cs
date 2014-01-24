@@ -42,7 +42,6 @@ namespace VLC_WINRT.ViewModels.MainPage
         int _numberOfTracks;
         ThreadPoolTimer _periodicTimer;
 
-        
         // XBOX Music Stuff; Take 2
         public Music XboxMusic;
         public MusicHelper XboxMusicHelper;
@@ -116,28 +115,23 @@ namespace VLC_WINRT.ViewModels.MainPage
             bool isMusicLibraryChanged = await IsMusicLibraryChanged(musicFolder);
             if (isMusicLibraryChanged)
             {
-                TimeSpan period = TimeSpan.FromSeconds(60);
+                TimeSpan period = TimeSpan.FromSeconds(30);
                 _periodicTimer = ThreadPoolTimer.CreatePeriodicTimer((source) =>
                 {
-                    App.Dispatcher.RunAsync(CoreDispatcherPriority.High,
-                        () =>
-                        {
-                            if (Locator.MusicLibraryVM.Track.Count > _numberOfTracks)
-                            {
-                                SerializationHelper.SerializeAsJson(Locator.MusicLibraryVM.Artist, "MusicDB.json",
-                                    null,
-                                    CreationCollisionOption.ReplaceExisting);
-                                Locator.MusicLibraryVM._numberOfTracks = Track.Count;
-                            }
-                            else
-                            {
-                                _periodicTimer.Cancel();
-                            }
-                        });
+                    if (Locator.MusicLibraryVM.Track.Count > _numberOfTracks)
+                    {
+                        SerializationHelper.SerializeAsJson(Artist, "MusicDB.json",
+                            null,
+                            CreationCollisionOption.ReplaceExisting);
+                        Locator.MusicLibraryVM._numberOfTracks = Track.Count;
+                    }
+                    else
+                    {
+                        _periodicTimer.Cancel();
+                    }
 
                 }, period);
 
-                Artist = new ObservableCollection<ArtistItemViewModel>();
                 foreach (var artistItem in musicFolder)
                 {
                     MusicProperties artistProperties = null;
@@ -154,12 +148,13 @@ namespace VLC_WINRT.ViewModels.MainPage
                             artistItem.CreateFolderQuery(CommonFolderQuery.GroupByAlbum);
                         var artist = new ArtistItemViewModel(albumQuery);
                         artist.Name = artistProperties.Artist;
-                        _artists.Add(artist);
                         OnPropertyChanged("Track");
+                        Artist.Add(artist);
                         OnPropertyChanged("Artist");
                     }
                 }
                 ExecuteSemanticZoom();
+                OnPropertyChanged("Artist");
             }
             else
             {
@@ -348,7 +343,6 @@ namespace VLC_WINRT.ViewModels.MainPage
 
                         Albums.Add(albumItem);
                         Locator.MusicLibraryVM.AlbumCover.Add(albumItem.Picture);
-                        OnPropertyChanged("Albums");
                     }
                 }
             }
@@ -618,8 +612,6 @@ namespace VLC_WINRT.ViewModels.MainPage
                     trackItem.Duration = trackInfos.Duration;
                     trackItem.Index = i;
                     Tracks.Add(trackItem);
-                    OnPropertyChanged("Tracks");
-                    OnPropertyChanged("Albums");
                     Locator.MusicLibraryVM.Track.Add(trackItem);
                     OnPropertyChanged("Track");
                 }

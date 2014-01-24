@@ -21,7 +21,7 @@ namespace VLC_WINRT.Utility.Commands
             Locator.MusicPlayerVM.PlayNext();
 
             var frame = App.ApplicationFrame;
-            var page = frame.Content as MainPage;
+            var page = frame.Content as Views.MainPage;
             if (page != null)
             {
                 var sB = page.Resources["FadeOutPage"] as Storyboard;

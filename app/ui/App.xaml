@@ -479,14 +479,9 @@
                             </VisualState>
                             <VisualState x:Name="Pressed">
                                 <Storyboard>
-                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Border"
-            							Storyboard.TargetProperty="Background">
-                                        <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ButtonPressedBackgroundThemeBrush}" />
-                                    </ObjectAnimationUsingKeyFrames>
-                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
-            							Storyboard.TargetProperty="Foreground">
-                                        <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ButtonPressedForegroundThemeBrush}" />
-                                    </ObjectAnimationUsingKeyFrames>
+                                    <DoubleAnimation Storyboard.TargetName="ContentPresenter"
+            							Storyboard.TargetProperty="Opacity" To="0.3" SpeedRatio="4">
+                                    </DoubleAnimation>
                                 </Storyboard>
                             </VisualState>
                             <VisualState x:Name="Disabled">
@@ -569,7 +564,7 @@
                                 </LinearGradientBrush>
                             </Grid.Background>
                             <Grid VerticalAlignment="Bottom">
-                                <TextBlock Grid.Row="0" Text="{Binding Title}" Foreground="White" FontSize="40" FontWeight="Light" Margin="5,0,0,0" VerticalAlignment="Bottom"/>
+                                <TextBlock Grid.Row="0" Text="{Binding Title}" Foreground="White" FontSize="32" Width="450" TextWrapping="Wrap" FontWeight="Light" Margin="5,0,0,0" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
                             </Grid>
                         </Grid>
                     </Grid>

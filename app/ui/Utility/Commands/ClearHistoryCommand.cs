@@ -14,7 +14,7 @@ namespace VLC_WINRT.Utility.Commands
             historyService.Clear();
             lastViewedVM.LastViewedVM = null;
             lastViewedVM.LastViewedSectionVisible = false;
-            lastViewedVM.WelcomeSectionVisibile = true;
+            lastViewedVM.WelcomeSectionVisible = true;
 
         }
     }

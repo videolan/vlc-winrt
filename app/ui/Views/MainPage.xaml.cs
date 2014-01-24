@@ -39,7 +39,7 @@ namespace VLC_WINRT.Views
                 if (sizeChangedEventArgs.NewSize.Width < 1080)
                 {
                     MainLogoHeader.VerticalAlignment = VerticalAlignment.Top;
-                    MainLogoHeader.Margin = new Thickness(-43,0,0,0);
+                    MainLogoHeader.Margin = new Thickness(-43, 0, 0, 0);
                     MiniPlayer.Visibility = Visibility.Collapsed;
                 }
                 else
@@ -62,15 +62,19 @@ namespace VLC_WINRT.Views
             ChangedSectionsHeadersState(i);
         }
 
-        private void ChangedSectionsHeadersState(int i)
+        public void ChangedSectionsHeadersState(int i)
         {
-            if (i == _currentSection) return;
-            UIAnimationHelper.FadeOut(SectionsGrid.Children[_currentSection]);
-            UIAnimationHelper.FadeIn(SectionsGrid.Children[i]);
-            _currentSection = i;
-            for (int j = 0; j < SectionsHeaderListView.Items.Count; j++)
-                Locator.MainPageVM.Panels[j].Opacity = 0.4;
-            Locator.MainPageVM.Panels[i].Opacity = 1;
+            if (i == _currentSection) 
+                return;
+            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                UIAnimationHelper.FadeOut(SectionsGrid.Children[_currentSection]);
+                UIAnimationHelper.FadeIn(SectionsGrid.Children[i]);
+                _currentSection = i;
+                for (int j = 0; j < SectionsHeaderListView.Items.Count; j++)
+                    Locator.MainPageVM.Panels[j].Opacity = 0.4;
+                Locator.MainPageVM.Panels[i].Opacity = 1;
+            });
         }
 
         private void MinimizedBottomAppBar_OnTapped(object sender, TappedRoutedEventArgs e)

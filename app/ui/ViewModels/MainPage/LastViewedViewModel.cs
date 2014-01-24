@@ -10,6 +10,7 @@ using VLC_WINRT.Utility.Commands;
 using VLC_WINRT.Utility.IoC;
 using VLC_WINRT.Utility.Services.RunTime;
 using System.Collections.ObjectModel;
+using VLC_WINRT.Utility.Commands.MainPage;
 
 namespace VLC_WINRT.ViewModels.MainPage
 {
@@ -19,7 +20,6 @@ namespace VLC_WINRT.ViewModels.MainPage
         private ClearHistoryCommand _clearHistoryCommand;
         private bool _lastViewedSectionVisible;
         private List<ViewedVideoViewModel> _lastViewedVideos;
-
         private bool _welcomeSectionVisible;
 
         public LastViewedViewModel()
@@ -32,9 +32,8 @@ namespace VLC_WINRT.ViewModels.MainPage
             }
             else
             {
-                WelcomeSectionVisibile = true;
+                WelcomeSectionVisible = true;
             }
-
             _clearHistoryCommand = new ClearHistoryCommand();
             _historyService.HistoryUpdated += UpdateHistory;
             UpdateHistory();
@@ -67,7 +66,7 @@ namespace VLC_WINRT.ViewModels.MainPage
             set { SetProperty(ref _clearHistoryCommand, value); }
         }
 
-        public bool WelcomeSectionVisibile
+        public bool WelcomeSectionVisible
         {
             get { return _welcomeSectionVisible; }
             set { SetProperty(ref _welcomeSectionVisible, value); }
@@ -78,6 +77,7 @@ namespace VLC_WINRT.ViewModels.MainPage
             get { return _lastViewedSectionVisible; }
             set { SetProperty(ref _lastViewedSectionVisible, value); }
         }
+
 
         private async void GetLastViewedMedia(IAsyncAction operation)
         {

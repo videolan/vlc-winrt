@@ -22,16 +22,25 @@
                       VerticalScrollBarVisibility="Disabled"
                       HorizontalScrollMode="Auto"
                       HorizontalScrollBarVisibility="Auto"
-                      VerticalContentAlignment="Center"
+                      VerticalContentAlignment="Stretch"
                       HorizontalContentAlignment="Center"
                       ZoomMode="Disabled">
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                <local:Welcome Margin="50,0,0,0" Visibility="{Binding WelcomeSectionVisible, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                <Grid Margin="0,0,0,0" DataContext="{Binding LastViewedVM}">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+                <local:Welcome Margin="50,0,0,0" Visibility="{Binding LastViewedVM.WelcomeSectionVisible, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                <Grid Margin="50,0,0,0" DataContext="{Binding LastViewedVM}" Visibility="{Binding WelcomeSectionVisible, Converter={StaticResource NegatedBooleanToVisibilityConverter}}">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="50"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
+                    <Button Margin="5,0,0,0" Grid.Row="0" Template="{StaticResource MainButtonStyle}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Grid.Row="0" Text="last viewed" Foreground="#e67e22" FontSize="42" FontWeight="Light" />
+                            <Button Margin="20,0"
+                Style="{StaticResource TextButtonStyle}"
+                HorizontalAlignment="Right"
+                Command="{Binding ClearHistory}" VerticalAlignment="Bottom" Content="CLEAR" FontWeight="SemiBold" FontSize="16" />
+                        </StackPanel>
+                    </Button>
                     <ListView Grid.Row="1" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}"  ItemsSource="{Binding LastViewedVM}">
                         <ListView.ItemTemplate>
                             <DataTemplate>
@@ -43,7 +52,7 @@
                                             <ColumnDefinition Width="140" />
                                             <ColumnDefinition Width="180" />
                                         </Grid.ColumnDefinitions>
-                                        <Grid>
+                                        <Grid Background="Black">
                                             <Image Source="{Binding Image}" Width="140" Height="110"/>
                                             <ProgressBar VerticalAlignment="Bottom" Value="{Binding TimeWatched, Converter={StaticResource TimeSpanSecondsDoubleConverter}}" Maximum="{Binding Duration, Converter={StaticResource TimeSpanSecondsDoubleConverter}}" />
                                         </Grid>
@@ -51,37 +60,42 @@
                                             <TextBlock Text="{Binding Title, Converter={StaticResource StringToUpperConverter}}" 
                                                    TextWrapping="Wrap"
                                                    FontWeight="SemiBold"
-                                                   FontSize="17"/>
+                                                   FontSize="17" />
                                             <TextBlock Text="{Binding Duration, Converter={StaticResource TimeSpanShortStringConverter}}" Foreground="#7FFFFFFF" />
                                         </StackPanel>
                                     </Grid>
                                 </Button>
                             </DataTemplate>
                         </ListView.ItemTemplate>
-
                     </ListView>
                 </Grid>
                 <Grid Margin="40,0,0,0">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="50"/>
                         <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" Text="videos" Foreground="#e67e22" Margin="0,20" FontSize="42" FontWeight="Light" />
-                    <controls:NothingToSeeHere Grid.Row="1" Visibility="{Binding LastViewedVM, Converter={StaticResource NullToVisibilityConverter}}"/>
-                    <controls:VariableSizedItemsGridView Grid.Row="1" ItemsSource="{Binding VideoVM.Media}" ItemTemplateSelector="{StaticResource MediaItemDataTemplateSelector}" >
+                    <Button Margin="5,0,0,0" Command="{Binding GoToPanel}" CommandParameter="1" Grid.Row="0" Template="{StaticResource MainButtonStyle}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="videos" Foreground="#e67e22" FontSize="42" FontWeight="Light" />
+                            <TextBlock Text="" Foreground="#e67e22" FontFamily="Segoe UI Symbol" Margin="20,12,0,0" VerticalAlignment="Center" FontSize="20" FontWeight="Light" />
+                        </StackPanel>
+                    </Button>
+                    <controls:NothingToSeeHere Grid.Row="1" Visibility="{Binding VideoVM.HasNoMedia, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                    <controls:VariableSizedItemsGridView Grid.Row="1" ItemsSource="{Binding VideoVM.MediaRandom}" ItemTemplateSelector="{StaticResource MediaItemDataTemplateSelector}" >
                         <GridView.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <VariableSizedWrapGrid ItemHeight="172" ItemWidth="280" MaximumRowsOrColumns="2" />
+                                <VariableSizedWrapGrid ItemHeight="172" ItemWidth="280" MaximumRowsOrColumns="4" />
                             </ItemsPanelTemplate>
                         </GridView.ItemsPanel>
                     </controls:VariableSizedItemsGridView>
                 </Grid>
                 <Grid Margin="40,0,0,0">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="50"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" Text="favorite music" Foreground="#e67e22" Margin="0,20" FontSize="42" FontWeight="Light" />
+                    <TextBlock Grid.Row="0" Text="favorite music" Foreground="#e67e22" FontSize="42" FontWeight="Light" />
                     <controls:NothingToSeeHere Grid.Row="1" Visibility="{Binding LastViewMusicVM, Converter={StaticResource NullToVisibilityConverter}}"/>
                     <ListView Grid.Row="1" ItemsSource="{Binding LastViewedMusicVM}" >
                         <ListView.ItemTemplate>
@@ -98,12 +112,6 @@
                         </ListView.ItemTemplate>
                     </ListView>
                 </Grid>
-                <Button Margin="5,0"
-                Style="{StaticResource TextButtonStyle}"
-                HorizontalAlignment="Right"
-                Command="{Binding ClearHistory}">
-                    <TextBlock x:Uid="Clear" Text="Clear"/>
-                </Button>
             </StackPanel>
         </ScrollViewer>
     </Grid>

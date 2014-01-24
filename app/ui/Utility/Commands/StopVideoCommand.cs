@@ -8,7 +8,7 @@ namespace VLC_WINRT.Utility.Commands
     {
         public override void Execute(object parameter)
         {
-            NavigationService.NavigateTo(typeof (MainPage));
+            NavigationService.NavigateTo(typeof (Views.MainPage));
         }
     }
 }
