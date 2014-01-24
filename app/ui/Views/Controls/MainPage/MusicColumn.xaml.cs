@@ -15,8 +15,6 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
-
-// Pour en savoir plus sur le modèle d'élément Contrôle utilisateur, consultez la page http://go.microsoft.com/fwlink/?LinkId=234236
 using VLC_WINRT.Utility.Commands;
 using VLC_WINRT.Utility.Helpers;
 using VLC_WINRT.ViewModels;
@@ -61,11 +59,13 @@ namespace VLC_WINRT.Views.Controls.MainPage
 
                 if (sizeChangedEventArgs.NewSize.Width == 320)
                 {
+                    SectionsHeaderListView.Visibility = Visibility.Collapsed;
                     AlbumsByArtistListView.ItemTemplate = LittleSizedAlbumDataTemplate;
                     SectionsGrid.Margin = new Thickness(0);
                 }
                 else
                 {
+                    SectionsHeaderListView.Visibility = Visibility.Visible;
                     AlbumsByArtistListView.ItemTemplate = NormalSizedAlbumDataTemplate;
                     SectionsGrid.Margin = new Thickness(50, 0, 0, 0);
                 }

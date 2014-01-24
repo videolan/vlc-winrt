@@ -161,8 +161,8 @@ namespace VLC_WINRT.ViewModels.MainPage
 
                 foreach (ArtistItemViewModel artist in Artist)
                 {
-                    if(artist.HdPicturesList != null && artist.HdPicturesList.Any())
-                        ImgCollection.Add(artist.HdPicturesList[0]);
+                    if(artist.HdPictures != null)
+                        ImgCollection.Add(artist.HdPictures);
                     foreach (AlbumItem album in artist.Albums)
                     {
                         AlbumCover.Add(album.Picture);
@@ -338,7 +338,7 @@ namespace VLC_WINRT.ViewModels.MainPage
                         albumItem.Name = musicAttr.Album;
                         albumItem.Artist = musicAttr.Artist;
                         if(fileName.Length > 0)
-                            albumItem.Picture = fileName;
+                            albumItem.Picture = "ms-appdata:///local/" + fileName + ".jpg";
 
                         Albums.Add(albumItem);
                         Locator.MusicLibraryVM.AlbumCover.Add(albumItem.Picture);
