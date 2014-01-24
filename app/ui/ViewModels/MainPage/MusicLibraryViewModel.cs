@@ -258,7 +258,14 @@ namespace VLC_WINRT.ViewModels.MainPage
 
             public string Biography
             {
-                get { return _biography; }
+                get
+                {
+                    if (_biography == null)
+                    {
+                        GetArtistBiography(Name);
+                    }
+                    return _biography;
+                }
                 set { SetProperty(ref _biography, value); }
             }
 
@@ -286,7 +293,6 @@ namespace VLC_WINRT.ViewModels.MainPage
             public ArtistItemViewModel(StorageFolderQueryResult albumQueryResult)
             {
                 LoadAlbums(albumQueryResult);
-                GetArtistBiography(albumQueryResult.Folder.DisplayName);
                 GetInformationsFromXBoxMusicAPI(albumQueryResult.Folder.DisplayName);
             }
 
@@ -311,15 +317,36 @@ namespace VLC_WINRT.ViewModels.MainPage
                     {
                         var musicAttr = await item.Properties.GetMusicPropertiesAsync();
                         var files = await item.GetFilesAsync(CommonFileQuery.OrderByMusicProperties);
+                        var thumbnail = await item.GetThumbnailAsync(ThumbnailMode.MusicView, 250);
+                        string fileName="";
+                        if (thumbnail != null)
+                        {
+                            fileName = musicAttr.Artist + "_" + musicAttr.Album;
+
+                            var file = await ApplicationData.Current.LocalFolder.CreateFileAsync(musicAttr.Artist + "_" + musicAttr.Album + ".jpg", CreationCollisionOption.ReplaceExisting);
+                            var raStream = await file.OpenAsync(FileAccessMode.ReadWrite);
+
+                            using (var thumbnailStream = thumbnail.GetInputStreamAt(0))
+                            {
+                                using (var stream = raStream.GetOutputStreamAt(0))
+                                {
+                                    await RandomAccessStream.CopyAsync(thumbnailStream, stream);
+                                }
+                            }
+                        }
                         var albumItem = new AlbumItem(files, musicAttr.Album, albumQueryResult.Folder.DisplayName);
                         albumItem.Name = musicAttr.Album;
                         albumItem.Artist = musicAttr.Artist;
+                        if(fileName.Length > 0)
+                            albumItem.Picture = fileName;
+
                         Albums.Add(albumItem);
                         Locator.MusicLibraryVM.AlbumCover.Add(albumItem.Picture);
                         OnPropertyChanged("Albums");
                     }
                 }
             }
+
 
             public async Task GetArtistBiography(string artist)
             {
@@ -340,9 +367,6 @@ namespace VLC_WINRT.ViewModels.MainPage
                                 Biography = Biography.Remove(Biography.Length - "Read more about  on Last.fm".Length - artist.Length - 6);
                             }
                         }
-                        var img = xml1.Root.Descendants("image").ElementAt(3);
-                        if (img != null)
-                            Picture = img.Value;
                     }
                 }
                 catch
