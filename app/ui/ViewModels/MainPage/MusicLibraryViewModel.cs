@@ -21,6 +21,8 @@ using VLC_WINRT.Model;
 using VLC_WINRT.Utility.Commands;
 using VLC_WINRT.Utility.Helpers;
 using System.Text.RegularExpressions;
+using XboxMusicLibrary;
+using XboxMusicLibrary.Models;
 
 namespace VLC_WINRT.ViewModels.MainPage
 {
@@ -36,12 +38,31 @@ namespace VLC_WINRT.ViewModels.MainPage
 
         int _numberOfTracks;
         ThreadPoolTimer _periodicTimer;
+
+        // XBOX Music Stuff; Take 2
+        public Music XboxMusic;
+        public MusicHelper XboxMusicHelper;
+        ObservableCollection<string> _imgCollection = new ObservableCollection<string>();
         public MusicLibraryViewModel()
         {
             _goBackCommand = new StopVideoCommand();
             GetMusicFromLibrary();
             Panels.Add(new Panel("ARTISTS", 0, 1));
             Panels.Add(new Panel("TRACKS", 1, 0.4));
+
+            XboxMusicHelper = new MusicHelper();
+            XboxMusicHelper.Failed += XboxMusicHelperOnFailed;
+        }
+
+        private void XboxMusicHelperOnFailed(object sender, ErrorEventArgs errorEventArgs)
+        {
+            new MessageDialog(errorEventArgs.ToString()).ShowAsync();
+        }
+
+        public ObservableCollection<string> ImgCollection
+        {
+            get { return _imgCollection; }
+            set { SetProperty(ref _imgCollection, value); }
         }
 
         public ObservableCollection<Panel> Panels
@@ -177,7 +198,9 @@ namespace VLC_WINRT.ViewModels.MainPage
             // more informations
             private string _biography;
             private List<OnlineAlbumItem> _onlinePopularAlbumItems = new List<OnlineAlbumItem>();
+            private List<ArtistItemViewModel> _onlineRelatedArtists = new List<ArtistItemViewModel>(); 
             private bool _isFavorite;
+            private List<string> _hdPictureList = new List<string>();
 
             public string Name
             {
@@ -222,11 +245,22 @@ namespace VLC_WINRT.ViewModels.MainPage
             }
             public bool IsFavorite { get { return _isFavorite; } set { SetProperty(ref _isFavorite, value); } }
 
+            public List<string> HdPicturesList
+            {
+                get { return _hdPictureList; }
+                set { SetProperty(ref _hdPictureList, value); }
+            }
+
+            public List<ArtistItemViewModel> OnlineRelatedArtists
+            {
+                get { return _onlineRelatedArtists; }
+                set { SetProperty(ref _onlineRelatedArtists, value); }
+            } 
             public ArtistItemViewModel(StorageFolderQueryResult albumQueryResult)
             {
                 LoadAlbums(albumQueryResult);
                 GetArtistBiography(albumQueryResult.Folder.DisplayName);
-                GetPopularAlbums(albumQueryResult.Folder.DisplayName);
+                GetInformationsFromXBoxMusicAPI(albumQueryResult.Folder.DisplayName);
             }
 
             public ArtistItemViewModel()
@@ -289,25 +323,48 @@ namespace VLC_WINRT.ViewModels.MainPage
 
                 }
             }
-            public async Task GetPopularAlbums(string artist)
+            public async Task GetInformationsFromXBoxMusicAPI(string artist)
             {
                 try
                 {
-                    var Client1 = new HttpClient();
-                    var response1 = await Client1.GetStringAsync("http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&limit=6&api_key=" + App.ApiKeyLastFm + "&artist=" + artist);
-                    {
-                        var xml = XDocument.Parse(response1);
-                        var topalbums = from results in xml.Descendants("album")
-                                        select new OnlineAlbumItem
-                                        {
-                                            Name = results.Element("name").Value.ToString(),
-                                            Picture = results.Elements("image").ElementAt(3).Value,
-                                        };
+                    var token = await Locator.MusicLibraryVM.XboxMusicHelper.GetAccessToken("5bf9b614-1651-4b49-98ee-1831ae58fb99",
+                        "copuMsVkCAFLQlP38bV3y+Azysz/crELZ5NdQU7+ddg=");
+                    Locator.MusicLibraryVM.XboxMusic = await Locator.MusicLibraryVM.XboxMusicHelper.SearchMediaCatalog(token, artist, 3);
+                    var xBoxArtistItem = Locator.MusicLibraryVM.XboxMusic.Artists.Items.FirstOrDefault(x => x.Name == artist);
 
-                        foreach (var item in topalbums.ToList())
-                            OnlinePopularAlbumItems.Add(item);
-                        OnPropertyChanged("OnlinePopularAlbumItems");
+                    HdPicturesList.Add(xBoxArtistItem.ImageUrl);
+                    foreach (var album in xBoxArtistItem.Albums.Items)
+                    {
+                        OnlinePopularAlbumItems.Add(new OnlineAlbumItem()
+                        {
+                            Artist = xBoxArtistItem.Name,
+                            Name = album.Name,
+                            Picture = album.ImageUrl,
+                        });
                     }
+                    foreach (var artists in xBoxArtistItem.RelatedArtists.Items)
+                    {
+                        var OnlinePopularAlbums = new List<OnlineAlbumItem>();
+                        foreach (var albums in artists.Albums.Items)
+                        {
+                            OnlinePopularAlbums.Add(new OnlineAlbumItem()
+                            {
+                                Artist = artists.Name,
+                                Name = albums.Name,
+                                Picture = albums.ImageUrl,
+                            });
+                        }
+
+                        var ArtistPic = new List<string>();
+                        ArtistPic.Add(artists.ImageUrl);
+                        OnlineRelatedArtists.Add(new ArtistItemViewModel()
+                        {
+                            Name = artists.Name,
+                            OnlinePopularAlbumItems = OnlinePopularAlbums,
+                            HdPicturesList = ArtistPic,
+                        });
+                    }
+
                 }
                 catch
                 { }
