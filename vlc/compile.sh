@@ -37,7 +37,7 @@ fi
 TARGET_TUPLE=i686-w64-mingw32
 [ $# = 1 ] && TARGET_TUPLE=$1
 
-${TARGET_TUPLE}-gcc -dumpspecs | sed -e 's/-lmingwex/-lwinstorecompat -lmingwex -lwinstorecompat -lruntimeobject/' -e 's/-lmsvcrt/-lmsvcr110/' > ../newspecfile
+${TARGET_TUPLE}-gcc -dumpspecs | sed -e 's/-lmingwex/-lwinstorecompat -lmingwex -lwinstorecompat -lole32 -lruntimeobject/' -e 's/-lmsvcrt/-lmsvcr110/' > ../newspecfile
 NEWSPECFILE="`pwd`/../newspecfile"
 
 WINRTSOCK=`cd ../../winrtsock/winrtsock-86646-build;pwd`
