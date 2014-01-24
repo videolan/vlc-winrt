@@ -182,7 +182,7 @@
             <Grid.RenderTransform>
                 <CompositeTransform/>
             </Grid.RenderTransform>
-            <mainPage:LastViewed DataContext="{Binding LastViewedVM}" />
+            <mainPage:LastViewed  />
             <mainPage:VideoColumn DataContext="{Binding VideoVM}"/>
             <mainPage:MusicColumn DataContext="{Binding MusicLibraryVm}"/>
             <ItemsControl ItemsSource="{Binding ExternalStorageVM.RemovableStorageVMs}">

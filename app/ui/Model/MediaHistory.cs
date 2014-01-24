@@ -8,5 +8,6 @@ namespace VLC_WINRT.Model
         public string Filename { get; set; }
         public string Token { get; set; }
         public double TotalWatchedMilliseconds { get; set; }
+        public bool IsAudio { get; set; }
     }
 }

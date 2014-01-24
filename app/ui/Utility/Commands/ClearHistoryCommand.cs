@@ -13,8 +13,6 @@ namespace VLC_WINRT.Utility.Commands
             LastViewedViewModel lastViewedVM = Locator.MainPageVM.LastViewedVM;
             historyService.Clear();
             lastViewedVM.LastViewedVM = null;
-            lastViewedVM.SecondLastViewedVM = null;
-            lastViewedVM.ThirdLastViewedVM = null;
             lastViewedVM.LastViewedSectionVisible = false;
             lastViewedVM.WelcomeSectionVisibile = true;
 

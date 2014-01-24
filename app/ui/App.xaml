@@ -600,6 +600,7 @@
             </DataTemplate>
             
             <!--Converters-->
+            <converters:StringToUpperConverter x:Key="StringToUpperConverter" />
             <converters:TimespanShortStringConverter x:Key="TimeSpanShortStringConverter">
             </converters:TimespanShortStringConverter>
             <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter">

@@ -9,7 +9,8 @@
     xmlns:controls="using:VLC_WINRT.Views.Controls"
     mc:Ignorable="d"
     d:DesignHeight="768"
-    d:DesignWidth="550">
+    d:DesignWidth="550"
+    DataContext="{Binding Source={StaticResource Locator}, Path=MainPageVM}">
 
     <UserControl.Resources>
         <dataTemplateSelectors:MediaItemDataTemplateSelector WideMovieTemplate="{StaticResource WideMovieTemplate}"
@@ -25,16 +26,49 @@
                       HorizontalContentAlignment="Center"
                       ZoomMode="Disabled">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                <local:Welcome Margin="50,0,0,0" />
-                <!--Visibility="{Binding WelcomeSectionVisible, Converter={StaticResource BooleanToVisibilityConverter}}"-->
+                <local:Welcome Margin="50,0,0,0" Visibility="{Binding WelcomeSectionVisible, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                <Grid Margin="0,0,0,0" DataContext="{Binding LastViewedVM}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <ListView Grid.Row="1" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}"  ItemsSource="{Binding LastViewedVM}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Button Template="{StaticResource MainButtonStyle}"
+                            Command="{Binding OpenFile}"
+                            CommandParameter="{Binding}">
+                                    <Grid Width="320" Height="110">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="140" />
+                                            <ColumnDefinition Width="180" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid>
+                                            <Image Source="{Binding Image}" Width="140" Height="110"/>
+                                            <ProgressBar VerticalAlignment="Bottom" Value="{Binding TimeWatched, Converter={StaticResource TimeSpanSecondsDoubleConverter}}" Maximum="{Binding Duration, Converter={StaticResource TimeSpanSecondsDoubleConverter}}" />
+                                        </Grid>
+                                        <StackPanel Grid.Column="1" Margin="5,2,0,0" >
+                                            <TextBlock Text="{Binding Title, Converter={StaticResource StringToUpperConverter}}" 
+                                                   TextWrapping="Wrap"
+                                                   FontWeight="SemiBold"
+                                                   FontSize="17"/>
+                                            <TextBlock Text="{Binding Duration, Converter={StaticResource TimeSpanShortStringConverter}}" Foreground="#7FFFFFFF" />
+                                        </StackPanel>
+                                    </Grid>
+                                </Button>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+
+                    </ListView>
+                </Grid>
                 <Grid Margin="40,0,0,0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" Text="last videos" Foreground="#e67e22" Margin="0,20" FontSize="42" FontWeight="Light" />
-                    <controls:NothingToSeeHere Grid.Row="1" Visibility="{Binding LastViewedVideoVM, Converter={StaticResource NullToVisibilityConverter}}"/>
-                    <controls:VariableSizedItemsGridView Grid.Row="1" ItemsSource="{Binding LastViewedVideoVM}" ItemTemplateSelector="{StaticResource MediaItemDataTemplateSelector}" >
+                    <TextBlock Grid.Row="0" Text="videos" Foreground="#e67e22" Margin="0,20" FontSize="42" FontWeight="Light" />
+                    <controls:NothingToSeeHere Grid.Row="1" Visibility="{Binding LastViewedVM, Converter={StaticResource NullToVisibilityConverter}}"/>
+                    <controls:VariableSizedItemsGridView Grid.Row="1" ItemsSource="{Binding VideoVM.Media}" ItemTemplateSelector="{StaticResource MediaItemDataTemplateSelector}" >
                         <GridView.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <VariableSizedWrapGrid ItemHeight="172" ItemWidth="280" MaximumRowsOrColumns="2" />
@@ -47,7 +81,7 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" Text="last music" Foreground="#e67e22" Margin="0,20" FontSize="42" FontWeight="Light" />
+                    <TextBlock Grid.Row="0" Text="favorite music" Foreground="#e67e22" Margin="0,20" FontSize="42" FontWeight="Light" />
                     <controls:NothingToSeeHere Grid.Row="1" Visibility="{Binding LastViewMusicVM, Converter={StaticResource NullToVisibilityConverter}}"/>
                     <ListView Grid.Row="1" ItemsSource="{Binding LastViewedMusicVM}" >
                         <ListView.ItemTemplate>
