@@ -42,6 +42,7 @@ namespace VLC_WINRT.ViewModels.MainPage
         int _numberOfTracks;
         ThreadPoolTimer _periodicTimer;
 
+        
         // XBOX Music Stuff; Take 2
         public Music XboxMusic;
         public MusicHelper XboxMusicHelper;
@@ -60,6 +61,11 @@ namespace VLC_WINRT.ViewModels.MainPage
         private void XboxMusicHelperOnFailed(object sender, ErrorEventArgs errorEventArgs)
         {
 
+        }
+
+        public bool IsMusicLibraryEmpty
+        {
+            get { return Track.Any(); }
         }
 
         public ObservableCollection<string> ImgCollection
@@ -161,7 +167,7 @@ namespace VLC_WINRT.ViewModels.MainPage
 
                 foreach (ArtistItemViewModel artist in Artist)
                 {
-                    if(artist.HdPictures != null)
+                    if (artist.HdPictures != null)
                         ImgCollection.Add(artist.HdPictures);
                     foreach (AlbumItem album in artist.Albums)
                     {
@@ -225,7 +231,7 @@ namespace VLC_WINRT.ViewModels.MainPage
             // more informations
             private string _biography;
             private List<OnlineAlbumItem> _onlinePopularAlbumItems = new List<OnlineAlbumItem>();
-            private List<ArtistItemViewModel> _onlineRelatedArtists = new List<ArtistItemViewModel>(); 
+            private List<ArtistItemViewModel> _onlineRelatedArtists = new List<ArtistItemViewModel>();
             private bool _isFavorite;
             private string _hdPicture;
 
@@ -289,7 +295,7 @@ namespace VLC_WINRT.ViewModels.MainPage
             {
                 get { return _onlineRelatedArtists; }
                 set { SetProperty(ref _onlineRelatedArtists, value); }
-            } 
+            }
             public ArtistItemViewModel(StorageFolderQueryResult albumQueryResult)
             {
                 GetInformationsFromXBoxMusicAPI(albumQueryResult.Folder.DisplayName);
@@ -318,7 +324,7 @@ namespace VLC_WINRT.ViewModels.MainPage
                         var musicAttr = await item.Properties.GetMusicPropertiesAsync();
                         var files = await item.GetFilesAsync(CommonFileQuery.OrderByMusicProperties);
                         var thumbnail = await item.GetThumbnailAsync(ThumbnailMode.MusicView, 250);
-                        string fileName="";
+                        string fileName = "";
                         if (thumbnail != null)
                         {
                             fileName = musicAttr.Artist + "_" + musicAttr.Album;
@@ -337,7 +343,7 @@ namespace VLC_WINRT.ViewModels.MainPage
                         var albumItem = new AlbumItem(files, musicAttr.Album, albumQueryResult.Folder.DisplayName);
                         albumItem.Name = musicAttr.Album;
                         albumItem.Artist = musicAttr.Artist;
-                        if(fileName.Length > 0)
+                        if (fileName.Length > 0)
                             albumItem.Picture = "ms-appdata:///local/" + fileName + ".jpg";
 
                         Albums.Add(albumItem);
@@ -387,9 +393,32 @@ namespace VLC_WINRT.ViewModels.MainPage
                         await Locator.MusicLibraryVM.XboxMusicHelper.SearchMediaCatalog(token, artist, 3);
                     var xBoxArtistItem =
                         Locator.MusicLibraryVM.XboxMusic.Artists.Items.FirstOrDefault(x => x.Name == artist);
-                    Locator.MusicLibraryVM.ImgCollection.Add(xBoxArtistItem.ImageUrl);
 
-                    HdPictures = xBoxArtistItem.ImageUrl;
+                    HttpClient clientPic = new HttpClient();
+                    HttpResponseMessage responsePic = await clientPic.GetAsync(xBoxArtistItem.ImageUrl);
+                    byte[] img = await responsePic.Content.ReadAsByteArrayAsync();
+                    InMemoryRandomAccessStream streamWeb = new InMemoryRandomAccessStream();
+
+                    DataWriter writer = new DataWriter(streamWeb.GetOutputStreamAt(0));
+                    writer.WriteBytes(img);
+
+                    await writer.StoreAsync();
+                    string fileName = artist + "_" + "dPi";
+
+                    var file = await ApplicationData.Current.LocalFolder.CreateFileAsync(fileName + ".jpg", CreationCollisionOption.ReplaceExisting);
+                    var raStream = await file.OpenAsync(FileAccessMode.ReadWrite);
+
+                    using (var thumbnailStream = streamWeb.GetInputStreamAt(0))
+                    {
+                        using (var stream = raStream.GetOutputStreamAt(0))
+                        {
+                            await RandomAccessStream.CopyAsync(thumbnailStream, stream);
+                        }
+                    }
+
+                    HdPictures = "ms-appdata:///local/" + fileName + ".jpg";
+
+                    Locator.MusicLibraryVM.ImgCollection.Add("ms-appdata:///local/" + fileName + ".jpg");
                     if (xBoxArtistItem.Albums != null)
                     {
                         foreach (var album in xBoxArtistItem.Albums.Items)
@@ -405,7 +434,9 @@ namespace VLC_WINRT.ViewModels.MainPage
                         {
                             var onlinePopularAlbums = artists.Albums.Items.Select(albums => new OnlineAlbumItem()
                             {
-                                Artist = artists.Name, Name = albums.Name, Picture = albums.ImageUrl,
+                                Artist = artists.Name,
+                                Name = albums.Name,
+                                Picture = albums.ImageUrl,
                             }).ToList();
 
                             var artistPic = artists.ImageUrl;
@@ -427,11 +458,11 @@ namespace VLC_WINRT.ViewModels.MainPage
                                     App.ApiKeyLastFm + "&artist=" + artist);
                         var xml = XDocument.Parse(response);
                         var topAlbums = from results in xml.Descendants("album")
-                            select new OnlineAlbumItem
-                            {
-                                Name = results.Element("name").Value.ToString(),
-                                Picture = results.Elements("image").ElementAt(3).Value,
-                            };
+                                        select new OnlineAlbumItem
+                                        {
+                                            Name = results.Element("name").Value.ToString(),
+                                            Picture = results.Elements("image").ElementAt(3).Value,
+                                        };
 
                         foreach (var item in topAlbums)
                             OnlinePopularAlbumItems.Add(item);
@@ -445,11 +476,11 @@ namespace VLC_WINRT.ViewModels.MainPage
                                     App.ApiKeyLastFm + "&artist=" + artist);
                         xml = XDocument.Parse(response);
                         var similarArtists = from results in xml.Descendants("artist")
-                                        select new ArtistItemViewModel
-                                        {
-                                            Name = results.Element("name").Value.ToString(),
-                                            Picture = results.Elements("image").ElementAt(3).Value,
-                                        };
+                                             select new ArtistItemViewModel
+                                             {
+                                                 Name = results.Element("name").Value.ToString(),
+                                                 Picture = results.Elements("image").ElementAt(3).Value,
+                                             };
                         foreach (var item in similarArtists)
                             OnlineRelatedArtists.Add(item);
                     }
@@ -567,7 +598,10 @@ namespace VLC_WINRT.ViewModels.MainPage
                 LoadTracks(tracks, artist, name);
                 ChargementAlbumBio(name, artist);
             }
-            public AlbumItem() { }
+
+            public AlbumItem()
+            {
+            }
 
             public async Task LoadTracks(IReadOnlyList<StorageFile> tracks, string artist, string album)
             {

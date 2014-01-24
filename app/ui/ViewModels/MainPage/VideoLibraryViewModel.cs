@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using System.Linq;
 using VLC_WINRT.Common;
 using VLC_WINRT.Model;
 using VLC_WINRT.Utility.Commands;
@@ -40,6 +41,11 @@ namespace VLC_WINRT.ViewModels.MainPage
             Panels.Add(new Panel("ALL", 0, 1));
             Panels.Add(new Panel("NEVER SEEN BEFORE", 1, 0.4));
             Panels.Add(new Panel("FAVORITE", 2, 0.4));
+        }
+
+        public bool IsVideoLibraryEmpty
+        {
+            get { return Media.Any(); }
         }
 
         public ObservableCollection<Panel> Panels

@@ -42,6 +42,7 @@
         </ListView>-->
         <Grid Grid.Row="1" x:Name="SectionsGrid">
             <Grid>
+                <controls:NothingToSeeHere Grid.Column="2" Visibility="{Binding IsVideoLibraryEmpty, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                 <controls:VariableSizedItemsGridView x:Name="FirstPanelGridView" ItemsSource="{Binding Media}" ItemTemplateSelector="{StaticResource MediaItemDataTemplateSelector}" >
                     <GridView.ItemsPanel>
                         <ItemsPanelTemplate>

@@ -33,6 +33,7 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Row="0" Text="last videos" Foreground="#e67e22" Margin="0,20" FontSize="42" FontWeight="Light" />
+                    <controls:NothingToSeeHere Grid.Row="1" Visibility="{Binding LastViewedVideoVM, Converter={StaticResource NullToVisibilityConverter}}"/>
                     <controls:VariableSizedItemsGridView Grid.Row="1" ItemsSource="{Binding LastViewedVideoVM}" ItemTemplateSelector="{StaticResource MediaItemDataTemplateSelector}" >
                         <GridView.ItemsPanel>
                             <ItemsPanelTemplate>
@@ -47,6 +48,7 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Row="0" Text="last music" Foreground="#e67e22" Margin="0,20" FontSize="42" FontWeight="Light" />
+                    <controls:NothingToSeeHere Grid.Row="1" Visibility="{Binding LastViewMusicVM, Converter={StaticResource NullToVisibilityConverter}}"/>
                     <ListView Grid.Row="1" ItemsSource="{Binding LastViewedMusicVM}" >
                         <ListView.ItemTemplate>
                             <DataTemplate>
