@@ -227,7 +227,7 @@ namespace VLC_WINRT.ViewModels.MainPage
             private List<OnlineAlbumItem> _onlinePopularAlbumItems = new List<OnlineAlbumItem>();
             private List<ArtistItemViewModel> _onlineRelatedArtists = new List<ArtistItemViewModel>(); 
             private bool _isFavorite;
-            private List<string> _hdPictureList = new List<string>();
+            private string _hdPicture;
 
             public string Name
             {
@@ -279,10 +279,10 @@ namespace VLC_WINRT.ViewModels.MainPage
             }
             public bool IsFavorite { get { return _isFavorite; } set { SetProperty(ref _isFavorite, value); } }
 
-            public List<string> HdPicturesList
+            public string HdPictures
             {
-                get { return _hdPictureList; }
-                set { SetProperty(ref _hdPictureList, value); }
+                get { return _hdPicture; }
+                set { SetProperty(ref _hdPicture, value); }
             }
 
             public List<ArtistItemViewModel> OnlineRelatedArtists
@@ -292,8 +292,8 @@ namespace VLC_WINRT.ViewModels.MainPage
             } 
             public ArtistItemViewModel(StorageFolderQueryResult albumQueryResult)
             {
-                LoadAlbums(albumQueryResult);
                 GetInformationsFromXBoxMusicAPI(albumQueryResult.Folder.DisplayName);
+                LoadAlbums(albumQueryResult);
             }
 
             public ArtistItemViewModel()
@@ -389,7 +389,7 @@ namespace VLC_WINRT.ViewModels.MainPage
                         Locator.MusicLibraryVM.XboxMusic.Artists.Items.FirstOrDefault(x => x.Name == artist);
                     Locator.MusicLibraryVM.ImgCollection.Add(xBoxArtistItem.ImageUrl);
 
-                    HdPicturesList.Add(xBoxArtistItem.ImageUrl);
+                    HdPictures = xBoxArtistItem.ImageUrl;
                     if (xBoxArtistItem.Albums != null)
                     {
                         foreach (var album in xBoxArtistItem.Albums.Items)
@@ -408,13 +408,12 @@ namespace VLC_WINRT.ViewModels.MainPage
                                 Artist = artists.Name, Name = albums.Name, Picture = albums.ImageUrl,
                             }).ToList();
 
-                            var artistPic = new List<string>();
-                            artistPic.Add(artists.ImageUrl);
+                            var artistPic = artists.ImageUrl;
                             OnlineRelatedArtists.Add(new ArtistItemViewModel()
                             {
                                 Name = artists.Name,
                                 OnlinePopularAlbumItems = onlinePopularAlbums,
-                                HdPicturesList = artistPic,
+                                HdPictures = artistPic,
                             });
                         }
                     }
