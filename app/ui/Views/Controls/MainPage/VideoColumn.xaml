@@ -38,10 +38,10 @@
         </ListView>-->
         <Grid Grid.Row="1" x:Name="SectionsGrid">
             <ScrollViewer Style="{StaticResource HorizontalScrollViewerStyle}">
-                <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
                     <controls:NothingToSeeHere Visibility="{Binding IsVideoLibraryEmpty, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                    <FlipView ItemsSource="{Binding MediaRandom}" Height="330" Width="560" ItemTemplate="{StaticResource WideMovieTemplate}" />
-                    <GridView x:Name="FirstPanelGridView" ItemContainerStyle="{StaticResource GridViewItemContainerStyle}" ItemsSource="{Binding Media}" ItemTemplate="{StaticResource NormaleMovieTemplate}" />
+                    <FlipView x:Name="FlipView" Margin="0,50,0,0" ItemsSource="{Binding MediaRandom}" Width="560" ItemTemplate="{StaticResource FlipViewMovieTemplate}"/>
+                    <GridView x:Name="FirstPanelGridView" Margin="0,50,0,0" ItemContainerStyle="{StaticResource GridViewItemContainerStyle}" ItemsSource="{Binding Media}" ItemTemplate="{StaticResource NormaleMovieTemplate}" />
                     <ListView x:Name="FirstPanelListView" Margin="10,0,0,0" ItemsSource="{Binding Media}" ItemTemplate="{StaticResource NormaleMovieTemplate}"/>
                 </StackPanel>
             </ScrollViewer>

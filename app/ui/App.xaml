@@ -1002,6 +1002,25 @@
                     </Grid>
                 </Button>
             </DataTemplate>
+            <DataTemplate x:Name="FlipViewMovieTemplate">
+                <Button Template="{StaticResource MainButtonStyle}"
+                            Command="{Binding OpenFile}"
+                            CommandParameter="{Binding}"
+                        VerticalAlignment="Top">
+                    <Grid Width="560" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="330" />
+                            <RowDefinition Height="158"/>
+                        </Grid.RowDefinitions>
+                        <Image Grid.Row="0" Source="{Binding Image}" Stretch="UniformToFill"
+                                       AutomationProperties.Name="{Binding Title}" />
+
+                        <StackPanel Grid.Row="1">
+                            <TextBlock Text="{Binding Title}" Foreground="#e67e22" FontSize="36" TextWrapping="NoWrap" TextTrimming="WordEllipsis" FontWeight="Light" Margin="50,0,0,0" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+                        </StackPanel>
+                    </Grid>
+                </Button>
+            </DataTemplate>
             <DataTemplate x:Name="NormaleMovieTemplate">
                 <Button Template="{StaticResource MainButtonStyle}" 
                             Command="{Binding OpenFile}"

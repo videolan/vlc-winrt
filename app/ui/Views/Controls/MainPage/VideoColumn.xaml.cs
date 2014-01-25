@@ -10,6 +10,7 @@ namespace VLC_WINRT.Views.Controls.MainPage
 {
     public sealed partial class VideoColumn : UserControl
     {
+        private DispatcherTimer _flipViewTimer;
         private int _currentSection;
         public VideoColumn()
         {
@@ -22,8 +23,22 @@ namespace VLC_WINRT.Views.Controls.MainPage
                 }
             };
             this.SizeChanged += OnSizeChanged;
+
+            _flipViewTimer = new DispatcherTimer
+            {
+                Interval = TimeSpan.FromSeconds(6),
+            };
+            _flipViewTimer.Tick += FlipViewTimerOnTick;
+            _flipViewTimer.Start();
         }
-        
+
+        private void FlipViewTimerOnTick(object sender, object o)
+        {
+            var totalItems = FlipView.Items.Count;
+            var newItemIndex = (FlipView.SelectedIndex + 1) % totalItems;
+            FlipView.SelectedIndex = newItemIndex;
+        }
+
         private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
         {
             Dispatcher.RunAsync(CoreDispatcherPriority.High, () =>

@@ -34,7 +34,7 @@
                     </Grid.RowDefinitions>
                     <Button Margin="5,0,0,0" Grid.Row="0" Template="{StaticResource MainButtonStyle}">
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Grid.Row="0" Text="last viewed" Foreground="#e67e22" FontSize="42" FontWeight="Light" />
+                            <TextBlock Text="last viewed" Foreground="#e67e22" FontSize="42" FontWeight="Light" />
                             <Button Margin="20,0"
                 Style="{StaticResource TextButtonStyle}"
                 HorizontalAlignment="Right"
