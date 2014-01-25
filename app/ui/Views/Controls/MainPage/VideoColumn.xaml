@@ -10,11 +10,7 @@
     mc:Ignorable="d"
     d:DesignHeight="768"
     d:DesignWidth="400">
-    <UserControl.Resources>
-        <dataTemplateSelectors:MediaItemDataTemplateSelector WideMovieTemplate="{StaticResource WideMovieTemplate}"
-                                                                NormalMovieTemplate="{StaticResource NormaleMovieTemplate}"
-                                                                x:Key="MediaItemDataTemplateSelector" />
-    </UserControl.Resources>
+
     <Grid >
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -41,17 +37,14 @@
             </ListView.ItemTemplate>
         </ListView>-->
         <Grid Grid.Row="1" x:Name="SectionsGrid">
-            <Grid>
-                <controls:NothingToSeeHere Grid.Column="2" Visibility="{Binding IsVideoLibraryEmpty, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                <controls:VariableSizedItemsGridView x:Name="FirstPanelGridView" ItemsSource="{Binding Media}" ItemTemplateSelector="{StaticResource MediaItemDataTemplateSelector}" >
-                    <GridView.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <VariableSizedWrapGrid VerticalAlignment="Center" Margin="50,0,0,0" ItemHeight="158" ItemWidth="280" />
-                        </ItemsPanelTemplate>
-                    </GridView.ItemsPanel>
-                </controls:VariableSizedItemsGridView>
-                <ListView x:Name="FirstPanelListView" Margin="10,0,0,0" ItemsSource="{Binding Media}" ItemTemplateSelector="{StaticResource MediaItemDataTemplateSelector}" />
-            </Grid>
+            <ScrollViewer Style="{StaticResource HorizontalScrollViewerStyle}">
+                <StackPanel Orientation="Horizontal">
+                    <controls:NothingToSeeHere Visibility="{Binding IsVideoLibraryEmpty, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                    <FlipView ItemsSource="{Binding MediaRandom}" Height="330" Width="560" ItemTemplate="{StaticResource WideMovieTemplate}" />
+                    <GridView x:Name="FirstPanelGridView" ItemContainerStyle="{StaticResource GridViewItemContainerStyle}" ItemsSource="{Binding Media}" ItemTemplate="{StaticResource NormaleMovieTemplate}" />
+                    <ListView x:Name="FirstPanelListView" Margin="10,0,0,0" ItemsSource="{Binding Media}" ItemTemplate="{StaticResource NormaleMovieTemplate}"/>
+                </StackPanel>
+            </ScrollViewer>
             <Grid>
                 <TextBlock Text="still not done" Foreground="Blue"/>
             </Grid>
