@@ -140,20 +140,22 @@
                         </GridView>
                     </SemanticZoom.ZoomedOutView>
                     <SemanticZoom.ZoomedInView>
-                        <ListView x:Name="AlbumsByArtistListView" IsSwipeEnabled="False" ItemsSource="{Binding Source={StaticResource albumsCollection}}" SelectedIndex="0" SelectionMode="None" IsItemClickEnabled="True" ItemClick="AlbumGridView_ItemClick">
-                            <ListView.GroupStyle>
+                        <GridView x:Name="AlbumsByArtistListView" IsSwipeEnabled="False" ItemsSource="{Binding Source={StaticResource albumsCollection}}" SelectedIndex="0" SelectionMode="None" IsItemClickEnabled="True" ItemClick="AlbumGridView_ItemClick" 
+                                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                  ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                  ScrollViewer.HorizontalScrollMode="Disabled"
+                                  ScrollViewer.VerticalScrollMode="Enabled">
+                            <GridView.GroupStyle>
                                 <GroupStyle>
                                     <GroupStyle.Panel>
                                         <ItemsPanelTemplate>
-                                            <wrapPanelControl:WrapPanel Margin="10,0,0,0" Orientation="Horizontal">
-                                                <wrapPanelControl:WrapPanel.ChildrenTransitions>
+                                            <VariableSizedWrapGrid Orientation="Horizontal">
+                                                <VariableSizedWrapGrid.ChildrenTransitions>
                                                     <TransitionCollection>
-                                                        <AddDeleteThemeTransition />
                                                         <RepositionThemeTransition />
-                                                        <EntranceThemeTransition FromHorizontalOffset="250"/>
                                                     </TransitionCollection>
-                                                </wrapPanelControl:WrapPanel.ChildrenTransitions>
-                                            </wrapPanelControl:WrapPanel>
+                                                </VariableSizedWrapGrid.ChildrenTransitions>
+                                            </VariableSizedWrapGrid>
                                         </ItemsPanelTemplate>
                                     </GroupStyle.Panel>
                                     <GroupStyle.HeaderTemplate>
@@ -162,19 +164,19 @@
                                         </DataTemplate>
                                     </GroupStyle.HeaderTemplate>
                                 </GroupStyle>
-                            </ListView.GroupStyle>
-                            <ListView.ItemContainerStyle>
-                                <Style TargetType="ListViewItem">
+                            </GridView.GroupStyle>
+                            <GridView.ItemContainerStyle>
+                                <Style TargetType="GridViewItem">
                                     <Setter Property="Padding" Value="-4"/>
                                     <Setter Property="Margin" Value="0"/>
                                 </Style>
-                            </ListView.ItemContainerStyle>
-                            <ListView.ItemsPanel>
+                            </GridView.ItemContainerStyle>
+                            <GridView.ItemsPanel>
                                 <ItemsPanelTemplate>
-                                    <StackPanel />
+                                    <VirtualizingStackPanel />
                                 </ItemsPanelTemplate>
-                            </ListView.ItemsPanel>
-                        </ListView>
+                            </GridView.ItemsPanel>
+                        </GridView>
                     </SemanticZoom.ZoomedInView>
                 </SemanticZoom>
 
