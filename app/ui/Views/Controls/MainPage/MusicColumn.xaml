@@ -79,7 +79,7 @@
         <Grid Grid.Row="1" x:Name="SectionsGrid" Margin="50,0,0,0">
             <Grid x:Name="ArtistPanel">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="300" />
                     <ColumnDefinition Width="1"/>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="1"/>
@@ -101,11 +101,11 @@
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="50"/>
                                     <ColumnDefinition Width="10"/>
-                                    <ColumnDefinition Width="270"/>
+                                    <ColumnDefinition Width="240"/>
                                 </Grid.ColumnDefinitions>
                                 <Image Source="{Binding HdPictures}" Height="50" Stretch="UniformToFill"/>
                                 <StackPanel Grid.Column="2" VerticalAlignment="Center">
-                                    <TextBlock Text="{Binding Name, Converter={StaticResource StringToUpperConverter}}" TextWrapping="NoWrap" TextTrimming="WordEllipsis" FontSize="18"/>
+                                    <TextBlock Text="{Binding Name}" TextWrapping="NoWrap" TextTrimming="WordEllipsis" FontSize="17"/>
                                 </StackPanel>
                             </Grid>
                         </DataTemplate>
@@ -142,14 +142,14 @@
                     <SemanticZoom.ZoomedInView>
                         <GridView x:Name="AlbumsByArtistListView" IsSwipeEnabled="False" ItemsSource="{Binding Source={StaticResource albumsCollection}}" SelectedIndex="0" SelectionMode="None" IsItemClickEnabled="True" ItemClick="AlbumGridView_ItemClick" 
                                   ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                                  ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                  ScrollViewer.VerticalScrollBarVisibility="Disabled"
                                   ScrollViewer.HorizontalScrollMode="Disabled"
                                   ScrollViewer.VerticalScrollMode="Enabled">
                             <GridView.GroupStyle>
                                 <GroupStyle>
                                     <GroupStyle.Panel>
                                         <ItemsPanelTemplate>
-                                            <VariableSizedWrapGrid Orientation="Horizontal">
+                                            <VariableSizedWrapGrid Margin="0,0,0,40" Orientation="Horizontal">
                                                 <VariableSizedWrapGrid.ChildrenTransitions>
                                                     <TransitionCollection>
                                                         <RepositionThemeTransition />
@@ -160,17 +160,14 @@
                                     </GroupStyle.Panel>
                                     <GroupStyle.HeaderTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text="{Binding Name, Converter={StaticResource StringToUpperConverter}}" TextWrapping="NoWrap" TextTrimming="WordEllipsis" Margin="10" FontSize="23" />
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="" />
+                                                <TextBlock Text="{Binding Name}" TextWrapping="NoWrap" TextTrimming="WordEllipsis" Margin="10" FontSize="23" />
+                                            </StackPanel>
                                         </DataTemplate>
                                     </GroupStyle.HeaderTemplate>
                                 </GroupStyle>
                             </GridView.GroupStyle>
-                            <GridView.ItemContainerStyle>
-                                <Style TargetType="GridViewItem">
-                                    <Setter Property="Padding" Value="-4"/>
-                                    <Setter Property="Margin" Value="0"/>
-                                </Style>
-                            </GridView.ItemContainerStyle>
                             <GridView.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <VirtualizingStackPanel />
