@@ -95,7 +95,7 @@
                                     <ColumnDefinition Width="10"/>
                                     <ColumnDefinition Width="240"/>
                                 </Grid.ColumnDefinitions>
-                                <Image Source="{Binding Picture}" Height="50" Stretch="UniformToFill"/>
+                                <Image Source="{Binding Picture}" Height="50" Stretch="UniformToFill" HorizontalAlignment="Center"/>
                                 <StackPanel Grid.Column="2" VerticalAlignment="Center">
                                     <TextBlock Text="{Binding Name}" TextWrapping="NoWrap" TextTrimming="WordEllipsis" FontSize="17"/>
                                 </StackPanel>

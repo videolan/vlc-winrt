@@ -148,7 +148,6 @@ namespace VLC_WINRT.ViewModels.MainPage
                         artist.Name = artistProperties.Artist;
                         OnPropertyChanged("Track");
                         Artist.Add(artist);
-                        OnPropertyChanged("Artist");
                     }
                 }
                 ExecuteSemanticZoom();
@@ -217,7 +216,7 @@ namespace VLC_WINRT.ViewModels.MainPage
         public class ArtistItemViewModel : BindableBase
         {
             private string _name;
-            private string _picture;
+            private string _picture = "/Assets/GreyPylon/280x156.jpg";
             private ObservableCollection<AlbumItem> _albumItems = new ObservableCollection<AlbumItem>();
             private int _currentAlbumIndex = 0;
 
@@ -226,7 +225,6 @@ namespace VLC_WINRT.ViewModels.MainPage
             private List<OnlineAlbumItem> _onlinePopularAlbumItems = new List<OnlineAlbumItem>();
             private List<ArtistItemViewModel> _onlineRelatedArtists = new List<ArtistItemViewModel>();
             private bool _isFavorite;
-            private string _hdPicture;
 
             public string Name
             {
