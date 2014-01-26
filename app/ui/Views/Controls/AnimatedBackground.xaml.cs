@@ -16,8 +16,6 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
-
-// Pour en savoir plus sur le modèle d'élément Contrôle utilisateur, consultez la page http://go.microsoft.com/fwlink/?LinkId=234236
 using VLC_WINRT.Utility.Helpers;
 using VLC_WINRT.ViewModels;
 
@@ -26,14 +24,17 @@ namespace VLC_WINRT.Views.Controls
     public sealed partial class AnimatedBackground : UserControl
     {
         ThreadPoolTimer _periodicTimer;
+        private bool _isInit;
         public AnimatedBackground()
         {
             this.InitializeComponent();
-            SetSourceToImages();
+            if(!_isInit)
+                SetSourceToImages();
         }
 
         void SetSourceToImages()
         {
+            _isInit = true;
             TimeSpan period = TimeSpan.FromSeconds(25);
             _periodicTimer = ThreadPoolTimer.CreatePeriodicTimer((source) =>
             {
