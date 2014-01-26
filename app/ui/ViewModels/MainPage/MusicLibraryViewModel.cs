@@ -121,6 +121,8 @@ namespace VLC_WINRT.ViewModels.MainPage
                         SerializationHelper.SerializeAsJson(Artist, "MusicDB.json",
                             null,
                             CreationCollisionOption.ReplaceExisting);
+                        SerializationHelper.SerializeAsJson(ImgCollection, "Artist_Img_Collection.json", null,
+                            CreationCollisionOption.ReplaceExisting);
                         Locator.MusicLibraryVM._numberOfTracks = Track.Count;
                     }
                     else
@@ -147,6 +149,7 @@ namespace VLC_WINRT.ViewModels.MainPage
                         var artist = new ArtistItemViewModel(albumQuery);
                         artist.Name = artistProperties.Artist;
                         OnPropertyChanged("Track");
+                        OnPropertyChanged("Artist");
                         Artist.Add(artist);
                     }
                 }
@@ -156,14 +159,14 @@ namespace VLC_WINRT.ViewModels.MainPage
             else
             {
                 Artist = await SerializationHelper.LoadFromJsonFile<ObservableCollection<ArtistItemViewModel>>("MusicDB.json");
+                ImgCollection =
+                    await
+                        SerializationHelper.LoadFromJsonFile<ObservableCollection<string>>("Artist_Img_Collection.json");
 
                 foreach (ArtistItemViewModel artist in Artist)
                 {
-                    if (artist.Picture != null)
-                        ImgCollection.Add(artist.Picture.Remove(artist.Picture.IndexOf("&w=", StringComparison.Ordinal)));
                     foreach (AlbumItem album in artist.Albums)
                     {
-                        AlbumCover.Add(album.Picture);
                         foreach (TrackItem trackItem in album.Tracks)
                         {
                             trackItem.IsFavorite = true;
@@ -416,7 +419,7 @@ namespace VLC_WINRT.ViewModels.MainPage
                         }
                         foreach (var artists in xBoxArtistItem.RelatedArtists.Items)
                         {
-                            var onlinePopularAlbums = artists.Albums.Items.Select(albums => new OnlineAlbumItem()
+                            var onlinePopularAlbums = artists.Albums.Items.Select(albums => new OnlineAlbumItem
                             {
                                 Artist = artists.Name,
                                 Name = albums.Name,
@@ -424,7 +427,7 @@ namespace VLC_WINRT.ViewModels.MainPage
                             }).ToList();
 
                             var artistPic = artists.ImageUrl;
-                            OnlineRelatedArtists.Add(new ArtistItemViewModel()
+                            OnlineRelatedArtists.Add(new ArtistItemViewModel
                             {
                                 Name = artists.Name,
                                 OnlinePopularAlbumItems = onlinePopularAlbums,

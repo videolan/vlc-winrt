@@ -38,12 +38,12 @@ namespace VLC_WINRT.Views
             {
                 if (sizeChangedEventArgs.NewSize.Width < 1080)
                 {
-                    MainLogoBorder.VerticalAlignment = VerticalAlignment.Top;
+                    MainLogoGrid.VerticalAlignment = VerticalAlignment.Top;
                     MiniPlayer.Visibility = Visibility.Collapsed;
                 }
                 else
                 {
-                    MainLogoBorder.VerticalAlignment = VerticalAlignment.Center;
+                    MainLogoGrid.VerticalAlignment = VerticalAlignment.Center;
                     MiniPlayer.Visibility = Visibility.Visible;
                 }
             });

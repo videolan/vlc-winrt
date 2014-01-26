@@ -139,7 +139,7 @@
         </Storyboard>
     </views:BasePage.Resources>
 
-    
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -154,11 +154,14 @@
         </HyperlinkButton>-->
         <Grid Grid.Row="0" Margin="0,10,0,0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="50"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <Border x:Name="MainLogoBorder" Background="{StaticResource MainColor}" Width="9" Height="50" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <Grid x:Name="MainLogoGrid" Width="50">
+                <Border Background="{StaticResource MainColor}" Width="9" Height="50" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            </Grid>
             <ListView ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" x:Name="SectionsHeaderListView" Grid.Column="1" VerticalAlignment="Center" SelectionMode="None" IsItemClickEnabled="True" ItemClick="SectionsHeaderListView_OnItemClick" ItemsSource="{Binding Panels}" RenderTransformOrigin="0.5,0.5" 
                       ScrollViewer.VerticalScrollMode="Disabled"
                       ScrollViewer.VerticalScrollBarVisibility="Disabled">
@@ -167,7 +170,7 @@
                 </ListView.RenderTransform>
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <wrapPanelControl:WrapPanel Orientation="Horizontal" />
+                        <VirtualizingStackPanel Orientation="Horizontal" />
                     </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
                 <ListView.ItemTemplate>
@@ -176,7 +179,8 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <controls:MiniPlayer x:Name="MiniPlayer" Grid.Column="2"/>
+            <Button Grid.Column="2" Content="" Template="{StaticResource MainButtonStyle}" FontFamily="Segoe UI Symbol" FontSize="32" Margin="0,0,0,10" HorizontalAlignment="Left" Foreground="{StaticResource MainColor}"/>
+            <controls:MiniPlayer x:Name="MiniPlayer" Grid.Column="3"/>
         </Grid>
         <Grid Grid.Row="1" x:Name="SectionsGrid" RenderTransformOrigin="0.5,0.5">
             <Grid.RenderTransform>
