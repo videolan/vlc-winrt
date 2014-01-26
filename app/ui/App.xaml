@@ -54,6 +54,7 @@
                                         <VisualState x:Name="Normal"/>
                                         <VisualState x:Name="PointerOver">
                                             <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="contentPresenter" Storyboard.TargetProperty="Opacity" To="0.5" SpeedRatio="4"/>
                                                 <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SelectionBackground"
                                                                     Storyboard.TargetProperty="Fill">
                                                     <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ListViewItemSelectedPointerOverBackgroundThemeBrush}" />
@@ -76,10 +77,6 @@
                                         <VisualState x:Name="PointerOverPressed">
                                             <Storyboard>
                                                 <PointerDownThemeAnimation TargetName="ContentContainer" />
-                                                <DoubleAnimation Storyboard.TargetName="PointerOverBorder"
-                                                     Storyboard.TargetProperty="Opacity"
-                                                     Duration="0"
-                                                     To="1" />
                                                 <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SelectionBackground"
                                                                     Storyboard.TargetProperty="Fill">
                                                     <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ListViewItemSelectedPointerOverBackgroundThemeBrush}" />
@@ -394,7 +391,7 @@
                                             <Rectangle x:Name="PointerOverBorder"
                                            IsHitTestVisible="False"
                                            Opacity="0"
-                                           Fill="{StaticResource ListViewItemPointerOverBackgroundThemeBrush}"
+                                           Fill="#CC1f1f1f"
                                            Margin="1" />
                                             <Rectangle x:Name="FocusVisual"
                                            IsHitTestVisible="False"
