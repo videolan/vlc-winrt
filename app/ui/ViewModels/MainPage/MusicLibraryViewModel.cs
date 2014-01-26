@@ -167,6 +167,7 @@ namespace VLC_WINRT.ViewModels.MainPage
                 {
                     foreach (AlbumItem album in artist.Albums)
                     {
+                        
                         foreach (TrackItem trackItem in album.Tracks)
                         {
                             trackItem.IsFavorite = true;
@@ -516,6 +517,7 @@ namespace VLC_WINRT.ViewModels.MainPage
             private int _currentTrackPosition;
             private string _picture = "/Assets/GreyPylon/280x156.jpg";
             private uint _year;
+            private bool _favorite;
             private ObservableCollection<TrackItem> _trackItems = new ObservableCollection<TrackItem>();
             private PlayAlbumCommand _playAlbumCommand = new PlayAlbumCommand();
 
@@ -539,6 +541,12 @@ namespace VLC_WINRT.ViewModels.MainPage
             {
                 get { return _currentTrackPosition; }
                 set { SetProperty(ref _currentTrackPosition, value); }
+            }
+
+            public bool Favorite
+            {
+                get { return _favorite; }
+                set { SetProperty(ref _favorite, value); }
             }
 
             public ObservableCollection<TrackItem> Tracks
