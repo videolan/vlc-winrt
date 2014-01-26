@@ -176,8 +176,9 @@
                                 <StackPanel Orientation="Horizontal">
                                     <Button Content="" FontSize="24" Style="{StaticResource ModernAppBarButtonStyle}" Command="{Binding PlayAlbum}" CommandParameter="{Binding}" Margin="0,0,10,0"/>
                                     <Button Template="{StaticResource MainButtonStyle}" Command="{Binding PlayAlbum}" CommandParameter="{Binding}">
-                                        <TextBlock>
-                                            <Run Text="Play album" FontWeight="Light" FontSize="20"/>
+                                        <TextBlock TextWrapping="NoWrap" TextTrimming="WordEllipsis">
+                                            <Run Text="Play" FontWeight="Light" FontSize="20"/>
+                                            <Run Text="{Binding Name}" FontWeight="Light" FontSize="20"/>
                                             <LineBreak />
                                             <Run Text="{Binding Tracks.Count}" Foreground="#B2FFFFFF" FontWeight="SemiBold" FontSize="12"/>
                                             <Run Text="TRACKS" Foreground="#B2FFFFFF" FontFamily="Segoe UI" FontWeight="SemiBold" FontSize="12"/>
