@@ -2,12 +2,16 @@
 using System.Collections.ObjectModel;
 using VLC_WINRT.Common;
 using VLC_WINRT.ViewModels.MainPage;
+using XboxMusicLibrary.Models;
+
 namespace VLC_WINRT.ViewModels.PlayMusic
 {
     public class TrackCollectionViewModel : BindableBase
     {
         private ObservableCollection<MusicLibraryViewModel.TrackItem> _tracksCollection;
         private int _currentTrack = -1;
+        private bool _canGoPrevious;
+        private bool _canGoNext;
 
         public TrackCollectionViewModel()
         {
@@ -26,7 +30,6 @@ namespace VLC_WINRT.ViewModels.PlayMusic
             set { SetProperty(ref _currentTrack, value); }
         }
 
-
         // Tracks Collection Manager
         public void AddTrack(MusicLibraryViewModel.TrackItem track)
         {
@@ -41,15 +44,35 @@ namespace VLC_WINRT.ViewModels.PlayMusic
 
         public bool CanGoPrevious
         {
-            get { return  CurrentTrack >= 0; }
+            get
+            {
+                return  _canGoPrevious;
+            }
+            set { SetProperty(ref _canGoPrevious, value); }
         }
         public bool CanGoNext
         {
-            get 
+            get
             {
-                return CurrentTrack < TrackCollection.Count;
+                return _canGoNext;
             }
+            set { SetProperty(ref _canGoNext, value); }
         }
+
+        public bool IsPreviousPossible()
+        {
+            bool isPossible = (CurrentTrack > 0);
+            CanGoPrevious = isPossible;
+            return isPossible;
+        }
+
+        public bool IsNextPossible()
+        {
+            bool isPossible = (TrackCollection.Count != 1) && (CurrentTrack < TrackCollection.Count - 1);
+            CanGoNext = isPossible;
+            return isPossible;
+        }
+
         public void ResetCollection()
         {
             TrackCollection.Clear();

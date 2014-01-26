@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Globalization;
+using System.IO;
 using System.Threading.Tasks;
 using System.Linq;
 using Windows.Media;
@@ -130,7 +131,7 @@ namespace VLC_WINRT.ViewModels.PlayMusic
         {
             App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                if (TrackCollection.CanGoNext)
+                if (TrackCollection.IsNextPossible())
                 {
                     TrackCollection.CurrentTrack++;
 
@@ -142,7 +143,7 @@ namespace VLC_WINRT.ViewModels.PlayMusic
         }
         public void PlayPrevious()
         {
-            if (TrackCollection.CanGoPrevious)
+            if (TrackCollection.IsPreviousPossible())
             {
                 TrackCollection.CurrentTrack--;
                 Play();
@@ -169,12 +170,13 @@ namespace VLC_WINRT.ViewModels.PlayMusic
             MediaControl.ArtistName = trackItem.ArtistName;
             MediaControl.TrackName = trackItem.Name;
             //MediaControl.AlbumArt = new Uri(Locator.MusicPlayerVM.Artist.CurrentAlbumItem.Picture, UriKind.Absolute);
+
             if (TrackCollection.CanGoNext)
                 MediaControl.NextTrackPressed += MediaControl_NextTrackPressed;
             else
                 MediaControl.NextTrackPressed -= MediaControl_NextTrackPressed;
-            
-            if(TrackCollection.CanGoPrevious)
+
+            if (TrackCollection.CanGoPrevious)
                 MediaControl.PreviousTrackPressed += MediaControl_PreviousTrackPressed;
             else
                 MediaControl.PreviousTrackPressed -= MediaControl_PreviousTrackPressed;
