@@ -1,6 +1,9 @@
 ﻿// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
+using System;
+using Windows.Foundation;
 using Windows.UI.Core;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
@@ -78,6 +81,26 @@ namespace VLC_WINRT.Views
         private void MinimizedBottomAppBar_OnTapped(object sender, TappedRoutedEventArgs e)
         {
             BottomAppBar.IsOpen = true;
+        }
+
+        private async void MorePanelsButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            var popupMenu = new PopupMenu();
+            popupMenu.Commands.Add(new UICommand("Removable storage", async h =>
+            {
+            }));
+
+            popupMenu.Commands.Add(new UICommand("DLNA", async h =>
+            {
+                
+            }));
+            
+            var button = (Button)sender;
+            var transform = button.TransformToVisual(this);
+            var point = transform.TransformPoint(new Point(45, -10));
+            
+            await popupMenu.ShowAsync(point);
+
         }
     }
 }

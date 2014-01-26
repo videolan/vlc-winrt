@@ -367,6 +367,7 @@ namespace VLC_WINRT.ViewModels.MainPage
 
                 }
             }
+
             public async Task GetInformationsFromXBoxMusicAPI(string artist)
             {
                 try

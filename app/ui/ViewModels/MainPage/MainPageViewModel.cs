@@ -13,6 +13,7 @@ namespace VLC_WINRT.ViewModels.MainPage
     public class MainPageViewModel : NavigateableViewModel
     {
         private ObservableCollection<Panel> _panels = new ObservableCollection<Panel>();
+        private ObservableCollection<Panel> _secondaryPanels = new ObservableCollection<Panel>(); 
         private ObservableCollection<VideoLibraryViewModel> _dlnaVMs =
             new ObservableCollection<VideoLibraryViewModel>();
 
@@ -60,8 +61,8 @@ namespace VLC_WINRT.ViewModels.MainPage
             Panels.Add(new Panel("home", 0, 1));
             Panels.Add(new Panel("videos", 1, 0.4));
             Panels.Add(new Panel("music", 2, 0.4));
-            Panels.Add(new Panel("removable storage", 3, 0.4));
-            Panels.Add(new Panel("dlna", 4, 0.4));
+            SecondaryPanels.Add(new Panel("removable storage", 3, 0.4));
+            SecondaryPanels.Add(new Panel("dlna", 4, 0.4));
             _goToPanelCommand = new GoToPanelCommand();
         }
 
@@ -78,7 +79,14 @@ namespace VLC_WINRT.ViewModels.MainPage
             {
                 SetProperty(ref _panels, value);
             }
-        } 
+        }
+
+        public ObservableCollection<Panel> SecondaryPanels
+        {
+            get { return _secondaryPanels; }
+            set { SetProperty(ref _secondaryPanels, value); }
+        }
+        
         public VideoLibraryViewModel VideoVM
         {
             get { return _videoVM; }

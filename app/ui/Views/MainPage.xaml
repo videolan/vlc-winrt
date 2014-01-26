@@ -6,7 +6,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:mainPage="using:VLC_WINRT.Views.Controls.MainPage"
     xmlns:views="using:VLC_WINRT.Views"
-    xmlns:wrapPanelControl="using:VLC_WINRT.Views.Controls.WrapPanelControl"
     xmlns:controls="using:VLC_WINRT.Views.Controls"
     mc:Ignorable="d"
     d:DesignHeight="768"
@@ -179,7 +178,7 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <Button Grid.Column="2" Content="" Template="{StaticResource MainButtonStyle}" FontFamily="Segoe UI Symbol" FontSize="32" Margin="0,0,0,10" HorizontalAlignment="Left" Foreground="{StaticResource MainColor}"/>
+            <Button Grid.Column="2" Content="" Template="{StaticResource MainButtonStyle}" FontFamily="Segoe UI Symbol" FontSize="32" Margin="0,0,0,10" HorizontalAlignment="Left" Foreground="{StaticResource MainColor}" Click="MorePanelsButton_OnClick"/>
             <controls:MiniPlayer x:Name="MiniPlayer" Grid.Column="3"/>
         </Grid>
         <Grid Grid.Row="1" x:Name="SectionsGrid" RenderTransformOrigin="0.5,0.5">
