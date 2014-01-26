@@ -509,7 +509,7 @@ namespace VLC_WINRT.ViewModels.MainPage
             private string _name;
             private string _artist;
             private int _currentTrackPosition;
-            private string _picture;
+            private string _picture = "/Assets/GreyPylon/280x156.jpg";
             private uint _year;
             private ObservableCollection<TrackItem> _trackItems = new ObservableCollection<TrackItem>();
             private PlayAlbumCommand _playAlbumCommand = new PlayAlbumCommand();
