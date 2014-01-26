@@ -98,9 +98,7 @@ namespace VLC_WINRT.Views
             var button = (Button)sender;
             var transform = button.TransformToVisual(this);
             var point = transform.TransformPoint(new Point(45, -10));
-            
             await popupMenu.ShowAsync(point);
-
         }
     }
 }

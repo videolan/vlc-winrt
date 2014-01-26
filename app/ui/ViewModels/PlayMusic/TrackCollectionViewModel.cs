@@ -2,7 +2,6 @@
 using System.Collections.ObjectModel;
 using VLC_WINRT.Common;
 using VLC_WINRT.ViewModels.MainPage;
-using XboxMusicLibrary.Models;
 
 namespace VLC_WINRT.ViewModels.PlayMusic
 {

@@ -134,7 +134,6 @@ namespace VLC_WINRT.ViewModels.PlayMusic
                 if (TrackCollection.IsNextPossible())
                 {
                     TrackCollection.CurrentTrack++;
-
                     Play();
                 }
                 else

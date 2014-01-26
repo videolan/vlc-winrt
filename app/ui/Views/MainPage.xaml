@@ -203,7 +203,7 @@
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
         </Grid>
-        <controls:MinimizedAppBar Grid.Row="3"/>
+        <controls:MinimizedAppBar Grid.Row="3" Tapped="MinimizedBottomAppBar_OnTapped"/>
     </Grid>
 
     <Page.BottomAppBar>
