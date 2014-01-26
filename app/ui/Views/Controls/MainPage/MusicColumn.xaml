@@ -95,7 +95,7 @@
                                     <ColumnDefinition Width="10"/>
                                     <ColumnDefinition Width="240"/>
                                 </Grid.ColumnDefinitions>
-                                <Image Source="{Binding HdPictures}" Height="50" Stretch="UniformToFill"/>
+                                <Image Source="{Binding Picture}" Height="50" Stretch="UniformToFill"/>
                                 <StackPanel Grid.Column="2" VerticalAlignment="Center">
                                     <TextBlock Text="{Binding Name}" TextWrapping="NoWrap" TextTrimming="WordEllipsis" FontSize="17"/>
                                 </StackPanel>
@@ -121,7 +121,7 @@
                             <GridView.ItemTemplate>
                                 <DataTemplate>
                                     <Grid Width="280" Height="156">
-                                        <Image Source="{Binding Group.HdPictures}" Stretch="UniformToFill"/>
+                                        <Image Source="{Binding Group.Picture}" Stretch="UniformToFill"/>
                                         <Grid VerticalAlignment="Bottom" Height="35" Margin="0,0,0,20" HorizontalAlignment="Left">
                                             <Polygon Fill="{StaticResource MainColor}" Points="0,0 0,35 180,35 200,0" />
                                             <TextBlock MaxWidth="160" Text="{Binding Group.Name}" Foreground="White" TextWrapping="NoWrap" TextTrimming="WordEllipsis" Margin="10,0" FontSize="22" VerticalAlignment="Center" />

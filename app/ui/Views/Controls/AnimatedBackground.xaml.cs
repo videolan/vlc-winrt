@@ -35,6 +35,7 @@ namespace VLC_WINRT.Views.Controls
         void SetSourceToImages()
         {
             _isInit = true;
+            FirstImage.ImageOpened += ImageOpened;
             TimeSpan period = TimeSpan.FromSeconds(25);
             _periodicTimer = ThreadPoolTimer.CreatePeriodicTimer((source) =>
             {
@@ -44,10 +45,15 @@ namespace VLC_WINRT.Views.Controls
                     {
                         if (!Locator.MusicLibraryVM.ImgCollection.Any()) return;
                         FirstImage.Source = new BitmapImage(new Uri(Locator.MusicLibraryVM.ImgCollection[i], UriKind.RelativeOrAbsolute));
+                        
                         ZoomAnimation1.Begin();
                     });
-
             }, period);
+        }
+
+        private void ImageOpened(object sender, RoutedEventArgs routedEventArgs)
+        {
+            UIAnimationHelper.FadeIn(FirstImage);
         }
     }
 }

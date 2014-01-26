@@ -25,6 +25,7 @@ using System.Text.RegularExpressions;
 using VLC_WINRT.Views.Controls.MainPage;
 using XboxMusicLibrary;
 using XboxMusicLibrary.Models;
+using XboxMusicLibrary.Settings;
 using Panel = VLC_WINRT.Model.Panel;
 
 namespace VLC_WINRT.ViewModels.MainPage
@@ -162,8 +163,8 @@ namespace VLC_WINRT.ViewModels.MainPage
 
                 foreach (ArtistItemViewModel artist in Artist)
                 {
-                    if (artist.HdPictures != null)
-                        ImgCollection.Add(artist.HdPictures);
+                    if (artist.Picture != null)
+                        ImgCollection.Add(artist.Picture.Remove(artist.Picture.IndexOf("&w=", StringComparison.Ordinal)));
                     foreach (AlbumItem album in artist.Albums)
                     {
                         AlbumCover.Add(album.Picture);
@@ -280,12 +281,6 @@ namespace VLC_WINRT.ViewModels.MainPage
             }
             public bool IsFavorite { get { return _isFavorite; } set { SetProperty(ref _isFavorite, value); } }
 
-            public string HdPictures
-            {
-                get { return _hdPicture; }
-                set { SetProperty(ref _hdPicture, value); }
-            }
-
             public List<ArtistItemViewModel> OnlineRelatedArtists
             {
                 get { return _onlineRelatedArtists; }
@@ -389,7 +384,7 @@ namespace VLC_WINRT.ViewModels.MainPage
                         Locator.MusicLibraryVM.XboxMusic.Artists.Items.FirstOrDefault(x => x.Name == artist);
 
                     HttpClient clientPic = new HttpClient();
-                    HttpResponseMessage responsePic = await clientPic.GetAsync(xBoxArtistItem.ImageUrl);
+                    HttpResponseMessage responsePic = await clientPic.GetAsync(xBoxArtistItem.ImageUrlWithOptions(new ImageSettings(280,156, ImageMode.Scale,"")));
                     byte[] img = await responsePic.Content.ReadAsByteArrayAsync();
                     InMemoryRandomAccessStream streamWeb = new InMemoryRandomAccessStream();
 
@@ -410,9 +405,9 @@ namespace VLC_WINRT.ViewModels.MainPage
                         }
                     }
 
-                    HdPictures = "ms-appdata:///local/" + fileName + ".jpg";
+                    Picture = "ms-appdata:///local/" + fileName + ".jpg";
+                    Locator.MusicLibraryVM.ImgCollection.Add(xBoxArtistItem.ImageUrl);
 
-                    Locator.MusicLibraryVM.ImgCollection.Add("ms-appdata:///local/" + fileName + ".jpg");
                     if (xBoxArtistItem.Albums != null)
                     {
                         foreach (var album in xBoxArtistItem.Albums.Items)
@@ -421,7 +416,7 @@ namespace VLC_WINRT.ViewModels.MainPage
                             {
                                 Artist = xBoxArtistItem.Name,
                                 Name = album.Name,
-                                Picture = album.ImageUrl,
+                                Picture = album.ImageUrlWithOptions(new ImageSettings(200,200, ImageMode.Scale, "")),
                             });
                         }
                         foreach (var artists in xBoxArtistItem.RelatedArtists.Items)
@@ -430,7 +425,7 @@ namespace VLC_WINRT.ViewModels.MainPage
                             {
                                 Artist = artists.Name,
                                 Name = albums.Name,
-                                Picture = albums.ImageUrl,
+                                Picture = albums.ImageUrlWithOptions(new ImageSettings(280,156, ImageMode.Scale,"")),
                             }).ToList();
 
                             var artistPic = artists.ImageUrl;
@@ -438,7 +433,7 @@ namespace VLC_WINRT.ViewModels.MainPage
                             {
                                 Name = artists.Name,
                                 OnlinePopularAlbumItems = onlinePopularAlbums,
-                                HdPictures = artistPic,
+                                Picture = artistPic,
                             });
                         }
                     }
