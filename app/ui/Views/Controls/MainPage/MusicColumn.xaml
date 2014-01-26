@@ -153,7 +153,7 @@
                                     <GroupStyle.HeaderTemplate>
                                         <DataTemplate>
                                             <StackPanel Orientation="Horizontal">
-                                                <TextBlock Text="{Binding Name}" TextWrapping="NoWrap" TextTrimming="WordEllipsis" FontSize="23" />
+                                                <TextBlock Text="{Binding Name}" Margin="3,0,0,0" TextWrapping="NoWrap" TextTrimming="WordEllipsis" FontSize="23" />
                                             </StackPanel>
                                         </DataTemplate>
                                     </GroupStyle.HeaderTemplate>

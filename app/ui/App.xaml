@@ -1064,10 +1064,10 @@
             <!--Colors-->
             <Color x:Key="MainColorBase" >#e67e22</Color>
             <SolidColorBrush x:Key="MainColor" Color="{StaticResource MainColorBase}"/>
-            <SolidColorBrush x:Key="ListViewItemSelectedBackgroundThemeBrush" Color="LightSalmon"/>
+            <SolidColorBrush x:Key="ListViewItemSelectedBackgroundThemeBrush" Color="{StaticResource MainColorBase}"/>
             <SolidColorBrush x:Key="ListViewItemPointerOverBackgroundThemeBrush" Color="LightGray"/>
-            <SolidColorBrush x:Key="ListViewItemSelectedPointerOverBorderThemeBrush" Color="LightSalmon"/>
-            <SolidColorBrush x:Key="ListViewItemSelectedPointerOverBackgroundThemeBrush" Color="LightSalmon"/>
+            <SolidColorBrush x:Key="ListViewItemSelectedPointerOverBorderThemeBrush" Color="{StaticResource MainColorBase}"/>
+            <SolidColorBrush x:Key="ListViewItemSelectedPointerOverBackgroundThemeBrush" Color="{StaticResource MainColorBase}"/>
 
             <!--CustomizedAppBarButton ala Windows 8.1-->
             <Style x:Key="ModernAppBarButtonStyle" TargetType="Button" BasedOn="{StaticResource TextButtonStyle}">

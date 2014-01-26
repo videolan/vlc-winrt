@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
     
-    <Grid VerticalAlignment="Bottom" Height="16" Background="#66D1D1D1" >
+    <Grid VerticalAlignment="Bottom" Height="16" Background="#664D4D4D" >
         <TextBlock Text="..." Foreground="White" HorizontalAlignment="Right" FontSize="40" Margin="0,-26,60,0"/>
     </Grid>
 
