@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using VLC_WINRT.Common;
-using VLC_WINRT.ViewModels;
-using Windows.UI.Core;
+﻿using VLC_WINRT.Common;
 
 namespace VLC_WINRT.Utility.Commands.MainPage
 {

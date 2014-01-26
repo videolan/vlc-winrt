@@ -1,7 +1,4 @@
-﻿using System.Linq;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media.Animation;
+﻿using Windows.UI.Xaml.Media.Animation;
 using VLC_WINRT.Common;
 using VLC_WINRT.Utility.Helpers;
 using VLC_WINRT.Utility.Services.RunTime;

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Diagnostics;
-using System.Linq;
+﻿using System.Linq;
 using VLC_WINRT.Common;
 using VLC_WINRT.Utility.Services.RunTime;
 using VLC_WINRT.ViewModels;

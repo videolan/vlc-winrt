@@ -5,7 +5,6 @@ using System.Globalization;
 using System.Threading.Tasks;
 using Windows.System.Display;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
 using VLC_WINRT.Model;
 using VLC_WINRT.Utility.Commands;
 using VLC_WINRT.Utility.IoC;

@@ -1,7 +1,6 @@
 ﻿using System;
 using Windows.System;
 using Windows.UI.ApplicationSettings;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using VLC_WINRT.ViewModels;

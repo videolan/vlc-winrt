@@ -7,12 +7,10 @@ using System.Linq;
 using VLC_WINRT.Common;
 using VLC_WINRT.Model;
 using VLC_WINRT.Utility.Commands;
-using VLC_WINRT.Utility.Services;
 using Windows.Foundation;
 using Windows.Storage;
 using Windows.Storage.Search;
 using Windows.System.Threading;
-using VLC_WINRT.Utility.Services.RunTime;
 
 namespace VLC_WINRT.ViewModels.MainPage
 {

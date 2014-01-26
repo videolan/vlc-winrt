@@ -9,8 +9,6 @@ using VLC_WINRT.Common;
 using VLC_WINRT.Utility.Commands;
 using VLC_WINRT.Utility.IoC;
 using VLC_WINRT.Utility.Services.RunTime;
-using System.Collections.ObjectModel;
-using VLC_WINRT.Utility.Commands.MainPage;
 
 namespace VLC_WINRT.ViewModels.MainPage
 {

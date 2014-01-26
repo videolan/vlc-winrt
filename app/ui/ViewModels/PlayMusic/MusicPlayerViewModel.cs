@@ -1,24 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Globalization;
 using System.Threading.Tasks;
-using System.Xml.Linq;
 using System.Linq;
 using Windows.Media;
 using Windows.System.Display;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using VLC_WINRT.Model;
 using VLC_WINRT.Utility.Commands;
 using VLC_WINRT.Utility.IoC;
 using VLC_WINRT.Utility.Services.RunTime;
 using VLC_WINRT.ViewModels.MainPage;
-using Windows.UI.Popups;
-using VLC_WINRT.Common;
-using VLC_WINRT.Views;
 using VLC_WINRT.Utility.Commands.MusicPlayer;
 
 namespace VLC_WINRT.ViewModels.PlayMusic

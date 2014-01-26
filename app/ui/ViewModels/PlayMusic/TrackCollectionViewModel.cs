@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using VLC_WINRT.Common;
-using VLC_WINRT.Utility.Services.RunTime;
 using VLC_WINRT.ViewModels.MainPage;
 namespace VLC_WINRT.ViewModels.PlayMusic
 {
