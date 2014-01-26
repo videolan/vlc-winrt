@@ -376,8 +376,9 @@ namespace VLC_WINRT.ViewModels.MainPage
                             Locator.MusicLibraryVM.XboxMusicHelper.GetAccessToken(
                                 "5bf9b614-1651-4b49-98ee-1831ae58fb99",
                                 "copuMsVkCAFLQlP38bV3y+Azysz/crELZ5NdQU7+ddg=");
+                    Extras[] extras = new Extras[] { Extras.ArtistDetails, Extras.Albums };
                     Locator.MusicLibraryVM.XboxMusic =
-                        await Locator.MusicLibraryVM.XboxMusicHelper.SearchMediaCatalog(token, artist, 3);
+                        await Locator.MusicLibraryVM.XboxMusicHelper.SearchMediaCatalog(token, artist, extras, 3);
                     var xBoxArtistItem =
                         Locator.MusicLibraryVM.XboxMusic.Artists.Items.FirstOrDefault(x => x.Name == artist);
 

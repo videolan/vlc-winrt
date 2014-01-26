@@ -154,11 +154,12 @@ namespace XboxMusicLibrary
         /// </summary>
         /// <param name="token">Required. A valid developer authentication Access Token obtained from Azure Data Market, used to identify the third-party application using the Xbox Music RESTful API.</param>
         /// <param name="query">Required. The search query.</param>
+        /// <param name="extras">Optional. The extras query</param>
         /// <param name="maxitems">Optional. Positive integer from 1 to 25, inclusive. The maximum number of results that should be returned in the response. If this parameter is not set, the response will be limited to a maximum of 25 results. There is no guarantee that all search results will be returned in a single response; the response may contain a truncated list of responses and a continuation token.</param>
         /// <param name="filters">A subcategory of item types, in case the client is interested in only one or more specific types of items. If this parameter is not provided, the search will be performed in all categories.</param>
         /// <param name="culture">Optional. The standard two-letter code that identifies the country/region of the user. If not specified, the value defaults to the geolocated country/region of the client's IP address. Responses will be filtered to provide only those that match the user's country/region.</param>
         /// <returns></returns>
-        public async Task<Music> SearchMediaCatalog(string token, string query, uint maxitems = 25, Filters[] filters = null, Culture culture = null)
+        public async Task<Music> SearchMediaCatalog(string token, string query, Extras[] extras = null, uint maxitems = 25, Filters[] filters = null, Culture culture = null)
         {
             const string scope = "https://music.xboxlive.com/1/content/music/search";
             Music search = null;
@@ -176,6 +177,15 @@ namespace XboxMusicLibrary
             {
                 filtersbuilder.Append("music");
             }
+            // Formatting extras argument
+            StringBuilder extrasbuilder = new StringBuilder();
+            if (extras != null)
+            {
+                for (int cpt = 0; cpt < extras.Length; cpt++)
+                {
+                    if (cpt != 0) extrasbuilder.Append("+"); extrasbuilder.Append(extras[cpt].ToString());
+                }
+            }
 
             using (HttpClient proxy = new HttpClient())
             {
@@ -189,6 +199,10 @@ namespace XboxMusicLibrary
                 service.Append(filtersbuilder.ToString());
                 service.Append("&accessToken=Bearer+");
                 service.Append(WebUtility.UrlEncode(token));
+                if (extras != null)
+                {
+                    service.Append(string.Format("&extras={0}", extrasbuilder.ToString()));
+                }
 
                 if (culture != null)
                 {
