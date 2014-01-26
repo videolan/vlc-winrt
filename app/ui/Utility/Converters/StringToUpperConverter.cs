@@ -7,7 +7,7 @@ namespace VLC_WINRT.Utility.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            return ((string)value).ToUpper();
+            return (string)value != null ? ((string)value).ToUpper() : "";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
