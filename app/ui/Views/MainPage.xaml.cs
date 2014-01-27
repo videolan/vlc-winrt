@@ -25,21 +25,27 @@ namespace VLC_WINRT.Views
             this.SizeChanged += OnSizeChanged;
             this.Loaded += (sender, args) =>
             {
-                FadeInPage.Begin();
+                FadeOutPage.Begin();
+                ChangeLayout(Window.Current.Bounds.Width);
                 for (int i = 0; i < SectionsGrid.Children.Count; i++)
                 {
                     if (i == _currentSection) continue;
                     UIAnimationHelper.FadeOut(SectionsGrid.Children[i]);
                 }
+                FadeInPage.Begin();
             };
             NavigationCacheMode = NavigationCacheMode.Enabled;
         }
 
         private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
         {
+            ChangeLayout(sizeChangedEventArgs.NewSize.Width);
+        }
+        void ChangeLayout(double x)
+        {
             Dispatcher.RunAsync(CoreDispatcherPriority.High, () =>
             {
-                if (sizeChangedEventArgs.NewSize.Width < 1080)
+                if (x < 900)
                 {
                     MainLogoGrid.VerticalAlignment = VerticalAlignment.Top;
                     MiniPlayer.Visibility = Visibility.Collapsed;
@@ -49,9 +55,17 @@ namespace VLC_WINRT.Views
                     MainLogoGrid.VerticalAlignment = VerticalAlignment.Center;
                     MiniPlayer.Visibility = Visibility.Visible;
                 }
+
+                if (x == 320)
+                {
+                    MainLogoGrid.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    MainLogoGrid.Visibility = Visibility.Visible;
+                }
             });
         }
-
         public override void SetDataContext()
         {
             _vm = (NavigateableViewModel)DataContext;
@@ -97,7 +111,7 @@ namespace VLC_WINRT.Views
             
             var button = (Button)sender;
             var transform = button.TransformToVisual(this);
-            var point = transform.TransformPoint(new Point(45, -10));
+            var point = transform.TransformPoint(new Point(-60, 50));
             await popupMenu.ShowAsync(point);
         }
     }

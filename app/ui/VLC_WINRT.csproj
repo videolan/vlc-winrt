@@ -109,6 +109,7 @@
     <Compile Include="Common\SuspensionManager.cs" />
     <Compile Include="Utility\Commands\PickVideoCommand.cs" />
     <Compile Include="Utility\Commands\OpenFileCommand.cs" />
+    <Compile Include="Utility\Converters\CountToVisibilityConverter.cs" />
     <Compile Include="Utility\Converters\NegatedBooleanToVisibilityConverter.cs" />
     <Compile Include="Utility\Converters\NullToVisibilityConverter.cs" />
     <Compile Include="Utility\Converters\SecondsStringConverter.cs" />

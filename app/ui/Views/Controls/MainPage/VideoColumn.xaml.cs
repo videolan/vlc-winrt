@@ -35,11 +35,9 @@ namespace VLC_WINRT.Views.Controls.MainPage
         private void FlipViewTimerOnTick(object sender, object o)
         {
             var totalItems = FlipView.Items.Count;
-            if (totalItems > 0)
-            {
-                var newItemIndex = (FlipView.SelectedIndex + 1)%totalItems;
-                FlipView.SelectedIndex = newItemIndex;
-            }
+            if (totalItems <= 0) return;
+            var newItemIndex = (FlipView.SelectedIndex + 1)%totalItems;
+            FlipView.SelectedIndex = newItemIndex;
         }
 
         private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
@@ -56,11 +54,13 @@ namespace VLC_WINRT.Views.Controls.MainPage
 
                 if (sizeChangedEventArgs.NewSize.Width == 320)
                 {
+                    FlipView.Visibility = Visibility.Collapsed;
                     FirstPanelListView.Visibility = Visibility.Visible;
                     FirstPanelGridView.Visibility = Visibility.Collapsed;
                 }
                 else
                 {
+                    FlipView.Visibility = Visibility.Visible;
                     FirstPanelListView.Visibility = Visibility.Collapsed;
                     FirstPanelGridView.Visibility = Visibility.Visible;
                 }

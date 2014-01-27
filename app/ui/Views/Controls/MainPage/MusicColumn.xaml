@@ -169,7 +169,7 @@
                 </SemanticZoom>
 
                 <Border Width="1" Grid.Column="3" Background="#663E3E3E"/>
-                <ListView Grid.Column="4" Width="0" IsSwipeEnabled="False" Margin="10,0,0,0" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" x:Name="AlbumPlaylistListView" FontFamily="Segoe UI" >
+                <ListView Grid.Column="4" Width="0" IsSwipeEnabled="False" Margin="10,0,0,0" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" x:Name="AlbumPlaylistListView" SelectionMode="None" FontFamily="Segoe UI" >
                     <ListView.HeaderTemplate>
                         <DataTemplate>
                             <StackPanel>

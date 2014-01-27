@@ -1043,6 +1043,7 @@
             </DataTemplate>
             
             <!--Converters-->
+            <converters:CountToVisibilityConverter x:Key="CountToVisibilityConverter"/>
             <converters:StringToUpperConverter x:Key="StringToUpperConverter" />
             <converters:TimespanShortStringConverter x:Key="TimeSpanShortStringConverter">
             </converters:TimespanShortStringConverter>

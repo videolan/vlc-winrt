@@ -330,7 +330,7 @@ namespace VLC_WINRT.ViewModels.MainPage
                             }
                         }
                         var albumItem = new AlbumItem(files, musicAttr.Album, albumQueryResult.Folder.DisplayName);
-                        albumItem.Name = musicAttr.Album;
+                        albumItem.Name = (musicAttr.Album.Length==0) ? "Album without title" : musicAttr.Album;
                         albumItem.Artist = musicAttr.Artist;
                         if (fileName.Length > 0)
                             albumItem.Picture = "ms-appdata:///local/" + fileName + ".jpg";
