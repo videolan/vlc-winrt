@@ -247,11 +247,11 @@
         to simplify the use of glyphs from that font.  AutomationProperties.Name is used for the text below the glyph.
     -->
     <Style x:Key="AppBarButtonStyle" TargetType="ButtonBase">
-        <Setter Property="Foreground" Value="{StaticResource AppBarItemForegroundThemeBrush}"/>
+        <Setter Property="Foreground" Value="White"/>
         <Setter Property="VerticalAlignment" Value="Stretch"/>
         <Setter Property="FontFamily" Value="Segoe UI Symbol"/>
         <Setter Property="FontWeight" Value="Normal"/>
-        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="FontSize" Value="19"/>
         <Setter Property="AutomationProperties.ItemType" Value="App Bar Button"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -259,21 +259,21 @@
                     <Grid x:Name="RootGrid" Width="100" Background="Transparent">
                         <StackPanel VerticalAlignment="Top" Margin="0,12,0,11">
                             <Grid Width="40" Height="40" Margin="0,0,0,5" HorizontalAlignment="Center">
-                                <TextBlock x:Name="BackgroundGlyph" Text="&#xE0A8;" FontFamily="Segoe UI Symbol" FontSize="53.333" Margin="-4,-19,0,0" Foreground="{StaticResource AppBarItemBackgroundThemeBrush}"/>
-                                <TextBlock x:Name="OutlineGlyph" Text="&#xE0A7;" FontFamily="Segoe UI Symbol" FontSize="53.333" Margin="-4,-19,0,0"/>
-                                <ContentPresenter x:Name="Content" HorizontalAlignment="Center" Margin="-1,-1,0,0" VerticalAlignment="Center"/>
+                                <TextBlock x:Name="BackgroundGlyph" Text="&#xE0A8;" FontFamily="Segoe UI Symbol" FontSize="53.333" Margin="-3,-19,0,0" Foreground="{StaticResource AppBarItemBackgroundThemeBrush}"/>
+                                <Ellipse x:Name="OutlineGlyph" StrokeThickness="1.2" Height="40" Width="40" UseLayoutRounding="False" Stroke="{TemplateBinding Foreground}"/>
+                                <ContentPresenter x:Name="Content" HorizontalAlignment="Center" Margin="0,1,0,0" VerticalAlignment="Center"/>
                             </Grid>
                             <TextBlock
                                 x:Name="TextLabel"
                                 Text="{TemplateBinding AutomationProperties.Name}"
-                                Foreground="{StaticResource AppBarItemForegroundThemeBrush}"
-                                Margin="0,0,2,0"
+                                Foreground="{TemplateBinding Foreground}"
+                                Margin="0,0,0,0"
                                 FontSize="12"
                                 TextAlignment="Center"
                                 Width="88"
                                 MaxHeight="32"
                                 TextTrimming="WordEllipsis"
-                                Style="{StaticResource BasicTextStyle}"/>
+                                Style="{StaticResource BasicTextStyle}" FontFamily="Segoe UI"/>
                         </StackPanel>
                         <Rectangle
                                 x:Name="FocusVisualWhite"
@@ -321,30 +321,20 @@
                                 <VisualState x:Name="Normal"/>
                                 <VisualState x:Name="PointerOver">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BackgroundGlyph" Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource AppBarItemPointerOverBackgroundThemeBrush}"/>
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Content" Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource AppBarItemPointerOverForegroundThemeBrush}"/>
-                                        </ObjectAnimationUsingKeyFrames>
+                                        <ColorAnimation Storyboard.TargetName="BackgroundGlyph" Storyboard.TargetProperty="(TextBlock.Foreground).Color" To="#33FFFFFF" SpeedRatio="4"/>
+                                        <ColorAnimation Storyboard.TargetName="Content" Storyboard.TargetProperty="(ContentPresenter.Foreground).Color" To="#AAFFFFFF" SpeedRatio="4" />
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="Pressed">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="OutlineGlyph" Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource AppBarItemForegroundThemeBrush}"/>
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BackgroundGlyph" Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource AppBarItemForegroundThemeBrush}"/>
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Content" Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource AppBarItemPressedForegroundThemeBrush}"/>
-                                        </ObjectAnimationUsingKeyFrames>
+                                        <ColorAnimation Storyboard.TargetName="OutlineGlyph" Storyboard.TargetProperty="(Ellipse.Stroke).Color" To="White" SpeedRatio="4" />
+                                        <ColorAnimation Storyboard.TargetName="BackgroundGlyph" Storyboard.TargetProperty="(TextBlock.Foreground).Color" To="WhiteSmoke" SpeedRatio="4"/>
+                                        <ColorAnimation Storyboard.TargetName="Content" Storyboard.TargetProperty="(ContentPresenter.Foreground).Color" To="{StaticResource MainColorBase}" SpeedRatio="4"/>
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="Disabled">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="OutlineGlyph" Storyboard.TargetProperty="Foreground">
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="OutlineGlyph" Storyboard.TargetProperty="Stroke">
                                             <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource AppBarItemDisabledForegroundThemeBrush}"/>
                                         </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Content" Storyboard.TargetProperty="Foreground">
@@ -377,7 +367,7 @@
                             <VisualStateGroup x:Name="CheckStates">
                                 <VisualState x:Name="Checked">
                                     <Storyboard>
-                                        <DoubleAnimation Duration="0" To="0" Storyboard.TargetName="OutlineGlyph" Storyboard.TargetProperty="Opacity"/>
+                                        <DoubleAnimation Duration="0" To="0" Storyboard.TargetName="OutlineGlyph" Storyboard.TargetProperty="Stroke"/>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BackgroundGlyph" Storyboard.TargetProperty="Foreground">
                                             <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource AppBarItemForegroundThemeBrush}"/>
                                         </ObjectAnimationUsingKeyFrames>
@@ -398,34 +388,35 @@
             </Setter.Value>
         </Setter>
     </Style>
+
     <Style x:Key="LittleAppBarButtonStyle" TargetType="ButtonBase">
-        <Setter Property="Foreground" Value="{StaticResource AppBarItemForegroundThemeBrush}"/>
+        <Setter Property="Foreground" Value="White"/>
         <Setter Property="VerticalAlignment" Value="Stretch"/>
         <Setter Property="FontFamily" Value="Segoe UI Symbol"/>
         <Setter Property="FontWeight" Value="Normal"/>
-        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="FontSize" Value="11"/>
         <Setter Property="AutomationProperties.ItemType" Value="App Bar Button"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ButtonBase">
-                    <Grid x:Name="RootGrid" Width="50" Background="Transparent">
-                        <StackPanel VerticalAlignment="Top" Margin="0,0,0,0">
+                    <Grid x:Name="RootGrid" Width="Auto" Height="40" Background="Transparent">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Margin="12,0,11,0">
                             <Grid Width="40" Height="40" Margin="0,0,0,5" HorizontalAlignment="Center">
-                                <TextBlock x:Name="BackgroundGlyph" Text="&#xE0A8;" FontFamily="Segoe UI Symbol" FontSize="40" Margin="0,-9,0,0" Foreground="{StaticResource AppBarItemBackgroundThemeBrush}"/>
-                                <TextBlock x:Name="OutlineGlyph" Text="&#xE0A7;" FontFamily="Segoe UI Symbol" FontSize="40" Margin="0,-9,0,0"/>
-                                <ContentPresenter x:Name="Content" HorizontalAlignment="Center" FontSize="15" Margin="-6,0,0,0" VerticalAlignment="Center"/>
+                                <TextBlock x:Name="BackgroundGlyph" Text="&#xE0A8;" FontFamily="Segoe UI Symbol" Margin="5,-5,0,0" FontSize="35" Foreground="{StaticResource AppBarItemBackgroundThemeBrush}"/>
+                                <Ellipse x:Name="OutlineGlyph" StrokeThickness="1" Height="27" Width="27" UseLayoutRounding="False" Stroke="{TemplateBinding Foreground}"/>
+                                <ContentPresenter x:Name="Content" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"/>
                             </Grid>
                             <TextBlock
                                 x:Name="TextLabel"
                                 Text="{TemplateBinding AutomationProperties.Name}"
-                                Foreground="{StaticResource AppBarItemForegroundThemeBrush}"
-                                Margin="-4,-9,0,0"
-                                FontSize="10"
+                                Foreground="{TemplateBinding Foreground}"
+                                Margin="0,0,0,0"
+                                FontSize="12"
                                 TextAlignment="Center"
-                                Width="50"
+                                VerticalAlignment="Center"
                                 MaxHeight="32"
                                 TextTrimming="WordEllipsis"
-                                Style="{StaticResource BasicTextStyle}"/>
+                                Style="{StaticResource BasicTextStyle}" FontFamily="Segoe UI"/>
                         </StackPanel>
                         <Rectangle
                                 x:Name="FocusVisualWhite"
@@ -473,30 +464,20 @@
                                 <VisualState x:Name="Normal"/>
                                 <VisualState x:Name="PointerOver">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BackgroundGlyph" Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource AppBarItemPointerOverBackgroundThemeBrush}"/>
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Content" Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource AppBarItemPointerOverForegroundThemeBrush}"/>
-                                        </ObjectAnimationUsingKeyFrames>
+                                        <ColorAnimation Storyboard.TargetName="BackgroundGlyph" Storyboard.TargetProperty="(TextBlock.Foreground).Color" To="#33FFFFFF" SpeedRatio="4"/>
+                                        <ColorAnimation Storyboard.TargetName="Content" Storyboard.TargetProperty="(ContentPresenter.Foreground).Color" To="#AAFFFFFF" SpeedRatio="4" />
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="Pressed">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="OutlineGlyph" Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource AppBarItemForegroundThemeBrush}"/>
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BackgroundGlyph" Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource AppBarItemForegroundThemeBrush}"/>
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Content" Storyboard.TargetProperty="Foreground">
-                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource AppBarItemPressedForegroundThemeBrush}"/>
-                                        </ObjectAnimationUsingKeyFrames>
+                                        <ColorAnimation Storyboard.TargetName="OutlineGlyph" Storyboard.TargetProperty="(Ellipse.Stroke).Color" To="White" SpeedRatio="4" />
+                                        <ColorAnimation Storyboard.TargetName="BackgroundGlyph" Storyboard.TargetProperty="(TextBlock.Foreground).Color" To="WhiteSmoke" SpeedRatio="4"/>
+                                        <ColorAnimation Storyboard.TargetName="Content" Storyboard.TargetProperty="(ContentPresenter.Foreground).Color" To="{StaticResource MainColorBase}" SpeedRatio="4"/>
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="Disabled">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="OutlineGlyph" Storyboard.TargetProperty="Foreground">
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="OutlineGlyph" Storyboard.TargetProperty="Stroke">
                                             <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource AppBarItemDisabledForegroundThemeBrush}"/>
                                         </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Content" Storyboard.TargetProperty="Foreground">
@@ -529,7 +510,7 @@
                             <VisualStateGroup x:Name="CheckStates">
                                 <VisualState x:Name="Checked">
                                     <Storyboard>
-                                        <DoubleAnimation Duration="0" To="0" Storyboard.TargetName="OutlineGlyph" Storyboard.TargetProperty="Opacity"/>
+                                        <DoubleAnimation Duration="0" To="0" Storyboard.TargetName="OutlineGlyph" Storyboard.TargetProperty="Stroke"/>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BackgroundGlyph" Storyboard.TargetProperty="Foreground">
                                             <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource AppBarItemForegroundThemeBrush}"/>
                                         </ObjectAnimationUsingKeyFrames>
@@ -559,7 +540,11 @@
     -->
 
     <!-- LittleAppBars -->
-
+    <Style x:Key="LikeLittleAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource LittleAppBarButtonStyle}">
+        <Setter Property="AutomationProperties.AutomationId" Value="PlayAppBarButton"/>
+        <Setter Property="AutomationProperties.Name" Value="Favorite"/>
+        <Setter Property="Content" Value="&#xE0A5;"/>
+    </Style>
     <Style x:Key="PlayLittleAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource LittleAppBarButtonStyle}">
         <Setter Property="AutomationProperties.AutomationId" Value="PlayAppBarButton"/>
         <Setter Property="AutomationProperties.Name" Value="Play"/>
@@ -571,6 +556,17 @@
         <Setter Property="Content" Value="&#xE109;"/>
     </Style>
 
+
+    <Style x:Key="LikeAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
+        <Setter Property="AutomationProperties.AutomationId" Value="PlayAppBarButton"/>
+        <Setter Property="AutomationProperties.Name" Value="Favorite"/>
+        <Setter Property="Content" Value="&#xE0A5;"/>
+    </Style>
+    <Style x:Key="DisLikeAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
+        <Setter Property="AutomationProperties.AutomationId" Value="PlayAppBarButton"/>
+        <Setter Property="AutomationProperties.Name" Value="Unfavorite"/>
+        <Setter Property="Content" Value="&#xE007;"/>
+    </Style>
     <Style x:Key="SkipBackAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
         <Setter Property="AutomationProperties.AutomationId" Value="SkipBackAppBarButton"/>
         <Setter Property="AutomationProperties.Name" Value="Skip Back"/>

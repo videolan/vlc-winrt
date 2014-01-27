@@ -15,34 +15,7 @@
     <UserControl.Resources>
         <CollectionViewSource x:Name="albumsCollection" Source="{Binding Artist}" ItemsPath="Albums" IsSourceGrouped="True" />
         <converters:StringToUpperConverter x:Key="StringToUpperConverter"/>
-        <DataTemplate x:Name="NormalSizedAlbumDataTemplate">
-            <Grid Width="140">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="140" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <Image Height="140" Width="140" Source="{Binding Picture}" Stretch="UniformToFill" HorizontalAlignment="Center"/>
-                <TextBlock Grid.Row="1" Text="{Binding Name}" TextWrapping="NoWrap" TextTrimming="WordEllipsis" FontSize="17" FontWeight="Light" />
-            </Grid>
-        </DataTemplate>
-        <DataTemplate x:Name="LittleSizedAlbumDataTemplate">
-            <Grid Height="120" Width="120">
-                <Image Source="{Binding Picture}" Stretch="UniformToFill" HorizontalAlignment="Center"/>
-                <Grid Height="80" VerticalAlignment="Bottom">
-                    <Grid.Background>
-                        <LinearGradientBrush StartPoint="1,0">
-                            <GradientStopCollection>
-                                <GradientStop Color="#990A0A0A" Offset="1"/>
-                                <GradientStop Color="#00020202" />
-                            </GradientStopCollection>
-                        </LinearGradientBrush>
-                    </Grid.Background>
-                    <StackPanel VerticalAlignment="Bottom" Margin="3">
-                        <TextBlock Text="{Binding Name}" TextWrapping="Wrap" FontSize="15" FontWeight="SemiBold" TextAlignment="Right" />
-                    </StackPanel>
-                </Grid>
-            </Grid>
-        </DataTemplate>
+       
     </UserControl.Resources>
     <Grid >
         <Grid.RowDefinitions>

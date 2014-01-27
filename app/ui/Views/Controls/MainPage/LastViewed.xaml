@@ -34,11 +34,11 @@
                     </Grid.RowDefinitions>
                     <Button Margin="5,0,0,0" Grid.Row="0" Template="{StaticResource MainButtonStyle}">
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="last viewed" Foreground="#e67e22" FontSize="42" FontWeight="Light" />
+                            <TextBlock Text="last viewed" Foreground="#e67e22" FontSize="42" FontWeight="Light" FontFamily="Segoe UI" />
                             <Button Margin="20,0"
                 Style="{StaticResource TextButtonStyle}"
                 HorizontalAlignment="Right"
-                Command="{Binding ClearHistory}" VerticalAlignment="Bottom" Content="CLEAR" FontWeight="SemiBold" FontSize="16" />
+                Command="{Binding ClearHistory}" VerticalAlignment="Bottom" Content="CLEAR" FontWeight="SemiBold" FontSize="16" FontFamily="Segoe UI" />
                         </StackPanel>
                     </Button>
                     <ListView Grid.Row="1" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}"  ItemsSource="{Binding LastViewedVM}">
@@ -94,23 +94,16 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="50"/>
                         <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" Text="favorite music" Foreground="#e67e22" FontSize="42" FontWeight="Light" />
-                    <controls:NothingToSeeHere Grid.Row="1" Visibility="{Binding LastViewMusicVM, Converter={StaticResource NullToVisibilityConverter}}"/>
-                    <ListView Grid.Row="1" ItemsSource="{Binding LastViewedMusicVM}" >
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <Button Style="{StaticResource PlayLittleAppBarButtonStyle}" Foreground="Black"/>
-                                    <TextBlock Margin="10,0,0,0" Foreground="Black">
-                                        <Run Text="{Binding Name}" FontSize="22"/>
-                                        <LineBreak />
-                                        <Run Text="{Binding ArtistName}"/>
-                                    </TextBlock>
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
+                    <Button Margin="5,0,0,0" Command="{Binding GoToPanel}" CommandParameter="2" Grid.Row="0" Template="{StaticResource MainButtonStyle}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="favorite albums" Foreground="#e67e22" FontSize="42" FontWeight="Light" />
+                            <TextBlock Text="" Foreground="#e67e22" FontFamily="Segoe UI Symbol" Margin="20,12,0,0" VerticalAlignment="Center" FontSize="20" FontWeight="Light" />
+                        </StackPanel>
+                    </Button>
+                    <controls:NothingToSeeHere Grid.Row="1" Visibility="{Binding MusicLibraryVm.FavoriteAlbums.Count, Converter={StaticResource CountToVisibilityConverter}}"/>
+                    <GridView Grid.Row="1" Margin="0,2,0,0" ItemTemplate="{StaticResource NormalSizedAlbumDataTemplate}" SelectionMode="None" IsItemClickEnabled="True" ItemContainerStyle="{StaticResource GridViewItemContainerStyle}" ItemsSource="{Binding MusicLibraryVm.FavoriteAlbums}" ItemClick="FavoriteAlbumItemClick" />
                 </Grid>
             </StackPanel>
         </ScrollViewer>

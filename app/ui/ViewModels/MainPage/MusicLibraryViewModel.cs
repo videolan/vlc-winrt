@@ -17,6 +17,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 using VLC_WINRT.Common;
 using VLC_WINRT.Utility.Commands;
+using VLC_WINRT.Utility.Commands.MusicPlayer;
 using VLC_WINRT.Utility.Helpers;
 using System.Text.RegularExpressions;
 using VLC_WINRT.Views.Controls.MainPage;
@@ -34,6 +35,7 @@ namespace VLC_WINRT.ViewModels.MainPage
         private ObservableCollection<ArtistItemViewModel> _artists = new ObservableCollection<ArtistItemViewModel>();
         private ObservableCollection<string> _albumsCover = new ObservableCollection<string>();
         private ObservableCollection<TrackItem> _tracks = new ObservableCollection<TrackItem>();
+        private ObservableCollection<AlbumItem> _favoriteAlbums = new ObservableCollection<AlbumItem>(); 
 
         private StopVideoCommand _goBackCommand;
 
@@ -72,6 +74,12 @@ namespace VLC_WINRT.ViewModels.MainPage
             {
                 SetProperty(ref _imgCollection, value);
             }
+        }
+
+        public ObservableCollection<AlbumItem> FavoriteAlbums
+        {
+            get { return _favoriteAlbums; }
+            set { SetProperty(ref _favoriteAlbums, value); }
         }
 
         public ObservableCollection<Panel> Panels
@@ -118,6 +126,7 @@ namespace VLC_WINRT.ViewModels.MainPage
                 {
                     if (Locator.MusicLibraryVM.Track.Count > _numberOfTracks)
                     {
+                        SerializeArtistsDataBase();
                         SerializationHelper.SerializeAsJson(Artist, "MusicDB.json",
                             null,
                             CreationCollisionOption.ReplaceExisting);
@@ -167,7 +176,12 @@ namespace VLC_WINRT.ViewModels.MainPage
                 {
                     foreach (AlbumItem album in artist.Albums)
                     {
-                        
+                        if (album.Favorite)
+                        {
+                            FavoriteAlbums.Add(album);
+                            OnPropertyChanged("FavoriteAlbums");
+                        }
+
                         foreach (TrackItem trackItem in album.Tracks)
                         {
                             trackItem.IsFavorite = true;
@@ -217,6 +231,12 @@ namespace VLC_WINRT.ViewModels.MainPage
             return true;
         }
 
+        public void SerializeArtistsDataBase()
+        {
+            SerializationHelper.SerializeAsJson(Artist, "MusicDB.json",
+                null,
+                CreationCollisionOption.ReplaceExisting);
+        }
         public class ArtistItemViewModel : BindableBase
         {
             private string _name;
@@ -520,6 +540,7 @@ namespace VLC_WINRT.ViewModels.MainPage
             private bool _favorite;
             private ObservableCollection<TrackItem> _trackItems = new ObservableCollection<TrackItem>();
             private PlayAlbumCommand _playAlbumCommand = new PlayAlbumCommand();
+            private FavoriteAlbumCommand _favoriteAlbumCommand = new FavoriteAlbumCommand();
 
             public string Name
             {
@@ -546,7 +567,10 @@ namespace VLC_WINRT.ViewModels.MainPage
             public bool Favorite
             {
                 get { return _favorite; }
-                set { SetProperty(ref _favorite, value); }
+                set
+                {
+                    SetProperty(ref _favorite, value);
+                }
             }
 
             public ObservableCollection<TrackItem> Tracks
@@ -626,6 +650,14 @@ namespace VLC_WINRT.ViewModels.MainPage
                 get { return _playAlbumCommand; }
                 set { SetProperty(ref _playAlbumCommand, value); }
             }
+
+            [XmlIgnore()]
+            public FavoriteAlbumCommand FavoriteAlbum
+            {
+                get { return _favoriteAlbumCommand; }
+                set { SetProperty(ref _favoriteAlbumCommand, value); }
+            }
+
             public async Task ChargementAlbumBio(string name, string artist)
             {
                 try

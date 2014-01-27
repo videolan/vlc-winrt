@@ -133,8 +133,6 @@ namespace VLC_WINRT.ViewModels.PlayMusic
         }
         public void PlayNext()
         {
-            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-            {
                 if (TrackCollection.IsNextPossible())
                 {
                     TrackCollection.CurrentTrack++;
@@ -142,7 +140,7 @@ namespace VLC_WINRT.ViewModels.PlayMusic
                 }
                 else
                     MediaControl.IsPlaying = false;
-            });
+         
         }
         public void PlayPrevious()
         {
@@ -258,7 +256,7 @@ namespace VLC_WINRT.ViewModels.PlayMusic
             private set { SetProperty(ref _title, value); }
         }
 
-        public VLC_WINRT.ViewModels.MainPage.MusicLibraryViewModel.ArtistItemViewModel Artist
+        public MusicLibraryViewModel.ArtistItemViewModel Artist
         {
             get { return _artist; }
             private set { SetProperty(ref _artist, value); }

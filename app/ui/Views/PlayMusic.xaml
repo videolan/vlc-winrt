@@ -157,13 +157,23 @@
                                     <ColumnDefinition Width="300" />
                                 </Grid.ColumnDefinitions>
                                 <Image Height="200" Width="200" VerticalAlignment="Top" Stretch="UniformToFill" Source="{Binding Artist.CurrentAlbumItem.Picture}"/>
-                                <StackPanel Grid.Column="1" Margin="10,0">
-                                    <TextBlock Text="{Binding Artist.CurrentAlbumItem.Name}" Margin="0,0,0,0" FontSize="32" FontWeight="Light" TextWrapping="Wrap"/>
-                                    <TextBlock Text="{Binding Title}" Foreground="WhiteSmoke" Margin="0,0,0,0" FontSize="20" FontWeight="SemiBold" TextWrapping="Wrap"/>
-                                </StackPanel>
+                                <Grid Grid.Column="1" Margin="10,0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <StackPanel Grid.Row="0">
+                                        <TextBlock Text="{Binding Artist.CurrentAlbumItem.Name}" Margin="0,0,0,0" FontSize="32" FontWeight="Light" TextWrapping="Wrap"/>
+                                        <TextBlock Text="{Binding Title}" Foreground="WhiteSmoke" Margin="0,0,0,0" FontSize="20" FontWeight="SemiBold" TextWrapping="Wrap"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Grid.Row="1">
+                                        <Button Style="{StaticResource LikeAppBarButtonStyle}" Foreground="{StaticResource MainColor}" Visibility="{Binding Artist.CurrentAlbumItem.Favorite, Converter={StaticResource NegatedBooleanToVisibilityConverter}}" Command="{Binding Artist.CurrentAlbumItem.FavoriteAlbum}" CommandParameter="{Binding Artist.CurrentAlbumItem}"/>
+                                        <Button Style="{StaticResource DisLikeAppBarButtonStyle}" Foreground="{StaticResource MainColor}" Visibility="{Binding Artist.CurrentAlbumItem.Favorite, Converter={StaticResource BooleanToVisibilityConverter}}" Command="{Binding Artist.CurrentAlbumItem.FavoriteAlbum}" CommandParameter="{Binding Artist.CurrentAlbumItem}"/>
+                                    </StackPanel>
+                                </Grid>
                             </Grid>
 
-                            <ListView Grid.Row="1" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" HeaderTemplate="{StaticResource ColumnHeaderDataTemplate}" Header="playlist" ItemsSource="{Binding TrackCollection.TrackCollection}" Width="500">
+                            <ListView Grid.Row="1" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" HeaderTemplate="{StaticResource ColumnHeaderDataTemplate}" Header="playlist" ItemsSource="{Binding TrackCollection.TrackCollection}" Width="500" FontFamily="Segoe UI">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <Button Template="{StaticResource MainButtonStyle}"

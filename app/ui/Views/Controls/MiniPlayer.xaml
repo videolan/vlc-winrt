@@ -39,10 +39,10 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Content="" IsEnabled="{Binding TrackCollection.CanGoPrevious, Converter={StaticResource BooleanToVisibilityConverter}}" Style="{StaticResource ModernAppBarButtonStyle}" Command="{Binding PlayPreviousCommand}"/>
+            <Button Grid.Column="0" Content="" Visibility="{Binding TrackCollection.CanGoPrevious, Converter={StaticResource BooleanToVisibilityConverter}}" Style="{StaticResource ModernAppBarButtonStyle}" Command="{Binding PlayPreviousCommand}"/>
             <Button Grid.Column="1" Content="" Visibility="{Binding IsPlaying, Converter={StaticResource NegatedBooleanToVisibilityConverter}}" Style="{StaticResource ModernAppBarButtonStyle}" Command="{Binding PlayOrPause}"/>
             <Button Grid.Column="1" Content="" Visibility="{Binding IsPlaying, Converter={StaticResource BooleanToVisibilityConverter}}" Style="{StaticResource ModernAppBarButtonStyle}" Command="{Binding PlayOrPause}"/>
-            <Button Grid.Column="2" Content="" IsEnabled="{Binding TrackCollection.CanGoNext, Converter={StaticResource BooleanToVisibilityConverter}}" Style="{StaticResource ModernAppBarButtonStyle}" Command="{Binding PlayNextCommand}"/>
+            <Button Grid.Column="2" Content="" Visibility="{Binding TrackCollection.CanGoNext, Converter={StaticResource BooleanToVisibilityConverter}}" Style="{StaticResource ModernAppBarButtonStyle}" Command="{Binding PlayNextCommand}"/>
         </Grid>
     </Grid>
 </UserControl>

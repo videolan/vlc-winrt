@@ -46,13 +46,13 @@ namespace VLC_WINRT.Views.Controls.MainPage
                 if (sizeChangedEventArgs.NewSize.Width == 320)
                 {
                     SectionsHeaderListView.Visibility = Visibility.Collapsed;
-                    AlbumsByArtistListView.ItemTemplate = LittleSizedAlbumDataTemplate;
+                    AlbumsByArtistListView.ItemTemplate = Application.Current.Resources["LittleSizedAlbumDataTemplate"] as DataTemplate;
                     SectionsGrid.Margin = new Thickness(0);
                 }
                 else
                 {
                     SectionsHeaderListView.Visibility = Visibility.Visible;
-                    AlbumsByArtistListView.ItemTemplate = NormalSizedAlbumDataTemplate;
+                    AlbumsByArtistListView.ItemTemplate = Application.Current.Resources["NormalSizedAlbumDataTemplate"] as DataTemplate;
                     SectionsGrid.Margin = new Thickness(50, 0, 0, 0);
                 }
             });
