@@ -17,14 +17,13 @@ namespace VLC_WINRT.Utility.Commands
             {
                 Locator.MusicPlayerVM.TrackCollection.ResetCollection();
                 Locator.MusicPlayerVM.TrackCollection.AddTrack(track);
-                Locator.MusicPlayerVM.PlayNext();
             }
             else
             {
                 Locator.MusicPlayerVM.TrackCollection.CurrentTrack =
                     Locator.MusicPlayerVM.TrackCollection.TrackCollection.IndexOf(track);
-                Locator.MusicPlayerVM.Play();
             }
+            Locator.MusicPlayerVM.Play();
 
             var frame = App.ApplicationFrame;
             var page = frame.Content as Views.MainPage;
