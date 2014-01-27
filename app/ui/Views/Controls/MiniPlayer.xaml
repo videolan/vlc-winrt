@@ -15,7 +15,7 @@
         <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     </UserControl.Resources>
 
-    <Grid HorizontalAlignment="Right" >
+    <Grid HorizontalAlignment="Right" Visibility="{Binding TrackCollection.TrackCollection.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
@@ -30,7 +30,7 @@
                     <LineBreak />
                     <Run Text="{Binding PositionInSeconds}"/>
                 </TextBlock>
-                <ProgressBar Margin="0,10,0,0" HorizontalAlignment="Stretch" Value="{Binding PositionInSeconds}" Maximum="{Binding TimeTotal}" IsEnabled="True" />
+                <ProgressBar Margin="0,10,0,0" HorizontalAlignment="Stretch" Value="{Binding PositionInSeconds}" Maximum="{Binding TimeTotal}" IsEnabled="True" FontFamily="Segoe UI" />
             </StackPanel>
         </StackPanel>
         <Grid Grid.Column="1" >
