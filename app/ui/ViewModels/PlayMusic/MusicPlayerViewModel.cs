@@ -51,8 +51,8 @@ namespace VLC_WINRT.ViewModels.PlayMusic
             _vlcPlayerService.MediaEnded += _vlcPlayerService_MediaEnded;
             _skipAhead = new ActionCommand(() => _vlcPlayerService.SkipAhead());
             _skipBack = new ActionCommand(() => _vlcPlayerService.SkipBack());
-            _playNext = new Utility.Commands.MusicPlayer.PlayNextCommand();
-            _playPrevious = new Utility.Commands.MusicPlayer.PlayPreviousCommand();
+            _playNext = new PlayNextCommand();
+            _playPrevious = new PlayPreviousCommand();
             _trackCollection = new TrackCollectionViewModel();
 
 
@@ -174,6 +174,9 @@ namespace VLC_WINRT.ViewModels.PlayMusic
             MediaControl.ArtistName = trackItem.ArtistName;
             MediaControl.TrackName = trackItem.Name;
             //MediaControl.AlbumArt = new Uri(Locator.MusicPlayerVM.Artist.CurrentAlbumItem.Picture, UriKind.Absolute);
+
+            TrackCollection.IsNextPossible();
+            TrackCollection.IsPreviousPossible();
 
             if (TrackCollection.CanGoNext)
                 MediaControl.NextTrackPressed += MediaControl_NextTrackPressed;
