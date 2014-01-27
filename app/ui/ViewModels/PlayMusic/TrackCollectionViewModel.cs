@@ -8,7 +8,7 @@ namespace VLC_WINRT.ViewModels.PlayMusic
     public class TrackCollectionViewModel : BindableBase
     {
         private ObservableCollection<MusicLibraryViewModel.TrackItem> _tracksCollection;
-        private int _currentTrack = -1;
+        private int _currentTrack = 0;
         private bool _canGoPrevious;
         private bool _canGoNext;
 
@@ -75,7 +75,7 @@ namespace VLC_WINRT.ViewModels.PlayMusic
         public void ResetCollection()
         {
             TrackCollection.Clear();
-            CurrentTrack = -1;
+            CurrentTrack = 0;
         }
     }
 }

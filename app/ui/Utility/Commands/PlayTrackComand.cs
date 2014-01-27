@@ -13,9 +13,18 @@ namespace VLC_WINRT.Utility.Commands
         public async override void Execute(object parameter)
         {
             MusicLibraryViewModel.TrackItem track = parameter as MusicLibraryViewModel.TrackItem;
-            Locator.MusicPlayerVM.TrackCollection.ResetCollection();
-            Locator.MusicPlayerVM.TrackCollection.AddTrack(track);
-            Locator.MusicPlayerVM.PlayNext();
+            if (!Locator.MusicPlayerVM.TrackCollection.TrackCollection.Contains(track))
+            {
+                Locator.MusicPlayerVM.TrackCollection.ResetCollection();
+                Locator.MusicPlayerVM.TrackCollection.AddTrack(track);
+                Locator.MusicPlayerVM.PlayNext();
+            }
+            else
+            {
+                Locator.MusicPlayerVM.TrackCollection.CurrentTrack =
+                    Locator.MusicPlayerVM.TrackCollection.TrackCollection.IndexOf(track);
+                Locator.MusicPlayerVM.Play();
+            }
 
             var frame = App.ApplicationFrame;
             var page = frame.Content as Views.MainPage;

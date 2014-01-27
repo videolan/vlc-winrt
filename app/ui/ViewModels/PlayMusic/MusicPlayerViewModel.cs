@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Globalization;
-using System.IO;
 using System.Threading.Tasks;
 using System.Linq;
 using Windows.Media;
@@ -127,6 +126,11 @@ namespace VLC_WINRT.ViewModels.PlayMusic
             PlayNext();
         }
 
+        public void Stop()
+        {
+            if(MediaControl.IsPlaying)
+                _vlcPlayerService.Stop();
+        }
         public void PlayNext()
         {
             App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
@@ -153,6 +157,7 @@ namespace VLC_WINRT.ViewModels.PlayMusic
 
         public async void Play()
         {
+            Stop();
             var trackItem = TrackCollection.TrackCollection[TrackCollection.CurrentTrack];
 
             var file = await Windows.Storage.StorageFile.GetFileFromPathAsync(trackItem.Path);
