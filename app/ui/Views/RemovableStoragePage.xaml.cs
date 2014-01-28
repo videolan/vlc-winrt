@@ -12,8 +12,10 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-
-// Pour en savoir plus sur le modèle d'élément Page vierge, consultez la page http://go.microsoft.com/fwlink/?LinkId=234238
+using VLC_WINRT.Utility.Helpers;
+using VLC_WINRT.Utility.Services.RunTime;
+using VLC_WINRT.ViewModels.MainPage;
+using Windows.UI.Core;
 
 namespace VLC_WINRT.Views
 {
@@ -25,6 +27,62 @@ namespace VLC_WINRT.Views
         public RemovableStoragePage()
         {
             this.InitializeComponent();
+            this.SizeChanged += OnSizeChanged;
+        }
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            FadeInPage.Begin();
+        }
+        private async void GoBack_Click(object sender, RoutedEventArgs e)
+        {
+            if (Window.Current.Bounds.Width == 320 && FirstPanelGridView.Visibility == Windows.UI.Xaml.Visibility.Collapsed)
+            {
+                FirstPanelGridView.Visibility = Windows.UI.Xaml.Visibility.Visible;
+            }
+            else
+            {
+                await FadeOutPage.BeginAsync();
+                NavigationService.NavigateTo(typeof(MainPage));
+            }
+        }
+
+        private void FirstPanelGridView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (Window.Current.Bounds.Width == 320)
+            {
+                FirstPanelGridView.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+            }
+            SecondPanelGridView.ItemsSource = (e.AddedItems[0] as RemovableLibraryViewModel).Media;
+            SecondPanelListView.ItemsSource = (e.AddedItems[0] as RemovableLibraryViewModel).Media;
+        }
+
+        private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
+        {
+            FirstPanelGridView.SelectedItem = null;
+            Dispatcher.RunAsync(CoreDispatcherPriority.High, () =>
+            {
+                if (sizeChangedEventArgs.NewSize.Width < 1080)
+                {
+                }
+                else
+                {
+                }
+
+
+                if (sizeChangedEventArgs.NewSize.Width == 320)
+                {
+                    FirstPanelGridView.Margin = new Thickness(0);
+                    SecondPanelListView.Visibility = Visibility.Visible;
+                    SecondPanelGridView.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    FirstPanelGridView.Margin = new Thickness(100, 0, 0, 0);
+                    SecondPanelListView.Visibility = Visibility.Collapsed;
+                    SecondPanelGridView.Visibility = Visibility.Visible;
+                }
+            });
         }
     }
 }

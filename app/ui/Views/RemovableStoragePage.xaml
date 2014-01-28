@@ -9,21 +9,146 @@
     xmlns:mainPage="using:VLC_WINRT.Views.Controls.MainPage"
     mc:Ignorable="d"
     DataContext="{Binding Source={StaticResource Locator}, Path=MainPageVM}">
-    
-    <Grid>
-        <Grid>
-            <GridView x:Name="FirstPanelGridView" ItemContainerStyle="{StaticResource GridViewItemContainerStyle}" ItemsSource="{Binding ExternalStorageVM.RemovableStorageVMs}" >
-                <GridView.ItemTemplate>
+
+    <Page.Resources>
+        <Storyboard x:Name="FadeOutPage">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="MainGrid">
+                <EasingDoubleKeyFrame KeyTime="0" Value="1">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <ExponentialEase EasingMode="EaseIn" Exponent="5"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="0">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <ExponentialEase EasingMode="EaseIn" Exponent="5"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="MainGrid">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <ExponentialEase EasingMode="EaseIn" Exponent="5"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="-431">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <ExponentialEase EasingMode="EaseIn" Exponent="5"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="Header">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <ExponentialEase EasingMode="EaseIn" Exponent="5"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="0">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <ExponentialEase EasingMode="EaseIn" Exponent="5"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="Header">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <ExponentialEase EasingMode="EaseIn" Exponent="5"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="-431">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <ExponentialEase EasingMode="EaseIn" Exponent="5"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Name="FadeInPage">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="MainGrid">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <ExponentialEase EasingMode="EaseOut" Exponent="5"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="1">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <ExponentialEase EasingMode="EaseOut" Exponent="5"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="MainGrid">
+                <EasingDoubleKeyFrame KeyTime="0" Value="-431">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <ExponentialEase EasingMode="EaseOut" Exponent="5"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="0">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <ExponentialEase EasingMode="EaseOut" Exponent="5"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="Header">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <ExponentialEase EasingMode="EaseOut" Exponent="5"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <ExponentialEase EasingMode="EaseOut" Exponent="5"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="Header">
+                <EasingDoubleKeyFrame KeyTime="0" Value="-431">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <ExponentialEase EasingMode="EaseOut" Exponent="5"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <ExponentialEase EasingMode="EaseOut" Exponent="5"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Page.Resources>
+    <Grid DataContext="{Binding ExternalStorageVM}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid VerticalAlignment="Top" x:Name="Header" Margin="0,30,0,0">
+            <Grid.RenderTransform>
+                <CompositeTransform />
+            </Grid.RenderTransform>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button Style="{StaticResource BackButtonStyle}" Click="GoBack_Click" />
+            <TextBlock Grid.Column="1" Text="Removable devices" Foreground="#e67e22" Margin="0,2,0,0" FontSize="32" FontWeight="Light" TextWrapping="Wrap"/>
+        </Grid>
+        <Grid Grid.Row="1" x:Name="MainGrid" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RenderTransform>
+                <CompositeTransform />
+            </Grid.RenderTransform>
+            <ListView x:Name="FirstPanelGridView" Margin="100,0,0,0" Width="300" SelectionMode="Single" IsSwipeEnabled="False" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" ItemsSource="{Binding RemovableStorageVMs}" SelectionChanged="FirstPanelGridView_SelectionChanged" >
+                <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <Path Data="M0,23.667L64,23.667 64,52.667 0,52.667z M0,0L25.802,0 25.802,6.862999 64,6.862999 64,14.818 0,14.818 0,13.727 0,6.862999z" />
-                            <TextBlock Text="{Binding Location.DisplayName}" />
+                            <Path Height="35" Width="35" Stretch="UniformToFill" Fill="WhiteSmoke" Data="M0,23.667L64,23.667 64,52.667 0,52.667z M0,0L25.802,0 25.802,6.862999 64,6.862999 64,14.818 0,14.818 0,13.727 0,6.862999z" />
+                            <TextBlock Margin="15,0,0,0" Text="{Binding Location.DisplayName}" Style="{StaticResource SubheaderTextStyle}"/>
                         </StackPanel>
                     </DataTemplate>
-                </GridView.ItemTemplate>
-            </GridView>
-            
+                </ListView.ItemTemplate>
+            </ListView>
+            <GridView Grid.Column="1" x:Name="SecondPanelGridView" Margin="20,0,0,0" ItemContainerStyle="{StaticResource GridViewItemContainerStyle}" ItemTemplate="{StaticResource NormaleMovieTemplate}" />
+            <ListView Grid.Column="1" x:Name="SecondPanelListView" Margin="10,0,0,0" ItemTemplate="{StaticResource NormaleMovieTemplate}"/>
+            <removableStorage:PlugARemovableStorage Grid.ColumnSpan="2" Visibility="{Binding RemovableStorageVMs.Count, Converter={StaticResource CountToVisibilityConverter}}" Margin="1,2,-1,-2"/>
         </Grid>
-        <removableStorage:PlugARemovableStorage Visibility="{Binding RemovableStorageVMs.Count, Converter={StaticResource CountToVisibilityConverter}}"/>
     </Grid>
 </Page>
