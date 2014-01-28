@@ -6,11 +6,24 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:removableStorage="using:VLC_WINRT.Views.Controls.RemovableStorage"
+    xmlns:mainPage="using:VLC_WINRT.Views.Controls.MainPage"
     mc:Ignorable="d"
     DataContext="{Binding Source={StaticResource Locator}, Path=MainPageVM}">
-
-    <Grid DataContext="{Binding ExternalStorageVM}">
+    
+    <Grid>
+        <Grid>
+            <GridView x:Name="FirstPanelGridView" ItemContainerStyle="{StaticResource GridViewItemContainerStyle}" ItemsSource="{Binding ExternalStorageVM.RemovableStorageVMs}" >
+                <GridView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Path Data="M0,23.667L64,23.667 64,52.667 0,52.667z M0,0L25.802,0 25.802,6.862999 64,6.862999 64,14.818 0,14.818 0,13.727 0,6.862999z" />
+                            <TextBlock Text="{Binding Location.DisplayName}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </GridView.ItemTemplate>
+            </GridView>
+            
+        </Grid>
         <removableStorage:PlugARemovableStorage Visibility="{Binding RemovableStorageVMs.Count, Converter={StaticResource CountToVisibilityConverter}}"/>
-        
     </Grid>
 </Page>
