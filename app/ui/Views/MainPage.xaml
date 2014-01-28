@@ -138,7 +138,6 @@
         </Storyboard>
     </views:BasePage.Resources>
 
-
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>

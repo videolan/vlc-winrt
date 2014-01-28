@@ -30,8 +30,8 @@ namespace VLC_WINRT.ViewModels.MainPage
 {
     public class MusicLibraryViewModel : BindableBase
     {
-        private ObservableCollection<Panel> _panels = new ObservableCollection<Panel>();
         public int nbOfFiles = 0;
+        private ObservableCollection<Panel> _panels = new ObservableCollection<Panel>();
         private ObservableCollection<ArtistItemViewModel> _artists = new ObservableCollection<ArtistItemViewModel>();
         private ObservableCollection<string> _albumsCover = new ObservableCollection<string>();
         private ObservableCollection<TrackItem> _tracks = new ObservableCollection<TrackItem>();
@@ -55,12 +55,6 @@ namespace VLC_WINRT.ViewModels.MainPage
             Panels.Add(new Panel("FAVORITE ALBUMS", 2, 0.4));
 
             XboxMusicHelper = new MusicHelper();
-            XboxMusicHelper.Failed += XboxMusicHelperOnFailed;
-        }
-
-        private void XboxMusicHelperOnFailed(object sender, ErrorEventArgs errorEventArgs)
-        {
-
         }
 
         public bool IsMusicLibraryEmpty
@@ -128,9 +122,6 @@ namespace VLC_WINRT.ViewModels.MainPage
                     if (Locator.MusicLibraryVM.Track.Count > _numberOfTracks)
                     {
                         SerializeArtistsDataBase();
-                        SerializationHelper.SerializeAsJson(Artist, "MusicDB.json",
-                            null,
-                            CreationCollisionOption.ReplaceExisting);
                         SerializationHelper.SerializeAsJson(ImgCollection, "Artist_Img_Collection.json", null,
                             CreationCollisionOption.ReplaceExisting);
                         Locator.MusicLibraryVM._numberOfTracks = Track.Count;
