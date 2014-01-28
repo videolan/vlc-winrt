@@ -54,7 +54,7 @@
                                         </Grid.ColumnDefinitions>
                                         <Grid Background="Black">
                                             <Image Source="{Binding Image}" Width="140" Height="110"/>
-                                            <ProgressBar VerticalAlignment="Bottom" Value="{Binding TimeWatched, Converter={StaticResource TimeSpanSecondsDoubleConverter}}" Maximum="{Binding Duration, Converter={StaticResource TimeSpanSecondsDoubleConverter}}" />
+                                            <ProgressBar VerticalAlignment="Bottom" Style="{StaticResource ThinProgressBar}" Value="{Binding TimeWatched, Converter={StaticResource TimeSpanSecondsDoubleConverter}}" Maximum="{Binding Duration, Converter={StaticResource TimeSpanSecondsDoubleConverter}}" />
                                         </Grid>
                                         <StackPanel Grid.Column="1" Margin="5,2,0,0" >
                                             <TextBlock Text="{Binding Title, Converter={StaticResource StringToUpperConverter}}" 
