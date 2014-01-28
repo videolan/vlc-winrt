@@ -1100,6 +1100,9 @@
             <SolidColorBrush x:Key="ListViewItemSelectedPointerOverBorderThemeBrush" Color="{StaticResource MainColorBase}"/>
             <SolidColorBrush x:Key="ListViewItemSelectedPointerOverBackgroundThemeBrush" Color="{StaticResource MainColorBase}"/>
 
+            <x:String x:Key="ProgressBarIndeterminateForegroundThemeBrush">#e67e22</x:String>
+            <x:String x:Key="ProgressBarForegroundThemeBrush">#e67e22</x:String>
+
             <!--CustomizedAppBarButton ala Windows 8.1-->
             <Style x:Key="ModernAppBarButtonStyle" TargetType="Button" BasedOn="{StaticResource TextButtonStyle}">
                 <Setter Property="Foreground" Value="WhiteSmoke"/>
