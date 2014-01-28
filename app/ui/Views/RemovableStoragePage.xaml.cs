@@ -47,32 +47,23 @@ namespace VLC_WINRT.Views
             }
         }
 
-        private void FirstPanelGridView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void FirstPanelGridView_SelectionChanged(object sender, ItemClickEventArgs e)
         {
             if (Window.Current.Bounds.Width == 320)
             {
                 FirstPanelGridView.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
             }
-            SecondPanelGridView.ItemsSource = (e.AddedItems[0] as RemovableLibraryViewModel).Media;
-            SecondPanelListView.ItemsSource = (e.AddedItems[0] as RemovableLibraryViewModel).Media;
+            SecondPanelGridView.ItemsSource = (e.ClickedItem as RemovableLibraryViewModel).Media;
+            SecondPanelListView.ItemsSource = (e.ClickedItem as RemovableLibraryViewModel).Media;
         }
 
         private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
         {
-            FirstPanelGridView.SelectedItem = null;
             Dispatcher.RunAsync(CoreDispatcherPriority.High, () =>
             {
-                if (sizeChangedEventArgs.NewSize.Width < 1080)
-                {
-                }
-                else
-                {
-                }
-
-
                 if (sizeChangedEventArgs.NewSize.Width == 320)
                 {
-                    FirstPanelGridView.Margin = new Thickness(0);
+                    FirstPanelGridView.Margin = new Thickness(10, 0, 0, 0);
                     SecondPanelListView.Visibility = Visibility.Visible;
                     SecondPanelGridView.Visibility = Visibility.Collapsed;
                 }

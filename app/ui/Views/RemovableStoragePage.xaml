@@ -136,7 +136,7 @@
             <Grid.RenderTransform>
                 <CompositeTransform />
             </Grid.RenderTransform>
-            <ListView x:Name="FirstPanelGridView" Margin="100,0,0,0" Width="300" SelectionMode="Single" IsSwipeEnabled="False" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" ItemsSource="{Binding RemovableStorageVMs}" SelectionChanged="FirstPanelGridView_SelectionChanged" >
+            <ListView x:Name="FirstPanelGridView" IsItemClickEnabled="True" SelectionMode="None" IsSwipeEnabled="False" Margin="100,0,0,0" Width="300" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" ItemsSource="{Binding RemovableStorageVMs}" ItemClick="FirstPanelGridView_SelectionChanged" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
