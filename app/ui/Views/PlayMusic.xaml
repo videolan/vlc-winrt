@@ -119,18 +119,23 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <Grid VerticalAlignment="Top" x:Name="Header" Margin="0,30,0,0">
-                <Grid.RenderTransform>
-                    <CompositeTransform />
-                </Grid.RenderTransform>
+            <Grid  Margin="0,30,0,0" VerticalAlignment="Top">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="100" />
                     <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <Button Style="{StaticResource BackButtonStyle}" Click="GoBack_Click" />
-                <TextBlock Grid.Column="1" Text="{Binding Artist.Name}" Foreground="#e67e22" FontSize="36" FontWeight="Light" HorizontalAlignment="Left"/>
-                <controls:MiniPlayer Grid.Column="2"/>
+                <Grid x:Name="Header">
+                    <Grid.RenderTransform>
+                        <CompositeTransform />
+                    </Grid.RenderTransform>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Button Style="{StaticResource BackButtonStyle}" Click="GoBack_Click" />
+                    <TextBlock Grid.Column="1" Text="{Binding Artist.Name}" Foreground="#e67e22" FontSize="36" FontWeight="Light" HorizontalAlignment="Left"/>
+                </Grid>
+                <controls:MiniPlayer Grid.Column="1"/>
             </Grid>
             <Grid Grid.Row="1" x:Name="MainGrid">
                 <Grid.RenderTransform>
