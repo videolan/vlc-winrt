@@ -1005,7 +1005,7 @@
             </ControlTemplate>
             <DataTemplate x:Name="WideMovieTemplate">
                 <Button Template="{StaticResource MainButtonStyle}"
-                            Command="{Binding OpenFile}"
+                            Command="{Binding OpenVideo}"
                             CommandParameter="{Binding}">
                     <Grid  Height="330" Width="560">
                         <Image Source="{Binding Image}" Stretch="UniformToFill"
@@ -1028,7 +1028,7 @@
             </DataTemplate>
             <DataTemplate x:Name="FlipViewMovieTemplate">
                 <Button Template="{StaticResource MainButtonStyle}"
-                            Command="{Binding OpenFile}"
+                            Command="{Binding OpenVideo}"
                             CommandParameter="{Binding}"
                         VerticalAlignment="Top">
                     <Grid Width="560" >
@@ -1047,7 +1047,7 @@
             </DataTemplate>
             <DataTemplate x:Name="NormaleMovieTemplate">
                 <Button Template="{StaticResource MainButtonStyle}" 
-                            Command="{Binding OpenFile}"
+                            Command="{Binding OpenVideo}"
                             CommandParameter="{Binding}">
                     <Grid Height="158" Width="280">
                         <Image Source="{Binding Image}" Stretch="UniformToFill"

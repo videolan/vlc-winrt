@@ -27,7 +27,7 @@
                       ZoomMode="Disabled">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
                 <local:Welcome Margin="50,0,0,0" Visibility="{Binding LastViewedVM.WelcomeSectionVisible, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                <Grid Margin="50,0,0,0" DataContext="{Binding LastViewedVM}" Visibility="{Binding WelcomeSectionVisible, Converter={StaticResource NegatedBooleanToVisibilityConverter}}">
+                <Grid Margin="50,0,0,0" DataContext="{Binding LastViewedVM}" Visibility="{Binding LastViewedVM.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="50"/>
                         <RowDefinition Height="*"/>
@@ -45,7 +45,7 @@
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <Button Template="{StaticResource MainButtonStyle}"
-                            Command="{Binding OpenFile}"
+                            Command="{Binding OpenVideo}"
                             CommandParameter="{Binding}">
                                     <Grid Width="320" Height="110">
                                         <Grid.ColumnDefinitions>

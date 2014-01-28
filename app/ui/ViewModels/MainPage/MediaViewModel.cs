@@ -5,7 +5,7 @@ namespace VLC_WINRT.ViewModels.MainPage
 {
     public class MediaViewModel : ThumbnailViewModel
     {
-        private OpenFileCommand _openFile;
+        private OpenVideoCommand _openVideo;
         private string _subtitle = string.Empty;
         private string _title = string.Empty;
 
@@ -16,7 +16,7 @@ namespace VLC_WINRT.ViewModels.MainPage
                 Title = storageFile.DisplayName;
                 Subtitle = storageFile.FileType.ToUpper() + " File";
             
-                OpenFile = new OpenFileCommand();
+                OpenVideo = new OpenVideoCommand();
             }
         }
 
@@ -32,10 +32,10 @@ namespace VLC_WINRT.ViewModels.MainPage
             set { SetProperty(ref _subtitle, value); }
         }
 
-        public OpenFileCommand OpenFile
+        public OpenVideoCommand OpenVideo
         {
-            get { return _openFile; }
-            set { SetProperty(ref _openFile, value); }
+            get { return _openVideo; }
+            set { SetProperty(ref _openVideo, value); }
         }
     }
 }
