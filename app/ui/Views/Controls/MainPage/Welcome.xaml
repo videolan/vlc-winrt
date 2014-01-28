@@ -7,64 +7,21 @@
     mc:Ignorable="d"
     d:DesignHeight="768"
     d:DesignWidth="550">
-    <StackPanel Width="500">
+    <StackPanel Width="500" >
         <Image Height="340" Width="300" Source="../../../Assets/ShinyPylon/300_340.png"></Image>
-        <TextBlock TextWrapping="Wrap"
+        <TextBlock TextWrapping="Wrap"                   
                    Style="{StaticResource GroupHeaderTextStyle}"
-                   Margin="10"
+                   Margin="10,20,10,10"
                    HorizontalAlignment="Center"
                    x:Uid="Welcome"
-                   Text="Welcome to the VLC for WinRT Beta!">
+                   Text="Welcome to the VLC for WinRT Beta!" >
         </TextBlock>
         <TextBlock Style="{StaticResource BasicTextStyle}"
+                   TextAlignment="Center"
                    Margin="10"
                    x:Uid="IntroPara.Text"
                    Text="This app is our attempt to bring the VLC media player to Microsoft's newest OS. The app is currently under development so not all features have been included, and many existing features have bugs.">
         </TextBlock>
-        <TextBlock Style="{StaticResource BasicTextStyle}"
-                   FontWeight="Bold"
-                   x:Uid="CurrentFeatures"
-                   Text="Current Features:"
-                   Margin="10,10,10,0">
-        </TextBlock>
-        <Grid Margin="10,0,0,0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition Height="Auto"></RowDefinition>
-            </Grid.RowDefinitions>
-            <TextBlock Text="*" Grid.Row="0" Grid.Column="0" Margin="5" VerticalAlignment="Center"></TextBlock>
-            <TextBlock Text="*" Grid.Row="1" Grid.Column="0" Margin="5" VerticalAlignment="Center"></TextBlock>
-            <TextBlock Text="*" Grid.Row="2" Grid.Column="0" Margin="5" VerticalAlignment="Center"></TextBlock>
-            <TextBlock
-                Text="Videos Library support.  Add files to your Videos Library and play them directly."
-                x:Uid="FeaturesVidLib"
-                Style="{StaticResource BasicTextStyle}"
-                Margin="5"
-                Grid.Row="0"
-                Grid.Column="1">
-            </TextBlock>
-            <TextBlock Text="USB and SD Card support."
-                       x:Uid="FeaturesUSB"
-                       Style="{StaticResource BasicTextStyle}"
-                       Margin="5"
-                       Grid.Row="1"
-                       Grid.Column="1">
-            </TextBlock>
-            <TextBlock
-                Text="Open a video from anywhere on your device. Either swipe up or right click to open a file from the App Bar."
-                Style="{StaticResource BasicTextStyle}"
-                x:Uid="FeaturesOpen"
-                Margin="5"
-                Grid.Row="2"
-                Grid.Column="1">
-            </TextBlock>
-        </Grid>
+        <Button Style="{StaticResource MoreAppBarButtonStyle}" HorizontalAlignment="Right" Foreground="{StaticResource MainColor}" Click="OpenAppBar_Click"/>
     </StackPanel>
 </UserControl>

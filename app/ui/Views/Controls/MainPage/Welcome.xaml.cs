@@ -10,5 +10,16 @@ namespace VLC_WINRT.Views.Controls.MainPage
         {
             this.InitializeComponent();
         }
+
+        private void OpenAppBar_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            var frame = App.ApplicationFrame;
+            var page = frame.Content as Views.MainPage;
+            if (page != null)
+            {
+                var appbar = page.FindName("BottomAppBar") as AppBar;
+                if (appbar != null) appbar.IsOpen = true;
+            }
+        }
     }
 }
