@@ -7,6 +7,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
 using VLC_WINRT.Utility.Helpers;
+using VLC_WINRT.Utility.Services.RunTime;
 using VLC_WINRT.ViewModels;
 
 namespace VLC_WINRT.Views
@@ -100,11 +101,14 @@ namespace VLC_WINRT.Views
             var popupMenu = new PopupMenu();
             popupMenu.Commands.Add(new UICommand("Removable storage", async h =>
             {
+                await FadeOutPage.BeginAsync();
+                NavigationService.NavigateTo(typeof (RemovableStoragePage));
             }));
 
             popupMenu.Commands.Add(new UICommand("DLNA", async h =>
             {
-                
+                await FadeOutPage.BeginAsync();
+                NavigationService.NavigateTo(typeof (DLNAPage));
             }));
             
             var button = (Button)sender;
