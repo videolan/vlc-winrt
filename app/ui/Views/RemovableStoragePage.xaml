@@ -5,9 +5,12 @@
     xmlns:local="using:VLC_WINRT.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    xmlns:removableStorage="using:VLC_WINRT.Views.Controls.RemovableStorage"
+    mc:Ignorable="d"
+    DataContext="{Binding Source={StaticResource Locator}, Path=MainPageVM}">
 
-    <Grid>
-
+    <Grid DataContext="{Binding ExternalStorageVM}">
+        <removableStorage:PlugARemovableStorage Visibility="{Binding RemovableStorageVMs.Count, Converter={StaticResource CountToVisibilityConverter}}"/>
+        
     </Grid>
 </Page>

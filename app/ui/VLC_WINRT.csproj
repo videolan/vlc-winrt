@@ -184,9 +184,15 @@
     <Compile Include="Views\Controls\NothingToSeeHere.xaml.cs">
       <DependentUpon>NothingToSeeHere.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Controls\RemovableStorage\PlugARemovableStorage.xaml.cs">
+      <DependentUpon>PlugARemovableStorage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Controls\VariableSizedItemsGridView.cs" />
     <Compile Include="Views\Controls\WrapPanelControl\OrientedSize.cs" />
     <Compile Include="Views\Controls\WrapPanelControl\WrapPanel.cs" />
+    <Compile Include="Views\DLNAPage.xaml.cs">
+      <DependentUpon>DLNAPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -196,6 +202,9 @@
     </Compile>
     <Compile Include="Views\PlayVideo.xaml.cs">
       <DependentUpon>PlayVideo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RemovableStoragePage.xaml.cs">
+      <DependentUpon>RemovableStoragePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\RootPage.xaml.cs">
       <DependentUpon>RootPage.xaml</DependentUpon>
@@ -759,6 +768,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Controls\RemovableStorage\PlugARemovableStorage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DLNAPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -768,6 +785,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\PlayVideo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RemovableStoragePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

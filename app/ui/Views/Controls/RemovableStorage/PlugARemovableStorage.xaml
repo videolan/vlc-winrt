@@ -1,0 +1,24 @@
+﻿<UserControl
+    x:Class="VLC_WINRT.Views.Controls.RemovableStorage.PlugARemovableStorage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:VLC_WINRT.Views.Controls.RemovableStorage"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Margin="0, 90" Background="WhiteSmoke">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Height="200">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Path Data="{StaticResource UsbKeyPath}" Fill="Black"/>
+            <TextBlock  Grid.Column="1" TextWrapping="Wrap" Text="Plug-in a removable device" FontSize="42" FontWeight="Light" Foreground="{StaticResource MainColor}" />
+        </Grid>
+    </Grid>
+</UserControl>
