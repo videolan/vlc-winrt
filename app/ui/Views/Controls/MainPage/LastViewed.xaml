@@ -73,7 +73,6 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="60"/>
                         <RowDefinition Height="*"/>
-                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <Button Margin="5,0,0,10" Command="{Binding GoToPanel}" CommandParameter="1" Grid.Row="0" Template="{StaticResource MainButtonStyle}">
                         <StackPanel Orientation="Horizontal">

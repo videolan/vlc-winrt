@@ -39,9 +39,18 @@
         <Grid Grid.Row="1" x:Name="SectionsGrid">
             <ScrollViewer Style="{StaticResource HorizontalScrollViewerStyle}">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
-                    <controls:NothingToSeeHere Visibility="{Binding IsVideoLibraryEmpty, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                    <FlipView x:Name="FlipView" Margin="0,50,0,0" ItemsSource="{Binding MediaRandom}" Width="560" ItemTemplate="{StaticResource FlipViewMovieTemplate}"/>
-                    <GridView x:Name="FirstPanelGridView" Margin="0,50,0,0" ItemContainerStyle="{StaticResource GridViewItemContainerStyle}" ItemsSource="{Binding Media}" ItemTemplate="{StaticResource NormaleMovieTemplate}" />
+                    <Grid Margin="50,0,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="60"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Button Margin="5,0,0,10" Command="{Binding GoToPanel}" CommandParameter="1" Grid.Row="0" Template="{StaticResource MainButtonStyle}">
+                                <TextBlock Text="featured videos" Foreground="#e67e22" FontSize="42" FontWeight="Light" />
+                        </Button>
+                        <controls:NothingToSeeHere Grid.Row="1" Visibility="{Binding IsVideoLibraryEmpty, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                        <FlipView Grid.Row="1" x:Name="FlipView" ItemsSource="{Binding MediaRandom}" Width="560" ItemTemplate="{StaticResource FlipViewMovieTemplate}"/>
+                    </Grid>
+                    <GridView x:Name="FirstPanelGridView" Margin="40,60,0,0" ItemContainerStyle="{StaticResource GridViewItemContainerStyle}" ItemsSource="{Binding Media}" ItemTemplate="{StaticResource NormaleMovieTemplate}" />
                     <ListView x:Name="FirstPanelListView" Margin="10,0,0,0" ItemsSource="{Binding Media}" ItemTemplate="{StaticResource NormaleMovieTemplate}"/>
                 </StackPanel>
             </ScrollViewer>
