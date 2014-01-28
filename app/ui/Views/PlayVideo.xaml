@@ -25,8 +25,6 @@
                         Command="{Binding GoBack}" 
                         CommandParameter="{Binding}" 
                         Margin="30,10"></Button>
-                <Button Style="{StaticResource LikeAppBarButtonStyle}" Visibility="{Binding CurrentVideo.Favorite, Converter={StaticResource NegatedBooleanToVisibilityConverter}}" Command="{Binding CurrentVideo.FavoriteVideo}" CommandParameter="{Binding CurrentVideo}"/>
-                <Button Style="{StaticResource DisLikeAppBarButtonStyle}" Visibility="{Binding CurrentVideo.Favorite, Converter={StaticResource BooleanToVisibilityConverter}}" Command="{Binding CurrentVideo.FavoriteVideo}" CommandParameter="{Binding CurrentVideo}"/>
                 <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center" Orientation="Horizontal" Visibility="Collapsed">
                     <TextBlock Text="Audio Track: " 
                                Style="{StaticResource SubheaderTextStyle}"
