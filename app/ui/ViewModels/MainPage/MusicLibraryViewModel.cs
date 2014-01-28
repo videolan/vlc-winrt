@@ -25,6 +25,7 @@ using XboxMusicLibrary;
 using XboxMusicLibrary.Models;
 using XboxMusicLibrary.Settings;
 using Panel = VLC_WINRT.Model.Panel;
+using VLC_WINRT.Utility.Helpers.MusicLibrary;
 
 namespace VLC_WINRT.ViewModels.MainPage
 {
@@ -44,8 +45,6 @@ namespace VLC_WINRT.ViewModels.MainPage
         ThreadPoolTimer _periodicTimer;
 
         // XBOX Music Stuff; Take 2
-        public Music XboxMusic;
-        public MusicHelper XboxMusicHelper;
         ObservableCollection<string> _imgCollection = new ObservableCollection<string>();
         public MusicLibraryViewModel()
         {
@@ -55,7 +54,6 @@ namespace VLC_WINRT.ViewModels.MainPage
             Panels.Add(new Panel("TRACKS", 1, 0.4));
             Panels.Add(new Panel("FAVORITE ALBUMS", 2, 0.4));
 
-            XboxMusicHelper = new MusicHelper();
         }
 
         public bool IsMusicLibraryEmpty
@@ -77,12 +75,12 @@ namespace VLC_WINRT.ViewModels.MainPage
             get { return _favoriteAlbums; }
             set { SetProperty(ref _favoriteAlbums, value); }
         }
-        
+
         public ObservableCollection<AlbumItem> RandomAlbums
         {
             get { return _randomAlbums; }
             set { SetProperty(ref _randomAlbums, value); }
-        } 
+        }
         public ObservableCollection<Panel> Panels
         {
             get { return _panels; }
@@ -153,8 +151,7 @@ namespace VLC_WINRT.ViewModels.MainPage
                     {
                         StorageFolderQueryResult albumQuery =
                             artistItem.CreateFolderQuery(CommonFolderQuery.GroupByAlbum);
-                        var artist = new ArtistItemViewModel(albumQuery);
-                        artist.Name = artistProperties.Artist;
+                        var artist = new ArtistItemViewModel(albumQuery, artistProperties.Artist);
                         OnPropertyChanged("Track");
                         OnPropertyChanged("Artist");
                         Artist.Add(artist);
@@ -169,7 +166,7 @@ namespace VLC_WINRT.ViewModels.MainPage
                 ImgCollection =
                     await
                         SerializationHelper.LoadFromJsonFile<ObservableCollection<string>>("Artist_Img_Collection.json");
-                
+
                 foreach (ArtistItemViewModel artist in Artist)
                 {
                     foreach (AlbumItem album in artist.Albums)
@@ -252,6 +249,7 @@ namespace VLC_WINRT.ViewModels.MainPage
             private List<OnlineAlbumItem> _onlinePopularAlbumItems = new List<OnlineAlbumItem>();
             private List<ArtistItemViewModel> _onlineRelatedArtists = new List<ArtistItemViewModel>();
             private bool _isFavorite;
+            ArtistInformationsHelper informationHelper;
 
             public string Name
             {
@@ -284,10 +282,7 @@ namespace VLC_WINRT.ViewModels.MainPage
             {
                 get
                 {
-                    if (_biography == null)
-                    {
-                        GetArtistBiography(Name);
-                    }
+                    if (_biography == null) GetBiography();
                     return _biography;
                 }
                 set { SetProperty(ref _biography, value); }
@@ -301,16 +296,21 @@ namespace VLC_WINRT.ViewModels.MainPage
                 }
                 set { SetProperty(ref _onlinePopularAlbumItems, value); }
             }
-            public bool IsFavorite { get { return _isFavorite; } set { SetProperty(ref _isFavorite, value); } }
 
             public List<ArtistItemViewModel> OnlineRelatedArtists
             {
-                get { return _onlineRelatedArtists; }
+                get
+                {
+                    return _onlineRelatedArtists;
+                }
                 set { SetProperty(ref _onlineRelatedArtists, value); }
             }
-            public ArtistItemViewModel(StorageFolderQueryResult albumQueryResult)
+            public bool IsFavorite { get { return _isFavorite; } set { SetProperty(ref _isFavorite, value); } }
+
+            public ArtistItemViewModel(StorageFolderQueryResult albumQueryResult, string artistName)
             {
-                GetInformationsFromXBoxMusicAPI(albumQueryResult.Folder.DisplayName);
+                Name = artistName;
+                ArtistInformations();
                 LoadAlbums(albumQueryResult);
             }
 
@@ -318,7 +318,22 @@ namespace VLC_WINRT.ViewModels.MainPage
             {
             }
 
-            public async Task LoadAlbums(StorageFolderQueryResult albumQueryResult)
+            async Task ArtistInformations()
+            {
+                informationHelper = new ArtistInformationsHelper();
+                await informationHelper.GetArtistFromXboxMusic(Name);
+                Picture = await informationHelper.GetArtistPicture();
+                OnlineRelatedArtists = await informationHelper.GetArtistSimilarsArtist();
+                OnPropertyChanged("OnlineRelatedArtists");
+                OnlinePopularAlbumItems = await informationHelper.GetArtistTopAlbums();
+                OnPropertyChanged("OnlinePopularAlbumsItems");
+            }
+
+            async Task GetBiography()
+            {
+                Biography = await informationHelper.GetArtistBiography();
+            }
+            async Task LoadAlbums(StorageFolderQueryResult albumQueryResult)
             {
                 IReadOnlyList<StorageFolder> albumFolders = null;
                 try
@@ -368,147 +383,6 @@ namespace VLC_WINRT.ViewModels.MainPage
                 }
             }
 
-
-            public async Task GetArtistBiography(string artist)
-            {
-                try
-                {
-                    HttpClient Bio = new HttpClient();
-                    var reponse = await Bio.GetStringAsync("http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&api_key=" + App.ApiKeyLastFm + "&artist=" + artist);
-                    {
-                        var xml1 = XDocument.Parse(reponse);
-                        var bio = xml1.Root.Descendants("bio").Elements("summary").FirstOrDefault();
-                        if (bio != null)
-                        {
-                            // Deleting the html tags
-                            Biography = Regex.Replace(bio.Value, "<.*?>", string.Empty);
-                            if (Biography != null)
-                            {
-                                // Removes the "Read more about ... on last.fm" message
-                                Biography = Biography.Remove(Biography.Length - "Read more about  on Last.fm".Length - artist.Length - 6);
-                            }
-                        }
-                    }
-                }
-                catch
-                {
-
-                }
-            }
-
-            public async Task GetInformationsFromXBoxMusicAPI(string artist)
-            {
-                try
-                {
-                    var token =
-                        await
-                            Locator.MusicLibraryVM.XboxMusicHelper.GetAccessToken(
-                                "5bf9b614-1651-4b49-98ee-1831ae58fb99",
-                                "copuMsVkCAFLQlP38bV3y+Azysz/crELZ5NdQU7+ddg=");
-                    Extras[] extras = new Extras[] { Extras.ArtistDetails, Extras.Albums };
-                    Locator.MusicLibraryVM.XboxMusic =
-                        await Locator.MusicLibraryVM.XboxMusicHelper.SearchMediaCatalog(token, artist, extras, 3);
-                    var xBoxArtistItem =
-                        Locator.MusicLibraryVM.XboxMusic.Artists.Items.FirstOrDefault(x => x.Name == artist);
-
-                    HttpClient clientPic = new HttpClient();
-                    HttpResponseMessage responsePic = await clientPic.GetAsync(xBoxArtistItem.ImageUrlWithOptions(new ImageSettings(280, 156, ImageMode.Scale, "")));
-                    byte[] img = await responsePic.Content.ReadAsByteArrayAsync();
-                    InMemoryRandomAccessStream streamWeb = new InMemoryRandomAccessStream();
-
-                    DataWriter writer = new DataWriter(streamWeb.GetOutputStreamAt(0));
-                    writer.WriteBytes(img);
-
-                    await writer.StoreAsync();
-                    string fileName = artist + "_" + "dPi";
-
-                    var file = await ApplicationData.Current.LocalFolder.CreateFileAsync(fileName + ".jpg", CreationCollisionOption.ReplaceExisting);
-                    var raStream = await file.OpenAsync(FileAccessMode.ReadWrite);
-
-                    using (var thumbnailStream = streamWeb.GetInputStreamAt(0))
-                    {
-                        using (var stream = raStream.GetOutputStreamAt(0))
-                        {
-                            await RandomAccessStream.CopyAsync(thumbnailStream, stream);
-                        }
-                    }
-
-                    Picture = "ms-appdata:///local/" + fileName + ".jpg";
-                    Locator.MusicLibraryVM.ImgCollection.Add(xBoxArtistItem.ImageUrl);
-
-                    if (xBoxArtistItem.Albums != null)
-                    {
-                        foreach (var album in xBoxArtistItem.Albums.Items)
-                        {
-                            OnlinePopularAlbumItems.Add(new OnlineAlbumItem()
-                            {
-                                Artist = xBoxArtistItem.Name,
-                                Name = album.Name,
-                                Picture = album.ImageUrlWithOptions(new ImageSettings(200, 200, ImageMode.Scale, "")),
-                            });
-                        }
-                        foreach (var artists in xBoxArtistItem.RelatedArtists.Items)
-                        {
-                            var onlinePopularAlbums = artists.Albums.Items.Select(albums => new OnlineAlbumItem
-                            {
-                                Artist = artists.Name,
-                                Name = albums.Name,
-                                Picture = albums.ImageUrlWithOptions(new ImageSettings(280, 156, ImageMode.Scale, "")),
-                            }).ToList();
-
-                            var artistPic = artists.ImageUrl;
-                            OnlineRelatedArtists.Add(new ArtistItemViewModel
-                            {
-                                Name = artists.Name,
-                                OnlinePopularAlbumItems = onlinePopularAlbums,
-                                Picture = artistPic,
-                            });
-                        }
-                    }
-                    else
-                    {
-                        HttpClient lastFmClient = new HttpClient();
-                        var response =
-                            await
-                                lastFmClient.GetStringAsync(
-                                    "http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&limit=6&api_key=" +
-                                    App.ApiKeyLastFm + "&artist=" + artist);
-                        var xml = XDocument.Parse(response);
-                        var topAlbums = from results in xml.Descendants("album")
-                                        select new OnlineAlbumItem
-                                        {
-                                            Name = results.Element("name").Value.ToString(),
-                                            Picture = results.Elements("image").ElementAt(3).Value,
-                                        };
-
-                        foreach (var item in topAlbums)
-                            OnlinePopularAlbumItems.Add(item);
-
-
-                        lastFmClient = new HttpClient();
-                        response =
-                            await
-                                lastFmClient.GetStringAsync(
-                                    "http://ws.audioscrobbler.com/2.0/?method=artist.getsimilar&limit=6&api_key=" +
-                                    App.ApiKeyLastFm + "&artist=" + artist);
-                        xml = XDocument.Parse(response);
-                        var similarArtists = from results in xml.Descendants("artist")
-                                             select new ArtistItemViewModel
-                                             {
-                                                 Name = results.Element("name").Value.ToString(),
-                                                 Picture = results.Elements("image").ElementAt(3).Value,
-                                             };
-                        foreach (var item in similarArtists)
-                            OnlineRelatedArtists.Add(item);
-                    }
-                    OnPropertyChanged("OnlineRelatedArtists");
-                    OnPropertyChanged("OnlinePopularAlbumItems");
-                }
-                catch (Exception e)
-                {
-                    Debug.WriteLine("XBOX Error\n" + e.ToString());
-                }
-            }
         }
 
         public class OnlineAlbumItem : BindableBase

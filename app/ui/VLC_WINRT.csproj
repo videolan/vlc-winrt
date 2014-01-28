@@ -61,10 +61,6 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
-    <ProjectReference Include="..\XboxMusicLibrary\XboxMusicLibrary.csproj">
-      <Project>{a75b4447-63c0-497a-8c32-bfd6db36fee9}</Project>
-      <Name>XboxMusicLibrary</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\modules\libaccess_winrt_plugin\libaccess_winrt_plugin.vcxproj">
       <Project>{a3345ed6-a13a-487b-9ef3-412fed4916d1}</Project>
       <Name>libaccess_winrt_plugin</Name>
@@ -122,10 +118,22 @@
     <Compile Include="Utility\Converters\TimespanShortStringConverter.cs" />
     <Compile Include="Utility\DataTemplateSelectors\MediaItemDataTemplateSelector.cs" />
     <Compile Include="Utility\Helpers\DoesFileExistHelper.cs" />
+    <Compile Include="Utility\Helpers\MusicLibrary\ArtistInformationsHelper.cs" />
     <Compile Include="Utility\Helpers\SerializationHelper.cs" />
     <Compile Include="Utility\Helpers\StoryboardExtensions.cs" />
     <Compile Include="Utility\Helpers\UIAnimationHelper.cs" />
     <Compile Include="Utility\Helpers\VisualTreeHelperExtensions.cs" />
+    <Compile Include="Utility\Helpers\MusicLibrary\xboxmusic\Models\Albums.cs" />
+    <Compile Include="Utility\Helpers\MusicLibrary\xboxmusic\Models\Artists.cs" />
+    <Compile Include="Utility\Helpers\MusicLibrary\xboxmusic\Models\Contributor.cs" />
+    <Compile Include="Utility\Helpers\MusicLibrary\xboxmusic\Models\Error.cs" />
+    <Compile Include="Utility\Helpers\MusicLibrary\xboxmusic\Models\Music.cs" />
+    <Compile Include="Utility\Helpers\MusicLibrary\xboxmusic\Models\Tracks.cs" />
+    <Compile Include="Utility\Helpers\MusicLibrary\xboxmusic\MusicHelper.cs" />
+    <Compile Include="Utility\Helpers\MusicLibrary\xboxmusic\Settings\Culture.cs" />
+    <Compile Include="Utility\Helpers\MusicLibrary\xboxmusic\Settings\Extras.cs" />
+    <Compile Include="Utility\Helpers\MusicLibrary\xboxmusic\Settings\Filters.cs" />
+    <Compile Include="Utility\Helpers\MusicLibrary\xboxmusic\Settings\ImageMode.cs" />
     <Compile Include="Utility\Services\DesignTime\ThumbnailService.cs" />
     <Compile Include="Utility\Services\Interface\IThumbnailService.cs" />
     <Compile Include="Utility\Services\RunTime\HistoryService.cs" />
@@ -220,6 +228,7 @@
     <Content Include="Assets\GreyPylon\50x50.jpg" />
     <Content Include="plugins\audio_output\libxaudio2_winrt_plugin.dll" />
     <Content Include="segoeui.ttf" />
+    <None Include="packages.config" />
     <PRIResource Include="Strings\en-US\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
@@ -809,6 +818,12 @@
     <SDKReference Include="Microsoft.VCLibs, Version=11.0">
       <Name>Microsoft Visual C++ Runtime Package</Name>
     </SDKReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\netcore45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">
     <VisualStudioVersion>11.0</VisualStudioVersion>

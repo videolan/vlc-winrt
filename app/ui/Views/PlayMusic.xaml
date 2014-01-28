@@ -198,7 +198,7 @@
                                 </ListView.ItemTemplate>
                             </ListView>
                         </Grid>
-                        <ListView Margin="10,0" Width="350" Visibility="{Binding Artist.OnlineRelatedArtists.Count, Converter={StaticResource CountToVisibilityConverter}}" HeaderTemplate="{StaticResource ColumnHeaderDataTemplate}" Header="similar artists" ItemsSource="{Binding Artist.OnlineRelatedArtists}" SelectedIndex="0" SelectionMode="None" IsItemClickEnabled="True" >
+                        <ListView Margin="10,0" Width="350" Visibility="{Binding Artist.OnlineRelatedArtists.Count, Converter={StaticResource NegatedBooleanToVisibilityConverter}}" HeaderTemplate="{StaticResource ColumnHeaderDataTemplate}" Header="similar artists" ItemsSource="{Binding Artist.OnlineRelatedArtists}" SelectedIndex="0" SelectionMode="None" IsItemClickEnabled="True" >
                             <ListView.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <WrapGrid Orientation="Horizontal" />
@@ -232,7 +232,7 @@
                                 </Style>
                             </ListView.ItemContainerStyle>
                         </ListView>
-                        <ListView Margin="10,0" Width="350" Visibility="{Binding Artist.OnlinePopularAlbumItems.Count, Converter={StaticResource CountToVisibilityConverter}}" SelectionMode="None" IsItemClickEnabled="True" HeaderTemplate="{StaticResource ColumnHeaderDataTemplate}" Header="popular albums" ItemsSource="{Binding Artist.OnlinePopularAlbumItems}">
+                        <ListView Margin="10,0" Width="350" Visibility="{Binding Artist.OnlinePopularAlbumItems.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}" SelectionMode="None" IsItemClickEnabled="True" HeaderTemplate="{StaticResource ColumnHeaderDataTemplate}" Header="popular albums" ItemsSource="{Binding Artist.OnlinePopularAlbumItems}">
                             <ListView.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <WrapGrid Orientation="Horizontal" />
