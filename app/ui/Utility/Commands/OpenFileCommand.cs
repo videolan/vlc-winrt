@@ -35,7 +35,7 @@ namespace VLC_WINRT.Utility.Commands
                     await sB.BeginAsync();
                 }
             }
-            
+            Locator.PlayVideoVM.CurrentVideo = parameter as MediaViewModel;
             NavigationService.NavigateTo(typeof(PlayVideo));
             Locator.PlayVideoVM.SetActiveVideoInfo(token, vm.File.Name);
         }

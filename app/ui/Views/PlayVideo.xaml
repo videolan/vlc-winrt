@@ -20,11 +20,13 @@
     <Grid></Grid>
     <views:BasePage.TopAppBar>
         <AppBar  Background="#AA000000" BorderBrush="#AA000000">
-            <Grid>
+            <StackPanel Orientation="Horizontal">
                 <Button Style="{StaticResource BackButtonStyle}" 
                         Command="{Binding GoBack}" 
                         CommandParameter="{Binding}" 
                         Margin="30,10"></Button>
+                <Button Style="{StaticResource LikeAppBarButtonStyle}" Visibility="{Binding CurrentVideo.Favorite, Converter={StaticResource NegatedBooleanToVisibilityConverter}}" Command="{Binding CurrentVideo.FavoriteVideo}" CommandParameter="{Binding CurrentVideo}"/>
+                <Button Style="{StaticResource DisLikeAppBarButtonStyle}" Visibility="{Binding CurrentVideo.Favorite, Converter={StaticResource BooleanToVisibilityConverter}}" Command="{Binding CurrentVideo.FavoriteVideo}" CommandParameter="{Binding CurrentVideo}"/>
                 <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center" Orientation="Horizontal" Visibility="Collapsed">
                     <TextBlock Text="Audio Track: " 
                                Style="{StaticResource SubheaderTextStyle}"
@@ -48,7 +50,7 @@
                                Text="{Binding Now}" 
                                Style="{StaticResource PageHeaderTextStyle}"></TextBlock>
                 </StackPanel>
-            </Grid>
+            </StackPanel>
         </AppBar>
     </views:BasePage.TopAppBar>
     <views:BasePage.BottomAppBar>

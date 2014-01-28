@@ -51,8 +51,9 @@ namespace VLC_WINRT.ViewModels.MainPage
 
         private async void GatherTimeInformation(IAsyncAction operation)
         {
-            VideoProperties videoProps = await File.Properties.GetVideoPropertiesAsync();
-            TimeSpan duration = videoProps.Duration;
+            if(VideoProperties == null)
+                VideoProperties = await File.Properties.GetVideoPropertiesAsync();
+            TimeSpan duration = VideoProperties.Duration;
             var historyService = IoC.GetInstance<HistoryService>();
             MediaHistory history=  historyService.GetHistory(_token);
 

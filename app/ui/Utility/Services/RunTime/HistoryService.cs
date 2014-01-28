@@ -57,9 +57,7 @@ namespace VLC_WINRT.Utility.Services.RunTime
 
         public string Add(StorageFile file)
         {
-            bool isAudio = false;
-            if (file.ContentType.Contains("audio"))
-                isAudio = true;
+            bool isAudio = file.ContentType.Contains("audio");
 
             string token;
             MediaHistory previouslySavedMedia = _histories.FirstOrDefault(h => h.Filename == file.Name);

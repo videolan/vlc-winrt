@@ -9,6 +9,7 @@ using VLC_WINRT.Model;
 using VLC_WINRT.Utility.Commands;
 using VLC_WINRT.Utility.IoC;
 using VLC_WINRT.Utility.Services.RunTime;
+using VLC_WINRT.ViewModels.MainPage;
 
 namespace VLC_WINRT.ViewModels.PlayVideo
 {
@@ -31,6 +32,7 @@ namespace VLC_WINRT.ViewModels.PlayVideo
         private string _title;
         private MediaPlayerService _vlcPlayerService;
         private MouseService _mouseService;
+        private MediaViewModel _currentVideo; 
 
         public PlayVideoViewModel()
         {
@@ -50,6 +52,12 @@ namespace VLC_WINRT.ViewModels.PlayVideo
 
             _skipAhead = new ActionCommand(() => _vlcPlayerService.SkipAhead());
             _skipBack = new ActionCommand(() => _vlcPlayerService.SkipBack());
+        }
+
+        public MediaViewModel CurrentVideo
+        {
+            get { return _currentVideo; }
+            set { SetProperty(ref _currentVideo, value); }
         }
 
         public double PositionInSeconds
