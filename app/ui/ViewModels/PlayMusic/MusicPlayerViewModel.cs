@@ -77,6 +77,7 @@ namespace VLC_WINRT.ViewModels.PlayMusic
             App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 _vlcPlayerService.Pause();
+                MediaControl.IsPlaying = false;
             });
         }
 
@@ -86,7 +87,8 @@ namespace VLC_WINRT.ViewModels.PlayMusic
             {
                 App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                 {
-                    _vlcPlayerService.Pause();
+                    _vlcPlayerService.Pause(); 
+                    MediaControl.IsPlaying = false;
                 });
             }
             else
@@ -94,6 +96,7 @@ namespace VLC_WINRT.ViewModels.PlayMusic
                 App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                 {
                     _vlcPlayerService.Play();
+                    MediaControl.IsPlaying = true;
                 });
             }
         }
@@ -103,6 +106,7 @@ namespace VLC_WINRT.ViewModels.PlayMusic
             App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 _vlcPlayerService.Play();
+                MediaControl.IsPlaying = true;
             });
         }
 
