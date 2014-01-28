@@ -161,7 +161,7 @@
                 <Image Source="/Assets/Logo.png" Stretch="UniformToFill" Width="30" Height="30"/>
                 <!--<Border Background="{StaticResource MainColor}" Width="9" Height="50" HorizontalAlignment="Left" VerticalAlignment="Top"/>-->
             </Grid>
-            <ListView ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" x:Name="SectionsHeaderListView" Grid.Column="1" VerticalAlignment="Center" SelectionMode="None" IsItemClickEnabled="True" ItemClick="SectionsHeaderListView_OnItemClick" ItemsSource="{Binding Panels}" RenderTransformOrigin="0.5,0.5" 
+            <ListView ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" x:Name="SectionsHeaderListView" Grid.Column="1" SelectionMode="None" IsItemClickEnabled="True" ItemClick="SectionsHeaderListView_OnItemClick" ItemsSource="{Binding Panels}" RenderTransformOrigin="0.5,0.5" 
                       ScrollViewer.VerticalScrollMode="Disabled"
                       ScrollViewer.VerticalScrollBarVisibility="Disabled">
                 <ListView.RenderTransform>
@@ -169,7 +169,7 @@
                 </ListView.RenderTransform>
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <VirtualizingStackPanel Orientation="Horizontal" />
+                        <VirtualizingStackPanel Height="50" Orientation="Horizontal" />
                     </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
                 <ListView.ItemTemplate>
