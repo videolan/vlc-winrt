@@ -159,7 +159,8 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <Grid x:Name="MainLogoGrid" Width="50">
-                <Border Background="{StaticResource MainColor}" Width="9" Height="50" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <Image Source="/Assets/Logo.png" Stretch="UniformToFill" Width="30" Height="30"/>
+                <!--<Border Background="{StaticResource MainColor}" Width="9" Height="50" HorizontalAlignment="Left" VerticalAlignment="Top"/>-->
             </Grid>
             <ListView ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" x:Name="SectionsHeaderListView" Grid.Column="1" VerticalAlignment="Center" SelectionMode="None" IsItemClickEnabled="True" ItemClick="SectionsHeaderListView_OnItemClick" ItemsSource="{Binding Panels}" RenderTransformOrigin="0.5,0.5" 
                       ScrollViewer.VerticalScrollMode="Disabled"

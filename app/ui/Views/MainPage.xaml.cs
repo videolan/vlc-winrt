@@ -46,12 +46,10 @@ namespace VLC_WINRT.Views
             {
                 if (x < 900)
                 {
-                    MainLogoGrid.VerticalAlignment = VerticalAlignment.Top;
                     MiniPlayer.Visibility = Visibility.Collapsed;
                 }
                 else
                 {
-                    MainLogoGrid.VerticalAlignment = VerticalAlignment.Center;
                     MiniPlayer.Visibility = Visibility.Visible;
                 }
 
