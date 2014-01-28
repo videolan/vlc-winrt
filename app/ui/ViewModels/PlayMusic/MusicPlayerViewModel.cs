@@ -189,6 +189,7 @@ namespace VLC_WINRT.ViewModels.PlayMusic
                 MediaControl.PreviousTrackPressed += MediaControl_PreviousTrackPressed;
             else
                 MediaControl.PreviousTrackPressed -= MediaControl_PreviousTrackPressed;
+
         }
         public double PositionInSeconds
         {
