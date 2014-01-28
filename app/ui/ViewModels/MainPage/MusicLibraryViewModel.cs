@@ -52,6 +52,7 @@ namespace VLC_WINRT.ViewModels.MainPage
             GetMusicFromLibrary();
             Panels.Add(new Panel("ARTISTS", 0, 1));
             Panels.Add(new Panel("TRACKS", 1, 0.4));
+            Panels.Add(new Panel("FAVORITE ALBUMS", 2, 0.4));
 
             XboxMusicHelper = new MusicHelper();
             XboxMusicHelper.Failed += XboxMusicHelperOnFailed;

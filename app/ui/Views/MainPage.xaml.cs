@@ -1,6 +1,4 @@
-﻿// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
-
-using System;
+﻿using System;
 using Windows.Foundation;
 using Windows.UI.Core;
 using Windows.UI.Popups;

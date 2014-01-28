@@ -11,16 +11,20 @@ namespace VLC_WINRT.Views.Controls.MainPage
     public sealed partial class MusicColumn : UserControl
     {
         private int _currentSection;
+        private bool _isLoaded;
         public MusicColumn()
         {
             this.InitializeComponent();
             this.Loaded += (sender, args) =>
             {
+                if (_isLoaded) return;
                 UIAnimationHelper.FadeOut(TracksPanel);
-                for (int i = 1; i < SectionsGrid.Children.Count; i++)
+                for (int i = 0; i < SectionsGrid.Children.Count; i++)
                 {
-                    UIAnimationHelper.FadeOut(SectionsGrid.Children[i]);
+                    if(i != _currentSection)
+                        UIAnimationHelper.FadeOut(SectionsGrid.Children[i]);
                 }
+                _isLoaded = true;
             };
             this.SizeChanged += OnSizeChanged;
         }
@@ -80,12 +84,11 @@ namespace VLC_WINRT.Views.Controls.MainPage
 
         private void SectionsHeaderListView_OnItemClick(object sender, ItemClickEventArgs e)
         {
-            var i = ((Model.Panel)e.ClickedItem).Index;
+            int i = ((Model.Panel)e.ClickedItem).Index;
             ChangedSectionsHeadersState(i);
         }
         private void ChangedSectionsHeadersState(int i)
         {
-            if (i == _currentSection) return;
             UIAnimationHelper.FadeOut(SectionsGrid.Children[_currentSection]);
             UIAnimationHelper.FadeIn(SectionsGrid.Children[i]);
             _currentSection = i;
@@ -96,6 +99,11 @@ namespace VLC_WINRT.Views.Controls.MainPage
 
         private async void AlbumsByArtistSemanticZoom_OnViewChangeCompleted(object sender, SemanticZoomViewChangedEventArgs e)
         {
+        }
+
+        private void FavoriteAlbumItemClick(object sender, ItemClickEventArgs e)
+        {
+            (e.ClickedItem as MusicLibraryViewModel.AlbumItem).PlayAlbum.Execute(e.ClickedItem);
         }
     }
 }

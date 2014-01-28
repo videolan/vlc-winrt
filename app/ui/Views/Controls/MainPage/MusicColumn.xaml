@@ -14,9 +14,8 @@
 
     <UserControl.Resources>
         <CollectionViewSource x:Name="albumsCollection" Source="{Binding Artist}" ItemsPath="Albums" IsSourceGrouped="True" />
-        <converters:StringToUpperConverter x:Key="StringToUpperConverter"/>
-       
     </UserControl.Resources>
+    
     <Grid >
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -219,6 +218,10 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
+            </Grid>
+            <Grid x:Name="FavoriteAlbumsPanel">
+                <controls:NothingToSeeHere Visibility="{Binding FavoriteAlbums.Count, Converter={StaticResource CountToVisibilityConverter}}"/>
+                <GridView Margin="0,0,0,0" ItemTemplate="{StaticResource NormalSizedAlbumDataTemplate}" SelectionMode="None" IsItemClickEnabled="True" ItemContainerStyle="{StaticResource GridViewItemContainerStyle}" ItemsSource="{Binding FavoriteAlbums}" ItemClick="FavoriteAlbumItemClick" />
             </Grid>
         </Grid>
     </Grid>

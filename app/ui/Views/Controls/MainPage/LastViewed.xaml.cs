@@ -2,6 +2,7 @@
 
 // The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
 using VLC_WINRT.Utility.Commands;
+using VLC_WINRT.ViewModels.MainPage;
 
 namespace VLC_WINRT.Views.Controls.MainPage
 {
@@ -14,7 +15,7 @@ namespace VLC_WINRT.Views.Controls.MainPage
 
         private void FavoriteAlbumItemClick(object sender, ItemClickEventArgs e)
         {
-            new PlayAlbumCommand().Execute(e.ClickedItem);
+            (e.ClickedItem as MusicLibraryViewModel.AlbumItem).PlayAlbum.Execute(e.ClickedItem);
         }
     }
 }
