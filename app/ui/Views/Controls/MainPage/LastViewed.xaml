@@ -101,8 +101,14 @@
                             <TextBlock Text="" Foreground="#e67e22" FontFamily="Segoe UI Symbol" Margin="20,12,0,0" VerticalAlignment="Center" FontSize="20" FontWeight="Light" />
                         </StackPanel>
                     </Button>
-                    <controls:NothingToSeeHere Grid.Row="1" Visibility="{Binding MusicLibraryVm.FavoriteAlbums.Count, Converter={StaticResource CountToVisibilityConverter}}"/>
-                    <GridView Grid.Row="1" Margin="0,2,0,0" ItemTemplate="{StaticResource NormalSizedAlbumDataTemplate}" SelectionMode="None" IsItemClickEnabled="True" ItemContainerStyle="{StaticResource GridViewItemContainerStyle}" ItemsSource="{Binding MusicLibraryVm.FavoriteAlbums}" ItemClick="FavoriteAlbumItemClick" />
+                    <controls:NothingToSeeHere Grid.Row="1" Visibility="{Binding MusicLibraryVm.RandomAlbums.Count, Converter={StaticResource CountToVisibilityConverter}}"/>
+                    <GridView Grid.Row="1" Margin="0,2,0,0" ItemTemplate="{StaticResource NormalSizedAlbumDataTemplate}" SelectionMode="None" IsItemClickEnabled="True" ItemContainerStyle="{StaticResource GridViewItemContainerStyle}" ItemsSource="{Binding MusicLibraryVm.RandomAlbums}" ItemClick="FavoriteAlbumItemClick" >
+                        <GridView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <VariableSizedWrapGrid/>
+                            </ItemsPanelTemplate>
+                        </GridView.ItemsPanel>
+                    </GridView>
                 </Grid>
             </StackPanel>
         </ScrollViewer>

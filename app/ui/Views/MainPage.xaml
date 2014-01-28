@@ -150,7 +150,7 @@
                 <TextBlock Text="Open File ..."></TextBlock>
             </HyperlinkButton.Content>
         </HyperlinkButton>-->
-        <Grid Grid.Row="0" Margin="0,30,0,0">
+        <Grid Grid.Row="0" Margin="0,20,0,0" Height="80">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>

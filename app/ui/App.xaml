@@ -39,13 +39,16 @@
             </Style>
             <String x:Key="AppName" xmlns="http://schemas.microsoft.com/winfx/2006/xaml">VLC_WINRT</String>
             <DataTemplate x:Name="NormalSizedAlbumDataTemplate">
-                <Grid Width="140">
+                <Grid Width="140" Height="180">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="140" />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
                     <Image Height="140" Width="140" Source="{Binding Picture}" Stretch="UniformToFill" HorizontalAlignment="Center"/>
-                    <TextBlock Grid.Row="1" Text="{Binding Name}" TextWrapping="NoWrap" TextTrimming="WordEllipsis" FontSize="17" FontWeight="Light" />
+                    <StackPanel Grid.Row="1"  Orientation="Horizontal">
+                        <Button Style="{StaticResource LikeLittleNoTextAppBarButtonStyle}" Margin="-18,0,-11,0" Visibility="{Binding Favorite, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                        <TextBlock Text="{Binding Name}" TextWrapping="NoWrap" TextTrimming="WordEllipsis" FontSize="17" FontWeight="Light" Margin="0,10,0,0"/>
+                    </StackPanel>
                 </Grid>
             </DataTemplate>
             <DataTemplate x:Name="LittleSizedAlbumDataTemplate">

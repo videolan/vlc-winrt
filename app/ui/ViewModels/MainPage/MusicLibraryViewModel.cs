@@ -36,6 +36,7 @@ namespace VLC_WINRT.ViewModels.MainPage
         private ObservableCollection<string> _albumsCover = new ObservableCollection<string>();
         private ObservableCollection<TrackItem> _tracks = new ObservableCollection<TrackItem>();
         private ObservableCollection<AlbumItem> _favoriteAlbums = new ObservableCollection<AlbumItem>();
+        private ObservableCollection<AlbumItem> _randomAlbums = new ObservableCollection<AlbumItem>();
 
         private StopVideoCommand _goBackCommand;
 
@@ -76,7 +77,12 @@ namespace VLC_WINRT.ViewModels.MainPage
             get { return _favoriteAlbums; }
             set { SetProperty(ref _favoriteAlbums, value); }
         }
-
+        
+        public ObservableCollection<AlbumItem> RandomAlbums
+        {
+            get { return _randomAlbums; }
+            set { SetProperty(ref _randomAlbums, value); }
+        } 
         public ObservableCollection<Panel> Panels
         {
             get { return _panels; }
@@ -163,17 +169,23 @@ namespace VLC_WINRT.ViewModels.MainPage
                 ImgCollection =
                     await
                         SerializationHelper.LoadFromJsonFile<ObservableCollection<string>>("Artist_Img_Collection.json");
-
+                
                 foreach (ArtistItemViewModel artist in Artist)
                 {
                     foreach (AlbumItem album in artist.Albums)
                     {
                         if (album.Favorite)
                         {
+                            RandomAlbums.Add(album);
                             FavoriteAlbums.Add(album);
                             OnPropertyChanged("FavoriteAlbums");
                         }
 
+                        if (RandomAlbums.Count < 12)
+                        {
+                            if (!album.Favorite)
+                                RandomAlbums.Add(album);
+                        }
                         foreach (TrackItem trackItem in album.Tracks)
                         {
                             Track.Add(trackItem);
@@ -347,6 +359,10 @@ namespace VLC_WINRT.ViewModels.MainPage
                             albumItem.Picture = "ms-appdata:///local/" + fileName + ".jpg";
 
                         Albums.Add(albumItem);
+                        if (Locator.MusicLibraryVM.RandomAlbums.Count < 12)
+                        {
+                            Locator.MusicLibraryVM.RandomAlbums.Add(albumItem);
+                        }
                         Locator.MusicLibraryVM.AlbumCover.Add(albumItem.Picture);
                     }
                 }
