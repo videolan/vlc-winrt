@@ -1024,9 +1024,10 @@
                                     </GradientStopCollection>
                                 </LinearGradientBrush>
                             </Grid.Background>
-                            <Grid VerticalAlignment="Bottom">
-                                <TextBlock Grid.Row="0" Text="{Binding Title}" Foreground="White" FontSize="32" Width="450" TextWrapping="Wrap" FontWeight="Light" Margin="5,0,0,0" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-                            </Grid>
+                            <StackPanel VerticalAlignment="Bottom">
+                                <TextBlock Text="{Binding Title}" Foreground="White" FontSize="32" Width="450" TextWrapping="Wrap" FontWeight="Light" Margin="5,0,0,0" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+                                <TextBlock Text="{Binding Duration}"/>
+                            </StackPanel>
                         </Grid>
                     </Grid>
                 </Button>

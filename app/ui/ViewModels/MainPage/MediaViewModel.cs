@@ -15,6 +15,7 @@ namespace VLC_WINRT.ViewModels.MainPage
         private string _subtitle = string.Empty;
         private string _title = string.Empty;
         private bool _favorite;
+        private double _duration;
 
         public MediaViewModel(StorageFile storageFile)
             : base(storageFile)
@@ -44,6 +45,18 @@ namespace VLC_WINRT.ViewModels.MainPage
         {
             get { return _favorite; }
             set { SetProperty(ref _favorite, value); }
+        }
+
+        public double Duration
+        {
+            get { return _duration; }
+            set { SetProperty(ref _duration, value); }
+        }
+
+        async void SetDuration()
+        {
+            var p = await File.Properties.GetVideoPropertiesAsync();
+            Duration = p.Duration.TotalSeconds;
         }
 
         public OpenVideoCommand OpenVideo
