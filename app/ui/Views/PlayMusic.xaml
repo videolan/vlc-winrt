@@ -160,29 +160,39 @@
                                 <Grid Grid.Column="1" Margin="10,0">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="*" />
                                     </Grid.RowDefinitions>
                                     <StackPanel Grid.Row="0">
                                         <TextBlock Text="{Binding Artist.CurrentAlbumItem.Name}" Margin="0,0,0,0" FontSize="30" MaxHeight="70" FontWeight="Light" TextWrapping="Wrap"/>
                                         <TextBlock Text="{Binding Title}" Foreground="WhiteSmoke" Margin="0,0,0,0" FontSize="20" FontWeight="SemiBold" TextWrapping="Wrap"/>
                                     </StackPanel>
-                                    <StackPanel Orientation="Horizontal" Grid.Row="1">
+                                    <StackPanel Orientation="Horizontal" Grid.Row="1" VerticalAlignment="Bottom">
                                         <Button Style="{StaticResource LikeAppBarButtonStyle}" Foreground="{StaticResource MainColor}" Visibility="{Binding Artist.CurrentAlbumItem.Favorite, Converter={StaticResource NegatedBooleanToVisibilityConverter}}" Command="{Binding Artist.CurrentAlbumItem.FavoriteAlbum}" CommandParameter="{Binding Artist.CurrentAlbumItem}"/>
                                         <Button Style="{StaticResource DisLikeAppBarButtonStyle}" Foreground="{StaticResource MainColor}" Visibility="{Binding Artist.CurrentAlbumItem.Favorite, Converter={StaticResource BooleanToVisibilityConverter}}" Command="{Binding Artist.CurrentAlbumItem.FavoriteAlbum}" CommandParameter="{Binding Artist.CurrentAlbumItem}"/>
                                     </StackPanel>
                                 </Grid>
                             </Grid>
 
-                            <ListView Grid.Row="1" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" HeaderTemplate="{StaticResource ColumnHeaderDataTemplate}" Header="playlist" ItemsSource="{Binding TrackCollection.TrackCollection}" Width="500" FontFamily="Segoe UI">
+                            <ListView Grid.Row="1" HorizontalAlignment="Left" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" HeaderTemplate="{StaticResource ColumnHeaderDataTemplate}" Header="playlist" ItemsSource="{Binding TrackCollection.TrackCollection}" Width="500" FontFamily="Segoe UI">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <Button Template="{StaticResource MainButtonStyle}"
                                 Command="{Binding PlayTrack}"
                                 CommandParameter="{Binding}" Margin="-4,0,0,0" Padding="0,4,4,4">
-                                            <StackPanel  VerticalAlignment="Center">
-                                                <TextBlock Text="{Binding Name}" Style="{StaticResource SubheaderTextStyle}" />
-                                                <TextBlock Text="{Binding ArtistName}" Style="{StaticResource BodyTextStyle}"/>
-                                            </StackPanel>
+                                            <Grid VerticalAlignment="Center">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="300"/>
+                                                    <ColumnDefinition Width="130"/>
+                                                </Grid.ColumnDefinitions>
+                                                <StackPanel>
+                                                    <TextBlock Text="{Binding Name}" Style="{StaticResource SubheaderTextStyle}" />
+                                                    <TextBlock Text="{Binding ArtistName}" Style="{StaticResource BodyTextStyle}"/>
+                                                </StackPanel>
+                                                <Grid Grid.Column="1" Width="130">
+                                                    <Button Style="{StaticResource LikeLittleAppBarButtonStyle}" Visibility="{Binding Favorite, Converter={StaticResource NegatedBooleanToVisibilityConverter}}" Command="{Binding FavoriteTrack}" CommandParameter="{Binding}"/>
+                                                    <Button Style="{StaticResource DisLikeLittleAppBarButtonStyle}" Visibility="{Binding Favorite, Converter={StaticResource BooleanToVisibilityConverter}}" Command="{Binding FavoriteTrack}" CommandParameter="{Binding}"/>
+                                                </Grid>
+                                            </Grid>
                                         </Button>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>

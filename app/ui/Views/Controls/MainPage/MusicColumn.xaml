@@ -212,7 +212,8 @@
                                     <TextBlock Grid.Column="0" Text="{Binding Name}" Style="{StaticResource BodyTextStyle}" />
                                     <TextBlock Grid.Column="2" Text="{Binding ArtistName}" Style="{StaticResource BodyTextStyle}"/>
                                     <TextBlock Grid.Column="4" Text="{Binding AlbumName}" Style="{StaticResource BodyTextStyle}"/>
-                                    <TextBlock Grid.Column="6" Text="" FontSize="22" FontFamily="Segoe UI Symbol" Visibility="{Binding IsFavorite, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                    <Button Grid.Column="6" Style="{StaticResource LikeLittleNoTextAppBarButtonStyle}" Visibility="{Binding Favorite, Converter={StaticResource NegatedBooleanToVisibilityConverter}}" Command="{Binding FavoriteTrack}" CommandParameter="{Binding}"/>
+                                    <Button Grid.Column="6" Style="{StaticResource DisLikeLittleNoTextAppBarButtonStyle}" Visibility="{Binding Favorite, Converter={StaticResource BooleanToVisibilityConverter}}" Command="{Binding FavoriteTrack}" CommandParameter="{Binding}"/>
                                 </Grid>
                             </Button>
                         </DataTemplate>

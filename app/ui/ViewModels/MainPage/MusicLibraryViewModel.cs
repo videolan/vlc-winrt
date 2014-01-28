@@ -35,7 +35,7 @@ namespace VLC_WINRT.ViewModels.MainPage
         private ObservableCollection<ArtistItemViewModel> _artists = new ObservableCollection<ArtistItemViewModel>();
         private ObservableCollection<string> _albumsCover = new ObservableCollection<string>();
         private ObservableCollection<TrackItem> _tracks = new ObservableCollection<TrackItem>();
-        private ObservableCollection<AlbumItem> _favoriteAlbums = new ObservableCollection<AlbumItem>(); 
+        private ObservableCollection<AlbumItem> _favoriteAlbums = new ObservableCollection<AlbumItem>();
 
         private StopVideoCommand _goBackCommand;
 
@@ -185,7 +185,6 @@ namespace VLC_WINRT.ViewModels.MainPage
 
                         foreach (TrackItem trackItem in album.Tracks)
                         {
-                            trackItem.IsFavorite = true;
                             Track.Add(trackItem);
                         }
                     }
@@ -351,7 +350,7 @@ namespace VLC_WINRT.ViewModels.MainPage
                             }
                         }
                         var albumItem = new AlbumItem(files, musicAttr.Album, albumQueryResult.Folder.DisplayName);
-                        albumItem.Name = (musicAttr.Album.Length==0) ? "Album without title" : musicAttr.Album;
+                        albumItem.Name = (musicAttr.Album.Length == 0) ? "Album without title" : musicAttr.Album;
                         albumItem.Artist = musicAttr.Artist;
                         if (fileName.Length > 0)
                             albumItem.Picture = "ms-appdata:///local/" + fileName + ".jpg";
@@ -406,7 +405,7 @@ namespace VLC_WINRT.ViewModels.MainPage
                         Locator.MusicLibraryVM.XboxMusic.Artists.Items.FirstOrDefault(x => x.Name == artist);
 
                     HttpClient clientPic = new HttpClient();
-                    HttpResponseMessage responsePic = await clientPic.GetAsync(xBoxArtistItem.ImageUrlWithOptions(new ImageSettings(280,156, ImageMode.Scale,"")));
+                    HttpResponseMessage responsePic = await clientPic.GetAsync(xBoxArtistItem.ImageUrlWithOptions(new ImageSettings(280, 156, ImageMode.Scale, "")));
                     byte[] img = await responsePic.Content.ReadAsByteArrayAsync();
                     InMemoryRandomAccessStream streamWeb = new InMemoryRandomAccessStream();
 
@@ -438,7 +437,7 @@ namespace VLC_WINRT.ViewModels.MainPage
                             {
                                 Artist = xBoxArtistItem.Name,
                                 Name = album.Name,
-                                Picture = album.ImageUrlWithOptions(new ImageSettings(200,200, ImageMode.Scale, "")),
+                                Picture = album.ImageUrlWithOptions(new ImageSettings(200, 200, ImageMode.Scale, "")),
                             });
                         }
                         foreach (var artists in xBoxArtistItem.RelatedArtists.Items)
@@ -447,7 +446,7 @@ namespace VLC_WINRT.ViewModels.MainPage
                             {
                                 Artist = artists.Name,
                                 Name = albums.Name,
-                                Picture = albums.ImageUrlWithOptions(new ImageSettings(280,156, ImageMode.Scale,"")),
+                                Picture = albums.ImageUrlWithOptions(new ImageSettings(280, 156, ImageMode.Scale, "")),
                             }).ToList();
 
                             var artistPic = artists.ImageUrl;
@@ -690,9 +689,10 @@ namespace VLC_WINRT.ViewModels.MainPage
             private string _path;
             private int _index;
             private TimeSpan _duration;
-            private bool _isFavorite;
+            private bool _favorite;
             private int _currentPosition;
             private PlayTrackCommand _playTrackCommand = new PlayTrackCommand();
+            private FavoriteTrackCommand _favoriteTrackCommand = new FavoriteTrackCommand();
 
             public string ArtistName
             {
@@ -726,7 +726,7 @@ namespace VLC_WINRT.ViewModels.MainPage
                 get { return _duration; }
                 set { SetProperty(ref _duration, value); }
             }
-            public bool IsFavorite { get { return _isFavorite; } set { SetProperty(ref _isFavorite, value); } }
+            public bool Favorite { get { return _favorite; } set { SetProperty(ref _favorite, value); } }
 
             [XmlIgnore()]
             public int CurrentPosition
@@ -740,6 +740,13 @@ namespace VLC_WINRT.ViewModels.MainPage
             {
                 get { return _playTrackCommand; }
                 set { SetProperty(ref _playTrackCommand, value); }
+            }
+
+            [XmlIgnore()]
+            public FavoriteTrackCommand FavoriteTrack
+            {
+                get { return _favoriteTrackCommand; }
+                set { SetProperty(ref _favoriteTrackCommand, value); }
             }
         }
     }

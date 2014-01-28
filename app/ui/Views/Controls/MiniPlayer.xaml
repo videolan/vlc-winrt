@@ -7,8 +7,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:converters="using:VLC_WINRT.Utility.Converters"
     mc:Ignorable="d"
-    d:DesignHeight="300"
-    d:DesignWidth="400"
     DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}">
 
     <UserControl.Resources>
