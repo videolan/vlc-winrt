@@ -38,7 +38,13 @@
                                 <Run Text="" FontFamily="Segoe UI Symbol" />
                         </TextBlock>
                     </Button>
-                    <GridView Grid.Row="1" ItemContainerStyle="{StaticResource GridViewItemContainerStyle}" ItemsSource="{Binding LastViewedVM}" ItemTemplate="{StaticResource StandardMovieTemplate}"/>
+                    <controls:VariableSizedItemsGridView Grid.Row="1" ItemsSource="{Binding LastViewedVM}" ItemContainerStyle="{StaticResource GridViewItemContainerStyle}" ItemTemplateSelector="{StaticResource MediaItemDataTemplateSelector}" >
+                        <controls:VariableSizedItemsGridView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <VariableSizedWrapGrid VerticalChildrenAlignment="Top" ItemHeight="160" ItemWidth="265" MaximumRowsOrColumns="4" />
+                            </ItemsPanelTemplate>
+                        </controls:VariableSizedItemsGridView.ItemsPanel>
+                    </controls:VariableSizedItemsGridView>
                 </Grid>
                 <Grid Margin="40,0,0,0">
                     <Grid.RowDefinitions>
@@ -73,13 +79,13 @@
                         </TextBlock>
                     </Button>
                     <controls:NothingToSeeHere Grid.Row="1" Visibility="{Binding MusicLibraryVm.RandomAlbums.Count, Converter={StaticResource CountToVisibilityConverter}}"/>
-                    <GridView Grid.Row="1" Margin="0,2,0,0" ItemTemplate="{StaticResource NormalSizedAlbumDataTemplate}" SelectionMode="None" IsItemClickEnabled="True" ItemContainerStyle="{StaticResource GridViewItemContainerStyle}" ItemsSource="{Binding MusicLibraryVm.RandomAlbums}" ItemClick="FavoriteAlbumItemClick" >
-                        <GridView.ItemsPanel>
+                    <controls:VariableSizedItemsGridView Grid.Row="1" ItemTemplate="{StaticResource LittleSizedAlbumDataTemplate}" SelectionMode="None" IsItemClickEnabled="True" ItemContainerStyle="{StaticResource GridViewItemContainerStyle}" ItemsSource="{Binding MusicLibraryVm.RandomAlbums}" ItemClick="FavoriteAlbumItemClick" >
+                        <controls:VariableSizedItemsGridView.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <VariableSizedWrapGrid/>
+                                <VariableSizedWrapGrid Orientation="Vertical" ItemHeight="160" ItemWidth="150" MaximumRowsOrColumns="6"/>
                             </ItemsPanelTemplate>
-                        </GridView.ItemsPanel>
-                    </GridView>
+                        </controls:VariableSizedItemsGridView.ItemsPanel>
+                    </controls:VariableSizedItemsGridView>
                 </Grid>
             </StackPanel>
         </ScrollViewer>

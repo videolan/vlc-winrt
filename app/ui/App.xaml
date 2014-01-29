@@ -32,6 +32,27 @@
             <x:String x:Key="ProgressBarIndeterminateForegroundThemeBrush">#e67e22</x:String>
             <x:String x:Key="ProgressBarForegroundThemeBrush">#e67e22</x:String>
 
+            <!--Converters-->
+            <converters:NegatedCountToVisibilityConverter x:Key="NegatedCountToVisibilityConverter"/>
+            <converters:CountToVisibilityConverter x:Key="CountToVisibilityConverter"/>
+            <converters:StringToUpperConverter x:Key="StringToUpperConverter" />
+            <converters:TimespanShortStringConverter x:Key="TimeSpanShortStringConverter">
+            </converters:TimespanShortStringConverter>
+            <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter">
+            </converters:NullToVisibilityConverter>
+            <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter">
+            </converters:BooleanToVisibilityConverter>
+            <converters:BooleanNegationConverter x:Key="BooleanNegationConverter">
+            </converters:BooleanNegationConverter>
+            <converters:NegatedBooleanToVisibilityConverter x:Key="NegatedBooleanToVisibilityConverter">
+            </converters:NegatedBooleanToVisibilityConverter>
+            <converters:SecondsStringConverter x:Key="SecondsStringConverter">
+            </converters:SecondsStringConverter>
+            <converters:TimeSpanSecondsDoubleConverter x:Key="TimeSpanSecondsDoubleConverter">
+            </converters:TimeSpanSecondsDoubleConverter>
+
+            <viewModels:Locator x:Key="Locator"></viewModels:Locator>
+            
             <!-- Main Page Styles -->
             <DataTemplate x:Key="ColumnHeaderDataTemplate">
                 <TextBlock Text="{Binding}" Style="{StaticResource VLCSubHeaderStyle}"/>
@@ -59,22 +80,22 @@
             </Style>
             <String x:Key="AppName" xmlns="http://schemas.microsoft.com/winfx/2006/xaml">VLC_WINRT</String>
             <DataTemplate x:Name="NormalSizedAlbumDataTemplate">
-                <Grid Width="140" Height="180">
+                <Grid Width="140" Height="150">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="140" />
+                        <RowDefinition Height="100" />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
-                    <Image Height="140" Width="140" Source="{Binding Picture}" Stretch="UniformToFill" HorizontalAlignment="Center"/>
-                    <StackPanel Grid.Row="1"  Orientation="Horizontal">
+                    <Image Height="100" Width="100" Source="{Binding Picture}" Stretch="UniformToFill" HorizontalAlignment="Center"/>
+                    <StackPanel Grid.Row="1" Height="100" Orientation="Horizontal" Margin="0,10,0,0">
                         <Button Style="{StaticResource LikeLittleNoTextAppBarButtonStyle}" Margin="-18,0,-11,0" Visibility="{Binding Favorite, Converter={StaticResource BooleanToVisibilityConverter}}" />
                         <TextBlock Text="{Binding Name}" TextWrapping="NoWrap" TextTrimming="WordEllipsis" FontSize="17" FontWeight="Light" Margin="0,10,0,0"/>
                     </StackPanel>
                 </Grid>
             </DataTemplate>
             <DataTemplate x:Name="LittleSizedAlbumDataTemplate">
-                <Grid Height="120" Width="120">
+                <Grid MinHeight="150" MinWidth="150">
                     <Image Source="{Binding Picture}" Stretch="UniformToFill" HorizontalAlignment="Center"/>
-                    <Grid Height="80" VerticalAlignment="Bottom">
+                    <Grid Height="90" VerticalAlignment="Bottom">
                         <Grid.Background>
                             <LinearGradientBrush StartPoint="1,0">
                                 <GradientStopCollection>
@@ -83,9 +104,14 @@
                                 </GradientStopCollection>
                             </LinearGradientBrush>
                         </Grid.Background>
-                        <StackPanel VerticalAlignment="Bottom" Margin="3">
-                            <TextBlock Text="{Binding Name}" TextWrapping="Wrap" FontSize="15" FontWeight="SemiBold" TextAlignment="Right" />
-                        </StackPanel>
+                        <Grid VerticalAlignment="Bottom" Margin="10,0,10,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="{Binding Artist}" TextWrapping="NoWrap" TextTrimming="WordEllipsis" FontSize="16" />
+                            <TextBlock Text="{Binding Name}" TextWrapping="Wrap" FontSize="15" FontWeight="SemiBold" />
+                        </Grid>
                     </Grid>
                 </Grid>
             </DataTemplate>
@@ -1045,13 +1071,17 @@
                                 </LinearGradientBrush>
                             </Grid.Background>
                             <StackPanel VerticalAlignment="Bottom" Margin="10,0,0,10">
-                                <TextBlock Text="{Binding Title}" Foreground="White" TextWrapping="NoWrap" TextTrimming="WordEllipsis" FontSize="26" />
+                                <TextBlock Text="{Binding Title}" Foreground="White" TextWrapping="NoWrap" TextTrimming="WordEllipsis" FontSize="20" />
                                 <TextBlock Style="{StaticResource BodyTextStyle}">
                                         <Run Text="{Binding Duration, Converter={StaticResource TimeSpanShortStringConverter}}" />
                                         <Run Text="{Binding File.FileType}" />
                                 </TextBlock>
                             </StackPanel>
                         </Grid>
+                        <ProgressBar VerticalAlignment="Bottom" Style="{StaticResource ThinProgressBar}" 
+                                     Value="{Binding TimeWatched, Converter={StaticResource TimeSpanSecondsDoubleConverter}}"
+                                     Maximum="{Binding Duration, Converter={StaticResource TimeSpanSecondsDoubleConverter}}"
+                                     Margin="0,0,0,-3"/>
                     </Grid>
                 </Button>
             </DataTemplate>
@@ -1079,6 +1109,10 @@
                                 </TextBlock>
                             </StackPanel>
                         </Grid>
+                        <ProgressBar VerticalAlignment="Bottom" Style="{StaticResource ThinProgressBar}" 
+                                     Value="{Binding TimeWatched, Converter={StaticResource TimeSpanSecondsDoubleConverter}}"
+                                     Maximum="{Binding Duration, Converter={StaticResource TimeSpanSecondsDoubleConverter}}"
+                                     Margin="0,0,0,-3"/>
                     </Grid>
                 </Button>
             </DataTemplate>
@@ -1105,6 +1139,10 @@
                                 </TextBlock>
                             </StackPanel>
                         </Grid>
+                        <ProgressBar VerticalAlignment="Bottom" Style="{StaticResource ThinProgressBar}" 
+                                     Value="{Binding TimeWatched, Converter={StaticResource TimeSpanSecondsDoubleConverter}}"
+                                     Maximum="{Binding Duration, Converter={StaticResource TimeSpanSecondsDoubleConverter}}"
+                                     Margin="0,0,0,-3"/>
                     </Grid>
                 </Button>
             </DataTemplate>
@@ -1132,27 +1170,6 @@
                     </Grid>
                 </Button>-->
             </DataTemplate>
-
-            <!--Converters-->
-            <converters:NegatedCountToVisibilityConverter x:Key="NegatedCountToVisibilityConverter"/>
-            <converters:CountToVisibilityConverter x:Key="CountToVisibilityConverter"/>
-            <converters:StringToUpperConverter x:Key="StringToUpperConverter" />
-            <converters:TimespanShortStringConverter x:Key="TimeSpanShortStringConverter">
-            </converters:TimespanShortStringConverter>
-            <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter">
-            </converters:NullToVisibilityConverter>
-            <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter">
-            </converters:BooleanToVisibilityConverter>
-            <converters:BooleanNegationConverter x:Key="BooleanNegationConverter">
-            </converters:BooleanNegationConverter>
-            <converters:NegatedBooleanToVisibilityConverter x:Key="NegatedBooleanToVisibilityConverter">
-            </converters:NegatedBooleanToVisibilityConverter>
-            <converters:SecondsStringConverter x:Key="SecondsStringConverter">
-            </converters:SecondsStringConverter>
-            <converters:TimeSpanSecondsDoubleConverter x:Key="TimeSpanSecondsDoubleConverter">
-            </converters:TimeSpanSecondsDoubleConverter>
-
-            <viewModels:Locator x:Key="Locator"></viewModels:Locator>
 
             <!--CustomizedAppBarButton ala Windows 8.1-->
             <Style x:Key="ModernAppBarButtonStyle" TargetType="Button" BasedOn="{StaticResource TextButtonStyle}">
