@@ -150,18 +150,15 @@
                 <TextBlock Text="Open File ..."></TextBlock>
             </HyperlinkButton.Content>
         </HyperlinkButton>-->
-        <Grid Grid.Row="0" Margin="0,20,0,0" Height="80">
+        <Grid Grid.Row="0" Margin="0,0,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <Grid x:Name="MainLogoGrid" Width="50">
-                <Image Source="/Assets/Logo.png" Stretch="UniformToFill" Width="30" Height="30"/>
-                <!--<Border Background="{StaticResource MainColor}" Width="9" Height="50" HorizontalAlignment="Left" VerticalAlignment="Top"/>-->
-            </Grid>
-            <ListView ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" x:Name="SectionsHeaderListView" Grid.Column="1" SelectionMode="None" IsItemClickEnabled="True" ItemClick="SectionsHeaderListView_OnItemClick" ItemsSource="{Binding Panels}" RenderTransformOrigin="0.5,0.5" 
+            
+            <ListView Height="50" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" x:Name="SectionsHeaderListView" Grid.Column="1" SelectionMode="None" IsItemClickEnabled="True" ItemClick="SectionsHeaderListView_OnItemClick" ItemsSource="{Binding Panels}" RenderTransformOrigin="0.5,0.5" 
                       ScrollViewer.VerticalScrollMode="Disabled"
                       ScrollViewer.VerticalScrollBarVisibility="Disabled">
                 <ListView.RenderTransform>
