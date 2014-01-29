@@ -22,8 +22,16 @@
             <x:String x:Key="UsbKeyPath">M59.219027,10.469002L54.417002,12.729231 55.85708,15.785002 60.659002,13.523472z M42.428656,4.0179999L51.748999,23.801879 32.933715,32.665174C28.494471,34.755733,23.361592,33.601233,20.212013,30.164306L20.022849,29.947291 2.5351801,38.186004 0,32.803334 17.486965,24.564977 17.440177,24.281508C16.795782,19.665428,19.175554,14.972496,23.615773,12.879985z M55.827108,3.2680008L51.025999,5.5285715 52.463694,8.5850005 57.266001,6.3229687z M56.804689,0L64.000002,15.276258 55.078211,19.478001 47.883001,4.203233z</x:String>
             <!-- Main Page Styles -->
             <DataTemplate x:Key="ColumnHeaderDataTemplate">
-                <TextBlock Text="{Binding}" Foreground="#e67e22" Margin="0,10,0,0" FontSize="32" FontWeight="Light" TextWrapping="Wrap"/>
+                <TextBlock Text="{Binding}" Foreground="#e67e22" Margin="0,10,0,0" FontSize="26" FontWeight="ExtraLight" TextWrapping="Wrap"/>
             </DataTemplate>
+            <Style x:Key="VLCSubHeaderDataTemplate" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{StaticResource MainColor}" />
+                <Setter Property="Margin" Value="0" />
+                <Setter Property="FontSize" Value="26" />
+                <Setter Property="FontWeight" Value="ExtraLight" />
+                <Setter Property="TextWrapping" Value="Wrap" />
+            </Style>
+            
             <Style x:Key="ColumnHeaderTextStyle" TargetType="TextBlock">
                 <Setter Property="FontWeight" Value="SemiBold"/>
                 <Setter Property="FontSize" Value="20"/>

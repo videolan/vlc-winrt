@@ -150,33 +150,43 @@
                 <TextBlock Text="Open File ..."></TextBlock>
             </HyperlinkButton.Content>
         </HyperlinkButton>-->
-        <Grid Grid.Row="0" Margin="0,0,0,0">
+        <Grid Grid.Row="0" Margin="50,40,0,0" >
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            
-            <ListView Height="50" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" x:Name="SectionsHeaderListView" Grid.Column="1" SelectionMode="None" IsItemClickEnabled="True" ItemClick="SectionsHeaderListView_OnItemClick" ItemsSource="{Binding Panels}" RenderTransformOrigin="0.5,0.5" 
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="VLC MX" Margin="3,0,0,0" FontWeight="SemiBold" FontSize="20"/>
+
+                <StackPanel Grid.Row="1" Orientation="Horizontal">
+                    <ListView ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" x:Name="SectionsHeaderListView" Grid.Column="1" SelectionMode="None" IsItemClickEnabled="True" ItemClick="SectionsHeaderListView_OnItemClick" ItemsSource="{Binding Panels}" RenderTransformOrigin="0.5,0.5" 
                       ScrollViewer.VerticalScrollMode="Disabled"
                       ScrollViewer.VerticalScrollBarVisibility="Disabled">
-                <ListView.RenderTransform>
-                    <CompositeTransform/>
-                </ListView.RenderTransform>
-                <ListView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <VirtualizingStackPanel Height="50" Orientation="Horizontal" />
-                    </ItemsPanelTemplate>
-                </ListView.ItemsPanel>
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding Title}" Opacity="{Binding Opacity}" TextWrapping="NoWrap" TextTrimming="None" Style="{StaticResource SubheaderTextStyle}" Foreground="WhiteSmoke"/>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-            <Button x:Name="MorePanelsButton" Grid.Column="2" Content="" Template="{StaticResource MainButtonStyle}" FontFamily="Segoe UI Symbol" FontSize="32" Margin="0,0,0,10" HorizontalAlignment="Left" Foreground="{StaticResource MainColor}" Click="MorePanelsButton_OnClick"/>
-            <controls:MiniPlayer x:Name="MiniPlayer" Grid.Column="3" Margin="0,10,0,0"/>
+                        <ListView.RenderTransform>
+                            <CompositeTransform/>
+                        </ListView.RenderTransform>
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <VirtualizingStackPanel Height="50" Orientation="Horizontal" />
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Title}" Opacity="{Binding Opacity}" TextWrapping="NoWrap" TextTrimming="None" Style="{StaticResource SubheaderTextStyle}" Foreground="WhiteSmoke"/>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <Button x:Name="MorePanelsButton" Grid.Column="2" Content="" Template="{StaticResource MainButtonStyle}" FontFamily="Segoe UI Symbol" FontSize="32" Margin="0,0,0,10" HorizontalAlignment="Left" Foreground="{StaticResource MainColor}" Click="MorePanelsButton_OnClick"/>
+                </StackPanel>
+            </Grid>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Style="{StaticResource OpenFileNoTextAppBarButtonStyle}" />
+                <Button Style="{StaticResource SearchNoTextAppBarButtonStyle}" />
+            </StackPanel>
         </Grid>
         <Grid Grid.Row="1" x:Name="SectionsGrid" RenderTransformOrigin="0.5,0.5">
             <Grid.RenderTransform>

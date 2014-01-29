@@ -47,23 +47,21 @@ namespace VLC_WINRT.Views
                 if (x < 900)
                 {
                     MorePanelsButton.Visibility = Visibility.Visible;
-                    MiniPlayer.Visibility = Visibility.Collapsed;
+                    //MiniPlayer.Visibility = Visibility.Collapsed;
                     RemoveOtherPanels();
                 }
                 else
                 {
                     MorePanelsButton.Visibility = Visibility.Collapsed;
-                    MiniPlayer.Visibility = Visibility.Visible;
+                    //MiniPlayer.Visibility = Visibility.Visible;
                     AddOtherPanels();
                 }
 
                 if (x == 320)
                 {
-                    MainLogoGrid.Visibility = Visibility.Collapsed;
                 }
                 else
                 {
-                    MainLogoGrid.Visibility = Visibility.Visible;
                 }
             });
         }
