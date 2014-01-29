@@ -195,20 +195,6 @@
             <mainPage:LastViewed  />
             <mainPage:VideoColumn DataContext="{Binding VideoVM}"/>
             <mainPage:MusicColumn DataContext="{Binding MusicLibraryVm}"/>
-            <ItemsControl ItemsSource="{Binding ExternalStorageVM.RemovableStorageVMs}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <mainPage:VideoColumn/>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-            <ItemsControl ItemsSource="{Binding DLNAVMs}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <mainPage:VideoColumn/>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
         </Grid>
         <controls:MinimizedAppBar Grid.Row="3" Tapped="MinimizedBottomAppBar_OnTapped"/>
     </Grid>
