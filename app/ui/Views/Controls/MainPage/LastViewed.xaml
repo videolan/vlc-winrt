@@ -34,40 +34,20 @@
                     </Grid.RowDefinitions>
                     <Button Margin="5,0,0,10" Grid.Row="0" Template="{StaticResource MainButtonStyle}">
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="last viewed" Foreground="#e67e22" FontSize="26" FontWeight="Light" FontFamily="Segoe UI" />
+                            <TextBlock Text="last viewed" Style="{StaticResource VLCSubHeaderStyle}"/>
                             <Button Margin="20,0"
                 Style="{StaticResource TextButtonStyle}"
                 HorizontalAlignment="Right"
                 Command="{Binding ClearHistory}" VerticalAlignment="Bottom" Content="CLEAR" FontWeight="SemiBold" FontSize="16" FontFamily="Segoe UI" />
                         </StackPanel>
                     </Button>
-                    <ListView Grid.Row="1" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}"  ItemsSource="{Binding LastViewedVM}">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <Button Template="{StaticResource MainButtonStyle}"
-                            Command="{Binding OpenVideo}"
-                            CommandParameter="{Binding}">
-                                    <Grid Width="320" Height="110">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="140" />
-                                            <ColumnDefinition Width="180" />
-                                        </Grid.ColumnDefinitions>
-                                        <Grid Background="Black">
-                                            <Image Source="{Binding Image}" Width="140" Height="110"/>
-                                            <ProgressBar VerticalAlignment="Bottom" Style="{StaticResource ThinProgressBar}" Value="{Binding TimeWatched, Converter={StaticResource TimeSpanSecondsDoubleConverter}}" Maximum="{Binding Duration, Converter={StaticResource TimeSpanSecondsDoubleConverter}}" />
-                                        </Grid>
-                                        <StackPanel Grid.Column="1" Margin="5,2,0,0" >
-                                            <TextBlock Text="{Binding Title, Converter={StaticResource StringToUpperConverter}}" 
-                                                   TextWrapping="Wrap"
-                                                   FontWeight="SemiBold"
-                                                   FontSize="17" />
-                                            <TextBlock Text="{Binding Duration, Converter={StaticResource TimeSpanShortStringConverter}}" Foreground="#7FFFFFFF" />
-                                        </StackPanel>
-                                    </Grid>
-                                </Button>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
+                    <controls:VariableSizedItemsGridView Grid.Row="1" ItemContainerStyle="{StaticResource GridViewItemContainerStyle}" ItemsSource="{Binding LastViewedVM}" ItemTemplate="{StaticResource NormalMovieTemplate}">
+                        <controls:VariableSizedItemsGridView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <VariableSizedWrapGrid ItemHeight="172" ItemWidth="280" MaximumRowsOrColumns="4" />
+                            </ItemsPanelTemplate>
+                        </controls:VariableSizedItemsGridView.ItemsPanel>
+                    </controls:VariableSizedItemsGridView>
                 </Grid>
                 <Grid Margin="40,0,0,0">
                     <Grid.RowDefinitions>
@@ -76,17 +56,17 @@
                     </Grid.RowDefinitions>
                     <Button Margin="5,0,0,10" Command="{Binding GoToPanel}" CommandParameter="1" Grid.Row="0" Template="{StaticResource MainButtonStyle}">
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="videos" Foreground="#e67e22" FontSize="26" FontWeight="Light" />
+                            <TextBlock Text="videos" Style="{StaticResource VLCSubHeaderStyle}" />
                             <TextBlock Text="" Foreground="#e67e22" FontFamily="Segoe UI Symbol" Margin="20,12,0,0" VerticalAlignment="Center" FontSize="20" FontWeight="Light" />
                         </StackPanel>
                     </Button>
                     <controls:NothingToSeeHere Grid.Row="1" Visibility="{Binding VideoVM.HasNoMedia, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                     <controls:VariableSizedItemsGridView Grid.Row="1" ItemsSource="{Binding VideoVM.MediaRandom}" ItemContainerStyle="{StaticResource GridViewItemContainerStyle}" ItemTemplateSelector="{StaticResource MediaItemDataTemplateSelector}" >
-                        <GridView.ItemsPanel>
+                        <controls:VariableSizedItemsGridView.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <VariableSizedWrapGrid ItemHeight="172" ItemWidth="280" MaximumRowsOrColumns="4" />
                             </ItemsPanelTemplate>
-                        </GridView.ItemsPanel>
+                        </controls:VariableSizedItemsGridView.ItemsPanel>
                     </controls:VariableSizedItemsGridView>
                 </Grid>
                 <Grid Margin="40,0,0,0">
@@ -97,7 +77,7 @@
                     </Grid.RowDefinitions>
                     <Button Margin="5,0,0,10" Command="{Binding GoToPanel}" CommandParameter="2" Grid.Row="0" Template="{StaticResource MainButtonStyle}">
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="music" Foreground="#e67e22" FontSize="26" FontWeight="Light" />
+                            <TextBlock Text="music" Style="{StaticResource VLCSubHeaderStyle}"/>
                             <TextBlock Text="" Foreground="#e67e22" FontFamily="Segoe UI Symbol" Margin="20,12,0,0" VerticalAlignment="Center" FontSize="20" FontWeight="Light" />
                         </StackPanel>
                     </Button>
