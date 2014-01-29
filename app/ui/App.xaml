@@ -31,7 +31,7 @@
 
             <x:String x:Key="ProgressBarIndeterminateForegroundThemeBrush">#e67e22</x:String>
             <x:String x:Key="ProgressBarForegroundThemeBrush">#e67e22</x:String>
-            
+
             <!-- Main Page Styles -->
             <DataTemplate x:Key="ColumnHeaderDataTemplate">
                 <TextBlock Text="{Binding}" Style="{StaticResource VLCSubHeaderStyle}"/>
@@ -43,7 +43,7 @@
                 <Setter Property="FontWeight" Value="ExtraLight" />
                 <Setter Property="TextWrapping" Value="Wrap" />
             </Style>
-            
+
             <Style x:Key="ColumnHeaderTextStyle" TargetType="TextBlock">
                 <Setter Property="FontWeight" Value="SemiBold"/>
                 <Setter Property="FontSize" Value="20"/>
@@ -517,7 +517,7 @@
                     </Setter.Value>
                 </Setter>
             </Style>
-            
+
             <Style x:Key="ListViewItemContainerStyle" TargetType="ListViewItem">
                 <Setter Property="FontFamily" Value="{StaticResource ContentControlThemeFontFamily}" />
                 <Setter Property="FontSize" Value="{StaticResource ControlContentThemeFontSize}" />
@@ -1028,13 +1028,13 @@
             			StrokeDashOffset="0.5" />
                 </Grid>
             </ControlTemplate>
+
             <DataTemplate x:Name="WideMovieTemplate">
                 <Button Template="{StaticResource MainButtonStyle}"
                             Command="{Binding OpenVideo}"
                             CommandParameter="{Binding}">
-                    <Grid  Height="330" Width="560">
-                        <Image Source="{Binding Image}" Stretch="UniformToFill"
-                                       AutomationProperties.Name="{Binding Title}" />
+                    <Grid Width="530">
+                        <Image Source="{Binding Image}" Stretch="UniformToFill"/>
                         <Grid Height="150" VerticalAlignment="Bottom">
                             <Grid.Background>
                                 <LinearGradientBrush StartPoint="1,0">
@@ -1044,20 +1044,72 @@
                                     </GradientStopCollection>
                                 </LinearGradientBrush>
                             </Grid.Background>
-                            <Grid VerticalAlignment="Bottom">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Text="{Binding Title}" Foreground="White" FontSize="32" Width="450" TextWrapping="Wrap" FontWeight="Light" Margin="5,0,0,0" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-                                <TextBlock Grid.Column="1" Text="{Binding Duration, Converter={StaticResource TimeSpanShortStringConverter}}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,15,7" Foreground="White" Style="{StaticResource SubheaderTextStyle}"/>
-                            </Grid>
+                            <StackPanel VerticalAlignment="Bottom" Margin="10,0,0,10">
+                                <TextBlock Text="{Binding Title}" Foreground="White" TextWrapping="NoWrap" TextTrimming="WordEllipsis" FontSize="26" />
+                                <TextBlock Style="{StaticResource BodyTextStyle}">
+                                        <Run Text="{Binding Duration, Converter={StaticResource TimeSpanShortStringConverter}}" />
+                                        <Run Text="{Binding File.FileType}" />
+                                </TextBlock>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </Button>
+            </DataTemplate>
+
+            <DataTemplate x:Name="NormaleMovieTemplate">
+                <Button Template="{StaticResource MainButtonStyle}" 
+                            Command="{Binding OpenVideo}"
+                            CommandParameter="{Binding}">
+                    <Grid Width="265">
+                        <Image Source="{Binding Image}" Stretch="UniformToFill"/>
+                        <Grid Height="150">
+                            <Grid.Background>
+                                <LinearGradientBrush StartPoint="1,0">
+                                    <GradientStopCollection>
+                                        <GradientStop Color="#990A0A0A" Offset="1"/>
+                                        <GradientStop Color="#00020202" />
+                                    </GradientStopCollection>
+                                </LinearGradientBrush>
+                            </Grid.Background>
+                            <StackPanel VerticalAlignment="Bottom" Margin="10,0,0,10">
+                                <TextBlock Text="{Binding Title}" Foreground="White" TextWrapping="NoWrap" TextTrimming="WordEllipsis" FontSize="18" />
+                                <TextBlock Style="{StaticResource BodyTextStyle}">
+                                        <Run Text="{Binding Duration, Converter={StaticResource TimeSpanShortStringConverter}}" />
+                                        <Run Text="{Binding File.FileType}" />
+                                </TextBlock>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </Button>
+            </DataTemplate>
+            <DataTemplate x:Name="StandardMovieTemplate">
+                <Button Template="{StaticResource MainButtonStyle}" 
+                            Command="{Binding OpenVideo}"
+                            CommandParameter="{Binding}">
+                    <Grid Height="150" Width="265">
+                        <Image Source="{Binding Image}" Stretch="UniformToFill"/>
+                        <Grid Height="150">
+                            <Grid.Background>
+                                <LinearGradientBrush StartPoint="1,0">
+                                    <GradientStopCollection>
+                                        <GradientStop Color="#990A0A0A" Offset="1"/>
+                                        <GradientStop Color="#00020202" />
+                                    </GradientStopCollection>
+                                </LinearGradientBrush>
+                            </Grid.Background>
+                            <StackPanel VerticalAlignment="Bottom" Margin="10,0,0,10">
+                                <TextBlock Text="{Binding Title}" Foreground="White" TextWrapping="NoWrap" TextTrimming="WordEllipsis" FontSize="18" />
+                                <TextBlock Style="{StaticResource BodyTextStyle}">
+                                        <Run Text="{Binding Duration, Converter={StaticResource TimeSpanShortStringConverter}}" />
+                                        <Run Text="{Binding File.FileType}" />
+                                </TextBlock>
+                            </StackPanel>
                         </Grid>
                     </Grid>
                 </Button>
             </DataTemplate>
             <DataTemplate x:Name="FlipViewMovieTemplate">
-                <Button Template="{StaticResource MainButtonStyle}"
+                <!--<Button Template="{StaticResource MainButtonStyle}"
                             Command="{Binding OpenVideo}"
                             CommandParameter="{Binding}"
                         VerticalAlignment="Top">
@@ -1078,33 +1130,9 @@
                             <TextBlock Grid.Column="1" Text="{Binding Duration, Converter={StaticResource TimeSpanShortStringConverter}}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,15,7" Foreground="White" Style="{StaticResource SubheaderTextStyle}"/>
                         </Grid>
                     </Grid>
-                </Button>
+                </Button>-->
             </DataTemplate>
-            <DataTemplate x:Name="NormaleMovieTemplate">
-                <Button Template="{StaticResource MainButtonStyle}" 
-                            Command="{Binding OpenVideo}"
-                            CommandParameter="{Binding}">
-                    <Grid Height="158" Width="280">
-                        <Image Source="{Binding Image}" Stretch="UniformToFill"
-                                       AutomationProperties.Name="{Binding Title}" />
-                        <Grid Height="150" VerticalAlignment="Bottom">
-                            <Grid.Background>
-                                <LinearGradientBrush StartPoint="1,0">
-                                    <GradientStopCollection>
-                                        <GradientStop Color="#990A0A0A" Offset="1"/>
-                                        <GradientStop Color="#00020202" />
-                                    </GradientStopCollection>
-                                </LinearGradientBrush>
-                            </Grid.Background>
-                            <StackPanel VerticalAlignment="Bottom">
-                                <TextBlock Grid.Row="0" Text="{Binding Title}" Foreground="White" TextWrapping="NoWrap" TextTrimming="WordEllipsis" FontWeight="SemiLight" FontSize="20" Margin="5,0,0,0" VerticalAlignment="Bottom"/>
-                                <TextBlock Text="{Binding Duration, Converter={StaticResource TimeSpanShortStringConverter}}" Margin="5,0,4,0" Style="{StaticResource BodyTextStyle}"/>
-                            </StackPanel>
-                        </Grid>
-                    </Grid>
-                </Button>
-            </DataTemplate>
-            
+
             <!--Converters-->
             <converters:NegatedCountToVisibilityConverter x:Key="NegatedCountToVisibilityConverter"/>
             <converters:CountToVisibilityConverter x:Key="CountToVisibilityConverter"/>

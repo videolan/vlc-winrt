@@ -138,7 +138,7 @@
         </Storyboard>
     </views:BasePage.Resources>
 
-    <Grid>
+    <Grid Background="BlueViolet">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
