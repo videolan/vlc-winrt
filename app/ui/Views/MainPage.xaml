@@ -180,7 +180,7 @@
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
-                    <Button x:Name="MorePanelsButton" Grid.Column="2" Content="" Template="{StaticResource MainButtonStyle}" FontFamily="Segoe UI Symbol" FontSize="32" Margin="0,0,0,10" HorizontalAlignment="Left" Foreground="{StaticResource MainColor}" Click="MorePanelsButton_OnClick"/>
+                    <Button x:Name="MorePanelsButton" Content="" Template="{StaticResource MainButtonStyle}" FontFamily="Segoe UI Symbol" FontSize="32" Margin="0,0,0,10" HorizontalAlignment="Left" Foreground="{StaticResource MainColor}" Click="MorePanelsButton_OnClick"/>
                 </StackPanel>
             </Grid>
             <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
@@ -227,14 +227,6 @@
                         </Button>
                     </Grid>
                 </Grid>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,0,10,0" Visibility="{Binding IsNetworkAppBarShown, Converter={StaticResource NegatedBooleanToVisibilityConverter}}">
-                    <Button Style="{StaticResource VideoAppBarButtonStyle}"
-                            Command="{Binding PickVideo}">
-                    </Button>
-                    <Button Style="{StaticResource NetworkAppBarButtonStyle}" Margin="10,0"
-                            Command="{Binding ToggleNetworkAppBarCommand}">
-                    </Button>
-                </StackPanel>
             </Grid>
         </AppBar>
     </Page.BottomAppBar>

@@ -46,13 +46,11 @@ namespace VLC_WINRT.Views
             {
                 if (x < 900)
                 {
-                    MorePanelsButton.Visibility = Visibility.Visible;
                     //MiniPlayer.Visibility = Visibility.Collapsed;
                     RemoveOtherPanels();
                 }
                 else
                 {
-                    MorePanelsButton.Visibility = Visibility.Collapsed;
                     //MiniPlayer.Visibility = Visibility.Visible;
                     AddOtherPanels();
                 }
@@ -118,7 +116,17 @@ namespace VLC_WINRT.Views
             popupMenu.Commands.Add(new UICommand("Media servers", async h =>
             {
                 await FadeOutPage.BeginAsync();
-                NavigationService.NavigateTo(typeof (DLNAPage));
+                NavigationService.NavigateTo(typeof(DLNAPage));
+            }));
+
+            popupMenu.Commands.Add(new UICommand("Open video", async h =>
+            {
+                Locator.MainPageVM.PickVideo.Execute(null);
+            }));
+
+            popupMenu.Commands.Add(new UICommand("Open stream", async h =>
+            {
+                Locator.MainPageVM.PlayNetworkMRL.Execute(null);
             }));
             
             var button = (Button)sender;
