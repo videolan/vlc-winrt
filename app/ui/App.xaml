@@ -1024,10 +1024,14 @@
                                     </GradientStopCollection>
                                 </LinearGradientBrush>
                             </Grid.Background>
-                            <StackPanel VerticalAlignment="Bottom">
+                            <Grid VerticalAlignment="Bottom">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
                                 <TextBlock Text="{Binding Title}" Foreground="White" FontSize="32" Width="450" TextWrapping="Wrap" FontWeight="Light" Margin="5,0,0,0" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-                                <TextBlock Text="{Binding Duration}"/>
-                            </StackPanel>
+                                <TextBlock Grid.Column="1" Text="{Binding Duration, Converter={StaticResource TimeSpanShortStringConverter}}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,15,7" Foreground="White" Style="{StaticResource SubheaderTextStyle}"/>
+                            </Grid>
                         </Grid>
                     </Grid>
                 </Button>
@@ -1045,9 +1049,14 @@
                         <Image Grid.Row="0" Source="{Binding Image}" Stretch="UniformToFill"
                                        AutomationProperties.Name="{Binding Title}" />
 
-                        <StackPanel Grid.Row="1">
-                            <TextBlock Text="{Binding Title}" Foreground="#e67e22" FontSize="36" TextWrapping="NoWrap" TextTrimming="WordEllipsis" FontWeight="Light" Margin="50,0,0,0" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-                        </StackPanel>
+                        <Grid VerticalAlignment="Top" Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="{Binding Title}" Foreground="#e67e22" FontSize="36" TextWrapping="NoWrap" TextTrimming="WordEllipsis" FontWeight="Light" Margin="10,0,0,0" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+                            <TextBlock Grid.Column="1" Text="{Binding Duration, Converter={StaticResource TimeSpanShortStringConverter}}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,15,7" Foreground="White" Style="{StaticResource SubheaderTextStyle}"/>
+                        </Grid>
                     </Grid>
                 </Button>
             </DataTemplate>
@@ -1067,9 +1076,10 @@
                                     </GradientStopCollection>
                                 </LinearGradientBrush>
                             </Grid.Background>
-                            <Grid VerticalAlignment="Bottom">
+                            <StackPanel VerticalAlignment="Bottom">
                                 <TextBlock Grid.Row="0" Text="{Binding Title}" Foreground="White" TextWrapping="NoWrap" TextTrimming="WordEllipsis" FontWeight="SemiLight" FontSize="20" Margin="5,0,0,0" VerticalAlignment="Bottom"/>
-                            </Grid>
+                                <TextBlock Text="{Binding Duration, Converter={StaticResource TimeSpanShortStringConverter}}" Margin="5,0,4,0" Style="{StaticResource BodyTextStyle}"/>
+                            </StackPanel>
                         </Grid>
                     </Grid>
                 </Button>

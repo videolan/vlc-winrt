@@ -55,7 +55,7 @@ namespace VLC_WINRT.ViewModels.MainPage
                 VideoProperties = await File.Properties.GetVideoPropertiesAsync();
             TimeSpan duration = VideoProperties.Duration;
             var historyService = IoC.GetInstance<HistoryService>();
-            MediaHistory history=  historyService.GetHistory(_token);
+            MediaHistory history = historyService.GetHistory(_token);
 
             DispatchHelper.Invoke(() =>
                                       {

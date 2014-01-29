@@ -5,6 +5,7 @@
     xmlns:local="using:VLC_WINRT.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:VLC_WINRT.Views.Controls"
     mc:Ignorable="d"
     DataContext="{Binding Source={StaticResource Locator}, Path=MainPageVM}">
 
@@ -124,7 +125,7 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Button Style="{StaticResource BackButtonStyle}" Click="GoBack_Click" />
-            <TextBlock Grid.Column="1" Text="DLNA servers" Foreground="#e67e22" Margin="0,2,0,0" FontSize="32" FontWeight="Light" TextWrapping="Wrap"/>
+            <TextBlock Grid.Column="1" Text="Media servers" Foreground="#e67e22" Margin="0,2,0,0" FontSize="32" FontWeight="Light" TextWrapping="Wrap"/>
         </Grid>
         <Grid Grid.Row="1" x:Name="MainGrid" >
             <Grid.ColumnDefinitions>
@@ -134,6 +135,7 @@
             <Grid.RenderTransform>
                 <CompositeTransform />
             </Grid.RenderTransform>
+            <controls:NothingToSeeHere Visibility="{Binding Count, Converter={StaticResource CountToVisibilityConverter}}"/>
             <ListView x:Name="FirstPanelGridView" IsItemClickEnabled="True" SelectionMode="None" IsSwipeEnabled="False" Margin="100,0,0,0" Width="300" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" ItemsSource="{Binding}" ItemClick="FirstPanelGridView_SelectionChanged" >
                 <ListView.ItemTemplate>
                     <DataTemplate>

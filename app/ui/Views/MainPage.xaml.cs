@@ -46,11 +46,15 @@ namespace VLC_WINRT.Views
             {
                 if (x < 900)
                 {
+                    MorePanelsButton.Visibility = Visibility.Visible;
                     MiniPlayer.Visibility = Visibility.Collapsed;
+                    RemoveOtherPanels();
                 }
                 else
                 {
+                    MorePanelsButton.Visibility = Visibility.Collapsed;
                     MiniPlayer.Visibility = Visibility.Visible;
+                    AddOtherPanels();
                 }
 
                 if (x == 320)
@@ -62,6 +66,16 @@ namespace VLC_WINRT.Views
                     MainLogoGrid.Visibility = Visibility.Visible;
                 }
             });
+        }
+
+        void AddOtherPanels()
+        {
+            //if (Locator.MainPageVM.Panels.Count != 3) return;
+            //Locator.MainPageVM.Panels.Add(new Model.Panel("external devices", 3, 0.4));
+            //Locator.MainPageVM.Panels.Add(new Model.Panel("media servers", 4, 0.4));
+        }
+        void RemoveOtherPanels()
+        {
         }
         public override void SetDataContext()
         {
@@ -97,13 +111,13 @@ namespace VLC_WINRT.Views
         private async void MorePanelsButton_OnClick(object sender, RoutedEventArgs e)
         {
             var popupMenu = new PopupMenu();
-            popupMenu.Commands.Add(new UICommand("Removable storage", async h =>
+            popupMenu.Commands.Add(new UICommand("External storage", async h =>
             {
                 await FadeOutPage.BeginAsync();
                 NavigationService.NavigateTo(typeof (RemovableStoragePage));
             }));
 
-            popupMenu.Commands.Add(new UICommand("DLNA", async h =>
+            popupMenu.Commands.Add(new UICommand("Media servers", async h =>
             {
                 await FadeOutPage.BeginAsync();
                 NavigationService.NavigateTo(typeof (DLNAPage));

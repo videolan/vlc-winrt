@@ -6,10 +6,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:views="using:VLC_WINRT.Views"
     mc:Ignorable="d"
-    d:DesignWidth="1024"
-    d:DesignHeight="768"
     DataContext="{Binding Source={StaticResource Locator}, Path=PlayVideoVM}">
-    
+
     <views:BasePage.Resources>
         <ResourceDictionary >
             <ResourceDictionary.MergedDictionaries>
@@ -17,7 +15,19 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </views:BasePage.Resources>
-    <Grid></Grid>
+    <Grid PointerMoved="OnPointerMoved">
+        <Grid x:Name="Commands">
+            <Button Style="{StaticResource BackButtonStyle}" 
+                    Command="{Binding GoBack}" 
+                    CommandParameter="{Binding}" 
+                    VerticalAlignment="Top"
+                    Margin="20"/>
+            
+            <Grid VerticalAlignment="Center">
+                
+            </Grid>
+        </Grid>
+    </Grid>
     <views:BasePage.TopAppBar>
         <AppBar  Background="#AA000000" BorderBrush="#AA000000">
             <StackPanel Orientation="Horizontal">
@@ -105,7 +115,7 @@
                             CommandParameter="{Binding}"
                             Visibility="{Binding IsPlaying, Converter={StaticResource BooleanToVisibilityConverter}}">
                     </Button>
-                   <Button Style="{StaticResource SkipAheadAppBarButtonStyle}" Command="{Binding SkipAhead}">
+                    <Button Style="{StaticResource SkipAheadAppBarButtonStyle}" Command="{Binding SkipAhead}">
                     </Button>
                 </StackPanel>
             </Grid>
