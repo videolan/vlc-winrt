@@ -78,7 +78,9 @@
                 <Setter Property="Margin" Value="0,20,10,0"></Setter>
                 <Setter Property="MinWidth" Value="300"></Setter>
             </Style>
+            
             <String x:Key="AppName" xmlns="http://schemas.microsoft.com/winfx/2006/xaml">VLC_WINRT</String>
+            
             <DataTemplate x:Name="NormalSizedAlbumDataTemplate">
                 <Grid Width="140" Height="150">
                     <Grid.RowDefinitions>
@@ -92,6 +94,7 @@
                     </StackPanel>
                 </Grid>
             </DataTemplate>
+            
             <DataTemplate x:Name="LittleSizedAlbumDataTemplate">
                 <Grid MinHeight="150" MinWidth="150">
                     <Image Source="{Binding Picture}" Stretch="UniformToFill" HorizontalAlignment="Center"/>
@@ -109,12 +112,13 @@
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
-                            <TextBlock Text="{Binding Artist}" TextWrapping="NoWrap" TextTrimming="WordEllipsis" FontSize="16" />
-                            <TextBlock Text="{Binding Name}" TextWrapping="Wrap" FontSize="15" FontWeight="SemiBold" />
+                            <TextBlock Text="{Binding Artist}" TextWrapping="NoWrap" TextTrimming="WordEllipsis" FontSize="15" FontWeight="SemiBold" />
+                            <TextBlock Grid.Row="1" Text="{Binding Name}" TextWrapping="NoWrap" TextTrimming="WordEllipsis" FontSize="16"/>
                         </Grid>
                     </Grid>
                 </Grid>
             </DataTemplate>
+            
             <!-- Style for Windows.UI.Xaml.Controls.GridViewItem -->
             <Style TargetType="GridViewItem" x:Key="GridViewItemContainerStyle">
                 <Setter Property="FontFamily" Value="{StaticResource ContentControlThemeFontFamily}" />
