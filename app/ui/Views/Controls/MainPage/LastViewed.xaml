@@ -41,24 +41,18 @@
                 Command="{Binding ClearHistory}" VerticalAlignment="Bottom" Content="CLEAR" FontWeight="SemiBold" FontSize="16" FontFamily="Segoe UI" />
                         </StackPanel>
                     </Button>
-                    <controls:VariableSizedItemsGridView Grid.Row="1" ItemContainerStyle="{StaticResource GridViewItemContainerStyle}" ItemsSource="{Binding LastViewedVM}" ItemTemplate="{StaticResource NormalMovieTemplate}">
-                        <controls:VariableSizedItemsGridView.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <VariableSizedWrapGrid ItemHeight="172" ItemWidth="280" MaximumRowsOrColumns="4" />
-                            </ItemsPanelTemplate>
-                        </controls:VariableSizedItemsGridView.ItemsPanel>
-                    </controls:VariableSizedItemsGridView>
+                    <GridView Grid.Row="1" ItemContainerStyle="{StaticResource GridViewItemContainerStyle}" ItemsSource="{Binding LastViewedVM}" ItemTemplate="{StaticResource NormaleMovieTemplate}"/>
                 </Grid>
                 <Grid Margin="40,0,0,0">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="50"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <Button Margin="5,0,0,10" Command="{Binding GoToPanel}" CommandParameter="1" Grid.Row="0" Template="{StaticResource MainButtonStyle}">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="videos" Style="{StaticResource VLCSubHeaderStyle}" />
-                            <TextBlock Text="" Foreground="#e67e22" FontFamily="Segoe UI Symbol" Margin="20,12,0,0" VerticalAlignment="Center" FontSize="20" FontWeight="Light" />
-                        </StackPanel>
+                    <Button Margin="5,0,0,0" Command="{Binding GoToPanel}" CommandParameter="1" Grid.Row="0" Template="{StaticResource MainButtonStyle}">
+                            <TextBlock Style="{StaticResource VLCSubHeaderStyle}" >
+                                <Run Text="videos" />
+                                <Run Text="" FontFamily="Segoe UI Symbol" />
+                            </TextBlock>
                     </Button>
                     <controls:NothingToSeeHere Grid.Row="1" Visibility="{Binding VideoVM.HasNoMedia, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                     <controls:VariableSizedItemsGridView Grid.Row="1" ItemsSource="{Binding VideoVM.MediaRandom}" ItemContainerStyle="{StaticResource GridViewItemContainerStyle}" ItemTemplateSelector="{StaticResource MediaItemDataTemplateSelector}" >
