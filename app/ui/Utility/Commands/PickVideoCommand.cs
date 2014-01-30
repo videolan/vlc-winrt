@@ -24,11 +24,11 @@ namespace VLC_WINRT.Utility.Commands
 
         public async void Execute(object parameter)
         {
-            lock (Locker)
-            {
-                _canExecute = false;
-                CanExecuteChanged(this, new EventArgs());
-            }
+            //lock (Locker)
+            //{
+            //    _canExecute = false;
+            //    CanExecuteChanged(this, new EventArgs());
+            //}
 
             var picker = new FileOpenPicker
             {
@@ -111,11 +111,11 @@ namespace VLC_WINRT.Utility.Commands
                 Debug.WriteLine("Cancelled");
             }
 
-            lock (Locker)
-            {
-                _canExecute = true;
-                CanExecuteChanged(this, new EventArgs());
-            }
+            //lock (Locker)
+            //{
+            //    _canExecute = true;
+            //    CanExecuteChanged(this, new EventArgs());
+            //}
         }
 
         public event EventHandler CanExecuteChanged;
