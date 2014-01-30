@@ -46,11 +46,13 @@ namespace VLC_WINRT.Views
             {
                 if (x < 900)
                 {
+                    HeaderGrid.Margin = new Thickness(0, 20, 0, 0);
                     //MiniPlayer.Visibility = Visibility.Collapsed;
                     RemoveOtherPanels();
                 }
                 else
                 {
+                    HeaderGrid.Margin = new Thickness(50, 40, 0, 0);
                     //MiniPlayer.Visibility = Visibility.Visible;
                     AddOtherPanels();
                 }
