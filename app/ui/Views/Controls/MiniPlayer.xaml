@@ -13,33 +13,29 @@
         <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     </UserControl.Resources>
 
-    <Grid HorizontalAlignment="Right" Height="80" Visibility="{Binding TrackCollection.TrackCollection.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}">
+    <Grid Height="80" Background="#E5151515" Visibility="{Binding TrackCollection.TrackCollection.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="300"/>
         </Grid.ColumnDefinitions>
-        <StackPanel Orientation="Horizontal" Width="290" Tapped="InformationsCurrentPlayingGrid_Tapped">
-            <Image Height="60" Stretch="UniformToFill" Source="{Binding Artist.CurrentAlbumItem.Picture}" />
+        <StackPanel Orientation="Horizontal" Margin="50,0,0,0" HorizontalAlignment="Left" Tapped="InformationsCurrentPlayingGrid_Tapped">
+            <Image Height="70" Stretch="UniformToFill" Source="{Binding Artist.CurrentAlbumItem.Picture}" />
             <StackPanel Margin="10,0,0,0">
-                <TextBlock Style="{StaticResource BodyTextStyle}" Foreground="White" >
-                    <Run Text="{Binding Title}" FontWeight="SemiBold"/>
-                    <LineBreak />
-                    <Run Text="{Binding Artist.Name}"/>
-                    <LineBreak />
-                </TextBlock>
+                <TextBlock Text="{Binding Artist.Name}" VerticalAlignment="Top" Margin="0,15,0,0"/>
+                <TextBlock Text="{Binding Title}" VerticalAlignment="Bottom" Margin="0,0,0,15"/>
             </StackPanel>
         </StackPanel>
-        <Grid Grid.Column="1" >
+        <Grid Grid.Column="1" VerticalAlignment="Center" Margin="0,-8,50,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Content="" Visibility="{Binding TrackCollection.CanGoPrevious, Converter={StaticResource BooleanToVisibilityConverter}}" Style="{StaticResource ModernAppBarButtonStyle}" Command="{Binding PlayPreviousCommand}"/>
-            <Button Grid.Column="1" Content="" Visibility="{Binding IsPlaying, Converter={StaticResource NegatedBooleanToVisibilityConverter}}" Style="{StaticResource ModernAppBarButtonStyle}" Command="{Binding PlayOrPause}"/>
-            <Button Grid.Column="1" Content="" Visibility="{Binding IsPlaying, Converter={StaticResource BooleanToVisibilityConverter}}" Style="{StaticResource ModernAppBarButtonStyle}" Command="{Binding PlayOrPause}"/>
-            <Button Grid.Column="2" Content="" Visibility="{Binding TrackCollection.CanGoNext, Converter={StaticResource BooleanToVisibilityConverter}}" Style="{StaticResource ModernAppBarButtonStyle}" Command="{Binding PlayNextCommand}"/>
+            <Button Grid.Column="0" Visibility="{Binding TrackCollection.CanGoPrevious, Converter={StaticResource BooleanToVisibilityConverter}}" Style="{StaticResource SkipBackNoTextAppBarButtonStyle}" Command="{Binding PlayPreviousCommand}"/>
+            <Button Grid.Column="1" Foreground="{StaticResource MainColor}" Visibility="{Binding IsPlaying, Converter={StaticResource NegatedBooleanToVisibilityConverter}}" Style="{StaticResource PlayNoTextAppBarButtonStyle}" Command="{Binding PlayOrPause}"/>
+            <Button Grid.Column="1" Foreground="{StaticResource MainColor}" Visibility="{Binding IsPlaying, Converter={StaticResource BooleanToVisibilityConverter}}" Style="{StaticResource PauseNoTextAppBarButtonStyle}" Command="{Binding PlayOrPause}"/>
+            <Button Grid.Column="2" Visibility="{Binding TrackCollection.CanGoNext, Converter={StaticResource BooleanToVisibilityConverter}}" Style="{StaticResource SkipAheadNoTextAppBarButtonStyle}" Command="{Binding PlayNextCommand}"/>
         </Grid>
-        <ProgressBar Style="{StaticResource ThinProgressBar}" VerticalAlignment="Top" Grid.ColumnSpan="2" Value="{Binding ElapsedTime}" Maximum="{Binding TimeTotal}"/>
+        <ProgressBar Style="{StaticResource ThinProgressBar}" VerticalAlignment="Bottom" Grid.ColumnSpan="2" Value="{Binding ElapsedTime}" Maximum="{Binding TimeTotal}"/>
     </Grid>
 </UserControl>

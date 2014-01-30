@@ -834,7 +834,17 @@
         <Setter Property="AutomationProperties.Name" Value="Skip Back"/>
         <Setter Property="Content" Value="&#xE100;"/>
     </Style>
+    <Style x:Key="SkipBackNoTextAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource NoTextAppBarButtonStyle}">
+        <Setter Property="AutomationProperties.AutomationId" Value="SkipBackAppBarButton"/>
+        <Setter Property="AutomationProperties.Name" Value="Skip Back"/>
+        <Setter Property="Content" Value="&#xE100;"/>
+    </Style>
     <Style x:Key="SkipAheadAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
+        <Setter Property="AutomationProperties.AutomationId" Value="SkipAheadAppBarButton"/>
+        <Setter Property="AutomationProperties.Name" Value="Skip Ahead"/>
+        <Setter Property="Content" Value="&#xE101;"/>
+    </Style>
+    <Style x:Key="SkipAheadNoTextAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource NoTextAppBarButtonStyle}">
         <Setter Property="AutomationProperties.AutomationId" Value="SkipAheadAppBarButton"/>
         <Setter Property="AutomationProperties.Name" Value="Skip Ahead"/>
         <Setter Property="Content" Value="&#xE101;"/>
@@ -845,6 +855,16 @@
         <Setter Property="Content" Value="&#xE102;"/>
     </Style>
     <Style x:Key="PauseAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
+        <Setter Property="AutomationProperties.AutomationId" Value="PauseAppBarButton"/>
+        <Setter Property="AutomationProperties.Name" Value="Pause"/>
+        <Setter Property="Content" Value="&#xE103;"/>
+    </Style>
+    <Style x:Key="PlayNoTextAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource NoTextAppBarButtonStyle}">
+        <Setter Property="AutomationProperties.AutomationId" Value="PlayAppBarButton"/>
+        <Setter Property="AutomationProperties.Name" Value="Play"/>
+        <Setter Property="Content" Value="&#xE102;"/>
+    </Style>
+    <Style x:Key="PauseNoTextAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource NoTextAppBarButtonStyle}">
         <Setter Property="AutomationProperties.AutomationId" Value="PauseAppBarButton"/>
         <Setter Property="AutomationProperties.Name" Value="Pause"/>
         <Setter Property="Content" Value="&#xE103;"/>
@@ -919,7 +939,7 @@
         <Setter Property="AutomationProperties.Name" Value="Next"/>
         <Setter Property="Content" Value="&#xE111;"/>
     </Style>
-    <Style x:Key="PreviousAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
+    <Style x:Key="PreviousAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource NoTextAppBarButtonStyle}">
         <Setter Property="AutomationProperties.AutomationId" Value="PreviousAppBarButton"/>
         <Setter Property="AutomationProperties.Name" Value="Previous"/>
         <Setter Property="Content" Value="&#xE112;"/>

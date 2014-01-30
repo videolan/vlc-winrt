@@ -118,11 +118,11 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <Grid  Margin="0,30,0,0" VerticalAlignment="Top">
+            <Grid Margin="0,30,0,0" VerticalAlignment="Top">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <Grid x:Name="Header">
                     <Grid.RenderTransform>
@@ -132,10 +132,9 @@
                         <ColumnDefinition Width="100" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Button Style="{StaticResource BackButtonStyle}" Click="GoBack_Click" />
+                    <Button Style="{StaticResource PreviousAppBarButtonStyle}" Click="GoBack_Click" />
                     <TextBlock Grid.Column="1" Text="{Binding Artist.Name}" Foreground="#e67e22" FontSize="36" FontWeight="Light" HorizontalAlignment="Left"/>
                 </Grid>
-                <controls:MiniPlayer Grid.Column="1"/>
             </Grid>
             <Grid Grid.Row="1" x:Name="MainGrid">
                 <Grid.RenderTransform>
@@ -279,6 +278,7 @@
                     </StackPanel>
                 </ScrollViewer>
             </Grid>
+            <controls:MiniPlayer Grid.Row="2"/>
         </Grid>
     </Grid>
 </Page>
