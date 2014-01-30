@@ -190,6 +190,9 @@
     <Compile Include="Views\Controls\MiniPlayer.xaml.cs">
       <DependentUpon>MiniPlayer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Controls\MusicPage\VerticalAlbumItemTemplate.xaml.cs">
+      <DependentUpon>VerticalAlbumItemTemplate.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Controls\NothingToSeeHere.xaml.cs">
       <DependentUpon>NothingToSeeHere.xaml</DependentUpon>
     </Compile>
@@ -771,6 +774,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Controls\MiniPlayer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\MusicPage\VerticalAlbumItemTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

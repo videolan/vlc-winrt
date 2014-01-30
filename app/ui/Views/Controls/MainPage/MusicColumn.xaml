@@ -8,6 +8,7 @@
     xmlns:converters="using:VLC_WINRT.Utility.Converters"
     xmlns:wrapPanelControl="using:VLC_WINRT.Views.Controls.WrapPanelControl"
     xmlns:controls="using:VLC_WINRT.Views.Controls"
+    xmlns:musicPage="using:VLC_WINRT.Views.Controls.MusicPage"
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="600">
@@ -74,24 +75,14 @@
                             </ListView>
                         </SemanticZoom.ZoomedOutView>
                         <SemanticZoom.ZoomedInView>
-                            <ListView IsSwipeEnabled="False" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" ItemsSource="{Binding Source={StaticResource albumsCollection}}" SelectionMode="Single" IsItemClickEnabled="False" SelectionChanged="AlbumGridView_ItemClick" 
+                            <ListView IsSwipeEnabled="False" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" ItemsSource="{Binding Source={StaticResource albumsCollection}}" SelectionMode="None" IsItemClickEnabled="False" 
                                   ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                                   ScrollViewer.VerticalScrollBarVisibility="Disabled"
                                   ScrollViewer.HorizontalScrollMode="Disabled"
                                   ScrollViewer.VerticalScrollMode="Enabled">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
-                                        <Grid Margin="0,0,0,0" >
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="50"/>
-                                                <ColumnDefinition Width="10"/>
-                                                <ColumnDefinition Width="240"/>
-                                            </Grid.ColumnDefinitions>
-                                            <Image Source="{Binding Picture}" Height="50" Stretch="UniformToFill" HorizontalAlignment="Center"/>
-                                            <StackPanel Grid.Column="2" VerticalAlignment="Center">
-                                                <TextBlock Text="{Binding Name}" TextWrapping="NoWrap" TextTrimming="WordEllipsis" FontSize="17"/>
-                                            </StackPanel>
-                                        </Grid>
+                                        <musicPage:VerticalAlbumItemTemplate />
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
                                 <ListView.GroupStyle>
@@ -153,7 +144,7 @@
                             </GridView>
                         </SemanticZoom.ZoomedOutView>
                         <SemanticZoom.ZoomedInView>
-                            <GridView x:Name="AlbumsByArtistListView" IsSwipeEnabled="False" ItemContainerStyle="{StaticResource GridViewItemContainerStyle}" ItemsSource="{Binding Source={StaticResource albumsCollection}}" SelectionMode="Single" IsItemClickEnabled="False" SelectionChanged="AlbumGridView_ItemClick" 
+                            <GridView x:Name="AlbumsByArtistListView" IsSwipeEnabled="False" ItemContainerStyle="{StaticResource GridViewItemContainerStyle}" ItemsSource="{Binding Source={StaticResource albumsCollection}}" SelectionMode="None" IsItemClickEnabled="True" ItemClick="AlbumGridView_ItemClick" 
                                   ScrollViewer.HorizontalScrollBarVisibility="Auto"
                                   ScrollViewer.VerticalScrollBarVisibility="Disabled"
                                   ScrollViewer.HorizontalScrollMode="Enabled"

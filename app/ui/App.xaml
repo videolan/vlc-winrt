@@ -98,7 +98,7 @@
             <DataTemplate x:Name="LittleSizedAlbumDataTemplate">
                 <Grid MinHeight="150" MinWidth="150">
                     <Image Source="{Binding Picture}" Stretch="UniformToFill" HorizontalAlignment="Center"/>
-                    <Grid Height="90" VerticalAlignment="Bottom">
+                    <Grid Height="90" MaxWidth="300" VerticalAlignment="Bottom">
                         <Grid.Background>
                             <LinearGradientBrush StartPoint="1,0">
                                 <GradientStopCollection>
@@ -1063,7 +1063,7 @@
                 <Button Template="{StaticResource MainButtonStyle}"
                             Command="{Binding OpenVideo}"
                             CommandParameter="{Binding}">
-                    <Grid Width="530">
+                    <Grid MaxWidth="530">
                         <Image Source="{Binding Image}" Stretch="UniformToFill"/>
                         <Grid Height="150" VerticalAlignment="Bottom">
                             <Grid.Background>

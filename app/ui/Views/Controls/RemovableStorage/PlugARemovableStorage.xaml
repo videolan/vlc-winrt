@@ -8,14 +8,14 @@
     xmlns:controls="using:VLC_WINRT.Views.Controls"
     mc:Ignorable="d">
 
-    <Border BorderThickness="1" Background="WhiteSmoke" BorderBrush="LightGray" Margin="0,50">
+    <Border BorderThickness="1" Background="WhiteSmoke" BorderBrush="LightGray" Margin="0,0,0,50">
         <Grid HorizontalAlignment="Center">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Grid Height="Auto" Margin="0,80,0,0">
+            <Grid Height="Auto" Margin="0,30,0,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="200" />
                     <ColumnDefinition Width="*"/>

@@ -12,13 +12,12 @@ namespace VLC_WINRT.Utility.DataTemplateSelectors
         public DataTemplate NormalMovieTemplate { get; set; }
 
         private int i = -1;
-        dynamic _item;
+        
         protected override DataTemplate SelectTemplateCore(object item, DependencyObject container)
         {
-            i++;
-            if (_item != item)
-                return WideMovieTemplate;
-            return i == 0 ? WideMovieTemplate : NormalMovieTemplate;
+            return WideMovieTemplate;
+            //i++;
+            //return i == 0 ? WideMovieTemplate : NormalMovieTemplate;
         }
     }
 }

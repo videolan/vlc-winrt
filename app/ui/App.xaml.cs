@@ -1,12 +1,15 @@
-﻿using Windows.ApplicationModel;
+﻿using System;
+using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation.Collections;
+using Windows.Media;
 using Windows.Storage;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using VLC_WINRT.Common;
 using VLC_WINRT.Utility.Services.RunTime;
+using VLC_WINRT.ViewModels;
 using VLC_WINRT.Views;
 
 // The Split App template is documented at http://go.microsoft.com/fwlink/?LinkId=234228
@@ -29,6 +32,7 @@ namespace VLC_WINRT
         public App()
         {
             InitializeComponent();
+            
             Suspending += OnSuspending;
         }
 
@@ -39,6 +43,11 @@ namespace VLC_WINRT
                 var root = Window.Current.Content as RootPage;
                 return root != null ? root.MainFrame : null;
             }
+        }
+
+        public static RootPage RootPage
+        {
+            get { return Window.Current.Content as RootPage; }
         }
 
         /// <summary>
