@@ -82,13 +82,13 @@
             <String x:Key="AppName" xmlns="http://schemas.microsoft.com/winfx/2006/xaml">VLC_WINRT</String>
             
             <DataTemplate x:Name="NormalSizedAlbumDataTemplate">
-                <Grid Width="140" Height="150">
+                <Grid Width="150" Height="200">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="100" />
-                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="150" />
+                        <RowDefinition Height="50" />
                     </Grid.RowDefinitions>
-                    <Image Height="100" Width="100" Source="{Binding Picture}" Stretch="UniformToFill" HorizontalAlignment="Center"/>
-                    <StackPanel Grid.Row="1" Height="100" Orientation="Horizontal" Margin="0,10,0,0">
+                    <Image Height="150" Width="150" Source="{Binding Picture}" Stretch="UniformToFill" HorizontalAlignment="Center"/>
+                    <StackPanel Grid.Row="1" Height="50" Orientation="Horizontal" VerticalAlignment="Top">
                         <Button Style="{StaticResource LikeLittleNoTextAppBarButtonStyle}" Margin="-18,0,-11,0" Visibility="{Binding Favorite, Converter={StaticResource BooleanToVisibilityConverter}}" />
                         <TextBlock Text="{Binding Name}" TextWrapping="NoWrap" TextTrimming="WordEllipsis" FontSize="17" FontWeight="Light" Margin="0,10,0,0"/>
                     </StackPanel>

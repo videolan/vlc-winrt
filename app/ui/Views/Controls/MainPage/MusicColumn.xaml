@@ -83,7 +83,7 @@
                                     <GroupStyle>
                                         <GroupStyle.Panel>
                                             <ItemsPanelTemplate>
-                                                <VariableSizedWrapGrid Margin="0,0,0,50" ItemWidth="150" ItemHeight="150" Orientation="Horizontal">
+                                                <VariableSizedWrapGrid Margin="0,0,0,50" ItemWidth="160" ItemHeight="150" Orientation="Horizontal">
                                                     <VariableSizedWrapGrid.ChildrenTransitions>
                                                         <TransitionCollection>
                                                             <RepositionThemeTransition />
@@ -94,9 +94,9 @@
                                         </GroupStyle.Panel>
                                         <GroupStyle.HeaderTemplate>
                                             <DataTemplate>
-                                                <StackPanel Orientation="Horizontal">
-                                                    <TextBlock Text="{Binding Name}" Margin="3,0,0,0" TextWrapping="NoWrap" TextTrimming="WordEllipsis" FontSize="23" />
-                                                </StackPanel>
+                                                <Button Template="{StaticResource MainButtonStyle}" Width="265" HorizontalContentAlignment="Left" Click="OnHeaderSemanticZoomClicked">
+                                                    <TextBlock Text="{Binding Name}" Margin="3,0,0,0" Style="{StaticResource VLCSubHeaderStyle}"/>
+                                                </Button>
                                             </DataTemplate>
                                         </GroupStyle.HeaderTemplate>
                                     </GroupStyle>
@@ -127,7 +127,7 @@
                             <GridView IsSwipeEnabled="False" >
                                 <GridView.ItemsPanel>
                                     <ItemsPanelTemplate>
-                                        <WrapGrid VerticalAlignment="Center"/>
+                                        <VariableSizedWrapGrid VerticalAlignment="Center"/>
                                     </ItemsPanelTemplate>
                                 </GridView.ItemsPanel>
                                 <GridView.ItemTemplate>
@@ -145,10 +145,10 @@
                         </SemanticZoom.ZoomedOutView>
                         <SemanticZoom.ZoomedInView>
                             <GridView x:Name="AlbumsByArtistListView" IsSwipeEnabled="False" ItemContainerStyle="{StaticResource GridViewItemContainerStyle}" ItemsSource="{Binding Source={StaticResource albumsCollection}}" SelectedIndex="0" SelectionMode="None" IsItemClickEnabled="True" ItemClick="AlbumGridView_ItemClick" 
-                                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                  ScrollViewer.HorizontalScrollBarVisibility="Auto"
                                   ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                                  ScrollViewer.HorizontalScrollMode="Disabled"
-                                  ScrollViewer.VerticalScrollMode="Enabled">
+                                  ScrollViewer.HorizontalScrollMode="Enabled"
+                                  ScrollViewer.VerticalScrollMode="Disabled">
                                 <GridView.GroupStyle>
                                     <GroupStyle>
                                         <GroupStyle.Panel>
@@ -164,16 +164,16 @@
                                         </GroupStyle.Panel>
                                         <GroupStyle.HeaderTemplate>
                                             <DataTemplate>
-                                                <StackPanel Orientation="Horizontal">
-                                                    <TextBlock Text="{Binding Name}" Margin="3,0,0,0" TextWrapping="NoWrap" TextTrimming="WordEllipsis" FontSize="23" />
-                                                </StackPanel>
+                                                <Button Template="{StaticResource MainButtonStyle}" Width="265" HorizontalContentAlignment="Left" Click="OnHeaderSemanticZoomClicked">
+                                                    <TextBlock Text="{Binding Name}" Margin="3,0,0,0" Style="{StaticResource VLCSubHeaderStyle}"/>
+                                                </Button>
                                             </DataTemplate>
                                         </GroupStyle.HeaderTemplate>
                                     </GroupStyle>
                                 </GridView.GroupStyle>
                                 <GridView.ItemsPanel>
                                     <ItemsPanelTemplate>
-                                        <VirtualizingStackPanel />
+                                        <VariableSizedWrapGrid />
                                     </ItemsPanelTemplate>
                                 </GridView.ItemsPanel>
                             </GridView>

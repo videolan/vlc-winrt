@@ -107,5 +107,10 @@ namespace VLC_WINRT.Views.Controls.MainPage
         {
             (e.ClickedItem as MusicLibraryViewModel.AlbumItem).PlayAlbum.Execute(e.ClickedItem);
         }
+        private void OnHeaderSemanticZoomClicked(object sender, RoutedEventArgs e)
+        {
+            AlbumsByArtistSnapSemanticZoom.IsZoomedInViewActive = false;
+            AlbumsByArtistSemanticZoom.IsZoomedInViewActive = false;
+        }
     }
 }

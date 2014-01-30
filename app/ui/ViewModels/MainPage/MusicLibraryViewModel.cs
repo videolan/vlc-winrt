@@ -202,13 +202,17 @@ namespace VLC_WINRT.ViewModels.MainPage
             if (page != null)
             {
                 var musicColumn = page.GetFirstDescendantOfType<MusicColumn>() as MusicColumn;
-                var albumsByArtistSemanticZoom = musicColumn.GetFirstDescendantOfType<SemanticZoom>() as SemanticZoom; 
+                var albumsByArtistSemanticZoom = musicColumn.GetDescendantsOfType<SemanticZoom>(); 
                 var albumsCollection = musicColumn.Resources["albumsCollection"] as CollectionViewSource;
                 if (albumsByArtistSemanticZoom != null)
                 {
-                    var listviewbase = albumsByArtistSemanticZoom.ZoomedOutView as ListViewBase;
+                    var firstlistview = albumsByArtistSemanticZoom.ElementAt(0).ZoomedOutView as ListViewBase;
+                    var secondlistview = albumsByArtistSemanticZoom.ElementAt(1).ZoomedOutView as ListViewBase;
                     if (albumsCollection != null)
-                        listviewbase.ItemsSource = albumsCollection.View.CollectionGroups;
+                    {
+                        firstlistview.ItemsSource = albumsCollection.View.CollectionGroups;
+                        secondlistview.ItemsSource = albumsCollection.View.CollectionGroups;
+                    }
                 }
             }
         }
