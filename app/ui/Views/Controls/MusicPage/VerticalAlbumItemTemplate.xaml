@@ -21,7 +21,7 @@
                 <TextBlock Text="{Binding Name}" TextWrapping="NoWrap" TextTrimming="WordEllipsis" FontSize="17"/>
             </StackPanel>
         </Grid>
-        <Grid x:Name="PlayListGrid" Visibility="Collapsed">
+        <Grid x:Name="PlayListGrid" >
             <ListView IsSwipeEnabled="False" Margin="15,0,0,0" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" ItemsSource="{Binding Tracks}" SelectionMode="None"
                       ScrollViewer.VerticalScrollMode="Disabled"
                       ScrollViewer.VerticalScrollBarVisibility="Disabled">

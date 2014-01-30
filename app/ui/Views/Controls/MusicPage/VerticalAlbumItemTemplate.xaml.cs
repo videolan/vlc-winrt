@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 // Pour en savoir plus sur le modèle d'élément Contrôle utilisateur, consultez la page http://go.microsoft.com/fwlink/?LinkId=234236
+using VLC_WINRT.Utility.Helpers;
 
 namespace VLC_WINRT.Views.Controls.MusicPage
 {
@@ -22,11 +23,19 @@ namespace VLC_WINRT.Views.Controls.MusicPage
         public VerticalAlbumItemTemplate()
         {
             this.InitializeComponent();
+            UIAnimationHelper.FadeOut(PlayListGrid);
         }
 
         private void Album_OnTapped(object sender, TappedRoutedEventArgs e)
         {
-            PlayListGrid.Visibility = Visibility.Visible;
+            if (PlayListGrid.Visibility == Visibility.Visible)
+            {
+                UIAnimationHelper.FadeOut(PlayListGrid);
+            }
+            else
+            {
+                UIAnimationHelper.FadeIn(PlayListGrid);
+            }
         }
     }
 }
