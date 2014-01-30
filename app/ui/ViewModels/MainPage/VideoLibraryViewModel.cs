@@ -20,12 +20,12 @@ namespace VLC_WINRT.ViewModels.MainPage
 {
     public class VideoLibraryViewModel : BindableBase
     {
-        private ObservableCollection<Panel> _panels = new ObservableCollection<Panel>(); 
+        private ObservableCollection<Panel> _panels = new ObservableCollection<Panel>();
         private bool _hasNoMedia;
         private StorageFolder _location;
         private ObservableCollection<MediaViewModel> _media;
         private ObservableCollection<MediaViewModel> _mediaRandom;
-        private IEnumerable<IGrouping<char, MediaViewModel>> _mediaGroupedByAlphabet; 
+        private IEnumerable<IGrouping<char, MediaViewModel>> _mediaGroupedByAlphabet;
         private PickVideoCommand _pickCommand = new PickVideoCommand();
         private string _title;
 
@@ -61,7 +61,7 @@ namespace VLC_WINRT.ViewModels.MainPage
             {
                 SetProperty(ref _panels, value);
             }
-        } 
+        }
         public bool HasNoMedia
         {
             get { return _hasNoMedia; }
@@ -84,7 +84,7 @@ namespace VLC_WINRT.ViewModels.MainPage
         {
             get { return _mediaGroupedByAlphabet; }
             set { SetProperty(ref _mediaGroupedByAlphabet, value); }
-        } 
+        }
         public ObservableCollection<MediaViewModel> Media
         {
             get { return _media; }
@@ -126,14 +126,14 @@ namespace VLC_WINRT.ViewModels.MainPage
                 DispatchHelper.Invoke(() => Media.Add(mediaVM));
                 DispatchHelper.Invoke(() =>
                 {
-                        int i = new Random().Next(0, files.Count - 1);
-                        if (j < 5 && i <= (files.Count - 1) / 2)
-                        {
-                            DispatchHelper.Invoke(() => MediaRandom.Add(mediaVM));
-                            j++;
-                        }
+                    int i = new Random().Next(0, files.Count - 1);
+                    if (j < 5 && i <= (files.Count - 1) / 2)
+                    {
+                        DispatchHelper.Invoke(() => MediaRandom.Add(mediaVM));
+                        j++;
+                    }
                 });
-                DispatchHelper.Invoke(() => MediaGroupedByAlphabet = Media.OrderBy(x=>x.AlphaKey).GroupBy(x=>x.AlphaKey));
+                DispatchHelper.Invoke(() => MediaGroupedByAlphabet = Media.OrderBy(x => x.AlphaKey).GroupBy(x => x.AlphaKey));
             }
             DispatchHelper.Invoke(ExecuteSemanticZoom);
         }
@@ -148,12 +148,17 @@ namespace VLC_WINRT.ViewModels.MainPage
                 var collection = videoColumn.Resources["MediaGroupedByAlphabet"] as CollectionViewSource;
                 if (semanticZoom != null)
                 {
-                    var listviewbase = semanticZoom.ZoomedOutView as ListViewBase;
-                    if (collection != null)
-                        listviewbase.ItemsSource = collection.View.CollectionGroups;
+                    try
+                    {
+                        var listviewbase = semanticZoom.ZoomedOutView as ListViewBase;
+                        if (collection != null)
+                            listviewbase.ItemsSource = collection.View.CollectionGroups;
+                    }
+                    catch { }
                 }
             }
         }
+
         private static async Task<IReadOnlyList<StorageFile>> GetMediaFromFolder(StorageFolder folder,
                                                                             CommonFileQuery query)
         {

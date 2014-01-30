@@ -163,9 +163,6 @@
     <Compile Include="Views\Controls\AnimatedBackground.xaml.cs">
       <DependentUpon>AnimatedBackground.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\FullAlbum.xaml.cs">
-      <DependentUpon>FullAlbum.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\Controls\MainPage\LastViewed.xaml.cs">
       <DependentUpon>LastViewed.xaml</DependentUpon>
     </Compile>
@@ -738,10 +735,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
     <Page Include="Views\Controls\AnimatedBackground.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Controls\FullAlbum.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

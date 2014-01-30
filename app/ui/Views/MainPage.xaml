@@ -143,7 +143,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="0"/>
         </Grid.RowDefinitions>
         <!--<HyperlinkButton Grid.Row="0" HorizontalAlignment="Right"  Foreground="#FFFF8402" Command="{Binding ShowAppBarCommand}">
             <HyperlinkButton.Content>
@@ -200,7 +200,7 @@
     </Grid>
 
     <Page.BottomAppBar>
-        <AppBar x:Name="BottomAppBar" Padding="10,0,10,0" Background="#e67e22" IsOpen="{Binding IsAppBarOpen, Mode=TwoWay}">
+        <AppBar x:Name="BottomAppBar" Visibility="Collapsed" Padding="10,0,10,0" Background="#e67e22" IsOpen="{Binding IsAppBarOpen, Mode=TwoWay}">
             <Grid>
                 <Grid Visibility="{Binding IsNetworkAppBarShown, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <Grid.RowDefinitions>

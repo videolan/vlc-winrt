@@ -50,7 +50,6 @@ namespace VLC_WINRT.Views.Controls.MainPage
                     FullGrid.Visibility = Visibility.Collapsed;
                     SnapGrid.Visibility= Visibility.Visible;
                     SectionsHeaderListView.Visibility = Visibility.Collapsed;
-                    AlbumsByArtistListView.ItemTemplate = Application.Current.Resources["LittleSizedAlbumDataTemplate"] as DataTemplate;
                     SectionsGrid.Margin = new Thickness(0);
                 }
                 else
@@ -58,16 +57,15 @@ namespace VLC_WINRT.Views.Controls.MainPage
                     FullGrid.Visibility = Visibility.Visible;
                     SnapGrid.Visibility = Visibility.Collapsed;
                     SectionsHeaderListView.Visibility = Visibility.Visible;
-                    AlbumsByArtistListView.ItemTemplate = Application.Current.Resources["NormalSizedAlbumDataTemplate"] as DataTemplate;
                     SectionsGrid.Margin = new Thickness(50, 0, 0, 0);
                 }
             });
         }
 
-        private void AlbumGridView_ItemClick(object sender, ItemClickEventArgs e)
+        private void AlbumGridView_ItemClick(object sender, SelectionChangedEventArgs e)
         {
-            var album = e.ClickedItem as MusicLibraryViewModel.AlbumItem;
-
+            var album = e.AddedItems[0] as MusicLibraryViewModel.AlbumItem;
+            
             AlbumPlaylistListView.Header = album;
             AlbumPlaylistListView.ItemsSource = album.Tracks;
             AlbumPlaylistListView.Width = 320;

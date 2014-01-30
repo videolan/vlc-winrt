@@ -1,4 +1,5 @@
-﻿using Windows.UI.Xaml.Controls;
+﻿using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using VLC_WINRT.ViewModels.MainPage;
 
 namespace VLC_WINRT.Views.Controls
@@ -6,6 +7,7 @@ namespace VLC_WINRT.Views.Controls
     public class VariableSizedItemsGridView : GridView
     {
         private int i = -1;
+        
         protected override void PrepareContainerForItemOverride(Windows.UI.Xaml.DependencyObject element, object item)
         {
             i++;
