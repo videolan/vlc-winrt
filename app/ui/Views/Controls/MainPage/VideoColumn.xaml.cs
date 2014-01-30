@@ -10,8 +10,8 @@ namespace VLC_WINRT.Views.Controls.MainPage
 {
     public sealed partial class VideoColumn : UserControl
     {
-        private DispatcherTimer _flipViewTimer;
         private int _currentSection;
+
         public VideoColumn()
         {
             InitializeComponent();
@@ -23,21 +23,6 @@ namespace VLC_WINRT.Views.Controls.MainPage
                 }
             };
             this.SizeChanged += OnSizeChanged;
-
-            _flipViewTimer = new DispatcherTimer
-            {
-                Interval = TimeSpan.FromSeconds(6),
-            };
-            _flipViewTimer.Tick += FlipViewTimerOnTick;
-            _flipViewTimer.Start();
-        }
-
-        private void FlipViewTimerOnTick(object sender, object o)
-        {
-            var totalItems = FlipView.Items.Count;
-            if (totalItems <= 0) return;
-            var newItemIndex = (FlipView.SelectedIndex + 1)%totalItems;
-            FlipView.SelectedIndex = newItemIndex;
         }
 
         private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
@@ -54,15 +39,13 @@ namespace VLC_WINRT.Views.Controls.MainPage
 
                 if (sizeChangedEventArgs.NewSize.Width == 320)
                 {
-                    FlipView.Visibility = Visibility.Collapsed;
                     FirstPanelListView.Visibility = Visibility.Visible;
-                    FirstPanelGridView.Visibility = Visibility.Collapsed;
+                    //FirstPanelGridView.Visibility = Visibility.Collapsed;
                 }
                 else
                 {
-                    FlipView.Visibility = Visibility.Visible;
                     FirstPanelListView.Visibility = Visibility.Collapsed;
-                    FirstPanelGridView.Visibility = Visibility.Visible;
+                    //FirstPanelGridView.Visibility = Visibility.Visible;
                 }
             });
         }
@@ -80,6 +63,11 @@ namespace VLC_WINRT.Views.Controls.MainPage
             //for (int j = 0; j < SectionsHeaderListView.Items.Count; j++)
             //    Locator.MainPageVM.VideoVM.Panels[j].Opacity = 0.4;
             Locator.MainPageVM.VideoVM.Panels[i].Opacity = 1;
+        }
+        
+        private void OnHeaderSemanticZoomClicked(object sender, RoutedEventArgs e)
+        {
+            SemanticZoom.IsZoomedInViewActive = false;
         }
     }
 }

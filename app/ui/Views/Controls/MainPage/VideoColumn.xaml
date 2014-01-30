@@ -11,6 +11,9 @@
     d:DesignHeight="768"
     d:DesignWidth="400">
 
+    <UserControl.Resources>
+        <CollectionViewSource x:Name="MediaGroupedByAlphabet" Source="{Binding MediaGroupedByAlphabet}" IsSourceGrouped="True" />
+    </UserControl.Resources>
     <Grid >
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -36,24 +39,66 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>-->
-        <Grid Grid.Row="1" x:Name="SectionsGrid">
-            <ScrollViewer Style="{StaticResource HorizontalScrollViewerStyle}">
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
-                    <Grid Margin="50,0,0,0">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="60"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-                        <Button Margin="5,0,0,10" Command="{Binding GoToPanel}" CommandParameter="1" Grid.Row="0" Template="{StaticResource MainButtonStyle}">
-                                <TextBlock Text="featured videos" Foreground="#e67e22" FontSize="42" FontWeight="Light" />
-                        </Button>
-                        <controls:NothingToSeeHere Grid.Row="1" Visibility="{Binding IsVideoLibraryEmpty, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                        <FlipView Grid.Row="1" x:Name="FlipView" ItemsSource="{Binding MediaRandom}" Width="560" ItemTemplate="{StaticResource FlipViewMovieTemplate}"/>
-                    </Grid>
-                    <GridView x:Name="FirstPanelGridView" Margin="40,60,0,0" ItemContainerStyle="{StaticResource GridViewItemContainerStyle}" ItemsSource="{Binding Media}" ItemTemplate="{StaticResource NormaleMovieTemplate}" />
-                    <ListView x:Name="FirstPanelListView" Margin="10,0,0,0" ItemsSource="{Binding Media}" ItemTemplate="{StaticResource NormaleMovieTemplate}"/>
-                </StackPanel>
-            </ScrollViewer>
+        <Grid Grid.Row="1" x:Name="SectionsGrid" Margin="0,50,0,0">
+
+            <SemanticZoom x:Name="SemanticZoom" 
+                          ScrollViewer.HorizontalScrollMode="Disabled"
+                          ScrollViewer.VerticalScrollMode="Disabled"
+                          ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                          ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <SemanticZoom.ZoomedOutView>                    
+                    <GridView IsSwipeEnabled="False" ItemContainerStyle="{StaticResource GridViewItemContainerStyle}">
+                        <GridView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapGrid VerticalAlignment="Center" Margin="47,0,0,0"/>
+                            </ItemsPanelTemplate>
+                        </GridView.ItemsPanel>
+                        <GridView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Background="#151515" Width="190" Height="70">
+                                    <TextBlock Text="{Binding Group.Key}" VerticalAlignment="Bottom" Margin="10,0,0,10" FontWeight="Normal" Style="{StaticResource VLCSubHeaderStyle}" />
+                                </Grid>
+                            </DataTemplate>
+                        </GridView.ItemTemplate>
+                    </GridView>
+                </SemanticZoom.ZoomedOutView>
+                <SemanticZoom.ZoomedInView>
+                    <GridView ItemTemplate="{StaticResource NormaleMovieTemplate}" IsSwipeEnabled="False" ItemContainerStyle="{StaticResource GridViewItemContainerStyle}" ItemsSource="{Binding Source={StaticResource MediaGroupedByAlphabet}}" SelectedIndex="0" SelectionMode="None" IsItemClickEnabled="True" 
+                              ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                  ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                                  ScrollViewer.HorizontalScrollMode="Enabled"
+                                  ScrollViewer.VerticalScrollMode="Disabled">
+                        <GridView.GroupStyle>
+                            <GroupStyle>
+                                <GroupStyle.Panel>
+                                    <ItemsPanelTemplate>
+                                        <VariableSizedWrapGrid ItemHeight="160" Margin="0,0,0,10" ItemWidth="265" Orientation="Vertical">
+                                            <VariableSizedWrapGrid.ChildrenTransitions>
+                                                <TransitionCollection>
+                                                    <RepositionThemeTransition />
+                                                </TransitionCollection>
+                                            </VariableSizedWrapGrid.ChildrenTransitions>
+                                        </VariableSizedWrapGrid>
+                                    </ItemsPanelTemplate>
+                                </GroupStyle.Panel>
+                                <GroupStyle.HeaderTemplate>
+                                    <DataTemplate>
+                                        <Button Template="{StaticResource MainButtonStyle}" Width="265" HorizontalContentAlignment="Left" Click="OnHeaderSemanticZoomClicked">
+                                            <TextBlock Text="{Binding Key}" Margin="3,0,0,0" Style="{StaticResource VLCSubHeaderStyle}"/>
+                                        </Button>
+                                    </DataTemplate>
+                                </GroupStyle.HeaderTemplate>
+                            </GroupStyle>
+                        </GridView.GroupStyle>
+                        <GridView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <VariableSizedWrapGrid Orientation="Vertical" Margin="50,0,0,0"/>
+                            </ItemsPanelTemplate>
+                        </GridView.ItemsPanel>
+                    </GridView>
+                </SemanticZoom.ZoomedInView>
+            </SemanticZoom>
+            <ListView x:Name="FirstPanelListView" Margin="10,0,0,0" ItemsSource="{Binding Media}" ItemTemplate="{StaticResource NormaleMovieTemplate}"/>
             <Grid>
                 <TextBlock Text="still not done" Foreground="Blue"/>
             </Grid>

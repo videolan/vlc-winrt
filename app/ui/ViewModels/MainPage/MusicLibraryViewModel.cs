@@ -201,8 +201,8 @@ namespace VLC_WINRT.ViewModels.MainPage
             var page = App.ApplicationFrame.Content as Views.MainPage;
             if (page != null)
             {
-                var albumsByArtistSemanticZoom = page.GetFirstDescendantOfType<SemanticZoom>() as SemanticZoom;
                 var musicColumn = page.GetFirstDescendantOfType<MusicColumn>() as MusicColumn;
+                var albumsByArtistSemanticZoom = musicColumn.GetFirstDescendantOfType<SemanticZoom>() as SemanticZoom; 
                 var albumsCollection = musicColumn.Resources["albumsCollection"] as CollectionViewSource;
                 if (albumsByArtistSemanticZoom != null)
                 {

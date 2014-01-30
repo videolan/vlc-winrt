@@ -4,13 +4,17 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Linq;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Data;
 using VLC_WINRT.Common;
-using VLC_WINRT.Model;
 using VLC_WINRT.Utility.Commands;
 using Windows.Foundation;
 using Windows.Storage;
 using Windows.Storage.Search;
 using Windows.System.Threading;
+using VLC_WINRT.Utility.Helpers;
+using VLC_WINRT.Views.Controls.MainPage;
+using Panel = VLC_WINRT.Model.Panel;
 
 namespace VLC_WINRT.ViewModels.MainPage
 {
@@ -21,6 +25,7 @@ namespace VLC_WINRT.ViewModels.MainPage
         private StorageFolder _location;
         private ObservableCollection<MediaViewModel> _media;
         private ObservableCollection<MediaViewModel> _mediaRandom;
+        private IEnumerable<IGrouping<char, MediaViewModel>> _mediaGroupedByAlphabet; 
         private PickVideoCommand _pickCommand = new PickVideoCommand();
         private string _title;
 
@@ -75,6 +80,11 @@ namespace VLC_WINRT.ViewModels.MainPage
             set { SetProperty(ref _location, value); }
         }
 
+        public IEnumerable<IGrouping<char, MediaViewModel>> MediaGroupedByAlphabet
+        {
+            get { return _mediaGroupedByAlphabet; }
+            set { SetProperty(ref _mediaGroupedByAlphabet, value); }
+        } 
         public ObservableCollection<MediaViewModel> Media
         {
             get { return _media; }
@@ -123,9 +133,27 @@ namespace VLC_WINRT.ViewModels.MainPage
                             j++;
                         }
                 });
+                DispatchHelper.Invoke(() => MediaGroupedByAlphabet = Media.OrderBy(x=>x.AlphaKey).GroupBy(x=>x.AlphaKey));
             }
+            DispatchHelper.Invoke(ExecuteSemanticZoom);
         }
 
+        void ExecuteSemanticZoom()
+        {
+            var page = App.ApplicationFrame.Content as Views.MainPage;
+            if (page != null)
+            {
+                var videoColumn = page.GetFirstDescendantOfType<VideoColumn>() as VideoColumn;
+                var semanticZoom = videoColumn.GetFirstDescendantOfType<SemanticZoom>() as SemanticZoom;
+                var collection = videoColumn.Resources["MediaGroupedByAlphabet"] as CollectionViewSource;
+                if (semanticZoom != null)
+                {
+                    var listviewbase = semanticZoom.ZoomedOutView as ListViewBase;
+                    if (collection != null)
+                        listviewbase.ItemsSource = collection.View.CollectionGroups;
+                }
+            }
+        }
         private static async Task<IReadOnlyList<StorageFile>> GetMediaFromFolder(StorageFolder folder,
                                                                             CommonFileQuery query)
         {
