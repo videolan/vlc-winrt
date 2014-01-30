@@ -41,138 +41,179 @@
             </ListView.ItemTemplate>
         </ListView>
         <Grid Grid.Row="1" x:Name="SectionsGrid" Margin="50,0,0,0">
-            <Grid x:Name="ArtistPanel">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="1"/>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="1"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
-                <ListView x:Name="ArtistListView" Grid.Column="0" IsSwipeEnabled="False" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" Margin="-15,0,0,0" Header="{Binding Artist.Count}" ItemsSource="{Binding Artist}" SelectionMode="Single" SelectionChanged="OnSelectedArtist_Changed">
-                    <ListView.HeaderTemplate>
-                        <DataTemplate>
-                            <TextBlock Margin="20,5,0,10"
-                                Style="{StaticResource ColumnHeaderTextStyle}" FontSize="17">
-                                <Run Text="{Binding}"/>
-                                <Run Text="artists"/>
-                            </TextBlock>
-                        </DataTemplate>
-                    </ListView.HeaderTemplate>
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <Grid Margin="16,0,0,0" >
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="50"/>
-                                    <ColumnDefinition Width="10"/>
-                                    <ColumnDefinition Width="240"/>
-                                </Grid.ColumnDefinitions>
-                                <Image Source="{Binding Picture}" Height="50" Stretch="UniformToFill" HorizontalAlignment="Center"/>
-                                <StackPanel Grid.Column="2" VerticalAlignment="Center">
-                                    <TextBlock Text="{Binding Name}" TextWrapping="NoWrap" TextTrimming="WordEllipsis" FontSize="17"/>
-                                </StackPanel>
-                            </Grid>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-                <Border Width="1" Grid.Column="1" Background="#663E3E3E" />
-                <controls:NothingToSeeHere Grid.Column="2" Visibility="{Binding IsMusicLibraryEmpty, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                <SemanticZoom Grid.Column="2" x:Name="AlbumsByArtistSemanticZoom" 
+            <Grid x:Name="ArtistView">
+                <Grid x:Name="SnapGrid">
+                    <SemanticZoom x:Name="AlbumsByArtistSnapSemanticZoom" 
                               ViewChangeCompleted="AlbumsByArtistSemanticZoom_OnViewChangeCompleted"
                               ScrollViewer.HorizontalScrollMode="Disabled"
                               ScrollViewer.VerticalScrollMode="Disabled"
                               ScrollViewer.VerticalScrollBarVisibility="Disabled"
                               ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-                    <SemanticZoom.ZoomedOutView>
-                        <GridView IsSwipeEnabled="False" >
-                            <GridView.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <WrapGrid VerticalAlignment="Center"/>
-                                </ItemsPanelTemplate>
-                            </GridView.ItemsPanel>
-                            <GridView.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid Width="280" Height="156">
-                                        <Image Source="{Binding Group.Picture}" Stretch="UniformToFill"/>
-                                        <Grid VerticalAlignment="Bottom" Height="35" Margin="0,0,0,20" HorizontalAlignment="Left">
-                                            <Polygon Fill="{StaticResource MainColor}" Points="0,0 0,35 180,35 200,0" />
-                                            <TextBlock MaxWidth="160" Text="{Binding Group.Name}" Foreground="White" TextWrapping="NoWrap" TextTrimming="WordEllipsis" Margin="10,0" FontSize="22" VerticalAlignment="Center" />
+                        <SemanticZoom.ZoomedOutView>
+                            <ListView IsSwipeEnabled="False" >
+                                <ListView.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <VirtualizingStackPanel />
+                                    </ItemsPanelTemplate>
+                                </ListView.ItemsPanel>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid Margin="0,0,0,0" >
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="50"/>
+                                                <ColumnDefinition Width="10"/>
+                                                <ColumnDefinition Width="240"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Image Source="{Binding Group.Picture}" Height="50" Stretch="UniformToFill" HorizontalAlignment="Center"/>
+                                            <StackPanel Grid.Column="2" VerticalAlignment="Center">
+                                                <TextBlock Text="{Binding Group.Name}" TextWrapping="NoWrap" TextTrimming="WordEllipsis" FontSize="17"/>
+                                            </StackPanel>
                                         </Grid>
-                                    </Grid>
-                                </DataTemplate>
-                            </GridView.ItemTemplate>
-                        </GridView>
-                    </SemanticZoom.ZoomedOutView>
-                    <SemanticZoom.ZoomedInView>
-                        <GridView x:Name="AlbumsByArtistListView" IsSwipeEnabled="False" ItemContainerStyle="{StaticResource GridViewItemContainerStyle}" ItemsSource="{Binding Source={StaticResource albumsCollection}}" SelectedIndex="0" SelectionMode="None" IsItemClickEnabled="True" ItemClick="AlbumGridView_ItemClick" 
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </SemanticZoom.ZoomedOutView>
+                        <SemanticZoom.ZoomedInView>
+                            <GridView ItemTemplate="{StaticResource LittleSizedAlbumDataTemplate}" IsSwipeEnabled="False" ItemContainerStyle="{StaticResource GridViewItemContainerStyle}" ItemsSource="{Binding Source={StaticResource albumsCollection}}" SelectedIndex="0" SelectionMode="None" IsItemClickEnabled="True" ItemClick="AlbumGridView_ItemClick" 
                                   ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                                   ScrollViewer.VerticalScrollBarVisibility="Disabled"
                                   ScrollViewer.HorizontalScrollMode="Disabled"
                                   ScrollViewer.VerticalScrollMode="Enabled">
-                            <GridView.GroupStyle>
-                                <GroupStyle>
-                                    <GroupStyle.Panel>
-                                        <ItemsPanelTemplate>
-                                            <VariableSizedWrapGrid Margin="0,0,0,50" Orientation="Horizontal">
-                                                <VariableSizedWrapGrid.ChildrenTransitions>
-                                                    <TransitionCollection>
-                                                        <RepositionThemeTransition />
-                                                    </TransitionCollection>
-                                                </VariableSizedWrapGrid.ChildrenTransitions>
-                                            </VariableSizedWrapGrid>
-                                        </ItemsPanelTemplate>
-                                    </GroupStyle.Panel>
-                                    <GroupStyle.HeaderTemplate>
-                                        <DataTemplate>
-                                            <StackPanel Orientation="Horizontal">
-                                                <TextBlock Text="{Binding Name}" Margin="3,0,0,0" TextWrapping="NoWrap" TextTrimming="WordEllipsis" FontSize="23" />
-                                            </StackPanel>
-                                        </DataTemplate>
-                                    </GroupStyle.HeaderTemplate>
-                                </GroupStyle>
-                            </GridView.GroupStyle>
-                            <GridView.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <VirtualizingStackPanel />
-                                </ItemsPanelTemplate>
-                            </GridView.ItemsPanel>
-                        </GridView>
-                    </SemanticZoom.ZoomedInView>
-                </SemanticZoom>
+                                <GridView.GroupStyle>
+                                    <GroupStyle>
+                                        <GroupStyle.Panel>
+                                            <ItemsPanelTemplate>
+                                                <VariableSizedWrapGrid Margin="0,0,0,50" ItemWidth="150" ItemHeight="150" Orientation="Horizontal">
+                                                    <VariableSizedWrapGrid.ChildrenTransitions>
+                                                        <TransitionCollection>
+                                                            <RepositionThemeTransition />
+                                                        </TransitionCollection>
+                                                    </VariableSizedWrapGrid.ChildrenTransitions>
+                                                </VariableSizedWrapGrid>
+                                            </ItemsPanelTemplate>
+                                        </GroupStyle.Panel>
+                                        <GroupStyle.HeaderTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="{Binding Name}" Margin="3,0,0,0" TextWrapping="NoWrap" TextTrimming="WordEllipsis" FontSize="23" />
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </GroupStyle.HeaderTemplate>
+                                    </GroupStyle>
+                                </GridView.GroupStyle>
+                                <GridView.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <VirtualizingStackPanel />
+                                    </ItemsPanelTemplate>
+                                </GridView.ItemsPanel>
+                            </GridView>
+                        </SemanticZoom.ZoomedInView>
+                    </SemanticZoom>
+                </Grid>
+                <Grid x:Name="FullGrid">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="1"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <controls:NothingToSeeHere Grid.Column="0" Visibility="{Binding IsMusicLibraryEmpty, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                    <SemanticZoom Grid.Column="0" x:Name="AlbumsByArtistSemanticZoom" 
+                              ViewChangeCompleted="AlbumsByArtistSemanticZoom_OnViewChangeCompleted"
+                              ScrollViewer.HorizontalScrollMode="Disabled"
+                              ScrollViewer.VerticalScrollMode="Disabled"
+                              ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                              ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                        <SemanticZoom.ZoomedOutView>
+                            <GridView IsSwipeEnabled="False" >
+                                <GridView.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapGrid VerticalAlignment="Center"/>
+                                    </ItemsPanelTemplate>
+                                </GridView.ItemsPanel>
+                                <GridView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid Width="280" Height="156">
+                                            <Image Source="{Binding Group.Picture}" Stretch="UniformToFill"/>
+                                            <Grid VerticalAlignment="Bottom" Height="35" Margin="0,0,0,20" HorizontalAlignment="Left">
+                                                <Polygon Fill="{StaticResource MainColor}" Points="0,0 0,35 180,35 200,0" />
+                                                <TextBlock MaxWidth="160" Text="{Binding Group.Name}" Foreground="White" TextWrapping="NoWrap" TextTrimming="WordEllipsis" Margin="10,0" FontSize="22" VerticalAlignment="Center" />
+                                            </Grid>
+                                        </Grid>
+                                    </DataTemplate>
+                                </GridView.ItemTemplate>
+                            </GridView>
+                        </SemanticZoom.ZoomedOutView>
+                        <SemanticZoom.ZoomedInView>
+                            <GridView x:Name="AlbumsByArtistListView" IsSwipeEnabled="False" ItemContainerStyle="{StaticResource GridViewItemContainerStyle}" ItemsSource="{Binding Source={StaticResource albumsCollection}}" SelectedIndex="0" SelectionMode="None" IsItemClickEnabled="True" ItemClick="AlbumGridView_ItemClick" 
+                                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                  ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                                  ScrollViewer.HorizontalScrollMode="Disabled"
+                                  ScrollViewer.VerticalScrollMode="Enabled">
+                                <GridView.GroupStyle>
+                                    <GroupStyle>
+                                        <GroupStyle.Panel>
+                                            <ItemsPanelTemplate>
+                                                <VariableSizedWrapGrid Margin="0,0,0,50" Orientation="Horizontal">
+                                                    <VariableSizedWrapGrid.ChildrenTransitions>
+                                                        <TransitionCollection>
+                                                            <RepositionThemeTransition />
+                                                        </TransitionCollection>
+                                                    </VariableSizedWrapGrid.ChildrenTransitions>
+                                                </VariableSizedWrapGrid>
+                                            </ItemsPanelTemplate>
+                                        </GroupStyle.Panel>
+                                        <GroupStyle.HeaderTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="{Binding Name}" Margin="3,0,0,0" TextWrapping="NoWrap" TextTrimming="WordEllipsis" FontSize="23" />
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </GroupStyle.HeaderTemplate>
+                                    </GroupStyle>
+                                </GridView.GroupStyle>
+                                <GridView.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <VirtualizingStackPanel />
+                                    </ItemsPanelTemplate>
+                                </GridView.ItemsPanel>
+                            </GridView>
+                        </SemanticZoom.ZoomedInView>
+                    </SemanticZoom>
 
-                <Border Width="1" Grid.Column="3" Background="#663E3E3E"/>
-                <ListView Grid.Column="4" Width="0" IsSwipeEnabled="False" Margin="10,0,0,0" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" x:Name="AlbumPlaylistListView" SelectionMode="None" FontFamily="Segoe UI" >
-                    <ListView.HeaderTemplate>
-                        <DataTemplate>
-                            <StackPanel>
-                                <StackPanel Orientation="Horizontal">
-                                    <Button Content="" FontSize="24" Style="{StaticResource ModernAppBarButtonStyle}" Command="{Binding PlayAlbum}" CommandParameter="{Binding}" Margin="0,0,10,0"/>
-                                    <Button Template="{StaticResource MainButtonStyle}" Command="{Binding PlayAlbum}" CommandParameter="{Binding}">
-                                        <TextBlock TextWrapping="NoWrap" TextTrimming="WordEllipsis">
+                    <Border Width="1" Grid.Column="1" Background="#663E3E3E"/>
+                    <ListView Grid.Column="2" Width="0" IsSwipeEnabled="False" Margin="10,0,0,0" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" x:Name="AlbumPlaylistListView" SelectionMode="None" FontFamily="Segoe UI" >
+                        <ListView.HeaderTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Content="" FontSize="24" Style="{StaticResource ModernAppBarButtonStyle}" Command="{Binding PlayAlbum}" CommandParameter="{Binding}" Margin="0,0,10,0"/>
+                                        <Button Template="{StaticResource MainButtonStyle}" Command="{Binding PlayAlbum}" CommandParameter="{Binding}">
+                                            <TextBlock TextWrapping="NoWrap" TextTrimming="WordEllipsis">
                                             <Run Text="Play" FontWeight="Light" FontSize="20"/>
                                             <Run Text="{Binding Name}" FontWeight="Light" FontSize="20"/>
                                             <LineBreak />
                                             <Run Text="{Binding Tracks.Count}" Foreground="#B2FFFFFF" FontWeight="SemiBold" FontSize="12"/>
                                             <Run Text="TRACKS" Foreground="#B2FFFFFF" FontFamily="Segoe UI" FontWeight="SemiBold" FontSize="12"/>
-                                        </TextBlock>
-                                    </Button>
+                                            </TextBlock>
+                                        </Button>
+                                    </StackPanel>
                                 </StackPanel>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListView.HeaderTemplate>
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <Button Template="{StaticResource MainButtonStyle}"
+                            </DataTemplate>
+                        </ListView.HeaderTemplate>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Button Template="{StaticResource MainButtonStyle}"
                                 Command="{Binding PlayTrack}"
                                 CommandParameter="{Binding}">
-                                <StackPanel Orientation="Horizontal" Width="300">
-                                    <TextBlock Text="{Binding Index}" FontSize="22" FontWeight="SemiBold" />
-                                    <TextBlock Text="{Binding Name}" VerticalAlignment="Bottom" Margin="5,0,0,2"/>
-                                </StackPanel>
-                            </Button>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                                    <StackPanel Orientation="Horizontal" Width="300">
+                                        <TextBlock Text="{Binding Index}" FontSize="22" FontWeight="SemiBold" />
+                                        <TextBlock Text="{Binding Name}" VerticalAlignment="Bottom" Margin="5,0,0,2"/>
+                                    </StackPanel>
+                                </Button>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
             </Grid>
             <Grid x:Name="TracksPanel">
                 <ListView ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" ItemsSource="{Binding Track}">

@@ -36,25 +36,27 @@ namespace VLC_WINRT.Views.Controls.MainPage
                 if (sizeChangedEventArgs.NewSize.Width < 1080)
                 {
                     SectionsGrid.Margin = new Thickness(40, 0, 0, 0);
-                    ArtistListView.Visibility = Visibility.Collapsed;
                     AlbumPlaylistListView.Visibility = Visibility.Collapsed;
                 }
                 else
                 {
                     SectionsGrid.Margin = new Thickness(50, 0, 0, 0);
-                    ArtistListView.Visibility = Visibility.Visible;
                     AlbumPlaylistListView.Visibility = Visibility.Visible;
                 }
 
 
                 if (sizeChangedEventArgs.NewSize.Width == 320)
                 {
+                    FullGrid.Visibility = Visibility.Collapsed;
+                    SnapGrid.Visibility= Visibility.Visible;
                     SectionsHeaderListView.Visibility = Visibility.Collapsed;
                     AlbumsByArtistListView.ItemTemplate = Application.Current.Resources["LittleSizedAlbumDataTemplate"] as DataTemplate;
                     SectionsGrid.Margin = new Thickness(0);
                 }
                 else
                 {
+                    FullGrid.Visibility = Visibility.Visible;
+                    SnapGrid.Visibility = Visibility.Collapsed;
                     SectionsHeaderListView.Visibility = Visibility.Visible;
                     AlbumsByArtistListView.ItemTemplate = Application.Current.Resources["NormalSizedAlbumDataTemplate"] as DataTemplate;
                     SectionsGrid.Margin = new Thickness(50, 0, 0, 0);
