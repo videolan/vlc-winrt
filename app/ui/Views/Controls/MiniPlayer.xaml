@@ -18,23 +18,25 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="300"/>
         </Grid.ColumnDefinitions>
-        <StackPanel Orientation="Horizontal" Margin="50,0,0,0" HorizontalAlignment="Left" Tapped="InformationsCurrentPlayingGrid_Tapped">
-            <Image Height="70" Stretch="UniformToFill" Source="{Binding Artist.CurrentAlbumItem.Picture}" />
-            <StackPanel Margin="10,0,0,0">
-                <TextBlock Text="{Binding Artist.Name}" VerticalAlignment="Top" Margin="0,15,0,0"/>
-                <TextBlock Text="{Binding Title}" VerticalAlignment="Bottom" Margin="0,0,0,15"/>
+        <Button Margin="50,0,0,0" HorizontalAlignment="Left" Template="{StaticResource MainButtonStyle}" Tapped="InformationsCurrentPlayingGrid_Tapped">
+            <StackPanel Orientation="Horizontal" >
+                <Image Height="70" Stretch="UniformToFill" Source="{Binding Artist.CurrentAlbumItem.Picture}" />
+                <Grid Margin="10,0,0,0">
+                    <TextBlock Text="{Binding Artist.Name}" VerticalAlignment="Top" Style="{StaticResource VLCSubHeaderStyle}" Margin="0,5,0,0"/>
+                    <TextBlock Text="{Binding Title}" VerticalAlignment="Bottom" Style="{StaticResource BodyTextStyle}" FontWeight="SemiBold" Margin="1,0,0,5"/>
+                </Grid>
             </StackPanel>
-        </StackPanel>
+        </Button>
         <Grid Grid.Column="1" VerticalAlignment="Center" Margin="0,-8,50,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Visibility="{Binding TrackCollection.CanGoPrevious, Converter={StaticResource BooleanToVisibilityConverter}}" Style="{StaticResource SkipBackNoTextAppBarButtonStyle}" Command="{Binding PlayPreviousCommand}"/>
+            <Button Grid.Column="0" Visibility="{Binding TrackCollection.CanGoPrevious, Converter={StaticResource BooleanToVisibilityConverter}}" Style="{StaticResource SkipBackNoTextMediumAppBarButtonStyle}" Command="{Binding PlayPreviousCommand}"/>
             <Button Grid.Column="1" Foreground="{StaticResource MainColor}" Visibility="{Binding IsPlaying, Converter={StaticResource NegatedBooleanToVisibilityConverter}}" Style="{StaticResource PlayNoTextAppBarButtonStyle}" Command="{Binding PlayOrPause}"/>
             <Button Grid.Column="1" Foreground="{StaticResource MainColor}" Visibility="{Binding IsPlaying, Converter={StaticResource BooleanToVisibilityConverter}}" Style="{StaticResource PauseNoTextAppBarButtonStyle}" Command="{Binding PlayOrPause}"/>
-            <Button Grid.Column="2" Visibility="{Binding TrackCollection.CanGoNext, Converter={StaticResource BooleanToVisibilityConverter}}" Style="{StaticResource SkipAheadNoTextAppBarButtonStyle}" Command="{Binding PlayNextCommand}"/>
+            <Button Grid.Column="2" Visibility="{Binding TrackCollection.CanGoNext, Converter={StaticResource BooleanToVisibilityConverter}}" Style="{StaticResource SkipAheadNoTextMediumAppBarButtonStyle}" Command="{Binding PlayNextCommand}"/>
         </Grid>
         <ProgressBar Style="{StaticResource ThinProgressBar}" VerticalAlignment="Bottom" Grid.ColumnSpan="2" Value="{Binding ElapsedTime}" Maximum="{Binding TimeTotal}"/>
     </Grid>
