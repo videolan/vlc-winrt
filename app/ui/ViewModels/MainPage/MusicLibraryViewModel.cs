@@ -241,6 +241,7 @@ namespace VLC_WINRT.ViewModels.MainPage
                 null,
                 CreationCollisionOption.ReplaceExisting);
         }
+
         public class ArtistItemViewModel : BindableBase
         {
             private string _name;
@@ -253,7 +254,7 @@ namespace VLC_WINRT.ViewModels.MainPage
             private List<OnlineAlbumItem> _onlinePopularAlbumItems = new List<OnlineAlbumItem>();
             private List<ArtistItemViewModel> _onlineRelatedArtists = new List<ArtistItemViewModel>();
             private bool _isFavorite;
-            ArtistInformationsHelper informationHelper;
+            private ArtistInformationsHelper informationHelper;
 
             public string Name
             {
@@ -266,6 +267,7 @@ namespace VLC_WINRT.ViewModels.MainPage
                 get { return _picture; }
                 set { SetProperty(ref _picture, value); }
             }
+
             public ObservableCollection<AlbumItem> Albums
             {
                 get { return _albumItems; }
@@ -294,22 +296,21 @@ namespace VLC_WINRT.ViewModels.MainPage
 
             public List<OnlineAlbumItem> OnlinePopularAlbumItems
             {
-                get
-                {
-                    return _onlinePopularAlbumItems;
-                }
+                get { return _onlinePopularAlbumItems; }
                 set { SetProperty(ref _onlinePopularAlbumItems, value); }
             }
 
             public List<ArtistItemViewModel> OnlineRelatedArtists
             {
-                get
-                {
-                    return _onlineRelatedArtists;
-                }
+                get { return _onlineRelatedArtists; }
                 set { SetProperty(ref _onlineRelatedArtists, value); }
             }
-            public bool IsFavorite { get { return _isFavorite; } set { SetProperty(ref _isFavorite, value); } }
+
+            public bool IsFavorite
+            {
+                get { return _isFavorite; }
+                set { SetProperty(ref _isFavorite, value); }
+            }
 
             public ArtistItemViewModel(StorageFolderQueryResult albumQueryResult, string artistName)
             {
@@ -322,7 +323,7 @@ namespace VLC_WINRT.ViewModels.MainPage
             {
             }
 
-            async Task ArtistInformations()
+            private async Task ArtistInformations()
             {
                 informationHelper = new ArtistInformationsHelper();
                 await informationHelper.GetArtistFromXboxMusic(Name);
@@ -333,12 +334,12 @@ namespace VLC_WINRT.ViewModels.MainPage
                 OnPropertyChanged("OnlinePopularAlbumsItems");
             }
 
-            async Task GetBiography()
+            private async Task GetBiography()
             {
                 Biography = await informationHelper.GetArtistBiography();
             }
 
-            async Task LoadAlbums(StorageFolderQueryResult albumQueryResult)
+            private async Task LoadAlbums(StorageFolderQueryResult albumQueryResult)
             {
                 IReadOnlyList<StorageFolder> albumFolders = null;
                 try
@@ -361,7 +362,11 @@ namespace VLC_WINRT.ViewModels.MainPage
                         {
                             fileName = musicAttr.Artist + "_" + musicAttr.Album;
 
-                            var file = await ApplicationData.Current.LocalFolder.CreateFileAsync(musicAttr.Artist + "_" + musicAttr.Album + ".jpg", CreationCollisionOption.ReplaceExisting);
+                            var file =
+                                await
+                                    ApplicationData.Current.LocalFolder.CreateFileAsync(
+                                        musicAttr.Artist + "_" + musicAttr.Album + ".jpg",
+                                        CreationCollisionOption.ReplaceExisting);
                             var raStream = await file.OpenAsync(FileAccessMode.ReadWrite);
 
                             using (var thumbnailStream = thumbnail.GetInputStreamAt(0))
@@ -387,7 +392,6 @@ namespace VLC_WINRT.ViewModels.MainPage
                     }
                 }
             }
-
         }
 
         public class OnlineAlbumItem : BindableBase

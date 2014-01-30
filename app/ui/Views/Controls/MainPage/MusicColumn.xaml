@@ -127,7 +127,7 @@
                             <GridView IsSwipeEnabled="False" >
                                 <GridView.ItemsPanel>
                                     <ItemsPanelTemplate>
-                                        <VariableSizedWrapGrid Margin="50,0,0,0" VerticalAlignment="Center"/>
+                                        <WrapGrid Margin="50,0,0,0" VerticalAlignment="Center"/>
                                     </ItemsPanelTemplate>
                                 </GridView.ItemsPanel>
                                 <GridView.ItemTemplate>
@@ -139,6 +139,17 @@
                                                 <TextBlock MaxWidth="160" Text="{Binding Group.Name}" Foreground="White" TextWrapping="NoWrap" TextTrimming="WordEllipsis" Margin="10,0" FontSize="22" VerticalAlignment="Center" />
                                             </Grid>
                                         </Grid>
+                                        <!--<Grid  Width="310" Height="70" Background="#151515">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="70"/>
+                                                <ColumnDefinition Width="10"/>
+                                                <ColumnDefinition Width="240"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Image Source="{Binding Group.Picture}" Height="70" Stretch="UniformToFill" HorizontalAlignment="Center"/>
+                                            <StackPanel Grid.Column="2" VerticalAlignment="Center">
+                                                <TextBlock Text="{Binding Group.Name}" TextWrapping="NoWrap" TextTrimming="WordEllipsis" FontSize="17"/>
+                                            </StackPanel>
+                                        </Grid>-->
                                     </DataTemplate>
                                 </GridView.ItemTemplate>
                             </GridView>

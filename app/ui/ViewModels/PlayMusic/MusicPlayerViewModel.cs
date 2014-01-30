@@ -130,6 +130,7 @@ namespace VLC_WINRT.ViewModels.PlayMusic
                 return _trackCollection;
             }
         }
+
         void _vlcPlayerService_MediaEnded(object sender, libVLCX.Player e)
         {
             PlayNext();
