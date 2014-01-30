@@ -106,11 +106,16 @@ namespace VLC_WINRT.Views
 
         private async void MorePanelsButton_OnClick(object sender, RoutedEventArgs e)
         {
+            CreateVLCMenu();
+        }
+
+        public async void CreateVLCMenu()
+        {
             var popupMenu = new PopupMenu();
             popupMenu.Commands.Add(new UICommand("External storage", async h =>
             {
                 await FadeOutPage.BeginAsync();
-                NavigationService.NavigateTo(typeof (RemovableStoragePage));
+                NavigationService.NavigateTo(typeof(RemovableStoragePage));
             }));
 
             popupMenu.Commands.Add(new UICommand("Media servers", async h =>
@@ -128,10 +133,9 @@ namespace VLC_WINRT.Views
             {
                 Locator.MainPageVM.PlayNetworkMRL.Execute(null);
             }));
-            
-            var button = (Button)sender;
-            var transform = button.TransformToVisual(this);
-            var point = transform.TransformPoint(new Point(-60, 50));
+
+            var transform = RootGrid.TransformToVisual(this);
+            var point = transform.TransformPoint(new Point(270, 110));
             await popupMenu.ShowAsync(point);
         }
     }

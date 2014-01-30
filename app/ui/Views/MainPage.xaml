@@ -138,7 +138,7 @@
         </Storyboard>
     </views:BasePage.Resources>
 
-    <Grid>
+    <Grid x:Name="RootGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -184,7 +184,6 @@
                 </StackPanel>
             </Grid>
             <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button Style="{StaticResource OpenFileNoTextAppBarButtonStyle}" />
                 <Button Style="{StaticResource SearchNoTextAppBarButtonStyle}" />
             </StackPanel>
         </Grid>
