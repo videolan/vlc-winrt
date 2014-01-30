@@ -118,6 +118,7 @@
     <Compile Include="Utility\Converters\TimespanShortStringConverter.cs" />
     <Compile Include="Utility\DataTemplateSelectors\MediaItemDataTemplateSelector.cs" />
     <Compile Include="Utility\Helpers\DoesFileExistHelper.cs" />
+    <Compile Include="Utility\Helpers\DownloadAndSaveHelper.cs" />
     <Compile Include="Utility\Helpers\MusicLibrary\ArtistInformationsHelper.cs" />
     <Compile Include="Utility\Helpers\SerializationHelper.cs" />
     <Compile Include="Utility\Helpers\StoryboardExtensions.cs" />

@@ -55,17 +55,23 @@ namespace VLC_WINRT.ViewModels.PlayMusic
             _playPrevious = new PlayPreviousCommand();
             _trackCollection = new TrackCollectionViewModel();
 
+        }
 
+        void RegisterWindows8Events()
+        {
             // register the windows 8 overlay media control events
             MediaControl.StopPressed += MediaControl_StopPressed;
             MediaControl.PlayPressed += MediaControl_PlayPressed;
             MediaControl.PlayPauseTogglePressed += MediaControl_PlayPauseTogglePressed;
             MediaControl.PausePressed += MediaControl_PausePressed;
+            MediaControl.IsPlaying = false;
         }
-
         void MediaControl_PreviousTrackPressed(object sender, object e)
         {
-            PlayPrevious();
+            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                PlayPrevious();
+            });
         }
 
         void MediaControl_NextTrackPressed(object sender, object e)
@@ -76,8 +82,7 @@ namespace VLC_WINRT.ViewModels.PlayMusic
         {
             App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                _vlcPlayerService.Pause();
-                MediaControl.IsPlaying = false;
+                Pause();
             });
         }
 
@@ -87,8 +92,7 @@ namespace VLC_WINRT.ViewModels.PlayMusic
             {
                 App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                 {
-                    _vlcPlayerService.Pause(); 
-                    MediaControl.IsPlaying = false;
+                    Pause();
                 });
             }
             else
@@ -115,6 +119,7 @@ namespace VLC_WINRT.ViewModels.PlayMusic
             App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 _vlcPlayerService.Stop();
+                MediaControl.IsPlaying = false;
             });
         }
 
@@ -137,14 +142,14 @@ namespace VLC_WINRT.ViewModels.PlayMusic
         }
         public void PlayNext()
         {
-                if (TrackCollection.IsNextPossible())
-                {
-                    TrackCollection.CurrentTrack++;
-                    Play();
-                }
-                else
-                    MediaControl.IsPlaying = false;
-         
+            if (TrackCollection.IsNextPossible())
+            {
+                TrackCollection.CurrentTrack++;
+                Play();
+            }
+            else
+                MediaControl.IsPlaying = false;
+
         }
         public void PlayPrevious()
         {
@@ -175,7 +180,14 @@ namespace VLC_WINRT.ViewModels.PlayMusic
             MediaControl.IsPlaying = true;
             MediaControl.ArtistName = trackItem.ArtistName;
             MediaControl.TrackName = trackItem.Name;
-            //MediaControl.AlbumArt = new Uri(Locator.MusicPlayerVM.Artist.CurrentAlbumItem.Picture, UriKind.Absolute);
+            try
+            {
+                MediaControl.AlbumArt = new Uri(Locator.MusicPlayerVM.Artist.CurrentAlbumItem.Picture);
+            }
+            catch
+            {
+                // If album cover is from the internet then it's impossible to pass it to the MediaControl
+            }
 
             TrackCollection.IsNextPossible();
             TrackCollection.IsPreviousPossible();
@@ -190,6 +202,12 @@ namespace VLC_WINRT.ViewModels.PlayMusic
             else
                 MediaControl.PreviousTrackPressed -= MediaControl_PreviousTrackPressed;
 
+        }
+
+        public void Pause()
+        {
+            _vlcPlayerService.Pause();
+            MediaControl.IsPlaying = false;
         }
         public double PositionInSeconds
         {
@@ -310,6 +328,7 @@ namespace VLC_WINRT.ViewModels.PlayMusic
             if (e == MediaPlayerService.MediaPlayerState.Playing)
             {
                 IsPlaying = true;
+                RegisterWindows8Events();
             }
             else
             {
@@ -327,7 +346,7 @@ namespace VLC_WINRT.ViewModels.PlayMusic
             _fileToken = token;
             _mrl = "winrt://" + token;
             Title = track.Name;
-            Artist = Locator.MusicLibraryVM.Artist.FirstOrDefault(x=>x.Name == track.ArtistName);
+            Artist = Locator.MusicLibraryVM.Artist.FirstOrDefault(x => x.Name == track.ArtistName);
             Artist.CurrentAlbumIndex = _artist.Albums.IndexOf(_artist.Albums.FirstOrDefault(x => x.Name == track.AlbumName));
             _vlcPlayerService.Open(_mrl);
             OnPropertyChanged("TimeTotal");

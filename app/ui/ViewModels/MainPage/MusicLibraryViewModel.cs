@@ -337,6 +337,7 @@ namespace VLC_WINRT.ViewModels.MainPage
             {
                 Biography = await informationHelper.GetArtistBiography();
             }
+
             async Task LoadAlbums(StorageFolderQueryResult albumQueryResult)
             {
                 IReadOnlyList<StorageFolder> albumFolders = null;
