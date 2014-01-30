@@ -133,10 +133,10 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <Button Style="{StaticResource PreviousAppBarButtonStyle}" Click="GoBack_Click" />
-                    <TextBlock Grid.Column="1" Text="{Binding Artist.Name}" Foreground="#e67e22" FontSize="36" FontWeight="Light" HorizontalAlignment="Left"/>
+                    <TextBlock Grid.Column="1" Text="{Binding Artist.Name}" Foreground="#e67e22" FontSize="36" FontWeight="Light" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
                 </Grid>
             </Grid>
-            <Grid Grid.Row="1" x:Name="MainGrid">
+            <Grid Grid.Row="1" x:Name="MainGrid" Margin="0,50,0,0">
                 <Grid.RenderTransform>
                     <CompositeTransform />
                 </Grid.RenderTransform>
@@ -144,11 +144,11 @@
                       VerticalScrollBarVisibility="Disabled"
                       HorizontalScrollMode="Auto"
                       HorizontalScrollBarVisibility="Auto"
-                      VerticalContentAlignment="Center"
-                      HorizontalContentAlignment="Center"
+                      VerticalContentAlignment="Top"
+                      HorizontalContentAlignment="Left"
                       ZoomMode="Enabled"
                       MaxZoomFactor="1"
-                      MinZoomFactor="0.5">
+                      MinZoomFactor="0.4">
                     <StackPanel Orientation="Horizontal">
                         <Grid Margin="100,0,0,0">
                             <Grid.RowDefinitions>
@@ -158,7 +158,7 @@
                             <Grid >
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="200"/>
-                                    <ColumnDefinition Width="350" />
+                                    <ColumnDefinition Width="300" />
                                 </Grid.ColumnDefinitions>
                                 <Image Height="200" Width="200" VerticalAlignment="Top" Stretch="UniformToFill" Source="{Binding Artist.CurrentAlbumItem.Picture}"/>
                                 <Grid Grid.Column="1" Margin="10,0">
@@ -176,33 +176,63 @@
                                     </StackPanel>
                                 </Grid>
                             </Grid>
-
-                            <ListView Grid.Row="1" HorizontalAlignment="Left" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" HeaderTemplate="{StaticResource ColumnHeaderDataTemplate}" Header="playlist" ItemsSource="{Binding TrackCollection.TrackCollection}" Width="500" FontFamily="Segoe UI">
+                            <ListView Grid.Row="1" IsSwipeEnabled="False" HorizontalAlignment="Left" Width="500" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" Margin="0,10,0,0" Visibility="{Binding Artist.OnlinePopularAlbumItems.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}" SelectionMode="None" IsItemClickEnabled="True" HeaderTemplate="{StaticResource ColumnHeaderDataTemplate}" Header="popular albums" ItemsSource="{Binding Artist.OnlinePopularAlbumItems}">
+                                <ListView.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapGrid Orientation="Horizontal" />
+                                    </ItemsPanelTemplate>
+                                </ListView.ItemsPanel>
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
-                                        <Button Template="{StaticResource MainButtonStyle}"
-                                Command="{Binding PlayTrack}"
-                                CommandParameter="{Binding}" Margin="-4,0,0,0" Padding="0,4,4,4">
-                                            <Grid VerticalAlignment="Center">
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="300"/>
-                                                    <ColumnDefinition Width="130"/>
-                                                </Grid.ColumnDefinitions>
-                                                <StackPanel>
-                                                    <TextBlock Text="{Binding Name}" Style="{StaticResource SubheaderTextStyle}" />
-                                                    <TextBlock Text="{Binding ArtistName}" Style="{StaticResource BodyTextStyle}"/>
+                                        <Grid Height="125" Width="125">
+                                            <Image Source="{Binding Picture}" Stretch="UniformToFill"/>
+                                            <Grid Height="80" VerticalAlignment="Bottom">
+                                                <Grid.Background>
+                                                    <LinearGradientBrush StartPoint="1,0">
+                                                        <GradientStopCollection>
+                                                            <GradientStop Color="#990A0A0A" Offset="1"/>
+                                                            <GradientStop Color="#00020202" />
+                                                        </GradientStopCollection>
+                                                    </LinearGradientBrush>
+                                                </Grid.Background>
+                                                <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="5">
+                                                    <TextBlock Text="{Binding Name}" TextWrapping="NoWrap" TextTrimming="WordEllipsis" FontSize="16" />
+                                                    <!--<TextBlock Text="{Binding Year}" FontSize="14" Foreground="#7FF5F5F5"/>-->
                                                 </StackPanel>
-                                                <Grid Grid.Column="1" Width="130">
-                                                    <Button Style="{StaticResource LikeLittleAppBarButtonStyle}" Visibility="{Binding Favorite, Converter={StaticResource NegatedBooleanToVisibilityConverter}}" Command="{Binding FavoriteTrack}" CommandParameter="{Binding}"/>
-                                                    <Button Style="{StaticResource DisLikeLittleAppBarButtonStyle}" Visibility="{Binding Favorite, Converter={StaticResource BooleanToVisibilityConverter}}" Command="{Binding FavoriteTrack}" CommandParameter="{Binding}"/>
-                                                </Grid>
                                             </Grid>
-                                        </Button>
+                                        </Grid>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
                             </ListView>
                         </Grid>
-                        <ListView Margin="10,0" Width="350" Visibility="{Binding Artist.OnlineRelatedArtists.Count, Converter={StaticResource NegatedBooleanToVisibilityConverter}}" HeaderTemplate="{StaticResource ColumnHeaderDataTemplate}" Header="similar artists" ItemsSource="{Binding Artist.OnlineRelatedArtists}" SelectedIndex="0" SelectionMode="None" IsItemClickEnabled="True" >
+                        <ListView Margin="0,0,0,0" HorizontalAlignment="Left" SelectionMode="None" IsSwipeEnabled="False" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" HeaderTemplate="{StaticResource ColumnHeaderDataTemplate}" Header="playlist" ItemsSource="{Binding TrackCollection.TrackCollection}" Width="360">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Button Template="{StaticResource MainButtonStyle}"
+                                Command="{Binding PlayTrack}"
+                                CommandParameter="{Binding}" Margin="-4,0,0,0" Padding="0,4,4,4">
+                                        <Grid VerticalAlignment="Center">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="250"/>
+                                                <ColumnDefinition Width="110"/>
+                                            </Grid.ColumnDefinitions>
+                                            <StackPanel>
+                                                <TextBlock Text="{Binding Name}" Style="{StaticResource BodyTextStyle}" >
+                                                    <Run Text="{Binding Name}" />
+                                                    <Run Text=" - "/>
+                                                    <Run Text="{Binding ArtistName}"/>
+                                                </TextBlock>
+                                            </StackPanel>
+                                            <Grid Grid.Column="1" Width="130">
+                                                <Button Style="{StaticResource LikeLittleAppBarButtonStyle}" Visibility="{Binding Favorite, Converter={StaticResource NegatedBooleanToVisibilityConverter}}" Command="{Binding FavoriteTrack}" CommandParameter="{Binding}"/>
+                                                <Button Style="{StaticResource DisLikeLittleAppBarButtonStyle}" Visibility="{Binding Favorite, Converter={StaticResource BooleanToVisibilityConverter}}" Command="{Binding FavoriteTrack}" CommandParameter="{Binding}"/>
+                                            </Grid>
+                                        </Grid>
+                                    </Button>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                        <ListView Margin="20,0" IsSwipeEnabled="False" Width="400" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" Visibility="{Binding Artist.OnlineRelatedArtists.Count, Converter={StaticResource NegatedBooleanToVisibilityConverter}}" HeaderTemplate="{StaticResource ColumnHeaderDataTemplate}" Header="similar artists" ItemsSource="{Binding Artist.OnlineRelatedArtists}" SelectedIndex="0" SelectionMode="None" IsItemClickEnabled="True" >
                             <ListView.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <WrapGrid Orientation="Horizontal" />
@@ -229,47 +259,8 @@
                                     </Grid>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
-                            <ListView.ItemContainerStyle>
-                                <Style TargetType="ListViewItem">
-                                    <Setter Property="Padding" Value="-5"/>
-                                    <Setter Property="Margin" Value="0"/>
-                                </Style>
-                            </ListView.ItemContainerStyle>
                         </ListView>
-                        <ListView Margin="10,0" Width="350" Visibility="{Binding Artist.OnlinePopularAlbumItems.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}" SelectionMode="None" IsItemClickEnabled="True" HeaderTemplate="{StaticResource ColumnHeaderDataTemplate}" Header="popular albums" ItemsSource="{Binding Artist.OnlinePopularAlbumItems}">
-                            <ListView.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <WrapGrid Orientation="Horizontal" />
-                                </ItemsPanelTemplate>
-                            </ListView.ItemsPanel>
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid Height="150" Width="150">
-                                        <Image Source="{Binding Picture}" Stretch="UniformToFill"/>
-                                        <Grid Height="80" VerticalAlignment="Bottom">
-                                            <Grid.Background>
-                                                <LinearGradientBrush StartPoint="1,0">
-                                                    <GradientStopCollection>
-                                                        <GradientStop Color="#990A0A0A" Offset="1"/>
-                                                        <GradientStop Color="#00020202" />
-                                                    </GradientStopCollection>
-                                                </LinearGradientBrush>
-                                            </Grid.Background>
-                                            <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="5">
-                                                <TextBlock Text="{Binding Name}" TextWrapping="NoWrap" TextTrimming="WordEllipsis" FontSize="18" FontWeight="Light" />
-                                                <!--<TextBlock Text="{Binding Year}" FontSize="14" Foreground="#7FF5F5F5"/>-->
-                                            </StackPanel>
-                                        </Grid>
-                                    </Grid>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                            <ListView.ItemContainerStyle>
-                                <Style TargetType="ListViewItem">
-                                    <Setter Property="Padding" Value="-5"/>
-                                    <Setter Property="Margin" Value="0"/>
-                                </Style>
-                            </ListView.ItemContainerStyle>
-                        </ListView>
+
                         <TextBlock Margin="10,0" Width="450" FontSize="42" TextWrapping="Wrap">
                             <Run Text="❝" Foreground="Orange" FontFamily="Segoe UI Symbol"/>
                             <Run Text="{Binding Artist.Biography}" FontSize="18"/>
