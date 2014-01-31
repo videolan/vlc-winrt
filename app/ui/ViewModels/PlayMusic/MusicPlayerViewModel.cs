@@ -181,14 +181,14 @@ namespace VLC_WINRT.ViewModels.PlayMusic
             MediaControl.IsPlaying = true;
             MediaControl.ArtistName = trackItem.ArtistName;
             MediaControl.TrackName = trackItem.Name;
-            try
-            {
+            //try
+            //{
                 MediaControl.AlbumArt = new Uri(Locator.MusicPlayerVM.Artist.CurrentAlbumItem.Picture);
-            }
-            catch
-            {
-                // If album cover is from the internet then it's impossible to pass it to the MediaControl
-            }
+            //}
+            //catch
+            //{
+            //    // If album cover is from the internet then it's impossible to pass it to the MediaControl
+            //}
 
             TrackCollection.IsNextPossible();
             TrackCollection.IsPreviousPossible();
