@@ -1078,7 +1078,7 @@
                                 <TextBlock Text="{Binding Title}" Foreground="White" TextWrapping="NoWrap" TextTrimming="WordEllipsis" FontSize="20" />
                                 <TextBlock Style="{StaticResource BodyTextStyle}">
                                         <Run Text="{Binding Duration, Converter={StaticResource TimeSpanShortStringConverter}}" />
-                                        <Run Text="{Binding File.FileType}" />
+                                        <Run Text="{Binding Type}" />
                                 </TextBlock>
                             </StackPanel>
                         </Grid>
@@ -1109,7 +1109,7 @@
                                 <TextBlock Text="{Binding Title}" Foreground="White" TextWrapping="NoWrap" TextTrimming="WordEllipsis" FontSize="18" />
                                 <TextBlock Style="{StaticResource BodyTextStyle}">
                                         <Run Text="{Binding Duration, Converter={StaticResource TimeSpanShortStringConverter}}" />
-                                        <Run Text="{Binding File.FileType}" />
+                                        <Run Text="{Binding Type}" />
                                 </TextBlock>
                             </StackPanel>
                         </Grid>
@@ -1139,7 +1139,7 @@
                                 <TextBlock Text="{Binding Title}" Foreground="White" TextWrapping="NoWrap" TextTrimming="WordEllipsis" FontSize="18" />
                                 <TextBlock Style="{StaticResource BodyTextStyle}">
                                         <Run Text="{Binding Duration, Converter={StaticResource TimeSpanShortStringConverter}}" />
-                                        <Run Text="{Binding File.FileType}" />
+                                        <Run Text="{Binding Type}" />
                                 </TextBlock>
                             </StackPanel>
                         </Grid>

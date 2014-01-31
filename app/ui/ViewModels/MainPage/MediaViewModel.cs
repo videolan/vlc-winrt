@@ -1,11 +1,16 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
+using Windows.Foundation;
 using Windows.Storage.FileProperties;
 using Windows.UI.Xaml.Automation;
+using VLC_WINRT.Common;
+using VLC_WINRT.Model;
 using VLC_WINRT.Utility.Commands;
 using Windows.Storage;
 using VLC_WINRT.Utility.Commands.VideoPlayer;
+using VLC_WINRT.Utility.IoC;
+using VLC_WINRT.Utility.Services.RunTime;
 
 namespace VLC_WINRT.ViewModels.MainPage
 {
@@ -18,6 +23,8 @@ namespace VLC_WINRT.ViewModels.MainPage
         private char _alphaKey;
         private bool _favorite;
         private TimeSpan _duration;
+        private string _type;
+        private TimeSpan _timeWatched;
 
         public MediaViewModel(StorageFile storageFile)
             : base(storageFile)
@@ -27,12 +34,18 @@ namespace VLC_WINRT.ViewModels.MainPage
                 Title = storageFile.DisplayName;
                 AlphaKey = Title.ToUpper()[0];
                 Subtitle = storageFile.FileType.ToUpper() + " File";
+                Type = File.FileType.Replace(".", "").ToLower();
                 OpenVideo = new OpenVideoCommand();
                 FavoriteVideo = new FavoriteVideoCommand();
-                SetDuration();
+                GetTimeInformation();
             }
         }
 
+        public string Type
+        {
+            get { return _type; }
+            set { SetProperty(ref _type, value); }
+        }
         public char AlphaKey
         {
             get { return _alphaKey; }
@@ -56,23 +69,34 @@ namespace VLC_WINRT.ViewModels.MainPage
             set { SetProperty(ref _favorite, value); }
         }
 
+        public TimeSpan TimeWatched
+        {
+            get { return _timeWatched; }
+            set
+            {
+                SetProperty(ref _timeWatched, value);
+                OnPropertyChanged("PortionWatched");
+            }
+        }
+
         public TimeSpan Duration
         {
             get { return _duration; }
             set { SetProperty(ref _duration, value); }
         }
 
-        async void SetDuration()
+
+        private async void GetTimeInformation()
         {
-            try
+            if (VideoProperties == null)
+                VideoProperties = await File.Properties.GetVideoPropertiesAsync();
+
+            TimeSpan duration = VideoProperties != null ? VideoProperties.Duration : TimeSpan.FromSeconds(0);
+
+            DispatchHelper.Invoke(() =>
             {
-                //var p = await File.Properties.GetVideoPropertiesAsync();
-                //if (p == null) return;
-                //Duration = p.Duration;
-            }
-            catch
-            {
-            }
+                Duration = duration;
+            });
         }
 
         public OpenVideoCommand OpenVideo
