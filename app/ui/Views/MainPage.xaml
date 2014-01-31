@@ -159,7 +159,7 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="50"/>
                 </Grid.RowDefinitions>
-                <TextBlock Text="VLC MX" Margin="3,0,0,0" FontWeight="SemiBold" FontSize="20"/>
+                <TextBlock Text="VLC for WinRT" Margin="3,0,0,0" FontWeight="SemiBold" FontSize="20"/>
 
                 <StackPanel Grid.Row="1" Orientation="Horizontal">
                     <ListView ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" x:Name="SectionsHeaderListView" Grid.Column="1" SelectionMode="None" IsItemClickEnabled="True" ItemClick="SectionsHeaderListView_OnItemClick" ItemsSource="{Binding Panels}" RenderTransformOrigin="0.5,0.5" 
