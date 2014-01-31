@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-
-namespace XboxMusicLibrary.Models
+﻿namespace XboxMusicLibrary.Models
 {
     public class Contributor
     {

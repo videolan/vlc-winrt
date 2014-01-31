@@ -10,5 +10,6 @@
     <SwapChainBackgroundPanel x:Name="SwapChainPanel">
         <controls:AnimatedBackground x:Name="AnimatedBackground"/>
         <Frame x:Name="MainFrame" x:FieldModifier="public" Navigated="MainFrame_OnNavigated"/>
+        <controls:SearchFlyout x:Name="SearchPane" x:FieldModifier="public" />
     </SwapChainBackgroundPanel>
 </Page>

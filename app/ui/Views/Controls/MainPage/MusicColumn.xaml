@@ -75,7 +75,7 @@
                             </ListView>
                         </SemanticZoom.ZoomedOutView>
                         <SemanticZoom.ZoomedInView>
-                            <ListView IsSwipeEnabled="False" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" ItemsSource="{Binding Source={StaticResource albumsCollection}}" SelectionMode="None" IsItemClickEnabled="False" 
+                            <ListView x:Name="AlbumsByArtistListViewSnap" IsSwipeEnabled="False" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" ItemsSource="{Binding Source={StaticResource albumsCollection}}" SelectionMode="None" IsItemClickEnabled="False" 
                                   ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                                   ScrollViewer.VerticalScrollBarVisibility="Disabled"
                                   ScrollViewer.HorizontalScrollMode="Disabled"
@@ -124,7 +124,7 @@
                               ScrollViewer.VerticalScrollBarVisibility="Disabled"
                               ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                         <SemanticZoom.ZoomedOutView>
-                            <GridView IsSwipeEnabled="False" >
+                            <GridView IsSwipeEnabled="False" x:Name="MainArtistGridView">
                                 <GridView.ItemsPanel>
                                     <ItemsPanelTemplate>
                                         <WrapGrid Margin="50,0,0,0" VerticalAlignment="Center"/>

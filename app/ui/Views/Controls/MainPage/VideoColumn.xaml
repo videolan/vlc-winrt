@@ -63,7 +63,7 @@
                     </GridView>
                 </SemanticZoom.ZoomedOutView>
                 <SemanticZoom.ZoomedInView>
-                    <GridView ItemTemplate="{StaticResource NormaleMovieTemplate}" IsSwipeEnabled="False" ItemContainerStyle="{StaticResource GridViewItemContainerStyle}" ItemsSource="{Binding Source={StaticResource MediaGroupedByAlphabet}}" SelectedIndex="0" SelectionMode="None" IsItemClickEnabled="True" 
+                    <GridView x:Name="ZoomedInGridViewFull" ItemTemplate="{StaticResource NormaleMovieTemplate}" IsSwipeEnabled="False" ItemContainerStyle="{StaticResource GridViewItemContainerStyle}" ItemsSource="{Binding Source={StaticResource MediaGroupedByAlphabet}}" SelectedIndex="0" SelectionMode="None" IsItemClickEnabled="True" 
                               ScrollViewer.HorizontalScrollBarVisibility="Auto"
                                   ScrollViewer.VerticalScrollBarVisibility="Disabled"
                                   ScrollViewer.HorizontalScrollMode="Enabled"

@@ -1,5 +1,4 @@
-﻿using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
+﻿using Windows.UI.Xaml.Controls;
 using VLC_WINRT.ViewModels.MainPage;
 
 namespace VLC_WINRT.Views.Controls

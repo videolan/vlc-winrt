@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -13,18 +12,13 @@ using Windows.Storage.Search;
 using Windows.Storage.Streams;
 using Windows.System.Threading;
 using Windows.UI.Popups;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 using VLC_WINRT.Common;
 using VLC_WINRT.Utility.Commands;
 using VLC_WINRT.Utility.Commands.MusicPlayer;
 using VLC_WINRT.Utility.Helpers;
-using System.Text.RegularExpressions;
 using VLC_WINRT.Views.Controls.MainPage;
-using XboxMusicLibrary;
-using XboxMusicLibrary.Models;
-using XboxMusicLibrary.Settings;
 using Panel = VLC_WINRT.Model.Panel;
 using VLC_WINRT.Utility.Helpers.MusicLibrary;
 
@@ -41,6 +35,7 @@ namespace VLC_WINRT.ViewModels.MainPage
         private ObservableCollection<AlbumItem> _randomAlbums = new ObservableCollection<AlbumItem>();
 
         private StopVideoCommand _goBackCommand;
+        private bool _isLoaded;
 
         int _numberOfTracks;
         ThreadPoolTimer _periodicTimer;
@@ -55,6 +50,12 @@ namespace VLC_WINRT.ViewModels.MainPage
             Panels.Add(new Panel("TRACKS", 1, 0.4));
             Panels.Add(new Panel("FAVORITE ALBUMS", 2, 0.4));
 
+        }
+
+        public bool IsLoaded
+        {
+            get { return _isLoaded; }
+            set { SetProperty(ref _isLoaded, value); }
         }
 
         public bool IsMusicLibraryEmpty
@@ -133,6 +134,7 @@ namespace VLC_WINRT.ViewModels.MainPage
                     }
                     else
                     {
+                        IsLoaded = true;
                         _periodicTimer.Cancel();
                     }
 
@@ -163,6 +165,7 @@ namespace VLC_WINRT.ViewModels.MainPage
             }
             else
             {
+                IsLoaded = true;
                 Artist = await SerializationHelper.LoadFromJsonFile<ObservableCollection<ArtistItemViewModel>>("MusicDB.json");
                 ImgCollection =
                     await

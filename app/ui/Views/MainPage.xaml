@@ -227,7 +227,7 @@
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
-                    <ListView ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" x:Name="SecondarySectionsHeaderListView" SelectionMode="None" IsItemClickEnabled="True" ItemClick="SecondarySectionsHeaderListView_OnItemClick" ItemsSource="{Binding SecondaryPanels}" RenderTransformOrigin="0.5,0.5" 
+                    <ListView ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" Visibility="{Binding MusicLibraryVm.IsLoaded, Converter={StaticResource BooleanToVisibilityConverter}}" x:Name="SecondarySectionsHeaderListView" SelectionMode="None" IsItemClickEnabled="True" ItemClick="SecondarySectionsHeaderListView_OnItemClick" ItemsSource="{Binding SecondaryPanels}" RenderTransformOrigin="0.5,0.5" 
                       ScrollViewer.VerticalScrollMode="Disabled"
                       ScrollViewer.VerticalScrollBarVisibility="Disabled">
                         <ListView.RenderTransform>
@@ -244,11 +244,13 @@
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
-                    <Button x:Name="MorePanelsButton" Content="" Template="{StaticResource MainButtonStyle}" FontFamily="Segoe UI Symbol" FontSize="32" Margin="0,0,0,10" HorizontalAlignment="Left" Foreground="{StaticResource MainColor}" Click="MorePanelsButton_OnClick"/>
+                    <Button x:Name="MorePanelsButton" Content="" Template="{StaticResource MainButtonStyle}" Visibility="{Binding MusicLibraryVm.IsLoaded, Converter={StaticResource BooleanToVisibilityConverter}}" FontFamily="Segoe UI Symbol" FontSize="32" Margin="0,0,0,10" HorizontalAlignment="Left" Foreground="{StaticResource MainColor}" Click="MorePanelsButton_OnClick"/>
                 </StackPanel>
             </Grid>
             <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button Style="{StaticResource SearchNoTextAppBarButtonStyle}" />
+                <controls:IndexingMusicLibrary Visibility="{Binding MusicLibraryVm.IsLoaded, Converter={StaticResource NegatedBooleanToVisibilityConverter}}"/>
+                <Button Style="{StaticResource OpenFileNoTextAppBarButtonStyle}" Click="OpenFile" Margin="0,0,-30,0" />
+                <Button Style="{StaticResource SearchNoTextAppBarButtonStyle}" Click="OpenSearchPane" />
             </StackPanel>
         </Grid>
         <Grid Grid.Row="1" x:Name="SectionsGrid" RenderTransformOrigin="0.5,0.5">

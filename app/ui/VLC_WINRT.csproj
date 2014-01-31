@@ -156,13 +156,16 @@
     <Compile Include="ViewModels\MainPage\RemovableLibraryViewModel.cs" />
     <Compile Include="ViewModels\MainPage\ThumbnailViewModel.cs" />
     <Compile Include="ViewModels\MainPage\ViewedVideoViewModel.cs" />
-    <Compile Include="ViewModels\PlayMusic\MusicPlayerViewModel.cs" />
-    <Compile Include="ViewModels\PlayMusic\TrackCollectionViewModel.cs" />
+    <Compile Include="ViewModels\MainPage\PlayMusic\MusicPlayerViewModel.cs" />
+    <Compile Include="ViewModels\MainPage\PlayMusic\TrackCollectionViewModel.cs" />
     <Compile Include="ViewModels\PlayVideo\PlayVideoViewModel.cs" />
     <Compile Include="Utility\IoC\ResolutionException.cs" />
     <Compile Include="Views\BasePage.cs" />
     <Compile Include="Views\Controls\AnimatedBackground.xaml.cs">
       <DependentUpon>AnimatedBackground.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\IndexingMusicLibrary.xaml.cs">
+      <DependentUpon>IndexingMusicLibrary.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Controls\MainPage\LastViewed.xaml.cs">
       <DependentUpon>LastViewed.xaml</DependentUpon>
@@ -199,6 +202,9 @@
     </Compile>
     <Compile Include="Views\Controls\RemovableStorage\PlugARemovableStorage.xaml.cs">
       <DependentUpon>PlugARemovableStorage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\SearchFlyout.xaml.cs">
+      <DependentUpon>SearchFlyout.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Controls\VariableSizedItemsGridView.cs" />
     <Compile Include="Views\Controls\WrapPanelControl\OrientedSize.cs" />
@@ -742,6 +748,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Controls\IndexingMusicLibrary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Controls\MainPage\LastViewed.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -787,6 +797,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Controls\RemovableStorage\PlugARemovableStorage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\SearchFlyout.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -4,7 +4,6 @@ using Windows.UI.Core;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
 using VLC_WINRT.Utility.Helpers;
 using VLC_WINRT.Utility.Services.RunTime;
@@ -44,37 +43,37 @@ namespace VLC_WINRT.Views
         void ChangeLayout(double x)
         {
             Dispatcher.RunAsync(CoreDispatcherPriority.High, () =>
-            {
-                if (x < 900)
                 {
-                    //MiniPlayer.Visibility = Visibility.Collapsed;
-                }
-                else
-                {
-                    //MiniPlayer.Visibility = Visibility.Visible;
-                }
+                    if (x < 900)
+                    {
+                        //MiniPlayer.Visibility = Visibility.Collapsed;
+                    }
+                    else
+                    {
+                        //MiniPlayer.Visibility = Visibility.Visible;
+                    }
 
-                if (x == 320)
-                {
-                    HeaderGrid.Margin = new Thickness(0, 20, 0, 0);
-                }
-                else
-                {
-                    HeaderGrid.Margin = new Thickness(50, 40, 0, 0);
-                }
+                    if (x == 320)
+                    {
+                        HeaderGrid.Margin = new Thickness(0, 20, 0, 0);
+                    }
+                    else
+                    {
+                        HeaderGrid.Margin = new Thickness(50, 40, 0, 0);
+                    }
 
-                if (SectionsHeaderListView.ActualWidth + SecondarySectionsHeaderListView.ActualWidth >
-                    Window.Current.Bounds.Width - 150)
-                {
-                    SecondarySectionsHeaderListView.Visibility = Visibility.Collapsed;
-                    MorePanelsButton.Visibility = Visibility.Visible;
-                }
-                else
-                {
-                    SecondarySectionsHeaderListView.Visibility = Visibility.Visible;
-                    MorePanelsButton.Visibility = Visibility.Collapsed;
-                }
-            });
+                    if (SectionsHeaderListView.ActualWidth + SecondarySectionsHeaderListView.ActualWidth >
+                        Window.Current.Bounds.Width - 150)
+                    {
+                        SecondarySectionsHeaderListView.Visibility = Visibility.Collapsed;
+                        MorePanelsButton.Visibility = Visibility.Visible;
+                    }
+                    else
+                    {
+                        SecondarySectionsHeaderListView.Visibility = Visibility.Visible;
+                        MorePanelsButton.Visibility = Visibility.Collapsed;
+                    }
+                });
         }
 
         public override void SetDataContext()
@@ -163,6 +162,20 @@ namespace VLC_WINRT.Views
                 MediaServers();
             }));
 
+
+            var transform = RootGrid.TransformToVisual(this);
+            var point = transform.TransformPoint(new Point(270, 110));
+            await popupMenu.ShowAsync(point);
+        }
+
+        private void OpenSearchPane(object sender, RoutedEventArgs e)
+        {
+            App.RootPage.SearchPane.Show();
+        }
+
+        private async void OpenFile(object sender, RoutedEventArgs e)
+        {
+            var popupMenu = new PopupMenu(); 
             popupMenu.Commands.Add(new UICommand("Open video", async h =>
             {
                 OpenVideo();
@@ -172,9 +185,8 @@ namespace VLC_WINRT.Views
             {
                 OpenStream();
             }));
-
             var transform = RootGrid.TransformToVisual(this);
-            var point = transform.TransformPoint(new Point(270, 110));
+            var point = transform.TransformPoint(new Point(Window.Current.Bounds.Width - 110, 200));
             await popupMenu.ShowAsync(point);
         }
     }

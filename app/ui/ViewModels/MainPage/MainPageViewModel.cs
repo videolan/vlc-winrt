@@ -64,8 +64,6 @@ namespace VLC_WINRT.ViewModels.MainPage
             
             SecondaryPanels.Add(new Panel("external storage", 3, 0.4));
             SecondaryPanels.Add(new Panel("media servers", 4, 0.4));
-            SecondaryPanels.Add(new Panel("open video", 5, 0.4));
-            SecondaryPanels.Add(new Panel("open stream", 6, 0.4));
 
             _goToPanelCommand = new GoToPanelCommand();
         }

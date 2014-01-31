@@ -1,16 +1,9 @@
 ﻿using System;
-using System.Threading.Tasks;
-using System.Xml.Serialization;
-using Windows.Foundation;
 using Windows.Storage.FileProperties;
-using Windows.UI.Xaml.Automation;
 using VLC_WINRT.Common;
-using VLC_WINRT.Model;
 using VLC_WINRT.Utility.Commands;
 using Windows.Storage;
 using VLC_WINRT.Utility.Commands.VideoPlayer;
-using VLC_WINRT.Utility.IoC;
-using VLC_WINRT.Utility.Services.RunTime;
 
 namespace VLC_WINRT.ViewModels.MainPage
 {

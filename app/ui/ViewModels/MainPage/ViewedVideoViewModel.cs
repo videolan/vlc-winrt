@@ -2,7 +2,6 @@
 using Windows.Storage;
 using VLC_WINRT.Common;
 using Windows.Foundation;
-using Windows.Storage.FileProperties;
 using Windows.System.Threading;
 using VLC_WINRT.Model;
 using VLC_WINRT.Utility.IoC;

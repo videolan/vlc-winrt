@@ -1,5 +1,4 @@
-﻿using System;
-using Windows.UI.Core;
+﻿using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -40,12 +39,12 @@ namespace VLC_WINRT.Views.Controls.MainPage
                 if (sizeChangedEventArgs.NewSize.Width == 320)
                 {
                     FirstPanelListView.Visibility = Visibility.Visible;
-                    //FirstPanelGridView.Visibility = Visibility.Collapsed;
+                    SemanticZoom.Visibility = Visibility.Collapsed;
                 }
                 else
                 {
                     FirstPanelListView.Visibility = Visibility.Collapsed;
-                    //FirstPanelGridView.Visibility = Visibility.Visible;
+                    SemanticZoom.Visibility = Visibility.Visible;
                 }
             });
         }

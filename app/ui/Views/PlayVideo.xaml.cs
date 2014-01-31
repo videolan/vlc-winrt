@@ -1,6 +1,4 @@
 ﻿using System;
-using Windows.System.Threading;
-using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Input;
 using VLC_WINRT.Utility.Helpers;
