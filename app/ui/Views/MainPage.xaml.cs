@@ -9,6 +9,7 @@ using Windows.UI.Xaml.Navigation;
 using VLC_WINRT.Utility.Helpers;
 using VLC_WINRT.Utility.Services.RunTime;
 using VLC_WINRT.ViewModels;
+using Panel = VLC_WINRT.Model.Panel;
 
 namespace VLC_WINRT.Views
 {
@@ -46,35 +47,36 @@ namespace VLC_WINRT.Views
             {
                 if (x < 900)
                 {
-                    HeaderGrid.Margin = new Thickness(0, 20, 0, 0);
                     //MiniPlayer.Visibility = Visibility.Collapsed;
-                    RemoveOtherPanels();
                 }
                 else
                 {
-                    HeaderGrid.Margin = new Thickness(50, 40, 0, 0);
                     //MiniPlayer.Visibility = Visibility.Visible;
-                    AddOtherPanels();
                 }
 
                 if (x == 320)
                 {
+                    HeaderGrid.Margin = new Thickness(0, 20, 0, 0);
                 }
                 else
                 {
+                    HeaderGrid.Margin = new Thickness(50, 40, 0, 0);
+                }
+
+                if (SectionsHeaderListView.ActualWidth + SecondarySectionsHeaderListView.ActualWidth >
+                    Window.Current.Bounds.Width - 150)
+                {
+                    SecondarySectionsHeaderListView.Visibility = Visibility.Collapsed;
+                    MorePanelsButton.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    SecondarySectionsHeaderListView.Visibility = Visibility.Visible;
+                    MorePanelsButton.Visibility = Visibility.Collapsed;
                 }
             });
         }
 
-        void AddOtherPanels()
-        {
-            //if (Locator.MainPageVM.Panels.Count != 3) return;
-            //Locator.MainPageVM.Panels.Add(new Model.Panel("external devices", 3, 0.4));
-            //Locator.MainPageVM.Panels.Add(new Model.Panel("media servers", 4, 0.4));
-        }
-        void RemoveOtherPanels()
-        {
-        }
         public override void SetDataContext()
         {
             _vm = (NavigateableViewModel)DataContext;
@@ -101,14 +103,51 @@ namespace VLC_WINRT.Views
             });
         }
 
-        private void MinimizedBottomAppBar_OnTapped(object sender, TappedRoutedEventArgs e)
-        {
-            BottomAppBar.IsOpen = true;
-        }
-
         private async void MorePanelsButton_OnClick(object sender, RoutedEventArgs e)
         {
             CreateVLCMenu();
+        }
+
+        private void SecondarySectionsHeaderListView_OnItemClick(object sender, ItemClickEventArgs e)
+        {
+            int index = (e.ClickedItem as Panel).Index;
+            switch (index)
+            {
+                case 3:
+                    ExternalStorage();
+                    break;
+                case 4:
+                    MediaServers();
+                    break;
+                case 5:
+                    OpenVideo();
+                    break;
+                case 6:
+                    OpenStream();
+                    break;
+            }
+        }
+
+        async void ExternalStorage()
+        {
+            await FadeOutPage.BeginAsync();
+            NavigationService.NavigateTo(typeof(RemovableStoragePage));   
+        }
+
+        async void MediaServers()
+        {
+            await FadeOutPage.BeginAsync();
+            NavigationService.NavigateTo(typeof(DLNAPage));
+        }
+
+        async void OpenVideo()
+        {
+            Locator.MainPageVM.PickVideo.Execute(null);
+        }
+
+        async void OpenStream()
+        {
+            Locator.MainPageVM.PlayNetworkMRL.Execute(null);
         }
 
         public async void CreateVLCMenu()
@@ -116,24 +155,22 @@ namespace VLC_WINRT.Views
             var popupMenu = new PopupMenu();
             popupMenu.Commands.Add(new UICommand("External storage", async h =>
             {
-                await FadeOutPage.BeginAsync();
-                NavigationService.NavigateTo(typeof(RemovableStoragePage));
+                ExternalStorage();
             }));
 
             popupMenu.Commands.Add(new UICommand("Media servers", async h =>
             {
-                await FadeOutPage.BeginAsync();
-                NavigationService.NavigateTo(typeof(DLNAPage));
+                MediaServers();
             }));
 
             popupMenu.Commands.Add(new UICommand("Open video", async h =>
             {
-                Locator.MainPageVM.PickVideo.Execute(null);
+                OpenVideo();
             }));
 
             popupMenu.Commands.Add(new UICommand("Open stream", async h =>
             {
-                Locator.MainPageVM.PlayNetworkMRL.Execute(null);
+                OpenStream();
             }));
 
             var transform = RootGrid.TransformToVisual(this);
