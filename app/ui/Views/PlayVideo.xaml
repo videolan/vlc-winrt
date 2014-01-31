@@ -15,20 +15,49 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </views:BasePage.Resources>
-    <Grid PointerMoved="OnPointerMoved">
+    <Grid Tapped="Grid_Tapped" PointerEntered="OnPointerEntered" Background="Transparent">
         <Grid x:Name="Commands">
             <Button Style="{StaticResource BackButtonStyle}" 
                     Command="{Binding GoBack}" 
                     CommandParameter="{Binding}" 
                     VerticalAlignment="Top"
-                    Margin="20"/>
+                    Margin="50"/>
             
-            <Grid VerticalAlignment="Center">
-                
+            <Grid Height="200" Background="#7F000000" VerticalAlignment="Bottom">
+                <TextBlock Text="{Binding Title}" Style="{StaticResource VLCSubHeaderStyle}" VerticalAlignment="Top" Margin="30,10,0,0"/>
+                <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <StackPanel Orientation="Horizontal">
+                        <Button Style="{StaticResource SkipBackNoTextHugeAppBarButtonStyle}" Command="{Binding SkipBack}"/>
+                        <Button Style="{StaticResource PauseNoTextHugeAppBarButtonStyle}" 
+                            Command="{Binding PlayOrPause}"
+                            CommandParameter="{Binding}"
+                            Visibility="{Binding IsPlaying, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                        <Button Style="{StaticResource PlayNoTextHugeAppBarButtonStyle}" 
+                            Command="{Binding PlayOrPause}"
+                            CommandParameter="{Binding}"
+                            Visibility="{Binding IsPlaying, Converter={StaticResource NegatedBooleanToVisibilityConverter}}"/>
+                        <Button Style="{StaticResource SkipAheadNoTextHugeAppBarButtonStyle}" Command="{Binding SkipAhead}"/>
+                    </StackPanel>
+                </Grid>
+                <Slider x:Name="VideoPositionSlider"
+                        VerticalAlignment="Bottom"
+                        Style="{StaticResource VlcSlider}" 
+                        StepFrequency="0.001" 
+                        Maximum="{Binding TimeTotal, Converter={StaticResource TimeSpanSecondsDoubleConverter}}" 
+                        Margin="30,15" 
+                        Value="{Binding PositionInSeconds, Mode=TwoWay}" 
+                        ThumbToolTipValueConverter="{StaticResource SecondsStringConverter}"
+                        Height="40"/>
+                <TextBlock Margin="30,0,0,8"
+                           Text="{Binding ElapsedTime, Converter={StaticResource TimeSpanShortStringConverter}}" 
+                           Style="{StaticResource ItemTextStyle}" VerticalAlignment="Bottom"/>
+                <TextBlock Margin="30,0,30,8"
+                           Text="{Binding TimeTotal, Converter={StaticResource TimeSpanShortStringConverter}}" 
+                           Style="{StaticResource ItemTextStyle}" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
             </Grid>
         </Grid>
     </Grid>
-    <views:BasePage.TopAppBar>
+    <!--<views:BasePage.TopAppBar>
         <AppBar  Background="#AA000000" BorderBrush="#AA000000">
             <StackPanel Orientation="Horizontal">
                 <Button Style="{StaticResource BackButtonStyle}" 
@@ -60,8 +89,8 @@
                 </StackPanel>
             </StackPanel>
         </AppBar>
-    </views:BasePage.TopAppBar>
-    <views:BasePage.BottomAppBar>
+    </views:BasePage.TopAppBar>-->
+    <!--<views:BasePage.BottomAppBar>
         <AppBar Padding="10,0,10,0" Background="#AA000000" BorderBrush="#AA000000">
             <Grid>
                 <Grid.RowDefinitions>
@@ -73,14 +102,6 @@
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Slider x:Name="VideoPositionSlider" Grid.Row="0" 
-                        Style="{StaticResource VlcSlider}" 
-                        StepFrequency="0.001" 
-                        Maximum="{Binding TimeTotal, Converter={StaticResource TimeSpanSecondsDoubleConverter}}" 
-                        Grid.ColumnSpan="2" Margin="30,0" 
-                        Value="{Binding PositionInSeconds, Mode=TwoWay}" 
-                        ThumbToolTipValueConverter="{StaticResource SecondsStringConverter}"
-                        Height="40"/>
                 <TextBlock x:Name="ElapsedTime" 
                            Grid.Row="1"
                            Grid.Column="0"
@@ -103,22 +124,16 @@
                 </StackPanel>
                 <StackPanel Margin="5,0,5,10" Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="2"
                             Grid.Column="1">
-                    <Button Style="{StaticResource SkipBackAppBarButtonStyle}" Command="{Binding SkipBack}">
+                    <Button Style="{StaticResource SkipBackAppBarButtonStyle}" >
                     </Button>
-                    <Button Style="{StaticResource PlayAppBarButtonStyle}"
-                            Command="{Binding PlayOrPause}"
-                            CommandParameter="{Binding}"
-                            Visibility="{Binding IsPlaying, Converter={StaticResource NegatedBooleanToVisibilityConverter}}">
+                    <Button Style="{StaticResource PlayAppBarButtonStyle}">
                     </Button>
-                    <Button Style="{StaticResource PauseAppBarButtonStyle}"
-                            Command="{Binding PlayOrPause}"
-                            CommandParameter="{Binding}"
-                            Visibility="{Binding IsPlaying, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <Button Style="{StaticResource PauseAppBarButtonStyle}">
                     </Button>
-                    <Button Style="{StaticResource SkipAheadAppBarButtonStyle}" Command="{Binding SkipAhead}">
+                    <Button Style="{StaticResource SkipAheadAppBarButtonStyle}" >
                     </Button>
                 </StackPanel>
             </Grid>
         </AppBar>
-    </views:BasePage.BottomAppBar>
+    </views:BasePage.BottomAppBar>-->
 </views:BasePage>
