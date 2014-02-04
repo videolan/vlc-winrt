@@ -86,8 +86,11 @@ namespace VLC_WINRT.Views.Controls.MainPage
             int i = ((Model.Panel)e.ClickedItem).Index;
             ChangedSectionsHeadersState(i);
         }
-        private void ChangedSectionsHeadersState(int i)
+        public void ChangedSectionsHeadersState(int i)
         {
+            AlbumsByArtistSemanticZoom.IsZoomedInViewActive = true;
+            AlbumsByArtistSnapSemanticZoom.IsZoomedInViewActive = true;
+            if (_currentSection == i) return;
             UIAnimationHelper.FadeOut(SectionsGrid.Children[_currentSection]);
             UIAnimationHelper.FadeIn(SectionsGrid.Children[i]);
             _currentSection = i;

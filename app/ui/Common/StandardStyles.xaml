@@ -402,7 +402,7 @@
                     <Grid x:Name="RootGrid" Width="140" Background="Transparent">
                         <StackPanel VerticalAlignment="Top" Margin="0,12,0,0">
                             <Grid Width="80" Height="80" Margin="0,0,0,5" HorizontalAlignment="Center">
-                                <TextBlock x:Name="BackgroundGlyph" Text="&#xE0A8;" FontFamily="Segoe UI Symbol" FontSize="80" Margin="-3,-19,0,0" Foreground="{StaticResource AppBarItemBackgroundThemeBrush}"/>
+                                <TextBlock x:Name="BackgroundGlyph" Text="&#xE0A8;" FontFamily="Segoe UI Symbol" FontSize="110" Margin="-6,-40,0,0" Foreground="{StaticResource AppBarItemBackgroundThemeBrush}"/>
                                 <Ellipse x:Name="OutlineGlyph" StrokeThickness="1.2" Height="80" Width="80" UseLayoutRounding="False" Stroke="{TemplateBinding Foreground}"/>
                                 <ContentPresenter x:Name="Content" FontSize="40" HorizontalAlignment="Center" Margin="0,1,0,0" VerticalAlignment="Center"/>
                             </Grid>

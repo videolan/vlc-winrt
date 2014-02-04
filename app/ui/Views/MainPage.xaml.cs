@@ -44,13 +44,15 @@ namespace VLC_WINRT.Views
         {
             Dispatcher.RunAsync(CoreDispatcherPriority.High, () =>
                 {
-                    if (x < 900)
+                    if (x < 1050)
                     {
-                        //MiniPlayer.Visibility = Visibility.Collapsed;
+                        SecondarySectionsHeaderListView.Visibility = Visibility.Collapsed;
+                        MorePanelsButton.Visibility = Visibility.Visible;
                     }
                     else
                     {
-                        //MiniPlayer.Visibility = Visibility.Visible;
+                        SecondarySectionsHeaderListView.Visibility = Visibility.Visible;
+                        MorePanelsButton.Visibility = Visibility.Collapsed;
                     }
 
                     if (x == 320)
@@ -60,18 +62,6 @@ namespace VLC_WINRT.Views
                     else
                     {
                         HeaderGrid.Margin = new Thickness(50, 40, 0, 0);
-                    }
-
-                    if (SectionsHeaderListView.ActualWidth + SecondarySectionsHeaderListView.ActualWidth >
-                        Window.Current.Bounds.Width - 150)
-                    {
-                        SecondarySectionsHeaderListView.Visibility = Visibility.Collapsed;
-                        MorePanelsButton.Visibility = Visibility.Visible;
-                    }
-                    else
-                    {
-                        SecondarySectionsHeaderListView.Visibility = Visibility.Visible;
-                        MorePanelsButton.Visibility = Visibility.Collapsed;
                     }
                 });
         }

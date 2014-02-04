@@ -9,6 +9,7 @@ using VLC_WINRT.Utility.Services.RunTime;
 using VLC_WINRT.ViewModels;
 using VLC_WINRT.ViewModels.MainPage;
 using VLC_WINRT.Views.Controls.MainPage;
+using XboxMusicLibrary.Models;
 
 namespace VLC_WINRT.Views.Controls
 {
@@ -124,13 +125,14 @@ namespace VLC_WINRT.Views.Controls
                 {
                     var gV = musicColumn.FindName("AlbumsByArtistListView") as GridView;
                     var lV = musicColumn.FindName("AlbumsByArtistListViewSnap") as ListView;
+                    musicColumn.ChangedSectionsHeadersState(0);
                     page.ChangedSectionsHeadersState(2);
+                    
                     gV.ScrollIntoView(objet.Object);
                     lV.ScrollIntoView(objet.Object);
                 }
                 else if (objet.Object.GetType() == typeof(MusicLibraryViewModel.TrackItem))
                 {
-                    
                     var track = objet.Object as MusicLibraryViewModel.TrackItem;
                     track.PlayTrack.Execute(track);
                 }
