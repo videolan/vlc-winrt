@@ -33,6 +33,7 @@
             <x:String x:Key="ProgressBarForegroundThemeBrush">#e67e22</x:String>
 
             <!--Converters-->
+            <converters:EmptyTimeSpanToVisibilityConverter x:Key="EmptyTimeSpanToVisibilityConverter"/>
             <converters:NegatedCountToVisibilityConverter x:Key="NegatedCountToVisibilityConverter"/>
             <converters:CountToVisibilityConverter x:Key="CountToVisibilityConverter"/>
             <converters:StringToUpperConverter x:Key="StringToUpperConverter" />
@@ -1085,7 +1086,8 @@
                         <ProgressBar VerticalAlignment="Bottom" Style="{StaticResource ThinProgressBar}" 
                                      Value="{Binding TimeWatched, Converter={StaticResource TimeSpanSecondsDoubleConverter}}"
                                      Maximum="{Binding Duration, Converter={StaticResource TimeSpanSecondsDoubleConverter}}"
-                                     Margin="0,0,0,-3"/>
+                                     Margin="0,0,0,-3"
+                                     Visibility="{Binding TimeWatched, Converter={StaticResource EmptyTimeSpanToVisibilityConverter}}"/>
                     </Grid>
                 </Button>
             </DataTemplate>
@@ -1116,7 +1118,8 @@
                         <ProgressBar VerticalAlignment="Bottom" Style="{StaticResource ThinProgressBar}" 
                                      Value="{Binding TimeWatched, Converter={StaticResource TimeSpanSecondsDoubleConverter}}"
                                      Maximum="{Binding Duration, Converter={StaticResource TimeSpanSecondsDoubleConverter}}"
-                                     Margin="0,0,0,-3"/>
+                                     Margin="0,0,0,-3"
+                                     Visibility="{Binding TimeWatched, Converter={StaticResource EmptyTimeSpanToVisibilityConverter}}"/>
                     </Grid>
                 </Button>
             </DataTemplate>
@@ -1146,7 +1149,8 @@
                         <ProgressBar VerticalAlignment="Bottom" Style="{StaticResource ThinProgressBar}" 
                                      Value="{Binding TimeWatched, Converter={StaticResource TimeSpanSecondsDoubleConverter}}"
                                      Maximum="{Binding Duration, Converter={StaticResource TimeSpanSecondsDoubleConverter}}"
-                                     Margin="0,0,0,-3"/>
+                                     Margin="0,0,0,-3"
+                                     Visibility="{Binding TimeWatched, Converter={StaticResource EmptyTimeSpanToVisibilityConverter}}"/>
                     </Grid>
                 </Button>
             </DataTemplate>

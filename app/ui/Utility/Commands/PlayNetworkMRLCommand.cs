@@ -1,6 +1,7 @@
 ﻿using System;
 using VLC_WINRT.Common;
 using VLC_WINRT.Utility.Services.RunTime;
+using VLC_WINRT.ViewModels;
 using VLC_WINRT.Views;
 
 namespace VLC_WINRT.Utility.Commands
@@ -14,7 +15,7 @@ namespace VLC_WINRT.Utility.Commands
                 throw new ArgumentException("Expecting to see a string mrl for this command");
 
             //TODO: pass MRL to vlc
-           // Locator.PlayVideoVM.SetActiveVideoInfo(mrl);
+            Locator.PlayVideoVM.SetActiveVideoInfo(mrl);
             NavigationService.NavigateTo(typeof(PlayVideo));
         }
     }
