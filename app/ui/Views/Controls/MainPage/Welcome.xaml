@@ -22,6 +22,5 @@
                    x:Uid="IntroPara.Text"
                    Text="This app is our attempt to bring the VLC media player to Microsoft's newest OS. The app is currently under development so not all features have been included, and many existing features have bugs.">
         </TextBlock>
-        <Button Style="{StaticResource MoreAppBarButtonStyle}" HorizontalAlignment="Right" Foreground="{StaticResource MainColor}" Click="OpenAppBar_Click"/>
     </StackPanel>
 </UserControl>
