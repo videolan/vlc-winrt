@@ -19,10 +19,14 @@ namespace VLC_WINRT.Views.Controls.MusicPage
         {
             if (PlayListGrid.Visibility == Visibility.Visible)
             {
+                ClosePlayListArrow.Visibility = Visibility.Collapsed;
+                OpenPlayListArrow.Visibility = Visibility.Visible;
                 UIAnimationHelper.FadeOut(PlayListGrid);
             }
             else
             {
+                OpenPlayListArrow.Visibility = Visibility.Collapsed;
+                ClosePlayListArrow.Visibility = Visibility.Visible;
                 UIAnimationHelper.FadeIn(PlayListGrid);
             }
         }
