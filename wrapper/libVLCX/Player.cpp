@@ -26,12 +26,12 @@ using namespace Windows::Graphics::Display;
 
 Player::Player(SwapChainBackgroundPanel^ panel) :p_mp(NULL), p_instance(NULL)
 {
-    OutputDebugStringW(L"Hello, Player!");
+	OutputDebugStringW(L"Hello, Player!");
 	p_panel = panel;
 	p_dxManager = new DirectXManger();
-	
+
 	m_displayWidth = (float)(p_panel->ActualWidth * (float)DisplayProperties::ResolutionScale / 100.0f);
-	m_displayHeight = (float)(p_panel->ActualHeight * (float) DisplayProperties::ResolutionScale / 100.0f);
+	m_displayHeight = (float)(p_panel->ActualHeight * (float)DisplayProperties::ResolutionScale / 100.0f);
 }
 
 //Todo: don't block UI during initialization
@@ -62,7 +62,7 @@ void Player::InitializeVLC()
 
 	/* Don't add any invalid options, otherwise it causes LibVLC to fail */
 	const char *argv[] = {
-		"-I", 
+		"-I",
 		"dummy",
 		"--no-osd",
 		"--verbose=2",
@@ -83,7 +83,6 @@ void Player::InitializeVLC()
 		return;
 	}
 }
-
 
 void Player::UpdateSize(unsigned int x, unsigned int y)
 {
@@ -117,12 +116,12 @@ void Player::DetachEvent(){
 		libvlc_event_detach(ev, mp_events[i], vlc_event_callback, new PlayerPointerWrapper(this));
 }
 
-void Player::Open(Platform::String^ mrl) 
+void Player::Open(Platform::String^ mrl)
 {
-    size_t len = WideCharToMultiByte (CP_UTF8, 0, mrl->Data(), -1, NULL, 0, NULL, NULL);
-    char* p_mrl = new char[len];
-    WideCharToMultiByte (CP_UTF8, 0, mrl->Data(), -1, p_mrl, len, NULL, NULL);
-    
+	size_t len = WideCharToMultiByte(CP_UTF8, 0, mrl->Data(), -1, NULL, 0, NULL, NULL);
+	char* p_mrl = new char[len];
+	WideCharToMultiByte(CP_UTF8, 0, mrl->Data(), -1, p_mrl, len, NULL, NULL);
+
 	if (p_instance){
 		libvlc_media_t* m = libvlc_media_new_location(this->p_instance, p_mrl);
 		p_mp = libvlc_media_player_new_from_media(m);
@@ -146,8 +145,8 @@ void Player::Open(Platform::String^ mrl)
 
 		libvlc_media_release(m);
 	}
-    
-    delete[](p_mrl);
+
+	delete[](p_mrl);
 }
 
 void Player::Stop()
@@ -156,7 +155,7 @@ void Player::Stop()
 	{
 		libvlc_media_player_stop(p_mp);
 	}
-    return;
+	return;
 }
 
 void Player::Pause()
@@ -165,7 +164,7 @@ void Player::Pause()
 	{
 		libvlc_media_player_pause(p_mp);
 	}
-    return;
+	return;
 }
 
 void Player::Play()
@@ -174,7 +173,7 @@ void Player::Play()
 	{
 		libvlc_media_player_play(p_mp);
 	}
-    return;
+	return;
 }
 
 void Player::Seek(float position)
@@ -236,12 +235,12 @@ Player::~Player()
 	if (p_instance){
 		libvlc_release(p_instance);
 	}
-	
+
 
 	/*if (p_dxManager){
 		delete p_dxManager;
 		p_dxManager = nullptr;
-	}*/
+		}*/
 }
 
 

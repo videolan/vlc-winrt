@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
 using libVLCX;
 
+
+
 namespace VLC_WINRT.Utility.Services.RunTime
 {
     public class MediaPlayerService
@@ -22,6 +24,7 @@ namespace VLC_WINRT.Utility.Services.RunTime
         public MediaPlayerState CurrentState;
         private Task _vlcInitializeTask;
         private Player _vlcPlayer;
+        
 
         public MediaPlayerService()
         {

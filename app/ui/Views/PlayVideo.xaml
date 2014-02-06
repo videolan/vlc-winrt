@@ -36,7 +36,12 @@
             <Grid Height="200" Background="#7F000000" VerticalAlignment="Bottom">
                 <TextBlock Text="{Binding CurrentVideo.Title}" Style="{StaticResource VLCSubHeaderStyle}" Foreground="WhiteSmoke" VerticalAlignment="Top" Margin="30,10,0,0"/>
                 <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
-                    <StackPanel Orientation="Horizontal">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="1" Orientation="Horizontal">
                         <Button Style="{StaticResource SkipBackNoTextHugeAppBarButtonStyle}" Command="{Binding SkipBack}"/>
                         <Button Style="{StaticResource PauseNoTextHugeAppBarButtonStyle}" 
                             Command="{Binding PlayOrPause}"

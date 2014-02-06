@@ -1,4 +1,5 @@
 ﻿using System;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Input;
 using VLC_WINRT.Utility.Helpers;
@@ -63,6 +64,5 @@ namespace VLC_WINRT.Views
             _vm = (NavigateableViewModel)DataContext;
             base.SetDataContext();
         }
-
     }
 }

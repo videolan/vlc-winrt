@@ -32,7 +32,7 @@ namespace VLC_WINRT.ViewModels.PlayVideo
         private string _title;
         private MediaPlayerService _vlcPlayerService;
         private MouseService _mouseService;
-        private MediaViewModel _currentVideo; 
+        private MediaViewModel _currentVideo;
 
         public PlayVideoViewModel()
         {
@@ -44,10 +44,10 @@ namespace VLC_WINRT.ViewModels.PlayVideo
 
             _sliderPositionTimer.Tick += FirePositionUpdate;
             _sliderPositionTimer.Interval = TimeSpan.FromMilliseconds(16);
-            
+
             _vlcPlayerService = IoC.GetInstance<MediaPlayerService>();
             _vlcPlayerService.StatusChanged += PlayerStateChanged;
-            
+
             _mouseService = IoC.GetInstance<MouseService>();
 
             _skipAhead = new ActionCommand(() => _vlcPlayerService.SkipAhead());
@@ -64,7 +64,8 @@ namespace VLC_WINRT.ViewModels.PlayVideo
         {
             get
             {
-                if (_vlcPlayerService != null && _vlcPlayerService.CurrentState == MediaPlayerService.MediaPlayerState.Playing)
+                if (_vlcPlayerService != null &&
+                    _vlcPlayerService.CurrentState == MediaPlayerService.MediaPlayerState.Playing)
                 {
                     return _vlcPlayerService.GetPosition().Result*TimeTotal.TotalSeconds;
                 }
@@ -186,7 +187,7 @@ namespace VLC_WINRT.ViewModels.PlayVideo
 
         public void RegisterPanel()
         {
-        
+
         }
 
         public void SetActiveVideoInfo(string token, string title)
