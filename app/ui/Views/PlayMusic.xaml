@@ -140,7 +140,8 @@
                 <Grid.RenderTransform>
                     <CompositeTransform />
                 </Grid.RenderTransform>
-                <ScrollViewer VerticalScrollMode="Disabled"
+                <ScrollViewer 
+                      VerticalScrollMode="Disabled"
                       VerticalScrollBarVisibility="Disabled"
                       HorizontalScrollMode="Auto"
                       HorizontalScrollBarVisibility="Auto"
@@ -205,8 +206,8 @@
                                 </ListView.ItemTemplate>
                             </ListView>
                         </Grid>
-                        <ListView Margin="0,0,0,0" HorizontalAlignment="Left" SelectionMode="None" IsSwipeEnabled="False" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" HeaderTemplate="{StaticResource ColumnHeaderDataTemplate}" Header="playlist" ItemsSource="{Binding TrackCollection.TrackCollection}" Width="360">
-                            <ListView.ItemTemplate>
+                        <GridView Margin="0,0,0,0" HorizontalAlignment="Left" SelectionMode="None" IsSwipeEnabled="False" ItemContainerStyle="{StaticResource GridViewItemContainerStyle}" ItemsSource="{Binding TrackCollection.TrackCollection}">
+                            <GridView.ItemTemplate>
                                 <DataTemplate>
                                     <Button Template="{StaticResource MainButtonStyle}"
                                 Command="{Binding PlayTrack}"
@@ -214,12 +215,14 @@
                                         <Grid VerticalAlignment="Center">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="250"/>
-                                                <ColumnDefinition Width="110"/>
+                                                <ColumnDefinition Width="120"/>
                                             </Grid.ColumnDefinitions>
-                                            <StackPanel>
-                                                <TextBlock Text="{Binding Name}" Style="{StaticResource BodyTextStyle}" >
+                                            <StackPanel HorizontalAlignment="Stretch">
+                                                <TextBlock Style="{StaticResource BodyTextStyle}" HorizontalAlignment="Left" TextWrapping="NoWrap" TextTrimming="WordEllipsis">
+                                                    <Run Text="{Binding Index}" Foreground="DarkGray"/>
                                                     <Run Text="{Binding Name}" />
-                                                    <Run Text=" - "/>
+                                                </TextBlock>
+                                                <TextBlock Foreground="DarkGray" Style="{StaticResource BodyTextStyle}">
                                                     <Run Text="{Binding ArtistName}"/>
                                                 </TextBlock>
                                             </StackPanel>
@@ -230,8 +233,13 @@
                                         </Grid>
                                     </Button>
                                 </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
+                            </GridView.ItemTemplate>
+                            <GridView.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <VariableSizedWrapGrid Orientation="Vertical" ItemWidth="370"/>
+                                </ItemsPanelTemplate>
+                            </GridView.ItemsPanel>
+                        </GridView>
                         <ListView Margin="20,0" IsSwipeEnabled="False" Width="400" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" Visibility="{Binding Artist.OnlineRelatedArtists.Count, Converter={StaticResource NegatedBooleanToVisibilityConverter}}" HeaderTemplate="{StaticResource ColumnHeaderDataTemplate}" Header="similar artists" ItemsSource="{Binding Artist.OnlineRelatedArtists}" SelectedIndex="0" SelectionMode="None" IsItemClickEnabled="True" >
                             <ListView.ItemsPanel>
                                 <ItemsPanelTemplate>
