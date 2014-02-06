@@ -17,14 +17,24 @@
     </views:BasePage.Resources>
     <Grid Tapped="Grid_Tapped" PointerEntered="OnPointerEntered" Background="Transparent">
         <Grid x:Name="Commands">
-            <Button Style="{StaticResource BackButtonStyle}" 
+            <Grid VerticalAlignment="Top" Height="Auto" >
+                <Grid.Background>
+                    <LinearGradientBrush StartPoint="1,0">
+                        <GradientStopCollection>
+                            <GradientStop Color="#990A0A0A" Offset="0"/>
+                            <GradientStop Color="#00020202" Offset="1"/>
+                        </GradientStopCollection>
+                    </LinearGradientBrush>
+                </Grid.Background>
+                <Button Style="{StaticResource BackButtonStyle}" 
                     Command="{Binding GoBack}" 
                     CommandParameter="{Binding}" 
                     VerticalAlignment="Top"
                     Margin="50"/>
+            </Grid>
             
             <Grid Height="200" Background="#7F000000" VerticalAlignment="Bottom">
-                <TextBlock Text="{Binding Title}" Style="{StaticResource VLCSubHeaderStyle}" VerticalAlignment="Top" Margin="30,10,0,0"/>
+                <TextBlock Text="{Binding CurrentVideo.Title}" Style="{StaticResource VLCSubHeaderStyle}" Foreground="WhiteSmoke" VerticalAlignment="Top" Margin="30,10,0,0"/>
                 <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
                     <StackPanel Orientation="Horizontal">
                         <Button Style="{StaticResource SkipBackNoTextHugeAppBarButtonStyle}" Command="{Binding SkipBack}"/>
