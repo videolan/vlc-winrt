@@ -127,7 +127,7 @@
                             <GridView IsSwipeEnabled="False" x:Name="MainArtistGridView">
                                 <GridView.ItemsPanel>
                                     <ItemsPanelTemplate>
-                                        <WrapGrid Margin="50,0,0,0" VerticalAlignment="Center"/>
+                                        <VariableSizedWrapGrid Margin="50,0,0,0" VerticalAlignment="Center"/>
                                     </ItemsPanelTemplate>
                                 </GridView.ItemsPanel>
                                 <GridView.ItemTemplate>

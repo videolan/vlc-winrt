@@ -9,7 +9,6 @@ using VLC_WINRT.Utility.Services.RunTime;
 using VLC_WINRT.ViewModels;
 using VLC_WINRT.ViewModels.MainPage;
 using VLC_WINRT.Views.Controls.MainPage;
-using XboxMusicLibrary.Models;
 
 namespace VLC_WINRT.Views.Controls
 {
