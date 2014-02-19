@@ -5,9 +5,11 @@ using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using VLC_WINRT.Utility.Commands;
 using VLC_WINRT.Utility.Helpers;
 using VLC_WINRT.Utility.Services.RunTime;
 using VLC_WINRT.ViewModels;
+using VLC_WINRT.Views.Controls.InputDialog;
 using Panel = VLC_WINRT.Model.Panel;
 
 namespace VLC_WINRT.Views
@@ -136,7 +138,13 @@ namespace VLC_WINRT.Views
 
         async void OpenStream()
         {
-            Locator.MainPageVM.PlayNetworkMRL.Execute(null);
+            var dialog = new InputDialog();
+            RootGrid.Children.Add(dialog);
+            Grid.SetRow(dialog, 1);
+            await
+                dialog.ShowAsync("", "Open a file from network",
+                    "Please enter an adress. It can be http, ftp, for example.", "Open",
+                    Locator.MainPageVM.PlayNetworkMRL);
         }
 
         public async void CreateVLCMenu()
@@ -171,10 +179,8 @@ namespace VLC_WINRT.Views
                 OpenVideo();
             }));
 
-            popupMenu.Commands.Add(new UICommand("Open stream", async h =>
-            {
-                OpenStream();
-            }));
+
+
             var transform = RootGrid.TransformToVisual(this);
             var point = transform.TransformPoint(new Point(Window.Current.Bounds.Width - 110, 200));
             await popupMenu.ShowAsync(point);

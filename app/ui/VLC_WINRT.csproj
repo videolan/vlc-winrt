@@ -118,6 +118,11 @@
     <Compile Include="Utility\Converters\TimeSpanSecondsDoubleConverter.cs" />
     <Compile Include="Utility\Converters\TimespanShortStringConverter.cs" />
     <Compile Include="Utility\DataTemplateSelectors\MediaItemDataTemplateSelector.cs" />
+    <Compile Include="Utility\Helpers\AwaitableUI\BitmapImageExtensions.cs" />
+    <Compile Include="Utility\Helpers\AwaitableUI\ControlExtensions.cs" />
+    <Compile Include="Utility\Helpers\AwaitableUI\EventAsync.cs" />
+    <Compile Include="Utility\Helpers\AwaitableUI\FrameworkElementExtensions.cs" />
+    <Compile Include="Utility\Helpers\AwaitableUI\WriteableBitmapExtensions.cs" />
     <Compile Include="Utility\Helpers\DoesFileExistHelper.cs" />
     <Compile Include="Utility\Helpers\DownloadAndSaveHelper.cs" />
     <Compile Include="Utility\Helpers\MusicLibrary\ArtistInformationsHelper.cs" />
@@ -167,6 +172,9 @@
     </Compile>
     <Compile Include="Views\Controls\IndexingMusicLibrary.xaml.cs">
       <DependentUpon>IndexingMusicLibrary.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\InputDialog\InputDialog.xaml.cs">
+      <DependentUpon>InputDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Controls\MainPage\LastViewed.xaml.cs">
       <DependentUpon>LastViewed.xaml</DependentUpon>
@@ -750,6 +758,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Controls\IndexingMusicLibrary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\InputDialog\InputDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -206,6 +206,8 @@ namespace VLC_WINRT.ViewModels.PlayVideo
         {
             _fileToken = null;
             _mrl = mrl;
+            _vlcPlayerService.Open(_mrl);
+            _vlcPlayerService.Play();
         }
 
         public override void OnNavigatedFrom()
