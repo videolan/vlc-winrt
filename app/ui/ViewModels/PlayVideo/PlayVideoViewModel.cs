@@ -192,6 +192,9 @@ namespace VLC_WINRT.ViewModels.PlayVideo
 
         public void SetActiveVideoInfo(string token, string title)
         {
+            // Pause the music viewmodel
+            Locator.MusicPlayerVM.CleanViewModel();
+
             _fileToken = token;
             _mrl = "winrt://" + token;
             Title = title;
@@ -204,6 +207,9 @@ namespace VLC_WINRT.ViewModels.PlayVideo
 
         public void SetActiveVideoInfo(string mrl)
         {
+            // Pause the music viewmodel
+            Locator.MusicPlayerVM.CleanViewModel();
+
             _fileToken = null;
             _mrl = mrl;
             _vlcPlayerService.Open(_mrl);

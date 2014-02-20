@@ -25,7 +25,7 @@ namespace VLC_WINRT.ViewModels.PlayMusic
         private StopVideoCommand _goBackCommand;
         private bool _isPlaying;
         private string _mrl;
-        private PlayPauseCommand _playOrPause;
+        private MusicPlayOrPauseCommand _playOrPause;
         private ActionCommand _skipAhead;
         private ActionCommand _skipBack;
         private PlayNextCommand _playNext;
@@ -37,14 +37,13 @@ namespace VLC_WINRT.ViewModels.PlayMusic
         private TrackCollectionViewModel _trackCollection;
         public MusicPlayerViewModel()
         {
-            _playOrPause = new PlayPauseCommand();
+            _playOrPause = new MusicPlayOrPauseCommand();
             _historyService = IoC.GetInstance<HistoryService>();
             _goBackCommand = new StopVideoCommand();
             _displayAlwaysOnRequest = new DisplayRequest();
 
             _sliderPositionTimer.Tick += FirePositionUpdate;
             _sliderPositionTimer.Interval = TimeSpan.FromMilliseconds(16);
-
 
             _vlcPlayerService = IoC.GetInstance<MediaPlayerService>();
             _vlcPlayerService.StatusChanged += PlayerStateChanged;
@@ -228,7 +227,7 @@ namespace VLC_WINRT.ViewModels.PlayMusic
             get { return DateTime.Now.ToString(CultureInfo.CurrentCulture.DateTimeFormat.ShortTimePattern); }
         }
 
-        public PlayPauseCommand PlayOrPause
+        public MusicPlayOrPauseCommand PlayOrPause
         {
             get { return _playOrPause; }
             set { SetProperty(ref _playOrPause, value); }
@@ -403,6 +402,13 @@ namespace VLC_WINRT.ViewModels.PlayMusic
             }
 
             ElapsedTime = TimeSpan.FromSeconds(PositionInSeconds);
+        }
+
+        public async Task CleanViewModel()
+        {
+            IsPlaying = false;
+            Pause();
+            
         }
     }
 }

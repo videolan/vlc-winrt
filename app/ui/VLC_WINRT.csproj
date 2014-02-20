@@ -94,6 +94,7 @@
     <Compile Include="Utility\Commands\MainPageCommands\GoToPanelCommand.cs" />
     <Compile Include="Utility\Commands\MusicPlayer\FavoriteAlbumCommand.cs" />
     <Compile Include="Utility\Commands\MusicPlayer\FavoriteTrackCommand.cs" />
+    <Compile Include="Utility\Commands\MusicPlayer\MusicPlayOrPauseCommand.cs" />
     <Compile Include="Utility\Commands\MusicPlayer\PlayNextCommand.cs" />
     <Compile Include="Utility\Commands\MusicPlayer\PlayPreviousCommand.cs" />
     <Compile Include="Utility\Commands\PlayAlbumCommand.cs" />
