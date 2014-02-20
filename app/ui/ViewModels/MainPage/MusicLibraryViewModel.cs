@@ -39,6 +39,7 @@ namespace VLC_WINRT.ViewModels.MainPage
         private StopVideoCommand _goBackCommand;
         private bool _isLoaded;
         private bool _isBusy;
+        private bool _isMusicLibraryEmpty = true;
 
         int _numberOfTracks;
         ThreadPoolTimer _periodicTimer;
@@ -68,7 +69,8 @@ namespace VLC_WINRT.ViewModels.MainPage
 
         public bool IsMusicLibraryEmpty
         {
-            get { return Track.Any(); }
+            get { return _isMusicLibraryEmpty; }
+            set { SetProperty(ref _isMusicLibraryEmpty, value); }
         }
 
         public ObservableCollection<string> ImgCollection
@@ -136,7 +138,7 @@ namespace VLC_WINRT.ViewModels.MainPage
         }
 
         async Task StartIndexing()
-        {
+        {   
             var musicFolder = await
                 KnownVLCLocation.MusicLibrary.GetFoldersAsync(CommonFolderQuery.GroupByArtist);
             TimeSpan period = TimeSpan.FromSeconds(30);
@@ -165,6 +167,7 @@ namespace VLC_WINRT.ViewModels.MainPage
 
             foreach (var artistItem in musicFolder)
             {
+                IsMusicLibraryEmpty = false;
                 MusicProperties artistProperties = null;
                 try
                 {
@@ -183,7 +186,6 @@ namespace VLC_WINRT.ViewModels.MainPage
                     Artist.Add(artist);
                 }
             }
-            ExecuteSemanticZoom();
             OnPropertyChanged("Artist");
         }
 
@@ -196,7 +198,7 @@ namespace VLC_WINRT.ViewModels.MainPage
                 StartIndexing();
                 return;
             }
-
+            IsMusicLibraryEmpty = false;
             ImgCollection =
                 await
                     SerializationHelper.LoadFromJsonFile<ObservableCollection<string>>("Artist_Img_Collection.json");
@@ -220,14 +222,13 @@ namespace VLC_WINRT.ViewModels.MainPage
                     Track.Add(trackItem);
                 }
             }
-            ExecuteSemanticZoom();
             OnPropertyChanged("Artist");
             OnPropertyChanged("Albums");
             OnPropertyChanged("Tracks");
 
             IsBusy = false;
         }
-        void ExecuteSemanticZoom()
+        public void ExecuteSemanticZoom()
         {
             var page = App.ApplicationFrame.Content as Views.MainPage;
             if (page != null)

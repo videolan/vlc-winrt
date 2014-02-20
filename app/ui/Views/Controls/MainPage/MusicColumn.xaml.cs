@@ -4,6 +4,8 @@ using Windows.UI.Xaml.Controls;
 using VLC_WINRT.Utility.Helpers;
 using VLC_WINRT.ViewModels;
 using VLC_WINRT.ViewModels.MainPage;
+using Windows.UI.Popups;
+using VLC_WINRT.Utility.Commands;
 
 namespace VLC_WINRT.Views.Controls.MainPage
 {
@@ -35,12 +37,10 @@ namespace VLC_WINRT.Views.Controls.MainPage
                 if (sizeChangedEventArgs.NewSize.Width < 1080)
                 {
                     SectionsGrid.Margin = new Thickness(40, 0, 0, 0);
-                    AlbumPlaylistListView.Visibility = Visibility.Collapsed;
                 }
                 else
                 {
                     SectionsGrid.Margin = new Thickness(50, 0, 0, 0);
-                    AlbumPlaylistListView.Visibility = Visibility.Visible;
                 }
 
 
@@ -64,15 +64,8 @@ namespace VLC_WINRT.Views.Controls.MainPage
         private void AlbumGridView_ItemClick(object sender, ItemClickEventArgs e)
         {
             var album = e.ClickedItem as MusicLibraryViewModel.AlbumItem;
-            
-            AlbumPlaylistListView.Header = album;
-            AlbumPlaylistListView.ItemsSource = album.Tracks;
-            AlbumPlaylistListView.Width = 320;
-            //if (Window.Current.Bounds.Width < 1080)
-            //{
-            //    new PlayAlbumCommand().Execute(album);
-            //}
-            //Locator.MainPageVM.MusicVM.CurrentArtist.CurrentAlbumIndex = Locator.MainPageVM.MusicVM.CurrentArtist.Albums.IndexOf(album);
+
+            album.PlayAlbum.Execute(e.ClickedItem);
         }
 
         private void OnSelectedArtist_Changed(object sender, SelectionChangedEventArgs e)
@@ -101,6 +94,11 @@ namespace VLC_WINRT.Views.Controls.MainPage
 
         private async void AlbumsByArtistSemanticZoom_OnViewChangeCompleted(object sender, SemanticZoomViewChangedEventArgs e)
         {
+            try
+            {
+                Locator.MusicLibraryVM.ExecuteSemanticZoom();
+            }
+            catch { }
         }
 
         private void FavoriteAlbumItemClick(object sender, ItemClickEventArgs e)

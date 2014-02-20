@@ -41,6 +41,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <controls:NothingToSeeHere Grid.Row="1" Visibility="{Binding IsMusicLibraryEmpty, Converter={StaticResource BooleanToVisibilityConverter}}"/>
         <Grid Grid.Row="1" x:Name="SectionsGrid" Margin="50,0,0,0">
             <Grid x:Name="ArtistView">
                 <Grid x:Name="SnapGrid">
@@ -110,19 +111,15 @@
                         </SemanticZoom.ZoomedInView>
                     </SemanticZoom>
                 </Grid>
-                <Grid x:Name="FullGrid" Margin="-50,0,0,0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="1"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    <controls:NothingToSeeHere Grid.Column="0" Visibility="{Binding IsMusicLibraryEmpty, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                    <SemanticZoom Grid.Column="0" x:Name="AlbumsByArtistSemanticZoom" 
-                              ViewChangeCompleted="AlbumsByArtistSemanticZoom_OnViewChangeCompleted"
-                              ScrollViewer.HorizontalScrollMode="Disabled"
-                              ScrollViewer.VerticalScrollMode="Disabled"
-                              ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                              ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <Grid x:Name="FullGrid" >
+                    <SemanticZoom x:Name="AlbumsByArtistSemanticZoom" 
+                                  Margin="-50,0,0,0"
+                                  IsZoomedInViewActive="True"
+                                  ViewChangeCompleted="AlbumsByArtistSemanticZoom_OnViewChangeCompleted"
+                                  ScrollViewer.HorizontalScrollMode="Disabled"
+                                  ScrollViewer.VerticalScrollMode="Disabled"
+                                  ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                                  ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                         <SemanticZoom.ZoomedOutView>
                             <GridView IsSwipeEnabled="False" x:Name="MainArtistGridView">
                                 <GridView.ItemsPanel>
@@ -155,7 +152,11 @@
                             </GridView>
                         </SemanticZoom.ZoomedOutView>
                         <SemanticZoom.ZoomedInView>
-                            <GridView x:Name="AlbumsByArtistListView" IsItemClickEnabled="True" ItemClick="AlbumGridView_ItemClick" ItemTemplate="{StaticResource LittleSizedAlbumDataTemplate}" IsSwipeEnabled="False" ItemContainerStyle="{StaticResource GridViewItemContainerStyle}" ItemsSource="{Binding Source={StaticResource albumsCollection}}" SelectionMode="None"  
+                            <GridView x:Name="AlbumsByArtistListView" IsItemClickEnabled="True" ItemClick="AlbumGridView_ItemClick" 
+                                      ItemTemplate="{StaticResource NormalSizedAlbumDataTemplate}" IsSwipeEnabled="False" 
+                                      ItemContainerStyle="{StaticResource GridViewItemContainerStyle}" 
+                                      ItemsSource="{Binding Source={StaticResource albumsCollection}}" 
+                                      SelectionMode="None"  
                                   ScrollViewer.HorizontalScrollBarVisibility="Auto"
                                   ScrollViewer.VerticalScrollBarVisibility="Disabled"
                                   ScrollViewer.HorizontalScrollMode="Enabled"
@@ -164,7 +165,7 @@
                                     <GroupStyle>
                                         <GroupStyle.Panel>
                                             <ItemsPanelTemplate>
-                                                <VariableSizedWrapGrid ItemWidth="160" ItemHeight="160" Orientation="Vertical">
+                                                <VariableSizedWrapGrid Margin="0,0,53,0" ItemWidth="160" ItemHeight="160" Orientation="Vertical">
                                                     <VariableSizedWrapGrid.ChildrenTransitions>
                                                         <TransitionCollection>
                                                             <RepositionThemeTransition />
@@ -176,7 +177,7 @@
                                         <GroupStyle.HeaderTemplate>
                                             <DataTemplate>
                                                 <Button Template="{StaticResource MainButtonStyle}" Width="265" HorizontalContentAlignment="Left" Click="OnHeaderSemanticZoomClicked">
-                                                    <TextBlock Text="{Binding Name}" Margin="3,0,0,0" Style="{StaticResource VLCSubHeaderStyle}" TextWrapping="NoWrap" TextTrimming="WordEllipsis" />
+                                                    <TextBlock Text="{Binding Name}" Margin="0,0,53,0" Style="{StaticResource VLCSubHeaderStyle}" TextWrapping="NoWrap" TextTrimming="WordEllipsis" />
                                                 </Button>
                                             </DataTemplate>
                                         </GroupStyle.HeaderTemplate>
@@ -190,8 +191,7 @@
                             </GridView>
                         </SemanticZoom.ZoomedInView>
                     </SemanticZoom>
-
-                    <Border Width="1" Grid.Column="1" Background="#663E3E3E"/>
+                    <!--<Border Width="1" Grid.Column="1" Background="#663E3E3E"/>
                     <ListView Grid.Column="2" Width="0" IsSwipeEnabled="False" Margin="10,0,0,0" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" x:Name="AlbumPlaylistListView" SelectionMode="None" FontFamily="Segoe UI" >
                         <ListView.HeaderTemplate>
                             <DataTemplate>
@@ -223,10 +223,10 @@
                                 </Button>
                             </DataTemplate>
                         </ListView.ItemTemplate>
-                    </ListView>
+                    </ListView>-->
                 </Grid>
             </Grid>
-            <Grid x:Name="TracksPanel">
+            <Grid x:Name="TracksPanel" >
                 <ListView ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" ItemsSource="{Binding Track}">
                     <ListView.HeaderTemplate>
                         <DataTemplate>
@@ -272,8 +272,8 @@
                     </ListView.ItemTemplate>
                 </ListView>
             </Grid>
-            <Grid x:Name="FavoriteAlbumsPanel">
-                <controls:NothingToSeeHere Visibility="{Binding FavoriteAlbums.Count, Converter={StaticResource CountToVisibilityConverter}}"/>
+            <Grid x:Name="FavoriteAlbumsPanel" >
+                <controls:NothingToSeeHere Grid.Row="1" Visibility="{Binding FavoriteAlbums.Count, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                 <GridView Margin="0,0,0,0" ItemTemplate="{StaticResource NormalSizedAlbumDataTemplate}" SelectionMode="None" IsItemClickEnabled="True" ItemContainerStyle="{StaticResource GridViewItemContainerStyle}" ItemsSource="{Binding FavoriteAlbums}" ItemClick="FavoriteAlbumItemClick" />
             </Grid>
         </Grid>
