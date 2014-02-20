@@ -6,6 +6,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using VLC_WINRT.Utility.IoC;
 using VLC_WINRT.Utility.Services.RunTime;
+using VLC_WINRT.ViewModels;
 
 namespace VLC_WINRT.Common
 {
@@ -67,6 +68,8 @@ namespace VLC_WINRT.Common
             {
                 var historyService = IoC.GetInstance<HistoryService>();
                 await historyService.SaveHistory();
+
+                Locator.MusicLibraryVM.SerializeArtistsDataBase();
             }
             catch (Exception e)
             {

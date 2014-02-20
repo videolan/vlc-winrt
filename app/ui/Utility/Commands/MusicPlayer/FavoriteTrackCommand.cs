@@ -32,12 +32,13 @@ namespace VLC_WINRT.Utility.Commands.MusicPlayer
                     })
                     .Tracks.FirstOrDefault(z => z == (parameter as MusicLibraryViewModel.TrackItem));
                 
-                if(trackFromArtistCollection != null)
-                    trackFromArtistCollection.Favorite = Locator.MusicLibraryVM.Track[i].Favorite;
+                //if(trackFromArtistCollection != null)
+                //    trackFromArtistCollection.Favorite = Locator.MusicLibraryVM.Track[i].Favorite;
 
 
                 // serializing and saving the new Artist collection with updated Favorite property
-                Locator.MusicLibraryVM.SerializeArtistsDataBase();
+                if(!Locator.MusicLibraryVM.IsBusy)
+                    Locator.MusicLibraryVM.SerializeArtistsDataBase();
             }
         }
     }

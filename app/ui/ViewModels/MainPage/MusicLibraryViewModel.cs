@@ -38,6 +38,7 @@ namespace VLC_WINRT.ViewModels.MainPage
 
         private StopVideoCommand _goBackCommand;
         private bool _isLoaded;
+        private bool _isBusy;
 
         int _numberOfTracks;
         ThreadPoolTimer _periodicTimer;
@@ -51,13 +52,18 @@ namespace VLC_WINRT.ViewModels.MainPage
             Panels.Add(new Panel("ARTISTS", 0, 1));
             Panels.Add(new Panel("TRACKS", 1, 0.4));
             Panels.Add(new Panel("FAVORITE ALBUMS", 2, 0.4));
-
         }
 
         public bool IsLoaded
         {
             get { return _isLoaded; }
             set { SetProperty(ref _isLoaded, value); }
+        }
+
+        public bool IsBusy
+        {
+            get { return _isBusy; }
+            set { SetProperty(ref _isBusy, value); }
         }
 
         public bool IsMusicLibraryEmpty
@@ -117,93 +123,110 @@ namespace VLC_WINRT.ViewModels.MainPage
 
         public async Task GetMusicFromLibrary()
         {
-            var musicFolder = await
-                KnownVLCLocation.MusicLibrary.GetFoldersAsync(CommonFolderQuery.GroupByArtist);
-
             nbOfFiles = (await KnownVLCLocation.MusicLibrary.GetItemsAsync()).Count;
             bool isMusicLibraryChanged = await IsMusicLibraryChanged();
             if (isMusicLibraryChanged)
             {
-                TimeSpan period = TimeSpan.FromSeconds(30);
-                _periodicTimer = ThreadPoolTimer.CreatePeriodicTimer(async (source) =>
-                {
-                    if (Locator.MusicLibraryVM.Track.Count > _numberOfTracks)
-                    {
-                        SerializeArtistsDataBase();
-                        SerializationHelper.SerializeAsJson(ImgCollection, "Artist_Img_Collection.json", null,
-                            CreationCollisionOption.ReplaceExisting);
-                        Locator.MusicLibraryVM._numberOfTracks = Track.Count;
-                    }
-                    else
-                    {
-                        foreach (AlbumItem album in Artist.SelectMany(artist => artist.Albums))
-                        {
-                            await album.GetCover();
-                        }
-                        DispatchHelper.Invoke(() => IsLoaded = true);
-                        SerializeArtistsDataBase();
-                        _periodicTimer.Cancel();
-                    }
-
-                }, period);
-
-                foreach (var artistItem in musicFolder)
-                {
-                    MusicProperties artistProperties = null;
-                    try
-                    {
-                        artistProperties = await artistItem.Properties.GetMusicPropertiesAsync();
-                    }
-                    catch
-                    {
-                    }
-                    if (artistProperties != null && artistProperties.Artist != "")
-                    {
-                        StorageFolderQueryResult albumQuery =
-                            artistItem.CreateFolderQuery(CommonFolderQuery.GroupByAlbum);
-                        var artist = new ArtistItemViewModel(albumQuery, artistProperties.Artist);
-                        OnPropertyChanged("Track");
-                        OnPropertyChanged("Artist");
-                        Artist.Add(artist);
-                    }
-                }
-                ExecuteSemanticZoom();
-                OnPropertyChanged("Artist");
+                StartIndexing();
             }
             else
             {
-                IsLoaded = true;
-                Artist = await SerializationHelper.LoadFromJsonFile<ObservableCollection<ArtistItemViewModel>>("MusicDB.json");
-                ImgCollection =
-                    await
-                        SerializationHelper.LoadFromJsonFile<ObservableCollection<string>>("Artist_Img_Collection.json");
-
-                foreach (AlbumItem album in Artist.SelectMany(artist => artist.Albums))
-                {
-                    if (album.Favorite)
-                    {
-                        RandomAlbums.Add(album);
-                        FavoriteAlbums.Add(album);
-                        OnPropertyChanged("FavoriteAlbums");
-                    }
-
-                    if (RandomAlbums.Count < 12)
-                    {
-                        if (!album.Favorite)
-                            RandomAlbums.Add(album);
-                    }
-                    foreach (TrackItem trackItem in album.Tracks)
-                    {
-                        Track.Add(trackItem);
-                    }
-                }
-                ExecuteSemanticZoom();
-                OnPropertyChanged("Artist");
-                OnPropertyChanged("Albums");
-                OnPropertyChanged("Tracks");
+                DeserializeAndLoad();
             }
         }
 
+        async Task StartIndexing()
+        {
+            var musicFolder = await
+                KnownVLCLocation.MusicLibrary.GetFoldersAsync(CommonFolderQuery.GroupByArtist);
+            TimeSpan period = TimeSpan.FromSeconds(30);
+            _periodicTimer = ThreadPoolTimer.CreatePeriodicTimer(async (source) =>
+            {
+                if (Locator.MusicLibraryVM.Track.Count > _numberOfTracks)
+                {
+                    SerializeArtistsDataBase();
+                    SerializationHelper.SerializeAsJson(ImgCollection, "Artist_Img_Collection.json", null,
+                        CreationCollisionOption.ReplaceExisting);
+                    Locator.MusicLibraryVM._numberOfTracks = Track.Count;
+                }
+                else
+                {
+                    foreach (AlbumItem album in Artist.SelectMany(artist => artist.Albums))
+                    {
+                        await album.GetCover();
+                    }
+                    DispatchHelper.Invoke(() => IsLoaded = true);
+                    DispatchHelper.Invoke(() => IsBusy = false);
+                    SerializeArtistsDataBase();
+                    _periodicTimer.Cancel();
+                }
+
+            }, period);
+
+            foreach (var artistItem in musicFolder)
+            {
+                MusicProperties artistProperties = null;
+                try
+                {
+                    artistProperties = await artistItem.Properties.GetMusicPropertiesAsync();
+                }
+                catch
+                {
+                }
+                if (artistProperties != null && artistProperties.Artist != "")
+                {
+                    StorageFolderQueryResult albumQuery =
+                        artistItem.CreateFolderQuery(CommonFolderQuery.GroupByAlbum);
+                    var artist = new ArtistItemViewModel(albumQuery, artistProperties.Artist);
+                    OnPropertyChanged("Track");
+                    OnPropertyChanged("Artist");
+                    Artist.Add(artist);
+                }
+            }
+            ExecuteSemanticZoom();
+            OnPropertyChanged("Artist");
+        }
+
+        async Task DeserializeAndLoad()
+        {
+            IsLoaded = true;
+            Artist = await SerializationHelper.LoadFromJsonFile<ObservableCollection<ArtistItemViewModel>>("MusicDB.json");
+            if (Artist.Count == 0)
+            {
+                StartIndexing();
+                return;
+            }
+
+            ImgCollection =
+                await
+                    SerializationHelper.LoadFromJsonFile<ObservableCollection<string>>("Artist_Img_Collection.json");
+
+            foreach (AlbumItem album in Artist.SelectMany(artist => artist.Albums))
+            {
+                if (album.Favorite)
+                {
+                    RandomAlbums.Add(album);
+                    FavoriteAlbums.Add(album);
+                    OnPropertyChanged("FavoriteAlbums");
+                }
+
+                if (RandomAlbums.Count < 12)
+                {
+                    if (!album.Favorite)
+                        RandomAlbums.Add(album);
+                }
+                foreach (TrackItem trackItem in album.Tracks)
+                {
+                    Track.Add(trackItem);
+                }
+            }
+            ExecuteSemanticZoom();
+            OnPropertyChanged("Artist");
+            OnPropertyChanged("Albums");
+            OnPropertyChanged("Tracks");
+
+            IsBusy = false;
+        }
         void ExecuteSemanticZoom()
         {
             var page = App.ApplicationFrame.Content as Views.MainPage;
@@ -243,11 +266,13 @@ namespace VLC_WINRT.ViewModels.MainPage
             return true;
         }
 
-        public void SerializeArtistsDataBase()
+        public async Task SerializeArtistsDataBase()
         {
-            SerializationHelper.SerializeAsJson(Artist, "MusicDB.json",
+            IsBusy = true;
+            await SerializationHelper.SerializeAsJson(Artist, "MusicDB.json",
                 null,
                 CreationCollisionOption.ReplaceExisting);
+            IsBusy = false;
         }
 
         public class ArtistItemViewModel : BindableBase
@@ -347,7 +372,7 @@ namespace VLC_WINRT.ViewModels.MainPage
 
             private async Task GetBiography()
             {
-                if(System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
+                if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
                     Biography = await informationHelper.GetArtistBiography();
             }
 

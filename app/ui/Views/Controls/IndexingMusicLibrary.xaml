@@ -17,7 +17,7 @@
             <TextBlock Style="{StaticResource SubheaderTextStyle}" >
                 <Run Text="Indexing Music library"/>
                 <LineBreak/>
-                <Run Text="Note that the app may become unresponsive for a few minutes" FontSize="17"/>
+                <Run Text="VLC may be unresponsive" FontSize="17"/>
             </TextBlock>
         </Grid>
     </Grid>
