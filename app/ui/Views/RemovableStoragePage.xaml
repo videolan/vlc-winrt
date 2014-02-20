@@ -7,6 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:removableStorage="using:VLC_WINRT.Views.Controls.RemovableStorage"
     xmlns:mainPage="using:VLC_WINRT.Views.Controls.MainPage"
+    xmlns:controls="using:VLC_WINRT.Views.Controls"
     mc:Ignorable="d"
     DataContext="{Binding Source={StaticResource Locator}, Path=MainPageVM}">
 
@@ -116,6 +117,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid VerticalAlignment="Top" x:Name="Header" Margin="0,30,0,0">
             <Grid.RenderTransform>
@@ -150,5 +152,6 @@
             <ListView Grid.Column="1" x:Name="SecondPanelListView" Margin="10,0,0,0" ItemTemplate="{StaticResource NormaleMovieTemplate}"/>
             <removableStorage:PlugARemovableStorage Grid.ColumnSpan="2" Visibility="{Binding RemovableStorageVMs.Count, Converter={StaticResource CountToVisibilityConverter}}" />
         </Grid>
+        <controls:MiniPlayer Grid.Row="2"/>
     </Grid>
 </Page>
