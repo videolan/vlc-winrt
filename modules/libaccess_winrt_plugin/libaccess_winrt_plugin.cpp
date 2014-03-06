@@ -65,11 +65,11 @@ static DataReader^			dataReader;
 vlc_module_begin()
     set_shortname(N_("WinRTInput"))
     set_description(N_("WinRT input"))
-	set_category(CAT_INPUT)
-	set_subcategory(SUBCAT_INPUT_ACCESS)
-	set_capability("access", 60)
-	add_shortcut("winrt")
-	set_callbacks(&Open, &Close)
+    set_category(CAT_INPUT)
+    set_subcategory(SUBCAT_INPUT_ACCESS)
+    set_capability("access", 60)
+    add_shortcut("winrt")
+    set_callbacks(&Open, &Close)
 vlc_module_end()
 
 /*****************************************************************************
@@ -82,13 +82,13 @@ vlc_module_end()
 static int OpenFileAsync(String^ token)
 {
     auto openTask = create_task(StorageApplicationPermissions::FutureAccessList->GetFileAsync(token))
-		.then([](StorageFile^ newFile){
-		    create_task(newFile->OpenReadAsync())
-			    .then([](task<IRandomAccessStreamWithContentType^> task){
-			        readStream = task.get();
-			        dataReader = ref new DataReader(readStream);
-		        }).wait();
-	    });
+        .then([](StorageFile^ newFile){
+            create_task(newFile->OpenReadAsync())
+                .then([](task<IRandomAccessStreamWithContentType^> task){
+                    readStream = task.get();
+                    dataReader = ref new DataReader(readStream);
+                }).wait();
+        });
 
     try
     {
@@ -110,58 +110,58 @@ static int OpenFileAsync(String^ token)
  */
 int Open(vlc_object_t *object)
 {
-	access_t *access = (access_t *) object;
-	access->pf_read	= &Read;
-	access->pf_seek	= &Seek;
-	access->pf_control = &Control;
+    access_t *access = (access_t *) object;
+    access->pf_read	= &Read;
+    access->pf_seek	= &Seek;
+    access->pf_control = &Control;
 
-	String^ futureAccesToken = GetString(access->psz_location);
-	if ( OpenFileAsync(futureAccesToken) != VLC_SUCCESS ){
-		OutputDebugStringW(L"Error Opening File");
-		
-		if (dataReader != nullptr){
-			delete dataReader;
-			dataReader = nullptr;
-		}
+    String^ futureAccesToken = GetString(access->psz_location);
+    if ( OpenFileAsync(futureAccesToken) != VLC_SUCCESS ){
+        OutputDebugStringW(L"Error Opening File");
+        
+        if (dataReader != nullptr){
+            delete dataReader;
+            dataReader = nullptr;
+        }
 
-		if (readStream != nullptr){
-			delete readStream;
-			readStream = nullptr;
-		}
+        if (readStream != nullptr){
+            delete readStream;
+            readStream = nullptr;
+        }
 
-		return VLC_EGENERIC;
-	}
+        return VLC_EGENERIC;
+    }
 
-	return VLC_SUCCESS;
+    return VLC_SUCCESS;
 }
 
 /* */
 void Close(vlc_object_t *object)
 {
-	access_t     *access = (access_t *) object;
+    access_t     *access = (access_t *) object;
     
     if (dataReader != nullptr){
-		delete dataReader;
-		dataReader = nullptr;
-	}
-	if (readStream != nullptr){
-		delete readStream;
-		readStream = nullptr;
-	}
+        delete dataReader;
+        dataReader = nullptr;
+    }
+    if (readStream != nullptr){
+        delete readStream;
+        readStream = nullptr;
+    }
 }
 
 /* */
 ssize_t Read(access_t *access, uint8_t *buffer, size_t size)
 {
-	unsigned int totalRead = 0;
+    unsigned int totalRead = 0;
 
-	auto readTask = create_task(dataReader->LoadAsync(size)).then([&totalRead, &buffer](unsigned int numBytesLoaded)
-	{
-		WriteOnlyArray<unsigned char, 1U>^ bufferArray = ref new Array<unsigned char, 1U>(numBytesLoaded);
-		dataReader->ReadBytes(bufferArray);
-		memcpy(buffer, bufferArray->begin(), bufferArray->end() - bufferArray->begin());
-		totalRead = numBytesLoaded;
-	});
+    auto readTask = create_task(dataReader->LoadAsync(size)).then([&totalRead, &buffer](unsigned int numBytesLoaded)
+    {
+        WriteOnlyArray<unsigned char, 1U>^ bufferArray = ref new Array<unsigned char, 1U>(numBytesLoaded);
+        dataReader->ReadBytes(bufferArray);
+        memcpy(buffer, bufferArray->begin(), bufferArray->end() - bufferArray->begin());
+        totalRead = numBytesLoaded;
+    });
        
     try
     {
@@ -179,59 +179,59 @@ ssize_t Read(access_t *access, uint8_t *buffer, size_t size)
         return -1;
     }
 
-	access->info.i_pos += totalRead;
-	access->info.b_eof = readStream->Position >= readStream->Size;
-	if (access->info.b_eof){
-		OutputDebugString(L"End of file reached");
-	}
+    access->info.i_pos += totalRead;
+    access->info.b_eof = readStream->Position >= readStream->Size;
+    if (access->info.b_eof){
+        OutputDebugString(L"End of file reached");
+    }
 
-	return totalRead;
+    return totalRead;
 }
 
 /* */
 int Seek(access_t *access, uint64_t position)
 {
-	try
-	{
-		readStream->Seek(position);
-		access->info.i_pos = position;
-		access->info.b_eof = readStream->Position >= readStream->Size;
-	}
-	catch (int ex)
-	{
-		return VLC_EGENERIC;
-	}
+    try
+    {
+        readStream->Seek(position);
+        access->info.i_pos = position;
+        access->info.b_eof = readStream->Position >= readStream->Size;
+    }
+    catch (int ex)
+    {
+        return VLC_EGENERIC;
+    }
 
-	return VLC_SUCCESS;
+    return VLC_SUCCESS;
 }
 
 /* */
 int Control(access_t *access, int query, va_list args)
 {
-	VLC_UNUSED(access);
-	switch (query)
-	{
-	case ACCESS_CAN_FASTSEEK:
-	case ACCESS_CAN_PAUSE:
-	case ACCESS_CAN_SEEK:
-	case ACCESS_CAN_CONTROL_PACE: {
-									  bool *b = va_arg(args, bool*);
-									  *b = true;
-									  return VLC_SUCCESS;
-	}
+    VLC_UNUSED(access);
+    switch (query)
+    {
+    case ACCESS_CAN_FASTSEEK:
+    case ACCESS_CAN_PAUSE:
+    case ACCESS_CAN_SEEK:
+    case ACCESS_CAN_CONTROL_PACE: {
+                                      bool *b = va_arg(args, bool*);
+                                      *b = true;
+                                      return VLC_SUCCESS;
+    }
 
-	case ACCESS_GET_PTS_DELAY: {
-								   int64_t *d = va_arg(args, int64_t *);
-								   *d = DEFAULT_PTS_DELAY;
-								   return VLC_SUCCESS;
-	}
+    case ACCESS_GET_PTS_DELAY: {
+                                   int64_t *d = va_arg(args, int64_t *);
+                                   *d = DEFAULT_PTS_DELAY;
+                                   return VLC_SUCCESS;
+    }
 
-	case ACCESS_SET_PAUSE_STATE:
-		return VLC_SUCCESS;
+    case ACCESS_SET_PAUSE_STATE:
+        return VLC_SUCCESS;
 
-	default:
-		return VLC_EGENERIC;
-	}	
+    default:
+        return VLC_EGENERIC;
+    }	
 }
 
 /**
@@ -239,8 +239,8 @@ int Control(access_t *access, int query, va_list args)
  */
 String^ GetString(char* in)
 {
-	std::string s_str = std::string(in);
-	std::wstring wid_str = std::wstring(s_str.begin(), s_str.end());
-	const wchar_t* w_char = wid_str.c_str();
-	return ref new String(w_char);
+    std::string s_str = std::string(in);
+    std::wstring wid_str = std::wstring(s_str.begin(), s_str.end());
+    const wchar_t* w_char = wid_str.c_str();
+    return ref new String(w_char);
 }
