@@ -570,6 +570,9 @@
     <Content Include="..\..\vlc\plugins\stream_filter\libsmooth_plugin.dll">
       <Link>plugins\stream_filter\libsmooth_plugin.dll</Link>
     </Content>
+    <Content Include="..\..\vlc\plugins\text_renderer\libfreetype_plugin.dll">
+      <Link>plugins\text_renderer\libfreetype_plugin.dll</Link>
+    </Content>
     <Content Include="..\..\vlc\plugins\video_chroma\libgrey_yuv_plugin.dll">
       <Link>plugins\video_chroma\libgrey_yuv_plugin.dll</Link>
     </Content>
@@ -856,7 +859,6 @@
     <Folder Include="plugins\meta_engine\" />
     <Folder Include="plugins\packetizer\" />
     <Folder Include="plugins\services_discovery\" />
-    <Folder Include="plugins\text_renderer\" />
   </ItemGroup>
   <ItemGroup>
     <SDKReference Include="Microsoft.VCLibs, Version=11.0">
