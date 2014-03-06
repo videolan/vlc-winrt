@@ -46,6 +46,13 @@ IAsyncAction^ Player::Initialize()
 	return vlcInitTask;
 }
 
+size_t  Player::ToCharArray(Platform::String^ str, char *arr, size_t maxSize)
+{
+    size_t nbConverted = 0;
+    wcstombs_s(&nbConverted, arr, 128, str->Data(), maxSize);
+    return nbConverted;
+}
+
 void Player::InitializeVLC()
 {
 	char ptr_d2dstring[40];
@@ -60,13 +67,19 @@ void Player::InitializeVLC()
 	char heightstring[40];
 	sprintf_s(heightstring, "--winrt-height=%f", m_displayHeight);
 
+    char fontstring[128 + 28];
+    char packagePath[128];
+   
+    Windows::ApplicationModel::Package^ currentPackage = Windows::ApplicationModel::Package::Current;
+    ToCharArray(currentPackage->InstalledLocation->Path, packagePath, 128);
+    sprintf_s(fontstring, "--freetype-font=%s\\segoeui.ttf", packagePath);
+
 	/* Don't add any invalid options, otherwise it causes LibVLC to fail */
 	const char *argv[] = {
 		"-I",
 		"dummy",
 		"--no-osd",
 		"--verbose=2",
-		"--no-video-title-show",
 		"--no-stats",
 		ptr_d2dstring,
 		ptr_scstring,
@@ -74,7 +87,7 @@ void Player::InitializeVLC()
 		heightstring,
 		"--avcodec-fast",
 		"--no-avcodec-dr",
-		//"--freetype-font=segoeui.ttf"
+        fontstring
 	};
 
 	p_instance = libvlc_new(sizeof(argv) / sizeof(*argv), argv);

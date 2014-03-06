@@ -58,6 +58,9 @@ namespace libVLCX {
 		void MediaEndedCall();
 
     private:
+        size_t      ToCharArray(Platform::String^ str, char* arr, size_t maxSize);
+
+    private:
 		void			         InitializeVLC();
         libvlc_instance_t        *p_instance;
         libvlc_media_player_t    *p_mp;
