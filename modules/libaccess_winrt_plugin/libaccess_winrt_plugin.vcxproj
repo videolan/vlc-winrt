@@ -127,7 +127,8 @@
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y $(TargetPath) $(SolutionDir)\ui\plugins\access</Command>
+      <Command>copy /Y $(TargetPath) $(SolutionDir)\ui\plugins\access
+copy /Y $(TargetDir)$(TargetName).pdb $(SolutionDir)\ui\plugins\access\</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
