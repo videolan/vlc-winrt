@@ -225,11 +225,15 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
 	props.pixelFormat = pixFormat;
 	props.dpiX = dpi;
 	props.dpiY = dpi;
+
+    sys->d2dContext->CreateEffect(CLSID_D2D1Scale, &scaleEffect);
+    if (scaleEffect == NULL)
+        return;
+
 	sys->d2dContext->CreateBitmap(size, picture->p[0].p_pixels, picture->p[0].i_pitch, props, &sys->d2dbmp);
 
 	scale = (double) sys->displayWidth / (double) picture->format.i_width;
-	sys->d2dContext->CreateEffect(CLSID_D2D1Scale, &scaleEffect);
-	scaleEffect->SetInput(0, sys->d2dbmp);
+    scaleEffect->SetInput(0, sys->d2dbmp);
 	scaleEffect->SetValue(D2D1_SCALE_PROP_CENTER_POINT, D2D1::Vector2F(0.0f,0.0f));
 	scaleEffect->SetValue(D2D1_SCALE_PROP_SCALE, D2D1::Vector2F(scale, scale));
 	D2D1_RECT_F displayRect = { 0.0f, (double) sys->displayHeight, (double) sys->displayWidth, 0.0f };
