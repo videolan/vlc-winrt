@@ -128,7 +128,8 @@
       <AdditionalLibraryDirectories>$(ProjectDir)\..\..\vlc</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y $(TargetPath) $(SolutionDir)\ui\plugins\video_output\</Command>
+      <Command>copy /Y $(TargetPath) $(SolutionDir)\ui\plugins\video_output\
+copy /Y $(TargetDir)$(TargetName).pdb $(SolutionDir)\ui\plugins\video_output\</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
