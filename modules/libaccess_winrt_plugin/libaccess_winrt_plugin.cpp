@@ -77,6 +77,33 @@ vlc_module_end()
 *****************************************************************************/
 
 /**
+ * Handles the file opening
+*/
+static int OpenFileAsync(String^ token)
+{
+    auto openTask = create_task(StorageApplicationPermissions::FutureAccessList->GetFileAsync(token))
+		.then([](StorageFile^ newFile){
+		    create_task(newFile->OpenReadAsync())
+			    .then([](task<IRandomAccessStreamWithContentType^> task){
+			        readStream = task.get();
+			        dataReader = ref new DataReader(readStream);
+		        }).wait();
+	    });
+
+    try
+    {
+        openTask.wait();  /* block with wait since we're in a worker thread */
+    }
+    catch(Exception^)
+    {
+        OutputDebugString(L"Failed to open file.");
+        return VLC_EGENERIC;
+    }
+    return VLC_SUCCESS;
+}
+
+
+/**
  * Open a WinRT StorageFile that has been added to the FutureAccessList
  * This allows for generic file loading from a Library, Picker, SkyDrive, SMB, USB etc.
  * psz_location: contains the GUID for the StorageFile in the FutureAccessList
@@ -88,21 +115,8 @@ int Open(vlc_object_t *object)
 	access->pf_seek	= &Seek;
 	access->pf_control = &Control;
 
-	try
-	{
-		String^ futureAccesToken = GetString(access->psz_location);
-
-		create_task(StorageApplicationPermissions::FutureAccessList->GetFileAsync(futureAccesToken))
-			.then([](StorageFile^ newFile){
-			create_task(newFile->OpenAsync(FileAccessMode::Read))
-				.then([](task<IRandomAccessStream^> task)
-			{
-				readStream = task.get();
-				dataReader = ref new DataReader(readStream);
-			}).wait();
-		}).wait();  /* block with wait since we're in a worker thread */
-	}
-	catch (int ex){
+	String^ futureAccesToken = GetString(access->psz_location);
+	if ( OpenFileAsync(futureAccesToken) != VLC_SUCCESS ){
 		OutputDebugStringW(L"Error Opening File");
 		
 		if (dataReader != nullptr){
@@ -125,8 +139,8 @@ int Open(vlc_object_t *object)
 void Close(vlc_object_t *object)
 {
 	access_t     *access = (access_t *) object;
-
-	if (dataReader != nullptr){
+    
+    if (dataReader != nullptr){
 		delete dataReader;
 		dataReader = nullptr;
 	}
@@ -141,20 +155,29 @@ ssize_t Read(access_t *access, uint8_t *buffer, size_t size)
 {
 	unsigned int totalRead = 0;
 
-	try
+	auto readTask = create_task(dataReader->LoadAsync(size)).then([&totalRead, &buffer](unsigned int numBytesLoaded)
 	{
-		create_task(dataReader->LoadAsync(size)).then([&totalRead, &buffer](unsigned int numBytesLoaded)
-		{
-			WriteOnlyArray<unsigned char, 1U>^ bufferArray = ref new Array<unsigned char, 1U>(numBytesLoaded);
-			dataReader->ReadBytes(bufferArray);
-			memcpy(buffer, bufferArray->begin(), bufferArray->end() - bufferArray->begin());
-			totalRead = numBytesLoaded;
-			
-		}).wait(); /* block with wait since we're in a worker thread */
-	}
-	catch (int ex){
-		OutputDebugString(L"Exception in read\n");
-	}
+		WriteOnlyArray<unsigned char, 1U>^ bufferArray = ref new Array<unsigned char, 1U>(numBytesLoaded);
+		dataReader->ReadBytes(bufferArray);
+		memcpy(buffer, bufferArray->begin(), bufferArray->end() - bufferArray->begin());
+		totalRead = numBytesLoaded;
+	});
+       
+    try
+    {
+        readTask.wait(); /* block with wait since we're in a worker thread */
+    }
+    catch(Exception^ ex)
+    {
+        OutputDebugString(L"Failure while reading block");
+        if (ex->HResult == HRESULT_FROM_WIN32(ERROR_OPLOCK_HANDLE_CLOSED)){
+            if (OpenFileAsync(GetString(access->psz_location)) == VLC_SUCCESS){
+                return 0;
+            }
+            OutputDebugString(L"Failed to reopen file");
+        }
+        return -1;
+    }
 
 	access->info.i_pos += totalRead;
 	access->info.b_eof = readStream->Position >= readStream->Size;
