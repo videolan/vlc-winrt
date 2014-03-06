@@ -20,6 +20,7 @@
 
 #include "pch.h"
 #include "Player.h"
+#include <map>
 
 using namespace libVLCX;
 using namespace Windows::Graphics::Display;
@@ -232,15 +233,64 @@ int Player::GetSubtitleCount(){
     return subtitleTrackCount;
 }
 
-int Player::SetSubtitleTrack(int track){
-    int spuDelay = 0;
-    if (p_mp)
-    {
-        spuDelay = libvlc_video_set_spu(p_mp, track);
+int Player::GetSubtitleDescription() {
+    libvlc_track_description_t *subtitleTrackDesc = NULL;
+    int count = 0;
+    std::map<int,char*> tracks;
+    if (p_mp) {
+        subtitleTrackDesc = libvlc_video_get_spu_description(p_mp);
+        while (subtitleTrackDesc != NULL && subtitleTrackDesc->p_next != NULL) {
+            tracks[subtitleTrackDesc->i_id] = subtitleTrackDesc->psz_name;
+            subtitleTrackDesc = subtitleTrackDesc->p_next;
+            count++;
+        }
     }
-    return spuDelay;
+    libvlc_track_description_list_release(subtitleTrackDesc);
+    return count;
 }
 
+int Player::SetSubtitleTrack(int track){
+    int spuLoaded = 0;
+    if (p_mp)
+    {
+        spuLoaded = libvlc_video_set_spu(p_mp, track);
+    }
+    return spuLoaded;
+}
+
+int Player::GetAudioTracksCount(){
+    int audioTracksCount = 0;
+    if (p_mp)
+    {
+        audioTracksCount = libvlc_audio_get_track_count (p_mp);
+    }
+    return audioTracksCount;
+}
+
+int Player::GetAudioTracksDescription() {
+    libvlc_track_description_t *audioTrackDesc = NULL;
+    int count = 0;
+    std::map<int,char*> tracks;
+    if (p_mp) {
+        audioTrackDesc = libvlc_audio_get_track_description(p_mp);
+        while (audioTrackDesc != NULL && audioTrackDesc->p_next != NULL) {
+            tracks[audioTrackDesc->i_id] = audioTrackDesc->psz_name;
+            audioTrackDesc = audioTrackDesc->p_next;
+            count++;
+        }
+    }
+    libvlc_track_description_list_release(audioTrackDesc);
+    return count;
+}
+
+int Player::SetAudioTrack(int track){
+    int audioTrackLoaded = 0;
+    if (p_mp)
+    {
+        audioTrackLoaded = libvlc_audio_set_track(p_mp, track);
+    }
+    return audioTrackLoaded;
+}
 
 Player::~Player()
 {

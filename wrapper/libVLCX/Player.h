@@ -24,6 +24,7 @@
 #include "MMDeviceLocator.h"
 #include "DirectXManger.h"
 #include <exception>
+#include <map>
 
 using namespace Microsoft::WRL;
 using namespace Windows::Media::Devices;
@@ -32,54 +33,64 @@ using namespace Windows::System::Threading;
 using namespace Windows::Foundation;
 
 namespace libVLCX {
-	public delegate void MediaEndedHandler();
+    public delegate void MediaEndedHandler();
     public ref class Player sealed
     {
     public:
-		Player(SwapChainBackgroundPanel^ panel);
-		IAsyncAction^ Initialize();
-		void          Open(Platform::String^ mrl);
+        Player(SwapChainBackgroundPanel^ panel);
+        IAsyncAction^ Initialize();
+
+        void          Open(Platform::String^ mrl);
+
         void          Stop();
         void          Pause();
         void          Play();
-		void          Seek(float position);
-		float         GetPosition();
-		int64         GetLength();
-		int           GetSubtitleCount();
-		int           SetSubtitleTrack(int track);
-		virtual       ~Player();
-		void		  DetachEvent();
-		void	      UpdateSize(unsigned int x, unsigned int y);
 
-	public:
-		event MediaEndedHandler^ MediaEnded;
+        void          Seek(float position);
+        float         GetPosition();
+        int64         GetLength();
 
-	internal:
-		void MediaEndedCall();
+        int           GetSubtitleCount();
+        int           GetSubtitleDescription();
+        int           SetSubtitleTrack(int track);
+
+        int           GetAudioTracksCount();
+        int           GetAudioTracksDescription();
+        int           SetAudioTrack(int track);
+
+        virtual       ~Player();
+        void          DetachEvent();
+        void          UpdateSize(unsigned int x, unsigned int y);
+
+    public:
+        event MediaEndedHandler^ MediaEnded;
+
+    internal:
+        void MediaEndedCall();
 
     private:
         size_t      ToCharArray(Platform::String^ str, char* arr, size_t maxSize);
 
     private:
-		void			         InitializeVLC();
+        void                     InitializeVLC();
         libvlc_instance_t        *p_instance;
         libvlc_media_player_t    *p_mp;
-		SwapChainBackgroundPanel ^p_panel;
-		DirectXManger            *p_dxManager;
-		float                    m_displayWidth;
-		float                    m_displayHeight;
-	};
+        SwapChainBackgroundPanel ^p_panel;
+        DirectXManger            *p_dxManager;
+        float                    m_displayWidth;
+        float                    m_displayHeight;
+    };
 
-	class PlayerPointerWrapper
-	{
-	public:
-		Player^ player;
+    class PlayerPointerWrapper
+    {
+    public:
+        Player^ player;
 
-	public:
-		PlayerPointerWrapper(Player^ player)
-		{
-			this->player = player;
-		}
-	};
+    public:
+        PlayerPointerWrapper(Player^ player)
+        {
+            this->player = player;
+        }
+    };
 }
 
