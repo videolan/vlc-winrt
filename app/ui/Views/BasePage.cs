@@ -4,6 +4,7 @@ using Windows.UI.ApplicationSettings;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using VLC_WINRT.ViewModels;
+using VLC_WINRT.Utility.Services.RunTime;
 
 namespace VLC_WINRT.Views
 {
@@ -29,6 +30,19 @@ namespace VLC_WINRT.Views
 
             args.Request.ApplicationCommands.Clear();
             args.Request.ApplicationCommands.Add(privacyCommand);
+
+            //SettingsCommand about = new SettingsCommand("AboutID", "About", command =>
+            //{
+            //    AboutTheApp privacyPolicy = new AboutTheApp();
+            //    privacyPolicy.Show();
+            //});
+            //args.Request.ApplicationCommands.Add(about);
+
+            SettingsCommand specialThanks = new SettingsCommand("specialThanks", "Special Thanks", command =>
+            {
+                NavigationService.NavigateTo(typeof(SpecialThanks));
+            });
+            args.Request.ApplicationCommands.Add(specialThanks);
         }
 
         public void NavigateFrom()
