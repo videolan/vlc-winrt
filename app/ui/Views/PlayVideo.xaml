@@ -36,12 +36,7 @@
             <Grid Height="200" Background="#7F000000" VerticalAlignment="Bottom">
                 <TextBlock Text="{Binding CurrentVideo.Title}" Style="{StaticResource VLCSubHeaderStyle}" Foreground="WhiteSmoke" VerticalAlignment="Top" Margin="30,10,0,0"/>
                 <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    <StackPanel Grid.Column="1" Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal">
                         <Button Style="{StaticResource SkipBackNoTextHugeAppBarButtonStyle}" Command="{Binding SkipBack}"/>
                         <Button Style="{StaticResource PauseNoTextHugeAppBarButtonStyle}" 
                             Command="{Binding PlayOrPause}"
@@ -54,6 +49,10 @@
                         <Button Style="{StaticResource SkipAheadNoTextHugeAppBarButtonStyle}" Command="{Binding SkipAhead}"/>
                     </StackPanel>
                 </Grid>
+				<StackPanel HorizontalAlignment="Right" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,28,0,0">
+					<Button Style="{StaticResource SubtitleAppBarButtonStyle}" Visibility="{Binding SubtitlesCount, Converter={StaticResource NegatedCountToVisibilityConverter}}" Click="Subtitles_Click"/>
+                    <Button Style="{StaticResource AudioTrackAppBarButtonStyle}" Visibility="{Binding AudioTracksCount, Converter={StaticResource NegatedCountToVisibilityConverter}}" Click="AudioTracks_Click"/>
+				</StackPanel>
                 <Slider x:Name="VideoPositionSlider"
                         VerticalAlignment="Bottom"
                         Style="{StaticResource VlcSlider}" 
@@ -72,83 +71,4 @@
             </Grid>
         </Grid>
     </Grid>
-    <!--<views:BasePage.TopAppBar>
-        <AppBar  Background="#AA000000" BorderBrush="#AA000000">
-            <StackPanel Orientation="Horizontal">
-                <Button Style="{StaticResource BackButtonStyle}" 
-                        Command="{Binding GoBack}" 
-                        CommandParameter="{Binding}" 
-                        Margin="30,10"></Button>
-                <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center" Orientation="Horizontal" Visibility="Collapsed">
-                    <TextBlock Text="Audio Track: " 
-                               Style="{StaticResource SubheaderTextStyle}"
-                               Margin="10">
-                    </TextBlock>
-                    <ComboBox Margin="10" 
-                              Width="120"
-                              ItemsSource="{Binding Subtitles}"
-                              SelectedItem="{Binding CurrentSubtitle}">
-                    </ComboBox>
-                    <TextBlock Text="Subtitle Track: " 
-                            Style="{StaticResource SubheaderTextStyle}"
-                            Margin="10"></TextBlock>
-                    <ComboBox Margin="10" 
-                              Width="120"
-                              ItemsSource="{Binding Subtitles}"
-                              SelectedItem="{Binding CurrentSubtitle}">
-                    </ComboBox>
-                    <TextBlock Margin="40,10,30,10" 
-                               HorizontalAlignment="Right" 
-                               Text="{Binding Now}" 
-                               Style="{StaticResource PageHeaderTextStyle}"></TextBlock>
-                </StackPanel>
-            </StackPanel>
-        </AppBar>
-    </views:BasePage.TopAppBar>-->
-    <!--<views:BasePage.BottomAppBar>
-        <AppBar Padding="10,0,10,0" Background="#AA000000" BorderBrush="#AA000000">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <TextBlock x:Name="ElapsedTime" 
-                           Grid.Row="1"
-                           Grid.Column="0"
-                           Margin="30,0,0,0"
-                           Text="{Binding ElapsedTime, Converter={StaticResource TimeSpanShortStringConverter}}" 
-                           Style="{StaticResource ItemTextStyle}" 
-                           >
-                </TextBlock>
-                <TextBlock x:Name="TotalTime" HorizontalAlignment="Right"
-                           Grid.Row="1"
-                           Grid.Column="1"
-                           Margin="0,0,30,0"
-                           Text="{Binding TimeTotal, Converter={StaticResource TimeSpanShortStringConverter}}" 
-                           Style="{StaticResource ItemTextStyle}"></TextBlock>
-
-                <StackPanel Grid.Row="2" Grid.Column="0">
-                    <TextBlock Margin="30" Text="{Binding Title}" Style="{StaticResource GroupHeaderTextStyle}"
-                               VerticalAlignment="Center" HorizontalAlignment="Left">
-                    </TextBlock>
-                </StackPanel>
-                <StackPanel Margin="5,0,5,10" Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="2"
-                            Grid.Column="1">
-                    <Button Style="{StaticResource SkipBackAppBarButtonStyle}" >
-                    </Button>
-                    <Button Style="{StaticResource PlayAppBarButtonStyle}">
-                    </Button>
-                    <Button Style="{StaticResource PauseAppBarButtonStyle}">
-                    </Button>
-                    <Button Style="{StaticResource SkipAheadAppBarButtonStyle}" >
-                    </Button>
-                </StackPanel>
-            </Grid>
-        </AppBar>
-    </views:BasePage.BottomAppBar>-->
 </views:BasePage>

@@ -1394,6 +1394,11 @@
         <Setter Property="AutomationProperties.Name" Value="Bullets"/>
         <Setter Property="Content" Value="&#xE133;"/>
     </Style>
+    <Style x:Key="SubtitleAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
+        <Setter Property="AutomationProperties.AutomationId" Value="CommentAppBarButton"/>
+        <Setter Property="AutomationProperties.Name" Value="Subtitles"/>
+        <Setter Property="Content" Value="&#xE134;"/>
+    </Style>
     <Style x:Key="CommentAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
         <Setter Property="AutomationProperties.AutomationId" Value="CommentAppBarButton"/>
         <Setter Property="AutomationProperties.Name" Value="Comment"/>
@@ -1458,6 +1463,11 @@
     <Style x:Key="MusicInfoAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
         <Setter Property="AutomationProperties.AutomationId" Value="MusicInfoAppBarButton"/>
         <Setter Property="AutomationProperties.Name" Value="Music Info"/>
+        <Setter Property="Content" Value="&#xE142;"/>
+    </Style>
+    <Style x:Key="AudioTrackAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
+        <Setter Property="AutomationProperties.AutomationId" Value="MusicInfoAppBarButton"/>
+        <Setter Property="AutomationProperties.Name" Value="Audio tracks"/>
         <Setter Property="Content" Value="&#xE142;"/>
     </Style>
     <Style x:Key="GoAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">

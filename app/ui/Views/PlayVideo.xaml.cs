@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Linq;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
 using VLC_WINRT.Utility.Helpers;
 using VLC_WINRT.ViewModels;
@@ -26,7 +29,7 @@ namespace VLC_WINRT.Views
 
         private void TimerOnTick(object sender, object o)
         {
-            if(isCommandShown)
+            if (isCommandShown)
                 HideCommands();
         }
 
@@ -64,5 +67,36 @@ namespace VLC_WINRT.Views
             _vm = (NavigateableViewModel)DataContext;
             base.SetDataContext();
         }
+        
+        private void Subtitles_Click(object sender, RoutedEventArgs e)
+        {
+            PopupMenu popup = new PopupMenu();
+            for (int i = 0; i < Locator.PlayVideoVM.SubtitlesCount; i++)
+            {
+                popup.Commands.Add(new UICommand()
+                {
+                    Id = Locator.PlayVideoVM.SubtitlesTracks.ElementAt(i).Key,
+                    Label = Locator.PlayVideoVM.SubtitlesTracks.ElementAt(i).Value,
+                    Invoked = command => Locator.PlayVideoVM.SetSubtitleTrackCommand.Execute(command.Id),
+                });
+            }
+            popup.ShowForSelectionAsync(((Button) sender).GetBoundingRect());
+        }
+        private void AudioTracks_Click(object sender, RoutedEventArgs e)
+        {
+            PopupMenu popup = new PopupMenu();
+            for (int i = 0; i < 6; i++)
+            {
+                popup.Commands.Add(new UICommand()
+                {
+                    Id = Locator.PlayVideoVM.AudioTracks.ElementAt(i).Key,
+                    Label = Locator.PlayVideoVM.AudioTracks.ElementAt(i).Value,
+                    Invoked = command => Locator.PlayVideoVM.SetAudioTrackCommand.Execute(command.Id),
+                });
+            }
+            popup.ShowForSelectionAsync(((Button) sender).GetBoundingRect());
+        }
+        
+        
     }
 }

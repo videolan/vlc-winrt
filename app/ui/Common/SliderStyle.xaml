@@ -177,15 +177,14 @@
 
                             <Rectangle x:Name="HorizontalTrackRect"
                                    Fill="{TemplateBinding Background}"
-                                   Grid.Row="1"
-                                   Grid.ColumnSpan="3" />
+                                   Grid.ColumnSpan="3" Grid.Row="1" Height="4" />
                             <Rectangle x:Name="HorizontalDecreaseRect"
                                    Fill="{TemplateBinding Foreground}"
-                                   Grid.Row="1" />
+                                   Grid.Row="1" Height="4" />
                             <TickBar x:Name="TopTickBar"
                                  Visibility="Collapsed"
                                  Fill="{StaticResource SliderTickmarkOutsideBackgroundThemeBrush}"
-                                 Height="{StaticResource SliderOutsideTickBarThemeHeight}"
+                                 Height="6"
                                  VerticalAlignment="Bottom"
                                  Margin="0,0,0,2"
                                  Grid.ColumnSpan="3" />
@@ -212,10 +211,8 @@
                                Background="{StaticResource SliderThumbBackgroundThemeBrush}"
                                Style="{StaticResource SliderThumbStyle}"
                                DataContext="{TemplateBinding Value}"
-                               Height="{StaticResource SliderTrackThemeHeight}"
-                               Width="{StaticResource SliderTrackThemeHeight}"
                                Grid.Row="1"
-                               Grid.Column="1" />
+                               Grid.Column="1" Width="4" Height="18" />
                             <Rectangle x:Name="FocusVisualWhiteHorizontal"
                                    IsHitTestVisible="False"
                                    Stroke="{StaticResource FocusVisualWhiteStrokeThemeBrush}"

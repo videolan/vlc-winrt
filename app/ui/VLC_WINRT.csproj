@@ -102,6 +102,8 @@
     <Compile Include="Utility\Commands\PlayTrackComand.cs" />
     <Compile Include="Utility\Commands\StopVideoCommand.cs" />
     <Compile Include="Utility\Commands\VideoPlayer\FavoriteVideoCommand.cs" />
+    <Compile Include="Utility\Commands\VideoPlayer\SetAudioTrackCommand.cs" />
+    <Compile Include="Utility\Commands\VideoPlayer\SetSubtitleTrackCommand.cs" />
     <Compile Include="Utility\Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="Utility\Converters\BooleanNegationConverter.cs" />
     <Compile Include="Common\LayoutAwarePage.cs" />
@@ -256,6 +258,33 @@
     <Content Include="plugins\audio_output\libxaudio2_winrt_plugin.dll" />
     <Content Include="segoeui.ttf" />
     <None Include="packages.config" />
+    <None Include="£15.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="£200.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="£25.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="£250.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="£3.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="£350.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="£40.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="£60.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="£80.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <PRIResource Include="Strings\en-US\Resources.resw" />
   </ItemGroup>
   <ItemGroup>

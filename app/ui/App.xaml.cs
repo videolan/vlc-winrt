@@ -6,6 +6,7 @@ using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using VLC_WINRT.Common;
+using VLC_WINRT.Utility.Helpers;
 using VLC_WINRT.Utility.Services.RunTime;
 using VLC_WINRT.Views;
 
