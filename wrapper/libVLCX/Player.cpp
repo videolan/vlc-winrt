@@ -255,6 +255,16 @@ int64 Player::GetLength()
     return length;
 }
 
+int64 Player::GetTime()
+{
+    int64 time = 0;
+    if (p_mp)
+    {
+        time = libvlc_media_player_get_time(p_mp);
+    }
+    return time;
+}
+
 int Player::GetSubtitleCount(){
     int subtitleTrackCount = 0;
     if (p_mp)

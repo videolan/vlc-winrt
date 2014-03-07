@@ -49,6 +49,7 @@ namespace libVLCX {
         void          Seek(float position);
         float         GetPosition();
         int64         GetLength();
+        int64         GetTime();
 
         int           GetSubtitleCount();
         int           GetSubtitleDescription(Collections::IMap<int, Platform::String ^> ^tracks);
