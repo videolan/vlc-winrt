@@ -277,10 +277,10 @@ int Player::GetSubtitleCount(){
 int Player::GetSubtitleDescription(Collections::IMap<int,Platform::String ^> ^tracks) {
     libvlc_track_description_t *subtitleTrackDesc = NULL;
     int count = 0;
-    if (p_mp) {
+    if (p_mp && tracks) {
         subtitleTrackDesc = libvlc_video_get_spu_description(p_mp);
-        while (subtitleTrackDesc != NULL && subtitleTrackDesc->p_next != NULL) {
-            tracks->Insert(subtitleTrackDesc->i_id, L"");
+        while (subtitleTrackDesc != NULL ) {
+			tracks->Insert(subtitleTrackDesc->i_id, ToPlatformString(subtitleTrackDesc->psz_name));
             subtitleTrackDesc = subtitleTrackDesc->p_next;
             count++;
         }
@@ -313,7 +313,7 @@ int Player::GetAudioTracksDescription(Collections::IMap<int,Platform::String ^> 
     if (p_mp) {
         audioTrackDesc = libvlc_audio_get_track_description(p_mp);
         while (audioTrackDesc != NULL && audioTrackDesc->p_next != NULL) {
-            tracks->Insert(audioTrackDesc->i_id,L"");
+            tracks->Insert(audioTrackDesc->i_id, ToPlatformString(audioTrackDesc->psz_name));
             audioTrackDesc = audioTrackDesc->p_next;
             count++;
         }
