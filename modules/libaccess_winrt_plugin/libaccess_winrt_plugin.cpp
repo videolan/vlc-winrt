@@ -110,10 +110,10 @@ static int OpenFileAsync(String^ token)
  */
 int Open(vlc_object_t *object)
 {
-    access_t *access = (access_t *) object;
-    access->pf_read	= &Read;
-    access->pf_seek	= &Seek;
-    access->pf_control = &Control;
+    access_t *access    = (access_t *) object;
+    access->pf_read     = &Read;
+    access->pf_seek     = &Seek;
+    access->pf_control  = &Control;
 
     String^ futureAccesToken = GetString(access->psz_location);
     if ( OpenFileAsync(futureAccesToken) != VLC_SUCCESS ){
