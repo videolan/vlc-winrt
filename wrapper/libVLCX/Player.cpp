@@ -203,6 +203,15 @@ void Player::Seek(float position)
     }
 }
 
+void Debug( const wchar_t *fmt, ...) {
+    wchar_t buf[255];
+    va_list args;
+    va_start(args, fmt);
+    vswprintf_s(buf, fmt, args);
+    va_end(args);
+    OutputDebugStringW(buf);
+}
+
 float Player::GetPosition()
 {
     float position = 0.0f;
