@@ -118,7 +118,7 @@ int Open(vlc_object_t *object)
     String^ futureAccesToken = GetString(access->psz_location);
     if ( OpenFileAsync(futureAccesToken) != VLC_SUCCESS ){
         OutputDebugStringW(L"Error Opening File");
-        
+
         if (dataReader != nullptr){
             delete dataReader;
             dataReader = nullptr;
@@ -139,7 +139,7 @@ int Open(vlc_object_t *object)
 void Close(vlc_object_t *object)
 {
     access_t     *access = (access_t *) object;
-    
+
     if (dataReader != nullptr){
         delete dataReader;
         dataReader = nullptr;
@@ -162,7 +162,7 @@ ssize_t Read(access_t *access, uint8_t *buffer, size_t size)
         memcpy(buffer, bufferArray->begin(), bufferArray->end() - bufferArray->begin());
         totalRead = numBytesLoaded;
     });
-       
+
     try
     {
         readTask.wait(); /* block with wait since we're in a worker thread */
@@ -231,10 +231,11 @@ int Control(access_t *access, int query, va_list args)
 
     case ACCESS_GET_SIZE: {
         *va_arg( args, uint64_t *) = readStream->Size;
+        return VLC_SUCCESS;
     }
     default:
         return VLC_EGENERIC;
-    }	
+    }
 }
 
 /**
