@@ -251,14 +251,13 @@ int Player::GetSubtitleCount(){
     return subtitleTrackCount;
 }
 
-int Player::GetSubtitleDescription() {
+int Player::GetSubtitleDescription(Collections::IMap<int,Platform::String ^> ^tracks) {
     libvlc_track_description_t *subtitleTrackDesc = NULL;
     int count = 0;
-    std::map<int,char*> tracks;
     if (p_mp) {
         subtitleTrackDesc = libvlc_video_get_spu_description(p_mp);
         while (subtitleTrackDesc != NULL && subtitleTrackDesc->p_next != NULL) {
-            tracks[subtitleTrackDesc->i_id] = subtitleTrackDesc->psz_name;
+            tracks->Insert(subtitleTrackDesc->i_id, L"");
             subtitleTrackDesc = subtitleTrackDesc->p_next;
             count++;
         }
@@ -285,14 +284,13 @@ int Player::GetAudioTracksCount(){
     return audioTracksCount;
 }
 
-int Player::GetAudioTracksDescription() {
+int Player::GetAudioTracksDescription(Collections::IMap<int,Platform::String ^> ^tracks) {
     libvlc_track_description_t *audioTrackDesc = NULL;
     int count = 0;
-    std::map<int,char*> tracks;
     if (p_mp) {
         audioTrackDesc = libvlc_audio_get_track_description(p_mp);
         while (audioTrackDesc != NULL && audioTrackDesc->p_next != NULL) {
-            tracks[audioTrackDesc->i_id] = audioTrackDesc->psz_name;
+            tracks->Insert(audioTrackDesc->i_id,L"");
             audioTrackDesc = audioTrackDesc->p_next;
             count++;
         }

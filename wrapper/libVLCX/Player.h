@@ -25,6 +25,7 @@
 #include "DirectXManger.h"
 #include <exception>
 #include <map>
+#include <collection.h>
 
 using namespace Microsoft::WRL;
 using namespace Windows::Media::Devices;
@@ -51,11 +52,11 @@ namespace libVLCX {
         int64         GetLength();
 
         int           GetSubtitleCount();
-        int           GetSubtitleDescription();
+        int           GetSubtitleDescription(Collections::IMap<int, Platform::String ^> ^tracks);
         int           SetSubtitleTrack(int track);
 
         int           GetAudioTracksCount();
-        int           GetAudioTracksDescription();
+        int           GetAudioTracksDescription(Collections::IMap<int, Platform::String ^> ^tracks);
         int           SetAudioTrack(int track);
 
         virtual       ~Player();
