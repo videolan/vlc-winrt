@@ -60,6 +60,7 @@ namespace VLC_WINRT
             Dispatcher = Window.Current.Content.Dispatcher;
             NavigationService.NavigateTo(typeof(MainPage));
             Window.Current.Activate();
+            LoadBackers.Get();
         }
 
         /// <summary>
