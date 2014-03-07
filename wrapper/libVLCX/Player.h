@@ -24,7 +24,6 @@
 #include "MMDeviceLocator.h"
 #include "DirectXManger.h"
 #include <exception>
-#include <map>
 #include <collection.h>
 
 using namespace Microsoft::WRL;
