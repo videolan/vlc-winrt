@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Windows.Media;
 using VLC_WINRT.Common;
 using VLC_WINRT.ViewModels;
 
@@ -12,7 +8,10 @@ namespace VLC_WINRT.Utility.Commands.MusicPlayer
     {
         public override void Execute(object parameter)
         {
-            Locator.MusicPlayerVM.Play();
+            if (MediaControl.IsPlaying)
+                Locator.MusicPlayerVM.Pause();
+            else
+                Locator.MusicPlayerVM.Resume();
         }
     }
 }

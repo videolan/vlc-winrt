@@ -17,9 +17,9 @@ namespace VLC_WINRT.Utility.Helpers.MusicLibrary
 {
     public class ArtistInformationsHelper
     {
-        Artist xBoxArtistItem;
+        public Artist XBoxArtistItem;
         string _artist;
-        public async Task GetArtistFromXboxMusic(string artist)
+        public async Task<bool> GetArtistFromXboxMusic(string artist)
         {
             _artist = artist;
             try
@@ -31,23 +31,24 @@ namespace VLC_WINRT.Utility.Helpers.MusicLibrary
                 Debug.WriteLine("XBOX Music token " + token);
                 XboxMusic = await XboxMusicHelper.SearchMediaCatalog(token, artist, null, 3);
 
-                xBoxArtistItem = XboxMusic.Artists.Items.FirstOrDefault(x => x.Name == artist);
-                if (xBoxArtistItem == null)
-                    xBoxArtistItem = XboxMusic.Artists.Items.FirstOrDefault();
+                XBoxArtistItem = XboxMusic.Artists.Items.FirstOrDefault(x => x.Name == artist);
+                if (XBoxArtistItem == null)
+                    XBoxArtistItem = XboxMusic.Artists.Items.FirstOrDefault();
 
-                Debug.WriteLine("XBOX Music artist found : " + xBoxArtistItem.Name);
+                Debug.WriteLine("XBOX Music artist found : " + XBoxArtistItem.Name);
 
-                Locator.MusicLibraryVM.ImgCollection.Add(xBoxArtistItem.ImageUrl);
+                Locator.MusicLibraryVM.ImgCollection.Add(XBoxArtistItem.ImageUrl);
             }
             catch (Exception e)
             {
                 Debug.WriteLine("XBOX Error\n" + e.ToString());
             }
+            return XBoxArtistItem != null;
         }
         async Task SaveArtistThumbnailInAppFolder()
         {
             HttpClient clientPic = new HttpClient();
-            HttpResponseMessage responsePic = await clientPic.GetAsync(xBoxArtistItem.ImageUrlWithOptions(new ImageSettings(280, 156, ImageMode.Scale, "")));
+            HttpResponseMessage responsePic = await clientPic.GetAsync(XBoxArtistItem.ImageUrlWithOptions(new ImageSettings(280, 156, ImageMode.Scale, "")));
             byte[] img = await responsePic.Content.ReadAsByteArrayAsync();
             InMemoryRandomAccessStream streamWeb = new InMemoryRandomAccessStream();
 

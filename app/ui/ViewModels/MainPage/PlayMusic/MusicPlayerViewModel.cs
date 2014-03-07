@@ -32,7 +32,7 @@ namespace VLC_WINRT.ViewModels.PlayMusic
         private PlayPreviousCommand _playPrevious;
         private TimeSpan _timeTotal = TimeSpan.Zero;
         private string _title;
-        private VLC_WINRT.ViewModels.MainPage.MusicLibraryViewModel.ArtistItemViewModel _artist;
+        private MusicLibraryViewModel.ArtistItemViewModel _artist;
         private MediaPlayerService _vlcPlayerService;
         private TrackCollectionViewModel _trackCollection;
         public MusicPlayerViewModel()
@@ -67,40 +67,27 @@ namespace VLC_WINRT.ViewModels.PlayMusic
         }
         void MediaControl_PreviousTrackPressed(object sender, object e)
         {
-            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-            {
-                PlayPrevious();
-            });
+            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, PlayPrevious);
         }
 
         void MediaControl_NextTrackPressed(object sender, object e)
         {
-            PlayNext();
+            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, PlayNext);
         }
         private void MediaControl_PausePressed(object sender, object e)
         {
-            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-            {
-                Pause();
-            });
+            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, Pause);
         }
 
         private void MediaControl_PlayPauseTogglePressed(object sender, object e)
         {
             if (MediaControl.IsPlaying)
             {
-                App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                {
-                    Pause();
-                });
+                App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, Pause);
             }
             else
             {
-                App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                {
-                    _vlcPlayerService.Play();
-                    MediaControl.IsPlaying = true;
-                });
+                App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, Resume);
             }
         }
 
@@ -132,17 +119,27 @@ namespace VLC_WINRT.ViewModels.PlayMusic
 
         void _vlcPlayerService_MediaEnded(object sender, libVLCX.Player e)
         {
-            PlayNext();
+            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                PlayNext();
+            });
         }
 
+        public void Resume()
+        {
+            _vlcPlayerService.Play();
+            MediaControl.IsPlaying = true;
+        }
         public void Stop()
         {
-            if(MediaControl.IsPlaying)
+            if (MediaControl.IsPlaying)
                 _vlcPlayerService.Stop();
         }
         public void PlayNext()
         {
-            if (TrackCollection.IsNextPossible())
+            TrackCollection.IsNextPossible();
+            TrackCollection.IsPreviousPossible();
+            if (TrackCollection.CanGoNext)
             {
                 TrackCollection.CurrentTrack++;
                 Play();
@@ -153,13 +150,18 @@ namespace VLC_WINRT.ViewModels.PlayMusic
         }
         public void PlayPrevious()
         {
-            if (TrackCollection.IsPreviousPossible())
+            TrackCollection.IsNextPossible();
+            TrackCollection.IsPreviousPossible();
+            if (TrackCollection.CanGoPrevious)
             {
                 TrackCollection.CurrentTrack--;
                 Play();
             }
             else
+            {
                 MediaControl.IsPlaying = false;
+                MediaControl.PreviousTrackPressed -= MediaControl_PreviousTrackPressed;
+            }
         }
 
         public async void Play()
@@ -209,6 +211,7 @@ namespace VLC_WINRT.ViewModels.PlayMusic
             _vlcPlayerService.Pause();
             MediaControl.IsPlaying = false;
         }
+
         public double PositionInSeconds
         {
             get
@@ -408,7 +411,7 @@ namespace VLC_WINRT.ViewModels.PlayMusic
         {
             IsPlaying = false;
             Pause();
-            
+
         }
     }
 }
