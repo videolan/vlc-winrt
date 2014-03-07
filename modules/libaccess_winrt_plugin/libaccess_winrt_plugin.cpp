@@ -229,6 +229,9 @@ int Control(access_t *access, int query, va_list args)
     case ACCESS_SET_PAUSE_STATE:
         return VLC_SUCCESS;
 
+    case ACCESS_GET_SIZE: {
+        *va_arg( args, uint64_t *) = readStream->Size;
+    }
     default:
         return VLC_EGENERIC;
     }	
