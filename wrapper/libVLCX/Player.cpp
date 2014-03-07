@@ -25,6 +25,34 @@
 using namespace libVLCX;
 using namespace Windows::Graphics::Display;
 
+char *
+FromPlatformString(Platform::String^ str) {
+    size_t len = WideCharToMultiByte(CP_UTF8, 0, str->Data(), -1, NULL, 0, NULL, NULL);
+    if(len == 0)
+        return NULL;
+    char* psz_str = new char[len];
+    WideCharToMultiByte(CP_UTF8, 0, str->Data(), -1, psz_str, len, NULL, NULL);
+    return psz_str;
+}
+
+Platform::String^
+ToPlatformString(const char *str) {
+    size_t len = MultiByteToWideChar(CP_UTF8, 0, str, -1, NULL, 0);
+    if(len == 0)
+        return nullptr;
+    wchar_t* w_str = new wchar_t[len];
+    MultiByteToWideChar(CP_UTF8, 0, str, -1, w_str, len);
+    return ref new Platform::String(w_str);
+}
+
+size_t Player::ToCharArray(Platform::String^ str, char *arr, size_t maxSize)
+{
+    size_t nbConverted = 0;
+    wcstombs_s(&nbConverted, arr, 128, str->Data(), maxSize);
+    return nbConverted;
+}
+
+
 Player::Player(SwapChainBackgroundPanel^ panel) :p_mp(NULL), p_instance(NULL)
 {
     OutputDebugStringW(L"Hello, Player!");
@@ -45,13 +73,6 @@ IAsyncAction^ Player::Initialize()
         this->InitializeVLC();
     }, Platform::CallbackContext::Any), WorkItemPriority::High, WorkItemOptions::TimeSliced);
     return vlcInitTask;
-}
-
-size_t  Player::ToCharArray(Platform::String^ str, char *arr, size_t maxSize)
-{
-    size_t nbConverted = 0;
-    wcstombs_s(&nbConverted, arr, 128, str->Data(), maxSize);
-    return nbConverted;
 }
 
 void Player::InitializeVLC()
@@ -130,14 +151,6 @@ void Player::DetachEvent(){
     };
     for (int i = 0; i < (sizeof(mp_events) / sizeof(*mp_events)); i++)
         libvlc_event_detach(ev, mp_events[i], vlc_event_callback, new PlayerPointerWrapper(this));
-}
-
-char *
-FromPlatformString(Platform::String^ str) {
-    size_t len = WideCharToMultiByte(CP_UTF8, 0, str->Data(), -1, NULL, 0, NULL, NULL);
-    char* psz_str = new char[len];
-    WideCharToMultiByte(CP_UTF8, 0, str->Data(), -1, psz_str, len, NULL, NULL);
-    return psz_str;
 }
 
 void Player::Open(Platform::String^ mrl)
