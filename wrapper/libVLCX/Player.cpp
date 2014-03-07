@@ -132,12 +132,17 @@ void Player::DetachEvent(){
         libvlc_event_detach(ev, mp_events[i], vlc_event_callback, new PlayerPointerWrapper(this));
 }
 
+char *
+FromPlatformString(Platform::String^ str) {
+    size_t len = WideCharToMultiByte(CP_UTF8, 0, str->Data(), -1, NULL, 0, NULL, NULL);
+    char* psz_str = new char[len];
+    WideCharToMultiByte(CP_UTF8, 0, str->Data(), -1, psz_str, len, NULL, NULL);
+    return psz_str;
+}
+
 void Player::Open(Platform::String^ mrl)
 {
-    size_t len = WideCharToMultiByte(CP_UTF8, 0, mrl->Data(), -1, NULL, 0, NULL, NULL);
-    char* p_mrl = new char[len];
-    WideCharToMultiByte(CP_UTF8, 0, mrl->Data(), -1, p_mrl, len, NULL, NULL);
-
+    const char *p_mrl = FromPlatformString(mrl);
     if (p_instance){
         libvlc_media_t* m = libvlc_media_new_location(this->p_instance, p_mrl);
         p_mp = libvlc_media_player_new_from_media(m);
