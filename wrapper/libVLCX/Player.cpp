@@ -43,7 +43,7 @@ IAsyncAction^ Player::Initialize()
     IAsyncAction^ vlcInitTask = ThreadPool::RunAsync(ref new WorkItemHandler([=](IAsyncAction^ operation)
     {
         this->InitializeVLC();
-    }, Platform::CallbackContext::Any));
+    }, Platform::CallbackContext::Any), WorkItemPriority::High, WorkItemOptions::TimeSliced);
     return vlcInitTask;
 }
 
