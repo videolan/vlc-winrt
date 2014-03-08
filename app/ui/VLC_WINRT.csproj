@@ -254,39 +254,21 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <None Include="Assets\Backers\15.json" />
+    <None Include="Assets\Backers\200.json" />
+    <None Include="Assets\Backers\25.json" />
+    <None Include="Assets\Backers\250.json" />
+    <None Include="Assets\Backers\3.json" />
+    <None Include="Assets\Backers\350.json" />
+    <None Include="Assets\Backers\40.json" />
+    <None Include="Assets\Backers\60.json" />
+    <None Include="Assets\Backers\80.json" />
     <None Include="Common\ReadMe.txt" />
     <Content Include="Assets\GreyPylon\280x156.jpg" />
     <Content Include="Assets\GreyPylon\50x50.jpg" />
     <Content Include="plugins\audio_output\libxaudio2_winrt_plugin.dll" />
     <Content Include="segoeui.ttf" />
     <None Include="packages.config" />
-    <None Include="£15.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="£200.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="£25.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="£250.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="£3.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="£350.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="£40.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="£60.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="£80.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <PRIResource Include="Strings\en-US\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
