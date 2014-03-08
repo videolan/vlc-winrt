@@ -46,11 +46,11 @@
         <!--<ProgressBar Style="{StaticResource ThinProgressBar}" VerticalAlignment="Bottom" Grid.ColumnSpan="2" Value="{Binding Position}" Maximum="1000"/>-->
         <Slider x:Name="VideoPositionSlider"
                 Grid.ColumnSpan="2"
-                        VerticalAlignment="Bottom"
+                        VerticalAlignment="Top"
                         Style="{StaticResource VlcSlider}" 
                         StepFrequency="0.001" 
                         Maximum="1000" 
-                        Margin="30,15" 
+                        Margin="0,-25" 
                         Value="{Binding Position, Mode=TwoWay}" 
                         ThumbToolTipValueConverter="{StaticResource SecondsStringConverter}"
                         Height="40"/>
