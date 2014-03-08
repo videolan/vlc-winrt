@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Globalization;
-using System.Threading.Tasks;
 using System.Linq;
+using System.Threading.Tasks;
 using Windows.Media;
 using Windows.System.Display;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using VLC_WINRT.Utility.Commands;
+using VLC_WINRT.Utility.Commands.MusicPlayer;
 using VLC_WINRT.Utility.IoC;
 using VLC_WINRT.Utility.Services.RunTime;
-using VLC_WINRT.ViewModels.MainPage;
-using VLC_WINRT.Utility.Commands.MusicPlayer;
+using VLC_WINRT.ViewModels.PlayMusic;
 
-namespace VLC_WINRT.ViewModels.PlayMusic
+namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
 {
     public class MusicPlayerViewModel : NavigateableViewModel, IDisposable
     {
@@ -21,6 +21,7 @@ namespace VLC_WINRT.ViewModels.PlayMusic
         private readonly HistoryService _historyService;
         private readonly DispatcherTimer _sliderPositionTimer = new DispatcherTimer();
         private TimeSpan _elapsedTime = TimeSpan.Zero;
+        //private double _position = 0;
         private string _fileToken;
         private StopVideoCommand _goBackCommand;
         private bool _isPlaying;
@@ -225,6 +226,23 @@ namespace VLC_WINRT.ViewModels.PlayMusic
             set { _vlcPlayerService.Seek((float)(value / TimeTotal.TotalSeconds)); }
         }
 
+        public double Position
+        {
+            get
+            {
+                if (_vlcPlayerService != null && _vlcPlayerService.CurrentState == MediaPlayerService.MediaPlayerState.Playing)
+                {
+                    return _vlcPlayerService.GetPosition().Result * 1000;
+                }
+                return 0.0d;
+                
+            }
+            set
+            {
+                _vlcPlayerService.Seek((float)value / 1000);
+            }
+        }
+
         public string Now
         {
             get { return DateTime.Now.ToString(CultureInfo.CurrentCulture.DateTimeFormat.ShortTimePattern); }
@@ -404,6 +422,7 @@ namespace VLC_WINRT.ViewModels.PlayMusic
                 TimeTotal = TimeSpan.FromMilliseconds(timeInMilliseconds);
             }
 
+            OnPropertyChanged("Position");
             ElapsedTime = TimeSpan.FromSeconds(PositionInSeconds);
         }
 
@@ -411,7 +430,6 @@ namespace VLC_WINRT.ViewModels.PlayMusic
         {
             IsPlaying = false;
             Pause();
-
         }
     }
 }

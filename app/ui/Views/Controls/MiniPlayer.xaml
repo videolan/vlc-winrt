@@ -10,7 +10,12 @@
     DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}">
 
     <UserControl.Resources>
-        <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+            <ResourceDictionary >
+                <ResourceDictionary.MergedDictionaries>
+                    <ResourceDictionary Source="ms-appx:///Common/SliderStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        </ResourceDictionary>
     </UserControl.Resources>
 
     <Grid Height="80" Background="#E5151515" Visibility="{Binding TrackCollection.TrackCollection.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}">
@@ -38,6 +43,16 @@
             <Button Grid.Column="1" Foreground="{StaticResource MainColor}" Visibility="{Binding IsPlaying, Converter={StaticResource BooleanToVisibilityConverter}}" Style="{StaticResource PauseNoTextAppBarButtonStyle}" Command="{Binding PlayOrPause}"/>
             <Button Grid.Column="2" Visibility="{Binding TrackCollection.CanGoNext, Converter={StaticResource BooleanToVisibilityConverter}}" Style="{StaticResource SkipAheadNoTextMediumAppBarButtonStyle}" Command="{Binding PlayNextCommand}"/>
         </Grid>
-        <ProgressBar Style="{StaticResource ThinProgressBar}" VerticalAlignment="Bottom" Grid.ColumnSpan="2" Value="{Binding ElapsedTime}" Maximum="{Binding TimeTotal}"/>
+        <!--<ProgressBar Style="{StaticResource ThinProgressBar}" VerticalAlignment="Bottom" Grid.ColumnSpan="2" Value="{Binding Position}" Maximum="1000"/>-->
+        <Slider x:Name="VideoPositionSlider"
+                Grid.ColumnSpan="2"
+                        VerticalAlignment="Bottom"
+                        Style="{StaticResource VlcSlider}" 
+                        StepFrequency="0.001" 
+                        Maximum="1000" 
+                        Margin="30,15" 
+                        Value="{Binding Position, Mode=TwoWay}" 
+                        ThumbToolTipValueConverter="{StaticResource SecondsStringConverter}"
+                        Height="40"/>
     </Grid>
 </UserControl>
