@@ -237,11 +237,6 @@ float Player::GetPosition()
     {
         position = libvlc_media_player_get_position(p_mp);
     }
-
-    int i = GetAudioTracksCount();
-    int j = GetSubtitleCount();
-    Debug( L"Audio Tracks: %i %i\n", i, j );
-
     return position;
 }
 
