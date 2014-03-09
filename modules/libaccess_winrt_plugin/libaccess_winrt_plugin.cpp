@@ -35,6 +35,7 @@
 #define strdup _strdup
 #define ssize_t SSIZE_T
 #define N_(x) x
+#define _(x) x
 int poll(struct pollfd *, unsigned, int);
 #endif
 
@@ -43,6 +44,7 @@ using namespace Platform;
 using namespace Windows::Storage;
 using namespace Windows::Storage::AccessCache;
 using namespace Windows::Storage::Streams;
+using namespace Windows::Foundation;
 
 #include <vlc_common.h>
 #include <vlc_plugin.h>
@@ -57,6 +59,8 @@ static int					Control(access_t *access, int query, va_list args);
 static String^				GetString(char* in);
 static IRandomAccessStream^	readStream;
 static DataReader^			dataReader;
+
+#include "../../wrapper/libVLCX/Helpers.h"
 
 /*****************************************************************************
 * Module descriptor
@@ -199,6 +203,7 @@ int Seek(access_t *access, uint64_t position)
     }
     catch (int ex)
     {
+        Debug( L"Exception: 0x%x", ex);
         return VLC_EGENERIC;
     }
 
@@ -238,13 +243,3 @@ int Control(access_t *access, int query, va_list args)
     }
 }
 
-/**
- * Helper to return a WinRT string from a char*
- */
-String^ GetString(char* in)
-{
-    std::string s_str = std::string(in);
-    std::wstring wid_str = std::wstring(s_str.begin(), s_str.end());
-    const wchar_t* w_char = wid_str.c_str();
-    return ref new String(w_char);
-}
