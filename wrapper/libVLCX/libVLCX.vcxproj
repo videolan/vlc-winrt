@@ -209,14 +209,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="DirectXManger.h" />
+    <ClInclude Include="DirectXManager.h" />
     <ClInclude Include="Helpers.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="MMDeviceLocator.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="DirectXManger.cpp" />
+    <ClCompile Include="DirectXManager.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

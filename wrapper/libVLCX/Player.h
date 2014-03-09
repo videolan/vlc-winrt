@@ -23,7 +23,7 @@
 
 #include <vlc/vlc.h>
 #include "MMDeviceLocator.h"
-#include "DirectXManger.h"
+#include "DirectXManager.h"
 
 #include <exception>
 #include <collection.h>

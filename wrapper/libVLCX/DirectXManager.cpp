@@ -19,7 +19,7 @@
  *****************************************************************************/
 
 #include "pch.h"
-#include "DirectXManger.h"
+#include "DirectXManager.h"
 
 using namespace libVLCX;
 using namespace Platform;
