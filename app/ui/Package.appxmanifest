@@ -2,7 +2,7 @@
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest">
   <Identity Name="9519ba58-7ad6-4c4e-97ed-bfc2135a0d19" Publisher="CN=VideoLAN" Version="0.0.2.0" />
   <Properties>
-    <DisplayName>VLC_WINRT</DisplayName>
+    <DisplayName>VLC for WinRT</DisplayName>
     <PublisherDisplayName>VideoLAN</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
