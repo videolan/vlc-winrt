@@ -322,3 +322,19 @@ Player::SetRate(float rate) {
     else
         return -1;
 }
+
+int
+Player::SetVolume(int volume) {
+    if(p_mp)
+        return libvlc_audio_set_volume(p_mp, volume);
+    else
+        return -1;
+}
+
+int
+Player::GetVolume() {
+    if(p_mp)
+        return libvlc_audio_get_volume(p_mp);
+    else
+        return 0;
+}

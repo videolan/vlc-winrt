@@ -65,6 +65,9 @@ namespace libVLCX {
         int           GetAudioTracksDescription(IMap<int, Platform::String ^> ^tracks);
         int           SetAudioTrack(int track);
 
+        int           SetVolume(int volume);
+        int           GetVolume();
+
         virtual       ~Player();
         void          DetachEvent();
         void          UpdateSize(unsigned int x, unsigned int y);
