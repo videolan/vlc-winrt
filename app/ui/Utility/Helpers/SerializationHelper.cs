@@ -57,7 +57,7 @@ namespace VLC_WINRT.Utility.Helpers
             }
             catch (Exception ex)
             {
-                new MessageDialog(ex.ToString());
+                Debug.WriteLine(ex.ToString());
                 throw;
             }
         }

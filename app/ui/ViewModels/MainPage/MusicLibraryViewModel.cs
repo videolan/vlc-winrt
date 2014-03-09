@@ -34,6 +34,7 @@ using VLC_WINRT.Utility.Helpers;
 using VLC_WINRT.Views.Controls.MainPage;
 using Panel = VLC_WINRT.Model.Panel;
 using VLC_WINRT.Utility.Helpers.MusicLibrary;
+using System.Diagnostics;
 
 namespace VLC_WINRT.ViewModels.MainPage
 {
@@ -435,7 +436,7 @@ namespace VLC_WINRT.ViewModels.MainPage
                 }
                 catch (Exception e)
                 {
-                    new MessageDialog(e.ToString()).ShowAsync();
+                    Debug.WriteLine(e.ToString());
                 }
                 if (albumFolders != null)
                 {
