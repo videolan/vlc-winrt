@@ -257,15 +257,7 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
-    <None Include="Assets\Backers\15.json" />
-    <None Include="Assets\Backers\200.json" />
-    <None Include="Assets\Backers\25.json" />
-    <None Include="Assets\Backers\250.json" />
-    <None Include="Assets\Backers\3.json" />
-    <None Include="Assets\Backers\350.json" />
-    <None Include="Assets\Backers\40.json" />
-    <None Include="Assets\Backers\60.json" />
-    <None Include="Assets\Backers\80.json" />
+    <Content Include="backers.json" />
     <None Include="Common\ReadMe.txt" />
     <Content Include="Assets\background.jpg" />
     <Content Include="Assets\GreyPylon\280x156.jpg" />

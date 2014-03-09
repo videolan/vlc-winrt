@@ -9,6 +9,9 @@
 
 using System;
 using Windows.Storage;
+using System.Diagnostics;
+using System.IO;
+using Newtonsoft.Json;
 
 namespace VLC_WINRT.Utility.Helpers
 {
@@ -16,9 +19,12 @@ namespace VLC_WINRT.Utility.Helpers
     {
         public static async void Get()
         {
-           /* string path = @"£15.json";
+            string path = @"backers.json";
             StorageFolder folder = Windows.ApplicationModel.Package.Current.InstalledLocation;
-            StorageFile file = await folder.GetFileAsync(path); */
+            StorageFile file = await folder.GetFileAsync(path);
+            string json = await FileIO.ReadTextAsync(file);
+            //var items = JsonConvert.DeserializeObject(json);
+            Debug.WriteLine(items.ToString());
         }
     }
 }

@@ -23,6 +23,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
+using VLC_WINRT.Utility.Services.RunTime;
 
 namespace VLC_WINRT.Views
 {
@@ -34,6 +35,11 @@ namespace VLC_WINRT.Views
         public SpecialThanks()
         {
             this.InitializeComponent();
+        }
+
+        private async void GoBack_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.NavigateTo(typeof(MainPage));
         }
     }
 }
