@@ -80,22 +80,22 @@ void DirectXManger::CreateSwapPanel(SwapChainBackgroundPanel^ panel){
 		nullptr
 		);
 	if (hr != S_OK) {
-		throw new std::exception("Could not initialise libvlc!", hr);
+		throw new std::exception("Could not D3D11CreateDevice!", hr);
 	}
 
 	hr = d3dDevice.As(&dxgiDevice);
 	if (hr != S_OK) {
-		throw new std::exception("Could not initialise libvlc!", hr);
+		throw new std::exception("Could not transform to DxGiDevice!", hr);
 	}
 
 	hr = dxgiDevice->GetAdapter(&dxgiAdapter);
 	if (hr != S_OK) {
-		throw new std::exception("Could not initialise libvlc!", hr);
+		throw new std::exception("Could not  get adapter!", hr);
 	}
 
 	hr = dxgiAdapter->GetParent(IID_PPV_ARGS(&dxgiFactory));
 	if (hr != S_OK) {
-		throw new std::exception("Could not initialise libvlc!", hr);
+		throw new std::exception("Could not get adapter Parent!", hr);
 	}
 
 	// Create the Direct2D device object and a corresponding context.
@@ -105,7 +105,7 @@ void DirectXManger::CreateSwapPanel(SwapChainBackgroundPanel^ panel){
 		&(d2dDevice)
 		);
 	if (hr != S_OK) {
-		throw new std::exception("Could not initialise libvlc!", hr);
+		throw new std::exception("Could not create D2D1 device!", hr);
 	}
 
 	hr = d2dDevice->CreateDeviceContext(
@@ -113,7 +113,7 @@ void DirectXManger::CreateSwapPanel(SwapChainBackgroundPanel^ panel){
 		&cp_d2dContext
 		);
 	if (hr != S_OK) {
-		throw new std::exception("Could not initialise libvlc!", hr);
+		throw new std::exception("Could not create device Context!", hr);
 	}
 
 	// Set DPI to the display's current DPI.
@@ -122,17 +122,17 @@ void DirectXManger::CreateSwapPanel(SwapChainBackgroundPanel^ panel){
 
 	//Create the swapchain
 	DXGI_SWAP_CHAIN_DESC1 swapChainDesc = { 0 };
-	swapChainDesc.Width = panel->ActualWidth * (double) DisplayProperties::ResolutionScale/100.0f;      // Match the size of the panel.
-	swapChainDesc.Height = panel->ActualHeight * (double) DisplayProperties::ResolutionScale/100.0f;
+	swapChainDesc.Width  = (UINT)(panel->ActualWidth * (double) DisplayProperties::ResolutionScale/100.0f);      // Match the size of the panel.
+	swapChainDesc.Height = (UINT)(panel->ActualHeight * (double) DisplayProperties::ResolutionScale/100.0f);
 	swapChainDesc.Format = DXGI_FORMAT_B8G8R8A8_UNORM;
 	swapChainDesc.Stereo = false;
-	swapChainDesc.SampleDesc.Count = 1;
+	swapChainDesc.SampleDesc.Count   = 1;
 	swapChainDesc.SampleDesc.Quality = 0;
-	swapChainDesc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
-	swapChainDesc.BufferCount = 2;
-	swapChainDesc.SwapEffect = DXGI_SWAP_EFFECT_FLIP_SEQUENTIAL;
-	swapChainDesc.Flags = 0;
-	swapChainDesc.AlphaMode = DXGI_ALPHA_MODE_UNSPECIFIED;
+	swapChainDesc.BufferUsage   = DXGI_USAGE_RENDER_TARGET_OUTPUT;
+	swapChainDesc.BufferCount   = 2;
+	swapChainDesc.SwapEffect    = DXGI_SWAP_EFFECT_FLIP_SEQUENTIAL;
+	swapChainDesc.Flags         = 0;
+	swapChainDesc.AlphaMode     = DXGI_ALPHA_MODE_UNSPECIFIED;
 
 	hr = dxgiFactory->CreateSwapChainForComposition(
 		d3dDevice.Get(),
@@ -141,31 +141,31 @@ void DirectXManger::CreateSwapPanel(SwapChainBackgroundPanel^ panel){
 		&cp_swapChain
 		);
 	if (hr != S_OK) {
-		throw new std::exception("Could not initialise libvlc!", hr);
+		throw new std::exception("Could not create swapChain!", hr);
 	}
 
 	hr = dxgiDevice->SetMaximumFrameLatency(1);
 	if (hr != S_OK) {
-		throw new std::exception("Could not initialise libvlc!", hr);
+		throw new std::exception("Could not set maximum Frame Latency!", hr);
 	}
 
 	//TODO: perform the next 2 calls on the UI thread
 	ComPtr<ISwapChainBackgroundPanelNative> panelNative;
 	hr = reinterpret_cast<IUnknown*>(panel)->QueryInterface(IID_PPV_ARGS(&panelNative));
 	if (hr != S_OK) {
-		throw new std::exception("Could not initialise libvlc!", hr);
+		throw new std::exception("Could not initialise the native panel!", hr);
 	}
 
 	// Associate swap chain with SwapChainPanel.  This must be done on the UI thread.
 	hr = panelNative->SetSwapChain(cp_swapChain.Get());
 	if (hr != S_OK) {
-		throw new std::exception("Could not initialise libvlc!", hr);
+		throw new std::exception("Could not associate the swapChain!", hr);
 	}
 
 	ComPtr<IDXGISurface> dxgiBackBuffer;
 	hr = cp_swapChain->GetBuffer(0, IID_PPV_ARGS(&dxgiBackBuffer));
 	if (hr != S_OK) {
-		throw new std::exception("Could not initialise libvlc!", hr);
+		throw new std::exception("Could not get the DXGI backbuffer!", hr);
 	}
 
 	//set d2d target
@@ -176,7 +176,7 @@ void DirectXManger::CreateSwapPanel(SwapChainBackgroundPanel^ panel){
 		);
 
 	if (hr != S_OK) {
-		throw new std::exception("Could not initialise libvlc!", hr);
+		throw new std::exception("Could not crete the Bitmap!", hr);
 	}
 
 	cp_d2dContext->SetTarget(d2dTargetBitmap.Get());
