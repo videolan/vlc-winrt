@@ -105,8 +105,7 @@ namespace VLC_WINRT
                 LaunchTheApp();
             }
             StorageFile file = (StorageFile)args.Files[0];
-            new MessageDialog(file.FileType).ShowAsync();
-            if (file.FileType == ".mp3")
+            if (file.FileType == ".mp3" || file.FileType == ".wma")
             {
                 Locator.MusicPlayerVM.TrackCollection.TrackCollection.Clear();
                 MusicLibraryViewModel.TrackItem trackItem = await GetInformationsFromMusicFile.GetTrackItemFromFile(file);
