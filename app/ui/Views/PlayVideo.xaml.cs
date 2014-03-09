@@ -71,7 +71,7 @@ namespace VLC_WINRT.Views
         private void Subtitles_Click(object sender, RoutedEventArgs e)
         {
             PopupMenu popup = new PopupMenu();
-            for (int i = 0; i < Locator.PlayVideoVM.SubtitlesCount; i++)
+            for (int i = 0; i < MathHelper.Clamp(0, 6, Locator.PlayVideoVM.SubtitlesCount); i++)
             {
                 popup.Commands.Add(new UICommand()
                 {
@@ -82,10 +82,11 @@ namespace VLC_WINRT.Views
             }
             popup.ShowForSelectionAsync(((Button) sender).GetBoundingRect());
         }
+
         private void AudioTracks_Click(object sender, RoutedEventArgs e)
         {
             PopupMenu popup = new PopupMenu();
-            for (int i = 0; i < Locator.PlayVideoVM.AudioTracksCount; i++)
+            for (int i = 0; i < MathHelper.Clamp(0, 6, Locator.PlayVideoVM.AudioTracksCount); i++)
             {
                 popup.Commands.Add(new UICommand()
                 {
@@ -96,7 +97,5 @@ namespace VLC_WINRT.Views
             }
             popup.ShowForSelectionAsync(((Button) sender).GetBoundingRect());
         }
-        
-        
     }
 }
