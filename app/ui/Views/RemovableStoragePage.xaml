@@ -8,10 +8,14 @@
     xmlns:removableStorage="using:VLC_WINRT.Views.Controls.RemovableStorage"
     xmlns:mainPage="using:VLC_WINRT.Views.Controls.MainPage"
     xmlns:controls="using:VLC_WINRT.Views.Controls"
+    xmlns:dataTemplateSelectors="using:VLC_WINRT.Utility.DataTemplateSelectors"
     mc:Ignorable="d"
     DataContext="{Binding Source={StaticResource Locator}, Path=MainPageVM}">
 
     <Page.Resources>
+        <dataTemplateSelectors:MediaItemDataTemplateSelector WideMovieTemplate="{StaticResource WideMovieTemplate}"
+                                                                NormalMovieTemplate="{StaticResource NormaleMovieTemplate}"
+                                                                x:Key="MediaItemDataTemplateSelector" />
         <Storyboard x:Name="FadeOutPage">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="MainGrid">
                 <EasingDoubleKeyFrame KeyTime="0" Value="1">
@@ -148,7 +152,14 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <GridView Grid.Column="1" x:Name="SecondPanelGridView" Margin="20,0,0,0" ItemContainerStyle="{StaticResource GridViewItemContainerStyle}" ItemTemplate="{StaticResource NormaleMovieTemplate}" />
+            <controls:VariableSizedItemsGridView Grid.Column="1" x:Name="SecondPanelGridView" SelectionMode="None" ItemContainerStyle="{StaticResource GridViewItemContainerStyle}" ItemTemplateSelector="{StaticResource MediaItemDataTemplateSelector}" >
+                <controls:VariableSizedItemsGridView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VariableSizedWrapGrid VerticalChildrenAlignment="Top" ItemHeight="160" ItemWidth="265" MaximumRowsOrColumns="4" />
+                    </ItemsPanelTemplate>
+                </controls:VariableSizedItemsGridView.ItemsPanel>
+            </controls:VariableSizedItemsGridView>
+            <!--<GridView Grid.Column="1" x:Name="SecondPanelGridView" Margin="20,0,0,0" ItemContainerStyle="{StaticResource GridViewItemContainerStyle}" ItemTemplate="{StaticResource NormaleMovieTemplate}" />-->
             <ListView Grid.Column="1" x:Name="SecondPanelListView" Margin="10,0,0,0" ItemTemplate="{StaticResource NormaleMovieTemplate}"/>
             <removableStorage:PlugARemovableStorage Grid.ColumnSpan="2" Visibility="{Binding RemovableStorageVMs.Count, Converter={StaticResource CountToVisibilityConverter}}" />
         </Grid>
