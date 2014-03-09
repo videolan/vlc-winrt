@@ -212,7 +212,17 @@
                                 </GridView.ItemsPanel>
                             </GridView>
                         </Grid>
-                        <GridView IsSwipeEnabled="False" HorizontalAlignment="Left" Width="500" ItemContainerStyle="{StaticResource GridViewItemContainerStyle}" Margin="0,10,0,0" Visibility="{Binding Artist.IsOnlinePopularAlbumItemsLoaded, Converter={StaticResource BooleanToVisibilityConverter}}" SelectionMode="None" IsItemClickEnabled="True" HeaderTemplate="{StaticResource ColumnHeaderDataTemplate}" Header="popular albums" ItemsSource="{Binding Artist.OnlinePopularAlbumItems}">
+                        <Grid Margin="0,10,0,0" >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="biography" Style="{StaticResource VLCSubHeaderStyle}"/>
+                            <TextBlock Grid.Row="1" Width="450" Margin="0,5,0,0" FontSize="42" TextWrapping="Wrap">
+                                <Run Text="{Binding Artist.Biography}" FontSize="18"/>
+                            </TextBlock>
+                        </Grid>
+                        <GridView IsSwipeEnabled="False" HorizontalAlignment="Left" Width="500" ItemContainerStyle="{StaticResource GridViewItemContainerStyle}" Margin="20,10,0,0" Visibility="{Binding Artist.IsOnlinePopularAlbumItemsLoaded, Converter={StaticResource BooleanToVisibilityConverter}}" SelectionMode="None" IsItemClickEnabled="True" HeaderTemplate="{StaticResource ColumnHeaderDataTemplate}" Header="popular albums" ItemsSource="{Binding Artist.OnlinePopularAlbumItems}">
                             <GridView.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <WrapGrid Orientation="Horizontal" />
@@ -233,20 +243,20 @@
                                             </Grid.Background>
                                             <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="5">
                                                 <TextBlock Text="{Binding Name}" TextWrapping="NoWrap" TextTrimming="WordEllipsis" FontSize="16" />
-                                                <!--<TextBlock Text="{Binding Year}" FontSize="14" Foreground="#7FF5F5F5"/>-->
+                                                <TextBlock Text="{Binding Year}" FontSize="14" Foreground="#7FF5F5F5"/>
                                             </StackPanel>
                                         </Grid>
                                     </Grid>
                                 </DataTemplate>
                             </GridView.ItemTemplate>
                         </GridView>
-                        <ListView Margin="20,0" IsSwipeEnabled="False" Width="400" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" Visibility="{Binding Artist.IsOnlineRelatedArtistsLoaded, Converter={StaticResource BooleanToVisibilityConverter}}" HeaderTemplate="{StaticResource ColumnHeaderDataTemplate}" Header="similar artists" ItemsSource="{Binding Artist.OnlineRelatedArtists}" SelectedIndex="0" SelectionMode="None" IsItemClickEnabled="True" >
-                            <ListView.ItemsPanel>
+                        <GridView Margin="20,10,0,0" IsSwipeEnabled="False" HorizontalAlignment="Left" Width="500" ItemContainerStyle="{StaticResource GridViewItemContainerStyle}" Visibility="{Binding Artist.IsOnlineRelatedArtistsLoaded, Converter={StaticResource BooleanToVisibilityConverter}}" SelectionMode="None" IsItemClickEnabled="True" HeaderTemplate="{StaticResource ColumnHeaderDataTemplate}" Header="similar artists" ItemsSource="{Binding Artist.OnlineRelatedArtists}">
+                            <GridView.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <WrapGrid Orientation="Horizontal" />
                                 </ItemsPanelTemplate>
-                            </ListView.ItemsPanel>
-                            <ListView.ItemTemplate>
+                            </GridView.ItemsPanel>
+                            <GridView.ItemTemplate>
                                 <DataTemplate>
                                     <Grid Height="150" Width="150">
                                         <Image Source="{Binding Picture}" Stretch="UniformToFill"/>
@@ -260,20 +270,15 @@
                                                 </LinearGradientBrush>
                                             </Grid.Background>
                                             <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="5">
-                                                <TextBlock Text="{Binding Name}" TextWrapping="NoWrap" TextTrimming="WordEllipsis" FontSize="18" FontWeight="Light" />
-                                                <!--<TextBlock Text="{Binding Year}" FontSize="14" Foreground="#7FF5F5F5"/>-->
+                                                <TextBlock Text="{Binding Name}" TextWrapping="NoWrap" TextTrimming="WordEllipsis" FontSize="16" />
+                                                <TextBlock Text="{Binding Year}" FontSize="14" Foreground="#7FF5F5F5"/>
                                             </StackPanel>
                                         </Grid>
                                     </Grid>
                                 </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
+                            </GridView.ItemTemplate>
+                        </GridView>
 
-                        <TextBlock Margin="10,0" Width="450" FontSize="42" TextWrapping="Wrap">
-                            <Run Text="❝" Foreground="Orange" FontFamily="Segoe UI Symbol"/>
-                            <Run Text="{Binding Artist.Biography}" FontSize="18"/>
-                            <Run Text="❞" Foreground="Orange" FontFamily="Segoe UI Symbol"/>
-                        </TextBlock>
                     </StackPanel>
                 </ScrollViewer>
             </Grid>

@@ -170,10 +170,6 @@ namespace VLC_WINRT.ViewModels.MainPage
                         foreach (var artist in Artist)
                         {
                             artist.ArtistInformations();
-                            foreach (var album in artist.Albums)
-                            {
-                                album.GetCover();
-                            }
                         }
                     }).ContinueWith(async (lastTask) =>
                     {
@@ -306,14 +302,13 @@ namespace VLC_WINRT.ViewModels.MainPage
             private int _currentAlbumIndex = 0;
 
             // more informations
-            private string _biography = "We're indexing you're music library and absorbing the Internet. The biography will arrive as soon as possible.";
-            private List<OnlineAlbumItem> _onlinePopularAlbumItems = new List<OnlineAlbumItem>();
-            private List<ArtistItemViewModel> _onlineRelatedArtists = new List<ArtistItemViewModel>();
             private bool _isFavorite;
-            private ArtistInformationsHelper informationHelper;
             private bool _isOnlinePopularAlbumItemsLoaded = false;
+            private List<OnlineAlbumItem> _onlinePopularAlbumItems;
             private bool _isOnlineRelatedArtistsLoaded = false;
-            
+            private List<ArtistItemViewModel> _onlineRelatedArtists; 
+            private string _biography;
+
             [XmlIgnore()]
             public bool IsOnlinePopularAlbumItemsLoaded
             {
@@ -327,7 +322,7 @@ namespace VLC_WINRT.ViewModels.MainPage
                 get { return _isOnlineRelatedArtistsLoaded; }
                 set { SetProperty(ref _isOnlineRelatedArtistsLoaded, value); }
             }
-            
+
             public string Name
             {
                 get { return _name; }
@@ -356,25 +351,51 @@ namespace VLC_WINRT.ViewModels.MainPage
                 get { return _albumItems[_currentAlbumIndex]; }
             }
 
+            [XmlIgnore()]
             public string Biography
             {
                 get
                 {
-                    if (_biography == null) GetBiography();
-                    return _biography;
+                    if (_biography != null)
+                    {
+                        return _biography;
+                    }
+                    else if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
+                    {
+                        ArtistInformationsHelper.GetArtistBiography(this);
+                        return "Loading";
+                    }
+                    else
+                    {
+                        return "Please verify your internet connection";
+                    }
                 }
                 set { SetProperty(ref _biography, value); }
             }
 
             public List<OnlineAlbumItem> OnlinePopularAlbumItems
             {
-                get { return _onlinePopularAlbumItems; }
+                get
+                {
+                    if (_onlinePopularAlbumItems != null)
+                        return _onlinePopularAlbumItems;
+                    if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
+                        ArtistInformationsHelper.GetArtistTopAlbums(this);
+                    return null;
+                }
                 set { SetProperty(ref _onlinePopularAlbumItems, value); }
             }
 
             public List<ArtistItemViewModel> OnlineRelatedArtists
             {
-                get { return _onlineRelatedArtists; }
+                get
+                {
+                    if (_onlineRelatedArtists != null)
+                        return _onlineRelatedArtists;
+                    if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
+                        ArtistInformationsHelper.GetArtistSimilarsArtist(this);
+                    return null;
+                }
                 set { SetProperty(ref _onlineRelatedArtists, value); }
             }
 
@@ -398,37 +419,11 @@ namespace VLC_WINRT.ViewModels.MainPage
             {
                 if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
                 {
-                    informationHelper = new ArtistInformationsHelper();
-                    if (await informationHelper.GetArtistFromXboxMusic(Name))
-                    {
-                        var pic = await informationHelper.GetArtistPicture();
-                        DispatchHelper.Invoke(() => Picture = pic);
-                        DispatchHelper.Invoke(() => OnPropertyChanged("Picture"));
-
-                        var onlineRelatedArtists = await informationHelper.GetArtistSimilarsArtist();
-                        DispatchHelper.Invoke(() => OnlineRelatedArtists = onlineRelatedArtists);
-                        if (OnlineRelatedArtists != null && OnlineRelatedArtists.Any())
-                        {
-                            DispatchHelper.Invoke(() => IsOnlineRelatedArtistsLoaded = true);
-                        }
-                        
-                        DispatchHelper.Invoke(() => OnPropertyChanged("OnlineRelatedArtists"));
-
-                        var onlinePopularAlbums = await informationHelper.GetArtistTopAlbums();
-                        DispatchHelper.Invoke(() => OnlinePopularAlbumItems = onlinePopularAlbums);
-                        if (OnlinePopularAlbumItems != null && OnlinePopularAlbumItems.Any())
-                        {
-                            DispatchHelper.Invoke(() => IsOnlinePopularAlbumItemsLoaded = true);
-                        }
-                        DispatchHelper.Invoke(() => OnPropertyChanged("OnlinePopularAlbumsItems"));
-                    }
+                    // Get Artist Picture via XBOX Music
+                    var pic = await ArtistInformationsHelper.GetArtistPicture(Name);
+                    DispatchHelper.Invoke(() => Picture = pic);
+                    DispatchHelper.Invoke(() => OnPropertyChanged("Picture"));
                 }
-            }
-
-            private async Task GetBiography()
-            {
-                if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable() && informationHelper.XBoxArtistItem != null)
-                    DispatchHelper.Invoke(async () => Biography = await informationHelper.GetArtistBiography());
             }
 
             private async Task LoadAlbums(StorageFolderQueryResult albumQueryResult)
@@ -447,6 +442,7 @@ namespace VLC_WINRT.ViewModels.MainPage
                     foreach (var item in albumFolders)
                     {
                         AlbumItem albumItem = await GetInformationsFromMusicFile.GetAlbumItemFromFolder(item, albumQueryResult);
+                        albumItem.GetCover();
                         DispatchHelper.Invoke(() => Albums.Add(albumItem));
                         if (Locator.MusicLibraryVM.RandomAlbums.Count < 12)
                         {
@@ -571,8 +567,11 @@ namespace VLC_WINRT.ViewModels.MainPage
             public AlbumItem(StorageItemThumbnail thumbnail, IReadOnlyList<StorageFile> tracks, string name, string artist)
             {
                 if (tracks == null) return;
-                DispatchHelper.Invoke(() => Name = (name.Length == 0) ? "Album without title" : name);
-                DispatchHelper.Invoke(() => Artist = artist);
+                //DispatchHelper.Invoke(() =>
+                //{
+                Name = (name.Length == 0) ? "Album without title" : name;
+                Artist = artist;
+                //});
                 _storageItemThumbnail = thumbnail;
                 LoadTracks(tracks);
             }

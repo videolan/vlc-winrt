@@ -55,8 +55,10 @@ namespace VLC_WINRT.Utility.Helpers.MusicLibrary
         public async static Task<MusicLibraryViewModel.AlbumItem> GetAlbumItemFromFolder(StorageFolder item, StorageFolderQueryResult albumQueryResult)
         {
             var musicAttr = await item.Properties.GetMusicPropertiesAsync();
+            
             var files = await item.GetFilesAsync(CommonFileQuery.OrderByMusicProperties);
             var thumbnail = await item.GetThumbnailAsync(ThumbnailMode.MusicView, 250);
+            
             var albumItem = new MusicLibraryViewModel.AlbumItem(thumbnail, files, musicAttr.Album, albumQueryResult.Folder.DisplayName);
             return albumItem;
         }

@@ -131,15 +131,18 @@ namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
         {
             App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                if (TrackCollection.TrackCollection[TrackCollection.CurrentTrack] ==
-                    TrackCollection.TrackCollection.Last())
+                if (IsPlaying && TrackCollection.TrackCollection != null && TrackCollection.TrackCollection.Any())
                 {
-                    // Playlist is finished
-                    TrackCollection.IsRunning = false;
-                }
-                else
-                {
-                    PlayNext();
+                    if (TrackCollection.TrackCollection[TrackCollection.CurrentTrack] ==
+                        TrackCollection.TrackCollection.Last())
+                    {
+                        // Playlist is finished
+                        TrackCollection.IsRunning = false;
+                    }
+                    else
+                    {
+                        PlayNext();
+                    }
                 }
             });
         }
@@ -193,7 +196,7 @@ namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
             Stop();
             var trackItem = TrackCollection.TrackCollection[TrackCollection.CurrentTrack];
 
-            var file = await Windows.Storage.StorageFile.GetFileFromPathAsync(trackItem.Path);
+            var file = await StorageFile.GetFileFromPathAsync(trackItem.Path);
             var history = new HistoryService();
             //string token = history.Add(file, true);
             string token = history.Add(file);
@@ -227,7 +230,6 @@ namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
                 MediaControl.PreviousTrackPressed += MediaControl_PreviousTrackPressed;
             else
                 MediaControl.PreviousTrackPressed -= MediaControl_PreviousTrackPressed;
-
         }
 
         public async void PlayFromExplorer(StorageFile file)

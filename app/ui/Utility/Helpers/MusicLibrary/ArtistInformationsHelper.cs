@@ -18,19 +18,18 @@ using System.Xml.Linq;
 using VLC_WINRT.ViewModels;
 using Windows.Storage;
 using Windows.Storage.Streams;
+using VLC_WINRT.ViewModels.MainPage;
 using XboxMusicLibrary;
 using XboxMusicLibrary.Models;
 using XboxMusicLibrary.Settings;
 
 namespace VLC_WINRT.Utility.Helpers.MusicLibrary
 {
-    public class ArtistInformationsHelper
+    public static class ArtistInformationsHelper
     {
-        public Artist XBoxArtistItem;
-        string _artist;
-        public async Task<bool> GetArtistFromXboxMusic(string artist)
+        public static async Task<Artist> GetArtistFromXboxMusic(string artist)
         {
-            _artist = artist;
+            Artist XBoxArtistItem = new Artist();
             try
             {
                 Debug.WriteLine("Connecting to XBOX Music API for " + artist);
@@ -52,9 +51,9 @@ namespace VLC_WINRT.Utility.Helpers.MusicLibrary
             {
                 Debug.WriteLine("XBOX Error\n" + e.ToString());
             }
-            return XBoxArtistItem != null;
+            return XBoxArtistItem ?? null;
         }
-        async Task SaveArtistThumbnailInAppFolder()
+        static async Task SaveArtistThumbnailInAppFolder(Artist XBoxArtistItem, string artist)
         {
             HttpClient clientPic = new HttpClient();
             HttpResponseMessage responsePic = await clientPic.GetAsync(XBoxArtistItem.ImageUrlWithOptions(new ImageSettings(280, 156, ImageMode.Scale, "")));
@@ -66,7 +65,7 @@ namespace VLC_WINRT.Utility.Helpers.MusicLibrary
 
             await writer.StoreAsync();
 
-            string fileName = _artist + "_" + "dPi";
+            string fileName = artist + "_" + "dPi";
 
             var file = await ApplicationData.Current.LocalFolder.CreateFileAsync(fileName + ".jpg", CreationCollisionOption.ReplaceExisting);
             var raStream = await file.OpenAsync(FileAccessMode.ReadWrite);
@@ -79,33 +78,48 @@ namespace VLC_WINRT.Utility.Helpers.MusicLibrary
                 }
             }
         }
-        public async Task<string> GetArtistPicture()
+        public static async Task<string> GetArtistPicture(string artist)
         {
-            await SaveArtistThumbnailInAppFolder();
-            return "ms-appdata:///local/" + _artist + "_" + "dPi" + ".jpg";
+            var XboxArtistItem = GetArtistFromXboxMusic(artist).Result;
+            if (XboxArtistItem != null)
+            {
+                SaveArtistThumbnailInAppFolder(XboxArtistItem, artist);
+            }
+            return "ms-appdata:///local/" + artist + "_" + "dPi" + ".jpg";
         }
 
-        public async Task<List<ViewModels.MainPage.MusicLibraryViewModel.OnlineAlbumItem>> GetArtistTopAlbums()
+        public static async Task GetArtistTopAlbums(MusicLibraryViewModel.ArtistItemViewModel artist)
         {
-            Debug.WriteLine("Getting TopAlbums from XBOX Music API");
-            HttpClient lastFmClient = new HttpClient();
-            var response =
-                await
-                    lastFmClient.GetStringAsync(
-                        "http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&limit=8&api_key=" +
-                        App.ApiKeyLastFm + "&artist=" + _artist);
-            var xml = XDocument.Parse(response);
-            var topAlbums = from results in xml.Descendants("album")
-                            select new ViewModels.MainPage.MusicLibraryViewModel.OnlineAlbumItem
-                            {
-                                Name = results.Element("name").Value.ToString(),
-                                Picture = results.Elements("image").ElementAt(3).Value,
-                            };
-            Debug.WriteLine("Receive TopAlbums from XBOX Music API");
-            return topAlbums.ToList();
+            try
+            {
+                Debug.WriteLine("Getting TopAlbums from XBOX Music API");
+                HttpClient lastFmClient = new HttpClient();
+                var response =
+                    await
+                        lastFmClient.GetStringAsync(
+                            "http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&limit=8&api_key=" +
+                            App.ApiKeyLastFm + "&artist=" + artist.Name);
+                var xml = XDocument.Parse(response);
+                var topAlbums = from results in xml.Descendants("album")
+                    select new MusicLibraryViewModel.OnlineAlbumItem
+                    {
+                        Name = results.Element("name").Value.ToString(),
+                        Picture = results.Elements("image").ElementAt(3).Value,
+                    };
+                Debug.WriteLine("Receive TopAlbums from XBOX Music API");
+                if (topAlbums != null && topAlbums.Any())
+                {
+                    artist.OnlinePopularAlbumItems = topAlbums.ToList();
+                    artist.IsOnlinePopularAlbumItemsLoaded = true;
+                }
+            }
+            catch
+            {
+                
+            }
         }
 
-        public async Task<List<ViewModels.MainPage.MusicLibraryViewModel.ArtistItemViewModel>> GetArtistSimilarsArtist()
+        public static async Task GetArtistSimilarsArtist(MusicLibraryViewModel.ArtistItemViewModel artist)
         {
             try
             {
@@ -114,30 +128,34 @@ namespace VLC_WINRT.Utility.Helpers.MusicLibrary
                     await
                         lastFmClient.GetStringAsync(
                             "http://ws.audioscrobbler.com/2.0/?method=artist.getsimilar&limit=8&api_key=" +
-                            App.ApiKeyLastFm + "&artist=" + _artist);
-                
+                            App.ApiKeyLastFm + "&artist=" + artist.Name);
+
                 var xml = XDocument.Parse(response);
                 var similarArtists = from results in xml.Descendants("artist")
-                    select new ViewModels.MainPage.MusicLibraryViewModel.ArtistItemViewModel
-                    {
-                        Name = results.Element("name").Value.ToString(),
-                        Picture = results.Elements("image").ElementAt(3).Value,
-                    };
-                return similarArtists.ToList();
+                                     select new MusicLibraryViewModel.ArtistItemViewModel
+                                     {
+                                         Name = results.Element("name").Value.ToString(),
+                                         Picture = results.Elements("image").ElementAt(3).Value,
+                                     };
+                if (similarArtists != null && similarArtists.Any())
+                {
+                    artist.OnlineRelatedArtists = similarArtists.ToList();
+                    artist.IsOnlineRelatedArtistsLoaded = true;
+                }
             }
             catch
             {
-                
+
             }
-            return null;
         }
-        public async Task<string> GetArtistBiography()
+
+        public static async Task GetArtistBiography(MusicLibraryViewModel.ArtistItemViewModel artist)
         {
             string Biography = "";
             try
             {
                 HttpClient Bio = new HttpClient();
-                var reponse = await Bio.GetStringAsync("http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&api_key=" + App.ApiKeyLastFm + "&artist=" + _artist);
+                var reponse = await Bio.GetStringAsync("http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&api_key=" + App.ApiKeyLastFm + "&artist=" + artist.Name);
                 {
                     var xml1 = XDocument.Parse(reponse);
                     var bio = xml1.Root.Descendants("bio").Elements("summary").FirstOrDefault();
@@ -148,7 +166,7 @@ namespace VLC_WINRT.Utility.Helpers.MusicLibrary
                         if (Biography != null)
                         {
                             // Removes the "Read more about ... on last.fm" message
-                            Biography = Biography.Remove(Biography.Length - "Read more about  on Last.fm".Length - _artist.Length - 6);
+                            Biography = Biography.Remove(Biography.Length - "Read more about  on Last.fm".Length - artist.Name.Length - 6);
                         }
                         else
                         {
@@ -165,38 +183,37 @@ namespace VLC_WINRT.Utility.Helpers.MusicLibrary
             {
 
             }
-            return Biography;
+            artist.Biography = Biography;
         }
     }
 }
 // This code will be used later when XBOX Music will support all these queries (still no date of release though)
 
-                //if (xBoxArtistItem.Albums != null)
-                //{
-                //    foreach (var album in xBoxArtistItem.Albums.Items)
-                //    {
-                //        artist.OnlinePopularAlbumItems.Add(new VLC_WINRT.ViewModels.MainPage.MusicLibraryViewModel.OnlineAlbumItem()
-                //        {
-                //            Artist = xBoxArtistItem.Name,
-                //            Name = album.Name,
-                //            Picture = album.ImageUrlWithOptions(new ImageSettings(200, 200, ImageMode.Scale, "")),
-                //        });
-                //    }
-                //    foreach (var artists in xBoxArtistItem.RelatedArtists.Items)
-                //    {
-                //        var onlinePopularAlbums = artists.Albums.Items.Select(albums => new VLC_WINRT.ViewModels.MainPage.MusicLibraryViewModel.OnlineAlbumItem
-                //        {
-                //            Artist = artists.Name,
-                //            Name = albums.Name,
-                //            Picture = albums.ImageUrlWithOptions(new ImageSettings(280, 156, ImageMode.Scale, "")),
-                //        }).ToList();
+//{
+//    foreach (var album in xBoxArtistItem.Albums.Items)
+//    {
+//        artist.OnlinePopularAlbumItems.Add(new VLC_WINRT.ViewModels.MainPage.MusicLibraryViewModel.OnlineAlbumItem()
+//        {
+//            Artist = xBoxArtistItem.Name,
+//            Name = album.Name,
+//            Picture = album.ImageUrlWithOptions(new ImageSettings(200, 200, ImageMode.Scale, "")),
+//        });
+//    }
+//    foreach (var artists in xBoxArtistItem.RelatedArtists.Items)
+//    {
+//        var onlinePopularAlbums = artists.Albums.Items.Select(albums => new VLC_WINRT.ViewModels.MainPage.MusicLibraryViewModel.OnlineAlbumItem
+//        {
+//            Artist = artists.Name,
+//            Name = albums.Name,
+//            Picture = albums.ImageUrlWithOptions(new ImageSettings(280, 156, ImageMode.Scale, "")),
+//        }).ToList();
 
-                //        var artistPic = artists.ImageUrl;
-                //        artist.OnlineRelatedArtists.Add(new VLC_WINRT.ViewModels.MainPage.MusicLibraryViewModel.ArtistItemViewModel
-                //        {
-                //            Name = artists.Name,
-                //            OnlinePopularAlbumItems = onlinePopularAlbums,
-                //            Picture = artistPic,
-                //        });
-                //    }
-                //}
+//        var artistPic = artists.ImageUrl;
+//        artist.OnlineRelatedArtists.Add(new VLC_WINRT.ViewModels.MainPage.MusicLibraryViewModel.ArtistItemViewModel
+//        {
+//            Name = artists.Name,
+//            OnlinePopularAlbumItems = onlinePopularAlbums,
+//            Picture = artistPic,
+//        });
+//    }
+//}
