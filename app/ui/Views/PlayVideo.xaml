@@ -17,43 +17,74 @@
     </views:BasePage.Resources>
     <Grid Tapped="Grid_Tapped" PointerEntered="OnPointerEntered" Background="Transparent">
         <Grid x:Name="Commands">
-            <Grid VerticalAlignment="Top" Height="Auto" >
+            <Grid x:Name="HeaderGrid" VerticalAlignment="Top" Height="Auto" >
                 <Grid.Background>
                     <LinearGradientBrush StartPoint="1,0">
                         <GradientStopCollection>
                             <GradientStop Color="#990A0A0A" Offset="0"/>
-                            <GradientStop Color="#00020202" Offset="1"/>
+                            <GradientStop Color="#01020202" Offset="1"/>
+                            <GradientStop Color="#47050505" Offset="0.691"/>
                         </GradientStopCollection>
                     </LinearGradientBrush>
                 </Grid.Background>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
                 <Button Style="{StaticResource BackButtonStyle}" 
                     Command="{Binding GoBack}" 
                     CommandParameter="{Binding}" 
                     VerticalAlignment="Top"
-                    Margin="50"/>
+                        x:Name="BackButton"
+                    Margin="50,50,0,50"/>
+                <TextBlock Text="{Binding CurrentVideo.Title}" Grid.Column="1" Style="{StaticResource VLCSubHeaderStyle}" Foreground="WhiteSmoke" VerticalAlignment="Center" Margin="10,2,0,0"/>
             </Grid>
             
-            <Grid Height="200" Background="#7F000000" VerticalAlignment="Bottom">
-                <TextBlock Text="{Binding CurrentVideo.Title}" Style="{StaticResource VLCSubHeaderStyle}" Foreground="WhiteSmoke" VerticalAlignment="Top" Margin="30,10,0,0"/>
-                <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
-                    <StackPanel Orientation="Horizontal">
-                        <Button Style="{StaticResource SkipBackNoTextHugeAppBarButtonStyle}" Command="{Binding SkipBack}"/>
-                        <Button Style="{StaticResource PauseNoTextHugeAppBarButtonStyle}" 
+            <Grid Height="200" x:Name="ControlsGrid" Background="#7F000000" VerticalAlignment="Bottom">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid>
+                    <Grid x:Name="MainButtonsNormal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <StackPanel Orientation="Horizontal">
+                            <Button Style="{StaticResource SkipBackNoTextHugeAppBarButtonStyle}" Command="{Binding SkipBack}"/>
+                            <Button Style="{StaticResource PauseNoTextHugeAppBarButtonStyle}" 
                             Command="{Binding PlayOrPause}"
                             CommandParameter="{Binding}"
                             Visibility="{Binding IsPlaying, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                        <Button Style="{StaticResource PlayNoTextHugeAppBarButtonStyle}" 
+                            <Button Style="{StaticResource PlayNoTextHugeAppBarButtonStyle}" 
                             Command="{Binding PlayOrPause}"
                             CommandParameter="{Binding}"
                             Visibility="{Binding IsPlaying, Converter={StaticResource NegatedBooleanToVisibilityConverter}}"/>
-                        <Button Style="{StaticResource SkipAheadNoTextHugeAppBarButtonStyle}" Command="{Binding SkipAhead}"/>
+                            <Button Style="{StaticResource SkipAheadNoTextHugeAppBarButtonStyle}" Command="{Binding SkipAhead}"/>
+                        </StackPanel>
+                    </Grid>
+                    <Grid x:Name="MainButtonsSnapped" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+                        <StackPanel Orientation="Horizontal">
+                            <Button Style="{StaticResource SkipBackNoTextAppBarButtonStyle}" Command="{Binding SkipBack}"/>
+                            <Button Style="{StaticResource PauseNoTextAppBarButtonStyle}" 
+                            Command="{Binding PlayOrPause}"
+                            CommandParameter="{Binding}"
+                            Visibility="{Binding IsPlaying, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                            <Button Style="{StaticResource PlayNoTextAppBarButtonStyle}" 
+                            Command="{Binding PlayOrPause}"
+                            CommandParameter="{Binding}"
+                            Visibility="{Binding IsPlaying, Converter={StaticResource NegatedBooleanToVisibilityConverter}}"/>
+                            <Button Style="{StaticResource SkipAheadNoTextAppBarButtonStyle}" Command="{Binding SkipAhead}"/>
+                        </StackPanel>
+                    </Grid>
+                    <StackPanel x:Name="SecondaryButtonsNormal" HorizontalAlignment="Right" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,20,0,0">
+                        <Button Style="{StaticResource SubtitleAppBarButtonStyle}" Visibility="{Binding SubtitlesCount, Converter={StaticResource NegatedCountToVisibilityConverter}}" Click="Subtitles_Click"/>
+                        <Button Style="{StaticResource AudioTrackAppBarButtonStyle}" Visibility="{Binding AudioTracksCount, Converter={StaticResource NegatedCountToVisibilityConverter}}" Click="AudioTracks_Click"/>
+                    </StackPanel>
+                    <StackPanel x:Name="SecondaryButtonsSnapped" HorizontalAlignment="Center" Orientation="Horizontal" VerticalAlignment="Top" Margin="0,-5,0,0">
+                        <Button Style="{StaticResource SubtitleAppBarButtonStyle}" Visibility="{Binding SubtitlesCount, Converter={StaticResource NegatedCountToVisibilityConverter}}" Click="Subtitles_Click"/>
+                        <Button Style="{StaticResource AudioTrackAppBarButtonStyle}" Visibility="{Binding AudioTracksCount, Converter={StaticResource NegatedCountToVisibilityConverter}}" Click="AudioTracks_Click"/>
                     </StackPanel>
                 </Grid>
-				<StackPanel HorizontalAlignment="Right" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,28,0,0">
-					<Button Style="{StaticResource SubtitleAppBarButtonStyle}" Visibility="{Binding SubtitlesCount, Converter={StaticResource NegatedCountToVisibilityConverter}}" Click="Subtitles_Click"/>
-                    <Button Style="{StaticResource AudioTrackAppBarButtonStyle}" Visibility="{Binding AudioTracksCount, Converter={StaticResource NegatedCountToVisibilityConverter}}" Click="AudioTracks_Click"/>
-				</StackPanel>
-                <Slider x:Name="VideoPositionSlider"
+                <Grid Grid.Row="1">
+                    <Slider x:Name="VideoPositionSlider"
                         VerticalAlignment="Bottom"
                         Style="{StaticResource VlcSlider}" 
                         StepFrequency="0.001" 
@@ -62,12 +93,13 @@
                         Value="{Binding PositionInSeconds, Mode=TwoWay}" 
                         ThumbToolTipValueConverter="{StaticResource SecondsStringConverter}"
                         Height="40"/>
-                <TextBlock Margin="30,0,0,8"
+                    <TextBlock Margin="30,0,0,8"
                            Text="{Binding ElapsedTime, Converter={StaticResource TimeSpanShortStringConverter}}" 
                            Style="{StaticResource ItemTextStyle}" VerticalAlignment="Bottom"/>
-                <TextBlock Margin="30,0,30,8"
+                    <TextBlock Margin="30,0,30,8"
                            Text="{Binding TimeTotal, Converter={StaticResource TimeSpanShortStringConverter}}" 
                            Style="{StaticResource ItemTextStyle}" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+                </Grid>
             </Grid>
         </Grid>
     </Grid>

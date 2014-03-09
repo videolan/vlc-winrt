@@ -22,7 +22,7 @@ namespace VLC_WINRT.Views
             InitializeComponent();
             this.SizeChanged += OnSizeChanged;
 
-            _timer.Interval = TimeSpan.FromSeconds(7);
+            _timer.Interval = TimeSpan.FromSeconds(5);
             _timer.Tick += TimerOnTick;
             ShowCommands();
         }
@@ -60,6 +60,27 @@ namespace VLC_WINRT.Views
             var x = Window.Current.Bounds.Width;
             var y = Window.Current.Bounds.Height;
             Locator.PlayVideoVM.SetSizeVideoPlayer((uint)x, (uint)y);
+
+            if (x == 320)
+            {
+                ControlsGrid.Height = 200;
+                BackButton.Margin = new Thickness(5, 50, 0, 50);
+                MainButtonsNormal.Visibility = Visibility.Collapsed;
+                SecondaryButtonsNormal.Visibility = Visibility.Collapsed;
+
+                MainButtonsSnapped.Visibility = Visibility.Visible;
+                SecondaryButtonsSnapped.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                ControlsGrid.Height = 155;
+                BackButton.Margin = new Thickness(50,50,0,50);
+                MainButtonsNormal.Visibility = Visibility.Visible;
+                SecondaryButtonsNormal.Visibility = Visibility.Visible;
+
+                MainButtonsSnapped.Visibility = Visibility.Collapsed;
+                SecondaryButtonsSnapped.Visibility = Visibility.Collapsed;
+            }
         }
 
         public override void SetDataContext()
