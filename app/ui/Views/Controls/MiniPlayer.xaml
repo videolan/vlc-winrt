@@ -10,9 +10,9 @@
     DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}">
 
     <UserControl.Resources>
-            <ResourceDictionary >
-                <ResourceDictionary.MergedDictionaries>
-                    <ResourceDictionary Source="ms-appx:///Common/SliderStyle.xaml" />
+        <ResourceDictionary >
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ms-appx:///Common/SliderStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         </ResourceDictionary>
@@ -20,10 +20,11 @@
 
     <Grid Height="90" Background="#66000000" Visibility="{Binding TrackCollection.IsRunning, Converter={StaticResource BooleanToVisibilityConverter}}">
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="300"/>
         </Grid.ColumnDefinitions>
-        <Button Margin="50,0,0,0" HorizontalAlignment="Left" Template="{StaticResource MainButtonStyle}" Tapped="InformationsCurrentPlayingGrid_Tapped">
+        <Button Margin="5,0,0,0" HorizontalAlignment="Left" Template="{StaticResource MainButtonStyle}" Tapped="InformationsCurrentPlayingGrid_Tapped">
             <StackPanel Orientation="Horizontal" >
                 <Image Height="70" Stretch="UniformToFill" Source="{Binding Artist.CurrentAlbumItem.Picture}" />
                 <Grid Margin="10,0,0,0">
@@ -32,7 +33,20 @@
                 </Grid>
             </StackPanel>
         </Button>
-        <Grid Grid.Column="1" VerticalAlignment="Center" Margin="0,-8,50,0">
+        <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="10,0">
+            <Slider x:Name="VideoPositionSlider"
+                    Style="{StaticResource VlcSlider}"
+                    StepFrequency="0.001"
+                    Maximum="1000"
+                    Margin="0,-10,0,0"
+                    Value="{Binding Position, Mode=TwoWay}" 
+                    ThumbToolTipValueConverter="{StaticResource SecondsStringConverter}"/>
+            <Grid>
+                <TextBlock Text="{Binding ElapsedTime, Converter={StaticResource TimeSpanShortStringConverter}}" Style="{StaticResource SubtitleTextStyle}" HorizontalAlignment="Left" Margin="0,-30,0,0"/>
+                <TextBlock Text="{Binding TimeTotal, Converter={StaticResource TimeSpanShortStringConverter}}"   Style="{StaticResource SubtitleTextStyle}" HorizontalAlignment="Right" Margin="0,-30,0,0"/>
+            </Grid>
+        </StackPanel>
+        <Grid Grid.Column="2" VerticalAlignment="Center" Margin="0,-8,50,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
@@ -44,15 +58,6 @@
             <Button Grid.Column="2" Visibility="{Binding TrackCollection.CanGoNext, Converter={StaticResource BooleanToVisibilityConverter}}" Style="{StaticResource SkipAheadNoTextMediumAppBarButtonStyle}" Command="{Binding PlayNextCommand}"/>
         </Grid>
         <!--<ProgressBar Style="{StaticResource ThinProgressBar}" VerticalAlignment="Bottom" Grid.ColumnSpan="2" Value="{Binding Position}" Maximum="1000"/>-->
-        <Slider x:Name="VideoPositionSlider"
-                Grid.ColumnSpan="2"
-                        VerticalAlignment="Top"
-                        Style="{StaticResource VlcSlider}" 
-                        StepFrequency="0.001" 
-                        Maximum="1000" 
-                        Margin="0,-25" 
-                        Value="{Binding Position, Mode=TwoWay}" 
-                        ThumbToolTipValueConverter="{StaticResource SecondsStringConverter}"
-                        Height="40"/>
+
     </Grid>
 </UserControl>

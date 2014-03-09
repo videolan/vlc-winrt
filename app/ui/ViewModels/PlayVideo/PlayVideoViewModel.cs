@@ -275,7 +275,7 @@ namespace VLC_WINRT.ViewModels.PlayVideo
 
         private void VlcPlayerServiceOnMediaEnded(object sender, Player player)
         {
-            DispatchHelper.Invoke(() => App.RootPage.MainFrame.GoBack());
+            App.RootPage.MainFrame.GoBack();
         }
 
         public void SetActiveVideoInfo(string mrl)
