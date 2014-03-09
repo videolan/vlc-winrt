@@ -19,10 +19,10 @@ namespace VLC_WINRT.Utility.Helpers
     {
         public static async void Get()
         {
-            string path = @"backers.json";
-            StorageFolder folder = Windows.ApplicationModel.Package.Current.InstalledLocation;
-            StorageFile file = await folder.GetFileAsync(path);
-            string json = await FileIO.ReadTextAsync(file);
+            //string path = @"backers.csv";
+            //StorageFolder folder = Windows.ApplicationModel.Package.Current.InstalledLocation;
+            //StorageFile file = await folder.GetFileAsync(path);
+            //string json = await FileIO.ReadTextAsync(file);
             //var items = JsonConvert.DeserializeObject(json);
             //Debug.WriteLine(items.ToString());
         }
