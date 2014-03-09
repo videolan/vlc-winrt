@@ -175,7 +175,8 @@ ssize_t Read(access_t *access, uint8_t *buffer, size_t size)
         OutputDebugString(L"Failure while reading block");
         if (ex->HResult == HRESULT_FROM_WIN32(ERROR_OPLOCK_HANDLE_CLOSED)){
             if (OpenFileAsync(GetString(access->psz_location)) == VLC_SUCCESS){
-                return 0;
+                readStream->Seek(access->info.i_pos);
+                return Read(access, buffer, size);
             }
             OutputDebugString(L"Failed to reopen file");
         }
