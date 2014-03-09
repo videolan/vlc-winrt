@@ -207,8 +207,8 @@ namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
 
             // Setting the info for windows 8 controls
             MediaControl.IsPlaying = true;
-            MediaControl.ArtistName = trackItem.ArtistName;
-            MediaControl.TrackName = trackItem.Name;
+            MediaControl.ArtistName = trackItem.ArtistName ?? "Unknown Artist";
+            MediaControl.TrackName = trackItem.Name ?? "Unknown Track";
             try
             {
                 MediaControl.AlbumArt = new Uri(Locator.MusicPlayerVM.Artist.CurrentAlbumItem.Picture);
