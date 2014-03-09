@@ -138,21 +138,28 @@ namespace VLC_WINRT.ViewModels.MainPage
             DispatchHelper.Invoke(ExecuteSemanticZoom);
         }
 
-        void ExecuteSemanticZoom()
+        public void ExecuteSemanticZoom()
         {
             var page = App.ApplicationFrame.Content as Views.MainPage;
             if (page != null)
             {
                 var videoColumn = page.GetFirstDescendantOfType<VideoColumn>() as VideoColumn;
-                var semanticZoom = videoColumn.GetFirstDescendantOfType<SemanticZoom>() as SemanticZoom;
+                var semanticZoom = videoColumn.GetDescendantsOfType<SemanticZoom>().First() as SemanticZoom;
+                var semanticZoomVertical = videoColumn.GetDescendantsOfType<SemanticZoom>().ElementAt(1) as SemanticZoom;
                 var collection = videoColumn.Resources["MediaGroupedByAlphabet"] as CollectionViewSource;
                 if (semanticZoom != null)
                 {
                     try
                     {
                         var listviewbase = semanticZoom.ZoomedOutView as ListViewBase;
+                        var listviewBaseVertical = semanticZoomVertical.ZoomedOutView as ListViewBase;
                         if (collection != null)
-                            listviewbase.ItemsSource = collection.View.CollectionGroups;
+                        {
+                            if (listviewbase != null) 
+                                listviewbase.ItemsSource = collection.View.CollectionGroups;
+                            if (listviewBaseVertical != null)
+                                listviewBaseVertical.ItemsSource = collection.View.CollectionGroups;
+                        }
                     }
                     catch { }
                 }

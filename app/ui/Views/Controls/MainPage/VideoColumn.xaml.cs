@@ -14,13 +14,13 @@ namespace VLC_WINRT.Views.Controls.MainPage
         public VideoColumn()
         {
             InitializeComponent();
-            this.Loaded += (sender, args) =>
-            {
-                for (int i = 1; i < SectionsGrid.Children.Count; i++)
-                {
-                    UIAnimationHelper.FadeOut(SectionsGrid.Children[i]);
-                }
-            };
+            //this.Loaded += (sender, args) =>
+            //{
+            //    for (int i = 1; i < SectionsGrid.Children.Count; i++)
+            //    {
+            //        UIAnimationHelper.FadeOut(SectionsGrid.Children[i]);
+            //    }
+            //};
             this.SizeChanged += OnSizeChanged;
         }
 
@@ -38,12 +38,12 @@ namespace VLC_WINRT.Views.Controls.MainPage
 
                 if (sizeChangedEventArgs.NewSize.Width == 320)
                 {
-                    FirstPanelListView.Visibility = Visibility.Visible;
+                    SemanticZoomVertical.Visibility = Visibility.Visible;
                     SemanticZoom.Visibility = Visibility.Collapsed;
                 }
                 else
                 {
-                    FirstPanelListView.Visibility = Visibility.Collapsed;
+                    SemanticZoomVertical.Visibility = Visibility.Collapsed;
                     SemanticZoom.Visibility = Visibility.Visible;
                 }
             });
@@ -66,7 +66,12 @@ namespace VLC_WINRT.Views.Controls.MainPage
         
         private void OnHeaderSemanticZoomClicked(object sender, RoutedEventArgs e)
         {
+            SemanticZoomVertical.IsZoomedInViewActive = false;
             SemanticZoom.IsZoomedInViewActive = false;
+        }
+
+        private void SemanticZoom_OnViewChangeCompleted(object sender, SemanticZoomViewChangedEventArgs e)
+        {
         }
     }
 }

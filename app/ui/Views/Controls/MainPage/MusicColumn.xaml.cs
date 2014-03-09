@@ -22,7 +22,7 @@ namespace VLC_WINRT.Views.Controls.MainPage
                 UIAnimationHelper.FadeOut(TracksPanel);
                 for (int i = 0; i < SectionsGrid.Children.Count; i++)
                 {
-                    if(i != _currentSection)
+                    if (i != _currentSection)
                         UIAnimationHelper.FadeOut(SectionsGrid.Children[i]);
                 }
                 _isLoaded = true;
@@ -47,7 +47,7 @@ namespace VLC_WINRT.Views.Controls.MainPage
                 if (sizeChangedEventArgs.NewSize.Width == 320)
                 {
                     FullGrid.Visibility = Visibility.Collapsed;
-                    SnapGrid.Visibility= Visibility.Visible;
+                    SnapGrid.Visibility = Visibility.Visible;
                     SectionsHeaderListView.Visibility = Visibility.Collapsed;
                     SectionsGrid.Margin = new Thickness(0);
                 }
