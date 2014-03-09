@@ -7,7 +7,7 @@ namespace VLC_WINRT.Utility.Commands
     {
         public override void Execute(object parameter)
         {
-            NavigationService.NavigateTo(typeof (Views.MainPage));
+            App.RootPage.MainFrame.GoBack();
         }
     }
 }
