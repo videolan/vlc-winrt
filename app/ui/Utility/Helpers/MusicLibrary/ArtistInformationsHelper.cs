@@ -83,7 +83,7 @@ namespace VLC_WINRT.Utility.Helpers.MusicLibrary
             var response =
                 await
                     lastFmClient.GetStringAsync(
-                        "http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&limit=6&api_key=" +
+                        "http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&limit=8&api_key=" +
                         App.ApiKeyLastFm + "&artist=" + _artist);
             var xml = XDocument.Parse(response);
             var topAlbums = from results in xml.Descendants("album")
@@ -98,20 +98,29 @@ namespace VLC_WINRT.Utility.Helpers.MusicLibrary
 
         public async Task<List<ViewModels.MainPage.MusicLibraryViewModel.ArtistItemViewModel>> GetArtistSimilarsArtist()
         {
-            HttpClient lastFmClient = new HttpClient();
-            var response =
-                await
-                    lastFmClient.GetStringAsync(
-                        "http://ws.audioscrobbler.com/2.0/?method=artist.getsimilar&limit=6&api_key=" +
-                        App.ApiKeyLastFm + "&artist=" + _artist);
-            var xml = XDocument.Parse(response);
-            var similarArtists = from results in xml.Descendants("artist")
-                                 select new ViewModels.MainPage.MusicLibraryViewModel.ArtistItemViewModel
-                                 {
-                                     Name = results.Element("name").Value.ToString(),
-                                     Picture = results.Elements("image").ElementAt(3).Value,
-                                 };
-            return similarArtists.ToList();
+            try
+            {
+                HttpClient lastFmClient = new HttpClient();
+                var response =
+                    await
+                        lastFmClient.GetStringAsync(
+                            "http://ws.audioscrobbler.com/2.0/?method=artist.getsimilar&limit=8&api_key=" +
+                            App.ApiKeyLastFm + "&artist=" + _artist);
+                
+                var xml = XDocument.Parse(response);
+                var similarArtists = from results in xml.Descendants("artist")
+                    select new ViewModels.MainPage.MusicLibraryViewModel.ArtistItemViewModel
+                    {
+                        Name = results.Element("name").Value.ToString(),
+                        Picture = results.Elements("image").ElementAt(3).Value,
+                    };
+                return similarArtists.ToList();
+            }
+            catch
+            {
+                
+            }
+            return null;
         }
         public async Task<string> GetArtistBiography()
         {
@@ -132,6 +141,14 @@ namespace VLC_WINRT.Utility.Helpers.MusicLibrary
                             // Removes the "Read more about ... on last.fm" message
                             Biography = Biography.Remove(Biography.Length - "Read more about  on Last.fm".Length - _artist.Length - 6);
                         }
+                        else
+                        {
+                            Biography = "It seems we did'nt found a biography for this artist.";
+                        }
+                    }
+                    else
+                    {
+                        Biography = "It seems we did'nt found a biography for this artist.";
                     }
                 }
             }

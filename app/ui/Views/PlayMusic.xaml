@@ -159,7 +159,7 @@
                             <Grid >
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="200"/>
-                                    <ColumnDefinition Width="300" />
+                                    <ColumnDefinition Width="350" />
                                 </Grid.ColumnDefinitions>
                                 <Image Height="200" Width="200" VerticalAlignment="Top" Stretch="UniformToFill" Source="{Binding Artist.CurrentAlbumItem.Picture}"/>
                                 <Grid Grid.Column="1" Margin="10,0">
@@ -177,70 +177,70 @@
                                     </StackPanel>
                                 </Grid>
                             </Grid>
-                            <ListView Grid.Row="1" IsSwipeEnabled="False" HorizontalAlignment="Left" Width="500" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" Margin="0,10,0,0" Visibility="{Binding Artist.OnlinePopularAlbumItems.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}" SelectionMode="None" IsItemClickEnabled="True" HeaderTemplate="{StaticResource ColumnHeaderDataTemplate}" Header="popular albums" ItemsSource="{Binding Artist.OnlinePopularAlbumItems}">
-                                <ListView.ItemsPanel>
-                                    <ItemsPanelTemplate>
-                                        <WrapGrid Orientation="Horizontal" />
-                                    </ItemsPanelTemplate>
-                                </ListView.ItemsPanel>
-                                <ListView.ItemTemplate>
+                            <GridView Grid.Row="1" Margin="0,0,0,0" HorizontalAlignment="Left" SelectionMode="None" IsSwipeEnabled="False" ItemContainerStyle="{StaticResource GridViewItemContainerStyle}" ItemsSource="{Binding TrackCollection.TrackCollection}">
+                                <GridView.ItemTemplate>
                                     <DataTemplate>
-                                        <Grid Height="125" Width="125">
-                                            <Image Source="{Binding Picture}" Stretch="UniformToFill"/>
-                                            <Grid Height="80" VerticalAlignment="Bottom">
-                                                <Grid.Background>
-                                                    <LinearGradientBrush StartPoint="1,0">
-                                                        <GradientStopCollection>
-                                                            <GradientStop Color="#990A0A0A" Offset="1"/>
-                                                            <GradientStop Color="#00020202" />
-                                                        </GradientStopCollection>
-                                                    </LinearGradientBrush>
-                                                </Grid.Background>
-                                                <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="5">
-                                                    <TextBlock Text="{Binding Name}" TextWrapping="NoWrap" TextTrimming="WordEllipsis" FontSize="16" />
-                                                    <!--<TextBlock Text="{Binding Year}" FontSize="14" Foreground="#7FF5F5F5"/>-->
-                                                </StackPanel>
-                                            </Grid>
-                                        </Grid>
-                                    </DataTemplate>
-                                </ListView.ItemTemplate>
-                            </ListView>
-                        </Grid>
-                        <GridView Margin="0,0,0,0" HorizontalAlignment="Left" SelectionMode="None" IsSwipeEnabled="False" ItemContainerStyle="{StaticResource GridViewItemContainerStyle}" ItemsSource="{Binding TrackCollection.TrackCollection}">
-                            <GridView.ItemTemplate>
-                                <DataTemplate>
-                                    <Button Template="{StaticResource MainButtonStyle}"
+                                        <Button Template="{StaticResource MainButtonStyle}"
                                 Command="{Binding PlayTrack}"
                                 CommandParameter="{Binding}" Margin="-4,0,0,0" Padding="0,4,4,4">
-                                        <Grid VerticalAlignment="Center">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="250"/>
-                                                <ColumnDefinition Width="120"/>
-                                            </Grid.ColumnDefinitions>
-                                            <StackPanel HorizontalAlignment="Stretch">
-                                                <TextBlock Style="{StaticResource BodyTextStyle}" HorizontalAlignment="Left" TextWrapping="NoWrap" TextTrimming="WordEllipsis">
+                                            <Grid VerticalAlignment="Center">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="250"/>
+                                                    <ColumnDefinition Width="120"/>
+                                                </Grid.ColumnDefinitions>
+                                                <StackPanel HorizontalAlignment="Stretch">
+                                                    <TextBlock Style="{StaticResource BodyTextStyle}" HorizontalAlignment="Left" TextWrapping="NoWrap" TextTrimming="WordEllipsis">
                                                     <Run Text="{Binding Index}" Foreground="DarkGray"/>
                                                     <Run Text="{Binding Name}" />
-                                                </TextBlock>
-                                                <TextBlock Foreground="DarkGray" Style="{StaticResource BodyTextStyle}">
+                                                    </TextBlock>
+                                                    <TextBlock Foreground="DarkGray" Style="{StaticResource BodyTextStyle}">
                                                     <Run Text="{Binding ArtistName}"/>
-                                                </TextBlock>
-                                            </StackPanel>
-                                            <Grid Grid.Column="1" Width="130">
-                                                <Button Style="{StaticResource LikeLittleAppBarButtonStyle}" Visibility="{Binding Favorite, Converter={StaticResource NegatedBooleanToVisibilityConverter}}" Command="{Binding FavoriteTrack}" CommandParameter="{Binding}"/>
-                                                <Button Style="{StaticResource DisLikeLittleAppBarButtonStyle}" Visibility="{Binding Favorite, Converter={StaticResource BooleanToVisibilityConverter}}" Command="{Binding FavoriteTrack}" CommandParameter="{Binding}"/>
+                                                    </TextBlock>
+                                                </StackPanel>
+                                                <Grid Grid.Column="1" Width="130">
+                                                    <Button Style="{StaticResource LikeLittleAppBarButtonStyle}" Visibility="{Binding Favorite, Converter={StaticResource NegatedBooleanToVisibilityConverter}}" Command="{Binding FavoriteTrack}" CommandParameter="{Binding}"/>
+                                                    <Button Style="{StaticResource DisLikeLittleAppBarButtonStyle}" Visibility="{Binding Favorite, Converter={StaticResource BooleanToVisibilityConverter}}" Command="{Binding FavoriteTrack}" CommandParameter="{Binding}"/>
+                                                </Grid>
                                             </Grid>
-                                        </Grid>
-                                    </Button>
-                                </DataTemplate>
-                            </GridView.ItemTemplate>
+                                        </Button>
+                                    </DataTemplate>
+                                </GridView.ItemTemplate>
+                                <GridView.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <VariableSizedWrapGrid Orientation="Vertical" ItemWidth="370"/>
+                                    </ItemsPanelTemplate>
+                                </GridView.ItemsPanel>
+                            </GridView>
+                        </Grid>
+                        <GridView IsSwipeEnabled="False" HorizontalAlignment="Left" Width="500" ItemContainerStyle="{StaticResource GridViewItemContainerStyle}" Margin="0,10,0,0" Visibility="{Binding Artist.IsOnlinePopularAlbumItemsLoaded, Converter={StaticResource BooleanToVisibilityConverter}}" SelectionMode="None" IsItemClickEnabled="True" HeaderTemplate="{StaticResource ColumnHeaderDataTemplate}" Header="popular albums" ItemsSource="{Binding Artist.OnlinePopularAlbumItems}">
                             <GridView.ItemsPanel>
                                 <ItemsPanelTemplate>
-                                    <VariableSizedWrapGrid Orientation="Vertical" ItemWidth="370"/>
+                                    <WrapGrid Orientation="Horizontal" />
                                 </ItemsPanelTemplate>
                             </GridView.ItemsPanel>
+                            <GridView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Height="150" Width="150">
+                                        <Image Source="{Binding Picture}" Stretch="UniformToFill"/>
+                                        <Grid Height="80" VerticalAlignment="Bottom">
+                                            <Grid.Background>
+                                                <LinearGradientBrush StartPoint="1,0">
+                                                    <GradientStopCollection>
+                                                        <GradientStop Color="#990A0A0A" Offset="1"/>
+                                                        <GradientStop Color="#00020202" />
+                                                    </GradientStopCollection>
+                                                </LinearGradientBrush>
+                                            </Grid.Background>
+                                            <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="5">
+                                                <TextBlock Text="{Binding Name}" TextWrapping="NoWrap" TextTrimming="WordEllipsis" FontSize="16" />
+                                                <!--<TextBlock Text="{Binding Year}" FontSize="14" Foreground="#7FF5F5F5"/>-->
+                                            </StackPanel>
+                                        </Grid>
+                                    </Grid>
+                                </DataTemplate>
+                            </GridView.ItemTemplate>
                         </GridView>
-                        <ListView Margin="20,0" IsSwipeEnabled="False" Width="400" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" Visibility="{Binding Artist.OnlineRelatedArtists.Count, Converter={StaticResource NegatedBooleanToVisibilityConverter}}" HeaderTemplate="{StaticResource ColumnHeaderDataTemplate}" Header="similar artists" ItemsSource="{Binding Artist.OnlineRelatedArtists}" SelectedIndex="0" SelectionMode="None" IsItemClickEnabled="True" >
+                        <ListView Margin="20,0" IsSwipeEnabled="False" Width="400" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" Visibility="{Binding Artist.IsOnlineRelatedArtistsLoaded, Converter={StaticResource BooleanToVisibilityConverter}}" HeaderTemplate="{StaticResource ColumnHeaderDataTemplate}" Header="similar artists" ItemsSource="{Binding Artist.OnlineRelatedArtists}" SelectedIndex="0" SelectionMode="None" IsItemClickEnabled="True" >
                             <ListView.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <WrapGrid Orientation="Horizontal" />

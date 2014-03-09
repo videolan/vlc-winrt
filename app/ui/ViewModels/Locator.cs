@@ -8,7 +8,6 @@ using VLC_WINRT.Utility.Services.Interface;
 using VLC_WINRT.Utility.Services.RunTime;
 using VLC_WINRT.ViewModels.MainPage;
 using VLC_WINRT.ViewModels.MainPage.PlayMusic;
-using VLC_WINRT.ViewModels.PlayMusic;
 using VLC_WINRT.ViewModels.PlayVideo;
 
 namespace VLC_WINRT.ViewModels

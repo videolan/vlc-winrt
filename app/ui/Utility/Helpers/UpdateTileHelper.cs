@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Windows.Media;
-using Windows.UI.Notifications;
+﻿using Windows.UI.Notifications;
 using VLC_WINRT.ViewModels;
 
 namespace VLC_WINRT.Utility.Helpers

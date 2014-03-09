@@ -159,19 +159,20 @@ namespace VLC_WINRT.ViewModels.MainPage
                     {
                         foreach (var artist in Artist)
                         {
-                            await artist.ArtistInformations();
+                            artist.ArtistInformations();
+                            foreach (var album in artist.Albums)
+                            {
+                                album.GetCover();
+                            }
                         }
-                    }).ContinueWith(async (task) =>
+                    }).ContinueWith(async (lastTask) =>
                     {
-                        foreach (AlbumItem album in Artist.SelectMany(artist => artist.Albums))
-                        {
-                            await album.GetCover();
-                        }
-                    }).ContinueWith(async (lastTask) => await SerializeArtistsDataBase());
+                        await SerializeArtistsDataBase();
+                        _periodicTimer.Cancel();
+                        DispatchHelper.Invoke(() => IsLoaded = true);
+                        DispatchHelper.Invoke(() => IsBusy = false);
+                    });
 
-                    _periodicTimer.Cancel();
-                    DispatchHelper.Invoke(() => IsLoaded = true);
-                    DispatchHelper.Invoke(() => IsBusy = false);
                 }
 
             }, period);
@@ -295,12 +296,28 @@ namespace VLC_WINRT.ViewModels.MainPage
             private int _currentAlbumIndex = 0;
 
             // more informations
-            private string _biography;
+            private string _biography = "We're indexing you're music library and absorbing the Internet. The biography will arrive as soon as possible.";
             private List<OnlineAlbumItem> _onlinePopularAlbumItems = new List<OnlineAlbumItem>();
             private List<ArtistItemViewModel> _onlineRelatedArtists = new List<ArtistItemViewModel>();
             private bool _isFavorite;
             private ArtistInformationsHelper informationHelper;
+            private bool _isOnlinePopularAlbumItemsLoaded = false;
+            private bool _isOnlineRelatedArtistsLoaded = false;
+            
+            [XmlIgnore()]
+            public bool IsOnlinePopularAlbumItemsLoaded
+            {
+                get { return _isOnlinePopularAlbumItemsLoaded; }
+                set { SetProperty(ref _isOnlinePopularAlbumItemsLoaded, value); }
+            }
 
+            [XmlIgnore()]
+            public bool IsOnlineRelatedArtistsLoaded
+            {
+                get { return _isOnlineRelatedArtistsLoaded; }
+                set { SetProperty(ref _isOnlineRelatedArtistsLoaded, value); }
+            }
+            
             public string Name
             {
                 get { return _name; }
@@ -380,10 +397,19 @@ namespace VLC_WINRT.ViewModels.MainPage
 
                         var onlineRelatedArtists = await informationHelper.GetArtistSimilarsArtist();
                         DispatchHelper.Invoke(() => OnlineRelatedArtists = onlineRelatedArtists);
+                        if (OnlineRelatedArtists != null && OnlineRelatedArtists.Any())
+                        {
+                            DispatchHelper.Invoke(() => IsOnlineRelatedArtistsLoaded = true);
+                        }
+                        
                         DispatchHelper.Invoke(() => OnPropertyChanged("OnlineRelatedArtists"));
 
                         var onlinePopularAlbums = await informationHelper.GetArtistTopAlbums();
                         DispatchHelper.Invoke(() => OnlinePopularAlbumItems = onlinePopularAlbums);
+                        if (OnlinePopularAlbumItems != null && OnlinePopularAlbumItems.Any())
+                        {
+                            DispatchHelper.Invoke(() => IsOnlinePopularAlbumItemsLoaded = true);
+                        }
                         DispatchHelper.Invoke(() => OnPropertyChanged("OnlinePopularAlbumsItems"));
                     }
                 }

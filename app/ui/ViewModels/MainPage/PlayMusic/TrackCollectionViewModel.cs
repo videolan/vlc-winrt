@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using VLC_WINRT.Common;
-using VLC_WINRT.ViewModels.MainPage;
 
-namespace VLC_WINRT.ViewModels.PlayMusic
+namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
 {
     public class TrackCollectionViewModel : BindableBase
     {
@@ -11,6 +10,7 @@ namespace VLC_WINRT.ViewModels.PlayMusic
         private int _currentTrack = 0;
         private bool _canGoPrevious;
         private bool _canGoNext;
+        private bool _isRunning;
 
         public TrackCollectionViewModel()
         {
@@ -27,6 +27,18 @@ namespace VLC_WINRT.ViewModels.PlayMusic
         {
             get { return _currentTrack; }
             set { SetProperty(ref _currentTrack, value); }
+        }
+
+        public bool IsRunning
+        {
+            get
+            {
+                return _isRunning;
+            }
+            set
+            {
+                SetProperty(ref _isRunning, value);
+            }
         }
 
         // Tracks Collection Manager

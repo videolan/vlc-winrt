@@ -18,7 +18,7 @@
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <Grid Height="90" Background="#66000000" Visibility="{Binding TrackCollection.TrackCollection.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}">
+    <Grid Height="90" Background="#66000000" Visibility="{Binding TrackCollection.IsRunning, Converter={StaticResource BooleanToVisibilityConverter}}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="300"/>

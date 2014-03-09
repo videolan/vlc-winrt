@@ -13,7 +13,6 @@ using VLC_WINRT.Utility.Commands.MusicPlayer;
 using VLC_WINRT.Utility.Helpers;
 using VLC_WINRT.Utility.IoC;
 using VLC_WINRT.Utility.Services.RunTime;
-using VLC_WINRT.ViewModels.PlayMusic;
 
 namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
 {
@@ -23,7 +22,6 @@ namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
         private readonly HistoryService _historyService;
         private readonly DispatcherTimer _sliderPositionTimer = new DispatcherTimer();
         private TimeSpan _elapsedTime = TimeSpan.Zero;
-        //private double _position = 0;
         private string _fileToken;
         private StopVideoCommand _goBackCommand;
         private bool _isPlaying;
@@ -124,7 +122,16 @@ namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
         {
             App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                PlayNext();
+                if (TrackCollection.TrackCollection[TrackCollection.CurrentTrack] ==
+                    TrackCollection.TrackCollection.Last())
+                {
+                    // Playlist is finished
+                    TrackCollection.IsRunning = false;
+                }
+                else
+                {
+                    PlayNext();
+                }
             });
         }
 
@@ -173,6 +180,7 @@ namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
 
         public async void Play()
         {
+            TrackCollection.IsRunning = true;
             Stop();
             var trackItem = TrackCollection.TrackCollection[TrackCollection.CurrentTrack];
 
