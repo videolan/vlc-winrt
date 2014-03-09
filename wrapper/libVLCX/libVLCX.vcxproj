@@ -210,6 +210,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="DirectXManger.h" />
+    <ClInclude Include="Helpers.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="MMDeviceLocator.h" />

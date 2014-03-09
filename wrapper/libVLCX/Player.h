@@ -23,17 +23,19 @@
 #include <vlc/vlc.h>
 #include "MMDeviceLocator.h"
 #include "DirectXManger.h"
+
 #include <exception>
 #include <collection.h>
 
-using namespace Microsoft::WRL;
-using namespace Windows::Media::Devices;
 using namespace Windows::UI::Xaml::Controls;
 using namespace Windows::System::Threading;
 using namespace Windows::Foundation;
+using namespace Windows::Foundation::Collections;
 
 namespace libVLCX {
     public delegate void MediaEndedHandler();
+
+    [Windows::Foundation::Metadata::WebHostHidden]
     public ref class Player sealed
     {
     public:
@@ -52,11 +54,11 @@ namespace libVLCX {
         int64         GetTime();
 
         int           GetSubtitleCount();
-        int           GetSubtitleDescription(Collections::IMap<int, Platform::String ^> ^tracks);
+        int           GetSubtitleDescription(IMap<int, Platform::String ^> ^tracks);
         int           SetSubtitleTrack(int track);
 
         int           GetAudioTracksCount();
-        int           GetAudioTracksDescription(Collections::IMap<int, Platform::String ^> ^tracks);
+        int           GetAudioTracksDescription(IMap<int, Platform::String ^> ^tracks);
         int           SetAudioTrack(int track);
 
         virtual       ~Player();
@@ -68,9 +70,6 @@ namespace libVLCX {
 
     internal:
         void MediaEndedCall();
-
-    private:
-        size_t      ToCharArray(Platform::String^ str, char* arr, size_t maxSize);
 
     private:
         void                     InitializeVLC();

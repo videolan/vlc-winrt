@@ -20,38 +20,11 @@
 
 #include "pch.h"
 #include "Player.h"
+#include "Helpers.h"
 #include <map>
 
 using namespace libVLCX;
 using namespace Windows::Graphics::Display;
-
-char *
-FromPlatformString(Platform::String^ str) {
-    size_t len = WideCharToMultiByte(CP_UTF8, 0, str->Data(), -1, NULL, 0, NULL, NULL);
-    if(len == 0)
-        return NULL;
-    char* psz_str = new char[len];
-    WideCharToMultiByte(CP_UTF8, 0, str->Data(), -1, psz_str, len, NULL, NULL);
-    return psz_str;
-}
-
-Platform::String^
-ToPlatformString(const char *str) {
-    size_t len = MultiByteToWideChar(CP_UTF8, 0, str, -1, NULL, 0);
-    if(len == 0)
-        return nullptr;
-    wchar_t* w_str = new wchar_t[len];
-    MultiByteToWideChar(CP_UTF8, 0, str, -1, w_str, len);
-    return ref new Platform::String(w_str);
-}
-
-size_t Player::ToCharArray(Platform::String^ str, char *arr, size_t maxSize)
-{
-    size_t nbConverted = 0;
-    wcstombs_s(&nbConverted, arr, 128, str->Data(), maxSize);
-    return nbConverted;
-}
-
 
 Player::Player(SwapChainBackgroundPanel^ panel) :p_mp(NULL), p_instance(NULL)
 {
@@ -134,8 +107,8 @@ void Player::InitializeVLC()
 
 void Player::UpdateSize(unsigned int x, unsigned int y)
 {
-    m_width = x;
-    m_height = y;
+    m_width = (float)x;
+    m_height = (float)y;
 }
 
 void Player::MediaEndedCall(){
@@ -235,15 +208,6 @@ void Player::Seek(float position)
     }
 }
 
-void Debug( const wchar_t *fmt, ...) {
-    wchar_t buf[255];
-    va_list args;
-    va_start(args, fmt);
-    vswprintf_s(buf, fmt, args);
-    va_end(args);
-    OutputDebugStringW(buf);
-}
-
 float Player::GetPosition()
 {
     float position = 0.0f;
@@ -283,7 +247,7 @@ int Player::GetSubtitleCount(){
     return subtitleTrackCount;
 }
 
-int Player::GetSubtitleDescription(Collections::IMap<int,Platform::String ^> ^tracks) {
+int Player::GetSubtitleDescription(IMap<int,Platform::String ^> ^tracks) {
     libvlc_track_description_t *subtitleTrackDesc = NULL;
     int count = 0;
     if (p_mp && tracks) {
@@ -316,7 +280,7 @@ int Player::GetAudioTracksCount(){
     return audioTracksCount;
 }
 
-int Player::GetAudioTracksDescription(Collections::IMap<int,Platform::String ^> ^tracks) {
+int Player::GetAudioTracksDescription(IMap<int,Platform::String ^> ^tracks) {
     libvlc_track_description_t *audioTrackDesc = NULL;
     int count = 0;
     if (p_mp) {
