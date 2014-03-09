@@ -35,6 +35,11 @@ DirectXManger::DirectXManger()
 {
 }
 
+void DirectXManger::CheckDXOperation(HRESULT hr, Platform::String^ message){
+    if (hr != S_OK) {
+		throw ref new Platform::Exception(hr, message);
+	}
+}
 
 void DirectXManger::CreateSwapPanel(SwapChainBackgroundPanel^ panel){
     HRESULT hr;
@@ -79,24 +84,10 @@ void DirectXManger::CreateSwapPanel(SwapChainBackgroundPanel^ panel){
         nullptr,
         nullptr
         );
-    if (hr != S_OK) {
-        throw new std::exception("Could not D3D11CreateDevice!", hr);
-    }
-
-    hr = d3dDevice.As(&dxgiDevice);
-    if (hr != S_OK) {
-        throw new std::exception("Could not transform to DxGiDevice!", hr);
-    }
-
-    hr = dxgiDevice->GetAdapter(&dxgiAdapter);
-    if (hr != S_OK) {
-        throw new std::exception("Could not  get adapter!", hr);
-    }
-
-    hr = dxgiAdapter->GetParent(IID_PPV_ARGS(&dxgiFactory));
-    if (hr != S_OK) {
-        throw new std::exception("Could not get adapter Parent!", hr);
-    }
+    CheckDXOperation(hr,"Could not D3D11CreateDevice");
+    CheckDXOperation(d3dDevice.As(&dxgiDevice),"Could not transform to DXGIDevice");
+    CheckDXOperation(dxgiDevice->GetAdapter(&dxgiAdapter),"Could not  get adapter");
+    CheckDXOperation(dxgiAdapter->GetParent(IID_PPV_ARGS(&dxgiFactory)),"Could not get adapter parent");
 
     // Create the Direct2D device object and a corresponding context.
     hr = D2D1CreateDevice(
@@ -104,17 +95,13 @@ void DirectXManger::CreateSwapPanel(SwapChainBackgroundPanel^ panel){
         nullptr,
         &(d2dDevice)
         );
-    if (hr != S_OK) {
-        throw new std::exception("Could not create D2D1 device!", hr);
-    }
+    CheckDXOperation(hr, "Could not create D2D1 device");
 
     hr = d2dDevice->CreateDeviceContext(
         D2D1_DEVICE_CONTEXT_OPTIONS_NONE,
         &cp_d2dContext
         );
-    if (hr != S_OK) {
-        throw new std::exception("Could not create device Context!", hr);
-    }
+    CheckDXOperation(hr,"Could not create device context");
 
     // Set DPI to the display's current DPI.
     cp_d2dContext->SetDpi(dpi, dpi);
@@ -140,33 +127,19 @@ void DirectXManger::CreateSwapPanel(SwapChainBackgroundPanel^ panel){
         nullptr,
         &cp_swapChain
         );
-    if (hr != S_OK) {
-        throw new std::exception("Could not create swapChain!", hr);
-    }
-
-    hr = dxgiDevice->SetMaximumFrameLatency(1);
-    if (hr != S_OK) {
-        throw new std::exception("Could not set maximum Frame Latency!", hr);
-    }
+    CheckDXOperation(hr, "Could not create swapChain");
+    CheckDXOperation(dxgiDevice->SetMaximumFrameLatency(1), "Could not set maximum Frame Latency");
 
     //TODO: perform the next 2 calls on the UI thread
     ComPtr<ISwapChainBackgroundPanelNative> panelNative;
     hr = reinterpret_cast<IUnknown*>(panel)->QueryInterface(IID_PPV_ARGS(&panelNative));
-    if (hr != S_OK) {
-        throw new std::exception("Could not initialise the native panel!", hr);
-    }
+    CheckDXOperation(hr, "Could not initialise the native panel");
 
     // Associate swap chain with SwapChainPanel.  This must be done on the UI thread.
-    hr = panelNative->SetSwapChain(cp_swapChain.Get());
-    if (hr != S_OK) {
-        throw new std::exception("Could not associate the swapChain!", hr);
-    }
+    CheckDXOperation(panelNative->SetSwapChain(cp_swapChain.Get()), "Could not associate the swapChain");
 
     ComPtr<IDXGISurface> dxgiBackBuffer;
-    hr = cp_swapChain->GetBuffer(0, IID_PPV_ARGS(&dxgiBackBuffer));
-    if (hr != S_OK) {
-        throw new std::exception("Could not get the DXGI backbuffer!", hr);
-    }
+    CheckDXOperation(cp_swapChain->GetBuffer(0, IID_PPV_ARGS(&dxgiBackBuffer)), "Could not get the DXGI backbuffer");
 
     //set d2d target
     hr = cp_d2dContext->CreateBitmapFromDxgiSurface(
@@ -175,9 +148,7 @@ void DirectXManger::CreateSwapPanel(SwapChainBackgroundPanel^ panel){
         &d2dTargetBitmap
         );
 
-    if (hr != S_OK) {
-        throw new std::exception("Could not crete the Bitmap!", hr);
-    }
+    CheckDXOperation(hr, "Could not crete the Bitmap");
 
     cp_d2dContext->SetTarget(d2dTargetBitmap.Get());
 }

@@ -32,7 +32,10 @@ namespace libVLCX {
     public:
         DirectXManger();
         void CreateSwapPanel(SwapChainBackgroundPanel^ panel);
+    private:
+        void CheckDXOperation(HRESULT hr, Platform::String^ message);
 
+    public:
         ComPtr<ID2D1DeviceContext> cp_d2dContext;
         ComPtr<IDXGISwapChain1>    cp_swapChain;
     };
