@@ -1,5 +1,5 @@
 ﻿/*****************************************************************************
-* Copyright © 2013 VideoLAN
+* Copyright © 2013-2014 VideoLAN
 *
 * Authors: Kellen Sunderland <kellen _DOT_ sunderland _AT_ gmail _DOT_ com>
 *
@@ -263,7 +263,7 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
 
     /* D2D1_RECT_F displayRect = { 0.0f, (double)*sys->y, (double)*sys->x, 0.0f };
        D2D1_RECT_F pictureRect = { 0.0f, picture->format.i_height, (double)picture->format.i_width, 0.0f }; */
-    D2D1_POINT_2F offset = { 0.0f, (*sys->y - ((float)picture->format.i_height * scale)) / 2.0f }; 
+    D2D1_POINT_2F offset = { 0.0f, (*sys->y - ((float)picture->format.i_height * scale)) / 2.0f };
 
     vd->sys->d2dContext->DrawImage(scaleEffect.Get(), offset);
     vd->sys->d2dContext->EndDraw();

@@ -1,5 +1,5 @@
 ﻿/*****************************************************************************
-* Copyright © 2013 VideoLAN
+* Copyright © 2013-2014 VideoLAN
 *
 * Authors: Kellen Sunderland <kellen _DOT_ sunderland _AT_ gmail _DOT_ com>
 *
@@ -51,14 +51,13 @@ using namespace Windows::Foundation;
 #include <vlc_access.h>
 #include <vlc_input.h>
 
-static int					Open(vlc_object_t *);
-static void					Close(vlc_object_t *);
-static ssize_t				Read(access_t *access, uint8_t *buffer, size_t size);
-static int					Seek(access_t *access, uint64_t position);
-static int					Control(access_t *access, int query, va_list args);
-static String^				GetString(char* in);
-static IRandomAccessStream^	readStream;
-static DataReader^			dataReader;
+static int                    Open(vlc_object_t *);
+static void                   Close(vlc_object_t *);
+static ssize_t                Read(access_t *access, uint8_t *buffer, size_t size);
+static int                    Seek(access_t *access, uint64_t position);
+static int                    Control(access_t *access, int query, va_list args);
+static IRandomAccessStream^   readStream;
+static DataReader^            dataReader;
 
 #include "../../wrapper/libVLCX/Helpers.h"
 
