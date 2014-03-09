@@ -40,6 +40,7 @@
 #define strdup _strdup
 #define ssize_t SSIZE_T
 #define N_(x) x
+#define _(x) x
 int poll(struct pollfd *, unsigned, int);
 #endif
 
@@ -123,37 +124,41 @@ static int Open(vlc_object_t *object)
         return VLC_ENOMEM;
 
     //Todo: check on double click, hide mouse
-    vout_display_info_t info = vd->info;
-    info.is_slow = false;
-    info.has_double_click = true;
-    info.has_hide_mouse = false;
+    vout_display_info_t info  = vd->info;
+    info.is_slow              = false;
+    info.has_double_click     = true;
+    info.has_hide_mouse       = false;
     info.has_pictures_invalid = false;
-    info.subpicture_chromas = d2d_subpicture_chromas;
-    vd->info = info;
+    info.subpicture_chromas   = d2d_subpicture_chromas;
+    vd->info                  = info;
 
     vd->fmt.i_chroma = VLC_CODEC_RGB32; /* masks change this to BGR32 for ID2D1Bitmap */
-    vd->fmt.i_rmask = 0x0000ff00;
-    vd->fmt.i_gmask = 0x00ff0000;
-    vd->fmt.i_bmask = 0xff000000;
+    vd->fmt.i_rmask  = 0x0000ff00;
+    vd->fmt.i_gmask  = 0x00ff0000;
+    vd->fmt.i_bmask  = 0xff000000;
 
-    vd->pool = Pool;
-    vd->prepare = Prepare;
-    vd->display = Display;
-    vd->manage = Manage;
-    vd->control = Control;
+    vd->pool         = Pool;
+    vd->prepare      = Prepare;
+    vd->display      = Display;
+    vd->manage       = Manage;
+    vd->control      = Control;
 
-    sys->displayWidth = var_CreateGetFloat(vd, "winrt-width");
+    sys->displayWidth  = var_CreateGetFloat(vd, "winrt-width");
     sys->displayHeight = var_CreateGetFloat(vd, "winrt-height");
 
-    unsigned int panelInt = var_CreateGetInteger(vd, "winrt-d2dcontext");
+    uintptr_t panelInt = (uintptr_t)var_CreateGetInteger(vd, "winrt-d2dcontext");
     reinterpret_cast<IUnknown*>(panelInt)->QueryInterface(IID_PPV_ARGS(&sys->d2dContext));
 
-    unsigned int swapChainInt = var_CreateGetInteger(vd, "winrt-swapchain");
+    uintptr_t swapChainInt = (uintptr_t)var_CreateGetInteger(vd, "winrt-swapchain");
     reinterpret_cast<IUnknown*>(swapChainInt)->QueryInterface(IID_PPV_ARGS(&sys->swapChain));
 
     sys->x = (float*)var_CreateGetInteger(vd, "winrt-x");
     sys->y = (float*)var_CreateGetInteger(vd, "winrt-y");
 
+    if (sys->d2dContext == NULL || sys->swapChain == NULL) {
+        free(sys);
+        return VLC_EGENERIC;
+    }
     return VLC_SUCCESS;
 }
 
@@ -163,8 +168,12 @@ static void Close(vlc_object_t * object){
     if (vd->sys->pool)
         picture_pool_Delete(vd->sys->pool);
 
-    free(vd->sys);
+    if (vd->sys->d2dbmp)
+        vd->sys->d2dbmp->Release();
+    if (vd->sys->d2dContext)
+        vd->sys->d2dContext->Flush();
 
+    free(vd->sys);
     return;
 }
 
@@ -225,31 +234,36 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
     sys->d2dContext->BeginDraw();
     sys->d2dContext->Clear(D2D1::ColorF(D2D1::ColorF::Black));
 
-    size.width = picture->format.i_width;
-    size.height = picture->format.i_height;
+    size.width          = picture->format.i_width;
+    size.height         = picture->format.i_height;
     pixFormat.alphaMode = D2D1_ALPHA_MODE_IGNORE;
-    pixFormat.format = DXGI_FORMAT_B8G8R8X8_UNORM;
-    props.pixelFormat = pixFormat;
-    props.dpiX = dpi;
-    props.dpiY = dpi;
+    pixFormat.format    = DXGI_FORMAT_B8G8R8X8_UNORM;
+    props.pixelFormat   = pixFormat;
+    props.dpiX          = dpi;
+    props.dpiY          = dpi;
 
     sys->d2dContext->CreateEffect(CLSID_D2D1Scale, &scaleEffect);
     if (scaleEffect == NULL)
         return;
 
-    sys->d2dContext->CreateBitmap(size, picture->p[0].p_pixels, picture->p[0].i_pitch, props, &sys->d2dbmp);
+    if (S_OK != sys->d2dContext->CreateBitmap(size,
+                                              picture->p[0].p_pixels,
+                                              picture->p[0].i_pitch,
+                                              props,
+                                              &sys->d2dbmp) )
+        return;
 
     // scale = (double) sys->displayWidth / (double) picture->format.i_width;
-    scale = (double)(*sys->x) / (double)picture->format.i_width;
+    scale = (*sys->x) / (float)picture->format.i_width;
     OutputDebugString((ref new Platform::String() + scale)->Data());
 
     scaleEffect->SetInput(0, sys->d2dbmp);
     scaleEffect->SetValue(D2D1_SCALE_PROP_CENTER_POINT, D2D1::Vector2F(0.0f, 0.0f));
     scaleEffect->SetValue(D2D1_SCALE_PROP_SCALE, D2D1::Vector2F(scale, scale));
 
-    D2D1_RECT_F displayRect = { 0.0f, (double)*sys->y, (double)*sys->x, 0.0f };
-    D2D1_RECT_F pictureRect = { 0.0f, picture->format.i_height, (double)picture->format.i_width, 0.0f };
-    D2D1_POINT_2F offset = { 0.0f, ((double)*sys->y - (((double)picture->format.i_height)*scale)) / 2.0f };
+    /* D2D1_RECT_F displayRect = { 0.0f, (double)*sys->y, (double)*sys->x, 0.0f };
+       D2D1_RECT_F pictureRect = { 0.0f, picture->format.i_height, (double)picture->format.i_width, 0.0f }; */
+    D2D1_POINT_2F offset = { 0.0f, (*sys->y - ((float)picture->format.i_height * scale)) / 2.0f }; 
 
     vd->sys->d2dContext->DrawImage(scaleEffect.Get(), offset);
     vd->sys->d2dContext->EndDraw();
@@ -261,9 +275,9 @@ static void Display(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
 {
     DXGI_PRESENT_PARAMETERS parameters = { 0 };
     parameters.DirtyRectsCount = 0;
-    parameters.pDirtyRects = nullptr;
-    parameters.pScrollRect = nullptr;
-    parameters.pScrollOffset = nullptr;
+    parameters.pDirtyRects     = nullptr;
+    parameters.pScrollRect     = nullptr;
+    parameters.pScrollOffset   = nullptr;
 
     HRESULT hr = vd->sys->swapChain->Present1(1, 0, &parameters);
 
