@@ -85,7 +85,7 @@ namespace VLC_WINRT.Views
         private void AudioTracks_Click(object sender, RoutedEventArgs e)
         {
             PopupMenu popup = new PopupMenu();
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < Locator.PlayVideoVM.AudioTracksCount; i++)
             {
                 popup.Commands.Add(new UICommand()
                 {
