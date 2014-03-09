@@ -72,6 +72,8 @@ vlc_module_begin()
     add_integer("winrt-swapchain", 0x0, NULL, NULL, true);
     add_float("winrt-width", 0x0, NULL, NULL, true);
     add_float("winrt-height", 0x0, NULL, NULL, true);
+    add_integer("winrt-x", 0x0, NULL, NULL, true);
+    add_integer("winrt-y", 0x0, NULL, NULL, true);
 
     set_callbacks(Open, Close)
 vlc_module_end()
@@ -101,6 +103,8 @@ struct vout_display_sys_t {
     ID2D1Bitmap                 *d2dbmp;
     ComPtr<ID2D1DeviceContext>  d2dContext;
     ComPtr<IDXGISwapChain1>     swapChain;
+    float*                        x;
+    float*                        y;
 };
 
 
@@ -146,6 +150,9 @@ static int Open(vlc_object_t *object)
 
     unsigned int swapChainInt = var_CreateGetInteger(vd, "winrt-swapchain");
     reinterpret_cast<IUnknown*>(swapChainInt)->QueryInterface(IID_PPV_ARGS(&sys->swapChain));
+
+    sys->x = (float*)var_CreateGetInteger(vd, "winrt-x");
+    sys->y = (float*)var_CreateGetInteger(vd, "winrt-y");
 
     return VLC_SUCCESS;
 }
@@ -214,7 +221,7 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
         sys->d2dbmp->Release();
         sys->d2dbmp = nullptr;
     }
-    
+
     sys->d2dContext->BeginDraw();
     sys->d2dContext->Clear(D2D1::ColorF(D2D1::ColorF::Black));
 
@@ -232,13 +239,17 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
 
     sys->d2dContext->CreateBitmap(size, picture->p[0].p_pixels, picture->p[0].i_pitch, props, &sys->d2dbmp);
 
-    scale = (double) sys->displayWidth / (double) picture->format.i_width;
+    // scale = (double) sys->displayWidth / (double) picture->format.i_width;
+    scale = (double)(*sys->x) / (double)picture->format.i_width;
+    OutputDebugString((ref new Platform::String() + scale)->Data());
+
     scaleEffect->SetInput(0, sys->d2dbmp);
-    scaleEffect->SetValue(D2D1_SCALE_PROP_CENTER_POINT, D2D1::Vector2F(0.0f,0.0f));
+    scaleEffect->SetValue(D2D1_SCALE_PROP_CENTER_POINT, D2D1::Vector2F(0.0f, 0.0f));
     scaleEffect->SetValue(D2D1_SCALE_PROP_SCALE, D2D1::Vector2F(scale, scale));
-    D2D1_RECT_F displayRect = { 0.0f, (double) sys->displayHeight, (double) sys->displayWidth, 0.0f };
-    D2D1_RECT_F pictureRect = { 0.0f, picture->format.i_height, (double) picture->format.i_width, 0.0f };
-    D2D1_POINT_2F offset = {0.0f, ((double) sys->displayHeight - (((double)picture->format.i_height)*scale))/2.0f};
+
+    D2D1_RECT_F displayRect = { 0.0f, (double)*sys->y, (double)*sys->x, 0.0f };
+    D2D1_RECT_F pictureRect = { 0.0f, picture->format.i_height, (double)picture->format.i_width, 0.0f };
+    D2D1_POINT_2F offset = { 0.0f, ((double)*sys->y - (((double)picture->format.i_height)*scale)) / 2.0f };
 
     vd->sys->d2dContext->DrawImage(scaleEffect.Get(), offset);
     vd->sys->d2dContext->EndDraw();

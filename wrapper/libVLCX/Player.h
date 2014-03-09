@@ -80,6 +80,8 @@ namespace libVLCX {
         DirectXManger            *p_dxManager;
         float                    m_displayWidth;
         float                    m_displayHeight;
+        float                    m_width;
+        float                    m_height;
     };
 
     class PlayerPointerWrapper

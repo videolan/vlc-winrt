@@ -61,6 +61,9 @@ Player::Player(SwapChainBackgroundPanel^ panel) :p_mp(NULL), p_instance(NULL)
 
     m_displayWidth = (float)(p_panel->ActualWidth * (float)DisplayProperties::ResolutionScale / 100.0f);
     m_displayHeight = (float)(p_panel->ActualHeight * (float)DisplayProperties::ResolutionScale / 100.0f);
+
+    m_width = Windows::UI::Core::CoreWindow::GetForCurrentThread()->Bounds.Width;
+    m_height = Windows::UI::Core::CoreWindow::GetForCurrentThread()->Bounds.Height;
 }
 
 //Todo: don't block UI during initialization
@@ -79,6 +82,14 @@ void Player::InitializeVLC()
 {
     char ptr_d2dstring[40];
     sprintf_s(ptr_d2dstring, "--winrt-d2dcontext=0x%p", p_dxManager->cp_d2dContext);
+
+
+    char ptr_xString[40];
+    sprintf_s(ptr_xString, "--winrt-x=0x%p", &m_width);
+
+    char ptr_yString[40];
+    sprintf_s(ptr_yString, "--winrt-y=0x%p", &m_height);
+
 
     char ptr_scstring[40];
     sprintf_s(ptr_scstring, "--winrt-swapchain=0x%p", p_dxManager->cp_swapChain);
@@ -107,6 +118,8 @@ void Player::InitializeVLC()
         ptr_scstring,
         widthstring,
         heightstring,
+        ptr_xString,
+        ptr_yString,
         "--avcodec-fast",
         "--no-avcodec-dr",
         fontstring
@@ -121,7 +134,8 @@ void Player::InitializeVLC()
 
 void Player::UpdateSize(unsigned int x, unsigned int y)
 {
-    // Have to update the size there
+    m_width = x;
+    m_height = y;
 }
 
 void Player::MediaEndedCall(){
