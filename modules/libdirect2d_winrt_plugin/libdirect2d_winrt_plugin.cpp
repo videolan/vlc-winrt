@@ -228,8 +228,8 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
     sys->d2dContext->BeginDraw();
     sys->d2dContext->Clear(D2D1::ColorF(D2D1::ColorF::Black));
 
-    size.width          = picture->format.i_width;
-    size.height         = picture->format.i_height;
+    size.width          = picture->format.i_visible_width;
+    size.height         = picture->format.i_visible_height;
     pixFormat.alphaMode = D2D1_ALPHA_MODE_IGNORE;
     pixFormat.format    = DXGI_FORMAT_B8G8R8X8_UNORM;
     props.pixelFormat   = pixFormat;
@@ -247,16 +247,16 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
                                               &sys->d2dbmp) )
         return;
 
-    scale = *sys->displayWidth / (float)picture->format.i_width;
-    OutputDebugString((ref new Platform::String() + scale)->Data());
+    scale = *sys->displayWidth / (float)picture->format.i_visible_width;
+    // OutputDebugString((ref new Platform::String() + scale)->Data());
 
     scaleEffect->SetInput(0, sys->d2dbmp);
     scaleEffect->SetValue(D2D1_SCALE_PROP_CENTER_POINT, D2D1::Vector2F(0.0f, 0.0f));
     scaleEffect->SetValue(D2D1_SCALE_PROP_SCALE, D2D1::Vector2F(scale, scale));
 
     /* D2D1_RECT_F displayRect = { 0.0f, (double)*sys->y, (double)*sys->x, 0.0f };
-       D2D1_RECT_F pictureRect = { 0.0f, picture->format.i_height, (double)picture->format.i_width, 0.0f }; */
-    D2D1_POINT_2F offset = { 0.0f, (*sys->displayHeight - ((float)picture->format.i_height * scale)) / 2.0f };
+       D2D1_RECT_F pictureRect = { 0.0f, picture->format.i_visible_height, (double)picture->format.i_visible_width, 0.0f }; */
+    D2D1_POINT_2F offset = { 0.0f, (*sys->displayHeight - ((float)picture->format.i_visible_height * scale)) / 2.0f };
 
     vd->sys->d2dContext->DrawImage(scaleEffect.Get(), offset);
     vd->sys->d2dContext->EndDraw();
