@@ -16,7 +16,10 @@ namespace VLC_WINRT.Utility.Helpers.MusicLibrary
         {
             var trackInfos = await track.Properties.GetMusicPropertiesAsync();
             MusicLibraryViewModel.TrackItem trackItem = new MusicLibraryViewModel.TrackItem();
-            trackItem.ArtistName = Artist;
+            if (string.IsNullOrEmpty(Artist))
+                trackItem.ArtistName = "Unknown artist";
+            else
+                trackItem.ArtistName = Artist;
             trackItem.AlbumName = Name;
             trackItem.Name = trackInfos.Title;
             trackItem.Path = track.Path;
@@ -28,7 +31,10 @@ namespace VLC_WINRT.Utility.Helpers.MusicLibrary
         {
             var trackInfos = await track.Properties.GetMusicPropertiesAsync();
             MusicLibraryViewModel.TrackItem trackItem = new MusicLibraryViewModel.TrackItem();
-            trackItem.ArtistName = trackInfos.Artist;
+            if (string.IsNullOrEmpty(trackInfos.Artist))
+                trackItem.ArtistName = "Unknown artist";
+            else
+                trackItem.ArtistName = trackInfos.Artist;
             trackItem.AlbumName = trackInfos.Album;
             trackItem.Name = trackInfos.Title;
             trackItem.Path = track.Path;
