@@ -28,6 +28,7 @@
               <FileType ContentType="video/mp4">.mp4</FileType>
               <FileType ContentType="audio/x-ms-wmv">.wmv</FileType>
               <FileType ContentType="application/ogg">.ogg</FileType>
+              <FileType ContentType="audio/mpeg">.mp3</FileType>
             </SupportedFileTypes>
           </FileTypeAssociation>
         </Extension>

@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.Media;
+using Windows.Storage;
 using Windows.System.Display;
 using Windows.UI.Core;
 using Windows.UI.Notifications;
@@ -54,7 +55,6 @@ namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
             _playNext = new PlayNextCommand();
             _playPrevious = new PlayPreviousCommand();
             _trackCollection = new TrackCollectionViewModel();
-
         }
 
         void RegisterWindows8Events()
@@ -221,6 +221,45 @@ namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
 
         }
 
+        public async void PlayFromExplorer(StorageFile file)
+        {
+            TrackCollection.IsRunning = true;
+            Stop();
+            var trackItem = TrackCollection.TrackCollection[TrackCollection.CurrentTrack];
+
+            var history = new HistoryService();
+            string token = history.Add(file);
+
+            Debug.WriteLine("Opening file: " + file.Path);
+
+            SetActiveMusicInfo(token, trackItem);
+
+            // Setting the info for windows 8 controls
+            MediaControl.IsPlaying = true;
+            MediaControl.ArtistName = trackItem.ArtistName;
+            MediaControl.TrackName = trackItem.Name;
+            try
+            {
+                MediaControl.AlbumArt = new Uri(Locator.MusicPlayerVM.Artist.CurrentAlbumItem.Picture);
+            }
+            catch
+            {
+                // If album cover is from the internet then it's impossible to pass it to the MediaControl
+            }
+
+            TrackCollection.IsNextPossible();
+            TrackCollection.IsPreviousPossible();
+
+            if (TrackCollection.CanGoNext)
+                MediaControl.NextTrackPressed += MediaControl_NextTrackPressed;
+            else
+                MediaControl.NextTrackPressed -= MediaControl_NextTrackPressed;
+
+            if (TrackCollection.CanGoPrevious)
+                MediaControl.PreviousTrackPressed += MediaControl_PreviousTrackPressed;
+            else
+                MediaControl.PreviousTrackPressed -= MediaControl_PreviousTrackPressed;
+        }
         public void Pause()
         {
             _vlcPlayerService.Pause();
@@ -382,7 +421,8 @@ namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
             _mrl = "winrt://" + token;
             Title = track.Name;
             Artist = Locator.MusicLibraryVM.Artist.FirstOrDefault(x => x.Name == track.ArtistName);
-            Artist.CurrentAlbumIndex = _artist.Albums.IndexOf(_artist.Albums.FirstOrDefault(x => x.Name == track.AlbumName));
+            if (Artist != null)
+                Artist.CurrentAlbumIndex = _artist.Albums.IndexOf(_artist.Albums.FirstOrDefault(x => x.Name == track.AlbumName));
             _vlcPlayerService.Open(_mrl);
             OnPropertyChanged("TimeTotal");
             UpdateTileHelper.UpdateMediumTileWithMusicInfo();

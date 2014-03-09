@@ -132,6 +132,7 @@
     <Compile Include="Utility\Helpers\LoadBackers.cs" />
     <Compile Include="Utility\Helpers\MathHelper.cs" />
     <Compile Include="Utility\Helpers\MusicLibrary\ArtistInformationsHelper.cs" />
+    <Compile Include="Utility\Helpers\MusicLibrary\GetInformationsFromMusicFile.cs" />
     <Compile Include="Utility\Helpers\PointersUtils.cs" />
     <Compile Include="Utility\Helpers\SerializationHelper.cs" />
     <Compile Include="Utility\Helpers\StoryboardExtensions.cs" />
@@ -266,6 +267,7 @@
     <None Include="Assets\Backers\60.json" />
     <None Include="Assets\Backers\80.json" />
     <None Include="Common\ReadMe.txt" />
+    <Content Include="Assets\background.jpg" />
     <Content Include="Assets\GreyPylon\280x156.jpg" />
     <Content Include="Assets\GreyPylon\50x50.jpg" />
     <Content Include="Assets\Wide310x150Logo.scale-100.png" />

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
+using System.Reflection.Emit;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using System.Xml.Serialization;
@@ -436,11 +437,7 @@ namespace VLC_WINRT.ViewModels.MainPage
                 {
                     foreach (var item in albumFolders)
                     {
-                        var musicAttr = await item.Properties.GetMusicPropertiesAsync();
-                        var files = await item.GetFilesAsync(CommonFileQuery.OrderByMusicProperties);
-                        var thumbnail = await item.GetThumbnailAsync(ThumbnailMode.MusicView, 250);
-                        var albumItem = new AlbumItem(thumbnail, files, musicAttr.Album, albumQueryResult.Folder.DisplayName);
-
+                        AlbumItem albumItem = await GetInformationsFromMusicFile.GetAlbumItemFromFolder(item, albumQueryResult);
                         DispatchHelper.Invoke(() => Albums.Add(albumItem));
                         if (Locator.MusicLibraryVM.RandomAlbums.Count < 12)
                         {
@@ -645,14 +642,7 @@ namespace VLC_WINRT.ViewModels.MainPage
                 foreach (var track in tracks)
                 {
                     i++;
-                    var trackInfos = await track.Properties.GetMusicPropertiesAsync();
-                    TrackItem trackItem = new TrackItem();
-                    trackItem.ArtistName = Artist;
-                    trackItem.AlbumName = Name;
-                    trackItem.Name = trackInfos.Title;
-                    trackItem.Path = track.Path;
-                    trackItem.Duration = trackInfos.Duration;
-                    trackItem.Index = i;
+                    var trackItem = await GetInformationsFromMusicFile.GetTrackItemFromFile(track, Artist, Name, i);
                     Tracks.Add(trackItem);
                     DispatchHelper.Invoke(() => Locator.MusicLibraryVM.Track.Add(trackItem));
                     DispatchHelper.Invoke(() => OnPropertyChanged("Track"));

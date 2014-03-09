@@ -7,15 +7,18 @@ namespace VLC_WINRT.Utility.Helpers
     {
         public static void UpdateMediumTileWithMusicInfo()
         {
-            var template = TileTemplateType.TileSquarePeekImageAndText02;
+            const TileTemplateType template = TileTemplateType.TileSquarePeekImageAndText02;
             var tileXml = TileUpdateManager.GetTemplateContent(template);
 
             var tileTextAttributes = tileXml.GetElementsByTagName("text");
-            tileTextAttributes[0].InnerText = "playing"; // taking from input box
-            tileTextAttributes[1].InnerText = Locator.MusicPlayerVM.Artist.CurrentAlbumItem.CurrentTrack.Name + " - " + Locator.MusicPlayerVM.Artist.CurrentAlbumItem.Artist;
+            tileTextAttributes[0].InnerText = "playing";
+            if (Locator.MusicPlayerVM.Artist != null)
+            {
+                tileTextAttributes[1].InnerText = Locator.MusicPlayerVM.Artist.CurrentAlbumItem.CurrentTrack.Name + " - " + Locator.MusicPlayerVM.Artist.CurrentAlbumItem.Artist;
 
-            var tileImgAttribues = tileXml.GetElementsByTagName("image");
-            tileImgAttribues[0].Attributes[1].NodeValue = Locator.MusicPlayerVM.Artist.CurrentAlbumItem.Picture;
+                var tileImgAttribues = tileXml.GetElementsByTagName("image");
+                tileImgAttribues[0].Attributes[1].NodeValue = Locator.MusicPlayerVM.Artist.CurrentAlbumItem.Picture;
+            }
 
             var tileNotification = new TileNotification(tileXml);
             TileUpdateManager.CreateTileUpdaterForApplication().Update(tileNotification);
@@ -24,20 +27,22 @@ namespace VLC_WINRT.Utility.Helpers
 
         public static void UpdateBigTileWithMusicInfo()
         {
-            var template = TileTemplateType.TileWidePeekImage05;
+            const TileTemplateType template = TileTemplateType.TileWidePeekImage05;
             var tileXml = TileUpdateManager.GetTemplateContent(template);
 
             var tileTextAttributes = tileXml.GetElementsByTagName("text");
-            tileTextAttributes[0].InnerText = "Now playing"; // taking from input box
-            tileTextAttributes[1].InnerText = Locator.MusicPlayerVM.Artist.CurrentAlbumItem.CurrentTrack.Name + " - " + Locator.MusicPlayerVM.Artist.CurrentAlbumItem.Artist;
+            tileTextAttributes[0].InnerText = "Now playing";
+            if (Locator.MusicPlayerVM.Artist != null)
+            {
+                tileTextAttributes[1].InnerText = Locator.MusicPlayerVM.Artist.CurrentAlbumItem.CurrentTrack.Name + " - " + Locator.MusicPlayerVM.Artist.CurrentAlbumItem.Artist;
 
-            var tileImgAttribues = tileXml.GetElementsByTagName("image");
-            tileImgAttribues[0].Attributes[1].NodeValue = Locator.MusicPlayerVM.Artist.Picture;
-            tileImgAttribues[1].Attributes[1].NodeValue = Locator.MusicPlayerVM.Artist.CurrentAlbumItem.Picture;
+                var tileImgAttribues = tileXml.GetElementsByTagName("image");
+                tileImgAttribues[0].Attributes[1].NodeValue = Locator.MusicPlayerVM.Artist.Picture;
+                tileImgAttribues[1].Attributes[1].NodeValue = Locator.MusicPlayerVM.Artist.CurrentAlbumItem.Picture;
+            }
 
             var tileNotification = new TileNotification(tileXml);
             TileUpdateManager.CreateTileUpdaterForApplication().Update(tileNotification);
         }
-
     }
 }
