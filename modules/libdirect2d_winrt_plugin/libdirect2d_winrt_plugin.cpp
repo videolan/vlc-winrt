@@ -71,10 +71,8 @@ vlc_module_begin()
     set_capability("vout display", 60)
     add_integer("winrt-d2dcontext", 0x0, NULL, NULL, true);
     add_integer("winrt-swapchain", 0x0, NULL, NULL, true);
-    add_float("winrt-width", 0x0, NULL, NULL, true);
-    add_float("winrt-height", 0x0, NULL, NULL, true);
-    add_integer("winrt-x", 0x0, NULL, NULL, true);
-    add_integer("winrt-y", 0x0, NULL, NULL, true);
+    add_integer("winrt-width", 0x0, NULL, NULL, true);
+    add_integer("winrt-height", 0x0, NULL, NULL, true);
 
     set_callbacks(Open, Close)
 vlc_module_end()
@@ -96,16 +94,14 @@ static const vlc_fourcc_t d2d_subpicture_chromas[] = {
 /* */
 struct vout_display_sys_t {
     /* */
-    float                         displayWidth;
-    float                         displayHeight;
+    float*                        displayWidth;
+    float*                        displayHeight;
 
     //TODO: check to see if these are all needed
     picture_pool_t              *pool;
     ID2D1Bitmap                 *d2dbmp;
     ComPtr<ID2D1DeviceContext>  d2dContext;
     ComPtr<IDXGISwapChain1>     swapChain;
-    float*                        x;
-    float*                        y;
 };
 
 
@@ -143,17 +139,15 @@ static int Open(vlc_object_t *object)
     vd->manage       = Manage;
     vd->control      = Control;
 
-    sys->displayWidth  = var_CreateGetFloat(vd, "winrt-width");
-    sys->displayHeight = var_CreateGetFloat(vd, "winrt-height");
+
+   sys->displayWidth = (float*)var_CreateGetInteger(vd, "winrt-width");
+   sys->displayHeight = (float*)var_CreateGetInteger(vd, "winrt-height");
 
     uintptr_t panelInt = (uintptr_t)var_CreateGetInteger(vd, "winrt-d2dcontext");
     reinterpret_cast<IUnknown*>(panelInt)->QueryInterface(IID_PPV_ARGS(&sys->d2dContext));
 
     uintptr_t swapChainInt = (uintptr_t)var_CreateGetInteger(vd, "winrt-swapchain");
     reinterpret_cast<IUnknown*>(swapChainInt)->QueryInterface(IID_PPV_ARGS(&sys->swapChain));
-
-    sys->x = (float*)var_CreateGetInteger(vd, "winrt-x");
-    sys->y = (float*)var_CreateGetInteger(vd, "winrt-y");
 
     if (sys->d2dContext == NULL || sys->swapChain == NULL) {
         free(sys);
@@ -253,8 +247,7 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
                                               &sys->d2dbmp) )
         return;
 
-    // scale = (double) sys->displayWidth / (double) picture->format.i_width;
-    scale = (*sys->x) / (float)picture->format.i_width;
+    scale = *sys->displayWidth / (float)picture->format.i_width;
     OutputDebugString((ref new Platform::String() + scale)->Data());
 
     scaleEffect->SetInput(0, sys->d2dbmp);
@@ -263,7 +256,7 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
 
     /* D2D1_RECT_F displayRect = { 0.0f, (double)*sys->y, (double)*sys->x, 0.0f };
        D2D1_RECT_F pictureRect = { 0.0f, picture->format.i_height, (double)picture->format.i_width, 0.0f }; */
-    D2D1_POINT_2F offset = { 0.0f, (*sys->y - ((float)picture->format.i_height * scale)) / 2.0f };
+    D2D1_POINT_2F offset = { 0.0f, (*sys->displayHeight - ((float)picture->format.i_height * scale)) / 2.0f };
 
     vd->sys->d2dContext->DrawImage(scaleEffect.Get(), offset);
     vd->sys->d2dContext->EndDraw();

@@ -33,11 +33,7 @@ Player::Player(SwapChainBackgroundPanel^ panel) :p_mp(NULL), p_instance(NULL)
     p_panel = panel;
     p_dxManager = new DirectXManger();
 
-    m_displayWidth = (float)(p_panel->ActualWidth * (float)DisplayProperties::ResolutionScale / 100.0f);
-    m_displayHeight = (float)(p_panel->ActualHeight * (float)DisplayProperties::ResolutionScale / 100.0f);
-
-    m_width = Windows::UI::Core::CoreWindow::GetForCurrentThread()->Bounds.Width;
-    m_height = Windows::UI::Core::CoreWindow::GetForCurrentThread()->Bounds.Height;
+    UpdateSize(p_panel->ActualWidth, p_panel->ActualHeight);
 }
 
 //Todo: don't block UI during initialization
@@ -57,22 +53,14 @@ void Player::InitializeVLC()
     char ptr_d2dstring[40];
     sprintf_s(ptr_d2dstring, "--winrt-d2dcontext=0x%p", p_dxManager->cp_d2dContext);
 
-
-    char ptr_xString[40];
-    sprintf_s(ptr_xString, "--winrt-x=0x%p", &m_width);
-
-    char ptr_yString[40];
-    sprintf_s(ptr_yString, "--winrt-y=0x%p", &m_height);
-
-
     char ptr_scstring[40];
     sprintf_s(ptr_scstring, "--winrt-swapchain=0x%p", p_dxManager->cp_swapChain);
 
     char widthstring[40];
-    sprintf_s(widthstring, "--winrt-width=%f", m_displayWidth);
+    sprintf_s(widthstring, "--winrt-width=0x%p", &m_displayWidth);
 
     char heightstring[40];
-    sprintf_s(heightstring, "--winrt-height=%f", m_displayHeight);
+    sprintf_s(heightstring, "--winrt-height=0x%p", &m_displayHeight);
 
     char fontstring[128 + 28];
     char packagePath[128];
@@ -92,8 +80,6 @@ void Player::InitializeVLC()
         ptr_scstring,
         widthstring,
         heightstring,
-        ptr_xString,
-        ptr_yString,
         "--avcodec-fast",
         "--no-avcodec-dr",
         fontstring
@@ -101,15 +87,14 @@ void Player::InitializeVLC()
 
     p_instance = libvlc_new(sizeof(argv) / sizeof(*argv), argv);
     if (!p_instance) {
-        throw new std::exception("Could not initialise libvlc!", 1);
-        return;
+        throw ref new Platform::Exception(-1,"Could not initialise libvlc!");
     }
 }
 
 void Player::UpdateSize(unsigned int x, unsigned int y)
 {
-    m_width = (float)x;
-    m_height = (float)y;
+    m_displayWidth = (float)(x * (float)DisplayProperties::ResolutionScale / 100.0f);
+    m_displayHeight = (float)(y * (float)DisplayProperties::ResolutionScale / 100.0f);
 }
 
 void Player::MediaEndedCall(){
