@@ -60,8 +60,8 @@
                         <TextBlock Text="silver partners" FontSize="42" Style="{StaticResource VLCSubHeaderStyle}" Foreground="#FFBDBDBD"/>
                         <StackPanel Grid.Row="1" Margin="0,15,0,0" >
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Aurélien Sacaze" Style="{StaticResource SubheaderTextStyle}" />
-                                <!--<HyperlinkButton NavigateUri="http://www.judsonwhite.com/" Content="Website" Margin="0,4,0,0"/>-->
+                                <TextBlock Text="Kaoxee Web" Style="{StaticResource SubheaderTextStyle}" />
+                                <HyperlinkButton NavigateUri="http://www.kaoxee.com/" Content="Website" Margin="0,4,0,0"/>
                             </StackPanel>
                             <StackPanel Margin="0,20" Orientation="Horizontal">
                                 <TextBlock Text="7digital" Style="{StaticResource SubheaderTextStyle}" />

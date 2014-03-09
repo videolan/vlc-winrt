@@ -24,7 +24,7 @@ namespace VLC_WINRT.Utility.Helpers
             StorageFile file = await folder.GetFileAsync(path);
             string json = await FileIO.ReadTextAsync(file);
             //var items = JsonConvert.DeserializeObject(json);
-            Debug.WriteLine(items.ToString());
+            //Debug.WriteLine(items.ToString());
         }
     }
 }
