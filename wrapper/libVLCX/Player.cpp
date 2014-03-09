@@ -306,4 +306,19 @@ Player::~Player()
         }*/
 }
 
+float
+Player::GetRate() {
+    float rate = 0.;
+    if (p_mp) {
+        rate = libvlc_media_player_get_rate(p_mp);
+    }
+    return rate;
+}
 
+int
+Player::SetRate(float rate) {
+    if (p_mp)
+        return libvlc_media_player_set_rate(p_mp, rate);
+    else
+        return -1;
+}

@@ -54,6 +54,9 @@ namespace libVLCX {
         int64         GetLength();
         int64         GetTime();
 
+        float         GetRate();
+        int           SetRate(float rate);
+
         int           GetSubtitleCount();
         int           GetSubtitleDescription(IMap<int, Platform::String ^> ^tracks);
         int           SetSubtitleTrack(int track);
