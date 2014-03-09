@@ -32,9 +32,9 @@
           </FileTypeAssociation>
         </Extension>
       </Extensions>
-      <VisualElements DisplayName="VLC_WINRT" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="VLC_WINRT" ForegroundText="light" BackgroundColor="#e67e22">
+      <VisualElements DisplayName="VLC for WinRT" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="VLC_WINRT" ForegroundText="light" BackgroundColor="#e67e22">
         <DefaultTile ShowName="logoOnly" ShortName="VLC for WinRT" />
-        <SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="#F09609" />
+        <SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="#e67e22" />
       </VisualElements>
     </Application>
   </Applications>
