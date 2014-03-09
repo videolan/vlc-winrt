@@ -197,8 +197,8 @@ namespace VLC_WINRT.ViewModels.PlayVideo
 
         public IDictionary<int, string> AudioTracks
         {
-            get { return _subtitlesTracks; }
-            set { SetProperty(ref _subtitlesTracks, value); }
+            get { return _audioTracks; }
+            set { SetProperty(ref _audioTracks, value); }
         }
 
         public SetAudioTrackCommand SetAudioTrackCommand
