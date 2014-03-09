@@ -261,7 +261,6 @@ namespace VLC_WINRT.ViewModels.PlayVideo
             AudioTracksCount = await _vlcPlayerService.GetAudioTrackCount();
             await _vlcPlayerService.GetSubtitleDescription(SubtitlesTracks);
             await _vlcPlayerService.GetAudioTrackDescription(AudioTracks);
-            new MessageDialog(AudioTracksCount.ToString()).ShowAsync();
             _vlcPlayerService.MediaEnded += VlcPlayerServiceOnMediaEnded;
         }
 
