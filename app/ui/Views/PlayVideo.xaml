@@ -93,10 +93,10 @@
                         Value="{Binding PositionInSeconds, Mode=TwoWay}" 
                         ThumbToolTipValueConverter="{StaticResource SecondsStringConverter}"
                         Height="40"/>
-                    <TextBlock Margin="30,0,0,8"
+                    <TextBlock Margin="30,0,0,3"
                            Text="{Binding ElapsedTime, Converter={StaticResource TimeSpanShortStringConverter}}" 
                            Style="{StaticResource ItemTextStyle}" VerticalAlignment="Bottom"/>
-                    <TextBlock Margin="30,0,30,8"
+                    <TextBlock Margin="30,0,30,3"
                            Text="{Binding TimeTotal, Converter={StaticResource TimeSpanShortStringConverter}}" 
                            Style="{StaticResource ItemTextStyle}" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
                 </Grid>
