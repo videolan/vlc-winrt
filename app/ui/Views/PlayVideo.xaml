@@ -89,14 +89,14 @@
                         Style="{StaticResource VlcSlider}" 
                         StepFrequency="0.001" 
                         Maximum="{Binding TimeTotal, Converter={StaticResource TimeSpanSecondsDoubleConverter}}" 
-                        Margin="30,15" 
+                        Margin="30,15,30,20" 
                         Value="{Binding PositionInSeconds, Mode=TwoWay}" 
                         ThumbToolTipValueConverter="{StaticResource SecondsStringConverter}"
                         Height="40"/>
-                    <TextBlock Margin="30,0,0,3"
+                    <TextBlock Margin="30,0,0,9"
                            Text="{Binding ElapsedTime, Converter={StaticResource TimeSpanShortStringConverter}}" 
                            Style="{StaticResource ItemTextStyle}" VerticalAlignment="Bottom"/>
-                    <TextBlock Margin="30,0,30,3"
+                    <TextBlock Margin="30,0,30,9"
                            Text="{Binding TimeTotal, Converter={StaticResource TimeSpanShortStringConverter}}" 
                            Style="{StaticResource ItemTextStyle}" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
                 </Grid>
