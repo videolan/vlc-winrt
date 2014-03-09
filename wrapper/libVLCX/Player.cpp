@@ -1,7 +1,8 @@
 /*****************************************************************************
- * Copyright © 2013 VideoLAN
+ * Copyright © 2013-2014 VideoLAN
  *
  * Authors: Kellen Sunderland
+ *          Jean-Baptiste Kempf
  *
  * This program is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License as published by

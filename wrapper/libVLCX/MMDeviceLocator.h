@@ -28,19 +28,19 @@ using namespace Windows::Media::Devices;
 
 template <class T> void SafeRelease(T **ppT)
 {
-	if (*ppT)
-	{
-		(*ppT)->Release();
-		*ppT = NULL;
-	}
+    if (*ppT)
+    {
+        (*ppT)->Release();
+        *ppT = NULL;
+    }
 }
 
 class MMDeviceLocator :
-	public RuntimeClass< RuntimeClassFlags< ClassicCom >, FtmBase, IActivateAudioInterfaceCompletionHandler >
+    public RuntimeClass< RuntimeClassFlags< ClassicCom >, FtmBase, IActivateAudioInterfaceCompletionHandler >
 {
 public:
-	STDMETHOD(RegisterForWASAPI)();
-	STDMETHOD(ActivateCompleted)(IActivateAudioInterfaceAsyncOperation *operation);
-	IAudioClient           *m_AudioClient;
+    STDMETHOD(RegisterForWASAPI)();
+    STDMETHOD(ActivateCompleted)(IActivateAudioInterfaceAsyncOperation *operation);
+    IAudioClient           *m_AudioClient;
 };
 
