@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Windows.System.Display;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
+using libVLCX;
 using VLC_WINRT.Common;
 using VLC_WINRT.Model;
 using VLC_WINRT.Utility.Commands;
@@ -14,6 +15,7 @@ using VLC_WINRT.Utility.Commands.VideoPlayer;
 using VLC_WINRT.Utility.IoC;
 using VLC_WINRT.Utility.Services.RunTime;
 using VLC_WINRT.ViewModels.MainPage;
+using VLC_WINRT.Views.Controls.MainPage;
 
 namespace VLC_WINRT.ViewModels.PlayVideo
 {
@@ -260,6 +262,12 @@ namespace VLC_WINRT.ViewModels.PlayVideo
             await _vlcPlayerService.GetSubtitleDescription(SubtitlesTracks);
             await _vlcPlayerService.GetAudioTrackDescription(AudioTracks);
             new MessageDialog(AudioTracksCount.ToString()).ShowAsync();
+            _vlcPlayerService.MediaEnded += VlcPlayerServiceOnMediaEnded;
+        }
+
+        private void VlcPlayerServiceOnMediaEnded(object sender, Player player)
+        {
+            DispatchHelper.Invoke(() => App.RootPage.MainFrame.GoBack());
         }
 
         public void SetActiveVideoInfo(string mrl)
