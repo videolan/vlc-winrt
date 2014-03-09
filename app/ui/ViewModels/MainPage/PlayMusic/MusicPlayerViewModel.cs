@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 using Windows.Media;
 using Windows.System.Display;
 using Windows.UI.Core;
+using Windows.UI.Notifications;
 using Windows.UI.Xaml;
 using VLC_WINRT.Utility.Commands;
 using VLC_WINRT.Utility.Commands.MusicPlayer;
+using VLC_WINRT.Utility.Helpers;
 using VLC_WINRT.Utility.IoC;
 using VLC_WINRT.Utility.Services.RunTime;
 using VLC_WINRT.ViewModels.PlayMusic;
@@ -146,9 +148,12 @@ namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
                 Play();
             }
             else
+            {
+                TileUpdateManager.CreateTileUpdaterForApplication().Clear();
                 MediaControl.IsPlaying = false;
-
+            }
         }
+
         public void PlayPrevious()
         {
             TrackCollection.IsNextPossible();
@@ -160,6 +165,7 @@ namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
             }
             else
             {
+                TileUpdateManager.CreateTileUpdaterForApplication().Clear();
                 MediaControl.IsPlaying = false;
                 MediaControl.PreviousTrackPressed -= MediaControl_PreviousTrackPressed;
             }
@@ -371,7 +377,7 @@ namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
             Artist.CurrentAlbumIndex = _artist.Albums.IndexOf(_artist.Albums.FirstOrDefault(x => x.Name == track.AlbumName));
             _vlcPlayerService.Open(_mrl);
             OnPropertyChanged("TimeTotal");
-
+            UpdateTileHelper.UpdateMediumTileWithMusicInfo();
             _vlcPlayerService.Play();
         }
 
