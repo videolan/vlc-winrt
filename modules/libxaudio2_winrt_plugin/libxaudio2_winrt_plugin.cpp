@@ -1,5 +1,5 @@
 /*****************************************************************************
-* Copyright © 2013 VideoLAN
+* Copyright Â© 2013-2014 VideoLAN
 *
 * Authors: Kellen Sunderland <kellen _DOT_ sunderland _AT_ gmail _DOT_ com>
 *
@@ -106,9 +106,11 @@ struct aout_sys_t
     IXAudio2* audioEngine;
     IXAudio2MasteringVoice* masteringVoice;
     IXAudio2SourceVoice* sourceVoice;
+
     int sampleRate;
     int channels;
     VoiceCallback* callbackHandler;
+
     bool isPlaying;
     int bufferSampleSize;
 
@@ -198,8 +200,11 @@ static int Open(vlc_object_t *object)
 
 static void Close(vlc_object_t * object){
     audio_output_t *aout = (audio_output_t *) object;
-    free(aout->sys);
+    Stop(aout);
 
+    delete aout->sys->callbackHandler;
+
+    free(aout->sys);
     return;
 }
 
@@ -232,30 +237,29 @@ static int  Start(audio_output_t *p_aout, audio_sample_format_t *__restrict fmt)
         nullptr,
         nullptr
         );
+    if (hr != S_OK)
+        return VLC_EGENERIC;
 
     hr = asys->audioEngine->StartEngine();
 
-    if (hr == S_OK){
-        return VLC_SUCCESS;
-    }
-    else
-    {
+    if (hr != S_OK)
         return VLC_EGENERIC;
-    }
+
+    return VLC_SUCCESS;
 };
+
 static void Stop(audio_output_t * p_aout){
     aout_sys_t *asys = p_aout->sys;
 
-    // Stop any sounds that are playing
-    HRESULT hr = asys->sourceVoice->Stop();
-    if (SUCCEEDED(hr))
-    {
-        hr = asys->sourceVoice->FlushSourceBuffers();
-        asys->audioEngine->StopEngine();
-    }
+    if (asys->sourceVoice != NULL) {
+        // Stop any sounds that are playing
+        HRESULT hr = asys->sourceVoice->Stop();
+        if (SUCCEEDED(hr))
+        {
+            hr = asys->sourceVoice->FlushSourceBuffers();
+            asys->audioEngine->StopEngine();
+        }
 
-    if (asys->sourceVoice != NULL)
-    {
         asys->sourceVoice->DestroyVoice();
         asys->sourceVoice = NULL;
     }
@@ -307,7 +311,11 @@ static void Play(audio_output_t * p_aout, block_t * block){
 static int  MuteSet(audio_output_t * p_aout, bool){
 
     aout_sys_t *asys = p_aout->sys;
-    HRESULT hr = asys->masteringVoice->SetVolume(0);
+
+    HRESULT hr = -1;
+
+    if(asys->masteringVoice)
+        hr = asys->masteringVoice->SetVolume(0);
 
     if (hr == S_OK)
     {
@@ -323,7 +331,8 @@ static void Flush(audio_output_t * p_aout, bool wait){
     if (!wait)
     {
         aout_sys_t *asys = p_aout->sys;
-        HRESULT hr = asys->sourceVoice->FlushSourceBuffers();
+        if( asys->sourceVoice)
+            asys->sourceVoice->FlushSourceBuffers();
     }
 
     return;
