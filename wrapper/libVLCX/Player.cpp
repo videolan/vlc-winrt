@@ -29,7 +29,7 @@ using namespace Windows::Graphics::Display;
 
 Player::Player(SwapChainBackgroundPanel^ panel) :p_mp(NULL), p_instance(NULL)
 {
-    OutputDebugStringW(L"Hello, Player!");
+    //OutputDebugStringW(L"Hello, Player!");
     p_panel = panel;
     p_dxManager = new DirectXManger();
 
