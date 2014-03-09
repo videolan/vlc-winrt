@@ -35,7 +35,7 @@
                     <Button Margin="5,0,0,0" Grid.Row="0" Template="{StaticResource MainButtonStyle}">
                         <TextBlock Style="{StaticResource VLCSubHeaderStyle}" >
                                 <Run Text="last viewed" />
-                                <Run Text="" FontFamily="Segoe UI Symbol" />
+                                <Run Text=" " FontFamily="Segoe UI Symbol" />
                         </TextBlock>
                     </Button>
                     <controls:VariableSizedItemsGridView Grid.Row="1" SelectionMode="None" ItemsSource="{Binding LastViewedVM}" ItemContainerStyle="{StaticResource GridViewItemContainerStyle}" ItemTemplateSelector="{StaticResource MediaItemDataTemplateSelector}" >
