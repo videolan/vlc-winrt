@@ -30,6 +30,7 @@
 #include "targetver.h"
 #include <ppltasks.h>
 #include <windows.ui.xaml.media.dxinterop.h>
+#include "../../wrapper/libVLCX/Helpers.h"
 
 #ifndef WIN32_LEAN_AND_MEAN
 #define WIN32_LEAN_AND_MEAN /* Exclude rarely-used stuff from Windows headers */
@@ -125,7 +126,7 @@ static int Open(vlc_object_t *object)
     info.has_double_click     = true;
     info.has_hide_mouse       = false;
     info.has_pictures_invalid = false;
-    info.subpicture_chromas   = d2d_subpicture_chromas;
+    // info.subpicture_chromas   = d2d_subpicture_chromas;
     vd->info                  = info;
 
     vd->fmt.i_chroma = VLC_CODEC_RGB32; /* masks change this to BGR32 for ID2D1Bitmap */
@@ -217,7 +218,6 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
     D2D1_SIZE_U            size;
     float                  dpi = DisplayProperties::LogicalDpi;
     ComPtr<ID2D1Effect>    scaleEffect;
-    float                  scale;
 
     if (sys->d2dbmp){
         // cleanup previous bmp
@@ -246,19 +246,59 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
                                               props,
                                               &sys->d2dbmp) )
         return;
+#if 0
+    if (subpicture) {
+        for (subpicture_region_t *r = subpicture->p_region; r != NULL; r = r->p_next) {
+            D2D1_SIZE_U            size2;
+            size2.height = r->fmt.i_visible_height;
+            size2.width  = r->fmt.i_visible_width;
 
-    scale = *sys->displayWidth / (float)picture->format.i_visible_width;
+            D2D1_BITMAP_PROPERTIES props2;
+            D2D1_PIXEL_FORMAT      pixFormat2;
+            pixFormat2.format = DXGI_FORMAT_B8G8R8A8_UNORM;
+            //pixFormat2.alphaMode = D2D1_ALPHA_MODE_UNKNOWN;
+            props2.pixelFormat   = pixFormat2;
+            props2.dpiX = dpi;
+            props2.dpiY = dpi;
+
+            ID2D1Bitmap                 *d2dbmp2;
+            HRESULT hr = sys->d2dContext->CreateBitmap(size2, r->p_picture->p[0].p_pixels, r->p_picture->p[0].i_pitch, props2, &d2dbmp2 );
+
+            Debug( L"D2DD 0x%x\n", hr);
+
+
+            if(d2dbmp2)
+                vd->sys->d2dContext->DrawBitmap( d2dbmp2 );
+        }
+    }
+#endif
+
+    float scaleW = *sys->displayWidth / (float)picture->format.i_visible_width;
+    float scaleH = *sys->displayHeight / (float)picture->format.i_visible_height;
     // OutputDebugString((ref new Platform::String() + scale)->Data());
+
+    D2D1_POINT_2F offset;
+    float scale;
+    if( scaleH <= scaleW) {
+        scale = scaleH;
+        offset.x = (*sys->displayWidth - ((float)picture->format.i_visible_width * scale)) / 2.0f;
+        offset.y =  0.0f; ;
+    } else {
+        scale = scaleW;
+        offset.x =  0.0f;
+        offset.y = (*sys->displayHeight - ((float)picture->format.i_visible_height * scale)) / 2.0f;
+    }
+
+    /* D2D1_RECT_F displayRect = { 0.0f, (double)*sys->y, (double)*sys->x, 0.0f };
+       D2D1_RECT_F pictureRect = { 0.0f, picture->format.i_visible_height, (double)picture->format.i_visible_width, 0.0f }; */
+    //float scale = __MIN(scaleH, scaleW);
 
     scaleEffect->SetInput(0, sys->d2dbmp);
     scaleEffect->SetValue(D2D1_SCALE_PROP_CENTER_POINT, D2D1::Vector2F(0.0f, 0.0f));
     scaleEffect->SetValue(D2D1_SCALE_PROP_SCALE, D2D1::Vector2F(scale, scale));
 
-    /* D2D1_RECT_F displayRect = { 0.0f, (double)*sys->y, (double)*sys->x, 0.0f };
-       D2D1_RECT_F pictureRect = { 0.0f, picture->format.i_visible_height, (double)picture->format.i_visible_width, 0.0f }; */
-    D2D1_POINT_2F offset = { 0.0f, (*sys->displayHeight - ((float)picture->format.i_visible_height * scale)) / 2.0f };
+    vd->sys->d2dContext->DrawImage(scaleEffect.Get(), offset, D2D1_INTERPOLATION_MODE_CUBIC);
 
-    vd->sys->d2dContext->DrawImage(scaleEffect.Get(), offset);
     vd->sys->d2dContext->EndDraw();
 
     VLC_UNUSED(subpicture);
