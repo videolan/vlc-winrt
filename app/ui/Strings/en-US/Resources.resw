@@ -129,9 +129,6 @@
   <data name="CurrentFeatures.Text" xml:space="preserve">
     <value>Current Features:</value>
   </data>
-  <data name="FeaturesCalcualtor.Text" xml:space="preserve">
-    <value>Has excellent calculator with addition.</value>
-  </data>
   <data name="FeaturesOpen.Text" xml:space="preserve">
     <value>Open a video from anywhere on your device. Swipe up or right click to open a file from the App Bar.</value>
   </data>
@@ -145,7 +142,7 @@
     <value>Video Library support. Add files to your Video Library and play them directly.</value>
   </data>
   <data name="IntroPara.Text" xml:space="preserve">
-    <value>This app is our attempt to bring the VLC media player to Microsoft's newest OS. The app is currently under development so not all features have been included, and many existing features have bugs.</value>
+    <value>This app is the first Beta of VLC media player to the new Windows Modern Design. The app is currently under heavy development, some features are missing, and many existing features have bugs. We're working on it.</value>
   </data>
   <data name="ItsLonely.Text" xml:space="preserve">
     <value>It's lonely here.</value>
@@ -172,6 +169,6 @@
     <value>videos</value>
   </data>
   <data name="Welcome.Text" xml:space="preserve">
-    <value>Welcome to the VLC for WinRT Beta!</value>
+    <value>Welcome to the beta of VLC for WinRT!</value>
   </data>
 </root>
