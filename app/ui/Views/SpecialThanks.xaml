@@ -21,7 +21,7 @@
             <Button Style="{StaticResource PreviousAppBarButtonStyle}" Click="GoBack_Click" />
             <StackPanel Grid.Column="1">
                 <TextBlock Text="VLC for WinRT" Margin="3,0,0,0" FontWeight="SemiBold" FontSize="20"/>
-                <TextBlock Text="The VLC Team would like to thank" Style="{StaticResource SubheaderTextStyle}"/>
+                <TextBlock Text="The VLC for WinRT Team would like to thank very much the people who made this application possible:" Style="{StaticResource SubheaderTextStyle}"/>
             </StackPanel>
         </Grid>
         <Grid Grid.Row="1" x:Name="SectionsGrid" RenderTransformOrigin="0.5,0.5">
@@ -30,7 +30,7 @@
                           VerticalScrollBarVisibility="Disabled"
                           VerticalScrollMode="Disabled"
                           ZoomMode="Disabled">
-                <StackPanel Orientation="Horizontal" Margin="0,50,0,0">
+                <StackPanel Orientation="Horizontal" Margin="0,70,0,0">
                     <Grid Margin="100,0,0,0">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="50"/>
@@ -38,7 +38,7 @@
                         </Grid.RowDefinitions>
                         <TextBlock Text="gold partners" FontSize="42" Style="{StaticResource VLCSubHeaderStyle}"/>
                         <StackPanel Grid.Row="1" Margin="0,15,0,0" >
-                            <StackPanel Orientation="Horizontal">
+                            <StackPanel Margin="0,20" Orientation="Horizontal">
                                 <TextBlock Text="Judson White" Style="{StaticResource SubheaderTextStyle}" FontSize="44"/>
                                 <HyperlinkButton NavigateUri="http://www.judsonwhite.com/" Content="Website" Margin="0,4,0,0"/>
                             </StackPanel>
@@ -48,7 +48,7 @@
                             </StackPanel>
                             <StackPanel Margin="0,20" Orientation="Horizontal">
                                 <TextBlock Text="Rogier Pieters" Style="{StaticResource SubheaderTextStyle}" FontSize="44"/>
-                                <HyperlinkButton NavigateUri="http://www.judsonwhite.com/" Content="Website" Margin="0,4,0,0"/>
+                                <!-- <HyperlinkButton NavigateUri="http://www.judsonwhite.com/" Content="Website" Margin="0,4,0,0"/>-->
                             </StackPanel>
                         </StackPanel>
                     </Grid>
@@ -59,7 +59,7 @@
                         </Grid.RowDefinitions>
                         <TextBlock Text="silver partners" FontSize="42" Style="{StaticResource VLCSubHeaderStyle}" Foreground="#FFBDBDBD"/>
                         <StackPanel Grid.Row="1" Margin="0,15,0,0" >
-                            <StackPanel Orientation="Horizontal">
+                            <StackPanel Margin="0,20" Orientation="Horizontal">
                                 <TextBlock Text="Kaoxee Web" Style="{StaticResource SubheaderTextStyle}" />
                                 <HyperlinkButton NavigateUri="http://www.kaoxee.com/" Content="Website" Margin="0,4,0,0"/>
                             </StackPanel>
@@ -81,8 +81,8 @@
                             </StackPanel>
                         </StackPanel>
                     </Grid>
-                    <Grid>
-                        
+                    <Grid Margin="100,11,0,0">
+                        <TextBlock Text="Other backers" FontSize="30" Style="{StaticResource VLCSubHeaderStyle}" Foreground="#FFBDBDBD"/>
                     </Grid>
                 </StackPanel>
             </ScrollViewer>
