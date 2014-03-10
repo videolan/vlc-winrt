@@ -75,13 +75,13 @@
                         </StackPanel>
                     </Grid>
                     <StackPanel x:Name="SecondaryButtonsNormalRight" HorizontalAlignment="Right" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,20,0,0">
-                        <Button Style="{StaticResource SubtitleAppBarButtonStyle}"  Click="Subtitles_Click"/>
+                        <Button Style="{StaticResource SubtitleAppBarButtonStyle}"  Click="Subtitles_Click" Visibility="{Binding SubtitlesCount, Converter={StaticResource NegatedCountToVisibilityConverter}}"/>
                     </StackPanel>
                     <StackPanel x:Name="SecondaryButtonsNormalLeft" HorizontalAlignment="Left" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,20,0,0">
                         <Button Style="{StaticResource AudioTrackAppBarButtonStyle}" Visibility="{Binding AudioTracksCount, Converter={StaticResource NegatedCountToVisibilityConverter}}" Click="AudioTracks_Click" RenderTransformOrigin="-0.138,0.492"/>
                     </StackPanel>
                     <StackPanel x:Name="SecondaryButtonsSnapped" HorizontalAlignment="Center" Orientation="Horizontal" VerticalAlignment="Top" Margin="0,-5,0,0">
-                        <Button Style="{StaticResource SubtitleAppBarButtonStyle}" Click="Subtitles_Click"/>
+                        <Button Style="{StaticResource SubtitleAppBarButtonStyle}" Visibility="{Binding SubtitlesCount, Converter={StaticResource NegatedCountToVisibilityConverter}}" Click="Subtitles_Click"/>
                         <Button Style="{StaticResource AudioTrackAppBarButtonStyle}" Visibility="{Binding AudioTracksCount, Converter={StaticResource NegatedCountToVisibilityConverter}}" Click="AudioTracks_Click"/>
                     </StackPanel>
                 </Grid>

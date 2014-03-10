@@ -8,11 +8,13 @@
  **********************************************************************/
 
 using System;
+using System.Diagnostics;
 using Windows.Foundation;
 using Windows.UI.Core;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 using VLC_WINRT.Utility.Commands;
 using VLC_WINRT.Utility.Helpers;
@@ -43,14 +45,28 @@ namespace VLC_WINRT.Views
                     UIAnimationHelper.FadeOut(SectionsGrid.Children[i]);
                 }
                 FadeInPage.Begin();
+                if (!string.IsNullOrEmpty(App.TemporaryMRL))
+                {
+                    OpenVideoFromFileExplorer();
+                }
             };
             NavigationCacheMode = NavigationCacheMode.Enabled;
+        }
+
+        public async void OpenVideoFromFileExplorer()
+        {
+            Debug.WriteLine("Opening file: " + App.TemporaryFileName);
+            Locator.PlayVideoVM.SetActiveVideoInfo(App.TemporaryMRL, App.TemporaryFileName);
+            NavigationService.NavigateTo(typeof(PlayVideo));
+            App.TemporaryFileName = null;
+            App.TemporaryMRL = null;
         }
 
         private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
         {
             ChangeLayout(sizeChangedEventArgs.NewSize.Width);
         }
+
         void ChangeLayout(double x)
         {
             Dispatcher.RunAsync(CoreDispatcherPriority.High, () =>

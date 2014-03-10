@@ -8,11 +8,13 @@
  **********************************************************************/
 
 using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation.Collections;
 using Windows.Storage;
+using Windows.Storage.AccessCache;
 using Windows.UI.Core;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
@@ -37,6 +39,10 @@ namespace VLC_WINRT
         public static CoreDispatcher Dispatcher;
         public static IPropertySet LocalSettings = ApplicationData.Current.LocalSettings.Values;
         public static string ApiKeyLastFm = "a8eba7d40559e6f3d15e7cca1bfeaa1c";
+
+        // If != null; open the corresponding file
+        public static string TemporaryMRL;
+        public static string TemporaryFileName;
 
         /// <summary>
         ///     Initializes the singleton Application object.  This is the first line of authored code
@@ -74,13 +80,54 @@ namespace VLC_WINRT
             LaunchTheApp();
         }
 
-        void LaunchTheApp()
+        async Task LaunchTheApp()
         {
             Window.Current.Content = new RootPage();
             Dispatcher = Window.Current.Content.Dispatcher;
             NavigationService.NavigateTo(typeof(MainPage));
             Window.Current.Activate();
         }
+
+        protected async override void OnFileActivated(FileActivatedEventArgs args)
+        {
+            base.OnFileActivated(args);
+
+            ManageOpeningFiles(args);
+        }
+
+        async void ManageOpeningFiles(FileActivatedEventArgs args)
+        {
+            StorageFile file = (StorageFile)args.Files[0];
+            if (file.FileType == ".mp3" || file.FileType == ".wma")
+            {
+                if (Window.Current.Content == null)
+                {
+                    await LaunchTheApp();
+                }
+                Locator.MusicPlayerVM.TrackCollection.TrackCollection.Clear();
+                MusicLibraryViewModel.TrackItem trackItem = await GetInformationsFromMusicFile.GetTrackItemFromFile(file);
+                Locator.MusicPlayerVM.TrackCollection.TrackCollection.Add(trackItem);
+                Locator.MusicPlayerVM.PlayFromExplorer(file);
+            }
+            if (file.FileType == ".mkv"
+                || file.FileType == ".avi"
+                || file.FileType == ".mp4"
+                || file.FileType == ".wmv")
+            {
+                TemporaryFileName = file.Name;
+                TemporaryMRL = StorageApplicationPermissions.FutureAccessList.Add(file);
+                if (Window.Current.Content == null)
+                {
+                    await LaunchTheApp();
+                }
+                else
+                {
+                    RootPage.MainFrame.Navigate(typeof(MainPage));
+                    (ApplicationFrame.Content as MainPage).OpenVideoFromFileExplorer();
+                }
+            }
+        }
+
 
         /// <summary>
         ///     Invoked when application execution is being suspended.  Application state is saved
@@ -96,22 +143,5 @@ namespace VLC_WINRT
             deferral.Complete();
         }
 
-        protected async override void OnFileActivated(FileActivatedEventArgs args)
-        {
-            base.OnFileActivated(args);
-
-            if (Window.Current.Content == null)
-            {
-                LaunchTheApp();
-            }
-            StorageFile file = (StorageFile)args.Files[0];
-            if (file.FileType == ".mp3" || file.FileType == ".wma")
-            {
-                Locator.MusicPlayerVM.TrackCollection.TrackCollection.Clear();
-                MusicLibraryViewModel.TrackItem trackItem = await GetInformationsFromMusicFile.GetTrackItemFromFile(file);
-                Locator.MusicPlayerVM.TrackCollection.TrackCollection.Add(trackItem);
-                Locator.MusicPlayerVM.PlayFromExplorer(file);
-            }
-        }
     }
 }
