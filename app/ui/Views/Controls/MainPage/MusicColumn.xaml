@@ -41,7 +41,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <controls:NothingToSeeHere Grid.Row="1" Visibility="{Binding IsMusicLibraryEmpty, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+        <controls:NothingToSeeHere Margin="0,60,0,0" Grid.Row="1" Visibility="{Binding IsMusicLibraryEmpty, Converter={StaticResource BooleanToVisibilityConverter}}"/>
         <Grid Grid.Row="1" x:Name="SectionsGrid" Margin="50,0,0,0">
             <Grid x:Name="ArtistView">
                 <Grid x:Name="SnapGrid">
@@ -273,7 +273,7 @@
                 </ListView>
             </Grid>
             <Grid x:Name="FavoriteAlbumsPanel" >
-                <controls:NothingToSeeHere Grid.Row="1" Visibility="{Binding FavoriteAlbums.Count, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                <!--<controls:NothingToSeeHere Grid.Row="1" Visibility="{Binding FavoriteAlbums.Count, Converter={StaticResource BooleanToVisibilityConverter}}"/>-->
                 <GridView Margin="0,0,0,0" ItemTemplate="{StaticResource NormalSizedAlbumDataTemplate}" SelectionMode="None" IsItemClickEnabled="True" ItemContainerStyle="{StaticResource GridViewItemContainerStyle}" ItemsSource="{Binding FavoriteAlbums}" ItemClick="FavoriteAlbumItemClick" />
             </Grid>
         </Grid>
