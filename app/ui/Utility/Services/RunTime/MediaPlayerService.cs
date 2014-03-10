@@ -124,6 +124,11 @@ namespace VLC_WINRT.Utility.Services.RunTime
             DoVLCSafeAction(() => { _vlcPlayer.Open(mrl); });
         }
 
+        public void OpenSubtitle(string mrl)
+        {
+            DoVLCSafeAction(() => { _vlcPlayer.OpenSubtitle(mrl); });
+        }
+
         public void SkipAhead()
         {
             TimeSpan relativeTimeSpan = TimeSpan.FromSeconds(10);
