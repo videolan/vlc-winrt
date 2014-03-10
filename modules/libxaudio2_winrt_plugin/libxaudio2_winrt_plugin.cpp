@@ -65,7 +65,7 @@ set_shortname(N_("XAudio2"))
 
 set_category(CAT_AUDIO)
 set_subcategory(SUBCAT_AUDIO_AOUT)
-set_capability("audio output", 60)
+set_capability("audio output", 200)
 
 set_callbacks(Open, Close)
 vlc_module_end()
