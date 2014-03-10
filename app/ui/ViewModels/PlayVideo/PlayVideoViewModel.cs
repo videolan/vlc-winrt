@@ -260,6 +260,8 @@ namespace VLC_WINRT.ViewModels.PlayVideo
             _fileToken = token;
             _mrl = "winrt://" + token;
             Title = title;
+            _timeTotal = TimeSpan.Zero;
+            _elapsedTime = TimeSpan.Zero;
 
             _vlcPlayerService.Open(_mrl);
             OnPropertyChanged("TimeTotal");
@@ -286,6 +288,9 @@ namespace VLC_WINRT.ViewModels.PlayVideo
 
             _fileToken = null;
             _mrl = mrl;
+            _timeTotal = TimeSpan.Zero;
+            _elapsedTime = TimeSpan.Zero;
+
             _vlcPlayerService.Open(_mrl);
             _vlcPlayerService.Play();
         }
