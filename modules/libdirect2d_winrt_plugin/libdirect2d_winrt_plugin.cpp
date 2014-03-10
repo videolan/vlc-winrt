@@ -126,7 +126,7 @@ static int Open(vlc_object_t *object)
     info.has_double_click     = true;
     info.has_hide_mouse       = false;
     info.has_pictures_invalid = false;
-    // info.subpicture_chromas   = d2d_subpicture_chromas;
+    //info.subpicture_chromas   = d2d_subpicture_chromas;
     vd->info                  = info;
 
     vd->fmt.i_chroma = VLC_CODEC_RGB32; /* masks change this to BGR32 for ID2D1Bitmap */
@@ -246,32 +246,6 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
                                               props,
                                               &sys->d2dbmp) )
         return;
-#if 0
-    if (subpicture) {
-        for (subpicture_region_t *r = subpicture->p_region; r != NULL; r = r->p_next) {
-            D2D1_SIZE_U            size2;
-            size2.height = r->fmt.i_visible_height;
-            size2.width  = r->fmt.i_visible_width;
-
-            D2D1_BITMAP_PROPERTIES props2;
-            D2D1_PIXEL_FORMAT      pixFormat2;
-            pixFormat2.format = DXGI_FORMAT_B8G8R8A8_UNORM;
-            //pixFormat2.alphaMode = D2D1_ALPHA_MODE_UNKNOWN;
-            props2.pixelFormat   = pixFormat2;
-            props2.dpiX = dpi;
-            props2.dpiY = dpi;
-
-            ID2D1Bitmap                 *d2dbmp2;
-            HRESULT hr = sys->d2dContext->CreateBitmap(size2, r->p_picture->p[0].p_pixels, r->p_picture->p[0].i_pitch, props2, &d2dbmp2 );
-
-            Debug( L"D2DD 0x%x\n", hr);
-
-
-            if(d2dbmp2)
-                vd->sys->d2dContext->DrawBitmap( d2dbmp2 );
-        }
-    }
-#endif
 
     float scaleW = *sys->displayWidth / (float)picture->format.i_visible_width;
     float scaleH = *sys->displayHeight / (float)picture->format.i_visible_height;
@@ -297,7 +271,60 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
     scaleEffect->SetValue(D2D1_SCALE_PROP_CENTER_POINT, D2D1::Vector2F(0.0f, 0.0f));
     scaleEffect->SetValue(D2D1_SCALE_PROP_SCALE, D2D1::Vector2F(scale, scale));
 
-    vd->sys->d2dContext->DrawImage(scaleEffect.Get(), offset, D2D1_INTERPOLATION_MODE_CUBIC);
+    sys->d2dContext->DrawImage(scaleEffect.Get(), offset, D2D1_INTERPOLATION_MODE_CUBIC);
+
+    #if 0
+    /* FIXME: look at the following example http://code.msdn.microsoft.com/windowsapps/Direct2D-Image-Effects-4819dc5b */
+    if (subpicture) {
+        for (subpicture_region_t *r = subpicture->p_region; r != NULL; r = r->p_next) {
+  
+            D2D1_SIZE_U            size2;
+            size2.height = r->fmt.i_visible_height;
+            size2.width  = r->fmt.i_visible_width;
+
+            D2D1_BITMAP_PROPERTIES props2;
+            D2D1_PIXEL_FORMAT      pixFormat2;
+            pixFormat2.format = DXGI_FORMAT_R8G8B8A8_UNORM;
+            pixFormat2.alphaMode = D2D1_ALPHA_MODE_IGNORE;
+            props2.pixelFormat   = pixFormat2;
+            props2.dpiX = dpi;
+            props2.dpiY = dpi;
+            
+            /* This is awful */
+            const int pixels_offset = r->fmt.i_y_offset * r->p_picture->p->i_pitch + 
+                                      r->fmt.i_x_offset * r->p_picture->p->i_pixel_pitch;
+            for (int y = 0; y < r->fmt.i_visible_height; y++) {
+               uint8_t *row = (uint8_t*)&r->p_picture->p->p_pixels[pixels_offset + y*r->p_picture->p->i_pitch];
+               for (int x = 0; x < r->fmt.i_visible_width * 4; x += 4) {
+                   uint8_t r = row[x + 0];
+                   uint8_t g = row[x + 1];
+                   uint8_t b = row[x + 2];
+                   uint8_t a = row[x + 3];
+                   if (a != 255)
+                       r = g = b = a = 0;
+                   row[x + 0] = r;
+                   row[x + 1] = g;
+                   row[x + 2] = b;
+                   row[x + 3] = a;
+               }
+            }
+            
+            
+            ID2D1Bitmap                 *d2dbmp2;
+            HRESULT hr = sys->d2dContext->CreateBitmap(size2, r->p_picture->p[0].p_pixels, r->p_picture->p[0].i_pitch, props2, &d2dbmp2 );
+
+            Debug( L"D2DD 0x%x\n", hr);
+            
+            ComPtr<ID2D1Effect> blendEffect;
+            sys->d2dContext->CreateEffect(CLSID_D2D1Blend, &blendEffect);
+            
+            /* Incorrect if the video is rescaled*/
+            D2D1_RECT_F dst_rect = { r->i_x, r->i_y, r->i_x + r->fmt.i_visible_width, r->i_y + r->fmt.i_visible_height};
+            if(d2dbmp2)
+                vd->sys->d2dContext->DrawBitmap(d2dbmp2, dst_rect);                
+        }
+    }
+#endif
 
     vd->sys->d2dContext->EndDraw();
 
