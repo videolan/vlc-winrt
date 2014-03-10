@@ -75,17 +75,19 @@ namespace VLC_WINRT.Views
                 ControlsGrid.Height = 200;
                 BackButton.Margin = new Thickness(5, 50, 0, 50);
                 MainButtonsNormal.Visibility = Visibility.Collapsed;
-                SecondaryButtonsNormal.Visibility = Visibility.Collapsed;
+                SecondaryButtonsNormalLeft.Visibility = Visibility.Collapsed;
+                SecondaryButtonsNormalRight.Visibility = Visibility.Collapsed;
 
                 MainButtonsSnapped.Visibility = Visibility.Visible;
                 SecondaryButtonsSnapped.Visibility = Visibility.Visible;
             }
             else
             {
-                ControlsGrid.Height = 155;
+                ControlsGrid.Height = 165;
                 BackButton.Margin = new Thickness(50,50,0,50);
                 MainButtonsNormal.Visibility = Visibility.Visible;
-                SecondaryButtonsNormal.Visibility = Visibility.Visible;
+                SecondaryButtonsNormalLeft.Visibility = Visibility.Visible;
+                SecondaryButtonsNormalRight.Visibility = Visibility.Visible;
 
                 MainButtonsSnapped.Visibility = Visibility.Collapsed;
                 SecondaryButtonsSnapped.Visibility = Visibility.Collapsed;
