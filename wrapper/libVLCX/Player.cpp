@@ -338,3 +338,10 @@ Player::GetVolume() {
     else
         return 0;
 }
+
+void
+Player::OpenSubtitle( Platform::String ^ mrl)
+{
+    if(p_mp)
+        libvlc_video_set_subtitle_file(p_mp, FromPlatformString(mrl));
+};

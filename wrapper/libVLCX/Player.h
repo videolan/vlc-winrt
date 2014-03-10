@@ -72,6 +72,7 @@ namespace libVLCX {
         void          DetachEvent();
         void          UpdateSize(unsigned int x, unsigned int y);
 
+        void OpenSubtitle( Platform::String ^);
     public:
         event MediaEndedHandler^ MediaEnded;
 
