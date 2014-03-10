@@ -64,7 +64,7 @@ cd contrib/winrt
     --disable-gme \
     --disable-taglib \
     --disable-tremor \
-    --disable-vorbis \
+    --enable-vorbis \
     --disable-sidplay2 \
     --disable-samplerate \
     --disable-faad2 \
@@ -78,7 +78,7 @@ cd contrib/winrt
     --disable-gpg-error \
     --disable-gnutls \
     --disable-projectM \
-    --disable-ass \
+    --enable-ass \
     --disable-qt4 \
     --disable-gpl
 
