@@ -257,7 +257,7 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
-    <None Include="backers.csv" />
+    <Content Include="backers.csv" />
     <None Include="Common\ReadMe.txt" />
     <Content Include="..\..\vlc\plugins\codec\liblibass_plugin.dll">
       <Link>plugins\codec\liblibass_plugin.dll</Link>

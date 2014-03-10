@@ -16,6 +16,7 @@ using VLC_WINRT.Common;
 using VLC_WINRT.Model;
 using VLC_WINRT.Utility.Commands;
 using VLC_WINRT.Utility.Commands.MainPage;
+using VLC_WINRT.Utility.Helpers;
 
 namespace VLC_WINRT.ViewModels.MainPage
 {
@@ -25,6 +26,7 @@ namespace VLC_WINRT.ViewModels.MainPage
         private ObservableCollection<Panel> _secondaryPanels = new ObservableCollection<Panel>(); 
         private ObservableCollection<VideoLibraryViewModel> _dlnaVMs =
             new ObservableCollection<VideoLibraryViewModel>();
+        private ObservableCollection<BackItem> _backers = new ObservableCollection<BackItem>();
 
         private ExternalStorageViewModel _externalStorageVM;
 
@@ -75,6 +77,15 @@ namespace VLC_WINRT.ViewModels.MainPage
             SecondaryPanels.Add(new Panel("media servers", 4, 0.4));
 
             _goToPanelCommand = new GoToPanelCommand();
+        }
+
+        public ObservableCollection<BackItem> Backers
+        {
+            get
+            {
+                return _backers;
+            }
+            set { SetProperty(ref _backers, value); }
         }
 
         public GoToPanelCommand GoToPanel

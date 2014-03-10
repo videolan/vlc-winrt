@@ -8,6 +8,7 @@
  **********************************************************************/
 
 using System;
+using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation.Collections;
@@ -79,7 +80,6 @@ namespace VLC_WINRT
             Dispatcher = Window.Current.Content.Dispatcher;
             NavigationService.NavigateTo(typeof(MainPage));
             Window.Current.Activate();
-            LoadBackers.Get();
         }
 
         /// <summary>

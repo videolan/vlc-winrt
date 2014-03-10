@@ -9,7 +9,9 @@
 
 namespace VLC_WINRT.Model
 {
-    class BackItem
+    public class BackItem
     {
+        public string Name { get; set; }
+        public string Country { get; set; }
     }
 }
