@@ -112,6 +112,11 @@ namespace VLC_WINRT.Views
                     Invoked = command => Locator.PlayVideoVM.SetSubtitleTrackCommand.Execute(command.Id),
                 });
             }
+            //popup.Commands.Add(new UICommand()
+            //{
+            //    Label = "Open subtitle file",
+            //    Invoked = command => Locator.PlayVideoVM.OpenSubtitleCommand.Execute(""),
+            //});
             popup.ShowForSelectionAsync(((Button) sender).GetBoundingRect());
         }
 

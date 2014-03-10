@@ -103,6 +103,7 @@
     <Compile Include="Utility\Commands\PlayTrackComand.cs" />
     <Compile Include="Utility\Commands\StopVideoCommand.cs" />
     <Compile Include="Utility\Commands\VideoPlayer\FavoriteVideoCommand.cs" />
+    <Compile Include="Utility\Commands\VideoPlayer\OpenSubtitleCommand.cs" />
     <Compile Include="Utility\Commands\VideoPlayer\SetAudioTrackCommand.cs" />
     <Compile Include="Utility\Commands\VideoPlayer\SetSubtitleTrackCommand.cs" />
     <Compile Include="Utility\Converters\BooleanToVisibilityConverter.cs" />
@@ -268,18 +269,6 @@
     </Content>
     <Content Include="backers.csv" />
     <None Include="Common\ReadMe.txt" />
-    <Content Include="..\..\vlc\plugins\codec\liblibass_plugin.dll">
-      <Link>plugins\codec\liblibass_plugin.dll</Link>
-    </Content>
-    <Content Include="..\..\vlc\plugins\codec\libvorbis_plugin.dll">
-      <Link>plugins\codec\libvorbis_plugin.dll</Link>
-    </Content>
-    <Content Include="..\..\vlc\plugins\demux\libcaf_plugin.dll">
-      <Link>plugins\demux\libcaf_plugin.dll</Link>
-    </Content>
-    <Content Include="..\..\vlc\plugins\demux\libhevc_plugin.dll">
-      <Link>plugins\demux\libhevc_plugin.dll</Link>
-    </Content>
     <Content Include="Assets\background.jpg" />
     <Content Include="Assets\GreyPylon\280x156.jpg" />
     <Content Include="Assets\GreyPylon\50x50.jpg" />

@@ -52,7 +52,7 @@ namespace VLC_WINRT.ViewModels.PlayVideo
         private int _subtitlesCount = 0;
         private IDictionary<int, string> _subtitlesTracks;
         private SetSubtitleTrackCommand _setSubTitlesCommand;
-
+        private OpenSubtitleCommand _openSubtitleCommand;
         private int _audioTracksCount = 0;
         private IDictionary<int, string> _audioTracks;
         private SetAudioTrackCommand _setAudioTrackCommand;
@@ -78,6 +78,7 @@ namespace VLC_WINRT.ViewModels.PlayVideo
             _skipBack = new ActionCommand(() => _vlcPlayerService.SkipBack());
             _setSubTitlesCommand = new SetSubtitleTrackCommand();
             _setAudioTrackCommand = new SetAudioTrackCommand();
+            _openSubtitleCommand = new OpenSubtitleCommand();
         }
 
         public MediaViewModel CurrentVideo
@@ -198,6 +199,11 @@ namespace VLC_WINRT.ViewModels.PlayVideo
             set { SetProperty(ref _setSubTitlesCommand, value); }
         }
 
+        public OpenSubtitleCommand OpenSubtitleCommand
+        {
+            get { return _openSubtitleCommand; }
+            set { SetProperty(ref _openSubtitleCommand, value); }
+        }
         public int AudioTracksCount
         {
             get { return _audioTracksCount; }
@@ -363,6 +369,9 @@ namespace VLC_WINRT.ViewModels.PlayVideo
             _vlcPlayerService.SetAudioTrack(i);
         }
 
-
+        public async Task OpenSubtitle(string mrl)
+        {
+            _vlcPlayerService.OpenSubtitle(mrl);
+        }
     }
 }
