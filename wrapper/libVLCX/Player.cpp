@@ -50,6 +50,19 @@ IAsyncAction^ Player::Initialize()
 
 void Player::InitializeVLC()
 {
+    ComPtr<MMDeviceLocator> audioReg = Make<MMDeviceLocator>();
+
+	audioReg->m_AudioClient = NULL;
+	audioReg->RegisterForWASAPI();
+
+	void *addr = NULL;
+	while (!WaitOnAddress(&audioReg->m_AudioClient, &addr, sizeof(void*), 1000)) {
+		OutputDebugStringW(L"Waiting for audio\n");
+	}
+
+	char ptr_astring[40];
+	sprintf_s(ptr_astring, "--winstore-audioclient=0x%p", audioReg->m_AudioClient);
+
     char ptr_d2dstring[40];
     sprintf_s(ptr_d2dstring, "--winrt-d2dcontext=0x%p", p_dxManager->cp_d2dContext);
 
