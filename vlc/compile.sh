@@ -65,6 +65,7 @@ cd contrib/winrt
     --disable-taglib \
     --disable-tremor \
     --enable-vorbis \
+    --enable-mad \
     --disable-sidplay2 \
     --disable-samplerate \
     --disable-faad2 \
