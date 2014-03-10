@@ -312,7 +312,7 @@ static int  MuteSet(audio_output_t * p_aout, bool){
 
     aout_sys_t *asys = p_aout->sys;
 
-    HRESULT hr = -1;
+    HRESULT hr = E_FAIL;
 
     if(asys->masteringVoice)
         hr = asys->masteringVoice->SetVolume(0);
