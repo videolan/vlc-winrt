@@ -493,6 +493,7 @@ namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
 
         public async Task CleanViewModel()
         {
+            TrackCollection.IsRunning = false;
             IsPlaying = false;
             Pause();
         }
