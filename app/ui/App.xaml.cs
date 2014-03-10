@@ -112,7 +112,8 @@ namespace VLC_WINRT
             if (file.FileType == ".mkv"
                 || file.FileType == ".avi"
                 || file.FileType == ".mp4"
-                || file.FileType == ".wmv")
+                || file.FileType == ".wmv"
+                || file.FileType == ".mov")
             {
                 TemporaryFileName = file.Name;
                 TemporaryMRL = StorageApplicationPermissions.FutureAccessList.Add(file);
