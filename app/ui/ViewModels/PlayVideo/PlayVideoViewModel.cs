@@ -13,6 +13,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Globalization;
 using System.Threading.Tasks;
+using Windows.Media;
 using Windows.System.Display;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
@@ -279,12 +280,7 @@ namespace VLC_WINRT.ViewModels.PlayVideo
             await _vlcPlayerService.GetSubtitleDescription(SubtitlesTracks);
             await _vlcPlayerService.GetAudioTrackDescription(AudioTracks);
             _vlcPlayerService.MediaEnded += VlcPlayerServiceOnMediaEnded;
-        }
-
-        private void VlcPlayerServiceOnMediaEnded(object sender, Player player)
-        {
-            _vlcPlayerService.MediaEnded -= VlcPlayerServiceOnMediaEnded;
-            DispatchHelper.Invoke(() => App.RootPage.MainFrame.GoBack());
+            RegisterMediaControlEvents();
         }
 
         public void SetActiveVideoInfo(string mrl)
@@ -299,6 +295,70 @@ namespace VLC_WINRT.ViewModels.PlayVideo
 
             _vlcPlayerService.Open(_mrl);
             _vlcPlayerService.Play();
+            _vlcPlayerService.MediaEnded += VlcPlayerServiceOnMediaEnded;
+            RegisterMediaControlEvents();
+        }
+
+        void RegisterMediaControlEvents()
+        {
+            MediaControl.IsPlaying = true;
+            MediaControl.ArtistName = "";
+            MediaControl.TrackName = Title;
+            MediaControl.NextTrackPressed += (sender, o) => DispatchHelper.Invoke(()=> SkipAhead.Execute(""));
+            MediaControl.PreviousTrackPressed += (sender, o) => DispatchHelper.Invoke(()=> SkipBack.Execute(""));
+            MediaControl.PlayPauseTogglePressed += (sender, o) => DispatchHelper.Invoke(() =>
+            {
+                if (IsPlaying)
+                {
+                    IsPlaying = false;
+                    _vlcPlayerService.Pause();
+                    MediaControl.IsPlaying = false;
+                }
+                else
+                {
+                    IsPlaying = true;
+                    _vlcPlayerService.Play();
+                    MediaControl.IsPlaying = true;
+                }
+            });
+
+            MediaControl.PlayPressed += (sender, o) => DispatchHelper.Invoke(() =>
+            {
+                if (IsPlaying)
+                {
+                    IsPlaying = false;
+                    _vlcPlayerService.Play();
+                    MediaControl.IsPlaying = false;
+                }
+            });
+            MediaControl.PausePressed += (sender, o) => DispatchHelper.Invoke(() =>
+            {
+                if (!IsPlaying)
+                {
+                    IsPlaying = true;
+                    _vlcPlayerService.Pause();
+                    MediaControl.IsPlaying = true;
+                }
+            });
+        }
+
+        public void UnRegisterMediaControlEvents()
+        {
+            MediaControl.IsPlaying = false;
+            MediaControl.ArtistName = "";
+            MediaControl.TrackName = "";
+            MediaControl.NextTrackPressed += null;
+            MediaControl.PreviousTrackPressed += null;
+            MediaControl.PlayPressed += null;
+            MediaControl.PausePressed += null;
+        }
+        
+
+        private void VlcPlayerServiceOnMediaEnded(object sender, Player player)
+        {
+            UnRegisterMediaControlEvents();
+            _vlcPlayerService.MediaEnded -= VlcPlayerServiceOnMediaEnded;
+            DispatchHelper.Invoke(() => App.RootPage.MainFrame.GoBack());
         }
 
         public override void OnNavigatedFrom()

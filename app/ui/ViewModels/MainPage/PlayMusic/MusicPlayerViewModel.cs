@@ -71,10 +71,18 @@ namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
             // register the windows 8 overlay media control events
             MediaControl.StopPressed += MediaControl_StopPressed;
             MediaControl.PlayPressed += MediaControl_PlayPressed;
-            MediaControl.PlayPauseTogglePressed += MediaControl_PlayPauseTogglePressed;
             MediaControl.PausePressed += MediaControl_PausePressed;
             MediaControl.IsPlaying = false;
         }
+
+        void UnRegisterWindows8Events()
+        {
+            MediaControl.StopPressed -= MediaControl_StopPressed;
+            MediaControl.PlayPressed -= MediaControl_PlayPressed;
+            MediaControl.PausePressed -= MediaControl_PausePressed;
+            MediaControl.IsPlaying = false;
+        }
+
         void MediaControl_PreviousTrackPressed(object sender, object e)
         {
             App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, PlayPrevious);
@@ -87,18 +95,6 @@ namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
         private void MediaControl_PausePressed(object sender, object e)
         {
             App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, Pause);
-        }
-
-        private void MediaControl_PlayPauseTogglePressed(object sender, object e)
-        {
-            if (MediaControl.IsPlaying)
-            {
-                App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, Pause);
-            }
-            else
-            {
-                App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, Resume);
-            }
         }
 
         private void MediaControl_PlayPressed(object sender, object e)
@@ -138,6 +134,7 @@ namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
                     {
                         // Playlist is finished
                         TrackCollection.IsRunning = false;
+                        UnRegisterWindows8Events();
                     }
                     else
                     {
@@ -169,7 +166,8 @@ namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
             else
             {
                 TileUpdateManager.CreateTileUpdaterForApplication().Clear();
-                MediaControl.IsPlaying = false;
+                MediaControl.IsPlaying = false; 
+                UnRegisterWindows8Events();
             }
         }
 
@@ -187,6 +185,7 @@ namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
                 TileUpdateManager.CreateTileUpdaterForApplication().Clear();
                 MediaControl.IsPlaying = false;
                 MediaControl.PreviousTrackPressed -= MediaControl_PreviousTrackPressed;
+                UnRegisterWindows8Events();
             }
         }
 
@@ -415,7 +414,6 @@ namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
             if (e == MediaPlayerService.MediaPlayerState.Playing)
             {
                 IsPlaying = true;
-                RegisterWindows8Events();
             }
             else
             {
@@ -440,6 +438,8 @@ namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
             OnPropertyChanged("TimeTotal");
             UpdateTileHelper.UpdateMediumTileWithMusicInfo();
             _vlcPlayerService.Play();
+
+            RegisterWindows8Events();
         }
 
         public override void OnNavigatedFrom()

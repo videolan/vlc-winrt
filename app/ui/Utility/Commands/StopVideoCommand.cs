@@ -9,6 +9,7 @@
 
 using VLC_WINRT.Common;
 using VLC_WINRT.Utility.Services.RunTime;
+using VLC_WINRT.ViewModels;
 
 namespace VLC_WINRT.Utility.Commands
 {
@@ -16,6 +17,7 @@ namespace VLC_WINRT.Utility.Commands
     {
         public override void Execute(object parameter)
         {
+            Locator.PlayVideoVM.UnRegisterMediaControlEvents();
             App.RootPage.MainFrame.GoBack();
         }
     }
