@@ -22,7 +22,7 @@
             <Button Style="{StaticResource PreviousAppBarButtonStyle}" Click="GoBack_Click" />
             <StackPanel Grid.Column="1">
                 <TextBlock Text="VLC for Windows 8" Margin="3,0,0,0" FontWeight="SemiBold" FontSize="20"/>
-                <TextBlock Text="The VLC for WinRT Team would like to thank very much the people who made this application possible:" Style="{StaticResource SubheaderTextStyle}"/>
+                <TextBlock Text="The VLC for Windows 8 Team would like to thank very much the people who made this application possible:" Style="{StaticResource SubheaderTextStyle}"/>
             </StackPanel>
         </Grid>
         <Grid Grid.Row="1" x:Name="SectionsGrid" RenderTransformOrigin="0.5,0.5">
