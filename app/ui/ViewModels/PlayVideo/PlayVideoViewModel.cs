@@ -264,7 +264,7 @@ namespace VLC_WINRT.ViewModels.PlayVideo
             Locator.MusicPlayerVM.CleanViewModel();
 
             _fileToken = token;
-            _mrl = "winrt://" + token;
+            _mrl = "file://" + token;
             Title = title;
             _timeTotal = TimeSpan.Zero;
             _elapsedTime = TimeSpan.Zero;

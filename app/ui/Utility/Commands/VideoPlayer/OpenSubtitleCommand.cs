@@ -30,7 +30,7 @@ namespace VLC_WINRT.Utility.Commands.VideoPlayer
             {
                 string mru = StorageApplicationPermissions.FutureAccessList.Add(file);
 
-                string mrl = "winrt://" + mru;
+                string mrl = "file://" + mru;
                 Locator.PlayVideoVM.OpenSubtitle(mrl);
             }
             else

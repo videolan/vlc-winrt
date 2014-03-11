@@ -431,7 +431,7 @@ namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
         public void SetActiveMusicInfo(string token, MusicLibraryViewModel.TrackItem track)
         {
             _fileToken = token;
-            _mrl = "winrt://" + token;
+            _mrl = "file://" + token;
             Title = track.Name;
             Artist = Locator.MusicLibraryVM.Artist.FirstOrDefault(x => x.Name == track.ArtistName);
             if (Artist != null)
