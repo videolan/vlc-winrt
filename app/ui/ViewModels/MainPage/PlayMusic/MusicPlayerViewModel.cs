@@ -495,12 +495,16 @@ namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
 
         public async Task CleanViewModel()
         {
+            _vlcPlayerService.Stop();
             TrackCollection.TrackCollection.Clear();
             TrackCollection.IsRunning = false;
             IsPlaying = false;
             Pause();
             Artist = null;
             Title = null;
+            _elapsedTime = TimeSpan.Zero;
+            _timeTotal = TimeSpan.Zero;
+            MediaControl.IsPlaying = false;
         }
     }
 }
