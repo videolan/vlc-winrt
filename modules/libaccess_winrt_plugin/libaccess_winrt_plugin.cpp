@@ -116,6 +116,9 @@ int Open(vlc_object_t *object)
     access_t *access    = (access_t *) object;
 
     String^ futureAccesToken = GetString(access->psz_location);
+    if (!(futureAccesToken->Begin()[0] == '{' ) && (futureAccesToken->Length() > 32 ) )
+        return VLC_EGENERIC;
+
     if ( OpenFileAsync(futureAccesToken) != VLC_SUCCESS ){
         OutputDebugStringW(L"Error Opening File");
 
