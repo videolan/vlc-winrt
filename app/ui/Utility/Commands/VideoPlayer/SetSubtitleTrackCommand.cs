@@ -7,11 +7,6 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using VLC_WINRT.Common;
 using VLC_WINRT.ViewModels;
 

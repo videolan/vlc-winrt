@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.AccessCache;
 using Windows.Storage.Pickers;
 using VLC_WINRT.Common;
-using VLC_WINRT.Utility.Services.RunTime;
 using VLC_WINRT.ViewModels;
 
 namespace VLC_WINRT.Utility.Commands.VideoPlayer
