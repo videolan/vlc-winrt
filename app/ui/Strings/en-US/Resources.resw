@@ -151,7 +151,7 @@
     <value>last viewed</value>
   </data>
   <data name="MainPageTitle.Text" xml:space="preserve">
-    <value>VLC for WinRT</value>
+    <value>VLC for Windows 8</value>
   </data>
   <data name="Movies.Text" xml:space="preserve">
     <value>movies</value>
@@ -169,6 +169,6 @@
     <value>videos</value>
   </data>
   <data name="Welcome.Text" xml:space="preserve">
-    <value>Welcome to the beta of VLC for WinRT!</value>
+    <value>Welcome to VLC for Windows 8 Beta!</value>
   </data>
 </root>
