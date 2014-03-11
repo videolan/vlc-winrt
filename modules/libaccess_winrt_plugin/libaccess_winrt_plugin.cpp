@@ -70,8 +70,8 @@ vlc_module_begin()
     set_description(N_("WinRT input"))
     set_category(CAT_INPUT)
     set_subcategory(SUBCAT_INPUT_ACCESS)
-    set_capability("access", 60)
-    add_shortcut("winrt")
+    set_capability("access", 80)
+    add_shortcut("winrt", "file")
     set_callbacks(&Open, &Close)
 vlc_module_end()
 
@@ -114,9 +114,6 @@ static int OpenFileAsync(String^ token)
 int Open(vlc_object_t *object)
 {
     access_t *access    = (access_t *) object;
-    access->pf_read     = &Read;
-    access->pf_seek     = &Seek;
-    access->pf_control  = &Control;
 
     String^ futureAccesToken = GetString(access->psz_location);
     if ( OpenFileAsync(futureAccesToken) != VLC_SUCCESS ){
@@ -134,6 +131,10 @@ int Open(vlc_object_t *object)
 
         return VLC_EGENERIC;
     }
+
+    access->pf_read     = &Read;
+    access->pf_seek     = &Seek;
+    access->pf_control  = &Control;
 
     return VLC_SUCCESS;
 }
