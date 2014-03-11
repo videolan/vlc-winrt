@@ -33,7 +33,7 @@
             </SupportedFileTypes>
           </FileTypeAssociation>
         </Extension>
-        <Extension Category="windows.backgroundTasks" StartPage="MainPage">
+        <Extension Category="windows.backgroundTasks" EntryPoint="VLC_WINRT.App">
           <BackgroundTasks>
             <Task Type="audio" />
           </BackgroundTasks>
