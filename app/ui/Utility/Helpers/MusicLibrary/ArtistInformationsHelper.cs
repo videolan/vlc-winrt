@@ -15,6 +15,10 @@ using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using Windows.UI.Xaml;
+using Newtonsoft.Json;
+using VLC_WINRT.Common;
+using VLC_WINRT.Model;
 using VLC_WINRT.ViewModels;
 using Windows.Storage;
 using Windows.Storage.Streams;
@@ -32,12 +36,11 @@ namespace VLC_WINRT.Utility.Helpers.MusicLibrary
             Artist XBoxArtistItem = new Artist();
             try
             {
+                Locator.MusicLibraryVM.XBOXMusicToken = await Locator.MusicLibraryVM.XboxMusicHelper.GetAccessToken("5bf9b614-1651-4b49-98ee-1831ae58fb99", "copuMsVkCAFLQlP38bV3y+Azysz/crELZ5NdQU7+ddg=");
                 Debug.WriteLine("Connecting to XBOX Music API for " + artist);
                 Music XboxMusic;
-                MusicHelper XboxMusicHelper = new MusicHelper();
-                var token = await XboxMusicHelper.GetAccessToken("5bf9b614-1651-4b49-98ee-1831ae58fb99", "copuMsVkCAFLQlP38bV3y+Azysz/crELZ5NdQU7+ddg=");
-                Debug.WriteLine("XBOX Music token " + token);
-                XboxMusic = await XboxMusicHelper.SearchMediaCatalog(token, artist, null, 3);
+                Debug.WriteLine("XBOX Music token " + Locator.MusicLibraryVM.XBOXMusicToken);
+                XboxMusic = await Locator.MusicLibraryVM.XboxMusicHelper.SearchMediaCatalog(Locator.MusicLibraryVM.XBOXMusicToken, artist, null, 3);
 
                 XBoxArtistItem = XboxMusic.Artists.Items.FirstOrDefault(x => x.Name == artist);
                 if (XBoxArtistItem == null)
@@ -53,10 +56,20 @@ namespace VLC_WINRT.Utility.Helpers.MusicLibrary
             }
             return XBoxArtistItem ?? null;
         }
-        static async Task SaveArtistThumbnailInAppFolder(Artist XBoxArtistItem, string artist)
+
+        static async Task DownloadPicFromDeezerToLocalFolder(MusicLibraryViewModel.ArtistItemViewModel artist)
         {
             HttpClient clientPic = new HttpClient();
-            HttpResponseMessage responsePic = await clientPic.GetAsync(XBoxArtistItem.ImageUrlWithOptions(new ImageSettings(280, 156, ImageMode.Scale, "")));
+            string json = await clientPic.GetStringAsync("http://api.deezer.com/search/artist?q=" + artist.Name);
+            if(json == "{\"data\":[],\"total\":0}")
+            {
+                return;
+            }
+
+            DeezerArtistItem.RootObject deezerData = JsonConvert.DeserializeObject<DeezerArtistItem.RootObject>(json);
+            Debug.WriteLine("Deezer picture for " + artist.Name + " : " + deezerData.data[0].picture);
+            HttpResponseMessage responsePic = await clientPic.GetAsync(deezerData.data[0].picture + "?size=450x450");
+
             byte[] img = await responsePic.Content.ReadAsByteArrayAsync();
             InMemoryRandomAccessStream streamWeb = new InMemoryRandomAccessStream();
 
@@ -65,9 +78,11 @@ namespace VLC_WINRT.Utility.Helpers.MusicLibrary
 
             await writer.StoreAsync();
 
-            string fileName = artist + "_" + "dPi";
+            StorageFolder artistPic = await ApplicationData.Current.LocalFolder.CreateFolderAsync("artistPic",
+                CreationCollisionOption.OpenIfExists);
+            string fileName = artist.Name + "_" + "dPi";
 
-            var file = await ApplicationData.Current.LocalFolder.CreateFileAsync(fileName + ".jpg", CreationCollisionOption.ReplaceExisting);
+            var file = await artistPic.CreateFileAsync(fileName + ".jpg", CreationCollisionOption.ReplaceExisting);
             var raStream = await file.OpenAsync(FileAccessMode.ReadWrite);
 
             using (var thumbnailStream = streamWeb.GetInputStreamAt(0))
@@ -77,15 +92,27 @@ namespace VLC_WINRT.Utility.Helpers.MusicLibrary
                     await RandomAccessStream.CopyAsync(thumbnailStream, stream);
                 }
             }
+            StorageFolder appDataFolder = ApplicationData.Current.LocalFolder;
+            string supposedPictureUriLocal = appDataFolder.Path + "\\artistPic\\" + artist.Name + "_" + "dPi" + ".jpg";
+            
+            DispatchHelper.Invoke(() => artist.Picture = supposedPictureUriLocal);
         }
-        public static async Task<string> GetArtistPicture(string artist)
+
+        public static async Task GetArtistPicture(MusicLibraryViewModel.ArtistItemViewModel artist)
         {
-            var XboxArtistItem = GetArtistFromXboxMusic(artist).Result;
-            if (XboxArtistItem != null)
+            StorageFolder appDataFolder = ApplicationData.Current.LocalFolder;
+            string supposedPictureUriLocal = appDataFolder.Path + "\\artistPic\\" + artist.Name + "_" + "dPi" + ".jpg";
+            if (NativeOperationsHelper.FileExist(supposedPictureUriLocal))
             {
-                SaveArtistThumbnailInAppFolder(XboxArtistItem, artist);
+                artist.Picture = supposedPictureUriLocal;
             }
-            return "ms-appdata:///local/" + artist + "_" + "dPi" + ".jpg";
+            else
+            {
+                Task.Run(() =>
+                {
+                    DownloadPicFromDeezerToLocalFolder(artist);
+                });
+            }
         }
 
         public static async Task GetArtistTopAlbums(MusicLibraryViewModel.ArtistItemViewModel artist)
@@ -101,11 +128,11 @@ namespace VLC_WINRT.Utility.Helpers.MusicLibrary
                             App.ApiKeyLastFm + "&artist=" + artist.Name);
                 var xml = XDocument.Parse(response);
                 var topAlbums = from results in xml.Descendants("album")
-                    select new MusicLibraryViewModel.OnlineAlbumItem
-                    {
-                        Name = results.Element("name").Value.ToString(),
-                        Picture = results.Elements("image").ElementAt(3).Value,
-                    };
+                                select new MusicLibraryViewModel.OnlineAlbumItem
+                                {
+                                    Name = results.Element("name").Value.ToString(),
+                                    Picture = results.Elements("image").ElementAt(3).Value,
+                                };
                 Debug.WriteLine("Receive TopAlbums from XBOX Music API");
                 if (topAlbums != null && topAlbums.Any())
                 {
@@ -115,7 +142,7 @@ namespace VLC_WINRT.Utility.Helpers.MusicLibrary
             }
             catch
             {
-                
+
             }
         }
 
@@ -216,4 +243,5 @@ namespace VLC_WINRT.Utility.Helpers.MusicLibrary
 //            Picture = artistPic,
 //        });
 //    }
+
 //}

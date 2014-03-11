@@ -77,8 +77,6 @@ namespace VLC_WINRT.Common
             {
                 var historyService = IoC.GetInstance<HistoryService>();
                 await historyService.SaveHistory();
-
-                await Locator.MusicLibraryVM.SerializeArtistsDataBase();
             }
             catch (Exception e)
             {

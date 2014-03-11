@@ -18,7 +18,11 @@
                                                                 x:Key="MediaItemDataTemplateSelector" />
     </UserControl.Resources>
     <Grid x:Name="RootGrid">
-        <ScrollViewer VerticalScrollMode="Disabled"
+        <Grid x:Name="SnapGrid" Width="320">
+            <local:Welcome Margin="0,0,0,0" VerticalAlignment="Center" Visibility="{Binding LastViewedVM.LastViewedVM.Count, Converter={StaticResource CountToVisibilityConverter}}"/>
+            <ListView ItemsSource="{Binding LastViewedVM}" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" ItemTemplate="{StaticResource NormaleMovieTemplate}"/>
+        </Grid>
+        <ScrollViewer x:Name="HorizontalScrollViewer" VerticalScrollMode="Disabled"
                       VerticalScrollBarVisibility="Disabled"
                       HorizontalScrollMode="Auto"
                       HorizontalScrollBarVisibility="Auto"

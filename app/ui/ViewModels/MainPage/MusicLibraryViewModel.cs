@@ -55,7 +55,9 @@ namespace VLC_WINRT.ViewModels.MainPage
         int _numberOfTracks;
         ThreadPoolTimer _periodicTimer;
 
-        // XBOX Music Stuff; Take 2
+        // XBOX Music Stuff
+        public MusicHelper XboxMusicHelper = new MusicHelper();
+        public string XBOXMusicToken;
         ObservableCollection<string> _imgCollection = new ObservableCollection<string>();
         public MusicLibraryViewModel()
         {
@@ -165,20 +167,10 @@ namespace VLC_WINRT.ViewModels.MainPage
                 }
                 else
                 {
-                    await Task.Factory.StartNew(async () =>
-                    {
-                        foreach (var artist in Artist)
-                        {
-                            artist.ArtistInformations();
-                        }
-                    }).ContinueWith(async (lastTask) =>
-                    {
-                        await SerializeArtistsDataBase();
-                        _periodicTimer.Cancel();
-                        DispatchHelper.Invoke(() => IsLoaded = true);
-                        DispatchHelper.Invoke(() => IsBusy = false);
-                    });
-
+                    Task.Run(() => SerializeArtistsDataBase());
+                    _periodicTimer.Cancel();
+                    DispatchHelper.Invoke(() => IsLoaded = true);
+                    DispatchHelper.Invoke(() => IsBusy = false);
                 }
 
             }, period);
@@ -300,13 +292,15 @@ namespace VLC_WINRT.ViewModels.MainPage
             await SerializationHelper.SerializeAsJson(Artist, "MusicDB.json",
                 null,
                 CreationCollisionOption.ReplaceExisting);
+
             IsBusy = false;
         }
 
         public class ArtistItemViewModel : BindableBase
         {
             private string _name;
-            private string _picture = "/Assets/GreyPylon/280x156.jpg";
+            private string _picture;
+            private bool _isPictureLoaded = false;
             private ObservableCollection<AlbumItem> _albumItems = new ObservableCollection<AlbumItem>();
             private int _currentAlbumIndex = 0;
 
@@ -318,14 +312,14 @@ namespace VLC_WINRT.ViewModels.MainPage
             private List<ArtistItemViewModel> _onlineRelatedArtists;
             private string _biography;
 
-            [XmlIgnore()]
+            [JsonIgnore()]
             public bool IsOnlinePopularAlbumItemsLoaded
             {
                 get { return _isOnlinePopularAlbumItemsLoaded; }
                 set { SetProperty(ref _isOnlinePopularAlbumItemsLoaded, value); }
             }
 
-            [XmlIgnore()]
+            [JsonIgnore()]
             public bool IsOnlineRelatedArtistsLoaded
             {
                 get { return _isOnlineRelatedArtistsLoaded; }
@@ -338,10 +332,27 @@ namespace VLC_WINRT.ViewModels.MainPage
                 set { SetProperty(ref _name, value); }
             }
 
+            [JsonIgnore()]
             public string Picture
             {
-                get { return _picture; }
-                set { SetProperty(ref _picture, value); }
+                get
+                {
+                    if (!_isPictureLoaded)
+                    {
+                        if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
+                        {
+                            // Get Artist Picture via XBOX Music
+                            ArtistInformationsHelper.GetArtistPicture(this);
+                            _isPictureLoaded = true;
+                        }
+                    }
+                    return _picture;
+                }
+                set
+                {
+                    OnPropertyChanged("Picture");
+                    SetProperty(ref _picture, value);
+                }
             }
 
             public ObservableCollection<AlbumItem> Albums
@@ -350,17 +361,19 @@ namespace VLC_WINRT.ViewModels.MainPage
                 set { SetProperty(ref _albumItems, value); }
             }
 
+            [JsonIgnore()]
             public int CurrentAlbumIndex
             {
                 set { SetProperty(ref _currentAlbumIndex, value); }
             }
 
+            [JsonIgnore()]
             public AlbumItem CurrentAlbumItem
             {
                 get { return _albumItems[_currentAlbumIndex]; }
             }
 
-            [XmlIgnore()]
+            [JsonIgnore()]
             public string Biography
             {
                 get
@@ -382,6 +395,7 @@ namespace VLC_WINRT.ViewModels.MainPage
                 set { SetProperty(ref _biography, value); }
             }
 
+            [JsonIgnore()]
             public List<OnlineAlbumItem> OnlinePopularAlbumItems
             {
                 get
@@ -395,6 +409,7 @@ namespace VLC_WINRT.ViewModels.MainPage
                 set { SetProperty(ref _onlinePopularAlbumItems, value); }
             }
 
+            [JsonIgnore()]
             public List<ArtistItemViewModel> OnlineRelatedArtists
             {
                 get
@@ -422,17 +437,6 @@ namespace VLC_WINRT.ViewModels.MainPage
 
             public ArtistItemViewModel()
             {
-            }
-
-            public async Task ArtistInformations()
-            {
-                if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
-                {
-                    // Get Artist Picture via XBOX Music
-                    var pic = await ArtistInformationsHelper.GetArtistPicture(Name);
-                    DispatchHelper.Invoke(() => Picture = pic);
-                    DispatchHelper.Invoke(() => OnPropertyChanged("Picture"));
-                }
             }
 
             private async Task LoadAlbums(StorageFolderQueryResult albumQueryResult)
@@ -517,7 +521,7 @@ namespace VLC_WINRT.ViewModels.MainPage
                 }
             }
 
-            [XmlIgnore()]
+            [JsonIgnore()]
             public int CurrentTrackPosition
             {
                 get { return _currentTrackPosition; }
@@ -551,7 +555,7 @@ namespace VLC_WINRT.ViewModels.MainPage
                 set { SetProperty(ref _year, value); }
             }
 
-            [XmlIgnore()]
+            [JsonIgnore()]
             public TrackItem CurrentTrack
             {
                 get { return _trackItems[CurrentTrackPosition]; }
@@ -596,7 +600,6 @@ namespace VLC_WINRT.ViewModels.MainPage
                 bool hasFoundCover = false;
                 if (_storageItemThumbnail != null)
                 {
-
                     var file =
                         await
                             ApplicationData.Current.LocalFolder.CreateFileAsync(
@@ -640,6 +643,7 @@ namespace VLC_WINRT.ViewModels.MainPage
                         }
                         catch
                         {
+                            Debug.WriteLine("Unable to get album Cover from LastFM API");
                         }
                     }
                 }
@@ -666,14 +670,14 @@ namespace VLC_WINRT.ViewModels.MainPage
                 }
             }
 
-            [XmlIgnore()]
+            [JsonIgnore()]
             public PlayAlbumCommand PlayAlbum
             {
                 get { return _playAlbumCommand; }
                 set { SetProperty(ref _playAlbumCommand, value); }
             }
 
-            [XmlIgnore()]
+            [JsonIgnore()]
             public FavoriteAlbumCommand FavoriteAlbum
             {
                 get { return _favoriteAlbumCommand; }
@@ -716,6 +720,7 @@ namespace VLC_WINRT.ViewModels.MainPage
                 get { return _path; }
                 set { SetProperty(ref _path, value); }
             }
+
             public int Index
             {
                 get { return _index; }
@@ -729,21 +734,21 @@ namespace VLC_WINRT.ViewModels.MainPage
             }
             public bool Favorite { get { return _favorite; } set { SetProperty(ref _favorite, value); } }
 
-            [XmlIgnore()]
+            [JsonIgnore()]
             public int CurrentPosition
             {
                 get { return _currentPosition; }
                 set { SetProperty(ref _currentPosition, value); }
             }
 
-            [XmlIgnore()]
+            [JsonIgnore()]
             public PlayTrackCommand PlayTrack
             {
                 get { return _playTrackCommand; }
                 set { SetProperty(ref _playTrackCommand, value); }
             }
 
-            [XmlIgnore()]
+            [JsonIgnore()]
             public FavoriteTrackCommand FavoriteTrack
             {
                 get { return _favoriteTrackCommand; }

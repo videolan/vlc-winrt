@@ -17,6 +17,7 @@ using System.Xml.Serialization;
 using Windows.Storage;
 using Windows.Storage.Streams;
 using Windows.UI.Popups;
+using Newtonsoft.Json;
 
 namespace VLC_WINRT.Utility.Helpers
 {
@@ -86,12 +87,13 @@ namespace VLC_WINRT.Utility.Helpers
             try
             {
                 var file = await folder.CreateFileAsync(fileName, options);
-
-                using (var stream = await file.OpenStreamForWriteAsync())
-                {
-                    var ser = new DataContractJsonSerializer(typeof(T));
-                    ser.WriteObject(stream, objectGraph);
-                }
+                string json = JsonConvert.SerializeObject(objectGraph);
+                await FileIO.WriteTextAsync(file, json);
+                //using (var stream = await file.OpenStreamForWriteAsync())
+                //{
+                //var ser = new DataContractJsonSerializer(typeof(T));
+                //ser.WriteObject(stream, objectGraph);
+                //}
             }
             catch (Exception ex)
             {
@@ -128,11 +130,11 @@ namespace VLC_WINRT.Utility.Helpers
 
         public static T LoadFromJsonString<T>(string json)
         {
-            var ms = new MemoryStream(Encoding.UTF8.GetBytes(json));
-            var ser = new DataContractJsonSerializer(typeof(T));
-            T result = (T)ser.ReadObject(ms);
+            //var ms = new MemoryStream(Encoding.UTF8.GetBytes(json));
+            //var ser = new DataContractJsonSerializer(typeof(T));
+            //T result = (T)ser.ReadObject(ms);
 
-            return result;
+            return JsonConvert.DeserializeObject<T>(json);
         }
         #endregion
     }

@@ -86,6 +86,7 @@
     <Compile Include="Common\DispatchHelper.cs" />
     <Compile Include="Common\KnownVLCLocation.cs" />
     <Compile Include="Model\BackItem.cs" />
+    <Compile Include="Model\DeezerArtistItem.cs" />
     <Compile Include="Model\MediaHistory.cs" />
     <Compile Include="Model\Panel.cs" />
     <Compile Include="Model\Subtitle.cs" />
@@ -134,6 +135,7 @@
     <Compile Include="Utility\Helpers\MathHelper.cs" />
     <Compile Include="Utility\Helpers\MusicLibrary\ArtistInformationsHelper.cs" />
     <Compile Include="Utility\Helpers\MusicLibrary\GetInformationsFromMusicFile.cs" />
+    <Compile Include="Utility\Helpers\NativeOperationsHelper.cs" />
     <Compile Include="Utility\Helpers\PointersUtils.cs" />
     <Compile Include="Utility\Helpers\SerializationHelper.cs" />
     <Compile Include="Utility\Helpers\StoryboardExtensions.cs" />

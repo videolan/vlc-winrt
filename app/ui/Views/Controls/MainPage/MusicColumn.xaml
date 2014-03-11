@@ -130,6 +130,7 @@
                                 <GridView.ItemTemplate>
                                     <DataTemplate>
                                         <Grid Width="280" Height="156">
+                                            <Image Source="/Assets/GreyPylon/280x156.jpg" Stretch="UniformToFill"/>
                                             <Image Source="{Binding Group.Picture}" Stretch="UniformToFill"/>
                                             <Grid VerticalAlignment="Bottom" Height="35" Margin="0,0,0,20" HorizontalAlignment="Left">
                                                 <Polygon Fill="{StaticResource MainColor}" Points="0,0 0,35 180,35 200,0" />
