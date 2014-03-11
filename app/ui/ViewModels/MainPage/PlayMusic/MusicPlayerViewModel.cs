@@ -209,6 +209,8 @@ namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
             MediaControl.IsPlaying = true;
             MediaControl.ArtistName = trackItem.ArtistName ?? "Unknown Artist";
             MediaControl.TrackName = trackItem.Name ?? "Unknown Track";
+            _timeTotal = TimeSpan.Zero;
+            _elapsedTime = TimeSpan.Zero;
             try
             {
                 MediaControl.AlbumArt = new Uri(Locator.MusicPlayerVM.Artist.CurrentAlbumItem.Picture);
