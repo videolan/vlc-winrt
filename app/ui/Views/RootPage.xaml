@@ -11,5 +11,6 @@
         <controls:AnimatedBackground x:Name="AnimatedBackground"/>
         <Frame x:Name="MainFrame" x:FieldModifier="public" Navigated="MainFrame_OnNavigated"/>
         <controls:SearchFlyout x:Name="SearchPane" x:FieldModifier="public" />
+        <MediaElement x:Name="FoudationMediaElement" x:FieldModifier="public" AudioCategory="BackgroundCapableMedia" AudioDeviceType="Multimedia"/>
     </SwapChainBackgroundPanel>
 </Page>

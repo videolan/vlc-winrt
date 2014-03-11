@@ -14,7 +14,7 @@
                    Margin="10,20,10,10"
                    HorizontalAlignment="Center"
                    x:Uid="Welcome"
-                   Text="Welcome to the VLC for WinRT Beta!" >
+                   Text="Welcome to the VLC for Windows 8 Beta!" >
         </TextBlock>
         <TextBlock Style="{StaticResource BasicTextStyle}"
                    TextAlignment="Center"

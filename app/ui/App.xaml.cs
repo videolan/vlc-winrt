@@ -9,12 +9,14 @@
 
 using System;
 using System.Diagnostics;
+using System.IO;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation.Collections;
 using Windows.Storage;
 using Windows.Storage.AccessCache;
+using Windows.Storage.Streams;
 using Windows.UI.Core;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
@@ -51,10 +53,8 @@ namespace VLC_WINRT
         public App()
         {
             InitializeComponent();
-
             Suspending += OnSuspending;
         }
-
         public static Frame ApplicationFrame
         {
             get
