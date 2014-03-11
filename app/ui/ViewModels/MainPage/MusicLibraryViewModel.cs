@@ -35,6 +35,7 @@ using VLC_WINRT.Views.Controls.MainPage;
 using Panel = VLC_WINRT.Model.Panel;
 using VLC_WINRT.Utility.Helpers.MusicLibrary;
 using System.Diagnostics;
+using System.Runtime.Serialization;
 
 namespace VLC_WINRT.ViewModels.MainPage
 {
@@ -211,7 +212,16 @@ namespace VLC_WINRT.ViewModels.MainPage
         async Task DeserializeAndLoad()
         {
             IsLoaded = true;
-            Artist = await SerializationHelper.LoadFromJsonFile<ObservableCollection<ArtistItemViewModel>>("MusicDB.json");
+            try
+            {
+                Artist = await SerializationHelper.LoadFromJsonFile<ObservableCollection<ArtistItemViewModel>>("MusicDB.json");
+            }
+            catch (SerializationException exception)
+            {
+                StartIndexing();
+                return;
+            }
+
             if (Artist.Count == 0)
             {
                 StartIndexing();
@@ -307,7 +317,7 @@ namespace VLC_WINRT.ViewModels.MainPage
             private bool _isOnlinePopularAlbumItemsLoaded = false;
             private List<OnlineAlbumItem> _onlinePopularAlbumItems;
             private bool _isOnlineRelatedArtistsLoaded = false;
-            private List<ArtistItemViewModel> _onlineRelatedArtists; 
+            private List<ArtistItemViewModel> _onlineRelatedArtists;
             private string _biography;
 
             [XmlIgnore()]
