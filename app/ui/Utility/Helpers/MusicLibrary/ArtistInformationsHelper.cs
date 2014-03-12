@@ -210,7 +210,7 @@ namespace VLC_WINRT.Utility.Helpers.MusicLibrary
             {
 
             }
-            artist.Biography = Biography;
+            artist.Biography = System.Net.WebUtility.HtmlDecode(Biography);
         }
     }
 }
