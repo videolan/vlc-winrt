@@ -108,7 +108,7 @@ namespace VLC_WINRT.Views
         private void Subtitles_Click(object sender, RoutedEventArgs e)
         {
             PopupMenu popup = new PopupMenu();
-            for (int i = 0; i < MathHelper.Clamp(0, 6, Locator.PlayVideoVM.SubtitlesCount); i++)
+            for (int i = 0; i < MathHelper.Clamp(0, 5, Locator.PlayVideoVM.SubtitlesCount); i++)
             {
                 popup.Commands.Add(new UICommand()
                 {
@@ -117,11 +117,11 @@ namespace VLC_WINRT.Views
                     Invoked = command => Locator.PlayVideoVM.SetSubtitleTrackCommand.Execute(command.Id),
                 });
             }
-            //popup.Commands.Add(new UICommand()
-            //{
-            //    Label = "Open subtitle file",
-            //    Invoked = command => Locator.PlayVideoVM.OpenSubtitleCommand.Execute(""),
-            //});
+            popup.Commands.Add(new UICommand()
+            {
+                Label = "Open subtitle file",
+                Invoked = command => Locator.PlayVideoVM.OpenSubtitleCommand.Execute(""),
+            });
             popup.ShowForSelectionAsync(((Button)sender).GetBoundingRect());
         }
 

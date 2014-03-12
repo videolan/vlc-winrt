@@ -275,8 +275,8 @@ namespace VLC_WINRT.ViewModels.PlayVideo
 
             _vlcPlayerService.Play();
             await Task.Delay(300);
-            SubtitlesCount = await _vlcPlayerService.GetSubtitleCount();
-            AudioTracksCount = await _vlcPlayerService.GetAudioTrackCount();
+            _subtitlesCount = await _vlcPlayerService.GetSubtitleCount();
+            _audioTracksCount = await _vlcPlayerService.GetAudioTrackCount();
             await _vlcPlayerService.GetSubtitleDescription(SubtitlesTracks);
             await _vlcPlayerService.GetAudioTrackDescription(AudioTracks);
             _vlcPlayerService.MediaEnded += VlcPlayerServiceOnMediaEnded;
