@@ -433,5 +433,10 @@ namespace VLC_WINRT.ViewModels.PlayVideo
         {
             _vlcPlayerService.OpenSubtitle(mrl);
         }
+
+        public async Task SetRate(float rate)
+        {
+            _vlcPlayerService.SetRate(rate);
+        }
     }
 }

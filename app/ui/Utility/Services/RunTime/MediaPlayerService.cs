@@ -303,5 +303,15 @@ namespace VLC_WINRT.Utility.Services.RunTime
                 _vlcPlayer.SetAudioTrack(track);
             }
         }
+        public async Task SetRate(float rate)
+        {
+            if (_vlcPlayer == null || _vlcInitializeTask == null)
+                return;
+            await _vlcInitializeTask;
+            lock (_controlLock)
+            {
+                _vlcPlayer.SetRate(rate);
+            }
+        }
     }
 }
