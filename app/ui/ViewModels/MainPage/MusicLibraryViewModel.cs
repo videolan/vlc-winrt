@@ -202,6 +202,7 @@ namespace VLC_WINRT.ViewModels.MainPage
         async Task DeserializeAndLoad()
         {
             IsLoaded = true;
+            Artist = await SerializationHelper.LoadFromJsonFile<ObservableCollection<ArtistItemViewModel>>("MusicDB.json");
             try
             {
                 Artist = await SerializationHelper.LoadFromJsonFile<ObservableCollection<ArtistItemViewModel>>("MusicDB.json");

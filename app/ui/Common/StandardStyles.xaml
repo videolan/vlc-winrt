@@ -1029,8 +1029,18 @@
         <Setter Property="AutomationProperties.Name" Value="Unfavorite"/>
         <Setter Property="Content" Value="&#xE007;"/>
     </Style>
-    
+
     <!-- LittleAppBarButtons -->
+    <Style x:Key="IncreaseRateLittleAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource LittleAppBarButtonStyle}">
+        <Setter Property="AutomationProperties.AutomationId" Value="PlayAppBarButton"/>
+        <Setter Property="AutomationProperties.Name" Value="Increase speed"/>
+        <Setter Property="Content" Value=""/>
+    </Style>
+    <Style x:Key="DecreaseRateLittleAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource LittleAppBarButtonStyle}">
+        <Setter Property="AutomationProperties.AutomationId" Value="PlayAppBarButton"/>
+        <Setter Property="AutomationProperties.Name" Value="Decrease speed"/>
+        <Setter Property="Content" Value=""/>
+    </Style>
     <Style x:Key="LikeLittleAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource LittleAppBarButtonStyle}">
         <Setter Property="AutomationProperties.AutomationId" Value="PlayAppBarButton"/>
         <Setter Property="AutomationProperties.Name" Value="Favorite"/>

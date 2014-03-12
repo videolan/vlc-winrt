@@ -15,8 +15,11 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </views:BasePage.Resources>
-    <Grid Tapped="Grid_Tapped" PointerEntered="OnPointerEntered" Background="Transparent">
+    <Grid Tapped="Grid_Tapped" PointerEntered="OnPointerEntered" ManipulationMode="All" Background="Transparent" ManipulationStarted="Grid_ManipulationStarted" ManipulationDelta="Grid_ManipulationDelta" ManipulationCompleted="Grid_ManipulationCompleted">
+
+
         <Grid x:Name="Commands">
+            <TextBlock x:Name="SpeedRateTextBlock" FontWeight="ExtraLight" FontSize="100" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             <Grid x:Name="HeaderGrid" VerticalAlignment="Top" Height="Auto" >
                 <Grid.Background>
                     <LinearGradientBrush StartPoint="1,0">
@@ -39,7 +42,6 @@
                     Margin="50,50,0,50"/>
                 <TextBlock Text="{Binding CurrentVideo.Title}" Grid.Column="1" Style="{StaticResource VLCSubHeaderStyle}" Foreground="WhiteSmoke" VerticalAlignment="Center" Margin="10,2,0,0"/>
             </Grid>
-            
             <Grid Height="200" x:Name="ControlsGrid" Background="#7F000000" VerticalAlignment="Bottom">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
@@ -58,6 +60,10 @@
                             CommandParameter="{Binding}"
                             Visibility="{Binding IsPlaying, Converter={StaticResource NegatedBooleanToVisibilityConverter}}"/>
                             <Button Style="{StaticResource SkipAheadNoTextHugeAppBarButtonStyle}" Command="{Binding SkipAhead}"/>
+                        </StackPanel>
+                        <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,-135,-6">
+                            <Button Style="{StaticResource IncreaseRateLittleAppBarButtonStyle}" Click="IncreaseRate_Click"/>
+                            <Button Style="{StaticResource DecreaseRateLittleAppBarButtonStyle}" Click="DecreaseRate_Click"/>
                         </StackPanel>
                     </Grid>
                     <Grid x:Name="MainButtonsSnapped" VerticalAlignment="Bottom" HorizontalAlignment="Center">

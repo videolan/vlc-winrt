@@ -9,6 +9,7 @@
 
 using System;
 using System.Linq;
+using Windows.UI.Core;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -24,7 +25,9 @@ namespace VLC_WINRT.Views
     /// </summary>
     public sealed partial class PlayVideo : BasePage
     {
+        float rate = 1.0f;
         private bool isCommandShown;
+        private bool isFingerOnScreen = false;
         DispatcherTimer _timer = new DispatcherTimer();
         public PlayVideo()
         {
@@ -53,15 +56,17 @@ namespace VLC_WINRT.Views
 
         private void ShowCommands()
         {
+            SpeedRateTextBlock.Visibility = Visibility.Visible;
             _timer.Start();
             UIAnimationHelper.FadeIn(Commands);
             isCommandShown = true;
         }
 
-        void HideCommands()
+        async void HideCommands()
         {
             _timer.Stop();
             UIAnimationHelper.FadeOut(Commands);
+            SpeedRateTextBlock.Visibility = Visibility.Collapsed;
             isCommandShown = false;
         }
         private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
@@ -84,7 +89,7 @@ namespace VLC_WINRT.Views
             else
             {
                 ControlsGrid.Height = 165;
-                BackButton.Margin = new Thickness(50,50,0,50);
+                BackButton.Margin = new Thickness(50, 50, 0, 50);
                 MainButtonsNormal.Visibility = Visibility.Visible;
                 SecondaryButtonsNormalLeft.Visibility = Visibility.Visible;
                 SecondaryButtonsNormalRight.Visibility = Visibility.Visible;
@@ -99,7 +104,7 @@ namespace VLC_WINRT.Views
             _vm = (NavigateableViewModel)DataContext;
             base.SetDataContext();
         }
-        
+
         private void Subtitles_Click(object sender, RoutedEventArgs e)
         {
             PopupMenu popup = new PopupMenu();
@@ -117,7 +122,7 @@ namespace VLC_WINRT.Views
             //    Label = "Open subtitle file",
             //    Invoked = command => Locator.PlayVideoVM.OpenSubtitleCommand.Execute(""),
             //});
-            popup.ShowForSelectionAsync(((Button) sender).GetBoundingRect());
+            popup.ShowForSelectionAsync(((Button)sender).GetBoundingRect());
         }
 
         private void AudioTracks_Click(object sender, RoutedEventArgs e)
@@ -132,7 +137,53 @@ namespace VLC_WINRT.Views
                     Invoked = command => Locator.PlayVideoVM.SetAudioTrackCommand.Execute(command.Id),
                 });
             }
-            popup.ShowForSelectionAsync(((Button) sender).GetBoundingRect());
+            popup.ShowForSelectionAsync(((Button)sender).GetBoundingRect());
+        }
+
+        private void Grid_ManipulationStarted(object sender, ManipulationStartedRoutedEventArgs e)
+        {
+
+        }
+
+        private void Grid_ManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
+        {
+            if (e.Cumulative.Translation.X > 50 && !isFingerOnScreen)
+            {
+                Locator.PlayVideoVM.SkipAhead.Execute("");
+                SpeedRateTextBlock.Text = "+ 10s";
+                e.Handled = true;
+                isFingerOnScreen = true;
+            }
+            else if (e.Cumulative.Translation.X < -50 && !isFingerOnScreen)
+            {
+                Locator.PlayVideoVM.SkipBack.Execute("");
+                SpeedRateTextBlock.Text = "- 10s";
+                e.Handled = true;
+                isFingerOnScreen = true;
+            }
+        }
+
+        void SetRate()
+        {
+            Locator.PlayVideoVM.SetRate(rate);
+            SpeedRateTextBlock.Text = "x " + rate.ToString();
+        }
+
+        private void IncreaseRate_Click(object sender, RoutedEventArgs e)
+        {
+            rate = MathHelper.Clamp(0.5f, 2.0f, rate + 0.5f);
+            SetRate();
+        }
+
+        private void DecreaseRate_Click(object sender, RoutedEventArgs e)
+        {
+            rate = MathHelper.Clamp(0.5f, 2.0f, rate - 0.5f);
+            SetRate();
+        }
+
+        private void Grid_ManipulationCompleted(object sender, ManipulationCompletedRoutedEventArgs e)
+        {
+            isFingerOnScreen = false;
         }
     }
 }

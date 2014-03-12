@@ -21,5 +21,10 @@ namespace VLC_WINRT.Utility.Helpers
         {
             return (x > M) ? M : (x < m) ? m : x;
         }
+
+        public static float Clamp(float m, float M, float x)
+        {
+            return (x > M) ? M : (x < m) ? m : x;
+        }
     }
 }
