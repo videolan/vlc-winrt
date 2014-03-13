@@ -63,10 +63,14 @@ namespace VLC_WINRT.ViewModels.MainPage
         public MusicLibraryViewModel()
         {
             _goBackCommand = new StopVideoCommand();
-            ThreadPool.RunAsync(GetMusicFromLibrary);
             Panels.Add(new Panel("ARTISTS", 0, 1));
             Panels.Add(new Panel("TRACKS", 1, 0.4));
             Panels.Add(new Panel("FAVORITE ALBUMS", 2, 0.4));
+        }
+
+        public async Task Initialize()
+        {
+            await GetMusicFromLibrary();
         }
 
         public bool IsLoaded
@@ -137,7 +141,7 @@ namespace VLC_WINRT.ViewModels.MainPage
             set { SetProperty(ref _tracks, value); }
         }
 
-        public async void GetMusicFromLibrary(IAsyncAction operation)
+        public async void GetMusicFromLibrary()
         {
             nbOfFiles = (await KnownVLCLocation.MusicLibrary.GetItemsAsync()).Count;
             bool isMusicLibraryChanged = await IsMusicLibraryChanged();

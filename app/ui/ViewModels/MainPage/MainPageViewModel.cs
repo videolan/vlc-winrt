@@ -47,8 +47,6 @@ namespace VLC_WINRT.ViewModels.MainPage
 
         public MainPageViewModel()
         {
-            InitVideoVM();
-
             Task<IReadOnlyList<StorageFolder>> dlnaFolders = KnownVLCLocation.MediaServers.GetFoldersAsync().AsTask();
             dlnaFolders.ContinueWith(t =>
             {
@@ -79,7 +77,27 @@ namespace VLC_WINRT.ViewModels.MainPage
             _goToPanelCommand = new GoToPanelCommand();
         }
 
-        public async void InitVideoVM()
+        private bool _loaded = false;
+
+        public override async Task OnNavigatedTo()
+        {
+            // Make sure we're only initializing once.
+            if (!_loaded)
+            {
+                await InitVideoVM();
+
+                var dlnaFolder = await KnownVLCLocation.MediaServers.GetFoldersAsync();
+                foreach (StorageFolder storageFolder in dlnaFolder)
+                {
+                    StorageFolder newFolder = storageFolder;
+                    DLNAVMs.Add(new VideoLibraryViewModel(newFolder));
+                }
+
+                _loaded = true;
+            }
+        }
+
+        public async Task InitVideoVM()
         {
             // default video folder
             if (App.LocalSettings.ContainsKey("DefaultVideoFolder"))
@@ -94,6 +112,7 @@ namespace VLC_WINRT.ViewModels.MainPage
             }
 
             MusicLibraryVm = Locator.MusicLibraryVM;
+            await MusicLibraryVm.Initialize();
             ExternalStorageVM = new ExternalStorageViewModel();
         }
 

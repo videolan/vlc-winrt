@@ -361,11 +361,12 @@ namespace VLC_WINRT.ViewModels.PlayVideo
             DispatchHelper.Invoke(() => App.RootPage.MainFrame.GoBack());
         }
 
-        public override void OnNavigatedFrom()
+        public override Task OnNavigatedFrom()
         {
             UpdateDate();
             _sliderPositionTimer.Stop();
             _vlcPlayerService.Stop();
+            return base.OnNavigatedFrom();
         }
 
         private void UpdateDate()

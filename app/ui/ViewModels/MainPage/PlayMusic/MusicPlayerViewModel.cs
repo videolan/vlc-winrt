@@ -442,10 +442,11 @@ namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
             RegisterWindows8Events();
         }
 
-        public override void OnNavigatedFrom()
+        public override Task OnNavigatedFrom()
         {
             _sliderPositionTimer.Stop();
             _vlcPlayerService.Stop();
+            return base.OnNavigatedFrom();
         }
 
         private void UpdateDate(object sender, object e)
