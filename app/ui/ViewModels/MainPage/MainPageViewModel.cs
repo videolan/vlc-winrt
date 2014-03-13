@@ -49,16 +49,16 @@ namespace VLC_WINRT.ViewModels.MainPage
         {
             InitVideoVM();
 
-            //Task<IReadOnlyList<StorageFolder>> dlnaFolders = KnownVLCLocation.MediaServers.GetFoldersAsync().AsTask();
-            //dlnaFolders.ContinueWith(t =>
-            //{
-            //    IReadOnlyList<StorageFolder> folders = t.Result;
-            //    foreach (StorageFolder storageFolder in folders)
-            //    {
-            //        StorageFolder newFolder = storageFolder;
-            //        DispatchHelper.Invoke(() => DLNAVMs.Add(new VideoLibraryViewModel(newFolder)));
-            //    }
-            //});
+            Task<IReadOnlyList<StorageFolder>> dlnaFolders = KnownVLCLocation.MediaServers.GetFoldersAsync().AsTask();
+            dlnaFolders.ContinueWith(t =>
+            {
+                IReadOnlyList<StorageFolder> folders = t.Result;
+                foreach (StorageFolder storageFolder in folders)
+                {
+                    StorageFolder newFolder = storageFolder;
+                    DispatchHelper.Invoke(() => DLNAVMs.Add(new VideoLibraryViewModel(newFolder)));
+                }
+            });
 
             LastViewedVM = new LastViewedViewModel();
             PickVideo = new PickVideoCommand();
