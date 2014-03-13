@@ -61,7 +61,6 @@
                                 <Run Text="" FontFamily="Segoe UI Symbol" />
                         </TextBlock>
                     </Button>
-                    <controls:NothingToSeeHere Grid.Row="1" Visibility="{Binding VideoVM.HasNoMedia, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                     <controls:VariableSizedItemsGridView Grid.Row="1" SelectionMode="None" ItemsSource="{Binding VideoVM.MediaRandom}" ItemContainerStyle="{StaticResource GridViewItemContainerStyle}" ItemTemplateSelector="{StaticResource MediaItemDataTemplateSelector}" >
                         <controls:VariableSizedItemsGridView.ItemsPanel>
                             <ItemsPanelTemplate>
@@ -69,6 +68,7 @@
                             </ItemsPanelTemplate>
                         </controls:VariableSizedItemsGridView.ItemsPanel>
                     </controls:VariableSizedItemsGridView>
+                    <controls:NothingToSeeHereVideos Grid.Row="1" Visibility="{Binding VideoVM.HasNoMedia, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                 </Grid>
                 <Grid Margin="40,0,0,0">
                     <Grid.RowDefinitions>

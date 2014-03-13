@@ -101,7 +101,6 @@ namespace VLC_WINRT.Utility.Commands
             picker.FileTypeFilter.Add(".vro" );
             picker.FileTypeFilter.Add(".webm");
             picker.FileTypeFilter.Add(".wm");
-            picker.FileTypeFilter.Add(".wma");
             picker.FileTypeFilter.Add(".wmv" );
             picker.FileTypeFilter.Add(".wtv" );
             picker.FileTypeFilter.Add(".xesc");

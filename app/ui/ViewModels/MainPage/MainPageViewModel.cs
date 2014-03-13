@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Windows.Storage;
+using Windows.Storage.AccessCache;
 using VLC_WINRT.Common;
 using VLC_WINRT.Model;
 using VLC_WINRT.Utility.Commands;
@@ -41,24 +42,23 @@ namespace VLC_WINRT.ViewModels.MainPage
         private ActionCommand _showAppBarCommand;
         private ActionCommand _toggleNetworkAppBarCommand;
         private VideoLibraryViewModel _videoVM;
+        private SelectDefaultFolderForIndexingVideoCommand _setDefaultFolderForIndexingVideoCommand;
         private GoToPanelCommand _goToPanelCommand;
 
         public MainPageViewModel()
         {
-            VideoVM = new VideoLibraryViewModel(KnownVLCLocation.VideosLibrary);
-            MusicLibraryVm = Locator.MusicLibraryVM;
-            ExternalStorageVM = new ExternalStorageViewModel();
+            InitVideoVM();
 
-            Task<IReadOnlyList<StorageFolder>> dlnaFolders = KnownVLCLocation.MediaServers.GetFoldersAsync().AsTask();
-            dlnaFolders.ContinueWith(t =>
-            {
-                IReadOnlyList<StorageFolder> folders = t.Result;
-                foreach (StorageFolder storageFolder in folders)
-                {
-                    StorageFolder newFolder = storageFolder;
-                    DispatchHelper.Invoke(() => DLNAVMs.Add(new VideoLibraryViewModel(newFolder)));
-                }
-            });
+            //Task<IReadOnlyList<StorageFolder>> dlnaFolders = KnownVLCLocation.MediaServers.GetFoldersAsync().AsTask();
+            //dlnaFolders.ContinueWith(t =>
+            //{
+            //    IReadOnlyList<StorageFolder> folders = t.Result;
+            //    foreach (StorageFolder storageFolder in folders)
+            //    {
+            //        StorageFolder newFolder = storageFolder;
+            //        DispatchHelper.Invoke(() => DLNAVMs.Add(new VideoLibraryViewModel(newFolder)));
+            //    }
+            //});
 
             LastViewedVM = new LastViewedViewModel();
             PickVideo = new PickVideoCommand();
@@ -75,8 +75,32 @@ namespace VLC_WINRT.ViewModels.MainPage
             
             SecondaryPanels.Add(new Panel("external storage", 3, 0.4));
             SecondaryPanels.Add(new Panel("media servers", 4, 0.4));
-
+            _setDefaultFolderForIndexingVideoCommand = new SelectDefaultFolderForIndexingVideoCommand();
             _goToPanelCommand = new GoToPanelCommand();
+        }
+
+        public async void InitVideoVM()
+        {
+            // default video folder
+            if (App.LocalSettings.ContainsKey("DefaultVideoFolder"))
+            {
+                StorageFolder customDefaultVideoFolder = await StorageApplicationPermissions.FutureAccessList.GetFolderAsync(
+                        App.LocalSettings["DefaultVideoFolder"].ToString());
+                VideoVM = new VideoLibraryViewModel(customDefaultVideoFolder);
+            }
+            else
+            {
+                VideoVM = new VideoLibraryViewModel(KnownVLCLocation.VideosLibrary);
+            }
+
+            MusicLibraryVm = Locator.MusicLibraryVM;
+            ExternalStorageVM = new ExternalStorageViewModel();
+        }
+
+        public SelectDefaultFolderForIndexingVideoCommand SetDefaultFolderForIndexingVideoCommand
+        {
+            get { return _setDefaultFolderForIndexingVideoCommand; }
+            set { SetProperty(ref _setDefaultFolderForIndexingVideoCommand, value); }
         }
 
         public ObservableCollection<BackItem> Backers

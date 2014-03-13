@@ -114,37 +114,44 @@ namespace VLC_WINRT.ViewModels.MainPage
 
         protected async void GetMedia(IAsyncAction operation)
         {
-            IReadOnlyList<StorageFile> files =
-                await GetMediaFromFolder(_location, CommonFileQuery.OrderByDate);
-
-            if (files.Count > 0)
+            try
             {
-                DispatchHelper.Invoke(() => HasNoMedia = false);
-            }
-            else
-            {
-                DispatchHelper.Invoke(() => HasNoMedia = true);
-            }
+                IReadOnlyList<StorageFile> files =
+                    await GetMediaFromFolder(_location, CommonFileQuery.OrderByName);
 
-            int j = 0;
-            foreach (StorageFile storageFile in files)
-            {
-                var mediaVM = new MediaViewModel(storageFile);
-
-                // Get back to UI thread
-                DispatchHelper.Invoke(() => Media.Add(mediaVM));
-                DispatchHelper.Invoke(() =>
+                if (files.Count > 0)
                 {
-                    int i = new Random().Next(0, files.Count - 1);
-                    if (j < 5 && i <= (files.Count - 1) / 2)
+                    DispatchHelper.Invoke(() => HasNoMedia = false);
+                }
+                else
+                {
+                    DispatchHelper.Invoke(() => HasNoMedia = true);
+                }
+
+                int j = 0;
+                foreach (StorageFile storageFile in files)
+                {
+                    var mediaVM = new MediaViewModel(storageFile);
+
+                    // Get back to UI thread
+                    DispatchHelper.Invoke(() => Media.Add(mediaVM));
+                    DispatchHelper.Invoke(() =>
                     {
-                        DispatchHelper.Invoke(() => MediaRandom.Add(mediaVM));
-                        j++;
-                    }
-                });
-                DispatchHelper.Invoke(() => MediaGroupedByAlphabet = Media.OrderBy(x => x.AlphaKey).GroupBy(x => x.AlphaKey));
+                        int i = new Random().Next(0, files.Count - 1);
+                        if (j < 5 && i <= (files.Count - 1) / 2)
+                        {
+                            DispatchHelper.Invoke(() => MediaRandom.Add(mediaVM));
+                            j++;
+                        }
+                    });
+                    DispatchHelper.Invoke(() => MediaGroupedByAlphabet = Media.OrderBy(x => x.AlphaKey).GroupBy(x => x.AlphaKey));
+                }
+                DispatchHelper.Invoke(ExecuteSemanticZoom);
             }
-            DispatchHelper.Invoke(ExecuteSemanticZoom);
+            catch
+            {
+               
+            }
         }
 
         public void ExecuteSemanticZoom()
@@ -249,12 +256,11 @@ namespace VLC_WINRT.ViewModels.MainPage
 
                 files = await fileQuery.GetFilesAsync();
             }
-            catch (ArgumentException ex)
+            catch (Exception ex)
             {
                 Debug.WriteLine("exception listing files");
                 Debug.WriteLine(ex.ToString());
             }
-
             // DLNA folders don't support advanced file listings, us a basic file query
             if (files == null)
             {
