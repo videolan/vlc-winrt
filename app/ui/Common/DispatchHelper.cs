@@ -8,6 +8,7 @@
  **********************************************************************/
 
 using System;
+using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Core;
 using Windows.UI.Core;
@@ -27,8 +28,24 @@ namespace VLC_WINRT.Common
             }
             else
             {
-                CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
-                                                                        () => action());
+                CoreApplication.MainView.CoreWindow.
+                    Dispatcher.RunAsync(CoreDispatcherPriority.Normal,() => action()).AsTask().Wait();
+            }
+        }
+
+        public static async Task InvokeAsync(Func<Task> action)
+        { 
+            //for some reason this crashes the designer (so dont do it in design mode)
+            if (DesignMode.DesignModeEnabled) return;
+
+            if (CoreApplication.MainView.CoreWindow == null || CoreApplication.MainView.CoreWindow.Dispatcher.HasThreadAccess)
+            {
+                await action();
+            }
+            else
+            {
+                await CoreApplication.MainView.CoreWindow.
+                    Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => action());
             }
         }
     }
