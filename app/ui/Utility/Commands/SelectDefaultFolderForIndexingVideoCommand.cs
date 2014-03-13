@@ -86,9 +86,12 @@ namespace VLC_WINRT.Utility.Commands
             picker.FileTypeFilter.Add(".xesc");
             StorageFolder folder = await picker.PickSingleFolderAsync();
 
-            string mru = StorageApplicationPermissions.FutureAccessList.Add(folder);
-            App.LocalSettings["DefaultVideoFolder"] = mru;
-            Locator.MainPageVM.InitVideoVM();
+            if (folder != null)
+            {
+                string mru = StorageApplicationPermissions.FutureAccessList.Add(folder);
+                App.LocalSettings["DefaultVideoFolder"] = mru;
+                Locator.MainPageVM.InitVideoVM();
+            }
         }
     }
 }
