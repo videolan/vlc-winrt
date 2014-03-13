@@ -19,7 +19,7 @@
                         <ExponentialEase EasingMode="EaseIn" Exponent="5"/>
                     </EasingDoubleKeyFrame.EasingFunction>
                 </EasingDoubleKeyFrame>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="0">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0">
                     <EasingDoubleKeyFrame.EasingFunction>
                         <ExponentialEase EasingMode="EaseIn" Exponent="5"/>
                     </EasingDoubleKeyFrame.EasingFunction>
@@ -31,31 +31,31 @@
                         <ExponentialEase EasingMode="EaseIn" Exponent="5"/>
                     </EasingDoubleKeyFrame.EasingFunction>
                 </EasingDoubleKeyFrame>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="-431">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="-431">
                     <EasingDoubleKeyFrame.EasingFunction>
                         <ExponentialEase EasingMode="EaseIn" Exponent="5"/>
                     </EasingDoubleKeyFrame.EasingFunction>
                 </EasingDoubleKeyFrame>
             </DoubleAnimationUsingKeyFrames>
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="Header">
-                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1">
                     <EasingDoubleKeyFrame.EasingFunction>
                         <ExponentialEase EasingMode="EaseIn" Exponent="5"/>
                     </EasingDoubleKeyFrame.EasingFunction>
                 </EasingDoubleKeyFrame>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="0">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="0">
                     <EasingDoubleKeyFrame.EasingFunction>
                         <ExponentialEase EasingMode="EaseIn" Exponent="5"/>
                     </EasingDoubleKeyFrame.EasingFunction>
                 </EasingDoubleKeyFrame>
             </DoubleAnimationUsingKeyFrames>
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="Header">
-                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0">
                     <EasingDoubleKeyFrame.EasingFunction>
                         <ExponentialEase EasingMode="EaseIn" Exponent="5"/>
                     </EasingDoubleKeyFrame.EasingFunction>
                 </EasingDoubleKeyFrame>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.8" Value="-431">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="-431">
                     <EasingDoubleKeyFrame.EasingFunction>
                         <ExponentialEase EasingMode="EaseIn" Exponent="5"/>
                     </EasingDoubleKeyFrame.EasingFunction>
@@ -69,7 +69,7 @@
                         <ExponentialEase EasingMode="EaseOut" Exponent="5"/>
                     </EasingDoubleKeyFrame.EasingFunction>
                 </EasingDoubleKeyFrame>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="1">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1">
                     <EasingDoubleKeyFrame.EasingFunction>
                         <ExponentialEase EasingMode="EaseOut" Exponent="5"/>
                     </EasingDoubleKeyFrame.EasingFunction>
@@ -81,7 +81,7 @@
                         <ExponentialEase EasingMode="EaseOut" Exponent="5"/>
                     </EasingDoubleKeyFrame.EasingFunction>
                 </EasingDoubleKeyFrame>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.6" Value="0">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0">
                     <EasingDoubleKeyFrame.EasingFunction>
                         <ExponentialEase EasingMode="EaseOut" Exponent="5"/>
                     </EasingDoubleKeyFrame.EasingFunction>
@@ -93,7 +93,7 @@
                         <ExponentialEase EasingMode="EaseOut" Exponent="5"/>
                     </EasingDoubleKeyFrame.EasingFunction>
                 </EasingDoubleKeyFrame>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1">
                     <EasingDoubleKeyFrame.EasingFunction>
                         <ExponentialEase EasingMode="EaseOut" Exponent="5"/>
                     </EasingDoubleKeyFrame.EasingFunction>
@@ -105,7 +105,7 @@
                         <ExponentialEase EasingMode="EaseOut" Exponent="5"/>
                     </EasingDoubleKeyFrame.EasingFunction>
                 </EasingDoubleKeyFrame>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="0">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0">
                     <EasingDoubleKeyFrame.EasingFunction>
                         <ExponentialEase EasingMode="EaseOut" Exponent="5"/>
                     </EasingDoubleKeyFrame.EasingFunction>

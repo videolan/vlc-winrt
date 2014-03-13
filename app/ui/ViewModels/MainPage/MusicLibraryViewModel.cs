@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using Windows.Foundation;
@@ -202,12 +203,20 @@ namespace VLC_WINRT.ViewModels.MainPage
         async Task DeserializeAndLoad()
         {
             IsLoaded = true;
-            Artist = await SerializationHelper.LoadFromJsonFile<ObservableCollection<ArtistItemViewModel>>("MusicDB.json");
             try
             {
-                Artist = await SerializationHelper.LoadFromJsonFile<ObservableCollection<ArtistItemViewModel>>("MusicDB.json");
+                var artists =
+                    await
+                        SerializationHelper.LoadFromJsonFile<ObservableCollection<ArtistItemViewModel>>(
+                            "MusicDB.json");
+                DispatchHelper.Invoke(() => Artist = artists);
             }
             catch (SerializationException exception)
+            {
+                StartIndexing();
+                return;
+            }
+            catch (COMException exception)
             {
                 StartIndexing();
                 return;
