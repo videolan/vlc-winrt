@@ -43,6 +43,7 @@
 #define N_(x) x
 #define _(x) x
 int poll(struct pollfd *, unsigned, int);
+# define restrict __restrict
 #endif
 
 using namespace concurrency;

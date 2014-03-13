@@ -40,6 +40,7 @@
 #define ssize_t SSIZE_T
 #define N_(x) x
 int poll(struct pollfd *, unsigned, int);
+# define restrict __restrict
 #endif
 
 using namespace concurrency;
