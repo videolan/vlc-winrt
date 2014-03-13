@@ -34,6 +34,10 @@ namespace VLC_WINRT.Utility.Helpers
             for (int index = position; index < position + 250 && index < lines.Count(); index++)
             {
                 var line = lines[index];
+                if(line == "")
+                {
+                    continue;
+                }
                 string[] item = line.Split(';');
 
                 BackItem backers = new BackItem();
