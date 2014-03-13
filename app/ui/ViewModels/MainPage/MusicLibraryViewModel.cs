@@ -141,21 +141,21 @@ namespace VLC_WINRT.ViewModels.MainPage
             set { SetProperty(ref _tracks, value); }
         }
 
-        public async void GetMusicFromLibrary()
+        public async Task GetMusicFromLibrary()
         {
             nbOfFiles = (await KnownVLCLocation.MusicLibrary.GetItemsAsync()).Count;
             bool isMusicLibraryChanged = await IsMusicLibraryChanged();
             if (isMusicLibraryChanged)
             {
-                StartIndexing();
+                await StartIndexing();
             }
             else
             {
-                DeserializeAndLoad();
+                await DeserializeAndLoad();
             }
         }
 
-        async void StartIndexing()
+        private async Task StartIndexing()
         {
             var musicFolder = await
                 KnownVLCLocation.MusicLibrary.GetFoldersAsync(CommonFolderQuery.GroupByArtist);
@@ -174,15 +174,15 @@ namespace VLC_WINRT.ViewModels.MainPage
                 {
                     Task.Run(() => SerializeArtistsDataBase());
                     _periodicTimer.Cancel();
-                    DispatchHelper.Invoke(() => IsLoaded = true);
-                    DispatchHelper.Invoke(() => IsBusy = false);
+                    IsLoaded = true;
+                    IsBusy = false;
                 }
 
             }, period);
 
             foreach (var artistItem in musicFolder)
             {
-                DispatchHelper.Invoke(() => IsMusicLibraryEmpty = false);
+                IsMusicLibraryEmpty = false;
                 MusicProperties artistProperties = null;
                 try
                 {
@@ -196,41 +196,42 @@ namespace VLC_WINRT.ViewModels.MainPage
                     StorageFolderQueryResult albumQuery =
                         artistItem.CreateFolderQuery(CommonFolderQuery.GroupByAlbum);
                     var artist = new ArtistItemViewModel(albumQuery, artistProperties.Artist);
-                    DispatchHelper.Invoke(() => OnPropertyChanged("Track"));
-                    DispatchHelper.Invoke(() => OnPropertyChanged("Artist"));
-                    DispatchHelper.Invoke(() => Artist.Add(artist));
+                    OnPropertyChanged("Track");
+                    OnPropertyChanged("Artist");
+                    Artist.Add(artist);
                 }
             }
-            DispatchHelper.Invoke(() => OnPropertyChanged("Artist"));
+            OnPropertyChanged("Artist");
         }
 
-        async Task DeserializeAndLoad()
+        private async Task DeserializeAndLoad()
         {
             IsLoaded = true;
+            var foundException = false;
             try
             {
                 var artists =
                     await
                         SerializationHelper.LoadFromJsonFile<ObservableCollection<ArtistItemViewModel>>(
                             "MusicDB.json");
-                DispatchHelper.Invoke(() => Artist = artists);
+                if(artists != null)
+                    Artist = artists;
             }
             catch (SerializationException exception)
             {
-                StartIndexing();
-                return;
+                foundException = true;
             }
             catch (COMException exception)
             {
-                StartIndexing();
+                foundException = true;
+            }
+
+            if (Artist.Count == 0 || foundException)
+            {
+                await StartIndexing();
                 return;
             }
 
-            if (Artist.Count == 0)
-            {
-                StartIndexing();
-                return;
-            }
             IsMusicLibraryEmpty = false;
             ImgCollection =
                 await
