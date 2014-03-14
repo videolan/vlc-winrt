@@ -21,7 +21,9 @@ namespace VLC_WINRT.Utility.Helpers
            StorageFolder folder,
            string fileName)
         {
-            var file = await folder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
+            // Hitting System.UnauthorizedAccessException when the file already exists.
+            // If they already have it, keep what is there.
+            var file = await folder.CreateFileAsync(fileName, CreationCollisionOption.OpenIfExists);
             var downloader = new BackgroundDownloader();
             var download = downloader.CreateDownload(
                 fileUri,

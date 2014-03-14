@@ -19,6 +19,7 @@ namespace VLC_WINRT.Utility.Helpers
         {
             try
             {
+                // TODO: Change to TryGetItemAsync when we switch toWindows 8.1
                 await ApplicationData.Current.LocalFolder.GetFileAsync(fileName);
                 return true;
             }
