@@ -15,6 +15,7 @@ using Windows.Storage.Pickers;
 using VLC_WINRT.Utility.Services.RunTime;
 using VLC_WINRT.ViewModels;
 using VLC_WINRT.Views;
+using VLC_WINRT.ViewModels.MainPage;
 
 namespace VLC_WINRT.Utility.Commands
 {
@@ -113,6 +114,7 @@ namespace VLC_WINRT.Utility.Commands
 
                 Debug.WriteLine("Opening file: " + file.Path);
                 Locator.PlayVideoVM.SetActiveVideoInfo(token, file.Name);
+                Locator.PlayVideoVM.CurrentVideo = new MediaViewModel(file);
                 NavigationService.NavigateTo(typeof (PlayVideo));
             }
             else
