@@ -164,20 +164,22 @@ namespace VLC_WINRT.ViewModels.MainPage
 
             _periodicTimer = ThreadPoolTimer.CreatePeriodicTimer(async (source) =>
             {
-                if (Locator.MusicLibraryVM.Track.Count > _numberOfTracks)
+                DispatchHelper.InvokeAsync(async () =>
                 {
-                    await SerializeArtistsDataBase();
-                    await ImgCollection.SerializeAsJson("Artist_Img_Collection.json", null, CreationCollisionOption.ReplaceExisting);
-                    Locator.MusicLibraryVM._numberOfTracks = Track.Count;
-                }
-                else
-                {
-                    Task.Run(() => SerializeArtistsDataBase());
-                    _periodicTimer.Cancel();
-                    IsLoaded = true;
-                    IsBusy = false;
-                }
-
+                    if (Locator.MusicLibraryVM.Track.Count > _numberOfTracks)
+                    {
+                        await SerializeArtistsDataBase();
+                        await ImgCollection.SerializeAsJson("Artist_Img_Collection.json", null, CreationCollisionOption.ReplaceExisting);
+                        Locator.MusicLibraryVM._numberOfTracks = Track.Count;
+                    }
+                    else
+                    {
+                        await SerializeArtistsDataBase();
+                        _periodicTimer.Cancel();
+                        IsLoaded = true;
+                        IsBusy = false;
+                    }
+                });
             }, period);
 
             foreach (var artistItem in musicFolder)
