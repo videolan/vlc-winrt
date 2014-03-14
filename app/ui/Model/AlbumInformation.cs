@@ -51,7 +51,7 @@ namespace VLC_WINRT.Model
         public string Playcount { get; set; }
     }
 
-    internal class Artist
+    internal partial class Artist
     {
 
         [JsonProperty("name")]

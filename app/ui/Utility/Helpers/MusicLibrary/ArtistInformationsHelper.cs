@@ -15,6 +15,7 @@ using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using Windows.System.UserProfile;
 using Windows.UI.Xaml;
 using Newtonsoft.Json;
 using VLC_WINRT.Common;
@@ -83,7 +84,7 @@ namespace VLC_WINRT.Utility.Helpers.MusicLibrary
                 CreationCollisionOption.OpenIfExists);
             string fileName = artist.Name + "_" + "dPi";
 
-            var file = await artistPic.CreateFileAsync(fileName + ".jpg", CreationCollisionOption.ReplaceExisting);
+            var file = await artistPic.CreateFileAsync(fileName + ".jpg", CreationCollisionOption.OpenIfExists);
             var raStream = await file.OpenAsync(FileAccessMode.ReadWrite);
 
             using (var thumbnailStream = streamWeb.GetInputStreamAt(0))
@@ -179,39 +180,41 @@ namespace VLC_WINRT.Utility.Helpers.MusicLibrary
 
         public static async Task GetArtistBiography(MusicLibraryViewModel.ArtistItemViewModel artist)
         {
-            string Biography = "";
+            string biography = string.Empty;
             try
             {
-                HttpClient Bio = new HttpClient();
-                var reponse = await Bio.GetStringAsync("http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&api_key=" + App.ApiKeyLastFm + "&artist=" + artist.Name);
+                var lastFmClient = new HttpClient();
+                // Get users language/region
+                // If their region is not support by LastFM, it won't return an artist biography.
+                var region = new Windows.Globalization.GeographicRegion();
+                string url =
+                    string.Format(
+ "http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist={1}&api_key={0}&format=json&lang={2}",
+                        App.ApiKeyLastFm, artist.Name, region.Code.ToLower());
+                var reponse = await lastFmClient.GetStringAsync(url);
                 {
-                    var xml1 = XDocument.Parse(reponse);
-                    var bio = xml1.Root.Descendants("bio").Elements("summary").FirstOrDefault();
-                    if (bio != null)
+                    var artistInfo = JsonConvert.DeserializeObject<ArtistInformation>(reponse);
+                    if (artistInfo == null) return;
+                    if (artistInfo.Artist == null) return;
+                    var bioSummary = artistInfo.Artist.Bio.Summary;
+                    if (bioSummary != null)
                     {
                         // Deleting the html tags
-                        Biography = Regex.Replace(bio.Value, "<.*?>", string.Empty);
-                        if (Biography != null)
-                        {
-                            // Removes the "Read more about ... on last.fm" message
-                            Biography = Biography.Remove(Biography.Length - "Read more about  on Last.fm".Length - artist.Name.Length - 6);
-                        }
-                        else
-                        {
-                            Biography = "It seems we did'nt found a biography for this artist.";
-                        }
+                        biography = Regex.Replace(bioSummary, "<.*?>", string.Empty);
+                        // TODO: Replace string "remove" with something better. It may not work on all artists and in all languages.
+                        biography = !string.IsNullOrEmpty(biography) ? biography.Remove(biography.Length - "Read more about  on Last.fm".Length - artist.Name.Length - 6) : "It seems we didn't find a biography for this artist.";
                     }
                     else
                     {
-                        Biography = "It seems we did'nt found a biography for this artist.";
+                        biography = "It seems we didn't find a biography for this artist.";
                     }
                 }
             }
             catch
             {
-
+                Debug.WriteLine("Failed to get artist biography from LastFM. Returning nothing.");
             }
-            artist.Biography = System.Net.WebUtility.HtmlDecode(Biography);
+            artist.Biography = System.Net.WebUtility.HtmlDecode(biography);
         }
     }
 }
