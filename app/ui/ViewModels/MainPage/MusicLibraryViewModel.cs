@@ -607,6 +607,9 @@ namespace VLC_WINRT.ViewModels.MainPage
             {
                 string fileName = Artist + "_" + Name;
 
+                // fileName needs to be scrubbed of some punctuation.
+                // For example, Windows does not like question marks in file names.
+                fileName = System.IO.Path.GetInvalidFileNameChars().Aggregate(fileName, (current, c) => current.Replace(c, '_'));
                 bool hasFoundCover = false;
                 if (_storageItemThumbnail != null)
                 {
@@ -632,20 +635,30 @@ namespace VLC_WINRT.ViewModels.MainPage
                     {
                         try
                         {
-                            HttpClient Fond = new HttpClient();
+                            HttpClient lastFmClient = new HttpClient();
                             var reponse =
                                 await
-                                    Fond.GetStringAsync(
-                                        "http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=a8eba7d40559e6f3d15e7cca1bfeaa1c&artist=" +
-                                        Artist + "&album=" + Name);
+                                    lastFmClient.GetStringAsync(
+                                        string.Format("http://ws.audioscrobbler.com/2.0/?method=album.getinfo&format=json&api_key=a8eba7d40559e6f3d15e7cca1bfeaa1c&artist={0}&album={1}", Artist, Name));
                             {
-                                var xml1 = XDocument.Parse(reponse);
-                                var firstImage = xml1.Root.Descendants("image").ElementAt(3);
-                                if (firstImage != null)
+                                var albumInfo = JsonConvert.DeserializeObject<AlbumInformation>(reponse);
+                                if (albumInfo.Album == null)
+                                {
+                                    return;
+                                }
+                                if (albumInfo.Album.Image == null)
+                                {
+                                    return;
+                                }
+                                // Last.FM returns images from small to 'mega', 
+                                // So try and get the largest image possible.
+                                // If we don't get any album art, or can't find the album, return.
+                                var largestImage = albumInfo.Album.Image.LastOrDefault(url => !string.IsNullOrEmpty(url.Text));
+                                if (largestImage != null)
                                 {
                                     hasFoundCover = true;
-                                    DownloadAndSaveHelper.SaveAsync(
-                                        new Uri(firstImage.Value, UriKind.RelativeOrAbsolute),
+                                    await DownloadAndSaveHelper.SaveAsync(
+                                        new Uri(largestImage.Text, UriKind.RelativeOrAbsolute),
                                         ApplicationData.Current.LocalFolder,
                                         fileName + ".jpg");
                                 }
