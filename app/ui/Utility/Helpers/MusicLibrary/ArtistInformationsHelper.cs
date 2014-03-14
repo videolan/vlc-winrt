@@ -26,6 +26,7 @@ using VLC_WINRT.ViewModels.MainPage;
 using XboxMusicLibrary;
 using XboxMusicLibrary.Models;
 using XboxMusicLibrary.Settings;
+using Artist = XboxMusicLibrary.Models.Artist;
 
 namespace VLC_WINRT.Utility.Helpers.MusicLibrary
 {

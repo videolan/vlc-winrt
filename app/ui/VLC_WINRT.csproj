@@ -85,6 +85,7 @@
     <Compile Include="Common\AlwaysExecutableCommand.cs" />
     <Compile Include="Common\DispatchHelper.cs" />
     <Compile Include="Common\KnownVLCLocation.cs" />
+    <Compile Include="Model\AlbumInformation.cs" />
     <Compile Include="Model\BackItem.cs" />
     <Compile Include="Model\DeezerArtistItem.cs" />
     <Compile Include="Model\MediaHistory.cs" />

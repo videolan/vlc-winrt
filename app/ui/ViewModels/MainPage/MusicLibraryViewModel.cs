@@ -14,7 +14,6 @@ using System.Linq;
 using System.Net.Http;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
-using System.Xml.Linq;
 using Windows.Foundation;
 using Windows.Storage;
 using Windows.Storage.FileProperties;
@@ -26,6 +25,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 using Newtonsoft.Json;
 using VLC_WINRT.Common;
+using VLC_WINRT.Model;
 using VLC_WINRT.Utility.Commands;
 using VLC_WINRT.Utility.Commands.MusicPlayer;
 using VLC_WINRT.Utility.Helpers;
@@ -57,6 +57,7 @@ namespace VLC_WINRT.ViewModels.MainPage
         ThreadPoolTimer _periodicTimer;
 
         // XBOX Music Stuff
+        // REMOVE: Do we need this stuff anymore?
         public MusicHelper XboxMusicHelper = new MusicHelper();
         public string XBOXMusicToken;
         ObservableCollection<string> _imgCollection = new ObservableCollection<string>();
