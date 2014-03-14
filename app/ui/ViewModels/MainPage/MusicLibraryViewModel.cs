@@ -166,9 +166,8 @@ namespace VLC_WINRT.ViewModels.MainPage
             {
                 if (Locator.MusicLibraryVM.Track.Count > _numberOfTracks)
                 {
-                    SerializeArtistsDataBase();
-                    SerializationHelper.SerializeAsJson(ImgCollection, "Artist_Img_Collection.json", null,
-                        CreationCollisionOption.ReplaceExisting);
+                    await SerializeArtistsDataBase();
+                    await ImgCollection.SerializeAsJson("Artist_Img_Collection.json", null, CreationCollisionOption.ReplaceExisting);
                     Locator.MusicLibraryVM._numberOfTracks = Track.Count;
                 }
                 else
@@ -398,15 +397,10 @@ namespace VLC_WINRT.ViewModels.MainPage
                     {
                         return _biography;
                     }
-                    else if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
-                    {
-                        ArtistInformationsHelper.GetArtistBiography(this);
-                        return "Loading";
-                    }
-                    else
-                    {
+                    if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
                         return "Please verify your internet connection";
-                    }
+                    ArtistInformationsHelper.GetArtistBiography(this);
+                    return "Loading";
                 }
                 set { SetProperty(ref _biography, value); }
             }
