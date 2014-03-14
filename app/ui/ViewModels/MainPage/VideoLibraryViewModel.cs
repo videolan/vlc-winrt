@@ -157,29 +157,25 @@ namespace VLC_WINRT.ViewModels.MainPage
         public void ExecuteSemanticZoom()
         {
             var page = App.ApplicationFrame.Content as Views.MainPage;
-            if (page != null)
+            if (page == null) return;
+            var videoColumn = page.GetFirstDescendantOfType<VideoColumn>() as VideoColumn;
+            var semanticZoom = videoColumn.GetDescendantsOfType<SemanticZoom>().First() as SemanticZoom;
+            var semanticZoomVertical = videoColumn.GetDescendantsOfType<SemanticZoom>().ElementAt(1) as SemanticZoom;
+            var collection = videoColumn.Resources["MediaGroupedByAlphabet"] as CollectionViewSource;
+            if (semanticZoom == null) return;
+            try
             {
-                var videoColumn = page.GetFirstDescendantOfType<VideoColumn>() as VideoColumn;
-                var semanticZoom = videoColumn.GetDescendantsOfType<SemanticZoom>().First() as SemanticZoom;
-                var semanticZoomVertical = videoColumn.GetDescendantsOfType<SemanticZoom>().ElementAt(1) as SemanticZoom;
-                var collection = videoColumn.Resources["MediaGroupedByAlphabet"] as CollectionViewSource;
-                if (semanticZoom != null)
-                {
-                    try
-                    {
-                        var listviewbase = semanticZoom.ZoomedOutView as ListViewBase;
-                        var listviewBaseVertical = semanticZoomVertical.ZoomedOutView as ListViewBase;
-                        if (collection != null)
-                        {
-                            if (listviewbase != null) 
-                                listviewbase.ItemsSource = collection.View.CollectionGroups;
-                            if (listviewBaseVertical != null)
-                                listviewBaseVertical.ItemsSource = collection.View.CollectionGroups;
-                        }
-                    }
-                    catch { }
-                }
+                var listviewbase = semanticZoom.ZoomedOutView as ListViewBase;
+                var listviewBaseVertical = semanticZoomVertical.ZoomedOutView as ListViewBase;
+                if (collection == null) return;
+                // Collection or Collection View can also be null. In these cases, return.
+                if (collection.View == null) return;
+                if (listviewbase != null) 
+                    listviewbase.ItemsSource = collection.View.CollectionGroups;
+                if (listviewBaseVertical != null)
+                    listviewBaseVertical.ItemsSource = collection.View.CollectionGroups;
             }
+            catch { }
         }
 
         private static async Task<IReadOnlyList<StorageFile>> GetMediaFromFolder(StorageFolder folder,
