@@ -29,13 +29,11 @@ namespace VLC_WINRT.ViewModels
     /// </summary>
     public class Locator
     {
-        public static IContainer Container;
-
         public Locator()
         {
             if (Windows.ApplicationModel.DesignMode.DesignModeEnabled)
             {
-                Container = AutoFacConfiguration.Configure();
+                App.Container = AutoFacConfiguration.Configure();
             }
         }
 
@@ -44,27 +42,21 @@ namespace VLC_WINRT.ViewModels
         /// </summary>
         public static MusicPlayerViewModel MusicPlayerVM
         {
-            get {
-                if (Container == null)
-                {
-                    throw new Exception("Test!");
-                }
-                return Container.Resolve<MusicPlayerViewModel>(); 
-            }
+            get { return App.Container.Resolve<MusicPlayerViewModel>(); }
         }
         public static MusicLibraryViewModel MusicLibraryVM
         {
-            get { return Container.Resolve<MusicLibraryViewModel>(); }
+            get { return App.Container.Resolve<MusicLibraryViewModel>(); }
         }
 
         public static PlayVideoViewModel PlayVideoVM
         {
-            get { return Container.Resolve<PlayVideoViewModel>(); }
+            get { return App.Container.Resolve<PlayVideoViewModel>(); }
         }
 
         public static MainPageViewModel MainPageVM
         {
-            get { return Container.Resolve<MainPageViewModel>(); }
+            get { return App.Container.Resolve<MainPageViewModel>(); }
         }
     }
 }

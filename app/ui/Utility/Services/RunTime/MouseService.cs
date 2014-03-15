@@ -27,9 +27,11 @@ namespace VLC_WINRT.Utility.Services.RunTime
             _cursorTimer.Interval = TimeSpan.FromSeconds(CursorHiddenAfterSeconds);
             _cursorTimer.Tick += HideCursor;
 
-            _oldCursor = Window.Current.CoreWindow.PointerCursor;
-
-            Windows.Devices.Input.MouseDevice.GetForCurrentView().MouseMoved += MouseMoved;
+            if (!Windows.ApplicationModel.DesignMode.DesignModeEnabled)
+            {
+                _oldCursor = Window.Current.CoreWindow.PointerCursor;
+                Windows.Devices.Input.MouseDevice.GetForCurrentView().MouseMoved += MouseMoved;
+            }
         }
 
         private void MouseMoved(MouseDevice sender, MouseEventArgs args)

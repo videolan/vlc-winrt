@@ -59,7 +59,6 @@ namespace VLC_WINRT
             Suspending += OnSuspending;
 
             Container = AutoFacConfiguration.Configure();
-            Locator.Container = Container;
         }
         public static Frame ApplicationFrame
         {
