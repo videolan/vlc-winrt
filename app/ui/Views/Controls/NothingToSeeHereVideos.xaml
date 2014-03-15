@@ -14,16 +14,16 @@
         <StackPanel Orientation="Horizontal">
             <TextBlock Text=":(" FontSize="60"/>
             <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Margin="12,10,0,0">
-                <Run Text="Nothing to see here" FontSize="36" FontWeight="Light"/>
+                <Run x:Uid="NothingToSeeHere" Text="Nothing to see here" FontSize="36" FontWeight="Light"/>
             </TextBlock>
         </StackPanel>
         <TextBlock TextWrapping="Wrap">
             <LineBreak />
-            <Run Text="It seems that we didn't find any elements in your Video library." FontSize="20" FontWeight="SemiLight"/>
+            <Run x:Uid="VideosNotFound1" Text="It seems that we didn't find any elements in your Video library." FontSize="20" FontWeight="SemiLight"/>
             <LineBreak />
             <LineBreak />
-            <Run Text="Maybe we did'nt search in the right place." FontSize="20" FontWeight="SemiLight"/>
+            <Run x:Uid="VideosNotFound2" Text="Maybe we didn't search in the right places." FontSize="20" FontWeight="SemiLight"/>
         </TextBlock>
-        <Button Content="Change default Video folder" Margin="-3,12,0,0" Background="{StaticResource MainColor}" BorderBrush="{StaticResource MainColor}" Command="{Binding SetDefaultFolderForIndexingVideoCommand}"/>
+        <Button x:Uid="ChangeVideoFolder" Content="Change default Video folder" Margin="-3,12,0,0" Background="{StaticResource MainColor}" BorderBrush="{StaticResource MainColor}" Command="{Binding SetDefaultFolderForIndexingVideoCommand}"/>
     </StackPanel>
 </UserControl>

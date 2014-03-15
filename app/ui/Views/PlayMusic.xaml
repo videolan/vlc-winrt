@@ -172,8 +172,8 @@
                                         <TextBlock Text="{Binding Title}" Foreground="WhiteSmoke" Margin="0,0,0,0" FontSize="20" FontWeight="SemiBold" TextWrapping="Wrap"/>
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal" Grid.Row="1" VerticalAlignment="Bottom">
-                                        <Button Style="{StaticResource LikeAppBarButtonStyle}" Foreground="{StaticResource MainColor}" Visibility="{Binding Artist.CurrentAlbumItem.Favorite, Converter={StaticResource NegatedBooleanToVisibilityConverter}}" Command="{Binding Artist.CurrentAlbumItem.FavoriteAlbum}" CommandParameter="{Binding Artist.CurrentAlbumItem}"/>
-                                        <Button Style="{StaticResource DisLikeAppBarButtonStyle}" Foreground="{StaticResource MainColor}" Visibility="{Binding Artist.CurrentAlbumItem.Favorite, Converter={StaticResource BooleanToVisibilityConverter}}" Command="{Binding Artist.CurrentAlbumItem.FavoriteAlbum}" CommandParameter="{Binding Artist.CurrentAlbumItem}"/>
+                                        <Button x:Uid="Favorite" Style="{StaticResource LikeAppBarButtonStyle}" Foreground="{StaticResource MainColor}" Visibility="{Binding Artist.CurrentAlbumItem.Favorite, Converter={StaticResource NegatedBooleanToVisibilityConverter}}" Command="{Binding Artist.CurrentAlbumItem.FavoriteAlbum}" CommandParameter="{Binding Artist.CurrentAlbumItem}"/>
+                                        <Button x:Uid="Unfavorite" Style="{StaticResource DisLikeAppBarButtonStyle}" Foreground="{StaticResource MainColor}" Visibility="{Binding Artist.CurrentAlbumItem.Favorite, Converter={StaticResource BooleanToVisibilityConverter}}" Command="{Binding Artist.CurrentAlbumItem.FavoriteAlbum}" CommandParameter="{Binding Artist.CurrentAlbumItem}"/>
                                     </StackPanel>
                                 </Grid>
                             </Grid>
@@ -217,14 +217,14 @@
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
-                            <TextBlock Text="biography" Style="{StaticResource VLCSubHeaderStyle}"/>
+                            <TextBlock x:Uid="Biography" Text="biography" Style="{StaticResource VLCSubHeaderStyle}"/>
                             <ScrollViewer ZoomMode="Disabled" Grid.Row="1">
                                 <TextBlock Width="450" Margin="0,5,0,0" FontSize="42" TextWrapping="Wrap">
                                 <Run Text="{Binding Artist.Biography}" FontSize="18"/>
                                 </TextBlock>
                             </ScrollViewer>
                         </Grid>
-                        <GridView IsSwipeEnabled="False" HorizontalAlignment="Left" Width="500" ItemContainerStyle="{StaticResource GridViewItemContainerStyle}" Margin="20,10,0,0" Visibility="{Binding Artist.IsOnlinePopularAlbumItemsLoaded, Converter={StaticResource BooleanToVisibilityConverter}}" SelectionMode="None" IsItemClickEnabled="True" HeaderTemplate="{StaticResource ColumnHeaderDataTemplate}" Header="popular albums" ItemsSource="{Binding Artist.OnlinePopularAlbumItems}">
+                        <GridView x:Uid="PopularAlbums" IsSwipeEnabled="False" HorizontalAlignment="Left" Width="500" ItemContainerStyle="{StaticResource GridViewItemContainerStyle}" Margin="20,10,0,0" Visibility="{Binding Artist.IsOnlinePopularAlbumItemsLoaded, Converter={StaticResource BooleanToVisibilityConverter}}" SelectionMode="None" IsItemClickEnabled="True" HeaderTemplate="{StaticResource ColumnHeaderDataTemplate}" Header="popular albums" ItemsSource="{Binding Artist.OnlinePopularAlbumItems}">
                             <GridView.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <WrapGrid Orientation="Horizontal" />
@@ -251,7 +251,7 @@
                                 </DataTemplate>
                             </GridView.ItemTemplate>
                         </GridView>
-                        <GridView Margin="20,10,0,0" IsSwipeEnabled="False" HorizontalAlignment="Left" Width="500" ItemContainerStyle="{StaticResource GridViewItemContainerStyle}" Visibility="{Binding Artist.IsOnlineRelatedArtistsLoaded, Converter={StaticResource BooleanToVisibilityConverter}}" SelectionMode="None" IsItemClickEnabled="True" HeaderTemplate="{StaticResource ColumnHeaderDataTemplate}" Header="similar artists" ItemsSource="{Binding Artist.OnlineRelatedArtists}">
+                        <GridView x:Uid="SimilarArtists" Margin="20,10,0,0" IsSwipeEnabled="False" HorizontalAlignment="Left" Width="500" ItemContainerStyle="{StaticResource GridViewItemContainerStyle}" Visibility="{Binding Artist.IsOnlineRelatedArtistsLoaded, Converter={StaticResource BooleanToVisibilityConverter}}" SelectionMode="None" IsItemClickEnabled="True" HeaderTemplate="{StaticResource ColumnHeaderDataTemplate}" Header="similar artists" ItemsSource="{Binding Artist.OnlineRelatedArtists}">
                             <GridView.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <WrapGrid Orientation="Horizontal" />

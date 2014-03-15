@@ -15,9 +15,9 @@
         <ProgressRing Foreground="#7FFFFFFF" IsActive="True" IsEnabled="True" Height="70"/>
         <Grid Grid.Column="1">
             <TextBlock Style="{StaticResource SubheaderTextStyle}" >
-                <Run Text="Indexing Music library"/>
+                <Run x:Uid="IndexingMusic1" Text="Indexing Music library"/>
                 <LineBreak/>
-                <Run Text="VLC may be unresponsive" FontSize="17"/>
+                <Run x:Uid="IndexingMusic2" Text="VLC may be unresponsive" FontSize="17"/>
             </TextBlock>
         </Grid>
     </Grid>

@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Resources;
 using Windows.Storage;
 using Windows.Storage.AccessCache;
 using VLC_WINRT.Common;
@@ -56,12 +57,15 @@ namespace VLC_WINRT.ViewModels.MainPage
 
             _showAppBarCommand = new ActionCommand(() => { IsAppBarOpen = true; });
 
-            Panels.Add(new Panel("home", 0, 1));
-            Panels.Add(new Panel("videos", 1, 0.4));
-            Panels.Add(new Panel("music", 2, 0.4));
-            
-            SecondaryPanels.Add(new Panel("external storage", 3, 0.4));
-            SecondaryPanels.Add(new Panel("media servers", 4, 0.4));
+            // TODO: For Windows 8.1 build, use ResourceLoader.GetForCurrentView(); 
+
+            var resourceLoader = new ResourceLoader();
+            Panels.Add(new Panel(resourceLoader.GetString("Home"), 0, 1));
+            Panels.Add(new Panel(resourceLoader.GetString("Videos"), 1, 0.4));
+            Panels.Add(new Panel(resourceLoader.GetString("Music"), 2, 0.4));
+
+            SecondaryPanels.Add(new Panel(resourceLoader.GetString("ExternalStorage"), 3, 0.4));
+            SecondaryPanels.Add(new Panel(resourceLoader.GetString("MediaServers"), 4, 0.4));
             _setDefaultFolderForIndexingVideoCommand = new SelectDefaultFolderForIndexingVideoCommand();
             _goToPanelCommand = new GoToPanelCommand();
         }

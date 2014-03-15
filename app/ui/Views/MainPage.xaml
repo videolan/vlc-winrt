@@ -207,7 +207,7 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="50"/>
                 </Grid.RowDefinitions>
-                <TextBlock Text="VLC for Windows 8" Margin="3,0,0,0" FontWeight="SemiBold" FontSize="20"/>
+                <TextBlock x:Uid="MainPageTitle" Text="VLC for Windows 8" Margin="3,0,0,0" FontWeight="SemiBold" FontSize="20"/>
 
                 <StackPanel Grid.Row="1" Orientation="Horizontal">
                     <ListView ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" x:Name="SectionsHeaderListView" SelectionMode="None" IsItemClickEnabled="True" ItemClick="SectionsHeaderListView_OnItemClick" ItemsSource="{Binding Panels}" RenderTransformOrigin="0.5,0.5" 
@@ -272,17 +272,17 @@
                         <RowDefinition Height="Auto"></RowDefinition>
                         <RowDefinition Height="Auto"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <TextBlock Text="Open Network Stream..."
+                    <TextBlock x:Uid="OpenNetworkStream" Text="Open Network Stream..."
                                Style="{StaticResource GroupHeaderTextStyle}"
-                               Margin="10"></TextBlock>
+                               Margin="10"/>
                     <Grid Grid.Row="1"  Grid.Column="0">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="Auto"></ColumnDefinition>
-                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Text="Network URL:" Margin="10,5" VerticalAlignment="Center" Style="{StaticResource BasicTextStyle}" FontSize="20"></TextBlock>
+                        <TextBlock x:Uid="NetworkUrl" Text="Network URL:" Margin="10,5" VerticalAlignment="Center" Style="{StaticResource BasicTextStyle}" FontSize="20"></TextBlock>
                         <TextBox Grid.Column="1" Margin="10,5" Text="{Binding NetworkMRL, Mode=TwoWay}"></TextBox>
                         <Button Grid.Column="2" Margin="10,5" Command="{Binding PlayNetworkMRL}" CommandParameter="{Binding NetworkMRL}">
                             <TextBlock Text="Go" Style="{StaticResource BasicTextStyle}"  FontSize="16"></TextBlock>

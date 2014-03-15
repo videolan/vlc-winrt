@@ -21,15 +21,15 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Path Data="{StaticResource UsbKeyPath}" Fill="#FF363636" Margin="30,0" Height="60" Stretch="Uniform" VerticalAlignment="Top"/>
-                <TextBlock  Grid.Column="1" TextWrapping="Wrap" Text="Plug-in a removable device" FontSize="42" FontWeight="Light" Foreground="{StaticResource MainColor}" />
+                <TextBlock x:Uid="RemoveableDevice"  Grid.Column="1" TextWrapping="Wrap" Text="Plug-in a removable device" FontSize="42" FontWeight="Light" Foreground="{StaticResource MainColor}" />
             </Grid>
             <StackPanel Grid.Row="1" Margin="200,30,0,0">
                 <controls:NothingToSeeHere Foreground="Black"/>
-                <TextBlock Text="Plug in a removable storage and VLC will detects all the files in it." Foreground="DimGray" FontSize="17"/>
+                <TextBlock x:Uid="RemoveableDeviceMessage1" Text="Plug in a removable storage and VLC will detects all the files in it." Foreground="DimGray" FontSize="17"/>
             </StackPanel>
             <StackPanel Grid.Row="2">
                 <ProgressBar IsIndeterminate="True" Style="{StaticResource ThinProgressBar}" VerticalAlignment="Top" />
-                <TextBlock Text="Waiting for removable storages" VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="DimGray"/>
+                <TextBlock x:Uid="RemoveableDeviceMessage2" Text="Waiting for removable storages" VerticalAlignment="Top" HorizontalAlignment="Center" Foreground="DimGray"/>
             </StackPanel>
         </Grid>
     </Border>

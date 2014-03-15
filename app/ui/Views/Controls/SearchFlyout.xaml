@@ -56,7 +56,7 @@
             <Grid Background="{StaticResource MainColor}">
                 <StackPanel Orientation="Horizontal">
                     <Button Style="{StaticResource ModernAppBarButtonStyle}" Content="" VerticalAlignment="Bottom" Margin="15,0,0,0" Click="SearchFlyoutCloseButton_Click"/>
-                    <TextBlock Text="Search" Style="{StaticResource SubheaderTextStyle}" Margin="20,0,0,14" VerticalAlignment="Bottom"/>
+                    <TextBlock x:Uid="Search" Text="Search" Style="{StaticResource SubheaderTextStyle}" Margin="20,0,0,14" VerticalAlignment="Bottom"/>
                 </StackPanel>
             </Grid>
             <Grid Grid.Row="1" Background="#FFEAEAEA">
@@ -78,10 +78,8 @@
                 </StackPanel>
                 
                 <StackPanel Grid.Row="1">
-                    <ComboBox x:Name="ComboBox" Margin="15">
-                        
-                    </ComboBox>
-                    <TextBlock x:Name="ErrorTextBlock" Text="Please select a field of research" Foreground="{StaticResource MainColor}" TextWrapping="Wrap" Margin="15,-10,15,0" FontSize="16"/>
+                    <ComboBox x:Name="ComboBox" Margin="15"/>
+                    <TextBlock x:Uid="Filter" x:Name="ErrorTextBlock" Text="Please select a field to filter by..." Foreground="{StaticResource MainColor}" TextWrapping="Wrap" Margin="15,-10,15,0" FontSize="16"/>
                 </StackPanel>
                 <ListView Grid.Row="2" x:Name="SearchListView" Margin="10,0,0,0" SelectionMode="None" IsItemClickEnabled="True" ItemClick="SearchListView_OnItemClick">
                     <ListView.ItemTemplate>

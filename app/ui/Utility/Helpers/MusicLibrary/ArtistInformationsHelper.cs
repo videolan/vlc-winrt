@@ -15,6 +15,7 @@ using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using Windows.ApplicationModel.Resources;
 using Windows.System.UserProfile;
 using Windows.UI.Xaml;
 using Newtonsoft.Json;
@@ -61,6 +62,7 @@ namespace VLC_WINRT.Utility.Helpers.MusicLibrary
 
         static async Task DownloadPicFromDeezerToLocalFolder(MusicLibraryViewModel.ArtistItemViewModel artist)
         {
+
             HttpClient clientPic = new HttpClient();
             string json = await clientPic.GetStringAsync("http://api.deezer.com/search/artist?q=" + artist.Name);
             if(json == "{\"data\":[],\"total\":0}")
@@ -199,7 +201,8 @@ namespace VLC_WINRT.Utility.Helpers.MusicLibrary
                     }
                     else
                     {
-                        biography = "It seems we didn't find a biography for this artist.";
+                        var resourceLoader = new ResourceLoader();
+                        biography = resourceLoader.GetString("NoBiographyFound");
                     }
                 }
             }

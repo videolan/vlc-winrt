@@ -123,11 +123,38 @@
   <data name="AddContentCont.Text" xml:space="preserve">
     <value>in order to use this section.</value>
   </data>
+  <data name="Album.Text" xml:space="preserve">
+    <value>album</value>
+  </data>
+  <data name="Artist.Text" xml:space="preserve">
+    <value>artist</value>
+  </data>
+  <data name="Biography.Text" xml:space="preserve">
+    <value>biography</value>
+  </data>
+  <data name="ChangeVideoFolder.Content" xml:space="preserve">
+    <value>Change default Video folder</value>
+  </data>
   <data name="Clear.Text" xml:space="preserve">
     <value>Clear</value>
   </data>
   <data name="CurrentFeatures.Text" xml:space="preserve">
     <value>Current Features:</value>
+  </data>
+  <data name="DecreaseSpeed.Name" xml:space="preserve">
+    <value>Decrease speed</value>
+  </data>
+  <data name="ElementsNotFound.Text" xml:space="preserve">
+    <value>It seems that we didn't find any elements in there.</value>
+  </data>
+  <data name="ExternalStorage" xml:space="preserve">
+    <value>external storage</value>
+  </data>
+  <data name="ExternalStorage.Text" xml:space="preserve">
+    <value>external storage</value>
+  </data>
+  <data name="Favorite.Name" xml:space="preserve">
+    <value>Favorite</value>
   </data>
   <data name="FeaturesOpen.Text" xml:space="preserve">
     <value>Open a video from anywhere on your device. Swipe up or right click to open a file from the App Bar.</value>
@@ -141,8 +168,23 @@
   <data name="FeaturesVidLib.Text" xml:space="preserve">
     <value>Video Library support. Add files to your Video Library and play them directly.</value>
   </data>
+  <data name="Filter.Text" xml:space="preserve">
+    <value>Please select a field to filter by...</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>home</value>
+  </data>
+  <data name="IncreaseSpeed.Name" xml:space="preserve">
+    <value>Increase speed</value>
+  </data>
+  <data name="IndexingMusic1.Text" xml:space="preserve">
+    <value>Indexing Music library</value>
+  </data>
+  <data name="IndexingMusic2.Text" xml:space="preserve">
+    <value>VLC may be unresponsive</value>
+  </data>
   <data name="IntroPara.Text" xml:space="preserve">
-    <value>This app is the first Beta of VLC media player to the new Windows Modern Design. The app is currently under heavy development, some features are missing, and many existing features have bugs. We're working on it.</value>
+    <value>This app is our attempt to bring the VLC media player to Microsoft's newest OS. It's currently under heavy development so not all features have been included, and many existing features have bugs.</value>
   </data>
   <data name="ItsLonely.Text" xml:space="preserve">
     <value>It's lonely here.</value>
@@ -153,22 +195,97 @@
   <data name="MainPageTitle.Text" xml:space="preserve">
     <value>VLC for Windows 8</value>
   </data>
+  <data name="MediaServers" xml:space="preserve">
+    <value>media servers</value>
+  </data>
+  <data name="MediaServers.Text" xml:space="preserve">
+    <value>Media servers</value>
+  </data>
   <data name="Movies.Text" xml:space="preserve">
     <value>movies</value>
+  </data>
+  <data name="Music" xml:space="preserve">
+    <value>music</value>
   </data>
   <data name="Music.Text" xml:space="preserve">
     <value>music</value>
   </data>
+  <data name="NetworkUrl.Text" xml:space="preserve">
+    <value>Network URL:</value>
+  </data>
+  <data name="NoBiographyFound" xml:space="preserve">
+    <value>It seems we didn't find a biography for this artist.</value>
+  </data>
+  <data name="NothingToSeeHere.Text" xml:space="preserve">
+    <value>Nothing to see here</value>
+  </data>
   <data name="OpenFile.Text" xml:space="preserve">
     <value>Open a file</value>
+  </data>
+  <data name="OpenNetworkStream.Text" xml:space="preserve">
+    <value>Open Network Stream...</value>
   </data>
   <data name="Or.Text" xml:space="preserve">
     <value>or</value>
   </data>
+  <data name="PartnersGold.Text" xml:space="preserve">
+    <value>gold partners</value>
+  </data>
+  <data name="PartnersOther.Text" xml:space="preserve">
+    <value>other backers</value>
+  </data>
+  <data name="PartnersSilver.Text" xml:space="preserve">
+    <value>silver partners</value>
+  </data>
+  <data name="Play.Name" xml:space="preserve">
+    <value>Play2</value>
+  </data>
+  <data name="PopularAlbums.Header" xml:space="preserve">
+    <value>popular albums</value>
+  </data>
+  <data name="RemovableDevices.Text" xml:space="preserve">
+    <value>Removable devices</value>
+  </data>
+  <data name="RemoveableDevice.Text" xml:space="preserve">
+    <value>Plug-in a removable device</value>
+  </data>
+  <data name="RemoveableDeviceMessage1.Text" xml:space="preserve">
+    <value>Plug in a removable storage and VLC will detects all the files in it.</value>
+  </data>
+  <data name="RemoveableDeviceMessage2.Text" xml:space="preserve">
+    <value>Waiting for removable storages</value>
+  </data>
+  <data name="Search.Text" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="SimilarArtists.Header" xml:space="preserve">
+    <value>similar artists</value>
+  </data>
+  <data name="Track.Text" xml:space="preserve">
+    <value>track</value>
+  </data>
+  <data name="Unfavorite.Name" xml:space="preserve">
+    <value>Unfavorite</value>
+  </data>
+  <data name="Videos" xml:space="preserve">
+    <value>videos</value>
+  </data>
   <data name="Videos.Text" xml:space="preserve">
     <value>videos</value>
   </data>
+  <data name="VideosNotFound1.Text" xml:space="preserve">
+    <value>It seems that we didn't find any elements in your Video library.</value>
+  </data>
+  <data name="VideosNotFound2.Text" xml:space="preserve">
+    <value>Maybe we didn't search in the right places.</value>
+  </data>
+  <data name="VlcThankYou.Text" xml:space="preserve">
+    <value>The VLC for Windows 8 Team would like to thank very much the people who made this application possible:</value>
+  </data>
   <data name="Welcome.Text" xml:space="preserve">
     <value>Welcome to VLC for Windows 8 Beta!</value>
+  </data>
+  <data name="WelcomeMessage.Text" xml:space="preserve">
+    <value>THE VLC TEAM WOULD LIKE TO THANK</value>
   </data>
 </root>

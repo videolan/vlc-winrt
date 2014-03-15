@@ -62,8 +62,8 @@
                             <Button Style="{StaticResource SkipAheadNoTextHugeAppBarButtonStyle}" Command="{Binding SkipAhead}"/>
                         </StackPanel>
                         <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,-135,-6">
-                            <Button Style="{StaticResource IncreaseRateLittleAppBarButtonStyle}" Click="IncreaseRate_Click"/>
-                            <Button Style="{StaticResource DecreaseRateLittleAppBarButtonStyle}" Click="DecreaseRate_Click"/>
+                            <Button x:Uid="IncreaseSpeed" Style="{StaticResource IncreaseRateLittleAppBarButtonStyle}" Click="IncreaseRate_Click"/>
+                            <Button x:Uid="DecreaseSpeed" Style="{StaticResource DecreaseRateLittleAppBarButtonStyle}" Click="DecreaseRate_Click"/>
                         </StackPanel>
                     </Grid>
                     <Grid x:Name="MainButtonsSnapped" VerticalAlignment="Bottom" HorizontalAlignment="Center">

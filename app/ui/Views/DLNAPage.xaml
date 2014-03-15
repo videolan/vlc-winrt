@@ -125,7 +125,7 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Button Style="{StaticResource BackButtonStyle}" Click="GoBack_Click" />
-            <TextBlock Grid.Column="1" Text="Media servers" Foreground="#e67e22" Margin="0,2,0,0" FontSize="32" FontWeight="Light" TextWrapping="Wrap"/>
+            <TextBlock x:Uid="MediaServers" Grid.Column="1" Text="Media servers" Foreground="#e67e22" Margin="0,2,0,0" FontSize="32" FontWeight="Light" TextWrapping="Wrap"/>
         </Grid>
         <Grid Grid.Row="1" x:Name="MainGrid" >
             <Grid.ColumnDefinitions>
@@ -136,7 +136,7 @@
                 <CompositeTransform />
             </Grid.RenderTransform>
             <controls:NothingToSeeHere Visibility="{Binding Count, Converter={StaticResource CountToVisibilityConverter}}"/>
-            <ListView x:Name="FirstPanelGridView" IsItemClickEnabled="True" SelectionMode="None" IsSwipeEnabled="False" Margin="100,0,0,0" Width="300" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" ItemsSource="{Binding}" ItemClick="FirstPanelGridView_SelectionChanged" >
+            <ListView Grid.Column="0" x:Name="FirstPanelGridView" IsItemClickEnabled="True" SelectionMode="None" IsSwipeEnabled="False" Margin="100,0,0,0" Width="300" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" ItemsSource="{Binding}" ItemClick="FirstPanelGridView_SelectionChanged" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">

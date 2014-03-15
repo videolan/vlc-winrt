@@ -132,7 +132,7 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Button Style="{StaticResource BackButtonStyle}" Click="GoBack_Click" />
-            <TextBlock Grid.Column="1" Text="Removable devices" Foreground="#e67e22" Margin="0,2,0,0" FontSize="32" FontWeight="Light" TextWrapping="Wrap"/>
+            <TextBlock x:Uid="RemovableDevices" Grid.Column="1" Text="Removable devices" Foreground="#e67e22" Margin="0,2,0,0" FontSize="32" FontWeight="Light" TextWrapping="Wrap"/>
         </Grid>
         <Grid Grid.Row="1" x:Name="MainGrid" >
             <Grid.ColumnDefinitions>
@@ -161,7 +161,7 @@
             </controls:VariableSizedItemsGridView>
             <!--<GridView Grid.Column="1" x:Name="SecondPanelGridView" Margin="20,0,0,0" ItemContainerStyle="{StaticResource GridViewItemContainerStyle}" ItemTemplate="{StaticResource NormaleMovieTemplate}" />-->
             <ListView Grid.Column="1" x:Name="SecondPanelListView" Margin="10,0,0,0" ItemTemplate="{StaticResource NormaleMovieTemplate}"/>
-            <removableStorage:PlugARemovableStorage Grid.ColumnSpan="2" Visibility="{Binding RemovableStorageVMs.Count, Converter={StaticResource CountToVisibilityConverter}}" />
+            <removableStorage:PlugARemovableStorage  Grid.ColumnSpan="2" Grid.Column="0" Visibility="{Binding RemovableStorageVMs.Count, Converter={StaticResource CountToVisibilityConverter}}" />
         </Grid>
         <controls:MiniPlayer Grid.Row="2"/>
     </Grid>

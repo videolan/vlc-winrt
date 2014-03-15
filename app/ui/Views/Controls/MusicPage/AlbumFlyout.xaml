@@ -27,8 +27,8 @@
                         <TextBlock Style="{StaticResource SubtitleTextStyle}" Text="{Binding Artist}" TextWrapping="NoWrap" TextTrimming="WordEllipsis" VerticalAlignment="Top"/>
                     </StackPanel>
                     <wrapPanel:WrapPanel Orientation="Horizontal" Margin="-30,0,0,-15" VerticalAlignment="Bottom">
-                        <Button Style="{StaticResource PlayAppBarButtonStyle}" Command="{Binding PlayAlbum}" CommandParameter="{Binding}"/>
-                        <Button Style="{StaticResource FavoriteAppBarButtonStyle}" Command="{Binding FavoriteAlbum}" CommandParameter="{Binding}"/>
+                        <Button x:Uid="Play" Style="{StaticResource PlayAppBarButtonStyle}" Command="{Binding PlayAlbum}" CommandParameter="{Binding}"/>
+                        <Button x:Uid="Favorite" Style="{StaticResource FavoriteAppBarButtonStyle}" Command="{Binding FavoriteAlbum}" CommandParameter="{Binding}"/>
                     </wrapPanel:WrapPanel>
                 </Grid>
             </Grid>

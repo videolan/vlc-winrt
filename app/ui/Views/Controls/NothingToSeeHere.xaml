@@ -10,9 +10,9 @@
     d:DesignWidth="400">
     <Grid>
         <TextBlock TextWrapping="Wrap">
-            <Run Text="Nothing to see here." FontSize="36" FontWeight="Light"/>
+            <Run x:Uid="NothingToSeeHere" Text="Nothing to see here." FontSize="36" FontWeight="Light"/>
             <LineBreak />
-            <Run Text="It seems that we didn't find any elements in there." FontSize="20" FontWeight="SemiLight"/>
+            <Run x:Uid="ElementsNotFound" Text="It seems that we didn't find any elements in there." FontSize="20" FontWeight="SemiLight"/>
         </TextBlock>
     </Grid>
 </UserControl>
