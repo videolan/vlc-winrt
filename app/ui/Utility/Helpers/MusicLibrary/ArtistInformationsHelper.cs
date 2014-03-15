@@ -151,25 +151,18 @@ namespace VLC_WINRT.Utility.Helpers.MusicLibrary
                 var response =
                     await
                         lastFmClient.GetStringAsync(
-                            "http://ws.audioscrobbler.com/2.0/?method=artist.getsimilar&limit=8&api_key=" +
+                            "http://ws.audioscrobbler.com/2.0/?method=artist.getsimilar&format=json&limit=8&api_key=" +
                             App.ApiKeyLastFm + "&artist=" + artist.Name);
-
-                var xml = XDocument.Parse(response);
-                var similarArtists = from results in xml.Descendants("artist")
-                                     select new MusicLibraryViewModel.ArtistItemViewModel
-                                     {
-                                         Name = results.Element("name").Value.ToString(),
-                                         Picture = results.Elements("image").ElementAt(3).Value,
-                                     };
-                if (similarArtists != null && similarArtists.Any())
+                var similarArtists = JsonConvert.DeserializeObject<SimilarArtistInformation>(response);
+                if (similarArtists != null && similarArtists.Similarartists.Artist.Any())
                 {
-                    artist.OnlineRelatedArtists = similarArtists.ToList();
+                    artist.OnlineRelatedArtists = similarArtists.Similarartists.Artist;
                     artist.IsOnlineRelatedArtistsLoaded = true;
                 }
             }
             catch
             {
-
+                Debug.WriteLine("Error getting similar artists from this artist.");
             }
         }
 

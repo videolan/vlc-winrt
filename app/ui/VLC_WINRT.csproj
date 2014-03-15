@@ -91,6 +91,7 @@
     <Compile Include="Model\DeezerArtistItem.cs" />
     <Compile Include="Model\MediaHistory.cs" />
     <Compile Include="Model\Panel.cs" />
+    <Compile Include="Model\SimilarArtistInformation.cs" />
     <Compile Include="Model\Subtitle.cs" />
     <Compile Include="Model\TopAlbumInformation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -124,6 +125,7 @@
     <Compile Include="Utility\Converters\NegatedCountToVisibilityConverter.cs" />
     <Compile Include="Utility\Converters\NullToVisibilityConverter.cs" />
     <Compile Include="Utility\Converters\SecondsStringConverter.cs" />
+    <Compile Include="Utility\Converters\SimilarArtistImageConverter.cs" />
     <Compile Include="Utility\Converters\StringToUpperConverter.cs" />
     <Compile Include="Utility\Converters\TimeSpanSecondsDoubleConverter.cs" />
     <Compile Include="Utility\Converters\TimespanShortStringConverter.cs" />

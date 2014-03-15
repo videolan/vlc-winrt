@@ -224,7 +224,7 @@
                                 </TextBlock>
                             </ScrollViewer>
                         </Grid>
-                        <GridView x:Uid="PopularAlbums" IsSwipeEnabled="False" HorizontalAlignment="Left" Width="500" ItemContainerStyle="{StaticResource GridViewItemContainerStyle}" Margin="20,10,0,0" Visibility="{Binding Artist.IsOnlinePopularAlbumItemsLoaded, Converter={StaticResource BooleanToVisibilityConverter}}" SelectionMode="None" IsItemClickEnabled="True" HeaderTemplate="{StaticResource ColumnHeaderDataTemplate}" Header="popular albums" ItemsSource="{Binding Artist.OnlinePopularAlbumItems}">
+                        <GridView x:Uid="PopularAlbums" x:Name="PopularItemGridView" ItemClick="PopularItemGridView_OnItemClick" IsSwipeEnabled="False" HorizontalAlignment="Left" Width="500" ItemContainerStyle="{StaticResource GridViewItemContainerStyle}" Margin="20,10,0,0" Visibility="{Binding Artist.IsOnlinePopularAlbumItemsLoaded, Converter={StaticResource BooleanToVisibilityConverter}}" SelectionMode="None" IsItemClickEnabled="True" HeaderTemplate="{StaticResource ColumnHeaderDataTemplate}" Header="popular albums" ItemsSource="{Binding Artist.OnlinePopularAlbumItems}">
                             <GridView.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <WrapGrid Orientation="Horizontal" />
@@ -251,7 +251,7 @@
                                 </DataTemplate>
                             </GridView.ItemTemplate>
                         </GridView>
-                        <GridView x:Uid="SimilarArtists" Margin="20,10,0,0" IsSwipeEnabled="False" HorizontalAlignment="Left" Width="500" ItemContainerStyle="{StaticResource GridViewItemContainerStyle}" Visibility="{Binding Artist.IsOnlineRelatedArtistsLoaded, Converter={StaticResource BooleanToVisibilityConverter}}" SelectionMode="None" IsItemClickEnabled="True" HeaderTemplate="{StaticResource ColumnHeaderDataTemplate}" Header="similar artists" ItemsSource="{Binding Artist.OnlineRelatedArtists}">
+                        <GridView x:Uid="SimilarArtists" x:Name="SimilarArtistsGridView" ItemClick="SimilarArtistsGridView_OnItemClick" Margin="20,10,0,0" IsSwipeEnabled="False" HorizontalAlignment="Left" Width="500" ItemContainerStyle="{StaticResource GridViewItemContainerStyle}" Visibility="{Binding Artist.IsOnlineRelatedArtistsLoaded, Converter={StaticResource BooleanToVisibilityConverter}}" SelectionMode="None" IsItemClickEnabled="True" HeaderTemplate="{StaticResource ColumnHeaderDataTemplate}" Header="similar artists" ItemsSource="{Binding Artist.OnlineRelatedArtists}">
                             <GridView.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <WrapGrid Orientation="Horizontal" />
@@ -260,7 +260,7 @@
                             <GridView.ItemTemplate>
                                 <DataTemplate>
                                     <Grid Height="150" Width="150">
-                                        <Image Source="{Binding Picture}" Stretch="UniformToFill"/>
+                                        <Image Source="{Binding Image, Converter={StaticResource SimilarArtistImageConverter}}" Stretch="UniformToFill"/>
                                         <Grid Height="80" VerticalAlignment="Bottom">
                                             <Grid.Background>
                                                 <LinearGradientBrush StartPoint="1,0">
@@ -272,7 +272,6 @@
                                             </Grid.Background>
                                             <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="5">
                                                 <TextBlock Text="{Binding Name}" TextWrapping="NoWrap" TextTrimming="WordEllipsis" FontSize="16" />
-                                                <TextBlock Text="{Binding Year}" FontSize="14" Foreground="#7FF5F5F5"/>
                                             </StackPanel>
                                         </Grid>
                                     </Grid>

@@ -332,7 +332,7 @@ namespace VLC_WINRT.ViewModels.MainPage
             private bool _isOnlinePopularAlbumItemsLoaded = false;
             private TopAlbum[] _onlinePopularAlbumItems;
             private bool _isOnlineRelatedArtistsLoaded = false;
-            private List<ArtistItemViewModel> _onlineRelatedArtists;
+            private SimilarArtist[] _onlineRelatedArtists;
             private string _biography;
 
             [JsonIgnore()]
@@ -428,7 +428,7 @@ namespace VLC_WINRT.ViewModels.MainPage
             }
 
             [JsonIgnore()]
-            public List<ArtistItemViewModel> OnlineRelatedArtists
+            public SimilarArtist[] OnlineRelatedArtists
             {
                 get
                 {

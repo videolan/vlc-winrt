@@ -52,6 +52,7 @@
             <converters:TimeSpanSecondsDoubleConverter x:Key="TimeSpanSecondsDoubleConverter">
             </converters:TimeSpanSecondsDoubleConverter>
             <converters:TopAlbumImageConverter x:Key="TopAlbumImageConverter" />
+            <converters:SimilarArtistImageConverter x:Key="SimilarArtistImageConverter" />
             <viewModels:Locator x:Key="Locator"></viewModels:Locator>
             
             <!-- Main Page Styles -->
