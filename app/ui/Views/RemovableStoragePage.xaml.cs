@@ -49,10 +49,12 @@ namespace VLC_WINRT.Views
         {
             if (Window.Current.Bounds.Width == 320)
             {
-                FirstPanelGridView.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+                FirstPanelGridView.Visibility = Visibility.Collapsed;
             }
-            SecondPanelGridView.ItemsSource = (e.ClickedItem as RemovableLibraryViewModel).Media;
-            SecondPanelListView.ItemsSource = (e.ClickedItem as RemovableLibraryViewModel).Media;
+            var removableLibraryViewModel = e.ClickedItem as RemovableLibraryViewModel;
+            if (removableLibraryViewModel == null) return;
+            SecondPanelGridView.ItemsSource = removableLibraryViewModel.Media;
+            SecondPanelListView.ItemsSource = removableLibraryViewModel.Media;
         }
 
         private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
