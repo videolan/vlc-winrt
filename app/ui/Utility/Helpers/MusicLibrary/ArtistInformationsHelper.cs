@@ -121,30 +121,23 @@ namespace VLC_WINRT.Utility.Helpers.MusicLibrary
         {
             try
             {
-                Debug.WriteLine("Getting TopAlbums from XBOX Music API");
+                Debug.WriteLine("Getting TopAlbums from LastFM API");
                 HttpClient lastFmClient = new HttpClient();
                 var response =
                     await
                         lastFmClient.GetStringAsync(
-                            "http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&limit=8&api_key=" +
-                            App.ApiKeyLastFm + "&artist=" + artist.Name);
-                var xml = XDocument.Parse(response);
-                var topAlbums = from results in xml.Descendants("album")
-                                select new MusicLibraryViewModel.OnlineAlbumItem
-                                {
-                                    Name = results.Element("name").Value.ToString(),
-                                    Picture = results.Elements("image").ElementAt(3).Value,
-                                };
-                Debug.WriteLine("Receive TopAlbums from XBOX Music API");
-                if (topAlbums != null && topAlbums.Any())
+                            string.Format("http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&limit=8&format=json&api_key={0}&artist={1}", App.ApiKeyLastFm, artist.Name));
+                var albums = JsonConvert.DeserializeObject<TopAlbumInformation>(response);
+                Debug.WriteLine("Receive TopAlbums from LastFM API");
+                if (albums != null)
                 {
-                    artist.OnlinePopularAlbumItems = topAlbums.ToList();
+                    artist.OnlinePopularAlbumItems = albums.TopAlbums.Album;
                     artist.IsOnlinePopularAlbumItemsLoaded = true;
                 }
             }
             catch
             {
-
+                Debug.WriteLine("Error getting top albums from artist.");
             }
         }
 

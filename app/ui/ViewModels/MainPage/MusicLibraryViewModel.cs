@@ -322,7 +322,7 @@ namespace VLC_WINRT.ViewModels.MainPage
             // more informations
             private bool _isFavorite;
             private bool _isOnlinePopularAlbumItemsLoaded = false;
-            private List<OnlineAlbumItem> _onlinePopularAlbumItems;
+            private TopAlbum[] _onlinePopularAlbumItems;
             private bool _isOnlineRelatedArtistsLoaded = false;
             private List<ArtistItemViewModel> _onlineRelatedArtists;
             private string _biography;
@@ -406,7 +406,7 @@ namespace VLC_WINRT.ViewModels.MainPage
             }
 
             [JsonIgnore()]
-            public List<OnlineAlbumItem> OnlinePopularAlbumItems
+            public TopAlbum[] OnlinePopularAlbumItems
             {
                 get
                 {
@@ -477,32 +477,6 @@ namespace VLC_WINRT.ViewModels.MainPage
             }
         }
 
-        public class OnlineAlbumItem : BindableBase
-        {
-            private string _name;
-            private string _artist;
-            private string _picture;
-            public string Name
-            {
-                get { return _name; }
-                set { SetProperty(ref _name, value); }
-            }
-
-            public string Artist
-            {
-                get { return _artist; }
-                set
-                {
-                    SetProperty(ref _artist, value);
-                }
-            }
-            public string Picture
-            {
-                get { return _picture; }
-                set { SetProperty(ref _picture, value); }
-            }
-
-        }
         public class AlbumItem : BindableBase
         {
             private string _name;
