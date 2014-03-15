@@ -196,6 +196,10 @@ namespace VLC_WINRT.Utility.Helpers.MusicLibrary
                     {
                         // Deleting the html tags
                         biography = Regex.Replace(bioSummary, "<.*?>", string.Empty);
+                        // Remove leading new lines.
+                        biography = biography.TrimStart('\r', '\n');
+                        // Remove leading and ending white spaces.
+                        biography = biography.Trim();
                         // TODO: Replace string "remove" with something better. It may not work on all artists and in all languages.
                         biography = !string.IsNullOrEmpty(biography) ? biography.Remove(biography.Length - "Read more about  on Last.fm".Length - artist.Name.Length - 6) : "It seems we didn't find a biography for this artist.";
                     }
