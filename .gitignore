@@ -1,6 +1,6 @@
-
 #ignore thumbnails created by windows
 Thumbs.db
+
 #Ignore files build by Visual Studio
 *.obj
 *.exe
@@ -39,6 +39,10 @@ _ReSharper*/
 app/packages
 app/VLC_WINRT.sln.DotSettings
 vlc/plugins/plugins.dat
+*dll
 app/ui/plugins/access/libaccess_winrt_plugin.dll
 app/ui/plugins/video_output/libdirect2d_winrt_plugin.dll
 app/ui/plugins/audio_output/libxaudio2_winrt_plugin.dll
+
+#Store association
+app/ui/Package.StoreAssociation.xml
