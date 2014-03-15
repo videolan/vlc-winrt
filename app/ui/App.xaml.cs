@@ -28,6 +28,7 @@ using VLC_WINRT.Utility.Services.RunTime;
 using VLC_WINRT.ViewModels;
 using VLC_WINRT.ViewModels.MainPage;
 using VLC_WINRT.Views;
+using Autofac;
 
 // The Split App template is documented at http://go.microsoft.com/fwlink/?LinkId=234228
 
@@ -46,6 +47,8 @@ namespace VLC_WINRT
         public static string TemporaryMRL;
         public static string TemporaryFileName;
 
+        public static IContainer Container;
+
         /// <summary>
         ///     Initializes the singleton Application object.  This is the first line of authored code
         ///     executed, and as such is the logical equivalent of main() or WinMain().
@@ -54,6 +57,9 @@ namespace VLC_WINRT
         {
             InitializeComponent();
             Suspending += OnSuspending;
+
+            Container = AutoFacConfiguration.Configure();
+            Locator.Container = Container;
         }
         public static Frame ApplicationFrame
         {

@@ -7,13 +7,13 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
+using Autofac;
 using System;
 using Windows.Storage;
 using VLC_WINRT.Common;
 using Windows.Foundation;
 using Windows.System.Threading;
 using VLC_WINRT.Model;
-using VLC_WINRT.Utility.IoC;
 using VLC_WINRT.Utility.Services.RunTime;
 
 namespace VLC_WINRT.ViewModels.MainPage
@@ -41,7 +41,7 @@ namespace VLC_WINRT.ViewModels.MainPage
 
         private void GatherTimeInformation()
         {
-            var historyService = IoC.GetInstance<HistoryService>();
+            var historyService = App.Container.Resolve<HistoryService>();
             MediaHistory history = historyService.GetHistory(_token);
 
             DispatchHelper.InvokeAsync(() =>

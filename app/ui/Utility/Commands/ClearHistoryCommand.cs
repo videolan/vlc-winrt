@@ -7,6 +7,7 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
+using Autofac;
 using VLC_WINRT.Common;
 using VLC_WINRT.Utility.Services.RunTime;
 using VLC_WINRT.ViewModels;
@@ -18,7 +19,7 @@ namespace VLC_WINRT.Utility.Commands
     {
         public override void Execute(object parameter)
         {
-            var historyService = IoC.IoC.GetInstance<HistoryService>();
+            var historyService = App.Container.Resolve<HistoryService>();
             LastViewedViewModel lastViewedVM = Locator.MainPageVM.LastViewedVM;
             historyService.Clear();
             lastViewedVM.LastViewedVM = null;

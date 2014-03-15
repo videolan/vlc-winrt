@@ -12,7 +12,9 @@
   DataContext="{Binding Source={StaticResource Locator}, Path=ViewModelName}"
 */
 
-using VLC_WINRT.Utility.IoC;
+using Autofac;
+using System;
+using VLC_WINRT.Common;
 using VLC_WINRT.Utility.Services.Interface;
 using VLC_WINRT.Utility.Services.RunTime;
 using VLC_WINRT.ViewModels.MainPage;
@@ -27,50 +29,42 @@ namespace VLC_WINRT.ViewModels
     /// </summary>
     public class Locator
     {
-        /// <summary>
-        ///     Initializes a new instance of the Locator class.
-        /// </summary>
-        static Locator()
+        public static IContainer Container;
+
+        public Locator()
         {
             if (Windows.ApplicationModel.DesignMode.DesignModeEnabled)
             {
-                // Create design time view services and models
-                IoC.Register<IThumbnailService, Utility.Services.DesignTime.ThumbnailService>();
+                Container = AutoFacConfiguration.Configure();
             }
-            else
-            {
-                // Create run time view services and models
-                IoC.Register<IThumbnailService, Utility.Services.RunTime.ThumbnailService>();
-            }
-           
-
-            IoC.Register<HistoryService>();
-            IoC.Register<MouseService>();
-            IoC.Register<MediaPlayerService>();
-            IoC.Register<ExternalDeviceService>(true);
-
-            IoC.Register<PlayVideoViewModel>(true);
-            IoC.Register<MainPageViewModel>();
-            IoC.Register<MusicLibraryViewModel>();
-            IoC.Register<MusicPlayerViewModel>();
         }
+
+        /// <summary>
+        ///     Initializes a new instance of the Locator class.
+        /// </summary>
         public static MusicPlayerViewModel MusicPlayerVM
         {
-            get { return IoC.GetInstance<MusicPlayerViewModel>(); }
+            get {
+                if (Container == null)
+                {
+                    throw new Exception("Test!");
+                }
+                return Container.Resolve<MusicPlayerViewModel>(); 
+            }
         }
         public static MusicLibraryViewModel MusicLibraryVM
         {
-            get { return IoC.GetInstance<MusicLibraryViewModel>(); }
+            get { return Container.Resolve<MusicLibraryViewModel>(); }
         }
 
         public static PlayVideoViewModel PlayVideoVM
         {
-            get { return IoC.GetInstance<PlayVideoViewModel>(); }
+            get { return Container.Resolve<PlayVideoViewModel>(); }
         }
 
         public static MainPageViewModel MainPageVM
         {
-            get { return IoC.GetInstance<MainPageViewModel>(); }
+            get { return Container.Resolve<MainPageViewModel>(); }
         }
     }
 }

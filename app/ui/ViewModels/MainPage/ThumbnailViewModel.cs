@@ -7,10 +7,10 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
+using Autofac;
 using System;
 using System.Diagnostics;
 using VLC_WINRT.Common;
-using VLC_WINRT.Utility.IoC;
 using VLC_WINRT.Utility.Services.Interface;
 using Windows.Foundation;
 using Windows.Storage;
@@ -30,8 +30,8 @@ namespace VLC_WINRT.ViewModels.MainPage
 
         public ThumbnailViewModel(StorageFile storageFile)
         {
+            _thumbsService = App.Container.Resolve<IThumbnailService>();
             File = storageFile;
-            _thumbsService = IoC.GetInstance<IThumbnailService>();
         }
 
         public ImageSource Image
@@ -50,7 +50,7 @@ namespace VLC_WINRT.ViewModels.MainPage
             }
         }
 
-        private async void GenerateThumbnail(IAsyncAction operation)
+        private async void GenerateThumbnail()
         {
             StorageItemThumbnail thumb = null;
             try
@@ -65,11 +65,11 @@ namespace VLC_WINRT.ViewModels.MainPage
             if (thumb != null)
             {
                 await DispatchHelper.InvokeAsync(async () =>
-                                          {
-                                              var image = new BitmapImage();
-                                              await image.SetSourceAsync(thumb);
-                                              Image = image;
-                                          });
+                {
+                    var image = new BitmapImage();
+                    await image.SetSourceAsync(thumb);
+                    Image = image;
+                });
             }
         }
     }

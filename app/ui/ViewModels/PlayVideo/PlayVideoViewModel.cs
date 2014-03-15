@@ -7,6 +7,7 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
+using Autofac;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -22,7 +23,6 @@ using VLC_WINRT.Common;
 using VLC_WINRT.Model;
 using VLC_WINRT.Utility.Commands;
 using VLC_WINRT.Utility.Commands.VideoPlayer;
-using VLC_WINRT.Utility.IoC;
 using VLC_WINRT.Utility.Services.RunTime;
 using VLC_WINRT.ViewModels.MainPage;
 using VLC_WINRT.Views.Controls.MainPage;
@@ -61,7 +61,7 @@ namespace VLC_WINRT.ViewModels.PlayVideo
         public PlayVideoViewModel()
         {
             _playOrPause = new PlayPauseCommand();
-            _historyService = IoC.GetInstance<HistoryService>();
+            _historyService = App.Container.Resolve<HistoryService>();
             _goBackCommand = new StopVideoCommand();
             _displayAlwaysOnRequest = new DisplayRequest();
             _subtitles = new ObservableCollection<Subtitle>();
@@ -70,10 +70,10 @@ namespace VLC_WINRT.ViewModels.PlayVideo
             _sliderPositionTimer.Tick += FirePositionUpdate;
             _sliderPositionTimer.Interval = TimeSpan.FromMilliseconds(16);
 
-            _vlcPlayerService = IoC.GetInstance<MediaPlayerService>();
+            _vlcPlayerService = App.Container.Resolve<MediaPlayerService>();
             _vlcPlayerService.StatusChanged += PlayerStateChanged;
 
-            _mouseService = IoC.GetInstance<MouseService>();
+            _mouseService = App.Container.Resolve<MouseService>();
 
             _skipAhead = new ActionCommand(() => _vlcPlayerService.SkipAhead());
             _skipBack = new ActionCommand(() => _vlcPlayerService.SkipBack());

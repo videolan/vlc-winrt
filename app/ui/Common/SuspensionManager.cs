@@ -7,13 +7,13 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
+using Autofac;
 using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using VLC_WINRT.Utility.IoC;
 using VLC_WINRT.Utility.Services.RunTime;
 using VLC_WINRT.ViewModels;
 
@@ -75,7 +75,7 @@ namespace VLC_WINRT.Common
         {
             try
             {
-                var historyService = IoC.GetInstance<HistoryService>();
+                var historyService = App.Container.Resolve<HistoryService>();
                 await historyService.SaveHistory();
             }
             catch (Exception e)
@@ -99,7 +99,7 @@ namespace VLC_WINRT.Common
         {
             try
             {
-                var historyService = IoC.GetInstance<HistoryService>();
+                var historyService = App.Container.Resolve<HistoryService>();
             }
             catch (Exception e)
             {

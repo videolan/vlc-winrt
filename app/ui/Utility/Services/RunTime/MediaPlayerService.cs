@@ -7,6 +7,7 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
+using Autofac;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -39,7 +40,7 @@ namespace VLC_WINRT.Utility.Services.RunTime
         public MediaPlayerService()
         {
             CurrentState = MediaPlayerState.Stopped;
-            _historyService = IoC.IoC.GetInstance<HistoryService>();
+            _historyService = App.Container.Resolve<HistoryService>();
         }
 
         public event EventHandler<MediaPlayerState> StatusChanged;

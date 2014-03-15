@@ -9,6 +9,7 @@
 
 using VLC_WINRT.Common;
 using VLC_WINRT.Utility.Services.RunTime;
+using Autofac;
 
 namespace VLC_WINRT.Utility.Commands
 {
@@ -16,7 +17,7 @@ namespace VLC_WINRT.Utility.Commands
     {
         public override void Execute(object parameter)
         {
-            var playerService = IoC.IoC.GetInstance<MediaPlayerService>();
+            var playerService = App.Container.Resolve<MediaPlayerService>();
             if (playerService.CurrentState == MediaPlayerService.MediaPlayerState.Playing)
             {
                 playerService.Pause();

@@ -7,6 +7,7 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
+using Autofac;
 using System;
 using Windows.Media;
 using Windows.UI.Xaml.Media.Animation;
@@ -29,7 +30,7 @@ namespace VLC_WINRT.Utility.Commands
             if(MediaControl.IsPlaying)
                 Locator.MusicPlayerVM.Stop();
 
-            var historyService = IoC.IoC.GetInstance<HistoryService>();
+            var historyService = App.Container.Resolve<HistoryService>();
             var vm = (MediaViewModel) parameter;
 
             string token = historyService.Add(vm.File);

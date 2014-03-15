@@ -84,6 +84,7 @@
     </Compile>
     <Compile Include="Common\AlwaysExecutableCommand.cs" />
     <Compile Include="Common\DispatchHelper.cs" />
+    <Compile Include="Common\AutoFacConfiguration.cs" />
     <Compile Include="Common\KnownVLCLocation.cs" />
     <Compile Include="Model\AlbumInformation.cs" />
     <Compile Include="Model\ArtistInformation.cs" />
@@ -168,7 +169,6 @@
     <Compile Include="Utility\Services\RunTime\MouseService.cs" />
     <Compile Include="Utility\Services\RunTime\NavigationService.cs" />
     <Compile Include="Utility\Services\RunTime\ThumbnailService.cs" />
-    <Compile Include="Utility\IoC\IoC.cs" />
     <Compile Include="ViewModels\Locator.cs" />
     <Compile Include="ViewModels\MainPage\ExternalStorageViewModel.cs" />
     <Compile Include="ViewModels\MainPage\LastViewedViewModel.cs" />
@@ -184,7 +184,6 @@
     <Compile Include="ViewModels\MainPage\PlayMusic\MusicPlayerViewModel.cs" />
     <Compile Include="ViewModels\MainPage\PlayMusic\TrackCollectionViewModel.cs" />
     <Compile Include="ViewModels\PlayVideo\PlayVideoViewModel.cs" />
-    <Compile Include="Utility\IoC\ResolutionException.cs" />
     <Compile Include="Views\BasePage.cs" />
     <Compile Include="Views\Controls\AnimatedBackground.xaml.cs">
       <DependentUpon>AnimatedBackground.xaml</DependentUpon>
@@ -914,6 +913,9 @@
     </SDKReference>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Autofac">
+      <HintPath>..\packages\Autofac.3.3.0\lib\portable-win+net40+sl50+wp8\Autofac.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.6.0.1\lib\netcore45\Newtonsoft.Json.dll</HintPath>
     </Reference>

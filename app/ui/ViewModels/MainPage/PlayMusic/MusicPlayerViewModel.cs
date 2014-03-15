@@ -7,6 +7,7 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
+using Autofac;
 using System;
 using System.Diagnostics;
 using System.Globalization;
@@ -22,7 +23,6 @@ using Windows.UI.Xaml;
 using VLC_WINRT.Utility.Commands;
 using VLC_WINRT.Utility.Commands.MusicPlayer;
 using VLC_WINRT.Utility.Helpers;
-using VLC_WINRT.Utility.IoC;
 using VLC_WINRT.Utility.Services.RunTime;
 
 namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
@@ -50,14 +50,14 @@ namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
         public MusicPlayerViewModel()
         {
             _playOrPause = new MusicPlayOrPauseCommand();
-            _historyService = IoC.GetInstance<HistoryService>();
+            _historyService = App.Container.Resolve<HistoryService>();
             _goBackCommand = new StopVideoCommand();
             _displayAlwaysOnRequest = new DisplayRequest();
 
             _sliderPositionTimer.Tick += FirePositionUpdate;
             _sliderPositionTimer.Interval = TimeSpan.FromMilliseconds(16);
 
-            _vlcPlayerService = IoC.GetInstance<MediaPlayerService>();
+            _vlcPlayerService = App.Container.Resolve<MediaPlayerService>();
             _vlcPlayerService.StatusChanged += PlayerStateChanged;
             _vlcPlayerService.MediaEnded += _vlcPlayerService_MediaEnded;
             _skipAhead = new ActionCommand(() => _vlcPlayerService.SkipAhead());
