@@ -626,7 +626,7 @@ namespace VLC_WINRT.ViewModels.MainPage
                                 {
                                     return;
                                 }
-                                // Last.FM returns images from small to 'mega', 
+                                // Last.FM returns images from small to 'mega',
                                 // So try and get the largest image possible.
                                 // If we don't get any album art, or can't find the album, return.
                                 var largestImage = albumInfo.Album.Image.LastOrDefault(url => !string.IsNullOrEmpty(url.Text));

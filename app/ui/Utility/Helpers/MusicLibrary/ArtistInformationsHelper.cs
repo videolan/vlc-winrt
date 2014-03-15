@@ -98,7 +98,7 @@ namespace VLC_WINRT.Utility.Helpers.MusicLibrary
             }
             StorageFolder appDataFolder = ApplicationData.Current.LocalFolder;
             string supposedPictureUriLocal = appDataFolder.Path + "\\artistPic\\" + artist.Name + "_" + "dPi" + ".jpg";
-            
+
             DispatchHelper.Invoke(() => artist.Picture = supposedPictureUriLocal);
         }
 
