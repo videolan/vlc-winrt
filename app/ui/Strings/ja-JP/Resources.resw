@@ -124,16 +124,16 @@
     <value>in order to use this section.</value>
   </data>
   <data name="Album.Text" xml:space="preserve">
-    <value>album</value>
+    <value>アルバム</value>
   </data>
   <data name="Artist" xml:space="preserve">
-    <value>Artist</value>
+    <value>アーティスト</value>
   </data>
   <data name="ArtistHeader.Text" xml:space="preserve">
-    <value>artist</value>
+    <value>アーティスト</value>
   </data>
   <data name="Biography.Text" xml:space="preserve">
-    <value>biography</value>
+    <value>バイオ</value>
   </data>
   <data name="ChangeVideoFolder.Content" xml:space="preserve">
     <value>Change default Video folder</value>
@@ -145,22 +145,22 @@
     <value>Current Features:</value>
   </data>
   <data name="DecreaseSpeed.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
-    <value>Decrease speed</value>
+    <value>速度を下げる</value>
   </data>
   <data name="ElementsNotFound.Text" xml:space="preserve">
     <value>It seems that we didn't find any elements in there.</value>
   </data>
   <data name="ExternalStorage" xml:space="preserve">
-    <value>external storage</value>
+    <value>外付けドライブ</value>
   </data>
   <data name="ExternalStorage.Text" xml:space="preserve">
-    <value>external storage</value>
+    <value>外付けドライブ</value>
   </data>
   <data name="Favorite.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
-    <value>Favorite</value>
+    <value>イイネ！</value>
   </data>
   <data name="FavoriteAlbums" xml:space="preserve">
-    <value>Favorite Albums</value>
+    <value>ベストアルバム</value>
   </data>
   <data name="FeaturesOpen.Text" xml:space="preserve">
     <value>Open a video from anywhere on your device. Swipe up or right click to open a file from the App Bar.</value>
@@ -178,10 +178,10 @@
     <value>Please select a field to filter by...</value>
   </data>
   <data name="Home" xml:space="preserve">
-    <value>home</value>
+    <value>ホーム</value>
   </data>
   <data name="IncreaseSpeed.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
-    <value>Increase speed</value>
+    <value>速度を上げる</value>
   </data>
   <data name="IndexingMusic1.Text" xml:space="preserve">
     <value>Indexing Music library</value>
@@ -196,31 +196,31 @@
     <value>It's lonely here.</value>
   </data>
   <data name="LastViewed.Text" xml:space="preserve">
-    <value>last viewed</value>
+    <value>最後にアクセス</value>
   </data>
   <data name="MainPageTitle.Text" xml:space="preserve">
     <value>VLC for Windows 8</value>
   </data>
   <data name="MediaServers" xml:space="preserve">
-    <value>media servers</value>
+    <value>メディアサーバー</value>
   </data>
   <data name="MediaServersHeader.Text" xml:space="preserve">
-    <value>Media servers</value>
+    <value>メディアサーバー</value>
   </data>
   <data name="Movies.Text" xml:space="preserve">
-    <value>movies</value>
+    <value>映画</value>
   </data>
   <data name="Music" xml:space="preserve">
-    <value>music</value>
+    <value>音楽</value>
   </data>
   <data name="MusicHeader.Text" xml:space="preserve">
-    <value>music</value>
+    <value>音楽</value>
   </data>
   <data name="NetworkUrl.Text" xml:space="preserve">
     <value>Network URL:</value>
   </data>
   <data name="NoBiographyFound" xml:space="preserve">
-    <value>It seems we didn't find a biography for this artist.</value>
+    <value>このアーティストにはまだ解説がありません。</value>
   </data>
   <data name="NothingToSeeHere.Text" xml:space="preserve">
     <value>Nothing to see here</value>
@@ -228,11 +228,14 @@
   <data name="OpenFile.Text" xml:space="preserve">
     <value>Open a file</value>
   </data>
+  <data name="OpenFromNetwork" xml:space="preserve">
+    <value>Open a file from network</value>
+  </data>
   <data name="OpenNetworkStream.Text" xml:space="preserve">
     <value>Open Network Stream...</value>
   </data>
   <data name="OpenVideo" xml:space="preserve">
-    <value>Open Video</value>
+    <value>ビデオを開く</value>
   </data>
   <data name="Or.Text" xml:space="preserve">
     <value>or</value>
@@ -247,16 +250,16 @@
     <value>silver partners</value>
   </data>
   <data name="Play.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
-    <value>Play</value>
+    <value>再生</value>
   </data>
   <data name="PopularAlbums.Header" xml:space="preserve">
-    <value>popular albums</value>
+    <value>ベストアルバム</value>
   </data>
   <data name="PrivacyStatement" xml:space="preserve">
-    <value>Privacy Statement</value>
+    <value>プライバシーポリシー</value>
   </data>
   <data name="RemovableDevices.Text" xml:space="preserve">
-    <value>Removable devices</value>
+    <value>外付けドライブ</value>
   </data>
   <data name="RemoveableDevice.Text" xml:space="preserve">
     <value>Plug-in a removable device</value>
@@ -268,34 +271,34 @@
     <value>Waiting for removable storages</value>
   </data>
   <data name="Search.Text" xml:space="preserve">
-    <value>Search</value>
+    <value>検索</value>
   </data>
   <data name="SimilarArtists.Header" xml:space="preserve">
-    <value>similar artists</value>
+    <value>似ているアーティスト</value>
   </data>
   <data name="SpecialThanks" xml:space="preserve">
-    <value>Special Thanks</value>
+    <value>スペシャルサンクス</value>
   </data>
   <data name="Track.Text" xml:space="preserve">
-    <value>track</value>
+    <value>楽曲</value>
   </data>
   <data name="Tracks" xml:space="preserve">
-    <value>Tracks</value>
+    <value>楽曲</value>
   </data>
   <data name="Unfavorite.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
-    <value>Unfavorite</value>
+    <value>キライ！</value>
   </data>
   <data name="UnknownArtist" xml:space="preserve">
-    <value>Unknown Artist</value>
+    <value>不明なアーティスト</value>
   </data>
   <data name="UnknownTrack" xml:space="preserve">
-    <value>Unknown Track</value>
+    <value>不明なトラック</value>
   </data>
   <data name="Videos" xml:space="preserve">
-    <value>videos</value>
+    <value>ビデオ</value>
   </data>
   <data name="VideosHeader.Text" xml:space="preserve">
-    <value>videos</value>
+    <value>ビデオ</value>
   </data>
   <data name="VideosNotFound1.Text" xml:space="preserve">
     <value>It seems that we didn't find any elements in your Video library.</value>
@@ -307,7 +310,7 @@
     <value>The VLC for Windows 8 Team would like to thank very much the people who made this application possible:</value>
   </data>
   <data name="Welcome.Text" xml:space="preserve">
-    <value>Welcome to VLC for Windows 8 Beta!</value>
+    <value>「VLC For Windows 8」βへようこそ！</value>
   </data>
   <data name="WelcomeMessage.Text" xml:space="preserve">
     <value>THE VLC TEAM WOULD LIKE TO THANK</value>

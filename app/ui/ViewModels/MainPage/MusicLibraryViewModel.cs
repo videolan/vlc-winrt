@@ -14,6 +14,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Resources;
 using Windows.Foundation;
 using Windows.Storage;
 using Windows.Storage.FileProperties;
@@ -63,10 +64,11 @@ namespace VLC_WINRT.ViewModels.MainPage
         ObservableCollection<string> _imgCollection = new ObservableCollection<string>();
         public MusicLibraryViewModel()
         {
+            var resourceLoader = new ResourceLoader();
             _goBackCommand = new StopVideoCommand();
-            Panels.Add(new Panel("ARTISTS", 0, 1));
-            Panels.Add(new Panel("TRACKS", 1, 0.4));
-            Panels.Add(new Panel("FAVORITE ALBUMS", 2, 0.4));
+            Panels.Add(new Panel(resourceLoader.GetString("Artist").ToUpper(), 0, 1));
+            Panels.Add(new Panel(resourceLoader.GetString("Tracks").ToUpper(), 1, 0.4));
+            Panels.Add(new Panel(resourceLoader.GetString("FavoriteAlbums").ToUpper(), 2, 0.4));
         }
 
         public async Task Initialize()

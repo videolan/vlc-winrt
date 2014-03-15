@@ -38,7 +38,7 @@
                     </Grid.RowDefinitions>
                     <Button Margin="5,0,0,0" Grid.Row="0" Template="{StaticResource MainButtonStyle}">
                         <TextBlock Style="{StaticResource VLCSubHeaderStyle}" >
-                                <Run Text="last viewed" />
+                                <Run x:Uid="LastViewed" Text="last viewed" />
                                 <Run Text=" " FontFamily="Segoe UI Symbol" />
                         </TextBlock>
                     </Button>
@@ -57,7 +57,7 @@
                     </Grid.RowDefinitions>
                     <Button Margin="5,0,0,0" Command="{Binding GoToPanel}" CommandParameter="1" Grid.Row="0" Template="{StaticResource MainButtonStyle}">
                         <TextBlock Style="{StaticResource VLCSubHeaderStyle}" >
-                                <Run Text="videos" />
+                                <Run x:Uid="VideosHeader" Text="videos" />
                                 <Run Text="" FontFamily="Segoe UI Symbol" />
                         </TextBlock>
                     </Button>
@@ -78,7 +78,7 @@
                     </Grid.RowDefinitions>
                     <Button Margin="5,0,0,0" Command="{Binding GoToPanel}" CommandParameter="2" Grid.Row="0" Template="{StaticResource MainButtonStyle}">
                         <TextBlock Style="{StaticResource VLCSubHeaderStyle}" >
-                                <Run Text="music" />
+                                <Run x:Uid="MusicHeader" Text="music" />
                                 <Run Text="" FontFamily="Segoe UI Symbol" />
                         </TextBlock>
                     </Button>

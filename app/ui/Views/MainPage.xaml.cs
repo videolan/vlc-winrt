@@ -9,6 +9,7 @@
 
 using System;
 using System.Diagnostics;
+using Windows.ApplicationModel.Resources;
 using Windows.Foundation;
 using Windows.UI.Core;
 using Windows.UI.Popups;
@@ -166,24 +167,20 @@ namespace VLC_WINRT.Views
             var dialog = new InputDialog();
             RootGrid.Children.Add(dialog);
             Grid.SetRow(dialog, 1);
+            // NOTE: Is this being used?
             await
                 dialog.ShowAsync("", "Open a file from network",
-                    "Please enter an adress. It can be http, ftp, for example.", "Open",
+                    "Please enter an address (Ex: FTP, HTTP).", "Open",
                     Locator.MainPageVM.PlayNetworkMRL);
         }
 
         public async void CreateVLCMenu()
         {
+            var resourceLoader = new ResourceLoader();
             var popupMenu = new PopupMenu();
-            popupMenu.Commands.Add(new UICommand("External storage", async h =>
-            {
-                ExternalStorage();
-            }));
+            popupMenu.Commands.Add(new UICommand(resourceLoader.GetString("PrivacyStatement"), async h => ExternalStorage()));
 
-            popupMenu.Commands.Add(new UICommand("Media servers", async h =>
-            {
-                MediaServers();
-            }));
+            popupMenu.Commands.Add(new UICommand("Media servers", async h => MediaServers()));
 
 
             var transform = RootGrid.TransformToVisual(this);
@@ -198,11 +195,9 @@ namespace VLC_WINRT.Views
 
         private async void OpenFile(object sender, RoutedEventArgs e)
         {
-            var popupMenu = new PopupMenu(); 
-            popupMenu.Commands.Add(new UICommand("Open video", async h =>
-            {
-                OpenVideo();
-            }));
+            var resourceLoader = new ResourceLoader();
+            var popupMenu = new PopupMenu();
+            popupMenu.Commands.Add(new UICommand(resourceLoader.GetString("OpenVideo"), async h => OpenVideo()));
 
 
 

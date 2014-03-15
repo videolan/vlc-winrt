@@ -188,6 +188,7 @@ namespace VLC_WINRT.Utility.Helpers.MusicLibrary
                         App.ApiKeyLastFm, artist.Name, region.Code.ToLower());
                 var reponse = await lastFmClient.GetStringAsync(url);
                 {
+                    var resourceLoader = new ResourceLoader();
                     var artistInfo = JsonConvert.DeserializeObject<ArtistInformation>(reponse);
                     if (artistInfo == null) return;
                     if (artistInfo.Artist == null) return;
@@ -201,11 +202,11 @@ namespace VLC_WINRT.Utility.Helpers.MusicLibrary
                         // Remove leading and ending white spaces.
                         biography = biography.Trim();
                         // TODO: Replace string "remove" with something better. It may not work on all artists and in all languages.
-                        biography = !string.IsNullOrEmpty(biography) ? biography.Remove(biography.Length - "Read more about  on Last.fm".Length - artist.Name.Length - 6) : "It seems we didn't find a biography for this artist.";
+                        biography = !string.IsNullOrEmpty(biography) ? biography.Remove(biography.Length - "Read more about  on Last.fm".Length - artist.Name.Length - 6)
+                            : resourceLoader.GetString("NoBiographyFound");
                     }
                     else
                     {
-                        var resourceLoader = new ResourceLoader();
                         biography = resourceLoader.GetString("NoBiographyFound");
                     }
                 }

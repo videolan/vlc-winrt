@@ -242,7 +242,7 @@
                                     <ColumnDefinition Width="15"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Grid.Column="0" x:Uid="Track" Text="track" Style="{StaticResource TitleTextStyle}"/>
-                                <TextBlock Grid.Column="2" x:Uid="Artist" Text="artist" Style="{StaticResource TitleTextStyle}"/>
+                                <TextBlock Grid.Column="2" x:Uid="ArtistHeader" Text="artist" Style="{StaticResource TitleTextStyle}"/>
                                 <TextBlock Grid.Column="4" x:Uid="Album" Text="album" Style="{StaticResource TitleTextStyle}"/>
                             </Grid>
                         </DataTemplate>

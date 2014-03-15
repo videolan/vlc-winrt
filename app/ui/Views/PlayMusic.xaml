@@ -198,8 +198,8 @@
                                                     </TextBlock>
                                                 </StackPanel>
                                                 <Grid Grid.Column="1" Width="130">
-                                                    <Button Style="{StaticResource LikeLittleAppBarButtonStyle}" Visibility="{Binding Favorite, Converter={StaticResource NegatedBooleanToVisibilityConverter}}" Command="{Binding FavoriteTrack}" CommandParameter="{Binding}"/>
-                                                    <Button Style="{StaticResource DisLikeLittleAppBarButtonStyle}" Visibility="{Binding Favorite, Converter={StaticResource BooleanToVisibilityConverter}}" Command="{Binding FavoriteTrack}" CommandParameter="{Binding}"/>
+                                                    <Button x:Uid="Favorite" Style="{StaticResource LikeLittleAppBarButtonStyle}" Visibility="{Binding Favorite, Converter={StaticResource NegatedBooleanToVisibilityConverter}}" Command="{Binding FavoriteTrack}" CommandParameter="{Binding}"/>
+                                                    <Button x:Uid="Unfavorite" Style="{StaticResource DisLikeLittleAppBarButtonStyle}" Visibility="{Binding Favorite, Converter={StaticResource BooleanToVisibilityConverter}}" Command="{Binding FavoriteTrack}" CommandParameter="{Binding}"/>
                                                 </Grid>
                                             </Grid>
                                         </Button>

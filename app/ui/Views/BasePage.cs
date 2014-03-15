@@ -8,6 +8,7 @@
  **********************************************************************/
 
 using System;
+using Windows.ApplicationModel.Resources;
 using Windows.System;
 using Windows.UI.ApplicationSettings;
 using Windows.UI.Xaml.Controls;
@@ -34,7 +35,8 @@ namespace VLC_WINRT.Views
 
         private void SettingsCommandRequested(SettingsPane sender, SettingsPaneCommandsRequestedEventArgs args)
         {
-            var privacyCommand = new SettingsCommand("privacy", "Privacy Statement",
+            var resourceLoader = new ResourceLoader();
+            var privacyCommand = new SettingsCommand("privacy", resourceLoader.GetString("PrivacyStatement"),
                 h => Launcher.LaunchUriAsync(new Uri("http://videolan.org/vlc/privacy.html")));
 
             args.Request.ApplicationCommands.Clear();
@@ -47,10 +49,8 @@ namespace VLC_WINRT.Views
             //});
             //args.Request.ApplicationCommands.Add(about);
 
-            SettingsCommand specialThanks = new SettingsCommand("specialThanks", "Special Thanks", command =>
-            {
-                NavigationService.NavigateTo(typeof(SpecialThanks));
-            });
+            var specialThanks = new SettingsCommand("specialThanks", resourceLoader.GetString("SpecialThanks"), 
+                command => NavigationService.NavigateTo(typeof(SpecialThanks)));
             args.Request.ApplicationCommands.Add(specialThanks);
         }
 

@@ -286,7 +286,12 @@
     <Content Include="plugins\audio_output\libxaudio2_winrt_plugin.dll" />
     <Content Include="segoeui.ttf" />
     <None Include="packages.config" />
-    <PRIResource Include="Strings\en-US\Resources.resw" />
+    <PRIResource Include="Strings\ja-JP\Resources.resw">
+      <SubType>Designer</SubType>
+    </PRIResource>
+    <PRIResource Include="Strings\en-US\Resources.resw">
+      <SubType>Designer</SubType>
+    </PRIResource>
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\..\vlc\libvlc.dll">
