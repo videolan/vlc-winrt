@@ -49,3 +49,6 @@ vlc/plugins/plugins.dat
 
 #Store association
 app/ui/Package.StoreAssociation.xml
+
+#mac stuff
+.DS_Store
