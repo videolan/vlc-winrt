@@ -12,6 +12,7 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Resources;
 using Windows.Media;
 using Windows.Storage;
 using Windows.System.Display;
@@ -205,9 +206,10 @@ namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
             SetActiveMusicInfo(token, trackItem);
 
             // Setting the info for windows 8 controls
+            var resourceLoader = new ResourceLoader();
             MediaControl.IsPlaying = true;
-            MediaControl.ArtistName = trackItem.ArtistName ?? "Unknown Artist";
-            MediaControl.TrackName = trackItem.Name ?? "Unknown Track";
+            MediaControl.ArtistName = trackItem.ArtistName ?? resourceLoader.GetString("UnknownArtist");
+            MediaControl.TrackName = trackItem.Name ?? resourceLoader.GetString("UnknownTrack");
             _timeTotal = TimeSpan.Zero;
             _elapsedTime = TimeSpan.Zero;
             try

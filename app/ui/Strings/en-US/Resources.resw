@@ -267,6 +267,12 @@
   <data name="Unfavorite.Name" xml:space="preserve">
     <value>Unfavorite</value>
   </data>
+  <data name="UnknownArtist" xml:space="preserve">
+    <value>Unknown Artist</value>
+  </data>
+  <data name="UnknownTrack" xml:space="preserve">
+    <value>Unknown Track</value>
+  </data>
   <data name="Videos" xml:space="preserve">
     <value>videos</value>
   </data>
