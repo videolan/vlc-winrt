@@ -237,9 +237,13 @@ namespace VLC_WINRT.ViewModels.MainPage
             }
 
             IsMusicLibraryEmpty = false;
+            // If the image collection fails to load, it sets ImgCollection to null.
+            // In case this happens, set the collection back to a new string collection to prevent further errors
+            // if another process tries to access the collection.
             ImgCollection =
                 await
-                    SerializationHelper.LoadFromJsonFile<ObservableCollection<string>>("Artist_Img_Collection.json");
+                    SerializationHelper.LoadFromJsonFile<ObservableCollection<string>>("Artist_Img_Collection.json") ??
+                new ObservableCollection<string>();
 
             foreach (AlbumItem album in Artist.SelectMany(artist => artist.Albums))
             {
