@@ -26,20 +26,28 @@ namespace VLC_WINRT.Utility.Helpers
         public static async Task<string> ReadFromFile(string fileName, StorageFolder folder = null)
         {
             folder = folder ?? ApplicationData.Current.LocalFolder;
-            var file = await folder.GetFileAsync(fileName);
-
-            using (var fs = await file.OpenAsync(FileAccessMode.Read))
+            try
             {
-                using (var inStream = fs.GetInputStreamAt(0))
+                var file = await folder.GetFileAsync(fileName);
+
+                using (var fs = await file.OpenAsync(FileAccessMode.Read))
                 {
-                    using (var reader = new DataReader(inStream))
+                    using (var inStream = fs.GetInputStreamAt(0))
                     {
-                        await reader.LoadAsync((uint)fs.Size);
-                        string data = reader.ReadString((uint)fs.Size);
-                        reader.DetachStream();
-                        return data;
+                        using (var reader = new DataReader(inStream))
+                        {
+                            await reader.LoadAsync((uint)fs.Size);
+                            string data = reader.ReadString((uint)fs.Size);
+                            reader.DetachStream();
+                            return data;
+                        }
                     }
                 }
+            }
+            catch (FileNotFoundException)
+            {
+                Debug.WriteLine(String.Format("{0}: File not found", fileName));
+                return null;
             }
         }
         #region XML
