@@ -173,7 +173,7 @@ namespace VLC_WINRT.Utility.Helpers.MusicLibrary
             {
                 var lastFmClient = new LastFmClient();
                 var artistInformation = await lastFmClient.GetArtistInfo(artist.Name);
-                biography = artistInformation.Biograpgy;
+                biography = artistInformation.Biography;
             }
             catch
             {
