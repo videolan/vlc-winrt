@@ -16,7 +16,7 @@ namespace VLC_WINRT.Utility.Helpers
     public class UIAnimationHelper
     {
         #region FadeIn()
-        public static async Task FadeIn(UIElement element)
+        public static void FadeIn(UIElement element)
         {
             element.Visibility = Visibility.Visible;
             var fadeInStoryboard = new Storyboard();
@@ -29,7 +29,7 @@ namespace VLC_WINRT.Utility.Helpers
         #endregion
 
         #region FadeOut()
-        public static async Task FadeOut(UIElement element)
+        public static void FadeOut(UIElement element)
         {
             var fadeOutStoryboard = new Storyboard();
             var fadeOutAnimation = new FadeOutThemeAnimation();

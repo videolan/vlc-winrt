@@ -75,12 +75,12 @@ namespace VLC_WINRT
         ///     search results, and so forth.
         /// </summary>
         /// <param name="args">Details about the launch request and process.</param>
-        protected override async void OnLaunched(LaunchActivatedEventArgs args)
+        protected override void OnLaunched(LaunchActivatedEventArgs args)
         {
             LaunchTheApp();
         }
 
-        async Task LaunchTheApp()
+        void LaunchTheApp()
         {
             Window.Current.Content = new RootPage();
             Dispatcher = Window.Current.Content.Dispatcher;
@@ -88,7 +88,7 @@ namespace VLC_WINRT
             Window.Current.Activate();
         }
 
-        protected async override void OnFileActivated(FileActivatedEventArgs args)
+        protected override void OnFileActivated(FileActivatedEventArgs args)
         {
             base.OnFileActivated(args);
 
@@ -102,7 +102,7 @@ namespace VLC_WINRT
             {
                 if (Window.Current.Content == null)
                 {
-                    await LaunchTheApp();
+                    LaunchTheApp();
                 }
                 Locator.MusicPlayerVM.TrackCollection.TrackCollection.Clear();
                 MusicLibraryViewModel.TrackItem trackItem = await GetInformationsFromMusicFile.GetTrackItemFromFile(file);
@@ -119,7 +119,7 @@ namespace VLC_WINRT
                 TemporaryMRL = StorageApplicationPermissions.FutureAccessList.Add(file);
                 if (Window.Current.Content == null)
                 {
-                    await LaunchTheApp();
+                    LaunchTheApp();
                 }
                 else
                 {

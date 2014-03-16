@@ -13,7 +13,7 @@ namespace VLC_WINRT.Utility.Commands.MainPage
 {
     public class GoToPanelCommand : AlwaysExecutableCommand
     {
-        public async override void Execute(object parameter)
+        public override void Execute(object parameter)
         {
             var frame = App.ApplicationFrame;
             var page = frame.Content as Views.MainPage;
