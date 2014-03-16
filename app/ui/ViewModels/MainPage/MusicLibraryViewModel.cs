@@ -581,10 +581,6 @@ namespace VLC_WINRT.ViewModels.MainPage
                 LoadTracks(tracks);
             }
 
-            public AlbumItem()
-            {
-            }
-
             public async Task GetCover()
             {
                 string fileName = Artist + "_" + Name;
