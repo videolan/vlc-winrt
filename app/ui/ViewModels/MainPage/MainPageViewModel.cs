@@ -76,6 +76,7 @@ namespace VLC_WINRT.ViewModels.MainPage
             if (e.NavigationMode == NavigationMode.New)
             {
                 await InitVideoVM();
+                await _lastViewedVM.Initialize();
 
                 var dlnaFolder = await KnownVLCLocation.MediaServers.GetFoldersAsync();
                 var tasks = new List<Task>();

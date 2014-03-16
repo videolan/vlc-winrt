@@ -43,12 +43,16 @@ namespace VLC_WINRT.ViewModels.MainPage
             }
             _clearHistoryCommand = new ClearHistoryCommand();
             _historyService.HistoryUpdated += UpdateHistory;
-            //FIXME: Needs to be awaited on from outside CTOR
-            UpdateHistory();
         }
         public void Dispose()
         {
             _historyService.HistoryUpdated -= UpdateHistory;
+        }
+
+        public async Task Initialize()
+        {
+            await _historyService.RestoreHistory();
+            await UpdateHistory();
         }
 
         private async void UpdateHistory(object sender, EventArgs e)
