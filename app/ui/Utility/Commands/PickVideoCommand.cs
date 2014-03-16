@@ -110,14 +110,15 @@ namespace VLC_WINRT.Utility.Commands
             if (file != null)
             {
                 var history = new HistoryService();
-                string token = history.Add(file);
+                await history.RestoreHistory();
+                string token = await history.Add(file);
 
                 Debug.WriteLine("Opening file: " + file.Path);
                 Locator.PlayVideoVM.SetActiveVideoInfo(token, file.Name);
                 var video = new MediaViewModel(file);
                 await video.Initialize();
                 Locator.PlayVideoVM.CurrentVideo = video;
-                NavigationService.NavigateTo(typeof (PlayVideo));
+                NavigationService.NavigateTo(typeof(PlayVideo));
             }
             else
             {

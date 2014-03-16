@@ -168,8 +168,9 @@ namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
 
             var file = await StorageFile.GetFileFromPathAsync(trackItem.Path);
             var history = new HistoryService();
+            await history.RestoreHistory();
             //string token = history.Add(file, true);
-            string token = history.Add(file);
+            string token = await history.Add(file);
 
             Debug.WriteLine("Opening file: " + file.Path);
 
@@ -205,7 +206,7 @@ namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
                 MediaControl.PreviousTrackPressed -= MediaControl_PreviousTrackPressed;
         }
 
-        public void PlayFromExplorer(StorageFile file)
+        public async Task PlayFromExplorer(StorageFile file)
         {
             TrackCollection.IsRunning = true;
             Stop();
@@ -214,7 +215,8 @@ namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
             var trackItem = TrackCollection.TrackCollection[TrackCollection.CurrentTrack];
 
             var history = new HistoryService();
-            string token = history.Add(file);
+            await history.RestoreHistory();
+            string token = await history.Add(file);
 
             Debug.WriteLine("Opening file: " + file.Path);
 

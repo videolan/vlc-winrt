@@ -33,7 +33,7 @@ namespace VLC_WINRT.Utility.Commands
             var historyService = App.Container.Resolve<HistoryService>();
             var vm = (MediaViewModel) parameter;
 
-            string token = historyService.Add(vm.File);
+            string token = await historyService.Add(vm.File);
 
             var frame = App.ApplicationFrame;
             var page = frame.Content as Views.MainPage;

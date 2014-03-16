@@ -25,46 +25,30 @@ using VLC_WINRT.Model;
 
 namespace VLC_WINRT.Utility.Services.RunTime
 {
-    public class HistoryService : IDisposable
+    public class HistoryService
     {
         private const string HistoryFileName = "histories.xml";
         private static List<MediaHistory> _histories;
         private static readonly object HistoryFileLock = new object();
-        private readonly ManualResetEvent _fileReadEvent = new ManualResetEvent(false);
         public event EventHandler HistoryUpdated;
+        private bool _computing;
 
         public HistoryService()
         {
-            lock (HistoryFileLock)
-            {
-                //only allow one instance to read file
-                if (_histories == null)
-                {
-                    ThreadPool.RunAsync(RestoreHistory);
-
-                    //Wait for our file to be read
-                    _fileReadEvent.WaitOne(int.MaxValue);
-                }
-            }
         }
 
         public void Dispose()
         {
-            if (_fileReadEvent != null)
-            {
-                _fileReadEvent.Dispose();
-            }
         }
 
-
-        public void Clear()
+        public Task Clear()
         {
             StorageApplicationPermissions.MostRecentlyUsedList.Clear();
             _histories = new List<MediaHistory>();
-            SaveHistory();
+            return SaveHistory();
         }
 
-        public string Add(StorageFile file)
+        public async Task<string> Add(StorageFile file)
         {
             bool isAudio = file.ContentType.Contains("audio");
 
@@ -85,7 +69,7 @@ namespace VLC_WINRT.Utility.Services.RunTime
                 token = previouslySavedMedia.Token;
             }
 
-            SaveHistory();
+            await SaveHistory();
             return token;
         }
 
@@ -131,13 +115,19 @@ namespace VLC_WINRT.Utility.Services.RunTime
             return StorageApplicationPermissions.FutureAccessList.GetFileAsync(token);
         }
 
-        private async void RestoreHistory(IAsyncAction operation)
+        public async Task RestoreHistory()
         {
+            lock (HistoryFileLock)
+            {
+                //only allow one instance to read file
+                if (_histories != null || _computing == true)
+                    return;
+                _computing = true;
+            }
             try
             {
                 StorageFile historyFile = await ApplicationData.Current.LocalFolder.CreateFileAsync(HistoryFileName,
-                    CreationCollisionOption
-                        .OpenIfExists);
+                    CreationCollisionOption.OpenIfExists);
 
                 using (IRandomAccessStreamWithContentType stream = await historyFile.OpenReadAsync())
                 {
@@ -145,9 +135,9 @@ namespace VLC_WINRT.Utility.Services.RunTime
                     {
                         try
                         {
-                            var serializer = new XmlSerializer(typeof (List<MediaHistory>));
+                            var serializer = new XmlSerializer(typeof(List<MediaHistory>));
                             XmlReader reader = XmlReader.Create(stream.AsStreamForRead());
-                            _histories = (List<MediaHistory>) serializer.Deserialize(reader);
+                            _histories = (List<MediaHistory>)serializer.Deserialize(reader);
                         }
                         catch (Exception ex)
                         {
@@ -165,15 +155,14 @@ namespace VLC_WINRT.Utility.Services.RunTime
             }
             finally
             {
-                _fileReadEvent.Set();
+                _computing = false;
             }
         }
 
         public async Task SaveHistory()
         {
             StorageFile historyFile = await ApplicationData.Current.LocalFolder.CreateFileAsync(HistoryFileName,
-                CreationCollisionOption
-                    .ReplaceExisting);
+                CreationCollisionOption.ReplaceExisting);
             using (Stream stream = await historyFile.OpenStreamForWriteAsync())
             {
                 var serializer = new XmlSerializer(_histories.GetType());

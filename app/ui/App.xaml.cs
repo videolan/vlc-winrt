@@ -114,7 +114,7 @@ namespace VLC_WINRT
                 Locator.MusicPlayerVM.TrackCollection.TrackCollection.Clear();
                 MusicLibraryViewModel.TrackItem trackItem = await GetInformationsFromMusicFile.GetTrackItemFromFile(file);
                 Locator.MusicPlayerVM.TrackCollection.TrackCollection.Add(trackItem);
-                Locator.MusicPlayerVM.PlayFromExplorer(file);
+                await Locator.MusicPlayerVM.PlayFromExplorer(file);
             }
             else if (file.FileType == ".mkv"
                 || file.FileType == ".avi"
