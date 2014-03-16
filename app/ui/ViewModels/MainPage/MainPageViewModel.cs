@@ -80,12 +80,15 @@ namespace VLC_WINRT.ViewModels.MainPage
                 await InitVideoVM();
 
                 var dlnaFolder = await KnownVLCLocation.MediaServers.GetFoldersAsync();
+                var tasks = new List<Task>();
                 foreach (StorageFolder storageFolder in dlnaFolder)
                 {
                     StorageFolder newFolder = storageFolder;
-                    DLNAVMs.Add(new VideoLibraryViewModel(newFolder));
+                    var videoLib = new VideoLibraryViewModel(newFolder);
+                    tasks.Add(videoLib.GetMedia());
+                    DLNAVMs.Add(videoLib);
                 }
-
+                await Task.WhenAll(tasks);
                 _loaded = true;
             }
         }

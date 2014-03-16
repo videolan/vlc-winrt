@@ -51,8 +51,6 @@ namespace VLC_WINRT.ViewModels.MainPage
 
             Title = Title.ToLower();
 
-            //Get off UI thread
-            ThreadPool.RunAsync(GetMedia);
             Panels.Add(new Panel("ALL", 0, 1));
             Panels.Add(new Panel("NEVER SEEN BEFORE", 1, 0.4));
             Panels.Add(new Panel("FAVORITE", 2, 0.4));
@@ -112,7 +110,7 @@ namespace VLC_WINRT.ViewModels.MainPage
             set { SetProperty(ref _pickCommand, value); }
         }
 
-        protected async void GetMedia(IAsyncAction operation)
+        public async Task GetMedia()
         {
             try
             {
