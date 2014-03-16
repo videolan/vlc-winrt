@@ -26,7 +26,7 @@ namespace VLC_WINRT.ViewModels.MainPage
         private StorageFile _file;
         private ImageSource _imageBrush;
         private readonly IThumbnailService _thumbsService;
-
+        private IAsyncAction _thumbailGeneration;
 
         public ThumbnailViewModel(StorageFile storageFile)
         {
@@ -46,7 +46,7 @@ namespace VLC_WINRT.ViewModels.MainPage
             set
             {
                 SetProperty(ref _file, value);
-                ThreadPool.RunAsync(GenerateThumbnail);
+                _thumbailGeneration = ThreadPool.RunAsync(GenerateThumbnail);
             }
         }
 
@@ -64,10 +64,10 @@ namespace VLC_WINRT.ViewModels.MainPage
             
             if (thumb != null)
             {
-                DispatchHelper.Invoke(() =>
+                await DispatchHelper.InvokeAsync(async () =>
                                           {
                                               var image = new BitmapImage();
-                                              image.SetSourceAsync(thumb);
+                                              await image.SetSourceAsync(thumb);
                                               Image = image;
                                           });
             }

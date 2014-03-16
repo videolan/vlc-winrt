@@ -112,10 +112,7 @@ namespace VLC_WINRT.Utility.Helpers.MusicLibrary
             }
             else
             {
-                Task.Run(() =>
-                {
-                    DownloadPicFromDeezerToLocalFolder(artist);
-                });
+                await DownloadPicFromDeezerToLocalFolder(artist);
             }
         }
 

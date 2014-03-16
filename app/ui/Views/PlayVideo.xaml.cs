@@ -62,7 +62,7 @@ namespace VLC_WINRT.Views
             isCommandShown = true;
         }
 
-        async void HideCommands()
+        void HideCommands()
         {
             _timer.Stop();
             UIAnimationHelper.FadeOut(Commands);

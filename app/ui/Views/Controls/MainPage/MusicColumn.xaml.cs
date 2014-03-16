@@ -101,7 +101,7 @@ namespace VLC_WINRT.Views.Controls.MainPage
             Locator.MainPageVM.MusicLibraryVm.Panels[i].Opacity = 1;
         }
 
-        private async void AlbumsByArtistSemanticZoom_OnViewChangeCompleted(object sender, SemanticZoomViewChangedEventArgs e)
+        private void AlbumsByArtistSemanticZoom_OnViewChangeCompleted(object sender, SemanticZoomViewChangedEventArgs e)
         {
             try
             {

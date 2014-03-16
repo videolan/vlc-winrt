@@ -473,7 +473,7 @@ namespace VLC_WINRT.ViewModels.MainPage
                     foreach (var item in albumFolders)
                     {
                         AlbumItem albumItem = await GetInformationsFromMusicFile.GetAlbumItemFromFolder(item, albumQueryResult);
-                        albumItem.GetCover();
+                        await albumItem.GetCover();
                         DispatchHelper.Invoke(() => Albums.Add(albumItem));
                         if (Locator.MusicLibraryVM.RandomAlbums.Count < 12)
                         {

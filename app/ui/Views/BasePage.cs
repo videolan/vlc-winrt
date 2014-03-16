@@ -37,7 +37,7 @@ namespace VLC_WINRT.Views
         {
             var resourceLoader = new ResourceLoader();
             var privacyCommand = new SettingsCommand("privacy", resourceLoader.GetString("PrivacyStatement"),
-                h => Launcher.LaunchUriAsync(new Uri("http://videolan.org/vlc/privacy.html")));
+                async h => await Launcher.LaunchUriAsync(new Uri("http://videolan.org/vlc/privacy.html")));
 
             args.Request.ApplicationCommands.Clear();
             args.Request.ApplicationCommands.Add(privacyCommand);

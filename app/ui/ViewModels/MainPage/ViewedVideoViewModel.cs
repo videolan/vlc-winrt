@@ -26,7 +26,7 @@ namespace VLC_WINRT.ViewModels.MainPage
             : base(file)
         {
             _token = token;
-            ThreadPool.RunAsync(GatherTimeInformation);
+            GatherTimeInformation();
         }
 
         public double PortionWatched
@@ -39,7 +39,7 @@ namespace VLC_WINRT.ViewModels.MainPage
             }
         }
 
-        private async void GatherTimeInformation(IAsyncAction operation)
+        private void GatherTimeInformation()
         {
             var historyService = IoC.GetInstance<HistoryService>();
             MediaHistory history = historyService.GetHistory(_token);

@@ -29,7 +29,7 @@ namespace VLC_WINRT.Utility.Helpers
                 fileUri,
                 file);
 
-            download.StartAsync();
+            await download.StartAsync();
         }
     }
 }
