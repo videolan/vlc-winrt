@@ -23,7 +23,6 @@ namespace VLC_WINRT.Utility.Services.RunTime
     {
         private readonly HistoryService _historyService;
         private readonly VlcService _vlcService;
-        private readonly MusicPlayerViewModel _musicPlayerViewModel;
 
         public MediaService(HistoryService historyService, VlcService vlcService)
         {

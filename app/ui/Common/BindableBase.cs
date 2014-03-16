@@ -23,7 +23,7 @@ namespace VLC_WINRT.Common
         /// <summary>
         ///     Multicast event for property change notifications.
         /// </summary>
-        public new event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>
         ///     Checks if a property already matches a desired value.  Sets the property and

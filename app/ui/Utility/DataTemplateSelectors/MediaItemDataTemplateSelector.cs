@@ -20,7 +20,7 @@ namespace VLC_WINRT.Utility.DataTemplateSelectors
         // Normal Size Video Template
         public DataTemplate NormalMovieTemplate { get; set; }
 
-        private int i = -1;
+        //private int i = -1;
         
         protected override DataTemplate SelectTemplateCore(object item, DependencyObject container)
         {

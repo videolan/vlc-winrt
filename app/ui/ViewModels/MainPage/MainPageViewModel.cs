@@ -37,7 +37,6 @@ namespace VLC_WINRT.ViewModels.MainPage
         private bool _isNetworkAppBarShown;
         private LastViewedViewModel _lastViewedVM;
         private MusicLibraryViewModel _musicLibraryVm;
-        private VideoLibraryViewModel _musicVM;
         private string _networkMRL = string.Empty;
         private PickVideoCommand _pickVideoCommand;
         private PlayNetworkMRLCommand _playNetworkMRL;

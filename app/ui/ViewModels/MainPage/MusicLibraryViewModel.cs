@@ -224,11 +224,11 @@ namespace VLC_WINRT.ViewModels.MainPage
                 if(artists != null)
                     Artist = artists;
             }
-            catch (SerializationException exception)
+            catch (SerializationException)
             {
                 foundException = true;
             }
-            catch (COMException exception)
+            catch (COMException)
             {
                 foundException = true;
             }
