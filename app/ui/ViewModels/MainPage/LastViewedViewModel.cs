@@ -108,7 +108,9 @@ namespace VLC_WINRT.ViewModels.MainPage
                         }
                         if (file == null) continue;
 
-                        viewedVideos.Add(new ViewedVideoViewModel(token, file));
+                        var video = new ViewedVideoViewModel(token, file);
+                        await video.Initialize();
+                        viewedVideos.Add(video);
                     }
                     catch (Exception ex)
                     {

@@ -130,7 +130,7 @@ namespace VLC_WINRT.ViewModels.MainPage
                 foreach (StorageFile storageFile in files)
                 {
                     var mediaVM = new MediaViewModel(storageFile);
-
+                    await mediaVM.Initialize();
                     // Get back to UI thread
                     await DispatchHelper.InvokeAsync(() =>
                     {

@@ -40,8 +40,6 @@ namespace VLC_WINRT.ViewModels.MainPage
                 Type = File.FileType.Replace(".", "").ToLower();
                 OpenVideo = new OpenVideoCommand();
                 FavoriteVideo = new FavoriteVideoCommand();
-                //FIXME: Call this from outside constructor
-                GetTimeInformation();
             }
         }
 
@@ -89,6 +87,10 @@ namespace VLC_WINRT.ViewModels.MainPage
             set { SetProperty(ref _duration, value); }
         }
 
+        public Task Initialize()
+        {
+            return GetTimeInformation();
+        }
 
         private async Task GetTimeInformation()
         {

@@ -114,7 +114,9 @@ namespace VLC_WINRT.Utility.Commands
 
                 Debug.WriteLine("Opening file: " + file.Path);
                 Locator.PlayVideoVM.SetActiveVideoInfo(token, file.Name);
-                Locator.PlayVideoVM.CurrentVideo = new MediaViewModel(file);
+                var video = new MediaViewModel(file);
+                await video.Initialize();
+                Locator.PlayVideoVM.CurrentVideo = video;
                 NavigationService.NavigateTo(typeof (PlayVideo));
             }
             else
