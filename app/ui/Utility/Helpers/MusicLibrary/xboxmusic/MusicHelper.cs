@@ -14,6 +14,9 @@ using System.Net.Http;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using VLC_WINRT.Model;
+using VLC_WINRT.Utility.Helpers.MusicLibrary.xboxmusic.Models;
 using XboxMusicLibrary.Models;
 using XboxMusicLibrary.Settings;
 
@@ -35,9 +38,9 @@ namespace XboxMusicLibrary
         /// <param name="clientId"></param>
         /// <param name="clientSecret"></param>
         /// <returns></returns>
-        public async Task<string> GetAccessToken(string clientId, string clientSecret)
+        public async Task<Authenication> GetAccessToken(string clientId, string clientSecret, string refreshToken)
         {
-            string token = string.Empty;
+            Authenication authenication = new Authenication();
 
             const string service = "https://datamarket.accesscontrol.windows.net/v2/OAuth2-13";
             const string scope = "http://music.xboxlive.com";
@@ -50,6 +53,10 @@ namespace XboxMusicLibrary
                 postData["client_secret"] = clientSecret;
                 postData["scope"] = scope;
                 postData["grant_type"] = grantType;
+                if (!string.IsNullOrEmpty(refreshToken))
+                {
+                    postData["accessToken"] = refreshToken;
+                }
 
                 HttpContent content = new FormUrlEncodedContent(postData);
 
@@ -60,7 +67,7 @@ namespace XboxMusicLibrary
                 if (response.IsSuccessStatusCode)
                 {
                     // Parsing content to extract the token
-                    token = ExtractTokenFromJson(responseContent);
+                    authenication = JsonConvert.DeserializeObject<Authenication>(responseContent);
                 }
                 else
                 {
@@ -70,20 +77,7 @@ namespace XboxMusicLibrary
                 }
             }
 
-            return token;
-        }
-
-        private string ExtractTokenFromJson(string json)
-        {
-            string token = string.Empty;
-
-            Match match = Regex.Match(json, ".*\"access_token\":\"(?<token>.*?)\".*", RegexOptions.IgnoreCase);
-            if (match.Success)
-            {
-                token = match.Groups["token"].Value;
-            }
-
-            return token;
+            return authenication;
         }
 
         /// <summary>

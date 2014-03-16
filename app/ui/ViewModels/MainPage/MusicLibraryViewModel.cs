@@ -30,6 +30,8 @@ using VLC_WINRT.Model;
 using VLC_WINRT.Utility.Commands;
 using VLC_WINRT.Utility.Commands.MusicPlayer;
 using VLC_WINRT.Utility.Helpers;
+using VLC_WINRT.Utility.Helpers.MusicLibrary.LastFm;
+using VLC_WINRT.Utility.Helpers.MusicLibrary.xboxmusic.Models;
 using VLC_WINRT.Views.Controls.MainPage;
 using XboxMusicLibrary;
 using Panel = VLC_WINRT.Model.Panel;
@@ -60,7 +62,7 @@ namespace VLC_WINRT.ViewModels.MainPage
         // XBOX Music Stuff
         // REMOVE: Do we need this stuff anymore?
         public MusicHelper XboxMusicHelper = new MusicHelper();
-        public string XBOXMusicToken;
+        public Authenication XboxMusicAuthenication;
         ObservableCollection<string> _imgCollection = new ObservableCollection<string>();
         public MusicLibraryViewModel()
         {
@@ -330,9 +332,9 @@ namespace VLC_WINRT.ViewModels.MainPage
             // more informations
             private bool _isFavorite;
             private bool _isOnlinePopularAlbumItemsLoaded = false;
-            private TopAlbum[] _onlinePopularAlbumItems;
+            private List<Utility.Helpers.MusicLibrary.MusicEntities.Album> _onlinePopularAlbumItems;
             private bool _isOnlineRelatedArtistsLoaded = false;
-            private SimilarArtist[] _onlineRelatedArtists;
+            private List<Utility.Helpers.MusicLibrary.MusicEntities.Artist> _onlineRelatedArtists;
             private string _biography;
 
             [JsonIgnore()]
@@ -414,7 +416,7 @@ namespace VLC_WINRT.ViewModels.MainPage
             }
 
             [JsonIgnore()]
-            public TopAlbum[] OnlinePopularAlbumItems
+            public List<Utility.Helpers.MusicLibrary.MusicEntities.Album> OnlinePopularAlbumItems
             {
                 get
                 {
@@ -428,7 +430,7 @@ namespace VLC_WINRT.ViewModels.MainPage
             }
 
             [JsonIgnore()]
-            public SimilarArtist[] OnlineRelatedArtists
+            public List<Utility.Helpers.MusicLibrary.MusicEntities.Artist> OnlineRelatedArtists
             {
                 get
                 {

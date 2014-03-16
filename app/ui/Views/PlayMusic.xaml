@@ -233,7 +233,7 @@
                             <GridView.ItemTemplate>
                                 <DataTemplate>
                                     <Grid Height="150" Width="150">
-                                        <Image Source="{Binding Image, Converter={StaticResource TopAlbumImageConverter}}" Stretch="UniformToFill"/>
+                                        <Image Source="{Binding Images, Converter={StaticResource AlbumImageConverter}}" Stretch="UniformToFill"/>
                                         <Grid Height="80" VerticalAlignment="Bottom">
                                             <Grid.Background>
                                                 <LinearGradientBrush StartPoint="1,0">
@@ -260,7 +260,7 @@
                             <GridView.ItemTemplate>
                                 <DataTemplate>
                                     <Grid Height="150" Width="150">
-                                        <Image Source="{Binding Image, Converter={StaticResource SimilarArtistImageConverter}}" Stretch="UniformToFill"/>
+                                        <Image Source="{Binding Images, Converter={StaticResource AlbumImageConverter}}" Stretch="UniformToFill"/>
                                         <Grid Height="80" VerticalAlignment="Bottom">
                                             <Grid.Background>
                                                 <LinearGradientBrush StartPoint="1,0">

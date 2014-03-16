@@ -15,8 +15,11 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using VLC_WINRT.Model;
 using VLC_WINRT.Utility.Helpers;
+using VLC_WINRT.Utility.Helpers.MusicLibrary;
 using VLC_WINRT.Utility.Services.RunTime;
 using VLC_WINRT.ViewModels.MainPage;
+using Album = VLC_WINRT.Utility.Helpers.MusicLibrary.MusicEntities.Album;
+using Artist = VLC_WINRT.Utility.Helpers.MusicLibrary.MusicEntities.Artist;
 
 namespace VLC_WINRT.Views
 {
@@ -45,7 +48,7 @@ namespace VLC_WINRT.Views
         private void PopularItemGridView_OnItemClick(object sender, ItemClickEventArgs e)
         {
             // TODO: For snap view, send the user to the LastFM page. Otherwise, open a popup with the album info.
-            var topAlbum = e.ClickedItem as TopAlbum;
+            var topAlbum = e.ClickedItem as Album;
             /* If, for whatever reason, the album clicked on is null or it does not have a url attached,
              * return back to the view.*/
             if (topAlbum == null)
@@ -65,10 +68,10 @@ namespace VLC_WINRT.Views
             Launcher.LaunchUriAsync(launchUri);
         }
 
-        private void SimilarArtistsGridView_OnItemClick(object sender, ItemClickEventArgs e)
+        private async void SimilarArtistsGridView_OnItemClick(object sender, ItemClickEventArgs e)
         {
             // TODO: For snap view, send the user to the LastFM page. Otherwise, open a popup with the artist info.
-            var topArtist = e.ClickedItem as SimilarArtist;
+            var topArtist = e.ClickedItem as Artist;
             /* If, for whatever reason, the album clicked on is null or it does not have a url attached,
              * return back to the view.*/
             if (topArtist == null)
@@ -81,6 +84,7 @@ namespace VLC_WINRT.Views
                 Debug.WriteLine("Artist does not have a URL link out.");
                 return;
             }
+            await ArtistInformationsHelper.GetArtistFromXboxMusic(topArtist.Name);
             // LastFM does not append "http" to its URLs sometimes, which can cause Windows to throw an error.
             // So let's check before if it has it or not, and if not we'll append it.
             string appendHttp = !topArtist.Url.Contains("http://") ? "http://" + topArtist.Url : topArtist.Url;

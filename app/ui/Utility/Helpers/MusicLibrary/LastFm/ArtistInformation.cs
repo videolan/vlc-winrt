@@ -9,15 +9,15 @@
 
 using Newtonsoft.Json;
 
-namespace VLC_WINRT.Model
+namespace VLC_WINRT.Utility.Helpers.MusicLibrary.LastFm
 {
-    internal class ArtistInformation
+    public class ArtistInformation
     {
         [JsonProperty("artist")]
         public Artist Artist { get; set; }
     }
 
-    internal partial class Artist
+    public partial class Artist
     {
         [JsonProperty("image")]
         public Image[] Image { get; set; }
@@ -41,7 +41,7 @@ namespace VLC_WINRT.Model
         public Bio Bio { get; set; }
     }
 
-    internal class Artist2
+    public class Artist2
     {
 
         [JsonProperty("name")]
@@ -54,7 +54,7 @@ namespace VLC_WINRT.Model
         public Image2[] Image { get; set; }
     }
 
-    internal class Bio
+    public class Bio
     {
 
         [JsonProperty("links")]
@@ -70,7 +70,7 @@ namespace VLC_WINRT.Model
         public string Content { get; set; }
     }
 
-    internal class Image2
+    public class Image2
     {
 
         [JsonProperty("#text")]
@@ -80,7 +80,7 @@ namespace VLC_WINRT.Model
         public string Size { get; set; }
     }
 
-    internal class Link
+    public class Link
     {
 
         [JsonProperty("#text")]
@@ -93,21 +93,21 @@ namespace VLC_WINRT.Model
         public string Href { get; set; }
     }
 
-    internal class Links
+    public class Links
     {
 
         [JsonProperty("link")]
         public Link Link { get; set; }
     }
 
-    internal class Similar
+    public class Similar
     {
 
         [JsonProperty("artist")]
         public Artist2[] Artist { get; set; }
     }
 
-    internal class Stats
+    public class Stats
     {
 
         [JsonProperty("listeners")]
@@ -117,7 +117,7 @@ namespace VLC_WINRT.Model
         public string Playcount { get; set; }
     }
 
-    internal class Tag
+    public class Tag
     {
 
         [JsonProperty("name")]
@@ -127,7 +127,7 @@ namespace VLC_WINRT.Model
         public string Url { get; set; }
     }
 
-    internal class Tags
+    public class Tags
     {
 
         [JsonProperty("tag")]

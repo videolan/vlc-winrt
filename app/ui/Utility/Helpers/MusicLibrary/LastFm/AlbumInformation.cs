@@ -9,18 +9,18 @@
 
 using Newtonsoft.Json;
 
-namespace VLC_WINRT.Model
+namespace VLC_WINRT.Utility.Helpers.MusicLibrary.LastFm
 {
     /// <summary>
     /// Used for mapping Last.FM Json object.
     /// </summary>
-    internal class AlbumInformation
+    public class AlbumInformation
     {
         [JsonProperty("album")]
         public Album Album { get; set; }
     }
 
-    internal class Album
+    public class Album
     {
 
         [JsonProperty("name")]
@@ -51,7 +51,7 @@ namespace VLC_WINRT.Model
         public string Playcount { get; set; }
     }
 
-    internal partial class Artist
+    public partial class Artist
     {
 
         [JsonProperty("name")]
@@ -64,7 +64,7 @@ namespace VLC_WINRT.Model
         public string Url { get; set; }
     }
 
-    internal class Image
+    public class Image
     {
 
         [JsonProperty("#text")]

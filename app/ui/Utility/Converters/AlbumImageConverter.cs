@@ -1,0 +1,25 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Windows.UI.Xaml.Data;
+using VLC_WINRT.Model;
+using Image = VLC_WINRT.Utility.Helpers.MusicLibrary.MusicEntities.Image;
+
+namespace VLC_WINRT.Utility.Converters
+{
+    public class AlbumImageConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            var topImage = value as List<Image>;
+            return topImage == null ? null : topImage.LastOrDefault(image => !string.IsNullOrEmpty(image.Url)).Url;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
+}
