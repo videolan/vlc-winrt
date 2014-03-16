@@ -84,7 +84,6 @@ namespace VLC_WINRT.Views
                 Debug.WriteLine("Artist does not have a URL link out.");
                 return;
             }
-            await ArtistInformationsHelper.GetArtistFromXboxMusic(topArtist.Name);
             // LastFM does not append "http" to its URLs sometimes, which can cause Windows to throw an error.
             // So let's check before if it has it or not, and if not we'll append it.
             string appendHttp = !topArtist.Url.Contains("http://") ? "http://" + topArtist.Url : topArtist.Url;

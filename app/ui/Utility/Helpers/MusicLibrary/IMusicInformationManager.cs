@@ -15,12 +15,12 @@ namespace VLC_WINRT.Utility.Helpers.MusicLibrary
 {
     public interface IMusicInformationManager
     {
-        Task<Artist> GetArtistInfo(string artist);
+        Task<Artist> GetArtistInfo(string artistName);
 
-        Task<List<Artist>> GetSimilarArtists(string artist);
+        Task<List<Artist>> GetSimilarArtists(string artistName);
 
         Task<Album> GetAlbumInfo(string albumTitle);
 
-        Task<List<Album>> GetArtistTopAlbums(string artist);
+        Task<List<Album>> GetArtistTopAlbums(string artistName);
     }
 }

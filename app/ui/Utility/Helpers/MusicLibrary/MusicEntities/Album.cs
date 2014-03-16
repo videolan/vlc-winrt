@@ -49,5 +49,14 @@ namespace VLC_WINRT.Utility.Helpers.MusicLibrary.MusicEntities
                 this.Images.Add(artistImage);
             }
         }
+
+        public void MapFrom(XboxMusicLibrary.Models.Album xboxAlbum)
+        {
+            this.Name = xboxAlbum.Name;
+            this.Url = xboxAlbum.Link;
+            var image = new Image{ Url = xboxAlbum.ImageUrl};
+            var imageEx = new Image{Url = xboxAlbum.ImageUrlEx};
+            this.Images = new List<Image>{image, imageEx};
+        }
     }
 }

@@ -15,6 +15,8 @@ namespace XboxMusicLibrary.Settings
         TopTracks,
         Tracks,
         ArtistDetails,
-        AlbumDetails
+        AlbumDetails,
+        Artists,
+        RelatedArtists
     }
 }

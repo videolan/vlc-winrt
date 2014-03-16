@@ -21,6 +21,8 @@ namespace VLC_WINRT.Utility.Helpers.MusicLibrary.MusicEntities
     {
         public string Name { get; set; }
 
+        public string XboxId { get; set; }
+
         public string Url { get; set; }
 
         public List<Image> Images { get; set; }
@@ -29,7 +31,7 @@ namespace VLC_WINRT.Utility.Helpers.MusicLibrary.MusicEntities
 
         public long Playcount { get; set; }
 
-        public string Biograpgy { get; set; }
+        public string Biography { get; set; }
 
         public bool OnTour { get; set; }
 
@@ -106,7 +108,17 @@ namespace VLC_WINRT.Utility.Helpers.MusicLibrary.MusicEntities
             {
                 biography = resourceLoader.GetString("NoBiographyFound");
             }
-            this.Biograpgy = biography;
+            this.Biography = biography;
+        }
+
+        public void MapFrom(XboxMusicLibrary.Models.Artist xboxArtistItem)
+        {
+            this.Name = xboxArtistItem.Name;
+            this.Url = xboxArtistItem.Link;
+            var image = new Image() { Url = xboxArtistItem.ImageUrl };
+            var imageEx = new Image() {Url = xboxArtistItem.ImageUrlEx};
+            this.Images = new List<Image>(){image, imageEx};
+            this.XboxId = xboxArtistItem.Id;
         }
     }
 }
