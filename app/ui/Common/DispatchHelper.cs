@@ -17,7 +17,7 @@ namespace VLC_WINRT.Common
 {
     public class DispatchHelper
     {
-        public static void Invoke(Action action)
+        public static async Task InvokeAsync(Action action)
         {
             //for some reason this crashes the designer (so dont do it in design mode)
             if (DesignMode.DesignModeEnabled) return;
@@ -25,22 +25,6 @@ namespace VLC_WINRT.Common
             if (CoreApplication.MainView.CoreWindow == null || CoreApplication.MainView.CoreWindow.Dispatcher.HasThreadAccess)
             {
                 action();
-            }
-            else
-            {
-                CoreApplication.MainView.CoreWindow.
-                    Dispatcher.RunAsync(CoreDispatcherPriority.Normal,() => action()).AsTask().Wait();
-            }
-        }
-
-        public static async Task InvokeAsync(Func<Task> action)
-        { 
-            //for some reason this crashes the designer (so dont do it in design mode)
-            if (DesignMode.DesignModeEnabled) return;
-
-            if (CoreApplication.MainView.CoreWindow == null || CoreApplication.MainView.CoreWindow.Dispatcher.HasThreadAccess)
-            {
-                await action();
             }
             else
             {

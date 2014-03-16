@@ -119,11 +119,11 @@ namespace VLC_WINRT.ViewModels.MainPage
 
                 if (files.Count > 0)
                 {
-                    DispatchHelper.Invoke(() => HasNoMedia = false);
+                    await DispatchHelper.InvokeAsync(() => HasNoMedia = false);
                 }
                 else
                 {
-                    DispatchHelper.Invoke(() => HasNoMedia = true);
+                    await DispatchHelper.InvokeAsync(() => HasNoMedia = true);
                 }
 
                 int j = 0;
@@ -132,19 +132,19 @@ namespace VLC_WINRT.ViewModels.MainPage
                     var mediaVM = new MediaViewModel(storageFile);
 
                     // Get back to UI thread
-                    DispatchHelper.Invoke(() => Media.Add(mediaVM));
-                    DispatchHelper.Invoke(() =>
+                    await DispatchHelper.InvokeAsync(() =>
                     {
+                        Media.Add(mediaVM);
                         int i = new Random().Next(0, files.Count - 1);
                         if (j < 5 && i <= (files.Count - 1) / 2)
                         {
-                            DispatchHelper.Invoke(() => MediaRandom.Add(mediaVM));
+                            MediaRandom.Add(mediaVM);
                             j++;
                         }
+                        MediaGroupedByAlphabet = Media.OrderBy(x => x.AlphaKey).GroupBy(x => x.AlphaKey);
+                        ExecuteSemanticZoom();
                     });
-                    DispatchHelper.Invoke(() => MediaGroupedByAlphabet = Media.OrderBy(x => x.AlphaKey).GroupBy(x => x.AlphaKey));
                 }
-                DispatchHelper.Invoke(ExecuteSemanticZoom);
             }
             catch
             {

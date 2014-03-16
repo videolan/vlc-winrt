@@ -13,6 +13,7 @@ using VLC_WINRT.Common;
 using VLC_WINRT.Utility.Commands;
 using Windows.Storage;
 using VLC_WINRT.Utility.Commands.VideoPlayer;
+using System.Threading.Tasks;
 
 namespace VLC_WINRT.ViewModels.MainPage
 {
@@ -39,6 +40,7 @@ namespace VLC_WINRT.ViewModels.MainPage
                 Type = File.FileType.Replace(".", "").ToLower();
                 OpenVideo = new OpenVideoCommand();
                 FavoriteVideo = new FavoriteVideoCommand();
+                //FIXME: Call this from outside constructor
                 GetTimeInformation();
             }
         }
@@ -88,14 +90,14 @@ namespace VLC_WINRT.ViewModels.MainPage
         }
 
 
-        private async void GetTimeInformation()
+        private async Task GetTimeInformation()
         {
             if (VideoProperties == null)
                 VideoProperties = await File.Properties.GetVideoPropertiesAsync();
 
             TimeSpan duration = VideoProperties != null ? VideoProperties.Duration : TimeSpan.FromSeconds(0);
 
-            DispatchHelper.Invoke(() =>
+            await DispatchHelper.InvokeAsync(() =>
             {
                 Duration = duration;
             });

@@ -43,6 +43,7 @@ namespace VLC_WINRT.ViewModels.MainPage
             }
             _clearHistoryCommand = new ClearHistoryCommand();
             _historyService.HistoryUpdated += UpdateHistory;
+            //FIXME: Needs to be awaited on from outside CTOR
             UpdateHistory();
         }
         public void Dispose()
@@ -50,14 +51,19 @@ namespace VLC_WINRT.ViewModels.MainPage
             _historyService.HistoryUpdated -= UpdateHistory;
         }
 
-        private void UpdateHistory(object sender, EventArgs e)
+        private async void UpdateHistory(object sender, EventArgs e)
         {
-            UpdateHistory();   
+            await UpdateHistory();
         }
 
-        private void UpdateHistory()
+        private async Task UpdateHistory()
         {
-            ThreadPool.RunAsync(GetLastViewedMedia);
+            var viewedMedia = await GetRecentMedia();
+
+            await DispatchHelper.InvokeAsync(() =>
+            {
+                LastViewedVM = viewedMedia;
+            });
         }
 
         public List<ViewedVideoViewModel> LastViewedVM
@@ -83,17 +89,6 @@ namespace VLC_WINRT.ViewModels.MainPage
         {
             get { return _lastViewedSectionVisible; }
             set { SetProperty(ref _lastViewedSectionVisible, value); }
-        }
-
-
-        private async void GetLastViewedMedia(IAsyncAction operation)
-        {
-            var viewedMedia = await GetRecentMedia();
-
-            DispatchHelper.Invoke(() =>
-            {
-                LastViewedVM = viewedMedia;
-            });
         }
 
         private async Task<List<ViewedVideoViewModel>> GetRecentMedia()

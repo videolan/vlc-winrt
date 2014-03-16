@@ -15,6 +15,7 @@ using Windows.System.Threading;
 using VLC_WINRT.Common;
 using VLC_WINRT.Utility.IoC;
 using VLC_WINRT.Utility.Services.RunTime;
+using System.Threading.Tasks;
 
 namespace VLC_WINRT.ViewModels.MainPage
 {
@@ -55,9 +56,9 @@ namespace VLC_WINRT.ViewModels.MainPage
             _deviceService = null;
         }
 
-        private void AddFolder(string newId)
+        private async void AddFolder(string newId)
         {
-            DispatchHelper.Invoke(() =>
+            await DispatchHelper.InvokeAsync(() =>
             {
                 if (RemovableStorageVMs.All(vm => vm.Id != newId))
                 {
@@ -66,9 +67,9 @@ namespace VLC_WINRT.ViewModels.MainPage
             });
         }
 
-        private void DeviceRemoved(object sender, string id)
+        private async void DeviceRemoved(object sender, string id)
         {
-            DispatchHelper.Invoke(() =>
+            await DispatchHelper.InvokeAsync(() =>
             {
                 RemovableLibraryViewModel removedViewModel = RemovableStorageVMs.FirstOrDefault(vm => vm.Id == id);
                 if (removedViewModel != null)

@@ -44,7 +44,7 @@ namespace VLC_WINRT.ViewModels.MainPage
             var historyService = IoC.GetInstance<HistoryService>();
             MediaHistory history = historyService.GetHistory(_token);
 
-            DispatchHelper.Invoke(() =>
+            DispatchHelper.InvokeAsync(() =>
                                       {
                                           TimeWatched = TimeSpan.FromMilliseconds(history.TotalWatchedMilliseconds);
                                       });

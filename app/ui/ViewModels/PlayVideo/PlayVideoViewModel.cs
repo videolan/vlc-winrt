@@ -304,9 +304,9 @@ namespace VLC_WINRT.ViewModels.PlayVideo
             MediaControl.IsPlaying = true;
             MediaControl.ArtistName = "";
             MediaControl.TrackName = Title;
-            MediaControl.NextTrackPressed += (sender, o) => DispatchHelper.Invoke(()=> SkipAhead.Execute(""));
-            MediaControl.PreviousTrackPressed += (sender, o) => DispatchHelper.Invoke(()=> SkipBack.Execute(""));
-            MediaControl.PlayPauseTogglePressed += (sender, o) => DispatchHelper.Invoke(() =>
+            MediaControl.NextTrackPressed += async (sender, o) => await DispatchHelper.InvokeAsync(()=> SkipAhead.Execute(""));
+            MediaControl.PreviousTrackPressed += async (sender, o) => await DispatchHelper.InvokeAsync(()=> SkipBack.Execute(""));
+            MediaControl.PlayPauseTogglePressed += async (sender, o) => await DispatchHelper.InvokeAsync(() =>
             {
                 if (IsPlaying)
                 {
@@ -322,7 +322,7 @@ namespace VLC_WINRT.ViewModels.PlayVideo
                 }
             });
 
-            MediaControl.PlayPressed += (sender, o) => DispatchHelper.Invoke(() =>
+            MediaControl.PlayPressed += async (sender, o) => await DispatchHelper.InvokeAsync(() =>
             {
                 if (IsPlaying)
                 {
@@ -331,7 +331,7 @@ namespace VLC_WINRT.ViewModels.PlayVideo
                     MediaControl.IsPlaying = false;
                 }
             });
-            MediaControl.PausePressed += (sender, o) => DispatchHelper.Invoke(() =>
+            MediaControl.PausePressed += async (sender, o) => await DispatchHelper.InvokeAsync(() =>
             {
                 if (!IsPlaying)
                 {
@@ -354,11 +354,11 @@ namespace VLC_WINRT.ViewModels.PlayVideo
         }
         
 
-        private void VlcPlayerServiceOnMediaEnded(object sender, Player player)
+        private async void VlcPlayerServiceOnMediaEnded(object sender, Player player)
         {
             UnRegisterMediaControlEvents();
             _vlcPlayerService.MediaEnded -= VlcPlayerServiceOnMediaEnded;
-            DispatchHelper.Invoke(() => App.RootPage.MainFrame.GoBack());
+            await DispatchHelper.InvokeAsync(() => App.RootPage.MainFrame.GoBack());
         }
 
         public override Task OnNavigatedFrom()

@@ -166,22 +166,22 @@ namespace VLC_WINRT.ViewModels.MainPage
 
             _periodicTimer = ThreadPoolTimer.CreatePeriodicTimer(async (source) =>
             {
-                DispatchHelper.InvokeAsync(async () =>
+                await SerializeArtistsDataBase();
+
+                if (Locator.MusicLibraryVM.Track.Count > _numberOfTracks)
                 {
-                    if (Locator.MusicLibraryVM.Track.Count > _numberOfTracks)
+                    await ImgCollection.SerializeAsJson("Artist_Img_Collection.json", null, CreationCollisionOption.ReplaceExisting);
+                    await DispatchHelper.InvokeAsync(() => Locator.MusicLibraryVM._numberOfTracks = Track.Count);
+                }
+                else
+                {
+                    _periodicTimer.Cancel();
+                    await DispatchHelper.InvokeAsync(() => 
                     {
-                        await SerializeArtistsDataBase();
-                        await ImgCollection.SerializeAsJson("Artist_Img_Collection.json", null, CreationCollisionOption.ReplaceExisting);
-                        Locator.MusicLibraryVM._numberOfTracks = Track.Count;
-                    }
-                    else
-                    {
-                        await SerializeArtistsDataBase();
-                        _periodicTimer.Cancel();
                         IsLoaded = true;
                         IsBusy = false;
-                    }
-                });
+                    });
+                }
             }, period);
 
             foreach (var artistItem in musicFolder)
@@ -199,7 +199,8 @@ namespace VLC_WINRT.ViewModels.MainPage
                 {
                     StorageFolderQueryResult albumQuery =
                         artistItem.CreateFolderQuery(CommonFolderQuery.GroupByAlbum);
-                    var artist = new ArtistItemViewModel(albumQuery, artistProperties.Artist);
+                    var artist = new ArtistItemViewModel();
+                    await artist.Initialize(albumQuery, artistProperties.Artist);
                     OnPropertyChanged("Track");
                     OnPropertyChanged("Artist");
                     Artist.Add(artist);
@@ -311,12 +312,11 @@ namespace VLC_WINRT.ViewModels.MainPage
 
         public async Task SerializeArtistsDataBase()
         {
-            IsBusy = true;
+            await DispatchHelper.InvokeAsync(() => IsBusy = true);
             await SerializationHelper.SerializeAsJson(Artist, "MusicDB.json",
                 null,
                 CreationCollisionOption.ReplaceExisting);
-
-            IsBusy = false;
+            await DispatchHelper.InvokeAsync(() => IsBusy = false);
         }
 
         public class ArtistItemViewModel : BindableBase
@@ -447,11 +447,12 @@ namespace VLC_WINRT.ViewModels.MainPage
                 set { SetProperty(ref _isFavorite, value); }
             }
 
-            public ArtistItemViewModel(StorageFolderQueryResult albumQueryResult, string artistName)
+            public async Task Initialize(StorageFolderQueryResult albumQueryResult, string artistName)
             {
-                DispatchHelper.Invoke(() => Name = artistName);
-                LoadAlbums(albumQueryResult);
+                await DispatchHelper.InvokeAsync(() => Name = artistName);
+                await LoadAlbums(albumQueryResult);
             }
+
 
             public ArtistItemViewModel()
             {
@@ -474,11 +475,14 @@ namespace VLC_WINRT.ViewModels.MainPage
                     {
                         AlbumItem albumItem = await GetInformationsFromMusicFile.GetAlbumItemFromFolder(item, albumQueryResult);
                         await albumItem.GetCover();
-                        DispatchHelper.Invoke(() => Albums.Add(albumItem));
-                        if (Locator.MusicLibraryVM.RandomAlbums.Count < 12)
+                        await DispatchHelper.InvokeAsync(() => 
                         {
-                            DispatchHelper.Invoke(() => Locator.MusicLibraryVM.RandomAlbums.Add(albumItem));
-                        }
+                            Albums.Add(albumItem);
+                            if (Locator.MusicLibraryVM.RandomAlbums.Count < 12)
+                            {
+                                Locator.MusicLibraryVM.RandomAlbums.Add(albumItem);
+                            }
+                        });
                         Locator.MusicLibraryVM.AlbumCover.Add(albumItem.Picture);
                     }
                 }
@@ -648,10 +652,10 @@ namespace VLC_WINRT.ViewModels.MainPage
                 }
                 if (hasFoundCover)
                 {
-                    App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                    await DispatchHelper.InvokeAsync(() =>
                     {
-                        DispatchHelper.Invoke(() => Picture = "ms-appdata:///local/" + Artist + "_" + Name + ".jpg");
-                        DispatchHelper.Invoke(() => OnPropertyChanged("Picture"));
+                        Picture = "ms-appdata:///local/" + Artist + "_" + Name + ".jpg";
+                        OnPropertyChanged("Picture");
                     });
                 }
             }
@@ -666,8 +670,11 @@ namespace VLC_WINRT.ViewModels.MainPage
                     i++;
                     var trackItem = await GetInformationsFromMusicFile.GetTrackItemFromFile(track, Artist, Name, i);
                     Tracks.Add(trackItem);
-                    DispatchHelper.Invoke(() => Locator.MusicLibraryVM.Track.Add(trackItem));
-                    DispatchHelper.Invoke(() => OnPropertyChanged("Track"));
+                    await DispatchHelper.InvokeAsync(() =>
+                    {
+                        Locator.MusicLibraryVM.Track.Add(trackItem);
+                        OnPropertyChanged("Track");
+                    });
                 }
             }
 
