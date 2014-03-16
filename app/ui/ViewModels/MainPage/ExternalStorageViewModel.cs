@@ -31,15 +31,16 @@ namespace VLC_WINRT.ViewModels.MainPage
             _deviceService = IoC.GetInstance<ExternalDeviceService>();
             _deviceService.ExternalDeviceAdded += DeviceAdded;
             _deviceService.ExternalDeviceRemoved += DeviceRemoved;
+        }
 
-            ThreadPool.RunAsync(a => _deviceService.GetExternalDeviceIds().ContinueWith(ids =>
+        public async Task Initialize()
+        {
+            var devices = await _deviceService.GetExternalDeviceIds();
+            foreach (string id in devices)
             {
-                foreach (string id in ids.Result)
-                {
-                    string newId = id;
-                    AddFolder(newId);
-                }
-            }));
+                string newId = id;
+                await AddFolder(newId);
+            }
         }
 
         public ObservableCollection<RemovableLibraryViewModel> RemovableStorageVMs
@@ -56,7 +57,7 @@ namespace VLC_WINRT.ViewModels.MainPage
             _deviceService = null;
         }
 
-        private async void AddFolder(string newId)
+        private async Task AddFolder(string newId)
         {
             await DispatchHelper.InvokeAsync(() =>
             {
@@ -79,9 +80,9 @@ namespace VLC_WINRT.ViewModels.MainPage
             });
         }
 
-        private void DeviceAdded(object sender, string id)
+        private async void DeviceAdded(object sender, string id)
         {
-            AddFolder(id);
+            await AddFolder(id);
         }
     }
 }

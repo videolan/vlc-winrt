@@ -110,6 +110,7 @@ namespace VLC_WINRT.ViewModels.MainPage
             MusicLibraryVm = Locator.MusicLibraryVM;
             await MusicLibraryVm.Initialize();
             ExternalStorageVM = new ExternalStorageViewModel();
+            await ExternalStorageVM.Initialize();
         }
 
         public SelectDefaultFolderForIndexingVideoCommand SetDefaultFolderForIndexingVideoCommand
