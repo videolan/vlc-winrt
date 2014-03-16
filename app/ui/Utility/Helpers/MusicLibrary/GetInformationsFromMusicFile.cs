@@ -59,7 +59,8 @@ namespace VLC_WINRT.Utility.Helpers.MusicLibrary
             var files = await item.GetFilesAsync(CommonFileQuery.OrderByMusicProperties);
             var thumbnail = await item.GetThumbnailAsync(ThumbnailMode.MusicView, 250);
             
-            var albumItem = new MusicLibraryViewModel.AlbumItem(thumbnail, files, musicAttr.Album, albumQueryResult.Folder.DisplayName);
+            var albumItem = new MusicLibraryViewModel.AlbumItem(thumbnail, musicAttr.Album, albumQueryResult.Folder.DisplayName);
+            await albumItem.LoadTracks(files);
             return albumItem;
         }
     }

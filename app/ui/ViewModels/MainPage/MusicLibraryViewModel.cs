@@ -569,16 +569,14 @@ namespace VLC_WINRT.ViewModels.MainPage
                     CurrentTrackPosition--;
             }
 
-            public AlbumItem(StorageItemThumbnail thumbnail, IReadOnlyList<StorageFile> tracks, string name, string artist)
+            public AlbumItem(StorageItemThumbnail thumbnail, string name, string artist)
             {
-                if (tracks == null) return;
                 //DispatchHelper.Invoke(() =>
                 //{
                 Name = (name.Length == 0) ? "Album without title" : name;
                 Artist = artist;
                 //});
                 _storageItemThumbnail = thumbnail;
-                LoadTracks(tracks);
             }
 
             public async Task GetCover()
@@ -660,6 +658,8 @@ namespace VLC_WINRT.ViewModels.MainPage
 
             public async Task LoadTracks(IReadOnlyList<StorageFile> tracks)
             {
+                if (tracks == null)
+                    return;
                 int i = 0;
                 foreach (var track in tracks)
                 {
