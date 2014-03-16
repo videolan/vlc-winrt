@@ -23,7 +23,14 @@ namespace VLC_WINRT.Utility.Converters
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             var topImage = value as List<Image>;
-            return topImage == null ? null : topImage.LastOrDefault(image => !string.IsNullOrEmpty(image.Url)).Url;
+            if (topImage == null)
+                return null;
+
+            var albumImage = topImage.LastOrDefault(image => !string.IsNullOrEmpty(image.Url));
+            if (albumImage == null)
+                return null;
+            else
+                return albumImage.Url;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
