@@ -598,7 +598,7 @@ namespace VLC_WINRT.ViewModels.MainPage
                     var file =
                         await
                             ApplicationData.Current.LocalFolder.CreateFileAsync(
-                                Artist + "_" + Name + ".jpg",
+                                fileName + ".jpg",
                                 CreationCollisionOption.ReplaceExisting);
                     var raStream = await file.OpenAsync(FileAccessMode.ReadWrite);
 
