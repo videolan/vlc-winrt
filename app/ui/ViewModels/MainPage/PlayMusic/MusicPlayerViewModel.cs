@@ -24,6 +24,9 @@ using VLC_WINRT.Utility.Commands;
 using VLC_WINRT.Utility.Commands.MusicPlayer;
 using VLC_WINRT.Utility.Helpers;
 using VLC_WINRT.Utility.Services.RunTime;
+using VLC_WINRT.Utility.Services.Interface;
+using VLC_WINRT.Common;
+using Windows.UI.Xaml.Navigation;
 
 namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
 {
@@ -45,74 +48,49 @@ namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
         private TimeSpan _timeTotal = TimeSpan.Zero;
         private string _title;
         private MusicLibraryViewModel.ArtistItemViewModel _artist;
-        private MediaPlayerService _vlcPlayerService;
+        private readonly VlcService _vlcPlayerService;
         private TrackCollectionViewModel _trackCollection;
-        public MusicPlayerViewModel()
+        private readonly IMediaService _mediaService;
+
+        public MusicPlayerViewModel(HistoryService historyService, IMediaService mediaService, VlcService mediaPlayerService)
         {
             _playOrPause = new MusicPlayOrPauseCommand();
-            _historyService = App.Container.Resolve<HistoryService>();
+            _historyService = historyService;
             _goBackCommand = new StopVideoCommand();
             _displayAlwaysOnRequest = new DisplayRequest();
+
+            _mediaService = mediaService;
+            _mediaService.StatusChanged += PlayerStateChanged;
+            _mediaService.MediaEnded += MediaService_MediaEnded;
 
             _sliderPositionTimer.Tick += FirePositionUpdate;
             _sliderPositionTimer.Interval = TimeSpan.FromMilliseconds(16);
 
-            _vlcPlayerService = App.Container.Resolve<MediaPlayerService>();
-            _vlcPlayerService.StatusChanged += PlayerStateChanged;
-            _vlcPlayerService.MediaEnded += _vlcPlayerService_MediaEnded;
-            _skipAhead = new ActionCommand(() => _vlcPlayerService.SkipAhead());
-            _skipBack = new ActionCommand(() => _vlcPlayerService.SkipBack());
+            _vlcPlayerService = mediaPlayerService;
+            _skipAhead = new ActionCommand(() => _mediaService.SkipAhead());
+            _skipBack = new ActionCommand(() => _mediaService.SkipBack());
             _playNext = new PlayNextCommand();
             _playPrevious = new PlayPreviousCommand();
             _trackCollection = new TrackCollectionViewModel();
         }
 
-        void RegisterWindows8Events()
+        private void MediaService_MediaEnded(object sender, EventArgs e)
         {
-            // register the windows 8 overlay media control events
-            MediaControl.StopPressed += MediaControl_StopPressed;
-            MediaControl.PlayPressed += MediaControl_PlayPressed;
-            MediaControl.PausePressed += MediaControl_PausePressed;
-            MediaControl.IsPlaying = false;
-        }
-
-        void UnRegisterWindows8Events()
-        {
-            MediaControl.StopPressed -= MediaControl_StopPressed;
-            MediaControl.PlayPressed -= MediaControl_PlayPressed;
-            MediaControl.PausePressed -= MediaControl_PausePressed;
-            MediaControl.IsPlaying = false;
-        }
-
-        void MediaControl_PreviousTrackPressed(object sender, object e)
-        {
-            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, PlayPrevious);
-        }
-
-        void MediaControl_NextTrackPressed(object sender, object e)
-        {
-            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, PlayNext);
-        }
-        private void MediaControl_PausePressed(object sender, object e)
-        {
-            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, Pause);
-        }
-
-        private void MediaControl_PlayPressed(object sender, object e)
-        {
-            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            DispatchHelper.Invoke(() =>
             {
-                _vlcPlayerService.Play();
-                MediaControl.IsPlaying = true;
-            });
-        }
-
-        private void MediaControl_StopPressed(object sender, object e)
-        {
-            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-            {
-                _vlcPlayerService.Stop();
-                MediaControl.IsPlaying = false;
+                if (TrackCollection.TrackCollection != null && TrackCollection.TrackCollection.Any() && TrackCollection.IsRunning)
+                {
+                    if (TrackCollection.TrackCollection[TrackCollection.CurrentTrack] ==
+                        TrackCollection.TrackCollection.Last())
+                    {
+                        // Playlist is finished
+                        TrackCollection.IsRunning = false;
+                    }
+                    else
+                    {
+                        PlayNext();
+                    }
+                }
             });
         }
 
@@ -124,37 +102,21 @@ namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
             }
         }
 
-        void _vlcPlayerService_MediaEnded(object sender, libVLCX.Player e)
+        public void Pause()
         {
-            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-            {
-                if (IsPlaying && TrackCollection.TrackCollection != null && TrackCollection.TrackCollection.Any())
-                {
-                    if (TrackCollection.TrackCollection[TrackCollection.CurrentTrack] ==
-                        TrackCollection.TrackCollection.Last())
-                    {
-                        // Playlist is finished
-                        TrackCollection.IsRunning = false;
-                        UnRegisterWindows8Events();
-                    }
-                    else
-                    {
-                        PlayNext();
-                    }
-                }
-            });
+            _mediaService.Pause();
         }
 
         public void Resume()
         {
-            _vlcPlayerService.Play();
-            MediaControl.IsPlaying = true;
+            _mediaService.Play();
         }
+
         public void Stop()
         {
-            if (MediaControl.IsPlaying)
-                _vlcPlayerService.Stop();
+            _mediaService.Stop();
         }
+
         public void PlayNext()
         {
             TrackCollection.IsNextPossible();
@@ -168,7 +130,6 @@ namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
             {
                 TileUpdateManager.CreateTileUpdaterForApplication().Clear();
                 MediaControl.IsPlaying = false; 
-                UnRegisterWindows8Events();
             }
         }
 
@@ -186,8 +147,17 @@ namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
                 TileUpdateManager.CreateTileUpdaterForApplication().Clear();
                 MediaControl.IsPlaying = false;
                 MediaControl.PreviousTrackPressed -= MediaControl_PreviousTrackPressed;
-                UnRegisterWindows8Events();
             }
+        }
+
+        void MediaControl_PreviousTrackPressed(object sender, object e)
+        {
+            DispatchHelper.Invoke(() => PlayPrevious());
+        }
+
+        void MediaControl_NextTrackPressed(object sender, object e)
+        {
+            DispatchHelper.Invoke(() => PlayNext());
         }
 
         public async void Play()
@@ -239,6 +209,8 @@ namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
         {
             TrackCollection.IsRunning = true;
             Stop();
+
+            // Wat? This doesn't make any sense.
             var trackItem = TrackCollection.TrackCollection[TrackCollection.CurrentTrack];
 
             var history = new HistoryService();
@@ -274,39 +246,34 @@ namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
             else
                 MediaControl.PreviousTrackPressed -= MediaControl_PreviousTrackPressed;
         }
-        public void Pause()
-        {
-            _vlcPlayerService.Pause();
-            MediaControl.IsPlaying = false;
-        }
 
         public double PositionInSeconds
         {
             get
             {
-                if (_vlcPlayerService != null && _vlcPlayerService.CurrentState == MediaPlayerService.MediaPlayerState.Playing)
+                if (_vlcPlayerService != null && _vlcPlayerService.CurrentState == VlcService.MediaPlayerState.Playing)
                 {
-                    return _vlcPlayerService.GetPosition().Result * TimeTotal.TotalSeconds;
+                    return _mediaService.GetPosition() * TimeTotal.TotalSeconds;
                 }
                 return 0.0d;
             }
-            set { _vlcPlayerService.Seek((float)(value / TimeTotal.TotalSeconds)); }
+            set { _mediaService.SetPosition((float)(value / TimeTotal.TotalSeconds)); }
         }
 
         public double Position
         {
             get
             {
-                if (_vlcPlayerService != null && _vlcPlayerService.CurrentState == MediaPlayerService.MediaPlayerState.Playing)
+                if (_vlcPlayerService != null && _vlcPlayerService.CurrentState == VlcService.MediaPlayerState.Playing)
                 {
-                    return _vlcPlayerService.GetPosition().Result * 1000;
+                    return _mediaService.GetPosition() * 1000;
                 }
                 return 0.0d;
                 
             }
             set
             {
-                _vlcPlayerService.Seek((float)value / 1000);
+                _mediaService.SetPosition((float)value / 1000);
             }
         }
 
@@ -399,28 +366,20 @@ namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
                 _vlcPlayerService.StatusChanged -= PlayerStateChanged;
                 _vlcPlayerService.Stop();
                 _vlcPlayerService.Close();
-                _vlcPlayerService = null;
             }
 
             _skipAhead = null;
             _skipBack = null;
         }
 
-        private void FirePositionUpdate(object sender, object e)
+        private async void FirePositionUpdate(object sender, object e)
         {
-            UpdatePosition(this, e);
+            await UpdatePosition(this, e);
         }
 
-        private void PlayerStateChanged(object sender, MediaPlayerService.MediaPlayerState e)
+        private void PlayerStateChanged(object sender, VlcService.MediaPlayerState e)
         {
-            if (e == MediaPlayerService.MediaPlayerState.Playing)
-            {
-                IsPlaying = true;
-            }
-            else
-            {
-                IsPlaying = false;
-            }
+            DispatchHelper.Invoke(() => IsPlaying = e == VlcService.MediaPlayerState.Playing);
         }
 
         public void RegisterPanel()
@@ -436,19 +395,17 @@ namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
             Artist = Locator.MusicLibraryVM.Artist.FirstOrDefault(x => x.Name == track.ArtistName);
             if (Artist != null)
                 Artist.CurrentAlbumIndex = _artist.Albums.IndexOf(_artist.Albums.FirstOrDefault(x => x.Name == track.AlbumName));
-            _vlcPlayerService.Open(_mrl);
+            _mediaService.SetPath(_mrl);
             OnPropertyChanged("TimeTotal");
             UpdateTileHelper.UpdateMediumTileWithMusicInfo();
-            _vlcPlayerService.Play();
-
-            RegisterWindows8Events();
+            _mediaService.Play();
         }
 
-        public override Task OnNavigatedFrom()
+        public override Task OnNavigatedFrom(NavigationEventArgs e)
         {
             _sliderPositionTimer.Stop();
-            _vlcPlayerService.Stop();
-            return base.OnNavigatedFrom();
+            _mediaService.Stop();
+            return base.OnNavigatedFrom(e);
         }
 
         private void UpdateDate(object sender, object e)
@@ -496,18 +453,17 @@ namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
             ElapsedTime = TimeSpan.FromSeconds(PositionInSeconds);
         }
 
-        public async Task CleanViewModel()
+        public void CleanViewModel()
         {
-            _vlcPlayerService.Stop();
+            _mediaService.Stop();
             TrackCollection.TrackCollection.Clear();
             TrackCollection.IsRunning = false;
             IsPlaying = false;
-            Pause();
+
             Artist = null;
             Title = null;
             _elapsedTime = TimeSpan.Zero;
             _timeTotal = TimeSpan.Zero;
-            MediaControl.IsPlaying = false;
         }
     }
 }

@@ -26,6 +26,7 @@ using VLC_WINRT.Utility.Commands.VideoPlayer;
 using VLC_WINRT.Utility.Services.RunTime;
 using VLC_WINRT.ViewModels.MainPage;
 using VLC_WINRT.Views.Controls.MainPage;
+using Windows.UI.Xaml.Navigation;
 
 namespace VLC_WINRT.ViewModels.PlayVideo
 {
@@ -46,7 +47,7 @@ namespace VLC_WINRT.ViewModels.PlayVideo
         private ObservableCollection<Subtitle> _subtitles;
         private TimeSpan _timeTotal = TimeSpan.Zero;
         private string _title;
-        private MediaPlayerService _vlcPlayerService;
+        private VlcService _vlcPlayerService;
         private MouseService _mouseService;
         private MediaViewModel _currentVideo;
 
@@ -70,7 +71,7 @@ namespace VLC_WINRT.ViewModels.PlayVideo
             _sliderPositionTimer.Tick += FirePositionUpdate;
             _sliderPositionTimer.Interval = TimeSpan.FromMilliseconds(16);
 
-            _vlcPlayerService = App.Container.Resolve<MediaPlayerService>();
+            _vlcPlayerService = App.Container.Resolve<VlcService>();
             _vlcPlayerService.StatusChanged += PlayerStateChanged;
 
             _mouseService = App.Container.Resolve<MouseService>();
@@ -93,7 +94,7 @@ namespace VLC_WINRT.ViewModels.PlayVideo
             get
             {
                 if (_vlcPlayerService != null &&
-                    _vlcPlayerService.CurrentState == MediaPlayerService.MediaPlayerState.Playing)
+                    _vlcPlayerService.CurrentState == VlcService.MediaPlayerState.Playing)
                 {
                     return _vlcPlayerService.GetPosition().Result * TimeTotal.TotalSeconds;
                 }
@@ -242,9 +243,9 @@ namespace VLC_WINRT.ViewModels.PlayVideo
             UpdatePosition(this, e);
         }
 
-        private void PlayerStateChanged(object sender, MediaPlayerService.MediaPlayerState e)
+        private void PlayerStateChanged(object sender, VlcService.MediaPlayerState e)
         {
-            if (e == MediaPlayerService.MediaPlayerState.Playing)
+            if (e == VlcService.MediaPlayerState.Playing)
             {
                 IsPlaying = true;
             }
@@ -361,12 +362,12 @@ namespace VLC_WINRT.ViewModels.PlayVideo
             await DispatchHelper.InvokeAsync(() => App.RootPage.MainFrame.GoBack());
         }
 
-        public override Task OnNavigatedFrom()
+        public override Task OnNavigatedFrom(NavigationEventArgs e)
         {
             UpdateDate();
             _sliderPositionTimer.Stop();
             _vlcPlayerService.Stop();
-            return base.OnNavigatedFrom();
+            return base.OnNavigatedFrom(e);
         }
 
         private void UpdateDate()

@@ -162,9 +162,11 @@
     <Compile Include="Utility\Helpers\MusicLibrary\xboxmusic\Settings\Filters.cs" />
     <Compile Include="Utility\Helpers\MusicLibrary\xboxmusic\Settings\ImageMode.cs" />
     <Compile Include="Utility\Services\DesignTime\ThumbnailService.cs" />
+    <Compile Include="Utility\Services\Interface\IMediaService.cs" />
     <Compile Include="Utility\Services\Interface\IThumbnailService.cs" />
     <Compile Include="Utility\Services\RunTime\HistoryService.cs" />
-    <Compile Include="Utility\Services\RunTime\MediaPlayerService.cs" />
+    <Compile Include="Utility\Services\RunTime\MediaService.cs" />
+    <Compile Include="Utility\Services\RunTime\VlcService.cs" />
     <Compile Include="Utility\Services\RunTime\ExternalDeviceService.cs" />
     <Compile Include="Utility\Services\RunTime\MouseService.cs" />
     <Compile Include="Utility\Services\RunTime\NavigationService.cs" />

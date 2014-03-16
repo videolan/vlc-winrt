@@ -9,12 +9,13 @@
 
 using System.Threading.Tasks;
 using VLC_WINRT.Common;
+using Windows.UI.Xaml.Navigation;
 
 namespace VLC_WINRT.ViewModels
 {
     public class NavigateableViewModel : BindableBase
     {
-        public virtual Task OnNavigatedTo() { return Task.FromResult<bool>(true); }
-        public virtual Task OnNavigatedFrom() { return Task.FromResult<bool>(true); }
+        public virtual Task OnNavigatedTo(NavigationEventArgs e) { return Task.FromResult<bool>(true); }
+        public virtual Task OnNavigatedFrom(NavigationEventArgs e) { return Task.FromResult<bool>(true); }
     }
 }

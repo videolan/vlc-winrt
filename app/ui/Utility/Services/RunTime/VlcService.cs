@@ -15,11 +15,9 @@ using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
 using libVLCX;
 
-
-
 namespace VLC_WINRT.Utility.Services.RunTime
 {
-    public class MediaPlayerService
+    public class VlcService
     {
         public enum MediaPlayerState
         {
@@ -37,10 +35,10 @@ namespace VLC_WINRT.Utility.Services.RunTime
         private Player _vlcPlayer;
 
 
-        public MediaPlayerService()
+        public VlcService(HistoryService historyService)
         {
             CurrentState = MediaPlayerState.Stopped;
-            _historyService = App.Container.Resolve<HistoryService>();
+            _historyService = historyService;
         }
 
         public event EventHandler<MediaPlayerState> StatusChanged;
@@ -115,9 +113,15 @@ namespace VLC_WINRT.Utility.Services.RunTime
             _vlcPlayer.MediaEnded += _vlcPlayer_MediaEnded;
             await _vlcInitializeTask;
         }
+
         private void _vlcPlayer_MediaEnded()
         {
-            MediaEnded(this, _vlcPlayer);
+            UpdateStatus(MediaPlayerState.NotPlaying);
+            var mediaEnded = MediaEnded;
+            if (mediaEnded != null)
+            {
+                MediaEnded(this, _vlcPlayer);
+            }
         }
 
         public void Open(string mrl)
@@ -194,9 +198,9 @@ namespace VLC_WINRT.Utility.Services.RunTime
             }
         }
 
-        public async Task<double> GetPosition()
+        public async Task<float> GetPosition()
         {
-            double position = 0.0f;
+            float position = 0.0f;
             if (_vlcPlayer == null || _vlcInitializeTask == null)
                 return position;
 

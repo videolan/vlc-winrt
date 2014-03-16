@@ -55,7 +55,7 @@ namespace VLC_WINRT.Views
 
         private async void SwapPanelLoaded(object sender, RoutedEventArgs e)
         {
-            var vlcPlayerService = App.Container.Resolve<MediaPlayerService>();
+            var vlcPlayerService = App.Container.Resolve<VlcService>();
             await vlcPlayerService.Initialize(SwapChainPanel);
         }
 

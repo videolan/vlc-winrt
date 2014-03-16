@@ -19,6 +19,7 @@ using VLC_WINRT.Model;
 using VLC_WINRT.Utility.Commands;
 using VLC_WINRT.Utility.Commands.MainPage;
 using VLC_WINRT.Utility.Helpers;
+using Windows.UI.Xaml.Navigation;
 
 namespace VLC_WINRT.ViewModels.MainPage
 {
@@ -70,12 +71,10 @@ namespace VLC_WINRT.ViewModels.MainPage
             _goToPanelCommand = new GoToPanelCommand();
         }
 
-        private bool _loaded = false;
-
-        public override async Task OnNavigatedTo()
+        public override async Task OnNavigatedTo(NavigationEventArgs e)
         {
             // Make sure we're only initializing once.
-            if (!_loaded)
+            if (e.NavigationMode == NavigationMode.New)
             {
                 await InitVideoVM();
 
@@ -89,7 +88,6 @@ namespace VLC_WINRT.ViewModels.MainPage
                     DLNAVMs.Add(videoLib);
                 }
                 await Task.WhenAll(tasks);
-                _loaded = true;
             }
         }
 

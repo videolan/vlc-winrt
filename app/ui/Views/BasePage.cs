@@ -67,12 +67,12 @@ namespace VLC_WINRT.Views
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             SetDataContext();
-            await _vm.OnNavigatedTo();
+            await _vm.OnNavigatedTo(e);
         }
 
         protected override async void OnNavigatedFrom(NavigationEventArgs e)
         {
-            await _vm.OnNavigatedFrom();
+            await _vm.OnNavigatedFrom(e);
             _vm = null;
         }
 

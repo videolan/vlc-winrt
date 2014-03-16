@@ -29,8 +29,9 @@ namespace VLC_WINRT.Common
 
             // Register Services
             builder.RegisterType<HistoryService>().SingleInstance();
+            builder.RegisterType<MediaService>().As<IMediaService>().SingleInstance();
             builder.RegisterType<MouseService>().SingleInstance();
-            builder.RegisterType<MediaPlayerService>().SingleInstance();
+            builder.RegisterType<VlcService>().SingleInstance();
             builder.RegisterType<ExternalDeviceService>().SingleInstance();
             if (Windows.ApplicationModel.DesignMode.DesignModeEnabled)
             {

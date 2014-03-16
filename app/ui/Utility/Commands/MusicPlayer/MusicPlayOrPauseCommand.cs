@@ -7,9 +7,11 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
+using Autofac;
 using Windows.Media;
 using VLC_WINRT.Common;
 using VLC_WINRT.ViewModels;
+using VLC_WINRT.Utility.Services.Interface;
 
 namespace VLC_WINRT.Utility.Commands.MusicPlayer
 {
@@ -17,7 +19,8 @@ namespace VLC_WINRT.Utility.Commands.MusicPlayer
     {
         public override void Execute(object parameter)
         {
-            if (MediaControl.IsPlaying)
+            var service = App.Container.Resolve<IMediaService>();
+            if (service.IsPlaying)
                 Locator.MusicPlayerVM.Pause();
             else
                 Locator.MusicPlayerVM.Resume();

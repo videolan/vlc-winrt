@@ -97,11 +97,12 @@ namespace VLC_WINRT
         {
             base.OnFileActivated(args);
 
-            ManageOpeningFiles(args);
+            await ManageOpeningFiles(args);
         }
 
-        async void ManageOpeningFiles(FileActivatedEventArgs args)
+        async Task ManageOpeningFiles(FileActivatedEventArgs args)
         {
+            var mediaServce = Container.Resolve<MediaService>();
             StorageFile file = (StorageFile)args.Files[0];
             if (file.FileType == ".mp3" || file.FileType == ".wma")
             {
@@ -109,12 +110,13 @@ namespace VLC_WINRT
                 {
                     LaunchTheApp();
                 }
+
                 Locator.MusicPlayerVM.TrackCollection.TrackCollection.Clear();
                 MusicLibraryViewModel.TrackItem trackItem = await GetInformationsFromMusicFile.GetTrackItemFromFile(file);
                 Locator.MusicPlayerVM.TrackCollection.TrackCollection.Add(trackItem);
                 Locator.MusicPlayerVM.PlayFromExplorer(file);
             }
-            if (file.FileType == ".mkv"
+            else if (file.FileType == ".mkv"
                 || file.FileType == ".avi"
                 || file.FileType == ".mp4"
                 || file.FileType == ".wmv"

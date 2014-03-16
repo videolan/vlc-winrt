@@ -7,9 +7,9 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
-using VLC_WINRT.Common;
-using VLC_WINRT.Utility.Services.RunTime;
 using Autofac;
+using VLC_WINRT.Common;
+using VLC_WINRT.Utility.Services.Interface;
 
 namespace VLC_WINRT.Utility.Commands
 {
@@ -17,8 +17,8 @@ namespace VLC_WINRT.Utility.Commands
     {
         public override void Execute(object parameter)
         {
-            var playerService = App.Container.Resolve<MediaPlayerService>();
-            if (playerService.CurrentState == MediaPlayerService.MediaPlayerState.Playing)
+            var playerService = App.Container.Resolve<IMediaService>();
+            if (playerService.IsPlaying)
             {
                 playerService.Pause();
             }
