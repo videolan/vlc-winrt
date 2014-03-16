@@ -14,9 +14,9 @@ namespace VLC_WINRT.Utility.Commands.MusicPlayer
 {
     public class PlayPreviousCommand : AlwaysExecutableCommand
     {
-        public override void Execute(object parameter)
+        public override async void Execute(object parameter)
         {
-            Locator.MusicPlayerVM.PlayPrevious();
+            await Locator.MusicPlayerVM.PlayPrevious();
         }
     }
 }

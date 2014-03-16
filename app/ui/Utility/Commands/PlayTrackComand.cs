@@ -32,7 +32,7 @@ namespace VLC_WINRT.Utility.Commands
                 Locator.MusicPlayerVM.TrackCollection.CurrentTrack =
                     Locator.MusicPlayerVM.TrackCollection.TrackCollection.IndexOf(track);
             }
-            Locator.MusicPlayerVM.Play();
+            await Locator.MusicPlayerVM.Play();
 
             var frame = App.ApplicationFrame;
             var page = frame.Content as Views.MainPage;

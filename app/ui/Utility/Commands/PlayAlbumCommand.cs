@@ -25,7 +25,7 @@ namespace VLC_WINRT.Utility.Commands
             MusicLibraryViewModel.AlbumItem album = parameter as MusicLibraryViewModel.AlbumItem;
             Locator.MusicPlayerVM.TrackCollection.ResetCollection();
             Locator.MusicPlayerVM.TrackCollection.AddTrack(album.Tracks.ToList());
-            Locator.MusicPlayerVM.Play();
+            await Locator.MusicPlayerVM.Play();
 
             var frame = App.ApplicationFrame;
             var page = frame.Content as Views.MainPage;

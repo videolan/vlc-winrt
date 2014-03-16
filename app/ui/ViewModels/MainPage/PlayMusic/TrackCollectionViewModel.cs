@@ -82,14 +82,14 @@ namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
         public bool IsPreviousPossible()
         {
             bool isPossible = (CurrentTrack > 0);
-            CanGoPrevious = isPossible;
+            DispatchHelper.Invoke(() => CanGoPrevious = isPossible);
             return isPossible;
         }
 
         public bool IsNextPossible()
         {
             bool isPossible = (TrackCollection.Count != 1) && (CurrentTrack < TrackCollection.Count - 1);
-            CanGoNext = isPossible;
+            DispatchHelper.Invoke(() => CanGoNext = isPossible);
             return isPossible;
         }
 

@@ -90,7 +90,7 @@ namespace VLC_WINRT.Utility.Commands
             {
                 string mru = StorageApplicationPermissions.FutureAccessList.Add(folder);
                 App.LocalSettings["DefaultVideoFolder"] = mru;
-                Locator.MainPageVM.InitVideoVM();
+                await Locator.MainPageVM.InitVideoVM();
             }
         }
     }

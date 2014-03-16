@@ -76,22 +76,15 @@ namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
 
         private async void MediaService_MediaEnded(object sender, EventArgs e)
         {
-            await DispatchHelper.InvokeAsync(() =>
+            if (TrackCollection.TrackCollection[TrackCollection.CurrentTrack] == TrackCollection.TrackCollection.Last())
             {
-                if (TrackCollection.TrackCollection != null && TrackCollection.TrackCollection.Any() && TrackCollection.IsRunning)
-                {
-                    if (TrackCollection.TrackCollection[TrackCollection.CurrentTrack] ==
-                        TrackCollection.TrackCollection.Last())
-                    {
-                        // Playlist is finished
-                        TrackCollection.IsRunning = false;
-                    }
-                    else
-                    {
-                        PlayNext();
-                    }
-                }
-            });
+                // Playlist is finished
+                await DispatchHelper.InvokeAsync(() => TrackCollection.IsRunning = false);
+            }
+            else
+            {
+                await PlayNext();
+            }
         }
 
         public TrackCollectionViewModel TrackCollection
@@ -117,50 +110,50 @@ namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
             _mediaService.Stop();
         }
 
-        public void PlayNext()
+        public async Task PlayNext()
         {
             TrackCollection.IsNextPossible();
             TrackCollection.IsPreviousPossible();
             if (TrackCollection.CanGoNext)
             {
-                TrackCollection.CurrentTrack++;
-                Play();
+                await DispatchHelper.InvokeAsync(() => TrackCollection.CurrentTrack++);
+                await Play();
             }
             else
             {
                 TileUpdateManager.CreateTileUpdaterForApplication().Clear();
-                MediaControl.IsPlaying = false; 
+                await DispatchHelper.InvokeAsync(() => MediaControl.IsPlaying = false);
             }
         }
 
-        public void PlayPrevious()
+        public async Task PlayPrevious()
         {
             TrackCollection.IsNextPossible();
             TrackCollection.IsPreviousPossible();
             if (TrackCollection.CanGoPrevious)
             {
-                TrackCollection.CurrentTrack--;
-                Play();
+                await DispatchHelper.InvokeAsync(() => TrackCollection.CurrentTrack--);
+                await Play();
             }
             else
             {
                 TileUpdateManager.CreateTileUpdaterForApplication().Clear();
-                MediaControl.IsPlaying = false;
+                await DispatchHelper.InvokeAsync(() => MediaControl.IsPlaying = false);
                 MediaControl.PreviousTrackPressed -= MediaControl_PreviousTrackPressed;
             }
         }
 
         async void MediaControl_PreviousTrackPressed(object sender, object e)
         {
-            await DispatchHelper.InvokeAsync(() => PlayPrevious());
+            await PlayPrevious();
         }
 
         async void MediaControl_NextTrackPressed(object sender, object e)
         {
-            await DispatchHelper.InvokeAsync(() => PlayNext());
+            await PlayNext();
         }
 
-        public async void Play()
+        public async Task Play()
         {
             TrackCollection.IsRunning = true;
             Stop();
