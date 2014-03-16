@@ -56,7 +56,7 @@ namespace VLC_WINRT.Views
             NavigationCacheMode = NavigationCacheMode.Enabled;
         }
 
-        public async void OpenVideoFromFileExplorer()
+        public void OpenVideoFromFileExplorer()
         {
             Debug.WriteLine("Opening file: " + App.TemporaryFileName);
             Locator.PlayVideoVM.SetActiveVideoInfo(App.TemporaryMRL, App.TemporaryFileName);
@@ -70,30 +70,30 @@ namespace VLC_WINRT.Views
             ChangeLayout(sizeChangedEventArgs.NewSize.Width);
         }
 
-        void ChangeLayout(double x)
+        Task ChangeLayout(double x)
         {
-            Dispatcher.RunAsync(CoreDispatcherPriority.High, () =>
+            return DispatchHelper.InvokeAsync(() =>
+            {
+                if (x < 1050)
                 {
-                    if (x < 1050)
-                    {
-                        SecondarySectionsHeaderListView.Visibility = Visibility.Collapsed;
-                        MorePanelsButton.Visibility = Visibility.Visible;
-                    }
-                    else
-                    {
-                        SecondarySectionsHeaderListView.Visibility = Visibility.Visible;
-                        MorePanelsButton.Visibility = Visibility.Collapsed;
-                    }
+                    SecondarySectionsHeaderListView.Visibility = Visibility.Collapsed;
+                    MorePanelsButton.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    SecondarySectionsHeaderListView.Visibility = Visibility.Visible;
+                    MorePanelsButton.Visibility = Visibility.Collapsed;
+                }
 
-                    if (x == 320)
-                    {
-                        HeaderGrid.Margin = new Thickness(0, 20, 0, 0);
-                    }
-                    else
-                    {
-                        HeaderGrid.Margin = new Thickness(50, 40, 0, 0);
-                    }
-                });
+                if (x == 320)
+                {
+                    HeaderGrid.Margin = new Thickness(0, 20, 0, 0);
+                }
+                else
+                {
+                    HeaderGrid.Margin = new Thickness(50, 40, 0, 0);
+                }
+            });
         }
 
         public override void SetDataContext()
@@ -127,16 +127,16 @@ namespace VLC_WINRT.Views
             CreateVLCMenu();
         }
 
-        private void SecondarySectionsHeaderListView_OnItemClick(object sender, ItemClickEventArgs e)
+        private async void SecondarySectionsHeaderListView_OnItemClick(object sender, ItemClickEventArgs e)
         {
             int index = (e.ClickedItem as Panel).Index;
             switch (index)
             {
                 case 3:
-                    ExternalStorage();
+                    await ExternalStorage();
                     break;
                 case 4:
-                    MediaServers();
+                    await MediaServers();
                     break;
                 case 5:
                     OpenVideo();
@@ -147,13 +147,13 @@ namespace VLC_WINRT.Views
             }
         }
 
-        async void ExternalStorage()
+        async Task ExternalStorage()
         {
             await FadeOutPage.BeginAsync();
             NavigationService.NavigateTo(typeof(RemovableStoragePage));   
         }
 
-        async void MediaServers()
+        async Task MediaServers()
         {
             await FadeOutPage.BeginAsync();
             NavigationService.NavigateTo(typeof(DLNAPage));
@@ -179,9 +179,9 @@ namespace VLC_WINRT.Views
         {
             var resourceLoader = new ResourceLoader();
             var popupMenu = new PopupMenu();
-            popupMenu.Commands.Add(new UICommand(resourceLoader.GetString("PrivacyStatement"), async h => ExternalStorage()));
+            popupMenu.Commands.Add(new UICommand(resourceLoader.GetString("PrivacyStatement"), async h => await ExternalStorage()));
 
-            popupMenu.Commands.Add(new UICommand("Media servers", async h => MediaServers()));
+            popupMenu.Commands.Add(new UICommand("Media servers", async h => await MediaServers()));
 
 
             var transform = RootGrid.TransformToVisual(this);
@@ -198,7 +198,7 @@ namespace VLC_WINRT.Views
         {
             var resourceLoader = new ResourceLoader();
             var popupMenu = new PopupMenu();
-            popupMenu.Commands.Add(new UICommand(resourceLoader.GetString("OpenVideo"), async h => OpenVideo()));
+            popupMenu.Commands.Add(new UICommand(resourceLoader.GetString("OpenVideo"), h => OpenVideo()));
 
 
 

@@ -35,7 +35,7 @@ namespace VLC_WINRT.Utility.Services.RunTime
             MediaControl.IsPlaying = false;
         }
 
-        public async Task PlayAudioFile(StorageFile file)
+        public Task PlayAudioFile(StorageFile file)
         {
             throw new NotImplementedException();
         }

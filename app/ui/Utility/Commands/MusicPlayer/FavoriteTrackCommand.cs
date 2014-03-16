@@ -16,7 +16,7 @@ namespace VLC_WINRT.Utility.Commands.MusicPlayer
 {
     public class FavoriteTrackCommand : AlwaysExecutableCommand
     {
-        public override void Execute(object parameter)
+        public override async void Execute(object parameter)
         {
             if (parameter as MusicLibraryViewModel.TrackItem != null)
             {
@@ -47,7 +47,7 @@ namespace VLC_WINRT.Utility.Commands.MusicPlayer
 
                 // serializing and saving the new Artist collection with updated Favorite property
                 if(!Locator.MusicLibraryVM.IsBusy)
-                    Locator.MusicLibraryVM.SerializeArtistsDataBase();
+                    await Locator.MusicLibraryVM.SerializeArtistsDataBase();
             }
         }
     }

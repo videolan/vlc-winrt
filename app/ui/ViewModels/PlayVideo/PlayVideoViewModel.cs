@@ -238,9 +238,9 @@ namespace VLC_WINRT.ViewModels.PlayVideo
             _skipBack = null;
         }
 
-        private void FirePositionUpdate(object sender, object e)
+        private async void FirePositionUpdate(object sender, object e)
         {
-            UpdatePosition(this, e);
+            await UpdatePosition(this, e);
         }
 
         private void PlayerStateChanged(object sender, VlcService.MediaPlayerState e)

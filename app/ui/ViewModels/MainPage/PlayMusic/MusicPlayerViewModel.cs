@@ -205,7 +205,7 @@ namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
                 MediaControl.PreviousTrackPressed -= MediaControl_PreviousTrackPressed;
         }
 
-        public async void PlayFromExplorer(StorageFile file)
+        public void PlayFromExplorer(StorageFile file)
         {
             TrackCollection.IsRunning = true;
             Stop();

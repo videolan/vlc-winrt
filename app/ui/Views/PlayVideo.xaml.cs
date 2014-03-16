@@ -105,7 +105,7 @@ namespace VLC_WINRT.Views
             base.SetDataContext();
         }
 
-        private void Subtitles_Click(object sender, RoutedEventArgs e)
+        private async void Subtitles_Click(object sender, RoutedEventArgs e)
         {
             PopupMenu popup = new PopupMenu();
             for (int i = 0; i < MathHelper.Clamp(0, 5, Locator.PlayVideoVM.SubtitlesCount); i++)
@@ -122,10 +122,10 @@ namespace VLC_WINRT.Views
                 Label = "Open subtitle file",
                 Invoked = command => Locator.PlayVideoVM.OpenSubtitleCommand.Execute(""),
             });
-            popup.ShowForSelectionAsync(((Button)sender).GetBoundingRect());
+            await popup.ShowForSelectionAsync(((Button)sender).GetBoundingRect());
         }
 
-        private void AudioTracks_Click(object sender, RoutedEventArgs e)
+        private async void AudioTracks_Click(object sender, RoutedEventArgs e)
         {
             PopupMenu popup = new PopupMenu();
             for (int i = 0; i < MathHelper.Clamp(0, 6, Locator.PlayVideoVM.AudioTracksCount); i++)
@@ -137,7 +137,7 @@ namespace VLC_WINRT.Views
                     Invoked = command => Locator.PlayVideoVM.SetAudioTrackCommand.Execute(command.Id),
                 });
             }
-            popup.ShowForSelectionAsync(((Button)sender).GetBoundingRect());
+            await popup.ShowForSelectionAsync(((Button)sender).GetBoundingRect());
         }
 
         private void Grid_ManipulationStarted(object sender, ManipulationStartedRoutedEventArgs e)

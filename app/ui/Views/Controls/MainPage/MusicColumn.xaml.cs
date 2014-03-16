@@ -15,6 +15,7 @@ using VLC_WINRT.ViewModels;
 using VLC_WINRT.ViewModels.MainPage;
 using Windows.UI.Popups;
 using VLC_WINRT.Utility.Commands;
+using VLC_WINRT.Common;
 
 namespace VLC_WINRT.Views.Controls.MainPage
 {
@@ -41,7 +42,7 @@ namespace VLC_WINRT.Views.Controls.MainPage
 
         private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
         {
-            Dispatcher.RunAsync(CoreDispatcherPriority.High, () =>
+            DispatchHelper.Invoke(() =>
             {
                 if (sizeChangedEventArgs.NewSize.Width < 1080)
                 {

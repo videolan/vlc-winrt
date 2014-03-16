@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Controls;
 // The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
 using VLC_WINRT.Utility.Helpers;
 using VLC_WINRT.ViewModels;
+using VLC_WINRT.Common;
 namespace VLC_WINRT.Views.Controls.MainPage
 {
     public sealed partial class VideoColumn : UserControl
@@ -33,9 +34,9 @@ namespace VLC_WINRT.Views.Controls.MainPage
             this.SizeChanged += OnSizeChanged;
         }
 
-        private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
+        private async void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
         {
-            Dispatcher.RunAsync(CoreDispatcherPriority.High, () =>
+            await DispatchHelper.InvokeAsync(() =>
             {
                 if (sizeChangedEventArgs.NewSize.Width < 1080)
                 {

@@ -16,6 +16,8 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Imaging;
 using VLC_WINRT.Utility.Helpers;
 using VLC_WINRT.ViewModels;
+using System.Threading.Tasks;
+using VLC_WINRT.Common;
 
 namespace VLC_WINRT.Views.Controls
 {
@@ -35,11 +37,10 @@ namespace VLC_WINRT.Views.Controls
             _isInit = true;
             FirstImage.ImageOpened += ImageOpened;
             TimeSpan period = TimeSpan.FromSeconds(25);
-            _periodicTimer = ThreadPoolTimer.CreatePeriodicTimer((source) =>
+            _periodicTimer = ThreadPoolTimer.CreatePeriodicTimer(async (source) =>
             {
                 int i = new Random().Next(0, Locator.MusicLibraryVM.ImgCollection.Count);
-                App.Dispatcher.RunAsync(CoreDispatcherPriority.High,
-                    () =>
+                await DispatchHelper.InvokeAsync(() =>
                     {
                         if (!Locator.MusicLibraryVM.ImgCollection.Any()) return;
                         FirstImage.Source = new BitmapImage(new Uri(Locator.MusicLibraryVM.ImgCollection[i], UriKind.RelativeOrAbsolute));
