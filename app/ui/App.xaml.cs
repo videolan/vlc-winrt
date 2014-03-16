@@ -93,7 +93,7 @@ namespace VLC_WINRT
             Window.Current.Activate();
         }
 
-        protected override void OnFileActivated(FileActivatedEventArgs args)
+        protected override async void OnFileActivated(FileActivatedEventArgs args)
         {
             base.OnFileActivated(args);
 

@@ -72,7 +72,7 @@ namespace VLC_WINRT.Utility.Helpers.MusicLibrary
             return (long)timeSpam.TotalSeconds;
         }
 
-        static async void DownloadPicFromDeezerToLocalFolder(MusicLibraryViewModel.ArtistItemViewModel artist)
+        static async Task DownloadPicFromDeezerToLocalFolder(MusicLibraryViewModel.ArtistItemViewModel artist)
         {
             HttpClient clientPic = new HttpClient();
             string json = await clientPic.GetStringAsync("http://api.deezer.com/search/artist?q=" + artist.Name);

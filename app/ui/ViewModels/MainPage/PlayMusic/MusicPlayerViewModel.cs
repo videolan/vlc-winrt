@@ -74,9 +74,9 @@ namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
             _trackCollection = new TrackCollectionViewModel();
         }
 
-        private void MediaService_MediaEnded(object sender, EventArgs e)
+        private async void MediaService_MediaEnded(object sender, EventArgs e)
         {
-            DispatchHelper.Invoke(() =>
+            await DispatchHelper.InvokeAsync(() =>
             {
                 if (TrackCollection.TrackCollection != null && TrackCollection.TrackCollection.Any() && TrackCollection.IsRunning)
                 {
@@ -150,14 +150,14 @@ namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
             }
         }
 
-        void MediaControl_PreviousTrackPressed(object sender, object e)
+        async void MediaControl_PreviousTrackPressed(object sender, object e)
         {
-            DispatchHelper.Invoke(() => PlayPrevious());
+            await DispatchHelper.InvokeAsync(() => PlayPrevious());
         }
 
-        void MediaControl_NextTrackPressed(object sender, object e)
+        async void MediaControl_NextTrackPressed(object sender, object e)
         {
-            DispatchHelper.Invoke(() => PlayNext());
+            await DispatchHelper.InvokeAsync(() => PlayNext());
         }
 
         public async void Play()
@@ -377,9 +377,9 @@ namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
             await UpdatePosition(this, e);
         }
 
-        private void PlayerStateChanged(object sender, VlcService.MediaPlayerState e)
+        private async void PlayerStateChanged(object sender, VlcService.MediaPlayerState e)
         {
-            DispatchHelper.Invoke(() => IsPlaying = e == VlcService.MediaPlayerState.Playing);
+            await DispatchHelper.InvokeAsync(() => IsPlaying = e == VlcService.MediaPlayerState.Playing);
         }
 
         public void RegisterPanel()

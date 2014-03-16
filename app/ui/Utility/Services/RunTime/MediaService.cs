@@ -109,17 +109,17 @@ namespace VLC_WINRT.Utility.Services.RunTime
             _vlcService.Seek(position);
         }
 
-        private void MediaControl_PausePressed(object sender, object e)
+        private async void MediaControl_PausePressed(object sender, object e)
         {
-            DispatchHelper.Invoke(() =>
+            await DispatchHelper.InvokeAsync(() =>
             {
                 Pause();
             });
         }
 
-        private void MediaControl_PlayPressed(object sender, object e)
+        private async void MediaControl_PlayPressed(object sender, object e)
         {
-            DispatchHelper.Invoke(() =>
+            await DispatchHelper.InvokeAsync(() =>
             {
                 Play();
             });
@@ -133,9 +133,9 @@ namespace VLC_WINRT.Utility.Services.RunTime
                 Play();
         }
 
-        void VlcPlayerService_MediaEnded(object sender, libVLCX.Player e)
+        async void VlcPlayerService_MediaEnded(object sender, libVLCX.Player e)
         {
-            DispatchHelper.Invoke(() =>
+            await DispatchHelper.InvokeAsync(() =>
             {
                 MediaControl.IsPlaying = false;
                 UnregisterMediaControls();

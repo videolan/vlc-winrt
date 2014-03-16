@@ -50,7 +50,7 @@ namespace VLC_WINRT.ViewModels.MainPage
             }
         }
 
-        private async void GenerateThumbnail()
+        private async void GenerateThumbnail(IAsyncAction asyncAction)
         {
             StorageItemThumbnail thumb = null;
             try
