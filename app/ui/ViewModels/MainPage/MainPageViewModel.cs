@@ -105,6 +105,8 @@ namespace VLC_WINRT.ViewModels.MainPage
                 VideoVM = new VideoLibraryViewModel(KnownVLCLocation.VideosLibrary);
             }
 
+            await VideoVM.GetMedia();
+
             MusicLibraryVm = Locator.MusicLibraryVM;
             await MusicLibraryVm.Initialize();
             ExternalStorageVM = new ExternalStorageViewModel();
