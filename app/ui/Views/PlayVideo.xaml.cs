@@ -69,11 +69,11 @@ namespace VLC_WINRT.Views
             SpeedRateTextBlock.Visibility = Visibility.Collapsed;
             isCommandShown = false;
         }
-        private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
+        private async void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
         {
             var x = Window.Current.Bounds.Width;
             var y = Window.Current.Bounds.Height;
-            Locator.PlayVideoVM.SetSizeVideoPlayer((uint)x, (uint)y);
+            await Locator.PlayVideoVM.SetSizeVideoPlayer((uint)x, (uint)y);
 
             if (x == 320)
             {

@@ -37,7 +37,7 @@ namespace VLC_WINRT.Views.Controls.InputDialog
             this.Visibility = Visibility.Collapsed;
         }
 
-        public async Task ShowAsync(string logoPath, string title, string subTitle, string actionButton, AlwaysExecutableCommand actionCommand)
+        public void Show(string logoPath, string title, string subTitle, string actionButton, AlwaysExecutableCommand actionCommand)
         {
             var b = new Binding
             {

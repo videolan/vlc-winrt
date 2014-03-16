@@ -417,28 +417,28 @@ namespace VLC_WINRT.ViewModels.PlayVideo
             ElapsedTime = TimeSpan.FromSeconds(PositionInSeconds);
         }
 
-        public async Task SetSizeVideoPlayer(uint x, uint y)
+        public Task SetSizeVideoPlayer(uint x, uint y)
         {
-            _vlcPlayerService.SetSizeVideoPlayer(x, y);
+            return _vlcPlayerService.SetSizeVideoPlayer(x, y);
         }
 
-        public async Task SetSubtitleTrack(int i)
+        public Task SetSubtitleTrack(int i)
         {
-            _vlcPlayerService.SetSubtitleTrack(i);
+            return _vlcPlayerService.SetSubtitleTrack(i);
         }
-        public async Task SetAudioTrack(int i)
+        public Task SetAudioTrack(int i)
         {
-            _vlcPlayerService.SetAudioTrack(i);
+            return _vlcPlayerService.SetAudioTrack(i);
         }
 
-        public async Task OpenSubtitle(string mrl)
+        public void OpenSubtitle(string mrl)
         {
             _vlcPlayerService.OpenSubtitle(mrl);
         }
 
-        public async Task SetRate(float rate)
+        public Task SetRate(float rate)
         {
-            _vlcPlayerService.SetRate(rate);
+            return _vlcPlayerService.SetRate(rate);
         }
     }
 }

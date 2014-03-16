@@ -23,6 +23,8 @@ using VLC_WINRT.Utility.Services.RunTime;
 using VLC_WINRT.ViewModels;
 using VLC_WINRT.Views.Controls.InputDialog;
 using Panel = VLC_WINRT.Model.Panel;
+using VLC_WINRT.Common;
+using System.Threading.Tasks;
 
 namespace VLC_WINRT.Views
 {
@@ -105,11 +107,11 @@ namespace VLC_WINRT.Views
             ChangedSectionsHeadersState(i);
         }
 
-        public void ChangedSectionsHeadersState(int i)
+        public Task ChangedSectionsHeadersState(int i)
         {
             if (i == _currentSection) 
-                return;
-            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                return Task.FromResult(false);
+            return DispatchHelper.InvokeAsync(() =>
             {
                 UIAnimationHelper.FadeOut(SectionsGrid.Children[_currentSection]);
                 UIAnimationHelper.FadeIn(SectionsGrid.Children[i]);
@@ -120,7 +122,7 @@ namespace VLC_WINRT.Views
             });
         }
 
-        private async void MorePanelsButton_OnClick(object sender, RoutedEventArgs e)
+        private void MorePanelsButton_OnClick(object sender, RoutedEventArgs e)
         {
             CreateVLCMenu();
         }
@@ -157,19 +159,18 @@ namespace VLC_WINRT.Views
             NavigationService.NavigateTo(typeof(DLNAPage));
         }
 
-        async void OpenVideo()
+        void OpenVideo()
         {
             Locator.MainPageVM.PickVideo.Execute(null);
         }
 
-        async void OpenStream()
+        void OpenStream()
         {
             var dialog = new InputDialog();
             RootGrid.Children.Add(dialog);
             Grid.SetRow(dialog, 1);
             // NOTE: Is this being used?
-            await
-                dialog.ShowAsync("", "Open a file from network",
+            dialog.Show("", "Open a file from network",
                     "Please enter an address (Ex: FTP, HTTP).", "Open",
                     Locator.MainPageVM.PlayNetworkMRL);
         }

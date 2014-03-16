@@ -37,7 +37,7 @@ namespace VLC_WINRT.Views
             LoadMore();
         }
 
-        private async void GoBack_Click(object sender, RoutedEventArgs e)
+        private void GoBack_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.NavigateTo(typeof(MainPage));
         }

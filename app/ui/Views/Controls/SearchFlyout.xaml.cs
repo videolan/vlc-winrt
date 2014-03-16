@@ -62,7 +62,7 @@ namespace VLC_WINRT.Views.Controls
             Search();
         }
 
-        private async void Search()
+        private void Search()
         {
             if (ComboBox.SelectedIndex == -1)
             {

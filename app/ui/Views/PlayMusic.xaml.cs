@@ -45,7 +45,7 @@ namespace VLC_WINRT.Views
             NavigationService.NavigateTo(typeof(MainPage));
         }
 
-        private void PopularItemGridView_OnItemClick(object sender, ItemClickEventArgs e)
+        private async void PopularItemGridView_OnItemClick(object sender, ItemClickEventArgs e)
         {
             // TODO: For snap view, send the user to the LastFM page. Otherwise, open a popup with the album info.
             var topAlbum = e.ClickedItem as Album;
@@ -65,7 +65,7 @@ namespace VLC_WINRT.Views
             // So let's check before if it has it or not, and if not we'll append it.
             string appendHttp = !topAlbum.Url.Contains("http://") ? "http://" + topAlbum.Url : topAlbum.Url;
             var launchUri = new Uri(appendHttp);
-            Launcher.LaunchUriAsync(launchUri);
+            await Launcher.LaunchUriAsync(launchUri);
         }
 
         private async void SimilarArtistsGridView_OnItemClick(object sender, ItemClickEventArgs e)
@@ -88,7 +88,7 @@ namespace VLC_WINRT.Views
             // So let's check before if it has it or not, and if not we'll append it.
             string appendHttp = !topArtist.Url.Contains("http://") ? "http://" + topArtist.Url : topArtist.Url;
             var launchUri = new Uri(appendHttp);
-            Launcher.LaunchUriAsync(launchUri);
+            await Launcher.LaunchUriAsync(launchUri);
         }
     }
 }
