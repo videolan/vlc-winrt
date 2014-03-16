@@ -58,5 +58,15 @@ namespace VLC_WINRT.Utility.Helpers.MusicLibrary.MusicEntities
             var imageEx = new Image{Url = xboxAlbum.ImageUrlEx};
             this.Images = new List<Image>{image, imageEx};
         }
+
+        public void MapFrom(Deezer.Album deezerAlbum)
+        {
+            this.Name = deezerAlbum.Title;
+            var smallImage = new Image() { Url = string.Format("{0}?size=small", deezerAlbum.Cover) };
+            var mediumImage = new Image() { Url = string.Format("{0}?size=medium", deezerAlbum.Cover) };
+            var bigImage = new Image() { Url = string.Format("{0}?size=big", deezerAlbum.Cover) };
+            this.Images = new List<Image>() { smallImage, mediumImage, bigImage };
+            this.Url = deezerAlbum.Link;
+        }
     }
 }

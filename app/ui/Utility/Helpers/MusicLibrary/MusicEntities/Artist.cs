@@ -23,6 +23,8 @@ namespace VLC_WINRT.Utility.Helpers.MusicLibrary.MusicEntities
 
         public string XboxId { get; set; }
 
+        public string DeezerId { get; set; }
+
         public string Url { get; set; }
 
         public List<Image> Images { get; set; }
@@ -119,6 +121,17 @@ namespace VLC_WINRT.Utility.Helpers.MusicLibrary.MusicEntities
             var imageEx = new Image() {Url = xboxArtistItem.ImageUrlEx};
             this.Images = new List<Image>(){image, imageEx};
             this.XboxId = xboxArtistItem.Id;
+        }
+
+        public void MapFrom(Deezer.Artist deezerArtist)
+        {
+            this.Name = deezerArtist.Name;
+            this.Url = deezerArtist.Link;
+            var smallImage = new Image() { Url = string.Format("{0}?size=small", deezerArtist.Picture) };
+            var mediumImage = new Image() { Url = string.Format("{0}?size=medium", deezerArtist.Picture) };
+            var bigImage = new Image() { Url = string.Format("{0}?size=big", deezerArtist.Picture) };
+            this.Images = new List<Image>(){smallImage, mediumImage, bigImage};
+            this.DeezerId = deezerArtist.Id.ToString();
         }
     }
 }

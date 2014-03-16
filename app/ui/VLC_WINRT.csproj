@@ -86,6 +86,10 @@
     <Compile Include="Common\DispatchHelper.cs" />
     <Compile Include="Common\AutoFacConfiguration.cs" />
     <Compile Include="Common\KnownVLCLocation.cs" />
+    <Compile Include="Utility\Helpers\MusicLibrary\DeezerClient.cs" />
+    <Compile Include="Utility\Helpers\MusicLibrary\Deezer\Albums.cs" />
+    <Compile Include="Utility\Helpers\MusicLibrary\Deezer\Artists.cs" />
+    <Compile Include="Utility\Helpers\MusicLibrary\Deezer\Tracks.cs" />
     <Compile Include="Utility\Helpers\MusicLibrary\LastFm\AlbumInformation.cs" />
     <Compile Include="Utility\Helpers\MusicLibrary\LastFm\ArtistInformation.cs" />
     <Compile Include="Model\BackItem.cs" />
