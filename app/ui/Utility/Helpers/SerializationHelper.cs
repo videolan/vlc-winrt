@@ -127,12 +127,11 @@ namespace VLC_WINRT.Utility.Helpers
             return Encoding.UTF8.GetString(bytes, 0, bytes.Length);
         }
 
-        public static async Task<T> LoadFromJsonFile<T>(
-            string fileName,
-            StorageFolder folder = null)
+        public static async Task<T> LoadFromJsonFile<T>(string fileName, StorageFolder folder = null) where T : new()
         {
             var json = await ReadFromFile(fileName, folder);
-
+            if (json == null)
+                return new T();
             return LoadFromJsonString<T>(json);
         }
 
