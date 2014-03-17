@@ -298,16 +298,19 @@ namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
             get { return _isPlaying; }
             set
             {
-                SetProperty(ref _isPlaying, value);
-                if (value)
+                if (value != _isPlaying)
                 {
-                    _sliderPositionTimer.Start();
-                    ProtectedDisplayCall(true);
-                }
-                else
-                {
-                    _sliderPositionTimer.Stop();
-                    ProtectedDisplayCall(false);
+                    if (value)
+                    {
+                        _sliderPositionTimer.Start();
+                        ProtectedDisplayCall(true);
+                    }
+                    else
+                    {
+                        _sliderPositionTimer.Stop();
+                        ProtectedDisplayCall(false);
+                    }
+                    SetProperty(ref _isPlaying, value);
                 }
             }
         }

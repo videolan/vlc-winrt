@@ -119,18 +119,21 @@ namespace VLC_WINRT.ViewModels.PlayVideo
             get { return _isPlaying; }
             set
             {
-                SetProperty(ref _isPlaying, value);
-                if (value)
+                if (value != _isPlaying)
                 {
-                    _sliderPositionTimer.Start();
-                    _mouseService.HideMouse();
-                    ProtectedDisplayCall(true);
-                }
-                else
-                {
-                    _sliderPositionTimer.Stop();
-                    _mouseService.RestoreMouse();
-                    ProtectedDisplayCall(false);
+                    if (value)
+                    {
+                        _sliderPositionTimer.Start();
+                        _mouseService.HideMouse();
+                        ProtectedDisplayCall(true);
+                    }
+                    else
+                    {
+                        _sliderPositionTimer.Stop();
+                        _mouseService.RestoreMouse();
+                        ProtectedDisplayCall(false);
+                    }
+                    SetProperty(ref _isPlaying, value);
                 }
             }
         }
@@ -386,23 +389,13 @@ namespace VLC_WINRT.ViewModels.PlayVideo
         private void ProtectedDisplayCall(bool shouldActivate)
         {
             if (_displayAlwaysOnRequest == null) return;
-            try
+            if (shouldActivate)
             {
-                if (shouldActivate)
-                {
-                    _displayAlwaysOnRequest.RequestActive();
-                }
-                else
-                {
-                    _displayAlwaysOnRequest.RequestRelease();
-                }
+                _displayAlwaysOnRequest.RequestActive();
             }
-
-            catch (ArithmeticException badMathEx)
+            else
             {
-                //  Work around for platform bug 
-                Debug.WriteLine("display request failed again");
-                Debug.WriteLine(badMathEx.ToString());
+                _displayAlwaysOnRequest.RequestRelease();
             }
         }
 
