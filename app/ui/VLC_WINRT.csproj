@@ -86,6 +86,7 @@
     <Compile Include="Common\DispatchHelper.cs" />
     <Compile Include="Common\AutoFacConfiguration.cs" />
     <Compile Include="Common\KnownVLCLocation.cs" />
+    <Compile Include="Utility\Helpers\AsyncLock.cs" />
     <Compile Include="Utility\Helpers\MusicLibrary\DeezerClient.cs" />
     <Compile Include="Utility\Helpers\MusicLibrary\Deezer\Albums.cs" />
     <Compile Include="Utility\Helpers\MusicLibrary\Deezer\Artists.cs" />

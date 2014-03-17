@@ -58,6 +58,7 @@ namespace VLC_WINRT.ViewModels.MainPage
 
         int _numberOfTracks;
         ThreadPoolTimer _periodicTimer;
+        AsyncLock _artistLock = new AsyncLock();
 
         // XBOX Music Stuff
         // REMOVE: Do we need this stuff anymore?
@@ -168,7 +169,9 @@ namespace VLC_WINRT.ViewModels.MainPage
 
             _periodicTimer = ThreadPoolTimer.CreatePeriodicTimer(async (source) =>
             {
-                await SerializeArtistsDataBase();
+
+                using (await _artistLock.LockAsync()) 
+                    await SerializeArtistsDataBase();
 
                 if (Locator.MusicLibraryVM.Track.Count > _numberOfTracks)
                 {
@@ -186,6 +189,7 @@ namespace VLC_WINRT.ViewModels.MainPage
                 }
             }, period);
 
+            using (await _artistLock.LockAsync()) 
             foreach (var artistItem in musicFolder)
             {
                 IsMusicLibraryEmpty = false;
