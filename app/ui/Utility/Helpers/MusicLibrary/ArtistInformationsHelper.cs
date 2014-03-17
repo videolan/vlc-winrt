@@ -9,6 +9,7 @@
 
 using System;
 using System.Diagnostics;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -24,46 +25,95 @@ namespace VLC_WINRT.Utility.Helpers.MusicLibrary
     public static class ArtistInformationsHelper
     {
 
-        static async Task DownloadPicFromDeezerToLocalFolder(MusicLibraryViewModel.ArtistItemViewModel artist)
+        private static async Task<bool> DownloadArtistPictureFromDeezer(MusicLibraryViewModel.ArtistItemViewModel artist)
         {
-            HttpClient clientPic = new HttpClient();
-            string json = await clientPic.GetStringAsync("http://api.deezer.com/search/artist?q=" + artist.Name);
-            if(json == "{\"data\":[],\"total\":0}")
+            var deezerClient = new DeezerClient();
+            var deezerArtist = await deezerClient.GetArtistInfo(artist.Name);
+            if (deezerArtist == null) return false;
+            if (deezerArtist.Images == null) return false;
+            try
             {
-                return;
-            }
-
-            DeezerArtistItem.RootObject deezerData = JsonConvert.DeserializeObject<DeezerArtistItem.RootObject>(json);
-            Debug.WriteLine("Deezer picture for " + artist.Name + " : " + deezerData.data[0].picture);
-            string imageUrl = string.Format("{0}?size=big", deezerData.data[0].picture);
-            HttpResponseMessage responsePic = await clientPic.GetAsync(imageUrl);
-            Locator.MusicLibraryVM.ImgCollection.Add(imageUrl);
-            byte[] img = await responsePic.Content.ReadAsByteArrayAsync();
-            InMemoryRandomAccessStream streamWeb = new InMemoryRandomAccessStream();
-
-            DataWriter writer = new DataWriter(streamWeb.GetOutputStreamAt(0));
-            writer.WriteBytes(img);
-
-            await writer.StoreAsync();
-
-            StorageFolder artistPic = await ApplicationData.Current.LocalFolder.CreateFolderAsync("artistPic",
-                CreationCollisionOption.OpenIfExists);
-            string fileName = artist.Name + "_" + "dPi";
-
-            var file = await artistPic.CreateFileAsync(fileName + ".jpg", CreationCollisionOption.OpenIfExists);
-            var raStream = await file.OpenAsync(FileAccessMode.ReadWrite);
-
-            using (var thumbnailStream = streamWeb.GetInputStreamAt(0))
-            {
-                using (var stream = raStream.GetOutputStreamAt(0))
+                var clientPic = new HttpClient();
+                HttpResponseMessage responsePic = await clientPic.GetAsync(deezerArtist.Images.LastOrDefault().Url);
+                string uri = responsePic.RequestMessage.RequestUri.AbsoluteUri;
+                // A cheap hack to avoid using Deezers default image for bands.
+                if (uri.Equals("http://cdn-images.deezer.com/images/artist//400x400-000000-80-0-0.jpg"))
                 {
-                    await RandomAccessStream.CopyAsync(thumbnailStream, stream);
+                    return false;
                 }
-            }
-            StorageFolder appDataFolder = ApplicationData.Current.LocalFolder;
-            string supposedPictureUriLocal = appDataFolder.Path + "\\artistPic\\" + artist.Name + "_" + "dPi" + ".jpg";
+                byte[] img = await responsePic.Content.ReadAsByteArrayAsync();
+                InMemoryRandomAccessStream streamWeb = new InMemoryRandomAccessStream();
+                DataWriter writer = new DataWriter(streamWeb.GetOutputStreamAt(0));
+                writer.WriteBytes(img);
+                await writer.StoreAsync();
+                StorageFolder artistPic = await ApplicationData.Current.LocalFolder.CreateFolderAsync("artistPic",
+                    CreationCollisionOption.OpenIfExists);
+                string fileName = artist.Name + "_" + "dPi";
+                var file = await artistPic.CreateFileAsync(fileName + ".jpg", CreationCollisionOption.OpenIfExists);
+                var raStream = await file.OpenAsync(FileAccessMode.ReadWrite);
 
-            await DispatchHelper.InvokeAsync(() => artist.Picture = supposedPictureUriLocal);
+                using (var thumbnailStream = streamWeb.GetInputStreamAt(0))
+                {
+                    using (var stream = raStream.GetOutputStreamAt(0))
+                    {
+                        await RandomAccessStream.CopyAsync(thumbnailStream, stream);
+                    }
+                }
+                StorageFolder appDataFolder = ApplicationData.Current.LocalFolder;
+                string supposedPictureUriLocal = appDataFolder.Path + "\\artistPic\\" + artist.Name + "_" + "dPi" + ".jpg";
+                await DispatchHelper.InvokeAsync(() => artist.Picture = supposedPictureUriLocal);
+                return true;
+            }
+            catch (Exception)
+            {
+                Debug.WriteLine("Error getting or saving art from deezer.");
+                return false;
+            }
+        }
+
+        private static async Task<bool> DownloadArtistPictureFromLastFm(MusicLibraryViewModel.ArtistItemViewModel artist)
+        {
+            var lastFmClient = new LastFmClient();
+            var lastFmArtist = await lastFmClient.GetArtistInfo(artist.Name);
+            if (lastFmArtist == null) return false;
+            try
+            {
+                var clientPic = new HttpClient();
+                var imageElement = lastFmArtist.Images.LastOrDefault(node => !string.IsNullOrEmpty(node.Url));
+                if (imageElement == null) return false;
+                HttpResponseMessage responsePic = await clientPic.GetAsync(imageElement.Url);
+                byte[] img = await responsePic.Content.ReadAsByteArrayAsync();
+                InMemoryRandomAccessStream streamWeb = new InMemoryRandomAccessStream();
+
+                DataWriter writer = new DataWriter(streamWeb.GetOutputStreamAt(0));
+                writer.WriteBytes(img);
+
+                await writer.StoreAsync();
+
+                StorageFolder artistPic = await ApplicationData.Current.LocalFolder.CreateFolderAsync("artistPic",
+                    CreationCollisionOption.OpenIfExists);
+                string fileName = artist.Name + "_" + "dPi";
+
+                var file = await artistPic.CreateFileAsync(fileName + ".jpg", CreationCollisionOption.OpenIfExists);
+                var raStream = await file.OpenAsync(FileAccessMode.ReadWrite);
+
+                using (var thumbnailStream = streamWeb.GetInputStreamAt(0))
+                {
+                    using (var stream = raStream.GetOutputStreamAt(0))
+                    {
+                        await RandomAccessStream.CopyAsync(thumbnailStream, stream);
+                    }
+                }
+                StorageFolder appDataFolder = ApplicationData.Current.LocalFolder;
+                string supposedPictureUriLocal = appDataFolder.Path + "\\artistPic\\" + artist.Name + "_" + "dPi" + ".jpg";
+                await DispatchHelper.InvokeAsync(() => artist.Picture = supposedPictureUriLocal);
+                return true;
+            }
+            catch (Exception)
+            {
+                Debug.WriteLine("Error getting or saving art from LastFm.");
+                return false;
+            }
         }
 
         public static async Task GetArtistPicture(MusicLibraryViewModel.ArtistItemViewModel artist)
@@ -76,7 +126,11 @@ namespace VLC_WINRT.Utility.Helpers.MusicLibrary
             }
             else
             {
-                await DownloadPicFromDeezerToLocalFolder(artist);
+                var gotArt = await DownloadArtistPictureFromDeezer(artist);
+                if (!gotArt)
+                {
+                    await DownloadArtistPictureFromLastFm(artist);
+                }
             }
         }
 
