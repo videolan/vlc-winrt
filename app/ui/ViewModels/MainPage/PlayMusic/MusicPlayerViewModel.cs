@@ -419,22 +419,13 @@ namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
         private void ProtectedDisplayCall(bool shouldActivate)
         {
             if (_displayAlwaysOnRequest == null) return;
-            try
+            if (shouldActivate)
             {
-                if (shouldActivate)
-                {
-                    _displayAlwaysOnRequest.RequestActive();
-                }
-                else
-                {
-                    _displayAlwaysOnRequest.RequestRelease();
-                }
+                _displayAlwaysOnRequest.RequestActive();
             }
-            catch (ArithmeticException badMathEx)
+            else
             {
-                //  Work around for platform bug 
-                Debug.WriteLine("display request failed again");
-                Debug.WriteLine(badMathEx.ToString());
+                _displayAlwaysOnRequest.RequestRelease();
             }
         }
 
