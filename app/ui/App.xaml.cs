@@ -80,13 +80,20 @@ namespace VLC_WINRT
         ///     search results, and so forth.
         /// </summary>
         /// <param name="args">Details about the launch request and process.</param>
-        protected override void OnLaunched(LaunchActivatedEventArgs args)
+        protected async override void OnLaunched(LaunchActivatedEventArgs args)
         {
-            LaunchTheApp();
+            if (args.PreviousExecutionState == ApplicationExecutionState.Suspended ||
+                args.PreviousExecutionState == ApplicationExecutionState.Terminated)
+            {
+                await SuspensionManager.RestoreAsync();
+            }
+            await LaunchTheApp();
         }
 
-        void LaunchTheApp()
+        async Task LaunchTheApp()
         {
+            await (Container.Resolve<HistoryService>()).RestoreHistory();
+
             Window.Current.Content = new RootPage();
             Dispatcher = Window.Current.Content.Dispatcher;
             NavigationService.NavigateTo(typeof(MainPage));

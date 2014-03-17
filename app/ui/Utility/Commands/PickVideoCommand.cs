@@ -111,7 +111,6 @@ namespace VLC_WINRT.Utility.Commands
             if (file != null)
             {
                 var history = App.Container.Resolve<HistoryService>();
-                await history.RestoreHistory();
                 string token = await history.Add(file);
 
                 Debug.WriteLine("Opening file: " + file.Path);

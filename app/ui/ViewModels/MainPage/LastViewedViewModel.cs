@@ -51,7 +51,6 @@ namespace VLC_WINRT.ViewModels.MainPage
 
         public async Task Initialize()
         {
-            await _historyService.RestoreHistory();
             await UpdateHistory();
         }
 

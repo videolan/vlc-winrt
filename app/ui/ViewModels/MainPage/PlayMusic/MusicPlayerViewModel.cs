@@ -34,12 +34,14 @@ namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
     {
         private MusicLibraryViewModel.ArtistItemViewModel _artist;
         private TrackCollectionViewModel _trackCollection;
+        private readonly HistoryService _historyService;
 
         public MusicPlayerViewModel(HistoryService historyService, IMediaService mediaService, VlcService mediaPlayerService)
             : base(historyService, mediaService, mediaPlayerService)
         {
             _trackCollection = new TrackCollectionViewModel();
             _mediaService.MediaEnded += MediaService_MediaEnded;
+            _historyService = historyService;
         }
 
         protected async void MediaService_MediaEnded(object sender, EventArgs e)
@@ -129,10 +131,7 @@ namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
             var trackItem = TrackCollection.TrackCollection[TrackCollection.CurrentTrack];
 
             var file = await StorageFile.GetFileFromPathAsync(trackItem.Path);
-            var history = App.Container.Resolve<HistoryService>();
-            await history.RestoreHistory();
-            //string token = history.Add(file, true);
-            string token = await history.Add(file);
+            string token = await _historyService.Add(file);
 
             Debug.WriteLine("Opening file: " + file.Path);
 
@@ -176,9 +175,7 @@ namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
             // Wat? This doesn't make any sense.
             var trackItem = TrackCollection.TrackCollection[TrackCollection.CurrentTrack];
 
-            var history = App.Container.Resolve<HistoryService>();
-            await history.RestoreHistory();
-            string token = await history.Add(file);
+            string token = await _historyService.Add(file);
 
             Debug.WriteLine("Opening file: " + file.Path);
 

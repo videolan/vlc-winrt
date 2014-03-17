@@ -42,7 +42,6 @@ namespace VLC_WINRT.ViewModels.MainPage
         private async Task GatherTimeInformation()
         {
             var historyService = App.Container.Resolve<HistoryService>();
-            await historyService.RestoreHistory();
             MediaHistory history = historyService.GetHistory(_token);
 
             await DispatchHelper.InvokeAsync(() =>
