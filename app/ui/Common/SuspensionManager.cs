@@ -100,6 +100,7 @@ namespace VLC_WINRT.Common
             try
             {
                 var historyService = App.Container.Resolve<HistoryService>();
+                await historyService.RestoreHistory();
             }
             catch (Exception e)
             {

@@ -15,6 +15,7 @@ using Windows.Foundation;
 using Windows.System.Threading;
 using VLC_WINRT.Model;
 using VLC_WINRT.Utility.Services.RunTime;
+using System.Threading.Tasks;
 
 namespace VLC_WINRT.ViewModels.MainPage
 {
@@ -26,7 +27,6 @@ namespace VLC_WINRT.ViewModels.MainPage
             : base(file)
         {
             _token = token;
-            GatherTimeInformation();
         }
 
         public double PortionWatched
@@ -39,9 +39,10 @@ namespace VLC_WINRT.ViewModels.MainPage
             }
         }
 
-        private void GatherTimeInformation()
+        private async Task GatherTimeInformation()
         {
             var historyService = App.Container.Resolve<HistoryService>();
+            await historyService.RestoreHistory();
             MediaHistory history = historyService.GetHistory(_token);
 
             DispatchHelper.Invoke(() =>
