@@ -129,7 +129,7 @@ namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
             var trackItem = TrackCollection.TrackCollection[TrackCollection.CurrentTrack];
 
             var file = await StorageFile.GetFileFromPathAsync(trackItem.Path);
-            var history = new HistoryService();
+            var history = App.Container.Resolve<HistoryService>();
             await history.RestoreHistory();
             //string token = history.Add(file, true);
             string token = await history.Add(file);
@@ -176,7 +176,7 @@ namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
             // Wat? This doesn't make any sense.
             var trackItem = TrackCollection.TrackCollection[TrackCollection.CurrentTrack];
 
-            var history = new HistoryService();
+            var history = App.Container.Resolve<HistoryService>();
             await history.RestoreHistory();
             string token = await history.Add(file);
 

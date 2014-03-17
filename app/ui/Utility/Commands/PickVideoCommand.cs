@@ -7,6 +7,7 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
+using Autofac;
 using System;
 using System.Diagnostics;
 using System.Windows.Input;
@@ -109,7 +110,7 @@ namespace VLC_WINRT.Utility.Commands
             StorageFile file = await picker.PickSingleFileAsync();
             if (file != null)
             {
-                var history = new HistoryService();
+                var history = App.Container.Resolve<HistoryService>();
                 await history.RestoreHistory();
                 string token = await history.Add(file);
 
