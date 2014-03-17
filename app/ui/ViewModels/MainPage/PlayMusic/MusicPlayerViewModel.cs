@@ -76,7 +76,8 @@ namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
 
         private async void MediaService_MediaEnded(object sender, EventArgs e)
         {
-            if (TrackCollection.TrackCollection[TrackCollection.CurrentTrack] == TrackCollection.TrackCollection.Last())
+            if (TrackCollection.TrackCollection.Count == 0 ||
+                TrackCollection.TrackCollection[TrackCollection.CurrentTrack] == TrackCollection.TrackCollection.Last())
             {
                 // Playlist is finished
                 await DispatchHelper.InvokeAsync(() => TrackCollection.IsRunning = false);
