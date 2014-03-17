@@ -67,7 +67,7 @@ namespace VLC_WINRT.ViewModels.PlayVideo
 
         protected override void OnPlaybackStarting()
         {
-            _sliderPositionTimer.Start();
+            _mouseService.HideMouse();
             base.OnPlaybackStarting();
         }
 
