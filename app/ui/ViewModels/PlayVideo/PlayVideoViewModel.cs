@@ -243,9 +243,9 @@ namespace VLC_WINRT.ViewModels.PlayVideo
             await UpdatePosition(this, e);
         }
 
-        private void PlayerStateChanged(object sender, VlcService.MediaPlayerState e)
+        private async void PlayerStateChanged(object sender, VlcService.MediaPlayerState e)
         {
-            DispatchHelper.Invoke(() =>
+            await DispatchHelper.InvokeAsync(() =>
             {
                 if (e == VlcService.MediaPlayerState.Playing)
                 {
