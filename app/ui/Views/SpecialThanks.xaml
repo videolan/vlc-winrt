@@ -89,7 +89,7 @@
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
                         <TextBlock x:Uid="PartnersOther" Text="other backers" FontSize="30" Style="{StaticResource VLCSubHeaderStyle}" Foreground="#FFBDBDBD"/>
-                        <GridView x:Name="BackersGridView" Grid.Row="1" ItemsSource="{Binding Backers}" Loaded="BackersGridView_OnLoaded">
+                        <GridView x:Name="BackersGridView" Grid.Row="1" ItemsSource="{Binding Backers}" Loaded="BackersGridView_OnLoaded" SelectionMode="None">
                             <GridView.ItemTemplate>
                                 <DataTemplate>
                                     <TextBlock Foreground="White" Style="{StaticResource TitleTextStyle}">
