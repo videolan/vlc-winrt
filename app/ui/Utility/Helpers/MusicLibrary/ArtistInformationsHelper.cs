@@ -9,7 +9,6 @@
 
 using System;
 using System.Diagnostics;
-using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -19,58 +18,11 @@ using VLC_WINRT.ViewModels;
 using Windows.Storage;
 using Windows.Storage.Streams;
 using VLC_WINRT.ViewModels.MainPage;
-using XboxMusicLibrary.Models;
-using XboxMusicLibrary.Settings;
-using Artist = XboxMusicLibrary.Models.Artist;
 
 namespace VLC_WINRT.Utility.Helpers.MusicLibrary
 {
     public static class ArtistInformationsHelper
     {
-        public static async Task<Artist> GetArtistFromXboxMusic(string artist)
-        {
-            var xboxArtistItem = new Artist();
-            try
-            {
-                // TODO: Client secret should be hidden. Hence why it's "secret"
-                // TODO: Create interface for various music services used in VLC.
-                if (Locator.MusicLibraryVM.XboxMusicAuthenication == null)
-                {
-                    Locator.MusicLibraryVM.XboxMusicAuthenication = await Locator.MusicLibraryVM.XboxMusicHelper.GetAccessToken("5bf9b614-1651-4b49-98ee-1831ae58fb99", "copuMsVkCAFLQlP38bV3y+Azysz/crELZ5NdQU7+ddg=", string.Empty);
-                    Locator.MusicLibraryVM.XboxMusicAuthenication.StartTime = GetUnixTime(DateTime.Now);
-                }
-                var expiresIn = Convert.ToInt64(Locator.MusicLibraryVM.XboxMusicAuthenication.ExpiresIn);
-                if (GetUnixTime(DateTime.Now) - Locator.MusicLibraryVM.XboxMusicAuthenication.StartTime >= expiresIn)
-                {
-                    Locator.MusicLibraryVM.XboxMusicAuthenication = await Locator.MusicLibraryVM.XboxMusicHelper.GetAccessToken("5bf9b614-1651-4b49-98ee-1831ae58fb99", "copuMsVkCAFLQlP38bV3y+Azysz/crELZ5NdQU7+ddg=", string.Empty);
-                    Locator.MusicLibraryVM.XboxMusicAuthenication.StartTime = GetUnixTime(DateTime.Now);
-                }
-
-
-                Debug.WriteLine("Connecting to XBOX Music API for " + artist);
-                Debug.WriteLine("XBOX Music token " + Locator.MusicLibraryVM.XboxMusicAuthenication);
-                Music xboxMusic = await Locator.MusicLibraryVM.XboxMusicHelper.SearchMediaCatalog(Locator.MusicLibraryVM.XboxMusicAuthenication.AccessToken, artist, null, 3, new Filters[] { Filters.Artists });
-
-                xboxArtistItem = xboxMusic.Artists.Items.FirstOrDefault(x => x.Name == artist) ??
-                                 xboxMusic.Artists.Items.FirstOrDefault();
-
-                Debug.WriteLine("XBOX Music artist found : " + xboxArtistItem.Name);
-
-                Locator.MusicLibraryVM.ImgCollection.Add(xboxArtistItem.ImageUrl);
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine("XBOX Error\n" + e.ToString());
-            }
-            return xboxArtistItem ?? null;
-        }
-
-        public static long GetUnixTime(DateTime time)
-        {
-            time = time.ToUniversalTime();
-            TimeSpan timeSpam = time - (new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Local));
-            return (long)timeSpam.TotalSeconds;
-        }
 
         static async Task DownloadPicFromDeezerToLocalFolder(MusicLibraryViewModel.ArtistItemViewModel artist)
         {
@@ -183,34 +135,3 @@ namespace VLC_WINRT.Utility.Helpers.MusicLibrary
         }
     }
 }
-// This code will be used later when XBOX Music will support all these queries (still no date of release though)
-
-//{
-//    foreach (var album in xBoxArtistItem.Albums.Items)
-//    {
-//        artist.OnlinePopularAlbumItems.Add(new VLC_WINRT.ViewModels.MainPage.MusicLibraryViewModel.OnlineAlbumItem()
-//        {
-//            Artist = xBoxArtistItem.Name,
-//            Name = album.Name,
-//            Picture = album.ImageUrlWithOptions(new ImageSettings(200, 200, ImageMode.Scale, "")),
-//        });
-//    }
-//    foreach (var artists in xBoxArtistItem.RelatedArtists.Items)
-//    {
-//        var onlinePopularAlbums = artists.Albums.Items.Select(albums => new VLC_WINRT.ViewModels.MainPage.MusicLibraryViewModel.OnlineAlbumItem
-//        {
-//            Artist = artists.Name,
-//            Name = albums.Name,
-//            Picture = albums.ImageUrlWithOptions(new ImageSettings(280, 156, ImageMode.Scale, "")),
-//        }).ToList();
-
-//        var artistPic = artists.ImageUrl;
-//        artist.OnlineRelatedArtists.Add(new VLC_WINRT.ViewModels.MainPage.MusicLibraryViewModel.ArtistItemViewModel
-//        {
-//            Name = artists.Name,
-//            OnlinePopularAlbumItems = onlinePopularAlbums,
-//            Picture = artistPic,
-//        });
-//    }
-
-//}
