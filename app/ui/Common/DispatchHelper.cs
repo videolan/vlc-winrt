@@ -32,5 +32,12 @@ namespace VLC_WINRT.Common
                     Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => action());
             }
         }
+
+        // This should be avoided as much as possible as it will block a thread.
+        // Prefer the asynchronous version whenever possible
+        public static void Invoke(Action action)
+        {
+            InvokeAsync(action).Wait();
+        }
     }
 }
