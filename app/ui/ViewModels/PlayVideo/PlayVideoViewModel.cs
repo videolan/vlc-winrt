@@ -245,14 +245,17 @@ namespace VLC_WINRT.ViewModels.PlayVideo
 
         private void PlayerStateChanged(object sender, VlcService.MediaPlayerState e)
         {
-            if (e == VlcService.MediaPlayerState.Playing)
+            DispatchHelper.Invoke(() =>
             {
-                IsPlaying = true;
-            }
-            else
-            {
-                IsPlaying = false;
-            }
+                if (e == VlcService.MediaPlayerState.Playing)
+                {
+                    IsPlaying = true;
+                }
+                else
+                {
+                    IsPlaying = false;
+                }
+            });
         }
 
         public void RegisterPanel()
