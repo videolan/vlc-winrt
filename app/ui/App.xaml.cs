@@ -115,7 +115,7 @@ namespace VLC_WINRT
             {
                 if (Window.Current.Content == null)
                 {
-                    LaunchTheApp();
+                    await LaunchTheApp();
                 }
 
                 Locator.MusicPlayerVM.TrackCollection.TrackCollection.Clear();
@@ -133,7 +133,7 @@ namespace VLC_WINRT
                 TemporaryMRL = StorageApplicationPermissions.FutureAccessList.Add(file);
                 if (Window.Current.Content == null)
                 {
-                    LaunchTheApp();
+                    await LaunchTheApp();
                 }
                 else
                 {
