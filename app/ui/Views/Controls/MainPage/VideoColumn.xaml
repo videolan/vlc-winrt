@@ -97,7 +97,7 @@
                     </ListView>
                 </SemanticZoom.ZoomedOutView>
                 <SemanticZoom.ZoomedInView>
-                    <ListView ItemTemplate="{StaticResource NormaleMovieTemplate}" IsSwipeEnabled="False" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" ItemsSource="{Binding Source={StaticResource MediaGroupedByAlphabet}}" SelectedIndex="0" SelectionMode="None" IsItemClickEnabled="True" 
+                    <ListView x:Name="FirstPanelListView" ItemTemplate="{StaticResource NormaleMovieTemplate}" IsSwipeEnabled="False" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" ItemsSource="{Binding Source={StaticResource MediaGroupedByAlphabet}}" SelectedIndex="0" SelectionMode="None" IsItemClickEnabled="True" 
                               ScrollViewer.HorizontalScrollBarVisibility="Auto"
                                   ScrollViewer.VerticalScrollBarVisibility="Disabled"
                                   ScrollViewer.HorizontalScrollMode="Enabled"
