@@ -14,6 +14,7 @@ using VLC_WINRT.Utility.Helpers;
 using VLC_WINRT.Utility.Services.RunTime;
 using VLC_WINRT.ViewModels.MainPage;
 using Windows.UI.Core;
+using VLC_WINRT.Common;
 
 namespace VLC_WINRT.Views
 {
@@ -59,7 +60,7 @@ namespace VLC_WINRT.Views
 
         private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
         {
-            Dispatcher.RunAsync(CoreDispatcherPriority.High, () =>
+            DispatchHelper.Invoke(() =>
             {
                 if (sizeChangedEventArgs.NewSize.Width == 320)
                 {
