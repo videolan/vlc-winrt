@@ -80,6 +80,7 @@ namespace VLC_WINRT.ViewModels.MainPage
 
                 var dlnaFolder = await KnownVLCLocation.MediaServers.GetFoldersAsync();
                 var tasks = new List<Task>();
+                DLNAVMs.Clear();
                 foreach (StorageFolder storageFolder in dlnaFolder)
                 {
                     StorageFolder newFolder = storageFolder;
