@@ -111,7 +111,8 @@ namespace VLC_WINRT.Utility.Services.RunTime
         }
         public IAsyncOperation<StorageFile> RetrieveFile(string token)
         {
-            if (string.IsNullOrEmpty(token)) return null;
+            if (string.IsNullOrEmpty(token)) 
+                return null;
             return StorageApplicationPermissions.FutureAccessList.GetFileAsync(token);
         }
 

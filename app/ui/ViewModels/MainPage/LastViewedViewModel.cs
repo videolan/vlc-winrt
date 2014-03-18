@@ -107,9 +107,15 @@ namespace VLC_WINRT.ViewModels.MainPage
                         StorageFile file = null;
                         if (!string.IsNullOrEmpty(token))
                         {
-                            file = await _historyService.RetrieveFile(token);
+                            try
+                            {
+                                file = await _historyService.RetrieveFile(token);
+                            }
+                            catch (System.IO.FileNotFoundException)
+                            {
+                                continue;
+                            }
                         }
-                        if (file == null) continue;
 
                         var video = new ViewedVideoViewModel(token, file);
                         await video.Initialize();
