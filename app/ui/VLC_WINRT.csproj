@@ -91,6 +91,10 @@
     <Compile Include="Utility\Helpers\MusicLibrary\Deezer\Albums.cs" />
     <Compile Include="Utility\Helpers\MusicLibrary\Deezer\Artists.cs" />
     <Compile Include="Utility\Helpers\MusicLibrary\Deezer\Tracks.cs" />
+    <Compile Include="Utility\Helpers\MusicLibrary\EchonestClient.cs" />
+    <Compile Include="Utility\Helpers\MusicLibrary\EchoNest\Artists.cs" />
+    <Compile Include="Utility\Helpers\MusicLibrary\EchoNest\Twitter.cs" />
+    <Compile Include="Utility\Helpers\MusicLibrary\EchoNest\Videos.cs" />
     <Compile Include="Utility\Helpers\MusicLibrary\LastFm\AlbumInformation.cs" />
     <Compile Include="Utility\Helpers\MusicLibrary\LastFm\ArtistInformation.cs" />
     <Compile Include="Model\BackItem.cs" />
