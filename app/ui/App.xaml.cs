@@ -94,7 +94,7 @@ namespace VLC_WINRT
         {
             await (Container.Resolve<HistoryService>()).RestoreHistory();
 
-            Window.Current.Content = new RootPage();
+            Window.Current.Content = Container.Resolve<RootPage>();
             Dispatcher = Window.Current.Content.Dispatcher;
             NavigationService.NavigateTo(typeof(MainPage));
             Window.Current.Activate();

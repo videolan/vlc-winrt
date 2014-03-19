@@ -22,9 +22,11 @@ namespace VLC_WINRT.Views
 {
     public sealed partial class RootPage : Page
     {
-        public RootPage()
+        private readonly VlcService _vlcService;
+        public RootPage(VlcService vlcService)
         {
             InitializeComponent();
+            _vlcService = vlcService;
             CoreWindow.GetForCurrentThread().Activated += OnActivated;
             Loaded += SwapPanelLoaded;
         }
@@ -40,23 +42,22 @@ namespace VLC_WINRT.Views
                     await StorageFile.GetFileFromPathAsync(
                         Locator.MusicPlayerVM.TrackCollection.TrackCollection[
                             Locator.MusicPlayerVM.TrackCollection.CurrentTrack].Path);
-                IRandomAccessStream stream = await file.OpenAsync(FileAccessMode.Read);
-                App.RootPage.FoudationMediaElement.SetSource(stream, file.ContentType);
-                App.RootPage.FoudationMediaElement.Play();
-                App.RootPage.FoudationMediaElement.Volume = 0;
+                var stream = await file.OpenAsync(FileAccessMode.Read);
+                FoudationMediaElement.SetSource(stream, file.ContentType);
+                FoudationMediaElement.Play();
+                FoudationMediaElement.Volume = 0;
             }
             else
             {
                 if (!Locator.MusicPlayerVM.TrackCollection.IsRunning)
                     return;
-                App.RootPage.FoudationMediaElement.Stop();
+                FoudationMediaElement.Stop();
             }
         }
 
         private async void SwapPanelLoaded(object sender, RoutedEventArgs e)
         {
-            var vlcPlayerService = App.Container.Resolve<VlcService>();
-            await vlcPlayerService.Initialize(SwapChainPanel);
+            await _vlcService.Initialize(SwapChainPanel);
         }
 
         private void MainFrame_OnNavigated(object sender, NavigationEventArgs e)

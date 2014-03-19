@@ -15,6 +15,7 @@ using VLC_WINRT.ViewModels;
 using VLC_WINRT.ViewModels.MainPage;
 using VLC_WINRT.ViewModels.MainPage.PlayMusic;
 using VLC_WINRT.ViewModels.PlayVideo;
+using VLC_WINRT.Views;
 
 namespace VLC_WINRT.Common
 {
@@ -52,6 +53,7 @@ namespace VLC_WINRT.Common
             }
 
             // Register Views
+            builder.RegisterType<RootPage>();
 
             return builder.Build();
         }
