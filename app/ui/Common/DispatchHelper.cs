@@ -17,19 +17,20 @@ namespace VLC_WINRT.Common
 {
     public class DispatchHelper
     {
-        public static async Task InvokeAsync(Action action)
+        public static Task InvokeAsync(Action action)
         {
             //for some reason this crashes the designer (so dont do it in design mode)
-            if (DesignMode.DesignModeEnabled) return;
+            if (DesignMode.DesignModeEnabled) return Task.FromResult<bool>(false);
 
             if (CoreApplication.MainView.CoreWindow == null || CoreApplication.MainView.CoreWindow.Dispatcher.HasThreadAccess)
             {
                 action();
+                return Task.FromResult<bool>(true);
             }
             else
             {
-                await CoreApplication.MainView.CoreWindow.
-                    Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => action());
+                return CoreApplication.MainView.CoreWindow.
+                    Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => action()).AsTask();
             }
         }
 
