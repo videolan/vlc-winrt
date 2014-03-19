@@ -11,6 +11,7 @@ using Autofac;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Storage;
@@ -97,14 +98,20 @@ namespace VLC_WINRT.ViewModels.MainPage
         private async Task<List<ViewedVideoViewModel>> GetRecentMedia()
         {
             var viewedVideos = new List<ViewedVideoViewModel>();
-            for (int i = 0; i < 4; i++)
+            var badTokens = new List<string>();
+            var max = 4;
+            for (int i = 0; i < max; i++)
             {
                 if (!_historyService.IsAudioAtPosition(i))
                 {
                     try
                     {
-                        string token = _historyService.GetTokenAtPosition(i);
+                        var token = _historyService.GetTokenAtPosition(i);
+                        if (string.IsNullOrEmpty(token))
+                            continue;
+
                         StorageFile file = null;
+                        var fileException = false;
                         if (!string.IsNullOrEmpty(token))
                         {
                             try
@@ -113,8 +120,15 @@ namespace VLC_WINRT.ViewModels.MainPage
                             }
                             catch (System.IO.FileNotFoundException)
                             {
-                                continue;
+                                fileException = true;
                             }
+                        }
+
+                        if (file == null || fileException)
+                        {
+                            badTokens.Add(token);
+                            max++;
+                            continue;
                         }
 
                         var video = new ViewedVideoViewModel(token, file);
@@ -128,6 +142,13 @@ namespace VLC_WINRT.ViewModels.MainPage
                     }
                 }
             }
+
+            if (badTokens.Any())
+            {
+                foreach (var token in badTokens)
+                    await _historyService.RemoveToken(token);
+            }
+
             return viewedVideos;
         }
     }

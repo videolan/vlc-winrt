@@ -10,6 +10,7 @@
 using Autofac;
 using System;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using VLC_WINRT.Common;
 using VLC_WINRT.Utility.Services.Interface;
 using Windows.Foundation;
@@ -26,7 +27,6 @@ namespace VLC_WINRT.ViewModels.MainPage
         private StorageFile _file;
         private ImageSource _imageBrush;
         private readonly IThumbnailService _thumbsService;
-        private IAsyncAction _thumbailGeneration;
 
         public ThumbnailViewModel(StorageFile storageFile)
         {
@@ -46,11 +46,11 @@ namespace VLC_WINRT.ViewModels.MainPage
             set
             {
                 SetProperty(ref _file, value);
-                _thumbailGeneration = ThreadPool.RunAsync(GenerateThumbnail);
+                Task.Run(() => GenerateThumbnail());
             }
         }
 
-        private async void GenerateThumbnail(IAsyncAction asyncAction)
+        private async void GenerateThumbnail()
         {
             StorageItemThumbnail thumb = null;
             try

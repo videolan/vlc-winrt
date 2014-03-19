@@ -73,6 +73,16 @@ namespace VLC_WINRT.Utility.Services.RunTime
             return token;
         }
 
+        public Task RemoveToken(string token)
+        {
+            var entry = _histories.FirstOrDefault(item => item.Token == token);
+            if (entry == null)
+                return Task.FromResult<bool>(false);
+
+            _histories.Remove(entry);
+            return SaveHistory();
+        }
+
         public int FileCount()
         {
             return StorageApplicationPermissions.FutureAccessList.Entries.Count();
