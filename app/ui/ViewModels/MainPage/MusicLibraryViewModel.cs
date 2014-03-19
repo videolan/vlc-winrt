@@ -368,19 +368,23 @@ namespace VLC_WINRT.ViewModels.MainPage
                 {
                     if (!_isPictureLoaded)
                     {
-                        if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
-                        {
-                            // Get Artist Picture via XBOX Music
-                            ArtistInformationsHelper.GetArtistPicture(this);
-                            _isPictureLoaded = true;
-                        }
+                        Task.Run(() => LoadPicture());
                     }
                     return _picture;
                 }
                 set
                 {
-                    OnPropertyChanged("Picture");
                     SetProperty(ref _picture, value);
+                }
+            }
+
+            private void LoadPicture()
+            {
+                if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
+                {
+                    // Get Artist Picture via XBOX Music
+                    ArtistInformationsHelper.GetArtistPicture(this);
+                    _isPictureLoaded = true;
                 }
             }
 

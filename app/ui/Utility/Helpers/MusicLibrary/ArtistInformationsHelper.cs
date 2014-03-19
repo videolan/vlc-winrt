@@ -106,7 +106,7 @@ namespace VLC_WINRT.Utility.Helpers.MusicLibrary
                 }
                 StorageFolder appDataFolder = ApplicationData.Current.LocalFolder;
                 string supposedPictureUriLocal = appDataFolder.Path + "\\artistPic\\" + artist.Name + "_" + "dPi" + ".jpg";
-                await DispatchHelper.InvokeAsync(() => artist.Picture = supposedPictureUriLocal);
+                DispatchHelper.InvokeAsync(() => artist.Picture = supposedPictureUriLocal);
                 return true;
             }
             catch (Exception)
@@ -122,7 +122,10 @@ namespace VLC_WINRT.Utility.Helpers.MusicLibrary
             string supposedPictureUriLocal = appDataFolder.Path + "\\artistPic\\" + artist.Name + "_" + "dPi" + ".jpg";
             if (NativeOperationsHelper.FileExist(supposedPictureUriLocal))
             {
-                artist.Picture = supposedPictureUriLocal;
+                DispatchHelper.InvokeAsync(() =>
+                {
+                    artist.Picture = supposedPictureUriLocal;
+                });
             }
             else
             {
