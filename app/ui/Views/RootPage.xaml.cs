@@ -17,42 +17,19 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using VLC_WINRT.Utility.Services.RunTime;
 using VLC_WINRT.ViewModels;
+using VLC_WINRT.Utility.Services.Interface;
 
 namespace VLC_WINRT.Views
 {
     public sealed partial class RootPage : Page
     {
         private readonly VlcService _vlcService;
-        public RootPage(VlcService vlcService)
+        public RootPage(VlcService vlcService, IMediaService mediaService)
         {
             InitializeComponent();
             _vlcService = vlcService;
-            CoreWindow.GetForCurrentThread().Activated += OnActivated;
+            (mediaService as MediaService).SetMediaElement(FoudationMediaElement);
             Loaded += SwapPanelLoaded;
-        }
-
-
-        private async void OnActivated(CoreWindow sender, WindowActivatedEventArgs args)
-        {
-            if (args.WindowActivationState == CoreWindowActivationState.Deactivated)
-            {
-                if (!Locator.MusicPlayerVM.TrackCollection.IsRunning)
-                    return;
-                StorageFile file =
-                    await StorageFile.GetFileFromPathAsync(
-                        Locator.MusicPlayerVM.TrackCollection.TrackCollection[
-                            Locator.MusicPlayerVM.TrackCollection.CurrentTrack].Path);
-                var stream = await file.OpenAsync(FileAccessMode.Read);
-                FoudationMediaElement.SetSource(stream, file.ContentType);
-                FoudationMediaElement.Play();
-                FoudationMediaElement.Volume = 0;
-            }
-            else
-            {
-                if (!Locator.MusicPlayerVM.TrackCollection.IsRunning)
-                    return;
-                FoudationMediaElement.Stop();
-            }
         }
 
         private async void SwapPanelLoaded(object sender, RoutedEventArgs e)

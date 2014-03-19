@@ -47,10 +47,11 @@ namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
         protected async void MediaService_MediaEnded(object sender, EventArgs e)
         {
             if (TrackCollection.TrackCollection.Count == 0 ||
-                TrackCollection.TrackCollection[TrackCollection.CurrentTrack] == TrackCollection.TrackCollection.Last())
+                TrackCollection.TrackCollection[TrackCollection.CurrentTrack] == TrackCollection.TrackCollection.Last() || 
+                _mediaService.IsBackground)
             {
                 // Playlist is finished
-                await DispatchHelper.InvokeAsync(() => TrackCollection.IsRunning = false);
+                DispatchHelper.InvokeAsync(() => TrackCollection.IsRunning = false);
             }
             else
             {
@@ -222,7 +223,7 @@ namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
             Artist = Locator.MusicLibraryVM.Artist.FirstOrDefault(x => x.Name == track.ArtistName);
             if (Artist != null)
                 Artist.CurrentAlbumIndex = _artist.Albums.IndexOf(_artist.Albums.FirstOrDefault(x => x.Name == track.AlbumName));
-            _mediaService.SetPath(_mrl);
+            _mediaService.SetMediaFile(_mrl, isAudioMedia: true);
             OnPropertyChanged("TimeTotal");
             UpdateTileHelper.UpdateMediumTileWithMusicInfo();
             _mediaService.Play();

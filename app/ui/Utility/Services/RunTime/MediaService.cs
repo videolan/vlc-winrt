@@ -12,10 +12,13 @@ using System.Threading.Tasks;
 using VLC_WINRT.Common;
 using VLC_WINRT.Utility.Helpers.MusicLibrary;
 using VLC_WINRT.Utility.Services.Interface;
+using VLC_WINRT.ViewModels;
 using VLC_WINRT.ViewModels.MainPage;
 using VLC_WINRT.ViewModels.MainPage.PlayMusic;
 using Windows.Media;
 using Windows.Storage;
+using Windows.UI.Core;
+using Windows.UI.Xaml.Controls;
 
 namespace VLC_WINRT.Utility.Services.RunTime
 {
@@ -23,6 +26,8 @@ namespace VLC_WINRT.Utility.Services.RunTime
     {
         private readonly HistoryService _historyService;
         private readonly VlcService _vlcService;
+
+        private MediaElement _mediaElement;
 
         public MediaService(HistoryService historyService, VlcService vlcService)
         {
@@ -32,6 +37,13 @@ namespace VLC_WINRT.Utility.Services.RunTime
             _vlcService.MediaEnded += VlcPlayerService_MediaEnded;
             _vlcService.StatusChanged += VlcPlayerService_StatusChanged;
             MediaControl.IsPlaying = false;
+
+            CoreWindow.GetForCurrentThread().Activated += ApplicationState_Activated;
+        }
+
+        public void SetMediaElement(MediaElement mediaElement)
+        {
+            _mediaElement = mediaElement;
         }
 
         public Task PlayAudioFile(StorageFile file)
@@ -44,21 +56,23 @@ namespace VLC_WINRT.Utility.Services.RunTime
             throw new NotImplementedException();
         }
 
-        private string lastPath;
+        private string _lastMrl;
+        private bool _isAudioMedia;
 
-        public void SetPath(string filePath)
+        public void SetMediaFile(string filePath, bool isAudioMedia = true)
         {
             _vlcService.Open(filePath);
-            lastPath = filePath;
+            _isAudioMedia = isAudioMedia;
+            _lastMrl = filePath;
         }
 
         public void Play()
         {
             var position = GetPosition();
-            if (_vlcService.CurrentState == VlcService.MediaPlayerState.NotPlaying && !string.IsNullOrWhiteSpace(lastPath))
+            if (_vlcService.CurrentState == VlcService.MediaPlayerState.NotPlaying && !string.IsNullOrWhiteSpace(_lastMrl))
             {
                 SetPosition(0);
-                SetPath(lastPath);
+                SetMediaFile(_lastMrl, _isAudioMedia);
             }
             _vlcService.Play();
             RegisterMediaControls();
@@ -157,6 +171,52 @@ namespace VLC_WINRT.Utility.Services.RunTime
             }
         }
 
+        private async void ApplicationState_Activated(object sender, WindowActivatedEventArgs e)
+        {
+            if (e.WindowActivationState == CoreWindowActivationState.Deactivated)
+            {
+                IsBackground = true;
+                if (!IsPlaying)
+                    return;
+
+                // If we're playing a video, just pause.
+                if(!_isAudioMedia)
+                {
+                    // TODO: Route Video Player calls through Media Service
+                    //_vlcService.Pause();
+                    return;
+                }
+                
+                // Otherwise, set the MediaElement's source to the Audio File in question,
+                // and play it with a volume of zero. This allows _vlcService's audio to continue
+                // to play in the background. SetSource should have it's source set to a programmatically
+                // generated stream of blank noise, just incase the audio file in question isn't support by
+                // Windows.
+                var file = await _historyService.RetrieveFile(_lastMrl.Replace("file://", ""));
+                var stream = await file.OpenAsync(FileAccessMode.Read);
+                _mediaElement.SetSource(stream, file.ContentType);
+                _mediaElement.Play();
+                _mediaElement.IsLooping = true;
+                _mediaElement.Volume = 0;
+            }
+            else
+            {
+                IsBackground = false;
+                if (!IsPlaying)
+                    return;
+
+                // If we're playing a video, start playing again.
+                if(!_isAudioMedia)
+                {
+                    // TODO: Route Video Player calls through Media Service
+                    //_vlcService.Play();
+                    return;
+                }
+
+                _mediaElement.Stop();
+            }
+        }
+
         private bool _isRegistered;
 
         private void RegisterMediaControls()
@@ -185,6 +245,8 @@ namespace VLC_WINRT.Utility.Services.RunTime
         {
             get { return _vlcService.CurrentState == VlcService.MediaPlayerState.Playing; }
         }
+
+        public bool IsBackground { get; private set; }
 
         public event EventHandler MediaEnded;
         public event EventHandler<VlcService.MediaPlayerState> StatusChanged;

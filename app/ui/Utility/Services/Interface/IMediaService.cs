@@ -19,6 +19,7 @@ namespace VLC_WINRT.Utility.Services.Interface
     public interface IMediaService
     {
         bool IsPlaying { get; }
+        bool IsBackground { get; }
 
         /// <summary>
         /// Navigates to the Audio Player screen with the requested file a parameter.
@@ -35,7 +36,7 @@ namespace VLC_WINRT.Utility.Services.Interface
         /// Sets the path of the file to played.
         /// </summary>
         /// <param name="fileUri">The path of the file to be played.</param>
-        void SetPath(string filePath);
+        void SetMediaFile(string filePath, bool isAudioMedia = true);
 
         void Play();
         void Pause();
