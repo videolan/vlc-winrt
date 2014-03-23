@@ -7,49 +7,49 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
+using Newtonsoft.Json;
+using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
-using System.Runtime.InteropServices;
 using System.Threading.Tasks;
+using VLC_WINRT.Common;
+using VLC_WINRT.Utility.Commands;
+using VLC_WINRT.Utility.Commands.MusicPlayer;
+using VLC_WINRT.Utility.DataRepository;
+using VLC_WINRT.Utility.Helpers;
+using VLC_WINRT.Utility.Helpers.MusicLibrary;
+using VLC_WINRT.Utility.Helpers.MusicLibrary.LastFm;
+using VLC_WINRT.Utility.Helpers.MusicLibrary.xboxmusic.Models;
+using VLC_WINRT.Views.Controls.MainPage;
 using Windows.ApplicationModel.Resources;
-using Windows.Foundation;
 using Windows.Storage;
 using Windows.Storage.FileProperties;
 using Windows.Storage.Search;
 using Windows.Storage.Streams;
 using Windows.System.Threading;
-using Windows.UI.Core;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
-using Newtonsoft.Json;
-using VLC_WINRT.Common;
-using VLC_WINRT.Model;
-using VLC_WINRT.Utility.Commands;
-using VLC_WINRT.Utility.Commands.MusicPlayer;
-using VLC_WINRT.Utility.Helpers;
-using VLC_WINRT.Utility.Helpers.MusicLibrary.LastFm;
-using VLC_WINRT.Utility.Helpers.MusicLibrary.xboxmusic.Models;
-using VLC_WINRT.Views.Controls.MainPage;
 using XboxMusicLibrary;
 using Panel = VLC_WINRT.Model.Panel;
-using VLC_WINRT.Utility.Helpers.MusicLibrary;
-using System.Diagnostics;
-using System.Runtime.Serialization;
 
 namespace VLC_WINRT.ViewModels.MainPage
 {
     public class MusicLibraryViewModel : BindableBase
     {
-        public int nbOfFiles = 0;
+        public int NbOfFiles = 0;
         private ObservableCollection<Panel> _panels = new ObservableCollection<Panel>();
         private ObservableCollection<ArtistItem> _artists = new ObservableCollection<ArtistItem>();
         private ObservableCollection<string> _albumsCover = new ObservableCollection<string>();
         private ObservableCollection<TrackItem> _tracks = new ObservableCollection<TrackItem>();
         private ObservableCollection<AlbumItem> _favoriteAlbums = new ObservableCollection<AlbumItem>();
         private ObservableCollection<AlbumItem> _randomAlbums = new ObservableCollection<AlbumItem>();
+        private static ArtistDataRepository _artistDataRepository = new ArtistDataRepository();
+        private static TrackDataRepository _trackDataRepository = new TrackDataRepository();
+        private static AlbumDataRepository _albumDataRepository = new AlbumDataRepository();
 
         private StopVideoCommand _goBackCommand;
         private bool _isLoaded;
@@ -58,7 +58,7 @@ namespace VLC_WINRT.ViewModels.MainPage
 
         int _numberOfTracks;
         ThreadPoolTimer _periodicTimer;
-        AsyncLock _artistLock = new AsyncLock();
+        readonly AsyncLock _artistLock = new AsyncLock();
 
         // XBOX Music Stuff
         // REMOVE: Do we need this stuff anymore?
@@ -149,109 +149,28 @@ namespace VLC_WINRT.ViewModels.MainPage
 
         public async Task GetMusicFromLibrary()
         {
-            nbOfFiles = (await KnownVLCLocation.MusicLibrary.GetItemsAsync()).Count;
+            await LoadFromDatabase();
+            if (Artist.Any())
+            {
+                IsMusicLibraryEmpty = false;
+                LoadFavoritesRandomAlbums();
+            }
+
+            // TODO: Find a better way to check for new items in the library.
+            // This checks for new folders. If there are more or less then what was there before, it will index again.
+            NbOfFiles = (await KnownVLCLocation.MusicLibrary.GetItemsAsync()).Count;
             bool isMusicLibraryChanged = await IsMusicLibraryChanged();
             if (isMusicLibraryChanged)
             {
                 await StartIndexing();
-            }
-            else
-            {
-                await DeserializeAndLoad();
-            }
-        }
-
-        private async Task StartIndexing()
-        {
-            var musicFolder = await
-                KnownVLCLocation.MusicLibrary.GetFoldersAsync(CommonFolderQuery.GroupByArtist);
-            TimeSpan period = TimeSpan.FromSeconds(10);
-
-            _periodicTimer = ThreadPoolTimer.CreatePeriodicTimer(async (source) =>
-            {
-
-                using (await _artistLock.LockAsync()) 
-                    await SerializeArtistsDataBase();
-
-                if (Locator.MusicLibraryVM.Track.Count > _numberOfTracks)
-                {
-                    await ImgCollection.SerializeAsJson("Artist_Img_Collection.json", null, CreationCollisionOption.ReplaceExisting);
-                    await DispatchHelper.InvokeAsync(() => Locator.MusicLibraryVM._numberOfTracks = Track.Count);
-                }
-                else
-                {
-                    _periodicTimer.Cancel();
-                    await DispatchHelper.InvokeAsync(() => 
-                    {
-                        IsLoaded = true;
-                        IsBusy = false;
-                    });
-                }
-            }, period);
-
-            using (await _artistLock.LockAsync()) 
-            foreach (var artistItem in musicFolder)
-            {
-                IsMusicLibraryEmpty = false;
-                MusicProperties artistProperties = null;
-                try
-                {
-                    artistProperties = await artistItem.Properties.GetMusicPropertiesAsync();
-                }
-                catch
-                {
-                }
-                if (artistProperties != null && artistProperties.Artist != "")
-                {
-                    StorageFolderQueryResult albumQuery =
-                        artistItem.CreateFolderQuery(CommonFolderQuery.GroupByAlbum);
-                    var artist = new ArtistItem();
-                    await artist.Initialize(albumQuery, artistProperties.Artist);
-                    OnPropertyChanged("Track");
-                    OnPropertyChanged("Artist");
-                    Artist.Add(artist);
-                }
-            }
-            OnPropertyChanged("Artist");
-        }
-
-        private async Task DeserializeAndLoad()
-        {
-            IsLoaded = true;
-            var foundException = false;
-            try
-            {
-                var artists =
-                    await
-                        SerializationHelper.LoadFromJsonFile<ObservableCollection<ArtistItem>>(
-                            "MusicDB.json");
-                if(artists != null)
-                    Artist = artists;
-            }
-            catch (SerializationException)
-            {
-                foundException = true;
-            }
-            catch (COMException)
-            {
-                foundException = true;
-            }
-
-            if (Artist.Count == 0 || foundException)
-            {
-                await StartIndexing();
                 return;
             }
+            IsLoaded = true;
+            IsBusy = false;
+        }
 
-            IsMusicLibraryEmpty = false;
-            // If the image collection fails to load, it sets ImgCollection to null.
-            // In case this happens, set the collection back to a new string collection to prevent further errors
-            // if another process tries to access the collection.
-            ImgCollection =
-                await
-                    SerializationHelper.LoadFromJsonFile<ObservableCollection<string>>("Artist_Img_Collection.json") ??
-                new ObservableCollection<string>();
-
+        private void LoadFavoritesRandomAlbums()
+        {
             foreach (AlbumItem album in Artist.SelectMany(artist => artist.Albums))
             {
                 if (album.Favorite)
@@ -274,9 +193,93 @@ namespace VLC_WINRT.ViewModels.MainPage
             OnPropertyChanged("Artist");
             OnPropertyChanged("Albums");
             OnPropertyChanged("Tracks");
-
-            IsBusy = false;
         }
+
+        private async Task StartIndexing()
+        {
+            // TODO: Rewrite function.
+            _artistDataRepository = new ArtistDataRepository();
+            var musicFolder = await
+                KnownVLCLocation.MusicLibrary.GetFoldersAsync(CommonFolderQuery.GroupByArtist);
+            TimeSpan period = TimeSpan.FromSeconds(10);
+
+            _periodicTimer = ThreadPoolTimer.CreatePeriodicTimer(async (source) =>
+            {
+                if (Locator.MusicLibraryVM.Track.Count > _numberOfTracks)
+                {
+                    await DispatchHelper.InvokeAsync(() => Locator.MusicLibraryVM._numberOfTracks = Track.Count);
+                }
+                else
+                {
+                    _periodicTimer.Cancel();
+                    await DispatchHelper.InvokeAsync(() =>
+                    {
+                        IsLoaded = true;
+                        IsBusy = false;
+                    });
+                }
+            }, period);
+
+            using (await _artistLock.LockAsync())
+                foreach (var artistItem in musicFolder)
+                {
+                    IsMusicLibraryEmpty = false;
+                    MusicProperties artistProperties = null;
+                    try
+                    {
+                        artistProperties = await artistItem.Properties.GetMusicPropertiesAsync();
+                    }
+                    catch
+                    {
+                        Debug.WriteLine("Could not get artist item properties.");
+                    }
+
+                    // If we could not get the artist information, skip it and continue.
+                    if (artistProperties == null || artistProperties.Artist == string.Empty)
+                    {
+                        continue;
+                    }
+
+                    StorageFolderQueryResult albumQuery =
+                        artistItem.CreateFolderQuery(CommonFolderQuery.GroupByAlbum);
+
+                    // Check if artist is in the database. If so, use it.
+                    ArtistItem artist = await _artistDataRepository.LoadViaArtistName(artistProperties.Artist);
+                    if (artist == null)
+                    {
+                        artist = new ArtistItem { Name = artistProperties.Artist };
+                        Artist.Add(artist);
+                        await _artistDataRepository.Add(artist);
+                    }
+                    await artist.Initialize(albumQuery, artist);
+                    OnPropertyChanged("Track");
+                    OnPropertyChanged("Artist");
+                }
+            OnPropertyChanged("Artist");
+        }
+
+        private async Task LoadFromDatabase()
+        {
+            try
+            {
+                var artists = await _artistDataRepository.Load();
+                foreach (var artistItem in artists)
+                {
+                    var albums = await _albumDataRepository.LoadAlbumsFromId(artistItem.Id);
+                    foreach (var album in albums)
+                    {
+                        album.Tracks = await _trackDataRepository.LoadTracksByAlbumId(album.Id);
+                    }
+                    artistItem.Albums = albums;
+                }
+                Artist = artists;
+            }
+            catch (Exception)
+            {
+                Debug.WriteLine("Error getting database.");
+            }
+        }
+
         public void ExecuteSemanticZoom()
         {
             var page = App.ApplicationFrame.Content as Views.MainPage;
@@ -300,59 +303,61 @@ namespace VLC_WINRT.ViewModels.MainPage
 
         async Task<bool> IsMusicLibraryChanged()
         {
-            var doesDBExists = await DoesFileExistHelper.DoesFileExistAsync("MusicDB.json");
-            if (doesDBExists)
+            var doesDbExists = await DoesFileExistHelper.DoesFileExistAsync("vlc.sqlite");
+            if (doesDbExists)
             {
                 if (App.LocalSettings.ContainsKey("nbOfFiles"))
                 {
-                    if ((int)App.LocalSettings["nbOfFiles"] == nbOfFiles)
+                    if ((int)App.LocalSettings["nbOfFiles"] == NbOfFiles)
                     {
                         return false;
                     }
                     App.LocalSettings.Remove("nbOfFiles");
                 }
-                App.LocalSettings.Add("nbOfFiles", nbOfFiles);
+                App.LocalSettings.Add("nbOfFiles", NbOfFiles);
             }
             return true;
-        }
-
-        public async Task SerializeArtistsDataBase()
-        {
-            await DispatchHelper.InvokeAsync(() => IsBusy = true);
-            await SerializationHelper.SerializeAsJson(Artist, "MusicDB.json",
-                null,
-                CreationCollisionOption.ReplaceExisting);
-            await DispatchHelper.InvokeAsync(() => IsBusy = false);
         }
 
         public class ArtistItem : BindableBase
         {
             private string _name;
             private string _picture;
-            private bool _isPictureLoaded = false;
+            private bool _isPictureLoaded;
             private ObservableCollection<AlbumItem> _albumItems = new ObservableCollection<AlbumItem>();
             private int _currentAlbumIndex = 0;
 
             // more informations
             private bool _isFavorite;
-            private bool _isOnlinePopularAlbumItemsLoaded = false;
+            private bool _isOnlinePopularAlbumItemsLoaded;
             private List<Utility.Helpers.MusicLibrary.MusicEntities.Album> _onlinePopularAlbumItems;
-            private bool _isOnlineRelatedArtistsLoaded = false;
+            private bool _isOnlineRelatedArtistsLoaded;
             private List<Utility.Helpers.MusicLibrary.MusicEntities.Artist> _onlineRelatedArtists;
+            private bool _isOnlineMusicVideosLoaded;
             private string _biography;
 
-            [JsonIgnore()]
+            [PrimaryKey, AutoIncrement, Column("_id")]
+            public int Id { get; set; }
+
+            [Ignore]
             public bool IsOnlinePopularAlbumItemsLoaded
             {
                 get { return _isOnlinePopularAlbumItemsLoaded; }
                 set { SetProperty(ref _isOnlinePopularAlbumItemsLoaded, value); }
             }
 
-            [JsonIgnore()]
+            [Ignore]
             public bool IsOnlineRelatedArtistsLoaded
             {
                 get { return _isOnlineRelatedArtistsLoaded; }
                 set { SetProperty(ref _isOnlineRelatedArtistsLoaded, value); }
+            }
+
+            [Ignore]
+            public bool IsOnlineMusicVideosLoaded
+            {
+                get { return _isOnlineMusicVideosLoaded; }
+                set { SetProperty(ref _isOnlineMusicVideosLoaded, value); }
             }
 
             public string Name
@@ -361,7 +366,6 @@ namespace VLC_WINRT.ViewModels.MainPage
                 set { SetProperty(ref _name, value); }
             }
 
-            [JsonIgnore()]
             public string Picture
             {
                 get
@@ -380,33 +384,31 @@ namespace VLC_WINRT.ViewModels.MainPage
 
             private void LoadPicture()
             {
-                if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
-                {
-                    // Get Artist Picture via XBOX Music
-                    ArtistInformationsHelper.GetArtistPicture(this);
-                    _isPictureLoaded = true;
-                }
+                if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable()) return;
+                ArtistInformationsHelper.GetArtistPicture(this);
+                _isPictureLoaded = true;
             }
 
+            [Ignore]
             public ObservableCollection<AlbumItem> Albums
             {
                 get { return _albumItems; }
                 set { SetProperty(ref _albumItems, value); }
             }
 
-            [JsonIgnore()]
+            [Ignore]
             public int CurrentAlbumIndex
             {
                 set { SetProperty(ref _currentAlbumIndex, value); }
             }
 
-            [JsonIgnore()]
+            [Ignore]
             public AlbumItem CurrentAlbumItem
             {
                 get { return _albumItems[_currentAlbumIndex]; }
             }
 
-            [JsonIgnore()]
+            [Ignore]
             public string Biography
             {
                 get
@@ -423,7 +425,7 @@ namespace VLC_WINRT.ViewModels.MainPage
                 set { SetProperty(ref _biography, value); }
             }
 
-            [JsonIgnore()]
+            [Ignore]
             public List<Utility.Helpers.MusicLibrary.MusicEntities.Album> OnlinePopularAlbumItems
             {
                 get
@@ -437,7 +439,7 @@ namespace VLC_WINRT.ViewModels.MainPage
                 set { SetProperty(ref _onlinePopularAlbumItems, value); }
             }
 
-            [JsonIgnore()]
+            [Ignore]
             public List<Utility.Helpers.MusicLibrary.MusicEntities.Artist> OnlineRelatedArtists
             {
                 get
@@ -457,20 +459,15 @@ namespace VLC_WINRT.ViewModels.MainPage
                 set { SetProperty(ref _isFavorite, value); }
             }
 
-            public async Task Initialize(StorageFolderQueryResult albumQueryResult, string artistName)
+            public async Task Initialize(StorageFolderQueryResult albumQueryResult, ArtistItem artist)
             {
-                await DispatchHelper.InvokeAsync(() => Name = artistName);
-                await LoadAlbums(albumQueryResult);
+                await LoadAlbums(albumQueryResult, artist.Id);
             }
 
-
-            public ArtistItem()
-            {
-            }
-
-            private async Task LoadAlbums(StorageFolderQueryResult albumQueryResult)
+            private async Task LoadAlbums(StorageFolderQueryResult albumQueryResult, int artistId)
             {
                 IReadOnlyList<StorageFolder> albumFolders = null;
+
                 try
                 {
                     albumFolders = await albumQueryResult.GetFoldersAsync();
@@ -483,9 +480,12 @@ namespace VLC_WINRT.ViewModels.MainPage
                 {
                     foreach (var item in albumFolders)
                     {
-                        AlbumItem albumItem = await GetInformationsFromMusicFile.GetAlbumItemFromFolder(item, albumQueryResult);
+                        AlbumItem albumItem = await GetInformationsFromMusicFile.GetAlbumItemFromFolder(item, albumQueryResult, artistId);
                         await albumItem.GetCover();
-                        await DispatchHelper.InvokeAsync(() => 
+
+                        // Album is in database, update with cover.
+                        await _albumDataRepository.Update(albumItem);
+                        await DispatchHelper.InvokeAsync(() =>
                         {
                             Albums.Add(albumItem);
                             if (Locator.MusicLibraryVM.RandomAlbums.Count < 12)
@@ -510,7 +510,12 @@ namespace VLC_WINRT.ViewModels.MainPage
             private ObservableCollection<TrackItem> _trackItems = new ObservableCollection<TrackItem>();
             private PlayAlbumCommand _playAlbumCommand = new PlayAlbumCommand();
             private FavoriteAlbumCommand _favoriteAlbumCommand = new FavoriteAlbumCommand();
-            private StorageItemThumbnail _storageItemThumbnail;
+            private readonly StorageItemThumbnail _storageItemThumbnail;
+
+            [PrimaryKey, AutoIncrement, Column("_id")]
+            public int Id { get; set; }
+
+            public int ArtistId { get; set; }
 
             public string Name
             {
@@ -527,7 +532,7 @@ namespace VLC_WINRT.ViewModels.MainPage
                 }
             }
 
-            [JsonIgnore()]
+            [Ignore]
             public int CurrentTrackPosition
             {
                 get { return _currentTrackPosition; }
@@ -543,6 +548,7 @@ namespace VLC_WINRT.ViewModels.MainPage
                 }
             }
 
+            [Ignore]
             public ObservableCollection<TrackItem> Tracks
             {
                 get { return _trackItems; }
@@ -561,7 +567,7 @@ namespace VLC_WINRT.ViewModels.MainPage
                 set { SetProperty(ref _year, value); }
             }
 
-            [JsonIgnore()]
+            [Ignore]
             public TrackItem CurrentTrack
             {
                 get { return _trackItems[CurrentTrackPosition]; }
@@ -591,6 +597,10 @@ namespace VLC_WINRT.ViewModels.MainPage
                 Artist = artist;
                 //});
                 _storageItemThumbnail = thumbnail;
+            }
+
+            public AlbumItem()
+            {
             }
 
             public async Task GetCover()
@@ -678,8 +688,13 @@ namespace VLC_WINRT.ViewModels.MainPage
                 foreach (var track in tracks)
                 {
                     i++;
-                    var trackItem = await GetInformationsFromMusicFile.GetTrackItemFromFile(track, Artist, Name, i);
-                    Tracks.Add(trackItem);
+                    var trackItem = await GetInformationsFromMusicFile.GetTrackItemFromFile(track, Artist, Name, i, ArtistId, Id);
+                    var databaseTrack = await _trackDataRepository.LoadTrack(ArtistId, Id, trackItem.Name);
+                    if (databaseTrack == null)
+                    {
+                        await _trackDataRepository.Add(trackItem);
+                        Tracks.Add(trackItem);
+                    }
                     await DispatchHelper.InvokeAsync(() =>
                     {
                         Locator.MusicLibraryVM.Track.Add(trackItem);
@@ -688,14 +703,14 @@ namespace VLC_WINRT.ViewModels.MainPage
                 }
             }
 
-            [JsonIgnore()]
+            [Ignore]
             public PlayAlbumCommand PlayAlbum
             {
                 get { return _playAlbumCommand; }
                 set { SetProperty(ref _playAlbumCommand, value); }
             }
 
-            [JsonIgnore()]
+            [Ignore]
             public FavoriteAlbumCommand FavoriteAlbum
             {
                 get { return _favoriteAlbumCommand; }
@@ -716,6 +731,10 @@ namespace VLC_WINRT.ViewModels.MainPage
             private PlayTrackCommand _playTrackCommand = new PlayTrackCommand();
             private FavoriteTrackCommand _favoriteTrackCommand = new FavoriteTrackCommand();
 
+            [PrimaryKey, AutoIncrement, Column("_id")]
+            public int Id { get; set; }
+            public int AlbumId { get; set; }
+            public int ArtistId { get; set; }
             public string ArtistName
             {
                 get { return _artistName; }
@@ -752,21 +771,21 @@ namespace VLC_WINRT.ViewModels.MainPage
             }
             public bool Favorite { get { return _favorite; } set { SetProperty(ref _favorite, value); } }
 
-            [JsonIgnore()]
+            [Ignore]
             public int CurrentPosition
             {
                 get { return _currentPosition; }
                 set { SetProperty(ref _currentPosition, value); }
             }
 
-            [JsonIgnore()]
+            [Ignore]
             public PlayTrackCommand PlayTrack
             {
                 get { return _playTrackCommand; }
                 set { SetProperty(ref _playTrackCommand, value); }
             }
 
-            [JsonIgnore()]
+            [Ignore]
             public FavoriteTrackCommand FavoriteTrack
             {
                 get { return _favoriteTrackCommand; }

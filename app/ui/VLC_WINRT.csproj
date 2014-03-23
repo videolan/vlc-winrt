@@ -88,6 +88,15 @@
     <Compile Include="Common\KnownVLCLocation.cs" />
     <Compile Include="SQLite.cs" />
     <Compile Include="SQLiteAsync.cs" />
+    <Compile Include="Utility\DataRepository\AlbumDataRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Utility\DataRepository\ArtistDataRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Utility\DataRepository\TrackDataRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Utility\Helpers\AsyncLock.cs" />
     <Compile Include="Utility\Helpers\MusicLibrary\DeezerClient.cs" />
     <Compile Include="Utility\Helpers\MusicLibrary\Deezer\Albums.cs" />
