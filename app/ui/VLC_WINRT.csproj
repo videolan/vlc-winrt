@@ -86,6 +86,8 @@
     <Compile Include="Common\DispatchHelper.cs" />
     <Compile Include="Common\AutoFacConfiguration.cs" />
     <Compile Include="Common\KnownVLCLocation.cs" />
+    <Compile Include="SQLite.cs" />
+    <Compile Include="SQLiteAsync.cs" />
     <Compile Include="Utility\Helpers\AsyncLock.cs" />
     <Compile Include="Utility\Helpers\MusicLibrary\DeezerClient.cs" />
     <Compile Include="Utility\Helpers\MusicLibrary\Deezer\Albums.cs" />
@@ -928,6 +930,9 @@
     <SDKReference Include="Microsoft.VCLibs, Version=11.0">
       <Name>Microsoft Visual C++ Runtime Package</Name>
     </SDKReference>
+    <SDKReference Include="SQLite.WinRT, Version=3.8.4.1">
+      <Name>SQLite for Windows Runtime</Name>
+    </SDKReference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Autofac">
@@ -936,6 +941,9 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.6.0.1\lib\netcore45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">
     <VisualStudioVersion>11.0</VisualStudioVersion>
