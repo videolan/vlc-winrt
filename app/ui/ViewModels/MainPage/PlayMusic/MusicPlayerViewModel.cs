@@ -32,7 +32,7 @@ namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
 {
     public class MusicPlayerViewModel : MediaPlaybackViewModel
     {
-        private MusicLibraryViewModel.ArtistItemViewModel _artist;
+        private MusicLibraryViewModel.ArtistItem _artist;
         private TrackCollectionViewModel _trackCollection;
         private readonly HistoryService _historyService;
 
@@ -209,7 +209,7 @@ namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
                 MediaControl.PreviousTrackPressed -= MediaControl_PreviousTrackPressed;
         }
 
-        public MusicLibraryViewModel.ArtistItemViewModel Artist
+        public MusicLibraryViewModel.ArtistItem Artist
         {
             get { return _artist; }
             private set { SetProperty(ref _artist, value); }

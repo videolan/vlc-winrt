@@ -80,7 +80,7 @@ namespace VLC_WINRT.Views.Controls.MainPage
 
         private void OnSelectedArtist_Changed(object sender, SelectionChangedEventArgs e)
         {
-            var artist = e.AddedItems[0] as MusicLibraryViewModel.ArtistItemViewModel;
+            var artist = e.AddedItems[0] as MusicLibraryViewModel.ArtistItem;
             AlbumsByArtistListView.ScrollIntoView(artist);
         }
 

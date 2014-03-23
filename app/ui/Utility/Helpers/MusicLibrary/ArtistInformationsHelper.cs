@@ -25,7 +25,7 @@ namespace VLC_WINRT.Utility.Helpers.MusicLibrary
     public static class ArtistInformationsHelper
     {
 
-        private static async Task<bool> DownloadArtistPictureFromDeezer(MusicLibraryViewModel.ArtistItemViewModel artist)
+        private static async Task<bool> DownloadArtistPictureFromDeezer(MusicLibraryViewModel.ArtistItem artist)
         {
             var deezerClient = new DeezerClient();
             var deezerArtist = await deezerClient.GetArtistInfo(artist.Name);
@@ -71,7 +71,7 @@ namespace VLC_WINRT.Utility.Helpers.MusicLibrary
             }
         }
 
-        private static async Task<bool> DownloadArtistPictureFromLastFm(MusicLibraryViewModel.ArtistItemViewModel artist)
+        private static async Task<bool> DownloadArtistPictureFromLastFm(MusicLibraryViewModel.ArtistItem artist)
         {
             var lastFmClient = new LastFmClient();
             var lastFmArtist = await lastFmClient.GetArtistInfo(artist.Name);
@@ -116,7 +116,7 @@ namespace VLC_WINRT.Utility.Helpers.MusicLibrary
             }
         }
 
-        public static async Task GetArtistPicture(MusicLibraryViewModel.ArtistItemViewModel artist)
+        public static async Task GetArtistPicture(MusicLibraryViewModel.ArtistItem artist)
         {
             StorageFolder appDataFolder = ApplicationData.Current.LocalFolder;
             string supposedPictureUriLocal = appDataFolder.Path + "\\artistPic\\" + artist.Name + "_" + "dPi" + ".jpg";
@@ -137,7 +137,7 @@ namespace VLC_WINRT.Utility.Helpers.MusicLibrary
             }
         }
 
-        public static async Task GetArtistTopAlbums(MusicLibraryViewModel.ArtistItemViewModel artist)
+        public static async Task GetArtistTopAlbums(MusicLibraryViewModel.ArtistItem artist)
         {
             try
             {
@@ -157,7 +157,7 @@ namespace VLC_WINRT.Utility.Helpers.MusicLibrary
             }
         }
 
-        public static async Task GetArtistSimilarsArtist(MusicLibraryViewModel.ArtistItemViewModel artist)
+        public static async Task GetArtistSimilarsArtist(MusicLibraryViewModel.ArtistItem artist)
         {
             try
             {
@@ -175,7 +175,7 @@ namespace VLC_WINRT.Utility.Helpers.MusicLibrary
             }
         }
 
-        public static async Task GetArtistBiography(MusicLibraryViewModel.ArtistItemViewModel artist)
+        public static async Task GetArtistBiography(MusicLibraryViewModel.ArtistItem artist)
         {
             string biography = string.Empty;
             try

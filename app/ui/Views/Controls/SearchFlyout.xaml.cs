@@ -129,7 +129,7 @@ namespace VLC_WINRT.Views.Controls
                 Hide();
                 var musicColumn = page.GetFirstDescendantOfType<MusicColumn>() as MusicColumn;
                 var videoColumn = page.GetFirstDescendantOfType<VideoColumn>();
-                if (objet.Object.GetType() == typeof(MusicLibraryViewModel.ArtistItemViewModel))
+                if (objet.Object.GetType() == typeof(MusicLibraryViewModel.ArtistItem))
                 {
                     var gV = musicColumn.FindName("AlbumsByArtistListView") as GridView;
                     var lV = musicColumn.FindName("AlbumsByArtistListViewSnap") as ListView;

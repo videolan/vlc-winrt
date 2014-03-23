@@ -45,7 +45,7 @@ namespace VLC_WINRT.ViewModels.MainPage
     {
         public int nbOfFiles = 0;
         private ObservableCollection<Panel> _panels = new ObservableCollection<Panel>();
-        private ObservableCollection<ArtistItemViewModel> _artists = new ObservableCollection<ArtistItemViewModel>();
+        private ObservableCollection<ArtistItem> _artists = new ObservableCollection<ArtistItem>();
         private ObservableCollection<string> _albumsCover = new ObservableCollection<string>();
         private ObservableCollection<TrackItem> _tracks = new ObservableCollection<TrackItem>();
         private ObservableCollection<AlbumItem> _favoriteAlbums = new ObservableCollection<AlbumItem>();
@@ -130,7 +130,7 @@ namespace VLC_WINRT.ViewModels.MainPage
             get { return _goBackCommand; }
             set { SetProperty(ref _goBackCommand, value); }
         }
-        public ObservableCollection<ArtistItemViewModel> Artist
+        public ObservableCollection<ArtistItem> Artist
         {
             get { return _artists; }
             set { SetProperty(ref _artists, value); }
@@ -205,7 +205,7 @@ namespace VLC_WINRT.ViewModels.MainPage
                 {
                     StorageFolderQueryResult albumQuery =
                         artistItem.CreateFolderQuery(CommonFolderQuery.GroupByAlbum);
-                    var artist = new ArtistItemViewModel();
+                    var artist = new ArtistItem();
                     await artist.Initialize(albumQuery, artistProperties.Artist);
                     OnPropertyChanged("Track");
                     OnPropertyChanged("Artist");
@@ -223,7 +223,7 @@ namespace VLC_WINRT.ViewModels.MainPage
             {
                 var artists =
                     await
-                        SerializationHelper.LoadFromJsonFile<ObservableCollection<ArtistItemViewModel>>(
+                        SerializationHelper.LoadFromJsonFile<ObservableCollection<ArtistItem>>(
                             "MusicDB.json");
                 if(artists != null)
                     Artist = artists;
@@ -325,7 +325,7 @@ namespace VLC_WINRT.ViewModels.MainPage
             await DispatchHelper.InvokeAsync(() => IsBusy = false);
         }
 
-        public class ArtistItemViewModel : BindableBase
+        public class ArtistItem : BindableBase
         {
             private string _name;
             private string _picture;
@@ -464,7 +464,7 @@ namespace VLC_WINRT.ViewModels.MainPage
             }
 
 
-            public ArtistItemViewModel()
+            public ArtistItem()
             {
             }
 
