@@ -80,7 +80,7 @@ cd contrib/winrt
     --disable-gnutls \
     --disable-projectM \
     --enable-ass \
-    --disable-qt4 \
+    --disable-qt \
     --disable-gpl
 
 echo "EXTRA_CFLAGS=-DNDEBUG -DWINAPI_FAMILY=WINAPI_FAMILY_APP ${EXTRA_CPPFLAGS}" >> config.mak
