@@ -12,7 +12,7 @@ namespace VLC_WINRT.Utility.DataRepository
         private static readonly string _dbPath =
     Path.Combine(
     Windows.Storage.ApplicationData.Current.LocalFolder.Path,
-    "vlc.sqlite");
+    "mediavlc.sqlite");
         public ArtistDataRepository()
         {
             Initialize();
@@ -34,7 +34,7 @@ namespace VLC_WINRT.Utility.DataRepository
 
             return new ObservableCollection<MusicLibraryViewModel.ArtistItem>(
                await connection.QueryAsync<MusicLibraryViewModel.ArtistItem>(
-                     "select * from ArtistItemViewModel"));
+                     "select * from ArtistItem"));
         }
         public
     async Task<MusicLibraryViewModel.ArtistItem> LoadViaArtistName(string artistName)
