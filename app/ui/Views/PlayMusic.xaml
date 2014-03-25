@@ -218,7 +218,7 @@
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
                             <TextBlock x:Uid="Biography" Text="biography" Style="{StaticResource VLCSubHeaderStyle}"/>
-                            <ScrollViewer ZoomMode="Disabled" Grid.Row="1">
+                            <ScrollViewer ZoomMode="Disabled" Grid.Row="1" VerticalScrollBarVisibility="Auto">
                                 <TextBlock Width="450" Margin="0,5,0,0" FontSize="42" TextWrapping="Wrap">
                                 <Run Text="{Binding Artist.Biography}" FontSize="18"/>
                                 </TextBlock>

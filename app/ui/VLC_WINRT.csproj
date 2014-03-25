@@ -308,10 +308,10 @@
     </Content>
     <Content Include="backers.csv" />
     <None Include="Common\ReadMe.txt" />
-    <Content Include="Assets\background.jpg" />
+    <Content Include="Assets\Background.jpg" />
     <Content Include="Assets\GreyPylon\280x156.jpg" />
     <Content Include="Assets\GreyPylon\50x50.jpg" />
-    <Content Include="Assets\Wide310x150Logo.scale-100.png" />
+    <Content Include="Assets\Pylon\Wide310x150Logo.scale-100.png" />
     <Content Include="plugins\audio_output\libxaudio2_winrt_plugin.dll" />
     <Content Include="segoeui.ttf" />
     <None Include="packages.config" />
@@ -800,16 +800,15 @@
       <Link>winrtsock.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\BackgroundLarge.jpg" />
-    <Content Include="Assets\Logo.png">
+    <Content Include="Assets\Pylon\Logo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\ShinyPylon\300_340.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\SmallLogo.png" />
+    <Content Include="Assets\Pylon\SmallLogo.png" />
     <Content Include="Assets\SplashScreen.png" />
-    <Content Include="Assets\StoreLogo.png" />
+    <Content Include="Assets\Pylon\StoreLogo.png" />
     <Content Include="plugins\access\libaccess_winrt_plugin.dll" />
     <Content Include="plugins\video_output\libdirect2d_winrt_plugin.dll" />
   </ItemGroup>
