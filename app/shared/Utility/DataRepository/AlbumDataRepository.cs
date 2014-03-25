@@ -12,7 +12,7 @@ namespace VLC_WINRT.Utility.DataRepository
         private static readonly string _dbPath =
     Path.Combine(
     Windows.Storage.ApplicationData.Current.LocalFolder.Path,
-    "vlc.sqlite");
+    "mediavlc.sqlite");
 
         public AlbumDataRepository()
         {

@@ -79,139 +79,362 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\shared\Common\AlwaysExecutableCommand.cs">
+      <Link>Common\AlwaysExecutableCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Common\AutoFacConfiguration.cs">
+      <Link>Common\AutoFacConfiguration.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Common\BindableBase.cs">
+      <Link>Common\BindableBase.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Common\DispatchHelper.cs">
+      <Link>Common\DispatchHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Common\KnownVLCLocation.cs">
+      <Link>Common\KnownVLCLocation.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Model\BackItem.cs">
+      <Link>Model\BackItem.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Model\DeezerArtistItem.cs">
+      <Link>Model\DeezerArtistItem.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Model\MediaHistory.cs">
+      <Link>Model\MediaHistory.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Model\Panel.cs">
+      <Link>Model\Panel.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Model\Subtitle.cs">
+      <Link>Model\Subtitle.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\SQLite.cs">
+      <Link>SQLite.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\SQLiteAsync.cs">
+      <Link>SQLiteAsync.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Commands\ActionCommand.cs">
+      <Link>Utility\Commands\ActionCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Commands\ClearHistoryCommand.cs">
+      <Link>Utility\Commands\ClearHistoryCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Commands\MainPageCommands\GoToPanelCommand.cs">
+      <Link>Utility\Commands\MainPageCommands\GoToPanelCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Commands\MusicPlayer\FavoriteAlbumCommand.cs">
+      <Link>Utility\Commands\MusicPlayer\FavoriteAlbumCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Commands\MusicPlayer\FavoriteTrackCommand.cs">
+      <Link>Utility\Commands\MusicPlayer\FavoriteTrackCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Commands\MusicPlayer\PlayNextCommand.cs">
+      <Link>Utility\Commands\MusicPlayer\PlayNextCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Commands\MusicPlayer\PlayPreviousCommand.cs">
+      <Link>Utility\Commands\MusicPlayer\PlayPreviousCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Commands\OpenFileCommand.cs">
+      <Link>Utility\Commands\OpenFileCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Commands\PickVideoCommand.cs">
+      <Link>Utility\Commands\PickVideoCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Commands\PlayAlbumCommand.cs">
+      <Link>Utility\Commands\PlayAlbumCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Commands\PlayNetworkMRLCommand.cs">
+      <Link>Utility\Commands\PlayNetworkMRLCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Commands\PlayPauseCommand.cs">
+      <Link>Utility\Commands\PlayPauseCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Commands\PlayTrackComand.cs">
+      <Link>Utility\Commands\PlayTrackComand.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Commands\SelectDefaultFolderForIndexingVideoCommand.cs">
+      <Link>Utility\Commands\SelectDefaultFolderForIndexingVideoCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Commands\StopVideoCommand.cs">
+      <Link>Utility\Commands\StopVideoCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Commands\VideoPlayer\FavoriteVideoCommand.cs">
+      <Link>Utility\Commands\VideoPlayer\FavoriteVideoCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Commands\VideoPlayer\OpenSubtitleCommand.cs">
+      <Link>Utility\Commands\VideoPlayer\OpenSubtitleCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Commands\VideoPlayer\SetAudioTrackCommand.cs">
+      <Link>Utility\Commands\VideoPlayer\SetAudioTrackCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Commands\VideoPlayer\SetSubtitleTrackCommand.cs">
+      <Link>Utility\Commands\VideoPlayer\SetSubtitleTrackCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Converters\AlbumImageConverter.cs">
+      <Link>Utility\Converters\AlbumImageConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Converters\BooleanNegationConverter.cs">
+      <Link>Utility\Converters\BooleanNegationConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Converters\BooleanToVisibilityConverter.cs">
+      <Link>Utility\Converters\BooleanToVisibilityConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Converters\CountToVisibilityConverter.cs">
+      <Link>Utility\Converters\CountToVisibilityConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Converters\EmptyTimeSpanToVisibilityConverter.cs">
+      <Link>Utility\Converters\EmptyTimeSpanToVisibilityConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Converters\NegatedBooleanToVisibilityConverter.cs">
+      <Link>Utility\Converters\NegatedBooleanToVisibilityConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Converters\NegatedCountToVisibilityConverter.cs">
+      <Link>Utility\Converters\NegatedCountToVisibilityConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Converters\NullToVisibilityConverter.cs">
+      <Link>Utility\Converters\NullToVisibilityConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Converters\SecondsStringConverter.cs">
+      <Link>Utility\Converters\SecondsStringConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Converters\StringToUpperConverter.cs">
+      <Link>Utility\Converters\StringToUpperConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Converters\TimeSpanSecondsDoubleConverter.cs">
+      <Link>Utility\Converters\TimeSpanSecondsDoubleConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Converters\TimespanShortStringConverter.cs">
+      <Link>Utility\Converters\TimespanShortStringConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\DataRepository\AlbumDataRepository.cs">
+      <Link>Utility\DataRepository\AlbumDataRepository.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\DataRepository\ArtistDataRepository.cs">
+      <Link>Utility\DataRepository\ArtistDataRepository.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\DataRepository\TrackDataRepository.cs">
+      <Link>Utility\DataRepository\TrackDataRepository.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\DataTemplateSelectors\MediaItemDataTemplateSelector.cs">
+      <Link>Utility\DataTemplateSelectors\MediaItemDataTemplateSelector.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\AsyncLock.cs">
+      <Link>Utility\Helpers\AsyncLock.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\AwaitableUI\BitmapImageExtensions.cs">
+      <Link>Utility\Helpers\AwaitableUI\BitmapImageExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\AwaitableUI\ControlExtensions.cs">
+      <Link>Utility\Helpers\AwaitableUI\ControlExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\AwaitableUI\EventAsync.cs">
+      <Link>Utility\Helpers\AwaitableUI\EventAsync.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\AwaitableUI\FrameworkElementExtensions.cs">
+      <Link>Utility\Helpers\AwaitableUI\FrameworkElementExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\AwaitableUI\WriteableBitmapExtensions.cs">
+      <Link>Utility\Helpers\AwaitableUI\WriteableBitmapExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\DoesFileExistHelper.cs">
+      <Link>Utility\Helpers\DoesFileExistHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\DownloadAndSaveHelper.cs">
+      <Link>Utility\Helpers\DownloadAndSaveHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\LoadBackers.cs">
+      <Link>Utility\Helpers\LoadBackers.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\MathHelper.cs">
+      <Link>Utility\Helpers\MathHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\MusicLibrary\ArtistInformationsHelper.cs">
+      <Link>Utility\Helpers\MusicLibrary\ArtistInformationsHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\MusicLibrary\DeezerClient.cs">
+      <Link>Utility\Helpers\MusicLibrary\DeezerClient.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\MusicLibrary\Deezer\Albums.cs">
+      <Link>Utility\Helpers\MusicLibrary\Deezer\Albums.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\MusicLibrary\Deezer\Artists.cs">
+      <Link>Utility\Helpers\MusicLibrary\Deezer\Artists.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\MusicLibrary\Deezer\Tracks.cs">
+      <Link>Utility\Helpers\MusicLibrary\Deezer\Tracks.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\MusicLibrary\EchonestClient.cs">
+      <Link>Utility\Helpers\MusicLibrary\EchonestClient.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\MusicLibrary\EchoNest\Artists.cs">
+      <Link>Utility\Helpers\MusicLibrary\EchoNest\Artists.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\MusicLibrary\EchoNest\Twitter.cs">
+      <Link>Utility\Helpers\MusicLibrary\EchoNest\Twitter.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\MusicLibrary\EchoNest\Videos.cs">
+      <Link>Utility\Helpers\MusicLibrary\EchoNest\Videos.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\MusicLibrary\GetInformationsFromMusicFile.cs">
+      <Link>Utility\Helpers\MusicLibrary\GetInformationsFromMusicFile.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\MusicLibrary\IMusicInformationManager.cs">
+      <Link>Utility\Helpers\MusicLibrary\IMusicInformationManager.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\MusicLibrary\LastFmClient.cs">
+      <Link>Utility\Helpers\MusicLibrary\LastFmClient.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\MusicLibrary\LastFm\AlbumInformation.cs">
+      <Link>Utility\Helpers\MusicLibrary\LastFm\AlbumInformation.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\MusicLibrary\LastFm\ArtistInformation.cs">
+      <Link>Utility\Helpers\MusicLibrary\LastFm\ArtistInformation.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\MusicLibrary\LastFm\SimilarArtistInformation.cs">
+      <Link>Utility\Helpers\MusicLibrary\LastFm\SimilarArtistInformation.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\MusicLibrary\LastFm\TopAlbumInformation.cs">
+      <Link>Utility\Helpers\MusicLibrary\LastFm\TopAlbumInformation.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\MusicLibrary\MusicEntities\Album.cs">
+      <Link>Utility\Helpers\MusicLibrary\MusicEntities\Album.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\MusicLibrary\MusicEntities\Artist.cs">
+      <Link>Utility\Helpers\MusicLibrary\MusicEntities\Artist.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\MusicLibrary\MusicEntities\Image.cs">
+      <Link>Utility\Helpers\MusicLibrary\MusicEntities\Image.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\MusicLibrary\XboxMusicClient.cs">
+      <Link>Utility\Helpers\MusicLibrary\XboxMusicClient.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\MusicLibrary\xboxmusic\Models\Albums.cs">
+      <Link>Utility\Helpers\MusicLibrary\xboxmusic\Models\Albums.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\MusicLibrary\xboxmusic\Models\Artists.cs">
+      <Link>Utility\Helpers\MusicLibrary\xboxmusic\Models\Artists.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\MusicLibrary\xboxmusic\Models\Authenication.cs">
+      <Link>Utility\Helpers\MusicLibrary\xboxmusic\Models\Authenication.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\MusicLibrary\xboxmusic\Models\Contributor.cs">
+      <Link>Utility\Helpers\MusicLibrary\xboxmusic\Models\Contributor.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\MusicLibrary\xboxmusic\Models\Error.cs">
+      <Link>Utility\Helpers\MusicLibrary\xboxmusic\Models\Error.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\MusicLibrary\xboxmusic\Models\Music.cs">
+      <Link>Utility\Helpers\MusicLibrary\xboxmusic\Models\Music.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\MusicLibrary\xboxmusic\Models\Tracks.cs">
+      <Link>Utility\Helpers\MusicLibrary\xboxmusic\Models\Tracks.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\MusicLibrary\xboxmusic\MusicHelper.cs">
+      <Link>Utility\Helpers\MusicLibrary\xboxmusic\MusicHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\MusicLibrary\xboxmusic\Settings\Culture.cs">
+      <Link>Utility\Helpers\MusicLibrary\xboxmusic\Settings\Culture.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\MusicLibrary\xboxmusic\Settings\Extras.cs">
+      <Link>Utility\Helpers\MusicLibrary\xboxmusic\Settings\Extras.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\MusicLibrary\xboxmusic\Settings\Filters.cs">
+      <Link>Utility\Helpers\MusicLibrary\xboxmusic\Settings\Filters.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\MusicLibrary\xboxmusic\Settings\ImageMode.cs">
+      <Link>Utility\Helpers\MusicLibrary\xboxmusic\Settings\ImageMode.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\NativeOperationsHelper.cs">
+      <Link>Utility\Helpers\NativeOperationsHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\SerializationHelper.cs">
+      <Link>Utility\Helpers\SerializationHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Services\DesignTime\ThumbnailService.cs">
+      <Link>Utility\Services\DesignTime\ThumbnailService.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Services\Interface\IMediaService.cs">
+      <Link>Utility\Services\Interface\IMediaService.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Services\Interface\IThumbnailService.cs">
+      <Link>Utility\Services\Interface\IThumbnailService.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Services\RunTime\ExternalDeviceService.cs">
+      <Link>Utility\Services\RunTime\ExternalDeviceService.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Services\RunTime\HistoryService.cs">
+      <Link>Utility\Services\RunTime\HistoryService.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Services\RunTime\MediaService.cs">
+      <Link>Utility\Services\RunTime\MediaService.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Services\RunTime\ThumbnailService.cs">
+      <Link>Utility\Services\RunTime\ThumbnailService.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Services\RunTime\VlcService.cs">
+      <Link>Utility\Services\RunTime\VlcService.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\ViewModels\Locator.cs">
+      <Link>ViewModels\Locator.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\ViewModels\MainPage\ExternalStorageViewModel.cs">
+      <Link>ViewModels\MainPage\ExternalStorageViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\ViewModels\MainPage\LastViewedViewModel.cs">
+      <Link>ViewModels\MainPage\LastViewedViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\ViewModels\MainPage\MainPageViewModel.cs">
+      <Link>ViewModels\MainPage\MainPageViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\ViewModels\MainPage\MediaViewModel.cs">
+      <Link>ViewModels\MainPage\MediaViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\ViewModels\MainPage\MusicLibraryViewModel.cs">
+      <Link>ViewModels\MainPage\MusicLibraryViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\ViewModels\MainPage\PlayMusic\MusicPlayerViewModel.cs">
+      <Link>ViewModels\MainPage\PlayMusic\MusicPlayerViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\ViewModels\MainPage\PlayMusic\TrackCollectionViewModel.cs">
+      <Link>ViewModels\MainPage\PlayMusic\TrackCollectionViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\ViewModels\MainPage\RemovableLibraryViewModel.cs">
+      <Link>ViewModels\MainPage\RemovableLibraryViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\ViewModels\MainPage\ThumbnailViewModel.cs">
+      <Link>ViewModels\MainPage\ThumbnailViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\ViewModels\MainPage\VideoLibraryViewModel.cs">
+      <Link>ViewModels\MainPage\VideoLibraryViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\ViewModels\MainPage\ViewedVideoViewModel.cs">
+      <Link>ViewModels\MainPage\ViewedVideoViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\ViewModels\MediaPlaybackViewModel.cs">
+      <Link>ViewModels\MediaPlaybackViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\ViewModels\NavigateableViewModel.cs">
+      <Link>ViewModels\NavigateableViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\ViewModels\PlayVideo\PlayVideoViewModel.cs">
+      <Link>ViewModels\PlayVideo\PlayVideoViewModel.cs</Link>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Common\AlwaysExecutableCommand.cs" />
-    <Compile Include="Common\DispatchHelper.cs" />
-    <Compile Include="Common\AutoFacConfiguration.cs" />
-    <Compile Include="Common\KnownVLCLocation.cs" />
-    <Compile Include="SQLite.cs" />
-    <Compile Include="SQLiteAsync.cs" />
-    <Compile Include="Utility\DataRepository\AlbumDataRepository.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Utility\DataRepository\ArtistDataRepository.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Utility\DataRepository\TrackDataRepository.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Utility\Helpers\AsyncLock.cs" />
-    <Compile Include="Utility\Helpers\MusicLibrary\DeezerClient.cs" />
-    <Compile Include="Utility\Helpers\MusicLibrary\Deezer\Albums.cs" />
-    <Compile Include="Utility\Helpers\MusicLibrary\Deezer\Artists.cs" />
-    <Compile Include="Utility\Helpers\MusicLibrary\Deezer\Tracks.cs" />
-    <Compile Include="Utility\Helpers\MusicLibrary\EchonestClient.cs" />
-    <Compile Include="Utility\Helpers\MusicLibrary\EchoNest\Artists.cs" />
-    <Compile Include="Utility\Helpers\MusicLibrary\EchoNest\Twitter.cs" />
-    <Compile Include="Utility\Helpers\MusicLibrary\EchoNest\Videos.cs" />
-    <Compile Include="Utility\Helpers\MusicLibrary\LastFm\AlbumInformation.cs" />
-    <Compile Include="Utility\Helpers\MusicLibrary\LastFm\ArtistInformation.cs" />
-    <Compile Include="Model\BackItem.cs" />
-    <Compile Include="Model\DeezerArtistItem.cs" />
-    <Compile Include="Model\MediaHistory.cs" />
-    <Compile Include="Model\Panel.cs" />
-    <Compile Include="Utility\Helpers\MusicLibrary\LastFm\SimilarArtistInformation.cs" />
-    <Compile Include="Model\Subtitle.cs" />
-    <Compile Include="Utility\Helpers\MusicLibrary\LastFm\TopAlbumInformation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Common\BindableBase.cs" />
-    <Compile Include="Utility\Commands\ClearHistoryCommand.cs" />
-    <Compile Include="Utility\Commands\MainPageCommands\GoToPanelCommand.cs" />
-    <Compile Include="Utility\Commands\MusicPlayer\FavoriteAlbumCommand.cs" />
-    <Compile Include="Utility\Commands\MusicPlayer\FavoriteTrackCommand.cs" />
-    <Compile Include="Utility\Commands\MusicPlayer\PlayNextCommand.cs" />
-    <Compile Include="Utility\Commands\MusicPlayer\PlayPreviousCommand.cs" />
-    <Compile Include="Utility\Commands\PlayAlbumCommand.cs" />
-    <Compile Include="Utility\Commands\PlayPauseCommand.cs" />
-    <Compile Include="Utility\Commands\PlayTrackComand.cs" />
-    <Compile Include="Utility\Commands\SelectDefaultFolderForIndexingVideoCommand.cs" />
-    <Compile Include="Utility\Commands\StopVideoCommand.cs" />
-    <Compile Include="Utility\Commands\VideoPlayer\FavoriteVideoCommand.cs" />
-    <Compile Include="Utility\Commands\VideoPlayer\OpenSubtitleCommand.cs" />
-    <Compile Include="Utility\Commands\VideoPlayer\SetAudioTrackCommand.cs" />
-    <Compile Include="Utility\Commands\VideoPlayer\SetSubtitleTrackCommand.cs" />
-    <Compile Include="Utility\Converters\BooleanToVisibilityConverter.cs" />
-    <Compile Include="Utility\Converters\BooleanNegationConverter.cs" />
     <Compile Include="Common\LayoutAwarePage.cs" />
     <Compile Include="Common\RichTextColumns.cs" />
     <Compile Include="Common\SuspensionManager.cs" />
-    <Compile Include="Utility\Commands\PickVideoCommand.cs" />
-    <Compile Include="Utility\Commands\OpenFileCommand.cs" />
-    <Compile Include="Utility\Converters\CountToVisibilityConverter.cs" />
-    <Compile Include="Utility\Converters\EmptyTimeSpanToVisibilityConverter.cs" />
-    <Compile Include="Utility\Converters\NegatedBooleanToVisibilityConverter.cs" />
-    <Compile Include="Utility\Converters\NegatedCountToVisibilityConverter.cs" />
-    <Compile Include="Utility\Converters\NullToVisibilityConverter.cs" />
-    <Compile Include="Utility\Converters\SecondsStringConverter.cs" />
-    <Compile Include="Utility\Converters\StringToUpperConverter.cs" />
-    <Compile Include="Utility\Converters\TimeSpanSecondsDoubleConverter.cs" />
-    <Compile Include="Utility\Converters\TimespanShortStringConverter.cs" />
-    <Compile Include="Utility\Converters\AlbumImageConverter.cs" />
-    <Compile Include="Utility\DataTemplateSelectors\MediaItemDataTemplateSelector.cs" />
-    <Compile Include="Utility\Helpers\AwaitableUI\BitmapImageExtensions.cs" />
-    <Compile Include="Utility\Helpers\AwaitableUI\ControlExtensions.cs" />
-    <Compile Include="Utility\Helpers\AwaitableUI\EventAsync.cs" />
-    <Compile Include="Utility\Helpers\AwaitableUI\FrameworkElementExtensions.cs" />
-    <Compile Include="Utility\Helpers\AwaitableUI\WriteableBitmapExtensions.cs" />
-    <Compile Include="Utility\Helpers\DoesFileExistHelper.cs" />
-    <Compile Include="Utility\Helpers\DownloadAndSaveHelper.cs" />
-    <Compile Include="Utility\Helpers\LoadBackers.cs" />
-    <Compile Include="Utility\Helpers\MathHelper.cs" />
-    <Compile Include="Utility\Helpers\MusicLibrary\ArtistInformationsHelper.cs" />
-    <Compile Include="Utility\Helpers\MusicLibrary\GetInformationsFromMusicFile.cs" />
-    <Compile Include="Utility\Helpers\MusicLibrary\IMusicInformationManager.cs" />
-    <Compile Include="Utility\Helpers\MusicLibrary\LastFmClient.cs" />
-    <Compile Include="Utility\Helpers\MusicLibrary\MusicEntities\Album.cs" />
-    <Compile Include="Utility\Helpers\MusicLibrary\MusicEntities\Artist.cs" />
-    <Compile Include="Utility\Helpers\MusicLibrary\MusicEntities\Image.cs" />
-    <Compile Include="Utility\Helpers\MusicLibrary\XboxMusicClient.cs" />
-    <Compile Include="Utility\Helpers\MusicLibrary\xboxmusic\Models\Authenication.cs" />
-    <Compile Include="Utility\Helpers\NativeOperationsHelper.cs" />
     <Compile Include="Utility\Helpers\PointersUtils.cs" />
-    <Compile Include="Utility\Helpers\SerializationHelper.cs" />
     <Compile Include="Utility\Helpers\StoryboardExtensions.cs" />
     <Compile Include="Utility\Helpers\UIAnimationHelper.cs" />
     <Compile Include="Utility\Helpers\UpdateTileHelper.cs" />
     <Compile Include="Utility\Helpers\VisualTreeHelperExtensions.cs" />
-    <Compile Include="Utility\Helpers\MusicLibrary\xboxmusic\Models\Albums.cs" />
-    <Compile Include="Utility\Helpers\MusicLibrary\xboxmusic\Models\Artists.cs" />
-    <Compile Include="Utility\Helpers\MusicLibrary\xboxmusic\Models\Contributor.cs" />
-    <Compile Include="Utility\Helpers\MusicLibrary\xboxmusic\Models\Error.cs" />
-    <Compile Include="Utility\Helpers\MusicLibrary\xboxmusic\Models\Music.cs" />
-    <Compile Include="Utility\Helpers\MusicLibrary\xboxmusic\Models\Tracks.cs" />
-    <Compile Include="Utility\Helpers\MusicLibrary\xboxmusic\MusicHelper.cs" />
-    <Compile Include="Utility\Helpers\MusicLibrary\xboxmusic\Settings\Culture.cs" />
-    <Compile Include="Utility\Helpers\MusicLibrary\xboxmusic\Settings\Extras.cs" />
-    <Compile Include="Utility\Helpers\MusicLibrary\xboxmusic\Settings\Filters.cs" />
-    <Compile Include="Utility\Helpers\MusicLibrary\xboxmusic\Settings\ImageMode.cs" />
-    <Compile Include="Utility\Services\DesignTime\ThumbnailService.cs" />
-    <Compile Include="Utility\Services\Interface\IMediaService.cs" />
-    <Compile Include="Utility\Services\Interface\IThumbnailService.cs" />
-    <Compile Include="Utility\Services\RunTime\HistoryService.cs" />
-    <Compile Include="Utility\Services\RunTime\MediaService.cs" />
-    <Compile Include="Utility\Services\RunTime\VlcService.cs" />
-    <Compile Include="Utility\Services\RunTime\ExternalDeviceService.cs" />
     <Compile Include="Utility\Services\RunTime\MouseService.cs" />
     <Compile Include="Utility\Services\RunTime\NavigationService.cs" />
-    <Compile Include="Utility\Services\RunTime\ThumbnailService.cs" />
-    <Compile Include="ViewModels\Locator.cs" />
-    <Compile Include="ViewModels\MainPage\ExternalStorageViewModel.cs" />
-    <Compile Include="ViewModels\MainPage\LastViewedViewModel.cs" />
-    <Compile Include="ViewModels\MainPage\VideoLibraryViewModel.cs" />
-    <Compile Include="ViewModels\MainPage\MainPageViewModel.cs" />
-    <Compile Include="ViewModels\MainPage\MediaViewModel.cs" />
-    <Compile Include="Utility\Commands\PlayNetworkMRLCommand.cs" />
-    <Compile Include="Utility\Commands\ActionCommand.cs" />
-    <Compile Include="ViewModels\MainPage\MusicLibraryViewModel.cs" />
-    <Compile Include="ViewModels\MainPage\RemovableLibraryViewModel.cs" />
-    <Compile Include="ViewModels\MainPage\ThumbnailViewModel.cs" />
-    <Compile Include="ViewModels\MainPage\ViewedVideoViewModel.cs" />
-    <Compile Include="ViewModels\MainPage\PlayMusic\MusicPlayerViewModel.cs" />
-    <Compile Include="ViewModels\MainPage\PlayMusic\TrackCollectionViewModel.cs" />
-    <Compile Include="ViewModels\MediaPlaybackViewModel.cs" />
-    <Compile Include="ViewModels\PlayVideo\PlayVideoViewModel.cs" />
     <Compile Include="Views\BasePage.cs" />
     <Compile Include="Views\Controls\AnimatedBackground.xaml.cs">
       <DependentUpon>AnimatedBackground.xaml</DependentUpon>
@@ -276,7 +499,6 @@
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\NavigateableViewModel.cs" />
     <Compile Include="Views\PlayMusic.xaml.cs">
       <DependentUpon>PlayMusic.xaml</DependentUpon>
     </Compile>
@@ -306,7 +528,15 @@
     <Content Include="..\..\vlc\plugins\audio_output\libwinstore_plugin.dll">
       <Link>plugins\audio_output\libwinstore_plugin.dll</Link>
     </Content>
-    <Content Include="backers.csv" />
+    <PRIResource Include="..\shared\Strings\en-US\Resources.resw">
+      <Link>Strings\en-US\Resources.resw</Link>
+    </PRIResource>
+    <PRIResource Include="..\shared\Strings\ja-JP\Resources.resw">
+      <Link>Strings\ja-JP\Resources.resw</Link>
+    </PRIResource>
+    <None Include="..\shared\backers.csv">
+      <Link>backers.csv</Link>
+    </None>
     <None Include="Common\ReadMe.txt" />
     <Content Include="Assets\Background.jpg" />
     <Content Include="Assets\GreyPylon\280x156.jpg" />
@@ -315,12 +545,6 @@
     <Content Include="plugins\audio_output\libxaudio2_winrt_plugin.dll" />
     <Content Include="segoeui.ttf" />
     <None Include="packages.config" />
-    <PRIResource Include="Strings\ja-JP\Resources.resw">
-      <SubType>Designer</SubType>
-    </PRIResource>
-    <PRIResource Include="Strings\en-US\Resources.resw">
-      <SubType>Designer</SubType>
-    </PRIResource>
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\..\vlc\libvlc.dll">
