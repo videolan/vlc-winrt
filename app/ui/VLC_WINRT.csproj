@@ -355,6 +355,9 @@
     <Compile Include="..\shared\Utility\Services\DesignTime\ThumbnailService.cs">
       <Link>Utility\Services\DesignTime\ThumbnailService.cs</Link>
     </Compile>
+    <Compile Include="..\shared\Utility\Services\Interface\IMediaControl.cs">
+      <Link>Utility\Services\Interface\IMediaControl.cs</Link>
+    </Compile>
     <Compile Include="..\shared\Utility\Services\Interface\IMediaService.cs">
       <Link>Utility\Services\Interface\IMediaService.cs</Link>
     </Compile>

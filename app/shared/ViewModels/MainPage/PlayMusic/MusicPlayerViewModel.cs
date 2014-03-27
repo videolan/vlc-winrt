@@ -225,7 +225,9 @@ namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
                 Artist.CurrentAlbumIndex = _artist.Albums.IndexOf(_artist.Albums.FirstOrDefault(x => x.Name == track.AlbumName));
             _mediaService.SetMediaFile(_mrl, isAudioMedia: true);
             OnPropertyChanged("TimeTotal");
+#if NETFX_CORE
             UpdateTileHelper.UpdateMediumTileWithMusicInfo();
+#endif
             _mediaService.Play();
         }
 

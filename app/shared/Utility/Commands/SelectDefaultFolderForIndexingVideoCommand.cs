@@ -14,6 +14,9 @@ using Windows.Storage.AccessCache;
 using Windows.Storage.Pickers;
 using VLC_WINRT.Common;
 using VLC_WINRT.ViewModels;
+#if WINDOWS_PHONE_APP
+using VLC_WINPRT;
+#endif
 
 namespace VLC_WINRT.Utility.Commands
 {

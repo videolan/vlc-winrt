@@ -20,6 +20,9 @@ using VLC_WINRT.Utility.Services.RunTime;
 using VLC_WINRT.ViewModels.MainPage;
 using VLC_WINRT.ViewModels.MainPage.PlayMusic;
 using VLC_WINRT.ViewModels.PlayVideo;
+#if WINDOWS_PHONE_APP
+using VLC_WINPRT;
+#endif
 
 namespace VLC_WINRT.ViewModels
 {

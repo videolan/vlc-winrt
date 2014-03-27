@@ -15,7 +15,13 @@ using VLC_WINRT.ViewModels;
 using VLC_WINRT.ViewModels.MainPage;
 using VLC_WINRT.ViewModels.MainPage.PlayMusic;
 using VLC_WINRT.ViewModels.PlayVideo;
+
+#if NETFX_CORE
 using VLC_WINRT.Views;
+#endif
+#if WINDOWS_PHONE_APP
+using VLC_WINPRT.Views;
+#endif
 
 namespace VLC_WINRT.Common
 {
@@ -40,7 +46,9 @@ namespace VLC_WINRT.Common
             // Register Services
             builder.RegisterType<HistoryService>().SingleInstance();
             builder.RegisterType<MediaService>().As<IMediaService>().SingleInstance();
+            #if NETFX_CORE
             builder.RegisterType<MouseService>().SingleInstance();
+            #endif
             builder.RegisterType<VlcService>().SingleInstance();
             builder.RegisterType<ExternalDeviceService>().SingleInstance();
             if (Windows.ApplicationModel.DesignMode.DesignModeEnabled)
@@ -52,9 +60,10 @@ namespace VLC_WINRT.Common
                 builder.RegisterType<ThumbnailService>().As<IThumbnailService>().SingleInstance();
             }
 
-            // Register Views
+            // Register Views            
+#if NETFX_CORE
             builder.RegisterType<RootPage>();
-
+#endif
             return builder.Build();
         }
     }

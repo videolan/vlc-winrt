@@ -8,6 +8,7 @@
  **********************************************************************/
 
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using VLC_WINRT.Common;
 using VLC_WINRT.Utility.Helpers.MusicLibrary;
@@ -15,13 +16,131 @@ using VLC_WINRT.Utility.Services.Interface;
 using VLC_WINRT.ViewModels;
 using VLC_WINRT.ViewModels.MainPage;
 using VLC_WINRT.ViewModels.MainPage.PlayMusic;
+using Windows.Foundation;
 using Windows.Media;
 using Windows.Storage;
 using Windows.UI.Core;
 using Windows.UI.Xaml.Controls;
+#if NETFX_CORE
+using libVLCX;
+#endif
 
 namespace VLC_WINRT.Utility.Services.RunTime
 {
+#if WINDOWS_PHONE_APP
+    public class Player
+    {
+        public delegate void MediaEndedHandler();
+
+        public Player(SwapChainBackgroundPanel panel)
+        {
+        }
+        public IAsyncAction Initialize()
+        {
+            return null;
+        }
+
+        public void Open(String mrl)
+        {
+            
+        }
+
+        public void Stop()
+        {
+
+        }
+
+        public void Pause()
+        {
+
+        }
+        public void Play()
+        {
+
+        }
+
+        public void Seek(float position)
+        {
+
+        }
+
+        public float GetPosition()
+        {
+            return 0f;
+        }
+
+        public Int64 GetLength()
+        {
+            return 0;
+        }
+
+        public Int64 GetTime()
+        {
+            return 0;
+        }
+
+        public float GetRate()
+        {
+            return 0f;
+        }
+
+        public int SetRate(float rate)
+        {
+            return 0;
+        }
+
+        public int GetSubtitleCount()
+        {
+            return 0;
+        }
+
+        public int GetSubtitleDescription(IDictionary<int, String> tracks)
+        {
+            return 0;
+        }
+
+        public int SetSubtitleTrack(int track)
+        { return 0; }
+
+        public int GetAudioTracksCount()
+        { return 0; }
+
+        public int GetAudioTracksDescription(IDictionary<int, String> tracks)
+        { return 0; }
+
+        public int SetAudioTrack(int track)
+        {
+            return 0;
+        }
+
+        public int SetVolume(int volume)
+        { return 0; }
+
+        public int GetVolume()
+        { return 0; }
+
+        public void DetachEvent()
+        {
+
+        }
+        public void UpdateSize(uint x, uint y)
+        {
+
+        }
+
+        public void OpenSubtitle(String mrl)
+        {
+
+        }
+
+        public event MediaEndedHandler MediaEnded;
+
+        public void Dispose()
+        {
+
+        }
+    }
+#endif
     public class MediaService : IMediaService
     {
         private readonly HistoryService _historyService;
@@ -85,7 +204,7 @@ namespace VLC_WINRT.Utility.Services.RunTime
 
         public void Stop()
         {
-            if (_vlcService.CurrentState == VlcService.MediaPlayerState.Stopped || _vlcService.CurrentState ==  VlcService.MediaPlayerState.NotPlaying)
+            if (_vlcService.CurrentState == VlcService.MediaPlayerState.Stopped || _vlcService.CurrentState == VlcService.MediaPlayerState.NotPlaying)
                 return;
 
             _vlcService.Stop();
@@ -146,7 +265,7 @@ namespace VLC_WINRT.Utility.Services.RunTime
                 Play();
         }
 
-        async void VlcPlayerService_MediaEnded(object sender, libVLCX.Player e)
+        async void VlcPlayerService_MediaEnded(object sender, Player e)
         {
             await DispatchHelper.InvokeAsync(() =>
             {
@@ -180,13 +299,13 @@ namespace VLC_WINRT.Utility.Services.RunTime
                     return;
 
                 // If we're playing a video, just pause.
-                if(!_isAudioMedia)
+                if (!_isAudioMedia)
                 {
                     // TODO: Route Video Player calls through Media Service
                     //_vlcService.Pause();
                     return;
                 }
-                
+
                 // Otherwise, set the MediaElement's source to the Audio File in question,
                 // and play it with a volume of zero. This allows _vlcService's audio to continue
                 // to play in the background. SetSource should have it's source set to a programmatically
@@ -206,7 +325,7 @@ namespace VLC_WINRT.Utility.Services.RunTime
                     return;
 
                 // If we're playing a video, start playing again.
-                if(!_isAudioMedia)
+                if (!_isAudioMedia)
                 {
                     // TODO: Route Video Player calls through Media Service
                     //_vlcService.Play();
@@ -222,7 +341,7 @@ namespace VLC_WINRT.Utility.Services.RunTime
         private void RegisterMediaControls()
         {
             if (_isRegistered)
-                return; 
+                return;
 
             MediaControl.PlayPressed += MediaControl_PlayPressed;
             MediaControl.PausePressed += MediaControl_PausePressed;
@@ -233,7 +352,7 @@ namespace VLC_WINRT.Utility.Services.RunTime
         private void UnregisterMediaControls()
         {
             if (!_isRegistered)
-                return; 
+                return;
 
             MediaControl.PlayPressed -= MediaControl_PlayPressed;
             MediaControl.PausePressed -= MediaControl_PausePressed;

@@ -13,7 +13,12 @@ using VLC_WINRT.Utility.Helpers;
 using VLC_WINRT.Utility.Services.RunTime;
 using VLC_WINRT.ViewModels;
 using VLC_WINRT.ViewModels.MainPage;
+#if NETFX_CORE
 using VLC_WINRT.Views;
+#endif
+#if WINDOWS_PHONE_APP
+using VLC_WINPRT;
+#endif
 
 namespace VLC_WINRT.Utility.Commands
 {
@@ -35,6 +40,7 @@ namespace VLC_WINRT.Utility.Commands
             await Locator.MusicPlayerVM.Play();
 
             var frame = App.ApplicationFrame;
+#if NETFX_CORE
             var page = frame.Content as Views.MainPage;
             if (page != null)
             {
@@ -44,7 +50,8 @@ namespace VLC_WINRT.Utility.Commands
                     await sB.BeginAsync();
                     NavigationService.NavigateTo(typeof(PlayMusic));
                 }
-            }
+            } 
+#endif
         }
     }
 }

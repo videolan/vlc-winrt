@@ -18,23 +18,32 @@ using Windows.Media;
 using Windows.System.Display;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
-using libVLCX;
+
 using VLC_WINRT.Common;
 using VLC_WINRT.Model;
 using VLC_WINRT.Utility.Commands;
 using VLC_WINRT.Utility.Commands.VideoPlayer;
 using VLC_WINRT.Utility.Services.RunTime;
 using VLC_WINRT.ViewModels.MainPage;
+#if NETFX_CORE
+using libVLCX;
 using VLC_WINRT.Views.Controls.MainPage;
+#endif
 using Windows.UI.Xaml.Navigation;
 using VLC_WINRT.Utility.Services.Interface;
+#if WINDOWS_PHONE_APP
+using VLC_WINPRT;
+#endif
+
 
 namespace VLC_WINRT.ViewModels.PlayVideo
 {
     public class PlayVideoViewModel : MediaPlaybackViewModel
     {
         private ObservableCollection<Subtitle> _subtitles;
+#if NETFX_CORE
         private MouseService _mouseService;
+#endif
         private MediaViewModel _currentVideo;
         private Subtitle _currentSubtitle;
         private int _subtitlesCount = 0;
@@ -51,9 +60,9 @@ namespace VLC_WINRT.ViewModels.PlayVideo
             _subtitles = new ObservableCollection<Subtitle>();
             _subtitlesTracks = new Dictionary<int, string>();
             _audioTracks = new Dictionary<int, string>();
-
+#if NETFX_CORE
             _mouseService = App.Container.Resolve<MouseService>();
-
+#endif
             _setSubTitlesCommand = new SetSubtitleTrackCommand();
             _setAudioTrackCommand = new SetAudioTrackCommand();
             _openSubtitleCommand = new OpenSubtitleCommand();
@@ -67,13 +76,17 @@ namespace VLC_WINRT.ViewModels.PlayVideo
 
         protected override void OnPlaybackStarting()
         {
+#if NETFX_CORE
             _mouseService.HideMouse();
+#endif
             base.OnPlaybackStarting();
         }
 
         protected override void OnPlaybackStopped()
         {
+#if NETFX_CORE
             _mouseService.RestoreMouse();
+#endif
             base.OnPlaybackStopped();
         }
 
@@ -229,7 +242,12 @@ namespace VLC_WINRT.ViewModels.PlayVideo
         {
             UnRegisterMediaControlEvents();
             _vlcPlayerService.MediaEnded -= VlcPlayerServiceOnMediaEnded;
+#if WINDOWS_PHONE_APP
+            await DispatchHelper.InvokeAsync(() => App.ApplicationFrame.GoBack());
+#endif
+#if NETFX_CORE
             await DispatchHelper.InvokeAsync(() => App.RootPage.MainFrame.GoBack());
+#endif
         }
 
         private async Task UpdatePosition(object sender, object e)

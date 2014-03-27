@@ -24,7 +24,7 @@ using VLC_WINRT.Utility.Helpers;
 using VLC_WINRT.Utility.Helpers.MusicLibrary;
 using VLC_WINRT.Utility.Helpers.MusicLibrary.LastFm;
 using VLC_WINRT.Utility.Helpers.MusicLibrary.xboxmusic.Models;
-using VLC_WINRT.Views.Controls.MainPage;
+
 using Windows.ApplicationModel.Resources;
 using Windows.Storage;
 using Windows.Storage.FileProperties;
@@ -35,6 +35,12 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 using XboxMusicLibrary;
 using Panel = VLC_WINRT.Model.Panel;
+#if NETFX_CORE
+using VLC_WINRT.Views.Controls.MainPage;
+#endif
+#if WINDOWS_PHONE_APP
+using VLC_WINPRT;
+#endif
 
 namespace VLC_WINRT.ViewModels.MainPage
 {
@@ -282,6 +288,7 @@ namespace VLC_WINRT.ViewModels.MainPage
 
         public void ExecuteSemanticZoom()
         {
+#if NETFX_CORE
             var page = App.ApplicationFrame.Content as Views.MainPage;
             if (page != null)
             {
@@ -299,6 +306,7 @@ namespace VLC_WINRT.ViewModels.MainPage
                     }
                 }
             }
+#endif
         }
 
         async Task<bool> IsMusicLibraryChanged()

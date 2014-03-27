@@ -19,6 +19,9 @@ using Windows.System.Threading;
 using VLC_WINRT.Common;
 using VLC_WINRT.Utility.Commands;
 using VLC_WINRT.Utility.Services.RunTime;
+#if WINDOWS_PHONE_APP
+using VLC_WINPRT;
+#endif
 
 namespace VLC_WINRT.ViewModels.MainPage
 {

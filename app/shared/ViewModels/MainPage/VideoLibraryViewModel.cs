@@ -22,8 +22,15 @@ using Windows.Storage;
 using Windows.Storage.Search;
 using Windows.System.Threading;
 using VLC_WINRT.Utility.Helpers;
-using VLC_WINRT.Views.Controls.MainPage;
+
 using Panel = VLC_WINRT.Model.Panel;
+#if WINDOWS_PHONE_APP
+using VLC_WINPRT;
+using VLC_WINPRT.Views;
+#endif
+#if NETFX_CORE
+using VLC_WINRT.Views.Controls.MainPage;
+#endif
 
 namespace VLC_WINRT.ViewModels.MainPage
 {
@@ -154,6 +161,7 @@ namespace VLC_WINRT.ViewModels.MainPage
 
         public void ExecuteSemanticZoom()
         {
+#if NETFX_CORE
             var page = App.ApplicationFrame.Content as Views.MainPage;
             if (page == null) return;
             var videoColumn = page.GetFirstDescendantOfType<VideoColumn>() as VideoColumn;
@@ -174,6 +182,7 @@ namespace VLC_WINRT.ViewModels.MainPage
                     listviewBaseVertical.ItemsSource = collection.View.CollectionGroups;
             }
             catch { }
+#endif
         }
 
         private static async Task<IReadOnlyList<StorageFile>> GetMediaFromFolder(StorageFolder folder,

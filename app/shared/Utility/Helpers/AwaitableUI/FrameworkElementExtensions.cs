@@ -14,9 +14,11 @@ using Windows.UI.Xaml.Media.Imaging;
 
 namespace VLC_WINRT.Utility.Helpers.AwaitableUI
 {
+#if NETFX_CORE
     /// <summary>
     /// Contains extension methods to wait for FrameworkElement events.
     /// </summary>
+    
     public static class FrameworkElementExtensions
     {
         /// <summary>
@@ -95,7 +97,7 @@ namespace VLC_WINRT.Utility.Helpers.AwaitableUI
         public static async Task WaitForImagesToLoad(this FrameworkElement frameworkElement, int millisecondsTimeout = 0)
         {
             //TODO: See if finding popups would be possible too.
-
+            
             foreach (var image in frameworkElement.GetDescendantsOfType<Image>())
             {
                 if (image.Source != null)
@@ -119,4 +121,5 @@ namespace VLC_WINRT.Utility.Helpers.AwaitableUI
             }
         }
     }
+#endif
 }

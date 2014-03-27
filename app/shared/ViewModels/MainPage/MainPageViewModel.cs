@@ -20,7 +20,9 @@ using VLC_WINRT.Utility.Commands;
 using VLC_WINRT.Utility.Commands.MainPage;
 using VLC_WINRT.Utility.Helpers;
 using Windows.UI.Xaml.Navigation;
-
+#if WINDOWS_PHONE_APP
+using VLC_WINPRT;
+#endif
 namespace VLC_WINRT.ViewModels.MainPage
 {
     public class MainPageViewModel : NavigateableViewModel
@@ -30,9 +32,9 @@ namespace VLC_WINRT.ViewModels.MainPage
         private ObservableCollection<VideoLibraryViewModel> _dlnaVMs =
             new ObservableCollection<VideoLibraryViewModel>();
         private ObservableCollection<BackItem> _backers = new ObservableCollection<BackItem>();
-
+#if NETFX_CORE
         private ExternalStorageViewModel _externalStorageVM;
-
+#endif
         private bool _isAppBarOpen;
         private bool _isNetworkAppBarShown;
         private LastViewedViewModel _lastViewedVM;
@@ -110,8 +112,11 @@ namespace VLC_WINRT.ViewModels.MainPage
 
             MusicLibraryVm = Locator.MusicLibraryVM;
             await MusicLibraryVm.Initialize();
+
+#if NETFX_CORE
             ExternalStorageVM = new ExternalStorageViewModel();
             await ExternalStorageVM.Initialize();
+#endif
         }
 
         public SelectDefaultFolderForIndexingVideoCommand SetDefaultFolderForIndexingVideoCommand
@@ -156,12 +161,14 @@ namespace VLC_WINRT.ViewModels.MainPage
             set { SetProperty(ref _videoVM, value); }
         }
 
+#if NETFX_CORE
         public ExternalStorageViewModel ExternalStorageVM
         {
             get { return _externalStorageVM; }
             set { SetProperty(ref _externalStorageVM, value); }
         }
-        
+#endif
+
         public MusicLibraryViewModel MusicLibraryVm
         {
             get { return _musicLibraryVm; }

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30110.0
+VisualStudioVersion = 12.0.30203.2
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VLC_WINRT", "UI\VLC_WINRT.csproj", "{746E8FC5-D67B-4ED3-89EC-757515B18CB5}"
 EndProject
@@ -14,6 +14,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VLC_WINRT_TESTS", "tests\VLC_WINRT_TESTS\VLC_WINRT_TESTS.csproj", "{1E7456C4-4D13-4266-88A7-92500625B199}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libxaudio2_winrt_plugin", "..\modules\libxaudio2_winrt_plugin\libxaudio2_winrt_plugin.vcxproj", "{542C7405-778D-4AC6-A43D-D2A6BAF70B09}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VLC_WINPRT", "VLC_WINPRT\VLC_WINPRT.csproj", "{B82A3412-46E3-45F2-A74A-2BAB42FEAE5B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -173,6 +175,38 @@ Global
 		{542C7405-778D-4AC6-A43D-D2A6BAF70B09}.Release|x64.Build.0 = Release|x64
 		{542C7405-778D-4AC6-A43D-D2A6BAF70B09}.Release|x86.ActiveCfg = Release|Win32
 		{542C7405-778D-4AC6-A43D-D2A6BAF70B09}.Release|x86.Build.0 = Release|Win32
+		{B82A3412-46E3-45F2-A74A-2BAB42FEAE5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B82A3412-46E3-45F2-A74A-2BAB42FEAE5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B82A3412-46E3-45F2-A74A-2BAB42FEAE5B}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{B82A3412-46E3-45F2-A74A-2BAB42FEAE5B}.Debug|ARM.ActiveCfg = Debug|ARM
+		{B82A3412-46E3-45F2-A74A-2BAB42FEAE5B}.Debug|ARM.Build.0 = Debug|ARM
+		{B82A3412-46E3-45F2-A74A-2BAB42FEAE5B}.Debug|ARM.Deploy.0 = Debug|ARM
+		{B82A3412-46E3-45F2-A74A-2BAB42FEAE5B}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{B82A3412-46E3-45F2-A74A-2BAB42FEAE5B}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{B82A3412-46E3-45F2-A74A-2BAB42FEAE5B}.Debug|Mixed Platforms.Deploy.0 = Debug|x86
+		{B82A3412-46E3-45F2-A74A-2BAB42FEAE5B}.Debug|Win32.ActiveCfg = Debug|x86
+		{B82A3412-46E3-45F2-A74A-2BAB42FEAE5B}.Debug|Win32.Build.0 = Debug|x86
+		{B82A3412-46E3-45F2-A74A-2BAB42FEAE5B}.Debug|Win32.Deploy.0 = Debug|x86
+		{B82A3412-46E3-45F2-A74A-2BAB42FEAE5B}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{B82A3412-46E3-45F2-A74A-2BAB42FEAE5B}.Debug|x86.ActiveCfg = Debug|x86
+		{B82A3412-46E3-45F2-A74A-2BAB42FEAE5B}.Debug|x86.Build.0 = Debug|x86
+		{B82A3412-46E3-45F2-A74A-2BAB42FEAE5B}.Debug|x86.Deploy.0 = Debug|x86
+		{B82A3412-46E3-45F2-A74A-2BAB42FEAE5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B82A3412-46E3-45F2-A74A-2BAB42FEAE5B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B82A3412-46E3-45F2-A74A-2BAB42FEAE5B}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{B82A3412-46E3-45F2-A74A-2BAB42FEAE5B}.Release|ARM.ActiveCfg = Release|ARM
+		{B82A3412-46E3-45F2-A74A-2BAB42FEAE5B}.Release|ARM.Build.0 = Release|ARM
+		{B82A3412-46E3-45F2-A74A-2BAB42FEAE5B}.Release|ARM.Deploy.0 = Release|ARM
+		{B82A3412-46E3-45F2-A74A-2BAB42FEAE5B}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{B82A3412-46E3-45F2-A74A-2BAB42FEAE5B}.Release|Mixed Platforms.Build.0 = Release|x86
+		{B82A3412-46E3-45F2-A74A-2BAB42FEAE5B}.Release|Mixed Platforms.Deploy.0 = Release|x86
+		{B82A3412-46E3-45F2-A74A-2BAB42FEAE5B}.Release|Win32.ActiveCfg = Release|x86
+		{B82A3412-46E3-45F2-A74A-2BAB42FEAE5B}.Release|Win32.Build.0 = Release|x86
+		{B82A3412-46E3-45F2-A74A-2BAB42FEAE5B}.Release|Win32.Deploy.0 = Release|x86
+		{B82A3412-46E3-45F2-A74A-2BAB42FEAE5B}.Release|x64.ActiveCfg = Release|Any CPU
+		{B82A3412-46E3-45F2-A74A-2BAB42FEAE5B}.Release|x86.ActiveCfg = Release|x86
+		{B82A3412-46E3-45F2-A74A-2BAB42FEAE5B}.Release|x86.Build.0 = Release|x86
+		{B82A3412-46E3-45F2-A74A-2BAB42FEAE5B}.Release|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

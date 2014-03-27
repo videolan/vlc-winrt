@@ -15,8 +15,14 @@ using Windows.Storage;
 using Windows.Storage.Pickers;
 using VLC_WINRT.Utility.Services.RunTime;
 using VLC_WINRT.ViewModels;
-using VLC_WINRT.Views;
 using VLC_WINRT.ViewModels.MainPage;
+
+#if WINDOWS_PHONE_APP
+using VLC_WINPRT;
+#endif
+#if NETFX_CORE
+using VLC_WINRT.Views;
+#endif
 
 namespace VLC_WINRT.Utility.Commands
 {
@@ -118,7 +124,9 @@ namespace VLC_WINRT.Utility.Commands
                 var video = new MediaViewModel(file);
                 await video.Initialize();
                 Locator.PlayVideoVM.CurrentVideo = video;
+#if NETFX_CORE
                 NavigationService.NavigateTo(typeof(PlayVideo));
+#endif
             }
             else
             {

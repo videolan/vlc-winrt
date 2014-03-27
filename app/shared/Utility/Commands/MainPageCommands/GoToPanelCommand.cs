@@ -8,6 +8,9 @@
  **********************************************************************/
 
 using VLC_WINRT.Common;
+#if WINDOWS_PHONE_APP
+using VLC_WINPRT;
+#endif
 
 namespace VLC_WINRT.Utility.Commands.MainPage
 {
@@ -16,11 +19,13 @@ namespace VLC_WINRT.Utility.Commands.MainPage
         public override void Execute(object parameter)
         {
             var frame = App.ApplicationFrame;
+#if NETFX_CORE
             var page = frame.Content as Views.MainPage;
             if (page != null)
             {
                 page.ChangedSectionsHeadersState(int.Parse(parameter.ToString()));
             }
+#endif
         }
     }
 }

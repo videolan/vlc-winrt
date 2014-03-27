@@ -19,6 +19,9 @@ using Windows.Storage.FileProperties;
 using Windows.System.Threading;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
+#if WINDOWS_PHONE_APP
+using VLC_WINPRT;
+#endif
 
 namespace VLC_WINRT.ViewModels.MainPage
 {

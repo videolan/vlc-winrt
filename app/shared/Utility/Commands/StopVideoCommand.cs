@@ -10,6 +10,9 @@
 using VLC_WINRT.Common;
 using VLC_WINRT.Utility.Services.RunTime;
 using VLC_WINRT.ViewModels;
+#if WINDOWS_PHONE_APP
+using VLC_WINPRT;
+#endif
 
 namespace VLC_WINRT.Utility.Commands
 {
@@ -18,7 +21,9 @@ namespace VLC_WINRT.Utility.Commands
         public override void Execute(object parameter)
         {
             Locator.PlayVideoVM.UnRegisterMediaControlEvents();
+#if NETFX_CORE
             App.RootPage.MainFrame.GoBack();
+#endif
         }
     }
 }

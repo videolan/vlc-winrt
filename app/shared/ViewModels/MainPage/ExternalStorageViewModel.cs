@@ -11,7 +11,9 @@ using Autofac;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+#if NETFX_CORE
 using Windows.Devices.Portable;
+#endif
 using Windows.System.Threading;
 using VLC_WINRT.Common;
 using VLC_WINRT.Utility.Services.RunTime;
@@ -19,6 +21,7 @@ using System.Threading.Tasks;
 
 namespace VLC_WINRT.ViewModels.MainPage
 {
+#if NETFX_CORE
     public class ExternalStorageViewModel : BindableBase, IDisposable
     {
         private ExternalDeviceService _deviceService;
@@ -85,4 +88,5 @@ namespace VLC_WINRT.ViewModels.MainPage
             await AddFolder(id);
         }
     }
+#endif
 }

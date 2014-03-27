@@ -13,8 +13,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
+#if NETFX_CORE
 using libVLCX;
-
+#endif
 namespace VLC_WINRT.Utility.Services.RunTime
 {
     public class VlcService

@@ -10,7 +10,9 @@
 using System;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.ComTypes;
+#if NETFX_CORE
 using System.ServiceModel.Security;
+#endif
 using Windows.Storage;
 
 namespace VLC_WINRT.Utility.Helpers
@@ -77,9 +79,10 @@ namespace VLC_WINRT.Utility.Helpers
             var lastError = Marshal.GetLastWin32Error();
             if (lastError == ERROR_FILE_NOT_FOUND || lastError == ERROR_PATH_NOT_FOUND) return false;
             // si c'est pas un fichier non trouvé, on lance une exception
+            #if NETFX_CORE
             if (lastError == ERROR_ACCESS_DENIED)
                 throw new SecurityAccessDeniedException("Accès interdit");
-
+            #endif
             throw new InvalidOperationException(string.Format("Erreur pendant l'accès au fichier {0}, code {1}", fileName, lastError));
         }
 
