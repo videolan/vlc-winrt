@@ -7,7 +7,6 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
-using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media.Animation;
 

@@ -7,14 +7,11 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
-using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using VLC_WINRT.Utility.Helpers;
 using VLC_WINRT.ViewModels;
 using VLC_WINRT.ViewModels.MainPage;
-using Windows.UI.Popups;
-using VLC_WINRT.Utility.Commands;
 using VLC_WINRT.Common;
 
 namespace VLC_WINRT.Views.Controls.MainPage

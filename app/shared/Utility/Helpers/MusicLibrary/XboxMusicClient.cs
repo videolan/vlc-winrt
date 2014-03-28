@@ -1,4 +1,4 @@
-/**********************************************************************
+﻿/**********************************************************************
  * VLC for WinRT
  **********************************************************************
  * Copyright © 2013-2014 VideoLAN and Authors
@@ -11,7 +11,6 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using VLC_WINRT.ViewModels;
 using XboxMusicLibrary.Models;

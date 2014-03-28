@@ -14,7 +14,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
 using System.Threading.Tasks;
-using VLC_WINRT.Model;
 using VLC_WINRT.Utility.Helpers.MusicLibrary.LastFm;
 using Album = VLC_WINRT.Utility.Helpers.MusicLibrary.MusicEntities.Album;
 using Artist = VLC_WINRT.Utility.Helpers.MusicLibrary.MusicEntities.Artist;

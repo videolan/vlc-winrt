@@ -1,4 +1,4 @@
-/**********************************************************************
+﻿/**********************************************************************
  * VLC for WinRT
  **********************************************************************
  * Copyright © 2013-2014 VideoLAN and Authors
@@ -13,14 +13,10 @@
 */
 
 using Autofac;
-using System;
 using VLC_WINRT.Common;
-using VLC_WINRT.Utility.Services.Interface;
-using VLC_WINRT.Utility.Services.RunTime;
 using VLC_WINRT.ViewModels.MainPage;
 using VLC_WINRT.ViewModels.MainPage.PlayMusic;
 using VLC_WINRT.ViewModels.PlayVideo;
-using VLC_WINRT.ViewModels.Settings;
 #if WINDOWS_PHONE_APP
 using VLC_WINPRT;
 #endif

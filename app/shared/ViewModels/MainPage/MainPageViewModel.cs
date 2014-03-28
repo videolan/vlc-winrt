@@ -18,7 +18,6 @@ using VLC_WINRT.Common;
 using VLC_WINRT.Model;
 using VLC_WINRT.Utility.Commands;
 using VLC_WINRT.Utility.Commands.MainPage;
-using VLC_WINRT.Utility.Helpers;
 using Windows.UI.Xaml.Navigation;
 #if WINDOWS_PHONE_APP
 using VLC_WINPRT;

@@ -1,4 +1,4 @@
-/**********************************************************************
+﻿/**********************************************************************
  * VLC for WinRT
  **********************************************************************
  * Copyright © 2013-2014 VideoLAN and Authors
@@ -7,11 +7,6 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 
 namespace VLC_WINRT.Utility.Helpers.MusicLibrary.Deezer

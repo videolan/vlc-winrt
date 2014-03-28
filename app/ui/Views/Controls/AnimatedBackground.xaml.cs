@@ -10,13 +10,11 @@
 using System;
 using System.Linq;
 using Windows.System.Threading;
-using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Imaging;
 using VLC_WINRT.Utility.Helpers;
 using VLC_WINRT.ViewModels;
-using System.Threading.Tasks;
 using VLC_WINRT.Common;
 
 namespace VLC_WINRT.Views.Controls

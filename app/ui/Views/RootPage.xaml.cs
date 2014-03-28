@@ -7,16 +7,10 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
-using Autofac;
-using System;
-using Windows.Storage;
-using Windows.Storage.Streams;
-using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using VLC_WINRT.Utility.Services.RunTime;
-using VLC_WINRT.ViewModels;
 using VLC_WINRT.Utility.Services.Interface;
 
 namespace VLC_WINRT.Views

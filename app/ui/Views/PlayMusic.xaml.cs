@@ -13,11 +13,8 @@ using Windows.System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using VLC_WINRT.Model;
 using VLC_WINRT.Utility.Helpers;
-using VLC_WINRT.Utility.Helpers.MusicLibrary;
 using VLC_WINRT.Utility.Services.RunTime;
-using VLC_WINRT.ViewModels.MainPage;
 using Album = VLC_WINRT.Utility.Helpers.MusicLibrary.MusicEntities.Album;
 using Artist = VLC_WINRT.Utility.Helpers.MusicLibrary.MusicEntities.Artist;
 

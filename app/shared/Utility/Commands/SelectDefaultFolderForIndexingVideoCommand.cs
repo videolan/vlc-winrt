@@ -8,7 +8,6 @@
  **********************************************************************/
 
 using System;
-using System.Collections.Generic;
 using Windows.Storage;
 using Windows.Storage.AccessCache;
 using Windows.Storage.Pickers;

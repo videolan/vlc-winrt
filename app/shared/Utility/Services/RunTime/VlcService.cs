@@ -7,7 +7,6 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
-using Autofac;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;

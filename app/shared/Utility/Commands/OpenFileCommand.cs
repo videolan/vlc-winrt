@@ -9,10 +9,7 @@
 
 using Autofac;
 using System;
-using Windows.Media;
-using Windows.UI.Xaml.Media.Animation;
 using VLC_WINRT.Common;
-using VLC_WINRT.Utility.Helpers;
 using VLC_WINRT.Utility.Services.RunTime;
 using VLC_WINRT.ViewModels;
 using VLC_WINRT.ViewModels.MainPage;
@@ -21,7 +18,6 @@ using VLC_WINRT.Views;
 #endif
 #if WINDOWS_PHONE_APP
 using VLC_WINPRT;
-using VLC_WINPRT.Views;
 using VLC_WINRT.Utility.Services.Interface;
 #endif
 

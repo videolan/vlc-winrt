@@ -13,10 +13,8 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using VLC_WINRT.Common;
 using VLC_WINRT.Utility.Services.Interface;
-using Windows.Foundation;
 using Windows.Storage;
 using Windows.Storage.FileProperties;
-using Windows.System.Threading;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 #if WINDOWS_PHONE_APP

@@ -11,8 +11,6 @@ using Autofac;
 using System;
 using Windows.Storage;
 using VLC_WINRT.Common;
-using Windows.Foundation;
-using Windows.System.Threading;
 using VLC_WINRT.Model;
 using VLC_WINRT.Utility.Services.RunTime;
 using System.Threading.Tasks;

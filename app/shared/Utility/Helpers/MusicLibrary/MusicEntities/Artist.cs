@@ -10,8 +10,6 @@
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using Windows.Storage.FileProperties;
-using VLC_WINRT.Model;
 using Windows.ApplicationModel.Resources;
 using VLC_WINRT.Utility.Helpers.MusicLibrary.LastFm;
 

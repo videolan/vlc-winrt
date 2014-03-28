@@ -9,19 +9,16 @@
 
 using System.Linq;
 using VLC_WINRT.Common;
-using VLC_WINRT.Utility.Services.RunTime;
 using VLC_WINRT.ViewModels;
 using VLC_WINRT.ViewModels.MainPage;
 #if NETFX_CORE
 using VLC_WINRT.Views;
 #endif
 #if WINDOWS_PHONE_APP
-using VLC_WINPRT.Views;
 using VLC_WINPRT;
 #endif
 
 using Windows.UI.Xaml.Media.Animation;
-using VLC_WINRT.Utility.Helpers;
 
 namespace VLC_WINRT.Utility.Commands
 {

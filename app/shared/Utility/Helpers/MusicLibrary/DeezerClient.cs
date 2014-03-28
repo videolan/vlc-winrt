@@ -1,4 +1,4 @@
-/**********************************************************************
+﻿/**********************************************************************
  * VLC for WinRT
  **********************************************************************
  * Copyright © 2013-2014 VideoLAN and Authors
@@ -11,11 +11,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using VLC_WINRT.Utility.Helpers.MusicLibrary.Deezer;
-using VLC_WINRT.Utility.Helpers.MusicLibrary.MusicEntities;
 using Album = VLC_WINRT.Utility.Helpers.MusicLibrary.MusicEntities.Album;
 using Artist = VLC_WINRT.Utility.Helpers.MusicLibrary.MusicEntities.Artist;
 

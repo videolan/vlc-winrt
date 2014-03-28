@@ -13,7 +13,6 @@ using Windows.UI.Xaml.Navigation;
 using VLC_WINRT.Utility.Helpers;
 using VLC_WINRT.Utility.Services.RunTime;
 using VLC_WINRT.ViewModels.MainPage;
-using Windows.UI.Core;
 using VLC_WINRT.Common;
 
 

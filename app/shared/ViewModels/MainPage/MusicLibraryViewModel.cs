@@ -31,8 +31,6 @@ using Windows.Storage.FileProperties;
 using Windows.Storage.Search;
 using Windows.Storage.Streams;
 using Windows.System.Threading;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Data;
 using XboxMusicLibrary;
 using Panel = VLC_WINRT.Model.Panel;
 #if NETFX_CORE

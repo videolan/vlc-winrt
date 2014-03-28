@@ -7,11 +7,6 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
-using System.Threading.Tasks;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media.Imaging;
-
 namespace VLC_WINRT.Utility.Helpers.AwaitableUI
 {
 #if NETFX_CORE

@@ -7,22 +7,16 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
-using System;
-using System.Diagnostics;
-using System.IO;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation.Collections;
 using Windows.Storage;
 using Windows.Storage.AccessCache;
-using Windows.Storage.Streams;
 using Windows.UI.Core;
-using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using VLC_WINRT.Common;
-using VLC_WINRT.Utility.Helpers;
 using VLC_WINRT.Utility.Helpers.MusicLibrary;
 using VLC_WINRT.Utility.Services.RunTime;
 using VLC_WINRT.ViewModels;

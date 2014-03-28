@@ -8,11 +8,7 @@
  **********************************************************************/
 
 using System;
-using System.Threading.Tasks;
-using VLC_WINRT.Utility.Services.Interface;
-using VLC_WINRT.Utility.Services.RunTime;
 using Windows.Media;
-using Windows.Storage;
 
 
 namespace VLC_WINRT.Utility.Services.Interface

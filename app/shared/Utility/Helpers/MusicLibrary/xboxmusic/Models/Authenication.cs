@@ -7,7 +7,6 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
-using System;
 using Newtonsoft.Json;
 
 namespace VLC_WINRT.Utility.Helpers.MusicLibrary.xboxmusic.Models

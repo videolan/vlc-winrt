@@ -11,7 +11,6 @@ using Autofac;
 using VLC_WINRT.Utility.Services.Interface;
 using VLC_WINRT.Utility.Services.RunTime;
 using DesignTime = VLC_WINRT.Utility.Services.DesignTime;
-using VLC_WINRT.ViewModels;
 using VLC_WINRT.ViewModels.MainPage;
 using VLC_WINRT.ViewModels.MainPage.PlayMusic;
 using VLC_WINRT.ViewModels.PlayVideo;
@@ -21,7 +20,7 @@ using VLC_WINRT.Views;
 using VLC_WINRT.ViewModels.Settings;
 #endif
 #if WINDOWS_PHONE_APP
-using VLC_WINPRT.Views;
+
 #endif
 
 namespace VLC_WINRT.Common

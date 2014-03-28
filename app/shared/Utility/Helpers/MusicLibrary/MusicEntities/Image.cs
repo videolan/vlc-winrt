@@ -7,7 +7,6 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
-using VLC_WINRT.Model;
 using VLC_WINRT.Utility.Helpers.MusicLibrary.LastFm;
 
 namespace VLC_WINRT.Utility.Helpers.MusicLibrary.MusicEntities

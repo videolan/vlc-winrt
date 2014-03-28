@@ -9,13 +9,12 @@
 
 using System;
 using VLC_WINRT.Common;
-using VLC_WINRT.Utility.Services.RunTime;
 using VLC_WINRT.ViewModels;
 #if NETFX_CORE
 using VLC_WINRT.Views;
 #endif
 #if WINDOWS_PHONE_APP
-using VLC_WINPRT.Views;
+
 #endif
 
 namespace VLC_WINRT.Utility.Commands

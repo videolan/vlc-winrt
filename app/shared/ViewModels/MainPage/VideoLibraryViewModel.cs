@@ -13,20 +13,13 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Linq;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Data;
 using VLC_WINRT.Common;
 using VLC_WINRT.Utility.Commands;
-using Windows.Foundation;
 using Windows.Storage;
 using Windows.Storage.Search;
-using Windows.System.Threading;
-using VLC_WINRT.Utility.Helpers;
-
 using Panel = VLC_WINRT.Model.Panel;
 #if WINDOWS_PHONE_APP
-using VLC_WINPRT;
-using VLC_WINPRT.Views;
+
 #endif
 #if NETFX_CORE
 using VLC_WINRT.Views.Controls.MainPage;

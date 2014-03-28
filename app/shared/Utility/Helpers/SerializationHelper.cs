@@ -16,7 +16,6 @@ using System.Threading.Tasks;
 using System.Xml.Serialization;
 using Windows.Storage;
 using Windows.Storage.Streams;
-using Windows.UI.Popups;
 using Newtonsoft.Json;
 
 namespace VLC_WINRT.Utility.Helpers

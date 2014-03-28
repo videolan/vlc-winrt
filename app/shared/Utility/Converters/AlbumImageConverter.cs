@@ -10,10 +10,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.UI.Xaml.Data;
-using VLC_WINRT.Model;
 using Image = VLC_WINRT.Utility.Helpers.MusicLibrary.MusicEntities.Image;
 
 namespace VLC_WINRT.Utility.Converters

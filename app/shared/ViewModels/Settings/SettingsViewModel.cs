@@ -7,19 +7,8 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Threading.Tasks;
-using Windows.ApplicationModel.Resources;
-using Windows.Storage;
-using Windows.Storage.AccessCache;
-using VLC_WINRT.Common;
-using VLC_WINRT.Model;
-using VLC_WINRT.Utility.Commands;
-using VLC_WINRT.Utility.Commands.MainPage;
-using VLC_WINRT.Utility.Helpers;
-using Windows.UI.Xaml.Navigation;
+
 #if WINDOWS_PHONE_APP
 using VLC_WINPRT;
 #endif

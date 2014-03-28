@@ -7,26 +7,16 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
-using Autofac;
 using System;
 using System.Diagnostics;
-using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Resources;
-using Windows.Media;
 using Windows.Storage;
-using Windows.System.Display;
-using Windows.UI.Core;
 using Windows.UI.Notifications;
-using Windows.UI.Xaml;
-using VLC_WINRT.Utility.Commands;
-using VLC_WINRT.Utility.Commands.MusicPlayer;
-using VLC_WINRT.Utility.Helpers;
 using VLC_WINRT.Utility.Services.RunTime;
 using VLC_WINRT.Utility.Services.Interface;
 using VLC_WINRT.Common;
-using Windows.UI.Xaml.Navigation;
 
 namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
 {

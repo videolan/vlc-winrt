@@ -9,8 +9,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using VLC_WINRT.Model;
 using VLC_WINRT.Utility.Helpers.MusicLibrary.LastFm;
 
 namespace VLC_WINRT.Utility.Helpers.MusicLibrary.MusicEntities

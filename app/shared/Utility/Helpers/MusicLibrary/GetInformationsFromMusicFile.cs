@@ -10,9 +10,6 @@
 using System;
 using System.Threading.Tasks;
 using Windows.Storage;
-using Windows.Storage.FileProperties;
-using Windows.Storage.Search;
-using VLC_WINRT.Utility.DataRepository;
 using VLC_WINRT.ViewModels.MainPage;
 
 namespace VLC_WINRT.Utility.Helpers.MusicLibrary
