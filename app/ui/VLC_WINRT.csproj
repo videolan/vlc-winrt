@@ -395,7 +395,7 @@
       <Link>ViewModels\MainPage\MediaViewModel.cs</Link>
     </Compile>
     <Compile Include="..\shared\ViewModels\MainPage\MusicLibraryViewModel.cs">
-      <Link>ViewModels\MainPage\MusicLibraryViewModel.cs</Link>
+      <Link>ViewModels\MainPage\PlayMusic\MusicLibraryViewModel.cs</Link>
     </Compile>
     <Compile Include="..\shared\ViewModels\MainPage\PlayMusic\MusicPlayerViewModel.cs">
       <Link>ViewModels\MainPage\PlayMusic\MusicPlayerViewModel.cs</Link>
@@ -513,6 +513,9 @@
     </Compile>
     <Compile Include="Views\RootPage.xaml.cs">
       <DependentUpon>RootPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SettingsPage.xaml.cs">
+      <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SpecialThanks.xaml.cs">
       <DependentUpon>SpecialThanks.xaml</DependentUpon>
@@ -1147,6 +1150,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\RootPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SettingsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
