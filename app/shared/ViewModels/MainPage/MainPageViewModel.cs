@@ -28,7 +28,7 @@ namespace VLC_WINRT.ViewModels.MainPage
     public class MainPageViewModel : NavigateableViewModel
     {
         private ObservableCollection<Panel> _panels = new ObservableCollection<Panel>();
-        private ObservableCollection<Panel> _secondaryPanels = new ObservableCollection<Panel>(); 
+        private ObservableCollection<Panel> _secondaryPanels = new ObservableCollection<Panel>();
         private ObservableCollection<VideoLibraryViewModel> _dlnaVMs =
             new ObservableCollection<VideoLibraryViewModel>();
         private ObservableCollection<BackItem> _backers = new ObservableCollection<BackItem>();
@@ -154,7 +154,7 @@ namespace VLC_WINRT.ViewModels.MainPage
             get { return _secondaryPanels; }
             set { SetProperty(ref _secondaryPanels, value); }
         }
-        
+
         public VideoLibraryViewModel VideoVM
         {
             get { return _videoVM; }

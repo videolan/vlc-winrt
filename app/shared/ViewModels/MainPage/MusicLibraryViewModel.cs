@@ -164,7 +164,15 @@ namespace VLC_WINRT.ViewModels.MainPage
 
             // TODO: Find a better way to check for new items in the library.
             // This checks for new folders. If there are more or less then what was there before, it will index again.
-            NbOfFiles = (await KnownVLCLocation.MusicLibrary.GetItemsAsync()).Count;
+            try
+            {
+                NbOfFiles = (await KnownVLCLocation.MusicLibrary.GetItemsAsync()).Count;
+            }
+            catch (UnauthorizedAccessException unauthorizedE)
+            {
+                Debug.WriteLine("Access to Music Library non granted. Maybe doesn't exit.");
+            }
+
             bool isMusicLibraryChanged = await IsMusicLibraryChanged();
             if (isMusicLibraryChanged)
             {
@@ -177,91 +185,86 @@ namespace VLC_WINRT.ViewModels.MainPage
 
         private void LoadFavoritesRandomAlbums()
         {
-            foreach (AlbumItem album in Artist.SelectMany(artist => artist.Albums))
+            try
             {
-                if (album.Favorite)
+                foreach (AlbumItem album in Artist.SelectMany(artist => artist.Albums))
                 {
-                    RandomAlbums.Add(album);
-                    FavoriteAlbums.Add(album);
-                    OnPropertyChanged("FavoriteAlbums");
+                    if (album.Favorite)
+                    {
+                        RandomAlbums.Add(album);
+                        FavoriteAlbums.Add(album);
+                        OnPropertyChanged("FavoriteAlbums");
+                    }
+
+                    if (RandomAlbums.Count < 12)
+                    {
+                        if (!album.Favorite)
+                            RandomAlbums.Add(album);
+                    }
+                    foreach (TrackItem trackItem in album.Tracks)
+                    {
+                        Track.Add(trackItem);
+                    }
                 }
 
-                if (RandomAlbums.Count < 12)
-                {
-                    if (!album.Favorite)
-                        RandomAlbums.Add(album);
-                }
-                foreach (TrackItem trackItem in album.Tracks)
-                {
-                    Track.Add(trackItem);
-                }
+                OnPropertyChanged("Artist");
+                OnPropertyChanged("Albums");
+                OnPropertyChanged("Tracks");
             }
-            OnPropertyChanged("Artist");
-            OnPropertyChanged("Albums");
-            OnPropertyChanged("Tracks");
+            catch (Exception)
+            {
+                Debug.WriteLine("Error selecting random albums.");
+            }
         }
 
         private async Task StartIndexing()
         {
-            // TODO: Rewrite function.
-            _artistDataRepository = new ArtistDataRepository();
-            var musicFolder = await
-                KnownVLCLocation.MusicLibrary.GetFoldersAsync(CommonFolderQuery.GroupByArtist);
-            TimeSpan period = TimeSpan.FromSeconds(10);
-
-            _periodicTimer = ThreadPoolTimer.CreatePeriodicTimer(async (source) =>
+            StorageFolder[] musicFolders = new StorageFolder[]
             {
-                if (Locator.MusicLibraryVM.Track.Count > _numberOfTracks)
+                KnownVLCLocation.MusicLibrary,
+            };
+            _artistDataRepository = new ArtistDataRepository();
+            var musicFiles = await musicFolders[0].GetFilesAsync(CommonFileQuery.DefaultQuery);
+            foreach (var item in musicFiles)
+            {
+                MusicProperties properties = await item.Properties.GetMusicPropertiesAsync();
+                ArtistItem artist = await _artistDataRepository.LoadViaArtistName(properties.Artist);
+                if (artist == null)
                 {
-                    await DispatchHelper.InvokeAsync(() => Locator.MusicLibraryVM._numberOfTracks = Track.Count);
+                    artist = new ArtistItem();
+                    artist.Name = properties.Artist;
+                    await _artistDataRepository.Add(artist);
                 }
-                else
+
+                AlbumItem album = await _albumDataRepository.LoadAlbumViaName(artist.Id, properties.Album);
+                if (album == null)
                 {
-                    _periodicTimer.Cancel();
-                    await DispatchHelper.InvokeAsync(() =>
-                    {
-                        IsLoaded = true;
-                        IsBusy = false;
-                    });
+                    album = new AlbumItem
+                    { 
+                        Name = properties.Album,
+                        Artist = properties.Artist,
+                        ArtistId = artist.Id,
+                        Favorite = false,
+                    };
+                    await _albumDataRepository.Add(album);
                 }
-            }, period);
 
-            using (await _artistLock.LockAsync())
-                foreach (var artistItem in musicFolder)
+                TrackItem track = new TrackItem()
                 {
-                    IsMusicLibraryEmpty = false;
-                    MusicProperties artistProperties = null;
-                    try
-                    {
-                        artistProperties = await artistItem.Properties.GetMusicPropertiesAsync();
-                    }
-                    catch
-                    {
-                        Debug.WriteLine("Could not get artist item properties.");
-                    }
-
-                    // If we could not get the artist information, skip it and continue.
-                    if (artistProperties == null || artistProperties.Artist == string.Empty)
-                    {
-                        continue;
-                    }
-
-                    StorageFolderQueryResult albumQuery =
-                        artistItem.CreateFolderQuery(CommonFolderQuery.GroupByAlbum);
-
-                    // Check if artist is in the database. If so, use it.
-                    ArtistItem artist = await _artistDataRepository.LoadViaArtistName(artistProperties.Artist);
-                    if (artist == null)
-                    {
-                        artist = new ArtistItem { Name = artistProperties.Artist };
-                        Artist.Add(artist);
-                        await _artistDataRepository.Add(artist);
-                    }
-                    await artist.Initialize(albumQuery, artist);
-                    OnPropertyChanged("Track");
-                    OnPropertyChanged("Artist");
-                }
-            OnPropertyChanged("Artist");
+                    AlbumId = album.Id,
+                    AlbumName = album.Name,
+                    ArtistId = artist.Id,
+                    ArtistName = artist.Name,
+                    CurrentPosition = 0,
+                    Duration = properties.Duration,
+                    Favorite = false,
+                    Name = properties.Title,
+                    Path = item.Path,
+                    Index = (int)properties.TrackNumber,
+                };
+                await _trackDataRepository.Add(track);
+            }
+            LoadFromDatabase();
         }
 
         private async Task LoadFromDatabase()
@@ -274,11 +277,24 @@ namespace VLC_WINRT.ViewModels.MainPage
                     var albums = await _albumDataRepository.LoadAlbumsFromId(artistItem.Id);
                     foreach (var album in albums)
                     {
-                        album.Tracks = await _trackDataRepository.LoadTracksByAlbumId(album.Id);
+                        var tracks = await _trackDataRepository.LoadTracksByAlbumId(album.Id);
+                        var orderedTracks = album.Tracks.OrderBy(x => x.Index);
+                        foreach (var track in tracks)
+                        {
+                            album.Tracks.Add(track);
+                        }
                     }
-                    artistItem.Albums = albums;
+                    var orderedAlbums = albums.OrderBy(x => x.Name);
+                    foreach (var album in orderedAlbums)
+                    {
+                        artistItem.Albums.Add(album);
+                    }
                 }
-                Artist = artists;
+                var orderedArtists = artists.OrderBy(x => x.Name);
+                foreach (var artist in orderedArtists)
+                {
+                    Artist.Add(artist);
+                }
             }
             catch (Exception)
             {
@@ -311,7 +327,7 @@ namespace VLC_WINRT.ViewModels.MainPage
 
         async Task<bool> IsMusicLibraryChanged()
         {
-            var doesDbExists = await DoesFileExistHelper.DoesFileExistAsync("vlc.sqlite");
+            var doesDbExists = await DoesFileExistHelper.DoesFileExistAsync("mediavlc.sqlite");
             if (doesDbExists)
             {
                 if (App.LocalSettings.ContainsKey("nbOfFiles"))
@@ -465,45 +481,6 @@ namespace VLC_WINRT.ViewModels.MainPage
             {
                 get { return _isFavorite; }
                 set { SetProperty(ref _isFavorite, value); }
-            }
-
-            public async Task Initialize(StorageFolderQueryResult albumQueryResult, ArtistItem artist)
-            {
-                await LoadAlbums(albumQueryResult, artist.Id);
-            }
-
-            private async Task LoadAlbums(StorageFolderQueryResult albumQueryResult, int artistId)
-            {
-                IReadOnlyList<StorageFolder> albumFolders = null;
-
-                try
-                {
-                    albumFolders = await albumQueryResult.GetFoldersAsync();
-                }
-                catch (Exception e)
-                {
-                    Debug.WriteLine(e.ToString());
-                }
-                if (albumFolders != null)
-                {
-                    foreach (var item in albumFolders)
-                    {
-                        AlbumItem albumItem = await GetInformationsFromMusicFile.GetAlbumItemFromFolder(item, albumQueryResult, artistId);
-                        await albumItem.GetCover();
-
-                        // Album is in database, update with cover.
-                        await _albumDataRepository.Update(albumItem);
-                        await DispatchHelper.InvokeAsync(() =>
-                        {
-                            Albums.Add(albumItem);
-                            if (Locator.MusicLibraryVM.RandomAlbums.Count < 12)
-                            {
-                                Locator.MusicLibraryVM.RandomAlbums.Add(albumItem);
-                            }
-                        });
-                        Locator.MusicLibraryVM.AlbumCover.Add(albumItem.Picture);
-                    }
-                }
             }
         }
 
@@ -684,29 +661,6 @@ namespace VLC_WINRT.ViewModels.MainPage
                     {
                         Picture = "ms-appdata:///local/" + Artist + "_" + Name + ".jpg";
                         OnPropertyChanged("Picture");
-                    });
-                }
-            }
-
-            public async Task LoadTracks(IReadOnlyList<StorageFile> tracks)
-            {
-                if (tracks == null)
-                    return;
-                int i = 0;
-                foreach (var track in tracks)
-                {
-                    i++;
-                    var trackItem = await GetInformationsFromMusicFile.GetTrackItemFromFile(track, Artist, Name, i, ArtistId, Id);
-                    var databaseTrack = await _trackDataRepository.LoadTrack(ArtistId, Id, trackItem.Name);
-                    if (databaseTrack == null)
-                    {
-                        await _trackDataRepository.Add(trackItem);
-                        Tracks.Add(trackItem);
-                    }
-                    await DispatchHelper.InvokeAsync(() =>
-                    {
-                        Locator.MusicLibraryVM.Track.Add(trackItem);
-                        OnPropertyChanged("Track");
                     });
                 }
             }

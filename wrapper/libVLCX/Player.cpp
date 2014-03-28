@@ -23,7 +23,6 @@
 #include "Player.h"
 #include "Helpers.h"
 #include <map>
-
 using namespace libVLCX;
 using namespace Windows::Graphics::Display;
 
