@@ -228,41 +228,44 @@ namespace VLC_WINRT.ViewModels.MainPage
             foreach (var item in musicFiles)
             {
                 MusicProperties properties = await item.Properties.GetMusicPropertiesAsync();
-                ArtistItem artist = await _artistDataRepository.LoadViaArtistName(properties.Artist);
-                if (artist == null)
+                if (properties != null)
                 {
-                    artist = new ArtistItem();
-                    artist.Name = properties.Artist;
-                    await _artistDataRepository.Add(artist);
-                }
+                    ArtistItem artist = await _artistDataRepository.LoadViaArtistName(properties.Artist);
+                    if (artist == null)
+                    {
+                        artist = new ArtistItem();
+                        artist.Name = string.IsNullOrEmpty(properties.Artist) ? "Unknown artist" : properties.Artist;
+                        await _artistDataRepository.Add(artist);
+                    }
 
-                AlbumItem album = await _albumDataRepository.LoadAlbumViaName(artist.Id, properties.Album);
-                if (album == null)
-                {
-                    album = new AlbumItem
-                    { 
-                        Name = properties.Album,
-                        Artist = properties.Artist,
+                    AlbumItem album = await _albumDataRepository.LoadAlbumViaName(artist.Id, properties.Album);
+                    if (album == null)
+                    {
+                        album = new AlbumItem
+                        {
+                            Name = string.IsNullOrEmpty(properties.Album) ? "Unknown album" : properties.Album,
+                            Artist = string.IsNullOrEmpty(properties.Artist) ? "Unknown artist" : properties.Artist,
+                            ArtistId = artist.Id,
+                            Favorite = false,
+                        };
+                        await _albumDataRepository.Add(album);
+                    }
+
+                    TrackItem track = new TrackItem()
+                    {
+                        AlbumId = album.Id,
+                        AlbumName = album.Name,
                         ArtistId = artist.Id,
+                        ArtistName = artist.Name,
+                        CurrentPosition = 0,
+                        Duration = properties.Duration,
                         Favorite = false,
+                        Name = string.IsNullOrEmpty(properties.Title) ? "Unknown track" : properties.Title,
+                        Path = item.Path,
+                        Index = (int)properties.TrackNumber,
                     };
-                    await _albumDataRepository.Add(album);
+                    await _trackDataRepository.Add(track);
                 }
-
-                TrackItem track = new TrackItem()
-                {
-                    AlbumId = album.Id,
-                    AlbumName = album.Name,
-                    ArtistId = artist.Id,
-                    ArtistName = artist.Name,
-                    CurrentPosition = 0,
-                    Duration = properties.Duration,
-                    Favorite = false,
-                    Name = properties.Title,
-                    Path = item.Path,
-                    Index = (int)properties.TrackNumber,
-                };
-                await _trackDataRepository.Add(track);
             }
             LoadFromDatabase();
         }
