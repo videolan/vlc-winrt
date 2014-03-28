@@ -20,6 +20,7 @@ using VLC_WINRT.ViewModels.PlayVideo;
 #if WINDOWS_PHONE_APP
 using VLC_WINPRT;
 #endif
+using VLC_WINRT.ViewModels.Settings;
 
 namespace VLC_WINRT.ViewModels
 {

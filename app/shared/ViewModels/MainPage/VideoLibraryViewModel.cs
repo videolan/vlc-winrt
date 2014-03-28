@@ -13,10 +13,13 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Linq;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Data;
 using VLC_WINRT.Common;
 using VLC_WINRT.Utility.Commands;
 using Windows.Storage;
 using Windows.Storage.Search;
+using VLC_WINRT.Utility.Helpers;
 using Panel = VLC_WINRT.Model.Panel;
 #if WINDOWS_PHONE_APP
 

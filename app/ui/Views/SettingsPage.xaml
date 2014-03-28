@@ -54,11 +54,13 @@
                             <Run x:Uid="CustomMusicFolder" Foreground="WhiteSmoke"/>
                         </TextBlock>
                         <Grid Grid.Row="1">
-                            <ListView>
+                            <ListView ItemsSource="{Binding MusicFolders}">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <TextBlock>
-                                            <Run Text="" />
+                                            <Run Text="{Binding DisplayName}" />
+                                            <LineBreak />
+                                            <Run Text="{Binding Mru}" />
                                         </TextBlock>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>

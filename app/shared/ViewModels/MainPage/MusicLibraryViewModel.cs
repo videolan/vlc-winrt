@@ -7,6 +7,8 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Data;
 using Newtonsoft.Json;
 using SQLite;
 using System;

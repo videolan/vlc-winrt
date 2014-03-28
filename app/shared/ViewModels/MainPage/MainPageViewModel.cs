@@ -76,6 +76,7 @@ namespace VLC_WINRT.ViewModels.MainPage
             // Make sure we're only initializing once.
             if (e.NavigationMode == NavigationMode.New)
             {
+                await Locator.SettingsVM.PopulateCustomFolders();
                 await InitVideoVM();
                 await _lastViewedVM.Initialize();
 

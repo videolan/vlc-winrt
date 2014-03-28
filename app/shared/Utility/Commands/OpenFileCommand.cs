@@ -7,9 +7,12 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
+using Windows.Media;
+using Windows.UI.Xaml.Media.Animation;
 using Autofac;
 using System;
 using VLC_WINRT.Common;
+using VLC_WINRT.Utility.Helpers;
 using VLC_WINRT.Utility.Services.RunTime;
 using VLC_WINRT.ViewModels;
 using VLC_WINRT.ViewModels.MainPage;

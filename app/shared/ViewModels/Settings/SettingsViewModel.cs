@@ -8,10 +8,13 @@
  **********************************************************************/
 
 using System.Collections.ObjectModel;
-
 #if WINDOWS_PHONE_APP
 using VLC_WINPRT;
 #endif
+using Windows.Storage;
+using Windows.UI.Xaml;
+using VLC_WINRT.Utility.Helpers;
+
 namespace VLC_WINRT.ViewModels.Settings
 {
     public class SettingsViewModel : NavigateableViewModel
@@ -33,7 +36,51 @@ namespace VLC_WINRT.ViewModels.Settings
         
         public SettingsViewModel()
         {
+            _musicFolders = new ObservableCollection<CustomFolder>();
+            _videoFolders = new ObservableCollection<CustomFolder>();
+        }
 
+        public void PopulateCustomFolders()
+        {
+            if (ApplicationData.Current.LocalSettings.Containers.ContainsKey("customVideoFolders"))
+            {
+                foreach (var folder in ApplicationData.Current.LocalSettings.Containers["customVideoFolders"].Values)
+                {
+                    VideoFolders.Add(new CustomFolder()
+                    {
+                        DisplayName = folder.Key,
+                        Mru = folder.Value.ToString(),
+                    });
+                }
+            }
+            else
+            {
+                VideoFolders.Add(new CustomFolder()
+                {
+                    DisplayName = "Video Library",
+                    Mru = KnownFolders.VideosLibrary.Path,
+                });
+            }
+
+            if (ApplicationData.Current.LocalSettings.Containers.ContainsKey("customAudioFolders"))
+            {
+                foreach (var folder in ApplicationData.Current.LocalSettings.Containers["customAudioFolders"].Values)
+                {
+                    MusicFolders.Add(new CustomFolder()
+                    {
+                        DisplayName = folder.Key,
+                        Mru = folder.Value.ToString(),
+                    });
+                }
+            }
+            else
+            {
+                MusicFolders.Add(new CustomFolder()
+                {
+                    DisplayName = "Music Library",
+                    Mru = KnownFolders.MusicLibrary.Path,
+                });
+            }
         }
     }
 

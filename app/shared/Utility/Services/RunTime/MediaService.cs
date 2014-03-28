@@ -10,6 +10,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Windows.Media;
 using VLC_WINRT.Common;
 using VLC_WINRT.Utility.Services.Interface;
 using Windows.Foundation;
