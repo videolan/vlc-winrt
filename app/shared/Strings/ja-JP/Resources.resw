@@ -144,6 +144,12 @@
   <data name="CurrentFeatures.Text" xml:space="preserve">
     <value>Current Features:</value>
   </data>
+  <data name="CustomMusicFolder.Text" xml:space="preserve">
+    <value> custom music folders</value>
+  </data>
+  <data name="CustomVideoFolder.Text" xml:space="preserve">
+    <value> custom video folders</value>
+  </data>
   <data name="DecreaseSpeed.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
     <value>速度を下げる</value>
   </data>
@@ -272,6 +278,9 @@
   </data>
   <data name="Search.Text" xml:space="preserve">
     <value>検索</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Settings</value>
   </data>
   <data name="SimilarArtists.Header" xml:space="preserve">
     <value>似ているアーティスト</value>

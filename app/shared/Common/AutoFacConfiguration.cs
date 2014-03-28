@@ -18,6 +18,7 @@ using VLC_WINRT.ViewModels.PlayVideo;
 
 #if NETFX_CORE
 using VLC_WINRT.Views;
+using VLC_WINRT.ViewModels.Settings;
 #endif
 #if WINDOWS_PHONE_APP
 using VLC_WINPRT.Views;
@@ -42,6 +43,7 @@ namespace VLC_WINRT.Common
             builder.RegisterType<MainPageViewModel>().SingleInstance();
             builder.RegisterType<MusicLibraryViewModel>().SingleInstance();
             builder.RegisterType<MusicPlayerViewModel>().SingleInstance();
+            builder.RegisterType<SettingsViewModel>().SingleInstance();
 
             // Register Services
             builder.RegisterType<HistoryService>().SingleInstance();

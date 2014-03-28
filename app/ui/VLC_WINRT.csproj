@@ -424,6 +424,9 @@
     <Compile Include="..\shared\ViewModels\PlayVideo\PlayVideoViewModel.cs">
       <Link>ViewModels\PlayVideo\PlayVideoViewModel.cs</Link>
     </Compile>
+    <Compile Include="..\shared\ViewModels\Settings\SettingsViewModel.cs">
+      <Link>ViewModels\Settings\SettingsViewModel.cs</Link>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
@@ -540,9 +543,9 @@
     <PRIResource Include="..\shared\Strings\ja-JP\Resources.resw">
       <Link>Strings\ja-JP\Resources.resw</Link>
     </PRIResource>
-    <None Include="..\shared\backers.csv">
-      <Link>backers.csv</Link>
-    </None>
+    <Content Include="backers.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Common\ReadMe.txt" />
     <Content Include="Assets\Background.jpg" />
     <Content Include="Assets\GreyPylon\280x156.jpg" />

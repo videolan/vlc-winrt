@@ -38,20 +38,23 @@ namespace VLC_WINRT.Views
             var resourceLoader = new ResourceLoader();
             var privacyCommand = new SettingsCommand("privacy", resourceLoader.GetString("PrivacyStatement"),
                 async h => await Launcher.LaunchUriAsync(new Uri("http://videolan.org/vlc/privacy.html")));
+            
+            var specialThanks = new SettingsCommand("specialThanks", resourceLoader.GetString("SpecialThanks"),
+                command =>
+                {
+                    NavigationService.NavigateTo(typeof(SpecialThanks));
+                });
+
+            var settings = new SettingsCommand("settings", resourceLoader.GetString("Settings"),
+                command =>
+                {
+                    NavigationService.NavigateTo(typeof(SettingsPage));
+                });
 
             args.Request.ApplicationCommands.Clear();
             args.Request.ApplicationCommands.Add(privacyCommand);
-
-            //SettingsCommand about = new SettingsCommand("AboutID", "About", command =>
-            //{
-            //    AboutTheApp privacyPolicy = new AboutTheApp();
-            //    privacyPolicy.Show();
-            //});
-            //args.Request.ApplicationCommands.Add(about);
-
-            var specialThanks = new SettingsCommand("specialThanks", resourceLoader.GetString("SpecialThanks"), 
-                command => NavigationService.NavigateTo(typeof(SpecialThanks)));
             args.Request.ApplicationCommands.Add(specialThanks);
+            args.Request.ApplicationCommands.Add(settings);
         }
 
         public void NavigateFrom()

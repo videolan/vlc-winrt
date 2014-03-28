@@ -26,5 +26,10 @@ namespace VLC_WINRT.Views
         {
             this.InitializeComponent();
         }
+
+        private void OpenSearchPane(object sender, RoutedEventArgs e)
+        {
+            App.RootPage.SearchPane.Show();
+        }
     }
 }

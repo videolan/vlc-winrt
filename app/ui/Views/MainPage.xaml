@@ -192,11 +192,6 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <!--<HyperlinkButton Grid.Row="0" HorizontalAlignment="Right"  Foreground="#FFFF8402" Command="{Binding ShowAppBarCommand}">
-            <HyperlinkButton.Content>
-                <TextBlock Text="Open File ..."></TextBlock>
-            </HyperlinkButton.Content>
-        </HyperlinkButton>-->
         <Grid Grid.Row="0" Margin="50,40,0,0" x:Name="HeaderGrid">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
