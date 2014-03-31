@@ -59,7 +59,7 @@ namespace VLC_WINRT.ViewModels.MainPage
 
         private StopVideoCommand _goBackCommand;
         private bool _isLoaded;
-        private bool _isBusy;
+        private bool _isBusy = false;
         private bool _isMusicLibraryEmpty = true;
 
         // XBOX Music Stuff
@@ -211,6 +211,7 @@ namespace VLC_WINRT.ViewModels.MainPage
                 OnPropertyChanged("IsBusy");
                 OnPropertyChanged("IsLoaded");
             });
+
             _artistDataRepository = new ArtistDataRepository();
             _artistDataRepository.Initialize();
 

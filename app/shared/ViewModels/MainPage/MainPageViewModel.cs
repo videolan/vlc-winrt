@@ -67,29 +67,27 @@ namespace VLC_WINRT.ViewModels.MainPage
             SecondaryPanels.Add(new Panel(resourceLoader.GetString("ExternalStorage"), 3, 0.4));
             SecondaryPanels.Add(new Panel(resourceLoader.GetString("MediaServers"), 4, 0.4));
             _goToPanelCommand = new GoToPanelCommand();
+
+            Initialize();
         }
 
-        public override async Task OnNavigatedTo(NavigationEventArgs e)
+        public async Task Initialize()
         {
-            // Make sure we're only initializing once.
-            if (e.NavigationMode == NavigationMode.New)
-            {
-                await Locator.SettingsVM.PopulateCustomFolders();
-                await InitVideoVM();
-                await _lastViewedVM.Initialize();
+            await Locator.SettingsVM.PopulateCustomFolders();
+            await InitVideoVM();
+            await _lastViewedVM.Initialize();
 
-                var dlnaFolder = await KnownVLCLocation.MediaServers.GetFoldersAsync();
-                var tasks = new List<Task>();
-                DLNAVMs.Clear();
-                //foreach (StorageFolder storageFolder in dlnaFolder)
-                //{
-                //    StorageFolder newFolder = storageFolder;
-                //    var videoLib = new VideoLibraryViewModel(newFolder);
-                //    tasks.Add(videoLib.GetMedia());
-                //    DLNAVMs.Add(videoLib);
-                //}
-                await Task.WhenAll(tasks);
-            }
+            var dlnaFolder = await KnownVLCLocation.MediaServers.GetFoldersAsync();
+            var tasks = new List<Task>();
+            DLNAVMs.Clear();
+            //foreach (StorageFolder storageFolder in dlnaFolder)
+            //{
+            //    StorageFolder newFolder = storageFolder;
+            //    var videoLib = new VideoLibraryViewModel(newFolder);
+            //    tasks.Add(videoLib.GetMedia());
+            //    DLNAVMs.Add(videoLib);
+            //}
+            await Task.WhenAll(tasks);
         }
 
         public async Task InitVideoVM()
