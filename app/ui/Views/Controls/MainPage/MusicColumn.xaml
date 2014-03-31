@@ -187,39 +187,6 @@
                             </GridView>
                         </SemanticZoom.ZoomedInView>
                     </SemanticZoom>
-                    <!--<Border Width="1" Grid.Column="1" Background="#663E3E3E"/>
-                    <ListView Grid.Column="2" Width="0" IsSwipeEnabled="False" Margin="10,0,0,0" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" x:Name="AlbumPlaylistListView" SelectionMode="None" FontFamily="Segoe UI" >
-                        <ListView.HeaderTemplate>
-                            <DataTemplate>
-                                <StackPanel>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Button Content="" FontSize="24" Style="{StaticResource ModernAppBarButtonStyle}" Command="{Binding PlayAlbum}" CommandParameter="{Binding}" Margin="0,0,10,0"/>
-                                        <Button Template="{StaticResource MainButtonStyle}" Command="{Binding PlayAlbum}" CommandParameter="{Binding}">
-                                            <TextBlock TextWrapping="NoWrap" TextTrimming="WordEllipsis">
-                                            <Run Text="Play" FontWeight="Light" FontSize="20"/>
-                                            <Run Text="{Binding Name}" FontWeight="Light" FontSize="20"/>
-                                            <LineBreak />
-                                            <Run Text="{Binding Tracks.Count}" Foreground="#B2FFFFFF" FontWeight="SemiBold" FontSize="12"/>
-                                            <Run Text="TRACKS" Foreground="#B2FFFFFF" FontFamily="Segoe UI" FontWeight="SemiBold" FontSize="12"/>
-                                            </TextBlock>
-                                        </Button>
-                                    </StackPanel>
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListView.HeaderTemplate>
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <Button Template="{StaticResource MainButtonStyle}"
-                                Command="{Binding PlayTrack}"
-                                CommandParameter="{Binding}">
-                                    <StackPanel Orientation="Horizontal" Width="300">
-                                        <TextBlock Text="{Binding Index}" FontSize="22" FontWeight="SemiBold" />
-                                        <TextBlock Text="{Binding Name}" VerticalAlignment="Bottom" Margin="5,0,0,2"/>
-                                    </StackPanel>
-                                </Button>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>-->
                 </Grid>
             </Grid>
             <Grid x:Name="TracksPanel" >
