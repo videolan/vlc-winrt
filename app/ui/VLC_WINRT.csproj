@@ -118,6 +118,12 @@
     <Compile Include="..\shared\Utility\Commands\ActionCommand.cs">
       <Link>Utility\Commands\ActionCommand.cs</Link>
     </Compile>
+    <Compile Include="..\shared\Utility\Commands\AddCustomMusicFolder.cs">
+      <Link>Utility\Commands\AddCustomMusicFolder.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Commands\AddCustomVideoFolder.cs">
+      <Link>Utility\Commands\AddCustomVideoFolder.cs</Link>
+    </Compile>
     <Compile Include="..\shared\Utility\Commands\ClearHistoryCommand.cs">
       <Link>Utility\Commands\ClearHistoryCommand.cs</Link>
     </Compile>
@@ -153,9 +159,6 @@
     </Compile>
     <Compile Include="..\shared\Utility\Commands\PlayTrackComand.cs">
       <Link>Utility\Commands\PlayTrackComand.cs</Link>
-    </Compile>
-    <Compile Include="..\shared\Utility\Commands\SelectDefaultFolderForIndexingVideoCommand.cs">
-      <Link>Utility\Commands\SelectDefaultFolderForIndexingVideoCommand.cs</Link>
     </Compile>
     <Compile Include="..\shared\Utility\Commands\StopVideoCommand.cs">
       <Link>Utility\Commands\StopVideoCommand.cs</Link>

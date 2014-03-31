@@ -13,6 +13,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Linq;
+using Windows.Storage.AccessCache;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 using VLC_WINRT.Common;
@@ -20,6 +21,7 @@ using VLC_WINRT.Utility.Commands;
 using Windows.Storage;
 using Windows.Storage.Search;
 using VLC_WINRT.Utility.Helpers;
+using VLC_WINRT.ViewModels.Settings;
 using Panel = VLC_WINRT.Model.Panel;
 #if WINDOWS_PHONE_APP
 
@@ -33,26 +35,16 @@ namespace VLC_WINRT.ViewModels.MainPage
     public class VideoLibraryViewModel : BindableBase
     {
         private ObservableCollection<Panel> _panels = new ObservableCollection<Panel>();
-        private bool _hasNoMedia;
-        private StorageFolder _location;
+        private bool _hasNoMedia = true;
         private ObservableCollection<MediaViewModel> _media;
         private ObservableCollection<MediaViewModel> _mediaRandom;
         private IEnumerable<IGrouping<char, MediaViewModel>> _mediaGroupedByAlphabet;
         private PickVideoCommand _pickCommand = new PickVideoCommand();
-        private string _title;
 
-        public VideoLibraryViewModel(StorageFolder location)
+        public VideoLibraryViewModel()
         {
             Media = new ObservableCollection<MediaViewModel>();
             MediaRandom = new ObservableCollection<MediaViewModel>();
-
-            Location = location;
-
-            Title = location.DisplayName;
-            if (!string.IsNullOrEmpty(location.DisplayType))
-                Title += " " + location.DisplayType;
-
-            Title = Title.ToLower();
 
             Panels.Add(new Panel("ALL", 0, 1));
             Panels.Add(new Panel("NEVER SEEN BEFORE", 1, 0.4));
@@ -76,18 +68,6 @@ namespace VLC_WINRT.ViewModels.MainPage
         {
             get { return _hasNoMedia; }
             set { SetProperty(ref _hasNoMedia, value); }
-        }
-
-        public string Title
-        {
-            get { return _title; }
-            set { SetProperty(ref _title, value); }
-        }
-
-        public StorageFolder Location
-        {
-            get { return _location; }
-            set { SetProperty(ref _location, value); }
         }
 
         public IEnumerable<IGrouping<char, MediaViewModel>> MediaGroupedByAlphabet
@@ -115,43 +95,57 @@ namespace VLC_WINRT.ViewModels.MainPage
 
         public async Task GetMedia()
         {
-            try
+            foreach (CustomFolder folder in Locator.SettingsVM.VideoFolders)
             {
-                IReadOnlyList<StorageFile> files =
-                    await GetMediaFromFolder(_location, CommonFileQuery.OrderByName);
-
-                if (files.Count > 0)
+                try
                 {
-                    await DispatchHelper.InvokeAsync(() => HasNoMedia = false);
-                }
-                else
-                {
-                    await DispatchHelper.InvokeAsync(() => HasNoMedia = true);
-                }
-
-                int j = 0;
-                foreach (StorageFile storageFile in files)
-                {
-                    var mediaVM = new MediaViewModel(storageFile);
-                    await mediaVM.Initialize();
-                    // Get back to UI thread
-                    await DispatchHelper.InvokeAsync(() =>
+                    StorageFolder customVideoFolder;
+                    if (folder.Mru == "Video Library")
                     {
-                        Media.Add(mediaVM);
-                        int i = new Random().Next(0, files.Count - 1);
-                        if (j < 5 && i <= (files.Count - 1) / 2)
+                        customVideoFolder = KnownVLCLocation.VideosLibrary;
+                    }
+                    else
+                    {
+                        customVideoFolder = await StorageApplicationPermissions.FutureAccessList.GetFolderAsync(
+                            folder.Mru);
+                    }
+                    IReadOnlyList<StorageFile> files =
+                        await GetMediaFromFolder(customVideoFolder, CommonFileQuery.OrderByName);
+
+
+                    int j = 0;
+                    foreach (StorageFile storageFile in files)
+                    {
+                        var mediaVM = new MediaViewModel(storageFile);
+                        await mediaVM.Initialize();
+                        // Get back to UI thread
+                        await DispatchHelper.InvokeAsync(() =>
                         {
-                            MediaRandom.Add(mediaVM);
-                            j++;
-                        }
-                        MediaGroupedByAlphabet = Media.OrderBy(x => x.AlphaKey).GroupBy(x => x.AlphaKey);
-                        ExecuteSemanticZoom();
-                    });
+                            Media.Add(mediaVM);
+                            int i = new Random().Next(0, files.Count - 1);
+                            if (j < 5 && i <= (files.Count - 1) / 2)
+                            {
+                                MediaRandom.Add(mediaVM);
+                                j++;
+                            }
+                            MediaGroupedByAlphabet = Media.OrderBy(x => x.AlphaKey).GroupBy(x => x.AlphaKey);
+                            ExecuteSemanticZoom();
+                        });
+                    }
+                }
+                catch (Exception exception)
+                {
+                    Debug.WriteLine("An error occured while indexing a video folder");
                 }
             }
-            catch
+
+            if (Media.Count > 0)
             {
-               
+                DispatchHelper.InvokeAsync(() => HasNoMedia = false);
+            }
+            else
+            {
+                DispatchHelper.InvokeAsync(() => HasNoMedia = true);
             }
         }
 
@@ -172,7 +166,7 @@ namespace VLC_WINRT.ViewModels.MainPage
                 if (collection == null) return;
                 // Collection or Collection View can also be null. In these cases, return.
                 if (collection.View == null) return;
-                if (listviewbase != null) 
+                if (listviewbase != null)
                     listviewbase.ItemsSource = collection.View.CollectionGroups;
                 if (listviewBaseVertical != null)
                     listviewBaseVertical.ItemsSource = collection.View.CollectionGroups;

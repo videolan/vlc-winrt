@@ -16,10 +16,11 @@ using VLC_WINRT.ViewModels;
 #if WINDOWS_PHONE_APP
 using VLC_WINPRT;
 #endif
+using VLC_WINRT.ViewModels.Settings;
 
 namespace VLC_WINRT.Utility.Commands
 {
-    public class SelectDefaultFolderForIndexingVideoCommand : AlwaysExecutableCommand
+    public class AddCustomVideoFolder : AlwaysExecutableCommand
     {
         public async override void Execute(object parameter)
         {
@@ -86,12 +87,17 @@ namespace VLC_WINRT.Utility.Commands
             picker.FileTypeFilter.Add(".wmv");
             picker.FileTypeFilter.Add(".wtv");
             picker.FileTypeFilter.Add(".xesc");
+
             StorageFolder folder = await picker.PickSingleFolderAsync();
 
             if (folder != null)
             {
                 string mru = StorageApplicationPermissions.FutureAccessList.Add(folder);
-                App.LocalSettings["DefaultVideoFolder"] = mru;
+                Locator.SettingsVM.AddVideoFolder(new CustomFolder()
+                {
+                    DisplayName = folder.DisplayName,
+                    Mru = mru,
+                });
                 await Locator.MainPageVM.InitVideoVM();
             }
         }

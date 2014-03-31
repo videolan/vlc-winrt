@@ -7,6 +7,7 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
+using Windows.Storage.AccessCache;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 using Newtonsoft.Json;
@@ -32,7 +33,7 @@ using Windows.Storage;
 using Windows.Storage.FileProperties;
 using Windows.Storage.Search;
 using Windows.Storage.Streams;
-using Windows.System.Threading;
+using VLC_WINRT.ViewModels.Settings;
 using XboxMusicLibrary;
 using Panel = VLC_WINRT.Model.Panel;
 #if NETFX_CORE
@@ -46,7 +47,6 @@ namespace VLC_WINRT.ViewModels.MainPage
 {
     public class MusicLibraryViewModel : BindableBase
     {
-        public int NbOfFiles = 0;
         private ObservableCollection<Panel> _panels = new ObservableCollection<Panel>();
         private ObservableCollection<ArtistItem> _artists = new ObservableCollection<ArtistItem>();
         private ObservableCollection<string> _albumsCover = new ObservableCollection<string>();
@@ -61,10 +61,6 @@ namespace VLC_WINRT.ViewModels.MainPage
         private bool _isLoaded;
         private bool _isBusy;
         private bool _isMusicLibraryEmpty = true;
-
-        int _numberOfTracks;
-        ThreadPoolTimer _periodicTimer;
-        readonly AsyncLock _artistLock = new AsyncLock();
 
         // XBOX Music Stuff
         // REMOVE: Do we need this stuff anymore?
@@ -162,17 +158,6 @@ namespace VLC_WINRT.ViewModels.MainPage
                 LoadFavoritesRandomAlbums();
             }
 
-            // TODO: Find a better way to check for new items in the library.
-            // This checks for new folders. If there are more or less then what was there before, it will index again.
-            try
-            {
-                NbOfFiles = (await KnownVLCLocation.MusicLibrary.GetItemsAsync()).Count;
-            }
-            catch (UnauthorizedAccessException unauthorizedE)
-            {
-                Debug.WriteLine("Access to Music Library non granted. Maybe doesn't exit.");
-            }
-
             bool isMusicLibraryChanged = await IsMusicLibraryChanged();
             if (isMusicLibraryChanged)
             {
@@ -217,57 +202,77 @@ namespace VLC_WINRT.ViewModels.MainPage
             }
         }
 
-        private async Task StartIndexing()
+        public async Task StartIndexing()
         {
-            StorageFolder[] musicFolders = new StorageFolder[]
-            {
-                KnownVLCLocation.MusicLibrary,
-            };
             _artistDataRepository = new ArtistDataRepository();
-            var musicFiles = await musicFolders[0].GetFilesAsync(CommonFileQuery.DefaultQuery);
-            foreach (var item in musicFiles)
+            _artistDataRepository.Initialize();
+
+            foreach (CustomFolder folder in Locator.SettingsVM.MusicFolders)
             {
-                MusicProperties properties = await item.Properties.GetMusicPropertiesAsync();
-                if (properties != null)
+                StorageFolder customMusicFolder;
+                if (folder.Mru == "Music Library")
                 {
-                    ArtistItem artist = await _artistDataRepository.LoadViaArtistName(properties.Artist);
-                    if (artist == null)
-                    {
-                        artist = new ArtistItem();
-                        artist.Name = string.IsNullOrEmpty(properties.Artist) ? "Unknown artist" : properties.Artist;
-                        await _artistDataRepository.Add(artist);
-                    }
+                    customMusicFolder = KnownVLCLocation.MusicLibrary;
+                }
+                else
+                {
+                    customMusicFolder = await StorageApplicationPermissions.FutureAccessList.GetFolderAsync(
+                        folder.Mru);
+                }
 
-                    AlbumItem album = await _albumDataRepository.LoadAlbumViaName(artist.Id, properties.Album);
-                    if (album == null)
+                var musicFiles = await customMusicFolder.GetFilesAsync(CommonFileQuery.DefaultQuery);
+                foreach (var item in musicFiles)
+                {
+                    MusicProperties properties = await item.Properties.GetMusicPropertiesAsync();
+                    if (properties != null)
                     {
-                        album = new AlbumItem
+                        ArtistItem artist = await _artistDataRepository.LoadViaArtistName(properties.Artist);
+                        if (artist == null)
                         {
-                            Name = string.IsNullOrEmpty(properties.Album) ? "Unknown album" : properties.Album,
-                            Artist = string.IsNullOrEmpty(properties.Artist) ? "Unknown artist" : properties.Artist,
-                            ArtistId = artist.Id,
-                            Favorite = false,
-                        };
-                        await _albumDataRepository.Add(album);
-                    }
+                            artist = new ArtistItem();
+                            artist.Name = string.IsNullOrEmpty(properties.Artist) ? "Unknown artist" : properties.Artist;
+                            await _artistDataRepository.Add(artist);
+                        }
 
-                    TrackItem track = new TrackItem()
-                    {
-                        AlbumId = album.Id,
-                        AlbumName = album.Name,
-                        ArtistId = artist.Id,
-                        ArtistName = artist.Name,
-                        CurrentPosition = 0,
-                        Duration = properties.Duration,
-                        Favorite = false,
-                        Name = string.IsNullOrEmpty(properties.Title) ? "Unknown track" : properties.Title,
-                        Path = item.Path,
-                        Index = (int)properties.TrackNumber,
-                    };
-                    await _trackDataRepository.Add(track);
+                        AlbumItem album = await _albumDataRepository.LoadAlbumViaName(artist.Id, properties.Album);
+                        if (album == null)
+                        {
+                            album = new AlbumItem
+                            {
+                                Name = string.IsNullOrEmpty(properties.Album) ? "Unknown album" : properties.Album,
+                                Artist = string.IsNullOrEmpty(properties.Artist) ? "Unknown artist" : properties.Artist,
+                                ArtistId = artist.Id,
+                                Favorite = false,
+                            };
+                            await _albumDataRepository.Add(album);
+                        }
+
+                        TrackItem track = new TrackItem()
+                        {
+                            AlbumId = album.Id,
+                            AlbumName = album.Name,
+                            ArtistId = artist.Id,
+                            ArtistName = artist.Name,
+                            CurrentPosition = 0,
+                            Duration = properties.Duration,
+                            Favorite = false,
+                            Name = string.IsNullOrEmpty(properties.Title) ? "Unknown track" : properties.Title,
+                            Path = item.Path,
+                            Index = (int) properties.TrackNumber,
+                        };
+                        await _trackDataRepository.Add(track);
+                    }
                 }
             }
             LoadFromDatabase();
+
+            DispatchHelper.InvokeAsync(() =>
+            {
+                IsBusy = false;
+                IsLoaded = true;
+                OnPropertyChanged("IsBusy");
+                OnPropertyChanged("IsLoaded");
+            });
         }
 
         private async Task LoadFromDatabase()
@@ -303,6 +308,12 @@ namespace VLC_WINRT.ViewModels.MainPage
             {
                 Debug.WriteLine("Error getting database.");
             }
+
+            DispatchHelper.InvokeAsync(() =>
+            {
+                IsMusicLibraryEmpty = !Artist.Any();
+                OnPropertyChanged("IsMusicLibraryEmpty");
+            });
         }
 
         public void ExecuteSemanticZoom()
@@ -330,20 +341,54 @@ namespace VLC_WINRT.ViewModels.MainPage
 
         async Task<bool> IsMusicLibraryChanged()
         {
+            // TODO Implement a way to discover how much files there's in each folder
+
             var doesDbExists = await DoesFileExistHelper.DoesFileExistAsync("mediavlc.sqlite");
             if (doesDbExists)
             {
-                if (App.LocalSettings.ContainsKey("nbOfFiles"))
+                ulong totalFoldersSize = 0;
+                foreach (CustomFolder folder in Locator.SettingsVM.MusicFolders)
                 {
-                    if ((int)App.LocalSettings["nbOfFiles"] == NbOfFiles)
+                    StorageFolder customMusicFolder;
+                    if (folder.Mru == "Music Library")
+                    {
+                        customMusicFolder = KnownVLCLocation.MusicLibrary;
+                    }
+                    else
+                    {
+                        customMusicFolder = await StorageApplicationPermissions.FutureAccessList.GetFolderAsync(
+                            folder.Mru);
+                    }
+                    BasicProperties customMusicFolderProperties = await customMusicFolder.GetBasicPropertiesAsync();
+                    totalFoldersSize += customMusicFolderProperties.Size;
+                }
+                if (App.LocalSettings.ContainsKey("customMusicFolderTotalSize"))
+                {
+                    if ((ulong) App.LocalSettings["customMusicFolderTotalSize"] == totalFoldersSize)
                     {
                         return false;
                     }
-                    App.LocalSettings.Remove("nbOfFiles");
+                    App.LocalSettings.Remove("customMusicFolderTotalSize");
                 }
-                App.LocalSettings.Add("nbOfFiles", NbOfFiles);
+                App.LocalSettings.Add("customMusicFolderTotalSize", totalFoldersSize);
+                return true;
             }
             return true;
+
+            //var doesDbExists = await DoesFileExistHelper.DoesFileExistAsync("mediavlc.sqlite");
+            //if (doesDbExists)
+            //{
+            //    if (App.LocalSettings.ContainsKey("nbOfFiles"))
+            //    {
+            //        if ((int)App.LocalSettings["nbOfFiles"] == NbOfFiles)
+            //        {
+            //            return false;
+            //        }
+            //        App.LocalSettings.Remove("nbOfFiles");
+            //    }
+            //    App.LocalSettings.Add("nbOfFiles", NbOfFiles);
+            //}
+            //return true;
         }
 
         public class ArtistItem : BindableBase

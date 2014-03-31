@@ -7,11 +7,11 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Autofac;
-using Platform;
 using VLC_WINRT.Common;
 using VLC_WINRT.Utility.Services.RunTime;
 #if NETFX_CORE

@@ -23,7 +23,6 @@ namespace VLC_WINRT.Utility.DataRepository
             using (var db = new SQLite.SQLiteConnection(_dbPath))
             {
                 db.CreateTable<MusicLibraryViewModel.ArtistItem>();
-
             }
         }
 

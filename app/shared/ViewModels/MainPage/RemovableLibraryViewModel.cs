@@ -13,7 +13,7 @@ namespace VLC_WINRT.ViewModels.MainPage
 {
     public class RemovableLibraryViewModel : VideoLibraryViewModel
     {
-        public RemovableLibraryViewModel(StorageFolder location, string id) : base(location)
+        public RemovableLibraryViewModel(StorageFolder location, string id) 
         {
             Id = id;
         }
