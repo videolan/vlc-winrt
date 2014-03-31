@@ -204,6 +204,13 @@ namespace VLC_WINRT.ViewModels.MainPage
 
         public async Task StartIndexing()
         {
+            DispatchHelper.InvokeAsync(() =>
+            {
+                IsBusy = true;
+                IsLoaded = false;
+                OnPropertyChanged("IsBusy");
+                OnPropertyChanged("IsLoaded");
+            });
             _artistDataRepository = new ArtistDataRepository();
             _artistDataRepository.Initialize();
 
