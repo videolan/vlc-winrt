@@ -103,7 +103,6 @@ namespace VLC_WINRT
 
         async Task ManageOpeningFiles(FileActivatedEventArgs args)
         {
-            var mediaServce = Container.Resolve<MediaService>();
             StorageFile file = (StorageFile)args.Files[0];
             if (file.FileType == ".mp3" || file.FileType == ".wma")
             {
