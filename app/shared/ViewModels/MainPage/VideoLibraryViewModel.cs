@@ -129,7 +129,6 @@ namespace VLC_WINRT.ViewModels.MainPage
                                 j++;
                             }
                             MediaGroupedByAlphabet = Media.OrderBy(x => x.AlphaKey).GroupBy(x => x.AlphaKey);
-                            ExecuteSemanticZoom();
                         });
                     }
                 }
@@ -147,6 +146,7 @@ namespace VLC_WINRT.ViewModels.MainPage
             {
                 DispatchHelper.InvokeAsync(() => HasNoMedia = true);
             }
+            ExecuteSemanticZoom();
         }
 
         public void ExecuteSemanticZoom()

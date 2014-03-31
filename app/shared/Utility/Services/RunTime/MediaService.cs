@@ -10,7 +10,6 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Windows.Media;
 using VLC_WINRT.Common;
 using VLC_WINRT.Utility.Services.Interface;
 using Windows.Foundation;
@@ -19,6 +18,7 @@ using Windows.UI.Core;
 using Windows.UI.Xaml.Controls;
 #if NETFX_CORE
 using libVLCX;
+using Windows.Media;
 #endif
 
 namespace VLC_WINRT.Utility.Services.RunTime
