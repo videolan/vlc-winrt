@@ -132,22 +132,17 @@
                                         <Grid Width="280" Height="156">
                                             <Image Source="/Assets/GreyPylon/280x156.jpg" Stretch="UniformToFill"/>
                                             <Image Source="{Binding Group.Picture}" Stretch="UniformToFill"/>
-                                            <Grid VerticalAlignment="Bottom" Height="35" Margin="0,0,0,20" HorizontalAlignment="Left">
-                                                <Polygon Fill="{StaticResource MainColor}" Points="0,0 0,35 180,35 200,0" />
-                                                <TextBlock MaxWidth="160" Text="{Binding Group.Name}" Foreground="White" TextWrapping="NoWrap" TextTrimming="WordEllipsis" Margin="10,0" FontSize="22" VerticalAlignment="Center" />
+                                            <Grid>
+                                                <Grid.Background>
+                                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                        <GradientStop Color="#00000000" Offset="0"/>
+                                                        <GradientStop Color="#00000000" Offset="0.444"/>
+                                                        <GradientStop Color="#D8000000" Offset="1"/>
+                                                    </LinearGradientBrush>
+                                                </Grid.Background>
+                                                <TextBlock Text="{Binding Group.Name}" VerticalAlignment="Bottom" Foreground="White" TextWrapping="Wrap"  Margin="6,0,0,6" FontSize="22" FontWeight="Light" />
                                             </Grid>
                                         </Grid>
-                                        <!--<Grid  Width="310" Height="70" Background="#151515">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="70"/>
-                                                <ColumnDefinition Width="10"/>
-                                                <ColumnDefinition Width="240"/>
-                                            </Grid.ColumnDefinitions>
-                                            <Image Source="{Binding Group.Picture}" Height="70" Stretch="UniformToFill" HorizontalAlignment="Center"/>
-                                            <StackPanel Grid.Column="2" VerticalAlignment="Center">
-                                                <TextBlock Text="{Binding Group.Name}" TextWrapping="NoWrap" TextTrimming="WordEllipsis" FontSize="17"/>
-                                            </StackPanel>
-                                        </Grid>-->
                                     </DataTemplate>
                                 </GridView.ItemTemplate>
                             </GridView>
