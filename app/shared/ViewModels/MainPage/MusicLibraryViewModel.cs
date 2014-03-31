@@ -294,8 +294,8 @@ namespace VLC_WINRT.ViewModels.MainPage
                     foreach (var album in albums)
                     {
                         var tracks = await _trackDataRepository.LoadTracksByAlbumId(album.Id);
-                        var orderedTracks = album.Tracks.OrderBy(x => x.Index);
-                        foreach (var track in tracks)
+                        var orderedTracks = tracks.OrderBy(x => x.Index);
+                        foreach (var track in orderedTracks)
                         {
                             album.Tracks.Add(track);
                         }
