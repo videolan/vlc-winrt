@@ -81,10 +81,11 @@
             </Style>
             
             <String x:Key="AppName" xmlns="http://schemas.microsoft.com/winfx/2006/xaml">VLC_WINRT</String>
-            
+
             <DataTemplate x:Name="NormalSizedAlbumDataTemplate">
                 <Grid MinHeight="150" MinWidth="150">
                     <Image Source="{Binding Picture}" Stretch="UniformToFill" HorizontalAlignment="Center"/>
+                    <Button Style="{StaticResource LikeLittleNoTextAppBarButtonStyle}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="-10,0,0,0" Visibility="{Binding Favorite, Converter={StaticResource BooleanToVisibilityConverter}}" />
                     <Grid Height="90" MaxWidth="300" VerticalAlignment="Bottom">
                         <Grid.Background>
                             <LinearGradientBrush StartPoint="1,0">
@@ -99,7 +100,6 @@
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
-                            <Button Grid.RowSpan="2" Style="{StaticResource LikeLittleNoTextAppBarButtonStyle}" Margin="-18,0,-11,0" Visibility="{Binding Favorite, Converter={StaticResource BooleanToVisibilityConverter}}" />
                             <TextBlock Text="{Binding Artist}" TextWrapping="NoWrap" TextTrimming="WordEllipsis" FontSize="15" FontWeight="SemiBold" />
                             <TextBlock Grid.Row="1" Text="{Binding Name}" TextWrapping="NoWrap" TextTrimming="WordEllipsis" FontSize="16"/>
                         </Grid>

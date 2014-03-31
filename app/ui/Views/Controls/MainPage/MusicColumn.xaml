@@ -237,7 +237,19 @@
             </Grid>
             <Grid x:Name="FavoriteAlbumsPanel" >
                 <!--<controls:NothingToSeeHere Grid.Row="1" Visibility="{Binding FavoriteAlbums.Count, Converter={StaticResource BooleanToVisibilityConverter}}"/>-->
-                <GridView Margin="0,0,0,0" ItemTemplate="{StaticResource NormalSizedAlbumDataTemplate}" SelectionMode="None" IsItemClickEnabled="True" ItemContainerStyle="{StaticResource GridViewItemContainerStyle}" ItemsSource="{Binding FavoriteAlbums}" ItemClick="FavoriteAlbumItemClick" />
+                <GridView Margin="0,0,0,0" ItemTemplate="{StaticResource NormalSizedAlbumDataTemplate}" SelectionMode="None" IsItemClickEnabled="True" ItemContainerStyle="{StaticResource GridViewItemContainerStyle}" ItemsSource="{Binding FavoriteAlbums}" ItemClick="FavoriteAlbumItemClick" >
+                    <GridView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VariableSizedWrapGrid Margin="0,0,53,0" ItemWidth="160" ItemHeight="160" Orientation="Vertical">
+                                <VariableSizedWrapGrid.ChildrenTransitions>
+                                    <TransitionCollection>
+                                        <RepositionThemeTransition />
+                                    </TransitionCollection>
+                                </VariableSizedWrapGrid.ChildrenTransitions>
+                            </VariableSizedWrapGrid>
+                        </ItemsPanelTemplate>
+                    </GridView.ItemsPanel>
+                </GridView>
             </Grid>
         </Grid>
     </Grid>
