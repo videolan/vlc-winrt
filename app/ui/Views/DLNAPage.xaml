@@ -111,7 +111,7 @@
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
     </Page.Resources>
-    <Grid DataContext="{Binding DLNAVMs}">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -135,19 +135,26 @@
             <Grid.RenderTransform>
                 <CompositeTransform />
             </Grid.RenderTransform>
-            <controls:NothingToSeeHere Margin="15" Visibility="{Binding Count, Converter={StaticResource CountToVisibilityConverter}}"/>
-            <ListView Grid.Column="0" x:Name="FirstPanelGridView" IsItemClickEnabled="True" SelectionMode="None" IsSwipeEnabled="False" Margin="100,0,0,0" Width="300" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" ItemsSource="{Binding}" ItemClick="FirstPanelGridView_SelectionChanged" >
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <Path Height="35" Width="35" Stretch="UniformToFill" Fill="WhiteSmoke" Data="M39.022999,49.737999L39.022999,56.397999 40.181,56.397999 40.181,49.737999z M36.706001,49.737999L36.706001,56.397999 37.864002,56.397999 37.864002,49.737999z M34.389,49.737999L34.389,56.397999 35.548,56.397999 35.548,49.737999z M32.073002,49.737999L32.073002,56.397999 33.231998,56.397999 33.231998,49.737999z M29.756001,49.737999L29.756001,56.397999 30.914001,56.397999 30.914001,49.737999z M27.439001,49.737999L27.439001,56.397999 28.598,56.397999 28.598,49.737999z M25.122,49.737999L25.122,56.397999 26.281,56.397999 26.281,49.737999z M22.806,49.737999L22.806,56.397999 23.963001,56.397999 23.963001,49.737999z M20.49,49.737999L20.49,56.397999 21.647001,56.397999 21.647001,49.737999z M18.172001,49.737999L18.172001,56.397999 19.331001,56.397999 19.331001,49.737999z M15.856,49.737999L15.856,56.397999 17.014,56.397999 17.014,49.737999z M13.539001,49.737999L13.539001,56.397999 14.697001,56.397999 14.697001,49.737999z M11.221002,49.737999L11.221002,56.397999 12.38,56.397999 12.38,49.737999z M8.9050016,49.737999L8.9050016,56.397999 10.064,56.397999 10.064,49.737999z M6.5890007,49.737999L6.5890007,56.397999 7.7469997,56.397999 7.7469997,49.737999z M4.2719994,49.737999L4.2719994,56.397999 5.4300003,56.397999 5.4300003,49.737999z M4.2959995,39.964001L4.2959995,46.528 40.591,46.528 40.591,39.964001z M4.2959995,27.993L4.2959995,34.557999 40.591,34.557999 40.591,27.993z M4.2959995,16.024L4.2959995,22.589001 40.591,22.589001 40.591,16.024z M4.2959995,4.2469997L4.2959995,10.812 40.591,10.812 40.591,4.2469997z M0,0L45.176998,0 45.176998,60.669899 43.246101,60.669899 43.246101,64 38.806,64 38.806,60.669899 6.1783905,60.669899 6.1783905,64 1.7382402,64 1.7382402,60.669899 0,60.669899z" />
-                            <TextBlock Margin="15,0,0,0" Text="{Binding Location.DisplayName}" Style="{StaticResource SubheaderTextStyle}"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-            <GridView Grid.Column="1" x:Name="SecondPanelGridView" Margin="20,0,0,0" ItemContainerStyle="{StaticResource GridViewItemContainerStyle}" ItemTemplate="{StaticResource NormaleMovieTemplate}" />
-            <ListView Grid.Column="1" x:Name="SecondPanelListView" Margin="10,0,0,0" ItemTemplate="{StaticResource NormaleMovieTemplate}"/>
+            <controls:NothingToSeeHere Margin="15" Visibility="{Binding DLNAVMs.Count, Converter={StaticResource CountToVisibilityConverter}}"/>
+            <ListView x:Name="FirstPanelGridView"
+                      IsItemClickEnabled="True" 
+                      SelectionMode="None" 
+                      IsSwipeEnabled="False" 
+                      Margin="100,0,0,0"
+                      Width="300" 
+                      ItemTemplateSelector="{StaticResource StorageItemDataTemplateSelector}"
+                      ItemContainerStyle="{StaticResource ListViewItemContainerStyle}"
+                      ItemsSource="{Binding DLNAVMs}" 
+                      ItemClick="FirstPanelGridView_SelectionChanged" />
+            <GridView Grid.Column="1" 
+                      x:Name="SecondPanelGridView" 
+                      SelectionMode="None" 
+                      ItemContainerStyle="{StaticResource GridViewItemContainerStyle}" 
+                      ItemTemplateSelector="{StaticResource StorageItemDataTemplateSelector}" 
+                      ItemClick="SecondPanelGridView_ItemClick" 
+                      IsItemClickEnabled="True"/>
+            <!--<GridView Grid.Column="1" x:Name="SecondPanelGridView" Margin="20,0,0,0" ItemContainerStyle="{StaticResource GridViewItemContainerStyle}" ItemTemplate="{StaticResource NormaleMovieTemplate}" />-->
+            <ListView Grid.Column="1" x:Name="SecondPanelListView" Margin="10,0,0,0" ItemTemplateSelector="{StaticResource StorageItemDataTemplateSelector}"/>
             <!--<removableStorage:PlugARemovableStorage Grid.ColumnSpan="2" Visibility="{Binding RemovableStorageVMs.Count, Converter={StaticResource CountToVisibilityConverter}}" Margin="1,2,-1,-2"/>-->
         </Grid>
     </Grid>

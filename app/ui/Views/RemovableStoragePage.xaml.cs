@@ -27,8 +27,8 @@ namespace VLC_WINRT.Views
     {
         public RemovableStoragePage()
         {
-            this.InitializeComponent();
-            this.SizeChanged += OnSizeChanged;
+            InitializeComponent();
+            SizeChanged += OnSizeChanged;
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -37,9 +37,10 @@ namespace VLC_WINRT.Views
         }
         private async void GoBack_Click(object sender, RoutedEventArgs e)
         {
-            if (Window.Current.Bounds.Width == 320 && FirstPanelGridView.Visibility == Windows.UI.Xaml.Visibility.Collapsed)
+            if (Window.Current.Bounds.Width == 320 && 
+                FirstPanelGridView.Visibility == Visibility.Collapsed)
             {
-                FirstPanelGridView.Visibility = Windows.UI.Xaml.Visibility.Visible;
+                FirstPanelGridView.Visibility = Visibility.Visible;
             }
             else
             {

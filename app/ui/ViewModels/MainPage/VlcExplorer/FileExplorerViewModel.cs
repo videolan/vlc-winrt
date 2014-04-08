@@ -45,11 +45,12 @@ namespace VLC_WINRT.ViewModels.MainPage.VlcExplorer
 
         public string Name { get { return _name; } set { _name = value; } }
 
-        public FileExplorerViewModel(StorageFolder root, string id)
+        public FileExplorerViewModel(StorageFolder root, string id = null)
         {
             _rootFolder = root;
-            Id = id;
             _name = root.DisplayName;
+
+            if (id != null) Id = id;
         }
 
         public async Task GetFiles()

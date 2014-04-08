@@ -13,9 +13,6 @@
     DataContext="{Binding Source={StaticResource Locator}, Path=MainPageVM.ExternalStorageVM}">
 
     <Page.Resources>
-        <dataTemplateSelectors:MediaItemDataTemplateSelector WideMovieTemplate="{StaticResource WideMovieTemplate}"
-                                                                NormalMovieTemplate="{StaticResource NormaleMovieTemplate}"
-                                                                x:Key="MediaItemDataTemplateSelector" />
         <Storyboard x:Name="FadeOutPage">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="MainGrid">
                 <EasingDoubleKeyFrame KeyTime="0" Value="1">
@@ -149,24 +146,17 @@
                       Margin="100,0,0,0"
                       Width="300" 
                       ItemContainerStyle="{StaticResource ListViewItemContainerStyle}"
+                      ItemTemplateSelector="{StaticResource StorageItemDataTemplateSelector}"
                       ItemsSource="{Binding RemovableStorageVMs}" 
-                      ItemClick="FirstPanelGridView_SelectionChanged" >
-            </ListView>
+                      ItemClick="FirstPanelGridView_SelectionChanged" />
             <GridView Grid.Column="1" 
                       x:Name="SecondPanelGridView" 
                       SelectionMode="None" 
                       ItemContainerStyle="{StaticResource GridViewItemContainerStyle}" 
-                      ItemTemplateSelector="{StaticResource MediaItemDataTemplateSelector}" 
+                      ItemTemplateSelector="{StaticResource StorageItemDataTemplateSelector}" 
                       ItemClick="SecondPanelGridView_ItemClick" 
-                      IsItemClickEnabled="True">
-                <GridView.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding Name}"/>
-                    </DataTemplate>
-                </GridView.ItemTemplate>                
-            </GridView>
-            <!--<GridView Grid.Column="1" x:Name="SecondPanelGridView" Margin="20,0,0,0" ItemContainerStyle="{StaticResource GridViewItemContainerStyle}" ItemTemplate="{StaticResource NormaleMovieTemplate}" />-->
-            <ListView Grid.Column="1" x:Name="SecondPanelListView" Margin="10,0,0,0" ItemTemplate="{StaticResource NormaleMovieTemplate}"/>
+                      IsItemClickEnabled="True"/>
+            <ListView Grid.Column="1" x:Name="SecondPanelListView" Margin="10,0,0,0" ItemTemplateSelector="{StaticResource StorageItemDataTemplateSelector}"/>
             <removableStorage:PlugARemovableStorage  Grid.ColumnSpan="2" Grid.Column="0" Visibility="{Binding RemovableStorageVMs.Count, Converter={StaticResource CountToVisibilityConverter}}" />
         </Grid>
         <controls:MiniPlayer Grid.Row="2"/>

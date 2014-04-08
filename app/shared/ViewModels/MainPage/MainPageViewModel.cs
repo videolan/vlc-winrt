@@ -22,14 +22,16 @@ using Windows.UI.Xaml.Navigation;
 #if WINDOWS_PHONE_APP
 using VLC_WINPRT;
 #endif
+using VLC_WINRT.ViewModels.MainPage.VlcExplorer;
+
 namespace VLC_WINRT.ViewModels.MainPage
 {
     public class MainPageViewModel : NavigateableViewModel
     {
         private ObservableCollection<Panel> _panels = new ObservableCollection<Panel>();
         private ObservableCollection<Panel> _secondaryPanels = new ObservableCollection<Panel>();
-        private ObservableCollection<VideoLibraryViewModel> _dlnaVMs =
-            new ObservableCollection<VideoLibraryViewModel>();
+        private ObservableCollection<FileExplorerViewModel> _dlnaVMs =
+            new ObservableCollection<FileExplorerViewModel>();
         private ObservableCollection<BackItem> _backers = new ObservableCollection<BackItem>();
 #if NETFX_CORE
         private ExternalStorageViewModel _externalStorageVM;
@@ -75,35 +77,50 @@ namespace VLC_WINRT.ViewModels.MainPage
         {
             await Locator.SettingsVM.PopulateCustomFolders();
             await InitVideoVM();
+            await InitMusicM();
             await _lastViewedVM.Initialize();
 
-            var dlnaFolder = await KnownVLCLocation.MediaServers.GetFoldersAsync();
-            var tasks = new List<Task>();
-            DLNAVMs.Clear();
-            //foreach (StorageFolder storageFolder in dlnaFolder)
-            //{
-            //    StorageFolder newFolder = storageFolder;
-            //    var videoLib = new VideoLibraryViewModel(newFolder);
-            //    tasks.Add(videoLib.GetMedia());
-            //    DLNAVMs.Add(videoLib);
-            //}
-            await Task.WhenAll(tasks);
+            await InitDLNAVM();
+            await InitRemovableStorageVM();
         }
 
         public async Task InitVideoVM()
         {
             VideoVM = new VideoLibraryViewModel();
             await VideoVM.GetMedia();
+        }
 
+        public async Task InitMusicM()
+        {
             MusicLibraryVm = Locator.MusicLibraryVM;
             await MusicLibraryVm.Initialize();
+        }
 
+        public async Task InitRemovableStorageVM()
+        {
 #if NETFX_CORE
             ExternalStorageVM = new ExternalStorageViewModel();
             await ExternalStorageVM.Initialize();
 #endif
         }
 
+        public async Task InitDLNAVM()
+        {
+            if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
+            {
+                var dlnaFolder = await KnownVLCLocation.MediaServers.GetFoldersAsync();
+                var tasks = new List<Task>();
+                DLNAVMs.Clear();
+                foreach (StorageFolder storageFolder in dlnaFolder)
+                {
+                    StorageFolder newFolder = storageFolder;
+                    var videoLib = new FileExplorerViewModel(newFolder);
+                    tasks.Add(videoLib.GetFiles());
+                    DLNAVMs.Add(videoLib);
+                }
+                await Task.WhenAll(tasks);
+            }
+        }
 
         public ObservableCollection<BackItem> Backers
         {
@@ -154,7 +171,7 @@ namespace VLC_WINRT.ViewModels.MainPage
             get { return _musicLibraryVm; }
             set { SetProperty(ref _musicLibraryVm, value); }
         }
-        public ObservableCollection<VideoLibraryViewModel> DLNAVMs
+        public ObservableCollection<FileExplorerViewModel> DLNAVMs
         {
             get { return _dlnaVMs; }
             set { SetProperty(ref _dlnaVMs, value); }
