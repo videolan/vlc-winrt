@@ -33,6 +33,10 @@ namespace VLC_WINRT.Views
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
+            if (e.NavigationMode == NavigationMode.New)
+            {
+                Locator.MainPageVM.InitRemovableStorageVM();
+            }
             FadeInPage.Begin();
         }
         private async void GoBack_Click(object sender, RoutedEventArgs e)

@@ -79,8 +79,6 @@ namespace VLC_WINRT.ViewModels.MainPage
             await InitVideoVM();
             await InitMusicM();
             await _lastViewedVM.Initialize();
-
-            await InitRemovableStorageVM();
         }
 
         public async Task InitVideoVM()
