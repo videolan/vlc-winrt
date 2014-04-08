@@ -176,7 +176,7 @@ namespace VLC_WINRT.Views
         {
             var resourceLoader = new ResourceLoader();
             var popupMenu = new PopupMenu();
-            popupMenu.Commands.Add(new UICommand(resourceLoader.GetString("PrivacyStatement"), async h => await ExternalStorage()));
+            popupMenu.Commands.Add(new UICommand(resourceLoader.GetString("ExternalStorage"), async h => await ExternalStorage()));
 
             popupMenu.Commands.Add(new UICommand("Media servers", async h => await MediaServers()));
 
