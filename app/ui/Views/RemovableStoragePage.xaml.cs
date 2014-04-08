@@ -14,7 +14,6 @@ using Windows.UI.Xaml.Navigation;
 using VLC_WINRT.Utility.Helpers;
 using VLC_WINRT.Utility.Services.RunTime;
 using VLC_WINRT.ViewModels;
-using VLC_WINRT.ViewModels.MainPage;
 using VLC_WINRT.Common;
 using VLC_WINRT.ViewModels.MainPage.VlcExplorer;
 
@@ -30,6 +29,7 @@ namespace VLC_WINRT.Views
             InitializeComponent();
             SizeChanged += OnSizeChanged;
         }
+
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);

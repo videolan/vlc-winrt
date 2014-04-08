@@ -96,6 +96,8 @@ namespace VLC_WINRT.ViewModels.MainPage
         public async Task InitRemovableStorageVM()
         {
 #if NETFX_CORE
+            if (ExternalStorageVM != null) return;
+
             ExternalStorageVM = new ExternalStorageViewModel();
             await ExternalStorageVM.Initialize();
 #endif
