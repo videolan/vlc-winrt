@@ -545,9 +545,23 @@
     <PRIResource Include="..\shared\Strings\ja-JP\Resources.resw">
       <Link>Strings\ja-JP\Resources.resw</Link>
     </PRIResource>
+    <Content Include="Assets\BadgeLogo.png" />
+    <Content Include="Assets\Logo.scale-100.png" />
+    <Content Include="Assets\SmallLogo.scale-100.png" />
+    <Content Include="Assets\StoreLogo.scale-100.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-100.png" />
     <Content Include="backers.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Assets\json\15.json" />
+    <None Include="Assets\json\200.json" />
+    <None Include="Assets\json\25.json" />
+    <None Include="Assets\json\250.json" />
+    <None Include="Assets\json\3.json" />
+    <None Include="Assets\json\350.json" />
+    <None Include="Assets\json\40.json" />
+    <None Include="Assets\json\60.json" />
+    <None Include="Assets\json\80.json" />
     <None Include="Common\ReadMe.txt" />
     <Content Include="Assets\Background.jpg" />
     <Content Include="Assets\GreyPylon\280x156.jpg" />
