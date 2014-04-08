@@ -37,13 +37,6 @@ namespace VLC_WINRT.Views.Controls.MainPage
         {
             await DispatchHelper.InvokeAsync(() =>
             {
-                if (sizeChangedEventArgs.NewSize.Width < 1080)
-                {
-                }
-                else
-                {
-                }
-
 
                 if (sizeChangedEventArgs.NewSize.Width == 320)
                 {

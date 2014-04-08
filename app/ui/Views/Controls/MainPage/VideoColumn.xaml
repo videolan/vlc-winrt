@@ -86,7 +86,8 @@
                           ScrollViewer.VerticalScrollBarVisibility="Disabled"
                           ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                 <SemanticZoom.ZoomedOutView>
-                    <ListView IsSwipeEnabled="False" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}">
+                    <ListView IsSwipeEnabled="False" 
+                              ItemContainerStyle="{StaticResource ListViewItemContainerStyle}">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <Grid Background="#151515" Width="190" Height="70">
@@ -98,15 +99,15 @@
                 </SemanticZoom.ZoomedOutView>
                 <SemanticZoom.ZoomedInView>
                     <ListView x:Name="FirstPanelListView" ItemTemplate="{StaticResource NormaleMovieTemplate}" IsSwipeEnabled="False" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" ItemsSource="{Binding Source={StaticResource MediaGroupedByAlphabet}}" SelectedIndex="0" SelectionMode="None" IsItemClickEnabled="True" 
-                              ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                                  ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                                  ScrollViewer.HorizontalScrollMode="Enabled"
-                                  ScrollViewer.VerticalScrollMode="Disabled">
+                              ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                  ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                  ScrollViewer.HorizontalScrollMode="Disabled"
+                                  ScrollViewer.VerticalScrollMode="Enabled">
                         <ListView.GroupStyle>
                             <GroupStyle>
                                 <GroupStyle.Panel>
                                     <ItemsPanelTemplate>
-                                        <VariableSizedWrapGrid ItemHeight="160" Margin="0,0,0,10" ItemWidth="265" Orientation="Horizontal">
+                                        <VariableSizedWrapGrid ItemHeight="160" Margin="0,0,0,10" ItemWidth="265" Orientation="Vertical">
                                             <VariableSizedWrapGrid.ChildrenTransitions>
                                                 <TransitionCollection>
                                                     <RepositionThemeTransition />
