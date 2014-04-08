@@ -71,21 +71,15 @@ namespace VLC_WINRT.Views.Controls.MainPage
         private void AlbumGridView_ItemClick(object sender, ItemClickEventArgs e)
         {
             var album = e.ClickedItem as MusicLibraryViewModel.AlbumItem;
-
             album.PlayAlbum.Execute(e.ClickedItem);
         }
-
-        private void OnSelectedArtist_Changed(object sender, SelectionChangedEventArgs e)
-        {
-            var artist = e.AddedItems[0] as MusicLibraryViewModel.ArtistItem;
-            AlbumsByArtistListView.ScrollIntoView(artist);
-        }
-
+        
         private void SectionsHeaderListView_OnItemClick(object sender, ItemClickEventArgs e)
         {
             int i = ((Model.Panel)e.ClickedItem).Index;
             ChangedSectionsHeadersState(i);
         }
+
         public void ChangedSectionsHeadersState(int i)
         {
             AlbumsByArtistSemanticZoom.IsZoomedInViewActive = true;
@@ -105,13 +99,17 @@ namespace VLC_WINRT.Views.Controls.MainPage
             {
                 Locator.MusicLibraryVM.ExecuteSemanticZoom();
             }
-            catch { }
+            catch
+            {
+                
+            }
         }
 
         private void FavoriteAlbumItemClick(object sender, ItemClickEventArgs e)
         {
             (e.ClickedItem as MusicLibraryViewModel.AlbumItem).PlayAlbum.Execute(e.ClickedItem);
         }
+
         private void OnHeaderSemanticZoomClicked(object sender, RoutedEventArgs e)
         {
             AlbumsByArtistSnapSemanticZoom.IsZoomedInViewActive = false;

@@ -31,11 +31,14 @@ namespace VLC_WINRT.Utility.Helpers.MusicLibrary
                 return null;
             }
             var deezerArtists = JsonConvert.DeserializeObject<Artists>(json);
-            var deezerArtist = deezerArtists.Data.FirstOrDefault();
-            var artist = new Artist();
-            artist.MapFrom(deezerArtist);
-            return artist;
-
+            if (deezerArtists.Data != null && deezerArtists.Total > 0)
+            {
+                var deezerArtist = deezerArtists.Data.FirstOrDefault();
+                var artist = new Artist();
+                artist.MapFrom(deezerArtist);
+                return artist;
+            }
+            return null;
         }
 
         public async Task<List<Artist>> GetSimilarArtists(string artistId)
@@ -44,18 +47,35 @@ namespace VLC_WINRT.Utility.Helpers.MusicLibrary
             string json = await deezerClient.GetStringAsync(string.Format("http://api.deezer.com/artist/{0}/related", artistId));
             var deezerArtists = JsonConvert.DeserializeObject<Artists>(json);
             var artistList = new List<Artist>();
-            foreach (var deezerArtist in deezerArtists.Data)
+            if (deezerArtists.Data != null)
             {
-                var artist = new Artist();
-                artist.MapFrom(deezerArtist);
-                artistList.Add(artist);
+                foreach (var deezerArtist in deezerArtists.Data)
+                {
+                    var artist = new Artist();
+                    artist.MapFrom(deezerArtist);
+                    artistList.Add(artist);
+                }
             }
             return artistList;
         }
 
-        public Task<Album> GetAlbumInfo(string albumTitle)
+        public async Task<Album> GetAlbumInfo(string albumTitle)
         {
-            throw new NotImplementedException();
+            var deezerClient = new HttpClient();
+            string json = await deezerClient.GetStringAsync(string.Format("http://api.deezer.com/search/album?q={0}", albumTitle));
+            if (json == "{\"data\":[],\"total\":0}")
+            {
+                return null;
+            }
+            var deezerAlbums = JsonConvert.DeserializeObject<Albums>(json);
+            if (deezerAlbums.Data != null)
+            {
+                var deezerAlbum = deezerAlbums.Data.FirstOrDefault();
+                var album = new Album();
+                album.MapFrom(deezerAlbum);
+                return album;
+            }
+            return null;
         }
 
         public async Task<List<Album>> GetArtistTopAlbums(string artistId)

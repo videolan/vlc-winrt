@@ -33,7 +33,6 @@ using Windows.ApplicationModel.Resources;
 using Windows.Storage;
 using Windows.Storage.FileProperties;
 using Windows.Storage.Search;
-using Windows.Storage.Streams;
 using VLC_WINRT.ViewModels.Settings;
 using XboxMusicLibrary;
 using Panel = VLC_WINRT.Model.Panel;
@@ -256,15 +255,6 @@ namespace VLC_WINRT.ViewModels.MainPage
                                 ArtistId = artist.Id,
                                 Favorite = false,
                             }; 
-                            using (StorageItemThumbnail thumbnail = await item.GetThumbnailAsync(ThumbnailMode.MusicView, 300))
-                            {
-                                if (thumbnail != null && thumbnail.Type == ThumbnailType.Image)
-                                {
-                                    var bitmapImage = new BitmapImage();
-                                    bitmapImage.SetSource(thumbnail);
-                                    album.Picture = await AlbumItem.GetCover(item, artist.Name, album.Name, album.ArtistId, album.Id);
-                                }
-                            }
                             await _albumDataRepository.Add(album);
                         }
 
@@ -564,6 +554,7 @@ namespace VLC_WINRT.ViewModels.MainPage
             private ObservableCollection<TrackItem> _trackItems = new ObservableCollection<TrackItem>();
             private PlayAlbumCommand _playAlbumCommand = new PlayAlbumCommand();
             private FavoriteAlbumCommand _favoriteAlbumCommand = new FavoriteAlbumCommand();
+            private bool _isPictureLoaded;
 
             [PrimaryKey, AutoIncrement, Column("_id")]
             public int Id { get; set; }
@@ -610,7 +601,14 @@ namespace VLC_WINRT.ViewModels.MainPage
 
             public string Picture
             {
-                get { return _picture; }
+                get
+                {
+                    if (!_isPictureLoaded)
+                    {
+                        Task.Run(() => LoadPicture());
+                    }
+                    return _picture;
+                }
                 set { SetProperty(ref _picture, value); }
             }
 
@@ -642,56 +640,13 @@ namespace VLC_WINRT.ViewModels.MainPage
                     CurrentTrackPosition--;
             }
 
-            public static async Task<string> GetCover(StorageFile file, string artist, string album, int artistId, int albumId)
+            private void LoadPicture()
             {
-                string fileName = artistId + "-" + albumId;
-                bool hasFoundCover = false;
-                if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
-                {
-                    try
-                    {
-                        HttpClient lastFmClient = new HttpClient();
-                        var reponse =
-                            await
-                                lastFmClient.GetStringAsync(
-                                    string.Format("http://ws.audioscrobbler.com/2.0/?method=album.getinfo&format=json&api_key=a8eba7d40559e6f3d15e7cca1bfeaa1c&artist={0}&album={1}", artist, album));
-                        {
-                            var albumInfo = JsonConvert.DeserializeObject<AlbumInformation>(reponse);
-                            if (albumInfo.Album == null)
-                            {
-                                return null;
-                            }
-                            if (albumInfo.Album.Image == null)
-                            {
-                                return null;
-                            }
-                            // Last.FM returns images from small to 'mega',
-                            // So try and get the largest image possible.
-                            // If we don't get any album art, or can't find the album, return.
-                            var largestImage = albumInfo.Album.Image.LastOrDefault(url => !string.IsNullOrEmpty(url.Text));
-                            if (largestImage != null)
-                            {
-                                hasFoundCover = true;
-                                await DownloadAndSaveHelper.SaveAsync(
-                                    new Uri(largestImage.Text, UriKind.RelativeOrAbsolute),
-                                    ApplicationData.Current.LocalFolder,
-                                    fileName + ".jpg");
-                            }
-                        }
-                    }
-                    catch
-                    {
-                        Debug.WriteLine("Unable to get album Cover from LastFM API");
-                    }
-                }
-
-                if (hasFoundCover)
-                {
-                    return "ms-appdata:///local/" + fileName + ".jpg";
-                }
-                return null;
+                if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable()) return;
+                ArtistInformationsHelper.GetAlbumPicture(this);
+                _isPictureLoaded = true;
             }
-
+            
             [Ignore]
             public PlayAlbumCommand PlayAlbum
             {
