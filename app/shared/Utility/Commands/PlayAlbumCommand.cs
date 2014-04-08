@@ -7,6 +7,8 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using VLC_WINRT.Common;
 using VLC_WINRT.Utility.Helpers;
@@ -26,14 +28,25 @@ namespace VLC_WINRT.Utility.Commands
 {
     public class PlayAlbumCommand : AlwaysExecutableCommand
     {
-        public async override void Execute(object parameter)
+        public override async void Execute(object parameter)
         {
-            MusicLibraryViewModel.AlbumItem album = parameter as MusicLibraryViewModel.AlbumItem;
-            Locator.MusicPlayerVM.TrackCollection.ResetCollection();
-            Locator.MusicPlayerVM.TrackCollection.AddTrack(album.Tracks.ToList());
-            await Locator.MusicPlayerVM.Play();
+            try
+            {
 
-            var frame = App.ApplicationFrame;
+                MusicLibraryViewModel.AlbumItem album = parameter as MusicLibraryViewModel.AlbumItem;
+                Locator.MusicPlayerVM.TrackCollection.ResetCollection();
+                Locator.MusicPlayerVM.TrackCollection.AddTrack(album.Tracks.ToList());
+                await Locator.MusicPlayerVM.Play();
+            }
+            catch (FileNotFoundException exception)
+            {
+                Locator.MainPageVM.InitMusicM();
+                ToastHelper.Basic("The file doesn't exists anymore. Rebuilding the music database", true);
+                Debug.WriteLine("It seems that file doesn't exist anymore. Needs to rebuild Music Library");
+                return;
+            }
+
+        var frame = App.ApplicationFrame;
             #if NETFX_CORE
             var page = frame.Content as Views.MainPage;
             #endif

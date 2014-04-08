@@ -39,7 +39,7 @@
           </BackgroundTasks>
         </Extension>
       </Extensions>
-      <VisualElements DisplayName="VLC for Windows 8" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="VLC Media Player for Windows 8" ForegroundText="light" BackgroundColor="#e67e22">
+      <VisualElements DisplayName="VLC for Windows 8" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="VLC Media Player for Windows 8" ForegroundText="light" BackgroundColor="#e67e22" ToastCapable="true">
         <DefaultTile ShowName="allLogos" ShortName="VLC" WideLogo="Assets\Wide310x150Logo.png" />
         <SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="#e67e22" />
       </VisualElements>

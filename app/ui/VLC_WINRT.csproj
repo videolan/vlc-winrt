@@ -437,6 +437,7 @@
     <Compile Include="Utility\DataTemplateSelectors\StorageItemDataTemplateSelector.cs" />
     <Compile Include="Utility\Helpers\PointersUtils.cs" />
     <Compile Include="Utility\Helpers\StoryboardExtensions.cs" />
+    <Compile Include="Utility\Helpers\ToastHelper.cs" />
     <Compile Include="Utility\Helpers\UIAnimationHelper.cs" />
     <Compile Include="Utility\Helpers\UpdateTileHelper.cs" />
     <Compile Include="Utility\Helpers\VisualTreeHelperExtensions.cs" />

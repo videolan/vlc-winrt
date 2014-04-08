@@ -10,15 +10,12 @@
 using Windows.Storage.AccessCache;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Media.Imaging;
-using Newtonsoft.Json;
 using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
-using System.Net.Http;
 using System.Threading.Tasks;
 using VLC_WINRT.Common;
 using VLC_WINRT.Utility.Commands;
@@ -26,7 +23,6 @@ using VLC_WINRT.Utility.Commands.MusicPlayer;
 using VLC_WINRT.Utility.DataRepository;
 using VLC_WINRT.Utility.Helpers;
 using VLC_WINRT.Utility.Helpers.MusicLibrary;
-using VLC_WINRT.Utility.Helpers.MusicLibrary.LastFm;
 using VLC_WINRT.Utility.Helpers.MusicLibrary.xboxmusic.Models;
 
 using Windows.ApplicationModel.Resources;
