@@ -10,6 +10,7 @@
 using Windows.Storage.AccessCache;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
 using VLC_WINRT.Utility.Helpers;
 using VLC_WINRT.Utility.Services.RunTime;
@@ -34,6 +35,10 @@ namespace VLC_WINRT.Views
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
+            if (e.NavigationMode == NavigationMode.New)
+            {
+                Locator.MainPageVM.InitDLNAVM();
+            }
             FadeInPage.Begin();
         }
 

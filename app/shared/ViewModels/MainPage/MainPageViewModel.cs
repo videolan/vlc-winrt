@@ -80,7 +80,6 @@ namespace VLC_WINRT.ViewModels.MainPage
             await InitMusicM();
             await _lastViewedVM.Initialize();
 
-            await InitDLNAVM();
             await InitRemovableStorageVM();
         }
 
