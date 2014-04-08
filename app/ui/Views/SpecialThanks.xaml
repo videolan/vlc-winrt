@@ -92,7 +92,7 @@
                         <GridView x:Name="BackersGridView" Grid.Row="1" ItemsSource="{Binding Backers}" Loaded="BackersGridView_OnLoaded" SelectionMode="None">
                             <GridView.ItemTemplate>
                                 <DataTemplate>
-                                    <TextBlock Foreground="White" Style="{StaticResource TitleTextStyle}">
+                                    <TextBlock Foreground="White" Style="{StaticResource TitleTextStyle}" MinWidth="300">
                                         <Run Text="{Binding Name}"/>
                                         <Run Text="{Binding Country}" FontSize="13"/>
                                     </TextBlock>

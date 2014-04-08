@@ -27,7 +27,7 @@ namespace VLC_WINRT.Utility.Helpers
                 StorageFolder folder = Windows.ApplicationModel.Package.Current.InstalledLocation;
                 StorageFile file = await folder.GetFileAsync(path);
                 string csv = await FileIO.ReadTextAsync(file);
-                csv = csv.Remove(0, 12);
+                //csv = csv.Remove(0, 12);
                 lines = csv.Split('\n');
             }
 

@@ -22,7 +22,7 @@ namespace VLC_WINRT.Views
     /// </summary>
     public sealed partial class SpecialThanks : Page
     {
-        private int itemsLoaded = -249;
+        private int itemsLoaded = -250;
         private bool isLoading = false;
         private LoadBackers loadBackers;
         public SpecialThanks()
