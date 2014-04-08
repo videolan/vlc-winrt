@@ -24,8 +24,6 @@ using VLC_WINRT.ViewModels.MainPage;
 using VLC_WINRT.Views;
 using Autofac;
 
-// The Split App template is documented at http://go.microsoft.com/fwlink/?LinkId=234228
-
 namespace VLC_WINRT
 {
     /// <summary>

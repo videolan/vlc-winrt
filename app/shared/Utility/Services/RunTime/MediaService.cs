@@ -8,11 +8,9 @@
  **********************************************************************/
 
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using VLC_WINRT.Common;
 using VLC_WINRT.Utility.Services.Interface;
-using Windows.Foundation;
 using Windows.Storage;
 using Windows.UI.Core;
 using Windows.UI.Xaml.Controls;

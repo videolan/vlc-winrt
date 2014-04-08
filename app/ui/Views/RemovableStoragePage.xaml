@@ -10,7 +10,7 @@
     xmlns:controls="using:VLC_WINRT.Views.Controls"
     xmlns:dataTemplateSelectors="using:VLC_WINRT.Utility.DataTemplateSelectors"
     mc:Ignorable="d"
-    DataContext="{Binding Source={StaticResource Locator}, Path=MainPageVM}">
+    DataContext="{Binding Source={StaticResource Locator}, Path=MainPageVM.ExternalStorageVM}">
 
     <Page.Resources>
         <dataTemplateSelectors:MediaItemDataTemplateSelector WideMovieTemplate="{StaticResource WideMovieTemplate}"
@@ -117,7 +117,7 @@
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
     </Page.Resources>
-    <Grid DataContext="{Binding ExternalStorageVM}">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -142,23 +142,25 @@
             <Grid.RenderTransform>
                 <CompositeTransform />
             </Grid.RenderTransform>
-            <ListView x:Name="FirstPanelGridView" IsItemClickEnabled="True" SelectionMode="None" IsSwipeEnabled="False" Margin="100,0,0,0" Width="300" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" ItemsSource="{Binding RemovableStorageVMs}" ItemClick="FirstPanelGridView_SelectionChanged" >
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <Path Height="35" Width="35" Stretch="UniformToFill" Fill="WhiteSmoke" Data="M0,23.667L64,23.667 64,52.667 0,52.667z M0,0L25.802,0 25.802,6.862999 64,6.862999 64,14.818 0,14.818 0,13.727 0,6.862999z" />
-                            <TextBlock Margin="15,0,0,0" Text="{Binding Location.DisplayName}" Style="{StaticResource SubheaderTextStyle}"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
+            <ListView x:Name="FirstPanelGridView"
+                      IsItemClickEnabled="True" 
+                      SelectionMode="None" 
+                      IsSwipeEnabled="False" 
+                      Margin="100,0,0,0"
+                      Width="300" 
+                      ItemContainerStyle="{StaticResource ListViewItemContainerStyle}"
+                      ItemsSource="{Binding RemovableStorageVMs}" 
+                      ItemClick="FirstPanelGridView_SelectionChanged" 
+                      ItemTemplate="{StaticResource FolderDataTemplate}">
             </ListView>
-            <controls:VariableSizedItemsGridView Grid.Column="1" x:Name="SecondPanelGridView" SelectionMode="None" ItemContainerStyle="{StaticResource GridViewItemContainerStyle}" ItemTemplateSelector="{StaticResource MediaItemDataTemplateSelector}" >
-                <controls:VariableSizedItemsGridView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <VariableSizedWrapGrid VerticalChildrenAlignment="Top" ItemHeight="160" ItemWidth="265" MaximumRowsOrColumns="4" />
-                    </ItemsPanelTemplate>
-                </controls:VariableSizedItemsGridView.ItemsPanel>
-            </controls:VariableSizedItemsGridView>
+            <GridView Grid.Column="1" 
+                      x:Name="SecondPanelGridView" 
+                      SelectionMode="None" 
+                      ItemContainerStyle="{StaticResource GridViewItemContainerStyle}" 
+                      ItemTemplateSelector="{StaticResource StorageItemDataTemplateSelector}" 
+                      ItemClick="SecondPanelGridView_ItemClick" 
+                      IsItemClickEnabled="True"> 
+            </GridView>
             <!--<GridView Grid.Column="1" x:Name="SecondPanelGridView" Margin="20,0,0,0" ItemContainerStyle="{StaticResource GridViewItemContainerStyle}" ItemTemplate="{StaticResource NormaleMovieTemplate}" />-->
             <ListView Grid.Column="1" x:Name="SecondPanelListView" Margin="10,0,0,0" ItemTemplate="{StaticResource NormaleMovieTemplate}"/>
             <removableStorage:PlugARemovableStorage  Grid.ColumnSpan="2" Grid.Column="0" Visibility="{Binding RemovableStorageVMs.Count, Converter={StaticResource CountToVisibilityConverter}}" />

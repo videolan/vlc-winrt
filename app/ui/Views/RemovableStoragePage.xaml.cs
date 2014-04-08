@@ -7,13 +7,16 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
+using Windows.Storage.AccessCache;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using VLC_WINRT.Utility.Helpers;
 using VLC_WINRT.Utility.Services.RunTime;
+using VLC_WINRT.ViewModels;
 using VLC_WINRT.ViewModels.MainPage;
 using VLC_WINRT.Common;
+using VLC_WINRT.ViewModels.MainPage.VlcExplorer;
 
 namespace VLC_WINRT.Views
 {
@@ -51,10 +54,11 @@ namespace VLC_WINRT.Views
             {
                 FirstPanelGridView.Visibility = Visibility.Collapsed;
             }
-            var removableLibraryViewModel = e.ClickedItem as RemovableLibraryViewModel;
+            var removableLibraryViewModel = e.ClickedItem as FileExplorerViewModel;
             if (removableLibraryViewModel == null) return;
-            SecondPanelGridView.ItemsSource = removableLibraryViewModel.Media;
-            SecondPanelListView.ItemsSource = removableLibraryViewModel.Media;
+
+            SecondPanelGridView.ItemsSource = removableLibraryViewModel.StorageItems;
+            SecondPanelListView.ItemsSource = removableLibraryViewModel.StorageItems;
         }
 
         private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
@@ -74,6 +78,24 @@ namespace VLC_WINRT.Views
                     SecondPanelGridView.Visibility = Visibility.Visible;
                 }
             });
+        }
+
+        private async void SecondPanelGridView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            var item = e.ClickedItem as IVlcStorageItem;
+            if (item is FileExplorerViewModel)
+            {
+                await ((FileExplorerViewModel)item).GetFiles();
+                SecondPanelGridView.ItemsSource = ((FileExplorerViewModel)item).StorageItems;
+                SecondPanelListView.ItemsSource = ((FileExplorerViewModel)item).StorageItems;
+            }
+            else if (item is VlcStorageFile)
+            {
+                string FileName = ((VlcStorageFile)item).Name;
+                string MRL = StorageApplicationPermissions.FutureAccessList.Add(((VlcStorageFile)item).StorageFile);
+                Locator.PlayVideoVM.SetActiveVideoInfo(MRL, FileName);
+                NavigationService.NavigateTo(typeof(PlayVideo));
+            }
         }
     }
 }

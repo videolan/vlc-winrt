@@ -45,7 +45,6 @@ namespace VLC_WINRT.ViewModels.MainPage
         {
             Media = new ObservableCollection<MediaViewModel>();
             MediaRandom = new ObservableCollection<MediaViewModel>();
-
             Panels.Add(new Panel("ALL", 0, 1));
             Panels.Add(new Panel("NEVER SEEN BEFORE", 1, 0.4));
             Panels.Add(new Panel("FAVORITE", 2, 0.4));

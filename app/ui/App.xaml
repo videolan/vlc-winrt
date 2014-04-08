@@ -1,8 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
-<Application  xmlns:converters="using:VLC_WINRT.Utility.Converters"
+<Application xmlns:converters="using:VLC_WINRT.Utility.Converters"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" x:Class="VLC_WINRT.App"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+             x:Class="VLC_WINRT.App"
+             xmlns:dataTemplateSelectors="using:VLC_WINRT.Utility.DataTemplateSelectors"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModels="using:VLC_WINRT.ViewModels"
@@ -54,6 +56,26 @@
             <converters:AlbumImageConverter x:Key="AlbumImageConverter" />
             <viewModels:Locator x:Key="Locator"></viewModels:Locator>
             
+            <DataTemplate x:Key="FileDataTemplate">
+                <TextBlock Margin="15,0,0,0" Style="{StaticResource TitleTextStyle}" Width="300">
+                    <Run Text="{Binding Name}"/>
+                    <Run Text="" FontFamily="Segoe UI Symbol"/>
+                </TextBlock>
+            </DataTemplate>
+            
+            <DataTemplate x:Key="FolderDataTemplate">
+                <StackPanel Orientation="Horizontal" Width="300">
+                    <Path Height="35" Width="35" Stretch="UniformToFill" Fill="WhiteSmoke" Data="M0,23.667L64,23.667 64,52.667 0,52.667z M0,0L25.802,0 25.802,6.862999 64,6.862999 64,14.818 0,14.818 0,13.727 0,6.862999z" />
+                    <TextBlock Margin="15,0,0,0" Text="{Binding Name}" Style="{StaticResource SubheaderTextStyle}"/>
+                </StackPanel>
+            </DataTemplate>
+
+            <!-- DatTemplateSelectors -->
+            <dataTemplateSelectors:StorageItemDataTemplateSelector x:Key="StorageItemDataTemplateSelector" 
+                                                                   StorageFileDataTemplate="{StaticResource FileDataTemplate}"
+                                                                   StorageFolderDataTemplate="{StaticResource FolderDataTemplate}"
+                                                                  />
+
             <!-- Main Page Styles -->
             <DataTemplate x:Key="ColumnHeaderDataTemplate">
                 <TextBlock Text="{Binding}" Style="{StaticResource VLCSubHeaderStyle}"/>
@@ -79,7 +101,7 @@
                 <Setter Property="Margin" Value="0,20,10,0"></Setter>
                 <Setter Property="MinWidth" Value="300"></Setter>
             </Style>
-            
+
             <String x:Key="AppName" xmlns="http://schemas.microsoft.com/winfx/2006/xaml">VLC_WINRT</String>
 
             <DataTemplate x:Name="NormalSizedAlbumDataTemplate">
@@ -106,7 +128,7 @@
                     </Grid>
                 </Grid>
             </DataTemplate>
-            
+
             <DataTemplate x:Name="LittleSizedAlbumDataTemplate">
                 <Grid MinHeight="150" MinWidth="150">
                     <Image Source="{Binding Picture}" Stretch="UniformToFill" HorizontalAlignment="Center"/>
@@ -130,7 +152,7 @@
                     </Grid>
                 </Grid>
             </DataTemplate>
-            
+
             <!-- Style for Windows.UI.Xaml.Controls.GridViewItem -->
             <Style TargetType="GridViewItem" x:Key="GridViewItemContainerStyle">
                 <Setter Property="FontFamily" Value="{StaticResource ContentControlThemeFontFamily}" />
@@ -1189,6 +1211,7 @@
                     </Grid>
                 </Button>-->
             </DataTemplate>
+
 
             <!--CustomizedAppBarButton ala Windows 8.1-->
             <Style x:Key="ModernAppBarButtonStyle" TargetType="Button" BasedOn="{StaticResource TextButtonStyle}">
