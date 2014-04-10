@@ -444,6 +444,9 @@
     <Compile Include="Utility\Services\RunTime\MouseService.cs" />
     <Compile Include="Utility\Services\RunTime\NavigationService.cs" />
     <Compile Include="ViewModels\MainPage\VlcExplorer\FileExplorerViewModel.cs" />
+    <Compile Include="Views\AboutPage.xaml.cs">
+      <DependentUpon>AboutPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\BasePage.cs" />
     <Compile Include="Views\Controls\AnimatedBackground.xaml.cs">
       <DependentUpon>AnimatedBackground.xaml</DependentUpon>
@@ -1076,6 +1079,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="Views\AboutPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Controls\AnimatedBackground.xaml">
       <SubType>Designer</SubType>

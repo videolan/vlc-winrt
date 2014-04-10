@@ -51,10 +51,17 @@ namespace VLC_WINRT.Views
                     NavigationService.NavigateTo(typeof(SettingsPage));
                 });
 
+            var about = new SettingsCommand("about", "About The App",
+                command =>
+                {
+                    NavigationService.NavigateTo(typeof(AboutPage));
+                });
+
             args.Request.ApplicationCommands.Clear();
             args.Request.ApplicationCommands.Add(privacyCommand);
             args.Request.ApplicationCommands.Add(specialThanks);
             args.Request.ApplicationCommands.Add(settings);
+            args.Request.ApplicationCommands.Add(about);
         }
 
         public void NavigateFrom()
