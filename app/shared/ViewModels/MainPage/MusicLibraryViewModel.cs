@@ -7,6 +7,7 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
+using System.IO;
 using Windows.Storage.AccessCache;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
@@ -155,13 +156,18 @@ namespace VLC_WINRT.ViewModels.MainPage
                 IsMusicLibraryEmpty = false;
                 LoadFavoritesRandomAlbums();
             }
-
-            bool isMusicLibraryChanged = await IsMusicLibraryChanged();
-            if (isMusicLibraryChanged)
+            else
             {
                 await StartIndexing();
                 return;
             }
+
+            if(!await VerifyAllFilesAreHere())
+            {
+                await StartIndexing();
+                return;
+            }
+
             IsLoaded = true;
             IsBusy = false;
         }
@@ -202,6 +208,12 @@ namespace VLC_WINRT.ViewModels.MainPage
 
         public async Task StartIndexing()
         {
+            if (await DoesMusicDatabaseExist())
+            {
+                StorageFile dB = await ApplicationData.Current.LocalFolder.GetFileAsync("mediavlc.sqlite");
+                dB.DeleteAsync();
+            }
+
             DispatchHelper.InvokeAsync(() =>
             {
                 IsBusy = true;
@@ -225,7 +237,7 @@ namespace VLC_WINRT.ViewModels.MainPage
             });
         }
 
-        private async Task GetFiles()
+        private async Task GetAllMusicFolders()
         {
             foreach (CustomFolder folder in Locator.SettingsVM.MusicFolders)
             {
@@ -239,11 +251,22 @@ namespace VLC_WINRT.ViewModels.MainPage
                     customMusicFolder = await StorageApplicationPermissions.FutureAccessList.GetFolderAsync(
                         folder.Mru);
                 }
+                await CreateDatabaseFromMusicFolder(customMusicFolder);
+            }
+        }
 
-                var musicFiles = await customMusicFolder.GetFilesAsync(CommonFileQuery.DefaultQuery);
-                foreach (var item in musicFiles)
+        private async Task CreateDatabaseFromMusicFolder(StorageFolder musicFolder)
+        {
+            IReadOnlyList<IStorageItem> items = await musicFolder.GetItemsAsync();
+            foreach (IStorageItem storageItem in items)
+            {
+                if (storageItem.IsOfType(StorageItemTypes.File))
                 {
-                    await CreateDatabaseFromMusicFile(item);
+                    await CreateDatabaseFromMusicFile((StorageFile) storageItem);
+                }
+                else
+                {
+                    await CreateDatabaseFromMusicFolder((StorageFolder) storageItem);
                 }
             }
         }
@@ -356,56 +379,35 @@ namespace VLC_WINRT.ViewModels.MainPage
 #endif
         }
 
-        async Task<bool> IsMusicLibraryChanged()
+        private async Task<bool> DoesMusicDatabaseExist()
         {
-            // TODO Implement a way to discover how much files there's in each folder
+            return await DoesFileExistHelper.DoesFileExistAsync("mediavlc.sqlite");
+        }
 
-            var doesDbExists = await DoesFileExistHelper.DoesFileExistAsync("mediavlc.sqlite");
-            if (doesDbExists)
+        private async Task<bool> VerifyAllFilesAreHere()
+        {
+            var artists = await _artistDataRepository.Load();
+            foreach (var artistItem in artists)
             {
-                ulong totalFoldersSize = 0;
-                foreach (CustomFolder folder in Locator.SettingsVM.MusicFolders)
+                var albums = await _albumDataRepository.LoadAlbumsFromId(artistItem.Id);
+                foreach (var album in albums)
                 {
-                    StorageFolder customMusicFolder;
-                    if (folder.Mru == "Music Library")
+                    var tracks = await _trackDataRepository.LoadTracksByAlbumId(album.Id);
+                    foreach (var trackItem in tracks)
                     {
-                        customMusicFolder = KnownVLCLocation.MusicLibrary;
+                        try
+                        {
+                            StorageFile file = await StorageFile.GetFileFromPathAsync(trackItem.Path);
+                        }
+                        catch (FileNotFoundException exception)
+                        {
+                            Debug.WriteLine(trackItem.Path + "has been renamed, moved or deleted.");
+                            return false;
+                        }
                     }
-                    else
-                    {
-                        customMusicFolder = await StorageApplicationPermissions.FutureAccessList.GetFolderAsync(
-                            folder.Mru);
-                    }
-                    BasicProperties customMusicFolderProperties = await customMusicFolder.GetBasicPropertiesAsync();
-                    totalFoldersSize += customMusicFolderProperties.Size;
                 }
-                if (App.LocalSettings.ContainsKey("customMusicFolderTotalSize"))
-                {
-                    if ((ulong)App.LocalSettings["customMusicFolderTotalSize"] == totalFoldersSize)
-                    {
-                        return false;
-                    }
-                    App.LocalSettings.Remove("customMusicFolderTotalSize");
-                }
-                App.LocalSettings.Add("customMusicFolderTotalSize", totalFoldersSize);
-                return true;
             }
             return true;
-
-            //var doesDbExists = await DoesFileExistHelper.DoesFileExistAsync("mediavlc.sqlite");
-            //if (doesDbExists)
-            //{
-            //    if (App.LocalSettings.ContainsKey("nbOfFiles"))
-            //    {
-            //        if ((int)App.LocalSettings["nbOfFiles"] == NbOfFiles)
-            //        {
-            //            return false;
-            //        }
-            //        App.LocalSettings.Remove("nbOfFiles");
-            //    }
-            //    App.LocalSettings.Add("nbOfFiles", NbOfFiles);
-            //}
-            //return true;
         }
 
         public class ArtistItem : BindableBase
