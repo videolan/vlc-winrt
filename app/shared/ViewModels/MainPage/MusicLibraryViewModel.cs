@@ -55,7 +55,7 @@ namespace VLC_WINRT.ViewModels.MainPage
         private static AlbumDataRepository _albumDataRepository = new AlbumDataRepository();
 
         private StopVideoCommand _goBackCommand;
-        private bool _isLoaded;
+        private bool _isLoaded = false;
         private bool _isBusy = false;
         private bool _isMusicLibraryEmpty = true;
 
@@ -151,9 +151,9 @@ namespace VLC_WINRT.ViewModels.MainPage
         public async Task GetMusicFromLibrary()
         {
             await LoadFromDatabase();
+            IsMusicLibraryEmpty = false;
             if (Artist.Any())
             {
-                IsMusicLibraryEmpty = false;
                 LoadFavoritesRandomAlbums();
             }
             else
@@ -225,16 +225,20 @@ namespace VLC_WINRT.ViewModels.MainPage
             _artistDataRepository = new ArtistDataRepository();
             _artistDataRepository.Initialize();
 
-            await GetFiles();
-            LoadFromDatabase();
+            await GetAllMusicFolders();
 
-            DispatchHelper.InvokeAsync(() =>
+            await LoadFromDatabase();
+
+            await DispatchHelper.InvokeAsync(() =>
             {
                 IsBusy = false;
                 IsLoaded = true;
+                IsMusicLibraryEmpty = false;
                 OnPropertyChanged("IsBusy");
+                OnPropertyChanged("IsMusicLibraryEmpty");
                 OnPropertyChanged("IsLoaded");
             });
+            LoadFavoritesRandomAlbums();
         }
 
         private async Task GetAllMusicFolders()
