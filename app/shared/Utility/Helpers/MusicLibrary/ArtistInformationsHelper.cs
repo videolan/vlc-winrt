@@ -21,7 +21,6 @@ namespace VLC_WINRT.Utility.Helpers.MusicLibrary
 {
     public static class ArtistInformationsHelper
     {
-
         private static async Task<bool> DownloadArtistPictureFromDeezer(MusicLibraryViewModel.ArtistItem artist)
         {
             var deezerClient = new DeezerClient();

@@ -34,7 +34,7 @@ namespace VLC_WINRT
         public static CoreDispatcher Dispatcher;
         public static IPropertySet LocalSettings = ApplicationData.Current.LocalSettings.Values;
         public static string ApiKeyLastFm = "a8eba7d40559e6f3d15e7cca1bfeaa1c";
-
+        public static string DeezerAppID = "135671";
         // If != null; open the corresponding file
         public static string TemporaryMRL;
         public static string TemporaryFileName;

@@ -7,7 +7,6 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -24,7 +23,7 @@ namespace VLC_WINRT.Utility.Helpers.MusicLibrary
         public async Task<Artist> GetArtistInfo(string artistName)
         {
             var deezerClient = new HttpClient();
-            string json = await deezerClient.GetStringAsync(string.Format("http://api.deezer.com/search/artist?q={0}", artistName));
+            string json = await deezerClient.GetStringAsync(string.Format("http://api.deezer.com/search/artist?q={0}&appid={1}", System.Net.WebUtility.HtmlEncode(artistName), App.DeezerAppID));
             // TODO: See if this is even needed. It should just map an empty object.
             if (json == "{\"data\":[],\"total\":0}")
             {
@@ -44,7 +43,7 @@ namespace VLC_WINRT.Utility.Helpers.MusicLibrary
         public async Task<List<Artist>> GetSimilarArtists(string artistId)
         {
             var deezerClient = new HttpClient();
-            string json = await deezerClient.GetStringAsync(string.Format("http://api.deezer.com/artist/{0}/related", artistId));
+            string json = await deezerClient.GetStringAsync(string.Format("http://api.deezer.com/artist/{0}/related?appid={1}", artistId, App.DeezerAppID));
             var deezerArtists = JsonConvert.DeserializeObject<Artists>(json);
             var artistList = new List<Artist>();
             if (deezerArtists.Data != null)
@@ -62,7 +61,7 @@ namespace VLC_WINRT.Utility.Helpers.MusicLibrary
         public async Task<Album> GetAlbumInfo(string albumTitle)
         {
             var deezerClient = new HttpClient();
-            string json = await deezerClient.GetStringAsync(string.Format("http://api.deezer.com/search/album?q={0}", albumTitle));
+            string json = await deezerClient.GetStringAsync(string.Format("http://api.deezer.com/search/album?q={0}&appid={1}", albumTitle, App.DeezerAppID));
             if (json == "{\"data\":[],\"total\":0}")
             {
                 return null;
@@ -81,7 +80,7 @@ namespace VLC_WINRT.Utility.Helpers.MusicLibrary
         public async Task<List<Album>> GetArtistTopAlbums(string artistId)
         {
             var deezerClient = new HttpClient();
-            string json = await deezerClient.GetStringAsync(string.Format("http://api.deezer.com/artist/{0}/albums", artistId));
+            string json = await deezerClient.GetStringAsync(string.Format("http://api.deezer.com/artist/{0}/albums?appid={1}", artistId, App.DeezerAppID));
             var deezerAlbums = JsonConvert.DeserializeObject<Albums>(json);
             if (deezerAlbums == null) return null;
             if (deezerAlbums.Data == null) return null;
