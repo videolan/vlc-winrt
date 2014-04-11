@@ -14,6 +14,7 @@ using VLC_WINRT.Utility.Services.Interface;
 using Windows.Storage;
 using Windows.UI.Core;
 using Windows.UI.Xaml.Controls;
+using VLC_WINRT.ViewModels;
 #if NETFX_CORE
 using libVLCX;
 using Windows.Media;
@@ -137,14 +138,12 @@ namespace VLC_WINRT.Utility.Services.RunTime
 #endif
     public class MediaService : IMediaService
     {
-        private readonly HistoryService _historyService;
         private readonly VlcService _vlcService;
 
         private MediaElement _mediaElement;
 
-        public MediaService(HistoryService historyService, VlcService vlcService)
+        public MediaService(VlcService vlcService)
         {
-            _historyService = historyService;
             _vlcService = vlcService;
 
             _vlcService.MediaEnded += VlcPlayerService_MediaEnded;
@@ -296,7 +295,9 @@ namespace VLC_WINRT.Utility.Services.RunTime
                 if (!_isAudioMedia)
                 {
                     // TODO: Route Video Player calls through Media Service
-                    //_vlcService.Pause();
+                    _vlcService.Pause();
+
+                    Locator.PlayVideoVM._lastVideosRepository.Update(Locator.PlayVideoVM.CurrentVideo);
                     return;
                 }
 
@@ -305,26 +306,29 @@ namespace VLC_WINRT.Utility.Services.RunTime
                 // to play in the background. SetSource should have it's source set to a programmatically
                 // generated stream of blank noise, just incase the audio file in question isn't support by
                 // Windows.
-                var file = await _historyService.RetrieveFile(_lastMrl.Replace("file://", ""));
-                var stream = await file.OpenAsync(FileAccessMode.Read);
-                _mediaElement.SetSource(stream, file.ContentType);
-                _mediaElement.Play();
-                _mediaElement.IsLooping = true;
-                _mediaElement.Volume = 0;
+                // TODO: generate blank wave file
+                //var media = await Locator.PlayVideoVM._lastVideosRepository.LoadViaToken(_lastMrl.Replace("file://", ""));
+                //var stream = await media.File.OpenAsync(FileAccessMode.Read);
+                //_mediaElement.SetSource(stream, media.File.ContentType);
+                //_mediaElement.Play();
+                //_mediaElement.IsLooping = true;
+                //_mediaElement.Volume = 0;
             }
             else
             {
-                IsBackground = false;
+                IsBackground = false;    
+
                 if (!IsPlaying)
                     return;
 
                 // If we're playing a video, start playing again.
-                if (!_isAudioMedia)
+                if (!_isAudioMedia && IsPlaying)
                 {
                     // TODO: Route Video Player calls through Media Service
-                    //_vlcService.Play();
+                    _vlcService.Play();
                     return;
                 }
+
 
                 _mediaElement.Stop();
             }

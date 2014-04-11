@@ -29,16 +29,14 @@ namespace VLC_WINRT.Utility.Services.RunTime
 
         private readonly object _controlLock = new object();
 
-        private readonly HistoryService _historyService;
         public MediaPlayerState CurrentState;
         private Task _vlcInitializeTask;
         private Player _vlcPlayer;
 
 
-        public VlcService(HistoryService historyService)
+        public VlcService()
         {
             CurrentState = MediaPlayerState.Stopped;
-            _historyService = historyService;
         }
 
         public event EventHandler<MediaPlayerState> StatusChanged;

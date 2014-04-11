@@ -74,8 +74,7 @@ namespace VLC_WINRT.Common
         {
             try
             {
-                var historyService = App.Container.Resolve<HistoryService>();
-                await historyService.SaveHistory();
+
             }
             catch (Exception e)
             {
@@ -98,8 +97,6 @@ namespace VLC_WINRT.Common
         {
             try
             {
-                var historyService = App.Container.Resolve<HistoryService>();
-                await historyService.RestoreHistory();
             }
             catch (Exception e)
             {

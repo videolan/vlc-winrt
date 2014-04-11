@@ -12,17 +12,18 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Windows.Media;
+using Windows.UI.Xaml;
 using Autofac;
 using VLC_WINRT.Common;
 using VLC_WINRT.Model;
 using VLC_WINRT.Utility.Commands.VideoPlayer;
+using VLC_WINRT.Utility.DataRepository;
 using VLC_WINRT.Utility.Services.RunTime;
 using VLC_WINRT.ViewModels.MainPage;
+using VLC_WINRT.Utility.Services.Interface;
 #if NETFX_CORE
 using libVLCX;
-using VLC_WINRT.Views.Controls.MainPage;
 #endif
-using VLC_WINRT.Utility.Services.Interface;
 #if WINDOWS_PHONE_APP
 using VLC_WINPRT;
 #endif
@@ -45,9 +46,9 @@ namespace VLC_WINRT.ViewModels.PlayVideo
         private int _audioTracksCount = 0;
         private IDictionary<int, string> _audioTracks;
         private SetAudioTrackCommand _setAudioTrackCommand;
-
-        public PlayVideoViewModel(HistoryService historyService, IMediaService mediaService, VlcService mediaPlayerService)
-            : base(historyService, mediaService, mediaPlayerService)
+        private DispatcherTimer _positionTimer = new DispatcherTimer();
+        public PlayVideoViewModel(IMediaService mediaService, VlcService mediaPlayerService)
+            : base(mediaService, mediaPlayerService)
         {
             _subtitles = new ObservableCollection<Subtitle>();
             _subtitlesTracks = new Dictionary<int, string>();
@@ -58,7 +59,10 @@ namespace VLC_WINRT.ViewModels.PlayVideo
             _setSubTitlesCommand = new SetSubtitleTrackCommand();
             _setAudioTrackCommand = new SetAudioTrackCommand();
             _openSubtitleCommand = new OpenSubtitleCommand();
+            _lastVideosRepository.Load();
         }
+
+        public LastVideosRepository _lastVideosRepository = new LastVideosRepository();
 
         public MediaViewModel CurrentVideo
         {
@@ -76,6 +80,7 @@ namespace VLC_WINRT.ViewModels.PlayVideo
 
         protected override void OnPlaybackStopped()
         {
+            _positionTimer.Stop();
 #if NETFX_CORE
             _mouseService.RestoreMouse();
 #endif
@@ -147,16 +152,44 @@ namespace VLC_WINRT.ViewModels.PlayVideo
             _elapsedTime = TimeSpan.Zero;
 
             _vlcPlayerService.Open(_mrl);
-            OnPropertyChanged("TimeTotal");
+
 
             _vlcPlayerService.Play();
-            await Task.Delay(300);
+            await Task.Delay(500);
+            if (_timeTotal == TimeSpan.Zero)
+            {
+                double timeInMilliseconds = await _vlcPlayerService.GetLength();
+                TimeTotal = TimeSpan.FromMilliseconds(timeInMilliseconds);
+            }
+            OnPropertyChanged("TimeTotal");
+            
+            MediaViewModel media = await _lastVideosRepository.LoadViaToken(_fileToken);
+            if (media == null)
+            {
+                PositionInSeconds = 0;
+                _lastVideosRepository.Add(CurrentVideo);
+            }
+            else
+            {
+                PositionInSeconds = media.TimeWatched.TotalSeconds;
+            }
+
+            await Task.Delay(500);
             SubtitlesCount = await _vlcPlayerService.GetSubtitleCount();
             AudioTracksCount = await _vlcPlayerService.GetAudioTrackCount();
             await _vlcPlayerService.GetSubtitleDescription(SubtitlesTracks);
             await _vlcPlayerService.GetAudioTrackDescription(AudioTracks);
             _vlcPlayerService.MediaEnded += VlcPlayerServiceOnMediaEnded;
             RegisterMediaControlEvents();
+            
+            _positionTimer.Tick += FirePositionUpdate;
+            _positionTimer.Start();
+            _positionTimer.Interval = TimeSpan.FromSeconds(15);
+        }
+
+        private void FirePositionUpdate(object sender, object e)
+        {
+            UpdatePosition();
         }
 
         public void SetActiveVideoInfo(string mrl)
@@ -241,18 +274,10 @@ namespace VLC_WINRT.ViewModels.PlayVideo
             await DispatchHelper.InvokeAsync(() => App.RootPage.MainFrame.GoBack());
 #endif
         }
-
-        private async Task UpdatePosition(object sender, object e)
+        
+        private async Task UpdatePosition()
         {
-            OnPropertyChanged("PositionInSeconds");
-
-            if (_timeTotal == TimeSpan.Zero)
-            {
-                double timeInMilliseconds = await _vlcPlayerService.GetLength();
-                TimeTotal = TimeSpan.FromMilliseconds(timeInMilliseconds);
-            }
-
-            ElapsedTime = TimeSpan.FromSeconds(PositionInSeconds);
+            CurrentVideo.TimeWatched = TimeSpan.FromSeconds(PositionInSeconds);
         }
 
         public Task SetSizeVideoPlayer(uint x, uint y)

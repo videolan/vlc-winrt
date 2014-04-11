@@ -110,12 +110,12 @@ namespace VLC_WINRT.ViewModels.MainPage
                     }
                     IReadOnlyList<StorageFile> files =
                         await GetMediaFromFolder(customVideoFolder, CommonFileQuery.OrderByName);
-
-
+                    
                     int j = 0;
                     foreach (StorageFile storageFile in files)
                     {
-                        var mediaVM = new MediaViewModel(storageFile);
+                        var mediaVM = new MediaViewModel();
+                        mediaVM.Initialize(storageFile);
                         await mediaVM.Initialize();
                         // Get back to UI thread
                         await DispatchHelper.InvokeAsync(() =>

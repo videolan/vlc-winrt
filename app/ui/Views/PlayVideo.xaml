@@ -15,9 +15,13 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </views:BasePage.Resources>
-    <Grid Tapped="Grid_Tapped" PointerEntered="OnPointerEntered" ManipulationMode="All" Background="Transparent" ManipulationStarted="Grid_ManipulationStarted" ManipulationDelta="Grid_ManipulationDelta" ManipulationCompleted="Grid_ManipulationCompleted">
-
-
+    <Grid Tapped="Grid_Tapped" 
+          PointerEntered="OnPointerEntered" 
+          ManipulationMode="All"
+          Background="Transparent" 
+          ManipulationStarted="Grid_ManipulationStarted" 
+          ManipulationDelta="Grid_ManipulationDelta" 
+          ManipulationCompleted="Grid_ManipulationCompleted">
         <Grid x:Name="Commands">
             <TextBlock x:Name="SpeedRateTextBlock" FontWeight="ExtraLight" FontSize="100" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             <Grid x:Name="HeaderGrid" VerticalAlignment="Top" Height="Auto" >

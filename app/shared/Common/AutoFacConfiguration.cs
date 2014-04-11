@@ -45,7 +45,6 @@ namespace VLC_WINRT.Common
             builder.RegisterType<SettingsViewModel>().SingleInstance();
 
             // Register Services
-            builder.RegisterType<HistoryService>().SingleInstance();
             builder.RegisterType<MediaService>().As<IMediaService>().SingleInstance();
             #if NETFX_CORE
             builder.RegisterType<MouseService>().SingleInstance();

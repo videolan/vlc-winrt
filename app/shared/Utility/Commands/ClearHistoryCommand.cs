@@ -22,13 +22,7 @@ namespace VLC_WINRT.Utility.Commands
     {
         public override void Execute(object parameter)
         {
-            var historyService = App.Container.Resolve<HistoryService>();
-            LastViewedViewModel lastViewedVM = Locator.MainPageVM.LastViewedVM;
-            historyService.Clear();
-            lastViewedVM.LastViewedVM = null;
-            lastViewedVM.LastViewedSectionVisible = false;
-            lastViewedVM.WelcomeSectionVisible = true;
-
+            //TODO: Do it
         }
     }
 }

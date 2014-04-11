@@ -100,9 +100,6 @@
     <Compile Include="..\shared\Model\DeezerArtistItem.cs">
       <Link>Model\DeezerArtistItem.cs</Link>
     </Compile>
-    <Compile Include="..\shared\Model\MediaHistory.cs">
-      <Link>Model\MediaHistory.cs</Link>
-    </Compile>
     <Compile Include="..\shared\Model\Panel.cs">
       <Link>Model\Panel.cs</Link>
     </Compile>
@@ -370,9 +367,6 @@
     <Compile Include="..\shared\Utility\Services\RunTime\ExternalDeviceService.cs">
       <Link>Utility\Services\RunTime\ExternalDeviceService.cs</Link>
     </Compile>
-    <Compile Include="..\shared\Utility\Services\RunTime\HistoryService.cs">
-      <Link>Utility\Services\RunTime\HistoryService.cs</Link>
-    </Compile>
     <Compile Include="..\shared\Utility\Services\RunTime\MediaService.cs">
       <Link>Utility\Services\RunTime\MediaService.cs</Link>
     </Compile>
@@ -387,9 +381,6 @@
     </Compile>
     <Compile Include="..\shared\ViewModels\MainPage\ExternalStorageViewModel.cs">
       <Link>ViewModels\MainPage\ExternalStorageViewModel.cs</Link>
-    </Compile>
-    <Compile Include="..\shared\ViewModels\MainPage\LastViewedViewModel.cs">
-      <Link>ViewModels\MainPage\LastViewedViewModel.cs</Link>
     </Compile>
     <Compile Include="..\shared\ViewModels\MainPage\MainPageViewModel.cs">
       <Link>ViewModels\MainPage\MainPageViewModel.cs</Link>
@@ -406,14 +397,8 @@
     <Compile Include="..\shared\ViewModels\MainPage\PlayMusic\TrackCollectionViewModel.cs">
       <Link>ViewModels\MainPage\PlayMusic\TrackCollectionViewModel.cs</Link>
     </Compile>
-    <Compile Include="..\shared\ViewModels\MainPage\ThumbnailViewModel.cs">
-      <Link>ViewModels\MainPage\ThumbnailViewModel.cs</Link>
-    </Compile>
     <Compile Include="..\shared\ViewModels\MainPage\VideoLibraryViewModel.cs">
       <Link>ViewModels\MainPage\VideoLibraryViewModel.cs</Link>
-    </Compile>
-    <Compile Include="..\shared\ViewModels\MainPage\ViewedVideoViewModel.cs">
-      <Link>ViewModels\MainPage\ViewedVideoViewModel.cs</Link>
     </Compile>
     <Compile Include="..\shared\ViewModels\MediaPlaybackViewModel.cs">
       <Link>ViewModels\MediaPlaybackViewModel.cs</Link>
@@ -434,6 +419,7 @@
     <Compile Include="Common\LayoutAwarePage.cs" />
     <Compile Include="Common\RichTextColumns.cs" />
     <Compile Include="Common\SuspensionManager.cs" />
+    <Compile Include="Utility\DataRepository\LastVideosRepository.cs" />
     <Compile Include="Utility\DataTemplateSelectors\StorageItemDataTemplateSelector.cs" />
     <Compile Include="Utility\Helpers\PointersUtils.cs" />
     <Compile Include="Utility\Helpers\StoryboardExtensions.cs" />

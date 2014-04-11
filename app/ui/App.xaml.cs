@@ -84,8 +84,6 @@ namespace VLC_WINRT
 
         async Task LaunchTheApp()
         {
-            await (Container.Resolve<HistoryService>()).RestoreHistory();
-
             Window.Current.Content = Container.Resolve<RootPage>();
             Dispatcher = Window.Current.Content.Dispatcher;
             NavigationService.NavigateTo(typeof(MainPage));

@@ -8,6 +8,7 @@
  **********************************************************************/
 
 using Windows.Media;
+using Windows.Storage.AccessCache;
 using Windows.UI.Xaml.Media.Animation;
 using Autofac;
 using System;
@@ -30,16 +31,15 @@ namespace VLC_WINRT.Utility.Commands
     {
         public async override void Execute(object parameter)
         {
-            if (parameter.GetType() != typeof (MediaViewModel) && parameter.GetType() != typeof (ViewedVideoViewModel))
+            if (parameter.GetType() != typeof (MediaViewModel))
                 throw new ArgumentException("Expecting to see a Media View Model for this command");
 
             if(MediaControl.IsPlaying)
                 Locator.MusicPlayerVM.Stop();
 
-            var historyService = App.Container.Resolve<HistoryService>();
             var vm = (MediaViewModel) parameter;
 
-            string token = await historyService.Add(vm.File);
+            string token = StorageApplicationPermissions.FutureAccessList.Add(vm.File);
 
             var frame = App.ApplicationFrame;
 #if NETFX_CORE

@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel.Resources;
 using Windows.Media;
 using Windows.Storage;
+using Windows.Storage.AccessCache;
 using Windows.UI.Notifications;
 using VLC_WINRT.Utility.Helpers;
 using VLC_WINRT.Utility.Services.RunTime;
@@ -26,14 +27,12 @@ namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
     {
         private MusicLibraryViewModel.ArtistItem _artist;
         private TrackCollectionViewModel _trackCollection;
-        private readonly HistoryService _historyService;
 
-        public MusicPlayerViewModel(HistoryService historyService, IMediaService mediaService, VlcService mediaPlayerService)
-            : base(historyService, mediaService, mediaPlayerService)
+        public MusicPlayerViewModel(IMediaService mediaService, VlcService mediaPlayerService)
+            : base(mediaService, mediaPlayerService)
         {
             _trackCollection = new TrackCollectionViewModel();
             _mediaService.MediaEnded += MediaService_MediaEnded;
-            _historyService = historyService;
         }
 
         protected async void MediaService_MediaEnded(object sender, EventArgs e)
@@ -124,7 +123,7 @@ namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
             var trackItem = TrackCollection.TrackCollection[TrackCollection.CurrentTrack];
 
             var file = await StorageFile.GetFileFromPathAsync(trackItem.Path);
-            string token = await _historyService.Add(file);
+            string token = StorageApplicationPermissions.FutureAccessList.Add(file);
 
             Debug.WriteLine("Opening file: " + file.Path);
 
@@ -168,7 +167,7 @@ namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
             // Wat? This doesn't make any sense.
             var trackItem = TrackCollection.TrackCollection[TrackCollection.CurrentTrack];
 
-            string token = await _historyService.Add(file);
+            string token = StorageApplicationPermissions.FutureAccessList.Add(file);
 
             Debug.WriteLine("Opening file: " + file.Path);
 

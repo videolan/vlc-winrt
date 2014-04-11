@@ -13,12 +13,10 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Resources;
 using Windows.Storage;
-using Windows.Storage.AccessCache;
 using VLC_WINRT.Common;
 using VLC_WINRT.Model;
 using VLC_WINRT.Utility.Commands;
 using VLC_WINRT.Utility.Commands.MainPage;
-using Windows.UI.Xaml.Navigation;
 #if WINDOWS_PHONE_APP
 using VLC_WINPRT;
 #endif
@@ -38,7 +36,6 @@ namespace VLC_WINRT.ViewModels.MainPage
 #endif
         private bool _isAppBarOpen;
         private bool _isNetworkAppBarShown;
-        private LastViewedViewModel _lastViewedVM;
         private MusicLibraryViewModel _musicLibraryVm;
         private string _networkMRL = string.Empty;
         private PickVideoCommand _pickVideoCommand;
@@ -50,7 +47,6 @@ namespace VLC_WINRT.ViewModels.MainPage
 
         public MainPageViewModel()
         {
-            LastViewedVM = new LastViewedViewModel();
             PickVideo = new PickVideoCommand();
             PlayNetworkMRL = new PlayNetworkMRLCommand();
 
@@ -78,7 +74,6 @@ namespace VLC_WINRT.ViewModels.MainPage
             await Locator.SettingsVM.PopulateCustomFolders();
             await InitVideoVM();
             await InitMusicM();
-            await _lastViewedVM.Initialize();
         }
 
         public async Task InitVideoVM()
@@ -174,12 +169,6 @@ namespace VLC_WINRT.ViewModels.MainPage
         {
             get { return _dlnaVMs; }
             set { SetProperty(ref _dlnaVMs, value); }
-        }
-
-        public LastViewedViewModel LastViewedVM
-        {
-            get { return _lastViewedVM; }
-            set { SetProperty(ref _lastViewedVM, value); }
         }
 
         public bool IsNetworkAppBarShown

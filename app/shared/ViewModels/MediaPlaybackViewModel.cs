@@ -24,7 +24,6 @@ namespace VLC_WINRT.ViewModels
     public class MediaPlaybackViewModel : NavigateableViewModel, IDisposable
     {
         protected readonly IMediaService _mediaService;
-        protected readonly HistoryService _historyService;
         protected VlcService _vlcPlayerService;
 
         protected bool _isPlaying;
@@ -44,10 +43,8 @@ namespace VLC_WINRT.ViewModels
         protected readonly DisplayRequest _displayAlwaysOnRequest;
         protected readonly DispatcherTimer _sliderPositionTimer;
 
-        protected MediaPlaybackViewModel(HistoryService historyService, IMediaService mediaService, VlcService mediaPlayerService)
+        protected MediaPlaybackViewModel(IMediaService mediaService, VlcService mediaPlayerService)
         {
-            _historyService = historyService;
-
             _mediaService = mediaService;
             _mediaService.StatusChanged += PlayerStateChanged;
 
@@ -56,7 +53,7 @@ namespace VLC_WINRT.ViewModels
             _displayAlwaysOnRequest = new DisplayRequest();
             _sliderPositionTimer = new DispatcherTimer();
             _sliderPositionTimer.Tick += FirePositionUpdate;
-            _sliderPositionTimer.Interval = TimeSpan.FromMilliseconds(16);
+            _sliderPositionTimer.Interval = TimeSpan.FromMilliseconds(500);
 
             _skipAhead = new ActionCommand(() => _mediaService.SkipAhead());
             _skipBack = new ActionCommand(() => _mediaService.SkipBack());
@@ -92,18 +89,11 @@ namespace VLC_WINRT.ViewModels
             }
         }
 
-        private async Task UpdatePosition(object sender, object e)
+        private void UpdatePosition()
         {
-            OnPropertyChanged("PositionInSeconds");
-
-            if (_timeTotal == TimeSpan.Zero)
-            {
-                double timeInMilliseconds = await _vlcPlayerService.GetLength();
-                TimeTotal = TimeSpan.FromMilliseconds(timeInMilliseconds);
-            }
-
-            OnPropertyChanged("Position");
             ElapsedTime = TimeSpan.FromSeconds(PositionInSeconds);
+            OnPropertyChanged("PositionInSeconds");
+            OnPropertyChanged("Position");
         }
 
         virtual public void CleanViewModel()
@@ -119,19 +109,9 @@ namespace VLC_WINRT.ViewModels
 
         public override Task OnNavigatedFrom(NavigationEventArgs e)
         {
-            UpdateDate();
             _sliderPositionTimer.Stop();
             _mediaService.Stop();
             return base.OnNavigatedFrom(e);
-        }
-
-        private void UpdateDate()
-        {
-            if (!string.IsNullOrEmpty(_fileToken))
-            {
-                _historyService.UpdateMediaHistory(_fileToken, ElapsedTime);
-            }
-            OnPropertyChanged("Now");
         }
 
         protected virtual void OnPlaybackStarting()
@@ -152,9 +132,10 @@ namespace VLC_WINRT.ViewModels
         {
             await DispatchHelper.InvokeAsync(() => IsPlaying = e == VlcService.MediaPlayerState.Playing);
         }
+
         private async void FirePositionUpdate(object sender, object e)
         {
-            await UpdatePosition(this, e);
+            UpdatePosition();
         }
 
         #endregion
@@ -186,16 +167,12 @@ namespace VLC_WINRT.ViewModels
             protected set { SetProperty(ref _title, value); }
         }
 
-        public string Now
-        {
-            get { return DateTime.Now.ToString(CultureInfo.CurrentCulture.DateTimeFormat.ShortTimePattern); }
-        }
-
         public PlayPauseCommand PlayOrPause
         {
             get { return _playOrPause; }
             set { SetProperty(ref _playOrPause, value); }
         }
+
         public PlayNextCommand PlayNextCommand
         {
             get { return _playNext; }
@@ -236,6 +213,7 @@ namespace VLC_WINRT.ViewModels
             get { return _elapsedTime; }
             set { SetProperty(ref _elapsedTime, value); }
         }
+
         public double PositionInSeconds
         {
             get
@@ -246,7 +224,10 @@ namespace VLC_WINRT.ViewModels
                 }
                 return 0.0d;
             }
-            set { _mediaService.SetPosition((float)(value / TimeTotal.TotalSeconds)); }
+            set
+            {
+                _mediaService.SetPosition((float)(value / TimeTotal.TotalSeconds));
+            }
         }
 
         public double Position
@@ -258,14 +239,12 @@ namespace VLC_WINRT.ViewModels
                     return _mediaService.GetPosition() * 1000;
                 }
                 return 0.0d;
-
             }
             set
             {
                 _mediaService.SetPosition((float)value / 1000);
             }
         }
-
         #endregion
     }
 }

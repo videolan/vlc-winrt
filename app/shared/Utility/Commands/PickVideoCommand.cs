@@ -7,6 +7,7 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
+using Windows.Storage.AccessCache;
 using Autofac;
 using System;
 using System.Diagnostics;
@@ -116,14 +117,12 @@ namespace VLC_WINRT.Utility.Commands
             StorageFile file = await picker.PickSingleFileAsync();
             if (file != null)
             {
-                var history = App.Container.Resolve<HistoryService>();
-                string token = await history.Add(file);
-
                 Debug.WriteLine("Opening file: " + file.Path);
-                Locator.PlayVideoVM.SetActiveVideoInfo(token, file.Name);
-                var video = new MediaViewModel(file);
+                var video = new MediaViewModel();
+                video.Initialize(file);
                 await video.Initialize();
                 Locator.PlayVideoVM.CurrentVideo = video;
+                Locator.PlayVideoVM.SetActiveVideoInfo(video.Token, file.Name);
 #if NETFX_CORE
                 NavigationService.NavigateTo(typeof(PlayVideo));
 #endif
