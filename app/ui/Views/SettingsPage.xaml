@@ -24,12 +24,14 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0" Margin="50,40,0,0" x:Name="HeaderGrid">
+        <Grid Grid.Row="0" Margin="5,40,0,0" x:Name="HeaderGrid">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100" />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Grid>
+            <Button Style="{StaticResource PreviousAppBarButtonStyle}" Click="GoBack_Click" />
+            <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="50"/>
@@ -37,7 +39,7 @@
                 <TextBlock x:Uid="MainPageTitle" Text="VLC for Windows 8" Margin="3,0,0,0" FontWeight="SemiBold" FontSize="20"/>
                 <TextBlock Grid.Row="1" Text="settings" Style="{StaticResource SubheaderTextStyle}"/>
             </Grid>
-            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+            <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button Style="{StaticResource SearchNoTextAppBarButtonStyle}" Click="OpenSearchPane" />
             </StackPanel>
         </Grid>

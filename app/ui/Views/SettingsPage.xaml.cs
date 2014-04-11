@@ -55,5 +55,10 @@ namespace VLC_WINRT.Views
             });
             popup.ShowForSelectionAsync((sender as FrameworkElement).GetBoundingRect());
         }
+
+        private void GoBack_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.GoBack();
+        }
     }
 }
