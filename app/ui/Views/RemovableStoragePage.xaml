@@ -156,7 +156,12 @@
                       ItemTemplateSelector="{StaticResource StorageItemDataTemplateSelector}" 
                       ItemClick="SecondPanelGridView_ItemClick" 
                       IsItemClickEnabled="True"/>
-            <ListView Grid.Column="1" x:Name="SecondPanelListView" Margin="10,0,0,0" ItemTemplateSelector="{StaticResource StorageItemDataTemplateSelector}"/>
+            <ListView Grid.Column="1" x:Name="SecondPanelListView" Margin="10,0,0,0" 
+                      IsItemClickEnabled="True" 
+                      SelectionMode="None" 
+                      IsSwipeEnabled="False" 
+                      ItemClick="SecondPanelGridView_ItemClick"
+                      ItemTemplateSelector="{StaticResource StorageItemDataTemplateSelector}"/>
             <removableStorage:PlugARemovableStorage  Grid.ColumnSpan="2" Grid.Column="0" Visibility="{Binding RemovableStorageVMs.Count, Converter={StaticResource CountToVisibilityConverter}}" />
         </Grid>
         <controls:MiniPlayer Grid.Row="2"/>
