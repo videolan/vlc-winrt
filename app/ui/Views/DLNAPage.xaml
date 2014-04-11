@@ -154,7 +154,13 @@
                       ItemClick="SecondPanelGridView_ItemClick" 
                       IsItemClickEnabled="True"/>
             <!--<GridView Grid.Column="1" x:Name="SecondPanelGridView" Margin="20,0,0,0" ItemContainerStyle="{StaticResource GridViewItemContainerStyle}" ItemTemplate="{StaticResource NormaleMovieTemplate}" />-->
-            <ListView Grid.Column="1" x:Name="SecondPanelListView" Margin="10,0,0,0" ItemTemplateSelector="{StaticResource StorageItemDataTemplateSelector}"/>
+            <ListView Grid.Column="1" x:Name="SecondPanelListView" 
+                      Margin="10,0,0,0" 
+                      IsItemClickEnabled="True" 
+                      SelectionMode="None" 
+                      IsSwipeEnabled="False" 
+                      ItemTemplateSelector="{StaticResource StorageItemDataTemplateSelector}"
+                      ItemClick="SecondPanelGridView_ItemClick" />
             <!--<removableStorage:PlugARemovableStorage Grid.ColumnSpan="2" Visibility="{Binding RemovableStorageVMs.Count, Converter={StaticResource CountToVisibilityConverter}}" Margin="1,2,-1,-2"/>-->
         </Grid>
     </Grid>

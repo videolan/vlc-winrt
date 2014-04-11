@@ -68,6 +68,8 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="50"/>
                             <RowDefinition Height="*"/>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
                         <TextBlock Text="license" FontSize="30" Style="{StaticResource VLCSubHeaderStyle}" Foreground="White"/>
                         <StackPanel Grid.Row="1" Margin="0,15,0,0" Width="500">
@@ -91,6 +93,11 @@
                                        TextAlignment="Center"
                                        Margin="10" 
                                        Text="VLC for Windows 8 is licensed under the GNU General Public License, version 2 (herein referred to as GPL)."/>-->
+                        </StackPanel>
+                        <TextBlock Grid.Row="2" Text="music information" FontSize="30" Style="{StaticResource VLCSubHeaderStyle}" Foreground="White"/>
+                        <StackPanel Grid.Row="3" Margin="0,15,0,0" Width="500">
+                            <Image Source="ms-appx:///Assets/DeezerApplats_RVB_Blanc.png"
+                                   Width="350"/>
                         </StackPanel>
                     </Grid>
                 </StackPanel>

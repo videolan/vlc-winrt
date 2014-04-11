@@ -550,6 +550,7 @@
       <Link>Strings\ja-JP\Resources.resw</Link>
     </PRIResource>
     <Content Include="Assets\BadgeLogo.png" />
+    <Content Include="Assets\DeezerApplats_RVB_Blanc.png" />
     <Content Include="Assets\Logo.scale-100.png" />
     <Content Include="Assets\SmallLogo.scale-100.png" />
     <Content Include="Assets\StoreLogo.scale-100.png" />
