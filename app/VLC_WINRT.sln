@@ -13,13 +13,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VLC_WINRT_TESTS", "tests\VL
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libxaudio2_winrt_plugin", "..\modules\libxaudio2_winrt_plugin\libxaudio2_winrt_plugin.vcxproj", "{542C7405-778D-4AC6-A43D-D2A6BAF70B09}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{195AEEAE-9AAD-4E6A-958A-CFB3D3F35CAC}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\NuGet.Config = .nuget\NuGet.Config
-		.nuget\NuGet.exe = .nuget\NuGet.exe
-		.nuget\NuGet.targets = .nuget\NuGet.targets
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VLC_WINPRT", "VLC_WINPRT\VLC_WINPRT.csproj", "{B82A3412-46E3-45F2-A74A-2BAB42FEAE5B}"
 EndProject
 Global
