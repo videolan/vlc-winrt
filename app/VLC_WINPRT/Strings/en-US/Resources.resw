@@ -301,7 +301,7 @@
     <value>Maybe we didn't search in the right places.</value>
   </data>
   <data name="VlcThankYou.Text" xml:space="preserve">
-    <value>The VLC for Windows 8 Team would like to thank very much the people who made this application possible:</value>
+    <value>The VLC for Windows 8 Team would like to say 'thank you very much' to the people who made this App possible:</value>
   </data>
   <data name="Welcome.Text" xml:space="preserve">
     <value>Welcome to VLC for Windows 8 Beta!</value>

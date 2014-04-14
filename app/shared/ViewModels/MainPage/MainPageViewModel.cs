@@ -30,7 +30,6 @@ namespace VLC_WINRT.ViewModels.MainPage
         private ObservableCollection<Panel> _secondaryPanels = new ObservableCollection<Panel>();
         private ObservableCollection<FileExplorerViewModel> _dlnaVMs =
             new ObservableCollection<FileExplorerViewModel>();
-        private ObservableCollection<BackItem> _backers = new ObservableCollection<BackItem>();
 #if NETFX_CORE
         private ExternalStorageViewModel _externalStorageVM;
 #endif
@@ -116,15 +115,6 @@ namespace VLC_WINRT.ViewModels.MainPage
             }
         }
 
-        public ObservableCollection<BackItem> Backers
-        {
-            get
-            {
-                return _backers;
-            }
-            set { SetProperty(ref _backers, value); }
-        }
-
         public GoToPanelCommand GoToPanel
         {
             get { return _goToPanelCommand; }
@@ -194,7 +184,6 @@ namespace VLC_WINRT.ViewModels.MainPage
             get { return _toggleNetworkAppBarCommand; }
             set { SetProperty(ref _toggleNetworkAppBarCommand, value); }
         }
-
 
         public bool IsAppBarOpen
         {

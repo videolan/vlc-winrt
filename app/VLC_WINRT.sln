@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30203.2
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VLC_WINRT", "UI\VLC_WINRT.csproj", "{746E8FC5-D67B-4ED3-89EC-757515B18CB5}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libaccess_winrt_plugin", "..\modules\libaccess_winrt_plugin\libaccess_winrt_plugin.vcxproj", "{A3345ED6-A13A-487B-9EF3-412FED4916D1}"
@@ -14,6 +12,13 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VLC_WINRT_TESTS", "tests\VLC_WINRT_TESTS\VLC_WINRT_TESTS.csproj", "{1E7456C4-4D13-4266-88A7-92500625B199}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libxaudio2_winrt_plugin", "..\modules\libxaudio2_winrt_plugin\libxaudio2_winrt_plugin.vcxproj", "{542C7405-778D-4AC6-A43D-D2A6BAF70B09}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{195AEEAE-9AAD-4E6A-958A-CFB3D3F35CAC}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VLC_WINPRT", "VLC_WINPRT\VLC_WINPRT.csproj", "{B82A3412-46E3-45F2-A74A-2BAB42FEAE5B}"
 EndProject

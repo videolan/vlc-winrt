@@ -64,5 +64,10 @@ namespace VLC_WINRT.ViewModels
         {
             get { return App.Container.Resolve<SettingsViewModel>(); }
         }
+          public static SpecialThanksViewModel SpecialThanksVM
+        {
+            get { return App.Container.Resolve<SpecialThanksViewModel>(); }
+        }
+
     }
 }

@@ -10,6 +10,7 @@
 using Autofac;
 using VLC_WINRT.Utility.Services.Interface;
 using VLC_WINRT.Utility.Services.RunTime;
+using VLC_WINRT.ViewModels;
 using DesignTime = VLC_WINRT.Utility.Services.DesignTime;
 using VLC_WINRT.ViewModels.MainPage;
 using VLC_WINRT.ViewModels.MainPage.PlayMusic;
@@ -51,6 +52,7 @@ namespace VLC_WINRT.Common
             #endif
             builder.RegisterType<VlcService>().SingleInstance();
             builder.RegisterType<ExternalDeviceService>().SingleInstance();
+            builder.RegisterType<SpecialThanksViewModel>().SingleInstance();
             if (Windows.ApplicationModel.DesignMode.DesignModeEnabled)
             {
                 builder.RegisterType<DesignTime.ThumbnailService>().As<IThumbnailService>().SingleInstance();
