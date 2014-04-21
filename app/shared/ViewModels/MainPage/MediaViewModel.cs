@@ -13,6 +13,7 @@ using Windows.Storage.AccessCache;
 using Windows.Storage.FileProperties;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
+using Autofac;
 using SQLite;
 using VLC_WINRT.Common;
 using VLC_WINRT.Utility.Commands;
@@ -20,6 +21,7 @@ using Windows.Storage;
 using VLC_WINRT.Utility.Commands.VideoPlayer;
 using System.Threading.Tasks;
 using VLC_WINRT.Utility.Services.Interface;
+using VLC_WINRT.ViewModels.Settings;
 
 namespace VLC_WINRT.ViewModels.MainPage
 {
@@ -42,6 +44,7 @@ namespace VLC_WINRT.ViewModels.MainPage
         {
             OpenVideo = new OpenVideoCommand();
             FavoriteVideo = new FavoriteVideoCommand();
+            _thumbsService = App.Container.Resolve<IThumbnailService>();
         }
 
         public void Initialize(StorageFile storageFile)
@@ -84,24 +87,31 @@ namespace VLC_WINRT.ViewModels.MainPage
 
         private async void GenerateThumbnail()
         {
-            StorageItemThumbnail thumb = null;
             try
             {
-                thumb = await _thumbsService.GetThumbnail(File);
+                if (File.FileType == ".mkv")
+                {
+                    WriteableBitmap thumb = await _thumbsService.GetScreenshot(File);
+                    await DispatchHelper.InvokeAsync(async () =>
+                    {
+                        Image = thumb;
+                    });
+                }
+                else
+                {
+                    StorageItemThumbnail thumb = await _thumbsService.GetThumbnail(File);
+                    await DispatchHelper.InvokeAsync(async () =>
+                    {
+                        var image = new BitmapImage();
+                        await image.SetSourceAsync(thumb);
+                        Image = image;
+                    });
+                }
+               
             }
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.ToString());
-            }
-
-            if (thumb != null)
-            {
-                await DispatchHelper.InvokeAsync(async () =>
-                {
-                    var image = new BitmapImage();
-                    await image.SetSourceAsync(thumb);
-                    Image = image;
-                });
             }
         }
 

@@ -9,6 +9,7 @@
 
 using System;
 using System.Threading.Tasks;
+using Windows.UI.Xaml.Media.Imaging;
 using VLC_WINRT.Utility.Services.Interface;
 using Windows.Storage;
 using Windows.Storage.FileProperties;
@@ -24,6 +25,13 @@ namespace VLC_WINRT.Utility.Services.DesignTime
 
             StorageItemThumbnail thumb = await image.GetThumbnailAsync(ThumbnailMode.VideosView);
             return thumb;
+        }
+
+        public async Task<WriteableBitmap> GetScreenshot(StorageFile file)
+        {
+            WriteableBitmap bmp = new WriteableBitmap(400,300);
+            await Task.Delay(5);
+            return bmp;
         }
     }
 }

@@ -10,11 +10,13 @@
 using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.FileProperties;
+using Windows.UI.Xaml.Media.Imaging;
 
 namespace VLC_WINRT.Utility.Services.Interface
 {
     public interface IThumbnailService
     {
         Task<StorageItemThumbnail> GetThumbnail(StorageFile file);
+        Task<WriteableBitmap> GetScreenshot(StorageFile file);
     }
 }

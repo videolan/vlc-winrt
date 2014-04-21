@@ -10,6 +10,9 @@
 using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using Windows.Storage.AccessCache;
+using Windows.UI.Xaml.Media.Imaging;
+using libVLCX;
 using VLC_WINRT.Utility.Services.Interface;
 using Windows.Storage;
 using Windows.Storage.FileProperties;
@@ -33,6 +36,14 @@ namespace VLC_WINRT.Utility.Services.RunTime
             }
 
             return thumb;
+        }
+
+        public async Task<WriteableBitmap> GetScreenshot(StorageFile file)
+        {
+            Thumbnailer thumbnailer = new Thumbnailer();
+            string token = StorageApplicationPermissions.FutureAccessList.Add(file);
+            var screenshot = await thumbnailer.TakeScreenshot("winrt://" + token, 342, 234);
+            return screenshot;
         }
     }
 }
