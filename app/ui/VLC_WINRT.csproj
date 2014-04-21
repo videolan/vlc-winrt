@@ -533,6 +533,9 @@
     <PRIResource Include="..\shared\Strings\ja-JP\Resources.resw">
       <Link>Strings\ja-JP\Resources.resw</Link>
     </PRIResource>
+    <Content Include="..\..\vlc\plugins\video_output\libvmem_plugin.dll">
+      <Link>plugins\video_output\libvmem_plugin.dll</Link>
+    </Content>
     <Content Include="Assets\BadgeLogo.png" />
     <Content Include="Assets\DeezerApplats_RVB_Blanc.png" />
     <Content Include="Assets\Logo.scale-100.png" />

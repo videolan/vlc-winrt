@@ -218,6 +218,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="MMDeviceLocator.h" />
+    <ClInclude Include="Thumbnailer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DirectXManager.cpp" />
@@ -231,6 +232,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="MMDeviceLocator.cpp" />
+    <ClCompile Include="Thumbnailer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\vlc\libvlc.dll" />
