@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest">
-  <Identity Name="9519ba58-7ad6-4c4e-97ed-bfc2135a0d19" Publisher="CN=VideoLAN" Version="0.0.5.0" />
+  <Identity Name="9519ba58-7ad6-4c4e-97ed-bfc2135a0d19" Publisher="CN=VideoLAN" Version="0.1.5.0" />
   <Properties>
     <DisplayName>VLC for Windows 8</DisplayName>
     <PublisherDisplayName>VideoLAN</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
   <Prerequisites>
-    <OSMinVersion>6.2.1</OSMinVersion>
-    <OSMaxVersionTested>6.2.1</OSMaxVersionTested>
+    <OSMinVersion>6.3.0</OSMinVersion>
+    <OSMaxVersionTested>6.3.0</OSMaxVersionTested>
   </Prerequisites>
   <Resources>
     <Resource Language="x-generate" />
@@ -39,10 +39,15 @@
           </BackgroundTasks>
         </Extension>
       </Extensions>
-      <VisualElements DisplayName="VLC for Windows 8" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="VLC Media Player for Windows 8" ForegroundText="light" BackgroundColor="#e67e22" ToastCapable="true">
-        <DefaultTile ShowName="allLogos" ShortName="VLC" WideLogo="Assets\Wide310x150Logo.png" />
-        <SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="#e67e22" />
-      </VisualElements>
+      <m2:VisualElements DisplayName="VLC for Windows 8" Description="VLC Media Player for Windows 8" BackgroundColor="#e67e22" ForegroundText="light" ToastCapable="true" Square150x150Logo="Assets\Logo.png" Square30x30Logo="Assets\SmallLogo.png">
+        <m2:DefaultTile ShortName="VLC" Wide310x150Logo="Assets\Wide310x150Logo.png">
+          <m2:ShowNameOnTiles>
+            <m2:ShowOn Tile="square150x150Logo" />
+            <m2:ShowOn Tile="wide310x150Logo" />
+          </m2:ShowNameOnTiles>
+        </m2:DefaultTile>
+        <m2:SplashScreen BackgroundColor="#e67e22" Image="Assets\SplashScreen.png" />
+      </m2:VisualElements>
     </Application>
   </Applications>
   <Capabilities>
