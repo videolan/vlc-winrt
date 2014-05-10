@@ -81,8 +81,6 @@ namespace VLC_WINRT_APP
             }
 #endif
 
-            var rootFrame = Window.Current.Content as Frame;
-
             if (args.PreviousExecutionState == ApplicationExecutionState.Suspended ||
                   args.PreviousExecutionState == ApplicationExecutionState.Terminated)
             {
@@ -90,7 +88,8 @@ namespace VLC_WINRT_APP
             }
             await LaunchTheApp();
 
-            if (rootFrame.Content == null)
+            var rootFrame = Window.Current.Content as Frame;
+            if (rootFrame != null && rootFrame.Content == null)
             {
 #if WINDOWS_PHONE_APP
     // Removes the turnstile navigation for startup.

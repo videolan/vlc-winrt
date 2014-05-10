@@ -106,10 +106,10 @@ namespace VLC_WINRT.Utility.Services.RunTime
 
         public async Task Initialize(SwapChainBackgroundPanel panel)
         {
-            _vlcPlayer = new Player(panel);
-            _vlcInitializeTask = _vlcPlayer.Initialize().AsTask();
-            _vlcPlayer.MediaEnded += _vlcPlayer_MediaEnded;
-            await _vlcInitializeTask;
+            //_vlcPlayer = new Player(panel);
+            //_vlcInitializeTask = _vlcPlayer.Initialize().AsTask();
+            //_vlcPlayer.MediaEnded += _vlcPlayer_MediaEnded;
+            //await _vlcInitializeTask;
         }
 
         private void _vlcPlayer_MediaEnded()
