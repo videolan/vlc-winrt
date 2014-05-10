@@ -1,0 +1,26 @@
+﻿<UserControl
+    x:Class="VLC_WINRT.Views.Controls.MainPage.Thumbnail"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400"
+    Background="Black">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <!-- TODO: Fade image in via storyboard -->
+        <!-- TODO: Pick a random temp background Metro Styles -->
+        <Grid x:Name="TempGrid" 
+              Background="Black" 
+              Visibility="{Binding Image, Converter={StaticResource NullToVisibilityConverter}}">
+        </Grid>
+        <Image Source="{Binding Image}"></Image>
+    </Grid>
+</UserControl>

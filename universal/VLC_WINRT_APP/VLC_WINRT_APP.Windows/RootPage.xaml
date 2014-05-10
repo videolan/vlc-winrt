@@ -1,0 +1,16 @@
+﻿<Page
+    x:Class="VLC_WINRT.Views.RootPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:VLC_WINRT.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:VLC_WINRT.Views.Controls"
+    mc:Ignorable="d">
+    <SwapChainBackgroundPanel x:Name="SwapChainPanel">
+        <controls:AnimatedBackground x:Name="AnimatedBackground"/>
+        <Frame x:Name="MainFrame" x:FieldModifier="public" Navigated="MainFrame_OnNavigated"/>
+        <controls:SearchFlyout x:Name="SearchPane" x:FieldModifier="public" />
+        <MediaElement x:Name="FoudationMediaElement" x:FieldModifier="public" AudioCategory="BackgroundCapableMedia" AudioDeviceType="Multimedia"/>
+    </SwapChainBackgroundPanel>
+</Page>

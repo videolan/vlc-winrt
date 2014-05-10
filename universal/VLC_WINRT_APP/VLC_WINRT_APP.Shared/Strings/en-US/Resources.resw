@@ -1,0 +1,321 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddContent.Text" xml:space="preserve">
+    <value>Add content to your</value>
+  </data>
+  <data name="AddContentCont.Text" xml:space="preserve">
+    <value>in order to use this section.</value>
+  </data>
+  <data name="Album.Text" xml:space="preserve">
+    <value>album</value>
+  </data>
+  <data name="Artist" xml:space="preserve">
+    <value>Artist</value>
+  </data>
+  <data name="ArtistHeader.Text" xml:space="preserve">
+    <value>artist</value>
+  </data>
+  <data name="Biography.Text" xml:space="preserve">
+    <value>biography</value>
+  </data>
+  <data name="ChangeVideoFolder.Content" xml:space="preserve">
+    <value>Change default Video folder</value>
+  </data>
+  <data name="Clear.Text" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="CurrentFeatures.Text" xml:space="preserve">
+    <value>Current Features:</value>
+  </data>
+  <data name="CustomMusicFolder.Text" xml:space="preserve">
+    <value> custom music folders</value>
+  </data>
+  <data name="CustomVideoFolder.Text" xml:space="preserve">
+    <value> custom video folders</value>
+  </data>
+  <data name="DecreaseSpeed.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>Decrease speed</value>
+  </data>
+  <data name="ElementsNotFound.Text" xml:space="preserve">
+    <value>It seems that we didn't find any elements in there.</value>
+  </data>
+  <data name="ExternalStorage.Text" xml:space="preserve">
+    <value>external storage</value>
+  </data>
+  <data name="Favorite.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>Favorite</value>
+  </data>
+  <data name="FavoriteAlbums" xml:space="preserve">
+    <value>Favorite Albums</value>
+  </data>
+  <data name="FeaturesOpen.Text" xml:space="preserve">
+    <value>Open a video from anywhere on your device. Swipe up or right click to open a file from the App Bar.</value>
+  </data>
+  <data name="FeaturesSomething.Text" xml:space="preserve">
+    <value>Plays something (plays anything after the bugs are fixed).</value>
+  </data>
+  <data name="FeaturesUSB.Text" xml:space="preserve">
+    <value>USB and SD Card support.</value>
+  </data>
+  <data name="FeaturesVidLib.Text" xml:space="preserve">
+    <value>Video Library support. Add files to your Video Library and play them directly.</value>
+  </data>
+  <data name="Filter.Text" xml:space="preserve">
+    <value>Please select a field to filter by...</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>home</value>
+  </data>
+  <data name="IncreaseSpeed.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>Increase speed</value>
+  </data>
+  <data name="IndexingMusic1.Text" xml:space="preserve">
+    <value>Indexing Music library</value>
+  </data>
+  <data name="IndexingMusic2.Text" xml:space="preserve">
+    <value>VLC may be unresponsive</value>
+  </data>
+  <data name="IntroPara.Text" xml:space="preserve">
+    <value>This app is our attempt to bring the VLC media player to Microsoft's newest OS. It's currently under heavy development so not all features have been included, and many existing features have bugs.</value>
+  </data>
+  <data name="ItsLonely.Text" xml:space="preserve">
+    <value>It's lonely here.</value>
+  </data>
+  <data name="LastViewed.Text" xml:space="preserve">
+    <value>last viewed</value>
+  </data>
+  <data name="MainPageTitle.Text" xml:space="preserve">
+    <value>VLC for Windows 8</value>
+  </data>
+  <data name="MediaServers" xml:space="preserve">
+    <value>media servers</value>
+  </data>
+  <data name="MediaServersHeader.Text" xml:space="preserve">
+    <value>Media servers</value>
+  </data>
+  <data name="Movies.Text" xml:space="preserve">
+    <value>movies</value>
+  </data>
+  <data name="Music" xml:space="preserve">
+    <value>music</value>
+  </data>
+  <data name="MusicHeader.Text" xml:space="preserve">
+    <value>music</value>
+  </data>
+  <data name="NetworkUrl.Text" xml:space="preserve">
+    <value>Network URL:</value>
+  </data>
+  <data name="NoBiographyFound" xml:space="preserve">
+    <value>It seems we didn't find a biography for this artist.</value>
+  </data>
+  <data name="NothingToSeeHere.Text" xml:space="preserve">
+    <value>Nothing to see here</value>
+  </data>
+  <data name="OpenFile.Text" xml:space="preserve">
+    <value>Open a file</value>
+  </data>
+  <data name="OpenNetworkStream.Text" xml:space="preserve">
+    <value>Open Network Stream...</value>
+  </data>
+  <data name="OpenVideo" xml:space="preserve">
+    <value>Open Video</value>
+  </data>
+  <data name="Or.Text" xml:space="preserve">
+    <value>or</value>
+  </data>
+  <data name="PartnersGold.Text" xml:space="preserve">
+    <value>gold partners</value>
+  </data>
+  <data name="PartnersOther.Text" xml:space="preserve">
+    <value>other backers</value>
+  </data>
+  <data name="PartnersSilver.Text" xml:space="preserve">
+    <value>silver partners</value>
+  </data>
+  <data name="Play.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>Play</value>
+  </data>
+  <data name="PopularAlbums.Header" xml:space="preserve">
+    <value>popular albums</value>
+  </data>
+  <data name="PrivacyStatement" xml:space="preserve">
+    <value>Privacy Statement</value>
+  </data>
+  <data name="RemovableDevices.Text" xml:space="preserve">
+    <value>Removable devices</value>
+  </data>
+  <data name="RemoveableDevice.Text" xml:space="preserve">
+    <value>Plug-in a removable device</value>
+  </data>
+  <data name="RemoveableDeviceMessage1.Text" xml:space="preserve">
+    <value>Plug in a removable storage and VLC will detects all the files in it.</value>
+  </data>
+  <data name="RemoveableDeviceMessage2.Text" xml:space="preserve">
+    <value>Waiting for removable storages</value>
+  </data>
+  <data name="Search.Text" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="SimilarArtists.Header" xml:space="preserve">
+    <value>similar artists</value>
+  </data>
+  <data name="SpecialThanks" xml:space="preserve">
+    <value>Special Thanks</value>
+  </data>
+  <data name="Track.Text" xml:space="preserve">
+    <value>track</value>
+  </data>
+  <data name="Tracks" xml:space="preserve">
+    <value>Tracks</value>
+  </data>
+  <data name="Unfavorite.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
+    <value>Unfavorite</value>
+  </data>
+  <data name="UnknownArtist" xml:space="preserve">
+    <value>Unknown Artist</value>
+  </data>
+  <data name="UnknownTrack" xml:space="preserve">
+    <value>Unknown Track</value>
+  </data>
+  <data name="Videos" xml:space="preserve">
+    <value>videos</value>
+  </data>
+  <data name="VideosHeader.Text" xml:space="preserve">
+    <value>videos</value>
+  </data>
+  <data name="VideosNotFound1.Text" xml:space="preserve">
+    <value>It seems that we didn't find any elements in your Video library.</value>
+  </data>
+  <data name="VideosNotFound2.Text" xml:space="preserve">
+    <value>Maybe we didn't search in the right places.</value>
+  </data>
+  <data name="VlcThankYou.Text" xml:space="preserve">
+    <value>The VLC for Windows 8 Team would like to thank very much the people who made this application possible:</value>
+  </data>
+  <data name="Welcome.Text" xml:space="preserve">
+    <value>Welcome to VLC for Windows 8 Beta!</value>
+  </data>
+  <data name="WelcomeMessage.Text" xml:space="preserve">
+    <value>THE VLC TEAM WOULD LIKE TO THANK</value>
+  </data>
+</root>

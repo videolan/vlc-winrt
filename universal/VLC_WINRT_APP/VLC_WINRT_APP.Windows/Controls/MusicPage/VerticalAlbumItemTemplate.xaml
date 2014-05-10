@@ -1,0 +1,62 @@
+﻿<UserControl
+    x:Class="VLC_WINRT.Views.Controls.MusicPage.VerticalAlbumItemTemplate"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:VLC_WINRT.Views.Controls.MusicPage"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+    
+    <StackPanel>
+        <Grid Margin="0,0,0,0" Tapped="Album_OnTapped">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="20"/>
+            </Grid.ColumnDefinitions>
+            <Image Source="{Binding Picture}" Height="50" Stretch="UniformToFill" HorizontalAlignment="Center"/>
+            <TextBlock Grid.Column="2" VerticalAlignment="Center" Text="{Binding Name}" TextWrapping="NoWrap" TextTrimming="WordEllipsis" FontSize="17"/>
+            <TextBlock x:Name="OpenPlayListArrow" Grid.Column="3" Margin="5,0,0,0" Text="" FontFamily="Segoe UI Symbol" Foreground="{StaticResource MainColor}" VerticalAlignment="Center" FontSize="24"/>
+            <TextBlock x:Name="ClosePlayListArrow" Visibility="Collapsed" Grid.Column="3" Margin="5,0,0,0" Text="" FontFamily="Segoe UI Symbol" Foreground="{StaticResource MainColor}" VerticalAlignment="Center" FontSize="24"/>
+        </Grid>
+        <Grid x:Name="PlayListGrid" >
+            <ListView IsSwipeEnabled="False" Margin="15,0,0,0" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" ItemsSource="{Binding Tracks}" SelectionMode="None"
+                      ScrollViewer.VerticalScrollMode="Disabled"
+                      ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                <ListView.HeaderTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Content="" FontSize="24" Style="{StaticResource ModernAppBarButtonStyle}" Command="{Binding PlayAlbum}" CommandParameter="{Binding}" Margin="0,0,10,0"/>
+                                <Button Template="{StaticResource MainButtonStyle}" Command="{Binding PlayAlbum}" CommandParameter="{Binding}">
+                                    <TextBlock TextWrapping="NoWrap" TextTrimming="WordEllipsis">
+                                            <Run Text="Play" FontWeight="Light" FontSize="20"/>
+                                            <Run Text="{Binding Name}" FontWeight="Light" FontSize="20"/>
+                                            <LineBreak />
+                                            <Run Text="{Binding Tracks.Count}" Foreground="#B2FFFFFF" FontWeight="SemiBold" FontSize="12"/>
+                                            <Run Text="TRACKS" Foreground="#B2FFFFFF" FontFamily="Segoe UI" FontWeight="SemiBold" FontSize="12"/>
+                                    </TextBlock>
+                                </Button>
+                            </StackPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.HeaderTemplate>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Button Template="{StaticResource MainButtonStyle}"
+                                Command="{Binding PlayTrack}"
+                                CommandParameter="{Binding}">
+                            <StackPanel Orientation="Horizontal" Width="300">
+                                <TextBlock Text="{Binding Index}" FontSize="22" FontWeight="SemiBold" />
+                                <TextBlock Text="{Binding Name}" VerticalAlignment="Bottom" Margin="5,0,0,2"/>
+                            </StackPanel>
+                        </Button>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </StackPanel>
+</UserControl>

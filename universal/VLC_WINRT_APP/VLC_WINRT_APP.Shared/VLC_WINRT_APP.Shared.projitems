@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>db1dea15-00b8-4707-8c70-53431c4fa754</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>VLC_WINRT_APP</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Common\AlwaysExecutableCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\AutoFacConfiguration.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\BindableBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\DispatchHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\KnownVLCLocation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\LayoutAwarePage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\RichTextColumns.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\SuspensionManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\DeezerArtistItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Panel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Subtitle.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SQLite.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SQLiteAsync.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Commands\ActionCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Commands\AddCustomMusicFolder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Commands\AddCustomVideoFolder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Commands\ClearHistoryCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Commands\MainPageCommands\GoToPanelCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Commands\MusicPlayer\FavoriteAlbumCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Commands\MusicPlayer\FavoriteTrackCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Commands\MusicPlayer\PlayNextCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Commands\MusicPlayer\PlayPreviousCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Commands\OpenFileCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Commands\PickVideoCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Commands\PlayAlbumCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Commands\PlayNetworkMRLCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Commands\PlayPauseCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Commands\PlayTrackComand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Commands\StopVideoCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Commands\VideoPlayer\FavoriteVideoCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Commands\VideoPlayer\OpenSubtitleCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Commands\VideoPlayer\SetAudioTrackCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Commands\VideoPlayer\SetSubtitleTrackCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Converters\AlbumImageConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Converters\BooleanNegationConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Converters\BooleanToVisibilityConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Converters\CountToVisibilityConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Converters\EmptyTimeSpanToVisibilityConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Converters\NegatedBooleanToVisibilityConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Converters\NegatedCountToVisibilityConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Converters\NullToVisibilityConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Converters\SecondsStringConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Converters\StringToUpperConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Converters\TimeSpanSecondsDoubleConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Converters\TimespanShortStringConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\DataRepository\AlbumDataRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\DataRepository\ArtistDataRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\DataRepository\LastVideosRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\DataRepository\TrackDataRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\DataTemplateSelectors\MediaItemDataTemplateSelector.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\DataTemplateSelectors\StorageItemDataTemplateSelector.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Helpers\AsyncLock.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Helpers\AwaitableUI\BitmapImageExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Helpers\AwaitableUI\ControlExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Helpers\AwaitableUI\EventAsync.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Helpers\AwaitableUI\FrameworkElementExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Helpers\AwaitableUI\WriteableBitmapExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Helpers\DoesFileExistHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Helpers\DownloadAndSaveHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Helpers\MathHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Helpers\MusicLibrary\ArtistInformationsHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Helpers\MusicLibrary\DeezerClient.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Helpers\MusicLibrary\Deezer\Albums.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Helpers\MusicLibrary\Deezer\Artists.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Helpers\MusicLibrary\Deezer\Tracks.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Helpers\MusicLibrary\EchonestClient.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Helpers\MusicLibrary\EchoNest\Artists.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Helpers\MusicLibrary\EchoNest\Twitter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Helpers\MusicLibrary\EchoNest\Videos.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Helpers\MusicLibrary\GetInformationsFromMusicFile.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Helpers\MusicLibrary\IMusicInformationManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Helpers\MusicLibrary\LastFmClient.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Helpers\MusicLibrary\LastFm\AlbumInformation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Helpers\MusicLibrary\LastFm\ArtistInformation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Helpers\MusicLibrary\LastFm\SimilarArtistInformation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Helpers\MusicLibrary\LastFm\TopAlbumInformation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Helpers\MusicLibrary\MusicEntities\Album.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Helpers\MusicLibrary\MusicEntities\Artist.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Helpers\MusicLibrary\MusicEntities\Image.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Helpers\MusicLibrary\XboxMusicClient.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Helpers\MusicLibrary\xboxmusic\Models\Albums.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Helpers\MusicLibrary\xboxmusic\Models\Artists.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Helpers\MusicLibrary\xboxmusic\Models\Authenication.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Helpers\MusicLibrary\xboxmusic\Models\Contributor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Helpers\MusicLibrary\xboxmusic\Models\Error.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Helpers\MusicLibrary\xboxmusic\Models\Music.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Helpers\MusicLibrary\xboxmusic\Models\Tracks.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Helpers\MusicLibrary\xboxmusic\MusicHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Helpers\MusicLibrary\xboxmusic\Settings\Culture.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Helpers\MusicLibrary\xboxmusic\Settings\Extras.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Helpers\MusicLibrary\xboxmusic\Settings\Filters.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Helpers\MusicLibrary\xboxmusic\Settings\ImageMode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Helpers\NativeOperationsHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Helpers\PointersUtils.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Helpers\SerializationHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Helpers\StoryboardExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Helpers\ToastHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Helpers\UIAnimationHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Helpers\UpdateTileHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Helpers\VisualTreeHelperExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Services\DesignTime\ThumbnailService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Services\Interface\IMediaControl.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Services\Interface\IMediaService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Services\Interface\IThumbnailService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Services\RunTime\ExternalDeviceService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Services\RunTime\MediaService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Services\RunTime\MouseService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Services\RunTime\NavigationService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Services\RunTime\ThumbnailService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utility\Services\RunTime\VlcService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Locator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainPage\BackerCountryViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainPage\ExternalStorageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainPage\MainPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainPage\MediaViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainPage\MusicLibraryViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainPage\PlayMusic\MusicPlayerViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainPage\PlayMusic\TrackCollectionViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainPage\RemovableLibraryViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainPage\SpecialThanksViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainPage\VideoLibraryViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainPage\VlcExplorer\FileExplorerViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MediaPlaybackViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\NavigateableViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\PlayVideo\PlayVideoViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Settings\SettingsViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\de-DE\Resources.resw" />
+    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\en-US\Resources.resw" />
+    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\ja-JP\Resources.resw" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)backers.csv" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="$(MSBuildThisFileDirectory)App.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)Common\ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="$(MSBuildThisFileDirectory)Common\SliderStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Common\StandardStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+</Project>

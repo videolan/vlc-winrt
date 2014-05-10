@@ -1,0 +1,63 @@
+﻿<UserControl
+    x:Class="VLC_WINRT.Views.Controls.MiniPlayer"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:VLC_WINRT.Views.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:converters="using:VLC_WINRT.Utility.Converters"
+    mc:Ignorable="d"
+    DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}">
+
+    <UserControl.Resources>
+        <ResourceDictionary >
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ms-appx:///Common/SliderStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid Height="90" Background="#66000000" Visibility="{Binding TrackCollection.IsRunning, Converter={StaticResource BooleanToVisibilityConverter}}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="300"/>
+        </Grid.ColumnDefinitions>
+        <Button Margin="5,0,0,0" HorizontalAlignment="Left" Template="{StaticResource MainButtonStyle}" Tapped="InformationsCurrentPlayingGrid_Tapped">
+            <StackPanel Orientation="Horizontal" >
+                <Image Height="70" Stretch="UniformToFill" Source="{Binding Artist.CurrentAlbumItem.Picture}" />
+                <Grid Margin="10,0,0,0">
+                    <TextBlock Text="{Binding Artist.Name}" VerticalAlignment="Top" Style="{StaticResource VLCSubHeaderStyle}" Margin="0,5,0,0"/>
+                    <TextBlock Text="{Binding Title}" VerticalAlignment="Bottom" Style="{StaticResource BodyTextStyle}" FontWeight="SemiBold" Margin="1,0,0,5"/>
+                </Grid>
+            </StackPanel>
+        </Button>
+        <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="10,0">
+            <Slider x:Name="VideoPositionSlider"
+                    Style="{StaticResource VlcSlider}"
+                    StepFrequency="0.001"
+                    Maximum="1000"
+                    Margin="0,-10,0,0"
+                    Value="{Binding Position, Mode=TwoWay}" 
+                    ThumbToolTipValueConverter="{StaticResource SecondsStringConverter}"/>
+            <Grid>
+                <TextBlock Text="{Binding ElapsedTime, Converter={StaticResource TimeSpanShortStringConverter}}" Style="{StaticResource SubtitleTextStyle}" HorizontalAlignment="Left" Margin="0,-30,0,0"/>
+                <TextBlock Text="{Binding TimeTotal, Converter={StaticResource TimeSpanShortStringConverter}}"   Style="{StaticResource SubtitleTextStyle}" HorizontalAlignment="Right" Margin="0,-30,0,0"/>
+            </Grid>
+        </StackPanel>
+        <Grid Grid.Column="2" VerticalAlignment="Center" Margin="0,-8,50,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Visibility="{Binding TrackCollection.CanGoPrevious, Converter={StaticResource BooleanToVisibilityConverter}}" Style="{StaticResource SkipBackNoTextMediumAppBarButtonStyle}" Command="{Binding PlayPreviousCommand}"/>
+            <Button Grid.Column="1" Foreground="{StaticResource MainColor}" Visibility="{Binding IsPlaying, Converter={StaticResource NegatedBooleanToVisibilityConverter}}" Style="{StaticResource PlayNoTextAppBarButtonStyle}" Command="{Binding PlayOrPause}"/>
+            <Button Grid.Column="1" Foreground="{StaticResource MainColor}" Visibility="{Binding IsPlaying, Converter={StaticResource BooleanToVisibilityConverter}}" Style="{StaticResource PauseNoTextAppBarButtonStyle}" Command="{Binding PlayOrPause}"/>
+            <Button Grid.Column="2" Visibility="{Binding TrackCollection.CanGoNext, Converter={StaticResource BooleanToVisibilityConverter}}" Style="{StaticResource SkipAheadNoTextMediumAppBarButtonStyle}" Command="{Binding PlayNextCommand}"/>
+        </Grid>
+        <!--<ProgressBar Style="{StaticResource ThinProgressBar}" VerticalAlignment="Bottom" Grid.ColumnSpan="2" Value="{Binding Position}" Maximum="1000"/>-->
+
+    </Grid>
+</UserControl>

@@ -1,0 +1,1808 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{746E8FC5-D67B-4ED3-89EC-757515B18CB5}</ProjectGuid>
+    <OutputType>AppContainerExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>VLC_WINRT</RootNamespace>
+    <AssemblyName>VLC_WINRT</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{BC8A1FFA-BEE3-4634-8014-F334798102B3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <PackageCertificateKeyFile>VLC_WINRT_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ARM\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
+    <OutputPath>bin\ARM\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <ProjectReference Include="..\..\modules\libaccess_winrt_plugin\libaccess_winrt_plugin.vcxproj">
+      <Project>{a3345ed6-a13a-487b-9ef3-412fed4916d1}</Project>
+      <Name>libaccess_winrt_plugin</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\modules\libdirect2d_winrt_plugin\libdirect2d_winrt_plugin.vcxproj">
+      <Project>{231dfaab-c462-49bf-8611-1fa6ee39983d}</Project>
+      <Name>libdirect2d_winrt_plugin</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\modules\libxaudio2_winrt_plugin\libxaudio2_winrt_plugin.vcxproj">
+      <Project>{542c7405-778d-4ac6-a43d-d2a6baf70b09}</Project>
+      <Name>libxaudio2_winrt_plugin</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\wrapper\libVLCX\libVLCX.vcxproj">
+      <Project>{22532381-be8b-40e0-a881-22ce24342d5a}</Project>
+      <Name>libVLCX</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\shared\Common\AlwaysExecutableCommand.cs">
+      <Link>Common\AlwaysExecutableCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Common\AutoFacConfiguration.cs">
+      <Link>Common\AutoFacConfiguration.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Common\BindableBase.cs">
+      <Link>Common\BindableBase.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Common\DispatchHelper.cs">
+      <Link>Common\DispatchHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Common\KnownVLCLocation.cs">
+      <Link>Common\KnownVLCLocation.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Model\DeezerArtistItem.cs">
+      <Link>Model\DeezerArtistItem.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Model\Panel.cs">
+      <Link>Model\Panel.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Model\Subtitle.cs">
+      <Link>Model\Subtitle.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\SQLite.cs">
+      <Link>SQLite.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\SQLiteAsync.cs">
+      <Link>SQLiteAsync.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Commands\ActionCommand.cs">
+      <Link>Utility\Commands\ActionCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Commands\AddCustomMusicFolder.cs">
+      <Link>Utility\Commands\AddCustomMusicFolder.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Commands\AddCustomVideoFolder.cs">
+      <Link>Utility\Commands\AddCustomVideoFolder.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Commands\ClearHistoryCommand.cs">
+      <Link>Utility\Commands\ClearHistoryCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Commands\MainPageCommands\GoToPanelCommand.cs">
+      <Link>Utility\Commands\MainPageCommands\GoToPanelCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Commands\MusicPlayer\FavoriteAlbumCommand.cs">
+      <Link>Utility\Commands\MusicPlayer\FavoriteAlbumCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Commands\MusicPlayer\FavoriteTrackCommand.cs">
+      <Link>Utility\Commands\MusicPlayer\FavoriteTrackCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Commands\MusicPlayer\PlayNextCommand.cs">
+      <Link>Utility\Commands\MusicPlayer\PlayNextCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Commands\MusicPlayer\PlayPreviousCommand.cs">
+      <Link>Utility\Commands\MusicPlayer\PlayPreviousCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Commands\OpenFileCommand.cs">
+      <Link>Utility\Commands\OpenFileCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Commands\PickVideoCommand.cs">
+      <Link>Utility\Commands\PickVideoCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Commands\PlayAlbumCommand.cs">
+      <Link>Utility\Commands\PlayAlbumCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Commands\PlayNetworkMRLCommand.cs">
+      <Link>Utility\Commands\PlayNetworkMRLCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Commands\PlayPauseCommand.cs">
+      <Link>Utility\Commands\PlayPauseCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Commands\PlayTrackComand.cs">
+      <Link>Utility\Commands\PlayTrackComand.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Commands\StopVideoCommand.cs">
+      <Link>Utility\Commands\StopVideoCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Commands\VideoPlayer\FavoriteVideoCommand.cs">
+      <Link>Utility\Commands\VideoPlayer\FavoriteVideoCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Commands\VideoPlayer\OpenSubtitleCommand.cs">
+      <Link>Utility\Commands\VideoPlayer\OpenSubtitleCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Commands\VideoPlayer\SetAudioTrackCommand.cs">
+      <Link>Utility\Commands\VideoPlayer\SetAudioTrackCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Commands\VideoPlayer\SetSubtitleTrackCommand.cs">
+      <Link>Utility\Commands\VideoPlayer\SetSubtitleTrackCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Converters\AlbumImageConverter.cs">
+      <Link>Utility\Converters\AlbumImageConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Converters\BooleanNegationConverter.cs">
+      <Link>Utility\Converters\BooleanNegationConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Converters\BooleanToVisibilityConverter.cs">
+      <Link>Utility\Converters\BooleanToVisibilityConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Converters\CountToVisibilityConverter.cs">
+      <Link>Utility\Converters\CountToVisibilityConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Converters\EmptyTimeSpanToVisibilityConverter.cs">
+      <Link>Utility\Converters\EmptyTimeSpanToVisibilityConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Converters\NegatedBooleanToVisibilityConverter.cs">
+      <Link>Utility\Converters\NegatedBooleanToVisibilityConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Converters\NegatedCountToVisibilityConverter.cs">
+      <Link>Utility\Converters\NegatedCountToVisibilityConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Converters\NullToVisibilityConverter.cs">
+      <Link>Utility\Converters\NullToVisibilityConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Converters\SecondsStringConverter.cs">
+      <Link>Utility\Converters\SecondsStringConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Converters\StringToUpperConverter.cs">
+      <Link>Utility\Converters\StringToUpperConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Converters\TimeSpanSecondsDoubleConverter.cs">
+      <Link>Utility\Converters\TimeSpanSecondsDoubleConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Converters\TimespanShortStringConverter.cs">
+      <Link>Utility\Converters\TimespanShortStringConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\DataRepository\AlbumDataRepository.cs">
+      <Link>Utility\DataRepository\AlbumDataRepository.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\DataRepository\ArtistDataRepository.cs">
+      <Link>Utility\DataRepository\ArtistDataRepository.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\DataRepository\TrackDataRepository.cs">
+      <Link>Utility\DataRepository\TrackDataRepository.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\DataTemplateSelectors\MediaItemDataTemplateSelector.cs">
+      <Link>Utility\DataTemplateSelectors\MediaItemDataTemplateSelector.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\AsyncLock.cs">
+      <Link>Utility\Helpers\AsyncLock.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\AwaitableUI\BitmapImageExtensions.cs">
+      <Link>Utility\Helpers\AwaitableUI\BitmapImageExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\AwaitableUI\ControlExtensions.cs">
+      <Link>Utility\Helpers\AwaitableUI\ControlExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\AwaitableUI\EventAsync.cs">
+      <Link>Utility\Helpers\AwaitableUI\EventAsync.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\AwaitableUI\FrameworkElementExtensions.cs">
+      <Link>Utility\Helpers\AwaitableUI\FrameworkElementExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\AwaitableUI\WriteableBitmapExtensions.cs">
+      <Link>Utility\Helpers\AwaitableUI\WriteableBitmapExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\DoesFileExistHelper.cs">
+      <Link>Utility\Helpers\DoesFileExistHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\DownloadAndSaveHelper.cs">
+      <Link>Utility\Helpers\DownloadAndSaveHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\MathHelper.cs">
+      <Link>Utility\Helpers\MathHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\MusicLibrary\ArtistInformationsHelper.cs">
+      <Link>Utility\Helpers\MusicLibrary\ArtistInformationsHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\MusicLibrary\DeezerClient.cs">
+      <Link>Utility\Helpers\MusicLibrary\DeezerClient.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\MusicLibrary\Deezer\Albums.cs">
+      <Link>Utility\Helpers\MusicLibrary\Deezer\Albums.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\MusicLibrary\Deezer\Artists.cs">
+      <Link>Utility\Helpers\MusicLibrary\Deezer\Artists.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\MusicLibrary\Deezer\Tracks.cs">
+      <Link>Utility\Helpers\MusicLibrary\Deezer\Tracks.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\MusicLibrary\EchonestClient.cs">
+      <Link>Utility\Helpers\MusicLibrary\EchonestClient.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\MusicLibrary\EchoNest\Artists.cs">
+      <Link>Utility\Helpers\MusicLibrary\EchoNest\Artists.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\MusicLibrary\EchoNest\Twitter.cs">
+      <Link>Utility\Helpers\MusicLibrary\EchoNest\Twitter.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\MusicLibrary\EchoNest\Videos.cs">
+      <Link>Utility\Helpers\MusicLibrary\EchoNest\Videos.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\MusicLibrary\GetInformationsFromMusicFile.cs">
+      <Link>Utility\Helpers\MusicLibrary\GetInformationsFromMusicFile.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\MusicLibrary\IMusicInformationManager.cs">
+      <Link>Utility\Helpers\MusicLibrary\IMusicInformationManager.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\MusicLibrary\LastFmClient.cs">
+      <Link>Utility\Helpers\MusicLibrary\LastFmClient.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\MusicLibrary\LastFm\AlbumInformation.cs">
+      <Link>Utility\Helpers\MusicLibrary\LastFm\AlbumInformation.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\MusicLibrary\LastFm\ArtistInformation.cs">
+      <Link>Utility\Helpers\MusicLibrary\LastFm\ArtistInformation.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\MusicLibrary\LastFm\SimilarArtistInformation.cs">
+      <Link>Utility\Helpers\MusicLibrary\LastFm\SimilarArtistInformation.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\MusicLibrary\LastFm\TopAlbumInformation.cs">
+      <Link>Utility\Helpers\MusicLibrary\LastFm\TopAlbumInformation.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\MusicLibrary\MusicEntities\Album.cs">
+      <Link>Utility\Helpers\MusicLibrary\MusicEntities\Album.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\MusicLibrary\MusicEntities\Artist.cs">
+      <Link>Utility\Helpers\MusicLibrary\MusicEntities\Artist.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\MusicLibrary\MusicEntities\Image.cs">
+      <Link>Utility\Helpers\MusicLibrary\MusicEntities\Image.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\MusicLibrary\XboxMusicClient.cs">
+      <Link>Utility\Helpers\MusicLibrary\XboxMusicClient.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\MusicLibrary\xboxmusic\Models\Albums.cs">
+      <Link>Utility\Helpers\MusicLibrary\xboxmusic\Models\Albums.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\MusicLibrary\xboxmusic\Models\Artists.cs">
+      <Link>Utility\Helpers\MusicLibrary\xboxmusic\Models\Artists.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\MusicLibrary\xboxmusic\Models\Authenication.cs">
+      <Link>Utility\Helpers\MusicLibrary\xboxmusic\Models\Authenication.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\MusicLibrary\xboxmusic\Models\Contributor.cs">
+      <Link>Utility\Helpers\MusicLibrary\xboxmusic\Models\Contributor.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\MusicLibrary\xboxmusic\Models\Error.cs">
+      <Link>Utility\Helpers\MusicLibrary\xboxmusic\Models\Error.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\MusicLibrary\xboxmusic\Models\Music.cs">
+      <Link>Utility\Helpers\MusicLibrary\xboxmusic\Models\Music.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\MusicLibrary\xboxmusic\Models\Tracks.cs">
+      <Link>Utility\Helpers\MusicLibrary\xboxmusic\Models\Tracks.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\MusicLibrary\xboxmusic\MusicHelper.cs">
+      <Link>Utility\Helpers\MusicLibrary\xboxmusic\MusicHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\MusicLibrary\xboxmusic\Settings\Culture.cs">
+      <Link>Utility\Helpers\MusicLibrary\xboxmusic\Settings\Culture.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\MusicLibrary\xboxmusic\Settings\Extras.cs">
+      <Link>Utility\Helpers\MusicLibrary\xboxmusic\Settings\Extras.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\MusicLibrary\xboxmusic\Settings\Filters.cs">
+      <Link>Utility\Helpers\MusicLibrary\xboxmusic\Settings\Filters.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\MusicLibrary\xboxmusic\Settings\ImageMode.cs">
+      <Link>Utility\Helpers\MusicLibrary\xboxmusic\Settings\ImageMode.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\NativeOperationsHelper.cs">
+      <Link>Utility\Helpers\NativeOperationsHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Helpers\SerializationHelper.cs">
+      <Link>Utility\Helpers\SerializationHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Services\DesignTime\ThumbnailService.cs">
+      <Link>Utility\Services\DesignTime\ThumbnailService.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Services\Interface\IMediaControl.cs">
+      <Link>Utility\Services\Interface\IMediaControl.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Services\Interface\IMediaService.cs">
+      <Link>Utility\Services\Interface\IMediaService.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Services\Interface\IThumbnailService.cs">
+      <Link>Utility\Services\Interface\IThumbnailService.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Services\RunTime\ExternalDeviceService.cs">
+      <Link>Utility\Services\RunTime\ExternalDeviceService.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Services\RunTime\MediaService.cs">
+      <Link>Utility\Services\RunTime\MediaService.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Services\RunTime\ThumbnailService.cs">
+      <Link>Utility\Services\RunTime\ThumbnailService.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\Utility\Services\RunTime\VlcService.cs">
+      <Link>Utility\Services\RunTime\VlcService.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\ViewModels\Locator.cs">
+      <Link>ViewModels\Locator.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\ViewModels\MainPage\ExternalStorageViewModel.cs">
+      <Link>ViewModels\MainPage\ExternalStorageViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\ViewModels\MainPage\MainPageViewModel.cs">
+      <Link>ViewModels\MainPage\MainPageViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\ViewModels\MainPage\MediaViewModel.cs">
+      <Link>ViewModels\MainPage\MediaViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\ViewModels\MainPage\MusicLibraryViewModel.cs">
+      <Link>ViewModels\MainPage\PlayMusic\MusicLibraryViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\ViewModels\MainPage\PlayMusic\MusicPlayerViewModel.cs">
+      <Link>ViewModels\MainPage\PlayMusic\MusicPlayerViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\ViewModels\MainPage\PlayMusic\TrackCollectionViewModel.cs">
+      <Link>ViewModels\MainPage\PlayMusic\TrackCollectionViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\ViewModels\MainPage\VideoLibraryViewModel.cs">
+      <Link>ViewModels\MainPage\VideoLibraryViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\ViewModels\MediaPlaybackViewModel.cs">
+      <Link>ViewModels\MediaPlaybackViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\ViewModels\NavigateableViewModel.cs">
+      <Link>ViewModels\NavigateableViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\ViewModels\PlayVideo\PlayVideoViewModel.cs">
+      <Link>ViewModels\PlayVideo\PlayVideoViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\shared\ViewModels\Settings\SettingsViewModel.cs">
+      <Link>ViewModels\Settings\SettingsViewModel.cs</Link>
+    </Compile>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\BackerCountryViewModel.cs" />
+    <Compile Include="ViewModels\SpecialThanksViewModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Common\LayoutAwarePage.cs" />
+    <Compile Include="Common\RichTextColumns.cs" />
+    <Compile Include="Common\SuspensionManager.cs" />
+    <Compile Include="Utility\DataRepository\LastVideosRepository.cs" />
+    <Compile Include="Utility\DataTemplateSelectors\StorageItemDataTemplateSelector.cs" />
+    <Compile Include="Utility\Helpers\PointersUtils.cs" />
+    <Compile Include="Utility\Helpers\StoryboardExtensions.cs" />
+    <Compile Include="Utility\Helpers\ToastHelper.cs" />
+    <Compile Include="Utility\Helpers\UIAnimationHelper.cs" />
+    <Compile Include="Utility\Helpers\UpdateTileHelper.cs" />
+    <Compile Include="Utility\Helpers\VisualTreeHelperExtensions.cs" />
+    <Compile Include="Utility\Services\RunTime\MouseService.cs" />
+    <Compile Include="Utility\Services\RunTime\NavigationService.cs" />
+    <Compile Include="ViewModels\MainPage\VlcExplorer\FileExplorerViewModel.cs" />
+    <Compile Include="Views\AboutPage.xaml.cs">
+      <DependentUpon>AboutPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BasePage.cs" />
+    <Compile Include="Views\Controls\AnimatedBackground.xaml.cs">
+      <DependentUpon>AnimatedBackground.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\IndexingMusicLibrary.xaml.cs">
+      <DependentUpon>IndexingMusicLibrary.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\InputDialog\InputDialog.xaml.cs">
+      <DependentUpon>InputDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\MainPage\LastViewed.xaml.cs">
+      <DependentUpon>LastViewed.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\MainPage\LastViewedThumbnail.xaml.cs">
+      <DependentUpon>LastViewedThumbnail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\MainPage\MusicColumn.xaml.cs">
+      <DependentUpon>MusicColumn.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\MainPage\VideoColumn.xaml.cs">
+      <DependentUpon>VideoColumn.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\MainPage\Thumbnail.xaml.cs">
+      <DependentUpon>Thumbnail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\MainPage\ThumbnailsBackground.xaml.cs">
+      <DependentUpon>ThumbnailsBackground.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\MainPage\Welcome.xaml.cs">
+      <DependentUpon>Welcome.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\MinimizedAppBar.xaml.cs">
+      <DependentUpon>MinimizedAppBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\MiniPlayer.xaml.cs">
+      <DependentUpon>MiniPlayer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\MusicPage\AlbumFlyout.xaml.cs">
+      <DependentUpon>AlbumFlyout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\MusicPage\VerticalAlbumItemTemplate.xaml.cs">
+      <DependentUpon>VerticalAlbumItemTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\NothingToSeeHere.xaml.cs">
+      <DependentUpon>NothingToSeeHere.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\NothingToSeeHereVideos.xaml.cs">
+      <DependentUpon>NothingToSeeHereVideos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\RemovableStorage\PlugARemovableStorage.xaml.cs">
+      <DependentUpon>PlugARemovableStorage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\SearchFlyout.xaml.cs">
+      <DependentUpon>SearchFlyout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\VariableSizedItemsGridView.cs" />
+    <Compile Include="Views\Controls\WrapPanelControl\OrientedSize.cs" />
+    <Compile Include="Views\Controls\WrapPanelControl\WrapPanel.cs" />
+    <Compile Include="Views\DLNAPage.xaml.cs">
+      <DependentUpon>DLNAPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PlayMusic.xaml.cs">
+      <DependentUpon>PlayMusic.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PlayVideo.xaml.cs">
+      <DependentUpon>PlayVideo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RemovableStoragePage.xaml.cs">
+      <DependentUpon>RemovableStoragePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RootPage.xaml.cs">
+      <DependentUpon>RootPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SettingsPage.xaml.cs">
+      <DependentUpon>SettingsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SpecialThanks.xaml.cs">
+      <DependentUpon>SpecialThanks.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+    <Content Include="..\..\vlc\plugins\audio_output\libmmdevice_plugin.dll">
+      <Link>plugins\audio_output\libmmdevice_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\audio_output\libwasapi_plugin.dll">
+      <Link>plugins\audio_output\libwasapi_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\audio_output\libwinstore_plugin.dll">
+      <Link>plugins\audio_output\libwinstore_plugin.dll</Link>
+    </Content>
+    <PRIResource Include="..\shared\Strings\en-US\Resources.resw">
+      <Link>Strings\en-US\Resources.resw</Link>
+    </PRIResource>
+    <PRIResource Include="..\shared\Strings\ja-JP\Resources.resw">
+      <Link>Strings\ja-JP\Resources.resw</Link>
+    </PRIResource>
+    <Content Include="..\..\vlc\plugins\video_output\libvmem_plugin.dll">
+      <Link>plugins\video_output\libvmem_plugin.dll</Link>
+    </Content>
+    <Content Include="Assets\BadgeLogo.png" />
+    <Content Include="Assets\DeezerApplats_RVB_Blanc.png" />
+    <Content Include="Assets\Logo.scale-100.png" />
+    <Content Include="Assets\SmallLogo.scale-100.png" />
+    <Content Include="Assets\StoreLogo.scale-100.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-100.png" />
+    <Content Include="backers.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Assets\json\15.json" />
+    <None Include="Assets\json\200.json" />
+    <None Include="Assets\json\25.json" />
+    <None Include="Assets\json\250.json" />
+    <None Include="Assets\json\3.json" />
+    <None Include="Assets\json\350.json" />
+    <None Include="Assets\json\40.json" />
+    <None Include="Assets\json\60.json" />
+    <None Include="Assets\json\80.json" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_El_Salvador.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_England.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_European_Union.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Faroe_Islands.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_United_Federation_of_Planets.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_France.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Galdar.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Gáldar.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Germany.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Great_Britain.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Hong_Kong.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_India.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Isle_of_Man.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Italy.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Japan.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_New_Zealand.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Northern_Ireland.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Pirate.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Poland.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Puerto_Rico.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Russia.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Saudi_Arabia.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_South_Africa.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_South_Korea.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Spain.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Sri_Lanka.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Sweden.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_the_Bahamas.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_the_Netherlands.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Trinidad_and_Tobago.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_United_Arab_Emirates.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_United_Kingdom.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_United_Nations.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Vatican_City.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Åland_Islands.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Albania.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Anguilla.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Argentina.png" />
+    <Content Include="Assets\Scale-100\Flags\Flag_of_Australia.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Austria.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Azerbaijan.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Bangladesh.png" />
+    <Content Include="Assets\Scale-100\Flags\Flag_of_Basque.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Belarus.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Belgium.png" />
+    <Content Include="Assets\Scale-100\Flags\Flag_of_Berlin.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Bermuda.png" />
+    <Content Include="Assets\Scale-100\Flags\Flag_of_Brazil.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Brittany.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Brunei.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Bulgaria.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Canada.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Chile.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_China.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Colombia.png" />
+    <Content Include="Assets\Scale-100\Flags\Flag_of_Commonwealth_of_Dominica.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Croatia.png" />
+    <Content Include="Assets\Scale-100\Flags\Flag_of_Czech_Republic.png" />
+    <Content Include="Assets\Scale-100\Flags\Flag_of_Democratic_Order_of_Planets.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Denmark.png" />
+    <Content Include="Assets\Scale-100\Flags\Flag_of_Dominican_Republic.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Earth.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Ecuador.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Estonia.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Ethiopia.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Finland.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Georgia.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Greece.png" />
+    <Content Include="Assets\Scale-100\Flags\Flag_of_Guatemala.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Haiti.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Honduras.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Hungary.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Iceland.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Indonesia.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Ireland.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Israel.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Jamaica.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Jordan.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Latvia.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Lebanon.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Liechtenstein.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Lithuania.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Luxembourg.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Malaysia.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Maldives.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Malta.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Mars.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Martinique.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Mauritius.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Mexico.png" />
+    <Content Include="Assets\Scale-100\Flags\Flag_of_Myanmar.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Nepal.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Netherlands.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Nigeria.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Norway.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Peru.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Philippines.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Portugal.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Qatar.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Quebec.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Romania.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Scotland.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Serbia.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Singapore.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Slovakia.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Slovenia.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Switzerland.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Syria.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Taiwan.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Thailand.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Tunisia.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Turkey.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Ukraine.png" />
+    <Content Include="Assets\Scale-100\Flags\Flag_of_United_States.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_USSR.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Venezuela.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Vietnam.png" />
+    <Content Include="Assets\Scale-100\Flags\flag_of_Wales.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_El_Salvador.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_England.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_European_Union.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Faroe_Islands.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_United_Federation_of_Planets.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_France.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Galdar.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Gáldar.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Germany.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Great_Britain.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Hong_Kong.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_India.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Isle_of_Man.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Italy.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Japan.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_New_Zealand.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Northern_Ireland.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Pirate.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Poland.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Puerto_Rico.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Russia.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Saudi_Arabia.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_South_Africa.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_South_Korea.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Spain.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Sri_Lanka.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Sweden.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_the_Bahamas.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_the_Netherlands.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Trinidad_and_Tobago.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_United_Arab_Emirates.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_United_Kingdom.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_United_Nations.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Vatican_City.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Åland_Islands.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Albania.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Anguilla.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Argentina.png" />
+    <Content Include="Assets\Scale-140\Flags\Flag_of_Australia.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Austria.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Azerbaijan.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Bangladesh.png" />
+    <Content Include="Assets\Scale-140\Flags\Flag_of_Basque.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Belarus.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Belgium.png" />
+    <Content Include="Assets\Scale-140\Flags\Flag_of_Berlin.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Bermuda.png" />
+    <Content Include="Assets\Scale-140\Flags\Flag_of_Brazil.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Brittany.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Brunei.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Bulgaria.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Canada.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Chile.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_China.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Colombia.png" />
+    <Content Include="Assets\Scale-140\Flags\Flag_of_Commonwealth_of_Dominica.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Croatia.png" />
+    <Content Include="Assets\Scale-140\Flags\Flag_of_Czech_Republic.png" />
+    <Content Include="Assets\Scale-140\Flags\Flag_of_Democratic_Order_of_Planets.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Denmark.png" />
+    <Content Include="Assets\Scale-140\Flags\Flag_of_Dominican_Republic.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Earth.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Ecuador.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Estonia.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Ethiopia.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Finland.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Georgia.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Greece.png" />
+    <Content Include="Assets\Scale-140\Flags\Flag_of_Guatemala.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Haiti.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Honduras.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Hungary.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Iceland.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Indonesia.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Ireland.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Israel.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Jamaica.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Jordan.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Latvia.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Lebanon.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Liechtenstein.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Lithuania.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Luxembourg.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Malaysia.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Maldives.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Malta.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Mars.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Martinique.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Mauritius.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Mexico.png" />
+    <Content Include="Assets\Scale-140\Flags\Flag_of_Myanmar.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Nepal.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Netherlands.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Nigeria.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Norway.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Peru.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Philippines.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Portugal.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Qatar.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Quebec.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Romania.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Scotland.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Serbia.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Singapore.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Slovakia.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Slovenia.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Switzerland.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Syria.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Taiwan.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Thailand.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Tunisia.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Turkey.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Ukraine.png" />
+    <Content Include="Assets\Scale-140\Flags\Flag_of_United_States.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_USSR.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Venezuela.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Vietnam.png" />
+    <Content Include="Assets\Scale-140\Flags\flag_of_Wales.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_El_Salvador.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_England.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_European_Union.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Faroe_Islands.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_United_Federation_of_Planets.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_France.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Galdar.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Gáldar.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Germany.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Great_Britain.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Hong_Kong.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_India.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Isle_of_Man.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Italy.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Japan.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_New_Zealand.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Northern_Ireland.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Pirate.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Poland.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Puerto_Rico.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Russia.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Saudi_Arabia.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_South_Africa.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_South_Korea.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Spain.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Sri_Lanka.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Sweden.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_the_Bahamas.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_the_Netherlands.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Trinidad_and_Tobago.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_United_Arab_Emirates.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_United_Kingdom.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_United_Nations.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Vatican_City.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Åland_Islands.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Albania.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Anguilla.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Argentina.png" />
+    <Content Include="Assets\Scale-180\Flags\Flag_of_Australia.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Austria.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Azerbaijan.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Bangladesh.png" />
+    <Content Include="Assets\Scale-180\Flags\Flag_of_Basque.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Belarus.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Belgium.png" />
+    <Content Include="Assets\Scale-180\Flags\Flag_of_Berlin.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Bermuda.png" />
+    <Content Include="Assets\Scale-180\Flags\Flag_of_Brazil.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Brittany.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Brunei.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Bulgaria.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Canada.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Chile.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_China.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Colombia.png" />
+    <Content Include="Assets\Scale-180\Flags\Flag_of_Commonwealth_of_Dominica.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Croatia.png" />
+    <Content Include="Assets\Scale-180\Flags\Flag_of_Czech_Republic.png" />
+    <Content Include="Assets\Scale-180\Flags\Flag_of_Democratic_Order_of_Planets.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Denmark.png" />
+    <Content Include="Assets\Scale-180\Flags\Flag_of_Dominican_Republic.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Earth.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Ecuador.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Estonia.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Ethiopia.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Finland.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Georgia.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Greece.png" />
+    <Content Include="Assets\Scale-180\Flags\Flag_of_Guatemala.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Haiti.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Honduras.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Hungary.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Iceland.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Indonesia.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Ireland.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Israel.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Jamaica.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Jordan.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Latvia.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Lebanon.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Liechtenstein.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Lithuania.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Luxembourg.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Malaysia.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Maldives.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Malta.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Mars.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Martinique.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Mauritius.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Mexico.png" />
+    <Content Include="Assets\Scale-180\Flags\Flag_of_Myanmar.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Nepal.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Netherlands.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Nigeria.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Norway.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Peru.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Philippines.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Portugal.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Qatar.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Quebec.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Romania.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Scotland.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Serbia.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Singapore.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Slovakia.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Slovenia.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Switzerland.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Syria.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Taiwan.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Thailand.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Tunisia.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Turkey.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Ukraine.png" />
+    <Content Include="Assets\Scale-180\Flags\Flag_of_United_States.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_USSR.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Venezuela.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Vietnam.png" />
+    <Content Include="Assets\Scale-180\Flags\flag_of_Wales.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_El_Salvador.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_England.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_European_Union.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Faroe_Islands.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_United_Federation_of_Planets.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_France.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Galdar.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Gáldar.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Germany.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Great_Britain.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Hong_Kong.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_India.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Isle_of_Man.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Italy.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Japan.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_New_Zealand.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Northern_Ireland.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Pirate.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Poland.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Puerto_Rico.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Russia.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Saudi_Arabia.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_South_Africa.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_South_Korea.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Spain.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Sri_Lanka.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Sweden.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_the_Bahamas.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_the_Netherlands.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Trinidad_and_Tobago.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_United_Arab_Emirates.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_United_Kingdom.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_United_Nations.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Vatican_City.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Åland_Islands.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Albania.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Anguilla.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Argentina.png" />
+    <Content Include="Assets\Scale-200\Flags\Flag_of_Australia.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Austria.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Azerbaijan.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Bangladesh.png" />
+    <Content Include="Assets\Scale-200\Flags\Flag_of_Basque.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Belarus.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Belgium.png" />
+    <Content Include="Assets\Scale-200\Flags\Flag_of_Berlin.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Bermuda.png" />
+    <Content Include="Assets\Scale-200\Flags\Flag_of_Brazil.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Brittany.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Brunei.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Bulgaria.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Canada.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Chile.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_China.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Colombia.png" />
+    <Content Include="Assets\Scale-200\Flags\Flag_of_Commonwealth_of_Dominica.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Croatia.png" />
+    <Content Include="Assets\Scale-200\Flags\Flag_of_Czech_Republic.png" />
+    <Content Include="Assets\Scale-200\Flags\Flag_of_Democratic_Order_of_Planets.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Denmark.png" />
+    <Content Include="Assets\Scale-200\Flags\Flag_of_Dominican_Republic.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Earth.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Ecuador.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Estonia.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Ethiopia.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Finland.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Georgia.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Greece.png" />
+    <Content Include="Assets\Scale-200\Flags\Flag_of_Guatemala.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Haiti.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Honduras.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Hungary.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Iceland.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Indonesia.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Ireland.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Israel.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Jamaica.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Jordan.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Latvia.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Lebanon.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Liechtenstein.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Lithuania.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Luxembourg.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Malaysia.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Maldives.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Malta.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Mars.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Martinique.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Mauritius.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Mexico.png" />
+    <Content Include="Assets\Scale-200\Flags\Flag_of_Myanmar.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Nepal.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Netherlands.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Nigeria.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Norway.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Peru.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Philippines.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Portugal.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Qatar.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Quebec.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Romania.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Scotland.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Serbia.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Singapore.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Slovakia.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Slovenia.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Switzerland.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Syria.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Taiwan.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Thailand.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Tunisia.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Turkey.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Ukraine.png" />
+    <Content Include="Assets\Scale-200\Flags\Flag_of_United_States.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_USSR.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Venezuela.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Vietnam.png" />
+    <Content Include="Assets\Scale-200\Flags\flag_of_Wales.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_El_Salvador.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_England.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_European_Union.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Faroe_Islands.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_United_Federation_of_Planets.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_France.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Galdar.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Gáldar.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Germany.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Great_Britain.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Hong_Kong.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_India.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Isle_of_Man.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Italy.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Japan.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_New_Zealand.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Northern_Ireland.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Pirate.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Poland.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Puerto_Rico.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Russia.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Saudi_Arabia.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_South_Africa.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_South_Korea.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Spain.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Sri_Lanka.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Sweden.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_the_Bahamas.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_the_Netherlands.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Trinidad_and_Tobago.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_United_Arab_Emirates.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_United_Kingdom.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_United_Nations.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Vatican_City.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Åland_Islands.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Albania.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Anguilla.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Argentina.png" />
+    <Content Include="Assets\Scale-240\Flags\Flag_of_Australia.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Austria.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Azerbaijan.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Bangladesh.png" />
+    <Content Include="Assets\Scale-240\Flags\Flag_of_Basque.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Belarus.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Belgium.png" />
+    <Content Include="Assets\Scale-240\Flags\Flag_of_Berlin.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Bermuda.png" />
+    <Content Include="Assets\Scale-240\Flags\Flag_of_Brazil.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Brittany.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Brunei.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Bulgaria.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Canada.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Chile.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_China.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Colombia.png" />
+    <Content Include="Assets\Scale-240\Flags\Flag_of_Commonwealth_of_Dominica.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Croatia.png" />
+    <Content Include="Assets\Scale-240\Flags\Flag_of_Czech_Republic.png" />
+    <Content Include="Assets\Scale-240\Flags\Flag_of_Democratic_Order_of_Planets.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Denmark.png" />
+    <Content Include="Assets\Scale-240\Flags\Flag_of_Dominican_Republic.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Earth.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Ecuador.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Estonia.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Ethiopia.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Finland.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Georgia.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Greece.png" />
+    <Content Include="Assets\Scale-240\Flags\Flag_of_Guatemala.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Haiti.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Honduras.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Hungary.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Iceland.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Indonesia.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Ireland.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Israel.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Jamaica.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Jordan.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Latvia.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Lebanon.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Liechtenstein.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Lithuania.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Luxembourg.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Malaysia.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Maldives.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Malta.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Mars.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Martinique.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Mauritius.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Mexico.png" />
+    <Content Include="Assets\Scale-240\Flags\Flag_of_Myanmar.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Nepal.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Netherlands.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Nigeria.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Norway.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Peru.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Philippines.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Portugal.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Qatar.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Quebec.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Romania.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Scotland.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Serbia.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Singapore.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Slovakia.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Slovenia.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Switzerland.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Syria.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Taiwan.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Thailand.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Tunisia.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Turkey.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Ukraine.png" />
+    <Content Include="Assets\Scale-240\Flags\Flag_of_United_States.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_USSR.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Venezuela.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Vietnam.png" />
+    <Content Include="Assets\Scale-240\Flags\flag_of_Wales.png" />
+    <None Include="Common\ReadMe.txt" />
+    <Content Include="Assets\Background.jpg" />
+    <Content Include="Assets\GreyPylon\280x156.jpg" />
+    <Content Include="Assets\GreyPylon\50x50.jpg" />
+    <Content Include="Assets\Pylon\Wide310x150Logo.scale-100.png" />
+    <Content Include="plugins\audio_output\libxaudio2_winrt_plugin.dll" />
+    <Content Include="segoeui.ttf" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\..\vlc\libvlc.dll">
+      <Link>libvlc.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\vlc\libvlccore.dll">
+      <Link>libvlccore.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\vlc\plugins\access\libaccess_bd_plugin.dll">
+      <Link>plugins\access\libaccess_bd_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\access\libaccess_mms_plugin.dll">
+      <Link>plugins\access\libaccess_mms_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\access\libfilesystem_plugin.dll">
+      <Link>plugins\access\libfilesystem_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\access\libidummy_plugin.dll">
+      <Link>plugins\access\libidummy_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\access\librtp_plugin.dll">
+      <Link>plugins\access\librtp_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\access\libsdp_plugin.dll">
+      <Link>plugins\access\libsdp_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\access\libshm_plugin.dll">
+      <Link>plugins\access\libshm_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\access\libtimecode_plugin.dll">
+      <Link>plugins\access\libtimecode_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\access\libzip_plugin.dll">
+      <Link>plugins\access\libzip_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\audio_filter\liba52tospdif_plugin.dll">
+      <Link>plugins\audio_filter\liba52tospdif_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\audio_filter\libaudio_format_plugin.dll">
+      <Link>plugins\audio_filter\libaudio_format_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\audio_filter\libchorus_flanger_plugin.dll">
+      <Link>plugins\audio_filter\libchorus_flanger_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\audio_filter\libcompressor_plugin.dll">
+      <Link>plugins\audio_filter\libcompressor_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\audio_filter\libdolby_surround_decoder_plugin.dll">
+      <Link>plugins\audio_filter\libdolby_surround_decoder_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\audio_filter\libdtstofloat32_plugin.dll">
+      <Link>plugins\audio_filter\libdtstofloat32_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\audio_filter\libdtstospdif_plugin.dll">
+      <Link>plugins\audio_filter\libdtstospdif_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\audio_filter\libequalizer_plugin.dll">
+      <Link>plugins\audio_filter\libequalizer_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\audio_filter\libgain_plugin.dll">
+      <Link>plugins\audio_filter\libgain_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\audio_filter\libheadphone_channel_mixer_plugin.dll">
+      <Link>plugins\audio_filter\libheadphone_channel_mixer_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\audio_filter\libkaraoke_plugin.dll">
+      <Link>plugins\audio_filter\libkaraoke_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\audio_filter\libmono_plugin.dll">
+      <Link>plugins\audio_filter\libmono_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\audio_filter\libnormvol_plugin.dll">
+      <Link>plugins\audio_filter\libnormvol_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\audio_filter\libparam_eq_plugin.dll">
+      <Link>plugins\audio_filter\libparam_eq_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\audio_filter\libremap_plugin.dll">
+      <Link>plugins\audio_filter\libremap_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\audio_filter\libscaletempo_plugin.dll">
+      <Link>plugins\audio_filter\libscaletempo_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\audio_filter\libsimple_channel_mixer_plugin.dll">
+      <Link>plugins\audio_filter\libsimple_channel_mixer_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\audio_filter\libspatializer_plugin.dll">
+      <Link>plugins\audio_filter\libspatializer_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\audio_filter\libspeex_resampler_plugin.dll">
+      <Link>plugins\audio_filter\libspeex_resampler_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\audio_filter\libstereo_widen_plugin.dll">
+      <Link>plugins\audio_filter\libstereo_widen_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\audio_filter\libtrivial_channel_mixer_plugin.dll">
+      <Link>plugins\audio_filter\libtrivial_channel_mixer_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\audio_filter\libugly_resampler_plugin.dll">
+      <Link>plugins\audio_filter\libugly_resampler_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\audio_mixer\libfloat_mixer_plugin.dll">
+      <Link>plugins\audio_mixer\libfloat_mixer_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\audio_mixer\libinteger_mixer_plugin.dll">
+      <Link>plugins\audio_mixer\libinteger_mixer_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\codec\liba52_plugin.dll">
+      <Link>plugins\codec\liba52_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\codec\libadpcm_plugin.dll">
+      <Link>plugins\codec\libadpcm_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\codec\libaes3_plugin.dll">
+      <Link>plugins\codec\libaes3_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\codec\libaraw_plugin.dll">
+      <Link>plugins\codec\libaraw_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\codec\libavcodec_plugin.dll">
+      <Link>plugins\codec\libavcodec_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\codec\libcc_plugin.dll">
+      <Link>plugins\codec\libcc_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\codec\libcdg_plugin.dll">
+      <Link>plugins\codec\libcdg_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\codec\libcvdsub_plugin.dll">
+      <Link>plugins\codec\libcvdsub_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\codec\libddummy_plugin.dll">
+      <Link>plugins\codec\libddummy_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\codec\libdts_plugin.dll">
+      <Link>plugins\codec\libdts_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\codec\libdvbsub_plugin.dll">
+      <Link>plugins\codec\libdvbsub_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\codec\libg711_plugin.dll">
+      <Link>plugins\codec\libg711_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\codec\liblpcm_plugin.dll">
+      <Link>plugins\codec\liblpcm_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\codec\libmpeg_audio_plugin.dll">
+      <Link>plugins\codec\libmpeg_audio_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\codec\libopus_plugin.dll">
+      <Link>plugins\codec\libopus_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\codec\libpng_plugin.dll">
+      <Link>plugins\codec\libpng_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\codec\librawvideo_plugin.dll">
+      <Link>plugins\codec\librawvideo_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\codec\libscte27_plugin.dll">
+      <Link>plugins\codec\libscte27_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\codec\libspeex_plugin.dll">
+      <Link>plugins\codec\libspeex_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\codec\libspudec_plugin.dll">
+      <Link>plugins\codec\libspudec_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\codec\libstl_plugin.dll">
+      <Link>plugins\codec\libstl_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\codec\libsubsdec_plugin.dll">
+      <Link>plugins\codec\libsubsdec_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\codec\libsubsusf_plugin.dll">
+      <Link>plugins\codec\libsubsusf_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\codec\libsvcdsub_plugin.dll">
+      <Link>plugins\codec\libsvcdsub_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\codec\libtheora_plugin.dll">
+      <Link>plugins\codec\libtheora_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\codec\libuleaddvaudio_plugin.dll">
+      <Link>plugins\codec\libuleaddvaudio_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\control\libdummy_plugin.dll">
+      <Link>plugins\control\libdummy_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\control\libgestures_plugin.dll">
+      <Link>plugins\control\libgestures_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\control\libhotkeys_plugin.dll">
+      <Link>plugins\control\libhotkeys_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\demux\libaiff_plugin.dll">
+      <Link>plugins\demux\libaiff_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\demux\libasf_plugin.dll">
+      <Link>plugins\demux\libasf_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\demux\libau_plugin.dll">
+      <Link>plugins\demux\libau_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\demux\libavi_plugin.dll">
+      <Link>plugins\demux\libavi_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\demux\libdemuxdump_plugin.dll">
+      <Link>plugins\demux\libdemuxdump_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\demux\libdemux_cdg_plugin.dll">
+      <Link>plugins\demux\libdemux_cdg_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\demux\libdemux_stl_plugin.dll">
+      <Link>plugins\demux\libdemux_stl_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\demux\libes_plugin.dll">
+      <Link>plugins\demux\libes_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\demux\libflacsys_plugin.dll">
+      <Link>plugins\demux\libflacsys_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\demux\libh264_plugin.dll">
+      <Link>plugins\demux\libh264_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\demux\libimage_plugin.dll">
+      <Link>plugins\demux\libimage_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\demux\libmjpeg_plugin.dll">
+      <Link>plugins\demux\libmjpeg_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\demux\libmkv_plugin.dll">
+      <Link>plugins\demux\libmkv_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\demux\libmp4_plugin.dll">
+      <Link>plugins\demux\libmp4_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\demux\libmpgv_plugin.dll">
+      <Link>plugins\demux\libmpgv_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\demux\libnsc_plugin.dll">
+      <Link>plugins\demux\libnsc_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\demux\libnsv_plugin.dll">
+      <Link>plugins\demux\libnsv_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\demux\libnuv_plugin.dll">
+      <Link>plugins\demux\libnuv_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\demux\libogg_plugin.dll">
+      <Link>plugins\demux\libogg_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\demux\libplaylist_plugin.dll">
+      <Link>plugins\demux\libplaylist_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\demux\libps_plugin.dll">
+      <Link>plugins\demux\libps_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\demux\libpva_plugin.dll">
+      <Link>plugins\demux\libpva_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\demux\librawaud_plugin.dll">
+      <Link>plugins\demux\librawaud_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\demux\librawdv_plugin.dll">
+      <Link>plugins\demux\librawdv_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\demux\librawvid_plugin.dll">
+      <Link>plugins\demux\librawvid_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\demux\libreal_plugin.dll">
+      <Link>plugins\demux\libreal_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\demux\libsubtitle_plugin.dll">
+      <Link>plugins\demux\libsubtitle_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\demux\libts_plugin.dll">
+      <Link>plugins\demux\libts_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\demux\libtta_plugin.dll">
+      <Link>plugins\demux\libtta_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\demux\libty_plugin.dll">
+      <Link>plugins\demux\libty_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\demux\libvc1_plugin.dll">
+      <Link>plugins\demux\libvc1_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\demux\libvobsub_plugin.dll">
+      <Link>plugins\demux\libvobsub_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\demux\libvoc_plugin.dll">
+      <Link>plugins\demux\libvoc_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\demux\libwav_plugin.dll">
+      <Link>plugins\demux\libwav_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\demux\libxa_plugin.dll">
+      <Link>plugins\demux\libxa_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\misc\libexport_plugin.dll">
+      <Link>plugins\misc\libexport_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\misc\libstats_plugin.dll">
+      <Link>plugins\misc\libstats_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\misc\libxml_plugin.dll">
+      <Link>plugins\misc\libxml_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\stream_filter\libdash_plugin.dll">
+      <Link>plugins\stream_filter\libdash_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\stream_filter\libsmooth_plugin.dll">
+      <Link>plugins\stream_filter\libsmooth_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\text_renderer\libfreetype_plugin.dll">
+      <Link>plugins\text_renderer\libfreetype_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\video_chroma\libgrey_yuv_plugin.dll">
+      <Link>plugins\video_chroma\libgrey_yuv_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\video_chroma\libi420_rgb_plugin.dll">
+      <Link>plugins\video_chroma\libi420_rgb_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\video_chroma\libi420_yuy2_plugin.dll">
+      <Link>plugins\video_chroma\libi420_yuy2_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\video_chroma\libi422_i420_plugin.dll">
+      <Link>plugins\video_chroma\libi422_i420_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\video_chroma\libi422_yuy2_plugin.dll">
+      <Link>plugins\video_chroma\libi422_yuy2_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\video_chroma\librv32_plugin.dll">
+      <Link>plugins\video_chroma\librv32_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\video_chroma\libswscale_plugin.dll">
+      <Link>plugins\video_chroma\libswscale_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\video_chroma\libyuy2_i420_plugin.dll">
+      <Link>plugins\video_chroma\libyuy2_i420_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\video_chroma\libyuy2_i422_plugin.dll">
+      <Link>plugins\video_chroma\libyuy2_i422_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\video_filter\libadjust_plugin.dll">
+      <Link>plugins\video_filter\libadjust_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\video_filter\libalphamask_plugin.dll">
+      <Link>plugins\video_filter\libalphamask_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\video_filter\libanaglyph_plugin.dll">
+      <Link>plugins\video_filter\libanaglyph_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\video_filter\libantiflicker_plugin.dll">
+      <Link>plugins\video_filter\libantiflicker_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\video_filter\libaudiobargraph_v_plugin.dll">
+      <Link>plugins\video_filter\libaudiobargraph_v_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\video_filter\libball_plugin.dll">
+      <Link>plugins\video_filter\libball_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\video_filter\libblendbench_plugin.dll">
+      <Link>plugins\video_filter\libblendbench_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\video_filter\libblend_plugin.dll">
+      <Link>plugins\video_filter\libblend_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\video_filter\libbluescreen_plugin.dll">
+      <Link>plugins\video_filter\libbluescreen_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\video_filter\libcanvas_plugin.dll">
+      <Link>plugins\video_filter\libcanvas_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\video_filter\libcolorthres_plugin.dll">
+      <Link>plugins\video_filter\libcolorthres_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\video_filter\libcroppadd_plugin.dll">
+      <Link>plugins\video_filter\libcroppadd_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\video_filter\libdeinterlace_plugin.dll">
+      <Link>plugins\video_filter\libdeinterlace_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\video_filter\liberase_plugin.dll">
+      <Link>plugins\video_filter\liberase_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\video_filter\libextract_plugin.dll">
+      <Link>plugins\video_filter\libextract_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\video_filter\libgaussianblur_plugin.dll">
+      <Link>plugins\video_filter\libgaussianblur_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\video_filter\libgradfun_plugin.dll">
+      <Link>plugins\video_filter\libgradfun_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\video_filter\libgradient_plugin.dll">
+      <Link>plugins\video_filter\libgradient_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\video_filter\libgrain_plugin.dll">
+      <Link>plugins\video_filter\libgrain_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\video_filter\libhqdn3d_plugin.dll">
+      <Link>plugins\video_filter\libhqdn3d_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\video_filter\libinvert_plugin.dll">
+      <Link>plugins\video_filter\libinvert_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\video_filter\liblogo_plugin.dll">
+      <Link>plugins\video_filter\liblogo_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\video_filter\libmagnify_plugin.dll">
+      <Link>plugins\video_filter\libmagnify_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\video_filter\libmarq_plugin.dll">
+      <Link>plugins\video_filter\libmarq_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\video_filter\libmirror_plugin.dll">
+      <Link>plugins\video_filter\libmirror_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\video_filter\libmosaic_plugin.dll">
+      <Link>plugins\video_filter\libmosaic_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\video_filter\libmotionblur_plugin.dll">
+      <Link>plugins\video_filter\libmotionblur_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\video_filter\libmotiondetect_plugin.dll">
+      <Link>plugins\video_filter\libmotiondetect_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\video_filter\libposterize_plugin.dll">
+      <Link>plugins\video_filter\libposterize_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\video_filter\libpsychedelic_plugin.dll">
+      <Link>plugins\video_filter\libpsychedelic_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\video_filter\libpuzzle_plugin.dll">
+      <Link>plugins\video_filter\libpuzzle_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\video_filter\libripple_plugin.dll">
+      <Link>plugins\video_filter\libripple_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\video_filter\librotate_plugin.dll">
+      <Link>plugins\video_filter\librotate_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\video_filter\librss_plugin.dll">
+      <Link>plugins\video_filter\librss_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\video_filter\libscale_plugin.dll">
+      <Link>plugins\video_filter\libscale_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\video_filter\libscene_plugin.dll">
+      <Link>plugins\video_filter\libscene_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\video_filter\libsepia_plugin.dll">
+      <Link>plugins\video_filter\libsepia_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\video_filter\libsharpen_plugin.dll">
+      <Link>plugins\video_filter\libsharpen_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\video_filter\libsubsdelay_plugin.dll">
+      <Link>plugins\video_filter\libsubsdelay_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\video_filter\libtransform_plugin.dll">
+      <Link>plugins\video_filter\libtransform_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\video_filter\libwave_plugin.dll">
+      <Link>plugins\video_filter\libwave_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\video_filter\libyuvp_plugin.dll">
+      <Link>plugins\video_filter\libyuvp_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\plugins\visualization\libvisual_plugin.dll">
+      <Link>plugins\visualization\libvisual_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\winrtsock/winrtsock-86646-build\winrtsock.dll">
+      <Link>winrtsock.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Pylon\Logo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\ShinyPylon\300_340.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Pylon\SmallLogo.png" />
+    <Content Include="Assets\SplashScreen.png" />
+    <Content Include="Assets\Pylon\StoreLogo.png" />
+    <Content Include="plugins\access\libaccess_winrt_plugin.dll" />
+    <Content Include="plugins\video_output\libdirect2d_winrt_plugin.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="Common\SliderStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="Common\StandardStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="Views\AboutPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\AnimatedBackground.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\IndexingMusicLibrary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\InputDialog\InputDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\MainPage\LastViewed.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\MainPage\LastViewedThumbnail.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\MainPage\MusicColumn.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\MainPage\VideoColumn.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\MainPage\Thumbnail.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\MainPage\ThumbnailsBackground.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\MainPage\Welcome.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\MinimizedAppBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\MiniPlayer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\MusicPage\AlbumFlyout.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\MusicPage\VerticalAlbumItemTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\NothingToSeeHere.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\NothingToSeeHereVideos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\RemovableStorage\PlugARemovableStorage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\SearchFlyout.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DLNAPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PlayMusic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PlayVideo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RemovableStoragePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RootPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SettingsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SpecialThanks.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="plugins\lua\" />
+    <Folder Include="plugins\meta_engine\" />
+    <Folder Include="plugins\packetizer\" />
+    <Folder Include="plugins\services_discovery\" />
+    <Folder Include="Views\Flags\" />
+  </ItemGroup>
+  <ItemGroup>
+    <SDKReference Include="Microsoft.VCLibs, Version=11.0">
+      <Name>Microsoft Visual C++ Runtime Package</Name>
+    </SDKReference>
+    <SDKReference Include="SQLite.WinRT, Version=3.8.4.3">
+      <Name>SQLite for Windows Runtime</Name>
+    </SDKReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Autofac">
+      <HintPath>..\packages\Autofac.3.3.0\lib\portable-win+net40+sl50+wp8\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.1\lib\netcore45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">
+    <VisualStudioVersion>11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

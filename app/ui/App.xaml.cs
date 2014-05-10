@@ -16,13 +16,13 @@ using Windows.Storage.AccessCache;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Autofac;
 using VLC_WINRT.Common;
 using VLC_WINRT.Utility.Helpers.MusicLibrary;
 using VLC_WINRT.Utility.Services.RunTime;
 using VLC_WINRT.ViewModels;
 using VLC_WINRT.ViewModels.MainPage;
 using VLC_WINRT.Views;
-using Autofac;
 
 namespace VLC_WINRT
 {
@@ -52,6 +52,7 @@ namespace VLC_WINRT
 
             Container = AutoFacConfiguration.Configure();
         }
+
         public static Frame ApplicationFrame
         {
             get
@@ -72,7 +73,7 @@ namespace VLC_WINRT
         ///     search results, and so forth.
         /// </summary>
         /// <param name="args">Details about the launch request and process.</param>
-        protected async override void OnLaunched(LaunchActivatedEventArgs args)
+        protected override async void OnLaunched(LaunchActivatedEventArgs args)
         {
             if (args.PreviousExecutionState == ApplicationExecutionState.Suspended ||
                 args.PreviousExecutionState == ApplicationExecutionState.Terminated)
@@ -82,11 +83,11 @@ namespace VLC_WINRT
             await LaunchTheApp();
         }
 
-        async Task LaunchTheApp()
+        private async Task LaunchTheApp()
         {
             Window.Current.Content = Container.Resolve<RootPage>();
             Dispatcher = Window.Current.Content.Dispatcher;
-            NavigationService.NavigateTo(typeof(MainPage));
+            NavigationService.NavigateTo(typeof (MainPage));
             Window.Current.Activate();
         }
 
@@ -97,9 +98,9 @@ namespace VLC_WINRT
             await ManageOpeningFiles(args);
         }
 
-        async Task ManageOpeningFiles(FileActivatedEventArgs args)
+        private async Task ManageOpeningFiles(FileActivatedEventArgs args)
         {
-            StorageFile file = (StorageFile)args.Files[0];
+            var file = (StorageFile) args.Files[0];
             if (file.FileType == ".mp3" || file.FileType == ".wma")
             {
                 if (Window.Current.Content == null)
@@ -108,15 +109,16 @@ namespace VLC_WINRT
                 }
 
                 Locator.MusicPlayerVM.TrackCollection.TrackCollection.Clear();
-                MusicLibraryViewModel.TrackItem trackItem = await GetInformationsFromMusicFile.GetTrackItemFromFile(file);
+                MusicLibraryViewModel.TrackItem trackItem =
+                    await GetInformationsFromMusicFile.GetTrackItemFromFile(file);
                 Locator.MusicPlayerVM.TrackCollection.TrackCollection.Add(trackItem);
                 await Locator.MusicPlayerVM.PlayFromExplorer(file);
             }
             else if (file.FileType == ".mkv"
-                || file.FileType == ".avi"
-                || file.FileType == ".mp4"
-                || file.FileType == ".wmv"
-                || file.FileType == ".mov")
+                     || file.FileType == ".avi"
+                     || file.FileType == ".mp4"
+                     || file.FileType == ".wmv"
+                     || file.FileType == ".mov")
             {
                 TemporaryFileName = file.Name;
                 TemporaryMRL = StorageApplicationPermissions.FutureAccessList.Add(file);
@@ -126,7 +128,7 @@ namespace VLC_WINRT
                 }
                 else
                 {
-                    RootPage.MainFrame.Navigate(typeof(MainPage));
+                    RootPage.MainFrame.Navigate(typeof (MainPage));
                     (ApplicationFrame.Content as MainPage).OpenVideoFromFileExplorer();
                 }
             }
@@ -146,6 +148,5 @@ namespace VLC_WINRT
             await SuspensionManager.SaveAsync();
             deferral.Complete();
         }
-
     }
 }
