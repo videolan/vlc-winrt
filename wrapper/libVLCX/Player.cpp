@@ -86,7 +86,7 @@ void Player::InitializeVLC()
         "-I",
         "dummy",
         "--no-osd",
-        "--verbose=2",
+        "--verbose=3",
         "--no-stats",
         ptr_d2dstring,
         ptr_scstring,
@@ -99,7 +99,7 @@ void Player::InitializeVLC()
 
     p_instance = libvlc_new(sizeof(argv) / sizeof(*argv), argv);
     if (!p_instance) {
-        throw ref new Platform::Exception(-1,"Could not initialise libvlc!");
+        throw ref new Platform::Exception(E_FAIL, "Could not initialise libvlc!");
     }
 }
 

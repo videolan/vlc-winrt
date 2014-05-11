@@ -129,7 +129,7 @@
     </Link>
     <PostBuildEvent>
       <Command>copy /Y $(TargetPath) $(SolutionDir)\ui\plugins\video_output\
-copy /Y $(TargetDir)$(TargetName).pdb $(SolutionDir)\ui\plugins\video_output\</Command>
+copy /Y $(TargetPath) $(SolutionDir)\..\universal\VLC_WINRT_APP\VLC_WINRT_APP.Windows\plugins\video_output\</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -151,7 +151,8 @@ copy /Y $(TargetDir)$(TargetName).pdb $(SolutionDir)\ui\plugins\video_output\</C
       <AdditionalLibraryDirectories>$(ProjectDir)\..\..\vlc</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y $(TargetPath) $(SolutionDir)\ui\plugins\video_output\</Command>
+      <Command>copy /Y $(TargetPath) $(SolutionDir)\ui\plugins\video_output\
+copy /Y $(TargetPath) $(SolutionDir)\..\universal\VLC_WINRT_APP\VLC_WINRT_APP.Windows\plugins\video_output\</Command>
     </PostBuildEvent>
     <Bscmake>
       <PreserveSbr>true</PreserveSbr>
@@ -172,6 +173,10 @@ copy /Y $(TargetDir)$(TargetName).pdb $(SolutionDir)\ui\plugins\video_output\</C
       <AdditionalDependencies>runtimeobject.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Link>
+    <PostBuildEvent>
+      <Command>copy /Y $(TargetPath) $(SolutionDir)\ui\plugins\video_output\
+copy /Y $(TargetPath) $(SolutionDir)\..\universal\VLC_WINRT_APP\VLC_WINRT_APP.Windows\plugins\video_output\</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
     <ClCompile>
@@ -188,6 +193,10 @@ copy /Y $(TargetDir)$(TargetName).pdb $(SolutionDir)\ui\plugins\video_output\</C
       <AdditionalDependencies>runtimeobject.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Link>
+    <PostBuildEvent>
+      <Command>copy /Y $(TargetPath) $(SolutionDir)\ui\plugins\video_output\
+copy /Y $(TargetPath) $(SolutionDir)\..\universal\VLC_WINRT_APP\VLC_WINRT_APP.Windows\plugins\video_output\</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -204,6 +213,10 @@ copy /Y $(TargetDir)$(TargetName).pdb $(SolutionDir)\ui\plugins\video_output\</C
       <AdditionalDependencies>runtimeobject.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Link>
+    <PostBuildEvent>
+      <Command>copy /Y $(TargetPath) $(SolutionDir)\ui\plugins\video_output\
+copy /Y $(TargetPath) $(SolutionDir)\..\universal\VLC_WINRT_APP\VLC_WINRT_APP.Windows\plugins\video_output\</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -220,6 +233,10 @@ copy /Y $(TargetDir)$(TargetName).pdb $(SolutionDir)\ui\plugins\video_output\</C
       <AdditionalDependencies>runtimeobject.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Link>
+    <PostBuildEvent>
+      <Command>copy /Y $(TargetPath) $(SolutionDir)\ui\plugins\video_output\
+copy /Y $(TargetPath) $(SolutionDir)\..\universal\VLC_WINRT_APP\VLC_WINRT_APP.Windows\plugins\video_output\</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="DirectXHelper.h" />

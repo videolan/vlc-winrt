@@ -1778,8 +1778,8 @@
     <Folder Include="Views\Flags\" />
   </ItemGroup>
   <ItemGroup>
-    <SDKReference Include="Microsoft.VCLibs, version=12.0">
-      <Name>Microsoft Visual C++ 2013 Runtime Package for Windows</Name>
+    <SDKReference Include="Microsoft.VCLibs, Version=11.0">
+      <Name>Microsoft Visual C++ Runtime Package</Name>
     </SDKReference>
     <SDKReference Include="SQLite.WinRT81, Version=3.8.4.3">
       <Name>SQLite for Windows Runtime %28Windows 8.1%29</Name>

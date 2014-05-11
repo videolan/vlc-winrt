@@ -211,7 +211,7 @@
       <Link>libvlc.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-	  <Content Include="..\..\..\winrtsock/winrtsock-86646-build\winrtsock.dll">
+    <Content Include="..\..\..\winrtsock/winrtsock-86646-build\winrtsock.dll">
       <Link>winrtsock.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -276,10 +276,10 @@
     <Content Include="..\..\..\vlc\plugins\access\libzip_plugin.dll">
       <Link>plugins\access\libzip_plugin.dll</Link>
     </Content>
-	<Content Include="..\..\..\vlc\plugins\audio_filter\liba52tospdif_plugin.dll">
+    <Content Include="..\..\..\vlc\plugins\audio_filter\liba52tospdif_plugin.dll">
       <Link>plugins\audio_filter\liba52tospdif_plugin.dll</Link>
     </Content>
-	 <Content Include="..\..\..\vlc\plugins\audio_filter\libaudio_format_plugin.dll">
+    <Content Include="..\..\..\vlc\plugins\audio_filter\libaudio_format_plugin.dll">
       <Link>plugins\audio_filter\libaudio_format_plugin.dll</Link>
     </Content>
     <Content Include="..\..\..\vlc\plugins\audio_filter\libchorus_flanger_plugin.dll">
@@ -714,13 +714,16 @@
     <Content Include="..\..\..\vlc\plugins\visualization\libvisual_plugin.dll">
       <Link>plugins\visualization\libvisual_plugin.dll</Link>
     </Content>
-	<Content Include="..\..\..\vlc\plugins\video_output\libvmem_plugin.dll">
+    <Content Include="..\..\..\vlc\plugins\video_output\libvmem_plugin.dll">
       <Link>plugins\video_output\libvmem_plugin.dll</Link>
     </Content>
     <Content Include="Assets\Logo.scale-100.png" />
     <Content Include="Assets\SmallLogo.scale-100.png" />
     <Content Include="Assets\SplashScreen.scale-100.png" />
     <Content Include="Assets\StoreLogo.scale-100.png" />
+    <Content Include="plugins\access\libaccess_winrt_plugin.dll" />
+    <Content Include="plugins\audio_output\libxaudio2_winrt_plugin.dll" />
+    <Content Include="plugins\video_output\libdirect2d_winrt_plugin.dll" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="AboutPage.xaml">
@@ -858,6 +861,7 @@
       <Name>libVLCX</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>
   </PropertyGroup>
