@@ -8,7 +8,8 @@
     xmlns:controls="using:VLC_WINRT.Views.Controls"
     xmlns:mainPage="using:VLC_WINRT.Views.Controls.MainPage"
     xmlns:userControls="using:VLC_WINRT_APP.Views.UserControls"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}">
     
     <SwapChainBackgroundPanel x:Name="SwapChainPanel">
         <Grid.RowDefinitions>
@@ -123,6 +124,12 @@
         <Frame x:Name="MainFrame"
                Grid.Row="1"
                x:FieldModifier="public"
-               Navigated="MainFrame_OnNavigated" />
+               Navigated="MainFrame_OnNavigated">
+            <Frame.ContentTransitions>
+                <TransitionCollection>
+                    <EdgeUIThemeTransition Edge="Bottom" />
+                </TransitionCollection>
+            </Frame.ContentTransitions>
+        </Frame>
     </SwapChainBackgroundPanel>
 </Page>

@@ -1,5 +1,5 @@
-﻿<UserControl
-    x:Class="VLC_WINRT.Views.Controls.MainPage.LastViewed"
+﻿<Page
+    x:Class="VLC_WINRT_APP.Views.MainPages.MainPageHome"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:VLC_WINRT.Views.Controls.MainPage"
@@ -10,13 +10,13 @@
     mc:Ignorable="d"
     d:DesignHeight="768"
     d:DesignWidth="550"
-    DataContext="{Binding Source={StaticResource Locator}, Path=MainPageVM}">
+    DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}">
 
-    <UserControl.Resources>
+    <Page.Resources>
         <dataTemplateSelectors:MediaItemDataTemplateSelector WideMovieTemplate="{StaticResource WideMovieTemplate}"
                                                                 NormalMovieTemplate="{StaticResource NormaleMovieTemplate}"
                                                                 x:Key="MediaItemDataTemplateSelector" />
-    </UserControl.Resources>
+    </Page.Resources>
     <Grid x:Name="RootGrid">
         <Grid x:Name="SnapGrid" Width="320">
             <local:Welcome Margin="0,0,0,0" VerticalAlignment="Center" Visibility="{Binding LastViewedVM.LastViewedVM.Count, Converter={StaticResource CountToVisibilityConverter}}"/>
@@ -94,4 +94,4 @@
             </StackPanel>
         </ScrollViewer>
     </Grid>
-</UserControl>
+</Page>

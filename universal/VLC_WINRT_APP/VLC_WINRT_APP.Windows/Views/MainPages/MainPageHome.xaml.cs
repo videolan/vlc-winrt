@@ -9,16 +9,13 @@
 
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-
-// The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
-using VLC_WINRT.ViewModels.MainPage;
 using VLC_WINRT_APP.ViewModels.MainPage;
 
-namespace VLC_WINRT.Views.Controls.MainPage
+namespace VLC_WINRT_APP.Views.MainPages
 {
-    public sealed partial class LastViewed : UserControl
+    public sealed partial class MainPageHome : Page
     {
-        public LastViewed()
+        public MainPageHome()
         {
             InitializeComponent();
             this.SizeChanged += OnSizeChanged;

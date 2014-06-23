@@ -124,8 +124,8 @@
     <Compile Include="Controls\InputDialog\InputDialog.xaml.cs">
       <DependentUpon>InputDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\MainPage\LastViewed.xaml.cs">
-      <DependentUpon>LastViewed.xaml</DependentUpon>
+    <Compile Include="Views\MainPages\MainPageHome.xaml.cs">
+      <DependentUpon>MainPageHome.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\MainPage\LastViewedThumbnail.xaml.cs">
       <DependentUpon>LastViewedThumbnail.xaml</DependentUpon>
@@ -738,7 +738,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\MainPage\LastViewed.xaml">
+    <Page Include="Views\MainPages\MainPageHome.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

@@ -189,7 +189,7 @@ namespace VLC_WINRT_APP
         {
             Window.Current.Content = Container.Resolve<MainPage>();
             Dispatcher = Window.Current.Content.Dispatcher;
-            ApplicationFrame.Navigate(typeof(MainPage));
+            ApplicationFrame.Navigate(typeof(MainPageHome));
             Window.Current.Activate();
         }
     }
