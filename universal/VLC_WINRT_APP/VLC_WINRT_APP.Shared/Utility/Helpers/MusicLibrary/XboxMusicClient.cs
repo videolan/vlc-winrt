@@ -16,10 +16,10 @@ using VLC_WINRT.ViewModels;
 using VLC_WINRT_APP.ViewModels;
 using XboxMusicLibrary.Models;
 using XboxMusicLibrary.Settings;
-using Album = VLC_WINRT.Utility.Helpers.MusicLibrary.MusicEntities.Album;
-using Artist = VLC_WINRT.Utility.Helpers.MusicLibrary.MusicEntities.Artist;
+using Album = VLC_WINRT_APP.Utility.Helpers.MusicLibrary.MusicEntities.Album;
+using Artist = VLC_WINRT_APP.Utility.Helpers.MusicLibrary.MusicEntities.Artist;
 
-namespace VLC_WINRT.Utility.Helpers.MusicLibrary
+namespace VLC_WINRT_APP.Utility.Helpers.MusicLibrary
 {
     public class XboxMusicClient : IMusicInformationManager
     {

@@ -11,7 +11,7 @@ using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
 
-namespace VLC_WINRT.Utility.Converters
+namespace VLC_WINRT_APP.Utility.Converters
 {
     public class NegatedCountToVisibilityConverter : IValueConverter
     {

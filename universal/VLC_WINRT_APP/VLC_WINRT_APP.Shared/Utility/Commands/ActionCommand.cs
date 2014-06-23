@@ -10,7 +10,7 @@
 using System;
 using VLC_WINRT.Common;
 
-namespace VLC_WINRT.Utility.Commands
+namespace VLC_WINRT_APP.Utility.Commands
 {
     public class ActionCommand : AlwaysExecutableCommand
     {

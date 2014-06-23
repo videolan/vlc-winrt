@@ -10,7 +10,7 @@
 using System;
 using Windows.UI.Xaml.Data;
 
-namespace VLC_WINRT.Utility.Converters
+namespace VLC_WINRT_APP.Utility.Converters
 {
     /// <summary>
     /// Value converter that translates true to false and vice versa.

@@ -27,7 +27,7 @@ namespace VLC_WINRT_APP.Views.MainPages
 
         private void FavoriteAlbumItemClick(object sender, ItemClickEventArgs e)
         {
-            (e.ClickedItem as MusicLibraryViewModel.AlbumItem).PlayAlbum.Execute(e.ClickedItem);
+            (e.ClickedItem as MusicLibraryVM.AlbumItem).PlayAlbum.Execute(e.ClickedItem);
         }
     }
 }

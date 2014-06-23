@@ -9,13 +9,13 @@
 
 using Autofac;
 using VLC_WINRT.Common;
-using VLC_WINRT.Utility.Services.Interface;
+using VLC_WINRT_APP.Utility.Services.Interface;
 #if WINDOWS_PHONE_APP
 using VLC_WINPRT;
 #endif
 using VLC_WINRT_APP;
 
-namespace VLC_WINRT.Utility.Commands
+namespace VLC_WINRT_APP.Utility.Commands
 {
     public class PlayPauseCommand : AlwaysExecutableCommand
     {

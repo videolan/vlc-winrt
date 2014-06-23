@@ -8,14 +8,14 @@
  **********************************************************************/
 
 using Autofac;
-using VLC_WINRT.Utility.Services.Interface;
-using VLC_WINRT.Utility.Services.RunTime;
+using VLC_WINRT_APP.Utility.Services.Interface;
+using VLC_WINRT_APP.Utility.Services.RunTime;
 using VLC_WINRT.ViewModels;
 using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.ViewModels.MainPage;
 using VLC_WINRT_APP.Views;
 using VLC_WINRT_APP.Views.MainPages;
-using DesignTime = VLC_WINRT.Utility.Services.DesignTime;
+using DesignTime = VLC_WINRT_APP.Utility.Services.DesignTime;
 using VLC_WINRT.ViewModels.MainPage;
 using VLC_WINRT.ViewModels.MainPage.PlayMusic;
 using VLC_WINRT.ViewModels.PlayVideo;
@@ -45,7 +45,7 @@ namespace VLC_WINRT_APP.Common
             // TODO: These should not be SingleInstance
             builder.RegisterType<PlayVideoViewModel>().SingleInstance();
             builder.RegisterType<MainVM>().SingleInstance();
-            builder.RegisterType<MusicLibraryViewModel>().SingleInstance();
+            builder.RegisterType<MusicLibraryVM>().SingleInstance();
             builder.RegisterType<MusicPlayerViewModel>().SingleInstance();
             builder.RegisterType<VideoLibraryViewModel>().SingleInstance();
             builder.RegisterType<SettingsViewModel>().SingleInstance();

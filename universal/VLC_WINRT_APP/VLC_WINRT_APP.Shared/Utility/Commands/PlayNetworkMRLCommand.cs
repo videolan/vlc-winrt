@@ -9,7 +9,7 @@
 
 using System;
 using VLC_WINRT.Common;
-using VLC_WINRT.Utility.Services.RunTime;
+using VLC_WINRT_APP.Utility.Services.RunTime;
 using VLC_WINRT.ViewModels;
 using VLC_WINRT_APP;
 using VLC_WINRT_APP.ViewModels;
@@ -20,7 +20,7 @@ using VLC_WINRT.Views;
 
 #endif
 
-namespace VLC_WINRT.Utility.Commands
+namespace VLC_WINRT_APP.Utility.Commands
 {
     public class PlayNetworkMRLCommand : AlwaysExecutableCommand
     {

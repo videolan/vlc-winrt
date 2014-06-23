@@ -11,7 +11,7 @@ using Windows.Storage.AccessCache;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using VLC_WINRT.Utility.Helpers;
+using VLC_WINRT_APP.Utility.Helpers;
 using VLC_WINRT.ViewModels;
 using VLC_WINRT.Common;
 using VLC_WINRT.ViewModels.MainPage.VlcExplorer;

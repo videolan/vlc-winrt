@@ -12,7 +12,7 @@ using Windows.Storage;
 using Windows.Storage.FileProperties;
 using Windows.UI.Xaml.Media.Imaging;
 
-namespace VLC_WINRT.Utility.Services.Interface
+namespace VLC_WINRT_APP.Utility.Services.Interface
 {
     public interface IThumbnailService
     {

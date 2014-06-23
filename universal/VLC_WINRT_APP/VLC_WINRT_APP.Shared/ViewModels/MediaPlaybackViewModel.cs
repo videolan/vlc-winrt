@@ -11,15 +11,16 @@ using System;
 using System.Globalization;
 using System.Threading.Tasks;
 using VLC_WINRT.Common;
-using VLC_WINRT.Utility.Commands;
-using VLC_WINRT.Utility.Commands.MusicPlayer;
-using VLC_WINRT.Utility.Services.Interface;
-using VLC_WINRT.Utility.Services.RunTime;
+using VLC_WINRT_APP.Utility.Commands;
+using VLC_WINRT_APP.Utility.Commands.MusicPlayer;
+using VLC_WINRT_APP.Utility.Services.Interface;
+using VLC_WINRT_APP.Utility.Services.RunTime;
 using Windows.System.Display;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
+using VLC_WINRT.ViewModels;
 
-namespace VLC_WINRT.ViewModels
+namespace VLC_WINRT_APP.ViewModels
 {
     public class MediaPlaybackViewModel : NavigateableViewModel, IDisposable
     {

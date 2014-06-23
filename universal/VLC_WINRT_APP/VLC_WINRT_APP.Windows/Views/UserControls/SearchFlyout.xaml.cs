@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using VLC_WINRT.Utility.Helpers;
+using VLC_WINRT_APP.Utility.Helpers;
 using VLC_WINRT.ViewModels;
 using VLC_WINRT.ViewModels.MainPage;
 using VLC_WINRT.Views.Controls.MainPage;
@@ -129,7 +129,7 @@ namespace VLC_WINRT_APP.Views.UserControls
             //    Hide();
             //    var musicColumn = page.GetFirstDescendantOfType<MusicColumn>() as MusicColumn;
             //    var videoColumn = page.GetFirstDescendantOfType<VideoColumn>();
-            //    if (objet.Object.GetType() == typeof(MusicLibraryViewModel.ArtistItem))
+            //    if (objet.Object.GetType() == typeof(MusicLibraryVM.ArtistItem))
             //    {
             //        var gV = musicColumn.FindName("AlbumsByArtistListView") as GridView;
             //        var lV = musicColumn.FindName("AlbumsByArtistListViewSnap") as ListView;
@@ -139,9 +139,9 @@ namespace VLC_WINRT_APP.Views.UserControls
             //        gV.ScrollIntoView(objet.Object);
             //        lV.ScrollIntoView(objet.Object);
             //    }
-            //    else if (objet.Object.GetType() == typeof(MusicLibraryViewModel.TrackItem))
+            //    else if (objet.Object.GetType() == typeof(MusicLibraryVM.TrackItem))
             //    {
-            //        var track = objet.Object as MusicLibraryViewModel.TrackItem;
+            //        var track = objet.Object as MusicLibraryVM.TrackItem;
             //        track.PlayTrack.Execute(track);
             //    }
             //    else if (objet.Object.GetType() == typeof (MediaViewModel))

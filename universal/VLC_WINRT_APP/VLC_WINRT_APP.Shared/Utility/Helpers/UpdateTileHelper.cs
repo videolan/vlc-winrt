@@ -11,7 +11,7 @@ using Windows.UI.Notifications;
 using VLC_WINRT.ViewModels;
 using VLC_WINRT_APP.ViewModels;
 
-namespace VLC_WINRT.Utility.Helpers
+namespace VLC_WINRT_APP.Utility.Helpers
 {
     public class UpdateTileHelper
     {

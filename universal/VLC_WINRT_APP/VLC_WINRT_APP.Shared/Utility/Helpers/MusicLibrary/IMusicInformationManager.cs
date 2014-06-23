@@ -9,9 +9,9 @@
 
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using VLC_WINRT.Utility.Helpers.MusicLibrary.MusicEntities;
+using VLC_WINRT_APP.Utility.Helpers.MusicLibrary.MusicEntities;
 
-namespace VLC_WINRT.Utility.Helpers.MusicLibrary
+namespace VLC_WINRT_APP.Utility.Helpers.MusicLibrary
 {
     public interface IMusicInformationManager
     {

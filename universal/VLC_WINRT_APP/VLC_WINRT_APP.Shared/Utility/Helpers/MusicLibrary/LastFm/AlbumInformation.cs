@@ -9,7 +9,7 @@
 
 using Newtonsoft.Json;
 
-namespace VLC_WINRT.Utility.Helpers.MusicLibrary.LastFm
+namespace VLC_WINRT_APP.Utility.Helpers.MusicLibrary.LastFm
 {
     /// <summary>
     /// Used for mapping Last.FM Json object.

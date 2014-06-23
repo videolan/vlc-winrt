@@ -16,7 +16,7 @@ namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
 {
     public class TrackCollectionViewModel : BindableBase
     {
-        private ObservableCollection<MusicLibraryViewModel.TrackItem> _tracksCollection;
+        private ObservableCollection<MusicLibraryVM.TrackItem> _tracksCollection;
         private int _currentTrack = 0;
         private bool _canGoPrevious;
         private bool _canGoNext;
@@ -24,10 +24,10 @@ namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
 
         public TrackCollectionViewModel()
         {
-            _tracksCollection = new ObservableCollection<MusicLibraryViewModel.TrackItem>();
+            _tracksCollection = new ObservableCollection<MusicLibraryVM.TrackItem>();
         }
 
-        public ObservableCollection<MusicLibraryViewModel.TrackItem> TrackCollection
+        public ObservableCollection<MusicLibraryVM.TrackItem> TrackCollection
         {
             get { return _tracksCollection; }
             set { SetProperty(ref _tracksCollection, value); }
@@ -52,14 +52,14 @@ namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
         }
 
         // Tracks Collection Manager
-        public void AddTrack(MusicLibraryViewModel.TrackItem track)
+        public void AddTrack(MusicLibraryVM.TrackItem track)
         {
             TrackCollection.Add(track);
         }
 
-        public void AddTrack(List<MusicLibraryViewModel.TrackItem> tracks)
+        public void AddTrack(List<MusicLibraryVM.TrackItem> tracks)
         {
-            foreach (MusicLibraryViewModel.TrackItem track in tracks)
+            foreach (MusicLibraryVM.TrackItem track in tracks)
                 TrackCollection.Add(track);
         }
 

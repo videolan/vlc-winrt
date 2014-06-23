@@ -17,7 +17,7 @@ using System.IO;
 using System.Linq;
 using Windows.UI.Xaml.Media.Animation;
 using VLC_WINRT.Common;
-using VLC_WINRT.Utility.Helpers;
+using VLC_WINRT_APP.Utility.Helpers;
 using VLC_WINRT.ViewModels;
 using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.ViewModels.MainPage;
@@ -33,7 +33,7 @@ namespace VLC_WINRT_APP.Utility.Commands
             try
             {
 
-                MusicLibraryViewModel.AlbumItem album = parameter as MusicLibraryViewModel.AlbumItem;
+                MusicLibraryVM.AlbumItem album = parameter as MusicLibraryVM.AlbumItem;
                 Locator.MusicPlayerVM.TrackCollection.ResetCollection();
                 Locator.MusicPlayerVM.TrackCollection.AddTrack(album.Tracks.ToList());
                 await Locator.MusicPlayerVM.Play();

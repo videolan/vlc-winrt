@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using VLC_WINRT.Common;
 using Windows.UI.Xaml.Navigation;
 
-namespace VLC_WINRT.ViewModels
+namespace VLC_WINRT_APP.ViewModels
 {
     public class NavigateableViewModel : BindableBase
     {

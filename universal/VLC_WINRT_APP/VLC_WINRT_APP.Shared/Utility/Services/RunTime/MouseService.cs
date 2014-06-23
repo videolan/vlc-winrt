@@ -12,7 +12,7 @@ using Windows.Devices.Input;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 
-namespace VLC_WINRT.Utility.Services.RunTime
+namespace VLC_WINRT_APP.Utility.Services.RunTime
 {
     public class MouseService
     {

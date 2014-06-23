@@ -16,7 +16,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 
-namespace VLC_WINRT.Utility.Helpers
+namespace VLC_WINRT_APP.Utility.Helpers
 {
     /// <summary>
     /// Extension methods for DependencyObjects

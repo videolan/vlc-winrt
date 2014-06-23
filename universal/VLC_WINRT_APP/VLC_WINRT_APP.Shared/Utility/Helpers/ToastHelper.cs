@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Windows.Data.Xml.Dom;
 using Windows.UI.Notifications;
 
-namespace VLC_WINRT.Utility.Helpers
+namespace VLC_WINRT_APP.Utility.Helpers
 {
     public static class ToastHelper
     {

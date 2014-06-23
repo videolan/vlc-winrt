@@ -9,7 +9,7 @@
 
 using Newtonsoft.Json;
 
-namespace VLC_WINRT.Utility.Helpers.MusicLibrary.EchoNest
+namespace VLC_WINRT_APP.Utility.Helpers.MusicLibrary.EchoNest
 {
     public class Artists
     {

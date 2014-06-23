@@ -14,7 +14,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using VLC_WINRT.Utility.Helpers.MusicLibrary.xboxmusic.Models;
+using VLC_WINRT_APP.Utility.Helpers.MusicLibrary.xboxmusic.Models;
 using XboxMusicLibrary.Models;
 using XboxMusicLibrary.Settings;
 

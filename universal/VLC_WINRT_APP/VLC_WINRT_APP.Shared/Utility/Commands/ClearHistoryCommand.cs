@@ -9,14 +9,14 @@
 
 using Autofac;
 using VLC_WINRT.Common;
-using VLC_WINRT.Utility.Services.RunTime;
+using VLC_WINRT_APP.Utility.Services.RunTime;
 using VLC_WINRT.ViewModels;
 using VLC_WINRT.ViewModels.MainPage;
 #if WINDOWS_PHONE_APP
 using VLC_WINPRT;
 #endif
 
-namespace VLC_WINRT.Utility.Commands
+namespace VLC_WINRT_APP.Utility.Commands
 {
     public class ClearHistoryCommand : AlwaysExecutableCommand
     {

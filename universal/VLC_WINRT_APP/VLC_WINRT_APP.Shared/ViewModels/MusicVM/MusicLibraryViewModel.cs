@@ -22,13 +22,13 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 using SQLite;
 using VLC_WINRT.Common;
-using VLC_WINRT.Utility.Commands;
-using VLC_WINRT.Utility.Commands.MusicPlayer;
-using VLC_WINRT.Utility.DataRepository;
-using VLC_WINRT.Utility.Helpers;
-using VLC_WINRT.Utility.Helpers.MusicLibrary;
-using VLC_WINRT.Utility.Helpers.MusicLibrary.MusicEntities;
-using VLC_WINRT.Utility.Helpers.MusicLibrary.xboxmusic.Models;
+using VLC_WINRT_APP.Utility.Commands;
+using VLC_WINRT_APP.Utility.Commands.MusicPlayer;
+using VLC_WINRT_APP.Utility.DataRepository;
+using VLC_WINRT_APP.Utility.Helpers;
+using VLC_WINRT_APP.Utility.Helpers.MusicLibrary;
+using VLC_WINRT_APP.Utility.Helpers.MusicLibrary.MusicEntities;
+using VLC_WINRT_APP.Utility.Helpers.MusicLibrary.xboxmusic.Models;
 using VLC_WINRT.ViewModels;
 using VLC_WINRT.ViewModels.Settings;
 using VLC_WINRT.Views.Controls.MainPage;
@@ -39,9 +39,9 @@ using Panel = VLC_WINRT.Model.Panel;
 using VLC_WINPRT;
 #endif
 
-namespace VLC_WINRT_APP.ViewModels.MainPage
+namespace VLC_WINRT_APP.ViewModels.MusicVM
 {
-    public class MusicLibraryViewModel : BindableBase
+    public class MusicLibraryVM : BindableBase
     {
         private ObservableCollection<Panel> _panels = new ObservableCollection<Panel>();
         private ObservableCollection<ArtistItem> _artists = new ObservableCollection<ArtistItem>();
@@ -63,7 +63,7 @@ namespace VLC_WINRT_APP.ViewModels.MainPage
         public MusicHelper XboxMusicHelper = new MusicHelper();
         public Authenication XboxMusicAuthenication;
         ObservableCollection<string> _imgCollection = new ObservableCollection<string>();
-        public MusicLibraryViewModel()
+        public MusicLibraryVM()
         {
             var resourceLoader = new ResourceLoader();
             _goBackCommand = new StopVideoCommand();

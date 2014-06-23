@@ -8,19 +8,19 @@
  **********************************************************************/
 
 using VLC_WINRT.Common;
-using VLC_WINRT.Utility.DataRepository;
+using VLC_WINRT_APP.Utility.DataRepository;
 using VLC_WINRT.ViewModels;
 using VLC_WINRT.ViewModels.MainPage;
 using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.ViewModels.MainPage;
 
-namespace VLC_WINRT.Utility.Commands.MusicPlayer
+namespace VLC_WINRT_APP.Utility.Commands.MusicPlayer
 {
     public class FavoriteAlbumCommand : AlwaysExecutableCommand
     {
         public override async void Execute(object parameter)
         {
-            var album = parameter as MusicLibraryViewModel.AlbumItem;
+            var album = parameter as MusicLibraryVM.AlbumItem;
             if (album == null)
                 return;
             // If the album is favorite, then now it is not

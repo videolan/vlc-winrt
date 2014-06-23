@@ -8,7 +8,7 @@
     xmlns:removableStorage="using:VLC_WINRT.Views.Controls.RemovableStorage"
     xmlns:mainPage="using:VLC_WINRT.Views.Controls.MainPage"
     xmlns:controls="using:VLC_WINRT.Views.Controls"
-    xmlns:dataTemplateSelectors="using:VLC_WINRT.Utility.DataTemplateSelectors"
+    xmlns:dataTemplateSelectors="using:VLC_WINRT_APP.Utility.DataTemplateSelectors"
     xmlns:userControls="using:VLC_WINRT_APP.Views.UserControls"
     mc:Ignorable="d"
     DataContext="{Binding Source={StaticResource Locator}, Path=MainPageVM.ExternalStorageVM}">

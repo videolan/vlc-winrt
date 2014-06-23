@@ -13,14 +13,14 @@ using Windows.Storage;
 using VLC_WINRT.ViewModels.MainPage;
 using VLC_WINRT_APP.ViewModels.MainPage;
 
-namespace VLC_WINRT.Utility.Helpers.MusicLibrary
+namespace VLC_WINRT_APP.Utility.Helpers.MusicLibrary
 {
     public static class GetInformationsFromMusicFile
     {
-        public async static Task<MusicLibraryViewModel.TrackItem> GetTrackItemFromFile(StorageFile track)
+        public async static Task<MusicLibraryVM.TrackItem> GetTrackItemFromFile(StorageFile track)
         {
             var trackInfos = await track.Properties.GetMusicPropertiesAsync();
-            var trackItem = new MusicLibraryViewModel.TrackItem
+            var trackItem = new MusicLibraryVM.TrackItem
             {
                 ArtistName = string.IsNullOrEmpty(trackInfos.Artist) ? "Unknown artist" : trackInfos.Artist,
                 AlbumName = trackInfos.Album,

@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media.Imaging;
 
-namespace VLC_WINRT.Utility.Helpers.AwaitableUI
+namespace VLC_WINRT_APP.Utility.Helpers.AwaitableUI
 {
     /// <summary>
     /// Extension methods for awaiting BitmapImage state changes.

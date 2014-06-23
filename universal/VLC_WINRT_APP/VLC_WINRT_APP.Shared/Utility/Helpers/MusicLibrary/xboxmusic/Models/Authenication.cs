@@ -9,7 +9,7 @@
 
 using Newtonsoft.Json;
 
-namespace VLC_WINRT.Utility.Helpers.MusicLibrary.xboxmusic.Models
+namespace VLC_WINRT_APP.Utility.Helpers.MusicLibrary.xboxmusic.Models
 {
     /// <summary>
     /// Authenication for Xbox Music.

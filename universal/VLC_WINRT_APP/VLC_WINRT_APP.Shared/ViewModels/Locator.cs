@@ -47,9 +47,9 @@ namespace VLC_WINRT_APP.ViewModels
         {
             get { return App.Container.Resolve<MusicPlayerViewModel>(); }
         }
-        public static MusicLibraryViewModel MusicLibraryVM
+        public static MusicLibraryVM MusicLibraryVM
         {
-            get { return App.Container.Resolve<MusicLibraryViewModel>(); }
+            get { return App.Container.Resolve<MusicLibraryVM>(); }
         }
 
         public static VideoLibraryViewModel VideoLibraryVM

@@ -12,7 +12,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Imaging;
 
-namespace VLC_WINRT.Utility.Helpers.AwaitableUI
+namespace VLC_WINRT_APP.Utility.Helpers.AwaitableUI
 {
 #if NETFX_CORE
     /// <summary>

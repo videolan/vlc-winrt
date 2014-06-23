@@ -17,7 +17,7 @@ using VLC_WINRT_APP;
 using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.Views.MainPages;
 
-namespace VLC_WINRT.Utility.Commands.MainPage
+namespace VLC_WINRT_APP.Utility.Commands.MainPage
 {
     public class GoToPanelCommand : AlwaysExecutableCommand
     {

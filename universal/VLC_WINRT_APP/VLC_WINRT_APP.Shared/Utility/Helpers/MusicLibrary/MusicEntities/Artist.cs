@@ -11,9 +11,9 @@ using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using Windows.ApplicationModel.Resources;
-using VLC_WINRT.Utility.Helpers.MusicLibrary.LastFm;
+using VLC_WINRT_APP.Utility.Helpers.MusicLibrary.LastFm;
 
-namespace VLC_WINRT.Utility.Helpers.MusicLibrary.MusicEntities
+namespace VLC_WINRT_APP.Utility.Helpers.MusicLibrary.MusicEntities
 {
     public class Artist
     {

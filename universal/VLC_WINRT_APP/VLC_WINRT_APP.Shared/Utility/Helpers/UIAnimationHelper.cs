@@ -10,7 +10,7 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media.Animation;
 
-namespace VLC_WINRT.Utility.Helpers
+namespace VLC_WINRT_APP.Utility.Helpers
 {
     public class UIAnimationHelper
     {

@@ -11,7 +11,7 @@ using System;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Media.Animation;
 
-namespace VLC_WINRT.Utility.Helpers
+namespace VLC_WINRT_APP.Utility.Helpers
 {
     public static class StoryboardExtensions
     {

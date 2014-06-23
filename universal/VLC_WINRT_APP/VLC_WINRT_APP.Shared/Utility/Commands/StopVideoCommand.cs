@@ -15,7 +15,7 @@ using VLC_WINRT.ViewModels;
 using VLC_WINRT_APP;
 using VLC_WINRT_APP.ViewModels;
 
-namespace VLC_WINRT.Utility.Commands
+namespace VLC_WINRT_APP.Utility.Commands
 {
     public class StopVideoCommand : AlwaysExecutableCommand
     {

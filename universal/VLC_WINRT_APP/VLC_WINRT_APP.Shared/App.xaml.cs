@@ -13,8 +13,8 @@ using Windows.UI.Xaml.Controls;
 using Autofac;
 using Autofac.Core;
 using VLC_WINRT.Common;
-using VLC_WINRT.Utility.Helpers.MusicLibrary;
-using VLC_WINRT.Utility.Services.RunTime;
+using VLC_WINRT_APP.Utility.Helpers.MusicLibrary;
+using VLC_WINRT_APP.Utility.Services.RunTime;
 using VLC_WINRT.ViewModels;
 using VLC_WINRT.ViewModels.MainPage;
 using VLC_WINRT.Views;
@@ -162,7 +162,7 @@ namespace VLC_WINRT_APP
                 }
 
                 Locator.MusicPlayerVM.TrackCollection.TrackCollection.Clear();
-                MusicLibraryViewModel.TrackItem trackItem =
+                MusicLibraryVM.TrackItem trackItem =
                     await GetInformationsFromMusicFile.GetTrackItemFromFile(file);
                 Locator.MusicPlayerVM.TrackCollection.TrackCollection.Add(trackItem);
                 await Locator.MusicPlayerVM.PlayFromExplorer(file);

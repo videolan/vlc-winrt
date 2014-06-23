@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using SQLite;
 using VLC_WINRT.ViewModels.MainPage;
 
-namespace VLC_WINRT.Utility.DataRepository
+namespace VLC_WINRT_APP.Utility.DataRepository
 {
     public class LastVideosRepository
     {

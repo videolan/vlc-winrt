@@ -22,10 +22,10 @@ namespace VLC_WINRT.Views.Controls
             i++;
             MediaViewModel MediaViewModel;
             MediaViewModel viewedVideo;
-            MusicLibraryViewModel.AlbumItem albumItem;
+            MusicLibraryVM.AlbumItem albumItem;
             MediaViewModel = item as MediaViewModel;
             viewedVideo = item as MediaViewModel;
-            albumItem = item as MusicLibraryViewModel.AlbumItem;
+            albumItem = item as MusicLibraryVM.AlbumItem;
 
             if (viewedVideo != null)
             {

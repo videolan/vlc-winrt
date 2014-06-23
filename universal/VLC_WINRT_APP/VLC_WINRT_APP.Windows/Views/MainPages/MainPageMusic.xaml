@@ -4,7 +4,7 @@
     xmlns:local="using:VLC_WINRT.Views.Controls.MainPage"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:converters="using:VLC_WINRT.Utility.Converters"
+    xmlns:converters="using:VLC_WINRT_APP.Utility.Converters"
     xmlns:wrapPanelControl="using:VLC_WINRT.Views.Controls.WrapPanelControl"
     xmlns:controls="using:VLC_WINRT.Views.Controls"
     xmlns:musicPage="using:VLC_WINRT.Views.Controls.MusicPage"

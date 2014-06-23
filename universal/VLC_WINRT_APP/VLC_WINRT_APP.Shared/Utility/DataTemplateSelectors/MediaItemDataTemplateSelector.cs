@@ -10,7 +10,7 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-namespace VLC_WINRT.Utility.DataTemplateSelectors
+namespace VLC_WINRT_APP.Utility.DataTemplateSelectors
 {
     public class MediaItemDataTemplateSelector : DataTemplateSelector
     {

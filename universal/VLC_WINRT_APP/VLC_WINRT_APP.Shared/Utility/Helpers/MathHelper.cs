@@ -7,7 +7,7 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
-namespace VLC_WINRT.Utility.Helpers
+namespace VLC_WINRT_APP.Utility.Helpers
 {
     public static class MathHelper
     {

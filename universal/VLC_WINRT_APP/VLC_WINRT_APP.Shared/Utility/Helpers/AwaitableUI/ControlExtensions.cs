@@ -14,7 +14,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
 
-namespace VLC_WINRT.Utility.Helpers.AwaitableUI
+namespace VLC_WINRT_APP.Utility.Helpers.AwaitableUI
 {/// <summary>
     /// Extension methods for Control class.
     /// </summary>

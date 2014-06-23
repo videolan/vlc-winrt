@@ -7,7 +7,7 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
-using VLC_WINRT.Utility.Helpers;
+using VLC_WINRT_APP.Utility.Helpers;
 using Windows.UI.Xaml.Controls;
 
 // The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236

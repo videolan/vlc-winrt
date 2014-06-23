@@ -15,8 +15,8 @@ using VLC_WINPRT;
 using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.UI.Xaml;
-using VLC_WINRT.Utility.Commands;
-using VLC_WINRT.Utility.Helpers;
+using VLC_WINRT_APP.Utility.Commands;
+using VLC_WINRT_APP.Utility.Helpers;
 
 namespace VLC_WINRT.ViewModels.Settings
 {

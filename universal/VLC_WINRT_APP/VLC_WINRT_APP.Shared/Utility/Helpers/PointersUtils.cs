@@ -12,7 +12,7 @@ using Windows.Foundation;
 using Windows.Graphics.Display;
 using Windows.UI.Xaml;
 
-namespace VLC_WINRT.Utility.Helpers
+namespace VLC_WINRT_APP.Utility.Helpers
 {
     public static class PointerUtils
     {

@@ -18,11 +18,11 @@ using Windows.Storage.Streams;
 using VLC_WINRT.ViewModels.MainPage;
 using VLC_WINRT_APP.ViewModels.MainPage;
 
-namespace VLC_WINRT.Utility.Helpers.MusicLibrary
+namespace VLC_WINRT_APP.Utility.Helpers.MusicLibrary
 {
     public static class ArtistInformationsHelper
     {
-        private static async Task<bool> DownloadArtistPictureFromDeezer(MusicLibraryViewModel.ArtistItem artist)
+        private static async Task<bool> DownloadArtistPictureFromDeezer(MusicLibraryVM.ArtistItem artist)
         {
             var deezerClient = new DeezerClient();
             var deezerArtist = await deezerClient.GetArtistInfo(artist.Name);
@@ -67,7 +67,7 @@ namespace VLC_WINRT.Utility.Helpers.MusicLibrary
                 return false;
             }
         }
-        private static async Task<bool> DownloadAlbumPictureFromDeezer(MusicLibraryViewModel.AlbumItem album)
+        private static async Task<bool> DownloadAlbumPictureFromDeezer(MusicLibraryVM.AlbumItem album)
         {
             var deezerClient = new DeezerClient();
             var deezerAlbum = await deezerClient.GetAlbumInfo(album.Name);
@@ -113,7 +113,7 @@ namespace VLC_WINRT.Utility.Helpers.MusicLibrary
             }
         }
 
-        private static async Task<bool> DownloadArtistPictureFromLastFm(MusicLibraryViewModel.ArtistItem artist)
+        private static async Task<bool> DownloadArtistPictureFromLastFm(MusicLibraryVM.ArtistItem artist)
         {
             var lastFmClient = new LastFmClient();
             var lastFmArtist = await lastFmClient.GetArtistInfo(artist.Name);
@@ -158,7 +158,7 @@ namespace VLC_WINRT.Utility.Helpers.MusicLibrary
             }
         }
 
-        public static async Task GetArtistPicture(MusicLibraryViewModel.ArtistItem artist)
+        public static async Task GetArtistPicture(MusicLibraryVM.ArtistItem artist)
         {
             StorageFolder appDataFolder = ApplicationData.Current.LocalFolder;
             string supposedPictureUriLocal = appDataFolder.Path + "\\artistPic\\" + artist.Name + "_" + "dPi" + ".jpg";
@@ -178,7 +178,7 @@ namespace VLC_WINRT.Utility.Helpers.MusicLibrary
                 }
             }
         }
-        public static async Task GetAlbumPicture(MusicLibraryViewModel.AlbumItem album)
+        public static async Task GetAlbumPicture(MusicLibraryVM.AlbumItem album)
         {
             StorageFolder appDataFolder = ApplicationData.Current.LocalFolder;
             string supposedPictureUriLocal = appDataFolder.Path + "\\albumPic\\" + album.Name + "_" + "dPi" + ".jpg";
@@ -199,7 +199,7 @@ namespace VLC_WINRT.Utility.Helpers.MusicLibrary
             }
         }
 
-        public static async Task GetArtistTopAlbums(MusicLibraryViewModel.ArtistItem artist)
+        public static async Task GetArtistTopAlbums(MusicLibraryVM.ArtistItem artist)
         {
             try
             {
@@ -219,7 +219,7 @@ namespace VLC_WINRT.Utility.Helpers.MusicLibrary
             }
         }
 
-        public static async Task GetArtistSimilarsArtist(MusicLibraryViewModel.ArtistItem artist)
+        public static async Task GetArtistSimilarsArtist(MusicLibraryVM.ArtistItem artist)
         {
             try
             {
@@ -237,7 +237,7 @@ namespace VLC_WINRT.Utility.Helpers.MusicLibrary
             }
         }
 
-        public static async Task GetArtistBiography(MusicLibraryViewModel.ArtistItem artist)
+        public static async Task GetArtistBiography(MusicLibraryVM.ArtistItem artist)
         {
             string biography = string.Empty;
             try

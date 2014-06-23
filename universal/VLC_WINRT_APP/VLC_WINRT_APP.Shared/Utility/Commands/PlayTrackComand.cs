@@ -9,8 +9,8 @@
 
 using Windows.UI.Xaml.Media.Animation;
 using VLC_WINRT.Common;
-using VLC_WINRT.Utility.Helpers;
-using VLC_WINRT.Utility.Services.RunTime;
+using VLC_WINRT_APP.Utility.Helpers;
+using VLC_WINRT_APP.Utility.Services.RunTime;
 using VLC_WINRT.ViewModels;
 using VLC_WINRT.ViewModels.MainPage;
 using VLC_WINRT_APP;
@@ -31,7 +31,7 @@ namespace VLC_WINRT_APP.Utility.Commands
     {
         public async override void Execute(object parameter)
         {
-            MusicLibraryViewModel.TrackItem track = parameter as MusicLibraryViewModel.TrackItem;
+            MusicLibraryVM.TrackItem track = parameter as MusicLibraryVM.TrackItem;
             if (!Locator.MusicPlayerVM.TrackCollection.TrackCollection.Contains(track))
             {
                 Locator.MusicPlayerVM.TrackCollection.ResetCollection();

@@ -10,7 +10,7 @@
 using VLC_WINRT.Common;
 using VLC_WINRT.ViewModels.MainPage;
 
-namespace VLC_WINRT.Utility.Commands.VideoPlayer
+namespace VLC_WINRT_APP.Utility.Commands.VideoPlayer
 {
     public class FavoriteVideoCommand : AlwaysExecutableCommand
     {

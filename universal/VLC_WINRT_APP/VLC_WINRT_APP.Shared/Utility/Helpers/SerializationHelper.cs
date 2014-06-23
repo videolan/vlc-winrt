@@ -18,7 +18,7 @@ using Windows.Storage;
 using Windows.Storage.Streams;
 using Newtonsoft.Json;
 
-namespace VLC_WINRT.Utility.Helpers
+namespace VLC_WINRT_APP.Utility.Helpers
 {
     public static class SerializationHelper
     {

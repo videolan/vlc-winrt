@@ -6,7 +6,7 @@ using SQLite;
 using VLC_WINRT.ViewModels.MainPage;
 using VLC_WINRT_APP.ViewModels.MainPage;
 
-namespace VLC_WINRT.Utility.DataRepository
+namespace VLC_WINRT_APP.Utility.DataRepository
 {
     public class ArtistDataRepository
     {
@@ -23,35 +23,35 @@ namespace VLC_WINRT.Utility.DataRepository
         {
             using (var db = new SQLiteConnection(_dbPath))
             {
-                db.CreateTable<MusicLibraryViewModel.ArtistItem>();
+                db.CreateTable<MusicLibraryVM.ArtistItem>();
             }
         }
 
         public
-            async Task<ObservableCollection<MusicLibraryViewModel.ArtistItem>> Load()
+            async Task<ObservableCollection<MusicLibraryVM.ArtistItem>> Load()
         {
             var connection = new SQLiteAsyncConnection(_dbPath);
 
-            return new ObservableCollection<MusicLibraryViewModel.ArtistItem>(
-               await connection.QueryAsync<MusicLibraryViewModel.ArtistItem>(
+            return new ObservableCollection<MusicLibraryVM.ArtistItem>(
+               await connection.QueryAsync<MusicLibraryVM.ArtistItem>(
                      "select * from ArtistItem"));
         }
         public
-    async Task<MusicLibraryViewModel.ArtistItem> LoadViaArtistName(string artistName)
+    async Task<MusicLibraryVM.ArtistItem> LoadViaArtistName(string artistName)
         {
             var connection = new SQLiteAsyncConnection(_dbPath);
-            var query = connection.Table<MusicLibraryViewModel.ArtistItem>().Where(x => x.Name.Equals(artistName));
+            var query = connection.Table<MusicLibraryVM.ArtistItem>().Where(x => x.Name.Equals(artistName));
             var result = await query.ToListAsync();
             return result.FirstOrDefault();
         }
 
-        public Task Update(MusicLibraryViewModel.ArtistItem artist)
+        public Task Update(MusicLibraryVM.ArtistItem artist)
         {
             var connection = new SQLiteAsyncConnection(_dbPath);
             return connection.UpdateAsync(artist);
         }
 
-        public Task Add(MusicLibraryViewModel.ArtistItem artist)
+        public Task Add(MusicLibraryVM.ArtistItem artist)
         {
             var connection = new SQLiteAsyncConnection(_dbPath);
             return connection.InsertAsync(artist);

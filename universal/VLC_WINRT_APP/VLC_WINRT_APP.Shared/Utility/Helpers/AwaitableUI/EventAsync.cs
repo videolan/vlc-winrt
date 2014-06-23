@@ -11,7 +11,7 @@ using System;
 using System.Threading.Tasks;
 using Windows.UI.Xaml;
 
-namespace VLC_WINRT.Utility.Helpers.AwaitableUI
+namespace VLC_WINRT_APP.Utility.Helpers.AwaitableUI
 {
     class EventAsync
     {

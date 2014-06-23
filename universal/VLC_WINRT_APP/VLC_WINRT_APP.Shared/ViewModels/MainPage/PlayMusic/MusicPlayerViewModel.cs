@@ -16,9 +16,9 @@ using Windows.Media;
 using Windows.Storage;
 using Windows.Storage.AccessCache;
 using Windows.UI.Notifications;
-using VLC_WINRT.Utility.Helpers;
-using VLC_WINRT.Utility.Services.RunTime;
-using VLC_WINRT.Utility.Services.Interface;
+using VLC_WINRT_APP.Utility.Helpers;
+using VLC_WINRT_APP.Utility.Services.RunTime;
+using VLC_WINRT_APP.Utility.Services.Interface;
 using VLC_WINRT.Common;
 using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.ViewModels.MainPage;
@@ -27,7 +27,7 @@ namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
 {
     public class MusicPlayerViewModel : MediaPlaybackViewModel
     {
-        private MusicLibraryViewModel.ArtistItem _artist;
+        private MusicLibraryVM.ArtistItem _artist;
         private TrackCollectionViewModel _trackCollection;
 
         public MusicPlayerViewModel(IMediaService mediaService, VlcService mediaPlayerService)
@@ -202,13 +202,13 @@ namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
                 MediaControl.PreviousTrackPressed -= MediaControl_PreviousTrackPressed;
         }
 
-        public MusicLibraryViewModel.ArtistItem Artist
+        public MusicLibraryVM.ArtistItem Artist
         {
             get { return _artist; }
             private set { SetProperty(ref _artist, value); }
         }
 
-        public void SetActiveMusicInfo(string token, MusicLibraryViewModel.TrackItem track)
+        public void SetActiveMusicInfo(string token, MusicLibraryVM.TrackItem track)
         {
             _fileToken = token;
             _mrl = "file://" + token;

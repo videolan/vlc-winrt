@@ -10,7 +10,7 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using VLC_WINRT.Common;
-using VLC_WINRT.Utility.Helpers;
+using VLC_WINRT_APP.Utility.Helpers;
 using VLC_WINRT.ViewModels;
 using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.ViewModels.MainPage;
@@ -71,7 +71,7 @@ namespace VLC_WINRT_APP.Views.MainPages
 
         private void AlbumGridView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            var album = e.ClickedItem as MusicLibraryViewModel.AlbumItem;
+            var album = e.ClickedItem as MusicLibraryVM.AlbumItem;
             album.PlayAlbum.Execute(e.ClickedItem);
         }
         
@@ -108,7 +108,7 @@ namespace VLC_WINRT_APP.Views.MainPages
 
         private void FavoriteAlbumItemClick(object sender, ItemClickEventArgs e)
         {
-            (e.ClickedItem as MusicLibraryViewModel.AlbumItem).PlayAlbum.Execute(e.ClickedItem);
+            (e.ClickedItem as MusicLibraryVM.AlbumItem).PlayAlbum.Execute(e.ClickedItem);
         }
 
         private void OnHeaderSemanticZoomClicked(object sender, RoutedEventArgs e)

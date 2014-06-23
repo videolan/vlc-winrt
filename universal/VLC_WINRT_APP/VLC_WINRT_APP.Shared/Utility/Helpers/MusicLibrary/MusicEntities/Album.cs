@@ -9,9 +9,9 @@
 
 using System;
 using System.Collections.Generic;
-using VLC_WINRT.Utility.Helpers.MusicLibrary.LastFm;
+using VLC_WINRT_APP.Utility.Helpers.MusicLibrary.LastFm;
 
-namespace VLC_WINRT.Utility.Helpers.MusicLibrary.MusicEntities
+namespace VLC_WINRT_APP.Utility.Helpers.MusicLibrary.MusicEntities
 {
     /// <summary>
     /// Entitiy representing an album.
