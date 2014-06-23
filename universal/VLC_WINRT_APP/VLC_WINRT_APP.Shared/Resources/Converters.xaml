@@ -1,0 +1,28 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:VLC_WINRT_APP.Resources"
+    xmlns:converters="using:VLC_WINRT_APP.Utility.Converters"
+    xmlns:converters1="using:VLC_WINRT.Utility.Converters">
+
+    <converters:AlbumImageConverter x:Key="AlbumImageConverter" />
+    <converters1:EmptyTimeSpanToVisibilityConverter x:Key="EmptyTimeSpanToVisibilityConverter" />
+    <converters1:NegatedCountToVisibilityConverter x:Key="NegatedCountToVisibilityConverter" />
+    <converters1:CountToVisibilityConverter x:Key="CountToVisibilityConverter" />
+    <converters1:StringToUpperConverter x:Key="StringToUpperConverter" />
+    <converters1:TimespanShortStringConverter x:Key="TimeSpanShortStringConverter">
+    </converters1:TimespanShortStringConverter>
+    <converters1:NullToVisibilityConverter x:Key="NullToVisibilityConverter">
+    </converters1:NullToVisibilityConverter>
+    <converters1:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter">
+    </converters1:BooleanToVisibilityConverter>
+    <converters1:BooleanNegationConverter x:Key="BooleanNegationConverter">
+    </converters1:BooleanNegationConverter>
+    <converters1:NegatedBooleanToVisibilityConverter x:Key="NegatedBooleanToVisibilityConverter">
+    </converters1:NegatedBooleanToVisibilityConverter>
+    <converters1:SecondsStringConverter x:Key="SecondsStringConverter">
+    </converters1:SecondsStringConverter>
+    <converters1:TimeSpanSecondsDoubleConverter x:Key="TimeSpanSecondsDoubleConverter">
+    </converters1:TimeSpanSecondsDoubleConverter>
+
+</ResourceDictionary>

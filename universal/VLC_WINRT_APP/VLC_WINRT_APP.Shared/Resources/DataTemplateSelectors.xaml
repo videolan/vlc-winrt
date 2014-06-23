@@ -1,0 +1,10 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:VLC_WINRT_APP.Resources"
+    xmlns:dataTemplateSelectors="using:VLC_WINRT.Utility.DataTemplateSelectors">
+
+    <dataTemplateSelectors:StorageItemDataTemplateSelector x:Key="StorageItemDataTemplateSelector"
+                                                           StorageFileDataTemplate="{StaticResource FileDataTemplate}"
+                                                           StorageFolderDataTemplate="{StaticResource FolderDataTemplate}" />
+</ResourceDictionary>
