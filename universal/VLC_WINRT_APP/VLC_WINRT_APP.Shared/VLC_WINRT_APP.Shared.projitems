@@ -20,6 +20,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Common\LayoutAwarePage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\RichTextColumns.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\SuspensionManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\ElapsedTimeToPercentageConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\DeezerArtistItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Panel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Subtitle.cs" />
@@ -156,10 +157,6 @@
     <Content Include="$(MSBuildThisFileDirectory)segoeui.ttf" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="$(MSBuildThisFileDirectory)Common\SliderStyle.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Resources\Colors.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -1,20 +1,20 @@
-﻿<Page
-    x:Class="VLC_WINRT_APP.Views.MainPages.MainPageHome"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:VLC_WINRT.Views.Controls.MainPage"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:dataTemplateSelectors="using:VLC_WINRT.Utility.DataTemplateSelectors"
-    xmlns:controls="using:VLC_WINRT.Views.Controls"
-    mc:Ignorable="d"
-    d:DesignHeight="768"
-    d:DesignWidth="550">
+﻿<Page x:Class="VLC_WINRT_APP.Views.MainPages.MainPageHome"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:VLC_WINRT.Views.Controls.MainPage"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:dataTemplateSelectors="using:VLC_WINRT.Utility.DataTemplateSelectors"
+      xmlns:controls="using:VLC_WINRT.Views.Controls"
+      xmlns:triggers="using:WinRT.Triggers"
+      mc:Ignorable="d"
+      d:DesignHeight="768"
+      d:DesignWidth="550">
 
     <Page.Resources>
-        <dataTemplateSelectors:MediaItemDataTemplateSelector WideMovieTemplate="{StaticResource WideMovieTemplate}"
-                                                                NormalMovieTemplate="{StaticResource NormaleMovieTemplate}"
-                                                                x:Key="MediaItemDataTemplateSelector" />
+        <dataTemplateSelectors:MediaItemDataTemplateSelector WideMovieTemplate="{StaticResource SemanticZoomInViewMovieTemplate}"
+                                                             NormalMovieTemplate="{StaticResource SemanticZoomInViewMovieTemplate}"
+                                                             x:Key="MediaItemDataTemplateSelector" />
     </Page.Resources>
     <Grid x:Name="RootGrid">
         <Hub x:Name="MainHub"
@@ -23,7 +23,26 @@
                 <HubSection Header="last viewed">
                     <HubSection.ContentTemplate>
                         <DataTemplate>
-                            
+
+                        </DataTemplate>
+                    </HubSection.ContentTemplate>
+                </HubSection>
+                <HubSection Header="videos"
+                            DataContext="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM}">
+                    <HubSection.ContentTemplate>
+                        <DataTemplate>
+                            <GridView ItemsSource="{Binding Media}"
+                                      ItemTemplate="{StaticResource SemanticZoomInViewMovieTemplate}"
+                                      IsItemClickEnabled="True"
+                                      SelectionMode="None">
+                                <GridView.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <ItemsWrapGrid Orientation="Vertical"
+                                                       ItemWidth="320"
+                                                       ItemHeight="180" />
+                                    </ItemsPanelTemplate>
+                                </GridView.ItemsPanel>
+                            </GridView>
                         </DataTemplate>
                     </HubSection.ContentTemplate>
                 </HubSection>
@@ -48,7 +67,7 @@
                     <HubSection.ContentTemplate>
                         <DataTemplate>
                             <GridView ItemsSource="{Binding RandomAlbums}">
-                                
+
                             </GridView>
                         </DataTemplate>
                     </HubSection.ContentTemplate>

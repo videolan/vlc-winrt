@@ -558,21 +558,6 @@
         </Setter>
     </Style>
 
-    <Style x:Key="SubheaderTextStyle"
-           TargetType="TextBlock">
-        <Setter Property="FontSize"
-                Value="26.667" />
-        <Setter Property="FontWeight"
-                Value="Light" />
-        <Setter Property="LineHeight"
-                Value="30" />
-        <Setter Property="RenderTransform">
-            <Setter.Value>
-                <TranslateTransform X="-1"
-                                    Y="6" />
-            </Setter.Value>
-        </Setter>
-    </Style>
 
     <Style x:Key="MiniAppBarButtonStyle"
            TargetType="AppBarButton">

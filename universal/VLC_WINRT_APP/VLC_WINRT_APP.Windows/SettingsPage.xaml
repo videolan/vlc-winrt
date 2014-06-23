@@ -38,7 +38,7 @@
                     <RowDefinition Height="50"/>
                 </Grid.RowDefinitions>
                 <TextBlock x:Uid="MainPageTitle" Text="VLC for Windows 8" Margin="3,0,0,0" FontWeight="SemiBold" FontSize="20"/>
-                <TextBlock Grid.Row="1" Text="settings" Style="{StaticResource SubheaderTextStyle}"/>
+                <TextBlock Grid.Row="1" Text="settings" Style="{StaticResource SubheaderTextBlockStyle}"/>
             </Grid>
             <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button Style="{StaticResource SearchNoTextAppBarButtonStyle}" Click="OpenSearchPane" />

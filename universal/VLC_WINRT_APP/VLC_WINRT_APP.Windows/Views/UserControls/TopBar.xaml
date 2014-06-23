@@ -58,7 +58,7 @@
                                        Opacity="{Binding Opacity}"
                                        TextWrapping="NoWrap"
                                        TextTrimming="None"
-                                       Style="{StaticResource SubheaderTextStyle}"
+                                       Style="{StaticResource SubheaderTextBlockStyle}"
                                        Foreground="WhiteSmoke" />
                         </DataTemplate>
                     </ListView.ItemTemplate>
@@ -87,14 +87,13 @@
                                        Opacity="{Binding Opacity}"
                                        TextWrapping="NoWrap"
                                        TextTrimming="None"
-                                       Style="{StaticResource SubheaderTextStyle}"
+                                       Style="{StaticResource SubheaderTextBlockStyle}"
                                        Foreground="WhiteSmoke" />
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
                 <Button x:Name="MorePanelsButton"
                         Content=""
-                        Template="{StaticResource MainButtonStyle}"
                         Visibility="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.IsLoaded, Converter={StaticResource BooleanToVisibilityConverter}}"
                         FontFamily="Segoe UI Symbol"
                         FontSize="32"
@@ -107,9 +106,11 @@
                     Orientation="Horizontal"
                     HorizontalAlignment="Right">
             <controls:IndexingMusicLibrary Visibility="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.IsLoaded, Converter={StaticResource NegatedBooleanToVisibilityConverter}}" />
-            <Button Style="{StaticResource OpenFileNoTextAppBarButtonStyle}"
-                    Margin="0,0,-30,0" />
-            <Button Style="{StaticResource SearchNoTextAppBarButtonStyle}" />
+            <AppBarButton Margin="0,0,-30,0"
+                          Icon="OpenFile"
+                          IsCompact="True" />
+            <AppBarButton Margin="0,0,-30,0"
+                          Icon="Find"/>
         </StackPanel>
     </Grid>
 

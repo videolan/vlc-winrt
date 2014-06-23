@@ -2,7 +2,7 @@
 using Windows.UI.Xaml.Controls;
 using VLC_WINRT.ViewModels.MainPage.VlcExplorer;
 
-namespace VLC_WINRT.Utility.DataTemplateSelectors
+namespace VLC_WINRT_APP.Utility.DataTemplateSelectors
 {
     public class StorageItemDataTemplateSelector : DataTemplateSelector
     {

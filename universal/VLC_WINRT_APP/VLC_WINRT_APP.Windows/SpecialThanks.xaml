@@ -27,7 +27,7 @@
             <Button Style="{StaticResource PreviousAppBarButtonStyle}" Click="GoBack_Click" />
             <StackPanel Grid.Column="1">
                 <TextBlock Text="VLC for Windows 8" Margin="3,0,0,0" FontWeight="SemiBold" FontSize="20"/>
-                <TextBlock x:Uid="VlcThankYou" Text="The VLC for Windows 8 Team would like to say 'thank you very much' to the people who made this App possible:" Style="{StaticResource SubheaderTextStyle}"/>
+                <TextBlock x:Uid="VlcThankYou" Text="The VLC for Windows 8 Team would like to say 'thank you very much' to the people who made this App possible:" Style="{StaticResource SubheaderTextBlockStyle}"/>
             </StackPanel>
         </Grid>
         <GridView Grid.Row="1" 
@@ -47,15 +47,15 @@
                         <TextBlock x:Uid="PartnersGold" Text="gold partners" FontSize="42" Style="{StaticResource VLCSubHeaderStyle}"/>
                         <StackPanel Grid.Row="1" Margin="0,15,0,0" >
                             <StackPanel Margin="0,20" Orientation="Horizontal">
-                                <TextBlock Text="Judson White" Style="{StaticResource SubheaderTextStyle}" FontSize="44"/>
+                                <TextBlock Text="Judson White" Style="{StaticResource SubheaderTextBlockStyle}" FontSize="44"/>
                                 <HyperlinkButton NavigateUri="http://www.judsonwhite.com/" Content="Website" Margin="0,4,0,0"/>
                             </StackPanel>
                             <StackPanel Margin="0,20" Orientation="Horizontal">
-                                <TextBlock Text="Monostream GmbH" Style="{StaticResource SubheaderTextStyle}" FontSize="44"/>
+                                <TextBlock Text="Monostream GmbH" Style="{StaticResource SubheaderTextBlockStyle}" FontSize="44"/>
                                 <HyperlinkButton NavigateUri="http://www.monostream.ch/" Content="Website" Margin="0,4,0,0"/>
                             </StackPanel>
                             <StackPanel Margin="0,20" Orientation="Horizontal">
-                                <TextBlock Text="Rogier Pieters" Style="{StaticResource SubheaderTextStyle}" FontSize="44"/>
+                                <TextBlock Text="Rogier Pieters" Style="{StaticResource SubheaderTextBlockStyle}" FontSize="44"/>
                             </StackPanel>
                         </StackPanel>
                     </Grid>
@@ -67,23 +67,23 @@
                         <TextBlock x:Uid="PartnersSilver" Text="silver partners" FontSize="42" Style="{StaticResource VLCSubHeaderStyle}" Foreground="#FFBDBDBD"/>
                         <StackPanel Grid.Row="1" Margin="0,15,0,0" >
                             <StackPanel Margin="0,20" Orientation="Horizontal">
-                                <TextBlock Text="Kaoxee Web" Style="{StaticResource SubheaderTextStyle}" />
+                                <TextBlock Text="Kaoxee Web" Style="{StaticResource SubheaderTextBlockStyle}" />
                                 <HyperlinkButton NavigateUri="http://www.kaoxee.com/" Content="Website" Margin="0,4,0,0"/>
                             </StackPanel>
                             <StackPanel Margin="0,20" Orientation="Horizontal">
-                                <TextBlock Text="7digital" Style="{StaticResource SubheaderTextStyle}" />
+                                <TextBlock Text="7digital" Style="{StaticResource SubheaderTextBlockStyle}" />
                                 <HyperlinkButton NavigateUri="http://www.7digital.com/" Content="Website" Margin="0,4,0,0"/>
                             </StackPanel>
                             <StackPanel Margin="0,20" Orientation="Horizontal">
-                                <TextBlock Text="Gabriel Topala" Style="{StaticResource SubheaderTextStyle}" />
+                                <TextBlock Text="Gabriel Topala" Style="{StaticResource SubheaderTextBlockStyle}" />
                                 <HyperlinkButton NavigateUri="http://www.gtopala.com/" Content="Website" Margin="0,4,0,0"/>
                             </StackPanel>
                             <StackPanel Margin="0,20" Orientation="Horizontal">
-                                <TextBlock Text="MySurround" Style="{StaticResource SubheaderTextStyle}" />
+                                <TextBlock Text="MySurround" Style="{StaticResource SubheaderTextBlockStyle}" />
                                 <HyperlinkButton NavigateUri="http://www.mysurround.com/" Content="Website" Margin="0,4,0,0"/>
                             </StackPanel>
                             <StackPanel Margin="0,20" Orientation="Horizontal">
-                                <TextBlock Text="Melissa Pack" Style="{StaticResource SubheaderTextStyle}" />
+                                <TextBlock Text="Melissa Pack" Style="{StaticResource SubheaderTextBlockStyle}" />
                                 <HyperlinkButton NavigateUri="http://freeldssheetmusic.org/" Content="Website" Margin="0,4,0,0"/>
                             </StackPanel>
                         </StackPanel>

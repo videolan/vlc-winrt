@@ -1,7 +1,6 @@
-﻿<ResourceDictionary
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:VLC_WINRT_APP.Resources">
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="using:VLC_WINRT_APP.Resources">
 
     <DataTemplate x:Key="SemanticZoomOutViewArtistTemplate">
         <Grid Width="240"
@@ -96,6 +95,8 @@
 
     <DataTemplate x:Key="SemanticZoomInViewMovieTemplate">
         <Grid>
+            <Grid VerticalAlignment="Stretch"
+                  HorizontalAlignment="Stretch" />
             <Image Source="{Binding Image}"
                    Stretch="UniformToFill" />
             <Grid>
@@ -310,15 +311,6 @@
                        Style="{StaticResource SubheaderTextBlockStyle}" />
         </Grid>
     </DataTemplate>
-    <DataTemplate x:Key="FileDataTemplate">
-        <TextBlock Margin="15,0,0,0"
-                   Style="{StaticResource TitleTextStyle}"
-                   Width="300">
-                    <Run Text="{Binding Name}" />
-                    <Run Text=""
-                         FontFamily="Segoe UI Symbol" />
-        </TextBlock>
-    </DataTemplate>
 
     <DataTemplate x:Key="FolderDataTemplate">
         <StackPanel Orientation="Horizontal"
@@ -330,11 +322,16 @@
                   Data="M0,23.667L64,23.667 64,52.667 0,52.667z M0,0L25.802,0 25.802,6.862999 64,6.862999 64,14.818 0,14.818 0,13.727 0,6.862999z" />
             <TextBlock Margin="15,0,0,0"
                        Text="{Binding Name}"
-                       Style="{StaticResource SubheaderTextStyle}" />
+                       Style="{StaticResource SubheaderTextBlockStyle}" />
         </StackPanel>
     </DataTemplate>
-    <DataTemplate x:Key="ColumnHeaderDataTemplate">
-        <TextBlock Text="{Binding}"
-                   Style="{StaticResource VLCSubHeaderStyle}" />
+    <DataTemplate x:Key="FileDataTemplate">
+        <TextBlock Margin="15,0,0,0"
+                   Style="{StaticResource TitleTextBlockStyle}"
+                   Width="300">
+                    <Run Text="{Binding Name}" />
+                    <Run Text=""
+                         FontFamily="Segoe UI Symbol" />
+        </TextBlock>
     </DataTemplate>
 </ResourceDictionary>
