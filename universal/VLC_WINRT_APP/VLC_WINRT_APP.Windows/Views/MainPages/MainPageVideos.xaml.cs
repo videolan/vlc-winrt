@@ -9,18 +9,16 @@
 
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-
-// The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
 using VLC_WINRT.Utility.Helpers;
 using VLC_WINRT.ViewModels;
 using VLC_WINRT.Common;
-namespace VLC_WINRT.Views.Controls.MainPage
+namespace VLC_WINRT_APP.Views.MainPages
 {
-    public sealed partial class VideoColumn : UserControl
+    public sealed partial class MainPageVideos : Page
     {
         private int _currentSection;
 
-        public VideoColumn()
+        public MainPageVideos()
         {
             InitializeComponent();
             //this.Loaded += (sender, args) =>
@@ -52,8 +50,8 @@ namespace VLC_WINRT.Views.Controls.MainPage
         }
         private void SectionsHeaderListView_OnItemClick(object sender, ItemClickEventArgs e)
         {
-            var i = ((Model.Panel)e.ClickedItem).Index;
-            ChangedSectionsHeadersState(i);
+            //var i = ((Model.Panel)e.ClickedItem).Index;
+            //ChangedSectionsHeadersState(i);
         }
         private void ChangedSectionsHeadersState(int i)
         {

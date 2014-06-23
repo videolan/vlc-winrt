@@ -139,8 +139,8 @@
     <Compile Include="Controls\MainPage\ThumbnailsBackground.xaml.cs">
       <DependentUpon>ThumbnailsBackground.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\MainPage\VideoColumn.xaml.cs">
-      <DependentUpon>VideoColumn.xaml</DependentUpon>
+    <Compile Include="Views\MainPages\MainPageVideos.xaml.cs">
+      <DependentUpon>MainPageVideos.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\MainPage\Welcome.xaml.cs">
       <DependentUpon>Welcome.xaml</DependentUpon>
@@ -761,7 +761,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\MainPage\VideoColumn.xaml">
+    <Page Include="Views\MainPages\MainPageVideos.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -840,6 +840,9 @@
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\..\app\packages\Newtonsoft.Json.6.0.3\lib\netcore45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="WinRT.Triggers">
+      <HintPath>..\..\..\app\packages\WinRTTriggers.1.6.0\lib\winrt45\WinRT.Triggers.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

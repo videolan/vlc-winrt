@@ -21,18 +21,20 @@ using VLC_WINRT.Utility.Commands.MainPage;
 using VLC_WINPRT;
 #endif
 using VLC_WINRT.ViewModels.MainPage.VlcExplorer;
+using VLC_WINRT_APP;
+using VLC_WINRT_APP.Views.MainPages;
 
 namespace VLC_WINRT.ViewModels.MainPage
 {
     public class MainPageViewModel : NavigateableViewModel
     {
+        #region private fields
         private ObservableCollection<Panel> _panels = new ObservableCollection<Panel>();
         private ObservableCollection<Panel> _secondaryPanels = new ObservableCollection<Panel>();
-        private ObservableCollection<FileExplorerViewModel> _dlnaVMs =
-            new ObservableCollection<FileExplorerViewModel>();
-#if NETFX_CORE
-        private ExternalStorageViewModel _externalStorageVM;
-#endif
+        private ObservableCollection<FileExplorerViewModel> _dlnaVMs = new ObservableCollection<FileExplorerViewModel>();
+        #endregion
+
+        #region private props
         private bool _isAppBarOpen;
         private bool _isNetworkAppBarShown;
         private string _networkMRL = string.Empty;
@@ -41,6 +43,20 @@ namespace VLC_WINRT.ViewModels.MainPage
         private ActionCommand _showAppBarCommand;
         private ActionCommand _toggleNetworkAppBarCommand;
         private GoToPanelCommand _goToPanelCommand;
+        #endregion
+        #region public fields
+        #endregion
+        #region public props
+        public GoToPanelCommand GoToPanel
+        {
+            get { return _goToPanelCommand; }
+            set { SetProperty(ref _goToPanelCommand, value); }
+        }
+        #endregion
+
+#if NETFX_CORE
+        private ExternalStorageViewModel _externalStorageVM;
+#endif
 
         public MainPageViewModel()
         {
@@ -62,7 +78,6 @@ namespace VLC_WINRT.ViewModels.MainPage
             SecondaryPanels.Add(new Panel(resourceLoader.GetString("ExternalStorage"), 3, 0.4));
             SecondaryPanels.Add(new Panel(resourceLoader.GetString("MediaServers"), 4, 0.4));
             _goToPanelCommand = new GoToPanelCommand();
-
             Initialize();
         }
 
@@ -111,11 +126,6 @@ namespace VLC_WINRT.ViewModels.MainPage
             }
         }
 
-        public GoToPanelCommand GoToPanel
-        {
-            get { return _goToPanelCommand; }
-            set { SetProperty(ref _goToPanelCommand, value); }
-        }
 
         public ObservableCollection<Panel> Panels
         {

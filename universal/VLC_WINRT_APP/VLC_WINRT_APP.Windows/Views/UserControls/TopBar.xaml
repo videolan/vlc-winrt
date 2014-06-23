@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:controls="using:VLC_WINRT.Views.Controls"
+             xmlns:triggers="using:WinRT.Triggers"
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400"
@@ -36,6 +37,12 @@
                           RenderTransformOrigin="0.5,0.5"
                           ScrollViewer.VerticalScrollMode="Disabled"
                           ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                    <triggers:Interactions.Triggers>
+                        <triggers:EventTrigger EventName="ItemClick">
+                            <triggers:InvokeCommandAction Command="{Binding GoToPanel}"
+                                                          PassEventArgsToCommand="True" />
+                        </triggers:EventTrigger>
+                    </triggers:Interactions.Triggers>
                     <ListView.RenderTransform>
                         <CompositeTransform />
                     </ListView.RenderTransform>

@@ -16,7 +16,7 @@ using VLC_WINRT_APP.ViewModels.MainPage;
 
 namespace VLC_WINRT_APP.Views.MainPages
 {
-    public sealed partial class MainPageMusic : UserControl
+    public sealed partial class MainPageMusic : Page
     {
         private int _currentSection;
         private bool _isLoaded;

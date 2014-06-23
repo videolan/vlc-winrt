@@ -1,5 +1,5 @@
-﻿<UserControl
-    x:Class="VLC_WINRT.Views.Controls.MainPage.VideoColumn"
+﻿<Page
+    x:Class="VLC_WINRT_APP.Views.MainPages.MainPageVideos"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -11,9 +11,9 @@
     d:DesignHeight="768"
     d:DesignWidth="400">
 
-    <UserControl.Resources>
+    <Page.Resources>
         <CollectionViewSource x:Name="MediaGroupedByAlphabet" Source="{Binding MediaGroupedByAlphabet}" IsSourceGrouped="True" />
-    </UserControl.Resources>
+    </Page.Resources>
     <Grid >
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -130,4 +130,4 @@
             </SemanticZoom>
         </Grid>
     </Grid>
-</UserControl>
+</Page>
