@@ -20,13 +20,15 @@ using VLC_WINRT.Utility.Commands.MainPage;
 #if WINDOWS_PHONE_APP
 using VLC_WINPRT;
 #endif
+using VLC_WINRT.ViewModels;
+using VLC_WINRT.ViewModels.MainPage;
 using VLC_WINRT.ViewModels.MainPage.VlcExplorer;
 using VLC_WINRT_APP;
 using VLC_WINRT_APP.Views.MainPages;
 
-namespace VLC_WINRT.ViewModels.MainPage
+namespace VLC_WINRT_APP.ViewModels
 {
-    public class MainPageViewModel : NavigateableViewModel
+    public class MainVM : BindableBase
     {
         #region private fields
         private ObservableCollection<Panel> _panels = new ObservableCollection<Panel>();
@@ -58,7 +60,7 @@ namespace VLC_WINRT.ViewModels.MainPage
         private ExternalStorageViewModel _externalStorageVM;
 #endif
 
-        public MainPageViewModel()
+        public MainVM()
         {
             PickVideo = new PickVideoCommand();
             PlayNetworkMRL = new PlayNetworkMRLCommand();

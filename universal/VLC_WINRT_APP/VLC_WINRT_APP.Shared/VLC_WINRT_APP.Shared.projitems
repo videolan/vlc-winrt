@@ -123,9 +123,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Utility\Services\RunTime\ThumbnailService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utility\Services\RunTime\VlcService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Locator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainVM.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainPage\BackerCountryViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainPage\ExternalStorageViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainPage\MainPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainPage\MediaViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainPage\MusicLibraryViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainPage\PlayMusic\MusicPlayerViewModel.cs" />

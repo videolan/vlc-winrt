@@ -22,6 +22,7 @@ using VLC_WINPRT;
 #endif
 using VLC_WINRT.ViewModels.Settings;
 using VLC_WINRT_APP;
+using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.ViewModels.MainPage;
 
 namespace VLC_WINRT.ViewModels
@@ -62,9 +63,9 @@ namespace VLC_WINRT.ViewModels
             get { return App.Container.Resolve<PlayVideoViewModel>(); }
         }
 
-        public static MainPageViewModel MainVM
+        public static MainVM MainVM
         {
-            get { return App.Container.Resolve<MainPageViewModel>(); }
+            get { return App.Container.Resolve<MainVM>(); }
         }
 
         public static SettingsViewModel SettingsVM

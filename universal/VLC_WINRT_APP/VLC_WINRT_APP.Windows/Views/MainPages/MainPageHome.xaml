@@ -50,7 +50,8 @@
                             DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
                     <HubSection.ContentTemplate>
                         <DataTemplate>
-                            <GridView ItemsSource="{Binding FavoriteAlbums}">
+                            <GridView ItemsSource="{Binding FavoriteAlbums}"
+                                      ItemTemplate="{StaticResource SemanticZoomInViewAlbumTemplate}">
                                 <GridView.ItemsPanel>
                                     <ItemsPanelTemplate>
                                         <VariableSizedWrapGrid Orientation="Horizontal"
@@ -66,8 +67,15 @@
                             DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
                     <HubSection.ContentTemplate>
                         <DataTemplate>
-                            <GridView ItemsSource="{Binding RandomAlbums}">
-
+                            <GridView ItemsSource="{Binding RandomAlbums}"
+                                      ItemTemplate="{StaticResource SemanticZoomInViewAlbumTemplate}">
+                                <GridView.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <VariableSizedWrapGrid Orientation="Horizontal"
+                                                               ItemHeight="200"
+                                                               ItemWidth="200" />
+                                    </ItemsPanelTemplate>
+                                </GridView.ItemsPanel>
                             </GridView>
                         </DataTemplate>
                     </HubSection.ContentTemplate>
