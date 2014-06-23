@@ -14,6 +14,7 @@ using VLC_WINRT.Utility.Services.RunTime;
 using VLC_WINRT.ViewModels;
 using VLC_WINRT.ViewModels.MainPage;
 using VLC_WINRT_APP;
+using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.ViewModels.MainPage;
 using VLC_WINRT_APP.Views.MainPages;
 using VLC_WINRT_APP.Views.MusicPages;

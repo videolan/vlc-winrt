@@ -14,6 +14,7 @@ using VLC_WINPRT;
 #endif
 using VLC_WINRT.ViewModels;
 using VLC_WINRT_APP;
+using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.Views.MainPages;
 
 namespace VLC_WINRT.Utility.Commands.MainPage

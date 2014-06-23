@@ -19,6 +19,7 @@ using Windows.UI.Xaml.Media.Animation;
 using VLC_WINRT.Common;
 using VLC_WINRT.Utility.Helpers;
 using VLC_WINRT.ViewModels;
+using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.ViewModels.MainPage;
 using VLC_WINRT_APP.Views.MainPages;
 using VLC_WINRT_APP.Views.MusicPages;

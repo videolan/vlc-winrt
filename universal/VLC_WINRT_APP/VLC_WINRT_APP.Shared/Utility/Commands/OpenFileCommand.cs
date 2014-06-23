@@ -18,6 +18,7 @@ using VLC_WINRT.Utility.Services.RunTime;
 using VLC_WINRT.ViewModels;
 using VLC_WINRT.ViewModels.MainPage;
 using VLC_WINRT_APP;
+using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.Views.MainPages;
 #if NETFX_CORE
 using VLC_WINRT.Views;

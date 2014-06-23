@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Controls;
 using VLC_WINRT.Common;
 using VLC_WINRT.Utility.Helpers;
 using VLC_WINRT.ViewModels;
+using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.ViewModels.MainPage;
 
 namespace VLC_WINRT_APP.Views.MainPages

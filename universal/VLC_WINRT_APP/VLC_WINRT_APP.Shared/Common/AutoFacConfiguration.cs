@@ -28,7 +28,7 @@ using VLC_WINRT.ViewModels.Settings;
 
 #endif
 
-namespace VLC_WINRT.Common
+namespace VLC_WINRT_APP.Common
 {
     public static class AutoFacConfiguration
     {

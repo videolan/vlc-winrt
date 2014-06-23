@@ -11,6 +11,7 @@ using VLC_WINRT.Common;
 using VLC_WINRT.Utility.DataRepository;
 using VLC_WINRT.ViewModels;
 using VLC_WINRT.ViewModels.MainPage;
+using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.ViewModels.MainPage;
 
 namespace VLC_WINRT.Utility.Commands.MusicPlayer

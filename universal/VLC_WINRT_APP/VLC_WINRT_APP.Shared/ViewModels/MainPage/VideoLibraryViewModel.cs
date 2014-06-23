@@ -23,6 +23,7 @@ using Windows.Storage.Search;
 using VLC_WINRT.Utility.Helpers;
 using VLC_WINRT.ViewModels.Settings;
 using VLC_WINRT_APP;
+using VLC_WINRT_APP.ViewModels;
 using Panel = VLC_WINRT.Model.Panel;
 #if WINDOWS_PHONE_APP
 

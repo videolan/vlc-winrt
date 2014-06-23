@@ -13,7 +13,7 @@
 */
 
 using Autofac;
-using VLC_WINRT.Common;
+using VLC_WINRT.ViewModels;
 using VLC_WINRT.ViewModels.MainPage;
 using VLC_WINRT.ViewModels.MainPage.PlayMusic;
 using VLC_WINRT.ViewModels.PlayVideo;
@@ -21,11 +21,10 @@ using VLC_WINRT.ViewModels.PlayVideo;
 using VLC_WINPRT;
 #endif
 using VLC_WINRT.ViewModels.Settings;
-using VLC_WINRT_APP;
-using VLC_WINRT_APP.ViewModels;
+using VLC_WINRT_APP.Common;
 using VLC_WINRT_APP.ViewModels.MainPage;
 
-namespace VLC_WINRT.ViewModels
+namespace VLC_WINRT_APP.ViewModels
 {
     /// <summary>
     ///     This class contains static references to all the view models in the

@@ -2,11 +2,7 @@
     x:Class="VLC_WINRT_APP.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:VLC_WINRT_APP"
-    xmlns:viewModels="using:VLC_WINRT.ViewModels"
-    xmlns:dataTemplateSelectors="using:VLC_WINRT.Utility.DataTemplateSelectors"
-    xmlns:converters="using:VLC_WINRT.Utility.Converters"
-    xmlns:converters1="using:VLC_WINRT_APP.Utility.Converters">
+    xmlns:viewModels="using:VLC_WINRT_APP.ViewModels">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

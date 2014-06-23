@@ -13,6 +13,7 @@ using VLC_WINRT.ViewModels;
 
 #endif
 using VLC_WINRT_APP;
+using VLC_WINRT_APP.ViewModels;
 
 namespace VLC_WINRT.Utility.Commands
 {

@@ -15,6 +15,7 @@ using VLC_WINRT.Utility.Helpers;
 using VLC_WINRT.ViewModels;
 using VLC_WINRT.ViewModels.MainPage;
 using VLC_WINRT.Views.Controls.MainPage;
+using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.ViewModels.MainPage;
 using VLC_WINRT_APP.Views.MainPages;
 
