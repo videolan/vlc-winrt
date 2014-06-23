@@ -43,82 +43,17 @@
                         </DataTemplate>
                     </HubSection.ContentTemplate>
                 </HubSection>
+                <HubSection Header="you may like"
+                            DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
+                    <HubSection.ContentTemplate>
+                        <DataTemplate>
+                            <GridView ItemsSource="{Binding RandomAlbums}">
+                                
+                            </GridView>
+                        </DataTemplate>
+                    </HubSection.ContentTemplate>
+                </HubSection>
             </Hub.Sections>
         </Hub>
-        <Grid x:Name="SnapGrid"
-              Width="320">
-            <ListView ItemsSource="{Binding LastViewedVM}" ItemContainerStyle="{StaticResource ListViewItemContainerStyle}" ItemTemplate="{StaticResource NormaleMovieTemplate}"/>
-        </Grid>
-        <ScrollViewer x:Name="HorizontalScrollViewer" VerticalScrollMode="Disabled"
-                      VerticalScrollBarVisibility="Disabled"
-                      HorizontalScrollMode="Auto"
-                      HorizontalScrollBarVisibility="Auto"
-                      VerticalContentAlignment="Stretch"
-                      HorizontalContentAlignment="Center"
-                      ZoomMode="Disabled">
-            <StackPanel Orientation="Horizontal"
-                        VerticalAlignment="Top">
-                <Grid Margin="50,0,0,0" DataContext="{Binding LastViewedVM}" Visibility="{Binding LastViewedVM.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="50"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <Button Margin="5,0,0,0" Grid.Row="0" Template="{StaticResource MainButtonStyle}">
-                        <TextBlock Style="{StaticResource VLCSubHeaderStyle}" >
-                                <Run x:Uid="LastViewed" Text="last viewed" />
-                                <Run Text=" " FontFamily="Segoe UI Symbol" />
-                        </TextBlock>
-                    </Button>
-                    <controls:VariableSizedItemsGridView Grid.Row="1" SelectionMode="None" ItemsSource="{Binding LastViewedVM}" ItemContainerStyle="{StaticResource GridViewItemContainerStyle}" ItemTemplateSelector="{StaticResource MediaItemDataTemplateSelector}" >
-                        <controls:VariableSizedItemsGridView.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <VariableSizedWrapGrid VerticalChildrenAlignment="Top" ItemHeight="160" ItemWidth="265" MaximumRowsOrColumns="4" />
-                            </ItemsPanelTemplate>
-                        </controls:VariableSizedItemsGridView.ItemsPanel>
-                    </controls:VariableSizedItemsGridView>
-                </Grid>
-                <Grid Margin="40,0,0,0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="50"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <Button Margin="5,0,0,0" Command="{Binding GoToPanel}" CommandParameter="1" Grid.Row="0" Template="{StaticResource MainButtonStyle}">
-                        <TextBlock Style="{StaticResource VLCSubHeaderStyle}" >
-                                <Run x:Uid="VideosHeader" Text="videos" />
-                                <Run Text="" FontFamily="Segoe UI Symbol" />
-                        </TextBlock>
-                    </Button>
-                    <controls:VariableSizedItemsGridView Grid.Row="1" SelectionMode="None" ItemsSource="{Binding VideoVM.MediaRandom}" ItemContainerStyle="{StaticResource GridViewItemContainerStyle}" ItemTemplateSelector="{StaticResource MediaItemDataTemplateSelector}" >
-                        <controls:VariableSizedItemsGridView.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <VariableSizedWrapGrid VerticalChildrenAlignment="Top" ItemHeight="160" ItemWidth="265" MaximumRowsOrColumns="4" />
-                            </ItemsPanelTemplate>
-                        </controls:VariableSizedItemsGridView.ItemsPanel>
-                    </controls:VariableSizedItemsGridView>
-                    <controls:NothingToSeeHereVideos Grid.Row="1" Visibility="{Binding VideoVM.HasNoMedia, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                </Grid>
-                <Grid Margin="40,0,0,0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="50"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <Button Margin="5,0,0,0" Command="{Binding GoToPanel}" CommandParameter="2" Grid.Row="0" Template="{StaticResource MainButtonStyle}">
-                        <TextBlock Style="{StaticResource VLCSubHeaderStyle}" >
-                                <Run x:Uid="MusicHeader" Text="music" />
-                                <Run Text="" FontFamily="Segoe UI Symbol" />
-                        </TextBlock>
-                    </Button>
-                    <controls:NothingToSeeHere Grid.Row="1" Visibility="{Binding MusicLibraryVm.RandomAlbums.Count, Converter={StaticResource CountToVisibilityConverter}}"/>
-                    <controls:VariableSizedItemsGridView Grid.Row="1" ItemTemplate="{StaticResource LittleSizedAlbumDataTemplate}" SelectionMode="None" IsItemClickEnabled="True" ItemContainerStyle="{StaticResource GridViewItemContainerStyle}" ItemsSource="{Binding MusicLibraryVm.RandomAlbums}" ItemClick="FavoriteAlbumItemClick" >
-                        <controls:VariableSizedItemsGridView.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <VariableSizedWrapGrid Orientation="Vertical" ItemHeight="160" ItemWidth="150" MaximumRowsOrColumns="6"/>
-                            </ItemsPanelTemplate>
-                        </controls:VariableSizedItemsGridView.ItemsPanel>
-                    </controls:VariableSizedItemsGridView>
-                </Grid>
-            </StackPanel>
-        </ScrollViewer>
     </Grid>
 </Page>
