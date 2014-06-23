@@ -19,7 +19,7 @@ namespace VLC_WINRT.Utility.Commands.VideoPlayer
             if (parameter as MediaViewModel != null)
             {
                 (parameter as MediaViewModel).Favorite = !(parameter as MediaViewModel).Favorite;
-                //SerializationHelper.SerializeAsJson(Locator.MainPageVM.VideoVM.Media, "VideosDB.json", null,
+                //SerializationHelper.SerializeAsJson(Locator.MainVM.VideoVM.Media, "VideosDB.json", null,
                 //    CreationCollisionOption.ReplaceExisting);
             }
         }

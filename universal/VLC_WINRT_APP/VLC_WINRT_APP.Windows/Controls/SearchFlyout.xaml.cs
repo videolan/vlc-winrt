@@ -95,7 +95,7 @@ namespace VLC_WINRT.Views.Controls
             else if (ComboBox.SelectedIndex == 2)
             {
                 var videos =
-                    Locator.MainPageVM.VideoVM.Media.Where(y => y.Title.ToLower().Contains(SearchBox.Text.ToLower()));
+                    Locator.VideoLibraryVM.Media.Where(y => y.Title.ToLower().Contains(SearchBox.Text.ToLower()));
                 results.AddRange(videos.Select(video => new GenericElement()
                 {
                     Title = video.Title,

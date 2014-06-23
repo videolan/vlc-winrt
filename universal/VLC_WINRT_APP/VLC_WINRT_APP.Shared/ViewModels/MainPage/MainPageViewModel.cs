@@ -35,13 +35,11 @@ namespace VLC_WINRT.ViewModels.MainPage
 #endif
         private bool _isAppBarOpen;
         private bool _isNetworkAppBarShown;
-        private MusicLibraryViewModel _musicLibraryVm;
         private string _networkMRL = string.Empty;
         private PickVideoCommand _pickVideoCommand;
         private PlayNetworkMRLCommand _playNetworkMRL;
         private ActionCommand _showAppBarCommand;
         private ActionCommand _toggleNetworkAppBarCommand;
-        private VideoLibraryViewModel _videoVM;
         private GoToPanelCommand _goToPanelCommand;
 
         public MainPageViewModel()
@@ -77,14 +75,12 @@ namespace VLC_WINRT.ViewModels.MainPage
 
         public async Task InitVideoVM()
         {
-            VideoVM = new VideoLibraryViewModel();
-            await VideoVM.GetMedia();
+            await Locator.VideoLibraryVM.GetMedia();
         }
 
         public async Task InitMusicM()
         {
-            MusicLibraryVm = Locator.MusicLibraryVM;
-            await MusicLibraryVm.Initialize();
+            await Locator.MusicLibraryVM.Initialize();
         }
 
         public async Task InitRemovableStorageVM()
@@ -136,12 +132,6 @@ namespace VLC_WINRT.ViewModels.MainPage
             set { SetProperty(ref _secondaryPanels, value); }
         }
 
-        public VideoLibraryViewModel VideoVM
-        {
-            get { return _videoVM; }
-            set { SetProperty(ref _videoVM, value); }
-        }
-
 #if NETFX_CORE
         public ExternalStorageViewModel ExternalStorageVM
         {
@@ -150,11 +140,6 @@ namespace VLC_WINRT.ViewModels.MainPage
         }
 #endif
 
-        public MusicLibraryViewModel MusicLibraryVm
-        {
-            get { return _musicLibraryVm; }
-            set { SetProperty(ref _musicLibraryVm, value); }
-        }
         public ObservableCollection<FileExplorerViewModel> DLNAVMs
         {
             get { return _dlnaVMs; }

@@ -51,12 +51,17 @@ namespace VLC_WINRT.ViewModels
             get { return App.Container.Resolve<MusicLibraryViewModel>(); }
         }
 
+        public static VideoLibraryViewModel VideoLibraryVM
+        {
+            get { return App.Container.Resolve<VideoLibraryViewModel>(); }
+        }
+
         public static PlayVideoViewModel PlayVideoVM
         {
             get { return App.Container.Resolve<PlayVideoViewModel>(); }
         }
 
-        public static MainPageViewModel MainPageVM
+        public static MainPageViewModel MainVM
         {
             get { return App.Container.Resolve<MainPageViewModel>(); }
         }

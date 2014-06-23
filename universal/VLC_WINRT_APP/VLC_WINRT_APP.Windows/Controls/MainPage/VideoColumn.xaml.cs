@@ -62,8 +62,8 @@ namespace VLC_WINRT.Views.Controls.MainPage
             UIAnimationHelper.FadeIn(SectionsGrid.Children[i]);
             _currentSection = i;
             //for (int j = 0; j < SectionsHeaderListView.Items.Count; j++)
-            //    Locator.MainPageVM.VideoVM.Panels[j].Opacity = 0.4;
-            Locator.MainPageVM.VideoVM.Panels[i].Opacity = 1;
+            //    Locator.MainVM.VideoVM.Panels[j].Opacity = 0.4;
+            Locator.VideoLibraryVM.Panels[i].Opacity = 1;
         }
         
         private void OnHeaderSemanticZoomClicked(object sender, RoutedEventArgs e)

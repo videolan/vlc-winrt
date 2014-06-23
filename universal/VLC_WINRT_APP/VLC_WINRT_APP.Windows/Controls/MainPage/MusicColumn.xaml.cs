@@ -89,8 +89,8 @@ namespace VLC_WINRT.Views.Controls.MainPage
             UIAnimationHelper.FadeIn(SectionsGrid.Children[i]);
             _currentSection = i;
             for (int j = 0; j < SectionsHeaderListView.Items.Count; j++)
-                Locator.MainPageVM.MusicLibraryVm.Panels[j].Opacity = 0.4;
-            Locator.MainPageVM.MusicLibraryVm.Panels[i].Opacity = 1;
+                Locator.MusicLibraryVM.Panels[j].Opacity = 0.4;
+            Locator.MusicLibraryVM.Panels[i].Opacity = 1;
         }
 
         private void AlbumsByArtistSemanticZoom_OnViewChangeCompleted(object sender, SemanticZoomViewChangedEventArgs e)

@@ -35,7 +35,7 @@ namespace VLC_WINRT.Views
             base.OnNavigatedTo(e);
             if (e.NavigationMode == NavigationMode.New)
             {
-                Locator.MainPageVM.InitRemovableStorageVM();
+                Locator.MainVM.InitRemovableStorageVM();
             }
             FadeInPage.Begin();
         }

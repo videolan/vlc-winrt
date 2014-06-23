@@ -115,8 +115,8 @@ namespace VLC_WINRT.Views
                 UIAnimationHelper.FadeIn(SectionsGrid.Children[i]);
                 _currentSection = i;
                 for (int j = 0; j < SectionsHeaderListView.Items.Count; j++)
-                    Locator.MainPageVM.Panels[j].Opacity = 0.4;
-                Locator.MainPageVM.Panels[i].Opacity = 1;
+                    Locator.MainVM.Panels[j].Opacity = 0.4;
+                Locator.MainVM.Panels[i].Opacity = 1;
             });
         }
 
@@ -159,7 +159,7 @@ namespace VLC_WINRT.Views
 
         void OpenVideo()
         {
-            Locator.MainPageVM.PickVideo.Execute(null);
+            Locator.MainVM.PickVideo.Execute(null);
         }
 
         void OpenStream()
@@ -170,7 +170,7 @@ namespace VLC_WINRT.Views
             // NOTE: Is this being used?
             dialog.Show("", "Open a file from network",
                     "Please enter an address (Ex: FTP, HTTP).", "Open",
-                    Locator.MainPageVM.PlayNetworkMRL);
+                    Locator.MainVM.PlayNetworkMRL);
         }
 
         public async void CreateVLCMenu()
