@@ -11,6 +11,7 @@ using Autofac;
 using VLC_WINRT.Utility.Services.Interface;
 using VLC_WINRT.Utility.Services.RunTime;
 using VLC_WINRT.ViewModels;
+using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.ViewModels.MainPage;
 using VLC_WINRT_APP.Views;
 using VLC_WINRT_APP.Views.MainPages;
@@ -43,7 +44,7 @@ namespace VLC_WINRT.Common
             // Register View Models
             // TODO: These should not be SingleInstance
             builder.RegisterType<PlayVideoViewModel>().SingleInstance();
-            builder.RegisterType<MainPageViewModel>().SingleInstance();
+            builder.RegisterType<MainVM>().SingleInstance();
             builder.RegisterType<MusicLibraryViewModel>().SingleInstance();
             builder.RegisterType<MusicPlayerViewModel>().SingleInstance();
             builder.RegisterType<VideoLibraryViewModel>().SingleInstance();
