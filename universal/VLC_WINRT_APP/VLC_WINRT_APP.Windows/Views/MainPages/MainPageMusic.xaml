@@ -1,5 +1,4 @@
-﻿<UserControl
-    x:Class="VLC_WINRT.Views.Controls.MainPage.MusicColumn"
+﻿<Page x:Class="VLC_WINRT_APP.Views.MainPages.MainPageMusic"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:VLC_WINRT.Views.Controls.MainPage"
@@ -13,9 +12,9 @@
     d:DesignHeight="300"
     d:DesignWidth="600">
 
-    <UserControl.Resources>
+    <Page.Resources>
         <CollectionViewSource x:Name="albumsCollection" Source="{Binding Artist}" ItemsPath="Albums" IsSourceGrouped="True" />
-    </UserControl.Resources>
+    </Page.Resources>
 
     <Grid >
         <Grid.RowDefinitions>
@@ -253,4 +252,4 @@
             </Grid>
         </Grid>
     </Grid>
-</UserControl>
+</Page>

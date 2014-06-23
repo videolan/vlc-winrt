@@ -120,36 +120,36 @@ namespace VLC_WINRT_APP.Views.UserControls
 
         private void SearchListView_OnItemClick(object sender, ItemClickEventArgs e)
         {
-            var objet = e.ClickedItem as GenericElement;
-            App.ApplicationFrame.Navigate(typeof(MainPage));
-            var page = App.ApplicationFrame.Content as MainPage;
-            if (page != null)
-            {
-                Hide();
-                var musicColumn = page.GetFirstDescendantOfType<MusicColumn>() as MusicColumn;
-                var videoColumn = page.GetFirstDescendantOfType<VideoColumn>();
-                if (objet.Object.GetType() == typeof(MusicLibraryViewModel.ArtistItem))
-                {
-                    var gV = musicColumn.FindName("AlbumsByArtistListView") as GridView;
-                    var lV = musicColumn.FindName("AlbumsByArtistListViewSnap") as ListView;
-                    musicColumn.ChangedSectionsHeadersState(0);
-                    //page.ChangedSectionsHeadersState(2);
+            //var objet = e.ClickedItem as GenericElement;
+            //App.ApplicationFrame.Navigate(typeof(MainPage));
+            //var page = App.ApplicationFrame.Content as MainPage;
+            //if (page != null)
+            //{
+            //    Hide();
+            //    var musicColumn = page.GetFirstDescendantOfType<MusicColumn>() as MusicColumn;
+            //    var videoColumn = page.GetFirstDescendantOfType<VideoColumn>();
+            //    if (objet.Object.GetType() == typeof(MusicLibraryViewModel.ArtistItem))
+            //    {
+            //        var gV = musicColumn.FindName("AlbumsByArtistListView") as GridView;
+            //        var lV = musicColumn.FindName("AlbumsByArtistListViewSnap") as ListView;
+            //        musicColumn.ChangedSectionsHeadersState(0);
+            //        //page.ChangedSectionsHeadersState(2);
                     
-                    gV.ScrollIntoView(objet.Object);
-                    lV.ScrollIntoView(objet.Object);
-                }
-                else if (objet.Object.GetType() == typeof(MusicLibraryViewModel.TrackItem))
-                {
-                    var track = objet.Object as MusicLibraryViewModel.TrackItem;
-                    track.PlayTrack.Execute(track);
-                }
-                else if (objet.Object.GetType() == typeof (MediaViewModel))
-                {
-                    //page.ChangedSectionsHeadersState(1);
-                    (videoColumn.FindName("ZoomedInGridViewFull") as GridView).ScrollIntoView(objet.Object);
-                    (videoColumn.FindName("FirstPanelListView") as ListView).ScrollIntoView(objet.Object);
-                }
-            }
+            //        gV.ScrollIntoView(objet.Object);
+            //        lV.ScrollIntoView(objet.Object);
+            //    }
+            //    else if (objet.Object.GetType() == typeof(MusicLibraryViewModel.TrackItem))
+            //    {
+            //        var track = objet.Object as MusicLibraryViewModel.TrackItem;
+            //        track.PlayTrack.Execute(track);
+            //    }
+            //    else if (objet.Object.GetType() == typeof (MediaViewModel))
+            //    {
+            //        //page.ChangedSectionsHeadersState(1);
+            //        (videoColumn.FindName("ZoomedInGridViewFull") as GridView).ScrollIntoView(objet.Object);
+            //        (videoColumn.FindName("FirstPanelListView") as ListView).ScrollIntoView(objet.Object);
+            //    }
+            //}
         }
     }
 }

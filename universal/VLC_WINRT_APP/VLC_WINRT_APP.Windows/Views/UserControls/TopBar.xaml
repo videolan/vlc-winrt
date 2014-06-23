@@ -7,7 +7,8 @@
              xmlns:controls="using:VLC_WINRT.Views.Controls"
              mc:Ignorable="d"
              d:DesignHeight="300"
-             d:DesignWidth="400">
+             d:DesignWidth="400"
+             DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}">
     <Grid Margin="50,40,0,0"
           x:Name="HeaderGrid">
         <Grid.ColumnDefinitions>
@@ -20,7 +21,7 @@
                 <RowDefinition Height="50" />
             </Grid.RowDefinitions>
             <TextBlock x:Uid="MainPageTitle"
-                       Text="VLC for Windows 8"
+                       Text="VLC for Windows 8.1"
                        Margin="3,0,0,0"
                        FontWeight="SemiBold"
                        FontSize="20" />

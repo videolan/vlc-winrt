@@ -10,12 +10,7 @@
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media.Animation;
-
-// Pour en savoir plus sur le modèle d'élément Contrôle utilisateur, consultez la page http://go.microsoft.com/fwlink/?LinkId=234236
 using VLC_WINRT.Utility.Helpers;
-using VLC_WINRT.Utility.Services.RunTime;
-using VLC_WINRT.Views;
-using VLC_WINRT_APP;
 using VLC_WINRT_APP.Views.MainPages;
 using VLC_WINRT_APP.Views.MusicPages;
 
@@ -27,6 +22,7 @@ namespace VLC_WINRT_APP.Views.UserControls
         {
             this.InitializeComponent();
         }
+
         private async void InformationsCurrentPlayingGrid_Tapped(object sender, TappedRoutedEventArgs e)
         {
             var frame = App.ApplicationFrame;

@@ -130,8 +130,8 @@
     <Compile Include="Controls\MainPage\LastViewedThumbnail.xaml.cs">
       <DependentUpon>LastViewedThumbnail.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\MainPage\MusicColumn.xaml.cs">
-      <DependentUpon>MusicColumn.xaml</DependentUpon>
+    <Compile Include="Views\MainPages\MainPageMusic.xaml.cs">
+      <DependentUpon>MainPageMusic.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\MainPage\Thumbnail.xaml.cs">
       <DependentUpon>Thumbnail.xaml</DependentUpon>
@@ -749,7 +749,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\MainPage\MusicColumn.xaml">
+    <Page Include="Views\MainPages\MainPageMusic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

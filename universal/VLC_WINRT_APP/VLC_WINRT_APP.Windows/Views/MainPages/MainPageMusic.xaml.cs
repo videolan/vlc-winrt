@@ -9,19 +9,18 @@
 
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using VLC_WINRT.Common;
 using VLC_WINRT.Utility.Helpers;
 using VLC_WINRT.ViewModels;
-using VLC_WINRT.ViewModels.MainPage;
-using VLC_WINRT.Common;
 using VLC_WINRT_APP.ViewModels.MainPage;
 
-namespace VLC_WINRT.Views.Controls.MainPage
+namespace VLC_WINRT_APP.Views.MainPages
 {
-    public sealed partial class MusicColumn : UserControl
+    public sealed partial class MainPageMusic : UserControl
     {
         private int _currentSection;
         private bool _isLoaded;
-        public MusicColumn()
+        public MainPageMusic()
         {
             this.InitializeComponent();
             this.Loaded += (sender, args) =>
@@ -77,7 +76,7 @@ namespace VLC_WINRT.Views.Controls.MainPage
         
         private void SectionsHeaderListView_OnItemClick(object sender, ItemClickEventArgs e)
         {
-            int i = ((Model.Panel)e.ClickedItem).Index;
+            int i = ((VLC_WINRT.Model.Panel)e.ClickedItem).Index;
             ChangedSectionsHeadersState(i);
         }
 
