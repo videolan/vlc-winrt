@@ -18,6 +18,8 @@ using VLC_WINRT.ViewModels;
 using VLC_WINRT.ViewModels.MainPage;
 using VLC_WINRT.Common;
 using VLC_WINRT.ViewModels.MainPage.VlcExplorer;
+using VLC_WINRT_APP;
+using VLC_WINRT_APP.Views.MainPages;
 
 
 namespace VLC_WINRT.Views
@@ -52,7 +54,7 @@ namespace VLC_WINRT.Views
             else
             {
                 await FadeOutPage.BeginAsync();
-                NavigationService.NavigateTo(typeof(MainPage));
+                App.ApplicationFrame.Navigate(typeof(MainPage));
             }
         }
 
@@ -102,7 +104,7 @@ namespace VLC_WINRT.Views
                 string FileName = ((VlcStorageFile)item).Name;
                 string MRL = StorageApplicationPermissions.FutureAccessList.Add(((VlcStorageFile)item).StorageFile);
                 Locator.PlayVideoVM.SetActiveVideoInfo(MRL, FileName);
-                NavigationService.NavigateTo(typeof(PlayVideo));
+                App.ApplicationFrame.Navigate(typeof(PlayVideo));
             }
         }
     }

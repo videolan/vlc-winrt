@@ -11,6 +11,7 @@ using System;
 using VLC_WINRT.Common;
 using VLC_WINRT.Utility.Services.RunTime;
 using VLC_WINRT.ViewModels;
+using VLC_WINRT_APP;
 #if NETFX_CORE
 using VLC_WINRT.Views;
 #endif
@@ -31,7 +32,7 @@ namespace VLC_WINRT.Utility.Commands
             //TODO: pass MRL to vlc
             Locator.PlayVideoVM.SetActiveVideoInfo(mrl);
             #if NETFX_CORE
-            NavigationService.NavigateTo(typeof(PlayVideo));
+            App.ApplicationFrame.Navigate(typeof(PlayVideo));
             #endif
         }
     }

@@ -23,6 +23,7 @@ using System.Threading.Tasks;
 using VLC_WINRT.Utility.Services.Interface;
 using VLC_WINRT.ViewModels.Settings;
 using VLC_WINRT_APP;
+using VLC_WINRT_APP.Utility.Commands;
 
 namespace VLC_WINRT.ViewModels.MainPage
 {

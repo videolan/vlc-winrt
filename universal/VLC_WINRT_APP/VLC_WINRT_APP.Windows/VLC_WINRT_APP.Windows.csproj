@@ -148,7 +148,7 @@
     <Compile Include="Controls\MinimizedAppBar.xaml.cs">
       <DependentUpon>MinimizedAppBar.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\MiniPlayer.xaml.cs">
+    <Compile Include="Views\UserControls\MiniPlayer.xaml.cs">
       <DependentUpon>MiniPlayer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\MusicPage\AlbumFlyout.xaml.cs">
@@ -166,7 +166,7 @@
     <Compile Include="Controls\RemovableStorage\PlugARemovableStorage.xaml.cs">
       <DependentUpon>PlugARemovableStorage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\SearchFlyout.xaml.cs">
+    <Compile Include="Views\UserControls\SearchFlyout.xaml.cs">
       <DependentUpon>SearchFlyout.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\VariableSizedItemsGridView.cs" />
@@ -175,14 +175,14 @@
     <Compile Include="DLNAPage.xaml.cs">
       <DependentUpon>DLNAPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PlayMusic.xaml.cs">
-      <DependentUpon>PlayMusic.xaml</DependentUpon>
+    <Compile Include="Views\MusicPages\ArtistPage.xaml.cs">
+      <DependentUpon>ArtistPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="PlayVideo.xaml.cs">
       <DependentUpon>PlayVideo.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RemovableStoragePage.xaml.cs">
+    <Compile Include="Views\RemovableStoragePage.xaml.cs">
       <DependentUpon>RemovableStoragePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainPages\MainPage.xaml.cs">
@@ -770,7 +770,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\MiniPlayer.xaml">
+    <Page Include="Views\UserControls\MiniPlayer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -794,7 +794,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\SearchFlyout.xaml">
+    <Page Include="Views\UserControls\SearchFlyout.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -802,7 +802,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="PlayMusic.xaml">
+    <Page Include="Views\MusicPages\ArtistPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -810,7 +810,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="RemovableStoragePage.xaml">
+    <Page Include="Views\RemovableStoragePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

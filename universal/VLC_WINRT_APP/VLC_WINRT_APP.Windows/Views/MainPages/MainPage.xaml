@@ -7,6 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:VLC_WINRT.Views.Controls"
     xmlns:mainPage="using:VLC_WINRT.Views.Controls.MainPage"
+    xmlns:userControls="using:VLC_WINRT_APP.Views.UserControls"
     mc:Ignorable="d">
     
     <SwapChainBackgroundPanel x:Name="SwapChainPanel">
@@ -113,8 +114,8 @@
             </StackPanel>
         </Grid>
 
-        <controls:MiniPlayer Grid.Row="2" />
-        <controls:SearchFlyout x:Name="SearchPane" x:FieldModifier="public" />
+        <userControls:MiniPlayer Grid.Row="2" />
+        <userControls:SearchFlyout x:Name="SearchPane" x:FieldModifier="public" />
         <MediaElement x:Name="FoudationMediaElement"
                       x:FieldModifier="public"
                       AudioCategory="BackgroundCapableMedia"

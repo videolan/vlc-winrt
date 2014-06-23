@@ -15,17 +15,18 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using VLC_WINRT.Utility.Helpers;
 using VLC_WINRT.Utility.Services.RunTime;
+using VLC_WINRT_APP.Views.MainPages;
 using Album = VLC_WINRT.Utility.Helpers.MusicLibrary.MusicEntities.Album;
 using Artist = VLC_WINRT.Utility.Helpers.MusicLibrary.MusicEntities.Artist;
 
-namespace VLC_WINRT.Views
+namespace VLC_WINRT_APP.Views.MusicPages
 {
     /// <summary>
     /// Une page vide peut être utilisée seule ou constituer une page de destination au sein d'un frame.
     /// </summary>
-    public sealed partial class PlayMusic : Page
+    public sealed partial class ArtistPage : Page
     {
-        public PlayMusic()
+        public ArtistPage()
         {
             this.InitializeComponent();
         }
@@ -39,7 +40,7 @@ namespace VLC_WINRT.Views
         private async void GoBack_Click(object sender, RoutedEventArgs e)
         {
             await FadeOutPage.BeginAsync();
-            NavigationService.NavigateTo(typeof(MainPage));
+            App.ApplicationFrame.Navigate(typeof(MainPage));
         }
 
         private async void PopularItemGridView_OnItemClick(object sender, ItemClickEventArgs e)

@@ -73,7 +73,7 @@ namespace VLC_WINRT_APP.Views.MainPages
         {
             Debug.WriteLine("Opening file: " + App.TemporaryFileName);
             Locator.PlayVideoVM.SetActiveVideoInfo(App.TemporaryMRL, App.TemporaryFileName);
-            NavigationService.NavigateTo(typeof(PlayVideo));
+            App.ApplicationFrame.Navigate(typeof(PlayVideo));
             App.TemporaryFileName = null;
             App.TemporaryMRL = null;
         }

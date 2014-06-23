@@ -9,6 +9,7 @@
 
 using Windows.UI.Xaml.Controls;
 using VLC_WINRT.ViewModels.MainPage;
+using VLC_WINRT_APP.ViewModels.MainPage;
 
 namespace VLC_WINRT.Views.Controls
 {
@@ -24,7 +25,7 @@ namespace VLC_WINRT.Views.Controls
             MusicLibraryViewModel.AlbumItem albumItem;
             MediaViewModel = item as MediaViewModel;
             viewedVideo = item as MediaViewModel;
-            albumItem = item as VLC_WINRT.ViewModels.MainPage.MusicLibraryViewModel.AlbumItem;
+            albumItem = item as MusicLibraryViewModel.AlbumItem;
 
             if (viewedVideo != null)
             {

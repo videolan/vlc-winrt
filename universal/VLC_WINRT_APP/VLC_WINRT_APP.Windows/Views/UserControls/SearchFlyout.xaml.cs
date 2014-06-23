@@ -12,13 +12,13 @@ using System.Linq;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using VLC_WINRT.Utility.Helpers;
-using VLC_WINRT.Utility.Services.RunTime;
 using VLC_WINRT.ViewModels;
 using VLC_WINRT.ViewModels.MainPage;
 using VLC_WINRT.Views.Controls.MainPage;
-using VLC_WINRT_APP;
+using VLC_WINRT_APP.ViewModels.MainPage;
+using VLC_WINRT_APP.Views.MainPages;
 
-namespace VLC_WINRT.Views.Controls
+namespace VLC_WINRT_APP.Views.UserControls
 {
     public sealed partial class SearchFlyout : UserControl
     {
@@ -121,8 +121,8 @@ namespace VLC_WINRT.Views.Controls
         private void SearchListView_OnItemClick(object sender, ItemClickEventArgs e)
         {
             var objet = e.ClickedItem as GenericElement;
-            NavigationService.NavigateTo(typeof(Views.MainPage));
-            var page = App.ApplicationFrame.Content as Views.MainPage;
+            App.ApplicationFrame.Navigate(typeof(MainPage));
+            var page = App.ApplicationFrame.Content as MainPage;
             if (page != null)
             {
                 Hide();

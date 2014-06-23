@@ -12,12 +12,13 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using VLC_WINRT.Utility.Helpers;
-using VLC_WINRT.Utility.Services.RunTime;
 using VLC_WINRT.ViewModels;
 using VLC_WINRT.Common;
 using VLC_WINRT.ViewModels.MainPage.VlcExplorer;
+using VLC_WINRT.Views;
+using VLC_WINRT_APP.Views.MainPages;
 
-namespace VLC_WINRT.Views
+namespace VLC_WINRT_APP.Views
 {
     /// <summary>
     /// Une page vide peut être utilisée seule ou constituer une page de destination au sein d'un frame.
@@ -49,7 +50,7 @@ namespace VLC_WINRT.Views
             else
             {
                 await FadeOutPage.BeginAsync();
-                NavigationService.NavigateTo(typeof(MainPage));
+                App.ApplicationFrame.Navigate(typeof(MainPage));
             }
         }
 
@@ -99,7 +100,7 @@ namespace VLC_WINRT.Views
                 string FileName = ((VlcStorageFile)item).Name;
                 string MRL = StorageApplicationPermissions.FutureAccessList.Add(((VlcStorageFile)item).StorageFile);
                 Locator.PlayVideoVM.SetActiveVideoInfo(MRL, FileName);
-                NavigationService.NavigateTo(typeof(PlayVideo));
+                App.ApplicationFrame.Navigate(typeof(PlayVideo));
             }
         }
     }

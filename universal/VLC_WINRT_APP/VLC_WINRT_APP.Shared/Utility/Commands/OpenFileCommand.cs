@@ -18,6 +18,7 @@ using VLC_WINRT.Utility.Services.RunTime;
 using VLC_WINRT.ViewModels;
 using VLC_WINRT.ViewModels.MainPage;
 using VLC_WINRT_APP;
+using VLC_WINRT_APP.Views.MainPages;
 #if NETFX_CORE
 using VLC_WINRT.Views;
 #endif
@@ -26,7 +27,7 @@ using VLC_WINPRT;
 using VLC_WINRT.Utility.Services.Interface;
 #endif
 
-namespace VLC_WINRT.Utility.Commands
+namespace VLC_WINRT_APP.Utility.Commands
 {
     public class OpenVideoCommand : AlwaysExecutableCommand
     {
@@ -44,7 +45,7 @@ namespace VLC_WINRT.Utility.Commands
 
             var frame = App.ApplicationFrame;
 #if NETFX_CORE
-            var page = frame.Content as Views.MainPage;
+            var page = frame.Content as MainPage;
             if (page != null)
             {
                 var sB = page.Resources["FadeOutPage"] as Storyboard;
@@ -56,7 +57,7 @@ namespace VLC_WINRT.Utility.Commands
 #endif
             Locator.PlayVideoVM.CurrentVideo = parameter as MediaViewModel;
 #if NETFX_CORE
-            NavigationService.NavigateTo(typeof(PlayVideo));
+            App.ApplicationFrame.Navigate(typeof(PlayVideo));
 #endif
             Locator.PlayVideoVM.SetActiveVideoInfo(token, vm.File.Name);
         }

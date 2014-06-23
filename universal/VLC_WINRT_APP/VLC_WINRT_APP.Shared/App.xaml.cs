@@ -18,6 +18,7 @@ using VLC_WINRT.Utility.Services.RunTime;
 using VLC_WINRT.ViewModels;
 using VLC_WINRT.ViewModels.MainPage;
 using VLC_WINRT.Views;
+using VLC_WINRT_APP.ViewModels.MainPage;
 using VLC_WINRT_APP.Views;
 using VLC_WINRT_APP.Views.MainPages;
 
@@ -188,7 +189,7 @@ namespace VLC_WINRT_APP
         {
             Window.Current.Content = Container.Resolve<MainPage>();
             Dispatcher = Window.Current.Content.Dispatcher;
-            NavigationService.NavigateTo(typeof(MainPage));
+            ApplicationFrame.Navigate(typeof(MainPage));
             Window.Current.Activate();
         }
     }

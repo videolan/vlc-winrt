@@ -14,6 +14,9 @@ using VLC_WINRT.Utility.Services.RunTime;
 using VLC_WINRT.ViewModels;
 using VLC_WINRT.ViewModels.MainPage;
 using VLC_WINRT_APP;
+using VLC_WINRT_APP.ViewModels.MainPage;
+using VLC_WINRT_APP.Views.MainPages;
+using VLC_WINRT_APP.Views.MusicPages;
 #if NETFX_CORE
 using VLC_WINRT.Views;
 #endif
@@ -21,7 +24,7 @@ using VLC_WINRT.Views;
 using VLC_WINPRT;
 #endif
 
-namespace VLC_WINRT.Utility.Commands
+namespace VLC_WINRT_APP.Utility.Commands
 {
     public class PlayTrackCommand : AlwaysExecutableCommand
     {
@@ -42,14 +45,14 @@ namespace VLC_WINRT.Utility.Commands
 
             var frame = App.ApplicationFrame;
 #if NETFX_CORE
-            var page = frame.Content as Views.MainPage;
+            var page = frame.Content as MainPage;
             if (page != null)
             {
                 var sB = page.Resources["FadeOutPage"] as Storyboard;
                 if (sB != null)
                 {
                     await sB.BeginAsync();
-                    NavigationService.NavigateTo(typeof(PlayMusic));
+                    App.ApplicationFrame.Navigate(typeof(ArtistPage));
                 }
             } 
 #endif

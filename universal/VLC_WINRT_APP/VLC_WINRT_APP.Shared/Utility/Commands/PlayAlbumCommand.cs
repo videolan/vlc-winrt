@@ -7,25 +7,23 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using VLC_WINRT.Common;
-using VLC_WINRT.Utility.Helpers;
-using VLC_WINRT.Utility.Services.RunTime;
-using VLC_WINRT.ViewModels;
-using VLC_WINRT.ViewModels.MainPage;
-using VLC_WINRT_APP;
 #if NETFX_CORE
-using VLC_WINRT.Views;
 #endif
 #if WINDOWS_PHONE_APP
 using VLC_WINPRT;
 #endif
-
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
 using Windows.UI.Xaml.Media.Animation;
+using VLC_WINRT.Common;
+using VLC_WINRT.Utility.Helpers;
+using VLC_WINRT.ViewModels;
+using VLC_WINRT_APP.ViewModels.MainPage;
+using VLC_WINRT_APP.Views.MainPages;
+using VLC_WINRT_APP.Views.MusicPages;
 
-namespace VLC_WINRT.Utility.Commands
+namespace VLC_WINRT_APP.Utility.Commands
 {
     public class PlayAlbumCommand : AlwaysExecutableCommand
     {
@@ -49,7 +47,7 @@ namespace VLC_WINRT.Utility.Commands
 
         var frame = App.ApplicationFrame;
             #if NETFX_CORE
-            var page = frame.Content as Views.MainPage;
+            var page = frame.Content as MainPage;
             #endif
             #if WINDOWS_PHONE_APP
             var page = frame.Content as VLC_WINPRT.Views.MainPage;
@@ -61,7 +59,7 @@ namespace VLC_WINRT.Utility.Commands
                 {
                     #if NETFX_CORE
                     await sB.BeginAsync();
-                    NavigationService.NavigateTo(typeof (PlayMusic));
+                    App.ApplicationFrame.Navigate(typeof (ArtistPage));
                     #endif
 
 

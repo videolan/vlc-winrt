@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="VLC_WINRT.Views.RemovableStoragePage"
+    x:Class="VLC_WINRT_APP.Views.RemovableStoragePage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:VLC_WINRT.Views"
@@ -9,6 +9,7 @@
     xmlns:mainPage="using:VLC_WINRT.Views.Controls.MainPage"
     xmlns:controls="using:VLC_WINRT.Views.Controls"
     xmlns:dataTemplateSelectors="using:VLC_WINRT.Utility.DataTemplateSelectors"
+    xmlns:userControls="using:VLC_WINRT_APP.Views.UserControls"
     mc:Ignorable="d"
     DataContext="{Binding Source={StaticResource Locator}, Path=MainPageVM.ExternalStorageVM}">
 
@@ -164,6 +165,6 @@
                       ItemTemplateSelector="{StaticResource StorageItemDataTemplateSelector}"/>
             <removableStorage:PlugARemovableStorage  Grid.ColumnSpan="2" Grid.Column="0" Visibility="{Binding RemovableStorageVMs.Count, Converter={StaticResource CountToVisibilityConverter}}" />
         </Grid>
-        <controls:MiniPlayer Grid.Row="2"/>
+        <userControls:MiniPlayer Grid.Row="2"/>
     </Grid>
 </Page>

@@ -14,9 +14,12 @@ using Windows.UI.Xaml.Media.Animation;
 // Pour en savoir plus sur le modèle d'élément Contrôle utilisateur, consultez la page http://go.microsoft.com/fwlink/?LinkId=234236
 using VLC_WINRT.Utility.Helpers;
 using VLC_WINRT.Utility.Services.RunTime;
+using VLC_WINRT.Views;
 using VLC_WINRT_APP;
+using VLC_WINRT_APP.Views.MainPages;
+using VLC_WINRT_APP.Views.MusicPages;
 
-namespace VLC_WINRT.Views.Controls
+namespace VLC_WINRT_APP.Views.UserControls
 {
     public sealed partial class MiniPlayer : UserControl
     {
@@ -27,14 +30,14 @@ namespace VLC_WINRT.Views.Controls
         private async void InformationsCurrentPlayingGrid_Tapped(object sender, TappedRoutedEventArgs e)
         {
             var frame = App.ApplicationFrame;
-            var page = frame.Content as Views.MainPage;
+            var page = frame.Content as MainPage;
             if (page != null)
             {
                 var sB = page.Resources["FadeOutPage"] as Storyboard;
                 if (sB != null)
                 {
                     await sB.BeginAsync();
-                    NavigationService.NavigateTo(typeof(PlayMusic));
+                    App.ApplicationFrame.Navigate(typeof(ArtistPage));
                 }
             }
         }

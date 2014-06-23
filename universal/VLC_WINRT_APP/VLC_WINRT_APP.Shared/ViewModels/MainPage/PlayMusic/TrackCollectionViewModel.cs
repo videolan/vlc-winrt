@@ -10,6 +10,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using VLC_WINRT.Common;
+using VLC_WINRT_APP.ViewModels.MainPage;
 
 namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
 {

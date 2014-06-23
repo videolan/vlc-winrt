@@ -1,5 +1,4 @@
-﻿<Page
-    x:Class="VLC_WINRT.Views.PlayMusic"
+﻿<Page x:Class="VLC_WINRT_APP.Views.MusicPages.ArtistPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:VLC_WINRT.Views"
@@ -8,6 +7,7 @@
     xmlns:controls="using:VLC_WINRT.Views.Controls"
     xmlns:converters="using:VLC_WINRT.Utility.Converters"
     xmlns:wrapPanelControl="using:VLC_WINRT.Views.Controls.WrapPanelControl"
+    xmlns:userControls="using:VLC_WINRT_APP.Views.UserControls"
     mc:Ignorable="d"
     DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}">
 
@@ -282,7 +282,7 @@
                     </StackPanel>
                 </ScrollViewer>
             </Grid>
-            <controls:MiniPlayer Grid.Row="2"/>
+            <userControls:MiniPlayer Grid.Row="2"/>
         </Grid>
     </Grid>
 </Page>

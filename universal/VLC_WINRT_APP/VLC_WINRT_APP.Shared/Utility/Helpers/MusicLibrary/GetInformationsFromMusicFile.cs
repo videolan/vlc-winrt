@@ -11,6 +11,7 @@ using System;
 using System.Threading.Tasks;
 using Windows.Storage;
 using VLC_WINRT.ViewModels.MainPage;
+using VLC_WINRT_APP.ViewModels.MainPage;
 
 namespace VLC_WINRT.Utility.Helpers.MusicLibrary
 {

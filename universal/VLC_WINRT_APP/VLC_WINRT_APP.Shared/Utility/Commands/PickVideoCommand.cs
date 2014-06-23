@@ -21,6 +21,7 @@ using VLC_WINRT.ViewModels.MainPage;
 #if WINDOWS_PHONE_APP
 using VLC_WINPRT;
 #endif
+using VLC_WINRT_APP;
 #if NETFX_CORE
 using VLC_WINRT.Views;
 #endif
@@ -124,7 +125,7 @@ namespace VLC_WINRT.Utility.Commands
                 Locator.PlayVideoVM.CurrentVideo = video;
                 Locator.PlayVideoVM.SetActiveVideoInfo(video.Token, file.Name);
 #if NETFX_CORE
-                NavigationService.NavigateTo(typeof(PlayVideo));
+                App.ApplicationFrame.Navigate(typeof(PlayVideo));
 #endif
             }
             else

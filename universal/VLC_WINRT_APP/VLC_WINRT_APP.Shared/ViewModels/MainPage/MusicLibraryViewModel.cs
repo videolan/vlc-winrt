@@ -7,41 +7,39 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
-using System.IO;
-using Windows.Storage.AccessCache;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Data;
-using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Resources;
+using Windows.Storage;
+using Windows.Storage.AccessCache;
+using Windows.Storage.FileProperties;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Data;
+using SQLite;
 using VLC_WINRT.Common;
 using VLC_WINRT.Utility.Commands;
 using VLC_WINRT.Utility.Commands.MusicPlayer;
 using VLC_WINRT.Utility.DataRepository;
 using VLC_WINRT.Utility.Helpers;
 using VLC_WINRT.Utility.Helpers.MusicLibrary;
+using VLC_WINRT.Utility.Helpers.MusicLibrary.MusicEntities;
 using VLC_WINRT.Utility.Helpers.MusicLibrary.xboxmusic.Models;
-
-using Windows.ApplicationModel.Resources;
-using Windows.Storage;
-using Windows.Storage.FileProperties;
-using Windows.Storage.Search;
+using VLC_WINRT.ViewModels;
 using VLC_WINRT.ViewModels.Settings;
-using VLC_WINRT_APP;
+using VLC_WINRT.Views.Controls.MainPage;
+using VLC_WINRT_APP.Utility.Commands;
 using XboxMusicLibrary;
 using Panel = VLC_WINRT.Model.Panel;
-#if NETFX_CORE
-using VLC_WINRT.Views.Controls.MainPage;
-#endif
 #if WINDOWS_PHONE_APP
 using VLC_WINPRT;
 #endif
 
-namespace VLC_WINRT.ViewModels.MainPage
+namespace VLC_WINRT_APP.ViewModels.MainPage
 {
     public class MusicLibraryViewModel : BindableBase
     {
@@ -364,23 +362,23 @@ namespace VLC_WINRT.ViewModels.MainPage
         public void ExecuteSemanticZoom()
         {
 #if NETFX_CORE
-            var page = App.ApplicationFrame.Content as Views.MainPage;
-            if (page != null)
-            {
-                var musicColumn = page.GetFirstDescendantOfType<MusicColumn>() as MusicColumn;
-                var albumsByArtistSemanticZoom = musicColumn.GetDescendantsOfType<SemanticZoom>();
-                var albumsCollection = musicColumn.Resources["albumsCollection"] as CollectionViewSource;
-                if (albumsByArtistSemanticZoom != null)
-                {
-                    var firstlistview = albumsByArtistSemanticZoom.ElementAt(0).ZoomedOutView as ListViewBase;
-                    var secondlistview = albumsByArtistSemanticZoom.ElementAt(1).ZoomedOutView as ListViewBase;
-                    if (albumsCollection != null)
-                    {
-                        firstlistview.ItemsSource = albumsCollection.View.CollectionGroups;
-                        secondlistview.ItemsSource = albumsCollection.View.CollectionGroups;
-                    }
-                }
-            }
+            //var page = App.ApplicationFrame.Content as MainPage;
+            //if (page != null)
+            //{
+            //    var musicColumn = page.GetFirstDescendantOfType<MusicColumn>() as MusicColumn;
+            //    var albumsByArtistSemanticZoom = musicColumn.GetDescendantsOfType<SemanticZoom>();
+            //    var albumsCollection = musicColumn.Resources["albumsCollection"] as CollectionViewSource;
+            //    if (albumsByArtistSemanticZoom != null)
+            //    {
+            //        var firstlistview = albumsByArtistSemanticZoom.ElementAt(0).ZoomedOutView as ListViewBase;
+            //        var secondlistview = albumsByArtistSemanticZoom.ElementAt(1).ZoomedOutView as ListViewBase;
+            //        if (albumsCollection != null)
+            //        {
+            //            firstlistview.ItemsSource = albumsCollection.View.CollectionGroups;
+            //            secondlistview.ItemsSource = albumsCollection.View.CollectionGroups;
+            //        }
+            //    }
+            //}
 #endif
         }
 
@@ -426,9 +424,9 @@ namespace VLC_WINRT.ViewModels.MainPage
             // more informations
             private bool _isFavorite;
             private bool _isOnlinePopularAlbumItemsLoaded;
-            private List<Utility.Helpers.MusicLibrary.MusicEntities.Album> _onlinePopularAlbumItems;
+            private List<Album> _onlinePopularAlbumItems;
             private bool _isOnlineRelatedArtistsLoaded;
-            private List<Utility.Helpers.MusicLibrary.MusicEntities.Artist> _onlineRelatedArtists;
+            private List<Artist> _onlineRelatedArtists;
             private bool _isOnlineMusicVideosLoaded;
             private string _biography;
 
@@ -522,7 +520,7 @@ namespace VLC_WINRT.ViewModels.MainPage
             }
 
             [Ignore]
-            public List<Utility.Helpers.MusicLibrary.MusicEntities.Album> OnlinePopularAlbumItems
+            public List<Album> OnlinePopularAlbumItems
             {
                 get
                 {
@@ -536,7 +534,7 @@ namespace VLC_WINRT.ViewModels.MainPage
             }
 
             [Ignore]
-            public List<Utility.Helpers.MusicLibrary.MusicEntities.Artist> OnlineRelatedArtists
+            public List<Artist> OnlineRelatedArtists
             {
                 get
                 {

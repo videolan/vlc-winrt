@@ -10,6 +10,8 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using VLC_WINRT.Utility.Services.RunTime;
+using VLC_WINRT_APP;
+using VLC_WINRT_APP.Views.MainPages;
 
 namespace VLC_WINRT.Views
 {
@@ -25,7 +27,7 @@ namespace VLC_WINRT.Views
 
         private void GoBack_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.NavigateTo(typeof (MainPage));
+            App.ApplicationFrame.Navigate(typeof(MainPage));
         }
     }
 }
