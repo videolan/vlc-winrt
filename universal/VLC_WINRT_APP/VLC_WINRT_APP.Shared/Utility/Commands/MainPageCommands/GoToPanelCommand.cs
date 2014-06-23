@@ -24,7 +24,7 @@ namespace VLC_WINRT.Utility.Commands.MainPage
             var page = frame.Content as Views.MainPage;
             if (page != null)
             {
-                page.ChangedSectionsHeadersState(int.Parse(parameter.ToString()));
+                //page.ChangedSectionsHeadersState(int.Parse(parameter.ToString()));
             }
 #endif
         }

@@ -115,7 +115,6 @@
     <Compile Include="AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="BasePage.cs" />
     <Compile Include="Controls\AnimatedBackground.xaml.cs">
       <DependentUpon>AnimatedBackground.xaml</DependentUpon>
     </Compile>
@@ -176,9 +175,6 @@
     <Compile Include="DLNAPage.xaml.cs">
       <DependentUpon>DLNAPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="PlayMusic.xaml.cs">
       <DependentUpon>PlayMusic.xaml</DependentUpon>
     </Compile>
@@ -189,8 +185,8 @@
     <Compile Include="RemovableStoragePage.xaml.cs">
       <DependentUpon>RemovableStoragePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="RootPage.xaml.cs">
-      <DependentUpon>RootPage.xaml</DependentUpon>
+    <Compile Include="Views\MainPages\MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
@@ -806,10 +802,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="MainPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="PlayMusic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -822,7 +814,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="RootPage.xaml">
+    <Page Include="Views\MainPages\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

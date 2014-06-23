@@ -1,4 +1,4 @@
-﻿<views:BasePage
+﻿<Page
     x:Class="VLC_WINRT.Views.PlayVideo"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -8,13 +8,13 @@
     mc:Ignorable="d"
     DataContext="{Binding Source={StaticResource Locator}, Path=PlayVideoVM}">
 
-    <views:BasePage.Resources>
+    <Page.Resources>
         <ResourceDictionary >
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../Common/SliderStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
-    </views:BasePage.Resources>
+    </Page.Resources>
     <Grid Tapped="Grid_Tapped" 
           PointerEntered="OnPointerEntered" 
           ManipulationMode="All"
@@ -115,4 +115,4 @@
             </Grid>
         </Grid>
     </Grid>
-</views:BasePage>
+</Page>

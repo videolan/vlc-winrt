@@ -10,6 +10,7 @@
 using System;
 using Windows.UI.Xaml;
 using VLC_WINRT.Views;
+using VLC_WINRT_APP;
 
 namespace VLC_WINRT.Utility.Services.RunTime
 {
@@ -17,7 +18,7 @@ namespace VLC_WINRT.Utility.Services.RunTime
     {
         public static void NavigateTo(Type page)
         {
-            ((RootPage)Window.Current.Content).MainFrame.Navigate(page);
+            App.ApplicationFrame.Navigate(page);
         }
     }
 }

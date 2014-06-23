@@ -21,7 +21,7 @@ namespace VLC_WINRT.Views
     /// <summary>
     ///     An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class PlayVideo : BasePage
+    public sealed partial class PlayVideo : Page
     {
         float rate = 1.0f;
         private bool isCommandShown;
@@ -97,11 +97,6 @@ namespace VLC_WINRT.Views
             }
         }
 
-        public override void SetDataContext()
-        {
-            _vm = (NavigateableViewModel)DataContext;
-            base.SetDataContext();
-        }
 
         private async void Subtitles_Click(object sender, RoutedEventArgs e)
         {

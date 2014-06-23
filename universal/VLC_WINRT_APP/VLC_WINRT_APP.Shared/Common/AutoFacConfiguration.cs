@@ -11,6 +11,7 @@ using Autofac;
 using VLC_WINRT.Utility.Services.Interface;
 using VLC_WINRT.Utility.Services.RunTime;
 using VLC_WINRT.ViewModels;
+using VLC_WINRT_APP.Views;
 using DesignTime = VLC_WINRT.Utility.Services.DesignTime;
 using VLC_WINRT.ViewModels.MainPage;
 using VLC_WINRT.ViewModels.MainPage.PlayMusic;

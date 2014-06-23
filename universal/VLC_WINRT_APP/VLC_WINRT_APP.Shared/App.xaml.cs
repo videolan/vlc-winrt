@@ -18,6 +18,7 @@ using VLC_WINRT.Utility.Services.RunTime;
 using VLC_WINRT.ViewModels;
 using VLC_WINRT.ViewModels.MainPage;
 using VLC_WINRT.Views;
+using VLC_WINRT_APP.Views;
 
 namespace VLC_WINRT_APP
 {
@@ -61,7 +62,7 @@ namespace VLC_WINRT_APP
             }
         }
 
-        public static RootPage RootPage
+        public static MainPage RootPage
         {
             get { return Window.Current.Content as RootPage; }
         }
@@ -105,14 +106,6 @@ namespace VLC_WINRT_APP
                 rootFrame.ContentTransitions = null;
                 rootFrame.Navigated += this.RootFrame_FirstNavigated;
 #endif
-
-                // When the navigation stack isn't restored navigate to the first page,
-                // configuring the new page by passing required information as a navigation
-                // parameter
-                if (!rootFrame.Navigate(typeof (MainPage), args.Arguments))
-                {
-                    throw new Exception("Failed to create initial page");
-                }
             }
 
             // Ensure the current window is active

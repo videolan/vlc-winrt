@@ -133,7 +133,7 @@ namespace VLC_WINRT.Views.Controls
                     var gV = musicColumn.FindName("AlbumsByArtistListView") as GridView;
                     var lV = musicColumn.FindName("AlbumsByArtistListViewSnap") as ListView;
                     musicColumn.ChangedSectionsHeadersState(0);
-                    page.ChangedSectionsHeadersState(2);
+                    //page.ChangedSectionsHeadersState(2);
                     
                     gV.ScrollIntoView(objet.Object);
                     lV.ScrollIntoView(objet.Object);
@@ -145,7 +145,7 @@ namespace VLC_WINRT.Views.Controls
                 }
                 else if (objet.Object.GetType() == typeof (MediaViewModel))
                 {
-                    page.ChangedSectionsHeadersState(1);
+                    //page.ChangedSectionsHeadersState(1);
                     (videoColumn.FindName("ZoomedInGridViewFull") as GridView).ScrollIntoView(objet.Object);
                     (videoColumn.FindName("FirstPanelListView") as ListView).ScrollIntoView(objet.Object);
                 }
