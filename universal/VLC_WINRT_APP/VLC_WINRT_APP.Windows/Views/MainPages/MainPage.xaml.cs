@@ -7,11 +7,14 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
+using System.Diagnostics;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using VLC_WINRT.Utility.Services.RunTime;
 using VLC_WINRT.Utility.Services.Interface;
+using VLC_WINRT.ViewModels;
+using VLC_WINRT.Views;
 
 namespace VLC_WINRT_APP.Views.MainPages
 {
@@ -66,5 +69,13 @@ namespace VLC_WINRT_APP.Views.MainPages
         //    var point = transform.TransformPoint(new Point(Window.Current.Bounds.Width - 110, 200));
         //    await popupMenu.ShowAsync(point);
         //}
+        public void OpenVideoFromFileExplorer()
+        {
+            Debug.WriteLine("Opening file: " + App.TemporaryFileName);
+            Locator.PlayVideoVM.SetActiveVideoInfo(App.TemporaryMRL, App.TemporaryFileName);
+            NavigationService.NavigateTo(typeof(PlayVideo));
+            App.TemporaryFileName = null;
+            App.TemporaryMRL = null;
+        }
     }
 }

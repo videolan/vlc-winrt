@@ -19,6 +19,7 @@ using VLC_WINRT.ViewModels;
 using VLC_WINRT.ViewModels.MainPage;
 using VLC_WINRT.Views;
 using VLC_WINRT_APP.Views;
+using VLC_WINRT_APP.Views.MainPages;
 
 namespace VLC_WINRT_APP
 {
@@ -57,14 +58,14 @@ namespace VLC_WINRT_APP
         {
             get
             {
-                var root = Window.Current.Content as RootPage;
+                var root = Window.Current.Content as MainPage;
                 return root != null ? root.MainFrame : null;
             }
         }
 
         public static MainPage RootPage
         {
-            get { return Window.Current.Content as RootPage; }
+            get { return Window.Current.Content as MainPage; }
         }
 
         /// <summary>
@@ -185,7 +186,7 @@ namespace VLC_WINRT_APP
 
         private async Task LaunchTheApp()
         {
-            Window.Current.Content = Container.Resolve<RootPage>();
+            Window.Current.Content = Container.Resolve<MainPage>();
             Dispatcher = Window.Current.Content.Dispatcher;
             NavigationService.NavigateTo(typeof(MainPage));
             Window.Current.Activate();

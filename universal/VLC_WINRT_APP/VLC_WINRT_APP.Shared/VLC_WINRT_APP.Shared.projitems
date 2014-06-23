@@ -119,7 +119,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Utility\Services\RunTime\ExternalDeviceService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utility\Services\RunTime\MediaService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utility\Services\RunTime\MouseService.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Utility\Services\RunTime\NavigationService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utility\Services\RunTime\ThumbnailService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utility\Services\RunTime\VlcService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Locator.cs" />
