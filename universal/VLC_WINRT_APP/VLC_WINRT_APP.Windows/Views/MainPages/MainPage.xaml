@@ -23,8 +23,6 @@
                Visibility="{Binding Source={StaticResource Locator}, Path=PlayVideoVM.IsPlaying, Converter={StaticResource NegatedBooleanToVisibilityConverter}}" />
         <userControls:TopBar Grid.Row="0" />
         <userControls:MiniPlayer Grid.Row="2" />
-        <userControls:SearchFlyout x:Name="SearchPane"
-                                   x:FieldModifier="public" />
         <MediaElement x:Name="FoudationMediaElement"
                       x:FieldModifier="public"
                       AudioCategory="BackgroundCapableMedia"
