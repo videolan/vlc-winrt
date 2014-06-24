@@ -22,13 +22,6 @@ using VLC_WINRT_APP.Commands.Video;
 using VLC_WINRT_APP.DataRepository;
 using VLC_WINRT_APP.Services.Interface;
 using VLC_WINRT_APP.Services.RunTime;
-#if NETFX_CORE
-
-#endif
-#if WINDOWS_PHONE_APP
-using VLC_WINPRT;
-#endif
-
 
 namespace VLC_WINRT_APP.ViewModels.VideoVM
 {
@@ -49,6 +42,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
 
         private DispatcherTimer _positionTimer = new DispatcherTimer();
         private bool _isRunning;
+        protected bool _isPlaying;
         #endregion
 
         #region private fields
@@ -108,6 +102,25 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             set
             {
                 SetProperty(ref _isRunning, value);
+            }
+        }
+        public bool IsPlaying
+        {
+            get { return _isPlaying; }
+            set
+            {
+                if (value != _isPlaying)
+                {
+                    if (value)
+                    {
+                        OnPlaybackStarting();
+                    }
+                    else
+                    {
+                        OnPlaybackStopped();
+                    }
+                    SetProperty(ref _isPlaying, value);
+                }
             }
         }
         #endregion

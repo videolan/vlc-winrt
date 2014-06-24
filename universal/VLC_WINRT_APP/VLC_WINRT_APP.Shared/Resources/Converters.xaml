@@ -17,4 +17,5 @@
     <converters:SecondsStringConverter x:Key="SecondsStringConverter"/>
     <converters:TimeSpanSecondsDoubleConverter x:Key="TimeSpanSecondsDoubleConverter"/>
     <converters:ElapsedTimeToPercentageConverter x:Key="ElapsedTimeToPercentageConverter"/>
+    <converters:BackgroundVisibilityConverter x:Key="BackgroundVisibilityConverter"/>
 </ResourceDictionary>

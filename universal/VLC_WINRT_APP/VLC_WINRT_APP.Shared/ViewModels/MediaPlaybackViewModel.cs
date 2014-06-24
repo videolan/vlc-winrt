@@ -12,7 +12,6 @@ using System.Globalization;
 using System.Threading.Tasks;
 using VLC_WINRT.Common;
 using VLC_WINRT_APP.Commands;
-using VLC_WINRT_APP.Commands.MusicPlayer;
 using VLC_WINRT_APP.Services.Interface;
 using VLC_WINRT_APP.Services.RunTime;
 using Windows.System.Display;
@@ -68,6 +67,7 @@ namespace VLC_WINRT_APP.ViewModels
                 }
             }
         }
+
         public PlayPauseCommand PlayOrPause
         {
             get { return _playOrPause; }

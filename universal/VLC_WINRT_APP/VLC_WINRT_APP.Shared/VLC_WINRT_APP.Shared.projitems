@@ -44,6 +44,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Common\RichTextColumns.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\SuspensionManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\AlbumImageConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\BackgroundVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\BooleanNegationConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\CountToVisibilityConverter.cs" />

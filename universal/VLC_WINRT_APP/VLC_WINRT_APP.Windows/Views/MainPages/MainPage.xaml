@@ -1,11 +1,8 @@
 ﻿<Page x:Class="VLC_WINRT_APP.Views.MainPages.MainPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:local="using:VLC_WINRT.Views"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:controls="using:VLC_WINRT.Views.Controls"
-      xmlns:mainPage="using:VLC_WINRT.Views.Controls.MainPage"
       xmlns:userControls="using:VLC_WINRT_APP.Views.UserControls"
       mc:Ignorable="d"
       DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}">
@@ -25,11 +22,9 @@
                Opacity="0.5"
                Grid.RowSpan="3"
                Grid.ColumnSpan="2"
-               Visibility="{Binding Source={StaticResource Locator}, Path=VideoVm.IsPlaying, Converter={StaticResource NegatedBooleanToVisibilityConverter}}" />
-        <userControls:TopBar Grid.Row="0"
-                             Grid.ColumnSpan="2" />
-        <userControls:MiniPlayer Grid.Row="2"
-                                 Grid.ColumnSpan="2" />
+               Visibility="{Binding Source={StaticResource Locator}, Path=VideoVm.IsPlaying, Converter={StaticResource BackgroundVisibilityConverter}}" />
+        <!--<userControls:TopBar Grid.Row="0"
+                             Grid.ColumnSpan="2" />-->
         <MediaElement x:Name="FoudationMediaElement"
                       x:FieldModifier="public"
                       AudioCategory="BackgroundCapableMedia"

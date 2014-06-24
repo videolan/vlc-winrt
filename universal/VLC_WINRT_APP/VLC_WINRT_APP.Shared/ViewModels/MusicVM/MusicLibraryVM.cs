@@ -18,6 +18,7 @@ using Windows.ApplicationModel.Resources;
 using Windows.Storage;
 using Windows.Storage.AccessCache;
 using Windows.Storage.FileProperties;
+using Windows.UI.Core;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 using SQLite;
@@ -29,16 +30,10 @@ using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.Helpers.MusicLibrary;
 using VLC_WINRT_APP.Helpers.MusicLibrary.MusicEntities;
 using VLC_WINRT_APP.Helpers.MusicLibrary.xboxmusic.Models;
-using VLC_WINRT.Views.Controls.MainPage;
-using VLC_WINRT_APP.Commands;
 using XboxMusicLibrary;
 using Panel = VLC_WINRT_APP.Model.Panel;
 using VLC_WINRT_APP.ViewModels.Settings;
-using VLC_WINRT_APP.Commands.MediaPlayback;
 using VLC_WINRT_APP.Commands.Music;
-#if WINDOWS_PHONE_APP
-using VLC_WINPRT;
-#endif
 
 namespace VLC_WINRT_APP.ViewModels.MusicVM
 {
@@ -62,7 +57,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         private static ArtistDataRepository _artistDataRepository = new ArtistDataRepository();
         private static TrackDataRepository _trackDataRepository = new TrackDataRepository();
         private static AlbumDataRepository _albumDataRepository = new AlbumDataRepository();
-        private ArtistItem _currentArtist; 
+        private ArtistItem _currentArtist;
         private bool _isLoaded = false;
         private bool _isBusy = false;
         private bool _isMusicLibraryEmpty = true;
@@ -178,9 +173,10 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         public MusicLibraryVM()
         {
             var resourceLoader = new ResourceLoader();
-            Panels.Add(new Panel(resourceLoader.GetString("Artist"), 0, 1));
-            Panels.Add(new Panel(resourceLoader.GetString("Tracks"), 1, 0.4));
-            Panels.Add(new Panel(resourceLoader.GetString("FavoriteAlbums"), 2, 0.4));
+            Panels.Add(new Panel(resourceLoader.GetString("Artist").ToLower(), 0, 1));
+            Panels.Add(new Panel(resourceLoader.GetString("Tracks").ToLower(), 1, 0.4));
+            Panels.Add(new Panel(resourceLoader.GetString("FavoriteAlbums").ToLower(), 2, 0.4));
+            Initialize();
         }
 
         public async Task Initialize()
@@ -191,10 +187,11 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         }
 
         #region methods
+
         public async Task GetMusicFromLibrary()
         {
             await LoadFromDatabase();
-            IsMusicLibraryEmpty = false;
+            App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => IsMusicLibraryEmpty = false);
             if (Artist.Any())
             {
                 LoadFavoritesRandomAlbums();
@@ -211,8 +208,12 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                 return;
             }
 
-            IsLoaded = true;
-            IsBusy = false;
+            App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+            {
+
+                IsLoaded = true;
+                IsBusy = false;
+            });
         }
 
         private void LoadFavoritesRandomAlbums()
@@ -604,12 +605,12 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             private string _picture = "/Assets/GreyPylon/280x156.jpg";
             private uint _year;
             private bool _favorite;
-            private bool _isPictureLoaded; 
+            private bool _isPictureLoaded;
             private ObservableCollection<TrackItem> _trackItems = new ObservableCollection<TrackItem>();
             private PlayAlbumCommand _playAlbumCommand = new PlayAlbumCommand();
             private FavoriteAlbumCommand _favoriteAlbumCommand = new FavoriteAlbumCommand();
             private PlayTrackCommand _playTrackCommand = new PlayTrackCommand();
-            
+
             [PrimaryKey, AutoIncrement, Column("_id")]
             public int Id { get; set; }
 
