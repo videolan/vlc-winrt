@@ -235,8 +235,8 @@ namespace VLC_WINRT_APP.ViewModels
             ProtectedDisplayCall(false);
         }
         #endregion
-        #region Events
 
+        #region Events
         protected async void PlayerStateChanged(object sender, VlcService.MediaPlayerState e)
         {
             await DispatchHelper.InvokeAsync(() => IsPlaying = e == VlcService.MediaPlayerState.Playing);

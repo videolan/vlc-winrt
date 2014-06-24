@@ -11,6 +11,10 @@
       DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}">
 
     <SwapChainBackgroundPanel x:Name="SwapChainPanel">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -20,15 +24,22 @@
                Source="ms-appx:///Assets/background.jpg"
                Opacity="0.5"
                Grid.RowSpan="3"
+               Grid.ColumnSpan="2"
                Visibility="{Binding Source={StaticResource Locator}, Path=VideoVm.IsPlaying, Converter={StaticResource NegatedBooleanToVisibilityConverter}}" />
-        <userControls:TopBar Grid.Row="0" />
-        <userControls:MiniPlayer Grid.Row="2" />
+        <userControls:TopBar Grid.Row="0"
+                             Grid.ColumnSpan="2" />
+        <userControls:MiniPlayer Grid.Row="2"
+                                 Grid.ColumnSpan="2" />
         <MediaElement x:Name="FoudationMediaElement"
                       x:FieldModifier="public"
                       AudioCategory="BackgroundCapableMedia"
                       AudioDeviceType="Multimedia" />
+        <userControls:LeftColumn x:Name="ColumnGrid"
+                                 Grid.RowSpan="2"
+                                 Visibility="{Binding Source={StaticResource Locator}, Path=VideoPlayer.IsPlaying, Converter={StaticResource NegatedBooleanToVisibilityConverter}}" />
         <Frame x:Name="MainFrame"
                Grid.Row="1"
+               Grid.Column="1"
                x:FieldModifier="public"
                Navigated="MainFrame_OnNavigated">
             <Frame.ContentTransitions>

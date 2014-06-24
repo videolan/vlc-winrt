@@ -151,6 +151,12 @@
     <Compile Include="Views\MusicPages\MusicPlayerPage.xaml.cs">
       <DependentUpon>MusicPlayerPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserControls\LeftColumn.xaml.cs">
+      <DependentUpon>LeftColumn.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\LoadingMusicLibrary.xaml.cs">
+      <DependentUpon>LoadingMusicLibrary.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserControls\MiniPlayer.xaml.cs">
       <DependentUpon>MiniPlayer.xaml</DependentUpon>
     </Compile>
@@ -171,6 +177,9 @@
     </Compile>
     <Compile Include="Views\MusicPages\ArtistPage.xaml.cs">
       <DependentUpon>ArtistPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\MiniVideoPlayer.xaml.cs">
+      <DependentUpon>MiniVideoPlayer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\VideoPages\VideoPlayerPage.xaml.cs">
       <DependentUpon>VideoPlayerPage.xaml</DependentUpon>
@@ -771,6 +780,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\UserControls\LeftColumn.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\LoadingMusicLibrary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\UserControls\MiniPlayer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -794,6 +811,10 @@
     <Page Include="Views\MusicPages\ArtistPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UserControls\MiniVideoPlayer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\VideoPages\VideoPlayerPage.xaml">
       <Generator>MSBuild:Compile</Generator>
