@@ -53,15 +53,15 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\StringToUpperConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\TimeSpanSecondsDoubleConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\TimespanShortStringConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataRepository\AlbumDataRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataRepository\ArtistDataRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataRepository\LastVideosRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataRepository\TrackDataRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\DeezerArtistItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Panel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Subtitle.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SQLite.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SQLiteAsync.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Utility\DataRepository\AlbumDataRepository.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Utility\DataRepository\ArtistDataRepository.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Utility\DataRepository\LastVideosRepository.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Utility\DataRepository\TrackDataRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utility\DataTemplateSelectors\MediaItemDataTemplateSelector.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utility\DataTemplateSelectors\StorageItemDataTemplateSelector.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utility\Helpers\AsyncLock.cs" />
@@ -182,6 +182,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Utility\DataRepository\" />
     <Folder Include="$(MSBuildThisFileDirectory)ViewModels\MainPage\PlayMusic\" />
     <Folder Include="$(MSBuildThisFileDirectory)ViewModels\MainPage\VideoVM\" />
   </ItemGroup>

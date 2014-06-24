@@ -24,7 +24,7 @@ using SQLite;
 using VLC_WINRT.Common;
 using VLC_WINRT_APP.Commands;
 using VLC_WINRT_APP.Commands.MusicPlayer;
-using VLC_WINRT_APP.Utility.DataRepository;
+using VLC_WINRT_APP.DataRepository;
 using VLC_WINRT_APP.Utility.Helpers;
 using VLC_WINRT_APP.Utility.Helpers.MusicLibrary;
 using VLC_WINRT_APP.Utility.Helpers.MusicLibrary.MusicEntities;

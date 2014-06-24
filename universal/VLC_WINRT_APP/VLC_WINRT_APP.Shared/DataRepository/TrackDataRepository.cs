@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using SQLite;
 using VLC_WINRT_APP.ViewModels.MusicVM;
 
-namespace VLC_WINRT_APP.Utility.DataRepository
+namespace VLC_WINRT_APP.DataRepository
 {
     public class TrackDataRepository
     {

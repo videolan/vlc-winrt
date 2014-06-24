@@ -17,7 +17,7 @@ using Autofac;
 using VLC_WINRT.Common;
 using VLC_WINRT.Model;
 using VLC_WINRT_APP.Commands.VideoPlayer;
-using VLC_WINRT_APP.Utility.DataRepository;
+using VLC_WINRT_APP.DataRepository;
 using VLC_WINRT_APP.Utility.Services.RunTime;
 using VLC_WINRT.ViewModels.MainPage;
 using VLC_WINRT_APP.Utility.Services.Interface;
