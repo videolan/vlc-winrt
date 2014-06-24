@@ -22,7 +22,7 @@ using VLC_WINRT.ViewModels;
 using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.ViewModels.MusicVM;
 
-namespace VLC_WINRT_APP.Utility.Commands
+namespace VLC_WINRT_APP.Commands
 {
     public class PlayAlbumCommand : AlwaysExecutableCommand
     {

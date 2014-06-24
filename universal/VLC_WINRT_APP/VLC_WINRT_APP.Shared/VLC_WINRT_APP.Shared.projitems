@@ -12,6 +12,26 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\ActionCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\AddCustomMusicFolder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\AddCustomVideoFolder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\ClearHistoryCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\MainPageCommands\GoToPanelCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\MusicPlayer\FavoriteAlbumCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\MusicPlayer\FavoriteTrackCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\MusicPlayer\PlayNextCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\MusicPlayer\PlayPreviousCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\OpenFileCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\PickVideoCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\PlayAlbumCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\PlayNetworkMRLCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\PlayPauseCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\PlayTrackComand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\StopVideoCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\VideoPlayer\FavoriteVideoCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\VideoPlayer\OpenSubtitleCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\VideoPlayer\SetAudioTrackCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\VideoPlayer\SetSubtitleTrackCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\AlwaysExecutableCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\AutoFacConfiguration.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\BindableBase.cs" />
@@ -26,26 +46,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Model\Subtitle.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SQLite.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SQLiteAsync.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Utility\Commands\ActionCommand.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Utility\Commands\AddCustomMusicFolder.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Utility\Commands\AddCustomVideoFolder.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Utility\Commands\ClearHistoryCommand.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Utility\Commands\MainPageCommands\GoToPanelCommand.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Utility\Commands\MusicPlayer\FavoriteAlbumCommand.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Utility\Commands\MusicPlayer\FavoriteTrackCommand.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Utility\Commands\MusicPlayer\PlayNextCommand.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Utility\Commands\MusicPlayer\PlayPreviousCommand.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Utility\Commands\OpenFileCommand.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Utility\Commands\PickVideoCommand.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Utility\Commands\PlayAlbumCommand.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Utility\Commands\PlayNetworkMRLCommand.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Utility\Commands\PlayPauseCommand.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Utility\Commands\PlayTrackComand.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Utility\Commands\StopVideoCommand.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Utility\Commands\VideoPlayer\FavoriteVideoCommand.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Utility\Commands\VideoPlayer\OpenSubtitleCommand.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Utility\Commands\VideoPlayer\SetAudioTrackCommand.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Utility\Commands\VideoPlayer\SetSubtitleTrackCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utility\Converters\AlbumImageConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utility\Converters\BooleanNegationConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utility\Converters\BooleanToVisibilityConverter.cs" />
@@ -182,6 +182,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Utility\Commands\" />
     <Folder Include="$(MSBuildThisFileDirectory)ViewModels\MainPage\PlayMusic\" />
     <Folder Include="$(MSBuildThisFileDirectory)ViewModels\MainPage\VideoVM\" />
   </ItemGroup>

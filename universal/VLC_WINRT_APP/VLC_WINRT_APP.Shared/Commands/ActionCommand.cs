@@ -7,17 +7,22 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
+using System;
 using VLC_WINRT.Common;
-using VLC_WINRT.ViewModels;
-using VLC_WINRT_APP.ViewModels;
 
-namespace VLC_WINRT_APP.Utility.Commands.MusicPlayer
+namespace VLC_WINRT_APP.Commands
 {
-    public class PlayPreviousCommand : AlwaysExecutableCommand
+    public class ActionCommand : AlwaysExecutableCommand
     {
-        public override async void Execute(object parameter)
+        private readonly Action _action;
+        public ActionCommand(Action action)
         {
-            await Locator.MusicPlayerVM.PlayPrevious();
+            _action = action;
+        }
+
+        public override void Execute(object parameter)
+        {
+            _action();
         }
     }
 }

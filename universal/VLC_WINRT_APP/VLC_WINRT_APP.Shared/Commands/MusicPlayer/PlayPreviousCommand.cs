@@ -11,13 +11,13 @@ using VLC_WINRT.Common;
 using VLC_WINRT.ViewModels;
 using VLC_WINRT_APP.ViewModels;
 
-namespace VLC_WINRT_APP.Utility.Commands.VideoPlayer
+namespace VLC_WINRT_APP.Commands.MusicPlayer
 {
-    public class SetSubtitleTrackCommand : AlwaysExecutableCommand
+    public class PlayPreviousCommand : AlwaysExecutableCommand
     {
         public override async void Execute(object parameter)
         {
-            await Locator.PlayVideoVM.SetSubtitleTrack((int)parameter);
+            await Locator.MusicPlayerVM.PlayPrevious();
         }
     }
 }

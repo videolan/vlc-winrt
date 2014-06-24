@@ -19,7 +19,7 @@ using VLC_WINPRT;
 using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.ViewModels.Settings;
 
-namespace VLC_WINRT_APP.Utility.Commands
+namespace VLC_WINRT_APP.Commands
 {
     public class AddCustomAudioFolder : AlwaysExecutableCommand
     {

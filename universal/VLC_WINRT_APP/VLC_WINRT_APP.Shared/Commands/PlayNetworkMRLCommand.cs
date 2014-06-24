@@ -7,22 +7,34 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
-using Autofac;
+using System;
 using VLC_WINRT.Common;
 using VLC_WINRT_APP.Utility.Services.RunTime;
 using VLC_WINRT.ViewModels;
-using VLC_WINRT.ViewModels.MainPage;
+using VLC_WINRT_APP;
+using VLC_WINRT_APP.ViewModels;
+#if NETFX_CORE
+using VLC_WINRT.Views;
+#endif
 #if WINDOWS_PHONE_APP
-using VLC_WINPRT;
+
 #endif
 
-namespace VLC_WINRT_APP.Utility.Commands
+namespace VLC_WINRT_APP.Commands
 {
-    public class ClearHistoryCommand : AlwaysExecutableCommand
+    public class PlayNetworkMRLCommand : AlwaysExecutableCommand
     {
         public override void Execute(object parameter)
         {
-            //TODO: Do it
+            var mrl = parameter as string;
+            if (string.IsNullOrEmpty(mrl))
+                throw new ArgumentException("Expecting to see a string mrl for this command");
+
+            //TODO: pass MRL to vlc
+            Locator.PlayVideoVM.SetActiveVideoInfo(mrl);
+            #if NETFX_CORE
+            App.ApplicationFrame.Navigate(typeof(PlayVideo));
+            #endif
         }
     }
 }

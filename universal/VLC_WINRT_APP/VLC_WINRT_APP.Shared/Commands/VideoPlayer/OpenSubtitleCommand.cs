@@ -16,7 +16,7 @@ using VLC_WINRT.Common;
 using VLC_WINRT.ViewModels;
 using VLC_WINRT_APP.ViewModels;
 
-namespace VLC_WINRT_APP.Utility.Commands.VideoPlayer
+namespace VLC_WINRT_APP.Commands.VideoPlayer
 {
     public class OpenSubtitleCommand : AlwaysExecutableCommand
     {

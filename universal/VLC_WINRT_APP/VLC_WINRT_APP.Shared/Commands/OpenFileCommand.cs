@@ -28,7 +28,7 @@ using VLC_WINPRT;
 using VLC_WINRT_APP.Utility.Services.Interface;
 #endif
 
-namespace VLC_WINRT_APP.Utility.Commands
+namespace VLC_WINRT_APP.Commands
 {
     public class OpenVideoCommand : AlwaysExecutableCommand
     {

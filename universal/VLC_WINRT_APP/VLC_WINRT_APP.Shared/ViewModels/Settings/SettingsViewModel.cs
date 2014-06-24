@@ -14,7 +14,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Windows.Storage;
-using VLC_WINRT_APP.Utility.Commands;
+using VLC_WINRT_APP.Commands;
 
 namespace VLC_WINRT_APP.ViewModels.Settings
 {

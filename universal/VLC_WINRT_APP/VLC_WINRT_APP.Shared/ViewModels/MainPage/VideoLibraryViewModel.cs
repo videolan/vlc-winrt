@@ -17,7 +17,7 @@ using Windows.Storage.AccessCache;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 using VLC_WINRT.Common;
-using VLC_WINRT_APP.Utility.Commands;
+using VLC_WINRT_APP.Commands;
 using Windows.Storage;
 using Windows.Storage.Search;
 using VLC_WINRT_APP.Utility.Helpers;

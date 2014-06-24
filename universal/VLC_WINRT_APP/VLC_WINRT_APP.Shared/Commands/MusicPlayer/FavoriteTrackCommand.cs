@@ -15,7 +15,7 @@ using VLC_WINRT.ViewModels.MainPage;
 using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.ViewModels.MusicVM;
 
-namespace VLC_WINRT_APP.Utility.Commands.MusicPlayer
+namespace VLC_WINRT_APP.Commands.MusicPlayer
 {
     public class FavoriteTrackCommand : AlwaysExecutableCommand
     {

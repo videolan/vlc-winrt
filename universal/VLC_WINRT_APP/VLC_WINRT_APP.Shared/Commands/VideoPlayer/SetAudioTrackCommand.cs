@@ -7,22 +7,17 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
-using System;
 using VLC_WINRT.Common;
+using VLC_WINRT.ViewModels;
+using VLC_WINRT_APP.ViewModels;
 
-namespace VLC_WINRT_APP.Utility.Commands
+namespace VLC_WINRT_APP.Commands.VideoPlayer
 {
-    public class ActionCommand : AlwaysExecutableCommand
+    public class SetAudioTrackCommand : AlwaysExecutableCommand
     {
-        private readonly Action _action;
-        public ActionCommand(Action action)
+        public override async void Execute(object parameter)
         {
-            _action = action;
-        }
-
-        public override void Execute(object parameter)
-        {
-            _action();
+            await Locator.PlayVideoVM.SetAudioTrack((int)parameter);
         }
     }
 }

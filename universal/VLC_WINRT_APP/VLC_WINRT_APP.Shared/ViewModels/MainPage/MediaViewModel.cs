@@ -16,13 +16,13 @@ using Windows.UI.Xaml.Media.Imaging;
 using Autofac;
 using SQLite;
 using VLC_WINRT.Common;
-using VLC_WINRT_APP.Utility.Commands;
+using VLC_WINRT_APP.Commands;
 using Windows.Storage;
-using VLC_WINRT_APP.Utility.Commands.VideoPlayer;
+using VLC_WINRT_APP.Commands.VideoPlayer;
 using System.Threading.Tasks;
 using VLC_WINRT_APP.Utility.Services.Interface;
 using VLC_WINRT_APP;
-using VLC_WINRT_APP.Utility.Commands;
+using VLC_WINRT_APP.Commands;
 
 namespace VLC_WINRT.ViewModels.MainPage
 {

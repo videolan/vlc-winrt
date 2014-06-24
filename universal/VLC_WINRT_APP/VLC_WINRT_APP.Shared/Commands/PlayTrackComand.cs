@@ -25,7 +25,7 @@ using VLC_WINRT_APP.ViewModels.MusicVM;
 using VLC_WINPRT;
 #endif
 
-namespace VLC_WINRT_APP.Utility.Commands
+namespace VLC_WINRT_APP.Commands
 {
     public class PlayTrackCommand : AlwaysExecutableCommand
     {

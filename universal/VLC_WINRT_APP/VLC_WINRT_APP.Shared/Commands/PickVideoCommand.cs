@@ -27,7 +27,7 @@ using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT.Views;
 #endif
 
-namespace VLC_WINRT_APP.Utility.Commands
+namespace VLC_WINRT_APP.Commands
 {
     public class PickVideoCommand : ICommand
     {

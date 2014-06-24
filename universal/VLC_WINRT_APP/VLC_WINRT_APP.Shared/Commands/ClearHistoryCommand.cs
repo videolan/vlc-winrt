@@ -7,21 +7,22 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
+using Autofac;
 using VLC_WINRT.Common;
+using VLC_WINRT_APP.Utility.Services.RunTime;
+using VLC_WINRT.ViewModels;
 using VLC_WINRT.ViewModels.MainPage;
+#if WINDOWS_PHONE_APP
+using VLC_WINPRT;
+#endif
 
-namespace VLC_WINRT_APP.Utility.Commands.VideoPlayer
+namespace VLC_WINRT_APP.Commands
 {
-    public class FavoriteVideoCommand : AlwaysExecutableCommand
+    public class ClearHistoryCommand : AlwaysExecutableCommand
     {
         public override void Execute(object parameter)
         {
-            if (parameter as MediaViewModel != null)
-            {
-                (parameter as MediaViewModel).Favorite = !(parameter as MediaViewModel).Favorite;
-                //SerializationHelper.SerializeAsJson(Locator.MainVM.VideoVM.Media, "VideosDB.json", null,
-                //    CreationCollisionOption.ReplaceExisting);
-            }
+            //TODO: Do it
         }
     }
 }
