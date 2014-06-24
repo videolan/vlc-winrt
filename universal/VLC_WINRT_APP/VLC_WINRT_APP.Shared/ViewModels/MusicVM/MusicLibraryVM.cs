@@ -36,6 +36,7 @@ using XboxMusicLibrary;
 using Panel = VLC_WINRT_APP.Model.Panel;
 using VLC_WINRT_APP.ViewModels.Settings;
 using VLC_WINRT_APP.Commands.MediaPlayback;
+using VLC_WINRT_APP.Commands.Music;
 #if WINDOWS_PHONE_APP
 using VLC_WINPRT;
 #endif
@@ -57,12 +58,15 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         #endregion
 
         #region private props
+        private AlbumClickedCommand _albumClickedCommand;
+        private ArtistClickedCommand _artistClickedCommand;
         private static ArtistDataRepository _artistDataRepository = new ArtistDataRepository();
         private static TrackDataRepository _trackDataRepository = new TrackDataRepository();
         private static AlbumDataRepository _albumDataRepository = new AlbumDataRepository();
         private bool _isLoaded = false;
         private bool _isBusy = false;
-        private bool _isMusicLibraryEmpty = true;
+        private bool _isMusicLibraryEmpty = true; 
+        private string _currentIndexingStatus = "Loading music";
         #endregion
 
         #region public fields
@@ -78,6 +82,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             set { SetProperty(ref _randomAlbums, value); }
         }
 
+#if WINDOWS_APP
         public ObservableCollection<Panel> Panels
         {
             get { return _panels; }
@@ -86,16 +91,23 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                 SetProperty(ref _panels, value);
             }
         }
+#endif
 
         public ObservableCollection<ArtistItem> Artist
         {
             get { return _artists; }
             set { SetProperty(ref _artists, value); }
         }
-        public ObservableCollection<string> AlbumCover
+        public IEnumerable<IGrouping<string, ArtistItem>> ArtistsByAlphaKey
         {
-            get { return _albumsCover; }
-            set { SetProperty(ref _albumsCover, value); }
+            get
+            {
+                return _artistsByAlphaKey;
+            }
+            set
+            {
+                SetProperty(ref _artistsByAlphaKey, value);
+            }
         }
 
         public ObservableCollection<TrackItem> Track
@@ -106,6 +118,17 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 
         #endregion
         #region public props
+        public string CurrentIndexingStatus
+        {
+            get { return _currentIndexingStatus; }
+            set { SetProperty(ref _currentIndexingStatus, value); }
+        }
+        public bool IsAlbumPageShown
+        {
+            get { return _isAlbumPageShown; }
+            set { SetProperty(ref _isAlbumPageShown, value); }
+        }
+
         public bool IsLoaded
         {
             get { return _isLoaded; }
@@ -123,6 +146,28 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             get { return _isMusicLibraryEmpty; }
             set { SetProperty(ref _isMusicLibraryEmpty, value); }
         }
+        public AlbumClickedCommand AlbumClickedCommand
+        {
+            get
+            {
+                return _albumClickedCommand;
+            }
+            set { SetProperty(ref _albumClickedCommand, value); }
+        }
+        public ArtistClickedCommand ArtistClickedCommand
+        {
+            get
+            {
+                return _artistClickedCommand;
+            }
+            set { SetProperty(ref _artistClickedCommand, value); }
+        }
+
+        public ArtistItem CurrentArtist
+        {
+            get { return _currentArtist; }
+            set { SetProperty(ref _currentArtist, value); }
+        }
         #endregion
 
         #region XBOX Music Stuff
@@ -132,9 +177,9 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         public MusicLibraryVM()
         {
             var resourceLoader = new ResourceLoader();
-            Panels.Add(new Panel(resourceLoader.GetString("Artist").ToUpper(), 0, 1));
-            Panels.Add(new Panel(resourceLoader.GetString("Tracks").ToUpper(), 1, 0.4));
-            Panels.Add(new Panel(resourceLoader.GetString("FavoriteAlbums").ToUpper(), 2, 0.4));
+            Panels.Add(new Panel(resourceLoader.GetString("Artist"), 0, 1));
+            Panels.Add(new Panel(resourceLoader.GetString("Tracks"), 1, 0.4));
+            Panels.Add(new Panel(resourceLoader.GetString("FavoriteAlbums"), 2, 0.4));
         }
 
         public async Task Initialize()
