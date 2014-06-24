@@ -23,57 +23,38 @@ namespace VLC_WINRT_APP.Views.MainPages
         public MainPageVideos()
         {
             InitializeComponent();
-            //this.Loaded += (sender, args) =>
-            //{
-            //    for (int i = 1; i < SectionsGrid.Children.Count; i++)
-            //    {
-            //        UIAnimationHelper.FadeOut(SectionsGrid.Children[i]);
-            //    }
-            //};
             this.SizeChanged += OnSizeChanged;
         }
 
-        private async void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
-        {
-            await DispatchHelper.InvokeAsync(() =>
-            {
 
-                if (sizeChangedEventArgs.NewSize.Width == 320)
-                {
-                    SemanticZoomVertical.Visibility = Visibility.Visible;
-                    SemanticZoom.Visibility = Visibility.Collapsed;
-                }
-                else
-                {
-                    SemanticZoomVertical.Visibility = Visibility.Collapsed;
-                    SemanticZoom.Visibility = Visibility.Visible;
-                }
-            });
-        }
-        private void SectionsHeaderListView_OnItemClick(object sender, ItemClickEventArgs e)
+        private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
         {
-            //var i = ((Model.Panel)e.ClickedItem).Index;
-            //ChangedSectionsHeadersState(i);
-        }
-        private void ChangedSectionsHeadersState(int i)
-        {
-            if (i == _currentSection) return;
-            UIAnimationHelper.FadeOut(SectionsGrid.Children[_currentSection]);
-            UIAnimationHelper.FadeIn(SectionsGrid.Children[i]);
-            _currentSection = i;
-            //for (int j = 0; j < SectionsHeaderListView.Items.Count; j++)
-            //    Locator.MainVM.VideoVM.Panels[j].Opacity = 0.4;
-            Locator.VideoLibraryVM.Panels[i].Opacity = 1;
-        }
-        
-        private void OnHeaderSemanticZoomClicked(object sender, RoutedEventArgs e)
-        {
-            SemanticZoomVertical.IsZoomedInViewActive = false;
-            SemanticZoom.IsZoomedInViewActive = false;
         }
 
         private void SemanticZoom_OnViewChangeCompleted(object sender, SemanticZoomViewChangedEventArgs e)
         {
+            Locator.VideoLibraryVM.ExecuteSemanticZoom(sender as SemanticZoom, VideoGroupedByAlphaKey);
+        }
+
+        private void Panels_OnItemClick(object sender, ItemClickEventArgs e)
+        {
+            Model.Panel panel = e.ClickedItem as Model.Panel;
+            foreach (var panel1 in Locator.VideoLibraryVM.Panels)
+            {
+                panel1.Opacity = 0.4;
+            }
+            panel.Opacity = 1;
+            switch (panel.Title)
+            {
+                case "all":
+                    SemanticZoom.Visibility = Visibility.Visible;
+                    NewVideosListView.Visibility = Visibility.Collapsed;
+                    break;
+                case "new":
+                    SemanticZoom.Visibility = Visibility.Collapsed;
+                    NewVideosListView.Visibility = Visibility.Visible;
+                    break;
+            }
         }
     }
 }
