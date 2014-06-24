@@ -31,8 +31,8 @@ namespace VLC_WINRT_APP.Commands
             try
             {
                 MusicLibraryVM.AlbumItem album = parameter as MusicLibraryVM.AlbumItem;
-                Locator.MusicPlayerVM.TrackCollection.ResetCollection();
-                Locator.MusicPlayerVM.TrackCollection.AddTrack(album.Tracks.ToList());
+                Locator.MusicPlayerVM.ResetCollection();
+                Locator.MusicPlayerVM.AddTrack(album.Tracks.ToList());
                 await Locator.MusicPlayerVM.Play();
             }
             catch (FileNotFoundException exception)

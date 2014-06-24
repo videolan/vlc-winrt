@@ -161,10 +161,10 @@ namespace VLC_WINRT_APP
                     await LaunchTheApp();
                 }
 
-                Locator.MusicPlayerVM.TrackCollection.TrackCollection.Clear();
+                Locator.MusicPlayerVM.TrackCollection.Clear();
                 MusicLibraryVM.TrackItem trackItem =
                     await GetInformationsFromMusicFile.GetTrackItemFromFile(file);
-                Locator.MusicPlayerVM.TrackCollection.TrackCollection.Add(trackItem);
+                Locator.MusicPlayerVM.TrackCollection.Add(trackItem);
                 await Locator.MusicPlayerVM.PlayFromExplorer(file);
             }
             else if (file.FileType == ".mkv"

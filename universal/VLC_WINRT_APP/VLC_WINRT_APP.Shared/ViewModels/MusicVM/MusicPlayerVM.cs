@@ -15,46 +15,92 @@ using Windows.ApplicationModel.Resources;
 using Windows.Media;
 using Windows.Storage;
 using Windows.Storage.AccessCache;
+using Windows.UI.Core;
 using Windows.UI.Notifications;
 using VLC_WINRT.Common;
 using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.Services.Interface;
 using VLC_WINRT_APP.Services.RunTime;
+using System.Collections.ObjectModel;
+using System.Collections.Generic;
 
 namespace VLC_WINRT_APP.ViewModels.MusicVM
 {
     public class MusicPlayerVM : MediaPlaybackViewModel
     {
-        private MusicLibraryVM.ArtistItem _artist;
-        private TrackCollectionVM _trackCollection;
+        private ObservableCollection<MusicLibraryVM.TrackItem> _tracksCollection;
+        private int _currentTrack = 0;
+        private bool _canGoPrevious;
+        private bool _canGoNext;
+        private bool _isPlaying;
+        private bool _isRunning;
+        private MusicLibraryVM.ArtistItem _currentPlayingArtist;
+        public SystemMediaTransportControls MediaControl;
+
+        public bool IsRunning
+        {
+            get
+            {
+                return _isRunning;
+            }
+            set
+            {
+                SetProperty(ref _isRunning, value);
+            }
+        }
+
+        public bool IsPlaying
+        {
+            get { return _isPlaying; }
+            set
+            {
+                if (value != _isPlaying)
+                {
+                    if (value)
+                    {
+                        OnPlaybackStarting();
+                    }
+                    else
+                    {
+                        OnPlaybackStopped();
+                    }
+                    SetProperty(ref _isPlaying, value);
+                }
+            }
+        }
+        public int CurrentTrack
+        {
+            get { return _currentTrack; }
+            set { SetProperty(ref _currentTrack, value); }
+        }
+
+
+        public ObservableCollection<MusicLibraryVM.TrackItem> TrackCollection
+        {
+            get { return _tracksCollection; }
+            set { SetProperty(ref _tracksCollection, value); }
+        }
+
 
         public MusicPlayerVM(IMediaService mediaService, VlcService mediaPlayerService)
             : base(mediaService, mediaPlayerService)
         {
-            _trackCollection = new TrackCollectionVM();
+            _tracksCollection = new ObservableCollection<MusicLibraryVM.TrackItem>();
             _mediaService.MediaEnded += MediaService_MediaEnded;
         }
 
         protected async void MediaService_MediaEnded(object sender, EventArgs e)
         {
-            if (TrackCollection.TrackCollection.Count == 0 ||
-                TrackCollection.TrackCollection[TrackCollection.CurrentTrack] == TrackCollection.TrackCollection.Last() || 
+            if (TrackCollection.Count == 0 ||
+                TrackCollection[CurrentTrack] == TrackCollection.Last() || 
                 _mediaService.IsBackground)
             {
                 // Playlist is finished
-                DispatchHelper.InvokeAsync(() => TrackCollection.IsRunning = false);
+                DispatchHelper.InvokeAsync(() => IsRunning = false);
             }
             else
             {
                 await PlayNext();
-            }
-        }
-
-        public TrackCollectionVM TrackCollection
-        {
-            get
-            {
-                return _trackCollection;
             }
         }
 
@@ -72,37 +118,108 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         {
             _mediaService.Stop();
         }
+        public MusicLibraryVM.ArtistItem CurrentPlayingArtist
+        {
+            get { return _currentPlayingArtist; }
+            set { SetProperty(ref _currentPlayingArtist, value); }
+        }
+
+        public bool CanGoPrevious
+        {
+            get
+            {
+                return _canGoPrevious;
+            }
+            set
+            {
+                //MediaControl.IsPreviousEnabled = value;
+                SetProperty(ref _canGoPrevious, value);
+            }
+        }
+
+        public bool CanGoNext
+        {
+            get
+            {
+                return _canGoNext;
+            }
+            set
+            {
+                //MediaControl.IsNextEnabled = value;
+                SetProperty(ref _canGoNext, value);
+            }
+        }
+
+        public bool IsPreviousPossible()
+        {
+            bool isPossible = (CurrentTrack > 0);
+            App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => CanGoPrevious = isPossible);
+            return isPossible;
+        }
+
+        public bool IsNextPossible()
+        {
+            bool isPossible = (TrackCollection.Count != 1) && (CurrentTrack < TrackCollection.Count - 1);
+            App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => CanGoNext = isPossible);
+            return isPossible;
+        }
+
+        public void ResetCollection()
+        {
+            TrackCollection.Clear();
+            CurrentTrack = 0;
+        }
+        public void AddTrack(MusicLibraryVM.TrackItem track)
+        {
+            TrackCollection.Add(track);
+        }
+        public void AddTrack(List<MusicLibraryVM.TrackItem> tracks)
+        {
+            foreach (MusicLibraryVM.TrackItem track in tracks)
+                TrackCollection.Add(track);
+        }
+
+        public void AddTrack(MusicLibraryVM.ArtistItem artist)
+        {
+            foreach (MusicLibraryVM.AlbumItem albumItem in artist.Albums)
+            {
+                foreach (MusicLibraryVM.TrackItem trackItem in albumItem.Tracks)
+                {
+                    TrackCollection.Add(trackItem);
+                }
+            }
+        }
 
         public async Task PlayNext()
         {
-            TrackCollection.IsNextPossible();
-            TrackCollection.IsPreviousPossible();
-            if (TrackCollection.CanGoNext)
+            IsNextPossible();
+            IsPreviousPossible();
+            if (CanGoNext)
             {
-                await DispatchHelper.InvokeAsync(() => TrackCollection.CurrentTrack++);
+                await DispatchHelper.InvokeAsync(() => CurrentTrack++);
                 await Play();
             }
             else
             {
                 TileUpdateManager.CreateTileUpdaterForApplication().Clear();
-                await DispatchHelper.InvokeAsync(() => MediaControl.IsPlaying = false);
+                //await DispatchHelper.InvokeAsync(() => MediaControl.IsPlaying = false);
             }
         }
 
         public async Task PlayPrevious()
         {
-            TrackCollection.IsNextPossible();
-            TrackCollection.IsPreviousPossible();
-            if (TrackCollection.CanGoPrevious)
+            IsNextPossible();
+            IsPreviousPossible();
+            if (CanGoPrevious)
             {
-                await DispatchHelper.InvokeAsync(() => TrackCollection.CurrentTrack--);
+                await DispatchHelper.InvokeAsync(() => CurrentTrack--);
                 await Play();
             }
             else
             {
                 TileUpdateManager.CreateTileUpdaterForApplication().Clear();
-                await DispatchHelper.InvokeAsync(() => MediaControl.IsPlaying = false);
-                MediaControl.PreviousTrackPressed -= MediaControl_PreviousTrackPressed;
+                //await DispatchHelper.InvokeAsync(() => MediaControl.IsPlaying = false);
+                //MediaControl.PreviousTrackPressed -= MediaControl_PreviousTrackPressed;
             }
         }
 
@@ -118,9 +235,9 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 
         public async Task Play()
         {
-            TrackCollection.IsRunning = true;
+            IsRunning = true;
             Stop();
-            var trackItem = TrackCollection.TrackCollection[TrackCollection.CurrentTrack];
+            var trackItem = TrackCollection[CurrentTrack];
 
             var file = await StorageFile.GetFileFromPathAsync(trackItem.Path);
             string token = StorageApplicationPermissions.FutureAccessList.Add(file);
@@ -131,41 +248,41 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 
             // Setting the info for windows 8 controls
             var resourceLoader = new ResourceLoader();
-            MediaControl.IsPlaying = true;
-            MediaControl.ArtistName = trackItem.ArtistName ?? resourceLoader.GetString("UnknownArtist");
-            MediaControl.TrackName = trackItem.Name ?? resourceLoader.GetString("UnknownTrack");
+            //MediaControl.IsPlaying = true;
+            //MediaControl.ArtistName = trackItem.ArtistName ?? resourceLoader.GetString("UnknownArtist");
+            //MediaControl.TrackName = trackItem.Name ?? resourceLoader.GetString("UnknownTrack");
             _timeTotal = TimeSpan.Zero;
             _elapsedTime = TimeSpan.Zero;
             try
             {
-                MediaControl.AlbumArt = new Uri(Locator.MusicPlayerVM.Artist.CurrentAlbumItem.Picture);
+                //MediaControl.AlbumArt = new Uri(Locator.MusicPlayerVM.CurrentPlayingArtist.CurrentAlbumItem.Picture);
             }
             catch
             {
                 // If album cover is from the internet then it's impossible to pass it to the MediaControl
             }
 
-            TrackCollection.IsNextPossible();
-            TrackCollection.IsPreviousPossible();
+            IsNextPossible();
+            IsPreviousPossible();
 
-            if (TrackCollection.CanGoNext)
-                MediaControl.NextTrackPressed += MediaControl_NextTrackPressed;
-            else
-                MediaControl.NextTrackPressed -= MediaControl_NextTrackPressed;
+            //if (CanGoNext)
+            //    MediaControl.NextTrackPressed += MediaControl_NextTrackPressed;
+            //else
+            //    MediaControl.NextTrackPressed -= MediaControl_NextTrackPressed;
 
-            if (TrackCollection.CanGoPrevious)
-                MediaControl.PreviousTrackPressed += MediaControl_PreviousTrackPressed;
-            else
-                MediaControl.PreviousTrackPressed -= MediaControl_PreviousTrackPressed;
+            //if (CanGoPrevious)
+                //MediaControl.PreviousTrackPressed += MediaControl_PreviousTrackPressed;
+            //else
+                //MediaControl.PreviousTrackPressed -= MediaControl_PreviousTrackPressed;
         }
 
         public async Task PlayFromExplorer(StorageFile file)
         {
-            TrackCollection.IsRunning = true;
+            IsRunning = true;
             Stop();
 
             // Wat? This doesn't make any sense.
-            var trackItem = TrackCollection.TrackCollection[TrackCollection.CurrentTrack];
+            var trackItem = TrackCollection[CurrentTrack];
 
             string token = StorageApplicationPermissions.FutureAccessList.Add(file);
 
@@ -174,36 +291,30 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             SetActiveMusicInfo(token, trackItem);
 
             // Setting the info for windows 8 controls
-            MediaControl.IsPlaying = true;
-            MediaControl.ArtistName = trackItem.ArtistName;
-            MediaControl.TrackName = trackItem.Name;
-            try
-            {
-                MediaControl.AlbumArt = new Uri(Locator.MusicPlayerVM.Artist.CurrentAlbumItem.Picture);
-            }
-            catch
-            {
-                // If album cover is from the internet then it's impossible to pass it to the MediaControl
-            }
+            //MediaControl.IsPlaying = true;
+            //MediaControl.ArtistName = trackItem.ArtistName;
+            //MediaControl.TrackName = trackItem.Name;
+            //try
+            //{
+            //    //MediaControl.AlbumArt = new Uri(Locator.MusicPlayerVM.CurrentPlayingArtist.CurrentAlbumItem.Picture);
+            //}
+            //catch
+            //{
+            //    // If album cover is from the internet then it's impossible to pass it to the MediaControl
+            //}
 
-            TrackCollection.IsNextPossible();
-            TrackCollection.IsPreviousPossible();
+            IsNextPossible();
+            IsPreviousPossible();
 
-            if (TrackCollection.CanGoNext)
-                MediaControl.NextTrackPressed += MediaControl_NextTrackPressed;
-            else
-                MediaControl.NextTrackPressed -= MediaControl_NextTrackPressed;
+            //if (CanGoNext)
+            //    MediaControl.NextTrackPressed += MediaControl_NextTrackPressed;
+            //else
+            //    MediaControl.NextTrackPressed -= MediaControl_NextTrackPressed;
 
-            if (TrackCollection.CanGoPrevious)
-                MediaControl.PreviousTrackPressed += MediaControl_PreviousTrackPressed;
-            else
-                MediaControl.PreviousTrackPressed -= MediaControl_PreviousTrackPressed;
-        }
-
-        public MusicLibraryVM.ArtistItem Artist
-        {
-            get { return _artist; }
-            private set { SetProperty(ref _artist, value); }
+            //if (CanGoPrevious)
+            //    MediaControl.PreviousTrackPressed += MediaControl_PreviousTrackPressed;
+            //else
+            //    MediaControl.PreviousTrackPressed -= MediaControl_PreviousTrackPressed;
         }
 
         public void SetActiveMusicInfo(string token, MusicLibraryVM.TrackItem track)
@@ -211,9 +322,9 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             _fileToken = token;
             _mrl = "file://" + token;
             Title = track.Name;
-            Artist = Locator.MusicLibraryVM.Artist.FirstOrDefault(x => x.Name == track.ArtistName);
-            if (Artist != null)
-                Artist.CurrentAlbumIndex = _artist.Albums.IndexOf(_artist.Albums.FirstOrDefault(x => x.Name == track.AlbumName));
+            CurrentPlayingArtist = Locator.MusicLibraryVM.Artist.FirstOrDefault(x => x.Name == track.ArtistName);
+            if (CurrentPlayingArtist != null)
+                CurrentPlayingArtist.CurrentAlbumIndex = CurrentPlayingArtist.Albums.IndexOf(CurrentPlayingArtist.Albums.FirstOrDefault(x => x.Name == track.AlbumName));
             _mediaService.SetMediaFile(_mrl, isAudioMedia: true);
             OnPropertyChanged("TimeTotal");
 #if NETFX_CORE
@@ -225,9 +336,9 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         public override void CleanViewModel()
         {
             base.CleanViewModel();
-            TrackCollection.TrackCollection.Clear();
-            TrackCollection.IsRunning = false;
-            Artist = null;
+            TrackCollection.Clear();
+            IsRunning = false;
+            CurrentPlayingArtist = null;
         }
     }
 }

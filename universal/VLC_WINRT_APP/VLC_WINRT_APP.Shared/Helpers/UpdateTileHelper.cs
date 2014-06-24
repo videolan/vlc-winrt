@@ -22,12 +22,12 @@ namespace VLC_WINRT_APP.Helpers
 
             var tileTextAttributes = tileXml.GetElementsByTagName("text");
             tileTextAttributes[0].InnerText = "playing";
-            if (Locator.MusicPlayerVM.Artist != null)
+            if (Locator.MusicPlayerVM.CurrentPlayingArtist != null)
             {
-                tileTextAttributes[1].InnerText = Locator.MusicPlayerVM.Artist.CurrentAlbumItem.CurrentTrack.Name + " - " + Locator.MusicPlayerVM.Artist.CurrentAlbumItem.Artist;
+                tileTextAttributes[1].InnerText = Locator.MusicPlayerVM.CurrentPlayingArtist.CurrentAlbumItem.CurrentTrack.Name + " - " + Locator.MusicPlayerVM.CurrentPlayingArtist.CurrentAlbumItem.Artist;
 
                 var tileImgAttribues = tileXml.GetElementsByTagName("image");
-                tileImgAttribues[0].Attributes[1].NodeValue = Locator.MusicPlayerVM.Artist.CurrentAlbumItem.Picture;
+                tileImgAttribues[0].Attributes[1].NodeValue = Locator.MusicPlayerVM.CurrentPlayingArtist.CurrentAlbumItem.Picture;
             }
 
             var tileNotification = new TileNotification(tileXml);
@@ -42,13 +42,13 @@ namespace VLC_WINRT_APP.Helpers
 
             var tileTextAttributes = tileXml.GetElementsByTagName("text");
             tileTextAttributes[0].InnerText = "Now playing";
-            if (Locator.MusicPlayerVM.Artist != null)
+            if (Locator.MusicPlayerVM.CurrentPlayingArtist != null)
             {
-                tileTextAttributes[1].InnerText = Locator.MusicPlayerVM.Artist.CurrentAlbumItem.CurrentTrack.Name + " - " + Locator.MusicPlayerVM.Artist.CurrentAlbumItem.Artist;
+                tileTextAttributes[1].InnerText = Locator.MusicPlayerVM.CurrentPlayingArtist.CurrentAlbumItem.CurrentTrack.Name + " - " + Locator.MusicPlayerVM.CurrentPlayingArtist.CurrentAlbumItem.Artist;
 
                 var tileImgAttribues = tileXml.GetElementsByTagName("image");
-                tileImgAttribues[0].Attributes[1].NodeValue = Locator.MusicPlayerVM.Artist.Picture;
-                tileImgAttribues[1].Attributes[1].NodeValue = Locator.MusicPlayerVM.Artist.CurrentAlbumItem.Picture;
+                tileImgAttribues[0].Attributes[1].NodeValue = Locator.MusicPlayerVM.CurrentPlayingArtist.Picture;
+                tileImgAttribues[1].Attributes[1].NodeValue = Locator.MusicPlayerVM.CurrentPlayingArtist.CurrentAlbumItem.Picture;
             }
 
             var tileNotification = new TileNotification(tileXml);
