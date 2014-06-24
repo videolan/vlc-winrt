@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Media.Animation;
 using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.Views.MainPages;
 using VLC_WINRT_APP.Views.MusicPages;
+using WinRTXamlToolkit.AwaitableUI;
 
 namespace VLC_WINRT_APP.Views.UserControls
 {

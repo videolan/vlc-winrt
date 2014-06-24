@@ -18,6 +18,7 @@ using VLC_WINRT.ViewModels.MainPage.VlcExplorer;
 using VLC_WINRT.Views;
 using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.Views.MainPages;
+using WinRTXamlToolkit.AwaitableUI;
 
 namespace VLC_WINRT_APP.Views
 {
