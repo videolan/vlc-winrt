@@ -20,6 +20,7 @@ using VLC_WINRT_APP.Views.MainPages;
 using VLC_WINRT_APP.Views.MusicPages;
 #if NETFX_CORE
 using VLC_WINRT.Views;
+using VLC_WINRT_APP.ViewModels.MusicVM;
 #endif
 #if WINDOWS_PHONE_APP
 using VLC_WINPRT;
@@ -45,18 +46,18 @@ namespace VLC_WINRT_APP.Utility.Commands
             await Locator.MusicPlayerVM.Play();
 
             var frame = App.ApplicationFrame;
-#if NETFX_CORE
-            var page = frame.Content as MainPage;
-            if (page != null)
-            {
-                var sB = page.Resources["FadeOutPage"] as Storyboard;
-                if (sB != null)
-                {
-                    await sB.BeginAsync();
-                    App.ApplicationFrame.Navigate(typeof(ArtistPage));
-                }
-            } 
-#endif
+//#if NETFX_CORE
+//            var page = frame.Content as MainPage;
+//            if (page != null)
+//            {
+//                var sB = page.Resources["FadeOutPage"] as Storyboard;
+//                if (sB != null)
+//                {
+//                    await sB.BeginAsync();
+//                    App.ApplicationFrame.Navigate(typeof(ArtistPage));
+//                }
+//            } 
+//#endif
         }
     }
 }

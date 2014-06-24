@@ -30,11 +30,11 @@ using VLC_WINRT_APP.Utility.Helpers.MusicLibrary;
 using VLC_WINRT_APP.Utility.Helpers.MusicLibrary.MusicEntities;
 using VLC_WINRT_APP.Utility.Helpers.MusicLibrary.xboxmusic.Models;
 using VLC_WINRT.ViewModels;
-using VLC_WINRT.ViewModels.Settings;
 using VLC_WINRT.Views.Controls.MainPage;
 using VLC_WINRT_APP.Utility.Commands;
 using XboxMusicLibrary;
-using Panel = VLC_WINRT.Model.Panel;
+using Panel = VLC_WINRT_APP.Model.Panel;
+using VLC_WINRT_APP.ViewModels.Settings;
 #if WINDOWS_PHONE_APP
 using VLC_WINPRT;
 #endif

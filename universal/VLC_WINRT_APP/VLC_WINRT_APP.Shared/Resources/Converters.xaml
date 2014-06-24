@@ -3,7 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:VLC_WINRT_APP.Resources"
     xmlns:converters="using:VLC_WINRT_APP.Utility.Converters"
-    xmlns:converters1="using:VLC_WINRT.Utility.Converters"
+    xmlns:converters1="using:VLC_WINRT_APP.Utility.Converters"
     xmlns:converters2="using:VLC_WINRT_APP.Converters">
 
     <converters:AlbumImageConverter x:Key="AlbumImageConverter" />

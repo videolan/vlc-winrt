@@ -7,18 +7,16 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 #if WINDOWS_PHONE_APP
 using VLC_WINPRT;
 #endif
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Windows.Storage;
-using Windows.UI.Xaml;
 using VLC_WINRT_APP.Utility.Commands;
-using VLC_WINRT_APP.Utility.Helpers;
 
-namespace VLC_WINRT.ViewModels.Settings
+namespace VLC_WINRT_APP.ViewModels.Settings
 {
     public class SettingsViewModel : NavigateableViewModel
     {

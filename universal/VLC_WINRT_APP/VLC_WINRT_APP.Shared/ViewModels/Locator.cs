@@ -15,14 +15,15 @@
 using Autofac;
 using VLC_WINRT.ViewModels;
 using VLC_WINRT.ViewModels.MainPage;
-using VLC_WINRT.ViewModels.MainPage.PlayMusic;
 using VLC_WINRT.ViewModels.PlayVideo;
 #if WINDOWS_PHONE_APP
 using VLC_WINPRT;
 #endif
-using VLC_WINRT.ViewModels.Settings;
 using VLC_WINRT_APP.Common;
 using VLC_WINRT_APP.ViewModels.MainPage;
+using VLC_WINRT_APP.ViewModels.MainPage.PlayMusic;
+using VLC_WINRT_APP.ViewModels.Settings;
+using VLC_WINRT_APP.ViewModels.MusicVM;
 
 namespace VLC_WINRT_APP.ViewModels
 {

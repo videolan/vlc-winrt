@@ -21,10 +21,10 @@ using VLC_WINRT_APP.Utility.Commands;
 using Windows.Storage;
 using Windows.Storage.Search;
 using VLC_WINRT_APP.Utility.Helpers;
-using VLC_WINRT.ViewModels.Settings;
 using VLC_WINRT_APP;
 using VLC_WINRT_APP.ViewModels;
-using Panel = VLC_WINRT.Model.Panel;
+using VLC_WINRT_APP.ViewModels.Settings;
+using Panel = VLC_WINRT_APP.Model.Panel;
 #if WINDOWS_PHONE_APP
 
 #endif

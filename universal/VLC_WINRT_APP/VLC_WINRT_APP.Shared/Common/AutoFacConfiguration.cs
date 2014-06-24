@@ -13,16 +13,18 @@ using VLC_WINRT_APP.Utility.Services.RunTime;
 using VLC_WINRT.ViewModels;
 using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.ViewModels.MainPage;
+using VLC_WINRT_APP.ViewModels.MainPage.PlayMusic;
+using VLC_WINRT_APP.ViewModels.Settings;
 using VLC_WINRT_APP.Views;
 using VLC_WINRT_APP.Views.MainPages;
 using DesignTime = VLC_WINRT_APP.Utility.Services.DesignTime;
 using VLC_WINRT.ViewModels.MainPage;
-using VLC_WINRT.ViewModels.MainPage.PlayMusic;
 using VLC_WINRT.ViewModels.PlayVideo;
 
 #if NETFX_CORE
 using VLC_WINRT.Views;
-using VLC_WINRT.ViewModels.Settings;
+using VLC_WINRT_APP.ViewModels.MusicVM;
+
 #endif
 #if WINDOWS_PHONE_APP
 

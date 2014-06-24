@@ -46,15 +46,15 @@ namespace VLC_WINRT_APP.Utility.Commands
 
             var frame = App.ApplicationFrame;
 #if NETFX_CORE
-            var page = frame.Content as MainPage;
-            if (page != null)
-            {
-                var sB = page.Resources["FadeOutPage"] as Storyboard;
-                if (sB != null)
-                {
-                    await sB.BeginAsync();
-                }
-            }
+            //var page = frame.Content as MainPage;
+            //if (page != null)
+            //{
+            //    var sB = page.Resources["FadeOutPage"] as Storyboard;
+            //    if (sB != null)
+            //    {
+            //        await sB.BeginAsync();
+            //    }
+            //}
 #endif
             Locator.PlayVideoVM.CurrentVideo = parameter as MediaViewModel;
 #if NETFX_CORE

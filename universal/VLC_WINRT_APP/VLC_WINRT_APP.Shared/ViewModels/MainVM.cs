@@ -15,6 +15,7 @@ using Windows.ApplicationModel.Resources;
 using Windows.Storage;
 using VLC_WINRT.Common;
 using VLC_WINRT.Model;
+using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.Utility.Commands;
 using VLC_WINRT_APP.Utility.Commands.MainPage;
 #if WINDOWS_PHONE_APP

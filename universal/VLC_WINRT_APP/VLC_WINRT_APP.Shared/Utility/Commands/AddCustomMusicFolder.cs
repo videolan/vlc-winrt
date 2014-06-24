@@ -16,8 +16,8 @@ using VLC_WINRT.ViewModels;
 #if WINDOWS_PHONE_APP
 using VLC_WINPRT;
 #endif
-using VLC_WINRT.ViewModels.Settings;
 using VLC_WINRT_APP.ViewModels;
+using VLC_WINRT_APP.ViewModels.Settings;
 
 namespace VLC_WINRT_APP.Utility.Commands
 {

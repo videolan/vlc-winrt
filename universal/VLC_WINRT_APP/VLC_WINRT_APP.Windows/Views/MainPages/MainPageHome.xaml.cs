@@ -7,9 +7,9 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
+using VLC_WINRT_APP.ViewModels.MusicVM;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using VLC_WINRT_APP.ViewModels.MainPage;
 
 namespace VLC_WINRT_APP.Views.MainPages
 {

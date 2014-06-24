@@ -9,7 +9,7 @@
 
 using VLC_WINRT.Common;
 
-namespace VLC_WINRT.Model
+namespace VLC_WINRT_APP.Model
 {
     public class Panel : BindableBase
     {

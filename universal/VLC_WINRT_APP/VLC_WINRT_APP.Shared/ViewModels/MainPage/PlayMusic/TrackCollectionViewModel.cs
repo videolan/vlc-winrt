@@ -10,9 +10,9 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using VLC_WINRT.Common;
-using VLC_WINRT_APP.ViewModels.MainPage;
+using VLC_WINRT_APP.ViewModels.MusicVM;
 
-namespace VLC_WINRT.ViewModels.MainPage.PlayMusic
+namespace VLC_WINRT_APP.ViewModels.MainPage.PlayMusic
 {
     public class TrackCollectionViewModel : BindableBase
     {

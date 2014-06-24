@@ -23,6 +23,7 @@ using VLC_WINRT_APP.ViewModels.MainPage;
 using VLC_WINRT_APP.Views;
 using VLC_WINRT_APP.Views.MainPages;
 using VLC_WINRT_APP.Common;
+using VLC_WINRT_APP.ViewModels.MusicVM;
 
 namespace VLC_WINRT_APP
 {

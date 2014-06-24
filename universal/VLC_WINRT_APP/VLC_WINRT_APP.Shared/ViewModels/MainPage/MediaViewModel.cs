@@ -21,7 +21,6 @@ using Windows.Storage;
 using VLC_WINRT_APP.Utility.Commands.VideoPlayer;
 using System.Threading.Tasks;
 using VLC_WINRT_APP.Utility.Services.Interface;
-using VLC_WINRT.ViewModels.Settings;
 using VLC_WINRT_APP;
 using VLC_WINRT_APP.Utility.Commands;
 

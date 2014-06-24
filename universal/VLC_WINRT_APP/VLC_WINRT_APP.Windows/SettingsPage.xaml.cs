@@ -7,9 +7,9 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using VLC_WINRT_APP.Utility.Helpers;
 using VLC_WINRT.ViewModels;
-using VLC_WINRT.ViewModels.Settings;
 using VLC_WINRT_APP;
 using VLC_WINRT_APP.ViewModels;
+using VLC_WINRT_APP.ViewModels.Settings;
 
 namespace VLC_WINRT.Views
 {

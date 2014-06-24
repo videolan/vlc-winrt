@@ -14,6 +14,8 @@ using VLC_WINRT_APP.Utility.Helpers;
 using VLC_WINRT.ViewModels;
 using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.ViewModels.MainPage;
+using VLC_WINRT_APP.ViewModels.MusicVM;
+using Panel = VLC_WINRT_APP.Model.Panel;
 
 namespace VLC_WINRT_APP.Views.MainPages
 {
@@ -77,7 +79,7 @@ namespace VLC_WINRT_APP.Views.MainPages
         
         private void SectionsHeaderListView_OnItemClick(object sender, ItemClickEventArgs e)
         {
-            int i = ((VLC_WINRT.Model.Panel)e.ClickedItem).Index;
+            int i = ((Panel)e.ClickedItem).Index;
             ChangedSectionsHeadersState(i);
         }
 
