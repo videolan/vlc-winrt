@@ -844,6 +844,9 @@
     <Reference Include="WinRT.Triggers">
       <HintPath>..\..\..\app\packages\WinRTTriggers.1.6.0\lib\winrt45\WinRT.Triggers.dll</HintPath>
     </Reference>
+    <Reference Include="WinRTXamlToolkit">
+      <HintPath>..\..\..\app\packages\WinRTXamlToolkit.1.6.1.3\lib\netcore451\WinRTXamlToolkit.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\modules\libaccess_winrt_plugin\libaccess_winrt_plugin.vcxproj">

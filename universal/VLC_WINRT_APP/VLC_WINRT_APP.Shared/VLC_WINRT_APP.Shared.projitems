@@ -58,11 +58,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)DataRepository\LastVideosRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataRepository\TrackDataRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\AsyncLock.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Helpers\AwaitableUI\BitmapImageExtensions.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Helpers\AwaitableUI\ControlExtensions.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Helpers\AwaitableUI\EventAsync.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Helpers\AwaitableUI\FrameworkElementExtensions.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Helpers\AwaitableUI\WriteableBitmapExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\DoesFileExistHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\DownloadAndSaveHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\MathHelper.cs" />
@@ -100,12 +95,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\MusicLibrary\xboxmusic\Settings\ImageMode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\NativeOperationsHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\PointersUtils.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Helpers\SerializationHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\StoryboardExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\ToastHelper.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Helpers\UIAnimationHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\UpdateTileHelper.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Helpers\VisualTreeHelperExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\DeezerArtistItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Panel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Subtitle.cs" />
