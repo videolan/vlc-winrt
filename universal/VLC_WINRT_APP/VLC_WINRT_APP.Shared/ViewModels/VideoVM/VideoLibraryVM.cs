@@ -37,10 +37,10 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
 #if WINDOWS_APP
         private ObservableCollection<Panel> _panels = new ObservableCollection<Panel>();
 #endif
-        private ObservableCollection<ViewModels.VideoVM> _videos;
-        private ObservableCollection<ViewModels.VideoVM> _viewedVideos;
-        private ObservableCollection<ViewModels.VideoVM> _newVideos;
-        private IEnumerable<IGrouping<char, ViewModels.VideoVM>> _mediaGroupedByAlphabet;
+        private ObservableCollection<VideoVM> _videos;
+        private ObservableCollection<VideoVM> _viewedVideos;
+        private ObservableCollection<VideoVM> _newVideos;
+        private IEnumerable<IGrouping<char, VideoVM>> _mediaGroupedByAlphabet;
         #endregion
 
         #region private props
@@ -62,13 +62,13 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
         }
 #endif
 
-        public ObservableCollection<ViewModels.VideoVM> Videos
+        public ObservableCollection<VideoVM> Videos
         {
             get { return _videos; }
             set { SetProperty(ref _videos, value); }
         }
 
-        public ObservableCollection<ViewModels.VideoVM> ViewedVideos
+        public ObservableCollection<VideoVM> ViewedVideos
         {
             get { return _viewedVideos; }
             set
@@ -77,13 +77,13 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             }
         }
 
-        public ObservableCollection<ViewModels.VideoVM> NewVideos
+        public ObservableCollection<VideoVM> NewVideos
         {
             get { return _newVideos; }
             set { SetProperty(ref _newVideos, value); }
         }
 
-        public IEnumerable<IGrouping<char, ViewModels.VideoVM>> MediaGroupedByAlphabet
+        public IEnumerable<IGrouping<char, VideoVM>> MediaGroupedByAlphabet
         {
             get { return _mediaGroupedByAlphabet; }
             set { SetProperty(ref _mediaGroupedByAlphabet, value); }
@@ -110,8 +110,8 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
         public VideoLibraryVM()
         {
             OpenVideo = new PlayVideoCommand();
-            Videos = new ObservableCollection<ViewModels.VideoVM>();
-            ViewedVideos = new ObservableCollection<ViewModels.VideoVM>();
+            Videos = new ObservableCollection<VideoVM>();
+            ViewedVideos = new ObservableCollection<VideoVM>();
 
             GetViewedVideos();
 #if WINDOWS_APP
@@ -127,7 +127,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
         public async Task GetViewedVideos()
         {
             DispatchHelper.Invoke(async () => ViewedVideos = await _lastVideosRepository.Load());
-            NewVideos = new ObservableCollection<ViewModels.VideoVM>();
+            NewVideos = new ObservableCollection<VideoVM>();
             GetVideos();
         }
 
@@ -161,14 +161,14 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
                 //int j = 0;
                 foreach (StorageFile storageFile in files)
                 {
-                    var mediaVM = new ViewModels.VideoVM();
+                    var mediaVM = new VideoVM();
                     mediaVM.Initialize(storageFile);
                     await mediaVM.Initialize();
 
                     if (string.IsNullOrEmpty(mediaVM.Title))
                         continue;
 
-                    ViewModels.VideoVM searchVideo = ViewedVideos.FirstOrDefault(x => x.Title == mediaVM.Title);
+                    VideoVM searchVideo = ViewedVideos.FirstOrDefault(x => x.Title == mediaVM.Title);
                     if (searchVideo != null)
                     {
                         mediaVM.TimeWatched = searchVideo.TimeWatched;
