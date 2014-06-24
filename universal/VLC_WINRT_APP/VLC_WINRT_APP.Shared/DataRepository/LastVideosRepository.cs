@@ -23,35 +23,35 @@ namespace VLC_WINRT_APP.DataRepository
         {
             using (var db = new SQLiteConnection(_dbPath))
             {
-                db.CreateTable<MediaViewModel>();
+                db.CreateTable<VideoVM>();
             }
         }
 
         public
-            async Task<ObservableCollection<MediaViewModel>> Load()
+            async Task<ObservableCollection<VideoVM>> Load()
         {
             var connection = new SQLiteAsyncConnection(_dbPath);
 
-            return new ObservableCollection<MediaViewModel>(
-               await connection.QueryAsync<MediaViewModel>(
+            return new ObservableCollection<VideoVM>(
+               await connection.QueryAsync<VideoVM>(
                      "select * from MediaViewModel"));
         }
 
-        public async Task<MediaViewModel> LoadViaToken(string token)
+        public async Task<VideoVM> LoadViaToken(string token)
         {
             var connection = new SQLiteAsyncConnection(_dbPath);
-            var query = connection.Table<MediaViewModel>().Where(x => x.Token.Equals(token));
+            var query = connection.Table<VideoVM>().Where(x => x.Token.Equals(token));
             var result = await query.ToListAsync();
             return result.FirstOrDefault();
         }
 
-        public Task Update(MediaViewModel video)
+        public Task Update(VideoVM video)
         {
             var connection = new SQLiteAsyncConnection(_dbPath);
             return connection.UpdateAsync(video);
         }
 
-        public Task Add(MediaViewModel video)
+        public Task Add(VideoVM video)
         {
             var connection = new SQLiteAsyncConnection(_dbPath);
             return connection.InsertAsync(video);

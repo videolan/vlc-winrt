@@ -17,9 +17,9 @@ namespace VLC_WINRT_APP.Commands.VideoPlayer
     {
         public override void Execute(object parameter)
         {
-            if (parameter as MediaViewModel != null)
+            if (parameter as VideoVM != null)
             {
-                (parameter as MediaViewModel).Favorite = !(parameter as MediaViewModel).Favorite;
+                (parameter as VideoVM).Favorite = !(parameter as VideoVM).Favorite;
                 //SerializationHelper.SerializeAsJson(Locator.MainVM.VideoVM.Media, "VideosDB.json", null,
                 //    CreationCollisionOption.ReplaceExisting);
             }

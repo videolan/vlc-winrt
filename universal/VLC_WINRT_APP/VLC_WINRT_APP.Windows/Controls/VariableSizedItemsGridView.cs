@@ -21,11 +21,11 @@ namespace VLC_WINRT.Views.Controls
         protected override void PrepareContainerForItemOverride(Windows.UI.Xaml.DependencyObject element, object item)
         {
             i++;
-            MediaViewModel MediaViewModel;
-            MediaViewModel viewedVideo;
+            VideoVM videoVm;
+            VideoVM viewedVideo;
             MusicLibraryVM.AlbumItem albumItem;
-            MediaViewModel = item as MediaViewModel;
-            viewedVideo = item as MediaViewModel;
+            videoVm = item as VideoVM;
+            viewedVideo = item as VideoVM;
             albumItem = item as MusicLibraryVM.AlbumItem;
 
             if (viewedVideo != null)
@@ -36,7 +36,7 @@ namespace VLC_WINRT.Views.Controls
                     element.SetValue(VariableSizedWrapGrid.RowSpanProperty, 2);
                 }
             }
-            else if (MediaViewModel != null || albumItem != null)
+            else if (videoVm != null || albumItem != null)
             {
                 if (i == 0)
                 {

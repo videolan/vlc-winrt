@@ -24,7 +24,7 @@ using VLC_WINRT_APP.Services.Interface;
 
 namespace VLC_WINRT_APP.ViewModels.VideoVM
 {
-    public class MediaViewModel : BindableBase
+    public class VideoVM : BindableBase
     {
         private OpenVideoCommand _openVideo;
         private FavoriteVideoCommand _favoriteVideo;
@@ -39,7 +39,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
         private ImageSource _imageBrush;
         private readonly IThumbnailService _thumbsService;
         private string _token;
-        public MediaViewModel()
+        public VideoVM()
         {
             OpenVideo = new OpenVideoCommand();
             FavoriteVideo = new FavoriteVideoCommand();

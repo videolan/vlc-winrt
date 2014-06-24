@@ -11,11 +11,11 @@ namespace VLC_WINRT_APP.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            if (value is MediaViewModel
-                && (value as MediaViewModel).Duration != null
-                && (value as MediaViewModel).Duration.TotalSeconds != 0)
+            if (value is VideoVM
+                && (value as VideoVM).Duration != null
+                && (value as VideoVM).Duration.TotalSeconds != 0)
             {
-                double result = ((value as MediaViewModel).TimeWatched.TotalSeconds / (value as MediaViewModel).Duration.TotalSeconds) * 100;
+                double result = ((value as VideoVM).TimeWatched.TotalSeconds / (value as VideoVM).Duration.TotalSeconds) * 100;
                 return (int)result + "%";
             }
             return "";

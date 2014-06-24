@@ -40,7 +40,7 @@ namespace VLC_WINRT.ViewModels.PlayVideo
 #if NETFX_CORE
         private MouseService _mouseService;
 #endif
-        private MediaViewModel _currentVideo;
+        private VideoVM _currentVideo;
         private Subtitle _currentSubtitle;
         private int _subtitlesCount = 0;
         private IDictionary<int, string> _subtitlesTracks;
@@ -67,7 +67,7 @@ namespace VLC_WINRT.ViewModels.PlayVideo
 
         public LastVideosRepository _lastVideosRepository = new LastVideosRepository();
 
-        public MediaViewModel CurrentVideo
+        public VideoVM CurrentVideo
         {
             get { return _currentVideo; }
             set { SetProperty(ref _currentVideo, value); }
@@ -166,7 +166,7 @@ namespace VLC_WINRT.ViewModels.PlayVideo
             }
             OnPropertyChanged("TimeTotal");
             
-            MediaViewModel media = await _lastVideosRepository.LoadViaToken(_fileToken);
+            VideoVM media = await _lastVideosRepository.LoadViaToken(_fileToken);
             if (media == null)
             {
                 PositionInSeconds = 0;

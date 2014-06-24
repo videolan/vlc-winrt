@@ -122,7 +122,7 @@ namespace VLC_WINRT_APP.Commands
             if (file != null)
             {
                 Debug.WriteLine("Opening file: " + file.Path);
-                var video = new MediaViewModel();
+                var video = new VideoVM();
                 video.Initialize(file);
                 await video.Initialize();
                 Locator.PlayVideoVM.CurrentVideo = video;

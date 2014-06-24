@@ -36,13 +36,13 @@ namespace VLC_WINRT_APP.Commands
     {
         public async override void Execute(object parameter)
         {
-            if (parameter.GetType() != typeof (MediaViewModel))
+            if (parameter.GetType() != typeof (VideoVM))
                 throw new ArgumentException("Expecting to see a Media View Model for this command");
 
             if(MediaControl.IsPlaying)
                 Locator.MusicPlayerVM.Stop();
 
-            var vm = (MediaViewModel) parameter;
+            var vm = (VideoVM) parameter;
 
             string token = StorageApplicationPermissions.FutureAccessList.Add(vm.File);
 
@@ -58,7 +58,7 @@ namespace VLC_WINRT_APP.Commands
             //    }
             //}
 #endif
-            Locator.PlayVideoVM.CurrentVideo = parameter as MediaViewModel;
+            Locator.PlayVideoVM.CurrentVideo = parameter as VideoVM;
 #if NETFX_CORE
             App.ApplicationFrame.Navigate(typeof(VideoPlayerPage));
 #endif
