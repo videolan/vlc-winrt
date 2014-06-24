@@ -28,6 +28,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 {
     public class MusicPlayerVM : MediaPlaybackViewModel
     {
+        #region private props
         private ObservableCollection<MusicLibraryVM.TrackItem> _tracksCollection;
         private int _currentTrack = 0;
         private bool _canGoPrevious;
@@ -35,7 +36,32 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         private bool _isPlaying;
         private bool _isRunning;
         private MusicLibraryVM.ArtistItem _currentPlayingArtist;
+        #endregion
+
+        #region private fields
+
+        #endregion
+
+        #region public props
         public SystemMediaTransportControls MediaControl;
+        public MusicLibraryVM.ArtistItem CurrentPlayingArtist
+        {
+            get { return _currentPlayingArtist; }
+            set { SetProperty(ref _currentPlayingArtist, value); }
+        }
+
+        public bool CanGoPrevious
+        {
+            get
+            {
+                return (CurrentTrack > 0);
+            }
+        }
+
+        public bool CanGoNext
+        {
+            get { return (TrackCollection.Count != 1) && (CurrentTrack < TrackCollection.Count - 1); }
+        }
 
         public bool IsRunning
         {
@@ -73,13 +99,18 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             get { return _currentTrack; }
             set { SetProperty(ref _currentTrack, value); }
         }
+        #endregion
 
-
+        #region public fields
         public ObservableCollection<MusicLibraryVM.TrackItem> TrackCollection
         {
             get { return _tracksCollection; }
             set { SetProperty(ref _tracksCollection, value); }
         }
+        #endregion
+
+
+
 
 
         public MusicPlayerVM(IMediaService mediaService, VlcService mediaPlayerService)
@@ -118,26 +149,6 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         {
             _mediaService.Stop();
         }
-
-        public MusicLibraryVM.ArtistItem CurrentPlayingArtist
-        {
-            get { return _currentPlayingArtist; }
-            set { SetProperty(ref _currentPlayingArtist, value); }
-        }
-
-        public bool CanGoPrevious
-        {
-            get
-            {
-                return (CurrentTrack > 0);
-            }
-        }
-
-        public bool CanGoNext
-        {
-            get { return (TrackCollection.Count != 1) && (CurrentTrack < TrackCollection.Count - 1); }
-        }
-
 
         public void ResetCollection()
         {
