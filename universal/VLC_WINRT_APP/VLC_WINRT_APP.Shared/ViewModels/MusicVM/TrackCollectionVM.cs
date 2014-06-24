@@ -10,11 +10,10 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using VLC_WINRT.Common;
-using VLC_WINRT_APP.ViewModels.MusicVM;
 
-namespace VLC_WINRT_APP.ViewModels.MainPage.PlayMusic
+namespace VLC_WINRT_APP.ViewModels.MusicVM
 {
-    public class TrackCollectionViewModel : BindableBase
+    public class TrackCollectionVM : BindableBase
     {
         private ObservableCollection<MusicLibraryVM.TrackItem> _tracksCollection;
         private int _currentTrack = 0;
@@ -22,7 +21,7 @@ namespace VLC_WINRT_APP.ViewModels.MainPage.PlayMusic
         private bool _canGoNext;
         private bool _isRunning;
 
-        public TrackCollectionViewModel()
+        public TrackCollectionVM()
         {
             _tracksCollection = new ObservableCollection<MusicLibraryVM.TrackItem>();
         }

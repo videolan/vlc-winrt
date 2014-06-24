@@ -20,8 +20,6 @@ using VLC_WINRT.ViewModels.PlayVideo;
 using VLC_WINPRT;
 #endif
 using VLC_WINRT_APP.Common;
-using VLC_WINRT_APP.ViewModels.MainPage;
-using VLC_WINRT_APP.ViewModels.MainPage.PlayMusic;
 using VLC_WINRT_APP.ViewModels.Settings;
 using VLC_WINRT_APP.ViewModels.MusicVM;
 
@@ -44,9 +42,9 @@ namespace VLC_WINRT_APP.ViewModels
         /// <summary>
         ///     Initializes a new instance of the Locator class.
         /// </summary>
-        public static MusicPlayerViewModel MusicPlayerVM
+        public static MusicPlayerVM MusicPlayerVM
         {
-            get { return App.Container.Resolve<MusicPlayerViewModel>(); }
+            get { return App.Container.Resolve<MusicPlayerVM>(); }
         }
         public static MusicLibraryVM MusicLibraryVM
         {

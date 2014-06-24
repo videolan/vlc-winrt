@@ -127,14 +127,14 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainPage\BackerCountryViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainPage\ExternalStorageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainPage\MediaViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainPage\PlayMusic\MusicPlayerViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainPage\PlayMusic\TrackCollectionViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainPage\RemovableLibraryViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainPage\SpecialThanksViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainPage\VideoLibraryViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainPage\VlcExplorer\FileExplorerViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MediaPlaybackViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MusicVM\MusicLibraryViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MusicVM\MusicLibraryVM.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MusicVM\MusicPlayerVM.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MusicVM\TrackCollectionVM.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\NavigateableViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\PlayVideo\PlayVideoViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Settings\SettingsViewModel.cs" />
@@ -179,6 +179,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)ViewModels\MainPage\PlayMusic\" />
     <Folder Include="$(MSBuildThisFileDirectory)ViewModels\MainPage\VideoVM\" />
   </ItemGroup>
 </Project>

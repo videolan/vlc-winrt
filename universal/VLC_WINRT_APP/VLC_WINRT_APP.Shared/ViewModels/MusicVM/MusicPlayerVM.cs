@@ -21,17 +21,17 @@ using VLC_WINRT_APP.Utility.Helpers;
 using VLC_WINRT_APP.Utility.Services.Interface;
 using VLC_WINRT_APP.Utility.Services.RunTime;
 
-namespace VLC_WINRT_APP.ViewModels.MainPage.PlayMusic
+namespace VLC_WINRT_APP.ViewModels.MusicVM
 {
-    public class MusicPlayerViewModel : MediaPlaybackViewModel
+    public class MusicPlayerVM : MediaPlaybackViewModel
     {
         private MusicLibraryVM.ArtistItem _artist;
-        private TrackCollectionViewModel _trackCollection;
+        private TrackCollectionVM _trackCollection;
 
-        public MusicPlayerViewModel(IMediaService mediaService, VlcService mediaPlayerService)
+        public MusicPlayerVM(IMediaService mediaService, VlcService mediaPlayerService)
             : base(mediaService, mediaPlayerService)
         {
-            _trackCollection = new TrackCollectionViewModel();
+            _trackCollection = new TrackCollectionVM();
             _mediaService.MediaEnded += MediaService_MediaEnded;
         }
 
@@ -50,7 +50,7 @@ namespace VLC_WINRT_APP.ViewModels.MainPage.PlayMusic
             }
         }
 
-        public TrackCollectionViewModel TrackCollection
+        public TrackCollectionVM TrackCollection
         {
             get
             {

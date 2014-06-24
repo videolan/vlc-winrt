@@ -20,9 +20,6 @@ using VLC_WINRT.Common;
 using VLC_WINRT_APP.Utility.Helpers;
 using VLC_WINRT.ViewModels;
 using VLC_WINRT_APP.ViewModels;
-using VLC_WINRT_APP.ViewModels.MainPage;
-using VLC_WINRT_APP.Views.MainPages;
-using VLC_WINRT_APP.Views.MusicPages;
 using VLC_WINRT_APP.ViewModels.MusicVM;
 
 namespace VLC_WINRT_APP.Utility.Commands
@@ -33,7 +30,6 @@ namespace VLC_WINRT_APP.Utility.Commands
         {
             try
             {
-
                 MusicLibraryVM.AlbumItem album = parameter as MusicLibraryVM.AlbumItem;
                 Locator.MusicPlayerVM.TrackCollection.ResetCollection();
                 Locator.MusicPlayerVM.TrackCollection.AddTrack(album.Tracks.ToList());

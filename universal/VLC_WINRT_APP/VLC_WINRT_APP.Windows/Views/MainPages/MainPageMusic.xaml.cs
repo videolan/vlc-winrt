@@ -9,114 +9,84 @@
 
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
 using VLC_WINRT.Common;
+using VLC_WINRT_APP.Utility.Commands;
 using VLC_WINRT_APP.Utility.Helpers;
 using VLC_WINRT.ViewModels;
 using VLC_WINRT_APP.ViewModels;
-using VLC_WINRT_APP.ViewModels.MainPage;
-using VLC_WINRT_APP.ViewModels.MusicVM;
 using Panel = VLC_WINRT_APP.Model.Panel;
+using VLC_WINRT_APP.ViewModels.MusicVM;
 
 namespace VLC_WINRT_APP.Views.MainPages
 {
     public sealed partial class MainPageMusic : Page
     {
-        private int _currentSection;
-        private bool _isLoaded;
         public MainPageMusic()
         {
             this.InitializeComponent();
-            this.Loaded += (sender, args) =>
-            {
-                if (_isLoaded) return;
-                UIAnimationHelper.FadeOut(TracksPanel);
-                for (int i = 0; i < SectionsGrid.Children.Count; i++)
-                {
-                    if (i != _currentSection)
-                        UIAnimationHelper.FadeOut(SectionsGrid.Children[i]);
-                }
-                _isLoaded = true;
-            };
-            this.SizeChanged += OnSizeChanged;
         }
 
         private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
         {
-            DispatchHelper.Invoke(() =>
+        }
+
+        private void SemanticZoom_OnViewChangeCompletedArtistByName(object sender, SemanticZoomViewChangedEventArgs e)
+        {
+            Locator.MusicLibraryVM.ExecuteSemanticZoom(SemanticZoomAlbumsByArtist, ArtistsGroupedByName);
+        }
+
+        private void SemanticZoomArtistByAlphaKey_OnViewChangeCompleted(object sender, SemanticZoomViewChangedEventArgs e)
+        {
+            Locator.MusicLibraryVM.ExecuteSemanticZoom(SemanticZoomArtistByAlphaKey, ArtistByAlphaKey);
+        }
+
+        private void Header_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            SemanticZoomAlbumsByArtist.IsZoomedInViewActive = false;
+        }
+
+        private void Panels_OnItemClick(object sender, ItemClickEventArgs e)
+        {
+            Model.Panel panel = e.ClickedItem as Model.Panel;
+            foreach (var panel1 in Locator.MusicLibraryVM.Panels)
             {
-                if (sizeChangedEventArgs.NewSize.Width < 1080)
-                {
-                    SectionsGrid.Margin = new Thickness(40, 0, 0, 0);
-                }
-                else
-                {
-                    SectionsGrid.Margin = new Thickness(50, 0, 0, 0);
-                }
-
-
-                if (sizeChangedEventArgs.NewSize.Width == 320)
-                {
-                    FullGrid.Visibility = Visibility.Collapsed;
-                    SnapGrid.Visibility = Visibility.Visible;
-                    SectionsHeaderListView.Visibility = Visibility.Collapsed;
-                    SectionsGrid.Margin = new Thickness(0);
-                }
-                else
-                {
-                    FullGrid.Visibility = Visibility.Visible;
-                    SnapGrid.Visibility = Visibility.Collapsed;
-                    SectionsHeaderListView.Visibility = Visibility.Visible;
-                    SectionsGrid.Margin = new Thickness(50, 0, 0, 0);
-                }
-            });
-        }
-
-        private void AlbumGridView_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            var album = e.ClickedItem as MusicLibraryVM.AlbumItem;
-            album.PlayAlbum.Execute(e.ClickedItem);
-        }
-        
-        private void SectionsHeaderListView_OnItemClick(object sender, ItemClickEventArgs e)
-        {
-            int i = ((Panel)e.ClickedItem).Index;
-            ChangedSectionsHeadersState(i);
-        }
-
-        public void ChangedSectionsHeadersState(int i)
-        {
-            AlbumsByArtistSemanticZoom.IsZoomedInViewActive = true;
-            AlbumsByArtistSnapSemanticZoom.IsZoomedInViewActive = true;
-            if (_currentSection == i) return;
-            UIAnimationHelper.FadeOut(SectionsGrid.Children[_currentSection]);
-            UIAnimationHelper.FadeIn(SectionsGrid.Children[i]);
-            _currentSection = i;
-            for (int j = 0; j < SectionsHeaderListView.Items.Count; j++)
-                Locator.MusicLibraryVM.Panels[j].Opacity = 0.4;
-            Locator.MusicLibraryVM.Panels[i].Opacity = 1;
-        }
-
-        private void AlbumsByArtistSemanticZoom_OnViewChangeCompleted(object sender, SemanticZoomViewChangedEventArgs e)
-        {
-            try
-            {
-                Locator.MusicLibraryVM.ExecuteSemanticZoom();
+                panel1.Opacity = 0.4;
             }
-            catch
+            panel.Opacity = 1;
+            switch (panel.Title)
             {
-                
+                case "albums":
+                    SemanticZoomAlbumsByArtist.Visibility = Visibility.Visible;
+                    SemanticZoomArtistByAlphaKey.Visibility = Visibility.Collapsed;
+                    RadDataGrid.Visibility = Visibility.Collapsed;
+                    FavoriteAlbumsGridView.Visibility = Visibility.Collapsed;
+                    break;
+                case "artists":
+                    SemanticZoomAlbumsByArtist.Visibility = Visibility.Collapsed;
+                    SemanticZoomArtistByAlphaKey.Visibility = Visibility.Visible;
+                    RadDataGrid.Visibility = Visibility.Collapsed;
+                    FavoriteAlbumsGridView.Visibility = Visibility.Collapsed;
+                    break;
+                case "songs":
+                    SemanticZoomAlbumsByArtist.Visibility = Visibility.Collapsed;
+                    SemanticZoomArtistByAlphaKey.Visibility = Visibility.Collapsed;
+                    RadDataGrid.Visibility = Visibility.Visible;
+                    FavoriteAlbumsGridView.Visibility = Visibility.Collapsed;
+                    break;
+                case "pinned":
+                    SemanticZoomAlbumsByArtist.Visibility = Visibility.Collapsed;
+                    SemanticZoomArtistByAlphaKey.Visibility = Visibility.Collapsed;
+                    RadDataGrid.Visibility = Visibility.Collapsed;
+                    FavoriteAlbumsGridView.Visibility = Visibility.Visible;
+                    break;
             }
         }
 
-        private void FavoriteAlbumItemClick(object sender, ItemClickEventArgs e)
-        {
-            (e.ClickedItem as MusicLibraryVM.AlbumItem).PlayAlbum.Execute(e.ClickedItem);
-        }
-
-        private void OnHeaderSemanticZoomClicked(object sender, RoutedEventArgs e)
-        {
-            AlbumsByArtistSnapSemanticZoom.IsZoomedInViewActive = false;
-            AlbumsByArtistSemanticZoom.IsZoomedInViewActive = false;
-        }
+        //private void RadDataGrid_OnSelectionChanged(object sender, DataGridSelectionChangedEventArgs e)
+        //{
+        //    PlayTrackCommand playTrackCommand = new PlayTrackCommand();
+        //    playTrackCommand.Execute(e);
+        //}
     }
 }

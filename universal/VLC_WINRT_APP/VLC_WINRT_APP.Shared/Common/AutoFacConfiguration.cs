@@ -12,10 +12,7 @@ using VLC_WINRT_APP.Utility.Services.Interface;
 using VLC_WINRT_APP.Utility.Services.RunTime;
 using VLC_WINRT.ViewModels;
 using VLC_WINRT_APP.ViewModels;
-using VLC_WINRT_APP.ViewModels.MainPage;
-using VLC_WINRT_APP.ViewModels.MainPage.PlayMusic;
 using VLC_WINRT_APP.ViewModels.Settings;
-using VLC_WINRT_APP.Views;
 using VLC_WINRT_APP.Views.MainPages;
 using DesignTime = VLC_WINRT_APP.Utility.Services.DesignTime;
 using VLC_WINRT.ViewModels.MainPage;
@@ -48,7 +45,7 @@ namespace VLC_WINRT_APP.Common
             builder.RegisterType<PlayVideoViewModel>().SingleInstance();
             builder.RegisterType<MainVM>().SingleInstance();
             builder.RegisterType<MusicLibraryVM>().SingleInstance();
-            builder.RegisterType<MusicPlayerViewModel>().SingleInstance();
+            builder.RegisterType<MusicPlayerVM>().SingleInstance();
             builder.RegisterType<VideoLibraryViewModel>().SingleInstance();
             builder.RegisterType<SettingsViewModel>().SingleInstance();
 
