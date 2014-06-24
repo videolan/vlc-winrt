@@ -62,7 +62,7 @@ namespace VLC_WINRT_APP.Commands
 #if NETFX_CORE
             App.ApplicationFrame.Navigate(typeof(VideoPlayerPage));
 #endif
-            Locator.VideoVm.SetActiveVideoInfo(token, vm.File.Name);
+            Locator.VideoVm.SetActiveVideoInfo(token);
         }
     }
 }

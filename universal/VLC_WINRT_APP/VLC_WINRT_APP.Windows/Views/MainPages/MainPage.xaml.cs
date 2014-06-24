@@ -74,7 +74,7 @@ namespace VLC_WINRT_APP.Views.MainPages
         public void OpenVideoFromFileExplorer()
         {
             Debug.WriteLine("Opening file: " + App.TemporaryFileName);
-            Locator.VideoVm.SetActiveVideoInfo(App.TemporaryMRL, App.TemporaryFileName);
+            Locator.VideoVm.SetActiveVideoInfo(App.TemporaryMRL);
             App.ApplicationFrame.Navigate(typeof(VideoPlayerPage));
             App.TemporaryFileName = null;
             App.TemporaryMRL = null;

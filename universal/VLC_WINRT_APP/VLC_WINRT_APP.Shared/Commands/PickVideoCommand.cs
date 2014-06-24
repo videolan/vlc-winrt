@@ -126,7 +126,7 @@ namespace VLC_WINRT_APP.Commands
                 video.Initialize(file);
                 await video.Initialize();
                 Locator.VideoVm.CurrentVideo = video;
-                Locator.VideoVm.SetActiveVideoInfo(video.Token, file.Name);
+                Locator.VideoVm.SetActiveVideoInfo(video.Token);
 #if NETFX_CORE
                 App.ApplicationFrame.Navigate(typeof(VideoPlayerPage));
 #endif

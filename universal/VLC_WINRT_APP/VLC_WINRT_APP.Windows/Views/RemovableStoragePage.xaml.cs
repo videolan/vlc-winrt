@@ -102,7 +102,7 @@ namespace VLC_WINRT_APP.Views
             {
                 string FileName = ((VlcStorageFile)item).Name;
                 string MRL = StorageApplicationPermissions.FutureAccessList.Add(((VlcStorageFile)item).StorageFile);
-                Locator.VideoVm.SetActiveVideoInfo(MRL, FileName);
+                Locator.VideoVm.SetActiveVideoInfo(MRL);
                 App.ApplicationFrame.Navigate(typeof(VideoPlayerPage));
             }
         }

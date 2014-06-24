@@ -168,14 +168,20 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             base.OnPlaybackStopped();
         }
 
-        public async void SetActiveVideoInfo(string token, string title)
+
+        private void FirePositionUpdate(object sender, object e)
+        {
+            UpdatePosition();
+        }
+
+        public async void SetActiveVideoInfo(string mrl)
         {
             // Pause the music viewmodel
             Locator.MusicPlayerVM.CleanViewModel();
 
             IsRunning = true;
-            _fileToken = token;
-            _mrl = "file://" + token;
+            _fileToken = mrl;
+            _mrl = "file://" + mrl;
             _timeTotal = TimeSpan.Zero;
             _elapsedTime = TimeSpan.Zero;
 
@@ -189,7 +195,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
                 TimeTotal = TimeSpan.FromMilliseconds(timeInMilliseconds);
             }
             OnPropertyChanged("TimeTotal");
-            
+
             VideoVM media = await _lastVideosRepository.LoadViaToken(_fileToken);
             if (media == null)
             {
@@ -207,32 +213,6 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             await _vlcPlayerService.GetSubtitleDescription(SubtitlesTracks);
             await _vlcPlayerService.GetAudioTrackDescription(AudioTracks);
             _vlcPlayerService.MediaEnded += VlcPlayerServiceOnMediaEnded;
-            //RegisterMediaControlEvents();
-            
-            _positionTimer.Tick += FirePositionUpdate;
-            _positionTimer.Start();
-            _positionTimer.Interval = TimeSpan.FromSeconds(15);
-        }
-
-        private void FirePositionUpdate(object sender, object e)
-        {
-            UpdatePosition();
-        }
-
-        public void SetActiveVideoInfo(string mrl)
-        {
-            // Pause the music viewmodel
-            Locator.MusicPlayerVM.CleanViewModel();
-
-            _fileToken = null;
-            _mrl = "file://" + mrl;
-            TimeTotal = TimeSpan.Zero;
-            ElapsedTime = TimeSpan.Zero;
-
-            _vlcPlayerService.Open(_mrl);
-            _vlcPlayerService.Play();
-            _vlcPlayerService.MediaEnded += VlcPlayerServiceOnMediaEnded;
-            //RegisterMediaControlEvents();
         }
 
         void RegisterMediaControlEvents()
