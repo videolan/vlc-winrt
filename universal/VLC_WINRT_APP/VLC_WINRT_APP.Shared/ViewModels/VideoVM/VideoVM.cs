@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.AccessCache;
 using Windows.Storage.FileProperties;
+using Windows.UI.Core;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Autofac;
@@ -163,28 +164,25 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
                 if (File.FileType == ".mkv")
                 {
                     WriteableBitmap thumb = await _thumbsService.GetScreenshot(File);
-                    await DispatchHelper.InvokeAsync(async () =>
-                    {
-                        Image = thumb;
-                    });
+                    App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => Image = thumb);
                 }
                 else
                 {
                     StorageItemThumbnail thumb = await _thumbsService.GetThumbnail(File);
-                    await DispatchHelper.InvokeAsync(async () =>
+                    App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
                     {
                         var image = new BitmapImage();
-                        await image.SetSourceAsync(thumb);
+                        image.SetSourceAsync(thumb);
                         Image = image;
                     });
                 }
-               
             }
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.ToString());
             }
         }
+
         private async Task GetTimeInformation()
         {
             if (VideoProperties == null)

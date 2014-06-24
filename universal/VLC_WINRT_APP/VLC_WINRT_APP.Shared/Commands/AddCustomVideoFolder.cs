@@ -98,7 +98,6 @@ namespace VLC_WINRT_APP.Commands
                     DisplayName = folder.DisplayName,
                     Mru = mru,
                 });
-                await Locator.MainVM.InitVideoVM();
             }
         }
     }

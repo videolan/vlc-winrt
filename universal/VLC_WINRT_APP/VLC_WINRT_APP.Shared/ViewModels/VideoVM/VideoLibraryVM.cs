@@ -16,9 +16,12 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Windows.Foundation;
 using Windows.Storage;
 using Windows.Storage.AccessCache;
 using Windows.Storage.Search;
+using Windows.System.Threading;
+using Windows.UI.Core;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 using SQLite;
@@ -112,8 +115,8 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             OpenVideo = new PlayVideoCommand();
             Videos = new ObservableCollection<VideoVM>();
             ViewedVideos = new ObservableCollection<VideoVM>();
-
-            GetViewedVideos();
+            ThreadPool.RunAsync(operation => GetViewedVideos());
+            //Task.Run(() => GetViewedVideos());
 #if WINDOWS_APP
             Panels.Add(new Panel("all", 0, 1));
             Panels.Add(new Panel("new", 1, 0.4));
@@ -126,78 +129,78 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
         #region methods
         public async Task GetViewedVideos()
         {
+            App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => NewVideos = new ObservableCollection<VideoVM>());
             DispatchHelper.Invoke(async () => ViewedVideos = await _lastVideosRepository.Load());
-            NewVideos = new ObservableCollection<VideoVM>();
             GetVideos();
         }
 
         public async Task GetVideos()
         {
-            #if WINDOWS_APP
-                        foreach (CustomFolder folder in Locator.SettingsVM.VideoFolders)
-                        {
-            #endif
-            try
-            {
-                StorageFolder customVideoFolder;
 #if WINDOWS_APP
-                if (folder.Mru == "Video Library")
+            foreach (CustomFolder folder in Locator.SettingsVM.VideoFolders)
+            {
+#endif
+                try
                 {
-                    customVideoFolder = KnownFolders.VideosLibrary;
-                }
-                else
-                {
-                    customVideoFolder = await StorageApplicationPermissions.FutureAccessList.GetFolderAsync(
-                        folder.Mru);
-                }
+                    StorageFolder customVideoFolder;
+#if WINDOWS_APP
+                    if (folder.Mru == "Video Library")
+                    {
+                        customVideoFolder = KnownFolders.VideosLibrary;
+                    }
+                    else
+                    {
+                        customVideoFolder = await StorageApplicationPermissions.FutureAccessList.GetFolderAsync(
+                            folder.Mru);
+                    }
 #endif
 #if WINDOWS_PHONE_APP                    
                 customVideoFolder = KnownFolders.VideosLibrary;
 #endif
 
-                IReadOnlyList<StorageFile> files =
-                    await GetMediaFromFolder(customVideoFolder, CommonFileQuery.OrderByName);
+                    IReadOnlyList<StorageFile> files =
+                        await GetMediaFromFolder(customVideoFolder, CommonFileQuery.OrderByName);
 
-                //int j = 0;
-                foreach (StorageFile storageFile in files)
-                {
-                    var mediaVM = new VideoVM();
-                    mediaVM.Initialize(storageFile);
-                    await mediaVM.Initialize();
-
-                    if (string.IsNullOrEmpty(mediaVM.Title))
-                        continue;
-
-                    VideoVM searchVideo = ViewedVideos.FirstOrDefault(x => x.Title == mediaVM.Title);
-                    if (searchVideo != null)
+                    //int j = 0;
+                    foreach (StorageFile storageFile in files)
                     {
-                        mediaVM.TimeWatched = searchVideo.TimeWatched;
-                    }
-                    else
-                    {
-                        DispatchHelper.Invoke(() => NewVideos.Add(mediaVM));
-                    }
+                        var mediaVM = new VideoVM();
+                        mediaVM.Initialize(storageFile);
+                        await mediaVM.Initialize();
 
-                    // Get back to UI thread
-                    await DispatchHelper.InvokeAsync(() =>
-                    {
-                        Videos.Add(mediaVM);
-                        //int i = new Random().Next(0, files.Count - 1);
-                        //if (j < 5 && i <= (files.Count - 1) / 2)
-                        //{
-                        //    MediaRandom.Add(mediaVM);
-                        //    j++;
-                        //}
-                        MediaGroupedByAlphabet = Videos.OrderBy(x => x.AlphaKey).GroupBy(x => x.AlphaKey);
-                    });
-                }
-            }
-            catch (Exception exception)
-            {
-                Debug.WriteLine("An error occured while indexing a video folder");
-            }
-#if WINDOWS_APP
+                        if (string.IsNullOrEmpty(mediaVM.Title))
+                            continue;
+
+                        VideoVM searchVideo = ViewedVideos.FirstOrDefault(x => x.Title == mediaVM.Title);
+                        if (searchVideo != null)
+                        {
+                            mediaVM.TimeWatched = searchVideo.TimeWatched;
                         }
+                        else
+                        {
+                            DispatchHelper.Invoke(() => NewVideos.Add(mediaVM));
+                        }
+
+                        // Get back to UI thread
+                        await DispatchHelper.InvokeAsync(() =>
+                        {
+                            Videos.Add(mediaVM);
+                            //int i = new Random().Next(0, files.Count - 1);
+                            //if (j < 5 && i <= (files.Count - 1) / 2)
+                            //{
+                            //    MediaRandom.Add(mediaVM);
+                            //    j++;
+                            //}
+                            MediaGroupedByAlphabet = Videos.OrderBy(x => x.AlphaKey).GroupBy(x => x.AlphaKey);
+                        });
+                    }
+                }
+                catch (Exception exception)
+                {
+                    Debug.WriteLine("An error occured while indexing a video folder");
+                }
+#if WINDOWS_APP
+            }
 #endif
 
             if (Videos.Count > 0)

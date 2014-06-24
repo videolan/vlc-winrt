@@ -11,11 +11,6 @@
       d:DesignHeight="768"
       d:DesignWidth="550">
 
-    <Page.Resources>
-        <dataTemplateSelectors:MediaItemDataTemplateSelector WideMovieTemplate="{StaticResource SemanticZoomInViewMovieTemplate}"
-                                                             NormalMovieTemplate="{StaticResource SemanticZoomInViewMovieTemplate}"
-                                                             x:Key="MediaItemDataTemplateSelector" />
-    </Page.Resources>
     <Grid x:Name="RootGrid">
         <Hub x:Name="MainHub"
              Orientation="Horizontal">

@@ -36,7 +36,6 @@ namespace VLC_WINRT_APP.Commands
             }
             catch (FileNotFoundException exception)
             {
-                Locator.MainVM.InitMusicM();
                 ToastHelper.Basic("The file doesn't exists anymore. Rebuilding the music database", true);
                 Debug.WriteLine("It seems that file doesn't exist anymore. Needs to rebuild Music Library");
                 return;
