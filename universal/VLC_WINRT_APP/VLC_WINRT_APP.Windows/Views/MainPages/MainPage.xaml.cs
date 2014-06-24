@@ -16,6 +16,7 @@ using VLC_WINRT_APP.Services.Interface;
 using VLC_WINRT.ViewModels;
 using VLC_WINRT.Views;
 using VLC_WINRT_APP.ViewModels;
+using VLC_WINRT_APP.Views.VideoPages;
 
 namespace VLC_WINRT_APP.Views.MainPages
 {
@@ -74,7 +75,7 @@ namespace VLC_WINRT_APP.Views.MainPages
         {
             Debug.WriteLine("Opening file: " + App.TemporaryFileName);
             Locator.PlayVideoVM.SetActiveVideoInfo(App.TemporaryMRL, App.TemporaryFileName);
-            App.ApplicationFrame.Navigate(typeof(PlayVideo));
+            App.ApplicationFrame.Navigate(typeof(VideoPlayerPage));
             App.TemporaryFileName = null;
             App.TemporaryMRL = null;
         }

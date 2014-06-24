@@ -21,6 +21,7 @@ using VLC_WINRT.ViewModels.MainPage.VlcExplorer;
 using VLC_WINRT_APP;
 using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.Views.MainPages;
+using VLC_WINRT_APP.Views.VideoPages;
 using WinRTXamlToolkit.AwaitableUI;
 
 
@@ -106,7 +107,7 @@ namespace VLC_WINRT.Views
                 string FileName = ((VlcStorageFile)item).Name;
                 string MRL = StorageApplicationPermissions.FutureAccessList.Add(((VlcStorageFile)item).StorageFile);
                 Locator.PlayVideoVM.SetActiveVideoInfo(MRL, FileName);
-                App.ApplicationFrame.Navigate(typeof(PlayVideo));
+                App.ApplicationFrame.Navigate(typeof(VideoPlayerPage));
             }
         }
     }

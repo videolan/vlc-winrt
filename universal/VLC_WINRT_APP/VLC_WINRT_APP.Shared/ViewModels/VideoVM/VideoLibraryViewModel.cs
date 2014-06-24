@@ -7,32 +7,30 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
+#if WINDOWS_PHONE_APP
+
+#endif
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Threading.Tasks;
 using System.Linq;
+using System.Threading.Tasks;
+using Windows.Storage;
 using Windows.Storage.AccessCache;
+using Windows.Storage.Search;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 using VLC_WINRT.Common;
+using VLC_WINRT.ViewModels.MainPage;
 using VLC_WINRT_APP.Commands;
-using Windows.Storage;
-using Windows.Storage.Search;
-using VLC_WINRT_APP.Helpers;
-using VLC_WINRT_APP;
-using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.ViewModels.Settings;
 using Panel = VLC_WINRT_APP.Model.Panel;
-#if WINDOWS_PHONE_APP
-
-#endif
 #if NETFX_CORE
-using VLC_WINRT.Views.Controls.MainPage;
+
 #endif
 
-namespace VLC_WINRT.ViewModels.MainPage
+namespace VLC_WINRT_APP.ViewModels.VideoVM
 {
     public class VideoLibraryViewModel : BindableBase
     {

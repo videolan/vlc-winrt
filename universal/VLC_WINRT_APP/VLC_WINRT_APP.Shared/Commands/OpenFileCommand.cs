@@ -20,6 +20,7 @@ using VLC_WINRT.ViewModels.MainPage;
 using VLC_WINRT_APP;
 using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.Views.MainPages;
+using VLC_WINRT_APP.Views.VideoPages;
 #if NETFX_CORE
 using VLC_WINRT.Views;
 #endif
@@ -58,7 +59,7 @@ namespace VLC_WINRT_APP.Commands
 #endif
             Locator.PlayVideoVM.CurrentVideo = parameter as MediaViewModel;
 #if NETFX_CORE
-            App.ApplicationFrame.Navigate(typeof(PlayVideo));
+            App.ApplicationFrame.Navigate(typeof(VideoPlayerPage));
 #endif
             Locator.PlayVideoVM.SetActiveVideoInfo(token, vm.File.Name);
         }

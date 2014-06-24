@@ -8,6 +8,7 @@
  **********************************************************************/
 
 using Windows.Storage;
+using VLC_WINRT_APP.ViewModels.VideoVM;
 
 namespace VLC_WINRT.ViewModels.MainPage
 {

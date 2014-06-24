@@ -121,14 +121,14 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainPage\MediaViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainPage\RemovableLibraryViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainPage\SpecialThanksViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainPage\VideoLibraryViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainPage\VlcExplorer\FileExplorerViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MediaPlaybackViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MusicVM\MusicLibraryVM.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MusicVM\MusicPlayerVM.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\NavigateableViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\PlayVideo\PlayVideoViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\VideoVM\PlayVideoViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Settings\SettingsViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\VideoVM\VideoLibraryViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <PRIResource Include="$(MSBuildThisFileDirectory)Strings\de-DE\Resources.resw" />

@@ -13,9 +13,7 @@ using VLC_WINRT_APP.Services.RunTime;
 using VLC_WINRT.ViewModels;
 using VLC_WINRT_APP;
 using VLC_WINRT_APP.ViewModels;
-#if NETFX_CORE
-using VLC_WINRT.Views;
-#endif
+using VLC_WINRT_APP.Views.VideoPages;
 #if WINDOWS_PHONE_APP
 
 #endif
@@ -33,7 +31,7 @@ namespace VLC_WINRT_APP.Commands
             //TODO: pass MRL to vlc
             Locator.PlayVideoVM.SetActiveVideoInfo(mrl);
             #if NETFX_CORE
-            App.ApplicationFrame.Navigate(typeof(PlayVideo));
+            App.ApplicationFrame.Navigate(typeof(VideoPlayerPage));
             #endif
         }
     }

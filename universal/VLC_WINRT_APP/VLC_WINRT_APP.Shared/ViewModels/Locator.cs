@@ -22,6 +22,7 @@ using VLC_WINPRT;
 using VLC_WINRT_APP.Common;
 using VLC_WINRT_APP.ViewModels.Settings;
 using VLC_WINRT_APP.ViewModels.MusicVM;
+using VLC_WINRT_APP.ViewModels.VideoVM;
 
 namespace VLC_WINRT_APP.ViewModels
 {

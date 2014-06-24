@@ -172,8 +172,8 @@
     <Compile Include="Views\MusicPages\ArtistPage.xaml.cs">
       <DependentUpon>ArtistPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PlayVideo.xaml.cs">
-      <DependentUpon>PlayVideo.xaml</DependentUpon>
+    <Compile Include="Views\VideoPages\VideoPlayerPage.xaml.cs">
+      <DependentUpon>VideoPlayerPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\RemovableStoragePage.xaml.cs">
@@ -795,7 +795,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="PlayVideo.xaml">
+    <Page Include="Views\VideoPages\VideoPlayerPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
