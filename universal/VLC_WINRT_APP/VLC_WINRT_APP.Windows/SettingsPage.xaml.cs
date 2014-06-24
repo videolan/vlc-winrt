@@ -10,6 +10,7 @@ using VLC_WINRT.ViewModels;
 using VLC_WINRT_APP;
 using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.ViewModels.Settings;
+using WinRTXamlToolkit.Controls.Extensions;
 
 namespace VLC_WINRT.Views
 {
@@ -25,7 +26,6 @@ namespace VLC_WINRT.Views
 
         private void OpenSearchPane(object sender, RoutedEventArgs e)
         {
-            App.RootPage.SearchPane.Show();
         }
 
         private void MovieListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
