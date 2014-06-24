@@ -9,6 +9,7 @@
 
 using VLC_WINRT.Common;
 using VLC_WINRT.ViewModels.MainPage;
+using VLC_WINRT_APP.ViewModels.VideoVM;
 
 namespace VLC_WINRT_APP.Commands.VideoPlayer
 {

@@ -10,6 +10,7 @@
 using Windows.UI.Xaml.Controls;
 using VLC_WINRT.ViewModels.MainPage;
 using VLC_WINRT_APP.ViewModels.MusicVM;
+using VLC_WINRT_APP.ViewModels.VideoVM;
 
 namespace VLC_WINRT.Views.Controls
 {

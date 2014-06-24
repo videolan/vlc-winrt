@@ -23,6 +23,7 @@ using VLC_WINRT.ViewModels.MainPage;
 using VLC_WINRT_APP.Services.Interface;
 using VLC_WINRT_APP;
 using VLC_WINRT_APP.ViewModels;
+using VLC_WINRT_APP.ViewModels.VideoVM;
 #if NETFX_CORE
 using libVLCX;
 #endif

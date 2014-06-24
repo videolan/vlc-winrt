@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using SQLite;
 using VLC_WINRT.ViewModels.MainPage;
+using VLC_WINRT_APP.ViewModels.VideoVM;
 
 namespace VLC_WINRT_APP.DataRepository
 {

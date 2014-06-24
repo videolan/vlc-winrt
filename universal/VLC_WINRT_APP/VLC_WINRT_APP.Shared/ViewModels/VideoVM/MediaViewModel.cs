@@ -9,6 +9,8 @@
 
 using System;
 using System.Diagnostics;
+using System.Threading.Tasks;
+using Windows.Storage;
 using Windows.Storage.AccessCache;
 using Windows.Storage.FileProperties;
 using Windows.UI.Xaml.Media;
@@ -17,14 +19,10 @@ using Autofac;
 using SQLite;
 using VLC_WINRT.Common;
 using VLC_WINRT_APP.Commands;
-using Windows.Storage;
 using VLC_WINRT_APP.Commands.VideoPlayer;
-using System.Threading.Tasks;
 using VLC_WINRT_APP.Services.Interface;
-using VLC_WINRT_APP;
-using VLC_WINRT_APP.Commands;
 
-namespace VLC_WINRT.ViewModels.MainPage
+namespace VLC_WINRT_APP.ViewModels.VideoVM
 {
     public class MediaViewModel : BindableBase
     {

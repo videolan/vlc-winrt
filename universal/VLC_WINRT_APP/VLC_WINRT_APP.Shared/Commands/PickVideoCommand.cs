@@ -23,6 +23,7 @@ using VLC_WINPRT;
 #endif
 using VLC_WINRT_APP;
 using VLC_WINRT_APP.ViewModels;
+using VLC_WINRT_APP.ViewModels.VideoVM;
 using VLC_WINRT_APP.Views.VideoPages;
 #if NETFX_CORE
 using VLC_WINRT.Views;

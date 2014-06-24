@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Windows.UI.Xaml.Data;
 using VLC_WINRT.ViewModels.MainPage;
+using VLC_WINRT_APP.ViewModels.VideoVM;
 
 namespace VLC_WINRT_APP.Converters
 {

@@ -19,6 +19,7 @@ using VLC_WINRT.ViewModels;
 using VLC_WINRT.ViewModels.MainPage;
 using VLC_WINRT_APP;
 using VLC_WINRT_APP.ViewModels;
+using VLC_WINRT_APP.ViewModels.VideoVM;
 using VLC_WINRT_APP.Views.MainPages;
 using VLC_WINRT_APP.Views.VideoPages;
 #if NETFX_CORE
