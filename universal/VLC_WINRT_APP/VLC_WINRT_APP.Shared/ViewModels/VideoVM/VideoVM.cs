@@ -18,7 +18,6 @@ using Windows.UI.Xaml.Media.Imaging;
 using Autofac;
 using SQLite;
 using VLC_WINRT.Common;
-using VLC_WINRT_APP.Commands;
 using VLC_WINRT_APP.Commands.VideoPlayer;
 using VLC_WINRT_APP.Services.Interface;
 
@@ -26,37 +25,26 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
 {
     public class VideoVM : BindableBase
     {
-        private FavoriteVideoCommand _favoriteVideo; 
-        private string _subtitle = string.Empty;
-        private string _title = string.Empty;
+        #region private props
         private char _alphaKey;
+        private string _token;
+        private string _type;
+        private string _title = string.Empty;
+        private string _subtitle = string.Empty;
         private bool _favorite;
         private TimeSpan _duration;
-        private string _type;
         private TimeSpan _timeWatched;
-        private StorageFile _file;
         private ImageSource _imageBrush;
+        private StorageFile _file;
+        private FavoriteVideoCommand _favoriteVideo;
         private readonly IThumbnailService _thumbsService;
-        private string _token;
-        public VideoVM()
-        {
-            FavoriteVideo = new FavoriteVideoCommand();
-            _thumbsService = App.Container.Resolve<IThumbnailService>();
-        }
+        #endregion
 
-        public void Initialize(StorageFile storageFile)
-        {
-            if (storageFile != null)
-            {
-                File = storageFile;
-                Title = storageFile.DisplayName;
-                AlphaKey = Title.ToUpper()[0];
-                Subtitle = storageFile.FileType.ToUpper() + " File";
-                Type = storageFile.FileType.Replace(".", "").ToLower();
-                Token = StorageApplicationPermissions.FutureAccessList.Add(File);
-            }
-        }
+        #region private fields
 
+        #endregion
+
+        #region public props
         [Ignore]
         public ImageSource Image
         {
@@ -80,36 +68,6 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
         {
             get { return _token; }
             set { SetProperty(ref _token, value); }
-        }
-
-        private async void GenerateThumbnail()
-        {
-            try
-            {
-                if (File.FileType == ".mkv")
-                {
-                    WriteableBitmap thumb = await _thumbsService.GetScreenshot(File);
-                    await DispatchHelper.InvokeAsync(async () =>
-                    {
-                        Image = thumb;
-                    });
-                }
-                else
-                {
-                    StorageItemThumbnail thumb = await _thumbsService.GetThumbnail(File);
-                    await DispatchHelper.InvokeAsync(async () =>
-                    {
-                        var image = new BitmapImage();
-                        await image.SetSourceAsync(thumb);
-                        Image = image;
-                    });
-                }
-               
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex.ToString());
-            }
         }
 
         public string Type
@@ -158,11 +116,75 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             set { SetProperty(ref _duration, value); }
         }
 
+        [Ignore]
+        public FavoriteVideoCommand FavoriteVideo
+        {
+            get { return _favoriteVideo; }
+            set { SetProperty(ref _favoriteVideo, value); }
+        }
+
+        public VideoProperties VideoProperties;
+        #endregion
+
+        #region public fields
+
+        #endregion
+
+        #region constructors
+        public VideoVM()
+        {
+            FavoriteVideo = new FavoriteVideoCommand();
+            _thumbsService = App.Container.Resolve<IThumbnailService>();
+        }
+
+        public void Initialize(StorageFile storageFile)
+        {
+            if (storageFile != null)
+            {
+                File = storageFile;
+                Title = storageFile.DisplayName;
+                AlphaKey = Title.ToUpper()[0];
+                Subtitle = storageFile.FileType.ToUpper() + " File";
+                Type = storageFile.FileType.Replace(".", "").ToLower();
+                Token = StorageApplicationPermissions.FutureAccessList.Add(File);
+            }
+        }
         public Task Initialize()
         {
             return GetTimeInformation();
         }
+        #endregion
 
+        #region methods
+        private async void GenerateThumbnail()
+        {
+            try
+            {
+                if (File.FileType == ".mkv")
+                {
+                    WriteableBitmap thumb = await _thumbsService.GetScreenshot(File);
+                    await DispatchHelper.InvokeAsync(async () =>
+                    {
+                        Image = thumb;
+                    });
+                }
+                else
+                {
+                    StorageItemThumbnail thumb = await _thumbsService.GetThumbnail(File);
+                    await DispatchHelper.InvokeAsync(async () =>
+                    {
+                        var image = new BitmapImage();
+                        await image.SetSourceAsync(thumb);
+                        Image = image;
+                    });
+                }
+               
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.ToString());
+            }
+        }
         private async Task GetTimeInformation()
         {
             if (VideoProperties == null)
@@ -175,14 +197,6 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
                 Duration = duration;
             });
         }
-
-        [Ignore]
-        public FavoriteVideoCommand FavoriteVideo
-        {
-            get { return _favoriteVideo; }
-            set { SetProperty(ref _favoriteVideo, value); }
-        }
-
-        public VideoProperties VideoProperties;
+        #endregion
     }
 }
