@@ -171,8 +171,4 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)ViewModels\MainPage\PlayMusic\" />
-    <Folder Include="$(MSBuildThisFileDirectory)ViewModels\MainPage\VideoVM\" />
-  </ItemGroup>
 </Project>

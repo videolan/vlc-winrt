@@ -43,58 +43,27 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 {
     public class MusicLibraryVM : BindableBase
     {
+        #region private fields
         private ObservableCollection<Panel> _panels = new ObservableCollection<Panel>();
         private ObservableCollection<ArtistItem> _artists = new ObservableCollection<ArtistItem>();
         private ObservableCollection<string> _albumsCover = new ObservableCollection<string>();
         private ObservableCollection<TrackItem> _tracks = new ObservableCollection<TrackItem>();
         private ObservableCollection<AlbumItem> _favoriteAlbums = new ObservableCollection<AlbumItem>();
         private ObservableCollection<AlbumItem> _randomAlbums = new ObservableCollection<AlbumItem>();
+
+        #endregion
+
+#region private props
         private static ArtistDataRepository _artistDataRepository = new ArtistDataRepository();
         private static TrackDataRepository _trackDataRepository = new TrackDataRepository();
         private static AlbumDataRepository _albumDataRepository = new AlbumDataRepository();
-
         private StopVideoCommand _goBackCommand;
         private bool _isLoaded = false;
         private bool _isBusy = false;
         private bool _isMusicLibraryEmpty = true;
+#endregion
 
-        // XBOX Music Stuff
-        // REMOVE: Do we need this stuff anymore?
-        public MusicHelper XboxMusicHelper = new MusicHelper();
-        public Authenication XboxMusicAuthenication;
-        ObservableCollection<string> _imgCollection = new ObservableCollection<string>();
-        public MusicLibraryVM()
-        {
-            var resourceLoader = new ResourceLoader();
-            _goBackCommand = new StopVideoCommand();
-            Panels.Add(new Panel(resourceLoader.GetString("Artist").ToUpper(), 0, 1));
-            Panels.Add(new Panel(resourceLoader.GetString("Tracks").ToUpper(), 1, 0.4));
-            Panels.Add(new Panel(resourceLoader.GetString("FavoriteAlbums").ToUpper(), 2, 0.4));
-        }
-
-        public async Task Initialize()
-        {
-            await GetMusicFromLibrary();
-        }
-
-        public bool IsLoaded
-        {
-            get { return _isLoaded; }
-            set { SetProperty(ref _isLoaded, value); }
-        }
-
-        public bool IsBusy
-        {
-            get { return _isBusy; }
-            set { SetProperty(ref _isBusy, value); }
-        }
-
-        public bool IsMusicLibraryEmpty
-        {
-            get { return _isMusicLibraryEmpty; }
-            set { SetProperty(ref _isMusicLibraryEmpty, value); }
-        }
-
+        #region public fields
         public ObservableCollection<string> ImgCollection
         {
             get { return _imgCollection; }
@@ -125,11 +94,6 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             }
         }
 
-        public StopVideoCommand GoBack
-        {
-            get { return _goBackCommand; }
-            set { SetProperty(ref _goBackCommand, value); }
-        }
         public ObservableCollection<ArtistItem> Artist
         {
             get { return _artists; }
@@ -145,6 +109,52 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         {
             get { return _tracks; }
             set { SetProperty(ref _tracks, value); }
+        }
+
+        #endregion
+        #region public props
+        public bool IsLoaded
+        {
+            get { return _isLoaded; }
+            set { SetProperty(ref _isLoaded, value); }
+        }
+
+        public bool IsBusy
+        {
+            get { return _isBusy; }
+            set { SetProperty(ref _isBusy, value); }
+        }
+
+        public bool IsMusicLibraryEmpty
+        {
+            get { return _isMusicLibraryEmpty; }
+            set { SetProperty(ref _isMusicLibraryEmpty, value); }
+        }
+        public StopVideoCommand GoBack
+        {
+            get { return _goBackCommand; }
+            set { SetProperty(ref _goBackCommand, value); }
+        }
+        #endregion
+
+
+        // XBOX Music Stuff
+        // REMOVE: Do we need this stuff anymore?
+        public MusicHelper XboxMusicHelper = new MusicHelper();
+        public Authenication XboxMusicAuthenication;
+        ObservableCollection<string> _imgCollection = new ObservableCollection<string>();
+        public MusicLibraryVM()
+        {
+            var resourceLoader = new ResourceLoader();
+            _goBackCommand = new StopVideoCommand();
+            Panels.Add(new Panel(resourceLoader.GetString("Artist").ToUpper(), 0, 1));
+            Panels.Add(new Panel(resourceLoader.GetString("Tracks").ToUpper(), 1, 0.4));
+            Panels.Add(new Panel(resourceLoader.GetString("FavoriteAlbums").ToUpper(), 2, 0.4));
+        }
+
+        public async Task Initialize()
+        {
+            await GetMusicFromLibrary();
         }
 
         public async Task GetMusicFromLibrary()
