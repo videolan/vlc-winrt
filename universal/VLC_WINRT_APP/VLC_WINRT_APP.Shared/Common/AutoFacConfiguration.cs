@@ -47,7 +47,7 @@ namespace VLC_WINRT_APP.Common
             builder.RegisterType<MainVM>().SingleInstance();
             builder.RegisterType<MusicLibraryVM>().SingleInstance();
             builder.RegisterType<MusicPlayerVM>().SingleInstance();
-            builder.RegisterType<VideoLibraryViewModel>().SingleInstance();
+            builder.RegisterType<VideoLibraryVM>().SingleInstance();
             builder.RegisterType<SettingsViewModel>().SingleInstance();
 
             // Register Services

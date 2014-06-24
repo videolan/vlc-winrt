@@ -26,13 +26,10 @@ using VLC_WINRT.ViewModels.MainPage;
 using VLC_WINRT_APP.Commands;
 using VLC_WINRT_APP.ViewModels.Settings;
 using Panel = VLC_WINRT_APP.Model.Panel;
-#if NETFX_CORE
-
-#endif
 
 namespace VLC_WINRT_APP.ViewModels.VideoVM
 {
-    public class VideoLibraryViewModel : BindableBase
+    public class VideoLibraryVM : BindableBase
     {
         private ObservableCollection<Panel> _panels = new ObservableCollection<Panel>();
         private bool _hasNoMedia = true;
@@ -41,7 +38,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
         private IEnumerable<IGrouping<char, MediaViewModel>> _mediaGroupedByAlphabet;
         private PickVideoCommand _pickCommand = new PickVideoCommand();
 
-        public VideoLibraryViewModel()
+        public VideoLibraryVM()
         {
             Media = new ObservableCollection<MediaViewModel>();
             MediaRandom = new ObservableCollection<MediaViewModel>();

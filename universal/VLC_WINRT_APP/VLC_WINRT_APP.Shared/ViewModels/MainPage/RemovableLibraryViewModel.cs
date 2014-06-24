@@ -12,7 +12,7 @@ using VLC_WINRT_APP.ViewModels.VideoVM;
 
 namespace VLC_WINRT.ViewModels.MainPage
 {
-    public class RemovableLibraryViewModel : VideoLibraryViewModel
+    public class RemovableLibraryViewModel : VideoLibraryVM
     {
         public RemovableLibraryViewModel(StorageFolder location, string id) 
         {
