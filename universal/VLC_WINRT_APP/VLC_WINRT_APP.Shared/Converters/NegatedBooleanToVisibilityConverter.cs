@@ -11,21 +11,18 @@ using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
 
-namespace VLC_WINRT_APP.Utility.Converters
+namespace VLC_WINRT_APP.Converters
 {
-    public class EmptyTimeSpanToVisibilityConverter : IValueConverter
+    public class NegatedBooleanToVisibilityConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            if (value != null && ((TimeSpan) value).TotalMilliseconds == 0)
-                return Visibility.Collapsed;
-            return Visibility.Visible;
+            return (value is bool && (bool) value) ? Visibility.Collapsed : Visibility.Visible;
         }
-
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
         {
-            throw new NotImplementedException();
+            return value is Visibility && (Visibility) value == Visibility.Collapsed;
         }
     }
 }

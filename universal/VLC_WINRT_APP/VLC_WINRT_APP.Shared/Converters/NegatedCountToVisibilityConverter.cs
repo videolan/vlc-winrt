@@ -8,15 +8,23 @@
  **********************************************************************/
 
 using System;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
 
-namespace VLC_WINRT_APP.Utility.Converters
+namespace VLC_WINRT_APP.Converters
 {
-    public class StringToUpperConverter : IValueConverter
+    public class NegatedCountToVisibilityConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            return (string)value != null ? ((string)value).ToUpper() : "";
+            if (value is int)
+            {
+                if ((int)value == 0)
+                    return Visibility.Collapsed;
+                else
+                    return Visibility.Visible;
+            }
+            return Visibility.Collapsed;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

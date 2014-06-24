@@ -10,14 +10,13 @@
 using System;
 using Windows.UI.Xaml.Data;
 
-namespace VLC_WINRT_APP.Utility.Converters
+namespace VLC_WINRT_APP.Converters
 {
-    public class TimeSpanSecondsDoubleConverter : IValueConverter
+    public class StringToUpperConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            TimeSpan span = (TimeSpan) value;
-            return span.TotalSeconds;
+            return (string)value != null ? ((string)value).ToUpper() : "";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

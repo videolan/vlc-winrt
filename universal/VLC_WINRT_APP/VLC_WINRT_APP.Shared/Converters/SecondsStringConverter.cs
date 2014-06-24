@@ -8,21 +8,29 @@
  **********************************************************************/
 
 using System;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
 
-namespace VLC_WINRT_APP.Utility.Converters
+namespace VLC_WINRT_APP.Converters
 {
-    public class NegatedBooleanToVisibilityConverter : IValueConverter
+    public class SecondsStringConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            return (value is bool && (bool) value) ? Visibility.Collapsed : Visibility.Visible;
+            TimeSpan time = TimeSpan.FromSeconds((double)value);
+            if (time.Hours > 0)
+            {
+
+                return String.Format("{0:hh\\:mm\\:ss}", time);
+            }
+            else
+            {
+                return String.Format("{0:mm\\:ss}", time);
+            }
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
         {
-            return value is Visibility && (Visibility) value == Visibility.Collapsed;
+            throw new NotImplementedException();
         }
     }
 }

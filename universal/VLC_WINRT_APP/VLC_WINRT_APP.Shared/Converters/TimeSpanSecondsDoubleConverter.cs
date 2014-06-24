@@ -8,26 +8,16 @@
  **********************************************************************/
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using Windows.UI.Xaml.Data;
-using VLC_WINRT_APP.Utility.Helpers.MusicLibrary.MusicEntities;
 
-namespace VLC_WINRT_APP.Utility.Converters
+namespace VLC_WINRT_APP.Converters
 {
-    public class AlbumImageConverter : IValueConverter
+    public class TimeSpanSecondsDoubleConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            var topImage = value as List<Image>;
-            if (topImage == null)
-                return null;
-
-            var albumImage = topImage.LastOrDefault(image => !string.IsNullOrEmpty(image.Url));
-            if (albumImage == null)
-                return null;
-            else
-                return albumImage.Url;
+            TimeSpan span = (TimeSpan) value;
+            return span.TotalSeconds;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

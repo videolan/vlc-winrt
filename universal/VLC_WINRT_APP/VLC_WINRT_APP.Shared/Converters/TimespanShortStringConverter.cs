@@ -8,25 +8,36 @@
  **********************************************************************/
 
 using System;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
 
-namespace VLC_WINRT_APP.Utility.Converters
+namespace VLC_WINRT_APP.Converters
 {
-    /// <summary>
-    ///     Value converter that translates true to <see cref="Visibility.Visible" /> and false to
-    ///     <see cref="Visibility.Collapsed" />.
-    /// </summary>
-    public class BooleanToVisibilityConverter : IValueConverter
+    public class TimespanShortStringConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            return (value is bool && (bool) value) ? Visibility.Visible : Visibility.Collapsed;
+            if (value is TimeSpan)
+            {
+                var ts = (TimeSpan) value;
+                if (ts.Hours > 0)
+                {
+
+                    return String.Format("{0:hh\\:mm\\:ss}", ts);
+                }
+                else
+                {
+                    return String.Format("{0:mm\\:ss}", ts);
+                }
+            }
+            else
+            {
+                return String.Empty;
+            }
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
         {
-            return value is Visibility && (Visibility) value == Visibility.Visible;
+            throw new NotImplementedException();
         }
     }
 }

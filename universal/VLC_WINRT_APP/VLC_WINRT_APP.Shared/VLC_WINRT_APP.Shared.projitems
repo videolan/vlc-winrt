@@ -40,24 +40,24 @@
     <Compile Include="$(MSBuildThisFileDirectory)Common\LayoutAwarePage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\RichTextColumns.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\SuspensionManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\AlbumImageConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\BooleanNegationConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\BooleanToVisibilityConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\CountToVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ElapsedTimeToPercentageConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\EmptyTimeSpanToVisibilityConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\NegatedBooleanToVisibilityConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\NegatedCountToVisibilityConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\NullToVisibilityConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\SecondsStringConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\StringToUpperConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\TimeSpanSecondsDoubleConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\TimespanShortStringConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\DeezerArtistItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Panel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Subtitle.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SQLite.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SQLiteAsync.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Utility\Converters\AlbumImageConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Utility\Converters\BooleanNegationConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Utility\Converters\BooleanToVisibilityConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Utility\Converters\CountToVisibilityConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Utility\Converters\EmptyTimeSpanToVisibilityConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Utility\Converters\NegatedBooleanToVisibilityConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Utility\Converters\NegatedCountToVisibilityConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Utility\Converters\NullToVisibilityConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Utility\Converters\SecondsStringConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Utility\Converters\StringToUpperConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Utility\Converters\TimeSpanSecondsDoubleConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Utility\Converters\TimespanShortStringConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utility\DataRepository\AlbumDataRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utility\DataRepository\ArtistDataRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utility\DataRepository\LastVideosRepository.cs" />
@@ -182,7 +182,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)Utility\Commands\" />
     <Folder Include="$(MSBuildThisFileDirectory)ViewModels\MainPage\PlayMusic\" />
     <Folder Include="$(MSBuildThisFileDirectory)ViewModels\MainPage\VideoVM\" />
   </ItemGroup>

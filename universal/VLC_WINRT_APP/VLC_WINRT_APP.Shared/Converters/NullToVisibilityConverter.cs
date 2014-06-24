@@ -8,23 +8,21 @@
  **********************************************************************/
 
 using System;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
 
-namespace VLC_WINRT_APP.Utility.Converters
+namespace VLC_WINRT_APP.Converters
 {
-    /// <summary>
-    /// Value converter that translates true to false and vice versa.
-    /// </summary>
-    public sealed class BooleanNegationConverter : IValueConverter
+    public class NullToVisibilityConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            return !(value is bool && (bool)value);
+            return value == null ? Visibility.Collapsed : Visibility.Visible;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
         {
-            return !(value is bool && (bool)value);
+            throw new NotImplementedException();
         }
     }
 }

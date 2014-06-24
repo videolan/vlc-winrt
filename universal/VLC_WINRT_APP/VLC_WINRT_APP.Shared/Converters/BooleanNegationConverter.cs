@@ -10,27 +10,21 @@
 using System;
 using Windows.UI.Xaml.Data;
 
-namespace VLC_WINRT_APP.Utility.Converters
+namespace VLC_WINRT_APP.Converters
 {
-    public class SecondsStringConverter : IValueConverter
+    /// <summary>
+    /// Value converter that translates true to false and vice versa.
+    /// </summary>
+    public sealed class BooleanNegationConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            TimeSpan time = TimeSpan.FromSeconds((double)value);
-            if (time.Hours > 0)
-            {
-
-                return String.Format("{0:hh\\:mm\\:ss}", time);
-            }
-            else
-            {
-                return String.Format("{0:mm\\:ss}", time);
-            }
+            return !(value is bool && (bool)value);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
         {
-            throw new NotImplementedException();
+            return !(value is bool && (bool)value);
         }
     }
 }

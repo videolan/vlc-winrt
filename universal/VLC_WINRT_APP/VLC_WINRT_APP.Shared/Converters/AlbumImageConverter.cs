@@ -8,31 +8,26 @@
  **********************************************************************/
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using Windows.UI.Xaml.Data;
+using VLC_WINRT_APP.Utility.Helpers.MusicLibrary.MusicEntities;
 
-namespace VLC_WINRT_APP.Utility.Converters
+namespace VLC_WINRT_APP.Converters
 {
-    public class TimespanShortStringConverter : IValueConverter
+    public class AlbumImageConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            if (value is TimeSpan)
-            {
-                var ts = (TimeSpan) value;
-                if (ts.Hours > 0)
-                {
+            var topImage = value as List<Image>;
+            if (topImage == null)
+                return null;
 
-                    return String.Format("{0:hh\\:mm\\:ss}", ts);
-                }
-                else
-                {
-                    return String.Format("{0:mm\\:ss}", ts);
-                }
-            }
+            var albumImage = topImage.LastOrDefault(image => !string.IsNullOrEmpty(image.Url));
+            if (albumImage == null)
+                return null;
             else
-            {
-                return String.Empty;
-            }
+                return albumImage.Url;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
