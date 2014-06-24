@@ -33,58 +33,34 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
 {
     public class VideoPlayerVM : MediaPlaybackViewModel
     {
-        private ObservableCollection<Subtitle> _subtitles;
-#if NETFX_CORE
+        #region private props
+#if WINDOWS_APP
         private MouseService _mouseService;
 #endif
         private VideoVM _currentVideo;
         private Subtitle _currentSubtitle;
+
         private int _subtitlesCount = 0;
-        private IDictionary<int, string> _subtitlesTracks;
+        private int _audioTracksCount = 0;
         private SetSubtitleTrackCommand _setSubTitlesCommand;
         private OpenSubtitleCommand _openSubtitleCommand;
-        private int _audioTracksCount = 0;
-        private IDictionary<int, string> _audioTracks;
         private SetAudioTrackCommand _setAudioTrackCommand;
+
         private DispatcherTimer _positionTimer = new DispatcherTimer();
-        public VideoPlayerVM(IMediaService mediaService, VlcService mediaPlayerService)
-            : base(mediaService, mediaPlayerService)
-        {
-            _subtitles = new ObservableCollection<Subtitle>();
-            _subtitlesTracks = new Dictionary<int, string>();
-            _audioTracks = new Dictionary<int, string>();
-#if NETFX_CORE
-            _mouseService = App.Container.Resolve<MouseService>();
-#endif
-            _setSubTitlesCommand = new SetSubtitleTrackCommand();
-            _setAudioTrackCommand = new SetAudioTrackCommand();
-            _openSubtitleCommand = new OpenSubtitleCommand();
-            _lastVideosRepository.Load();
-        }
+        #endregion
 
-        public LastVideosRepository _lastVideosRepository = new LastVideosRepository();
+        #region private fields
+        private ObservableCollection<Subtitle> _subtitles;
+        private IDictionary<int, string> _subtitlesTracks;
+        private IDictionary<int, string> _audioTracks;
 
+        #endregion
+
+        #region public props
         public VideoVM CurrentVideo
         {
             get { return _currentVideo; }
             set { SetProperty(ref _currentVideo, value); }
-        }
-
-        protected override void OnPlaybackStarting()
-        {
-#if NETFX_CORE
-            _mouseService.HideMouse();
-#endif
-            base.OnPlaybackStarting();
-        }
-
-        protected override void OnPlaybackStopped()
-        {
-            _positionTimer.Stop();
-#if NETFX_CORE
-            _mouseService.RestoreMouse();
-#endif
-            base.OnPlaybackStopped();
         }
 
         public Subtitle CurrentSubtitle
@@ -93,24 +69,17 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             set { SetProperty(ref _currentSubtitle, value); }
         }
 
-        public ObservableCollection<Subtitle> Subtitles
-        {
-            get { return _subtitles; }
-            private set { SetProperty(ref _subtitles, value); }
-        }
-
         public int SubtitlesCount
         {
             get { return _subtitlesCount; }
             set { SetProperty(ref _subtitlesCount, value); }
         }
 
-        public IDictionary<int, string> SubtitlesTracks
+        public int AudioTracksCount
         {
-            get { return _subtitlesTracks; }
-            set { SetProperty(ref _subtitlesTracks, value); }
+            get { return _audioTracksCount; }
+            set { SetProperty(ref _audioTracksCount, value); }
         }
-
         public SetSubtitleTrackCommand SetSubtitleTrackCommand
         {
             get { return _setSubTitlesCommand; }
@@ -122,22 +91,67 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             get { return _openSubtitleCommand; }
             set { SetProperty(ref _openSubtitleCommand, value); }
         }
-        public int AudioTracksCount
-        {
-            get { return _audioTracksCount; }
-            set { SetProperty(ref _audioTracksCount, value); }
-        }
-
-        public IDictionary<int, string> AudioTracks
-        {
-            get { return _audioTracks; }
-            set { SetProperty(ref _audioTracks, value); }
-        }
 
         public SetAudioTrackCommand SetAudioTrackCommand
         {
             get { return _setAudioTrackCommand; }
             set { SetProperty(ref _setAudioTrackCommand, value); }
+        }
+        #endregion
+
+        #region public fields
+        public LastVideosRepository _lastVideosRepository = new LastVideosRepository();
+
+        public ObservableCollection<Subtitle> Subtitles
+        {
+            get { return _subtitles; }
+            private set { SetProperty(ref _subtitles, value); }
+        }
+
+        public IDictionary<int, string> SubtitlesTracks
+        {
+            get { return _subtitlesTracks; }
+            set { SetProperty(ref _subtitlesTracks, value); }
+        }
+        public IDictionary<int, string> AudioTracks
+        {
+            get { return _audioTracks; }
+            set { SetProperty(ref _audioTracks, value); }
+        }
+        #endregion
+
+        #region constructors
+        public VideoPlayerVM(IMediaService mediaService, VlcService mediaPlayerService)
+            : base(mediaService, mediaPlayerService)
+        {
+            _subtitles = new ObservableCollection<Subtitle>();
+            _subtitlesTracks = new Dictionary<int, string>();
+            _audioTracks = new Dictionary<int, string>();
+#if WINDOWS_APP
+            _mouseService = App.Container.Resolve<MouseService>();
+#endif
+            _setSubTitlesCommand = new SetSubtitleTrackCommand();
+            _setAudioTrackCommand = new SetAudioTrackCommand();
+            _openSubtitleCommand = new OpenSubtitleCommand();
+            _lastVideosRepository.Load();
+        }
+        #endregion
+        #region methods
+        protected override void OnPlaybackStarting()
+        {
+#if WINDOWS_APP
+            _mouseService.HideMouse();
+#endif
+            base.OnPlaybackStarting();
+        }
+
+        protected override void OnPlaybackStopped()
+        {
+            _positionTimer.Stop();
+#if WINDOWS_APP
+            _mouseService.RestoreMouse();
+#endif
+            base.OnPlaybackStopped();
         }
 
         public async void SetActiveVideoInfo(string token, string title)
@@ -262,7 +276,6 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             MediaControl.PausePressed += null;
         }
         
-
         private async void VlcPlayerServiceOnMediaEnded(object sender, Player player)
         {
             UnRegisterMediaControlEvents();
@@ -303,5 +316,6 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
         {
             return _vlcPlayerService.SetRate(rate);
         }
+        #endregion
     }
 }
