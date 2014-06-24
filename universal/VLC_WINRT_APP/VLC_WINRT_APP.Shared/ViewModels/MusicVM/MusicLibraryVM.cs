@@ -184,9 +184,12 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 
         public async Task Initialize()
         {
-            await GetMusicFromLibrary();
+            _albumClickedCommand = new AlbumClickedCommand();
+            _artistClickedCommand = new ArtistClickedCommand();
+            Task.Run(() =>await GetMusicFromLibrary());
         }
 
+        #region methods
         public async Task GetMusicFromLibrary()
         {
             await LoadFromDatabase();
@@ -434,7 +437,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             }
             return true;
         }
-
+        #endregion
         public class ArtistItem : BindableBase
         {
             private string _name;
