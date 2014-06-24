@@ -30,10 +30,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)Commands\PlayAlbumCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\PlayNetworkMRLCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\PlayTrackComand.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Commands\VideoPlayer\FavoriteVideoCommand.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Commands\VideoPlayer\OpenSubtitleCommand.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Commands\VideoPlayer\SetAudioTrackCommand.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Commands\VideoPlayer\SetSubtitleTrackCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\Video\FavoriteVideoCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\Video\OpenSubtitleCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\Video\PlayVideoCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\Video\SetAudioTrackCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\Video\SetSubtitleTrackCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\AlwaysExecutableCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\AutoFacConfiguration.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\BindableBase.cs" />

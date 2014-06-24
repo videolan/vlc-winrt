@@ -16,7 +16,7 @@ using Windows.UI.Xaml;
 using Autofac;
 using VLC_WINRT.Common;
 using VLC_WINRT.Model;
-using VLC_WINRT_APP.Commands.VideoPlayer;
+using VLC_WINRT_APP.Commands.Video;
 using VLC_WINRT_APP.DataRepository;
 using VLC_WINRT_APP.Services.RunTime;
 using VLC_WINRT.ViewModels.MainPage;

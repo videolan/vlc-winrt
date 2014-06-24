@@ -93,7 +93,6 @@ namespace VLC_WINRT_APP.ViewModels
 
         public async Task InitVideoVM()
         {
-            await Locator.VideoLibraryVM.GetMedia();
         }
 
         public async Task InitMusicM()

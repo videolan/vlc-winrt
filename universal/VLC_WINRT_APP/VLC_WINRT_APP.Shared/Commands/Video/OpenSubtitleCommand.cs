@@ -13,10 +13,9 @@ using Windows.Storage;
 using Windows.Storage.AccessCache;
 using Windows.Storage.Pickers;
 using VLC_WINRT.Common;
-using VLC_WINRT.ViewModels;
 using VLC_WINRT_APP.ViewModels;
 
-namespace VLC_WINRT_APP.Commands.VideoPlayer
+namespace VLC_WINRT_APP.Commands.Video
 {
     public class OpenSubtitleCommand : AlwaysExecutableCommand
     {

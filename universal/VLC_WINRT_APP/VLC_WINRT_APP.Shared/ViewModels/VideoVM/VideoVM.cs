@@ -18,7 +18,7 @@ using Windows.UI.Xaml.Media.Imaging;
 using Autofac;
 using SQLite;
 using VLC_WINRT.Common;
-using VLC_WINRT_APP.Commands.VideoPlayer;
+using VLC_WINRT_APP.Commands.Video;
 using VLC_WINRT_APP.Services.Interface;
 
 namespace VLC_WINRT_APP.ViewModels.VideoVM

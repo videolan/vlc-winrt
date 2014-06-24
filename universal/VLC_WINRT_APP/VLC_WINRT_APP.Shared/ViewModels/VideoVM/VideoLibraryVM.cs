@@ -25,6 +25,7 @@ using SQLite;
 using VLC_WINRT.Common;
 using VLC_WINRT.ViewModels.MainPage;
 using VLC_WINRT_APP.Commands;
+using VLC_WINRT_APP.Commands.Video;
 using VLC_WINRT_APP.DataRepository;
 using VLC_WINRT_APP.ViewModels.Settings;
 using Panel = VLC_WINRT_APP.Model.Panel;
@@ -133,27 +134,27 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
 
         public async Task GetVideos()
         {
-            //#if WINDOWS_APP
-            //            foreach (CustomFolder folder in Locator.SettingsVM.VideoFolders)
-            //            {
-            //#endif
+            #if WINDOWS_APP
+                        foreach (CustomFolder folder in Locator.SettingsVM.VideoFolders)
+                        {
+            #endif
             try
             {
                 StorageFolder customVideoFolder;
-                //                    #if WINDOWS_APP
-                //                    if (folder.Mru == "Video Library")
-                //                    {
-                //                        customVideoFolder = KnownFolders.VideosLibrary;
-                //                    }
-                //                    else
-                //                    {
-                //                        customVideoFolder = await StorageApplicationPermissions.FutureAccessList.GetFolderAsync(
-                //                            folder.Mru);
-                //                    }
-                //#endif
-                //#if WINDOWS_PHONE_APP                    
+#if WINDOWS_APP
+                if (folder.Mru == "Video Library")
+                {
+                    customVideoFolder = KnownFolders.VideosLibrary;
+                }
+                else
+                {
+                    customVideoFolder = await StorageApplicationPermissions.FutureAccessList.GetFolderAsync(
+                        folder.Mru);
+                }
+#endif
+#if WINDOWS_PHONE_APP                    
                 customVideoFolder = KnownFolders.VideosLibrary;
-                //#endif
+#endif
 
                 IReadOnlyList<StorageFile> files =
                     await GetMediaFromFolder(customVideoFolder, CommonFileQuery.OrderByName);
@@ -196,9 +197,9 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             {
                 Debug.WriteLine("An error occured while indexing a video folder");
             }
-            //#if WINDOWS_APP
-            //            }
-            //#endif
+#if WINDOWS_APP
+                        }
+#endif
 
             if (Videos.Count > 0)
             {
@@ -285,9 +286,10 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
 #if WINDOWS_APP
                 fileQuery = folder.CreateFileQueryWithOptions(queryOptions);
                 files = await fileQuery.GetFilesAsync();
-#endif
+#else
 
                 files = await folder.GetFilesAsync();
+#endif
             }
             catch (Exception ex)
             {

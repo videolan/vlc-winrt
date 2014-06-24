@@ -31,7 +31,7 @@
                             DataContext="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM}">
                     <HubSection.ContentTemplate>
                         <DataTemplate>
-                            <GridView ItemsSource="{Binding Media}"
+                            <GridView ItemsSource="{Binding Videos}"
                                       ItemTemplate="{StaticResource SemanticZoomInViewMovieTemplate}"
                                       IsItemClickEnabled="True"
                                       SelectionMode="None">
