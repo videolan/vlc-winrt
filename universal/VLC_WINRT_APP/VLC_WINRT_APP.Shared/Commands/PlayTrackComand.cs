@@ -20,6 +20,7 @@ using VLC_WINRT_APP.Views.MusicPages;
 #if NETFX_CORE
 using VLC_WINRT.Views;
 using VLC_WINRT_APP.ViewModels.MusicVM;
+using Windows.UI.Xaml.Controls;
 #endif
 #if WINDOWS_PHONE_APP
 using VLC_WINPRT;
@@ -31,20 +32,56 @@ namespace VLC_WINRT_APP.Commands
     {
         public async override void Execute(object parameter)
         {
-            MusicLibraryVM.TrackItem track = parameter as MusicLibraryVM.TrackItem;
-            if (!Locator.MusicPlayerVM.TrackCollection.TrackCollection.Contains(track))
+#if WINDOWS_PHONE_APP
+            if (App.NavigationFrame.CurrentSourcePageType != typeof(MusicPlayerPage))
+                App.NavigationFrame.Navigate(typeof(MusicPlayerPage));
+#endif
+#if WINDOWS_APP
+            if (App.ApplicationFrame.CurrentSourcePageType != typeof(MusicPlayerPage))
+                App.ApplicationFrame.Navigate(typeof(MusicPlayerPage));
+#endif
+            Locator.MusicLibraryVM.IsAlbumPageShown = false;
+            MusicLibraryVM.TrackItem track = null;
+            if (parameter is ItemClickEventArgs)
             {
-                Locator.MusicPlayerVM.TrackCollection.ResetCollection();
-                Locator.MusicPlayerVM.TrackCollection.AddTrack(track);
+                ItemClickEventArgs args = parameter as ItemClickEventArgs;
+                track = args.ClickedItem as MusicLibraryVM.TrackItem;
+            }
+#if WINDOWS_APP
+            //else if (parameter is DataGridSelectionChangedEventArgs)
+            //{
+            //    DataGridSelectionChangedEventArgs args = parameter as DataGridSelectionChangedEventArgs;
+            //    track = args.AddedItems.First() as MusicLibraryVM.TrackItem;
+            //}
+#endif
+            if (track != null && !Locator.MusicPlayerVM.TrackCollection.Contains(track))
+            {
+                Locator.MusicPlayerVM.ResetCollection();
+                Locator.MusicPlayerVM.AddTrack(track);
             }
             else
             {
-                Locator.MusicPlayerVM.TrackCollection.CurrentTrack =
-                    Locator.MusicPlayerVM.TrackCollection.TrackCollection.IndexOf(track);
+                Locator.MusicPlayerVM.CurrentTrack =
+                    Locator.MusicPlayerVM.TrackCollection.IndexOf(track);
             }
             await Locator.MusicPlayerVM.Play();
 
-            var frame = App.ApplicationFrame;
+
+
+            //MusicLibraryVM.TrackItem track = parameter as MusicLibraryVM.TrackItem;
+            //if (!Locator.MusicPlayerVM.TrackCollection.TrackCollection.Contains(track))
+            //{
+            //    Locator.MusicPlayerVM.TrackCollection.ResetCollection();
+            //    Locator.MusicPlayerVM.TrackCollection.AddTrack(track);
+            //}
+            //else
+            //{
+            //    Locator.MusicPlayerVM.TrackCollection.CurrentTrack =
+            //        Locator.MusicPlayerVM.TrackCollection.TrackCollection.IndexOf(track);
+            //}
+            //await Locator.MusicPlayerVM.Play();
+
+            //var frame = App.ApplicationFrame;
 //#if NETFX_CORE
 //            var page = frame.Content as MainPage;
 //            if (page != null)
