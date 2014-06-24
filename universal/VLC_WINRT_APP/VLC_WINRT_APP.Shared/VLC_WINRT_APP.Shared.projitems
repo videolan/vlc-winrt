@@ -98,7 +98,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\StoryboardExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\ToastHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\UpdateTileHelper.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Model\DeezerArtistItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Panel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Subtitle.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SQLite.cs" />
