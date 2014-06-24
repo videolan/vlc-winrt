@@ -149,31 +149,9 @@ namespace VLC_WINRT.ViewModels.MainPage
             }
             ExecuteSemanticZoom();
         }
-
-        public void ExecuteSemanticZoom()
+        public void ExecuteSemanticZoom(SemanticZoom sZ, CollectionViewSource cvs)
         {
-#if NETFX_CORE
-            //var page = App.ApplicationFrame.Content as Views.MainPage;
-            //if (page == null) return;
-            //var videoColumn = page.GetFirstDescendantOfType<VideoColumn>() as VideoColumn;
-            //var semanticZoom = videoColumn.GetDescendantsOfType<SemanticZoom>().First() as SemanticZoom;
-            //var semanticZoomVertical = videoColumn.GetDescendantsOfType<SemanticZoom>().ElementAt(1) as SemanticZoom;
-            //var collection = videoColumn.Resources["MediaGroupedByAlphabet"] as CollectionViewSource;
-            //if (semanticZoom == null) return;
-            //try
-            //{
-            //    var listviewbase = semanticZoom.ZoomedOutView as ListViewBase;
-            //    var listviewBaseVertical = semanticZoomVertical.ZoomedOutView as ListViewBase;
-            //    if (collection == null) return;
-            //    // Collection or Collection View can also be null. In these cases, return.
-            //    if (collection.View == null) return;
-            //    if (listviewbase != null)
-            //        listviewbase.ItemsSource = collection.View.CollectionGroups;
-            //    if (listviewBaseVertical != null)
-            //        listviewBaseVertical.ItemsSource = collection.View.CollectionGroups;
-            //}
-            //catch { }
-#endif
+            (sZ.ZoomedOutView as ListViewBase).ItemsSource = cvs.View.CollectionGroups;
         }
 
         private static async Task<IReadOnlyList<StorageFile>> GetMediaFromFolder(StorageFolder folder,
