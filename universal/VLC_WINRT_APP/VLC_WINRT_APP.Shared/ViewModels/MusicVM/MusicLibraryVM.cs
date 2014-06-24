@@ -44,35 +44,28 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
     public class MusicLibraryVM : BindableBase
     {
         #region private fields
+#if WINDOWS_APP
         private ObservableCollection<Panel> _panels = new ObservableCollection<Panel>();
+#endif
         private ObservableCollection<ArtistItem> _artists = new ObservableCollection<ArtistItem>();
+        private IEnumerable<IGrouping<string, ArtistItem>> _artistsByAlphaKey;
         private ObservableCollection<string> _albumsCover = new ObservableCollection<string>();
         private ObservableCollection<TrackItem> _tracks = new ObservableCollection<TrackItem>();
         private ObservableCollection<AlbumItem> _favoriteAlbums = new ObservableCollection<AlbumItem>();
         private ObservableCollection<AlbumItem> _randomAlbums = new ObservableCollection<AlbumItem>();
-
         #endregion
 
-#region private props
+        #region private props
+
         private static ArtistDataRepository _artistDataRepository = new ArtistDataRepository();
         private static TrackDataRepository _trackDataRepository = new TrackDataRepository();
         private static AlbumDataRepository _albumDataRepository = new AlbumDataRepository();
-        private StopVideoCommand _goBackCommand;
         private bool _isLoaded = false;
         private bool _isBusy = false;
         private bool _isMusicLibraryEmpty = true;
-#endregion
+        #endregion
 
         #region public fields
-        public ObservableCollection<string> ImgCollection
-        {
-            get { return _imgCollection; }
-            set
-            {
-                SetProperty(ref _imgCollection, value);
-            }
-        }
-
         public ObservableCollection<AlbumItem> FavoriteAlbums
         {
             get { return _favoriteAlbums; }
@@ -137,12 +130,6 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         }
         #endregion
 
-
-        // XBOX Music Stuff
-        // REMOVE: Do we need this stuff anymore?
-        public MusicHelper XboxMusicHelper = new MusicHelper();
-        public Authenication XboxMusicAuthenication;
-        ObservableCollection<string> _imgCollection = new ObservableCollection<string>();
         public MusicLibraryVM()
         {
             var resourceLoader = new ResourceLoader();
@@ -171,7 +158,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                 return;
             }
 
-            if(!await VerifyAllFilesAreHere())
+            if (!await VerifyAllFilesAreHere())
             {
                 await StartIndexing();
                 return;
@@ -275,11 +262,11 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             {
                 if (storageItem.IsOfType(StorageItemTypes.File))
                 {
-                    await CreateDatabaseFromMusicFile((StorageFile) storageItem);
+                    await CreateDatabaseFromMusicFile((StorageFile)storageItem);
                 }
                 else
                 {
-                    await CreateDatabaseFromMusicFolder((StorageFolder) storageItem);
+                    await CreateDatabaseFromMusicFolder((StorageFolder)storageItem);
                 }
             }
         }
