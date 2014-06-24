@@ -16,6 +16,11 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
+        <Image Stretch="UniformToFill"
+               Source="ms-appx:///Assets/background.jpg"
+               Opacity="0.5"
+               Grid.RowSpan="3"
+               Visibility="{Binding Source={StaticResource Locator}, Path=PlayVideoVM.IsPlaying, Converter={StaticResource NegatedBooleanToVisibilityConverter}}" />
         <userControls:TopBar Grid.Row="0" />
         <userControls:MiniPlayer Grid.Row="2" />
         <userControls:SearchFlyout x:Name="SearchPane"
