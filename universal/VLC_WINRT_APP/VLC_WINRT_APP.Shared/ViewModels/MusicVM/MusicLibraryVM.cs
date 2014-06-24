@@ -359,27 +359,9 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             });
         }
 
-        public void ExecuteSemanticZoom()
+        public void ExecuteSemanticZoom(SemanticZoom sZ, CollectionViewSource cvs)
         {
-#if NETFX_CORE
-            //var page = App.ApplicationFrame.Content as MainPage;
-            //if (page != null)
-            //{
-            //    var musicColumn = page.GetFirstDescendantOfType<MusicColumn>() as MusicColumn;
-            //    var albumsByArtistSemanticZoom = musicColumn.GetDescendantsOfType<SemanticZoom>();
-            //    var albumsCollection = musicColumn.Resources["albumsCollection"] as CollectionViewSource;
-            //    if (albumsByArtistSemanticZoom != null)
-            //    {
-            //        var firstlistview = albumsByArtistSemanticZoom.ElementAt(0).ZoomedOutView as ListViewBase;
-            //        var secondlistview = albumsByArtistSemanticZoom.ElementAt(1).ZoomedOutView as ListViewBase;
-            //        if (albumsCollection != null)
-            //        {
-            //            firstlistview.ItemsSource = albumsCollection.View.CollectionGroups;
-            //            secondlistview.ItemsSource = albumsCollection.View.CollectionGroups;
-            //        }
-            //    }
-            //}
-#endif
+            (sZ.ZoomedOutView as ListViewBase).ItemsSource = cvs.View.CollectionGroups;
         }
 
         private async Task<bool> DoesMusicDatabaseExist()
