@@ -56,7 +56,6 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         #endregion
 
         #region private props
-
         private static ArtistDataRepository _artistDataRepository = new ArtistDataRepository();
         private static TrackDataRepository _trackDataRepository = new TrackDataRepository();
         private static AlbumDataRepository _albumDataRepository = new AlbumDataRepository();
