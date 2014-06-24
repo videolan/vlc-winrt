@@ -151,9 +151,6 @@
     <Compile Include="Views\UserControls\MiniPlayer.xaml.cs">
       <DependentUpon>MiniPlayer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\MusicPage\AlbumFlyout.xaml.cs">
-      <DependentUpon>AlbumFlyout.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Controls\MusicPage\VerticalAlbumItemTemplate.xaml.cs">
       <DependentUpon>VerticalAlbumItemTemplate.xaml</DependentUpon>
     </Compile>
@@ -774,10 +771,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\UserControls\MiniPlayer.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\MusicPage\AlbumFlyout.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
