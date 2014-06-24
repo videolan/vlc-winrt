@@ -12,7 +12,6 @@ using VLC_WINRT.Common;
 #if WINDOWS_PHONE_APP
 using VLC_WINPRT;
 #endif
-using VLC_WINRT.ViewModels;
 using VLC_WINRT_APP;
 using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.Views.MainPages;

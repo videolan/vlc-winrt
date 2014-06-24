@@ -7,7 +7,7 @@ using Windows.Storage;
 using Windows.System.Threading;
 using VLC_WINRT.Common;
 
-namespace VLC_WINRT.ViewModels
+namespace VLC_WINRT_APP.ViewModels.Others
 {
     public class SpecialThanksViewModel : BindableBase
     {

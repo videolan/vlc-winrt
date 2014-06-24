@@ -10,8 +10,6 @@
 using System.Linq;
 using VLC_WINRT.Common;
 using VLC_WINRT_APP.DataRepository;
-using VLC_WINRT.ViewModels;
-using VLC_WINRT.ViewModels.MainPage;
 using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.ViewModels.MusicVM;
 

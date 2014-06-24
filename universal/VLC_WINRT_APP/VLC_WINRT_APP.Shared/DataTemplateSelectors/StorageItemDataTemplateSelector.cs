@@ -1,6 +1,6 @@
 ﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using VLC_WINRT.ViewModels.MainPage.VlcExplorer;
+using VLC_WINRT_APP.ViewModels.Others.VlcExplorer;
 
 namespace VLC_WINRT_APP.DataTemplateSelectors
 {

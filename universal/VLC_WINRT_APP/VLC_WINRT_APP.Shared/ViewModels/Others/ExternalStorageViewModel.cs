@@ -11,17 +11,17 @@ using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using Windows.Devices.Portable;
 using Windows.Storage;
 using Autofac;
 using VLC_WINRT.Common;
 using VLC_WINRT_APP.Services.RunTime;
-using VLC_WINRT.ViewModels.MainPage.VlcExplorer;
-using VLC_WINRT_APP;
+using VLC_WINRT_APP.ViewModels.Others.VlcExplorer;
 #if NETFX_CORE
-using Windows.Devices.Portable;
+
 #endif
 
-namespace VLC_WINRT.ViewModels.MainPage
+namespace VLC_WINRT_APP.ViewModels.Others
 {
 #if NETFX_CORE
     public class ExternalStorageViewModel : BindableBase, IDisposable

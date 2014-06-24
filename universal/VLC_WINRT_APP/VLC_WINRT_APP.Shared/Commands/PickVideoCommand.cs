@@ -15,9 +15,6 @@ using System.Windows.Input;
 using Windows.Storage;
 using Windows.Storage.Pickers;
 using VLC_WINRT_APP.Services.RunTime;
-using VLC_WINRT.ViewModels;
-using VLC_WINRT.ViewModels.MainPage;
-
 #if WINDOWS_PHONE_APP
 using VLC_WINPRT;
 #endif

@@ -12,7 +12,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using VLC_WINRT.ViewModels;
 using VLC_WINRT_APP.ViewModels;
 using XboxMusicLibrary.Models;
 using XboxMusicLibrary.Settings;

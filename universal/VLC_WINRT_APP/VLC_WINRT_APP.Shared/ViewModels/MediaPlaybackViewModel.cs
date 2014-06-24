@@ -18,7 +18,6 @@ using VLC_WINRT_APP.Services.RunTime;
 using Windows.System.Display;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
-using VLC_WINRT.ViewModels;
 using VLC_WINRT_APP.Commands.MediaPlayback;
 
 namespace VLC_WINRT_APP.ViewModels

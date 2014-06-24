@@ -8,7 +8,6 @@
  **********************************************************************/
 
 using VLC_WINRT.Common;
-using VLC_WINRT.ViewModels;
 #if WINDOWS_PHONE_APP
 
 #endif

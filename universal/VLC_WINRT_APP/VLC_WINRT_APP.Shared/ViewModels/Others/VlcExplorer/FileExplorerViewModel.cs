@@ -5,9 +5,8 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.Search;
-using VLC_WINRT.Common;
 
-namespace VLC_WINRT.ViewModels.MainPage.VlcExplorer
+namespace VLC_WINRT_APP.ViewModels.Others.VlcExplorer
 {
     public interface IVlcStorageItem
     {

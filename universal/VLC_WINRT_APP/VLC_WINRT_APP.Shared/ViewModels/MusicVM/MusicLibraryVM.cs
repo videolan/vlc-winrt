@@ -29,7 +29,6 @@ using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.Helpers.MusicLibrary;
 using VLC_WINRT_APP.Helpers.MusicLibrary.MusicEntities;
 using VLC_WINRT_APP.Helpers.MusicLibrary.xboxmusic.Models;
-using VLC_WINRT.ViewModels;
 using VLC_WINRT.Views.Controls.MainPage;
 using VLC_WINRT_APP.Commands;
 using XboxMusicLibrary;

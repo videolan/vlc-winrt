@@ -13,7 +13,6 @@ using Windows.UI.Xaml.Input;
 using VLC_WINRT.Common;
 using VLC_WINRT_APP.Commands;
 using VLC_WINRT_APP.Helpers;
-using VLC_WINRT.ViewModels;
 using VLC_WINRT_APP.ViewModels;
 using Panel = VLC_WINRT_APP.Model.Panel;
 using VLC_WINRT_APP.ViewModels.MusicVM;

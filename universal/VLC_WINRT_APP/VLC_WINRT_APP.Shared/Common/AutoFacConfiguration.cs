@@ -10,13 +10,12 @@
 using Autofac;
 using VLC_WINRT_APP.Services.Interface;
 using VLC_WINRT_APP.Services.RunTime;
-using VLC_WINRT.ViewModels;
 using VLC_WINRT_APP.ViewModels;
+using VLC_WINRT_APP.ViewModels.Others;
 using VLC_WINRT_APP.ViewModels.Settings;
 using VLC_WINRT_APP.ViewModels.VideoVM;
 using VLC_WINRT_APP.Views.MainPages;
 using DesignTime = VLC_WINRT_APP.Services.DesignTime;
-using VLC_WINRT.ViewModels.MainPage;
 #if NETFX_CORE
 using VLC_WINRT.Views;
 using VLC_WINRT_APP.ViewModels.MusicVM;

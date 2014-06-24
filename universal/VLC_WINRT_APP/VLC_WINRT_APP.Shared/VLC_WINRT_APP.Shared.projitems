@@ -117,11 +117,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)SQLiteAsync.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Locator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainVM.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainPage\BackerCountryViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainPage\ExternalStorageViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainPage\RemovableLibraryViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainPage\SpecialThanksViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainPage\VlcExplorer\FileExplorerViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Others\BackerCountryViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Others\ExternalStorageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Others\RemovableLibraryViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Others\SpecialThanksViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Others\VlcExplorer\FileExplorerViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MediaPlaybackViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MusicVM\MusicLibraryVM.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MusicVM\MusicPlayerVM.cs" />
