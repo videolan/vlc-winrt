@@ -168,8 +168,6 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 
         public async Task PlayNext()
         {
-            IsNextPossible();
-            IsPreviousPossible();
             if (CanGoNext)
             {
                 await DispatchHelper.InvokeAsync(() => CurrentTrack++);
@@ -184,8 +182,6 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 
         public async Task PlayPrevious()
         {
-            IsNextPossible();
-            IsPreviousPossible();
             if (CanGoPrevious)
             {
                 await DispatchHelper.InvokeAsync(() => CurrentTrack--);
@@ -238,9 +234,6 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                 // If album cover is from the internet then it's impossible to pass it to the MediaControl
             }
 
-            IsNextPossible();
-            IsPreviousPossible();
-
             //if (CanGoNext)
             //    MediaControl.NextTrackPressed += MediaControl_NextTrackPressed;
             //else
@@ -278,9 +271,6 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             //{
             //    // If album cover is from the internet then it's impossible to pass it to the MediaControl
             //}
-
-            IsNextPossible();
-            IsPreviousPossible();
 
             //if (CanGoNext)
             //    MediaControl.NextTrackPressed += MediaControl_NextTrackPressed;
