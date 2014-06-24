@@ -63,9 +63,11 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         private static ArtistDataRepository _artistDataRepository = new ArtistDataRepository();
         private static TrackDataRepository _trackDataRepository = new TrackDataRepository();
         private static AlbumDataRepository _albumDataRepository = new AlbumDataRepository();
+        private ArtistItem _currentArtist; 
         private bool _isLoaded = false;
         private bool _isBusy = false;
-        private bool _isMusicLibraryEmpty = true; 
+        private bool _isMusicLibraryEmpty = true;
+        private bool _isAlbumPageShown = false;
         private string _currentIndexingStatus = "Loading music";
         #endregion
 
