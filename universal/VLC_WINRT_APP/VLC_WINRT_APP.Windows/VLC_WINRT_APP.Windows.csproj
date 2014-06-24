@@ -157,9 +157,6 @@
     <Compile Include="Controls\RemovableStorage\PlugARemovableStorage.xaml.cs">
       <DependentUpon>PlugARemovableStorage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControls\SearchFlyout.xaml.cs">
-      <DependentUpon>SearchFlyout.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Controls\VariableSizedItemsGridView.cs" />
     <Compile Include="Controls\WrapPanelControl\OrientedSize.cs" />
     <Compile Include="Controls\WrapPanelControl\WrapPanel.cs" />
@@ -773,10 +770,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\RemovableStorage\PlugARemovableStorage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\UserControls\SearchFlyout.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
