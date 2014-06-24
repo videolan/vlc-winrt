@@ -11,13 +11,21 @@ using VLC_WINRT.Common;
 using VLC_WINRT.ViewModels;
 using VLC_WINRT_APP.ViewModels;
 
-namespace VLC_WINRT_APP.Commands.MusicPlayer
+namespace VLC_WINRT_APP.Commands.MediaPlayback
 {
-    public class PlayPreviousCommand : AlwaysExecutableCommand
+    public class PlayNextCommand : AlwaysExecutableCommand
     {
         public override async void Execute(object parameter)
         {
-            await Locator.MusicPlayerVM.PlayPrevious();
+            if (Locator.MusicPlayerVM.IsPlaying)
+            {
+                // Music Logic
+                Locator.MusicPlayerVM.PlayNext();
+            }
+            else
+            {
+                // Video Logic
+            }
         }
     }
 }

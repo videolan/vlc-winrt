@@ -7,29 +7,24 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
-using Autofac;
 using VLC_WINRT.Common;
-using VLC_WINRT_APP.Services.Interface;
+using VLC_WINRT.ViewModels;
 #if WINDOWS_PHONE_APP
-using VLC_WINPRT;
+
 #endif
 using VLC_WINRT_APP;
+using VLC_WINRT_APP.ViewModels;
 
-namespace VLC_WINRT_APP.Commands
+namespace VLC_WINRT_APP.Commands.MediaPlayback
 {
-    public class PlayPauseCommand : AlwaysExecutableCommand
+    public class StopCommand : AlwaysExecutableCommand
     {
         public override void Execute(object parameter)
         {
-            var playerService = App.Container.Resolve<IMediaService>();
-            if (playerService.IsPlaying)
-            {
-                playerService.Pause();
-            }
-            else
-            {
-                playerService.Play();
-            }
+            Locator.PlayVideoVM.UnRegisterMediaControlEvents();
+#if NETFX_CORE
+            App.RootPage.MainFrame.GoBack();
+#endif
         }
     }
 }

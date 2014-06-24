@@ -17,17 +17,19 @@
     <Compile Include="$(MSBuildThisFileDirectory)Commands\AddCustomVideoFolder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\ClearHistoryCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\MainPageCommands\GoToPanelCommand.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Commands\MusicPlayer\FavoriteAlbumCommand.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Commands\MusicPlayer\FavoriteTrackCommand.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Commands\MusicPlayer\PlayNextCommand.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Commands\MusicPlayer\PlayPreviousCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\MediaPlayback\PlayNextCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\MediaPlayback\PlayPauseCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\MediaPlayback\PlayPreviousCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\MediaPlayback\StopCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\Music\AlbumClickedCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\Music\ArtistClickedCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\Music\FavoriteAlbumCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\Music\FavoriteTrackCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\OpenFileCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\PickVideoCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\PlayAlbumCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\PlayNetworkMRLCommand.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Commands\PlayPauseCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\PlayTrackComand.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Commands\StopVideoCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\VideoPlayer\FavoriteVideoCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\VideoPlayer\OpenSubtitleCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\VideoPlayer\SetAudioTrackCommand.cs" />
@@ -170,8 +172,5 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)Commands\MediaPlayback\" />
   </ItemGroup>
 </Project>

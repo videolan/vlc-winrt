@@ -19,6 +19,7 @@ using Windows.System.Display;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
 using VLC_WINRT.ViewModels;
+using VLC_WINRT_APP.Commands.MediaPlayback;
 
 namespace VLC_WINRT_APP.ViewModels
 {
@@ -39,7 +40,7 @@ namespace VLC_WINRT_APP.ViewModels
         protected PlayNextCommand _playNext;
         protected PlayPreviousCommand _playPrevious;
         protected PlayPauseCommand _playOrPause;
-        protected StopVideoCommand _goBackCommand;
+        protected StopCommand _goBackCommand;
 
         protected readonly DisplayRequest _displayAlwaysOnRequest;
         protected readonly DispatcherTimer _sliderPositionTimer;
@@ -61,7 +62,7 @@ namespace VLC_WINRT_APP.ViewModels
             _playNext = new PlayNextCommand();
             _playPrevious = new PlayPreviousCommand();
             _playOrPause = new PlayPauseCommand();
-            _goBackCommand = new StopVideoCommand();
+            _goBackCommand = new StopCommand();
         }
 
         public void Dispose()
@@ -197,7 +198,7 @@ namespace VLC_WINRT_APP.ViewModels
             set { SetProperty(ref _skipBack, value); }
         }
 
-        public StopVideoCommand GoBack
+        public StopCommand GoBack
         {
             get { return _goBackCommand; }
             set { SetProperty(ref _goBackCommand, value); }

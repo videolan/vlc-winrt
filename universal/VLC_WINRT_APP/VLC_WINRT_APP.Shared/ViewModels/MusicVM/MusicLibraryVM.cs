@@ -35,6 +35,7 @@ using VLC_WINRT_APP.Commands;
 using XboxMusicLibrary;
 using Panel = VLC_WINRT_APP.Model.Panel;
 using VLC_WINRT_APP.ViewModels.Settings;
+using VLC_WINRT_APP.Commands.MediaPlayback;
 #if WINDOWS_PHONE_APP
 using VLC_WINPRT;
 #endif
@@ -122,17 +123,15 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             get { return _isMusicLibraryEmpty; }
             set { SetProperty(ref _isMusicLibraryEmpty, value); }
         }
-        public StopVideoCommand GoBack
-        {
-            get { return _goBackCommand; }
-            set { SetProperty(ref _goBackCommand, value); }
-        }
         #endregion
 
+        #region XBOX Music Stuff
+        public MusicHelper XboxMusicHelper = new MusicHelper();
+        public Authenication XboxMusicAuthenication;
+        #endregion
         public MusicLibraryVM()
         {
             var resourceLoader = new ResourceLoader();
-            _goBackCommand = new StopVideoCommand();
             Panels.Add(new Panel(resourceLoader.GetString("Artist").ToUpper(), 0, 1));
             Panels.Add(new Panel(resourceLoader.GetString("Tracks").ToUpper(), 1, 0.4));
             Panels.Add(new Panel(resourceLoader.GetString("FavoriteAlbums").ToUpper(), 2, 0.4));
