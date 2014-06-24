@@ -10,7 +10,7 @@
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media.Animation;
-using VLC_WINRT_APP.Utility.Helpers;
+using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.Views.MainPages;
 using VLC_WINRT_APP.Views.MusicPages;
 

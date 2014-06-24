@@ -13,7 +13,7 @@ using Windows.UI.Xaml.Controls;
 using Autofac;
 using Autofac.Core;
 using VLC_WINRT.Common;
-using VLC_WINRT_APP.Utility.Helpers.MusicLibrary;
+using VLC_WINRT_APP.Helpers.MusicLibrary;
 using VLC_WINRT_APP.Utility.Services.RunTime;
 using VLC_WINRT.ViewModels;
 using VLC_WINRT.ViewModels.MainPage;

@@ -17,7 +17,7 @@ using System.IO;
 using System.Linq;
 using Windows.UI.Xaml.Media.Animation;
 using VLC_WINRT.Common;
-using VLC_WINRT_APP.Utility.Helpers;
+using VLC_WINRT_APP.Helpers;
 using VLC_WINRT.ViewModels;
 using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.ViewModels.MusicVM;

@@ -5,7 +5,7 @@ using Windows.UI.Xaml.Controls;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 using Windows.UI.Xaml.Input;
-using VLC_WINRT_APP.Utility.Helpers;
+using VLC_WINRT_APP.Helpers;
 using VLC_WINRT.ViewModels;
 using VLC_WINRT_APP;
 using VLC_WINRT_APP.ViewModels;

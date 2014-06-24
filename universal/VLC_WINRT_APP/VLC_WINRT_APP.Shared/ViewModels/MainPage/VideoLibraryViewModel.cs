@@ -20,7 +20,7 @@ using VLC_WINRT.Common;
 using VLC_WINRT_APP.Commands;
 using Windows.Storage;
 using Windows.Storage.Search;
-using VLC_WINRT_APP.Utility.Helpers;
+using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP;
 using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.ViewModels.Settings;

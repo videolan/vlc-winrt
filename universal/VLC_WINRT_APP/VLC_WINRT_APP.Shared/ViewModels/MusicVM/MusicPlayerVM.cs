@@ -17,7 +17,7 @@ using Windows.Storage;
 using Windows.Storage.AccessCache;
 using Windows.UI.Notifications;
 using VLC_WINRT.Common;
-using VLC_WINRT_APP.Utility.Helpers;
+using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.Utility.Services.Interface;
 using VLC_WINRT_APP.Utility.Services.RunTime;
 
