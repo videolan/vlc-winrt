@@ -605,11 +605,12 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             private string _picture = "/Assets/GreyPylon/280x156.jpg";
             private uint _year;
             private bool _favorite;
+            private bool _isPictureLoaded; 
             private ObservableCollection<TrackItem> _trackItems = new ObservableCollection<TrackItem>();
             private PlayAlbumCommand _playAlbumCommand = new PlayAlbumCommand();
             private FavoriteAlbumCommand _favoriteAlbumCommand = new FavoriteAlbumCommand();
-            private bool _isPictureLoaded;
-
+            private PlayTrackCommand _playTrackCommand = new PlayTrackCommand();
+            
             [PrimaryKey, AutoIncrement, Column("_id")]
             public int Id { get; set; }
 
@@ -713,6 +714,12 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             {
                 get { return _favoriteAlbumCommand; }
                 set { SetProperty(ref _favoriteAlbumCommand, value); }
+            }
+            [Ignore]
+            public PlayTrackCommand PlayTrack
+            {
+                get { return _playTrackCommand; }
+                set { SetProperty(ref _playTrackCommand, value); }
             }
         }
 
