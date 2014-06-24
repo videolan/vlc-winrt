@@ -16,6 +16,7 @@ using Windows.UI.Xaml.Input;
 using VLC_WINRT_APP.Helpers;
 using VLC_WINRT.ViewModels;
 using VLC_WINRT_APP.ViewModels;
+using WinRTXamlToolkit.Controls.Extensions;
 
 namespace VLC_WINRT.Views
 {
@@ -57,14 +58,12 @@ namespace VLC_WINRT.Views
         {
             SpeedRateTextBlock.Visibility = Visibility.Visible;
             _timer.Start();
-            UIAnimationHelper.FadeIn(Commands);
             isCommandShown = true;
         }
 
         void HideCommands()
         {
             _timer.Stop();
-            UIAnimationHelper.FadeOut(Commands);
             SpeedRateTextBlock.Visibility = Visibility.Collapsed;
             isCommandShown = false;
         }
