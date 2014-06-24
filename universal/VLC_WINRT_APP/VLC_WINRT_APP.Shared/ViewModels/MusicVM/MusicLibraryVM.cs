@@ -520,6 +520,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             [Ignore]
             public int CurrentAlbumIndex
             {
+                get { return _currentAlbumIndex; }
                 set { SetProperty(ref _currentAlbumIndex, value); }
             }
 
@@ -544,6 +545,21 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                     return "Loading";
                 }
                 set { SetProperty(ref _biography, value); }
+                //get
+                //{
+                //    if (_biography != null)
+                //    {
+                //        return _biography;
+                //    }
+                //    if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
+                //        return "Please verify your internet connection";
+                //    Task.Run(() => ArtistInformationsHelper.GetArtistBiography(this));
+                //    return "Loading";
+                //}
+                //set
+                //{
+                //    SetProperty(ref _biography, value);
+                //}
             }
 
             [Ignore]

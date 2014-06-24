@@ -145,6 +145,9 @@
     <Compile Include="Controls\MinimizedAppBar.xaml.cs">
       <DependentUpon>MinimizedAppBar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\MusicPages\AlbumPage.xaml.cs">
+      <DependentUpon>AlbumPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserControls\MiniPlayer.xaml.cs">
       <DependentUpon>MiniPlayer.xaml</DependentUpon>
     </Compile>
@@ -756,6 +759,10 @@
     <Page Include="Controls\MinimizedAppBar.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MusicPages\AlbumPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControls\MiniPlayer.xaml">
       <Generator>MSBuild:Compile</Generator>

@@ -7,6 +7,7 @@ using VLC_WINRT.Common;
 using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.Views.MainPages;
 using VLC_WINRT_APP.ViewModels.MusicVM;
+using VLC_WINRT_APP.Views.MusicPages;
 
 namespace VLC_WINRT_APP.Commands.Music
 {
