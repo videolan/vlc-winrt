@@ -186,7 +186,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         {
             _albumClickedCommand = new AlbumClickedCommand();
             _artistClickedCommand = new ArtistClickedCommand();
-            Task.Run(() =>await GetMusicFromLibrary());
+            Task.Run(() => GetMusicFromLibrary());
         }
 
         #region methods
