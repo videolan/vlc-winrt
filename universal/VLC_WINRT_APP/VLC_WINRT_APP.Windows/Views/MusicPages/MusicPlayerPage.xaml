@@ -5,9 +5,152 @@
     xmlns:local="using:VLC_WINRT_APP.Views.MusicPages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    xmlns:triggers="using:WinRT.Triggers"
+    mc:Ignorable="d"
+      DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+    <Grid>
+        <Hub x:Name="MainHub">
+            <Hub.Header>
+                <StackPanel Orientation="Horizontal"
+                            Margin="-40,-14,0,-18"
+                            Height="45">
+                    <AppBarButton Icon="Back"
+                                  IsCompact="True"
+                                  Click="GoBack"
+                                  Style="{StaticResource MiniAppBarButtonStyle}" />
+                    <TextBlock Text="{Binding CurrentPlayingArtist.CurrentAlbumItem.Name}"
+                               Style="{StaticResource TitleTextBlockStyle}"
+                               Typography.Capitals="SmallCaps"
+                               FontSize="23"
+                               Margin="0,-5,0,0"
+                               VerticalAlignment="Center" />
+                </StackPanel>
+            </Hub.Header>
+            <Hub.Sections>
+                <HubSection Margin="-24,0,0,0">
+                    <HubSection.Header>
+                        <Grid Height="200">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="200" />
+                                <ColumnDefinition Width="12" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid>
+                                <Image Source="{Binding CurrentPlayingArtist.CurrentAlbumItem.Picture}"
+                                       Stretch="UniformToFill"
+                                       Width="200"
+                                       Height="200"
+                                       VerticalAlignment="Top" />
+                            </Grid>
+                            <Grid Grid.Column="2"
+                                  Height="200"
+                                  VerticalAlignment="Top">
+                                <StackPanel>
+                                    <TextBlock Text="{Binding CurrentPlayingArtist.Name}"
+                                               Style="{StaticResource TitleTextBlockStyle}" />
+                                    <TextBlock Text="{Binding CurrentPlayingArtist.CurrentAlbumItem.Year}"
+                                               Style="{StaticResource TitleTextBlockStyle}" />
+                                    <TextBlock Style="{StaticResource TitleTextBlockStyle}">
+                                        <Run Text="{Binding CurrentPlayingArtist.CurrentAlbumItem.Tracks.Count}" />
+                                        <Run Text="tracks" />
+                                    </TextBlock>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal"
+                                            Margin="-21,0,0,0"
+                                            VerticalAlignment="Bottom">
+                                    <AppBarToggleButton IsChecked="{Binding CurrentPlayingArtist.CurrentAlbumItem.Favorite}"
+                                                        Label="Like">
+                                        <AppBarToggleButton.Icon>
+                                            <FontIcon Glyph="&#xE0A5;" />
+                                        </AppBarToggleButton.Icon>
+                                    </AppBarToggleButton>
+                                    <AppBarToggleButton Icon="Play"
+                                                        Label="Play all"
+                                                        Command="{Binding CurrentPlayingArtist.CurrentAlbumItem.PlayAlbum}"
+                                                        CommandParameter="{Binding CurrentPlayingArtist.CurrentAlbumItem}" />
+                                </StackPanel>
+                            </Grid>
+                        </Grid>
+                    </HubSection.Header>
+                    <HubSection.ContentTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <ListView ItemsSource="{Binding TrackCollection}"
+                                          IsItemClickEnabled="True"
+                                          SelectionMode="None"
+                                          ItemTemplate="{StaticResource LittleDarkTrackTemplate}">
+                                    <triggers:Interactions.Triggers>
+                                        <triggers:EventTrigger EventName="ItemClick">
+                                            <triggers:InvokeCommandAction Command="{Binding CurrentPlayingArtist.CurrentAlbumItem.PlayTrack}"
+                                                                          PassEventArgsToCommand="True" />
+                                        </triggers:EventTrigger>
+                                    </triggers:Interactions.Triggers>
+                                    <ListView.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <ItemsWrapGrid ItemWidth="300"
+                                                           Orientation="Vertical" />
+                                        </ItemsPanelTemplate>
+                                    </ListView.ItemsPanel>
+                                </ListView>
+                            </Grid>
+                        </DataTemplate>
+                    </HubSection.ContentTemplate>
+                </HubSection>
+                <HubSection Header="biography"
+                            Width="480">
+                    <HubSection.ContentTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding CurrentPlayingArtist.Biography}"
+                                       Style="{StaticResource BodyTextBlockStyle}" />
+                        </DataTemplate>
+                    </HubSection.ContentTemplate>
+                </HubSection>
+                <HubSection Header="popular albums">
+                    <HubSection.ContentTemplate>
+                        <DataTemplate>
+                            <GridView x:Uid="PopularAlbums"
+                                      x:Name="PopularItemGridView"
+                                      IsSwipeEnabled="False"
+                                      SelectionMode="None"
+                                      IsItemClickEnabled="True"
+                                      ItemsSource="{Binding CurrentPlayingArtist.OnlinePopularAlbumItems}"
+                                      ItemTemplate="{StaticResource PopularAlbumTemplate}"
+                                      SizeChanged="GridView_OnSizeChanged">
+                                <GridView.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapGrid ItemHeight="200"
+                                                  ItemWidth="200"
+                                                  Orientation="Horizontal" />
+                                    </ItemsPanelTemplate>
+                                </GridView.ItemsPanel>
+                            </GridView>
+                        </DataTemplate>
+                    </HubSection.ContentTemplate>
+                </HubSection>
+                <HubSection Header="similar artists">
+                    <HubSection.ContentTemplate>
+                        <DataTemplate>
+                            <GridView x:Uid="PopularAlbums"
+                                      x:Name="PopularItemGridView"
+                                      IsSwipeEnabled="False"
+                                      SelectionMode="None"
+                                      IsItemClickEnabled="True"
+                                      ItemsSource="{Binding CurrentPlayingArtist.OnlineRelatedArtists}"
+                                      ItemTemplate="{StaticResource SimilarArtistTemplate}"
+                                      SizeChanged="GridView_OnSizeChanged">
+                                <GridView.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapGrid ItemHeight="200"
+                                                  ItemWidth="200"
+                                                  Orientation="Horizontal" />
+                                    </ItemsPanelTemplate>
+                                </GridView.ItemsPanel>
+                            </GridView>
+                        </DataTemplate>
+                    </HubSection.ContentTemplate>
+                </HubSection>
+            </Hub.Sections>
+        </Hub>
     </Grid>
 </Page>

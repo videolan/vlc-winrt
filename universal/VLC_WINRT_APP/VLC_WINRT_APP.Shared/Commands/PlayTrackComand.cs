@@ -65,35 +65,6 @@ namespace VLC_WINRT_APP.Commands
                     Locator.MusicPlayerVM.TrackCollection.IndexOf(track);
             }
             await Locator.MusicPlayerVM.Play();
-
-
-
-            //MusicLibraryVM.TrackItem track = parameter as MusicLibraryVM.TrackItem;
-            //if (!Locator.MusicPlayerVM.TrackCollection.TrackCollection.Contains(track))
-            //{
-            //    Locator.MusicPlayerVM.TrackCollection.ResetCollection();
-            //    Locator.MusicPlayerVM.TrackCollection.AddTrack(track);
-            //}
-            //else
-            //{
-            //    Locator.MusicPlayerVM.TrackCollection.CurrentTrack =
-            //        Locator.MusicPlayerVM.TrackCollection.TrackCollection.IndexOf(track);
-            //}
-            //await Locator.MusicPlayerVM.Play();
-
-            //var frame = App.ApplicationFrame;
-//#if NETFX_CORE
-//            var page = frame.Content as MainPage;
-//            if (page != null)
-//            {
-//                var sB = page.Resources["FadeOutPage"] as Storyboard;
-//                if (sB != null)
-//                {
-//                    await sB.BeginAsync();
-//                    App.ApplicationFrame.Navigate(typeof(ArtistPage));
-//                }
-//            } 
-//#endif
         }
     }
 }
