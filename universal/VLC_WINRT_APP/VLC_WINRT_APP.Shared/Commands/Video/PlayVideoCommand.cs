@@ -27,10 +27,13 @@ namespace VLC_WINRT_APP.Commands.Video
 #endif
             ItemClickEventArgs args = parameter as ItemClickEventArgs;
             VideoVM videoVm = args.ClickedItem as VideoVM;
-            string token = StorageApplicationPermissions.FutureAccessList.Add(videoVm.File);
-            videoVm.Token = token;
+            if (string.IsNullOrEmpty(videoVm.Token))
+            {
+                string token = StorageApplicationPermissions.FutureAccessList.Add(videoVm.File);
+                videoVm.Token = token;
+            }
             Locator.VideoVm.CurrentVideo = videoVm;
-            Locator.VideoVm.SetActiveVideoInfo(token);
+            Locator.VideoVm.SetActiveVideoInfo(videoVm.Token);
         }
     }
 }

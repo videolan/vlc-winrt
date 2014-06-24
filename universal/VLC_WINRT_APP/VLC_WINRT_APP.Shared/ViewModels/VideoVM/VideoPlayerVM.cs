@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using Windows.Devices.Scanners;
 using Windows.Media;
 using Windows.UI.Xaml;
 using Autofac;
@@ -47,6 +48,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
         private SetAudioTrackCommand _setAudioTrackCommand;
 
         private DispatcherTimer _positionTimer = new DispatcherTimer();
+        private bool _isRunning;
         #endregion
 
         #region private fields
@@ -97,6 +99,17 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             get { return _setAudioTrackCommand; }
             set { SetProperty(ref _setAudioTrackCommand, value); }
         }
+        public bool IsRunning
+        {
+            get
+            {
+                return _isRunning;
+            }
+            set
+            {
+                SetProperty(ref _isRunning, value);
+            }
+        }
         #endregion
 
         #region public fields
@@ -136,6 +149,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             _lastVideosRepository.Load();
         }
         #endregion
+
         #region methods
         protected override void OnPlaybackStarting()
         {
@@ -159,16 +173,15 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             // Pause the music viewmodel
             Locator.MusicPlayerVM.CleanViewModel();
 
+            IsRunning = true;
             _fileToken = token;
             _mrl = "file://" + token;
-            Title = title;
             _timeTotal = TimeSpan.Zero;
             _elapsedTime = TimeSpan.Zero;
 
             _vlcPlayerService.Open(_mrl);
-
-
             _vlcPlayerService.Play();
+
             await Task.Delay(500);
             if (_timeTotal == TimeSpan.Zero)
             {
@@ -194,7 +207,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             await _vlcPlayerService.GetSubtitleDescription(SubtitlesTracks);
             await _vlcPlayerService.GetAudioTrackDescription(AudioTracks);
             _vlcPlayerService.MediaEnded += VlcPlayerServiceOnMediaEnded;
-            RegisterMediaControlEvents();
+            //RegisterMediaControlEvents();
             
             _positionTimer.Tick += FirePositionUpdate;
             _positionTimer.Start();
@@ -212,14 +225,14 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             Locator.MusicPlayerVM.CleanViewModel();
 
             _fileToken = null;
-            _mrl = mrl;
-            _timeTotal = TimeSpan.Zero;
-            _elapsedTime = TimeSpan.Zero;
+            _mrl = "file://" + mrl;
+            TimeTotal = TimeSpan.Zero;
+            ElapsedTime = TimeSpan.Zero;
 
             _vlcPlayerService.Open(_mrl);
             _vlcPlayerService.Play();
             _vlcPlayerService.MediaEnded += VlcPlayerServiceOnMediaEnded;
-            RegisterMediaControlEvents();
+            //RegisterMediaControlEvents();
         }
 
         void RegisterMediaControlEvents()

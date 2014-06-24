@@ -34,7 +34,7 @@ namespace VLC_WINRT_APP.DataRepository
 
             return new ObservableCollection<VideoVM>(
                await connection.QueryAsync<VideoVM>(
-                     "select * from MediaViewModel"));
+                     "select * from VideoVM"));
         }
 
         public async Task<VideoVM> LoadViaToken(string token)
