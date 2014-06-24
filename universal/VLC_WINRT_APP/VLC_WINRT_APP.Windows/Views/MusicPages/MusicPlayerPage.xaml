@@ -108,8 +108,7 @@
                 <HubSection Header="popular albums">
                     <HubSection.ContentTemplate>
                         <DataTemplate>
-                            <GridView x:Uid="PopularAlbums"
-                                      x:Name="PopularItemGridView"
+                            <GridView x:Name="PopularItemGridView"
                                       IsSwipeEnabled="False"
                                       SelectionMode="None"
                                       IsItemClickEnabled="True"
@@ -130,8 +129,7 @@
                 <HubSection Header="similar artists">
                     <HubSection.ContentTemplate>
                         <DataTemplate>
-                            <GridView x:Uid="PopularAlbums"
-                                      x:Name="PopularItemGridView"
+                            <GridView x:Name="SimilarItemGridView"
                                       IsSwipeEnabled="False"
                                       SelectionMode="None"
                                       IsItemClickEnabled="True"
