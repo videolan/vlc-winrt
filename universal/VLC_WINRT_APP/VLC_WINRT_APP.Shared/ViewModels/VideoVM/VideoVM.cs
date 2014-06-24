@@ -26,8 +26,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
 {
     public class VideoVM : BindableBase
     {
-        private OpenVideoCommand _openVideo;
-        private FavoriteVideoCommand _favoriteVideo;
+        private FavoriteVideoCommand _favoriteVideo; 
         private string _subtitle = string.Empty;
         private string _title = string.Empty;
         private char _alphaKey;
@@ -41,7 +40,6 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
         private string _token;
         public VideoVM()
         {
-            OpenVideo = new OpenVideoCommand();
             FavoriteVideo = new FavoriteVideoCommand();
             _thumbsService = App.Container.Resolve<IThumbnailService>();
         }
@@ -176,13 +174,6 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             {
                 Duration = duration;
             });
-        }
-
-        [Ignore]
-        public OpenVideoCommand OpenVideo
-        {
-            get { return _openVideo; }
-            set { SetProperty(ref _openVideo, value); }
         }
 
         [Ignore]
