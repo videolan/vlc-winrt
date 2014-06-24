@@ -147,7 +147,6 @@ namespace VLC_WINRT.ViewModels.MainPage
             {
                 DispatchHelper.InvokeAsync(() => HasNoMedia = true);
             }
-            ExecuteSemanticZoom();
         }
         public void ExecuteSemanticZoom(SemanticZoom sZ, CollectionViewSource cvs)
         {
