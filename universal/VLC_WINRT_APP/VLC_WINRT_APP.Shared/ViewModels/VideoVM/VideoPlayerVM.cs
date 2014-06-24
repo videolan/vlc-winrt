@@ -219,7 +219,6 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
         {
             MediaControl.IsPlaying = true;
             MediaControl.ArtistName = "";
-            MediaControl.TrackName = Title;
             MediaControl.NextTrackPressed += async (sender, o) => await DispatchHelper.InvokeAsync(()=> SkipAhead.Execute(""));
             MediaControl.PreviousTrackPressed += async (sender, o) => await DispatchHelper.InvokeAsync(()=> SkipBack.Execute(""));
             MediaControl.PlayPauseTogglePressed += async (sender, o) => await DispatchHelper.InvokeAsync(() =>

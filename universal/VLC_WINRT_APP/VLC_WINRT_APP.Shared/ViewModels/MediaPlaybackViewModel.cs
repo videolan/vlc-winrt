@@ -25,16 +25,15 @@ namespace VLC_WINRT_APP.ViewModels
 {
     public class MediaPlaybackViewModel : NavigateableViewModel, IDisposable
     {
+        #region private props
         protected readonly IMediaService _mediaService;
         protected VlcService _vlcPlayerService;
 
         protected bool _isPlaying;
         protected TimeSpan _timeTotal;
-        protected string _title;
         protected TimeSpan _elapsedTime;
         protected string _fileToken;
         protected string _mrl;
-
         protected ActionCommand _skipAhead;
         protected ActionCommand _skipBack;
         protected PlayNextCommand _playNext;
@@ -44,105 +43,13 @@ namespace VLC_WINRT_APP.ViewModels
 
         protected readonly DisplayRequest _displayAlwaysOnRequest;
         protected readonly DispatcherTimer _sliderPositionTimer;
+        #endregion
 
-        protected MediaPlaybackViewModel(IMediaService mediaService, VlcService mediaPlayerService)
-        {
-            _mediaService = mediaService;
-            _mediaService.StatusChanged += PlayerStateChanged;
-
-            _vlcPlayerService = mediaPlayerService;
-
-            _displayAlwaysOnRequest = new DisplayRequest();
-            _sliderPositionTimer = new DispatcherTimer();
-            _sliderPositionTimer.Tick += FirePositionUpdate;
-            _sliderPositionTimer.Interval = TimeSpan.FromMilliseconds(500);
-
-            _skipAhead = new ActionCommand(() => _mediaService.SkipAhead());
-            _skipBack = new ActionCommand(() => _mediaService.SkipBack());
-            _playNext = new PlayNextCommand();
-            _playPrevious = new PlayPreviousCommand();
-            _playOrPause = new PlayPauseCommand();
-            _goBackCommand = new StopCommand();
-        }
-
-        public void Dispose()
-        {
-            if (_vlcPlayerService != null)
-            {
-                _vlcPlayerService.StatusChanged -= PlayerStateChanged;
-                _vlcPlayerService.Stop();
-                _vlcPlayerService.Close();
-                _vlcPlayerService = null;
-            }
-            _skipAhead = null;
-            _skipBack = null;
-        }
-
-        private void ProtectedDisplayCall(bool shouldActivate)
-        {
-            if (_displayAlwaysOnRequest == null) return;
-            if (shouldActivate)
-            {
-                _displayAlwaysOnRequest.RequestActive();
-            }
-            else
-            {
-                _displayAlwaysOnRequest.RequestRelease();
-            }
-        }
-
-        private void UpdatePosition()
-        {
-            ElapsedTime = TimeSpan.FromSeconds(PositionInSeconds);
-            OnPropertyChanged("PositionInSeconds");
-            OnPropertyChanged("Position");
-        }
-
-        virtual public void CleanViewModel()
-        {
-            _mediaService.Stop();
-           
-            IsPlaying = false;
-          
-            Title = null;
-            _elapsedTime = TimeSpan.Zero;
-            _timeTotal = TimeSpan.Zero;
-        }
-
-        public override Task OnNavigatedFrom(NavigationEventArgs e)
-        {
-            _sliderPositionTimer.Stop();
-            _mediaService.Stop();
-            return base.OnNavigatedFrom(e);
-        }
-
-        protected virtual void OnPlaybackStarting()
-        {
-            _sliderPositionTimer.Start();
-            ProtectedDisplayCall(true);
-        }
-
-        protected virtual void OnPlaybackStopped()
-        {
-            _sliderPositionTimer.Stop();
-            ProtectedDisplayCall(false);
-        }
-
-        #region Events
-
-        protected async void PlayerStateChanged(object sender, VlcService.MediaPlayerState e)
-        {
-            await DispatchHelper.InvokeAsync(() => IsPlaying = e == VlcService.MediaPlayerState.Playing);
-        }
-
-        private async void FirePositionUpdate(object sender, object e)
-        {
-            UpdatePosition();
-        }
+        #region private fields
 
         #endregion
 
-        #region Properties
+        #region public props
         public bool IsPlaying
         {
             get { return _isPlaying; }
@@ -162,13 +69,6 @@ namespace VLC_WINRT_APP.ViewModels
                 }
             }
         }
-
-        public string Title
-        {
-            get { return _title; }
-            protected set { SetProperty(ref _title, value); }
-        }
-
         public PlayPauseCommand PlayOrPause
         {
             get { return _playOrPause; }
@@ -248,5 +148,106 @@ namespace VLC_WINRT_APP.ViewModels
             }
         }
         #endregion
+
+        #region public fields
+
+        #endregion
+        #region constructors
+        protected MediaPlaybackViewModel(IMediaService mediaService, VlcService mediaPlayerService)
+        {
+            _mediaService = mediaService;
+            _mediaService.StatusChanged += PlayerStateChanged;
+
+            _vlcPlayerService = mediaPlayerService;
+
+            _displayAlwaysOnRequest = new DisplayRequest();
+            _sliderPositionTimer = new DispatcherTimer();
+            _sliderPositionTimer.Tick += FirePositionUpdate;
+            _sliderPositionTimer.Interval = TimeSpan.FromMilliseconds(500);
+
+            _skipAhead = new ActionCommand(() => _mediaService.SkipAhead());
+            _skipBack = new ActionCommand(() => _mediaService.SkipBack());
+            _playNext = new PlayNextCommand();
+            _playPrevious = new PlayPreviousCommand();
+            _playOrPause = new PlayPauseCommand();
+            _goBackCommand = new StopCommand();
+        }
+        #endregion
+
+        #region methods
+        public void Dispose()
+        {
+            if (_vlcPlayerService != null)
+            {
+                _vlcPlayerService.StatusChanged -= PlayerStateChanged;
+                _vlcPlayerService.Stop();
+                _vlcPlayerService.Close();
+                _vlcPlayerService = null;
+            }
+            _skipAhead = null;
+            _skipBack = null;
+        }
+
+        private void ProtectedDisplayCall(bool shouldActivate)
+        {
+            if (_displayAlwaysOnRequest == null) return;
+            if (shouldActivate)
+            {
+                _displayAlwaysOnRequest.RequestActive();
+            }
+            else
+            {
+                _displayAlwaysOnRequest.RequestRelease();
+            }
+        }
+
+        private void UpdatePosition()
+        {
+            ElapsedTime = TimeSpan.FromSeconds(double.IsNaN(PositionInSeconds) ? 0 : PositionInSeconds);
+            OnPropertyChanged("PositionInSeconds");
+            OnPropertyChanged("Position");
+        }
+
+        virtual public void CleanViewModel()
+        {
+            _mediaService.Stop();
+            IsPlaying = false;
+            _elapsedTime = TimeSpan.Zero;
+            _timeTotal = TimeSpan.Zero;
+        }
+
+        public override Task OnNavigatedFrom(NavigationEventArgs e)
+        {
+            _sliderPositionTimer.Stop();
+            _mediaService.Stop();
+            return base.OnNavigatedFrom(e);
+        }
+
+        protected virtual void OnPlaybackStarting()
+        {
+            _sliderPositionTimer.Start();
+            ProtectedDisplayCall(true);
+        }
+
+        protected virtual void OnPlaybackStopped()
+        {
+            _sliderPositionTimer.Stop();
+            ProtectedDisplayCall(false);
+        }
+        #endregion
+        #region Events
+
+        protected async void PlayerStateChanged(object sender, VlcService.MediaPlayerState e)
+        {
+            await DispatchHelper.InvokeAsync(() => IsPlaying = e == VlcService.MediaPlayerState.Playing);
+        }
+
+        private async void FirePositionUpdate(object sender, object e)
+        {
+            UpdatePosition();
+        }
+
+        #endregion
+
     }
 }
