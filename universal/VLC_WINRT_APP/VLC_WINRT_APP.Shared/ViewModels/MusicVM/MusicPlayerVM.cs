@@ -33,7 +33,6 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         private int _currentTrack = 0;
         private bool _canGoPrevious;
         private bool _canGoNext;
-        private bool _isPlaying;
         private bool _isRunning;
         private MusicLibraryVM.ArtistItem _currentPlayingArtist;
         #endregion
@@ -75,25 +74,6 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             }
         }
 
-        public bool IsPlaying
-        {
-            get { return _isPlaying; }
-            set
-            {
-                if (value != _isPlaying)
-                {
-                    if (value)
-                    {
-                        OnPlaybackStarting();
-                    }
-                    else
-                    {
-                        OnPlaybackStopped();
-                    }
-                    SetProperty(ref _isPlaying, value);
-                }
-            }
-        }
         public int CurrentTrack
         {
             get { return _currentTrack; }
@@ -298,7 +278,6 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         {
             _fileToken = token;
             _mrl = "file://" + token;
-            Title = track.Name;
             CurrentPlayingArtist = Locator.MusicLibraryVM.Artist.FirstOrDefault(x => x.Name == track.ArtistName);
             if (CurrentPlayingArtist != null)
                 CurrentPlayingArtist.CurrentAlbumIndex = CurrentPlayingArtist.Albums.IndexOf(CurrentPlayingArtist.Albums.FirstOrDefault(x => x.Name == track.AlbumName));
