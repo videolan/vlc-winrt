@@ -56,9 +56,9 @@ namespace VLC_WINRT_APP.ViewModels
             get { return App.Container.Resolve<VideoLibraryVM>(); }
         }
 
-        public static PlayVideoViewModel PlayVideoVM
+        public static VideoPlayerVM VideoVm
         {
-            get { return App.Container.Resolve<PlayVideoViewModel>(); }
+            get { return App.Container.Resolve<VideoPlayerVM>(); }
         }
 
         public static MainVM MainVM

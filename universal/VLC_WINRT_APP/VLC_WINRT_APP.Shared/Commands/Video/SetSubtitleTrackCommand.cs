@@ -16,7 +16,7 @@ namespace VLC_WINRT_APP.Commands.Video
     {
         public override async void Execute(object parameter)
         {
-            await Locator.PlayVideoVM.SetSubtitleTrack((int)parameter);
+            await Locator.VideoVm.SetSubtitleTrack((int)parameter);
         }
     }
 }

@@ -32,24 +32,24 @@ namespace VLC_WINRT_APP.Views.VideoPages
         private void GoBack(object sender, RoutedEventArgs e)
         {
             Frame.GoBack();
-            Locator.PlayVideoVM.CleanViewModel();
+            Locator.VideoVm.CleanViewModel();
         }
         private async void Subtitles_Click(object sender, RoutedEventArgs e)
         {
             PopupMenu popup = new PopupMenu();
-            for (int i = 0; i < MathHelper.Clamp(0, 5, Locator.PlayVideoVM.SubtitlesCount); i++)
+            for (int i = 0; i < MathHelper.Clamp(0, 5, Locator.VideoVm.SubtitlesCount); i++)
             {
                 popup.Commands.Add(new UICommand()
                 {
-                    Id = Locator.PlayVideoVM.SubtitlesTracks.ElementAt(i).Key,
-                    Label = Locator.PlayVideoVM.SubtitlesTracks.ElementAt(i).Value,
-                    Invoked = command => Locator.PlayVideoVM.SetSubtitleTrackCommand.Execute(command.Id),
+                    Id = Locator.VideoVm.SubtitlesTracks.ElementAt(i).Key,
+                    Label = Locator.VideoVm.SubtitlesTracks.ElementAt(i).Value,
+                    Invoked = command => Locator.VideoVm.SetSubtitleTrackCommand.Execute(command.Id),
                 });
             }
             popup.Commands.Add(new UICommand()
             {
                 Label = "Open subtitle file",
-                Invoked = command => Locator.PlayVideoVM.OpenSubtitleCommand.Execute(""),
+                Invoked = command => Locator.VideoVm.OpenSubtitleCommand.Execute(""),
             });
             await popup.ShowForSelectionAsync(((Button)sender).GetBoundingRect());
         }
@@ -57,13 +57,13 @@ namespace VLC_WINRT_APP.Views.VideoPages
         private async void AudioTracks_Click(object sender, RoutedEventArgs e)
         {
             PopupMenu popup = new PopupMenu();
-            for (int i = 0; i < MathHelper.Clamp(0, 6, Locator.PlayVideoVM.AudioTracksCount); i++)
+            for (int i = 0; i < MathHelper.Clamp(0, 6, Locator.VideoVm.AudioTracksCount); i++)
             {
                 popup.Commands.Add(new UICommand()
                 {
-                    Id = Locator.PlayVideoVM.AudioTracks.ElementAt(i).Key,
-                    Label = Locator.PlayVideoVM.AudioTracks.ElementAt(i).Value,
-                    Invoked = command => Locator.PlayVideoVM.SetAudioTrackCommand.Execute(command.Id),
+                    Id = Locator.VideoVm.AudioTracks.ElementAt(i).Key,
+                    Label = Locator.VideoVm.AudioTracks.ElementAt(i).Value,
+                    Invoked = command => Locator.VideoVm.SetAudioTrackCommand.Execute(command.Id),
                 });
             }
             await popup.ShowForSelectionAsync(((Button)sender).GetBoundingRect());

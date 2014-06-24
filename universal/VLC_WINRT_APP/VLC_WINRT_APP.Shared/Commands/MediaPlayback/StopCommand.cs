@@ -21,7 +21,7 @@ namespace VLC_WINRT_APP.Commands.MediaPlayback
     {
         public override void Execute(object parameter)
         {
-            Locator.PlayVideoVM.UnRegisterMediaControlEvents();
+            Locator.VideoVm.UnRegisterMediaControlEvents();
 #if NETFX_CORE
             App.RootPage.MainFrame.GoBack();
 #endif

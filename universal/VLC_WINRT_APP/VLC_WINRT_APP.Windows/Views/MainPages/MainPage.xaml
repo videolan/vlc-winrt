@@ -20,7 +20,7 @@
                Source="ms-appx:///Assets/background.jpg"
                Opacity="0.5"
                Grid.RowSpan="3"
-               Visibility="{Binding Source={StaticResource Locator}, Path=PlayVideoVM.IsPlaying, Converter={StaticResource NegatedBooleanToVisibilityConverter}}" />
+               Visibility="{Binding Source={StaticResource Locator}, Path=VideoVm.IsPlaying, Converter={StaticResource NegatedBooleanToVisibilityConverter}}" />
         <userControls:TopBar Grid.Row="0" />
         <userControls:MiniPlayer Grid.Row="2" />
         <MediaElement x:Name="FoudationMediaElement"

@@ -58,11 +58,11 @@ namespace VLC_WINRT_APP.Commands
             //    }
             //}
 #endif
-            Locator.PlayVideoVM.CurrentVideo = parameter as VideoVM;
+            Locator.VideoVm.CurrentVideo = parameter as VideoVM;
 #if NETFX_CORE
             App.ApplicationFrame.Navigate(typeof(VideoPlayerPage));
 #endif
-            Locator.PlayVideoVM.SetActiveVideoInfo(token, vm.File.Name);
+            Locator.VideoVm.SetActiveVideoInfo(token, vm.File.Name);
         }
     }
 }

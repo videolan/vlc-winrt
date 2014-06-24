@@ -29,8 +29,8 @@ namespace VLC_WINRT_APP.Commands.Video
             VideoVM videoVm = args.ClickedItem as VideoVM;
             string token = StorageApplicationPermissions.FutureAccessList.Add(videoVm.File);
             videoVm.Token = token;
-            Locator.PlayVideoVM.CurrentVideo = videoVm;
-            Locator.PlayVideoVM.SetActiveVideoInfo(token);
+            Locator.VideoVm.CurrentVideo = videoVm;
+            Locator.VideoVm.SetActiveVideoInfo(token);
         }
     }
 }

@@ -31,7 +31,7 @@ using VLC_WINPRT;
 
 namespace VLC_WINRT_APP.ViewModels.VideoVM
 {
-    public class PlayVideoViewModel : MediaPlaybackViewModel
+    public class VideoPlayerVM : MediaPlaybackViewModel
     {
         private ObservableCollection<Subtitle> _subtitles;
 #if NETFX_CORE
@@ -47,7 +47,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
         private IDictionary<int, string> _audioTracks;
         private SetAudioTrackCommand _setAudioTrackCommand;
         private DispatcherTimer _positionTimer = new DispatcherTimer();
-        public PlayVideoViewModel(IMediaService mediaService, VlcService mediaPlayerService)
+        public VideoPlayerVM(IMediaService mediaService, VlcService mediaPlayerService)
             : base(mediaService, mediaPlayerService)
         {
             _subtitles = new ObservableCollection<Subtitle>();

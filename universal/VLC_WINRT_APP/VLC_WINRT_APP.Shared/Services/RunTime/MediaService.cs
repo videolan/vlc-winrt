@@ -298,7 +298,7 @@ namespace VLC_WINRT_APP.Services.RunTime
                     // TODO: Route Video Player calls through Media Service
                     _vlcService.Pause();
 
-                    Locator.PlayVideoVM._lastVideosRepository.Update(Locator.PlayVideoVM.CurrentVideo);
+                    Locator.VideoVm._lastVideosRepository.Update(Locator.VideoVm.CurrentVideo);
                     return;
                 }
 

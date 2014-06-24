@@ -29,7 +29,7 @@ namespace VLC_WINRT_APP.Commands
                 throw new ArgumentException("Expecting to see a string mrl for this command");
 
             //TODO: pass MRL to vlc
-            Locator.PlayVideoVM.SetActiveVideoInfo(mrl);
+            Locator.VideoVm.SetActiveVideoInfo(mrl);
             #if NETFX_CORE
             App.ApplicationFrame.Navigate(typeof(VideoPlayerPage));
             #endif
