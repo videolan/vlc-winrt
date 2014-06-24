@@ -14,7 +14,7 @@ using System.Runtime.Serialization;
 using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using VLC_WINRT_APP.Utility.Services.RunTime;
+using VLC_WINRT_APP.Services.RunTime;
 
 namespace VLC_WINRT.Common
 {

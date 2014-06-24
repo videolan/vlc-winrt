@@ -18,8 +18,8 @@ using Windows.Storage.AccessCache;
 using Windows.UI.Notifications;
 using VLC_WINRT.Common;
 using VLC_WINRT_APP.Helpers;
-using VLC_WINRT_APP.Utility.Services.Interface;
-using VLC_WINRT_APP.Utility.Services.RunTime;
+using VLC_WINRT_APP.Services.Interface;
+using VLC_WINRT_APP.Services.RunTime;
 
 namespace VLC_WINRT_APP.ViewModels.MusicVM
 {

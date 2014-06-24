@@ -15,7 +15,7 @@ using Windows.UI.Xaml.Controls;
 #if NETFX_CORE
 using libVLCX;
 #endif
-namespace VLC_WINRT_APP.Utility.Services.RunTime
+namespace VLC_WINRT_APP.Services.RunTime
 {
     public class VlcService
     {

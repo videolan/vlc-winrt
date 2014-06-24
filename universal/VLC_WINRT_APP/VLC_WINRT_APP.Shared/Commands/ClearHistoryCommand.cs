@@ -9,7 +9,7 @@
 
 using Autofac;
 using VLC_WINRT.Common;
-using VLC_WINRT_APP.Utility.Services.RunTime;
+using VLC_WINRT_APP.Services.RunTime;
 using VLC_WINRT.ViewModels;
 using VLC_WINRT.ViewModels.MainPage;
 #if WINDOWS_PHONE_APP

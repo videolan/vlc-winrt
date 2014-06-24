@@ -9,11 +9,11 @@
 
 using System;
 using System.Threading.Tasks;
-using VLC_WINRT_APP.Utility.Services.RunTime;
+using VLC_WINRT_APP.Services.RunTime;
 using Windows.Storage;
 
 
-namespace VLC_WINRT_APP.Utility.Services.Interface
+namespace VLC_WINRT_APP.Services.Interface
 {
     public interface IMediaService
     {

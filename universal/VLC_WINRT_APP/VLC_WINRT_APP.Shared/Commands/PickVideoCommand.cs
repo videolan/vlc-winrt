@@ -14,7 +14,7 @@ using System.Diagnostics;
 using System.Windows.Input;
 using Windows.Storage;
 using Windows.Storage.Pickers;
-using VLC_WINRT_APP.Utility.Services.RunTime;
+using VLC_WINRT_APP.Services.RunTime;
 using VLC_WINRT.ViewModels;
 using VLC_WINRT.ViewModels.MainPage;
 

@@ -14,8 +14,9 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using VLC_WINRT_APP.Helpers;
-using VLC_WINRT_APP.Utility.Services.RunTime;
+using VLC_WINRT_APP.Services.RunTime;
 using VLC_WINRT_APP.Views.MainPages;
+using WinRTXamlToolkit.AwaitableUI;
 using Album = VLC_WINRT_APP.Helpers.MusicLibrary.MusicEntities.Album;
 using Artist = VLC_WINRT_APP.Helpers.MusicLibrary.MusicEntities.Artist;
 

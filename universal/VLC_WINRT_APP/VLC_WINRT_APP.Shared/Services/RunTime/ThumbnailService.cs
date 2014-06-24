@@ -13,11 +13,11 @@ using System.Threading.Tasks;
 using Windows.Storage.AccessCache;
 using Windows.UI.Xaml.Media.Imaging;
 using libVLCX;
-using VLC_WINRT_APP.Utility.Services.Interface;
+using VLC_WINRT_APP.Services.Interface;
 using Windows.Storage;
 using Windows.Storage.FileProperties;
 
-namespace VLC_WINRT_APP.Utility.Services.RunTime
+namespace VLC_WINRT_APP.Services.RunTime
 {
     public class ThumbnailService : IThumbnailService
     {

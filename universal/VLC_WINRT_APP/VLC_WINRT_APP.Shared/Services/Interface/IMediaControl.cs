@@ -11,7 +11,7 @@ using System;
 using Windows.Media;
 
 
-namespace VLC_WINRT_APP.Utility.Services.Interface
+namespace VLC_WINRT_APP.Services.Interface
 {
 #if WINDOWS_PHONE_APP
     public class MediaControl

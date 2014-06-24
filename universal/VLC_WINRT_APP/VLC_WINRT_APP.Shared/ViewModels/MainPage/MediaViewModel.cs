@@ -20,7 +20,7 @@ using VLC_WINRT_APP.Commands;
 using Windows.Storage;
 using VLC_WINRT_APP.Commands.VideoPlayer;
 using System.Threading.Tasks;
-using VLC_WINRT_APP.Utility.Services.Interface;
+using VLC_WINRT_APP.Services.Interface;
 using VLC_WINRT_APP;
 using VLC_WINRT_APP.Commands;
 

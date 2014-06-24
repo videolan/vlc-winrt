@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 using Windows.Storage;
 using Autofac;
 using VLC_WINRT.Common;
-using VLC_WINRT_APP.Utility.Services.RunTime;
+using VLC_WINRT_APP.Services.RunTime;
 using VLC_WINRT.ViewModels.MainPage.VlcExplorer;
 using VLC_WINRT_APP;
 #if NETFX_CORE

@@ -10,7 +10,7 @@
 using System;
 using System.Threading.Tasks;
 using VLC_WINRT.Common;
-using VLC_WINRT_APP.Utility.Services.Interface;
+using VLC_WINRT_APP.Services.Interface;
 using Windows.Storage;
 using Windows.UI.Core;
 using Windows.UI.Xaml.Controls;
@@ -21,7 +21,7 @@ using libVLCX;
 using Windows.Media;
 #endif
 
-namespace VLC_WINRT_APP.Utility.Services.RunTime
+namespace VLC_WINRT_APP.Services.RunTime
 {
 #if WINDOWS_PHONE_APP
     public class Player
