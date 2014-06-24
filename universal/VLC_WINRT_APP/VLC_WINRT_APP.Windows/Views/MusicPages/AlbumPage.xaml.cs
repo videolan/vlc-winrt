@@ -26,5 +26,11 @@ namespace VLC_WINRT_APP.Views.MusicPages
         {
             this.InitializeComponent();
         }
+        #region interactions
+        private void GoBack(object sender, RoutedEventArgs e)
+        {
+            Frame.GoBack();
+        }
+        #endregion
     }
 }
