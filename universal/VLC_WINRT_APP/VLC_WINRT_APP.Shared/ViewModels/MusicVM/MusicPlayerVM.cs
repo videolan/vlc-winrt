@@ -96,7 +96,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                 _mediaService.IsBackground)
             {
                 // Playlist is finished
-                DispatchHelper.InvokeAsync(() => IsRunning = false);
+                App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => IsRunning = false);
             }
             else
             {
@@ -118,6 +118,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         {
             _mediaService.Stop();
         }
+
         public MusicLibraryVM.ArtistItem CurrentPlayingArtist
         {
             get { return _currentPlayingArtist; }
@@ -128,47 +129,22 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         {
             get
             {
-                return _canGoPrevious;
-            }
-            set
-            {
-                //MediaControl.IsPreviousEnabled = value;
-                SetProperty(ref _canGoPrevious, value);
+                return (CurrentTrack > 0);
             }
         }
 
         public bool CanGoNext
         {
-            get
-            {
-                return _canGoNext;
-            }
-            set
-            {
-                //MediaControl.IsNextEnabled = value;
-                SetProperty(ref _canGoNext, value);
-            }
+            get { return (TrackCollection.Count != 1) && (CurrentTrack < TrackCollection.Count - 1); }
         }
 
-        public bool IsPreviousPossible()
-        {
-            bool isPossible = (CurrentTrack > 0);
-            App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => CanGoPrevious = isPossible);
-            return isPossible;
-        }
-
-        public bool IsNextPossible()
-        {
-            bool isPossible = (TrackCollection.Count != 1) && (CurrentTrack < TrackCollection.Count - 1);
-            App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => CanGoNext = isPossible);
-            return isPossible;
-        }
 
         public void ResetCollection()
         {
             TrackCollection.Clear();
             CurrentTrack = 0;
         }
+
         public void AddTrack(MusicLibraryVM.TrackItem track)
         {
             TrackCollection.Add(track);
