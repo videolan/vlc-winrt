@@ -6,88 +6,93 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:converters="using:VLC_WINRT_APP.Converters"
              mc:Ignorable="d"
-             DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}">
+             DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}"
+             Visibility="{Binding IsRunning, Converter={StaticResource BooleanToVisibilityConverter}}">
 
-    <Grid Height="90"
-          Background="#66000000"
-          Visibility="{Binding TrackCollection.IsRunning, Converter={StaticResource BooleanToVisibilityConverter}}">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="300" />
-        </Grid.ColumnDefinitions>
-        <Button Margin="5,0,0,0"
-                HorizontalAlignment="Left"
-                Tapped="InformationsCurrentPlayingGrid_Tapped">
-            <StackPanel Orientation="Horizontal">
-                <Image Height="70"
-                       Stretch="UniformToFill"
-                       Source="{Binding Artist.CurrentAlbumItem.Picture}" />
-                <Grid Margin="10,0,0,0">
-                    <TextBlock Text="{Binding Artist.Name}"
-                               VerticalAlignment="Top"
-                               Margin="0,5,0,0"
-                               Style="{StaticResource TitleTextBlockStyle}" />
-                    <TextBlock Text="{Binding Title}"
-                               VerticalAlignment="Bottom"
-                               Style="{StaticResource BodyTextBlockStyle}"
-                               FontWeight="SemiBold"
-                               Margin="1,0,0,5" />
-                </Grid>
-            </StackPanel>
-        </Button>
-        <StackPanel Grid.Column="1"
-                    VerticalAlignment="Center"
-                    Margin="10,0">
-            <Slider x:Name="VideoPositionSlider"
-                    Style="{StaticResource VLCSlider}"
-                    StepFrequency="0.001"
-                    Maximum="1000"
-                    Margin="0,-10,0,0"
-                    Value="{Binding Position, Mode=TwoWay}"
-                    ThumbToolTipValueConverter="{StaticResource SecondsStringConverter}" />
-            <Grid>
-                <TextBlock Text="{Binding ElapsedTime, Converter={StaticResource TimeSpanShortStringConverter}}"
-                           Style="{StaticResource SubtitleTextBlockStyle}"
-                           HorizontalAlignment="Left"
-                           Margin="0,-30,0,0" />
-                <TextBlock Text="{Binding TimeTotal, Converter={StaticResource TimeSpanShortStringConverter}}"
-                           Style="{StaticResource SubtitleTextBlockStyle}"
-                           HorizontalAlignment="Right"
-                           Margin="0,-30,0,0" />
-            </Grid>
-        </StackPanel>
-        <Grid Grid.Column="2"
-              VerticalAlignment="Center"
-              Margin="0,-8,50,0">
+    <StackPanel Margin="42,0,20,24">
+        <TextBlock Text="{Binding CurrentPlayingArtist.Name}"
+                   Style="{StaticResource SubheaderTextBlockStyle}" />
+        <TextBlock Text="{Binding CurrentPlayingArtist.CurrentAlbumItem.CurrentTrack.Name}"
+                   Style="{StaticResource SubheaderTextBlockStyle}"
+                   FontSize="18" />
+        <Grid Margin="0,12,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="130" />
+                <ColumnDefinition Width="170" />
+            </Grid.ColumnDefinitions>
+            <Image Source="{Binding CurrentPlayingArtist.CurrentAlbumItem.Picture}"
+                   Width="130"
+                   Stretch="UniformToFill" />
+            <TextBlock Text="{Binding CurrentPlayingArtist.CurrentAlbumItem.Name}"
+                       Style="{StaticResource TitleTextBlockStyle}"
+                       Grid.Column="1"
+                       Margin="12,0,0,0" />
+        </Grid>
+        <Slider Value="{Binding PositionInSeconds, Mode=TwoWay}"
+                Maximum="{Binding TimeTotal.TotalSeconds}"
+                Style="{StaticResource VLCSlider}" />
+        <Grid Margin="0,-38,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="{Binding PositionInSeconds, Converter={StaticResource SecondsStringConverter}}"
+                       HorizontalAlignment="Left"
+                       Grid.Column="0"
+                       Style="{StaticResource TitleTextBlockStyle}"
+                       Foreground="#7FFFFFFF" />
+            <TextBlock Text="{Binding TimeTotal.TotalSeconds, Converter={StaticResource SecondsStringConverter}}"
+                       HorizontalAlignment="Right"
+                       Grid.Column="1"
+                       Style="{StaticResource TitleTextBlockStyle}"
+                       Foreground="#7FFFFFFF" />
+        </Grid>
+        <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <AppBarButton Grid.Column="0"
-                          Visibility="{Binding TrackCollection.CanGoPrevious, Converter={StaticResource BooleanToVisibilityConverter}}"
-                          Command="{Binding PlayPreviousCommand}"
-                          IsCompact="True"
-                          Icon="Previous" />
-            <AppBarButton Grid.Column="1"
-                          Foreground="{StaticResource MainColor}"
-                          Visibility="{Binding IsPlaying, Converter={StaticResource NegatedBooleanToVisibilityConverter}}"
-                          IsCompact="True"
-                          Icon="Play"
-                          Command="{Binding PlayOrPause}" />
-            <AppBarButton Grid.Column="1"
-                          Foreground="{StaticResource MainColor}"
-                          Visibility="{Binding IsPlaying, Converter={StaticResource BooleanToVisibilityConverter}}"
-                          Icon="Pause"
-                          IsCompact="True"
-                          Command="{Binding PlayOrPause}" />
-            <AppBarButton Grid.Column="2"
-                          Visibility="{Binding TrackCollection.CanGoNext, Converter={StaticResource BooleanToVisibilityConverter}}"
-                          Command="{Binding PlayNextCommand}"
-                          Icon="Next" />
+            <Button Style="{StaticResource TextBlockButtonStyle}"
+                    Grid.Column="0"
+                    HorizontalAlignment="Left"
+                    Command="{Binding PlayPreviousCommand}"
+                    IsEnabled="{Binding CanGoPrevious}">
+                <SymbolIcon Symbol="Previous" />
+            </Button>
+            <Button Style="{StaticResource TextBlockButtonStyle}"
+                    Grid.Column="1"
+                    HorizontalAlignment="Left"
+                    Command="{Binding PlayOrPauseCommand}"
+                    Visibility="{Binding IsPlaying, Converter={StaticResource NegatedBooleanToVisibilityConverter}}">
+                <SymbolIcon Symbol="Play" />
+            </Button>
+            <Button Style="{StaticResource TextBlockButtonStyle}"
+                    Grid.Column="1"
+                    HorizontalAlignment="Left"
+                    Command="{Binding PlayOrPauseCommand}"
+                    Visibility="{Binding IsPlaying, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <SymbolIcon Symbol="Pause" />
+            </Button>
+            <Button Style="{StaticResource TextBlockButtonStyle}"
+                    Grid.Column="2"
+                    HorizontalAlignment="Left"
+                    Command="{Binding PlayNextCommand}"
+                    IsEnabled="{Binding CanGoNext}">
+                <SymbolIcon Symbol="Next" />
+            </Button>
+            <Button Style="{StaticResource TextBlockButtonStyle}"
+                    Grid.Column="3"
+                    HorizontalAlignment="Right">
+                <StackPanel Orientation="Horizontal">
+                    <SymbolIcon Symbol="Volume" />
+                    <TextBlock Text="50"
+                               Style="{StaticResource TitleTextBlockStyle}"
+                               Margin="12,0,0,0"
+                               Foreground="#7FFFFFFF" />
+                </StackPanel>
+            </Button>
         </Grid>
-        <!--<ProgressBar Style="{StaticResource ThinProgressBar}" VerticalAlignment="Bottom" Grid.ColumnSpan="2" Value="{Binding Position}" Maximum="1000"/>-->
-
-    </Grid>
+    </StackPanel>
 </UserControl>

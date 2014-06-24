@@ -11,64 +11,47 @@
       d:DesignHeight="768"
       d:DesignWidth="550">
 
-    <Grid x:Name="RootGrid">
+    <Grid>
         <Hub x:Name="MainHub"
-             Orientation="Horizontal">
+             Orientation="Vertical">
             <Hub.Sections>
+                <HubSection>
+                    <HubSection.ContentTemplate>
+                        <DataTemplate>
+                            <GridView DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}"
+                                      ItemsSource="{Binding FavoriteAlbums}"
+                                      Header="Favorite Albums"
+                                      HeaderTemplate="{StaticResource ListViewHeaderTemplate}"
+                                      ItemTemplate="{StaticResource SemanticZoomInViewAlbumTemplate}">
+                                <GridView.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <VariableSizedWrapGrid Orientation="Horizontal"
+                                                               ItemHeight="200"
+                                                               ItemWidth="200" />
+                                    </ItemsPanelTemplate>
+                                </GridView.ItemsPanel>
+                            </GridView>
+                        </DataTemplate>
+                    </HubSection.ContentTemplate>
+                </HubSection>
                 <HubSection Header="last viewed">
                     <HubSection.ContentTemplate>
                         <DataTemplate>
-
-                        </DataTemplate>
-                    </HubSection.ContentTemplate>
-                </HubSection>
-                <HubSection Header="videos"
-                            DataContext="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM}">
-                    <HubSection.ContentTemplate>
-                        <DataTemplate>
-                            <GridView ItemsSource="{Binding Videos}"
+                            <GridView ItemsSource="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM.ViewedVideos}"
                                       ItemTemplate="{StaticResource SemanticZoomInViewMovieTemplate}"
                                       IsItemClickEnabled="True"
                                       SelectionMode="None">
+                                <triggers:Interactions.Triggers>
+                                    <triggers:EventTrigger EventName="ItemClick">
+                                        <triggers:InvokeCommandAction Command="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM.OpenVideo}"
+                                                                      PassEventArgsToCommand="True" />
+                                    </triggers:EventTrigger>
+                                </triggers:Interactions.Triggers>
                                 <GridView.ItemsPanel>
                                     <ItemsPanelTemplate>
-                                        <ItemsWrapGrid Orientation="Vertical"
+                                        <ItemsWrapGrid Orientation="Horizontal"
                                                        ItemWidth="320"
                                                        ItemHeight="180" />
-                                    </ItemsPanelTemplate>
-                                </GridView.ItemsPanel>
-                            </GridView>
-                        </DataTemplate>
-                    </HubSection.ContentTemplate>
-                </HubSection>
-                <HubSection Header="favorite albums"
-                            DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
-                    <HubSection.ContentTemplate>
-                        <DataTemplate>
-                            <GridView ItemsSource="{Binding FavoriteAlbums}"
-                                      ItemTemplate="{StaticResource SemanticZoomInViewAlbumTemplate}">
-                                <GridView.ItemsPanel>
-                                    <ItemsPanelTemplate>
-                                        <VariableSizedWrapGrid Orientation="Horizontal"
-                                                               ItemHeight="200"
-                                                               ItemWidth="200" />
-                                    </ItemsPanelTemplate>
-                                </GridView.ItemsPanel>
-                            </GridView>
-                        </DataTemplate>
-                    </HubSection.ContentTemplate>
-                </HubSection>
-                <HubSection Header="you may like"
-                            DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
-                    <HubSection.ContentTemplate>
-                        <DataTemplate>
-                            <GridView ItemsSource="{Binding RandomAlbums}"
-                                      ItemTemplate="{StaticResource SemanticZoomInViewAlbumTemplate}">
-                                <GridView.ItemsPanel>
-                                    <ItemsPanelTemplate>
-                                        <VariableSizedWrapGrid Orientation="Horizontal"
-                                                               ItemHeight="200"
-                                                               ItemWidth="200" />
                                     </ItemsPanelTemplate>
                                 </GridView.ItemsPanel>
                             </GridView>

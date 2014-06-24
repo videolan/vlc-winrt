@@ -94,9 +94,8 @@
     </DataTemplate>
 
     <DataTemplate x:Key="SemanticZoomInViewMovieTemplate">
-        <Grid>
-            <Grid VerticalAlignment="Stretch"
-                  HorizontalAlignment="Stretch" />
+        <Grid MinHeight="168"
+              MinWidth="308">
             <Image Source="{Binding Image}"
                    Stretch="UniformToFill" />
             <Grid>
