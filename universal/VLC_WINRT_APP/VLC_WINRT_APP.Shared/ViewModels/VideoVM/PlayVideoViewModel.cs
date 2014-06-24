@@ -14,25 +14,22 @@ using System.Threading.Tasks;
 using Windows.Media;
 using Windows.UI.Xaml;
 using Autofac;
+using libVLCX;
 using VLC_WINRT.Common;
 using VLC_WINRT.Model;
 using VLC_WINRT_APP.Commands.Video;
 using VLC_WINRT_APP.DataRepository;
-using VLC_WINRT_APP.Services.RunTime;
-using VLC_WINRT.ViewModels.MainPage;
 using VLC_WINRT_APP.Services.Interface;
-using VLC_WINRT_APP;
-using VLC_WINRT_APP.ViewModels;
-using VLC_WINRT_APP.ViewModels.VideoVM;
+using VLC_WINRT_APP.Services.RunTime;
 #if NETFX_CORE
-using libVLCX;
+
 #endif
 #if WINDOWS_PHONE_APP
 using VLC_WINPRT;
 #endif
 
 
-namespace VLC_WINRT.ViewModels.PlayVideo
+namespace VLC_WINRT_APP.ViewModels.VideoVM
 {
     public class PlayVideoViewModel : MediaPlaybackViewModel
     {

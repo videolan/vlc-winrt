@@ -17,8 +17,6 @@ using VLC_WINRT_APP.ViewModels.VideoVM;
 using VLC_WINRT_APP.Views.MainPages;
 using DesignTime = VLC_WINRT_APP.Services.DesignTime;
 using VLC_WINRT.ViewModels.MainPage;
-using VLC_WINRT.ViewModels.PlayVideo;
-
 #if NETFX_CORE
 using VLC_WINRT.Views;
 using VLC_WINRT_APP.ViewModels.MusicVM;

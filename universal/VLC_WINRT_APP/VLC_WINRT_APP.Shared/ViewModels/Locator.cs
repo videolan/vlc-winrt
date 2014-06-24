@@ -15,7 +15,6 @@
 using Autofac;
 using VLC_WINRT.ViewModels;
 using VLC_WINRT.ViewModels.MainPage;
-using VLC_WINRT.ViewModels.PlayVideo;
 #if WINDOWS_PHONE_APP
 using VLC_WINPRT;
 #endif
