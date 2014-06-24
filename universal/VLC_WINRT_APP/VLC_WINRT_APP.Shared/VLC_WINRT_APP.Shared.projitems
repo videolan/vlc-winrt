@@ -125,10 +125,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MusicVM\MusicLibraryVM.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MusicVM\MusicPlayerVM.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\NavigateableViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\VideoVM\MediaViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\VideoVM\VideoVM.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\VideoVM\PlayVideoViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Settings\SettingsViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\VideoVM\VideoLibraryViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\VideoVM\VideoLibraryVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <PRIResource Include="$(MSBuildThisFileDirectory)Strings\de-DE\Resources.resw" />
