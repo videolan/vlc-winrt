@@ -31,34 +31,31 @@
             <RowDefinition Height="24" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal"
-                    Grid.Row="1">
-            <ListView ItemsSource="{Binding Panels}"
-                      IsItemClickEnabled="True"
-                      SelectionMode="None"
-                      ItemClick="Panels_OnItemClick"
-                      ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                      ItemContainerStyle="{StaticResource ListViewItemContainerStyle}">
-                <ListView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel Orientation="Horizontal"
-                                    Height="50" />
-                    </ItemsPanelTemplate>
-                </ListView.ItemsPanel>
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid Height="50"
-                              Width="100">
-                            <TextBlock Text="{Binding Title}"
-                                       Opacity="{Binding Opacity}"
-                                       TextWrapping="NoWrap"
-                                       TextTrimming="None"
-                                       Style="{StaticResource SubheaderTextBlockStyle}" />
-                        </Grid>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </StackPanel>
+        <ListView ItemsSource="{Binding Panels}"
+                  IsItemClickEnabled="True"
+                  SelectionMode="None"
+                  Grid.Row="1"
+                  ItemClick="Panels_OnItemClick"
+                  ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                  ItemContainerStyle="{StaticResource ListViewItemContainerStyle}">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal"
+                                Height="50" />
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Height="50">
+                        <TextBlock Text="{Binding Title}"
+                                   Opacity="{Binding Opacity}"
+                                   TextWrapping="NoWrap"
+                                   TextTrimming="None"
+                                   Style="{StaticResource SubheaderTextBlockStyle}" />
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
         <SemanticZoom x:Name="SemanticZoomAlbumsByArtist"
                       Grid.Row="3"
                       ViewChangeCompleted="SemanticZoom_OnViewChangeCompletedArtistByName">

@@ -173,9 +173,10 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         public MusicLibraryVM()
         {
             var resourceLoader = new ResourceLoader();
-            Panels.Add(new Panel(resourceLoader.GetString("Artist").ToLower(), 0, 1, App.Current.Resources["HomePath"].ToString()));
-            Panels.Add(new Panel(resourceLoader.GetString("Tracks").ToLower(), 1, 0.4, App.Current.Resources["HomePath"].ToString()));
-            Panels.Add(new Panel(resourceLoader.GetString("FavoriteAlbums").ToLower(), 2, 0.4, App.Current.Resources["HomePath"].ToString()));
+            Panels.Add(new Panel(resourceLoader.GetString("Albums").ToLower(), 0, 1, App.Current.Resources["HomePath"].ToString()));
+            Panels.Add(new Panel(resourceLoader.GetString("Artists").ToLower(), 1, 0.4, App.Current.Resources["HomePath"].ToString()));
+            Panels.Add(new Panel(resourceLoader.GetString("Songs").ToLower(), 2, 0.4, App.Current.Resources["HomePath"].ToString()));
+            Panels.Add(new Panel(resourceLoader.GetString("Pinned").ToLower(), 2, 0.4, App.Current.Resources["HomePath"].ToString()));
             Initialize();
         }
 
@@ -273,11 +274,20 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 
             await LoadFromDatabase();
 
+            DispatchHelper.InvokeAsync(() =>
+                ArtistsByAlphaKey = from artist in Artist
+                                    orderby artist.Name
+                                    group artist by artist.Name[0].ToString()
+                                        into a
+                                        orderby a.Key
+                                        select a);
             await DispatchHelper.InvokeAsync(() =>
             {
                 IsBusy = false;
                 IsLoaded = true;
                 IsMusicLibraryEmpty = false;
+                OnPropertyChanged("Artist");
+                OnPropertyChanged("ArtistsByAlphaKey");
                 OnPropertyChanged("IsBusy");
                 OnPropertyChanged("IsMusicLibraryEmpty");
                 OnPropertyChanged("IsLoaded");
@@ -402,6 +412,13 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                 IsMusicLibraryEmpty = !Artist.Any();
                 OnPropertyChanged("IsMusicLibraryEmpty");
             });
+            DispatchHelper.InvokeAsync(() =>
+                ArtistsByAlphaKey = from artist in Artist
+                                    orderby artist.Name
+                                    group artist by artist.Name[0].ToString()
+                                        into a
+                                        orderby a.Key
+                                        select a);
         }
 
         public void ExecuteSemanticZoom(SemanticZoom sZ, CollectionViewSource cvs)

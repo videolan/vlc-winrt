@@ -126,11 +126,17 @@
   <data name="Album.Text" xml:space="preserve">
     <value>album</value>
   </data>
+  <data name="Albums" xml:space="preserve">
+    <value>Albums</value>
+  </data>
   <data name="Artist" xml:space="preserve">
     <value>Artist</value>
   </data>
   <data name="ArtistHeader.Text" xml:space="preserve">
     <value>artist</value>
+  </data>
+  <data name="Artists" xml:space="preserve">
+    <value>Artists</value>
   </data>
   <data name="Biography.Text" xml:space="preserve">
     <value>biography</value>
@@ -249,6 +255,9 @@
   <data name="PartnersSilver.Text" xml:space="preserve">
     <value>silver partners</value>
   </data>
+  <data name="Pinned" xml:space="preserve">
+    <value>Pinned</value>
+  </data>
   <data name="Play.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
     <value>Play</value>
   </data>
@@ -278,6 +287,9 @@
   </data>
   <data name="SimilarArtists.Header" xml:space="preserve">
     <value>similar artists</value>
+  </data>
+  <data name="Songs" xml:space="preserve">
+    <value>Songs</value>
   </data>
   <data name="SpecialThanks" xml:space="preserve">
     <value>Special Thanks</value>

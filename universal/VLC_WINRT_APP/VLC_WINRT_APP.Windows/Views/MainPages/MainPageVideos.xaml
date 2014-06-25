@@ -104,8 +104,8 @@
             </SemanticZoom>
         </Grid>
         <Grid Grid.Row="3"
-              x:Name="NewVideosGrid">
-            <userControls:NoVideos Visibility="{Binding NewVideos.Count, Converter={StaticResource CountToVisibilityConverter}}" />
+              x:Name="NewVideosGrid"
+              Visibility="Collapsed">
             <ListView x:Name="NewVideosListView"
                       ItemsSource="{Binding NewVideos}"
                       ItemTemplate="{StaticResource SemanticZoomInViewMovieTemplate}"
