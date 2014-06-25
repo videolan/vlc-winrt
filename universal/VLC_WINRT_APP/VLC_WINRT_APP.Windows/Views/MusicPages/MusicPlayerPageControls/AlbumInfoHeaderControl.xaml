@@ -1,0 +1,55 @@
+﻿<UserControl x:Class="VLC_WINRT_APP.Views.MusicPages.MusicPlayerPageControls.AlbumInfoHeaderControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="using:VLC_WINRT_APP.Views.MusicPages.MusicPlayerPageControls"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             d:DesignHeight="300"
+             d:DesignWidth="400">
+
+    <Grid Height="200">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"
+                              x:Name="CoverImageColumnDefinition" />
+            <ColumnDefinition Width="12" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid>
+            <Image Source="{Binding CurrentPlayingArtist.CurrentAlbumItem.Picture}"
+                   Stretch="UniformToFill"
+                   Width="200"
+                   Height="200"
+                   VerticalAlignment="Top"
+                   x:Name="CoverImage" />
+        </Grid>
+        <Grid Grid.Column="2"
+              Height="200"
+              VerticalAlignment="Top">
+            <StackPanel>
+                <TextBlock Text="{Binding CurrentPlayingArtist.Name}"
+                           Style="{StaticResource TitleTextBlockStyle}" />
+                <TextBlock Text="{Binding CurrentPlayingArtist.CurrentAlbumItem.Year}"
+                           Style="{StaticResource TitleTextBlockStyle}" />
+                <TextBlock Style="{StaticResource TitleTextBlockStyle}">
+                                        <Run Text="{Binding CurrentPlayingArtist.CurrentAlbumItem.Tracks.Count}" />
+                                        <Run Text="tracks" />
+                </TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal"
+                        Margin="-21,0,0,0"
+                        VerticalAlignment="Bottom">
+                <AppBarToggleButton IsChecked="{Binding CurrentPlayingArtist.CurrentAlbumItem.Favorite}"
+                                    Label="Like">
+                    <AppBarToggleButton.Icon>
+                        <FontIcon Glyph="&#xE0A5;" />
+                    </AppBarToggleButton.Icon>
+                </AppBarToggleButton>
+                <AppBarToggleButton Icon="Play"
+                                    Label="Play all"
+                                    Command="{Binding CurrentPlayingArtist.CurrentAlbumItem.PlayAlbum}"
+                                    CommandParameter="{Binding CurrentPlayingArtist.CurrentAlbumItem}" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>
