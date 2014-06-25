@@ -19,9 +19,11 @@
                               IsSourceGrouped="True" />
     </Page.Resources>
 
-    <Grid Margin="24,0,0,0" x:Name="RootGrid">
+    <Grid Margin="24,0,0,0"
+          x:Name="RootGrid">
         <Grid.RowDefinitions>
-            <RowDefinition Height="42" x:Name="FirstRowDefinition"/>
+            <RowDefinition Height="42"
+                           x:Name="FirstRowDefinition" />
             <RowDefinition Height="45" />
             <RowDefinition Height="24" />
             <RowDefinition Height="*" />
