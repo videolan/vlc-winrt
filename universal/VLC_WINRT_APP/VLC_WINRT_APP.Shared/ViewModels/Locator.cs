@@ -17,7 +17,8 @@ using Autofac;
 using VLC_WINPRT;
 #endif
 using VLC_WINRT_APP.Common;
-using VLC_WINRT_APP.ViewModels.Others;
+using VLC_WINRT_APP.ViewModels.RemovableDevicesVM;
+using VLC_WINRT_APP.ViewModels.RemovableDevicesVM;
 using VLC_WINRT_APP.ViewModels.Settings;
 using VLC_WINRT_APP.ViewModels.MusicVM;
 using VLC_WINRT_APP.ViewModels.VideoVM;
@@ -69,10 +70,15 @@ namespace VLC_WINRT_APP.ViewModels
         {
             get { return App.Container.Resolve<SettingsViewModel>(); }
         }
-          public static SpecialThanksViewModel SpecialThanksVM
+        
+        public static SpecialThanksViewModel SpecialThanksVM
         {
             get { return App.Container.Resolve<SpecialThanksViewModel>(); }
         }
 
+        public static ExternalStorageViewModel ExternalStorageVM
+        {
+            get { return App.Container.Resolve<ExternalStorageViewModel>(); }
+        }
     }
 }

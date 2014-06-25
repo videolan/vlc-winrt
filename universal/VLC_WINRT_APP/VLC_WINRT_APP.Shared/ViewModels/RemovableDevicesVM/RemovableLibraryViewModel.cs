@@ -10,7 +10,7 @@
 using Windows.Storage;
 using VLC_WINRT_APP.ViewModels.VideoVM;
 
-namespace VLC_WINRT_APP.ViewModels.Others
+namespace VLC_WINRT_APP.ViewModels.RemovableDevicesVM
 {
     public class RemovableLibraryViewModel : VideoLibraryVM
     {

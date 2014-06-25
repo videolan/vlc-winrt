@@ -30,6 +30,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Commands\PlayAlbumCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\PlayNetworkMRLCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\PlayTrackComand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\RemovableDevices\StorageFolderClickedCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Video\FavoriteVideoCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Video\OpenSubtitleCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Video\PlayVideoCommand.cs" />
@@ -120,14 +121,14 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Locator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainVM.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Others\BackerCountryViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Others\ExternalStorageViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Others\RemovableLibraryViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Others\SpecialThanksViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Others\VlcExplorer\FileExplorerViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MediaPlaybackViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MusicVM\MusicLibraryVM.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MusicVM\MusicPlayerVM.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\NavigateableViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RemovableDevicesVM\ExternalStorageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RemovableDevicesVM\RemovableLibraryViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\VideoVM\VideoVM.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\VideoVM\VideoPlayerVM.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Settings\SettingsViewModel.cs" />

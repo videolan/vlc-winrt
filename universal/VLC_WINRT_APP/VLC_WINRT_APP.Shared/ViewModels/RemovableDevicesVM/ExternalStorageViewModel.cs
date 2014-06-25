@@ -17,13 +17,10 @@ using Autofac;
 using VLC_WINRT.Common;
 using VLC_WINRT_APP.Services.RunTime;
 using VLC_WINRT_APP.ViewModels.Others.VlcExplorer;
-#if NETFX_CORE
 
-#endif
-
-namespace VLC_WINRT_APP.ViewModels.Others
+namespace VLC_WINRT_APP.ViewModels.RemovableDevicesVM
 {
-#if NETFX_CORE
+#if WINDOWS_APP
     public class ExternalStorageViewModel : BindableBase, IDisposable
     {
         private ExternalDeviceService _deviceService;
@@ -31,6 +28,7 @@ namespace VLC_WINRT_APP.ViewModels.Others
         private ObservableCollection<FileExplorerViewModel> _removableStorageVMs =
             new ObservableCollection<FileExplorerViewModel>();
 
+        private FileExplorerViewModel _currentStorageVM;
         public ExternalStorageViewModel()
         {
             _deviceService = App.Container.Resolve<ExternalDeviceService>();
@@ -45,7 +43,9 @@ namespace VLC_WINRT_APP.ViewModels.Others
             {
                 await AddFolder(storageFolder.FolderRelativeId);
             }
-
+            CurrentStorageVM = RemovableStorageVMs[0];
+            CurrentStorageVM.GetFiles();
+            OnPropertyChanged("CurrentStorageVM");
             //var devices1 = await _deviceService.GetExternalDeviceIds();
             //foreach (string id in devices1)
             //{
@@ -58,6 +58,12 @@ namespace VLC_WINRT_APP.ViewModels.Others
         {
             get { return _removableStorageVMs; }
             set { SetProperty(ref _removableStorageVMs, value); }
+        }
+
+        public FileExplorerViewModel CurrentStorageVM
+        {
+            get { return _currentStorageVM; }
+            set { SetProperty(ref _currentStorageVM, value); }
         }
 
         public void Dispose()

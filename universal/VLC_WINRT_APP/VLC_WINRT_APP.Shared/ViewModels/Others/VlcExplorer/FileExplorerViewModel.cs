@@ -5,44 +5,34 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.Search;
+using Windows.UI.Popups;
+using VLC_WINRT.Common;
 
 namespace VLC_WINRT_APP.ViewModels.Others.VlcExplorer
 {
-    public interface IVlcStorageItem
-    {
-    }
-
-    public class VlcStorageFile : IVlcStorageItem
-    {
-        public StorageFile StorageFile { get; set; }
-
-        public string Name
-        {
-            get;
-            set;
-        }
-
-        public string Path
-        {
-            get;
-            set;
-        }
-    }
-
-    public class FileExplorerViewModel : IVlcStorageItem
+    public class FileExplorerViewModel : BindableBase
     {
         private StorageFolder _rootFolder;
-        private ObservableCollection<IVlcStorageItem> _storageItems = new ObservableCollection<IVlcStorageItem>();
+        private ObservableCollection<IStorageItem> _storageItems = new ObservableCollection<IStorageItem>();
         private string _name;
         public string Id;
 
-        public ObservableCollection<IVlcStorageItem> StorageItems
+        public ObservableCollection<IStorageItem> StorageItems
         {
             get { return _storageItems; }
-            set { _storageItems = value; }
+            set { SetProperty(ref _storageItems, value); }
         }
-
-        public string Name { get { return _name; } set { _name = value; } }
+        public string Name
+        {
+            get
+            {
+                return _name;
+            }
+            set
+            {
+                _name = value;
+            }
+        }
 
         public FileExplorerViewModel(StorageFolder root, string id = null)
         {
@@ -128,27 +118,10 @@ namespace VLC_WINRT_APP.ViewModels.Others.VlcExplorer
 
                 var fileQuery = _rootFolder.CreateItemQueryWithOptions(queryOptions);
                 var items = await fileQuery.GetItemsAsync();
-
-                foreach (var storageItem in items)
+                foreach (IStorageItem storageItem in items)
                 {
-                    IVlcStorageItem vlcStorageItem = null;
-                    if (storageItem.IsOfType(StorageItemTypes.File)) 
-                    {
-                        vlcStorageItem = new VlcStorageFile();
-                        ((VlcStorageFile)vlcStorageItem).Name = storageItem.Name;
-                        ((VlcStorageFile)vlcStorageItem).Path = storageItem.Path;
-                        ((VlcStorageFile)vlcStorageItem).StorageFile = (StorageFile)storageItem;
-                    }
-                    else if (storageItem.IsOfType(StorageItemTypes.Folder))
-                    {
-                        vlcStorageItem = new FileExplorerViewModel((StorageFolder)storageItem,
-                            ((StorageFolder)storageItem).FolderRelativeId);
-                    }
-
-                    if (vlcStorageItem != null)
-                    {
-                        _storageItems.Add(vlcStorageItem);
-                    }
+                    StorageItems.Add(storageItem);
+                    OnPropertyChanged("StorageItems");
                 }
             }
             catch (Exception exception)

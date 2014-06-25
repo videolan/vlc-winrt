@@ -16,8 +16,9 @@ using Windows.Storage;
 using VLC_WINRT.Common;
 using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.Commands;
-using VLC_WINRT_APP.ViewModels.Others;
 using VLC_WINRT_APP.ViewModels.Others.VlcExplorer;
+using VLC_WINRT_APP.ViewModels.RemovableDevicesVM;
+using VLC_WINRT_APP.ViewModels.RemovableDevicesVM;
 
 namespace VLC_WINRT_APP.ViewModels
 {

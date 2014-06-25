@@ -90,20 +90,20 @@ namespace VLC_WINRT_APP.Views
 
         private async void SecondPanelGridView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            var item = e.ClickedItem as IVlcStorageItem;
-            if (item is FileExplorerViewModel)
-            {
-                await ((FileExplorerViewModel)item).GetFiles();
-                SecondPanelGridView.ItemsSource = ((FileExplorerViewModel)item).StorageItems;
-                SecondPanelListView.ItemsSource = ((FileExplorerViewModel)item).StorageItems;
-            }
-            else if (item is VlcStorageFile)
-            {
-                string FileName = ((VlcStorageFile)item).Name;
-                string MRL = StorageApplicationPermissions.FutureAccessList.Add(((VlcStorageFile)item).StorageFile);
-                Locator.VideoVm.SetActiveVideoInfo(MRL);
-                App.ApplicationFrame.Navigate(typeof(VideoPlayerPage));
-            }
+            //var item = e.ClickedItem as IVlcStorageItem;
+            //if (item is FileExplorerViewModel)
+            //{
+            //    await ((FileExplorerViewModel)item).GetFiles();
+            //    SecondPanelGridView.ItemsSource = ((FileExplorerViewModel)item).StorageItems;
+            //    SecondPanelListView.ItemsSource = ((FileExplorerViewModel)item).StorageItems;
+            //}
+            //else if (item is VlcStorageFile)
+            //{
+            //    string FileName = ((VlcStorageFile)item).Name;
+            //    string MRL = StorageApplicationPermissions.FutureAccessList.Add(((VlcStorageFile)item).StorageFile);
+            //    Locator.VideoVm.SetActiveVideoInfo(MRL);
+            //    App.ApplicationFrame.Navigate(typeof(VideoPlayerPage));
+            //}
         }
     }
 }

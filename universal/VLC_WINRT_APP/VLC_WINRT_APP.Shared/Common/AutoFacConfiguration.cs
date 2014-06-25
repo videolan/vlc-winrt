@@ -11,7 +11,7 @@ using Autofac;
 using VLC_WINRT_APP.Services.Interface;
 using VLC_WINRT_APP.Services.RunTime;
 using VLC_WINRT_APP.ViewModels;
-using VLC_WINRT_APP.ViewModels.Others;
+using VLC_WINRT_APP.ViewModels.RemovableDevicesVM;
 using VLC_WINRT_APP.ViewModels.Settings;
 using VLC_WINRT_APP.ViewModels.VideoVM;
 using VLC_WINRT_APP.Views.MainPages;
@@ -46,10 +46,11 @@ namespace VLC_WINRT_APP.Common
             builder.RegisterType<MusicPlayerVM>().SingleInstance();
             builder.RegisterType<VideoLibraryVM>().SingleInstance();
             builder.RegisterType<SettingsViewModel>().SingleInstance();
+            builder.RegisterType<ExternalStorageViewModel>().SingleInstance();
 
             // Register Services
             builder.RegisterType<MediaService>().As<IMediaService>().SingleInstance();
-            #if NETFX_CORE
+            #if WINDOWS_APP
             builder.RegisterType<MouseService>().SingleInstance();
             #endif
             builder.RegisterType<VlcService>().SingleInstance();
@@ -65,7 +66,7 @@ namespace VLC_WINRT_APP.Common
             }
 
             // Register Views            
-#if NETFX_CORE
+#if WINDOWS_APP
             builder.RegisterType<MainPage>();
 #endif
             return builder.Build();

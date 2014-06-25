@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using VLC_WINRT.Common;
 
-namespace VLC_WINRT_APP.ViewModels.Others
+namespace VLC_WINRT_APP.ViewModels.RemovableDevicesVM
 {
     public class BackerCountryViewModel : BindableBase
     {
