@@ -9,6 +9,7 @@
     xmlns:wrapPanelControl="using:VLC_WINRT.Views.Controls.WrapPanelControl"
     xmlns:userControls="using:VLC_WINRT_APP.Views.UserControls"
     xmlns:triggers="using:WinRT.Triggers"
+    xmlns:extensions="using:WinRTXamlToolkit.Controls.Extensions"
     mc:Ignorable="d"
       DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
 

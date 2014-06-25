@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:triggers="using:WinRT.Triggers"
+      xmlns:winRTEx="using:WinRTXamlToolkit.Controls.Extensions"
       mc:Ignorable="d"
       DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
 
@@ -12,10 +13,12 @@
           RequestedTheme="Dark"
           Background="White">
         <Grid.RowDefinitions>
-            <RowDefinition Height="42" />
+            <RowDefinition Height="42"
+                           x:Name="FirstRowDefinition" />
             <RowDefinition Height="45" />
             <RowDefinition Height="24" />
-            <RowDefinition MaxHeight="350" />
+            <RowDefinition MaxHeight="350"
+                           x:Name="CoverArtistRowDefinition" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
@@ -23,7 +26,8 @@
               Grid.RowSpan="4">
             <Image Source="{Binding Picture}"
                    Stretch="UniformToFill"
-                   Opacity="0.5" />
+                   Opacity="0.5" 
+                   winRTEx:ImageExtensions.FadeInOnLoaded="True"/>
         </Grid>
         <StackPanel Orientation="Horizontal"
                     Grid.Row="1">
@@ -40,7 +44,8 @@
         </StackPanel>
         <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="200"
+                                  x:Name="CoverImageColumnDefinition" />
                 <ColumnDefinition Width="12" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
@@ -49,7 +54,8 @@
                        Stretch="UniformToFill"
                        Width="200"
                        Height="200"
-                       VerticalAlignment="Top" />
+                       VerticalAlignment="Top"
+                       x:Name="CoverImage" />
             </Grid>
             <Grid Grid.Column="2"
                   Height="200"
@@ -67,7 +73,8 @@
                 <StackPanel Orientation="Horizontal"
                             Margin="-21,0,0,0"
                             VerticalAlignment="Bottom">
-                    <AppBarToggleButton IsChecked="{Binding CurrentAlbumItem.Favorite}"
+                    <AppBarToggleButton x:Name="LikeAppBarToggleButton"
+                                        IsChecked="{Binding CurrentAlbumItem.Favorite}"
                                         Label="Like"
                                         Command="{Binding CurrentAlbumItem.FavoriteAlbum}"
                                         CommandParameter="{Binding CurrentAlbumItem}">
@@ -75,7 +82,8 @@
                             <FontIcon Glyph="&#xE0A5;" />
                         </AppBarToggleButton.Icon>
                     </AppBarToggleButton>
-                    <AppBarButton Icon="Play"
+                    <AppBarButton x:Name="PlayAppBarButton"
+                                  Icon="Play"
                                   Label="Play all"
                                   Command="{Binding CurrentAlbumItem.PlayAlbum}"
                                   CommandParameter="{Binding CurrentAlbumItem}" />
@@ -97,7 +105,7 @@
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <ItemsWrapGrid ItemWidth="350"
-                                       Orientation="Vertical" />
+                                       Orientation="Horizontal" />
                     </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
             </ListView>

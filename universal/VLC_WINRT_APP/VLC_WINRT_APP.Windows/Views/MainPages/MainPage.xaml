@@ -4,6 +4,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:userControls="using:VLC_WINRT_APP.Views.UserControls"
+      xmlns:extensions="using:WinRTXamlToolkit.Controls.Extensions"
       mc:Ignorable="d"
       DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}">
 
@@ -26,6 +27,7 @@
                Opacity="0.5"
                Grid.RowSpan="3"
                Grid.ColumnSpan="2"
+               extensions:ImageExtensions.FadeInOnLoaded="True"
                Visibility="{Binding Source={StaticResource Locator}, Path=VideoVm.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}" />
         <userControls:TopBar Grid.Row="0"
                              Grid.ColumnSpan="2"

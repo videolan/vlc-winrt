@@ -1,20 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-
-// Pour en savoir plus sur le modèle d'élément Page vierge, consultez la page http://go.microsoft.com/fwlink/?LinkId=234238
-
 namespace VLC_WINRT_APP.Views.MusicPages
 {
     /// <summary>
@@ -25,7 +11,29 @@ namespace VLC_WINRT_APP.Views.MusicPages
         public AlbumPage()
         {
             this.InitializeComponent();
+            this.SizeChanged += OnSizeChanged;
         }
+
+        private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
+        {
+            if (Window.Current.Bounds.Width < 400)
+            {
+                FirstRowDefinition.Height = new GridLength(0);
+                CoverImage.Width = 130;
+                CoverImage.Height = 130;
+                CoverImageColumnDefinition.Width = new GridLength(130);
+                CoverArtistRowDefinition.Height = new GridLength(200);
+            }
+            else
+            {
+                FirstRowDefinition.Height = new GridLength(42);
+                CoverImage.Width = 200;
+                CoverImage.Height = 200;
+                CoverImageColumnDefinition.Width = new GridLength(200);
+                CoverArtistRowDefinition.Height = new GridLength(350);
+            }
+        }
+
         #region interactions
         private void GoBack(object sender, RoutedEventArgs e)
         {
