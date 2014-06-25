@@ -33,6 +33,7 @@ namespace VLC_WINRT_APP.Views.VideoPages
         {
             Frame.GoBack();
             Locator.VideoVm.CleanViewModel();
+            Locator.VideoVm.IsRunning = false;
         }
         private async void Subtitles_Click(object sender, RoutedEventArgs e)
         {

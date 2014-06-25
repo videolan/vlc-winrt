@@ -10,8 +10,11 @@
 using System;
 using System.Globalization;
 using System.Threading.Tasks;
+using Windows.Devices.Scanners;
+using Windows.UI.Core;
 using VLC_WINRT.Common;
 using VLC_WINRT_APP.Commands;
+using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.Services.Interface;
 using VLC_WINRT_APP.Services.RunTime;
 using Windows.System.Display;
@@ -41,6 +44,7 @@ namespace VLC_WINRT_APP.ViewModels
 
         protected readonly DisplayRequest _displayAlwaysOnRequest;
         protected readonly DispatcherTimer _sliderPositionTimer;
+
         #endregion
 
         #region private fields
@@ -65,6 +69,17 @@ namespace VLC_WINRT_APP.ViewModels
                     }
                     SetProperty(ref _isPlaying, value);
                 }
+                OnPropertyChanged("PlayingType");
+            }
+        }
+
+        public PlayingType PlayingType
+        {
+            get 
+            {
+                if (Locator.MusicPlayerVM.IsRunning)
+                    return PlayingType.Music;
+                return Locator.VideoVm.IsRunning ? PlayingType.Video : PlayingType.NotPlaying;
             }
         }
 
@@ -238,7 +253,11 @@ namespace VLC_WINRT_APP.ViewModels
         #region Events
         protected async void PlayerStateChanged(object sender, VlcService.MediaPlayerState e)
         {
-            await DispatchHelper.InvokeAsync(() => IsPlaying = e == VlcService.MediaPlayerState.Playing);
+            IsPlaying = e == VlcService.MediaPlayerState.Playing;
+            OnPropertyChanged("IsPlaying");
+            //App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
+            //    () => IsPlaying = e == VlcService.MediaPlayerState.Playing);
+            //OnPropertyChanged("IsPlaying");
         }
 
         private async void FirePositionUpdate(object sender, object e)

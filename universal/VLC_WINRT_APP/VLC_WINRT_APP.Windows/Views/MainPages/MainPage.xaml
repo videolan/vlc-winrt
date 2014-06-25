@@ -17,12 +17,16 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
+        <Grid Background="Black"
+              Grid.RowSpan="3"
+              Grid.ColumnSpan="2"
+              Visibility="{Binding Source={StaticResource Locator}, Path=VideoVm.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}" />
         <Image Stretch="UniformToFill"
                Source="ms-appx:///Assets/background.jpg"
                Opacity="0.5"
                Grid.RowSpan="3"
                Grid.ColumnSpan="2"
-               Visibility="{Binding Source={StaticResource Locator}, Path=VideoVm.IsPlaying, Converter={StaticResource BackgroundVisibilityConverter}}" />
+               Visibility="{Binding Source={StaticResource Locator}, Path=VideoVm.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}" />
         <!--<userControls:TopBar Grid.Row="0"
                              Grid.ColumnSpan="2" />-->
         <MediaElement x:Name="FoudationMediaElement"
@@ -31,7 +35,7 @@
                       AudioDeviceType="Multimedia" />
         <userControls:LeftColumn x:Name="ColumnGrid"
                                  Grid.RowSpan="2"
-                                 Visibility="{Binding Source={StaticResource Locator}, Path=VideoPlayer.IsPlaying, Converter={StaticResource NegatedBooleanToVisibilityConverter}}" />
+                                 Visibility="{Binding Source={StaticResource Locator}, Path=VideoVm.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}" />
         <Frame x:Name="MainFrame"
                Grid.Row="1"
                Grid.Column="1"
