@@ -115,26 +115,14 @@
     <Compile Include="AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\InputDialog\InputDialog.xaml.cs">
-      <DependentUpon>InputDialog.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\MainPages\MainPageHome.xaml.cs">
       <DependentUpon>MainPageHome.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\MainPage\LastViewedThumbnail.xaml.cs">
-      <DependentUpon>LastViewedThumbnail.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainPages\MainPageMediaServers.xaml.cs">
       <DependentUpon>MainPageMediaServers.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainPages\MainPageMusic.xaml.cs">
       <DependentUpon>MainPageMusic.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\MainPage\Thumbnail.xaml.cs">
-      <DependentUpon>Thumbnail.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\MainPage\ThumbnailsBackground.xaml.cs">
-      <DependentUpon>ThumbnailsBackground.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainPages\MainPageRemovables.xaml.cs">
       <DependentUpon>MainPageRemovables.xaml</DependentUpon>
@@ -730,15 +718,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\InputDialog\InputDialog.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Views\MainPages\MainPageHome.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\MainPage\LastViewedThumbnail.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -747,14 +727,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainPages\MainPageMusic.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\MainPage\Thumbnail.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\MainPage\ThumbnailsBackground.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

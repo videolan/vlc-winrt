@@ -68,7 +68,7 @@
                 </GridView>
             </SemanticZoom.ZoomedOutView>
             <SemanticZoom.ZoomedInView>
-                <ListView ItemsSource="{Binding Source={StaticResource VideoGroupedByAlphaKey}}"
+                <GridView ItemsSource="{Binding Source={StaticResource VideoGroupedByAlphaKey}}"
                           ItemTemplate="{StaticResource SemanticZoomInViewMovieTemplate}"
                           SelectionMode="None"
                           IsItemClickEnabled="True">
@@ -78,7 +78,7 @@
                                                           PassEventArgsToCommand="True" />
                         </triggers:EventTrigger>
                     </triggers:Interactions.Triggers>
-                    <ListView.GroupStyle>
+                    <GridView.GroupStyle>
                         <GroupStyle>
                             <GroupStyle.HeaderTemplate>
                                 <DataTemplate>
@@ -89,15 +89,15 @@
                                 </DataTemplate>
                             </GroupStyle.HeaderTemplate>
                         </GroupStyle>
-                    </ListView.GroupStyle>
-                    <ListView.ItemsPanel>
+                    </GridView.GroupStyle>
+                    <GridView.ItemsPanel>
                         <ItemsPanelTemplate>
                             <ItemsWrapGrid Orientation="Horizontal"
                                            ItemWidth="320"
                                            ItemHeight="180" />
                         </ItemsPanelTemplate>
-                    </ListView.ItemsPanel>
-                </ListView>
+                    </GridView.ItemsPanel>
+                </GridView>
             </SemanticZoom.ZoomedInView>
         </SemanticZoom>
         <ListView Grid.Row="3"
