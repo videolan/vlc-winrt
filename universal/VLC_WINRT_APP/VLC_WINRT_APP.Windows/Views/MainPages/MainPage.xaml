@@ -9,11 +9,11 @@
 
     <SwapChainBackgroundPanel x:Name="SwapChainPanel">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" x:Name="LeftSidebarColumnDefinition"/>
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" x:Name="TopBarRowDefinition"/>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
@@ -27,8 +27,9 @@
                Grid.RowSpan="3"
                Grid.ColumnSpan="2"
                Visibility="{Binding Source={StaticResource Locator}, Path=VideoVm.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}" />
-        <!--<userControls:TopBar Grid.Row="0"
-                             Grid.ColumnSpan="2" />-->
+        <userControls:TopBar Grid.Row="0"
+                             Grid.ColumnSpan="2"
+                             Visibility="{Binding Source={StaticResource Locator}, Path=VideoVm.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}" />
         <MediaElement x:Name="FoudationMediaElement"
                       x:FieldModifier="public"
                       AudioCategory="BackgroundCapableMedia"

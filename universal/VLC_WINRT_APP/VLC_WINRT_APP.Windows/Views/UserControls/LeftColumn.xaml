@@ -63,6 +63,7 @@
                   IsItemClickEnabled="True"
                   SelectionMode="None"
                   ItemClick="MainPanels_ItemClick"
+                  ItemContainerStyle="{StaticResource ListViewItemContainerStyle}"
                   ItemTemplate="{StaticResource SidebarItemTemplate}">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>

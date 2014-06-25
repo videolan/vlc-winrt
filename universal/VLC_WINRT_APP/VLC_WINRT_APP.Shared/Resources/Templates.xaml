@@ -358,4 +358,16 @@
                   Opacity="{Binding Opacity}"/>
         </Grid>
     </DataTemplate>
+    <DataTemplate x:Name="SidebarMiniIconItemTemplate">
+        <Grid Height="60"
+              Width="40">
+            <Path Data="{Binding PathData}"
+                  Height="30"
+                  Width="30"
+                  HorizontalAlignment="Center"
+                  Stretch="Uniform"
+                  Fill="White"
+                  Opacity="{Binding Opacity}" />
+        </Grid>
+    </DataTemplate>
 </ResourceDictionary>

@@ -13,7 +13,6 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using VLC_WINRT_APP.Services.RunTime;
 using VLC_WINRT_APP.Services.Interface;
-using VLC_WINRT.Views;
 using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.Views.VideoPages;
 
@@ -25,9 +24,16 @@ namespace VLC_WINRT_APP.Views.MainPages
         public MainPage(VlcService vlcService, IMediaService mediaService)
         {
             InitializeComponent();
+            this.SizeChanged += OnSizeChanged;
             _vlcService = vlcService;
             (mediaService as MediaService).SetMediaElement(FoudationMediaElement);
             Loaded += SwapPanelLoaded;
+        }
+
+        private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
+        {
+            TopBarRowDefinition.Height = Window.Current.Bounds.Width < 400 ? new GridLength(100) : new GridLength(0);
+            LeftSidebarColumnDefinition.Width = Window.Current.Bounds.Width < 400 ? new GridLength(0) : new GridLength(1, GridUnitType.Auto);
         }
 
         private async void SwapPanelLoaded(object sender, RoutedEventArgs e)

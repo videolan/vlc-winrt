@@ -10,107 +10,40 @@
              d:DesignHeight="300"
              d:DesignWidth="400"
              DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}">
-    <Grid Margin="50,40,0,0"
-          x:Name="HeaderGrid">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="50" />
-            </Grid.RowDefinitions>
-            <TextBlock x:Uid="MainPageTitle"
-                       Text="VLC for Windows 8.1"
-                       Margin="3,0,0,0"
-                       FontWeight="SemiBold"
-                       FontSize="20" />
-
-            <StackPanel Grid.Row="1"
-                        Orientation="Horizontal">
-                <ListView ItemContainerStyle="{StaticResource ListViewItemContainerStyle}"
-                          x:Name="SectionsHeaderListView"
-                          SelectionMode="None"
-                          IsItemClickEnabled="True"
-                          ItemsSource="{Binding Panels}"
-                          RenderTransformOrigin="0.5,0.5"
-                          ScrollViewer.VerticalScrollMode="Disabled"
-                          ScrollViewer.VerticalScrollBarVisibility="Disabled">
-                    <triggers:Interactions.Triggers>
-                        <triggers:EventTrigger EventName="ItemClick">
-                            <triggers:InvokeCommandAction Command="{Binding GoToPanel}"
-                                                          PassEventArgsToCommand="True" />
-                        </triggers:EventTrigger>
-                    </triggers:Interactions.Triggers>
-                    <ListView.RenderTransform>
-                        <CompositeTransform />
-                    </ListView.RenderTransform>
-                    <ListView.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <VirtualizingStackPanel Height="50"
-                                                    Orientation="Horizontal" />
-                        </ItemsPanelTemplate>
-                    </ListView.ItemsPanel>
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding Title}"
-                                       Opacity="{Binding Opacity}"
-                                       TextWrapping="NoWrap"
-                                       TextTrimming="None"
-                                       Style="{StaticResource SubheaderTextBlockStyle}"
-                                       Foreground="WhiteSmoke" />
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-                <ListView ItemContainerStyle="{StaticResource ListViewItemContainerStyle}"
-                          Visibility="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.IsLoaded, Converter={StaticResource BooleanToVisibilityConverter}}"
-                          x:Name="SecondarySectionsHeaderListView"
-                          SelectionMode="None"
-                          IsItemClickEnabled="True"
-                          ItemsSource="{Binding SecondaryPanels}"
-                          RenderTransformOrigin="0.5,0.5"
-                          ScrollViewer.VerticalScrollMode="Disabled"
-                          ScrollViewer.VerticalScrollBarVisibility="Disabled">
-                    <ListView.RenderTransform>
-                        <CompositeTransform />
-                    </ListView.RenderTransform>
-                    <ListView.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <VirtualizingStackPanel Height="50"
-                                                    Orientation="Horizontal" />
-                        </ItemsPanelTemplate>
-                    </ListView.ItemsPanel>
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding Title}"
-                                       Opacity="{Binding Opacity}"
-                                       TextWrapping="NoWrap"
-                                       TextTrimming="None"
-                                       Style="{StaticResource SubheaderTextBlockStyle}"
-                                       Foreground="WhiteSmoke" />
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-                <Button x:Name="MorePanelsButton"
-                        Content=""
-                        Visibility="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.IsLoaded, Converter={StaticResource BooleanToVisibilityConverter}}"
-                        FontFamily="Segoe UI Symbol"
-                        FontSize="32"
-                        Margin="0,0,0,10"
-                        HorizontalAlignment="Left"
-                        Foreground="{StaticResource MainColor}" />
-            </StackPanel>
-        </Grid>
-        <StackPanel Grid.Column="1"
-                    Orientation="Horizontal"
-                    HorizontalAlignment="Right">
-            <AppBarButton Margin="0,0,-30,0"
-                          Icon="OpenFile"
-                          IsCompact="True" />
-            <AppBarButton Margin="0,0,-30,0"
-                          Icon="Find"/>
-        </StackPanel>
+    
+    <Grid x:Name="ColumnGrid"
+          Height="100"
+          MinWidth="320"
+          Background="#19FFFFFF">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="1" />
+        </Grid.RowDefinitions>
+        <Grid Background="#4CFFFFFF"
+              Grid.Row="2" />
+        <Path Data="{StaticResource VLCFlatPath}"
+              Stretch="Uniform"
+              Fill="#bbFFFFFF"
+              Width="22"
+              Height="22" 
+              Margin="14,9,0,0"
+              HorizontalAlignment="Left"/>
+        <ListView Grid.Row="1"
+                  x:Name="PanelsListView"
+                  ItemsSource="{Binding Panels}"
+                  IsItemClickEnabled="True"
+                  SelectionMode="None"
+                  ItemClick="MainPanels_ItemClick"
+                  VerticalAlignment="Center"
+                  ItemContainerStyle="{StaticResource ListViewItemContainerStyle}"
+                  ItemTemplate="{StaticResource SidebarMiniIconItemTemplate}"
+                  ScrollViewer.VerticalScrollBarVisibility="Disabled">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+        </ListView>
     </Grid>
-
 </UserControl>
