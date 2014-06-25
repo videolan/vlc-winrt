@@ -354,7 +354,8 @@
                   HorizontalAlignment="Center"
                   Stretch="Uniform"
                   Fill="White"
-                  Margin="-9,0,0,0" />
+                  Margin="-9,0,0,0" 
+                  Opacity="{Binding Opacity}"/>
         </Grid>
     </DataTemplate>
 </ResourceDictionary>
