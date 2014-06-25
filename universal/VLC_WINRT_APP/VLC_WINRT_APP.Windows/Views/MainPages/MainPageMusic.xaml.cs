@@ -60,27 +60,27 @@ namespace VLC_WINRT_APP.Views.MainPages
                 panel1.Opacity = 0.4;
             }
             panel.Opacity = 1;
-            switch (panel.Title)
+            switch (panel.Index)
             {
-                case "albums":
+                case 0:
                     SemanticZoomAlbumsByArtist.Visibility = Visibility.Visible;
                     SemanticZoomArtistByAlphaKey.Visibility = Visibility.Collapsed;
                     RadDataGrid.Visibility = Visibility.Collapsed;
                     FavoriteAlbumsGridView.Visibility = Visibility.Collapsed;
                     break;
-                case "artists":
+                case 1:
                     SemanticZoomAlbumsByArtist.Visibility = Visibility.Collapsed;
                     SemanticZoomArtistByAlphaKey.Visibility = Visibility.Visible;
                     RadDataGrid.Visibility = Visibility.Collapsed;
                     FavoriteAlbumsGridView.Visibility = Visibility.Collapsed;
                     break;
-                case "songs":
+                case 2:
                     SemanticZoomAlbumsByArtist.Visibility = Visibility.Collapsed;
                     SemanticZoomArtistByAlphaKey.Visibility = Visibility.Collapsed;
                     RadDataGrid.Visibility = Visibility.Visible;
                     FavoriteAlbumsGridView.Visibility = Visibility.Collapsed;
                     break;
-                case "pinned":
+                case 3:
                     SemanticZoomAlbumsByArtist.Visibility = Visibility.Collapsed;
                     SemanticZoomArtistByAlphaKey.Visibility = Visibility.Collapsed;
                     RadDataGrid.Visibility = Visibility.Collapsed;
