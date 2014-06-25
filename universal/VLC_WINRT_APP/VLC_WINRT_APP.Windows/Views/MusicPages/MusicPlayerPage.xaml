@@ -39,7 +39,8 @@
                                 <ListView ItemsSource="{Binding TrackCollection}"
                                           IsItemClickEnabled="True"
                                           SelectionMode="None"
-                                          ItemTemplate="{StaticResource LittleDarkTrackTemplate}">
+                                          ItemTemplate="{StaticResource LittleDarkTrackTemplate}"
+                                          ItemContainerStyle="{StaticResource ListViewItemContainerStyle}">
                                     <triggers:Interactions.Triggers>
                                         <triggers:EventTrigger EventName="ItemClick">
                                             <triggers:InvokeCommandAction Command="{Binding CurrentPlayingArtist.CurrentAlbumItem.PlayTrack}"
