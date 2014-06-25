@@ -261,6 +261,9 @@
   <data name="Play.[using:Windows.UI.Xaml.Automation]AutomationProperties.Name" xml:space="preserve">
     <value>Play</value>
   </data>
+  <data name="Playlists" xml:space="preserve">
+    <value>Playlists</value>
+  </data>
   <data name="PopularAlbums.Header" xml:space="preserve">
     <value>popular albums</value>
   </data>

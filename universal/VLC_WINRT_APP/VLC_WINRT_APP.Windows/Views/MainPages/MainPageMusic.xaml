@@ -46,7 +46,7 @@
             </ListView.ItemsPanel>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Height="50">
+                    <Grid Height="50" Width="85">
                         <TextBlock Text="{Binding Title}"
                                    Opacity="{Binding Opacity}"
                                    TextWrapping="NoWrap"
