@@ -124,6 +124,9 @@
     <Compile Include="Controls\MainPage\LastViewedThumbnail.xaml.cs">
       <DependentUpon>LastViewedThumbnail.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\MainPages\MainPageMediaServers.xaml.cs">
+      <DependentUpon>MainPageMediaServers.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainPages\MainPageMusic.xaml.cs">
       <DependentUpon>MainPageMusic.xaml</DependentUpon>
     </Compile>
@@ -132,6 +135,9 @@
     </Compile>
     <Compile Include="Controls\MainPage\ThumbnailsBackground.xaml.cs">
       <DependentUpon>ThumbnailsBackground.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainPages\MainPageRemovables.xaml.cs">
+      <DependentUpon>MainPageRemovables.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainPages\MainPageVideos.xaml.cs">
       <DependentUpon>MainPageVideos.xaml</DependentUpon>
@@ -736,6 +742,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\MainPages\MainPageMediaServers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainPages\MainPageMusic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -747,6 +757,10 @@
     <Page Include="Controls\MainPage\ThumbnailsBackground.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MainPages\MainPageRemovables.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainPages\MainPageVideos.xaml">
       <Generator>MSBuild:Compile</Generator>

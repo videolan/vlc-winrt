@@ -333,4 +333,28 @@
                          FontFamily="Segoe UI Symbol" />
         </TextBlock>
     </DataTemplate>
+    <DataTemplate x:Name="SidebarItemTemplate">
+        <Grid Height="60"
+              Width="340">
+            <TextBlock Text="{Binding Title}"
+                       Opacity="{Binding Opacity}"
+                       TextWrapping="NoWrap"
+                       TextTrimming="None"
+                       Margin="42,-9,0,0"
+                       VerticalAlignment="Center"
+                       Style="{StaticResource SubheaderTextBlockStyle}" />
+        </Grid>
+    </DataTemplate>
+    <DataTemplate x:Name="SidebarIconItemTemplate">
+        <Grid Height="60"
+              Width="100">
+            <Path Data="{Binding PathData}"
+                  Height="30"
+                  Width="30"
+                  HorizontalAlignment="Center"
+                  Stretch="Uniform"
+                  Fill="White"
+                  Margin="-9,0,0,0" />
+        </Grid>
+    </DataTemplate>
 </ResourceDictionary>

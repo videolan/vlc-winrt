@@ -173,9 +173,9 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         public MusicLibraryVM()
         {
             var resourceLoader = new ResourceLoader();
-            Panels.Add(new Panel(resourceLoader.GetString("Artist").ToLower(), 0, 1));
-            Panels.Add(new Panel(resourceLoader.GetString("Tracks").ToLower(), 1, 0.4));
-            Panels.Add(new Panel(resourceLoader.GetString("FavoriteAlbums").ToLower(), 2, 0.4));
+            Panels.Add(new Panel(resourceLoader.GetString("Artist").ToLower(), 0, 1, App.Current.Resources["HomePath"].ToString()));
+            Panels.Add(new Panel(resourceLoader.GetString("Tracks").ToLower(), 1, 0.4, App.Current.Resources["HomePath"].ToString()));
+            Panels.Add(new Panel(resourceLoader.GetString("FavoriteAlbums").ToLower(), 2, 0.4, App.Current.Resources["HomePath"].ToString()));
             Initialize();
         }
 
