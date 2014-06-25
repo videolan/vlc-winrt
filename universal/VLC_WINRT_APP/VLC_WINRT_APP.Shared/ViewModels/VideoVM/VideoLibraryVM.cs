@@ -119,7 +119,6 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             //Task.Run(() => GetViewedVideos());
 #if WINDOWS_APP
             Panels.Add(new Panel("all", 0, 1, App.Current.Resources["HomePath"].ToString()));
-            Panels.Add(new Panel("new", 1, 0.4, App.Current.Resources["HomePath"].ToString()));
             //Panels.Add(new Panel("favorite", 2, 0.4));
 #endif
         }
@@ -211,6 +210,14 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             {
                 DispatchHelper.InvokeAsync(() => HasNoMedia = true);
             }
+            App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+            {
+
+                if (NewVideos.Any())
+                {
+                    Panels.Add(new Panel("new", 1, 0.4, App.Current.Resources["HomePath"].ToString()));
+                }
+            });
         }
 
 

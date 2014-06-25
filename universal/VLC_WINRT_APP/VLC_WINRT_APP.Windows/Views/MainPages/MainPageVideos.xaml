@@ -19,9 +19,9 @@
                               IsSourceGrouped="True" />
     </Page.Resources>
 
-    <Grid Margin="24,0,0,0">
+    <Grid Margin="24,0,0,0" x:Name="RootGrid">
         <Grid.RowDefinitions>
-            <RowDefinition Height="42" />
+            <RowDefinition Height="42" x:Name="FirstRowDefinition"/>
             <RowDefinition Height="45" />
             <RowDefinition Height="24" />
             <RowDefinition Height="*" />
@@ -73,7 +73,9 @@
                     <GridView ItemsSource="{Binding Source={StaticResource VideoGroupedByAlphaKey}}"
                               ItemTemplate="{StaticResource SemanticZoomInViewMovieTemplate}"
                               SelectionMode="None"
-                              IsItemClickEnabled="True">
+                              IsItemClickEnabled="True"
+                              ScrollViewer.VerticalScrollBarVisibility="Auto"
+                              ScrollViewer.VerticalScrollMode="Auto">
                         <triggers:Interactions.Triggers>
                             <triggers:EventTrigger EventName="ItemClick">
                                 <triggers:InvokeCommandAction Command="{Binding OpenVideo}"
@@ -95,37 +97,36 @@
                         <GridView.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <ItemsWrapGrid Orientation="Horizontal"
-                                               ItemWidth="320"
-                                               ItemHeight="180" />
+                                               ItemWidth="310"
+                                               ItemHeight="174" />
                             </ItemsPanelTemplate>
                         </GridView.ItemsPanel>
                     </GridView>
                 </SemanticZoom.ZoomedInView>
             </SemanticZoom>
         </Grid>
-        <Grid Grid.Row="3"
-              x:Name="NewVideosGrid"
-              Visibility="Collapsed">
-            <ListView x:Name="NewVideosListView"
-                      ItemsSource="{Binding NewVideos}"
-                      ItemTemplate="{StaticResource SemanticZoomInViewMovieTemplate}"
-                      SelectionMode="None"
-                      IsItemClickEnabled="True"
-                      Visibility="Collapsed">
-                <triggers:Interactions.Triggers>
-                    <triggers:EventTrigger EventName="ItemClick">
-                        <triggers:InvokeCommandAction Command="{Binding OpenVideo}"
-                                                      PassEventArgsToCommand="True" />
-                    </triggers:EventTrigger>
-                </triggers:Interactions.Triggers>
-                <ListView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <ItemsWrapGrid Orientation="Horizontal"
-                                       ItemWidth="320"
-                                       ItemHeight="180" />
-                    </ItemsPanelTemplate>
-                </ListView.ItemsPanel>
-            </ListView>
-        </Grid>
+        <ListView x:Name="NewVideosListView"
+                  Grid.Row="3"
+                  ItemsSource="{Binding NewVideos}"
+                  ItemTemplate="{StaticResource SemanticZoomInViewMovieTemplate}"
+                  SelectionMode="None"
+                  IsItemClickEnabled="True"
+                  Visibility="Collapsed"
+                  ScrollViewer.VerticalScrollBarVisibility="Auto"
+                  ScrollViewer.VerticalScrollMode="Auto">
+            <triggers:Interactions.Triggers>
+                <triggers:EventTrigger EventName="ItemClick">
+                    <triggers:InvokeCommandAction Command="{Binding OpenVideo}"
+                                                  PassEventArgsToCommand="True" />
+                </triggers:EventTrigger>
+            </triggers:Interactions.Triggers>
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <ItemsWrapGrid Orientation="Horizontal"
+                                   ItemWidth="310"
+                                   ItemHeight="174" />
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+        </ListView>
     </Grid>
 </Page>
