@@ -142,6 +142,15 @@
     <Compile Include="Views\MusicPages\MusicPlayerPageControls\AlbumInfoHeaderControl.xaml.cs">
       <DependentUpon>AlbumInfoHeaderControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\MusicPages\MusicPlayerPageControls\BiographyInfoControl.xaml.cs">
+      <DependentUpon>BiographyInfoControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MusicPages\MusicPlayerPageControls\PopularAlbumsInfoControl.xaml.cs">
+      <DependentUpon>PopularAlbumsInfoControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MusicPages\MusicPlayerPageControls\SimilarArtistsInfoControl.xaml.cs">
+      <DependentUpon>SimilarArtistsInfoControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserControls\LeftColumn.xaml.cs">
       <DependentUpon>LeftColumn.xaml</DependentUpon>
     </Compile>
@@ -757,6 +766,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MusicPages\MusicPlayerPageControls\AlbumInfoHeaderControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MusicPages\MusicPlayerPageControls\BiographyInfoControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MusicPages\MusicPlayerPageControls\PopularAlbumsInfoControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MusicPages\MusicPlayerPageControls\SimilarArtistsInfoControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

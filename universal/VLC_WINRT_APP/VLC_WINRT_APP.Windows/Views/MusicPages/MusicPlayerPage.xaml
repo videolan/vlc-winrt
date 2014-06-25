@@ -28,9 +28,10 @@
                 </StackPanel>
             </Hub.Header>
             <Hub.Sections>
-                <HubSection Margin="-24,0,0,0">
+                <HubSection Margin="-24,0,0,0"
+                            IsHeaderInteractive="True">
                     <HubSection.Header>
-                        <musicPlayerPageControls:AlbumInfoHeaderControl/>
+                        <musicPlayerPageControls:AlbumInfoHeaderControl />
                     </HubSection.Header>
                     <HubSection.ContentTemplate>
                         <DataTemplate>
@@ -56,54 +57,24 @@
                         </DataTemplate>
                     </HubSection.ContentTemplate>
                 </HubSection>
-                <HubSection Header="biography"
-                            Width="480">
+                <HubSection Header="biography">
                     <HubSection.ContentTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding CurrentPlayingArtist.Biography}"
-                                       Style="{StaticResource BodyTextBlockStyle}" />
+                            <musicPlayerPageControls:BiographyInfoControl/>
                         </DataTemplate>
                     </HubSection.ContentTemplate>
                 </HubSection>
                 <HubSection Header="popular albums">
                     <HubSection.ContentTemplate>
                         <DataTemplate>
-                            <GridView x:Name="PopularItemGridView"
-                                      IsSwipeEnabled="False"
-                                      SelectionMode="None"
-                                      IsItemClickEnabled="True"
-                                      ItemsSource="{Binding CurrentPlayingArtist.OnlinePopularAlbumItems}"
-                                      ItemTemplate="{StaticResource PopularAlbumTemplate}"
-                                      SizeChanged="GridView_OnSizeChanged">
-                                <GridView.ItemsPanel>
-                                    <ItemsPanelTemplate>
-                                        <WrapGrid ItemHeight="200"
-                                                  ItemWidth="200"
-                                                  Orientation="Horizontal" />
-                                    </ItemsPanelTemplate>
-                                </GridView.ItemsPanel>
-                            </GridView>
+                            <musicPlayerPageControls:PopularAlbumsInfoControl/> 
                         </DataTemplate>
                     </HubSection.ContentTemplate>
                 </HubSection>
                 <HubSection Header="similar artists">
                     <HubSection.ContentTemplate>
                         <DataTemplate>
-                            <GridView x:Name="SimilarItemGridView"
-                                      IsSwipeEnabled="False"
-                                      SelectionMode="None"
-                                      IsItemClickEnabled="True"
-                                      ItemsSource="{Binding CurrentPlayingArtist.OnlineRelatedArtists}"
-                                      ItemTemplate="{StaticResource SimilarArtistTemplate}"
-                                      SizeChanged="GridView_OnSizeChanged">
-                                <GridView.ItemsPanel>
-                                    <ItemsPanelTemplate>
-                                        <WrapGrid ItemHeight="200"
-                                                  ItemWidth="200"
-                                                  Orientation="Horizontal" />
-                                    </ItemsPanelTemplate>
-                                </GridView.ItemsPanel>
-                            </GridView>
+                            <musicPlayerPageControls:SimilarArtistsInfoControl/>
                         </DataTemplate>
                     </HubSection.ContentTemplate>
                 </HubSection>

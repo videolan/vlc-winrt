@@ -25,17 +25,19 @@ namespace VLC_WINRT_APP.Views.MusicPages.MusicPlayerPageControls
 
         void Responsive()
         {
-            if (Window.Current.Bounds.Width < 400)
+            if (Window.Current.Bounds.Width < 550)
             {
                 CoverImage.Height = 130;
                 CoverImage.Width = 130;
                 CoverImageColumnDefinition.Width = new GridLength(130);
+                PlayAllAppBarToggleButton.Margin = new Thickness(-27, 0, 0, 0);
             }
             else
             {
                 CoverImage.Height = 200;
                 CoverImage.Width = 200;
                 CoverImageColumnDefinition.Width = new GridLength(200);
+                PlayAllAppBarToggleButton.Margin = new Thickness(0);
             }
         }
     }

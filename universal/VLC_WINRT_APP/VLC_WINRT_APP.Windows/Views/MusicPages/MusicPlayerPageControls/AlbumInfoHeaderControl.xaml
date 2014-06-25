@@ -45,7 +45,8 @@
                         <FontIcon Glyph="&#xE0A5;" />
                     </AppBarToggleButton.Icon>
                 </AppBarToggleButton>
-                <AppBarToggleButton Icon="Play"
+                <AppBarToggleButton x:Name="PlayAllAppBarToggleButton"
+                                    Icon="Play"
                                     Label="Play all"
                                     Command="{Binding CurrentPlayingArtist.CurrentAlbumItem.PlayAlbum}"
                                     CommandParameter="{Binding CurrentPlayingArtist.CurrentAlbumItem}" />
