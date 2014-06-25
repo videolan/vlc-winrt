@@ -105,7 +105,6 @@
         <StackPanel Grid.Column="1"
                     Orientation="Horizontal"
                     HorizontalAlignment="Right">
-            <controls:IndexingMusicLibrary Visibility="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.IsLoaded, Converter={StaticResource NegatedBooleanToVisibilityConverter}}" />
             <AppBarButton Margin="0,0,-30,0"
                           Icon="OpenFile"
                           IsCompact="True" />

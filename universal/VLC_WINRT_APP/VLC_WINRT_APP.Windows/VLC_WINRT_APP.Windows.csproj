@@ -115,9 +115,6 @@
     <Compile Include="AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\IndexingMusicLibrary.xaml.cs">
-      <DependentUpon>IndexingMusicLibrary.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Controls\InputDialog\InputDialog.xaml.cs">
       <DependentUpon>InputDialog.xaml</DependentUpon>
     </Compile>
@@ -141,9 +138,6 @@
     </Compile>
     <Compile Include="Controls\MainPage\Welcome.xaml.cs">
       <DependentUpon>Welcome.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\MinimizedAppBar.xaml.cs">
-      <DependentUpon>MinimizedAppBar.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MusicPages\AlbumPage.xaml.cs">
       <DependentUpon>AlbumPage.xaml</DependentUpon>
@@ -170,8 +164,6 @@
       <DependentUpon>PlugARemovableStorage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\VariableSizedItemsGridView.cs" />
-    <Compile Include="Controls\WrapPanelControl\OrientedSize.cs" />
-    <Compile Include="Controls\WrapPanelControl\WrapPanel.cs" />
     <Compile Include="DLNAPage.xaml.cs">
       <DependentUpon>DLNAPage.xaml</DependentUpon>
     </Compile>
@@ -732,10 +724,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\IndexingMusicLibrary.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Controls\InputDialog\InputDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -765,10 +753,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\MainPage\Welcome.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\MinimizedAppBar.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
