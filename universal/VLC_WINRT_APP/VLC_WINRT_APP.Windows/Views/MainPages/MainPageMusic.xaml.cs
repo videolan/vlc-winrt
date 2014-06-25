@@ -10,12 +10,7 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
-using VLC_WINRT.Common;
-using VLC_WINRT_APP.Commands;
-using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.ViewModels;
-using Panel = VLC_WINRT_APP.Model.Panel;
-using VLC_WINRT_APP.ViewModels.MusicVM;
 
 namespace VLC_WINRT_APP.Views.MainPages
 {
@@ -24,10 +19,22 @@ namespace VLC_WINRT_APP.Views.MainPages
         public MainPageMusic()
         {
             this.InitializeComponent();
+            this.SizeChanged += OnSizeChanged;
         }
+
 
         private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
         {
+            if (Window.Current.Bounds.Width < 400)
+            {
+                RootGrid.Margin = new Thickness(9, 0, 0, 0);
+                FirstRowDefinition.Height = new GridLength(0);
+            }
+            else
+            {
+                RootGrid.Margin = new Thickness(24, 0, 0, 0);
+                FirstRowDefinition.Height = new GridLength(42);
+            }
         }
 
         private void SemanticZoom_OnViewChangeCompletedArtistByName(object sender, SemanticZoomViewChangedEventArgs e)
