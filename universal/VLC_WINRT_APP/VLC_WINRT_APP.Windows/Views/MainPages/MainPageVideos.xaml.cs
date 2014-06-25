@@ -9,16 +9,12 @@
 
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using VLC_WINRT_APP.Helpers;
-using VLC_WINRT.Common;
 using VLC_WINRT_APP.ViewModels;
 
 namespace VLC_WINRT_APP.Views.MainPages
 {
     public sealed partial class MainPageVideos : Page
     {
-        private int _currentSection;
-
         public MainPageVideos()
         {
             InitializeComponent();
@@ -46,12 +42,12 @@ namespace VLC_WINRT_APP.Views.MainPages
             switch (panel.Title)
             {
                 case "all":
-                    SemanticZoom.Visibility = Visibility.Visible;
-                    NewVideosListView.Visibility = Visibility.Collapsed;
+                    AllVideosGrid.Visibility = Visibility.Visible;
+                    NewVideosGrid.Visibility = Visibility.Collapsed;
                     break;
                 case "new":
-                    SemanticZoom.Visibility = Visibility.Collapsed;
-                    NewVideosListView.Visibility = Visibility.Visible;
+                    AllVideosGrid.Visibility = Visibility.Collapsed;
+                    NewVideosGrid.Visibility = Visibility.Visible;
                     break;
             }
         }

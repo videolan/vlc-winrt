@@ -1,17 +1,17 @@
-﻿<Page
-    x:Class="VLC_WINRT_APP.Views.MainPages.MainPageVideos"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:dataTemplateSelectors="using:VLC_WINRT_APP.Utility.DataTemplateSelectors"
-    xmlns:controls="using:VLC_WINRT.Views.Controls"
-    xmlns:wrapPanelControl="using:VLC_WINRT.Views.Controls.WrapPanelControl"
-    xmlns:triggers="using:WinRT.Triggers"
-    mc:Ignorable="d"
-    d:DesignHeight="768"
-    d:DesignWidth="400"
-    DataContext="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM}">
+﻿<Page x:Class="VLC_WINRT_APP.Views.MainPages.MainPageVideos"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:dataTemplateSelectors="using:VLC_WINRT_APP.Utility.DataTemplateSelectors"
+      xmlns:controls="using:VLC_WINRT.Views.Controls"
+      xmlns:wrapPanelControl="using:VLC_WINRT.Views.Controls.WrapPanelControl"
+      xmlns:triggers="using:WinRT.Triggers"
+      xmlns:userControls="using:VLC_WINRT_APP.Views.UserControls"
+      mc:Ignorable="d"
+      d:DesignHeight="768"
+      d:DesignWidth="400"
+      DataContext="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM}">
 
     <Page.Resources>
         <CollectionViewSource x:Name="VideoGroupedByAlphaKey"
@@ -55,71 +55,77 @@
                 </ListView.ItemTemplate>
             </ListView>
         </StackPanel>
-        <SemanticZoom x:Name="SemanticZoom"
-                      Grid.Row="3"
-                      ViewChangeCompleted="SemanticZoom_OnViewChangeCompleted">
-            <SemanticZoom.ZoomedOutView>
-                <GridView ItemTemplate="{StaticResource AlphaLetterDataTemplate}">
-                    <GridView.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <WrapGrid Orientation="Horizontal" />
-                        </ItemsPanelTemplate>
-                    </GridView.ItemsPanel>
-                </GridView>
-            </SemanticZoom.ZoomedOutView>
-            <SemanticZoom.ZoomedInView>
-                <GridView ItemsSource="{Binding Source={StaticResource VideoGroupedByAlphaKey}}"
-                          ItemTemplate="{StaticResource SemanticZoomInViewMovieTemplate}"
-                          SelectionMode="None"
-                          IsItemClickEnabled="True">
-                    <triggers:Interactions.Triggers>
-                        <triggers:EventTrigger EventName="ItemClick">
-                            <triggers:InvokeCommandAction Command="{Binding OpenVideo}"
-                                                          PassEventArgsToCommand="True" />
-                        </triggers:EventTrigger>
-                    </triggers:Interactions.Triggers>
-                    <GridView.GroupStyle>
-                        <GroupStyle>
-                            <GroupStyle.HeaderTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding Key}"
-                                               Height="Auto"
-                                               Margin="0"
-                                               Style="{StaticResource SubheaderTextBlockStyle}" />
-                                </DataTemplate>
-                            </GroupStyle.HeaderTemplate>
-                        </GroupStyle>
-                    </GridView.GroupStyle>
-                    <GridView.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <ItemsWrapGrid Orientation="Horizontal"
-                                           ItemWidth="320"
-                                           ItemHeight="180" />
-                        </ItemsPanelTemplate>
-                    </GridView.ItemsPanel>
-                </GridView>
-            </SemanticZoom.ZoomedInView>
-        </SemanticZoom>
-        <ListView Grid.Row="3"
-                  x:Name="NewVideosListView"
-                  ItemsSource="{Binding NewVideos}"
-                  ItemTemplate="{StaticResource SemanticZoomInViewMovieTemplate}"
-                  SelectionMode="None"
-                  IsItemClickEnabled="True"
-                  Visibility="Collapsed">
-            <triggers:Interactions.Triggers>
-                <triggers:EventTrigger EventName="ItemClick">
-                    <triggers:InvokeCommandAction Command="{Binding OpenVideo}"
-                                                  PassEventArgsToCommand="True" />
-                </triggers:EventTrigger>
-            </triggers:Interactions.Triggers>
-            <ListView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <ItemsWrapGrid Orientation="Horizontal"
-                                   ItemWidth="320"
-                                   ItemHeight="180" />
-                </ItemsPanelTemplate>
-            </ListView.ItemsPanel>
-        </ListView>
+        <Grid Grid.Row="3"
+              x:Name="AllVideosGrid">
+            <userControls:NoVideos Visibility="{Binding Videos.Count, Converter={StaticResource CountToVisibilityConverter}}" />
+            <SemanticZoom x:Name="SemanticZoom"
+                          ViewChangeCompleted="SemanticZoom_OnViewChangeCompleted">
+                <SemanticZoom.ZoomedOutView>
+                    <GridView ItemTemplate="{StaticResource AlphaLetterDataTemplate}">
+                        <GridView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapGrid Orientation="Horizontal" />
+                            </ItemsPanelTemplate>
+                        </GridView.ItemsPanel>
+                    </GridView>
+                </SemanticZoom.ZoomedOutView>
+                <SemanticZoom.ZoomedInView>
+                    <GridView ItemsSource="{Binding Source={StaticResource VideoGroupedByAlphaKey}}"
+                              ItemTemplate="{StaticResource SemanticZoomInViewMovieTemplate}"
+                              SelectionMode="None"
+                              IsItemClickEnabled="True">
+                        <triggers:Interactions.Triggers>
+                            <triggers:EventTrigger EventName="ItemClick">
+                                <triggers:InvokeCommandAction Command="{Binding OpenVideo}"
+                                                              PassEventArgsToCommand="True" />
+                            </triggers:EventTrigger>
+                        </triggers:Interactions.Triggers>
+                        <GridView.GroupStyle>
+                            <GroupStyle>
+                                <GroupStyle.HeaderTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Key}"
+                                                   Height="Auto"
+                                                   Margin="0"
+                                                   Style="{StaticResource SubheaderTextBlockStyle}" />
+                                    </DataTemplate>
+                                </GroupStyle.HeaderTemplate>
+                            </GroupStyle>
+                        </GridView.GroupStyle>
+                        <GridView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <ItemsWrapGrid Orientation="Horizontal"
+                                               ItemWidth="320"
+                                               ItemHeight="180" />
+                            </ItemsPanelTemplate>
+                        </GridView.ItemsPanel>
+                    </GridView>
+                </SemanticZoom.ZoomedInView>
+            </SemanticZoom>
+        </Grid>
+        <Grid Grid.Row="3"
+              x:Name="NewVideosGrid">
+            <userControls:NoVideos Visibility="{Binding NewVideos.Count, Converter={StaticResource CountToVisibilityConverter}}" />
+            <ListView x:Name="NewVideosListView"
+                      ItemsSource="{Binding NewVideos}"
+                      ItemTemplate="{StaticResource SemanticZoomInViewMovieTemplate}"
+                      SelectionMode="None"
+                      IsItemClickEnabled="True"
+                      Visibility="Collapsed">
+                <triggers:Interactions.Triggers>
+                    <triggers:EventTrigger EventName="ItemClick">
+                        <triggers:InvokeCommandAction Command="{Binding OpenVideo}"
+                                                      PassEventArgsToCommand="True" />
+                    </triggers:EventTrigger>
+                </triggers:Interactions.Triggers>
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <ItemsWrapGrid Orientation="Horizontal"
+                                       ItemWidth="320"
+                                       ItemHeight="180" />
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+            </ListView>
+        </Grid>
     </Grid>
 </Page>

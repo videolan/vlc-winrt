@@ -151,8 +151,11 @@
     <Compile Include="Controls\NothingToSeeHere.xaml.cs">
       <DependentUpon>NothingToSeeHere.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\NothingToSeeHereVideos.xaml.cs">
-      <DependentUpon>NothingToSeeHereVideos.xaml</DependentUpon>
+    <Compile Include="Views\UserControls\NoNewVideos.xaml.cs">
+      <DependentUpon>NoNewVideos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\NoVideos.xaml.cs">
+      <DependentUpon>NoVideos.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\RemovableStorage\PlugARemovableStorage.xaml.cs">
       <DependentUpon>PlugARemovableStorage.xaml</DependentUpon>
@@ -766,7 +769,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\NothingToSeeHereVideos.xaml">
+    <Page Include="Views\UserControls\NoNewVideos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\NoVideos.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

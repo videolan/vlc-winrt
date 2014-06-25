@@ -1,0 +1,25 @@
+﻿<UserControl
+    x:Class="VLC_WINRT_APP.Views.UserControls.NoNewVideos"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:VLC_WINRT_APP.Views.UserControls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <Grid>
+        <TextBlock TextWrapping="Wrap">
+            <Run x:Uid="NothingToSeeHere"
+                 Text="You watched them all"
+                 FontSize="36"
+                 FontWeight="Light" />
+            <LineBreak />
+            <Run x:Uid="ElementsNotFound"
+                 Text="It seems that we didn't find any elements in there."
+                 FontSize="20"
+                 FontWeight="SemiLight" />
+        </TextBlock>
+    </Grid>
+</UserControl>

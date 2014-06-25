@@ -13,7 +13,7 @@ using Windows.UI.Xaml.Data;
 
 namespace VLC_WINRT_APP.Converters
 {
-    class CountToVisibilityConverter : IValueConverter
+    public class CountToVisibilityConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
