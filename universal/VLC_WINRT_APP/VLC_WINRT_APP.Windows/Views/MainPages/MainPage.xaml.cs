@@ -32,10 +32,14 @@ namespace VLC_WINRT_APP.Views.MainPages
 
         private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
         {
+            Responsive();
+        }
+
+        void Responsive()
+        {
             TopBarRowDefinition.Height = Window.Current.Bounds.Width < 400 ? new GridLength(100) : new GridLength(0);
             LeftSidebarColumnDefinition.Width = Window.Current.Bounds.Width < 400 ? new GridLength(0) : new GridLength(1, GridUnitType.Auto);
         }
-
         private async void SwapPanelLoaded(object sender, RoutedEventArgs e)
         {
             await _vlcService.Initialize(SwapChainPanel);
@@ -43,6 +47,7 @@ namespace VLC_WINRT_APP.Views.MainPages
 
         private void MainFrame_OnNavigated(object sender, NavigationEventArgs e)
         {
+            Responsive();
             //AnimatedBackground.Visibility = e.SourcePageType == typeof (PlayVideo) ? Visibility.Collapsed : Visibility.Visible;
         }
         //public async void CreateVLCMenu()

@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:triggers="using:WinRT.Triggers"
       mc:Ignorable="d"
       DataContext="{Binding Source={StaticResource Locator}, Path=ExternalStorageVM}">
 
@@ -23,7 +24,16 @@
         </ComboBox>
         <Grid Grid.Row="2">
             <ListView ItemsSource="{Binding CurrentStorageVM.StorageItems}"
+                      IsItemClickEnabled="True"
+                      SelectionMode="None"
+                      IsSwipeEnabled="False"
                       ItemContainerStyle="{StaticResource ListViewItemContainerStyle}">
+                <triggers:Interactions.Triggers>
+                    <triggers:EventTrigger EventName="ItemClick">
+                        <triggers:InvokeCommandAction Command="{Binding CurrentStorageVM.NavigateToCommand}"
+                                                      PassEventArgsToCommand="True" />
+                    </triggers:EventTrigger>
+                </triggers:Interactions.Triggers>
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Grid VerticalAlignment="Center">

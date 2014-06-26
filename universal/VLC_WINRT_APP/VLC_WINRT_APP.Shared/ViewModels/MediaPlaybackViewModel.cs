@@ -251,13 +251,14 @@ namespace VLC_WINRT_APP.ViewModels
         #endregion
 
         #region Events
+
         protected async void PlayerStateChanged(object sender, VlcService.MediaPlayerState e)
         {
-            IsPlaying = e == VlcService.MediaPlayerState.Playing;
-            OnPropertyChanged("IsPlaying");
-            //App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
-            //    () => IsPlaying = e == VlcService.MediaPlayerState.Playing);
-            //OnPropertyChanged("IsPlaying");
+            App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+            {
+                IsPlaying = e == VlcService.MediaPlayerState.Playing;
+                OnPropertyChanged("IsPlaying");
+            });
         }
 
         private async void FirePositionUpdate(object sender, object e)
