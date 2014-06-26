@@ -19,6 +19,17 @@
         <m2:SplashScreen Image="Assets\SplashScreen.png" />
         <m2:ApplicationView MinWidth="width320" />
       </m2:VisualElements>
+      <Extensions>
+        <Extension Category="windows.fileTypeAssociation" EntryPoint="VLC_WINRT_APP.Windows.App">
+          <FileTypeAssociation Name="vlc" m2:DesiredView="useHalf">
+            <DisplayName>VLC Media Player</DisplayName>
+            <EditFlags AlwaysUnsafe="true" />
+            <SupportedFileTypes>
+              <FileType>.mp4</FileType>
+            </SupportedFileTypes>
+          </FileTypeAssociation>
+        </Extension>
+      </Extensions>
     </Application>
   </Applications>
   <Capabilities>

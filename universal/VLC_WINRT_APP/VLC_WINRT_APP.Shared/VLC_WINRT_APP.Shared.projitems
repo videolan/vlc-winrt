@@ -124,7 +124,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MusicVM\MusicPlayerVM.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\NavigateableViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RemovableDevicesVM\ExternalStorageViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RemovableDevicesVM\RemovableLibraryViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\VideoVM\VideoVM.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\VideoVM\VideoPlayerVM.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Settings\SettingsViewModel.cs" />

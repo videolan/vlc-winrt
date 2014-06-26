@@ -5,53 +5,41 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.Search;
+using Windows.UI.Core;
 using Windows.UI.Popups;
 using VLC_WINRT.Common;
 using VLC_WINRT_APP.Common;
 
 namespace VLC_WINRT_APP.ViewModels.Others.VlcExplorer
 {
-    public class Storage
-    {
-        public string Path { get; set; }
-    }
     public class FileExplorerViewModel : BindableBase
     {
         private StorageFolder _rootFolder;
-        private ObservableCollection<Storage> _storageItems = new ObservableCollection<Storage>();
-        private string _name;
+        private ObservableCollection<IStorageItem> _storageItems = new ObservableCollection<IStorageItem>();
         public string Id;
 
-        public ObservableCollection<Storage> StorageItems
+        public ObservableCollection<IStorageItem> StorageItems
         {
             get { return _storageItems; }
             set { SetProperty(ref _storageItems, value); }
         }
-        public string Name
-        {
-            get
-            {
-                return _name;
-            }
-            set
-            {
-                _name = value;
-            }
-        }
+
+        public string Name { get; set; }
 
         public FileExplorerViewModel(StorageFolder root, string id = null)
         {
             _rootFolder = root;
-            _name = root.DisplayName;
+            Name = root.DisplayName;
 
-            if (id != null) Id = id;
+            if (id != null)
+                Id = id;
         }
 
         public async Task GetFiles()
         {
             try
             {
-                _storageItems.Clear();
+                App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, ()=> _storageItems.Clear());
                 var queryOptions = new QueryOptions(CommonFileQuery.DefaultQuery,
                                                    new List<string>
                                                {
@@ -125,8 +113,11 @@ namespace VLC_WINRT_APP.ViewModels.Others.VlcExplorer
                 var items = await fileQuery.GetItemsAsync();
                 foreach (IStorageItem storageItem in items)
                 {
-                    StorageItems.Add(new Storage() { Path = storageItem.Path });
-                    OnPropertyChanged("StorageItems");
+                    App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+                    {
+                        StorageItems.Add(storageItem);
+                        OnPropertyChanged("StorageItems");
+                    });
                 }
             }
             catch (Exception exception)
