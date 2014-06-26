@@ -9,6 +9,7 @@ using Windows.UI.Core;
 using Windows.UI.Popups;
 using VLC_WINRT.Common;
 using VLC_WINRT_APP.Common;
+using VLC_WINRT_APP.Model;
 
 namespace VLC_WINRT_APP.ViewModels.Others.VlcExplorer
 {
@@ -39,75 +40,8 @@ namespace VLC_WINRT_APP.ViewModels.Others.VlcExplorer
         {
             try
             {
-                App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, ()=> _storageItems.Clear());
-                var queryOptions = new QueryOptions(CommonFileQuery.DefaultQuery,
-                                                   new List<string>
-                                               {
-                                                   ".3g2",
-                                                   ".3gp",
-                                                   ".3gp2",
-                                                   ".3gpp",
-                                                   ".amv",
-                                                   ".asf",
-                                                   ".avi",
-                                                   ".divx",
-                                                   ".drc",
-                                                   ".dv",
-                                                   ".f4v",
-                                                   ".flv",
-                                                   ".gvi",
-                                                   ".gxf",
-                                                   ".ismv",
-                                                   ".iso",
-                                                   ".m1v",
-                                                   ".m2v",
-                                                   ".m2t",
-                                                   ".m2ts",
-                                                   ".m3u8",
-                                                   ".mkv",
-                                                   ".mov",
-                                                   ".mp2",
-                                                   ".mp2v",
-                                                   ".mp4",
-                                                   ".mp4v",
-                                                   ".mpe",
-                                                   ".mpeg",
-                                                   ".mpeg1",
-                                                   ".mpeg2",
-                                                   ".mpeg4",
-                                                   ".mpg",
-                                                   ".mpv2",
-                                                   ".mts",
-                                                   ".mtv",
-                                                   ".mxf",
-                                                   ".mxg",
-                                                   ".nsv",
-                                                   ".nut",
-                                                   ".nuv",
-                                                   ".ogm",
-                                                   ".ogv",
-                                                   ".ogx",
-                                                   ".ps",
-                                                   ".rec",
-                                                   ".rm",
-                                                   ".rmvb",
-                                                   ".tob",
-                                                   ".ts",
-                                                   ".tts",
-                                                   ".vob",
-                                                   ".vro",
-                                                   ".webm",
-                                                   ".wm",
-                                                   ".wmv",
-                                                   ".wtv",
-                                                   ".xesc",
-                                                   ".mp3",
-                                                   ".ogg",
-                                                   ".aac",
-                                                   ".wma",
-                                                   ".wav",
-                                                   ".flac",
-                                               });
+                App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => _storageItems.Clear());
+                var queryOptions = new QueryOptions(CommonFileQuery.DefaultQuery, VLCFileExtensions.Supported);
 
                 var fileQuery = _rootFolder.CreateItemQueryWithOptions(queryOptions);
                 var items = await fileQuery.GetItemsAsync();

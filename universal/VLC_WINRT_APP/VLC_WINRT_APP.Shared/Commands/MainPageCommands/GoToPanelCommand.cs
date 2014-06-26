@@ -9,10 +9,6 @@
 
 using Windows.UI.Xaml.Controls;
 using VLC_WINRT.Common;
-#if WINDOWS_PHONE_APP
-using VLC_WINPRT;
-#endif
-using VLC_WINRT_APP;
 using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.Views.MainPages;
 
@@ -22,25 +18,31 @@ namespace VLC_WINRT_APP.Commands.MainPage
     {
         public override void Execute(object parameter)
         {
-            Model.Panel panel = ((ItemClickEventArgs)parameter).ClickedItem as Model.Panel;
+            Model.Panel panel = e.ClickedItem as Model.Panel;
             foreach (Model.Panel panel1 in Locator.MainVM.Panels)
-            {
                 panel1.Opacity = 0.4;
-            }
             panel.Opacity = 1;
-            switch (panel.Title)
+            switch (panel.Index)
             {
-                case "home":
+                case 0:
                     if (App.ApplicationFrame.CurrentSourcePageType != typeof(MainPageHome))
                         App.ApplicationFrame.Navigate(typeof(MainPageHome));
                     break;
-                case "videos":
+                case 1:
                     if (App.ApplicationFrame.CurrentSourcePageType != typeof(MainPageVideos))
                         App.ApplicationFrame.Navigate(typeof(MainPageVideos));
                     break;
-                case "music":
+                case 2:
                     if (App.ApplicationFrame.CurrentSourcePageType != typeof(MainPageMusic))
                         App.ApplicationFrame.Navigate(typeof(MainPageMusic));
+                    break;
+                case 3:
+                    if (App.ApplicationFrame.CurrentSourcePageType != typeof(MainPageRemovables))
+                        App.ApplicationFrame.Navigate(typeof(MainPageRemovables));
+                    break;
+                case 4:
+                    if (App.ApplicationFrame.CurrentSourcePageType != typeof(MainPageMediaServers))
+                        App.ApplicationFrame.Navigate(typeof(MainPageMediaServers));
                     break;
             }
         }
