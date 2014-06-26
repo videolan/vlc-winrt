@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using Windows.Devices.Portable;
 using Autofac;
 using VLC_WINRT.Common;
+using VLC_WINRT_APP.Commands.RemovableDevices;
 using VLC_WINRT_APP.Common;
 using VLC_WINRT_APP.Services.RunTime;
 using VLC_WINRT_APP.ViewModels.Others.VlcExplorer;
@@ -23,39 +24,53 @@ namespace VLC_WINRT_APP.ViewModels.RemovableDevicesVM
 #if WINDOWS_APP
     public class ExternalStorageViewModel : BindableBase, IDisposable
     {
+        #region private props
         private ExternalDeviceService _deviceService;
-
-        private ObservableCollection<FileExplorerViewModel> _removableStorageVMs =
-            new ObservableCollection<FileExplorerViewModel>();
-
         private FileExplorerViewModel _currentStorageVM;
 
-        public ExternalStorageViewModel()
-        {
-            _deviceService = App.Container.Resolve<ExternalDeviceService>();
-            _deviceService.ExternalDeviceAdded += DeviceAdded;
-            _deviceService.ExternalDeviceRemoved += DeviceRemoved;
-        }
+        private RemovableDeviceClickedCommand _removableDeviceClickedCommand;
+        #endregion
 
+        #region private fields
+        private ObservableCollection<FileExplorerViewModel> _removableStorageVMs =
+            new ObservableCollection<FileExplorerViewModel>();
+        #endregion
+
+        #region public props
+
+        public RemovableDeviceClickedCommand RemovableDeviceClicked
+        {
+            get { return _removableDeviceClickedCommand; }
+            set { SetProperty(ref _removableDeviceClickedCommand, value); }
+        }
+        public FileExplorerViewModel CurrentStorageVM
+        {
+            get
+            {
+                return _currentStorageVM;
+            }
+            set { SetProperty(ref _currentStorageVM, value); }
+        }
+        #endregion
+
+        #region public fields
         public ObservableCollection<FileExplorerViewModel> RemovableStorageVMs
         {
             get { return _removableStorageVMs; }
             set { SetProperty(ref _removableStorageVMs, value); }
         }
 
-        public FileExplorerViewModel CurrentStorageVM
+        
+        #endregion
+
+
+
+        public ExternalStorageViewModel()
         {
-            get
-            {
-                if (RemovableStorageVMs.Any())
-                {
-                    if(!RemovableStorageVMs[0].StorageItems.Any())
-                        Task.Run(() => RemovableStorageVMs[0].GetFiles());
-                    return RemovableStorageVMs[0];
-                }
-                return _currentStorageVM;
-            }
-            set { SetProperty(ref _currentStorageVM, value); }
+            RemovableDeviceClicked = new RemovableDeviceClickedCommand();
+            _deviceService = App.Container.Resolve<ExternalDeviceService>();
+            _deviceService.ExternalDeviceAdded += DeviceAdded;
+            _deviceService.ExternalDeviceRemoved += DeviceRemoved;
         }
 
         public void Dispose()
@@ -78,6 +93,7 @@ namespace VLC_WINRT_APP.ViewModels.RemovableDevicesVM
                 if (RemovableStorageVMs.Count == 1)
                 {
                     CurrentStorageVM = RemovableStorageVMs[0];
+                    CurrentStorageVM.GetFiles();
                 }
             });
         }

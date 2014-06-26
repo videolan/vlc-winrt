@@ -17,5 +17,9 @@
 
     <x:String x:Key="ProgressBarIndeterminateForegroundThemeBrush">#e67e22</x:String>
     <x:String x:Key="ProgressBarForegroundThemeBrush">#e67e22</x:String>
-
+    <SolidColorBrush x:Key="ComboBoxItemSelectedBackgroundThemeBrush"
+                     Color="{StaticResource MainColorBase}" />
+    <SolidColorBrush x:Key="ComboBoxItemSelectedPointerOverBackgroundThemeBrush"
+                     Color="{StaticResource MainColorBase}"
+                     Opacity="0.8"/>
 </ResourceDictionary>

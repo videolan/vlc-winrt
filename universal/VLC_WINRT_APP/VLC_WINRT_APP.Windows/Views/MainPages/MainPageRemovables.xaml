@@ -5,28 +5,62 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:triggers="using:WinRT.Triggers"
       xmlns:removableStorage="using:VLC_WINRT_APP.Controls.RemovableStorage"
+      xmlns:controls="using:VLC_WINRT.Views.Controls"
       mc:Ignorable="d"
       DataContext="{Binding Source={StaticResource Locator}, Path=ExternalStorageVM}">
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="42" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="45" />
+            <RowDefinition Height="60" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <ComboBox Grid.Row="1"
+                  Width="280"
                   ItemsSource="{Binding RemovableStorageVMs}"
                   SelectedItem="{Binding CurrentStorageVM}"
-                  Visibility="{Binding RemovableStorageVMs.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}">
+                  Visibility="{Binding RemovableStorageVMs.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}"
+                  Style="{StaticResource ComboBoxStyle1}"
+                  FontSize="26"
+                  HorizontalAlignment="Left"
+                  VerticalAlignment="Center"
+                  Foreground="WhiteSmoke"
+                  FontWeight="Light">
+            <triggers:Interactions.Triggers>
+                <triggers:EventTrigger EventName="SelectionChanged">
+                    <triggers:InvokeCommandAction Command="{Binding RemovableDeviceClicked}"
+                                                  PassEventArgsToCommand="True" />
+                </triggers:EventTrigger>
+            </triggers:Interactions.Triggers>
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Name}" />
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-        <Grid Grid.Row="2">
-            <removableStorage:PlugARemovableStorage Visibility="{Binding RemovableStorageVMs.Count, Converter={StaticResource CountToVisibilityConverter}}" />
+        <Grid Grid.Row="2"
+              Margin="6,0,0,0">
+            <Button Style="{StaticResource TextBlockButtonStyle}"
+                    Command="{Binding CurrentStorageVM.GoBackCommand}"
+                    Visibility="{Binding CurrentStorageVM.CanGoBack, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <Button.Content>
+                    <StackPanel Orientation="Horizontal">
+                        <SymbolIcon Symbol="Back" />
+                        <TextBlock Text="Back"
+                                   VerticalAlignment="Center"
+                                   Margin="6,0,0,0" />
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+        </Grid>
+        <Grid Grid.Row="3">
+            <removableStorage:PlugARemovableStorage d:IsHidden="True"
+                                                    Visibility="{Binding RemovableStorageVMs.Count, Converter={StaticResource CountToVisibilityConverter}}" />
+            <controls:NothingToSeeHere Margin="6,0,0,0"
+                                       Visibility="{Binding CurrentStorageVM.IsFolderEmpty, Converter={StaticResource BooleanToVisibilityConverter}}" />
             <ListView ItemsSource="{Binding CurrentStorageVM.StorageItems}"
+                      Margin="6,0,0,0"
                       IsItemClickEnabled="True"
                       SelectionMode="None"
                       IsSwipeEnabled="False"

@@ -7,10 +7,8 @@ using Windows.Storage;
 using Windows.Storage.AccessCache;
 using Windows.Storage.Search;
 using Windows.UI.Core;
-using Windows.UI.Xaml.Controls;
 using VLC_WINRT_APP.Commands.RemovableDevices;
 using VLC_WINRT_APP.Common;
-using VLC_WINRT_APP.Helpers.MusicLibrary.EchoNest;
 using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.Views.VideoPages;
 
@@ -21,10 +19,12 @@ namespace VLC_WINRT_APP.ViewModels.Others.VlcExplorer
         #region private props
 
         private IStorageItemClickedCommand _navigateToCommand;
+        private GoUpperFolderCommand _goUpperFolderCommand;
+        private bool _isFolderEmpty;
         #endregion
 
         #region private fields
-        private ObservableCollection<StorageFolder> _backStack = new ObservableCollection<StorageFolder>(); 
+        private ObservableCollection<StorageFolder> _backStack = new ObservableCollection<StorageFolder>();
         private ObservableCollection<IStorageItem> _storageItems = new ObservableCollection<IStorageItem>();
         #endregion
 
@@ -36,6 +36,22 @@ namespace VLC_WINRT_APP.ViewModels.Others.VlcExplorer
         {
             get { return _navigateToCommand; }
             set { SetProperty(ref _navigateToCommand, value); }
+        }
+
+        public GoUpperFolderCommand GoBackCommand
+        {
+            get { return _goUpperFolderCommand; }
+            set { SetProperty(ref _goUpperFolderCommand, value); }
+        }
+        public bool CanGoBack
+        {
+            get { return BackStack.Count > 1; }
+        }
+
+        public bool IsFolderEmpty
+        {
+            get { return _isFolderEmpty; }
+            set { SetProperty(ref _isFolderEmpty, value); }
         }
         #endregion
 
@@ -50,13 +66,14 @@ namespace VLC_WINRT_APP.ViewModels.Others.VlcExplorer
         {
             get { return _backStack; }
             set { SetProperty(ref _backStack, value); }
-        } 
+        }
 
         #endregion
 
         public FileExplorerViewModel(StorageFolder root, string id = null)
         {
             NavigateToCommand = new IStorageItemClickedCommand();
+            GoBackCommand = new GoUpperFolderCommand();
             BackStack.Add(root);
             Name = root.DisplayName;
 
@@ -68,7 +85,11 @@ namespace VLC_WINRT_APP.ViewModels.Others.VlcExplorer
         {
             try
             {
-                App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => _storageItems.Clear());
+                App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                {
+                    _storageItems.Clear();
+                    IsFolderEmpty = false;
+                });
                 var queryOptions = new QueryOptions(CommonFileQuery.DefaultQuery, VLCFileExtensions.Supported);
 
                 var fileQuery = BackStack.Last().CreateItemQueryWithOptions(queryOptions);
@@ -86,6 +107,11 @@ namespace VLC_WINRT_APP.ViewModels.Others.VlcExplorer
             {
                 Debug.WriteLine("Failed to index folders and files in " + BackStack.Last().DisplayName + "\n" + exception.ToString());
             }
+            App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+            {
+                OnPropertyChanged("CanGoBack");
+                IsFolderEmpty = !StorageItems.Any();
+            });
         }
 
         public void NavigateTo(IStorageItem storageItem)
@@ -109,6 +135,16 @@ namespace VLC_WINRT_APP.ViewModels.Others.VlcExplorer
                 Locator.VideoVm.CurrentVideo = videoVm;
                 Locator.VideoVm.SetActiveVideoInfo(videoVm.Token);
                 App.ApplicationFrame.Navigate(typeof(VideoPlayerPage));
+            }
+        }
+
+        public void GoBack()
+        {
+            if (BackStack.Count > 1)
+            {
+                BackStack.Remove(BackStack.Last());
+                Task.Run(() => GetFiles());
+                OnPropertyChanged("CanGoBack");
             }
         }
     }
