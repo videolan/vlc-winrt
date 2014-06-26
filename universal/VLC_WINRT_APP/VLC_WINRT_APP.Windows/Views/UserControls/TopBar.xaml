@@ -34,11 +34,16 @@
                   ItemsSource="{Binding Panels}"
                   IsItemClickEnabled="True"
                   SelectionMode="None"
-                  ItemClick="MainPanels_ItemClick"
                   VerticalAlignment="Center"
                   ItemContainerStyle="{StaticResource ListViewItemContainerStyle}"
                   ItemTemplate="{StaticResource SidebarMiniIconItemTemplate}"
                   ScrollViewer.VerticalScrollBarVisibility="Disabled">
+            <triggers:Interactions.Triggers>
+                <triggers:EventTrigger EventName="ItemClick">
+                    <triggers:InvokeCommandAction Command="{Binding GoToPanelCommand}"
+                                                  PassEventArgsToCommand="True" />
+                </triggers:EventTrigger>
+            </triggers:Interactions.Triggers>
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Orientation="Horizontal"/>

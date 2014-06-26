@@ -89,7 +89,13 @@ namespace VLC_WINRT_APP.ViewModels.RemovableDevicesVM
                 FileExplorerViewModel removedViewModel = RemovableStorageVMs.FirstOrDefault(vm => vm.Id == id);
                 if (removedViewModel != null)
                 {
+                    if (CurrentStorageVM == removedViewModel)
+                    {
+                        CurrentStorageVM.StorageItems.Clear();
+                        CurrentStorageVM = null;
+                    }
                     RemovableStorageVMs.Remove(removedViewModel);
+                    GC.Collect();
                 }
             });
         }

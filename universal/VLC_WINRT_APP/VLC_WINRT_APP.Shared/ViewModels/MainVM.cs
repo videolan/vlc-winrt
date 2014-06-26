@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel.Resources;
 using Windows.Storage;
 using VLC_WINRT.Common;
+using VLC_WINRT_APP.Commands.MainPageCommands;
 using VLC_WINRT_APP.Common;
 using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.Commands;
@@ -33,10 +34,29 @@ namespace VLC_WINRT_APP.ViewModels
         #region private props
         private PickVideoCommand _pickVideoCommand;
         private PlayNetworkMRLCommand _playNetworkMRL;
+        private GoToPanelCommand _goToPanelCommand;
         #endregion
         #region public fields
         #endregion
         #region public props
+        public PickVideoCommand PickVideo
+        {
+            get { return _pickVideoCommand; }
+            set { SetProperty(ref _pickVideoCommand, value); }
+        }
+
+
+        public PlayNetworkMRLCommand PlayNetworkMRL
+        {
+            get { return _playNetworkMRL; }
+            set { SetProperty(ref _playNetworkMRL, value); }
+        }
+
+        public GoToPanelCommand GoToPanelCommand
+        {
+            get { return _goToPanelCommand; }
+            set { SetProperty(ref _goToPanelCommand, value); }
+        }
         #endregion
 
 
@@ -44,7 +64,7 @@ namespace VLC_WINRT_APP.ViewModels
         {
             PickVideo = new PickVideoCommand();
             PlayNetworkMRL = new PlayNetworkMRLCommand();
-
+            GoToPanelCommand = new GoToPanelCommand();
             // TODO: For Windows 8.1 build, use ResourceLoader.GetForCurrentView(); 
 
             var resourceLoader = new ResourceLoader();
@@ -52,9 +72,9 @@ namespace VLC_WINRT_APP.ViewModels
             Panels.Add(new Panel(resourceLoader.GetString("Videos"), 1, 0.4, App.Current.Resources["VideoPath"].ToString()));
             Panels.Add(new Panel(resourceLoader.GetString("Music"), 2, 0.4, App.Current.Resources["MusicPath"].ToString()));
 
-            Panels.Add(new Panel(resourceLoader.GetString("ExternalStorage"), 3, 0.4, App.Current.Resources["RemovablesPath"].ToString()));
+            Panels.Add(new Panel(resourceLoader.GetString("RemovableStorage"), 3, 0.4, App.Current.Resources["RemovablesPath"].ToString()));
             Panels.Add(new Panel(resourceLoader.GetString("MediaServers"), 4, 0.4, App.Current.Resources["ServerPath"].ToString()));
-            
+
             Initialize();
         }
 
@@ -97,17 +117,5 @@ namespace VLC_WINRT_APP.ViewModels
             set { SetProperty(ref _dlnaVMs, value); }
         }
 
-        public PickVideoCommand PickVideo
-        {
-            get { return _pickVideoCommand; }
-            set { SetProperty(ref _pickVideoCommand, value); }
-        }
-
-
-        public PlayNetworkMRLCommand PlayNetworkMRL
-        {
-            get { return _playNetworkMRL; }
-            set { SetProperty(ref _playNetworkMRL, value); }
-        }
     }
 }

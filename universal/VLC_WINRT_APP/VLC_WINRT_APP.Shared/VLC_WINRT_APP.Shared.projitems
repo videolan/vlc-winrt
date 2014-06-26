@@ -51,6 +51,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\NegatedCountToVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\NullToVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\SecondsStringConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\StorageTypeToIconConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\StringToUpperConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\TimeSpanSecondsDoubleConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\TimespanShortStringConverter.cs" />
@@ -170,5 +171,8 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Commands\Other\" />
   </ItemGroup>
 </Project>

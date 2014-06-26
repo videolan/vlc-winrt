@@ -10,7 +10,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="42" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <ComboBox Grid.Row="1"
                   ItemsSource="{Binding RemovableStorageVMs}"
@@ -22,10 +22,26 @@
             </ComboBox.ItemTemplate>
         </ComboBox>
         <Grid Grid.Row="2">
-            <ListView ItemsSource="{Binding CurrentStorageVM.StorageItems}"> 
+            <ListView ItemsSource="{Binding CurrentStorageVM.StorageItems}"
+                      ItemContainerStyle="{StaticResource ListViewItemContainerStyle}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding Path}"/>
+                        <Grid VerticalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="30" />
+                                <ColumnDefinition Width="220" />
+                            </Grid.ColumnDefinitions>
+                            <Path Data="{Binding Converter={StaticResource StorageTypeToIconConverter}}"
+                                  Height="26"
+                                  Width="26"
+                                  Stretch="Uniform"
+                                  Fill="WhiteSmoke"
+                                  HorizontalAlignment="Left"/>
+                            <TextBlock Grid.Column="1"
+                                       Text="{Binding Name}" 
+                                       TextWrapping="Wrap"
+                                       FontSize="14"/>
+                        </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

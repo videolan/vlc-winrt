@@ -12,13 +12,13 @@ using VLC_WINRT.Common;
 using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.Views.MainPages;
 
-namespace VLC_WINRT_APP.Commands.MainPage
+namespace VLC_WINRT_APP.Commands.MainPageCommands
 {
     public class GoToPanelCommand : AlwaysExecutableCommand
     {
         public override void Execute(object parameter)
         {
-            Model.Panel panel = e.ClickedItem as Model.Panel;
+            Model.Panel panel = (parameter as ItemClickEventArgs).ClickedItem as Model.Panel;
             foreach (Model.Panel panel1 in Locator.MainVM.Panels)
                 panel1.Opacity = 0.4;
             panel.Opacity = 1;

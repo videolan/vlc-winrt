@@ -18,4 +18,5 @@
     <converters:TimeSpanSecondsDoubleConverter x:Key="TimeSpanSecondsDoubleConverter"/>
     <converters:ElapsedTimeToPercentageConverter x:Key="ElapsedTimeToPercentageConverter"/>
     <converters:BackgroundVisibilityConverter x:Key="BackgroundVisibilityConverter" />
+    <converters:StorageTypeToIconConverter x:Key="StorageTypeToIconConverter"/>
 </ResourceDictionary>
