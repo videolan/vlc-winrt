@@ -10,14 +10,18 @@ using VLC_WINRT.Common;
 
 namespace VLC_WINRT_APP.ViewModels.Others.VlcExplorer
 {
+    public class Storage
+    {
+        public string Path { get; set; }
+    }
     public class FileExplorerViewModel : BindableBase
     {
         private StorageFolder _rootFolder;
-        private ObservableCollection<IStorageItem> _storageItems = new ObservableCollection<IStorageItem>();
+        private ObservableCollection<Storage> _storageItems = new ObservableCollection<Storage>();
         private string _name;
         public string Id;
 
-        public ObservableCollection<IStorageItem> StorageItems
+        public ObservableCollection<Storage> StorageItems
         {
             get { return _storageItems; }
             set { SetProperty(ref _storageItems, value); }
@@ -120,7 +124,7 @@ namespace VLC_WINRT_APP.ViewModels.Others.VlcExplorer
                 var items = await fileQuery.GetItemsAsync();
                 foreach (IStorageItem storageItem in items)
                 {
-                    StorageItems.Add(storageItem);
+                    StorageItems.Add(new Storage() { Path = storageItem.Path });
                     OnPropertyChanged("StorageItems");
                 }
             }

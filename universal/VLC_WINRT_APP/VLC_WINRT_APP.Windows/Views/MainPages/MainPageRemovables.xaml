@@ -22,8 +22,6 @@
             </ComboBox.ItemTemplate>
         </ComboBox>
         <Grid Grid.Row="2">
-            <ComboBox ItemsSource="{Binding CurrentStorageVM.StorageItems}"/>
-            <TextBlock Text="{Binding CurrentStorageVM.StorageItems.Count}"/>
             <ListView ItemsSource="{Binding CurrentStorageVM.StorageItems}"> 
                 <ListView.ItemTemplate>
                     <DataTemplate>

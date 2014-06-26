@@ -34,6 +34,7 @@ namespace VLC_WINRT_APP.ViewModels.RemovableDevicesVM
             _deviceService = App.Container.Resolve<ExternalDeviceService>();
             _deviceService.ExternalDeviceAdded += DeviceAdded;
             _deviceService.ExternalDeviceRemoved += DeviceRemoved;
+            Initialize();
         }
 
         public async Task Initialize()
@@ -44,8 +45,7 @@ namespace VLC_WINRT_APP.ViewModels.RemovableDevicesVM
                 await AddFolder(storageFolder.FolderRelativeId);
             }
             CurrentStorageVM = RemovableStorageVMs[0];
-            CurrentStorageVM.GetFiles();
-            OnPropertyChanged("CurrentStorageVM");
+            await CurrentStorageVM.GetFiles();
             //var devices1 = await _deviceService.GetExternalDeviceIds();
             //foreach (string id in devices1)
             //{

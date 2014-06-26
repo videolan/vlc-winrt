@@ -226,25 +226,34 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                 {
                     if (album.Favorite)
                     {
-                        RandomAlbums.Add(album);
-                        FavoriteAlbums.Add(album);
-                        OnPropertyChanged("FavoriteAlbums");
+                        App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+                        {
+                            RandomAlbums.Add(album);
+                            FavoriteAlbums.Add(album);
+                            OnPropertyChanged("FavoriteAlbums");
+                        });
                     }
 
                     if (RandomAlbums.Count < 12)
                     {
                         if (!album.Favorite)
-                            RandomAlbums.Add(album);
+
+                            App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+                            RandomAlbums.Add(album));
                     }
                     foreach (TrackItem trackItem in album.Tracks)
                     {
-                        Track.Add(trackItem);
+                        App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+                            Track.Add(trackItem));
                     }
                 }
 
-                OnPropertyChanged("Artist");
-                OnPropertyChanged("Albums");
-                OnPropertyChanged("Tracks");
+                App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+                {
+                    OnPropertyChanged("Artist");
+                    OnPropertyChanged("Albums");
+                    OnPropertyChanged("Tracks");
+                });
             }
             catch (Exception)
             {
@@ -434,27 +443,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 
         private async Task<bool> VerifyAllFilesAreHere()
         {
-            var artists = await _artistDataRepository.Load();
-            foreach (var artistItem in artists)
-            {
-                var albums = await _albumDataRepository.LoadAlbumsFromId(artistItem.Id);
-                foreach (var album in albums)
-                {
-                    var tracks = await _trackDataRepository.LoadTracksByAlbumId(album.Id);
-                    foreach (var trackItem in tracks)
-                    {
-                        try
-                        {
-                            StorageFile file = await StorageFile.GetFileFromPathAsync(trackItem.Path);
-                        }
-                        catch (FileNotFoundException exception)
-                        {
-                            Debug.WriteLine(trackItem.Path + "has been renamed, moved or deleted.");
-                            return false;
-                        }
-                    }
-                }
-            }
+            // TODO: Improve the algorithm
             return true;
         }
         #endregion

@@ -38,9 +38,6 @@ namespace VLC_WINRT_APP.ViewModels
         #region public props
         #endregion
 
-#if WINDOWS_APP
-        private ExternalStorageViewModel _externalStorageVM;
-#endif
 
         public MainVM()
         {
@@ -63,17 +60,6 @@ namespace VLC_WINRT_APP.ViewModels
         public async Task Initialize()
         {
             await Locator.SettingsVM.PopulateCustomFolders();
-        }
-
-        public async Task InitRemovableStorageVM()
-        {
-#if WINDOWS_APP
-            if (ExternalStorageVM != null) 
-                return;
-
-            ExternalStorageVM = new ExternalStorageViewModel();
-            await ExternalStorageVM.Initialize();
-#endif
         }
 
         public async Task InitDLNAVM()
@@ -103,14 +89,6 @@ namespace VLC_WINRT_APP.ViewModels
                 SetProperty(ref _panels, value);
             }
         }
-
-#if WINDOWS_APP
-        public ExternalStorageViewModel ExternalStorageVM
-        {
-            get { return _externalStorageVM; }
-            set { SetProperty(ref _externalStorageVM, value); }
-        }
-#endif
 
         public ObservableCollection<FileExplorerViewModel> DLNAVMs
         {
