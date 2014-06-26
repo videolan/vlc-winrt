@@ -84,11 +84,6 @@ namespace VLC_WINRT_APP
             }
 #endif
 
-            if (args.PreviousExecutionState == ApplicationExecutionState.Suspended ||
-                  args.PreviousExecutionState == ApplicationExecutionState.Terminated)
-            {
-                await SuspensionManager.RestoreAsync();
-            }
             await LaunchTheApp();
 
             var rootFrame = Window.Current.Content as Frame;
@@ -138,7 +133,6 @@ namespace VLC_WINRT_APP
         private async void OnSuspending(object sender, SuspendingEventArgs e)
         {
             SuspendingDeferral deferral = e.SuspendingOperation.GetDeferral();
-            await SuspensionManager.SaveAsync();
             deferral.Complete();
         }
 

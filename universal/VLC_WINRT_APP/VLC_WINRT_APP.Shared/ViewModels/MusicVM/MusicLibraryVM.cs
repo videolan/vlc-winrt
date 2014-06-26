@@ -308,19 +308,10 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 
         private async Task GetAllMusicFolders()
         {
-            foreach (CustomFolder folder in Locator.SettingsVM.MusicFolders)
+            StorageLibrary musicLibrary = await StorageLibrary.GetLibraryAsync(KnownLibraryId.Music);
+            foreach (StorageFolder storageFolder in musicLibrary.Folders)
             {
-                StorageFolder customMusicFolder;
-                if (folder.Mru == "Music Library")
-                {
-                    customMusicFolder = KnownVLCLocation.MusicLibrary;
-                }
-                else
-                {
-                    customMusicFolder = await StorageApplicationPermissions.FutureAccessList.GetFolderAsync(
-                        folder.Mru);
-                }
-                await CreateDatabaseFromMusicFolder(customMusicFolder);
+                await CreateDatabaseFromMusicFolder(storageFolder);
             }
         }
 

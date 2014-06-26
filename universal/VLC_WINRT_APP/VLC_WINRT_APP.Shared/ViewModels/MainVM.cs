@@ -67,7 +67,7 @@ namespace VLC_WINRT_APP.ViewModels
         {
             if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
             {
-                var dlnaFolder = await KnownVLCLocation.MediaServers.GetFoldersAsync();
+                var dlnaFolder = await KnownFolders.MediaServerDevices.GetFoldersAsync();
                 var tasks = new List<Task>();
                 DLNAVMs.Clear();
                 foreach (StorageFolder storageFolder in dlnaFolder)

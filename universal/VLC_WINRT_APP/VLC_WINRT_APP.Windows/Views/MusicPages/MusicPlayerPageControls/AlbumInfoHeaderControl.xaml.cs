@@ -1,4 +1,5 @@
-﻿using Windows.UI.Core;
+﻿using System.Diagnostics;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -11,8 +12,14 @@ namespace VLC_WINRT_APP.Views.MusicPages.MusicPlayerPageControls
             this.InitializeComponent();
             Window.Current.SizeChanged += CurrentOnSizeChanged;
             Loaded += OnLoaded;
+            Unloaded += OnUnloaded;
         }
 
+        private void OnUnloaded(object sender, RoutedEventArgs routedEventArgs)
+        {
+            Debug.WriteLine("Unloading panel AlbumInfoHeaderControl");
+            Window.Current.SizeChanged -= CurrentOnSizeChanged;
+        }
         private void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
         {
             Responsive();
