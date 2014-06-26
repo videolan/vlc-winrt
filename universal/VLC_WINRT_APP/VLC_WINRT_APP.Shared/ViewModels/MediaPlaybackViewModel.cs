@@ -8,11 +8,8 @@
  **********************************************************************/
 
 using System;
-using System.Globalization;
 using System.Threading.Tasks;
-using Windows.Devices.Scanners;
 using Windows.UI.Core;
-using VLC_WINRT.Common;
 using VLC_WINRT_APP.Commands;
 using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.Services.Interface;
@@ -252,7 +249,7 @@ namespace VLC_WINRT_APP.ViewModels
 
         #region Events
 
-        protected async void PlayerStateChanged(object sender, VlcService.MediaPlayerState e)
+        protected void PlayerStateChanged(object sender, VlcService.MediaPlayerState e)
         {
             App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
             {
@@ -261,7 +258,7 @@ namespace VLC_WINRT_APP.ViewModels
             });
         }
 
-        private async void FirePositionUpdate(object sender, object e)
+        private void FirePositionUpdate(object sender, object e)
         {
             UpdatePosition();
         }
