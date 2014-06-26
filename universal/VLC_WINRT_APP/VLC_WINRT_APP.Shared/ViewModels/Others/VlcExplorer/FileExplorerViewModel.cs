@@ -17,7 +17,6 @@ namespace VLC_WINRT_APP.ViewModels.Others.VlcExplorer
     public class FileExplorerViewModel : BindableBase
     {
         #region private props
-
         private IStorageItemClickedCommand _navigateToCommand;
         private GoUpperFolderCommand _goUpperFolderCommand;
         private bool _isFolderEmpty;

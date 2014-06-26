@@ -17,6 +17,7 @@ using Autofac;
 using VLC_WINPRT;
 #endif
 using VLC_WINRT_APP.Common;
+using VLC_WINRT_APP.ViewModels.NetworkVM;
 using VLC_WINRT_APP.ViewModels.RemovableDevicesVM;
 using VLC_WINRT_APP.ViewModels.RemovableDevicesVM;
 using VLC_WINRT_APP.ViewModels.Settings;
@@ -42,10 +43,17 @@ namespace VLC_WINRT_APP.ViewModels
         /// <summary>
         ///     Initializes a new instance of the Locator class.
         /// </summary>
+        
+        public static MainVM MainVM
+        {
+            get { return App.Container.Resolve<MainVM>(); }
+        }
+        
         public static MusicPlayerVM MusicPlayerVM
         {
             get { return App.Container.Resolve<MusicPlayerVM>(); }
         }
+
         public static MusicLibraryVM MusicLibraryVM
         {
             get { return App.Container.Resolve<MusicLibraryVM>(); }
@@ -61,11 +69,15 @@ namespace VLC_WINRT_APP.ViewModels
             get { return App.Container.Resolve<VideoPlayerVM>(); }
         }
 
-        public static MainVM MainVM
+        public static ExternalStorageViewModel ExternalStorageVM
         {
-            get { return App.Container.Resolve<MainVM>(); }
+            get { return App.Container.Resolve<ExternalStorageViewModel>(); }
         }
 
+        public static DLNAVM DlnaVM
+        {
+            get { return App.Container.Resolve<DLNAVM>(); }
+        }
         public static SettingsViewModel SettingsVM
         {
             get { return App.Container.Resolve<SettingsViewModel>(); }
@@ -74,11 +86,6 @@ namespace VLC_WINRT_APP.ViewModels
         public static SpecialThanksViewModel SpecialThanksVM
         {
             get { return App.Container.Resolve<SpecialThanksViewModel>(); }
-        }
-
-        public static ExternalStorageViewModel ExternalStorageVM
-        {
-            get { return App.Container.Resolve<ExternalStorageViewModel>(); }
         }
     }
 }
