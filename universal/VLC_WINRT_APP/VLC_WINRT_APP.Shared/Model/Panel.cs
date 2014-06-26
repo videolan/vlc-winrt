@@ -8,6 +8,7 @@
  **********************************************************************/
 
 using VLC_WINRT.Common;
+using VLC_WINRT_APP.Common;
 
 namespace VLC_WINRT_APP.Model
 {

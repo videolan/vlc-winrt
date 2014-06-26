@@ -10,6 +10,7 @@
 using System.Threading.Tasks;
 using VLC_WINRT.Common;
 using Windows.UI.Xaml.Navigation;
+using VLC_WINRT_APP.Common;
 
 namespace VLC_WINRT_APP.ViewModels
 {

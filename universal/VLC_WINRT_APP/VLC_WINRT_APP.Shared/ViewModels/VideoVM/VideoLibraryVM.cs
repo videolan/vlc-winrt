@@ -28,6 +28,7 @@ using SQLite;
 using VLC_WINRT.Common;
 using VLC_WINRT_APP.Commands;
 using VLC_WINRT_APP.Commands.Video;
+using VLC_WINRT_APP.Common;
 using VLC_WINRT_APP.DataRepository;
 using VLC_WINRT_APP.ViewModels.Settings;
 using Panel = VLC_WINRT_APP.Model.Panel;

@@ -7,6 +7,7 @@ using Windows.Storage;
 using Windows.Storage.Search;
 using Windows.UI.Popups;
 using VLC_WINRT.Common;
+using VLC_WINRT_APP.Common;
 
 namespace VLC_WINRT_APP.ViewModels.Others.VlcExplorer
 {
