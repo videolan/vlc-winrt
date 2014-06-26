@@ -164,8 +164,8 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             {
                 if (File.FileType == ".mkv")
                 {
-                    WriteableBitmap thumb = await _thumbsService.GetScreenshot(File);
-                    App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => Image = thumb);
+                    //WriteableBitmap thumb = await _thumbsService.GetScreenshot(File);
+                    //App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => Image = thumb);
                 }
                 else
                 {

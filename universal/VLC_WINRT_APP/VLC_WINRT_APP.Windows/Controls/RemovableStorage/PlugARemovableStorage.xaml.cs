@@ -7,11 +7,11 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
+using System;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-// Pour en savoir plus sur le modèle d'élément Contrôle utilisateur, consultez la page http://go.microsoft.com/fwlink/?LinkId=234236
-
-namespace VLC_WINRT.Views.Controls.RemovableStorage
+namespace VLC_WINRT_APP.Controls.RemovableStorage
 {
     public sealed partial class PlugARemovableStorage : UserControl
     {
