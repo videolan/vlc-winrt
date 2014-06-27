@@ -8,10 +8,7 @@
  **********************************************************************/
 
 using System;
-using System.Threading.Tasks;
 using VLC_WINRT_APP.Services.RunTime;
-using Windows.Storage;
-
 
 namespace VLC_WINRT_APP.Services.Interface
 {
@@ -19,17 +16,6 @@ namespace VLC_WINRT_APP.Services.Interface
     {
         bool IsPlaying { get; }
         bool IsBackground { get; }
-
-        /// <summary>
-        /// Navigates to the Audio Player screen with the requested file a parameter.
-        /// </summary>
-        /// <param name="file">The file to be played.</param>
-        Task PlayAudioFile(StorageFile file);
-        /// <summary>
-        /// Navigates to the Video Player screen with the requested file a parameter.
-        /// </summary>
-        /// <param name="file">The file to be played.</param>
-        Task PlayVideoFile(StorageFile file);
 
         /// <summary>
         /// Sets the path of the file to played.

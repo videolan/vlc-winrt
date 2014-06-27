@@ -13,12 +13,8 @@
 */
 
 using Autofac;
-#if WINDOWS_PHONE_APP
-using VLC_WINPRT;
-#endif
 using VLC_WINRT_APP.Common;
 using VLC_WINRT_APP.ViewModels.NetworkVM;
-using VLC_WINRT_APP.ViewModels.RemovableDevicesVM;
 using VLC_WINRT_APP.ViewModels.RemovableDevicesVM;
 using VLC_WINRT_APP.ViewModels.Settings;
 using VLC_WINRT_APP.ViewModels.MusicVM;

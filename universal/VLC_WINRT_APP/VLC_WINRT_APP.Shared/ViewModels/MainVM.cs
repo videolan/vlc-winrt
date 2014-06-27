@@ -70,7 +70,7 @@ namespace VLC_WINRT_APP.ViewModels
 
         public async Task Initialize()
         {
-            await Locator.SettingsVM.PopulateCustomFolders();
+            //await Locator.SettingsVM.PopulateCustomFolders();
         }
 
         public ObservableCollection<Panel> Panels

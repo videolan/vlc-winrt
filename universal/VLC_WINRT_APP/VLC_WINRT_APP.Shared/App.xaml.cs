@@ -8,12 +8,14 @@ using Windows.Foundation.Collections;
 using Windows.Storage;
 using Windows.Storage.AccessCache;
 using Windows.UI.Core;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Autofac;
 using Autofac.Core;
 using VLC_WINRT.Common;
 using VLC_WINRT_APP.Helpers.MusicLibrary;
+using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.Services.RunTime;
 using VLC_WINRT.Views;
 using VLC_WINRT_APP.ViewModels;
@@ -21,6 +23,8 @@ using VLC_WINRT_APP.Views;
 using VLC_WINRT_APP.Views.MainPages;
 using VLC_WINRT_APP.Common;
 using VLC_WINRT_APP.ViewModels.MusicVM;
+using VLC_WINRT_APP.Views.VideoPages;
+using WinRTXamlToolkit.Controls.Extensions;
 
 namespace VLC_WINRT_APP
 {
@@ -37,10 +41,6 @@ namespace VLC_WINRT_APP
         public static IPropertySet LocalSettings = ApplicationData.Current.LocalSettings.Values;
         public static string ApiKeyLastFm = "a8eba7d40559e6f3d15e7cca1bfeaa1c";
         public static string DeezerAppID = "135671";
-        // If != null; open the corresponding file
-        public static string TemporaryMRL;
-        public static string TemporaryFileName;
-
         public static IContainer Container;
 
         /// <summary>
@@ -51,7 +51,6 @@ namespace VLC_WINRT_APP
         {
             InitializeComponent();
             Suspending += OnSuspending;
-
             Container = AutoFacConfiguration.Configure();
         }
 
@@ -85,7 +84,7 @@ namespace VLC_WINRT_APP
 #endif
 
             await LaunchTheApp();
-
+            ApplicationFrame.Navigate(typeof(MainPageHome));
             var rootFrame = Window.Current.Content as Frame;
             if (rootFrame != null && rootFrame.Content == null)
             {
@@ -139,51 +138,56 @@ namespace VLC_WINRT_APP
         protected override async void OnFileActivated(FileActivatedEventArgs args)
         {
             base.OnFileActivated(args);
-
             await ManageOpeningFiles(args);
         }
 
         private async Task ManageOpeningFiles(FileActivatedEventArgs args)
         {
-            var file = (StorageFile)args.Files[0];
-            if (file.FileType == ".mp3" || file.FileType == ".wma")
+            if (Window.Current.Content == null)
             {
-                if (Window.Current.Content == null)
-                {
-                    await LaunchTheApp();
-                }
-
-                Locator.MusicPlayerVM.TrackCollection.Clear();
-                MusicLibraryVM.TrackItem trackItem =
-                    await GetInformationsFromMusicFile.GetTrackItemFromFile(file);
-                Locator.MusicPlayerVM.TrackCollection.Add(trackItem);
-                await Locator.MusicPlayerVM.PlayFromExplorer(file);
+                await LaunchTheApp();
             }
-            else if (file.FileType == ".mkv"
-                     || file.FileType == ".avi"
-                     || file.FileType == ".mp4"
-                     || file.FileType == ".wmv"
-                     || file.FileType == ".mov")
+            if (VLCFileExtensions.FileTypeHelper((args.Files[0] as StorageFile).FileType) ==
+                VLCFileExtensions.VLCFileType.Video)
             {
-                TemporaryFileName = file.Name;
-                TemporaryMRL = StorageApplicationPermissions.FutureAccessList.Add(file);
-                if (Window.Current.Content == null)
-                {
-                    await LaunchTheApp();
-                }
-                else
-                {
-                    RootPage.MainFrame.Navigate(typeof(MainPage));
-                    (ApplicationFrame.Content as MainPage).OpenVideoFromFileExplorer();
-                }
+                MediaService.PlayVideoFile(args.Files[0] as StorageFile);
             }
+            else
+            {
+                MediaService.PlayAudioFile(args.Files[0] as StorageFile);
+            }
+            //if (file.FileType == ".mp3" || file.FileType == ".wma")
+            //{
+            //    Locator.MusicPlayerVM.TrackCollection.Clear();
+            //    MusicLibraryVM.TrackItem trackItem =
+            //        await GetInformationsFromMusicFile.GetTrackItemFromFile(file);
+            //    Locator.MusicPlayerVM.TrackCollection.Add(trackItem);
+            //    await Locator.MusicPlayerVM.PlayFromExplorer(file);
+            //}
+            //else if (file.FileType == ".mkv"
+            //         || file.FileType == ".avi"
+            //         || file.FileType == ".mp4"
+            //         || file.FileType == ".wmv"
+            //         || file.FileType == ".mov")
+            //{
+            //    TemporaryFileName = file.Name;
+            //    TemporaryMRL = StorageApplicationPermissions.FutureAccessList.Add(file);
+            //    if (Window.Current.Content == null)
+            //    {
+            //        await LaunchTheApp();
+            //    }
+            //    else
+            //    {
+            //        RootPage.MainFrame.Navigate(typeof(MainPage));
+            //        (ApplicationFrame.Content as MainPage).OpenVideoFromFileExplorer();
+            //    }
+            //}
         }
 
         private async Task LaunchTheApp()
         {
             Window.Current.Content = Container.Resolve<MainPage>();
             Dispatcher = Window.Current.Content.Dispatcher;
-            ApplicationFrame.Navigate(typeof(MainPageHome));
             Window.Current.Activate();
         }
     }

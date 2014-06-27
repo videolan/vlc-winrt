@@ -8,13 +8,21 @@
  **********************************************************************/
 
 using System;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using Windows.Storage.AccessCache;
+using Windows.UI.Popups;
 using VLC_WINRT.Common;
+using VLC_WINRT_APP.Helpers.MusicLibrary.Deezer;
 using VLC_WINRT_APP.Services.Interface;
 using Windows.Storage;
 using Windows.UI.Core;
 using Windows.UI.Xaml.Controls;
 using VLC_WINRT_APP.ViewModels;
+using VLC_WINRT_APP.ViewModels.MusicVM;
+using VLC_WINRT_APP.Views.MusicPages;
+using VLC_WINRT_APP.Views.VideoPages;
+using WinRTXamlToolkit.Controls.Extensions;
 #if WINDOWS_APP
 using libVLCX;
 using Windows.Media;
@@ -158,14 +166,53 @@ namespace VLC_WINRT_APP.Services.RunTime
             _mediaElement = mediaElement;
         }
 
-        public Task PlayAudioFile(StorageFile file)
+        /// <summary>
+        /// Navigates to the Audio Player screen with the requested file a parameter.
+        /// </summary>
+        /// <param name="file">The file to be played.</param>
+        public static async Task PlayAudioFile(StorageFile file)
         {
-            throw new NotImplementedException();
+            await Task.Delay(1000);
+            if (App.ApplicationFrame.CurrentSourcePageType != typeof(MusicPlayerPage))
+                App.ApplicationFrame.Navigate(typeof(MusicPlayerPage));
+
+            MusicLibraryVM.TrackItem trackItem = new MusicLibraryVM.TrackItem();
+            trackItem.Path = file.Path;
+            trackItem.AlbumName = "TestAlbum";
+            trackItem.ArtistName = "TestArtist";
+            if (Locator.MusicPlayerVM.TrackCollection == null)
+                Locator.MusicPlayerVM.TrackCollection = new ObservableCollection<MusicLibraryVM.TrackItem>();
+            
+            if (trackItem != null && !Locator.MusicPlayerVM.TrackCollection.Contains(trackItem))
+            {
+                Locator.MusicPlayerVM.ResetCollection();
+                Locator.MusicPlayerVM.AddTrack(trackItem);
+            }
+            else
+            {
+                Locator.MusicPlayerVM.CurrentTrack =
+                    Locator.MusicPlayerVM.TrackCollection.IndexOf(trackItem);
+            }
+            await Locator.MusicPlayerVM.Play(file);
         }
 
-        public Task PlayVideoFile(StorageFile file)
+        /// <summary>
+        /// Navigates to the Video Player screen with the requested file a parameter.
+        /// </summary>
+        /// <param name="file">The file to be played.</param>
+        public static async Task PlayVideoFile(StorageFile file)
         {
-            throw new NotImplementedException();
+            await Task.Delay(1000);
+            ViewModels.VideoVM.VideoVM videoVm = new ViewModels.VideoVM.VideoVM();
+            videoVm.Initialize(file);
+            if (string.IsNullOrEmpty(videoVm.Token))
+            {
+                string token = StorageApplicationPermissions.FutureAccessList.Add(videoVm.File);
+                videoVm.Token = token;
+            }
+            Locator.VideoVm.CurrentVideo = videoVm;
+            Locator.VideoVm.SetActiveVideoInfo(videoVm.Token);
+            App.ApplicationFrame.Navigate(typeof(VideoPlayerPage));
         }
 
         private string _lastMrl;

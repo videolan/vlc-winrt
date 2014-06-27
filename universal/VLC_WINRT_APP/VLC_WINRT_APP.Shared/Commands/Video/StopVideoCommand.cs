@@ -9,6 +9,7 @@
 
 using VLC_WINRT.Common;
 using VLC_WINRT_APP.ViewModels;
+using VLC_WINRT_APP.Views.MainPages;
 
 namespace VLC_WINRT_APP.Commands.Video
 {
@@ -17,7 +18,10 @@ namespace VLC_WINRT_APP.Commands.Video
         public override void Execute(object parameter)
         {
             Locator.VideoVm.UpdatePosition();
-            App.ApplicationFrame.GoBack();
+            if(App.ApplicationFrame.CanGoBack)
+                App.ApplicationFrame.GoBack();
+            else
+                App.ApplicationFrame.Navigate(typeof (MainPageHome));
             Locator.VideoVm.CleanViewModel();
             Locator.VideoVm.IsRunning = false;
         }

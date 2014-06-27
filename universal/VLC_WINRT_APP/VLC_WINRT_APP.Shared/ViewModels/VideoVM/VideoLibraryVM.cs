@@ -30,6 +30,7 @@ using VLC_WINRT_APP.Commands;
 using VLC_WINRT_APP.Commands.Video;
 using VLC_WINRT_APP.Common;
 using VLC_WINRT_APP.DataRepository;
+using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.ViewModels.Settings;
 using Panel = VLC_WINRT_APP.Model.Panel;
 
@@ -48,6 +49,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
         #endregion
 
         #region private props
+        private LoadingState _loadingState;
         private PlayVideoCommand _openVideo;
         private PickVideoCommand _pickCommand = new PickVideoCommand();
         private bool _hasNoMedia = true;
@@ -95,6 +97,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
         #endregion
 
         #region public props
+        public LoadingState LoadingState { get { return _loadingState; } set { SetProperty(ref _loadingState, value); } }
         public bool HasNoMedia
         {
             get { return _hasNoMedia; }
@@ -113,16 +116,20 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
 
         public VideoLibraryVM()
         {
+            LoadingState = LoadingState.NotLoaded;
             OpenVideo = new PlayVideoCommand();
             Videos = new ObservableCollection<VideoVM>();
             ViewedVideos = new ObservableCollection<VideoVM>();
-            ThreadPool.RunAsync(operation => GetViewedVideos());
 #if WINDOWS_APP
             Panels.Add(new Panel("all", 0, 1, App.Current.Resources["HomePath"].ToString()));
             //Panels.Add(new Panel("favorite", 2, 0.4));
 #endif
         }
-
+        public void Initialize()
+        {
+            LoadingState = LoadingState.Loading;
+            Task.Run(() => ThreadPool.RunAsync(operation => GetViewedVideos()));
+        }
         #endregion
 
         #region methods
@@ -139,30 +146,13 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
 
         public async Task GetVideos()
         {
-#if WINDOWS_APP
-            foreach (CustomFolder folder in Locator.SettingsVM.VideoFolders)
+            StorageLibrary videoLibrary = await StorageLibrary.GetLibraryAsync(KnownLibraryId.Videos);
+            foreach (StorageFolder storageFolder in videoLibrary.Folders)
             {
-#endif
                 try
                 {
-                    StorageFolder customVideoFolder;
-#if WINDOWS_APP
-                    if (folder.Mru == "Video Library")
-                    {
-                        customVideoFolder = KnownFolders.VideosLibrary;
-                    }
-                    else
-                    {
-                        customVideoFolder = await StorageApplicationPermissions.FutureAccessList.GetFolderAsync(
-                            folder.Mru);
-                    }
-#endif
-#if WINDOWS_PHONE_APP                    
-                customVideoFolder = KnownFolders.VideosLibrary;
-#endif
-
                     IReadOnlyList<StorageFile> files =
-                        await GetMediaFromFolder(customVideoFolder, CommonFileQuery.OrderByName);
+                        await GetMediaFromFolder(storageFolder, CommonFileQuery.OrderByName);
 
                     //int j = 0;
                     foreach (StorageFile storageFile in files)
@@ -201,10 +191,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
                 {
                     Debug.WriteLine("An error occured while indexing a video folder");
                 }
-#if WINDOWS_APP
             }
-#endif
-
             if (Videos.Count > 0)
             {
                 DispatchHelper.InvokeAsync(() => HasNoMedia = false);
@@ -220,6 +207,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
                 {
                     Panels.Add(new Panel("new", 1, 0.4, App.Current.Resources["HomePath"].ToString()));
                 }
+                LoadingState = LoadingState.Loaded;
             });
         }
 

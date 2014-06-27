@@ -11,14 +11,13 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Resources;
 using Windows.Storage;
-using Windows.Storage.AccessCache;
 using Windows.Storage.FileProperties;
 using Windows.UI.Core;
+using Windows.UI.Popups;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 using SQLite;
@@ -31,10 +30,10 @@ using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.Helpers.MusicLibrary;
 using VLC_WINRT_APP.Helpers.MusicLibrary.MusicEntities;
 using VLC_WINRT_APP.Helpers.MusicLibrary.xboxmusic.Models;
+using VLC_WINRT_APP.Model;
 using XboxMusicLibrary;
-using Panel = VLC_WINRT_APP.Model.Panel;
-using VLC_WINRT_APP.ViewModels.Settings;
 using VLC_WINRT_APP.Commands.Music;
+using Panel = VLC_WINRT_APP.Model.Panel;
 
 namespace VLC_WINRT_APP.ViewModels.MusicVM
 {
@@ -53,6 +52,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         #endregion
 
         #region private props
+        private LoadingState _loadingState;
         private AlbumClickedCommand _albumClickedCommand;
         private ArtistClickedCommand _artistClickedCommand;
         private static ArtistDataRepository _artistDataRepository = new ArtistDataRepository();
@@ -115,11 +115,18 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 
         #endregion
         #region public props
+        public LoadingState LoadingState
+        {
+            get { return _loadingState; }
+            set { SetProperty(ref _loadingState, value); }
+        }
+
         public string CurrentIndexingStatus
         {
             get { return _currentIndexingStatus; }
             set { SetProperty(ref _currentIndexingStatus, value); }
         }
+
         public bool IsAlbumPageShown
         {
             get { return _isAlbumPageShown; }
@@ -173,17 +180,18 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         #endregion
         public MusicLibraryVM()
         {
+            LoadingState = LoadingState.NotLoaded;
             var resourceLoader = new ResourceLoader();
             Panels.Add(new Panel(resourceLoader.GetString("Albums").ToLower(), 0, 1, App.Current.Resources["HomePath"].ToString()));
             Panels.Add(new Panel(resourceLoader.GetString("Artists").ToLower(), 1, 0.4, App.Current.Resources["HomePath"].ToString()));
             Panels.Add(new Panel(resourceLoader.GetString("Songs").ToLower(), 2, 0.4, App.Current.Resources["HomePath"].ToString()));
             Panels.Add(new Panel(resourceLoader.GetString("Pinned").ToLower(), 2, 0.4, App.Current.Resources["HomePath"].ToString()));
             Panels.Add(new Panel(resourceLoader.GetString("Playlists").ToLower(), 2, 0.4, App.Current.Resources["HomePath"].ToString()));
-            Initialize();
         }
 
-        public async Task Initialize()
+        public void Initialize()
         {
+            LoadingState = LoadingState.Loading;
             _albumClickedCommand = new AlbumClickedCommand();
             _artistClickedCommand = new ArtistClickedCommand();
             Task.Run(() => GetMusicFromLibrary());
@@ -213,7 +221,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 
             App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
             {
-
+                LoadingState = LoadingState.Loaded;
                 IsLoaded = true;
                 IsBusy = false;
             });
@@ -302,6 +310,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                 OnPropertyChanged("IsBusy");
                 OnPropertyChanged("IsMusicLibraryEmpty");
                 OnPropertyChanged("IsLoaded");
+                LoadingState = LoadingState.Loaded;
             });
             LoadFavoritesRandomAlbums();
         }

@@ -17,19 +17,20 @@ using Windows.Storage;
 using Windows.Storage.AccessCache;
 using Windows.UI.Core;
 using Windows.UI.Notifications;
+using Windows.UI.Popups;
 using VLC_WINRT.Common;
 using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.Services.Interface;
 using VLC_WINRT_APP.Services.RunTime;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
+using WinRTXamlToolkit.Controls.Extensions;
 
 namespace VLC_WINRT_APP.ViewModels.MusicVM
 {
     public class MusicPlayerVM : MediaPlaybackViewModel
     {
         #region private props
-        private ObservableCollection<MusicLibraryVM.TrackItem> _tracksCollection;
         private int _currentTrack = 0;
         private bool _canGoPrevious;
         private bool _canGoNext;
@@ -38,6 +39,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         #endregion
 
         #region private fields
+        private ObservableCollection<MusicLibraryVM.TrackItem> _tracksCollection;
 
         #endregion
 
@@ -103,7 +105,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         protected async void MediaService_MediaEnded(object sender, EventArgs e)
         {
             if (TrackCollection.Count == 0 ||
-                TrackCollection[CurrentTrack] == TrackCollection.Last() || 
+                TrackCollection[CurrentTrack] == TrackCollection.Last() ||
                 _mediaService.IsBackground)
             {
                 // Playlist is finished
@@ -196,15 +198,22 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             await PlayNext();
         }
 
-        public async Task Play()
+        public async Task Play(StorageFile fileFromExplorer = null)
         {
             IsRunning = true;
             Stop();
             var trackItem = TrackCollection[CurrentTrack];
-
-            var file = await StorageFile.GetFileFromPathAsync(trackItem.Path);
+            new MessageDialog("test").ShowAsync();
+            StorageFile file;
+            if (fileFromExplorer == null)
+            {
+                file = await StorageFile.GetFileFromPathAsync(trackItem.Path);
+            }
+            else
+            {
+                file = fileFromExplorer;
+            }
             string token = StorageApplicationPermissions.FutureAccessList.Add(file);
-
             Debug.WriteLine("Opening file: " + file.Path);
 
             SetActiveMusicInfo(token, trackItem);
@@ -231,9 +240,9 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             //    MediaControl.NextTrackPressed -= MediaControl_NextTrackPressed;
 
             //if (CanGoPrevious)
-                //MediaControl.PreviousTrackPressed += MediaControl_PreviousTrackPressed;
+            //MediaControl.PreviousTrackPressed += MediaControl_PreviousTrackPressed;
             //else
-                //MediaControl.PreviousTrackPressed -= MediaControl_PreviousTrackPressed;
+            //MediaControl.PreviousTrackPressed -= MediaControl_PreviousTrackPressed;
         }
 
         public async Task PlayFromExplorer(StorageFile file)
@@ -283,7 +292,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                 CurrentPlayingArtist.CurrentAlbumIndex = CurrentPlayingArtist.Albums.IndexOf(CurrentPlayingArtist.Albums.FirstOrDefault(x => x.Name == track.AlbumName));
             _mediaService.SetMediaFile(_mrl, isAudioMedia: true);
             OnPropertyChanged("TimeTotal");
-#if NETFX_CORE
+#if WINDOWS_APP
             UpdateTileHelper.UpdateMediumTileWithMusicInfo();
 #endif
             _mediaService.Play();

@@ -81,13 +81,5 @@ namespace VLC_WINRT_APP.Views.MainPages
         //    var point = transform.TransformPoint(new Point(Window.Current.Bounds.Width - 110, 200));
         //    await popupMenu.ShowAsync(point);
         //}
-        public void OpenVideoFromFileExplorer()
-        {
-            Debug.WriteLine("Opening file: " + App.TemporaryFileName);
-            Locator.VideoVm.SetActiveVideoInfo(App.TemporaryMRL);
-            App.ApplicationFrame.Navigate(typeof(VideoPlayerPage));
-            App.TemporaryFileName = null;
-            App.TemporaryMRL = null;
-        }
     }
 }
