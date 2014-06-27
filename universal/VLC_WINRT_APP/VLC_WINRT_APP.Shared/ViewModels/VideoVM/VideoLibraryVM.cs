@@ -117,7 +117,6 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             Videos = new ObservableCollection<VideoVM>();
             ViewedVideos = new ObservableCollection<VideoVM>();
             ThreadPool.RunAsync(operation => GetViewedVideos());
-            //Task.Run(() => GetViewedVideos());
 #if WINDOWS_APP
             Panels.Add(new Panel("all", 0, 1, App.Current.Resources["HomePath"].ToString()));
             //Panels.Add(new Panel("favorite", 2, 0.4));
@@ -127,10 +126,14 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
         #endregion
 
         #region methods
-        public async Task GetViewedVideos()
+        public void GetViewedVideos()
         {
             App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => NewVideos = new ObservableCollection<VideoVM>());
-            DispatchHelper.Invoke(async () => ViewedVideos = await _lastVideosRepository.Load());
+
+            _lastVideosRepository.Load().ContinueWith((result) =>
+            {
+                App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => ViewedVideos = result.Result);
+            });
             GetVideos();
         }
 
@@ -166,7 +169,6 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
                     {
                         var mediaVM = new VideoVM();
                         mediaVM.Initialize(storageFile);
-                        await mediaVM.Initialize();
 
                         if (string.IsNullOrEmpty(mediaVM.Title))
                             continue;

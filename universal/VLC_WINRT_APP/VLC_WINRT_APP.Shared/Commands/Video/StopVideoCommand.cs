@@ -8,22 +8,18 @@
  **********************************************************************/
 
 using VLC_WINRT.Common;
-#if WINDOWS_PHONE_APP
-
-#endif
-using VLC_WINRT_APP;
 using VLC_WINRT_APP.ViewModels;
 
-namespace VLC_WINRT_APP.Commands.MediaPlayback
+namespace VLC_WINRT_APP.Commands.Video
 {
-    public class StopCommand : AlwaysExecutableCommand
+    public class StopVideoCommand : AlwaysExecutableCommand
     {
         public override void Execute(object parameter)
         {
-            Locator.VideoVm.UnRegisterMediaControlEvents();
-#if NETFX_CORE
-            App.RootPage.MainFrame.GoBack();
-#endif
+            Locator.VideoVm.UpdatePosition();
+            App.ApplicationFrame.GoBack();
+            Locator.VideoVm.CleanViewModel();
+            Locator.VideoVm.IsRunning = false;
         }
     }
 }

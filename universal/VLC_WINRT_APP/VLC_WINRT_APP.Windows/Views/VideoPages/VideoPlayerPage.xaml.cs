@@ -29,12 +29,6 @@ namespace VLC_WINRT_APP.Views.VideoPages
             InitializeComponent();
         }
 
-        private void GoBack(object sender, RoutedEventArgs e)
-        {
-            Frame.GoBack();
-            Locator.VideoVm.CleanViewModel();
-            Locator.VideoVm.IsRunning = false;
-        }
         private async void Subtitles_Click(object sender, RoutedEventArgs e)
         {
             PopupMenu popup = new PopupMenu();

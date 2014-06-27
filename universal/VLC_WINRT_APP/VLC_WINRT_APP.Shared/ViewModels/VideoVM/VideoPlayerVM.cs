@@ -11,18 +11,20 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
-using Windows.Devices.Scanners;
 using Windows.Media;
+using Windows.UI.Core;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Autofac;
 using libVLCX;
 using VLC_WINRT.Common;
 using VLC_WINRT.Model;
+using VLC_WINRT_APP.Commands.MediaPlayback;
 using VLC_WINRT_APP.Commands.Video;
 using VLC_WINRT_APP.DataRepository;
-using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.Services.Interface;
 using VLC_WINRT_APP.Services.RunTime;
+using VLC_WINRT_APP.Views.MainPages;
 
 namespace VLC_WINRT_APP.ViewModels.VideoVM
 {
@@ -40,8 +42,8 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
         private SetSubtitleTrackCommand _setSubTitlesCommand;
         private OpenSubtitleCommand _openSubtitleCommand;
         private SetAudioTrackCommand _setAudioTrackCommand;
+        protected StopVideoCommand _goBackCommand;
 
-        private DispatcherTimer _positionTimer = new DispatcherTimer();
         private bool _isRunning;
         #endregion
 
@@ -93,6 +95,11 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             get { return _setAudioTrackCommand; }
             set { SetProperty(ref _setAudioTrackCommand, value); }
         }
+        public StopVideoCommand GoBack
+        {
+            get { return _goBackCommand; }
+            set { SetProperty(ref _goBackCommand, value); }
+        }
         public bool IsRunning
         {
             get
@@ -142,6 +149,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             _setSubTitlesCommand = new SetSubtitleTrackCommand();
             _setAudioTrackCommand = new SetAudioTrackCommand();
             _openSubtitleCommand = new OpenSubtitleCommand();
+            _goBackCommand = new StopVideoCommand();
             _lastVideosRepository.Load();
         }
         #endregion
@@ -157,17 +165,10 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
 
         protected override void OnPlaybackStopped()
         {
-            _positionTimer.Stop();
 #if WINDOWS_APP
             _mouseService.RestoreMouse();
 #endif
             base.OnPlaybackStopped();
-        }
-
-
-        private void FirePositionUpdate(object sender, object e)
-        {
-            UpdatePosition();
         }
 
         public async void SetActiveVideoInfo(string mrl)
@@ -209,75 +210,19 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             await _vlcPlayerService.GetAudioTrackDescription(AudioTracks);
             _vlcPlayerService.MediaEnded += VlcPlayerServiceOnMediaEnded;
         }
-
-        void RegisterMediaControlEvents()
-        {
-            MediaControl.IsPlaying = true;
-            MediaControl.ArtistName = "";
-            MediaControl.NextTrackPressed += async (sender, o) => await DispatchHelper.InvokeAsync(()=> SkipAhead.Execute(""));
-            MediaControl.PreviousTrackPressed += async (sender, o) => await DispatchHelper.InvokeAsync(()=> SkipBack.Execute(""));
-            MediaControl.PlayPauseTogglePressed += async (sender, o) => await DispatchHelper.InvokeAsync(() =>
-            {
-                if (IsPlaying)
-                {
-                    IsPlaying = false;
-                    _vlcPlayerService.Pause();
-                    MediaControl.IsPlaying = false;
-                }
-                else
-                {
-                    IsPlaying = true;
-                    _vlcPlayerService.Play();
-                    MediaControl.IsPlaying = true;
-                }
-            });
-
-            MediaControl.PlayPressed += async (sender, o) => await DispatchHelper.InvokeAsync(() =>
-            {
-                if (IsPlaying)
-                {
-                    IsPlaying = false;
-                    _vlcPlayerService.Play();
-                    MediaControl.IsPlaying = false;
-                }
-            });
-            MediaControl.PausePressed += async (sender, o) => await DispatchHelper.InvokeAsync(() =>
-            {
-                if (!IsPlaying)
-                {
-                    IsPlaying = true;
-                    _vlcPlayerService.Pause();
-                    MediaControl.IsPlaying = true;
-                }
-            });
-        }
-
-        public void UnRegisterMediaControlEvents()
-        {
-            MediaControl.IsPlaying = false;
-            MediaControl.ArtistName = "";
-            MediaControl.TrackName = "";
-            MediaControl.NextTrackPressed += null;
-            MediaControl.PreviousTrackPressed += null;
-            MediaControl.PlayPressed += null;
-            MediaControl.PausePressed += null;
-        }
         
         private async void VlcPlayerServiceOnMediaEnded(object sender, Player player)
         {
-            UnRegisterMediaControlEvents();
             _vlcPlayerService.MediaEnded -= VlcPlayerServiceOnMediaEnded;
-#if WINDOWS_PHONE_APP
-            await DispatchHelper.InvokeAsync(() => App.ApplicationFrame.GoBack());
-#endif
-#if NETFX_CORE
-            await DispatchHelper.InvokeAsync(() => App.RootPage.MainFrame.GoBack());
-#endif
+            App.Dispatcher.RunAsync(CoreDispatcherPriority.Low,
+                () => App.ApplicationFrame.Navigate(typeof (MainPageVideos)));
         }
         
-        private async Task UpdatePosition()
+        public void UpdatePosition()
         {
             CurrentVideo.TimeWatched = TimeSpan.FromSeconds(PositionInSeconds);
+            CurrentVideo.Duration = TimeTotal;
+            _lastVideosRepository.Update(CurrentVideo);
         }
 
         public Task SetSizeVideoPlayer(uint x, uint y)

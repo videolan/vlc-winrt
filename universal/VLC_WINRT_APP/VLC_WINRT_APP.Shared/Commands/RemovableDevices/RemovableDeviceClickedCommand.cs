@@ -10,9 +10,13 @@ namespace VLC_WINRT_APP.Commands.RemovableDevices
     {
         public override void Execute(object parameter)
         {
-            FileExplorerViewModel fileExplorer = (parameter as SelectionChangedEventArgs).AddedItems[0] as FileExplorerViewModel;
-            Locator.ExternalStorageVM.CurrentStorageVM = fileExplorer;
-            Task.Run(()=>Locator.ExternalStorageVM.CurrentStorageVM.GetFiles());
+            if ((parameter as SelectionChangedEventArgs).AddedItems.Count != 0)
+            {
+                FileExplorerViewModel fileExplorer =
+                    (parameter as SelectionChangedEventArgs).AddedItems[0] as FileExplorerViewModel;
+                Locator.ExternalStorageVM.CurrentStorageVM = fileExplorer;
+                Task.Run(() => Locator.ExternalStorageVM.CurrentStorageVM.GetFiles());
+            }
         }
     }
 }

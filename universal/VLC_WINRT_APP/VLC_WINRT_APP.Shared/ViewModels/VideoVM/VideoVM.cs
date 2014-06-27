@@ -149,11 +149,8 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
                 Subtitle = storageFile.FileType.ToUpper() + " File";
                 Type = storageFile.FileType.Replace(".", "").ToLower();
                 Token = StorageApplicationPermissions.FutureAccessList.Add(File);
+                GetTimeInformation();
             }
-        }
-        public Task Initialize()
-        {
-            return GetTimeInformation();
         }
         #endregion
 

@@ -7,19 +7,13 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
-using Windows.Storage.AccessCache;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
-using VLC_WINRT_APP.Helpers;
-using VLC_WINRT_APP.Services.RunTime;
 using VLC_WINRT.Common;
 using VLC_WINRT_APP;
-using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.ViewModels.Others.VlcExplorer;
 using VLC_WINRT_APP.Views.MainPages;
-using VLC_WINRT_APP.Views.VideoPages;
 using WinRTXamlToolkit.AwaitableUI;
 
 

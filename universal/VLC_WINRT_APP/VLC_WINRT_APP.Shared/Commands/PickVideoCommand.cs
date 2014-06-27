@@ -121,7 +121,6 @@ namespace VLC_WINRT_APP.Commands
                 Debug.WriteLine("Opening file: " + file.Path);
                 var video = new VideoVM();
                 video.Initialize(file);
-                await video.Initialize();
                 Locator.VideoVm.CurrentVideo = video;
                 Locator.VideoVm.SetActiveVideoInfo(video.Token);
 #if WINDOWS_APP

@@ -20,7 +20,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Commands\MediaPlayback\PlayNextCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\MediaPlayback\PlayPauseCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\MediaPlayback\PlayPreviousCommand.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Commands\MediaPlayback\StopCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Music\AlbumClickedCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Music\ArtistClickedCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Music\FavoriteAlbumCommand.cs" />
@@ -38,6 +37,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Video\PlayVideoCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Video\SetAudioTrackCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Video\SetSubtitleTrackCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\Video\StopVideoCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\AlwaysExecutableCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\AutoFacConfiguration.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\BindableBase.cs" />
@@ -127,7 +127,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MediaPlaybackViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MusicVM\MusicLibraryVM.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MusicVM\MusicPlayerVM.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\NavigateableViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RemovableDevicesVM\ExternalStorageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\VideoVM\VideoVM.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\VideoVM\VideoPlayerVM.cs" />

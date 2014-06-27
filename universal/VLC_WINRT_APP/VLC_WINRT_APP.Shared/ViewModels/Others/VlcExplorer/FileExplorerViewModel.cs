@@ -125,7 +125,6 @@ namespace VLC_WINRT_APP.ViewModels.Others.VlcExplorer
                 StorageFile file = storageItem as StorageFile;
                 VideoVM.VideoVM videoVm = new VideoVM.VideoVM();
                 videoVm.Initialize(file);
-                videoVm.Initialize();
                 if (string.IsNullOrEmpty(videoVm.Token))
                 {
                     string token = StorageApplicationPermissions.FutureAccessList.Add(videoVm.File);

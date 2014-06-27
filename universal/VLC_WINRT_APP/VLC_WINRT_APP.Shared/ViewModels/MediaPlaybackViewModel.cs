@@ -8,20 +8,19 @@
  **********************************************************************/
 
 using System;
-using System.Threading.Tasks;
 using Windows.UI.Core;
 using VLC_WINRT_APP.Commands;
+using VLC_WINRT_APP.Common;
 using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.Services.Interface;
 using VLC_WINRT_APP.Services.RunTime;
 using Windows.System.Display;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Navigation;
 using VLC_WINRT_APP.Commands.MediaPlayback;
 
 namespace VLC_WINRT_APP.ViewModels
 {
-    public class MediaPlaybackViewModel : NavigateableViewModel, IDisposable
+    public class MediaPlaybackViewModel : BindableBase, IDisposable
     {
         #region private props
         protected readonly IMediaService _mediaService;
@@ -37,7 +36,6 @@ namespace VLC_WINRT_APP.ViewModels
         protected PlayNextCommand _playNext;
         protected PlayPreviousCommand _playPrevious;
         protected PlayPauseCommand _playOrPause;
-        protected StopCommand _goBackCommand;
 
         protected readonly DisplayRequest _displayAlwaysOnRequest;
         protected readonly DispatcherTimer _sliderPositionTimer;
@@ -109,11 +107,6 @@ namespace VLC_WINRT_APP.ViewModels
             set { SetProperty(ref _skipBack, value); }
         }
 
-        public StopCommand GoBack
-        {
-            get { return _goBackCommand; }
-            set { SetProperty(ref _goBackCommand, value); }
-        }
 
         public TimeSpan TimeTotal
         {
@@ -181,7 +174,6 @@ namespace VLC_WINRT_APP.ViewModels
             _playNext = new PlayNextCommand();
             _playPrevious = new PlayPreviousCommand();
             _playOrPause = new PlayPauseCommand();
-            _goBackCommand = new StopCommand();
         }
         #endregion
 
@@ -225,13 +217,6 @@ namespace VLC_WINRT_APP.ViewModels
             IsPlaying = false;
             _elapsedTime = TimeSpan.Zero;
             _timeTotal = TimeSpan.Zero;
-        }
-
-        public override Task OnNavigatedFrom(NavigationEventArgs e)
-        {
-            _sliderPositionTimer.Stop();
-            _mediaService.Stop();
-            return base.OnNavigatedFrom(e);
         }
 
         protected virtual void OnPlaybackStarting()

@@ -15,10 +15,11 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Windows.Storage;
 using VLC_WINRT_APP.Commands;
+using VLC_WINRT_APP.Common;
 
 namespace VLC_WINRT_APP.ViewModels.Settings
 {
-    public class SettingsViewModel : NavigateableViewModel
+    public class SettingsViewModel : BindableBase
     {
         private ObservableCollection<CustomFolder> _musicFolders;
         private ObservableCollection<CustomFolder> _videoFolders;
