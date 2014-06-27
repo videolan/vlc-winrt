@@ -11,15 +11,10 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
-using Windows.Media;
 using Windows.UI.Core;
-using Windows.UI.Popups;
-using Windows.UI.Xaml;
 using Autofac;
 using libVLCX;
-using VLC_WINRT.Common;
 using VLC_WINRT.Model;
-using VLC_WINRT_APP.Commands.MediaPlayback;
 using VLC_WINRT_APP.Commands.Video;
 using VLC_WINRT_APP.DataRepository;
 using VLC_WINRT_APP.Services.Interface;
@@ -214,8 +209,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
         private async void VlcPlayerServiceOnMediaEnded(object sender, Player player)
         {
             _vlcPlayerService.MediaEnded -= VlcPlayerServiceOnMediaEnded;
-            App.Dispatcher.RunAsync(CoreDispatcherPriority.Low,
-                () => App.ApplicationFrame.Navigate(typeof (MainPageVideos)));
+            App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => App.ApplicationFrame.Navigate(typeof (MainPageVideos)));
         }
         
         public void UpdatePosition()

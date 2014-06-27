@@ -132,7 +132,8 @@
                              Margin="0,0,0,-4"
                              Style="{StaticResource ThinProgressBar}"
                              Value="{Binding TimeWatched, Converter={StaticResource TimeSpanSecondsDoubleConverter}}"
-                             Maximum="{Binding Duration, Converter={StaticResource TimeSpanSecondsDoubleConverter}}" />
+                             Maximum="{Binding Duration, Converter={StaticResource TimeSpanSecondsDoubleConverter}}" 
+                             Visibility="{Binding TimeWatched.TotalSeconds, Converter={StaticResource NegatedCountToVisibilityConverter}}"/>
             </Grid>
         </Grid>
     </DataTemplate>

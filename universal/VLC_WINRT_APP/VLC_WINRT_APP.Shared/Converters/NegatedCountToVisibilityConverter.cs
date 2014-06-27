@@ -17,12 +17,22 @@ namespace VLC_WINRT_APP.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            if (value is int)
+            if (value is int || value is double)
             {
-                if ((int)value == 0)
-                    return Visibility.Collapsed;
-                else
-                    return Visibility.Visible;
+                if (value is int)
+                {
+                    if ((int)value == 0)
+                        return Visibility.Collapsed;
+                    else
+                        return Visibility.Visible;
+                }
+                if (value is double)
+                {
+                    if ((double)value == 0)
+                        return Visibility.Collapsed;
+                    else
+                        return Visibility.Visible;
+                }
             }
             return Visibility.Collapsed;
         }
