@@ -47,9 +47,13 @@
                        VerticalAlignment="Center" />
         </StackPanel>
         <SearchBox Grid.Row="3"
-                   Height="42"
+                   x:Name="LargeSearchBox"
+                   Height="37"
+                   FontSize="17"
                    Margin="42,0,20,0"
-                   x:Name="LargeSearchBox" />
+                   PlaceholderText="Search"
+                   SuggestionsRequested="LargeSearchBox_SuggestionsRequested"
+                   QuerySubmitted="LargeSearchBox_QuerySubmitted" />
         <Button Grid.Row="3"
                 x:Name="LittleSearchBox"
                 Content=""

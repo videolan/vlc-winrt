@@ -1,9 +1,8 @@
-﻿using System;
+﻿using System.Diagnostics;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using VLC_WINRT_APP.ViewModels;
-using VLC_WINRT_APP.Views.MainPages;
+using VLC_WINRT_APP.Helpers;
 
 namespace VLC_WINRT_APP.Views.UserControls
 {
@@ -50,6 +49,16 @@ namespace VLC_WINRT_APP.Views.UserControls
             HeaderGrid.Margin = new Thickness(42,0,20,0);
             HeaderGrid.HorizontalAlignment = HorizontalAlignment.Left;
             PanelsListView.ItemTemplate = App.Current.Resources["SidebarItemTemplate"] as DataTemplate;
+        }
+
+        private void LargeSearchBox_SuggestionsRequested(SearchBox sender, SearchBoxSuggestionsRequestedEventArgs args)
+        {
+            SearchHelpers.Search(args.QueryText, args);
+        }
+
+        private void LargeSearchBox_QuerySubmitted(SearchBox sender, SearchBoxQuerySubmittedEventArgs args)
+        {
+            Debug.WriteLine("lol");
         }
     }
 }

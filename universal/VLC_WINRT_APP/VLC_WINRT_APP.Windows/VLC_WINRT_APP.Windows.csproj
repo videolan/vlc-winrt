@@ -129,6 +129,9 @@
     <Compile Include="Views\MainPages\MainPageRemovables.xaml.cs">
       <DependentUpon>MainPageRemovables.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\MainPages\MainPageSearch.xaml.cs">
+      <DependentUpon>MainPageSearch.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainPages\MainPageVideos.xaml.cs">
       <DependentUpon>MainPageVideos.xaml</DependentUpon>
     </Compile>
@@ -748,6 +751,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\MainPages\MainPageRemovables.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainPages\MainPageSearch.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
