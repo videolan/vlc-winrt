@@ -47,8 +47,8 @@ namespace VLC_WINRT_APP.Views.MusicPages.MusicPlayerPageControls
             }
             else
             {
-                (SimilarItemGridView.ItemsPanelRoot as WrapGrid).ItemHeight = 200;
-                (SimilarItemGridView.ItemsPanelRoot as WrapGrid).ItemWidth = 200;
+                (SimilarItemGridView.ItemsPanelRoot as WrapGrid).ItemHeight = 185;
+                (SimilarItemGridView.ItemsPanelRoot as WrapGrid).ItemWidth = 185;
             }
         }
     }

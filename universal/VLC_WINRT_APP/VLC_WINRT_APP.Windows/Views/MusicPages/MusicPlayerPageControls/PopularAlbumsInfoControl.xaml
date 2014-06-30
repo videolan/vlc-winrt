@@ -17,8 +17,8 @@
               ItemTemplate="{StaticResource PopularAlbumTemplate}">
         <GridView.ItemsPanel>
             <ItemsPanelTemplate>
-                <WrapGrid ItemHeight="200"
-                          ItemWidth="200"
+                <WrapGrid ItemHeight="185"
+                          ItemWidth="185"
                           Orientation="Horizontal" />
             </ItemsPanelTemplate>
         </GridView.ItemsPanel>
