@@ -142,6 +142,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         {
             TrackCollection.Add(track);
         }
+
         public void AddTrack(List<MusicLibraryVM.TrackItem> tracks)
         {
             foreach (MusicLibraryVM.TrackItem track in tracks)
@@ -203,7 +204,6 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             IsRunning = true;
             Stop();
             var trackItem = TrackCollection[CurrentTrack];
-            new MessageDialog("test").ShowAsync();
             StorageFile file;
             if (fileFromExplorer == null)
             {

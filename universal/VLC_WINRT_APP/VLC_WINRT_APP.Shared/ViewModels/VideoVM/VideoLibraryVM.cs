@@ -16,9 +16,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using Windows.Foundation;
 using Windows.Storage;
-using Windows.Storage.AccessCache;
 using Windows.Storage.Search;
 using Windows.System.Threading;
 using Windows.UI.Core;
@@ -31,7 +29,6 @@ using VLC_WINRT_APP.Commands.Video;
 using VLC_WINRT_APP.Common;
 using VLC_WINRT_APP.DataRepository;
 using VLC_WINRT_APP.Model;
-using VLC_WINRT_APP.ViewModels.Settings;
 using Panel = VLC_WINRT_APP.Model.Panel;
 
 namespace VLC_WINRT_APP.ViewModels.VideoVM
@@ -109,6 +106,12 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
         {
             get { return _openVideo; }
             set { SetProperty(ref _openVideo, value); }
+        }
+
+        public PickVideoCommand PickVideo
+        {
+            get { return _pickCommand; }
+            set { SetProperty(ref _pickCommand, value); }
         }
         #endregion
         #region contructors

@@ -7,24 +7,13 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
-using Windows.Storage.AccessCache;
-using Autofac;
 using System;
 using System.Diagnostics;
 using System.Windows.Input;
 using Windows.Storage;
 using Windows.Storage.Pickers;
+using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.Services.RunTime;
-#if WINDOWS_PHONE_APP
-using VLC_WINPRT;
-#endif
-using VLC_WINRT_APP;
-using VLC_WINRT_APP.ViewModels;
-using VLC_WINRT_APP.ViewModels.VideoVM;
-using VLC_WINRT_APP.Views.VideoPages;
-#if NETFX_CORE
-using VLC_WINRT.Views;
-#endif
 
 namespace VLC_WINRT_APP.Commands
 {
@@ -51,81 +40,19 @@ namespace VLC_WINRT_APP.Commands
 
             var picker = new FileOpenPicker
             {
-                ViewMode = PickerViewMode.Thumbnail,
+                ViewMode = PickerViewMode.List,
                 SuggestedStartLocation = PickerLocationId.VideosLibrary
             };
-
-            //TODO: add more supported types
-            picker.FileTypeFilter.Add(".3g2" );
-            picker.FileTypeFilter.Add(".3gp" );
-            picker.FileTypeFilter.Add(".3gp2");
-            picker.FileTypeFilter.Add(".3gpp");
-            picker.FileTypeFilter.Add(".amv" );
-            picker.FileTypeFilter.Add(".asf" );
-            picker.FileTypeFilter.Add(".avi" );
-            picker.FileTypeFilter.Add(".divx");
-            picker.FileTypeFilter.Add(".drc" );
-            picker.FileTypeFilter.Add(".dv"  );
-            picker.FileTypeFilter.Add(".f4v" );
-            picker.FileTypeFilter.Add(".flv" );
-            picker.FileTypeFilter.Add(".gvi" );
-            picker.FileTypeFilter.Add(".gxf" );
-            picker.FileTypeFilter.Add(".ismv");
-            picker.FileTypeFilter.Add(".iso" );
-            picker.FileTypeFilter.Add(".m1v" );
-            picker.FileTypeFilter.Add(".m2v" );
-            picker.FileTypeFilter.Add(".m2t" );
-            picker.FileTypeFilter.Add(".m2ts");
-            picker.FileTypeFilter.Add(".m3u8");
-            picker.FileTypeFilter.Add(".mkv" );
-            picker.FileTypeFilter.Add(".mov" );
-            picker.FileTypeFilter.Add(".mp2" );
-            picker.FileTypeFilter.Add(".mp2v");
-            picker.FileTypeFilter.Add(".mp4" );
-            picker.FileTypeFilter.Add(".mp4v");
-            picker.FileTypeFilter.Add(".mpe" );
-            picker.FileTypeFilter.Add(".mpeg");
-            picker.FileTypeFilter.Add(".mpeg1");
-            picker.FileTypeFilter.Add(".mpeg2");
-            picker.FileTypeFilter.Add(".mpeg4");
-            picker.FileTypeFilter.Add(".mpg" );
-            picker.FileTypeFilter.Add(".mpv2");
-            picker.FileTypeFilter.Add(".mts" );
-            picker.FileTypeFilter.Add(".mtv" );
-            picker.FileTypeFilter.Add(".mxf" );
-            picker.FileTypeFilter.Add(".mxg" );
-            picker.FileTypeFilter.Add(".nsv" );
-            picker.FileTypeFilter.Add(".nut" );
-            picker.FileTypeFilter.Add(".nuv" );
-            picker.FileTypeFilter.Add(".ogm" );
-            picker.FileTypeFilter.Add(".ogv" );
-            picker.FileTypeFilter.Add(".ogx" );
-            picker.FileTypeFilter.Add(".ps"  );
-            picker.FileTypeFilter.Add(".rec" );
-            picker.FileTypeFilter.Add(".rm"  );
-            picker.FileTypeFilter.Add(".rmvb");
-            picker.FileTypeFilter.Add(".tod" );
-            picker.FileTypeFilter.Add(".ts"  );
-            picker.FileTypeFilter.Add(".tts" );
-            picker.FileTypeFilter.Add(".vob" );
-            picker.FileTypeFilter.Add(".vro" );
-            picker.FileTypeFilter.Add(".webm");
-            picker.FileTypeFilter.Add(".wm");
-            picker.FileTypeFilter.Add(".wmv" );
-            picker.FileTypeFilter.Add(".wtv" );
-            picker.FileTypeFilter.Add(".xesc");
+            foreach (string videoExtension in VLCFileExtensions.VideoExtensions)
+            {
+                picker.FileTypeFilter.Add(videoExtension);
+            }
 
             StorageFile file = await picker.PickSingleFileAsync();
             if (file != null)
             {
                 Debug.WriteLine("Opening file: " + file.Path);
-                var video = new VideoVM();
-                video.Initialize(file);
-                Locator.VideoVm.CurrentVideo = video;
-                Locator.VideoVm.SetActiveVideoInfo(video.Token);
-#if WINDOWS_APP
-                App.ApplicationFrame.Navigate(typeof(VideoPlayerPage));
-#endif
+                MediaService.PlayVideoFile(file);
             }
             else
             {
@@ -138,7 +65,6 @@ namespace VLC_WINRT_APP.Commands
             //    CanExecuteChanged(this, new EventArgs());
             //}
         }
-
         public event EventHandler CanExecuteChanged;
     }
 }

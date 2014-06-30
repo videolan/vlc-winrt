@@ -11,6 +11,22 @@
     <Grid>
         <Hub x:Name="MainHub"
              Orientation="Vertical">
+            <Hub.Header>
+                <StackPanel Orientation="Horizontal">
+                    <Button Style="{StaticResource TextBlockButtonStyle}"
+                            FontSize="22"
+                            FontWeight="Light"
+                            Command="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM.PickVideo}">
+                        <Button.Content>
+                            <TextBlock>
+                                <Run Text="open a video " />
+                                <Run Text=""
+                                     FontFamily="Segoe UI Symbol" />
+                            </TextBlock>
+                        </Button.Content>
+                    </Button>
+                </StackPanel>
+            </Hub.Header>
             <Hub.Sections>
                 <HubSection>
                     <HubSection.ContentTemplate>

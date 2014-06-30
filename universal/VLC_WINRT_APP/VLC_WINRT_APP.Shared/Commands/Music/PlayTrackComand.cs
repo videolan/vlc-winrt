@@ -7,37 +7,20 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
-using Windows.UI.Xaml.Media.Animation;
-using VLC_WINRT.Common;
-using VLC_WINRT_APP.Helpers;
-using VLC_WINRT_APP.Services.RunTime;
-using VLC_WINRT_APP;
-using VLC_WINRT_APP.ViewModels;
-using VLC_WINRT_APP.Views.MainPages;
-using VLC_WINRT_APP.Views.MusicPages;
-#if NETFX_CORE
-using VLC_WINRT.Views;
-using VLC_WINRT_APP.ViewModels.MusicVM;
 using Windows.UI.Xaml.Controls;
-#endif
-#if WINDOWS_PHONE_APP
-using VLC_WINPRT;
-#endif
+using VLC_WINRT.Common;
+using VLC_WINRT_APP.ViewModels;
+using VLC_WINRT_APP.ViewModels.MusicVM;
+using VLC_WINRT_APP.Views.MusicPages;
 
-namespace VLC_WINRT_APP.Commands
+namespace VLC_WINRT_APP.Commands.Music
 {
     public class PlayTrackCommand : AlwaysExecutableCommand
     {
         public async override void Execute(object parameter)
         {
-#if WINDOWS_PHONE_APP
-            if (App.NavigationFrame.CurrentSourcePageType != typeof(MusicPlayerPage))
-                App.NavigationFrame.Navigate(typeof(MusicPlayerPage));
-#endif
-#if WINDOWS_APP
             if (App.ApplicationFrame.CurrentSourcePageType != typeof(MusicPlayerPage))
                 App.ApplicationFrame.Navigate(typeof(MusicPlayerPage));
-#endif
             Locator.MusicLibraryVM.IsAlbumPageShown = false;
             MusicLibraryVM.TrackItem track = null;
             if (parameter is ItemClickEventArgs)

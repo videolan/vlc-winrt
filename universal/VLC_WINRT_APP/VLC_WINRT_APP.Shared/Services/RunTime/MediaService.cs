@@ -172,10 +172,8 @@ namespace VLC_WINRT_APP.Services.RunTime
         /// <param name="file">The file to be played.</param>
         public static async Task PlayAudioFile(StorageFile file)
         {
-            await Task.Delay(1000);
             if (App.ApplicationFrame.CurrentSourcePageType != typeof(MusicPlayerPage))
                 App.ApplicationFrame.Navigate(typeof(MusicPlayerPage));
-
             MusicLibraryVM.TrackItem trackItem = new MusicLibraryVM.TrackItem();
             trackItem.Path = file.Path;
             trackItem.AlbumName = "TestAlbum";
@@ -193,6 +191,8 @@ namespace VLC_WINRT_APP.Services.RunTime
                 Locator.MusicPlayerVM.CurrentTrack =
                     Locator.MusicPlayerVM.TrackCollection.IndexOf(trackItem);
             }
+            await Task.Delay(1000);
+
             await Locator.MusicPlayerVM.Play(file);
         }
 
@@ -202,7 +202,7 @@ namespace VLC_WINRT_APP.Services.RunTime
         /// <param name="file">The file to be played.</param>
         public static async Task PlayVideoFile(StorageFile file)
         {
-            await Task.Delay(1000);
+            App.ApplicationFrame.Navigate(typeof(VideoPlayerPage));
             ViewModels.VideoVM.VideoVM videoVm = new ViewModels.VideoVM.VideoVM();
             videoVm.Initialize(file);
             if (string.IsNullOrEmpty(videoVm.Token))
@@ -211,8 +211,8 @@ namespace VLC_WINRT_APP.Services.RunTime
                 videoVm.Token = token;
             }
             Locator.VideoVm.CurrentVideo = videoVm;
+            await Task.Delay(1000);
             Locator.VideoVm.SetActiveVideoInfo(videoVm.Token);
-            App.ApplicationFrame.Navigate(typeof(VideoPlayerPage));
         }
 
         private string _lastMrl;

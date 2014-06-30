@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest">
-  <Identity Name="db019233-4240-4c8f-8ce4-9ddeb98d504f" Publisher="CN=Kellen" Version="1.0.0.0" />
+  <Identity Name="db019233-4240-4c8f-8ce4-9ddeb98d504f" Publisher="CN=Kellen" Version="0.1.0.1" />
   <Properties>
     <DisplayName>VLC_WINRT_APP.Windows</DisplayName>
     <PublisherDisplayName>VideoLan</PublisherDisplayName>

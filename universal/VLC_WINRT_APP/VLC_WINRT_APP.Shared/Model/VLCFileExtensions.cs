@@ -84,11 +84,11 @@ namespace VLC_WINRT_APP.Model
 
         public static VLCFileType FileTypeHelper(string ext)
         {
-            if (video_extensions.Contains(ext))
+            if (VideoExtensions.Contains(ext))
             {
                 return VLCFileType.Video;
             }
-            else if (audio_extensions.Contains(ext))
+            else if (AudioExtensions.Contains(ext))
             {
                 return VLCFileType.Audio;
             }
@@ -98,9 +98,9 @@ namespace VLC_WINRT_APP.Model
             }
         }
 
-        static string[] video_extensions = {
+        public static string[] VideoExtensions = {
 
-                ".3g2", ".3gp", ".3gp2", ".3gpp", ".amv", ".asf", ".avi", ".divx", "drc", ".dv",
+                ".3g2", ".3gp", ".3gp2", ".3gpp", ".amv", ".asf", ".avi", ".divx", ".drc", ".dv",
 
                 ".f4v", ".flv", ".gvi", ".gxf", ".ismv", ".iso", ".m1v", ".m2v", ".m2t", ".m2ts",
 
@@ -112,7 +112,7 @@ namespace VLC_WINRT_APP.Model
 
                 ".tod", ".ts", ".tts", ".vob", ".vro", ".webm", ".wm", ".wmv", ".wtv", ".xesc" };
 
-        static string[] audio_extensions = {
+        public static string[] AudioExtensions = {
 
                 ".3ga", ".a52", ".aac", ".ac3", ".adt", ".adts", ".aif", ".aifc", ".aiff", ".amr",
 

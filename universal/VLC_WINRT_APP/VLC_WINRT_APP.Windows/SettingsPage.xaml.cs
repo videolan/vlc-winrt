@@ -31,30 +31,11 @@ namespace VLC_WINRT.Views
         {
             if (!e.AddedItems.Any()) return;
 
-            PopupMenu popup = new PopupMenu();
-            popup.Commands.Add(new UICommand
-            {
-                Label = "Remove",
-                Invoked = new UICommandInvokedHandler((tapped) =>
-                {
-                    Locator.SettingsVM.RemoveVideoFolder(e.AddedItems[0] as CustomFolder);
-                }),
-            });
-            popup.ShowForSelectionAsync((sender as FrameworkElement).GetBoundingRect());
         }
+
         private void MusicListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (!e.AddedItems.Any()) return;
-            PopupMenu popup = new PopupMenu();
-            popup.Commands.Add(new UICommand
-            {
-                Label = "Remove",
-                Invoked = new UICommandInvokedHandler((tapped) =>
-                {
-                    Locator.SettingsVM.RemoveMusicFolder(e.AddedItems[0] as CustomFolder);
-                }),
-            });
-            popup.ShowForSelectionAsync((sender as FrameworkElement).GetBoundingRect());
         }
 
         private void GoBack_Click(object sender, RoutedEventArgs e)

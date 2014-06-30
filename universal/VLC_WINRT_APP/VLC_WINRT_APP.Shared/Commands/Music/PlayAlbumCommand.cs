@@ -7,21 +7,15 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
-#if NETFX_CORE
-#endif
-#if WINDOWS_PHONE_APP
-using VLC_WINPRT;
-#endif
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using Windows.UI.Xaml.Media.Animation;
 using VLC_WINRT.Common;
 using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.ViewModels.MusicVM;
 
-namespace VLC_WINRT_APP.Commands
+namespace VLC_WINRT_APP.Commands.Music
 {
     public class PlayAlbumCommand : AlwaysExecutableCommand
     {
