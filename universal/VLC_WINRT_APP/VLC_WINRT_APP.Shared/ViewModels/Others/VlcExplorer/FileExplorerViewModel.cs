@@ -118,7 +118,7 @@ namespace VLC_WINRT_APP.ViewModels.Others.VlcExplorer
             if (storageItem is StorageFolder)
             {
                 BackStack.Add(storageItem as StorageFolder);
-                GetFiles();
+                Task.Run(() => GetFiles());
             }
             else
             {

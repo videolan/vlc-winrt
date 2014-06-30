@@ -55,8 +55,6 @@
             </Button>
         </Grid>
         <Grid Grid.Row="3">
-            <removableStorage:PlugARemovableStorage d:IsHidden="True"
-                                                    Visibility="{Binding RemovableStorageVMs.Count, Converter={StaticResource CountToVisibilityConverter}}" />
             <controls:NothingToSeeHere Margin="6,0,0,0"
                                        Visibility="{Binding CurrentStorageVM.IsFolderEmpty, Converter={StaticResource BooleanToVisibilityConverter}}" />
             <ListView ItemsSource="{Binding CurrentStorageVM.StorageItems}"
@@ -94,5 +92,9 @@
                 </ListView.ItemTemplate>
             </ListView>
         </Grid>
+        <removableStorage:PlugARemovableStorage Grid.Row="2"
+                                                Grid.RowSpan="2"
+                                                d:IsHidden="True"
+                                                Visibility="{Binding RemovableStorageVMs.Count, Converter={StaticResource CountToVisibilityConverter}}" />
     </Grid>
 </Page>

@@ -214,6 +214,8 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
         
         public void UpdatePosition()
         {
+            if (double.IsNaN(PositionInSeconds))
+                return;
             CurrentVideo.TimeWatched = TimeSpan.FromSeconds(PositionInSeconds);
             CurrentVideo.Duration = TimeTotal;
             _lastVideosRepository.Update(CurrentVideo);

@@ -93,7 +93,6 @@ namespace VLC_WINRT_APP.ViewModels.RemovableDevicesVM
                 if (RemovableStorageVMs.Count == 1)
                 {
                     CurrentStorageVM = RemovableStorageVMs[0];
-                    CurrentStorageVM.GetFiles();
                 }
             });
         }
