@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\libVLCX\DirectXManager.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\libVLCX\MMDeviceLocator.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\libVLCX\Player.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\libVLCX\Thumbnailer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\libVLCX\DirectXManager.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\libVLCX\Helpers.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\libVLCX\MMDeviceLocator.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\libVLCX\Player.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\libVLCX\Thumbnailer.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)..\..\vlc\libvlc.dll" />
+    <None Include="$(MSBuildThisFileDirectory)..\..\vlc\libvlccore.dll" />
+  </ItemGroup>
+</Project>

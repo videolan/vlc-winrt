@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="Globals">
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <CodeSharingProject>248F659F-DAC5-46E8-AC09-60EC9FC95053</CodeSharingProject>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>c543a5fc-4461-41f0-a806-491680e52d8f</SharedGUID>
+    <ItemsProjectGuid>{3b1f161d-e9a0-458d-b009-eda6f19a1654}</ItemsProjectGuid>
+    <ItemsRootNamespace>libdirect2d_winrt_plugin</ItemsRootNamespace>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(MSBuildThisFileDirectory)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\libdirect2d_winrt_plugin\DirectXHelper.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\libdirect2d_winrt_plugin\inttypes.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\libdirect2d_winrt_plugin\targetver.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectCapability Include="SourceItemsFromImports" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\libdirect2d_winrt_plugin\libdirect2d_winrt_plugin.cpp" />
+  </ItemGroup>
+</Project>
