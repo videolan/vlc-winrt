@@ -42,6 +42,7 @@ namespace VLC_WINRT_APP.ViewModels.Others.VlcExplorer
             get { return _goUpperFolderCommand; }
             set { SetProperty(ref _goUpperFolderCommand, value); }
         }
+
         public bool CanGoBack
         {
             get { return BackStack.Count > 1; }

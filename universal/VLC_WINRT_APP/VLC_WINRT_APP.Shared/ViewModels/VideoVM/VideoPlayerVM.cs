@@ -206,7 +206,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             _vlcPlayerService.MediaEnded += VlcPlayerServiceOnMediaEnded;
         }
         
-        private async void VlcPlayerServiceOnMediaEnded(object sender, Player player)
+        private void VlcPlayerServiceOnMediaEnded(object sender, Player player)
         {
             _vlcPlayerService.MediaEnded -= VlcPlayerServiceOnMediaEnded;
             App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => App.ApplicationFrame.Navigate(typeof (MainPageVideos)));
