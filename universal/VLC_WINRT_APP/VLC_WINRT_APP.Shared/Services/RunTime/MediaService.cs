@@ -8,8 +8,10 @@
  **********************************************************************/
 
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using Windows.Foundation;
 using Windows.Storage.AccessCache;
 using Windows.UI.Popups;
 using VLC_WINRT.Common;

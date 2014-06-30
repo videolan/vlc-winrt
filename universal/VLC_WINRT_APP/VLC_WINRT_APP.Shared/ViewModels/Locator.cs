@@ -39,12 +39,12 @@ namespace VLC_WINRT_APP.ViewModels
         /// <summary>
         ///     Initializes a new instance of the Locator class.
         /// </summary>
-        
+
         public static MainVM MainVM
         {
             get { return App.Container.Resolve<MainVM>(); }
         }
-        
+
         public static MusicPlayerVM MusicPlayerVM
         {
             get { return App.Container.Resolve<MusicPlayerVM>(); }
@@ -64,11 +64,12 @@ namespace VLC_WINRT_APP.ViewModels
         {
             get { return App.Container.Resolve<VideoPlayerVM>(); }
         }
-
+#if WINDOWS_APP
         public static ExternalStorageViewModel ExternalStorageVM
         {
             get { return App.Container.Resolve<ExternalStorageViewModel>(); }
         }
+#endif
 
         public static DLNAVM DlnaVM
         {
@@ -78,7 +79,7 @@ namespace VLC_WINRT_APP.ViewModels
         {
             get { return App.Container.Resolve<SettingsViewModel>(); }
         }
-        
+
         public static SpecialThanksViewModel SpecialThanksVM
         {
             get { return App.Container.Resolve<SpecialThanksViewModel>(); }
