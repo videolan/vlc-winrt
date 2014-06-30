@@ -24,13 +24,13 @@ namespace VLC_WINRT_APP.Commands.MusicPlayer
                 return;
             var trackDataRepository = new TrackDataRepository();
             // searching the track in the trackcollection
-            int i = Locator.MusicLibraryVM.Track.IndexOf(track);
+            int i = Locator.MusicLibraryVM.Tracks.IndexOf(track);
 
             // If the track is favorite, then now it is not
             // if the track was not favorite, now it is
             // updating the Track collection
-            Locator.MusicLibraryVM.Track[i].Favorite = !(track).Favorite;
-            var trackFromArtistCollection = Locator.MusicLibraryVM.Artist.FirstOrDefault(
+            Locator.MusicLibraryVM.Tracks[i].Favorite = !(track).Favorite;
+            var trackFromArtistCollection = Locator.MusicLibraryVM.Artists.FirstOrDefault(
                 x =>
                 {
                     var trackItem = parameter as MusicLibraryVM.TrackItem;
@@ -44,7 +44,7 @@ namespace VLC_WINRT_APP.Commands.MusicPlayer
                 .Tracks.FirstOrDefault(z => z == (parameter as MusicLibraryVM.TrackItem));
 
             // Update Database
-            await trackDataRepository.Update(Locator.MusicLibraryVM.Track[i]);
+            await trackDataRepository.Update(Locator.MusicLibraryVM.Tracks[i]);
         }
     }
 }

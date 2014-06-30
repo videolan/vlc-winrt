@@ -287,7 +287,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         {
             _fileToken = token;
             _mrl = "file://" + token;
-            CurrentPlayingArtist = Locator.MusicLibraryVM.Artist.FirstOrDefault(x => x.Name == track.ArtistName);
+            CurrentPlayingArtist = Locator.MusicLibraryVM.Artists.FirstOrDefault(x => x.Name == track.ArtistName);
             if (CurrentPlayingArtist != null)
                 CurrentPlayingArtist.CurrentAlbumIndex = CurrentPlayingArtist.Albums.IndexOf(CurrentPlayingArtist.Albums.FirstOrDefault(x => x.Name == track.AlbumName));
             _mediaService.SetMediaFile(_mrl, isAudioMedia: true);

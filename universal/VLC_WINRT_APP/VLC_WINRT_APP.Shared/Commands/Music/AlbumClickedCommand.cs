@@ -25,7 +25,7 @@ namespace VLC_WINRT_APP.Commands.Music
             ItemClickEventArgs args = parameter as ItemClickEventArgs;
             MusicLibraryVM.AlbumItem album = args.ClickedItem as MusicLibraryVM.AlbumItem;
             Locator.MusicLibraryVM.CurrentArtist =
-                Locator.MusicLibraryVM.Artist.FirstOrDefault(x => x.Name == album.Artist);
+                Locator.MusicLibraryVM.Artists.FirstOrDefault(x => x.Name == album.Artist);
             if (Locator.MusicLibraryVM.CurrentArtist != null)
                 Locator.MusicLibraryVM.CurrentArtist.CurrentAlbumIndex = Locator.MusicLibraryVM.CurrentArtist.Albums.IndexOf(album);
         }

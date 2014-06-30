@@ -15,7 +15,7 @@ using VLC_WINRT_APP.Views.MusicPages;
 
 namespace VLC_WINRT_APP.Commands.Music
 {
-    public class PlayTrackCommand : AlwaysExecutableCommand
+    public class TrackClickedCommand : AlwaysExecutableCommand
     {
         public async override void Execute(object parameter)
         {

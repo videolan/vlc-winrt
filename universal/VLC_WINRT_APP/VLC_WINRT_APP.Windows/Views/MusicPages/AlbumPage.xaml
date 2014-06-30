@@ -98,7 +98,7 @@
                       ItemTemplate="{StaticResource LittleLightTrackTemplate}">
                 <triggers:Interactions.Triggers>
                     <triggers:EventTrigger EventName="ItemClick">
-                        <triggers:InvokeCommandAction Command="{Binding CurrentAlbumItem.PlayTrack}"
+                        <triggers:InvokeCommandAction Command="{Binding CurrentAlbumItem.TrackClicked}"
                                                       PassEventArgsToCommand="True" />
                     </triggers:EventTrigger>
                 </triggers:Interactions.Triggers>

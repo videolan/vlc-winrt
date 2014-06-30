@@ -17,12 +17,10 @@ using Windows.ApplicationModel.Resources;
 using Windows.Storage;
 using Windows.Storage.FileProperties;
 using Windows.UI.Core;
-using Windows.UI.Popups;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 using SQLite;
 using VLC_WINRT.Common;
-using VLC_WINRT_APP.Commands;
 using VLC_WINRT_APP.Commands.MusicPlayer;
 using VLC_WINRT_APP.Common;
 using VLC_WINRT_APP.DataRepository;
@@ -43,18 +41,18 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 #if WINDOWS_APP
         private ObservableCollection<Panel> _panels = new ObservableCollection<Panel>();
 #endif
-        private ObservableCollection<ArtistItem> _artists = new ObservableCollection<ArtistItem>();
+        private ObservableCollection<ArtistItem> _artistses = new ObservableCollection<ArtistItem>();
         private IEnumerable<IGrouping<string, ArtistItem>> _artistsByAlphaKey;
         private ObservableCollection<string> _albumsCover = new ObservableCollection<string>();
-        private ObservableCollection<TrackItem> _tracks = new ObservableCollection<TrackItem>();
+        private ObservableCollection<TrackItem> _trackses = new ObservableCollection<TrackItem>();
         private ObservableCollection<AlbumItem> _favoriteAlbums = new ObservableCollection<AlbumItem>();
         private ObservableCollection<AlbumItem> _randomAlbums = new ObservableCollection<AlbumItem>();
         #endregion
-
         #region private props
         private LoadingState _loadingState;
         private AlbumClickedCommand _albumClickedCommand;
         private ArtistClickedCommand _artistClickedCommand;
+        private TrackClickedCommand _trackClickedCommand;
         private static ArtistDataRepository _artistDataRepository = new ArtistDataRepository();
         private static TrackDataRepository _trackDataRepository = new TrackDataRepository();
         private static AlbumDataRepository _albumDataRepository = new AlbumDataRepository();
@@ -65,7 +63,6 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         private bool _isAlbumPageShown = false;
         private string _currentIndexingStatus = "Loading music";
         #endregion
-
         #region public fields
         public ObservableCollection<AlbumItem> FavoriteAlbums
         {
@@ -90,10 +87,10 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         }
 #endif
 
-        public ObservableCollection<ArtistItem> Artist
+        public ObservableCollection<ArtistItem> Artists
         {
-            get { return _artists; }
-            set { SetProperty(ref _artists, value); }
+            get { return _artistses; }
+            set { SetProperty(ref _artistses, value); }
         }
         public IEnumerable<IGrouping<string, ArtistItem>> ArtistsByAlphaKey
         {
@@ -107,10 +104,10 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             }
         }
 
-        public ObservableCollection<TrackItem> Track
+        public ObservableCollection<TrackItem> Tracks
         {
-            get { return _tracks; }
-            set { SetProperty(ref _tracks, value); }
+            get { return _trackses; }
+            set { SetProperty(ref _trackses, value); }
         }
 
         #endregion
@@ -167,13 +164,18 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             set { SetProperty(ref _artistClickedCommand, value); }
         }
 
+        public TrackClickedCommand TrackClickedCommand
+        {
+            get { return _trackClickedCommand; }
+            set { SetProperty(ref _trackClickedCommand, value); }
+        }
+
         public ArtistItem CurrentArtist
         {
             get { return _currentArtist; }
             set { SetProperty(ref _currentArtist, value); }
         }
         #endregion
-
         #region XBOX Music Stuff
         public MusicHelper XboxMusicHelper = new MusicHelper();
         public Authenication XboxMusicAuthenication;
@@ -194,6 +196,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             LoadingState = LoadingState.Loading;
             _albumClickedCommand = new AlbumClickedCommand();
             _artistClickedCommand = new ArtistClickedCommand();
+            _trackClickedCommand = new TrackClickedCommand();
             Task.Run(() => GetMusicFromLibrary());
         }
 
@@ -203,7 +206,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         {
             await LoadFromDatabase();
             App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => IsMusicLibraryEmpty = false);
-            if (Artist.Any())
+            if (Artists.Any())
             {
                 LoadFavoritesRandomAlbums();
             }
@@ -231,7 +234,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         {
             try
             {
-                foreach (AlbumItem album in Artist.SelectMany(artist => artist.Albums))
+                foreach (AlbumItem album in Artists.SelectMany(artist => artist.Albums))
                 {
                     if (album.Favorite)
                     {
@@ -253,7 +256,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                     foreach (TrackItem trackItem in album.Tracks)
                     {
                         App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
-                            Track.Add(trackItem));
+                            Tracks.Add(trackItem));
                     }
                 }
 
@@ -294,7 +297,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             await LoadFromDatabase();
 
             DispatchHelper.InvokeAsync(() =>
-                ArtistsByAlphaKey = from artist in Artist
+                ArtistsByAlphaKey = from artist in Artists
                                     orderby artist.Name
                                     group artist by artist.Name[0].ToString()
                                         into a
@@ -410,7 +413,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                 var orderedArtists = artists.OrderBy(x => x.Name);
                 foreach (var artist in orderedArtists)
                 {
-                    Artist.Add(artist);
+                    Artists.Add(artist);
                 }
             }
             catch (Exception)
@@ -420,11 +423,11 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 
             DispatchHelper.InvokeAsync(() =>
             {
-                IsMusicLibraryEmpty = !Artist.Any();
+                IsMusicLibraryEmpty = !Artists.Any();
                 OnPropertyChanged("IsMusicLibraryEmpty");
             });
             DispatchHelper.InvokeAsync(() =>
-                ArtistsByAlphaKey = from artist in Artist
+                ArtistsByAlphaKey = from artist in Artists
                                     orderby artist.Name
                                     group artist by artist.Name[0].ToString()
                                         into a
@@ -617,7 +620,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             private ObservableCollection<TrackItem> _trackItems = new ObservableCollection<TrackItem>();
             private PlayAlbumCommand _playAlbumCommand = new PlayAlbumCommand();
             private FavoriteAlbumCommand _favoriteAlbumCommand = new FavoriteAlbumCommand();
-            private PlayTrackCommand _playTrackCommand = new PlayTrackCommand();
+            private TrackClickedCommand _trackClickedCommand = new TrackClickedCommand();
 
             [PrimaryKey, AutoIncrement, Column("_id")]
             public int Id { get; set; }
@@ -724,10 +727,10 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                 set { SetProperty(ref _favoriteAlbumCommand, value); }
             }
             [Ignore]
-            public PlayTrackCommand PlayTrack
+            public TrackClickedCommand TrackClicked
             {
-                get { return _playTrackCommand; }
-                set { SetProperty(ref _playTrackCommand, value); }
+                get { return _trackClickedCommand; }
+                set { SetProperty(ref _trackClickedCommand, value); }
             }
         }
 
@@ -741,7 +744,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             private TimeSpan _duration;
             private bool _favorite;
             private int _currentPosition;
-            private PlayTrackCommand _playTrackCommand = new PlayTrackCommand();
+            private TrackClickedCommand _trackClickedCommand = new TrackClickedCommand();
             private FavoriteTrackCommand _favoriteTrackCommand = new FavoriteTrackCommand();
 
             [PrimaryKey, AutoIncrement, Column("_id")]
@@ -792,10 +795,10 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             }
 
             [Ignore]
-            public PlayTrackCommand PlayTrack
+            public TrackClickedCommand TrackClicked
             {
-                get { return _playTrackCommand; }
-                set { SetProperty(ref _playTrackCommand, value); }
+                get { return _trackClickedCommand; }
+                set { SetProperty(ref _trackClickedCommand, value); }
             }
 
             [Ignore]
