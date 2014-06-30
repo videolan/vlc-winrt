@@ -24,7 +24,10 @@
                 <ColumnDefinition Width="100" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Button Style="{StaticResource PreviousAppBarButtonStyle}" Click="GoBack_Click" />
+            <AppBarButton IsCompact="True"
+                          Icon="Back"
+                          Click="GoBack_Click" 
+                          HorizontalAlignment="Center"/>
             <StackPanel Grid.Column="1">
                 <TextBlock Text="VLC for Windows 8" Margin="3,0,0,0" FontWeight="SemiBold" FontSize="20"/>
                 <TextBlock x:Uid="VlcThankYou" Text="The VLC for Windows 8 Team would like to say 'thank you very much' to the people who made this App possible:" Style="{StaticResource SubheaderTextBlockStyle}"/>
@@ -44,7 +47,7 @@
                             <RowDefinition Height="50"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <TextBlock x:Uid="PartnersGold" Text="gold partners" FontSize="42" Style="{StaticResource VLCSubHeaderStyle}"/>
+                        <TextBlock x:Uid="PartnersGold" Text="gold partners" FontSize="42" Style="{StaticResource TitleTextBlockStyle}"/>
                         <StackPanel Grid.Row="1" Margin="0,15,0,0" >
                             <StackPanel Margin="0,20" Orientation="Horizontal">
                                 <TextBlock Text="Judson White" Style="{StaticResource SubheaderTextBlockStyle}" FontSize="44"/>
@@ -64,7 +67,7 @@
                             <RowDefinition Height="50"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <TextBlock x:Uid="PartnersSilver" Text="silver partners" FontSize="42" Style="{StaticResource VLCSubHeaderStyle}" Foreground="#FFBDBDBD"/>
+                        <TextBlock x:Uid="PartnersSilver" Text="silver partners" FontSize="42" Style="{StaticResource TitleTextBlockStyle}" Foreground="#FFBDBDBD"/>
                         <StackPanel Grid.Row="1" Margin="0,15,0,0" >
                             <StackPanel Margin="0,20" Orientation="Horizontal">
                                 <TextBlock Text="Kaoxee Web" Style="{StaticResource SubheaderTextBlockStyle}" />
@@ -98,7 +101,7 @@
                                 <!-- Hard code width to 70 for proper DPI Scaling -->
                                 <Image Source="{Binding FlagSource}" Width="70" Margin="0,0,20,0"  VerticalAlignment="Center"></Image>
                                 <Grid  VerticalAlignment="Center">
-                                    <TextBlock Text="{Binding Name}" FontSize="42"  Style="{StaticResource VLCSubHeaderStyle}" Foreground="#FFBDBDBD"  VerticalAlignment="Center"/>
+                                    <TextBlock Text="{Binding Name}" FontSize="42"  Style="{StaticResource TitleTextBlockStyle}" Foreground="#FFBDBDBD"  VerticalAlignment="Center"/>
                                 </Grid>
                             </StackPanel>
                         </DataTemplate>
@@ -117,7 +120,7 @@
             </GridView.ItemContainerStyle>
             <GridView.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Foreground="White" Style="{StaticResource TitleTextStyle}" Text="{Binding}">
+                    <TextBlock Foreground="White" Style="{StaticResource TitleTextBlockStyle}" Text="{Binding}">
                     </TextBlock>
                 </DataTemplate>
             </GridView.ItemTemplate>

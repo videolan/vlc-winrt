@@ -123,6 +123,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             OpenVideo = new PlayVideoCommand();
             Videos = new ObservableCollection<VideoVM>();
             ViewedVideos = new ObservableCollection<VideoVM>();
+            NewVideos = new ObservableCollection<VideoVM>();
 #if WINDOWS_APP
             Panels.Add(new Panel("all", 0, 1, App.Current.Resources["HomePath"].ToString()));
             //Panels.Add(new Panel("favorite", 2, 0.4));

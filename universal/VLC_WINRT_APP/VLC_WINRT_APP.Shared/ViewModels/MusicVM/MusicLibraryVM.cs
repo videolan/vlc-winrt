@@ -411,10 +411,13 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                     }
                 }
                 var orderedArtists = artists.OrderBy(x => x.Name);
-                foreach (var artist in orderedArtists)
+                App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
                 {
-                    Artists.Add(artist);
-                }
+                    foreach (var artist in orderedArtists)
+                    {
+                        Artists.Add(artist);
+                    }
+                });
             }
             catch (Exception)
             {

@@ -7,9 +7,14 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
+using System;
+using Windows.ApplicationModel.Resources;
+using Windows.System;
+using Windows.UI.ApplicationSettings;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using VLC_WINRT.Views;
 using VLC_WINRT_APP.Services.RunTime;
 using VLC_WINRT_APP.Services.Interface;
 
@@ -46,7 +51,41 @@ namespace VLC_WINRT_APP.Views.MainPages
         private void MainFrame_OnNavigated(object sender, NavigationEventArgs e)
         {
             Responsive();
+            SettingsPane pane = SettingsPane.GetForCurrentView();
+            pane.CommandsRequested += SettingsCommandRequested;
+
             //AnimatedBackground.Visibility = e.SourcePageType == typeof (PlayVideo) ? Visibility.Collapsed : Visibility.Visible;
+        }
+
+        private void SettingsCommandRequested(SettingsPane sender, SettingsPaneCommandsRequestedEventArgs args)
+        {
+            ResourceLoader resourceLoader = ResourceLoader.GetForCurrentView();
+            var privacyCommand = new SettingsCommand("privacy", resourceLoader.GetString("PrivacyStatement"),
+                async h => await Launcher.LaunchUriAsync(new Uri("http://videolan.org/vlc/privacy.html")));
+
+            var specialThanks = new SettingsCommand("specialThanks", resourceLoader.GetString("SpecialThanks"),
+                command =>
+                {
+                    App.ApplicationFrame.Navigate(typeof(SpecialThanks));
+                });
+
+            var settings = new SettingsCommand("settings", resourceLoader.GetString("Settings"),
+                command =>
+                {
+                    App.ApplicationFrame.Navigate(typeof(SettingsPage));
+                });
+
+            var about = new SettingsCommand("about", "About The App",
+                command =>
+                {
+                    App.ApplicationFrame.Navigate(typeof(AboutPage));
+                });
+
+            args.Request.ApplicationCommands.Clear();
+            args.Request.ApplicationCommands.Add(privacyCommand);
+            args.Request.ApplicationCommands.Add(specialThanks);
+            args.Request.ApplicationCommands.Add(settings);
+            args.Request.ApplicationCommands.Add(about);
         }
         //public async void CreateVLCMenu()
         //{

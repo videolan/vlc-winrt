@@ -138,7 +138,9 @@
     <PRIResource Include="$(MSBuildThisFileDirectory)Strings\ja-JP\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="$(MSBuildThisFileDirectory)backers.csv" />
+    <Content Include="$(MSBuildThisFileDirectory)backers.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="$(MSBuildThisFileDirectory)App.xaml">

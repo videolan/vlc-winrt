@@ -9,6 +9,8 @@
 
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
+using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.ViewModels;
 
 namespace VLC_WINRT_APP.Views.MainPages
@@ -21,6 +23,14 @@ namespace VLC_WINRT_APP.Views.MainPages
             this.SizeChanged += OnSizeChanged;
         }
 
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            if (e.NavigationMode == NavigationMode.New && Locator.VideoLibraryVM.LoadingState == LoadingState.NotLoaded)
+            {
+                Locator.VideoLibraryVM.Initialize();
+            }
+        }
 
         private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
         {
