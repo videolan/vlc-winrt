@@ -9,10 +9,12 @@
 
 using System;
 using System.Diagnostics;
+using System.IO;
 using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.AccessCache;
 using Windows.Storage.FileProperties;
+using Windows.Storage.Streams;
 using Windows.UI.Core;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
@@ -21,7 +23,9 @@ using SQLite;
 using VLC_WINRT.Common;
 using VLC_WINRT_APP.Commands.Video;
 using VLC_WINRT_APP.Common;
+using VLC_WINRT_APP.Helpers.MusicLibrary.EchoNest;
 using VLC_WINRT_APP.Services.Interface;
+using WinRTXamlToolkit.Imaging;
 
 namespace VLC_WINRT_APP.ViewModels.VideoVM
 {
@@ -159,10 +163,31 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
         {
             try
             {
+                // If file is a mkv, we save the thumbnail in a VideoPic folder so we don't consume CPU and resources each launch
+                StorageFolder videoPic = await ApplicationData.Current.LocalFolder.CreateFolderAsync("videoPic", CreationCollisionOption.OpenIfExists);
                 if (File.FileType == ".mkv")
                 {
-                    //WriteableBitmap thumb = await _thumbsService.GetScreenshot(File);
-                    //App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => Image = thumb);
+                    StorageFile videoPicFile = await videoPic.TryGetItemAsync(Title + ".jpg") as StorageFile;
+                    if (videoPicFile != null)
+                    {
+                        IRandomAccessStream stream = await videoPicFile.OpenReadAsync();
+                        App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+                        {
+                            var img = new BitmapImage();
+                            img.SetSource(stream);
+                            Image = img;
+                        });
+                    }
+                    else
+                    {
+                        WriteableBitmap thumb = await _thumbsService.GetScreenshot(File);
+                        App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+                        {
+                            Image = thumb;
+                            thumb.SaveToFile(videoPic, Title + ".jpg");
+                        });
+                        
+                    }
                 }
                 else
                 {
