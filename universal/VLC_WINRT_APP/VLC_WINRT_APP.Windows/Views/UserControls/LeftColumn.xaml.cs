@@ -38,6 +38,9 @@ namespace VLC_WINRT_APP.Views.UserControls
             HeaderGrid.HorizontalAlignment = HorizontalAlignment.Center;
 
             PanelsListView.ItemTemplate = App.Current.Resources["SidebarIconItemTemplate"] as DataTemplate;
+
+            MiniPlayersRowDefinition.Height = new GridLength(0);
+            SeparatorRowDefinition.Height = new GridLength(0);
         }
 
         void ToNormalVisualState()
@@ -49,6 +52,9 @@ namespace VLC_WINRT_APP.Views.UserControls
             HeaderGrid.Margin = new Thickness(42,0,20,0);
             HeaderGrid.HorizontalAlignment = HorizontalAlignment.Left;
             PanelsListView.ItemTemplate = App.Current.Resources["SidebarItemTemplate"] as DataTemplate;
+
+            MiniPlayersRowDefinition.Height = new GridLength(24);
+            SeparatorRowDefinition.Height = new GridLength(315);
         }
 
         private void LargeSearchBox_SuggestionsRequested(SearchBox sender, SearchBoxSuggestionsRequestedEventArgs args)

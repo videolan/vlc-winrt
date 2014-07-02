@@ -22,8 +22,8 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="24" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="24" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="24" x:Name="SeparatorRowDefinition"/>
+            <RowDefinition Height="315" x:Name="MiniPlayersRowDefinition"/>
         </Grid.RowDefinitions>
         <Grid Background="#4CFFFFFF"
               Grid.Column="1"
@@ -68,7 +68,9 @@
                   IsItemClickEnabled="True"
                   SelectionMode="None"
                   ItemContainerStyle="{StaticResource ListViewItemContainerStyle}"
-                  ItemTemplate="{StaticResource SidebarItemTemplate}">
+                  ItemTemplate="{StaticResource SidebarItemTemplate}"
+                  ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                  ScrollViewer.VerticalScrollMode="Enabled">
             <triggers:Interactions.Triggers>
                 <triggers:EventTrigger EventName="ItemClick">
                     <triggers:InvokeCommandAction Command="{Binding GoToPanelCommand}"
@@ -77,7 +79,7 @@
             </triggers:Interactions.Triggers>
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <ItemsWrapGrid Width="340" />
+                    <StackPanel Width="340" />
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
         </ListView>
