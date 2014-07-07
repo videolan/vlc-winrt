@@ -78,7 +78,7 @@ namespace VLC_WINRT_APP.ViewModels
             }
         }
 
-        public PlayPauseCommand PlayOrPause
+        public PlayPauseCommand PlayOrPauseCommand
         {
             get { return _playOrPause; }
             set { SetProperty(ref _playOrPause, value); }
@@ -167,7 +167,7 @@ namespace VLC_WINRT_APP.ViewModels
             _displayAlwaysOnRequest = new DisplayRequest();
             _sliderPositionTimer = new DispatcherTimer();
             _sliderPositionTimer.Tick += FirePositionUpdate;
-            _sliderPositionTimer.Interval = TimeSpan.FromMilliseconds(500);
+            _sliderPositionTimer.Interval = TimeSpan.FromMilliseconds(1000);
 
             _skipAhead = new ActionCommand(() => _mediaService.SkipAhead());
             _skipBack = new ActionCommand(() => _mediaService.SkipBack());
@@ -216,7 +216,7 @@ namespace VLC_WINRT_APP.ViewModels
             _mediaService.Stop();
             IsPlaying = false;
             _elapsedTime = TimeSpan.Zero;
-            _timeTotal = TimeSpan.Zero;
+            TimeTotal = TimeSpan.Zero;
         }
 
         protected virtual void OnPlaybackStarting()

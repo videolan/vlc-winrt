@@ -12,7 +12,7 @@
     <StackPanel Margin="42,0,20,24">
         <TextBlock Text="{Binding CurrentPlayingArtist.Name}"
                    Style="{StaticResource SubheaderTextBlockStyle}" />
-        <TextBlock Text="{Binding CurrentPlayingArtist.CurrentAlbumItem.CurrentTrack.Name}"
+        <TextBlock Text="{Binding CurrentTrackItem.Name}"
                    Style="{StaticResource SubheaderTextBlockStyle}"
                    FontSize="18" />
         <Grid Margin="0,12,0,0">

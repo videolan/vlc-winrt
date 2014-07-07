@@ -32,6 +32,7 @@ namespace VLC_WINRT_APP.Services.Interface
         void SkipBack();
 
         float GetPosition();
+        float GetLength();
         void SetPosition(float position);
 
         event EventHandler MediaEnded;

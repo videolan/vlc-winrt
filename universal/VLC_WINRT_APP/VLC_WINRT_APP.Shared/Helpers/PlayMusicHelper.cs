@@ -18,6 +18,8 @@ namespace VLC_WINRT_APP.Helpers
             {
                 Locator.MusicPlayerVM.CurrentTrack =
                     Locator.MusicPlayerVM.TrackCollection.IndexOf(track);
+                int index = Locator.MusicPlayerVM.CurrentPlayingArtist.CurrentAlbumItem.Tracks.IndexOf(track);
+                Locator.MusicPlayerVM.CurrentPlayingArtist.CurrentAlbumItem.CurrentTrackPosition = index;
             }
             await Locator.MusicPlayerVM.Play();
         }
@@ -26,6 +28,14 @@ namespace VLC_WINRT_APP.Helpers
         {
             Locator.MusicPlayerVM.ResetCollection();
             Locator.MusicPlayerVM.AddTrack(album.Tracks.ToList());
+            Locator.MusicPlayerVM.CurrentTrack = 0;
+            Locator.MusicPlayerVM.CurrentPlayingArtist = Locator.MusicLibraryVM.Artists.FirstOrDefault(x => x.Name == album.Artist);
+            if (Locator.MusicPlayerVM.CurrentPlayingArtist != null)
+            {
+                Locator.MusicPlayerVM.CurrentPlayingArtist.CurrentAlbumIndex =
+                    Locator.MusicPlayerVM.CurrentPlayingArtist.Albums.IndexOf(album);
+                Locator.MusicPlayerVM.CurrentPlayingArtist.CurrentAlbumItem.CurrentTrackPosition = 0;
+            }
             await Locator.MusicPlayerVM.Play();
         }
     }

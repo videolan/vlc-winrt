@@ -278,6 +278,11 @@ namespace VLC_WINRT_APP.Services.RunTime
             return _vlcService.GetPosition().Result;
         }
 
+        public float GetLength()
+        {
+            return _vlcService.GetLength().Result;
+        }
+
         public void SetPosition(float position)
         {
             _vlcService.Seek(position);

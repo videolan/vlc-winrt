@@ -18,8 +18,10 @@ using Windows.Storage.AccessCache;
 using Windows.UI.Core;
 using Windows.UI.Notifications;
 using Windows.UI.Popups;
+using Windows.UI.Xaml;
 using VLC_WINRT.Common;
 using VLC_WINRT_APP.Helpers;
+using VLC_WINRT_APP.Helpers.MusicLibrary.Deezer;
 using VLC_WINRT_APP.Services.Interface;
 using VLC_WINRT_APP.Services.RunTime;
 using System.Collections.ObjectModel;
@@ -79,8 +81,24 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         public int CurrentTrack
         {
             get { return _currentTrack; }
-            set { SetProperty(ref _currentTrack, value); }
+            set
+            {
+                SetProperty(ref _currentTrack, value);
+                OnPropertyChanged("CurrentTrack");
+                OnPropertyChanged("CurrentTrackItem");
+            }
         }
+
+        public MusicLibraryVM.TrackItem CurrentTrackItem
+        {
+            get
+            {
+                if (TrackCollection != null && TrackCollection.Any())
+                    return TrackCollection[CurrentTrack];
+                else return null;
+            }
+        }
+
         #endregion
 
         #region public fields
@@ -90,9 +108,6 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             set { SetProperty(ref _tracksCollection, value); }
         }
         #endregion
-
-
-
 
 
         public MusicPlayerVM(IMediaService mediaService, VlcService mediaPlayerService)
@@ -283,19 +298,25 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             //    MediaControl.PreviousTrackPressed -= MediaControl_PreviousTrackPressed;
         }
 
-        public void SetActiveMusicInfo(string token, MusicLibraryVM.TrackItem track)
+        public async void SetActiveMusicInfo(string token, MusicLibraryVM.TrackItem track)
         {
             _fileToken = token;
             _mrl = "file://" + token;
-            CurrentPlayingArtist = Locator.MusicLibraryVM.Artists.FirstOrDefault(x => x.Name == track.ArtistName);
-            if (CurrentPlayingArtist != null)
-                CurrentPlayingArtist.CurrentAlbumIndex = CurrentPlayingArtist.Albums.IndexOf(CurrentPlayingArtist.Albums.FirstOrDefault(x => x.Name == track.AlbumName));
             _mediaService.SetMediaFile(_mrl, isAudioMedia: true);
-            OnPropertyChanged("TimeTotal");
+
 #if WINDOWS_APP
             UpdateTileHelper.UpdateMediumTileWithMusicInfo();
 #endif
             _mediaService.Play();
+
+            Window.Current.Dispatcher.RunAsync(CoreDispatcherPriority.Low, async () =>
+            {
+                OnPropertyChanged("CanGoPrevious");
+                OnPropertyChanged("CanGoNext");
+                await Task.Delay(500);
+                TimeTotal = TimeSpan.FromMilliseconds(_mediaService.GetLength());
+                OnPropertyChanged("TimeTotal");
+            });
         }
 
         public override void CleanViewModel()

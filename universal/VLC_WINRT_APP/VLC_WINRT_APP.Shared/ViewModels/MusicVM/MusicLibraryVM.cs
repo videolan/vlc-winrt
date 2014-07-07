@@ -650,7 +650,11 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             public int CurrentTrackPosition
             {
                 get { return _currentTrackPosition; }
-                set { SetProperty(ref _currentTrackPosition, value); }
+                set
+                {
+                    SetProperty(ref _currentTrackPosition, value); 
+                    OnPropertyChanged("CurrentTrackPosition");
+                }
             }
 
             public bool Favorite
@@ -686,16 +690,6 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             {
                 get { return _year; }
                 set { SetProperty(ref _year, value); }
-            }
-
-            [Ignore]
-            public TrackItem CurrentTrack
-            {
-                get { return _trackItems[CurrentTrackPosition]; }
-                set
-                {
-                    CurrentTrackPosition = (value == null) ? 0 : _trackItems.IndexOf(value);
-                }
             }
 
             public void NextTrack()
