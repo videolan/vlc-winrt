@@ -7,6 +7,7 @@ using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.ViewModels.MusicVM;
 using VLC_WINRT_APP.ViewModels.VideoVM;
+using VLC_WINRT_APP.Views.MusicPages;
 
 namespace VLC_WINRT_APP.Views.UserControls
 {
@@ -53,12 +54,12 @@ namespace VLC_WINRT_APP.Views.UserControls
             LargeSearchBox.Visibility = Visibility.Visible;
             LittleSearchBox.Visibility = Visibility.Collapsed;
 
-            HeaderGrid.Margin = new Thickness(42,0,20,0);
+            HeaderGrid.Margin = new Thickness(42, 0, 20, 0);
             HeaderGrid.HorizontalAlignment = HorizontalAlignment.Left;
             PanelsListView.ItemTemplate = App.Current.Resources["SidebarItemTemplate"] as DataTemplate;
 
-            MiniPlayersRowDefinition.Height = new GridLength(24);
-            SeparatorRowDefinition.Height = new GridLength(315);
+            MiniPlayersRowDefinition.Height = new GridLength(315);
+            SeparatorRowDefinition.Height = new GridLength(24);
         }
 
         private void LargeSearchBox_SuggestionsRequested(SearchBox sender, SearchBoxSuggestionsRequestedEventArgs args)
@@ -92,6 +93,10 @@ namespace VLC_WINRT_APP.Views.UserControls
                 case "artist":
                     MusicLibraryVM.ArtistItem artistItem =
                         await MusicLibraryVM._artistDataRepository.LoadArtist(int.Parse(query));
+#if WINDOWS_APP
+                    App.ApplicationFrame.Navigate(typeof(ArtistPage));
+#endif
+                    Locator.MusicLibraryVM.CurrentArtist = artistItem;
                     break;
                 case "video":
                     VideoVM vm = Locator.VideoLibraryVM.Videos.FirstOrDefault(x => x.Title == query);
