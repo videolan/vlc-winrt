@@ -70,7 +70,7 @@ namespace VLC_WINRT_APP.Views.UserControls
         {
         }
 
-        private async Task LargeSearchBox_ResultSuggestionChosen(SearchBox sender, SearchBoxResultSuggestionChosenEventArgs args)
+        private async void LargeSearchBox_OnResultSuggestionChosen(SearchBox sender, SearchBoxResultSuggestionChosenEventArgs args)
         {
             int separatorIndex = args.Tag.IndexOf("://");
             int separatorEndIndex = separatorIndex + 3;

@@ -54,7 +54,7 @@
                    PlaceholderText="Search"
                    SuggestionsRequested="LargeSearchBox_SuggestionsRequested"
                    QuerySubmitted="LargeSearchBox_QuerySubmitted"
-                   ResultSuggestionChosen="LargeSearchBox_ResultSuggestionChosen" />
+                   ResultSuggestionChosen="LargeSearchBox_OnResultSuggestionChosen" />
         <Button Grid.Row="3"
                 x:Name="LittleSearchBox"
                 Content=""
