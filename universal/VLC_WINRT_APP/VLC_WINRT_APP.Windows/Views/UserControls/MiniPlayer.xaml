@@ -85,6 +85,13 @@
             <Button Style="{StaticResource TextBlockButtonStyle}"
                     Grid.Column="3"
                     HorizontalAlignment="Right">
+                <Button.Flyout>
+                    <Flyout>
+                        <Slider Orientation="Vertical"
+                                Height="100"
+                                Style="{StaticResource VLCSlider}" />
+                    </Flyout>
+                </Button.Flyout>
                 <StackPanel Orientation="Horizontal">
                     <SymbolIcon Symbol="Volume" />
                     <TextBlock Text="50"

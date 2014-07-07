@@ -325,6 +325,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             TrackCollection.Clear();
             IsRunning = false;
             CurrentPlayingArtist = null;
+            GC.Collect();
         }
     }
 }
