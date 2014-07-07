@@ -35,8 +35,7 @@ namespace VLC_WINRT_APP.DataRepository
                await connection.QueryAsync<MusicLibraryVM.ArtistItem>(
                      "select * from ArtistItem"));
         }
-        public
-    async Task<MusicLibraryVM.ArtistItem> LoadViaArtistName(string artistName)
+        public async Task<MusicLibraryVM.ArtistItem> LoadViaArtistName(string artistName)
         {
             var connection = new SQLiteAsyncConnection(_dbPath);
             var query = connection.Table<MusicLibraryVM.ArtistItem>().Where(x => x.Name.Equals(artistName));
@@ -54,6 +53,14 @@ namespace VLC_WINRT_APP.DataRepository
         {
             var connection = new SQLiteAsyncConnection(_dbPath);
             return connection.InsertAsync(artist);
+        }
+
+        public async Task<MusicLibraryVM.ArtistItem> LoadArtist(int artistId)
+        {
+            var connection = new SQLiteAsyncConnection(_dbPath);
+            var query = connection.Table<MusicLibraryVM.ArtistItem>().Where(x => x.Id.Equals(artistId));
+            var result = await query.ToListAsync();
+            return result.FirstOrDefault();
         }
     }
 }

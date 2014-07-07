@@ -4,6 +4,7 @@ using System.Text;
 using Windows.Storage.AccessCache;
 using Windows.UI.Xaml.Controls;
 using VLC_WINRT.Common;
+using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.ViewModels.VideoVM;
 using VLC_WINRT_APP.Views.VideoPages;
@@ -27,13 +28,7 @@ namespace VLC_WINRT_APP.Commands.Video
 #endif
             ItemClickEventArgs args = parameter as ItemClickEventArgs;
             VideoVM videoVm = args.ClickedItem as VideoVM;
-            if (string.IsNullOrEmpty(videoVm.Token))
-            {
-                string token = StorageApplicationPermissions.FutureAccessList.Add(videoVm.File);
-                videoVm.Token = token;
-            }
-            Locator.VideoVm.CurrentVideo = videoVm;
-            Locator.VideoVm.SetActiveVideoInfo(videoVm.Token);
+            videoVm.Play();
         }
     }
 }

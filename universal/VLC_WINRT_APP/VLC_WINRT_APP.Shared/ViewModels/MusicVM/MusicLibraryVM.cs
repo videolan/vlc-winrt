@@ -37,6 +37,10 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 {
     public class MusicLibraryVM : BindableBase
     {
+        public static ArtistDataRepository _artistDataRepository = new ArtistDataRepository();
+        public static TrackDataRepository _trackDataRepository = new TrackDataRepository();
+        public static AlbumDataRepository _albumDataRepository = new AlbumDataRepository();
+
         #region private fields
 #if WINDOWS_APP
         private ObservableCollection<Panel> _panels = new ObservableCollection<Panel>();
@@ -53,9 +57,6 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         private AlbumClickedCommand _albumClickedCommand;
         private ArtistClickedCommand _artistClickedCommand;
         private TrackClickedCommand _trackClickedCommand;
-        private static ArtistDataRepository _artistDataRepository = new ArtistDataRepository();
-        private static TrackDataRepository _trackDataRepository = new TrackDataRepository();
-        private static AlbumDataRepository _albumDataRepository = new AlbumDataRepository();
         private ArtistItem _currentArtist;
         private bool _isLoaded = false;
         private bool _isBusy = false;

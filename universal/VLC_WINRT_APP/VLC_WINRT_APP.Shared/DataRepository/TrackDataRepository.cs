@@ -28,8 +28,15 @@ namespace VLC_WINRT_APP.DataRepository
             }
         }
 
-        public
-    async Task<MusicLibraryVM.TrackItem> LoadTrack(int artistId, int albumId, string trackName)
+        public async Task<MusicLibraryVM.TrackItem> LoadTrack(int trackId)
+        {
+            var connection = new SQLiteAsyncConnection(_dbPath);
+            var query = connection.Table<MusicLibraryVM.TrackItem>().Where(x => x.Id.Equals(trackId));
+            var result = await query.ToListAsync();
+            return result.FirstOrDefault();
+        }
+
+        public async Task<MusicLibraryVM.TrackItem> LoadTrack(int artistId, int albumId, string trackName)
         {
             var connection = new SQLiteAsyncConnection(_dbPath);
             var query = connection.Table<MusicLibraryVM.TrackItem>().Where(x => x.Name.Equals(trackName)).Where(x => x.ArtistId == artistId).Where(x => x.AlbumId == albumId);

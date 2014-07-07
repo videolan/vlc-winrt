@@ -14,6 +14,7 @@ using VLC_WINRT.Common;
 using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.ViewModels.MusicVM;
+using VLC_WINRT_APP.Views.MusicPages;
 
 namespace VLC_WINRT_APP.Commands.Music
 {
@@ -21,12 +22,13 @@ namespace VLC_WINRT_APP.Commands.Music
     {
         public override async void Execute(object parameter)
         {
+            if (App.ApplicationFrame.CurrentSourcePageType != typeof(MusicPlayerPage))
+                App.ApplicationFrame.Navigate(typeof(MusicPlayerPage));
+            Locator.MusicLibraryVM.IsAlbumPageShown = false;
             try
             {
                 MusicLibraryVM.AlbumItem album = parameter as MusicLibraryVM.AlbumItem;
-                Locator.MusicPlayerVM.ResetCollection();
-                Locator.MusicPlayerVM.AddTrack(album.Tracks.ToList());
-                await Locator.MusicPlayerVM.Play();
+                album.Play();
             }
             catch (FileNotFoundException exception)
             {
@@ -34,27 +36,6 @@ namespace VLC_WINRT_APP.Commands.Music
                 Debug.WriteLine("It seems that file doesn't exist anymore. Needs to rebuild Music Library");
                 return;
             }
-
-        var frame = App.ApplicationFrame;
-            //#if NETFX_CORE
-            //var page = frame.Content as MainPage;
-            //#endif
-            //#if WINDOWS_PHONE_APP
-            //var page = frame.Content as VLC_WINPRT.Views.MainPage;
-            //#endif
-            //if (page != null)
-            //{
-            //    var sB = page.Resources["FadeOutPage"] as Storyboard;
-            //    if (sB != null)
-            //    {
-            //        #if NETFX_CORE
-            //        await sB.BeginAsync();
-            //        App.ApplicationFrame.Navigate(typeof (ArtistPage));
-            //        #endif
-
-
-            //    }
-            //}
         }
     }
 }

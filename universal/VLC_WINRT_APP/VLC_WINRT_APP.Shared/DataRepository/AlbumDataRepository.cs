@@ -27,8 +27,7 @@ namespace VLC_WINRT_APP.DataRepository
             }
         }
 
-        public
-            async Task<ObservableCollection<MusicLibraryVM.AlbumItem>> LoadAlbumsFromId(int artistId)
+        public async Task<ObservableCollection<MusicLibraryVM.AlbumItem>> LoadAlbumsFromId(int artistId)
         {
             var connection = new SQLiteAsyncConnection(_dbPath);
 
@@ -38,11 +37,18 @@ namespace VLC_WINRT_APP.DataRepository
 
         }
 
-        public
-    async Task<MusicLibraryVM.AlbumItem> LoadAlbumViaName(int artistId, string albumName)
+        public async Task<MusicLibraryVM.AlbumItem> LoadAlbumViaName(int artistId, string albumName)
         {
             var connection = new SQLiteAsyncConnection(_dbPath);
             var query = connection.Table<MusicLibraryVM.AlbumItem>().Where(x => x.Name.Equals(albumName)).Where(x => x.ArtistId == artistId);
+            var result = await query.ToListAsync();
+            return result.FirstOrDefault();
+        }
+
+        public async Task<MusicLibraryVM.AlbumItem> LoadAlbum(int albumId)
+        {
+            var connection = new SQLiteAsyncConnection(_dbPath);
+            var query = connection.Table<MusicLibraryVM.AlbumItem>().Where(x => x.Id.Equals(albumId));
             var result = await query.ToListAsync();
             return result.FirstOrDefault();
         }

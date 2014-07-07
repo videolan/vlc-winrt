@@ -1,8 +1,12 @@
-﻿using System.Diagnostics;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using VLC_WINRT_APP.Helpers;
+using VLC_WINRT_APP.ViewModels;
+using VLC_WINRT_APP.ViewModels.MusicVM;
+using VLC_WINRT_APP.ViewModels.VideoVM;
 
 namespace VLC_WINRT_APP.Views.UserControls
 {
@@ -64,7 +68,36 @@ namespace VLC_WINRT_APP.Views.UserControls
 
         private void LargeSearchBox_QuerySubmitted(SearchBox sender, SearchBoxQuerySubmittedEventArgs args)
         {
-            Debug.WriteLine("lol");
+        }
+
+        private async Task LargeSearchBox_ResultSuggestionChosen(SearchBox sender, SearchBoxResultSuggestionChosenEventArgs args)
+        {
+            int separatorIndex = args.Tag.IndexOf("://");
+            int separatorEndIndex = separatorIndex + 3;
+            string type = args.Tag.Remove(separatorIndex);
+            string query = args.Tag.Remove(0, separatorEndIndex);
+            switch (type)
+            {
+                case "track":
+                    MusicLibraryVM.TrackItem trackItem = await MusicLibraryVM._trackDataRepository.LoadTrack(int.Parse(query));
+                    if (trackItem != null)
+                        trackItem.Play();
+                    break;
+                case "album":
+                    MusicLibraryVM.AlbumItem albumItem =
+                        await MusicLibraryVM._albumDataRepository.LoadAlbum(int.Parse(query));
+                    if (albumItem != null)
+                        albumItem.Play();
+                    break;
+                case "artist":
+                    MusicLibraryVM.ArtistItem artistItem =
+                        await MusicLibraryVM._artistDataRepository.LoadArtist(int.Parse(query));
+                    break;
+                case "video":
+                    VideoVM vm = Locator.VideoLibraryVM.Videos.FirstOrDefault(x => x.Title == query);
+                    vm.Play();
+                    break;
+            }
         }
     }
 }

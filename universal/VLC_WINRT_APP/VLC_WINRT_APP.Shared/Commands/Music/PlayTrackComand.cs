@@ -9,6 +9,7 @@
 
 using Windows.UI.Xaml.Controls;
 using VLC_WINRT.Common;
+using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.ViewModels.MusicVM;
 using VLC_WINRT_APP.Views.MusicPages;
@@ -35,17 +36,7 @@ namespace VLC_WINRT_APP.Commands.Music
             //    track = args.AddedItems.First() as MusicLibraryVM.TrackItem;
             //}
 #endif
-            if (track != null && !Locator.MusicPlayerVM.TrackCollection.Contains(track))
-            {
-                Locator.MusicPlayerVM.ResetCollection();
-                Locator.MusicPlayerVM.AddTrack(track);
-            }
-            else
-            {
-                Locator.MusicPlayerVM.CurrentTrack =
-                    Locator.MusicPlayerVM.TrackCollection.IndexOf(track);
-            }
-            await Locator.MusicPlayerVM.Play();
+            track.Play();
         }
     }
 }
