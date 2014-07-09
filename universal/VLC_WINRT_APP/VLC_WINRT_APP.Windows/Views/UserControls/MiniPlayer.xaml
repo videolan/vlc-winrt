@@ -8,7 +8,6 @@
              mc:Ignorable="d"
              DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}"
              Visibility="{Binding IsRunning, Converter={StaticResource BooleanToVisibilityConverter}}">
-
     <StackPanel Margin="42,0,20,24">
         <TextBlock Text="{Binding CurrentPlayingArtist.Name}"
                    Style="{StaticResource SubheaderTextBlockStyle}" />
