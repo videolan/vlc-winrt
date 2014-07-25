@@ -15,7 +15,7 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="VLC_WINRT_APP.Windows.App">
-      <m2:VisualElements DisplayName="VLC_WINRT_APP.Windows" Square150x150Logo="Assets\Logo.png" Square30x30Logo="Assets\SmallLogo.png" Description="VLC_WINRT_APP.Windows" ForegroundText="light" BackgroundColor="#464646">
+      <m2:VisualElements DisplayName="VLC for Windows 8.1" Square150x150Logo="Assets\Logo.png" Square30x30Logo="Assets\SmallLogo.png" Description="VLC for the Windows Store experience" ForegroundText="light" BackgroundColor="#464646" ToastCapable="true">
         <m2:SplashScreen Image="Assets\SplashScreen.png" />
         <m2:ApplicationView MinWidth="width320" />
       </m2:VisualElements>
