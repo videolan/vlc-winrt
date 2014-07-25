@@ -45,31 +45,5 @@ namespace VLC_WINRT_APP.Views.MainPages
                 FirstRowDefinition.Height = new GridLength(42);
             }
         }
-
-        private void SemanticZoom_OnViewChangeCompleted(object sender, SemanticZoomViewChangedEventArgs e)
-        {
-            Locator.VideoLibraryVM.ExecuteSemanticZoom(sender as SemanticZoom, VideoGroupedByAlphaKey);
-        }
-
-        private void Panels_OnItemClick(object sender, ItemClickEventArgs e)
-        {
-            Model.Panel panel = e.ClickedItem as Model.Panel;
-            foreach (var panel1 in Locator.VideoLibraryVM.Panels)
-            {
-                panel1.Opacity = 0.4;
-            }
-            panel.Opacity = 1;
-            switch (panel.Title)
-            {
-                case "all":
-                    AllVideosGrid.Visibility = Visibility.Visible;
-                    NewVideosListView.Visibility = Visibility.Collapsed;
-                    break;
-                case "new":
-                    AllVideosGrid.Visibility = Visibility.Collapsed;
-                    NewVideosListView.Visibility = Visibility.Visible;
-                    break;
-            }
-        }
     }
 }
