@@ -73,7 +73,7 @@
                         <Button Style="{StaticResource TextButtonStyle}"
                                 Grid.Column="1"
                                 HorizontalAlignment="Center"
-                                Command="{Binding PlayOrPause}"
+                                Command="{Binding PlayOrPauseCommand}"
                                 Visibility="{Binding IsPlaying, Converter={StaticResource NegatedBooleanToVisibilityConverter}}">
                             <Button.Content>
                                 <TextBlock Text=""
@@ -84,7 +84,7 @@
                         <Button Style="{StaticResource TextButtonStyle}"
                                 Grid.Column="1"
                                 HorizontalAlignment="Center"
-                                Command="{Binding PlayOrPause}"
+                                Command="{Binding PlayOrPauseCommand}"
                                 Visibility="{Binding IsPlaying, Converter={StaticResource BooleanToVisibilityConverter}}">
                             <Button.Content>
                                 <TextBlock Text=""
