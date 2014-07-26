@@ -14,25 +14,16 @@
                 <TextBlock Text="{Binding File.DisplayType}"
                            Margin="-1,12,0,0" />
                 <TextBlock Text="{Binding File.Path}"
-                           Margin="-1,12,0,0" 
-                           TextWrapping="Wrap"/>
+                           Margin="-1,12,0,0"
+                           TextWrapping="Wrap" />
                 <Grid Background="#4CFFFFFF"
-                      Height="1" Margin="12"/>
-                <TextBlock >
-                    <Run Text="Duration"/>
-                    <Run Text="{Binding Duration, Converter={StaticResource TimeSpanShortStringConverter}}"/>
+                      Height="1"
+                      Margin="12" />
+                <TextBlock>
+                    <Run Text="Duration" />
+                    <Run Text="{Binding Duration, Converter={StaticResource TimeSpanShortStringConverter}}" />
                 </TextBlock>
             </StackPanel>
-            <Flyout.FlyoutPresenterStyle>
-                <Style TargetType="FlyoutPresenter">
-                    <Setter Property="BorderThickness"
-                            Value="0" />
-                    <Setter Property="RequestedTheme"
-                            Value="Dark" />
-                    <Setter Property="Background"
-                            Value="#da000000" />
-                </Style>
-            </Flyout.FlyoutPresenterStyle>
         </Flyout>
     </UserControl.Resources>
     <Grid MinHeight="162"

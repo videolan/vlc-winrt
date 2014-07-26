@@ -182,7 +182,7 @@ namespace VLC_WINRT_APP.Services.RunTime
             trackItem.ArtistName = "TestArtist";
             if (Locator.MusicPlayerVM.TrackCollection == null)
                 Locator.MusicPlayerVM.TrackCollection = new ObservableCollection<MusicLibraryVM.TrackItem>();
-            
+
             if (trackItem != null && !Locator.MusicPlayerVM.TrackCollection.Contains(trackItem))
             {
                 Locator.MusicPlayerVM.ResetCollection();
@@ -288,6 +288,16 @@ namespace VLC_WINRT_APP.Services.RunTime
             _vlcService.Seek(position);
         }
 
+        public void SetVolume(int volume)
+        {
+            _vlcService.SetVolume(volume);
+        }
+
+        public int GetVolume()
+        {
+            return _vlcService.GetVolume().Result;
+        }
+
         private async void MediaControl_PausePressed(object sender, object e)
         {
             await DispatchHelper.InvokeAsync(() =>
@@ -370,7 +380,7 @@ namespace VLC_WINRT_APP.Services.RunTime
             }
             else
             {
-                IsBackground = false;    
+                IsBackground = false;
 
                 if (!IsPlaying)
                     return;
@@ -421,7 +431,6 @@ namespace VLC_WINRT_APP.Services.RunTime
 
         public event EventHandler MediaEnded;
         public event EventHandler<VlcService.MediaPlayerState> StatusChanged;
-
 
     }
 }

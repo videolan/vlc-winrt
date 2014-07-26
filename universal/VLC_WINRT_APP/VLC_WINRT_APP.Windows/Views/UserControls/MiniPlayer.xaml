@@ -89,7 +89,9 @@
                         <Slider Orientation="Vertical"
                                 Height="120"
                                 Style="{StaticResource VLCSlider}" 
-                                Value="{Binding }"/>
+                                Value="{Binding Volume, Mode=TwoWay}"
+                                Maximum="100"
+                                Minimum="0"/>
                     </Flyout>
                 </Button.Flyout>
                 <StackPanel Orientation="Horizontal">

@@ -316,5 +316,28 @@ namespace VLC_WINRT_APP.Services.RunTime
                 _vlcPlayer.SetRate(rate);
             }
         }
+
+        public async Task SetVolume(int volume)
+        {
+            if (_vlcPlayer == null || _vlcInitializeTask == null)
+                return;
+            await _vlcInitializeTask;
+            lock (_controlLock)
+            {
+                _vlcPlayer.SetVolume(volume);
+            }
+        }
+
+        public async Task<int> GetVolume()
+        {
+            if (_vlcPlayer == null || _vlcInitializeTask == null)
+                return 0;
+            await _vlcInitializeTask;
+            lock (_controlLock)
+            {
+                int vol = _vlcPlayer.GetVolume();
+                return vol;
+            }
+        }
     }
 }

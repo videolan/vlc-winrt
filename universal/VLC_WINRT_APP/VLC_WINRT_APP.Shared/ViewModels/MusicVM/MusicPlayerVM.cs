@@ -46,6 +46,13 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         #endregion
 
         #region public props
+
+        public int Volume
+        {
+            get { return base._mediaService.GetVolume(); }
+            set { _mediaService.SetVolume(value); }
+        }
+
         public SystemMediaTransportControls MediaControl;
         public MusicLibraryVM.ArtistItem CurrentPlayingArtist
         {
@@ -240,7 +247,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             //MediaControl.IsPlaying = true;
             //MediaControl.ArtistName = trackItem.ArtistName ?? resourceLoader.GetString("UnknownArtist");
             //MediaControl.TrackName = trackItem.Name ?? resourceLoader.GetString("UnknownTrack");
-            
+
             try
             {
                 //MediaControl.AlbumArt = new Uri(Locator.MusicPlayerVM.CurrentPlayingArtist.CurrentAlbumItem.Picture);

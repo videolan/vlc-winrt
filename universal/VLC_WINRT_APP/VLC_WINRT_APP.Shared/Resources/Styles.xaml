@@ -730,7 +730,7 @@
         <Setter Property="BorderThickness"
                 Value="{ThemeResource SliderBorderThemeThickness}" />
         <Setter Property="Foreground"
-                Value="{ThemeResource SliderTrackDecreaseBackgroundThemeBrush}" />
+                Value="#606060" />
         <Setter Property="FontFamily"
                 Value="{ThemeResource ContentControlThemeFontFamily}" />
         <Setter Property="FontSize"
@@ -783,7 +783,7 @@
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill"
                                                                        Storyboard.TargetName="VerticalDecreaseRect">
                                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SliderTrackDecreasePressedBackgroundThemeBrush}" />
+                                                                    Value="{StaticResource MainColor}" />
                                         </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill"
                                                                        Storyboard.TargetName="VerticalTrackRect">
@@ -837,7 +837,7 @@
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill"
                                                                        Storyboard.TargetName="VerticalDecreaseRect">
                                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SliderTrackDecreaseDisabledBackgroundThemeBrush}" />
+                                                                    Value="{StaticResource MainColor}" />
                                         </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill"
                                                                        Storyboard.TargetName="VerticalTrackRect">
@@ -901,7 +901,7 @@
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill"
                                                                        Storyboard.TargetName="HorizontalDecreaseRect">
                                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SliderTrackDecreasePointerOverBackgroundThemeBrush}" />
+                                                                    Value="{StaticResource MainColor}" />
                                         </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill"
                                                                        Storyboard.TargetName="HorizontalTrackRect">
@@ -911,7 +911,7 @@
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill"
                                                                        Storyboard.TargetName="VerticalDecreaseRect">
                                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SliderTrackDecreasePointerOverBackgroundThemeBrush}" />
+                                                                    Value="{StaticResource MainColor}" />
                                         </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill"
                                                                        Storyboard.TargetName="VerticalTrackRect">
@@ -2488,5 +2488,13 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+    <Style TargetType="FlyoutPresenter">
+        <Setter Property="BorderThickness"
+                Value="0" />
+        <Setter Property="RequestedTheme"
+                Value="Dark" />
+        <Setter Property="Background"
+                Value="#da000000" />
     </Style>
 </ResourceDictionary>
