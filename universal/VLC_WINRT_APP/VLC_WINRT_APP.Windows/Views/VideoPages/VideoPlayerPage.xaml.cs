@@ -25,6 +25,7 @@ namespace VLC_WINRT_APP.Views.VideoPages
     public sealed partial class VideoPlayerPage : Page
     {
         private bool isVisible = true;
+        private bool needDoubleTapToAct = false;
         private TimeSpan _fadeDuration = TimeSpan.FromMilliseconds(350);
         DispatcherTimer timer;
 
@@ -89,7 +90,7 @@ namespace VLC_WINRT_APP.Views.VideoPages
 
         //private void IncreaseRate_Click(object sender, RoutedEventArgs e)
         //{
-            //rate = MathHelper.Clamp(0.5f, 2.0f, rate + 0.5f);
+        //rate = MathHelper.Clamp(0.5f, 2.0f, rate + 0.5f);
         //    SetRate();
         //}
 
@@ -106,8 +107,15 @@ namespace VLC_WINRT_APP.Views.VideoPages
 
         private void VideoGrid_Tapped(object sender, TappedRoutedEventArgs e)
         {
+            if (!needDoubleTapToAct)
+                DisplayOrHide();
+        }
+
+        private void VideoGrid_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
+        {
             DisplayOrHide();
         }
+
         private void TimerOnTick(object sender, object o)
         {
             DisplayOrHide();
@@ -137,8 +145,14 @@ namespace VLC_WINRT_APP.Views.VideoPages
 
         private void ControlsGrid_PointerMoved(object sender, PointerRoutedEventArgs e)
         {
-            if(timer.IsEnabled)
+            if (timer.IsEnabled)
                 timer.Stop();
+        }
+
+        private void EnableDoubleTapToShowCommands_Click(object sender, RoutedEventArgs e)
+        {
+            needDoubleTapToAct = !needDoubleTapToAct;
+            timer.Start();
         }
     }
 }

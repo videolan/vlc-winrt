@@ -46,7 +46,8 @@
         </StackPanel>
         <Grid Background="Transparent"
               Grid.Row="1"
-              Tapped="VideoGrid_Tapped" />
+              Tapped="VideoGrid_Tapped"
+              DoubleTapped="VideoGrid_DoubleTapped"/>
         <Grid Grid.Row="2"
               x:Name="FooterGrid"
               VerticalAlignment="Bottom"
@@ -60,7 +61,8 @@
                 <AppBarToggleButton Icon="Permissions"
                                     IsCompact="True"
                                     Margin="42,0,0,0"
-                                    VerticalAlignment="Center" />
+                                    VerticalAlignment="Center" 
+                                    Click="EnableDoubleTapToShowCommands_Click"/>
                 <AppBarButton Icon="More"
                               HorizontalAlignment="Right"
                               IsCompact="True"
