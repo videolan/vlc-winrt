@@ -42,7 +42,6 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
         private ObservableCollection<VideoVM> _videos;
         private ObservableCollection<VideoVM> _viewedVideos;
         private ObservableCollection<VideoVM> _newVideos;
-        private IEnumerable<IGrouping<char, VideoVM>> _mediaGroupedByAlphabet;
         #endregion
 
         #region private props
@@ -84,12 +83,6 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
         {
             get { return _newVideos; }
             set { SetProperty(ref _newVideos, value); }
-        }
-
-        public IEnumerable<IGrouping<char, VideoVM>> MediaGroupedByAlphabet
-        {
-            get { return _mediaGroupedByAlphabet; }
-            set { SetProperty(ref _mediaGroupedByAlphabet, value); }
         }
         #endregion
 
@@ -178,17 +171,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
                         }
 
                         // Get back to UI thread
-                        await DispatchHelper.InvokeAsync(() =>
-                        {
-                            Videos.Add(mediaVM);
-                            //int i = new Random().Next(0, files.Count - 1);
-                            //if (j < 5 && i <= (files.Count - 1) / 2)
-                            //{
-                            //    MediaRandom.Add(mediaVM);
-                            //    j++;
-                            //}
-                            MediaGroupedByAlphabet = Videos.OrderBy(x => x.AlphaKey).GroupBy(x => x.AlphaKey);
-                        });
+                        await DispatchHelper.InvokeAsync(() => Videos.Add(mediaVM));
                     }
                 }
                 catch (Exception exception)

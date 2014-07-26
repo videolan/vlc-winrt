@@ -46,7 +46,6 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         private ObservableCollection<Panel> _panels = new ObservableCollection<Panel>();
 #endif
         private ObservableCollection<ArtistItem> _artistses = new ObservableCollection<ArtistItem>();
-        private IEnumerable<IGrouping<string, ArtistItem>> _artistsByAlphaKey;
         private ObservableCollection<string> _albumsCover = new ObservableCollection<string>();
         private ObservableCollection<TrackItem> _trackses = new ObservableCollection<TrackItem>();
         private ObservableCollection<AlbumItem> _favoriteAlbums = new ObservableCollection<AlbumItem>();
@@ -92,17 +91,6 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         {
             get { return _artistses; }
             set { SetProperty(ref _artistses, value); }
-        }
-        public IEnumerable<IGrouping<string, ArtistItem>> ArtistsByAlphaKey
-        {
-            get
-            {
-                return _artistsByAlphaKey;
-            }
-            set
-            {
-                SetProperty(ref _artistsByAlphaKey, value);
-            }
         }
 
         public ObservableCollection<TrackItem> Tracks
@@ -430,13 +418,6 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                 IsMusicLibraryEmpty = !Artists.Any();
                 OnPropertyChanged("IsMusicLibraryEmpty");
             });
-            DispatchHelper.InvokeAsync(() =>
-                ArtistsByAlphaKey = from artist in Artists
-                                    orderby artist.Name
-                                    group artist by artist.Name[0].ToString()
-                                        into a
-                                        orderby a.Key
-                                        select a);
         }
 
         public void ExecuteSemanticZoom(SemanticZoom sZ, CollectionViewSource cvs)
