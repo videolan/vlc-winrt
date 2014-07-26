@@ -10,13 +10,14 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using Windows.UI.Core;
 using Autofac;
 using libVLCX;
-using VLC_WINRT.Model;
 using VLC_WINRT_APP.Commands.Video;
 using VLC_WINRT_APP.DataRepository;
+using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.Services.Interface;
 using VLC_WINRT_APP.Services.RunTime;
 using VLC_WINRT_APP.Views.MainPages;
@@ -30,7 +31,8 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
         private MouseService _mouseService;
 #endif
         private VideoVM _currentVideo;
-        private Subtitle _currentSubtitle;
+        private DictionaryKeyValue _currentSubtitle;
+        private DictionaryKeyValue _currentAudioTrack;
 
         private int _subtitlesCount = 0;
         private int _audioTracksCount = 0;
@@ -40,26 +42,50 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
         protected StopVideoCommand _goBackCommand;
 
         private bool _isRunning;
+        private int _speedRate;
         #endregion
 
         #region private fields
-        private ObservableCollection<Subtitle> _subtitles;
         private IDictionary<int, string> _subtitlesTracks;
-        private IDictionary<int, string> _audioTracks;
-
+        private List<DictionaryKeyValue> _audioTracks;
         #endregion
 
         #region public props
+
+        public int SpeedRate
+        {
+            get { return _speedRate; }
+            set
+            {
+                _speedRate = value;
+                float r = (float)value / 100;
+                SetRate(r);
+            }
+        }
+
         public VideoVM CurrentVideo
         {
             get { return _currentVideo; }
             set { SetProperty(ref _currentVideo, value); }
         }
 
-        public Subtitle CurrentSubtitle
+        public DictionaryKeyValue CurrentSubtitle
         {
             get { return _currentSubtitle; }
-            set { SetProperty(ref _currentSubtitle, value); }
+            set
+            {
+                SetProperty(ref _currentSubtitle, value);
+            }
+        }
+
+        public DictionaryKeyValue CurrentAudioTrack
+        {
+            get { return _currentAudioTrack; }
+            set
+            {
+                _currentAudioTrack = value;
+                SetAudioTrackCommand.Execute(value.Id);
+            }
         }
 
         public int SubtitlesCount
@@ -113,31 +139,27 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
         #region public fields
         public LastVideosRepository _lastVideosRepository = new LastVideosRepository();
 
-        public ObservableCollection<Subtitle> Subtitles
-        {
-            get { return _subtitles; }
-            private set { SetProperty(ref _subtitles, value); }
-        }
 
         public IDictionary<int, string> SubtitlesTracks
         {
             get { return _subtitlesTracks; }
             set { SetProperty(ref _subtitlesTracks, value); }
         }
-        public IDictionary<int, string> AudioTracks
+
+        public List<DictionaryKeyValue> AudioTracks
         {
             get { return _audioTracks; }
-            set { SetProperty(ref _audioTracks, value); }
+            set { _audioTracks = value; }
         }
+
         #endregion
 
         #region constructors
         public VideoPlayerVM(IMediaService mediaService, VlcService mediaPlayerService)
             : base(mediaService, mediaPlayerService)
         {
-            _subtitles = new ObservableCollection<Subtitle>();
             _subtitlesTracks = new Dictionary<int, string>();
-            _audioTracks = new Dictionary<int, string>();
+            _audioTracks = new List<DictionaryKeyValue>();
 #if WINDOWS_APP
             _mouseService = App.Container.Resolve<MouseService>();
 #endif
@@ -201,8 +223,22 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             await Task.Delay(500);
             SubtitlesCount = await _vlcPlayerService.GetSubtitleCount();
             AudioTracksCount = await _vlcPlayerService.GetAudioTrackCount();
-            await _vlcPlayerService.GetSubtitleDescription(SubtitlesTracks);
-            await _vlcPlayerService.GetAudioTrackDescription(AudioTracks);
+            await _vlcPlayerService.GetSubtitleDescription(_subtitlesTracks);
+
+            IDictionary<int, string> tracks = new Dictionary<int, string>();
+            await _vlcPlayerService.GetAudioTrackDescription(tracks);
+            foreach (KeyValuePair<int, string> track in tracks)
+            {
+                _audioTracks.Add(new DictionaryKeyValue()
+                {
+                    Id = track.Key,
+                    Name = track.Value,
+                });
+            }
+            
+            SpeedRate = 100;
+            if(_audioTracks.Count > 1)
+                CurrentAudioTrack = _audioTracks[1];
             _vlcPlayerService.MediaEnded += VlcPlayerServiceOnMediaEnded;
         }
         

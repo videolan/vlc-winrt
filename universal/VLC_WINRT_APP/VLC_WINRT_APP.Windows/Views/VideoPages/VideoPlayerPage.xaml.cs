@@ -64,15 +64,15 @@ namespace VLC_WINRT_APP.Views.VideoPages
         private async void AudioTracks_Click(object sender, RoutedEventArgs e)
         {
             PopupMenu popup = new PopupMenu();
-            for (int i = 0; i < MathHelper.Clamp(0, 6, Locator.VideoVm.AudioTracksCount); i++)
-            {
-                popup.Commands.Add(new UICommand()
-                {
-                    Id = Locator.VideoVm.AudioTracks.ElementAt(i).Key,
-                    Label = Locator.VideoVm.AudioTracks.ElementAt(i).Value,
-                    Invoked = command => Locator.VideoVm.SetAudioTrackCommand.Execute(command.Id),
-                });
-            }
+            //for (int i = 0; i < MathHelper.Clamp(0, 6, Locator.VideoVm.AudioTracksCount); i++)
+            //{
+            //    popup.Commands.Add(new UICommand()
+            //    {
+            //        Id = Locator.VideoVm.AudioTracks.ElementAt(i).Key,
+            //        Label = Locator.VideoVm.AudioTracks.ElementAt(i).Value,
+            //        Invoked = command => Locator.VideoVm.SetAudioTrackCommand.Execute(command.Id),
+            //    });
+            //}
             await popup.ShowForSelectionAsync(((Button)sender).GetBoundingRect());
         }
 
@@ -89,7 +89,7 @@ namespace VLC_WINRT_APP.Views.VideoPages
 
         //private void IncreaseRate_Click(object sender, RoutedEventArgs e)
         //{
-        //    rate = MathHelper.Clamp(0.5f, 2.0f, rate + 0.5f);
+            //rate = MathHelper.Clamp(0.5f, 2.0f, rate + 0.5f);
         //    SetRate();
         //}
 

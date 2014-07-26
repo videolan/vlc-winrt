@@ -7,7 +7,7 @@
       xmlns:controls="using:VLC_WINRT_APP.Controls"
       mc:Ignorable="d"
       DataContext="{Binding Source={StaticResource Locator}, Path=VideoVm}">
-    
+
     <Grid x:Name="ControlsGrid"
           PointerMoved="ControlsGrid_PointerMoved">
         <Grid.Background>
@@ -65,7 +65,56 @@
                               HorizontalAlignment="Right"
                               IsCompact="True"
                               Margin="0,0,42,0"
-                              VerticalAlignment="Center" />
+                              VerticalAlignment="Center">
+                    <AppBarButton.Flyout>
+                        <Flyout>
+                            <Grid Width="300">
+                                <StackPanel>
+                                    <controls:VideoItemControl DataContext="{Binding CurrentVideo}" />
+                                    <TextBlock Text="Subtitles"
+                                               Style="{StaticResource TitleTextBlockStyle}"
+                                               Margin="0,12,0,0"
+                                               Visibility="{Binding SubtitlesCount, Converter={StaticResource NegatedCountToVisibilityConverter}}"/>
+                                    <ComboBox ItemsSource="{Binding SubtitlesTracks}"
+                                              Margin="0,12,0,0"
+                                              Style="{StaticResource ComboBoxStyleDark}"
+                                              Visibility="{Binding SubtitlesCount, Converter={StaticResource NegatedCountToVisibilityConverter}}">
+                                        <ComboBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Value}" />
+                                            </DataTemplate>
+                                        </ComboBox.ItemTemplate>
+                                    </ComboBox>
+
+                                    <TextBlock Text="Audio tracks"
+                                               Style="{StaticResource TitleTextBlockStyle}"
+                                               Margin="0,24,0,0" />
+                                    <ComboBox ItemsSource="{Binding AudioTracks}"
+                                              SelectedItem="{Binding CurrentAudioTrack, Mode=TwoWay}"
+                                              Margin="0,12,0,0"
+                                              Style="{StaticResource ComboBoxStyleDark}">
+                                        <ComboBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Name}"
+                                                           Foreground="White" />
+                                            </DataTemplate>
+                                        </ComboBox.ItemTemplate>
+                                    </ComboBox>
+                                    <Slider Style="{StaticResource VLCSlider}"
+                                            Minimum="50"
+                                            Value="{Binding SpeedRate, Mode=TwoWay}"
+                                            Maximum="200">
+                                        <Slider.Header>
+                                            <TextBlock Text="Speed"
+                                                       Style="{StaticResource TitleTextBlockStyle}"
+                                                       Margin="-3,12,0,-10"/>
+                                        </Slider.Header>
+                                    </Slider>
+                                </StackPanel>
+                            </Grid>
+                        </Flyout>
+                    </AppBarButton.Flyout>
+                </AppBarButton>
                 <Grid HorizontalAlignment="Center"
                       Width="260">
                     <Grid.ColumnDefinitions>

@@ -7,12 +7,12 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
-namespace VLC_WINRT.Model
+namespace VLC_WINRT_APP.Model
 {
-    public class Subtitle
+    public class DictionaryKeyValue
     {
-        public int Id;
-        public string Name;
+        public int Id { get; set; }
+        public string Name { get; set; }
 
         public override string ToString()
         {

@@ -42,6 +42,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Controls\VideoItemControl.xaml.cs">
       <DependentUpon>VideoItemControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\VideoItemInfoControl.xaml.cs">
+      <DependentUpon>VideoItemInfoControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Converters\AlbumImageConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\BackgroundVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\BooleanNegationConverter.cs" />
@@ -166,6 +169,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="$(MSBuildThisFileDirectory)Controls\VideoItemControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\VideoItemInfoControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

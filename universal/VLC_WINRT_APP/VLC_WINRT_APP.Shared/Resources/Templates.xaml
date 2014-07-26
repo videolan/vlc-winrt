@@ -331,4 +331,6 @@
                   Opacity="{Binding Opacity}" />
         </Grid>
     </DataTemplate>
+    
+    
 </ResourceDictionary>
