@@ -35,6 +35,15 @@
                 <ColumnDefinition />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0"
+                       Visibility="{Binding TimeWatched, Converter={StaticResource EmptyTimeSpanToVisibilityConverter}}"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Right"
+                       Margin="0,2,6,0"
+                       Foreground="#99FFFFFF">
+                <Run Text="{Binding TimeWatched, Converter={StaticResource TimeSpanShortStringConverter}}"/>
+                <Run Text="-"/>
+            </TextBlock>
             <TextBlock Grid.Column="1"
                        Text="{Binding Duration, Converter={StaticResource TimeSpanShortStringConverter}}"
                        VerticalAlignment="Top"

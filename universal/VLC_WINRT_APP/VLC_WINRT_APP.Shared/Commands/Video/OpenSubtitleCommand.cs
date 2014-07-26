@@ -12,6 +12,8 @@ using System.Diagnostics;
 using Windows.Storage;
 using Windows.Storage.AccessCache;
 using Windows.Storage.Pickers;
+using Windows.UI.Core;
+using Windows.UI.Popups;
 using VLC_WINRT.Common;
 using VLC_WINRT_APP.ViewModels;
 
@@ -21,25 +23,32 @@ namespace VLC_WINRT_APP.Commands.Video
     {
         public async override void Execute(object parameter)
         {
-            var picker = new FileOpenPicker
+            try
             {
-                ViewMode = PickerViewMode.List,
-                SuggestedStartLocation = PickerLocationId.VideosLibrary
-            };
-            picker.FileTypeFilter.Add(".srt");
-            picker.FileTypeFilter.Add(".ass");
+                var picker = new FileOpenPicker
+                {
+                    ViewMode = PickerViewMode.List,
+                    SuggestedStartLocation = PickerLocationId.VideosLibrary
+                };
+                picker.FileTypeFilter.Add(".srt");
+                picker.FileTypeFilter.Add(".ass");
 
-            StorageFile file = await picker.PickSingleFileAsync();
-            if (file != null)
-            {
-                string mru = StorageApplicationPermissions.FutureAccessList.Add(file);
+                StorageFile file = await picker.PickSingleFileAsync();
+                if (file != null)
+                {
+                    string mru = StorageApplicationPermissions.FutureAccessList.Add(file);
 
-                string mrl = "file://" + mru;
-                Locator.VideoVm.OpenSubtitle(mrl);
+                    string mrl = "file://" + mru;
+                    Locator.VideoVm.OpenSubtitle(mrl);
+                }
+                else
+                {
+                    Debug.WriteLine("Cancelled Opening subtitle");
+                }
             }
-            else
+            catch(Exception exception)
             {
-                Debug.WriteLine("Cancelled Opening subtitle");
+                new MessageDialog(exception.ToString()).ShowAsync();
             }
         }
     }

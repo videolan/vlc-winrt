@@ -11,6 +11,7 @@ using System;
 using Windows.UI.Core;
 using VLC_WINRT_APP.Commands;
 using VLC_WINRT_APP.Common;
+using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.Services.Interface;
 using VLC_WINRT_APP.Services.RunTime;
@@ -169,8 +170,16 @@ namespace VLC_WINRT_APP.ViewModels
             _sliderPositionTimer.Tick += FirePositionUpdate;
             _sliderPositionTimer.Interval = TimeSpan.FromMilliseconds(1000);
 
-            _skipAhead = new ActionCommand(() => _mediaService.SkipAhead());
-            _skipBack = new ActionCommand(() => _mediaService.SkipBack());
+            _skipAhead = new ActionCommand(() =>
+            {
+                _mediaService.SkipAhead();
+                ToastHelper.Basic("10 seconds ahead", false);
+            });
+            _skipBack = new ActionCommand(() =>
+            {
+                _mediaService.SkipBack();
+                ToastHelper.Basic("10 seconds back", false);
+            });
             _playNext = new PlayNextCommand();
             _playPrevious = new PlayPreviousCommand();
             _playOrPause = new PlayPauseCommand();

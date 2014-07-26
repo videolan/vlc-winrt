@@ -10,18 +10,24 @@
     <StackPanel Width="320">
         <TextBlock Text="{Binding Title}"
                    TextWrapping="Wrap"
-                   Style="{StaticResource SubtitleTextBlockStyle}" />
-        <TextBlock Text="{Binding File.DisplayType}"
-                   Margin="-1,12,0,0" />
-        <TextBlock Text="{Binding File.Path}"
-                   Margin="-1,12,0,0"
-                   TextWrapping="Wrap" />
+                   Style="{StaticResource SubtitleTextBlockStyle}"
+                   FontSize="16" />
+        <Grid>
+            <TextBlock Margin="0,0,0,0"
+                       Style="{StaticResource SubtitleTextBlockStyle}">
+            <Run Text="Duration" />
+            <Run Text="{Binding Duration, Converter={StaticResource TimeSpanShortStringConverter}}" />
+            </TextBlock>
+            <TextBlock Text="{Binding File.DisplayType}"
+                       Margin="-1,12,0,0"
+                       HorizontalAlignment="Right" />
+        </Grid>
+
         <Grid Background="#4CFFFFFF"
               Height="1"
               Margin="12" />
-        <TextBlock>
-                    <Run Text="Duration" />
-                    <Run Text="{Binding Duration, Converter={StaticResource TimeSpanShortStringConverter}}" />
-        </TextBlock>
+        <TextBlock Text="{Binding File.Path}"
+                   Margin="-1,12,0,0"
+                   TextWrapping="Wrap" />
     </StackPanel>
 </UserControl>

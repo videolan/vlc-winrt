@@ -18,9 +18,12 @@ namespace VLC_WINRT_APP.Helpers
             toastTextElements[0].AppendChild(toastXml.CreateTextNode(msg));
             if (!playJingle)
             {
-                var audio = toastXml.CreateElement("audio");
+                IXmlNode toastNode = toastXml.SelectSingleNode("/toast"); 
+                XmlElement audio = toastXml.CreateElement("audio"); 
                 audio.SetAttribute("silent", "true");
+                toastNode.AppendChild(audio);
             }
+
             ToastNotification toast = new ToastNotification(toastXml);
             ToastNotificationManager.CreateToastNotifier().Show(toast);
         }

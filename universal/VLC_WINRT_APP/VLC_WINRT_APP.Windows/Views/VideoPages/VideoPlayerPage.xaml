@@ -77,7 +77,8 @@
                                                Style="{StaticResource TitleTextBlockStyle}"
                                                Margin="0,12,0,0"
                                                Visibility="{Binding SubtitlesCount, Converter={StaticResource NegatedCountToVisibilityConverter}}"/>
-                                    <ComboBox ItemsSource="{Binding SubtitlesTracks}"
+                                    <ComboBox ItemsSource="{Binding Subtitles}"
+                                              SelectedItem="{Binding CurrentSubtitle}"
                                               Margin="0,12,0,0"
                                               Style="{StaticResource ComboBoxStyleDark}"
                                               Visibility="{Binding SubtitlesCount, Converter={StaticResource NegatedCountToVisibilityConverter}}">
@@ -87,6 +88,11 @@
                                             </DataTemplate>
                                         </ComboBox.ItemTemplate>
                                     </ComboBox>
+                                    <Button Content="Open a subtitle"
+                                            Margin="-3,6,0,0"
+                                            Command="{Binding OpenSubtitleCommand}"
+                                            Background="#404040"
+                                            BorderBrush="#404040"/>
 
                                     <TextBlock Text="Audio tracks"
                                                Style="{StaticResource TitleTextBlockStyle}"
@@ -105,13 +111,24 @@
                                     <Slider Style="{StaticResource VLCSlider}"
                                             Minimum="50"
                                             Value="{Binding SpeedRate, Mode=TwoWay}"
-                                            Maximum="200">
+                                            Maximum="200"
+                                            IsThumbToolTipEnabled="False">
                                         <Slider.Header>
                                             <TextBlock Text="Speed"
                                                        Style="{StaticResource TitleTextBlockStyle}"
                                                        Margin="-3,12,0,-10"/>
                                         </Slider.Header>
                                     </Slider>
+                                    <Grid Margin="0,-32,0,0">
+                                        <TextBlock Text="0.5x"
+                                                   Style="{StaticResource TitleTextBlockStyle}" />
+                                        <TextBlock Text="1x"
+                                                   Margin="96,0,0,0"
+                                                   Style="{StaticResource TitleTextBlockStyle}" />
+                                        <TextBlock Text="2x"
+                                                   HorizontalAlignment="Right"
+                                                   Style="{StaticResource TitleTextBlockStyle}" />
+                                    </Grid>
                                 </StackPanel>
                             </Grid>
                         </Flyout>
@@ -168,10 +185,11 @@
                 </Grid>
             </Grid>
             <Grid Grid.Row="1">
-                <Slider Value="{Binding Position, Mode=TwoWay}"
-                        Maximum="1000"
+                <Slider Value="{Binding PositionInSeconds, Mode=TwoWay}"
+                        Maximum="{Binding TimeTotal.TotalSeconds}"
                         Margin="0,-8,0,0"
-                        Style="{StaticResource VLCSlider}" />
+                        Style="{StaticResource VLCSlider}"
+                        ThumbToolTipValueConverter="{StaticResource SecondsStringConverter}"/>
                 <TextBlock HorizontalAlignment="Left"
                            VerticalAlignment="Bottom"
                            Style="{StaticResource BodyTextBlockStyle}"

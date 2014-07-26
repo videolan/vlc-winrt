@@ -46,7 +46,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
         #endregion
 
         #region private fields
-        private IDictionary<int, string> _subtitlesTracks;
+        private List<DictionaryKeyValue> _subtitlesTracks;
         private List<DictionaryKeyValue> _audioTracks;
         #endregion
 
@@ -75,6 +75,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             set
             {
                 SetProperty(ref _currentSubtitle, value);
+                SetSubtitleTrackCommand.Execute(value.Id);
             }
         }
 
@@ -99,6 +100,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             get { return _audioTracksCount; }
             set { SetProperty(ref _audioTracksCount, value); }
         }
+
         public SetSubtitleTrackCommand SetSubtitleTrackCommand
         {
             get { return _setSubTitlesCommand; }
@@ -140,25 +142,24 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
         public LastVideosRepository _lastVideosRepository = new LastVideosRepository();
 
 
-        public IDictionary<int, string> SubtitlesTracks
-        {
-            get { return _subtitlesTracks; }
-            set { SetProperty(ref _subtitlesTracks, value); }
-        }
-
         public List<DictionaryKeyValue> AudioTracks
         {
             get { return _audioTracks; }
             set { _audioTracks = value; }
         }
 
+        public List<DictionaryKeyValue> Subtitles
+        {
+            get { return _subtitlesTracks; }
+            set { _subtitlesTracks = value; }
+        } 
         #endregion
 
         #region constructors
         public VideoPlayerVM(IMediaService mediaService, VlcService mediaPlayerService)
             : base(mediaService, mediaPlayerService)
         {
-            _subtitlesTracks = new Dictionary<int, string>();
+            _subtitlesTracks = new List<DictionaryKeyValue>();
             _audioTracks = new List<DictionaryKeyValue>();
 #if WINDOWS_APP
             _mouseService = App.Container.Resolve<MouseService>();
@@ -223,7 +224,17 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             await Task.Delay(500);
             SubtitlesCount = await _vlcPlayerService.GetSubtitleCount();
             AudioTracksCount = await _vlcPlayerService.GetAudioTrackCount();
-            await _vlcPlayerService.GetSubtitleDescription(_subtitlesTracks);
+
+            IDictionary<int, string> subtitles = new Dictionary<int, string>();
+            await _vlcPlayerService.GetSubtitleDescription(subtitles);
+            foreach (KeyValuePair<int, string> subtitle in subtitles)
+            {
+                _subtitlesTracks.Add(new DictionaryKeyValue()
+                {
+                    Id = subtitle.Key,
+                    Name = subtitle.Value,
+                });
+            }
 
             IDictionary<int, string> tracks = new Dictionary<int, string>();
             await _vlcPlayerService.GetAudioTrackDescription(tracks);
@@ -235,19 +246,19 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
                     Name = track.Value,
                 });
             }
-            
+
             SpeedRate = 100;
-            if(_audioTracks.Count > 1)
+            if (_audioTracks.Count > 1)
                 CurrentAudioTrack = _audioTracks[1];
             _vlcPlayerService.MediaEnded += VlcPlayerServiceOnMediaEnded;
         }
-        
+
         private void VlcPlayerServiceOnMediaEnded(object sender, Player player)
         {
             _vlcPlayerService.MediaEnded -= VlcPlayerServiceOnMediaEnded;
-            App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => App.ApplicationFrame.Navigate(typeof (MainPageVideos)));
+            App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => App.ApplicationFrame.Navigate(typeof(MainPageVideos)));
         }
-        
+
         public void UpdatePosition()
         {
             if (double.IsNaN(PositionInSeconds))
