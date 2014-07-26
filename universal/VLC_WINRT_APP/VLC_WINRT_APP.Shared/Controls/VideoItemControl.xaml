@@ -7,12 +7,10 @@
              mc:Ignorable="d">
     <UserControl.Resources>
         <Flyout x:Key="VideoInfoFlyout">
-            <local:VideoItemInfoControl/>
+            <local:VideoItemInfoControl />
         </Flyout>
     </UserControl.Resources>
-    <Grid MinHeight="162"
-          MinWidth="298"
-          Holding="Grid_Holding"
+    <Grid Holding="Grid_Holding"
           FlyoutBase.AttachedFlyout="{StaticResource VideoInfoFlyout}"
           RightTapped="Grid_RightTapped">
         <Image Source="{Binding Image}"

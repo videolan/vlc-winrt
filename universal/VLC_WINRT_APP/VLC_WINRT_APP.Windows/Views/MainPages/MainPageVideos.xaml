@@ -65,7 +65,9 @@
                     <ItemsPanelTemplate>
                         <ItemsWrapGrid Orientation="Horizontal"
                                        ItemWidth="310"
-                                       ItemHeight="174" />
+                                       ItemHeight="174" 
+                                       Loaded="ItemsWrapGrid_Loaded"
+                                       SizeChanged="ItemsWrapGrid_Loaded"/>
                     </ItemsPanelTemplate>
                 </GridView.ItemsPanel>
             </GridView>
