@@ -371,12 +371,12 @@ namespace VLC_WINRT_APP.Services.RunTime
                 // generated stream of blank noise, just incase the audio file in question isn't support by
                 // Windows.
                 // TODO: generate blank wave file
-                //var media = await Locator.PlayVideoVM._lastVideosRepository.LoadViaToken(_lastMrl.Replace("file://", ""));
-                //var stream = await media.File.OpenAsync(FileAccessMode.Read);
-                //_mediaElement.SetSource(stream, media.File.ContentType);
-                //_mediaElement.Play();
-                //_mediaElement.IsLooping = true;
-                //_mediaElement.Volume = 0;
+                StorageFile file = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///Void.wav"));
+                var stream = await file.OpenAsync(FileAccessMode.Read);
+                _mediaElement.SetSource(stream, file.ContentType);
+                _mediaElement.Play();
+                _mediaElement.IsLooping = true;
+                _mediaElement.Volume = 0;
             }
             else
             {

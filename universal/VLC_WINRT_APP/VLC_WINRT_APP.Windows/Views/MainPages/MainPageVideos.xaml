@@ -21,6 +21,31 @@
             <RowDefinition Height="24" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
+        <ListView ItemsSource="{Binding Panels}"
+                  IsItemClickEnabled="True"
+                  SelectionMode="None"
+                  Grid.Row="1"
+                  ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                  ItemContainerStyle="{StaticResource ListViewItemContainerStyle}">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal"
+                                Height="50" />
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Height="50"
+                          Width="85">
+                        <TextBlock Text="{Binding Title}"
+                                   Opacity="{Binding Opacity}"
+                                   TextWrapping="NoWrap"
+                                   TextTrimming="None"
+                                   Style="{StaticResource SubheaderTextBlockStyle}" />
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
         <Grid Grid.Row="3"
               x:Name="AllVideosGrid">
             <userControls:NoVideos Visibility="{Binding Videos.Count, Converter={StaticResource CountToVisibilityConverter}}" />

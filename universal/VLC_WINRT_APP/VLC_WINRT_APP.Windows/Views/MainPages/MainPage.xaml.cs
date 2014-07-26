@@ -35,6 +35,7 @@ namespace VLC_WINRT_APP.Views.MainPages
         private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
         {
             Responsive();
+            _vlcService.SetSizeVideoPlayer((uint)sizeChangedEventArgs.NewSize.Width, (uint)sizeChangedEventArgs.NewSize.Height);
         }
 
         void Responsive()
