@@ -5,10 +5,98 @@
     xmlns:local="using:VLC_WINRT_APP.Views.MainPages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:removableStorage="using:VLC_WINRT_APP.Controls.RemovableStorage"
+    xmlns:triggers="using:WinRT.Triggers"
+    xmlns:controls="using:VLC_WINRT.Views.Controls"
     mc:Ignorable="d"
     DataContext="{Binding Source={StaticResource Locator}, Path=DlnaVM}">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="42" />
+            <RowDefinition Height="45" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <ComboBox Grid.Row="1"
+                  Width="280"
+                  ItemsSource="{Binding RemovableStorageVMs}"
+                  SelectedItem="{Binding CurrentStorageVM}"
+                  Visibility="{Binding RemovableStorageVMs.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}"
+                  Style="{StaticResource ComboBoxStyle1}"
+                  FontSize="26"
+                  HorizontalAlignment="Left"
+                  VerticalAlignment="Center"
+                  Foreground="WhiteSmoke"
+                  FontWeight="Light">
+            <triggers:Interactions.Triggers>
+                <triggers:EventTrigger EventName="SelectionChanged">
+                    <triggers:InvokeCommandAction Command="{Binding RemovableDeviceClicked}"
+                                                  PassEventArgsToCommand="True" />
+                </triggers:EventTrigger>
+            </triggers:Interactions.Triggers>
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}" />
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <Grid Grid.Row="2"
+              Margin="6,0,0,0">
+            <Button Style="{StaticResource TextBlockButtonStyle}"
+                    Command="{Binding CurrentStorageVM.GoBackCommand}"
+                    Visibility="{Binding CurrentStorageVM.CanGoBack, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <Button.Content>
+                    <StackPanel Orientation="Horizontal">
+                        <SymbolIcon Symbol="Back" />
+                        <TextBlock Text="Back"
+                                   VerticalAlignment="Center"
+                                   Margin="6,0,0,0" />
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+        </Grid>
+        <Grid Grid.Row="3">
+            <controls:NothingToSeeHere Margin="6,0,0,0"
+                                       Visibility="{Binding CurrentStorageVM.IsFolderEmpty, Converter={StaticResource BooleanToVisibilityConverter}}" />
+            <ListView ItemsSource="{Binding CurrentStorageVM.StorageItems}"
+                      Margin="6,0,0,0"
+                      IsItemClickEnabled="True"
+                      SelectionMode="None"
+                      IsSwipeEnabled="False"
+                      ItemContainerStyle="{StaticResource ListViewItemContainerStyle}"
+                      Visibility="{Binding RemovableStorageVMs.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}">
+                <triggers:Interactions.Triggers>
+                    <triggers:EventTrigger EventName="ItemClick">
+                        <triggers:InvokeCommandAction Command="{Binding CurrentStorageVM.NavigateToCommand}"
+                                                      PassEventArgsToCommand="True" />
+                    </triggers:EventTrigger>
+                </triggers:Interactions.Triggers>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid VerticalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="30" />
+                                <ColumnDefinition Width="220" />
+                            </Grid.ColumnDefinitions>
+                            <Path Data="{Binding Converter={StaticResource StorageTypeToIconConverter}}"
+                                  Height="26"
+                                  Width="26"
+                                  Stretch="Uniform"
+                                  Fill="WhiteSmoke"
+                                  HorizontalAlignment="Left" />
+                            <TextBlock Grid.Column="1"
+                                       Text="{Binding Name}"
+                                       TextWrapping="Wrap"
+                                       FontSize="14" />
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+        <removableStorage:PlugARemovableStorage Grid.Row="2"
+                                                Grid.RowSpan="2"
+                                                d:IsHidden="True"
+                                                Visibility="{Binding RemovableStorageVMs.Count, Converter={StaticResource CountToVisibilityConverter}}" />
     </Grid>
 </Page>

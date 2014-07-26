@@ -285,20 +285,12 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 
             await LoadFromDatabase();
 
-            DispatchHelper.InvokeAsync(() =>
-                ArtistsByAlphaKey = from artist in Artists
-                                    orderby artist.Name
-                                    group artist by artist.Name[0].ToString()
-                                        into a
-                                        orderby a.Key
-                                        select a);
             await DispatchHelper.InvokeAsync(() =>
             {
                 IsBusy = false;
                 IsLoaded = true;
                 IsMusicLibraryEmpty = false;
                 OnPropertyChanged("Artist");
-                OnPropertyChanged("ArtistsByAlphaKey");
                 OnPropertyChanged("IsBusy");
                 OnPropertyChanged("IsMusicLibraryEmpty");
                 OnPropertyChanged("IsLoaded");
