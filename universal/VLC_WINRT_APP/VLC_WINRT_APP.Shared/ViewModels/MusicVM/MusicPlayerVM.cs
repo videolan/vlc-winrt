@@ -216,30 +216,31 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 
         public async Task Play(StorageFile fileFromExplorer = null)
         {
-            IsRunning = true;
             Stop();
             var trackItem = TrackCollection[CurrentTrack];
-            StorageFile file;
-            if (fileFromExplorer == null)
+            Task.Run(async () =>
             {
-                file = await StorageFile.GetFileFromPathAsync(trackItem.Path);
-            }
-            else
-            {
-                file = fileFromExplorer;
-            }
-            string token = StorageApplicationPermissions.FutureAccessList.Add(file);
-            Debug.WriteLine("Opening file: " + file.Path);
+                StorageFile file;
+                if (fileFromExplorer == null)
+                {
+                    file = await StorageFile.GetFileFromPathAsync(trackItem.Path);
+                }
+                else
+                {
+                    file = fileFromExplorer;
+                }
+                string token = StorageApplicationPermissions.FutureAccessList.Add(file);
+                Debug.WriteLine("Opening file: " + file.Path);
+                SetActiveMusicInfo(token, trackItem);
+            });
 
-            SetActiveMusicInfo(token, trackItem);
 
             // Setting the info for windows 8 controls
-            var resourceLoader = new ResourceLoader();
+            //var resourceLoader = new ResourceLoader();
             //MediaControl.IsPlaying = true;
             //MediaControl.ArtistName = trackItem.ArtistName ?? resourceLoader.GetString("UnknownArtist");
             //MediaControl.TrackName = trackItem.Name ?? resourceLoader.GetString("UnknownTrack");
-            _timeTotal = TimeSpan.Zero;
-            _elapsedTime = TimeSpan.Zero;
+            
             try
             {
                 //MediaControl.AlbumArt = new Uri(Locator.MusicPlayerVM.CurrentPlayingArtist.CurrentAlbumItem.Picture);
@@ -309,8 +310,10 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 #endif
             _mediaService.Play();
 
-            Window.Current.Dispatcher.RunAsync(CoreDispatcherPriority.Low, async () =>
+            App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, async () =>
             {
+                IsRunning = true;
+                ElapsedTime = TimeSpan.Zero;
                 OnPropertyChanged("CanGoPrevious");
                 OnPropertyChanged("CanGoNext");
                 await Task.Delay(500);

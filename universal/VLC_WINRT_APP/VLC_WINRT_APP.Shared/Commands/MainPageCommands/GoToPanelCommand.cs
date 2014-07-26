@@ -8,6 +8,7 @@
  **********************************************************************/
 
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Primitives;
 using VLC_WINRT.Common;
 using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.Views.MainPages;
@@ -18,6 +19,7 @@ namespace VLC_WINRT_APP.Commands.MainPageCommands
     {
         public override void Execute(object parameter)
         {
+            App.RootPage.MainFrameThemeTransition.Edge = EdgeTransitionLocation.Bottom;
             Model.Panel panel = (parameter as ItemClickEventArgs).ClickedItem as Model.Panel;
             foreach (Model.Panel panel1 in Locator.MainVM.Panels)
                 panel1.Opacity = 0.4;

@@ -82,13 +82,13 @@ namespace VLC_WINRT_APP.Views.UserControls
                 case "track":
                     MusicLibraryVM.TrackItem trackItem = await MusicLibraryVM._trackDataRepository.LoadTrack(int.Parse(query));
                     if (trackItem != null)
-                        trackItem.Play();
+                        Task.Run(() => trackItem.Play());
                     break;
                 case "album":
                     MusicLibraryVM.AlbumItem albumItem =
                         await MusicLibraryVM._albumDataRepository.LoadAlbum(int.Parse(query));
                     if (albumItem != null)
-                        albumItem.Play();
+                        Task.Run(() => albumItem.Play());
                     break;
                 case "artist":
                     MusicLibraryVM.ArtistItem artistItem =

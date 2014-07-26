@@ -10,10 +10,7 @@
       DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
 
     <Page.Resources>
-        <CollectionViewSource x:Name="ArtistByAlphaKey"
-                              Source="{Binding ArtistsByAlphaKey}"
-                              IsSourceGrouped="True" />
-        <CollectionViewSource x:Name="ArtistsGroupedByName"
+        <CollectionViewSource x:Name="AlbumsGroupedByName"
                               Source="{Binding Artists}"
                               IsSourceGrouped="True"
                               ItemsPath="Albums" />
@@ -69,7 +66,7 @@
             </SemanticZoom.ZoomedOutView>
             <SemanticZoom.ZoomedInView>
                 <ListView x:Name="ZoomedInListView"
-                          ItemsSource="{Binding Source={StaticResource ArtistsGroupedByName}}"
+                          ItemsSource="{Binding Source={StaticResource AlbumsGroupedByName}}"
                           IsItemClickEnabled="True"
                           SelectionMode="None"
                           ItemTemplate="{StaticResource SemanticZoomInViewAlbumTemplate}">
@@ -111,63 +108,28 @@
                 </ListView>
             </SemanticZoom.ZoomedInView>
         </SemanticZoom>
-        <SemanticZoom x:Name="SemanticZoomArtistByAlphaKey"
-                      Grid.Row="3"
-                      Visibility="Collapsed"
-                      ViewChangeCompleted="SemanticZoomArtistByAlphaKey_OnViewChangeCompleted">
-            <SemanticZoom.ZoomedOutView>
-                <GridView ItemTemplate="{StaticResource AlphaLetterDataTemplate}">
-                    <GridView.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <WrapGrid Orientation="Horizontal" />
-                        </ItemsPanelTemplate>
-                    </GridView.ItemsPanel>
-                </GridView>
-            </SemanticZoom.ZoomedOutView>
-            <SemanticZoom.ZoomedInView>
-                <ListView x:Name="ZoomedInListViewArtistByAlphaKey"
-                          ItemsSource="{Binding Source={StaticResource ArtistByAlphaKey}}"
-                          IsItemClickEnabled="True"
-                          SelectionMode="None"
-                          ItemTemplate="{StaticResource SemanticZoomViewInArtistTemplate}">
-                    <triggers:Interactions.Triggers>
-                        <triggers:EventTrigger EventName="ItemClick">
-                            <triggers:InvokeCommandAction Command="{Binding ArtistClickedCommand}"
-                                                          PassEventArgsToCommand="True" />
-                        </triggers:EventTrigger>
-                    </triggers:Interactions.Triggers>
-                    <ListView.GroupStyle>
-                        <GroupStyle>
-                            <GroupStyle.Panel>
-                                <ItemsPanelTemplate>
-                                    <VariableSizedWrapGrid Orientation="Horizontal"
-                                                           ItemHeight="200"
-                                                           ItemWidth="200"
-                                                           Margin="0,0,0,25" />
-                                </ItemsPanelTemplate>
-                            </GroupStyle.Panel>
-                            <GroupStyle.HeaderTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding Key}"
-                                               VerticalAlignment="Bottom"
-                                               Foreground="White"
-                                               TextWrapping="Wrap"
-                                               Typography.Capitals="SmallCaps"
-                                               FontSize="22"
-                                               FontWeight="Light"
-                                               Tapped="Header_Tapped" />
-                                </DataTemplate>
-                            </GroupStyle.HeaderTemplate>
-                        </GroupStyle>
-                    </ListView.GroupStyle>
-                    <ListView.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <VirtualizingStackPanel />
-                        </ItemsPanelTemplate>
-                    </ListView.ItemsPanel>
-                </ListView>
-            </SemanticZoom.ZoomedInView>
-        </SemanticZoom>
+        <ListView x:Name="ZoomedInListViewArtist"
+                  Grid.Row="3"
+                  Visibility="Collapsed"
+                  ItemsSource="{Binding Artists}"
+                  IsItemClickEnabled="True"
+                  SelectionMode="None"
+                  ItemTemplate="{StaticResource SemanticZoomViewInArtistTemplate}">
+            <triggers:Interactions.Triggers>
+                <triggers:EventTrigger EventName="ItemClick">
+                    <triggers:InvokeCommandAction Command="{Binding ArtistClickedCommand}"
+                                                  PassEventArgsToCommand="True" />
+                </triggers:EventTrigger>
+            </triggers:Interactions.Triggers>
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <ItemsWrapGrid Orientation="Horizontal"
+                                           ItemHeight="200"
+                                           ItemWidth="200"
+                                           Margin="0,0,0,25" />
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+        </ListView>
         <ListView x:Name="RadDataGrid"
                   Grid.Row="3"
                   Visibility="Collapsed"

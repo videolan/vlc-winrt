@@ -10,6 +10,8 @@
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
+using Windows.UI.Xaml.Controls.Primitives;
 using VLC_WINRT.Common;
 using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.ViewModels;
@@ -22,13 +24,14 @@ namespace VLC_WINRT_APP.Commands.Music
     {
         public override async void Execute(object parameter)
         {
+            App.RootPage.MainFrameThemeTransition.Edge = EdgeTransitionLocation.Right;
             if (App.ApplicationFrame.CurrentSourcePageType != typeof(MusicPlayerPage))
                 App.ApplicationFrame.Navigate(typeof(MusicPlayerPage));
             Locator.MusicLibraryVM.IsAlbumPageShown = false;
             try
             {
                 MusicLibraryVM.AlbumItem album = parameter as MusicLibraryVM.AlbumItem;
-                album.Play();
+                Task.Run(() => album.Play());
             }
             catch (FileNotFoundException exception)
             {

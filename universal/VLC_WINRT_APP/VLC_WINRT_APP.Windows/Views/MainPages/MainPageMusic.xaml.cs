@@ -21,6 +21,7 @@ namespace VLC_WINRT_APP.Views.MainPages
         public MainPageMusic()
         {
             this.InitializeComponent();
+            this.NavigationCacheMode = NavigationCacheMode.Enabled;
             this.SizeChanged += OnSizeChanged;
         }
 
@@ -49,13 +50,9 @@ namespace VLC_WINRT_APP.Views.MainPages
 
         private void SemanticZoom_OnViewChangeCompletedArtistByName(object sender, SemanticZoomViewChangedEventArgs e)
         {
-            Locator.MusicLibraryVM.ExecuteSemanticZoom(SemanticZoomAlbumsByArtist, ArtistsGroupedByName);
+            Locator.MusicLibraryVM.ExecuteSemanticZoom(SemanticZoomAlbumsByArtist, AlbumsGroupedByName);
         }
 
-        private void SemanticZoomArtistByAlphaKey_OnViewChangeCompleted(object sender, SemanticZoomViewChangedEventArgs e)
-        {
-            Locator.MusicLibraryVM.ExecuteSemanticZoom(SemanticZoomArtistByAlphaKey, ArtistByAlphaKey);
-        }
 
         private void Header_Tapped(object sender, TappedRoutedEventArgs e)
         {
@@ -74,25 +71,25 @@ namespace VLC_WINRT_APP.Views.MainPages
             {
                 case 0:
                     SemanticZoomAlbumsByArtist.Visibility = Visibility.Visible;
-                    SemanticZoomArtistByAlphaKey.Visibility = Visibility.Collapsed;
+                    ZoomedInListViewArtist.Visibility = Visibility.Collapsed;
                     RadDataGrid.Visibility = Visibility.Collapsed;
                     FavoriteAlbumsGridView.Visibility = Visibility.Collapsed;
                     break;
                 case 1:
                     SemanticZoomAlbumsByArtist.Visibility = Visibility.Collapsed;
-                    SemanticZoomArtistByAlphaKey.Visibility = Visibility.Visible;
+                    ZoomedInListViewArtist.Visibility = Visibility.Visible;
                     RadDataGrid.Visibility = Visibility.Collapsed;
                     FavoriteAlbumsGridView.Visibility = Visibility.Collapsed;
                     break;
                 case 2:
                     SemanticZoomAlbumsByArtist.Visibility = Visibility.Collapsed;
-                    SemanticZoomArtistByAlphaKey.Visibility = Visibility.Collapsed;
+                    ZoomedInListViewArtist.Visibility = Visibility.Collapsed;
                     RadDataGrid.Visibility = Visibility.Visible;
                     FavoriteAlbumsGridView.Visibility = Visibility.Collapsed;
                     break;
                 case 3:
                     SemanticZoomAlbumsByArtist.Visibility = Visibility.Collapsed;
-                    SemanticZoomArtistByAlphaKey.Visibility = Visibility.Collapsed;
+                    ZoomedInListViewArtist.Visibility = Visibility.Collapsed;
                     RadDataGrid.Visibility = Visibility.Collapsed;
                     FavoriteAlbumsGridView.Visibility = Visibility.Visible;
                     break;

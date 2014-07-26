@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Primitives;
 using VLC_WINRT.Common;
 using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.Views.MainPages;
@@ -18,6 +19,7 @@ namespace VLC_WINRT_APP.Commands.Music
             //App.RootFrame.Navigate(typeof(ArtistPage));
 #endif
 #if WINDOWS_APP
+            App.RootPage.MainFrameThemeTransition.Edge = EdgeTransitionLocation.Right;
             App.ApplicationFrame.Navigate(typeof(ArtistPage));
 #endif
             ItemClickEventArgs args = parameter as ItemClickEventArgs;

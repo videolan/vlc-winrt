@@ -10,11 +10,13 @@
 
     <SwapChainBackgroundPanel x:Name="SwapChainPanel">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" x:Name="LeftSidebarColumnDefinition"/>
+            <ColumnDefinition Width="Auto"
+                              x:Name="LeftSidebarColumnDefinition" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" x:Name="TopBarRowDefinition"/>
+            <RowDefinition Height="Auto"
+                           x:Name="TopBarRowDefinition" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
@@ -46,7 +48,9 @@
                Navigated="MainFrame_OnNavigated">
             <Frame.ContentTransitions>
                 <TransitionCollection>
-                    <EdgeUIThemeTransition Edge="Bottom" />
+                    <EdgeUIThemeTransition x:Name="MainFrameThemeTransition"
+                                           x:FieldModifier="public"
+                                           Edge="Bottom" />
                 </TransitionCollection>
             </Frame.ContentTransitions>
         </Frame>

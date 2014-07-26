@@ -188,8 +188,8 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             Panels.Add(new Panel(resourceLoader.GetString("Albums").ToLower(), 0, 1, App.Current.Resources["HomePath"].ToString()));
             Panels.Add(new Panel(resourceLoader.GetString("Artists").ToLower(), 1, 0.4, App.Current.Resources["HomePath"].ToString()));
             Panels.Add(new Panel(resourceLoader.GetString("Songs").ToLower(), 2, 0.4, App.Current.Resources["HomePath"].ToString()));
-            Panels.Add(new Panel(resourceLoader.GetString("Pinned").ToLower(), 2, 0.4, App.Current.Resources["HomePath"].ToString()));
-            Panels.Add(new Panel(resourceLoader.GetString("Playlists").ToLower(), 2, 0.4, App.Current.Resources["HomePath"].ToString()));
+            //Panels.Add(new Panel(resourceLoader.GetString("Pinned").ToLower(), 2, 0.4, App.Current.Resources["HomePath"].ToString()));
+            //Panels.Add(new Panel(resourceLoader.GetString("Playlists").ToLower(), 2, 0.4, App.Current.Resources["HomePath"].ToString()));
         }
 
         public void Initialize()
@@ -455,6 +455,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             return true;
         }
         #endregion
+
         public class ArtistItem : BindableBase
         {
             private string _name;
