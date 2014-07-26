@@ -20,8 +20,7 @@
         </Grid.RowDefinitions>
         <ComboBox Grid.Row="1"
                   Width="280"
-                  ItemsSource="{Binding RemovableStorageVMs}"
-                  SelectedItem="{Binding CurrentStorageVM}"
+                  ItemsSource="{Binding DLNAVMs}"
                   Visibility="{Binding RemovableStorageVMs.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}"
                   Style="{StaticResource ComboBoxStyle1}"
                   FontSize="26"

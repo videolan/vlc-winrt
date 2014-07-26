@@ -87,8 +87,9 @@
                 <Button.Flyout>
                     <Flyout>
                         <Slider Orientation="Vertical"
-                                Height="100"
-                                Style="{StaticResource VLCSlider}" />
+                                Height="120"
+                                Style="{StaticResource VLCSlider}" 
+                                Value="{Binding }"/>
                     </Flyout>
                 </Button.Flyout>
                 <StackPanel Orientation="Horizontal">

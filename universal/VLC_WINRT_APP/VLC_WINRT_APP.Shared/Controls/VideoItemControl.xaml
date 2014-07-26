@@ -20,7 +20,7 @@
                       Height="1" Margin="12"/>
                 <TextBlock >
                     <Run Text="Duration"/>
-                    <Run Text="{Binding Duration}"/>
+                    <Run Text="{Binding Duration, Converter={StaticResource TimeSpanShortStringConverter}}"/>
                 </TextBlock>
             </StackPanel>
             <Flyout.FlyoutPresenterStyle>
@@ -66,7 +66,7 @@
                        Text="{Binding Duration, Converter={StaticResource TimeSpanShortStringConverter}}"
                        VerticalAlignment="Top"
                        HorizontalAlignment="Right"
-                       Margin="6"
+                       Margin="0,2,6,0"
                        Foreground="#99FFFFFF" />
             <TextBlock Grid.Column="0"
                        VerticalAlignment="Bottom"
