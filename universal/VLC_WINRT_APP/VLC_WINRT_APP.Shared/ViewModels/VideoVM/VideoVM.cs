@@ -10,7 +10,6 @@
 using System;
 using System.Diagnostics;
 using System.IO;
-using System.ServiceModel.Security;
 using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.AccessCache;
