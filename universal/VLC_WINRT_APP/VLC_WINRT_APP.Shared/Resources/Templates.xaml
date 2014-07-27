@@ -6,7 +6,7 @@
     <DataTemplate x:Key="SemanticZoomOutViewArtistTemplate">
         <Grid Width="240"
               Height="156">
-            <Image Source="/Assets/GreyPylon/280x156.jpg"
+            <Image Source="/Assets/NoCover.jpg"
                    Stretch="UniformToFill" />
             <Image Source="{Binding Group.Picture}"
                    Stretch="UniformToFill" />
@@ -60,6 +60,8 @@
     </DataTemplate>
     <DataTemplate x:Key="SemanticZoomInViewAlbumTemplate">
         <Grid>
+            <Image Source="/Assets/NoCover.jpg"
+                   Stretch="UniformToFill" />
             <Image Source="{Binding Picture}"
                    Stretch="UniformToFill"
                    HorizontalAlignment="Center" />

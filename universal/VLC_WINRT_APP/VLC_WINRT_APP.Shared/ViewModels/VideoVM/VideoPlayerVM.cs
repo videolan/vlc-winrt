@@ -197,6 +197,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             Locator.MusicPlayerVM.CleanViewModel();
 
             IsRunning = true;
+            OnPropertyChanged("IsRunning");
             _fileToken = mrl;
             _mrl = "file://" + mrl;
             _timeTotal = TimeSpan.Zero;
@@ -259,7 +260,12 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
         private void VlcPlayerServiceOnMediaEnded(object sender, Player player)
         {
             _vlcPlayerService.MediaEnded -= VlcPlayerServiceOnMediaEnded;
-            App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => App.ApplicationFrame.Navigate(typeof(MainPageVideos)));
+            App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+            {
+                App.ApplicationFrame.Navigate(typeof (MainPageVideos));
+                Locator.VideoVm.IsRunning = false;
+                OnPropertyChanged("PlayingType");
+            });
         }
 
         public void UpdatePosition()

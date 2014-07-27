@@ -149,6 +149,12 @@
     <PRIResource Include="$(MSBuildThisFileDirectory)Strings\ja-JP\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)Assets\NoCover.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Assets\NoCoverWide.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="$(MSBuildThisFileDirectory)backers.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

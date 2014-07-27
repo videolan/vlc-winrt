@@ -194,12 +194,12 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
             {
 
-                if (NewVideos.Any())
-                {
+                //if (NewVideos.Any())
+                //{
 #if WINDOWS_APP
-                    Panels.Add(new Panel("new", 1, 0.4, App.Current.Resources["HomePath"].ToString()));
+                    //Panels.Add(new Panel("new", 1, 0.4, App.Current.Resources["HomePath"].ToString()));
 #endif
-                }
+                //}
                 LoadingState = LoadingState.Loaded;
             });
         }

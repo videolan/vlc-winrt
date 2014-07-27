@@ -10,6 +10,7 @@
 using System;
 using System.Diagnostics;
 using System.IO;
+using System.ServiceModel.Security;
 using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.AccessCache;
@@ -147,6 +148,14 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
         {
             if (storageFile != null)
             {
+                if (Image == null)
+                {
+                    App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                    {
+                        var img = new BitmapImage(new Uri("ms-appx:/Assets/NoCoverWide.jpg", UriKind.RelativeOrAbsolute));
+                        Image = img;
+                    });
+                }
                 File = storageFile;
                 Title = storageFile.DisplayName;
                 AlphaKey = Title.ToUpper()[0];
