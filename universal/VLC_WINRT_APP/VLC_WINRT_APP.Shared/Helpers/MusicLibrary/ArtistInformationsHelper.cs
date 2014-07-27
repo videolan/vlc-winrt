@@ -161,7 +161,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
         {
             StorageFolder appDataFolder = ApplicationData.Current.LocalFolder;
             string supposedPictureUriLocal = appDataFolder.Path + "\\artistPic\\" + artist.Name + "_" + "dPi" + ".jpg";
-            if (NativeOperationsHelper.FileExist(supposedPictureUriLocal))
+            if (await NativeOperationsHelper.FileExist(supposedPictureUriLocal))
             {
                 DispatchHelper.InvokeAsync(() =>
                 {
@@ -181,7 +181,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
         {
             StorageFolder appDataFolder = ApplicationData.Current.LocalFolder;
             string supposedPictureUriLocal = appDataFolder.Path + "\\albumPic\\" + album.Name + "_" + "dPi" + ".jpg";
-            if (NativeOperationsHelper.FileExist(supposedPictureUriLocal))
+            if (await NativeOperationsHelper.FileExist(supposedPictureUriLocal))
             {
                 DispatchHelper.InvokeAsync(() =>
                 {

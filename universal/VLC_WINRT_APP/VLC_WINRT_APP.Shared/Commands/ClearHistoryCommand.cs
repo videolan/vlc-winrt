@@ -11,9 +11,6 @@ using Autofac;
 using VLC_WINRT.Common;
 using VLC_WINRT_APP.Services.RunTime;
 
-#if WINDOWS_PHONE_APP
-using VLC_WINPRT;
-#endif
 
 namespace VLC_WINRT_APP.Commands
 {

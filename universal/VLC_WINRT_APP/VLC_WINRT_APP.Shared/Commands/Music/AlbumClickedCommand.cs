@@ -16,13 +16,8 @@ namespace VLC_WINRT_APP.Commands.Music
     {
         public override async void Execute(object parameter)
         {
-#if WINDOWS_PHONE_APP
-            App.NavigationFrame.Navigate(typeof(AlbumPage));
-#endif
-#if WINDOWS_APP
             App.RootPage.MainFrameThemeTransition.Edge = EdgeTransitionLocation.Right;
             App.ApplicationFrame.Navigate(typeof(AlbumPage));
-#endif
             Locator.MusicLibraryVM.IsAlbumPageShown = true;
             ItemClickEventArgs args = parameter as ItemClickEventArgs;
             MusicLibraryVM.AlbumItem album = args.ClickedItem as MusicLibraryVM.AlbumItem;

@@ -14,13 +14,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using Windows.UI.Core;
 using Autofac;
-using libVLCX;
 using VLC_WINRT_APP.Commands.Video;
 using VLC_WINRT_APP.DataRepository;
 using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.Services.Interface;
 using VLC_WINRT_APP.Services.RunTime;
 using VLC_WINRT_APP.Views.MainPages;
+#if WINDOWS_APP
+using libVLCX;
+#endif
 
 namespace VLC_WINRT_APP.ViewModels.VideoVM
 {
@@ -201,6 +203,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             _elapsedTime = TimeSpan.Zero;
 
             _vlcPlayerService.Open(_mrl);
+#if WINDOWS_APP
             _vlcPlayerService.Play();
             await Task.Delay(500);
             if (_timeTotal == TimeSpan.Zero)
@@ -220,7 +223,6 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             {
                 PositionInSeconds = media.TimeWatched.TotalSeconds;
             }
-
             await Task.Delay(500);
             SubtitlesCount = await _vlcPlayerService.GetSubtitleCount();
             AudioTracksCount = await _vlcPlayerService.GetAudioTrackCount();
@@ -251,6 +253,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             if (_audioTracks.Count > 1)
                 CurrentAudioTrack = _audioTracks[1];
             _vlcPlayerService.MediaEnded += VlcPlayerServiceOnMediaEnded;
+#endif
         }
 
         private void VlcPlayerServiceOnMediaEnded(object sender, Player player)

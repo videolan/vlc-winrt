@@ -10,8 +10,10 @@ namespace VLC_WINRT_APP.Commands.RemovableDevices
     {
         public override void Execute(object parameter)
         {
+#if WINDOWS_APP
             if(Locator.ExternalStorageVM.CurrentStorageVM.CanGoBack)
                 Locator.ExternalStorageVM.CurrentStorageVM.GoBack();
+#endif
         }
     }
 }

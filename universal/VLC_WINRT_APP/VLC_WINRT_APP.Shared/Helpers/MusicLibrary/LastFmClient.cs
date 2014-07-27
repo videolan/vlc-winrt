@@ -18,9 +18,7 @@ using VLC_WINRT_APP.Helpers.MusicLibrary.LastFm;
 using VLC_WINRT_APP;
 using Album = VLC_WINRT_APP.Helpers.MusicLibrary.MusicEntities.Album;
 using Artist = VLC_WINRT_APP.Helpers.MusicLibrary.MusicEntities.Artist;
-#if WINDOWS_PHONE_APP
-using VLC_WINPRT;
-#endif
+
 
 namespace VLC_WINRT_APP.Helpers.MusicLibrary
 {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Windows.ApplicationModel.Search;
+
 using Windows.Networking.Vpn;
 using Windows.Storage;
 using Windows.Storage.Streams;
@@ -11,11 +11,14 @@ using Windows.UI.Xaml.Media.Imaging;
 using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.ViewModels.MusicVM;
 using VLC_WINRT_APP.ViewModels.VideoVM;
-
+#if WINDOWS_APP
+using Windows.ApplicationModel.Search;
+#endif
 namespace VLC_WINRT_APP.Helpers
 {
     public static class SearchHelpers
     {
+#if WINDOWS_APP
         public static void Search(string tag, SearchBoxSuggestionsRequestedEventArgs args)
         {
             if (string.IsNullOrEmpty(tag))
@@ -62,5 +65,6 @@ namespace VLC_WINRT_APP.Helpers
             }
             deferral.Complete();
         }
+#endif
     }
 }

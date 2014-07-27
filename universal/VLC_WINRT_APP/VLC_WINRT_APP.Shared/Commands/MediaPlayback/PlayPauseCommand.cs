@@ -10,10 +10,6 @@
 using Autofac;
 using VLC_WINRT.Common;
 using VLC_WINRT_APP.Services.Interface;
-#if WINDOWS_PHONE_APP
-using VLC_WINPRT;
-#endif
-using VLC_WINRT_APP;
 
 namespace VLC_WINRT_APP.Commands.MediaPlayback
 {

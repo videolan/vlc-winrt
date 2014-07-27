@@ -10,9 +10,10 @@
 using System;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.ComTypes;
-#if NETFX_CORE
+#if WINDOWS_APP
 using System.ServiceModel.Security;
 #endif
+using System.Threading.Tasks;
 using Windows.Storage;
 
 namespace VLC_WINRT_APP.Helpers
@@ -69,8 +70,9 @@ namespace VLC_WINRT_APP.Helpers
         private const int ERROR_PATH_NOT_FOUND = 3;
         private const int ERROR_ACCESS_DENIED = 5;
 
-        public static bool FileExist(string fileName)
+        public static async Task<bool> FileExist(string fileName)
         {
+#if WINDOWS_APP
             WIN32_FILE_ATTRIBUTE_DATA fileData;
             if (GetFileAttributesEx(fileName, GET_FILEEX_INFO_LEVELS.GetFileExInfoStandard, out fileData))
                 return true;
@@ -79,11 +81,25 @@ namespace VLC_WINRT_APP.Helpers
             var lastError = Marshal.GetLastWin32Error();
             if (lastError == ERROR_FILE_NOT_FOUND || lastError == ERROR_PATH_NOT_FOUND) return false;
             // si c'est pas un fichier non trouvé, on lance une exception
-            #if NETFX_CORE
+#if WINDOWS_APP
             if (lastError == ERROR_ACCESS_DENIED)
                 throw new SecurityAccessDeniedException("Accès interdit");
-            #endif
+#endif
             throw new InvalidOperationException(string.Format("Erreur pendant l'accès au fichier {0}, code {1}", fileName, lastError));
+#else
+            StorageFile file = null;
+            try
+            {
+                file = await StorageFile.GetFileFromPathAsync(fileName);
+            }
+            catch
+            {
+                return false;
+            }
+            if (file == null)
+                return false;
+            return true;
+#endif
         }
 
     }

@@ -173,12 +173,14 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         {
             LoadingState = LoadingState.NotLoaded;
             var resourceLoader = new ResourceLoader();
+#if WINDOWS_APP
             Panels.Add(new Panel(resourceLoader.GetString("Albums").ToLower(), 0, 1, App.Current.Resources["HomePath"].ToString()));
             Panels.Add(new Panel(resourceLoader.GetString("Artists").ToLower(), 1, 0.4, App.Current.Resources["HomePath"].ToString()));
             Panels.Add(new Panel(resourceLoader.GetString("Songs").ToLower(), 2, 0.4, App.Current.Resources["HomePath"].ToString()));
             //Panels.Add(new Panel(resourceLoader.GetString("Pinned").ToLower(), 2, 0.4, App.Current.Resources["HomePath"].ToString()));
             //Panels.Add(new Panel(resourceLoader.GetString("Playlists").ToLower(), 2, 0.4, App.Current.Resources["HomePath"].ToString()));
-        }
+#endif
+            }
 
         public void Initialize()
         {
@@ -290,7 +292,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                 IsBusy = false;
                 IsLoaded = true;
                 IsMusicLibraryEmpty = false;
-                OnPropertyChanged("Artist");
+                OnPropertyChanged("Artists");
                 OnPropertyChanged("IsBusy");
                 OnPropertyChanged("IsMusicLibraryEmpty");
                 OnPropertyChanged("IsLoaded");
@@ -301,11 +303,17 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 
         private async Task GetAllMusicFolders()
         {
+#if WINDOWS_APP
             StorageLibrary musicLibrary = await StorageLibrary.GetLibraryAsync(KnownLibraryId.Music);
             foreach (StorageFolder storageFolder in musicLibrary.Folders)
             {
                 await CreateDatabaseFromMusicFolder(storageFolder);
             }
+#else
+            StorageFolder musicLibrary = KnownFolders.MusicLibrary;
+            CreateDatabaseFromMusicFolder(musicLibrary);
+#endif
+
         }
 
         private async Task CreateDatabaseFromMusicFolder(StorageFolder musicFolder)

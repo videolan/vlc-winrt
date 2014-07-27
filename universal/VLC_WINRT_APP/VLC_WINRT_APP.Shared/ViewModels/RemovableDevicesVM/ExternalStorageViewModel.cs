@@ -11,13 +11,15 @@ using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
-using Windows.Devices.Portable;
 using Autofac;
 using VLC_WINRT.Common;
 using VLC_WINRT_APP.Commands.RemovableDevices;
 using VLC_WINRT_APP.Common;
 using VLC_WINRT_APP.Services.RunTime;
 using VLC_WINRT_APP.ViewModels.Others.VlcExplorer;
+#if WINDOWS_APP
+using Windows.Devices.Portable;
+#endif
 
 namespace VLC_WINRT_APP.ViewModels.RemovableDevicesVM
 {

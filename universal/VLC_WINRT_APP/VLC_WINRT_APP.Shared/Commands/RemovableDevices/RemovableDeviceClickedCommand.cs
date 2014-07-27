@@ -6,6 +6,7 @@ using VLC_WINRT_APP.ViewModels.Others.VlcExplorer;
 
 namespace VLC_WINRT_APP.Commands.RemovableDevices
 {
+#if WINDOWS_APP
     public class RemovableDeviceClickedCommand : AlwaysExecutableCommand
     {
         public override void Execute(object parameter)
@@ -19,4 +20,5 @@ namespace VLC_WINRT_APP.Commands.RemovableDevices
             }
         }
     }
+#endif
 }

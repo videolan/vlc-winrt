@@ -38,6 +38,7 @@ namespace VLC_WINRT_APP.Commands.MainPageCommands
                     if (App.ApplicationFrame.CurrentSourcePageType != typeof(MainPageMusic))
                         App.ApplicationFrame.Navigate(typeof(MainPageMusic));
                     break;
+#if WINDOWS_APP
                 case 3:
                     if (App.ApplicationFrame.CurrentSourcePageType != typeof(MainPageRemovables))
                         App.ApplicationFrame.Navigate(typeof(MainPageRemovables));
@@ -46,6 +47,7 @@ namespace VLC_WINRT_APP.Commands.MainPageCommands
                     if (App.ApplicationFrame.CurrentSourcePageType != typeof(MainPageMediaServers))
                         App.ApplicationFrame.Navigate(typeof(MainPageMediaServers));
                     break;
+#endif
             }
         }
     }

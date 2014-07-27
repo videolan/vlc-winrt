@@ -19,13 +19,9 @@ namespace VLC_WINRT_APP.Commands.Video
             {
                 Locator.MusicPlayerVM.CleanViewModel();
             }
-#if WINDOWS_PHONE_APP
-            App.NavigationFrame.Navigate(typeof(VideoPlayerPage));
-#endif
-#if WINDOWS_APP
             if (App.ApplicationFrame.CurrentSourcePageType != typeof(VideoPlayerPage))
                 App.ApplicationFrame.Navigate(typeof(VideoPlayerPage));
-#endif
+
             ItemClickEventArgs args = parameter as ItemClickEventArgs;
             VideoVM videoVm = args.ClickedItem as VideoVM;
             videoVm.Play();

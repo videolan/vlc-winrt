@@ -10,7 +10,9 @@ namespace VLC_WINRT_APP.Commands.RemovableDevices
         public override void Execute(object parameter)
         {
             IStorageItem storageItem = ((ItemClickEventArgs) parameter).ClickedItem as IStorageItem;
+#if WINDOWS_APP
             Locator.ExternalStorageVM.CurrentStorageVM.NavigateTo(storageItem);
+#endif
         }
     }
 }

@@ -143,8 +143,12 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
 
         public async Task GetVideos()
         {
+#if WINDOWS_APP
             StorageLibrary videoLibrary = await StorageLibrary.GetLibraryAsync(KnownLibraryId.Videos);
             foreach (StorageFolder storageFolder in videoLibrary.Folders)
+#else
+            StorageFolder storageFolder = KnownFolders.VideosLibrary;
+#endif
             {
                 try
                 {
@@ -192,7 +196,9 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
 
                 if (NewVideos.Any())
                 {
+#if WINDOWS_APP
                     Panels.Add(new Panel("new", 1, 0.4, App.Current.Resources["HomePath"].ToString()));
+#endif
                 }
                 LoadingState = LoadingState.Loaded;
             });

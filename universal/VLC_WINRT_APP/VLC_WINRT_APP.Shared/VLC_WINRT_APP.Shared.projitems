@@ -139,6 +139,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\VideoVM\VideoPlayerVM.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Settings\SettingsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\VideoVM\VideoLibraryVM.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\VideoPages\VideoPlayerPage.xaml.cs">
+      <DependentUpon>VideoPlayerPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <PRIResource Include="$(MSBuildThisFileDirectory)Strings\de-DE\Resources.resw" />
@@ -196,6 +199,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Resources\Templates.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\VideoPages\VideoPlayerPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

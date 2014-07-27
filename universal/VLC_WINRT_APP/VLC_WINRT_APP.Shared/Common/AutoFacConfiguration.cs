@@ -11,6 +11,7 @@ using Autofac;
 using VLC_WINRT_APP.Services.Interface;
 using VLC_WINRT_APP.Services.RunTime;
 using VLC_WINRT_APP.ViewModels;
+using VLC_WINRT_APP.ViewModels.MusicVM;
 using VLC_WINRT_APP.ViewModels.NetworkVM;
 using VLC_WINRT_APP.ViewModels.RemovableDevicesVM;
 using VLC_WINRT_APP.ViewModels.Settings;
@@ -46,7 +47,9 @@ namespace VLC_WINRT_APP.Common
             builder.RegisterType<MusicPlayerVM>().SingleInstance();
             builder.RegisterType<VideoLibraryVM>().SingleInstance();
             builder.RegisterType<SettingsViewModel>().SingleInstance();
+#if WINDOWS_APP
             builder.RegisterType<ExternalStorageViewModel>().SingleInstance();
+#endif
             builder.RegisterType<DLNAVM>().SingleInstance();
 
             // Register Services
@@ -67,9 +70,9 @@ namespace VLC_WINRT_APP.Common
             }
 
             // Register Views            
-#if WINDOWS_APP
+
             builder.RegisterType<MainPage>();
-#endif
+
             return builder.Build();
         }
     }

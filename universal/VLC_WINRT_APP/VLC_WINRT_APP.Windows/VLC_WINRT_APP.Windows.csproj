@@ -190,9 +190,6 @@
     <Compile Include="Views\UserControls\MiniVideoPlayer.xaml.cs">
       <DependentUpon>MiniVideoPlayer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\VideoPages\VideoPlayerPage.xaml.cs">
-      <DependentUpon>VideoPlayerPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\MainPages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -846,10 +843,6 @@
     <Page Include="Views\UserControls\MiniVideoPlayer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\VideoPages\VideoPlayerPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\MainPages\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
