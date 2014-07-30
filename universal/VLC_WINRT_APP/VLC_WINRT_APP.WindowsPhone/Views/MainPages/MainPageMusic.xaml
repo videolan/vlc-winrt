@@ -16,12 +16,14 @@
                               IsSourceGrouped="True"
                               ItemsPath="Albums" />
     </UserControl.Resources>
+
     <Grid>
         <SemanticZoom x:Name="SemanticZoom"
                       ViewChangeCompleted="SemanticZoom_OnViewChangeCompletedArtistByName">
             <SemanticZoom.ZoomedOutView>
                 <GridView ScrollViewer.VerticalScrollBarVisibility="Hidden"
-                          ItemTemplate="{StaticResource SemanticZoomOutViewArtistTemplate}" />
+                          ItemTemplate="{StaticResource SemanticZoomOutViewArtistTemplate}" 
+                          Background="#dd000000"/>
             </SemanticZoom.ZoomedOutView>
             <SemanticZoom.ZoomedInView>
                 <ListView ItemsSource="{Binding Source={StaticResource ArtistsGroupedByName}}"

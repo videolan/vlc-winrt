@@ -4,6 +4,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:triggers="using:WinRT.Triggers"
+      xmlns:controls="using:VLC_WINRT_APP.Controls"
       mc:Ignorable="d"
       d:DesignHeight="768"
       d:DesignWidth="550">
@@ -19,7 +20,20 @@
                             Command="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM.PickVideo}">
                         <Button.Content>
                             <TextBlock>
-                                <Run Text="open a video " />
+                                <Run Text="open a video" />
+                                <Run Text=""
+                                     FontFamily="Segoe UI Symbol" />
+                            </TextBlock>
+                        </Button.Content>
+                    </Button>
+                    <Button Margin="24,0,0,0"
+                            Style="{StaticResource TextBlockButtonStyle}"
+                            FontSize="22"
+                            FontWeight="Light"
+                            Command="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM.PickVideo}">
+                        <Button.Content>
+                            <TextBlock>
+                                <Run Text="open a stream" />
                                 <Run Text=""
                                      FontFamily="Segoe UI Symbol" />
                             </TextBlock>
@@ -31,19 +45,22 @@
                 <HubSection>
                     <HubSection.ContentTemplate>
                         <DataTemplate>
-                            <GridView DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}"
-                                      ItemsSource="{Binding FavoriteAlbums}"
-                                      Header="Favorite Albums"
-                                      HeaderTemplate="{StaticResource ListViewHeaderTemplate}"
-                                      ItemTemplate="{StaticResource SemanticZoomInViewAlbumTemplate}">
-                                <GridView.ItemsPanel>
-                                    <ItemsPanelTemplate>
-                                        <VariableSizedWrapGrid Orientation="Horizontal"
-                                                               ItemHeight="200"
-                                                               ItemWidth="200" />
-                                    </ItemsPanelTemplate>
-                                </GridView.ItemsPanel>
-                            </GridView>
+                            <Grid>
+                                <GridView DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}"
+                                          ItemsSource="{Binding FavoriteAlbums}"
+                                          Header="Favorite Albums"
+                                          HeaderTemplate="{StaticResource ListViewHeaderTemplate}"
+                                          ItemTemplate="{StaticResource SemanticZoomInViewAlbumTemplate}">
+                                    <GridView.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <VariableSizedWrapGrid Orientation="Horizontal"
+                                                                   ItemHeight="200"
+                                                                   ItemWidth="200" />
+                                        </ItemsPanelTemplate>
+                                    </GridView.ItemsPanel>
+                                </GridView>
+                                <controls:NoFavoriteAlbumsControl DataContext="{Binding FavoriteAlbums.Count}" />
+                            </Grid>
                         </DataTemplate>
                     </HubSection.ContentTemplate>
                 </HubSection>

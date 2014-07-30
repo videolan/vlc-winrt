@@ -39,6 +39,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Common\AutoFacConfiguration.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\BindableBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\DispatchHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\NoFavoriteAlbumsControl.xaml.cs">
+      <DependentUpon>NoFavoriteAlbumsControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Controls\VideoItemControl.xaml.cs">
       <DependentUpon>VideoItemControl.xaml</DependentUpon>
     </Compile>
@@ -181,6 +184,10 @@
     <Content Include="$(MSBuildThisFileDirectory)segoeui.ttf" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\NoFavoriteAlbumsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Controls\VideoItemControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

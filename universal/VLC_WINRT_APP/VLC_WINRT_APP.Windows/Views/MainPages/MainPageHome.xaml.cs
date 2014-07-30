@@ -37,10 +37,5 @@ namespace VLC_WINRT_APP.Views.MainPages
         private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
         {
         }
-
-        private void FavoriteAlbumItemClick(object sender, ItemClickEventArgs e)
-        {
-            (e.ClickedItem as MusicLibraryVM.AlbumItem).PlayAlbum.Execute(e.ClickedItem);
-        }
     }
 }

@@ -40,7 +40,7 @@
                 <HubSection Header="HOME">
                     <HubSection.ContentTemplate>
                         <DataTemplate>
-                            <local:MainLastViewedPinnedPage />
+                            <local:MainLastViewedPinnedPage Margin="-16,0,0,0"/>
                         </DataTemplate>
                     </HubSection.ContentTemplate>
                 </HubSection>
@@ -62,4 +62,9 @@
         </Hub>
         <musicPages:MiniPlayer Grid.Row="3" />
     </Grid>
+    <Page.BottomAppBar>
+        <CommandBar ClosedDisplayMode="Minimal">
+            
+        </CommandBar>
+    </Page.BottomAppBar>
 </Page>

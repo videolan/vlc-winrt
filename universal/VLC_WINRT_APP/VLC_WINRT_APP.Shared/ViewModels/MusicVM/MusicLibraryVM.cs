@@ -17,6 +17,7 @@ using Windows.ApplicationModel.Resources;
 using Windows.Storage;
 using Windows.Storage.FileProperties;
 using Windows.UI.Core;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 using SQLite;
@@ -180,7 +181,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             //Panels.Add(new Panel(resourceLoader.GetString("Pinned").ToLower(), 2, 0.4, App.Current.Resources["HomePath"].ToString()));
             //Panels.Add(new Panel(resourceLoader.GetString("Playlists").ToLower(), 2, 0.4, App.Current.Resources["HomePath"].ToString()));
 #endif
-            }
+        }
 
         public void Initialize()
         {
@@ -229,7 +230,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                 {
                     if (album.Favorite)
                     {
-                        App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+                        App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                         {
                             RandomAlbums.Add(album);
                             FavoriteAlbums.Add(album);
@@ -241,17 +242,17 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                     {
                         if (!album.Favorite)
 
-                            App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+                            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                             RandomAlbums.Add(album));
                     }
                     foreach (TrackItem trackItem in album.Tracks)
                     {
-                        App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+                        App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                             Tracks.Add(trackItem));
                     }
                 }
 
-                App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+                App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                 {
                     OnPropertyChanged("Artist");
                     OnPropertyChanged("Albums");
@@ -278,6 +279,11 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                 IsLoaded = false;
                 OnPropertyChanged("IsBusy");
                 OnPropertyChanged("IsLoaded");
+#if WINDOWS_PHONE_APP
+                StatusBar statusBar = StatusBar.GetForCurrentView();
+                statusBar.ProgressIndicator.ShowAsync();
+                statusBar.ProgressIndicator.Text = "Indexing music library";
+#endif
             });
 
             _artistDataRepository = new ArtistDataRepository();
@@ -287,16 +293,21 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 
             await LoadFromDatabase();
 
-            await DispatchHelper.InvokeAsync(() =>
+            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 IsBusy = false;
                 IsLoaded = true;
                 IsMusicLibraryEmpty = false;
                 OnPropertyChanged("Artists");
+                OnPropertyChanged("FavoriteAlbums");
                 OnPropertyChanged("IsBusy");
                 OnPropertyChanged("IsMusicLibraryEmpty");
                 OnPropertyChanged("IsLoaded");
                 LoadingState = LoadingState.Loaded;
+#if WINDOWS_PHONE_APP
+                StatusBar statusBar = StatusBar.GetForCurrentView();
+                statusBar.ProgressIndicator.HideAsync();
+#endif
             });
             LoadFavoritesRandomAlbums();
         }
@@ -311,7 +322,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             }
 #else
             StorageFolder musicLibrary = KnownFolders.MusicLibrary;
-            CreateDatabaseFromMusicFolder(musicLibrary);
+            await CreateDatabaseFromMusicFolder(musicLibrary);
 #endif
 
         }
@@ -335,7 +346,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         private async Task CreateDatabaseFromMusicFile(StorageFile item)
         {
             MusicProperties properties = await item.Properties.GetMusicPropertiesAsync();
-            if (properties != null)
+            if (properties != null && !string.IsNullOrEmpty(properties.Album) && !string.IsNullOrEmpty(properties.Artist) && !string.IsNullOrEmpty(properties.Title))
             {
                 ArtistItem artist = await _artistDataRepository.LoadViaArtistName(properties.Artist);
                 if (artist == null)
@@ -348,7 +359,6 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                 AlbumItem album = await _albumDataRepository.LoadAlbumViaName(artist.Id, properties.Album);
                 if (album == null)
                 {
-
                     album = new AlbumItem
                     {
                         Name = string.IsNullOrEmpty(properties.Album) ? "Unknown album" : properties.Album,
@@ -400,7 +410,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                     }
                 }
                 var orderedArtists = artists.OrderBy(x => x.Name);
-                App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+                App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                 {
                     foreach (var artist in orderedArtists)
                     {
@@ -634,7 +644,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                 get { return _currentTrackPosition; }
                 set
                 {
-                    SetProperty(ref _currentTrackPosition, value); 
+                    SetProperty(ref _currentTrackPosition, value);
                     OnPropertyChanged("CurrentTrackPosition");
                 }
             }
