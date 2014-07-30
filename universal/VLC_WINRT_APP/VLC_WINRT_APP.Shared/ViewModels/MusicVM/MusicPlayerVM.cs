@@ -225,12 +225,11 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         public async Task Play(StorageFile fileFromExplorer = null)
         {
             Stop();
-#if WINDOWS_PHONE_APP
-            App.Dispatcher.RunAsync(CoreDispatcherPriority.High, async () =>
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.High, async () =>
             {
                 IsRunning = true;
+                OnPropertyChanged("PlayingType");
             });
-#endif
             var trackItem = TrackCollection[CurrentTrack];
             Task.Run(async () =>
             {

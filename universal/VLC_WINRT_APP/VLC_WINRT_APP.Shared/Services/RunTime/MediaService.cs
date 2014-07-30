@@ -132,9 +132,11 @@ namespace VLC_WINRT_APP.Services.RunTime
 
         public void Stop()
         {
+#if WINDOWS_PHONE_APP
+            //TODO: Remove this piece of .... used for demo
             if (_vlcService.CurrentState == VlcService.MediaPlayerState.Stopped || _vlcService.CurrentState == VlcService.MediaPlayerState.NotPlaying)
                 return;
-
+#endif
             _vlcService.Stop();
             UnregisterMediaControls();
         }

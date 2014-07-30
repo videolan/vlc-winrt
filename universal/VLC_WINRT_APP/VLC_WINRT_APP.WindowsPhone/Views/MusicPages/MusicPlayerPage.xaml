@@ -14,7 +14,7 @@
             <RowDefinition Height="80" />
             <RowDefinition Height="12" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto " />
         </Grid.RowDefinitions>
         <Image Source="/Assets/background.jpg"
                Stretch="UniformToFill"
@@ -144,5 +144,7 @@
                 </HubSection>
             </Hub.Sections>
         </Hub>
+        <local:MiniPlayer Grid.Row="3"
+                          Margin="-12,0,0,0"/>
     </Grid>
 </Page>

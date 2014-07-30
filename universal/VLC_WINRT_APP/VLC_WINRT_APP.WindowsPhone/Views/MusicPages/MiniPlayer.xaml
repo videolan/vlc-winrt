@@ -5,52 +5,67 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             d:DesignHeight="300"
-             d:DesignWidth="400"
-             DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}"
-             Visibility="{Binding PlayingType, Converter={StaticResource MiniPlayerVisibilityFromPlayingTypeConverter}}">
+             DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}">
+    <Button Style="{StaticResource TextBlockButtonStyle}"
+            HorizontalAlignment="Stretch"
+            HorizontalContentAlignment="Stretch">
+        <Button.Flyout>
+            <ListPickerFlyout ItemsSource="{Binding TrackCollection}"
+                              Title="{Binding CurrentTrackItem.AlbumName}"
+                              >
+                <ListPickerFlyout.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}"
+                                   Style="{StaticResource TitleTextBlockStyle}"/>
+                    </DataTemplate>
+                </ListPickerFlyout.ItemTemplate>
+            </ListPickerFlyout>
+        </Button.Flyout>
+        <Grid Height="70"
+              Background="#282828"
+              Visibility="{Binding PlayingType, Converter={StaticResource MiniPlayerVisibilityFromPlayingTypeConverter}}"
+              VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="12" />
+                <ColumnDefinition Width="70" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="70" />
+                <ColumnDefinition Width="12" />
+            </Grid.ColumnDefinitions>
+            <Image Source="{Binding CurrentPlayingArtist.CurrentAlbumItem.Picture}"
+                   Grid.Column="1"
+                   Stretch="UniformToFill"
+                   Height="70"
+                   Width="70"
+                   Tapped="UIElement_OnTapped" />
+            <StackPanel Grid.Column="2"
+                        VerticalAlignment="Center"
+                        Margin="12,0,0,0"
+                        Tapped="UIElement_OnTapped">
+                <TextBlock Text="{Binding CurrentTrackItem.Name}"
+                           FontSize="26"
+                           FontWeight="Normal" />
+                <TextBlock Text="{Binding CurrentPlayingArtist.Name}"
+                           FontSize="18"
+                           FontWeight="Normal"
+                           Foreground="#FF838383"
+                           Typography.Capitals="SmallCaps" />
+            </StackPanel>
+            <AppBarToggleButton Grid.Column="3"
+                                Label="Play"
+                                IsChecked="{Binding CurrentTrackItem.Favorite}"
+                                Command="{Binding CurrentTrackItem.FavoriteTrack}"
+                                CommandParameter="{Binding CurrentTrackItem}"
+                                Icon="Play"
+                                Visibility="{Binding IsPlaying, Converter={StaticResource BooleanToVisibilityConverter}}" />
+            <AppBarToggleButton Grid.Column="3"
+                                Label="Pause"
+                                IsChecked="{Binding CurrentTrackItem.Favorite}"
+                                Command="{Binding CurrentTrackItem.FavoriteTrack}"
+                                CommandParameter="{Binding CurrentTrackItem}"
+                                Icon="Pause"
+                                Visibility="{Binding IsPlaying, Converter={StaticResource NegatedBooleanToVisibilityConverter}}" />
+        </Grid>
 
-    <Grid Background="#FF1E1E1E"
-          Height="70">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="12" />
-            <ColumnDefinition Width="70" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="70" />
-            <ColumnDefinition Width="12" />
-        </Grid.ColumnDefinitions>
-        <Image Source="{Binding CurrentPlayingArtist.CurrentAlbumItem.Picture}"
-               Grid.Column="1"
-               Stretch="UniformToFill"
-               Height="70"
-               Width="70"
-               Tapped="UIElement_OnTapped" />
-        <StackPanel Grid.Column="2"
-                    VerticalAlignment="Center"
-                    Margin="12,0,0,0"
-                    Tapped="UIElement_OnTapped">
-            <TextBlock Text="{Binding CurrentTrackItem.Name}"
-                       FontSize="26"
-                       FontWeight="Normal" />
-            <TextBlock Text="{Binding CurrentPlayingArtist.Name}"
-                       FontSize="18"
-                       FontWeight="Normal"
-                       Foreground="#FF838383"
-                       Typography.Capitals="SmallCaps" />
-        </StackPanel>
-        <AppBarToggleButton Grid.Column="3"
-                            Label="Play"
-                            IsChecked="{Binding CurrentTrackItem.Favorite}"
-                            Command="{Binding CurrentTrackItem.FavoriteTrack}"
-                            CommandParameter="{Binding CurrentTrackItem}"
-                            Icon="Play"
-                            Visibility="{Binding IsPlaying, Converter={StaticResource BooleanToVisibilityConverter}}" />
-        <AppBarToggleButton Grid.Column="3"
-                            Label="Pause"
-                            IsChecked="{Binding CurrentTrackItem.Favorite}"
-                            Command="{Binding CurrentTrackItem.FavoriteTrack}"
-                            CommandParameter="{Binding CurrentTrackItem}"
-                            Icon="Pause"
-                            Visibility="{Binding IsPlaying, Converter={StaticResource NegatedBooleanToVisibilityConverter}}" />
-    </Grid>
+    </Button>
 </UserControl>

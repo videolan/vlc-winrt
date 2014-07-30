@@ -49,7 +49,7 @@ namespace VLC_WINRT_APP.Services.RunTime
         public event EventHandler<MediaPlayerState> StatusChanged;
 
         public event EventHandler<Player> MediaEnded;
-        private void  UpdateStatus(MediaPlayerState status)
+        private void UpdateStatus(MediaPlayerState status)
         {
             if (CurrentState != status)
             {
@@ -64,10 +64,12 @@ namespace VLC_WINRT_APP.Services.RunTime
         public void Stop()
         {
             //TODO: fix this work around.
+#if WINDOWS_APP
             if (CurrentState == MediaPlayerState.Paused)
             {
                 Play();
             }
+#endif
             DoVLCSafeAction(() =>
             {
                 _vlcPlayer.Stop();
@@ -89,7 +91,7 @@ namespace VLC_WINRT_APP.Services.RunTime
 #else
             lock (_controlLock)
             {
-                a();   
+                a();
             }
 #endif
         }
@@ -124,7 +126,7 @@ namespace VLC_WINRT_APP.Services.RunTime
             IAsyncAction init = _vlcPlayer.Initialize();
             if (init != null)
             {
-                _vlcInitializeTask = init.AsTask();   
+                _vlcInitializeTask = init.AsTask();
             }
             _vlcPlayer.MediaEnded += _vlcPlayer_MediaEnded;
 #if WINDOWS_PHONE_APP
@@ -310,7 +312,7 @@ namespace VLC_WINRT_APP.Services.RunTime
                 return _vlcPlayer.GetAudioTracksDescription(audioTracks);
             }
         }
-        
+
         public async Task SetSubtitleTrack(int track)
         {
             if (_vlcPlayer == null || _vlcInitializeTask == null)
@@ -422,7 +424,7 @@ namespace VLC_WINRT_APP.Services.RunTime
 
         public void SetVolume(int vol)
         {
-            
+
         }
         public void UpdateSize(uint u, uint u1)
         {
@@ -452,15 +454,15 @@ namespace VLC_WINRT_APP.Services.RunTime
             if (Locator.MusicPlayerVM.IsRunning)
             {
                 float pos;
-//#if WINDOWS_APP
-                    pos = (float)
-                        (App.RootPage.MediaElement.Position.TotalSeconds /
-                         Locator.MusicPlayerVM.CurrentPlayingArtist.CurrentAlbumItem.Tracks[Locator.MusicPlayerVM.CurrentPlayingArtist.CurrentAlbumItem.CurrentTrackPosition].Duration.TotalSeconds);
-//#else
-//                pos = (float)
-//                    (BackgroundMediaPlayer.Current.Position.TotalSeconds /
-//                         Locator.MusicPlayer.CurrentPlayingArtist.CurrentAlbumItem.CurrentTrack.Duration.TotalSeconds);
-//#endif
+                //#if WINDOWS_APP
+                pos = (float)
+                    (App.RootPage.MediaElement.Position.TotalSeconds /
+                     Locator.MusicPlayerVM.CurrentPlayingArtist.CurrentAlbumItem.Tracks[Locator.MusicPlayerVM.CurrentPlayingArtist.CurrentAlbumItem.CurrentTrackPosition].Duration.TotalSeconds);
+                //#else
+                //                pos = (float)
+                //                    (BackgroundMediaPlayer.Current.Position.TotalSeconds /
+                //                         Locator.MusicPlayer.CurrentPlayingArtist.CurrentAlbumItem.CurrentTrack.Duration.TotalSeconds);
+                //#endif
                 return pos;
             }
             else
@@ -484,7 +486,7 @@ namespace VLC_WINRT_APP.Services.RunTime
         {
             Debug.WriteLine("Play with dummy player");
             StorageFile file;
-            if(Locator.VideoVm.PlayingType == PlayingType.Music)
+            if (Locator.VideoVm.PlayingType == PlayingType.Music)
             {
                 var trackItem = Locator.MusicPlayerVM.TrackCollection[Locator.MusicPlayerVM.CurrentTrack];
 
@@ -499,21 +501,24 @@ namespace VLC_WINRT_APP.Services.RunTime
 
             //DispatchHelper.Invoke(() =>
             //{
-//#if WINDOWS_APP
-                App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, ()=>App.RootPage.MediaElement.SetSource(stream, file.ContentType));
-//#else
-//                if (Locator.MusicPlayer.IsRunning)
-//                {
-//                    BackgroundMediaPlayer.SendMessageToBackground(new ValueSet()
-//                    {
-//                        {"filePath", file.Path},
-//                    });
-//                }
-//                else
-//                {
-//                    App.RootPage.MediaElement.SetSource(stream, file.ContentType);
-//                }
-//#endif
+            //#if WINDOWS_APP
+            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                App.RootPage.MediaElement.SetSource(stream, file.ContentType);
+            });
+            //#else
+            //                if (Locator.MusicPlayer.IsRunning)
+            //                {
+            //                    BackgroundMediaPlayer.SendMessageToBackground(new ValueSet()
+            //                    {
+            //                        {"filePath", file.Path},
+            //                    });
+            //                }
+            //                else
+            //                {
+            //                    App.RootPage.MediaElement.SetSource(stream, file.ContentType);
+            //                }
+            //#endif
             //});
         }
 
@@ -521,19 +526,19 @@ namespace VLC_WINRT_APP.Services.RunTime
         {
             //if (Locator.MusicPlayer.IsRunning)
             //{
-//#if WINDOWS_APP
+            //#if WINDOWS_APP
 
             App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => App.RootPage.MediaElement.Pause());
-//#else
-//            if (Locator.MusicPlayer.IsRunning)
-//            {
-//                BackgroundMediaPlayer.Current.Pause();
-//            }
-//            else
-//            {
-//                DispatchHelper.Invoke(() => App.RootPage.MediaElement.Pause());
-//            }
-//#endif
+            //#else
+            //            if (Locator.MusicPlayer.IsRunning)
+            //            {
+            //                BackgroundMediaPlayer.Current.Pause();
+            //            }
+            //            else
+            //            {
+            //                DispatchHelper.Invoke(() => App.RootPage.MediaElement.Pause());
+            //            }
+            //#endif
             //}
         }
 
@@ -544,19 +549,19 @@ namespace VLC_WINRT_APP.Services.RunTime
             //{
             //DispatchHelper.Invoke(() =>
             //{
-//#if WINDOWS_APP
-            
-                //App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, ()=>App.RootPage.MediaElement.Play());
-//#else
-//            if (Locator.MusicPlayer.IsRunning)
-//            {
-//                BackgroundMediaPlayer.Current.Play();
-//            }
-//            else
-//            {
-//                DispatchHelper.Invoke(() => App.RootPage.MediaElement.Play());
-//            }
-//#endif
+            //#if WINDOWS_APP
+
+            //App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, ()=>App.RootPage.MediaElement.Play());
+            //#else
+            //            if (Locator.MusicPlayer.IsRunning)
+            //            {
+            //                BackgroundMediaPlayer.Current.Play();
+            //            }
+            //            else
+            //            {
+            //                DispatchHelper.Invoke(() => App.RootPage.MediaElement.Play());
+            //            }
+            //#endif
             //});
             //}
             //else
@@ -574,11 +579,11 @@ namespace VLC_WINRT_APP.Services.RunTime
                                          Locator.MusicPlayerVM.CurrentPlayingArtist.CurrentAlbumItem.Tracks[Locator.MusicPlayerVM.CurrentPlayingArtist.CurrentAlbumItem.CurrentTrackPosition].Duration
                                              .TotalSeconds);
 
-//#if WINDOWS_APP
-                 App.RootPage.MediaElement.Position = tS;
-//#else
-//                BackgroundMediaPlayer.Current.Position = tS;
-//#endif
+                //#if WINDOWS_APP
+                App.RootPage.MediaElement.Position = tS;
+                //#else
+                //                BackgroundMediaPlayer.Current.Position = tS;
+                //#endif
             }
             else
             {
@@ -597,6 +602,3 @@ namespace VLC_WINRT_APP.Services.RunTime
     //#endif
 #endif
 }
-
-
-
