@@ -198,6 +198,8 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
 
             IsRunning = true;
             OnPropertyChanged("IsRunning");
+            IsPlaying = true;
+            OnPropertyChanged("IsPlaying");
             _fileToken = mrl;
             _mrl = "file://" + mrl;
             _timeTotal = TimeSpan.Zero;

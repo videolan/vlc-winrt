@@ -31,6 +31,7 @@ namespace VLC_WINRT_APP.Views.MainPages
             _vlcService = vlcService;
             //(mediaService as MediaService).SetMediaElement(FoudationMediaElement);
             Loaded += SwapPanelLoaded;
+            ApplicationView.GetForCurrentView().SetDesiredBoundsMode(ApplicationViewBoundsMode.UseCoreWindow);
         }
         private async void SwapPanelLoaded(object sender, RoutedEventArgs e)
         {
@@ -44,7 +45,6 @@ namespace VLC_WINRT_APP.Views.MainPages
         /// This parameter is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            ApplicationView.GetForCurrentView().SetDesiredBoundsMode(ApplicationViewBoundsMode.UseCoreWindow);
         }
     }
 }

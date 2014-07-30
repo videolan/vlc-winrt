@@ -76,6 +76,12 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             set { SetProperty(ref _token, value); }
         }
 
+        public string FilePath
+        {
+            get { return _filePath; }
+            set { SetProperty(ref _filePath, value); }
+        }
+
         public string Type
         {
             get { return _type; }
@@ -130,6 +136,8 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
         }
 
         public VideoProperties VideoProperties;
+        private string _filePath;
+
         #endregion
 
         #region public fields
@@ -161,8 +169,15 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
                 Subtitle = storageFile.FileType.ToUpper() + " File";
                 Type = storageFile.FileType.Replace(".", "").ToLower();
                 Token = StorageApplicationPermissions.FutureAccessList.Add(File);
+                FilePath = storageFile.Path;
                 GetTimeInformation();
             }
+        }
+
+        public async Task InitializeFromFilePath()
+        {
+            StorageFile file = await StorageFile.GetFileFromPathAsync(FilePath);
+            Initialize(file);
         }
         #endregion
 
@@ -206,7 +221,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
                             Image = thumb;
                             thumb.SaveToFile(videoPic, Title + ".jpg");
                         });
-                        
+
                     }
                 }
                 else

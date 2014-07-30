@@ -39,7 +39,7 @@ namespace VLC_WINRT_APP.ViewModels
         protected PlayPauseCommand _playOrPause;
 
         protected readonly DisplayRequest _displayAlwaysOnRequest;
-        protected readonly DispatcherTimer _sliderPositionTimer;
+        protected DispatcherTimer _sliderPositionTimer;
 
         #endregion
 
@@ -50,7 +50,10 @@ namespace VLC_WINRT_APP.ViewModels
         #region public props
         public bool IsPlaying
         {
-            get { return _isPlaying; }
+            get
+            {
+                return _isPlaying;
+            }
             set
             {
                 if (value != _isPlaying)
@@ -71,7 +74,7 @@ namespace VLC_WINRT_APP.ViewModels
 
         public PlayingType PlayingType
         {
-            get 
+            get
             {
                 if (Locator.MusicPlayerVM.IsRunning)
                     return PlayingType.Music;
@@ -158,14 +161,16 @@ namespace VLC_WINRT_APP.ViewModels
 
         #endregion
         #region constructors
+
         protected MediaPlaybackViewModel(IMediaService mediaService, VlcService mediaPlayerService)
         {
             _mediaService = mediaService;
             _mediaService.StatusChanged += PlayerStateChanged;
 
             _vlcPlayerService = mediaPlayerService;
-
+#if WINDOWS_APP
             _displayAlwaysOnRequest = new DisplayRequest();
+#endif
             _sliderPositionTimer = new DispatcherTimer();
             _sliderPositionTimer.Tick += FirePositionUpdate;
             _sliderPositionTimer.Interval = TimeSpan.FromMilliseconds(1000);
@@ -184,6 +189,7 @@ namespace VLC_WINRT_APP.ViewModels
             _playPrevious = new PlayPreviousCommand();
             _playOrPause = new PlayPauseCommand();
         }
+
         #endregion
 
         #region methods
@@ -202,6 +208,7 @@ namespace VLC_WINRT_APP.ViewModels
 
         private void ProtectedDisplayCall(bool shouldActivate)
         {
+#if WINDOWS_APP
             if (_displayAlwaysOnRequest == null) return;
             if (shouldActivate)
             {
@@ -211,6 +218,7 @@ namespace VLC_WINRT_APP.ViewModels
             {
                 _displayAlwaysOnRequest.RequestRelease();
             }
+#endif
         }
 
         private void UpdatePosition()

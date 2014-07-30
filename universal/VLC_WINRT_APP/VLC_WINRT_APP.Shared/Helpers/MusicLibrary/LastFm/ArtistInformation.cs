@@ -11,6 +11,7 @@ using Newtonsoft.Json;
 
 namespace VLC_WINRT_APP.Helpers.MusicLibrary.LastFm
 {
+
     public class ArtistInformation
     {
         [JsonProperty("artist")]
@@ -133,5 +134,4 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary.LastFm
         [JsonProperty("tag")]
         public Tag[] Tag { get; set; }
     }
-
 }

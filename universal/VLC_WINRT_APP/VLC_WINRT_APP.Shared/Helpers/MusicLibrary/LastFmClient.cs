@@ -34,7 +34,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                 var region = new Windows.Globalization.GeographicRegion();
                 string url =
                     string.Format(
- "http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist={1}&api_key={0}&format=json&lang={2}",
+ "http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist={1}&api_key={0}&format=json",
                         App.ApiKeyLastFm, artistName, region.Code.ToLower());
                 var reponse = await lastFmClient.GetStringAsync(url);
                 {
@@ -46,9 +46,9 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                     return artist;
                 }
             }
-            catch
+            catch(Exception exception)
             {
-                Debug.WriteLine("Failed to get artist biography from LastFM. Returning nothing.");
+                Debug.WriteLine("Failed to get artist biography from LastFM. Returning nothing." + exception.ToString());
             }
             return null;
         }
@@ -81,9 +81,33 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             return null;
         }
 
-        public Task<Album> GetAlbumInfo(string albumTitle)
+        public async Task<Album> GetAlbumInfo(string albumTitle, string artistName)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var lastFmClient = new HttpClient();
+                // Get users language/region
+                // If their region is not support by LastFM, it won't return an artist biography.
+                var region = new Windows.Globalization.GeographicRegion();
+                string url =
+                    string.Format(
+ "http://ws.audioscrobbler.com/2.0/?method=album.getinfo&artist={1}&album={3}&api_key={0}&format=json&lang={2}",
+                        App.ApiKeyLastFm, artistName, region.Code.ToLower(), albumTitle);
+                var reponse = await lastFmClient.GetStringAsync(url);
+                {
+                    var albumInfo = JsonConvert.DeserializeObject<AlbumInformation>(reponse);
+                    if (albumInfo == null) return null;
+                    if (albumInfo.Album == null) return null;
+                    var album = new Album();
+                    album.MapFrom(albumInfo.Album);
+                    return album;
+                }
+            }
+            catch
+            {
+                Debug.WriteLine("Failed to get artist biography from LastFM. Returning nothing.");
+            }
+            return null;
         }
 
         /// <summary>

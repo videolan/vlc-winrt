@@ -22,6 +22,7 @@ using Windows.UI.Xaml;
 using VLC_WINRT.Common;
 using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.Helpers.MusicLibrary.Deezer;
+using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.Services.Interface;
 using VLC_WINRT_APP.Services.RunTime;
 using System.Collections.ObjectModel;
@@ -224,6 +225,12 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         public async Task Play(StorageFile fileFromExplorer = null)
         {
             Stop();
+#if WINDOWS_PHONE_APP
+            App.Dispatcher.RunAsync(CoreDispatcherPriority.High, async () =>
+            {
+                IsRunning = true;
+            });
+#endif
             var trackItem = TrackCollection[CurrentTrack];
             Task.Run(async () =>
             {
@@ -317,9 +324,8 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 #endif
             _mediaService.Play();
 
-            App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, async () =>
+            App.Dispatcher.RunAsync(CoreDispatcherPriority.High, async () =>
             {
-                IsRunning = true;
                 ElapsedTime = TimeSpan.Zero;
                 OnPropertyChanged("CanGoPrevious");
                 OnPropertyChanged("CanGoNext");

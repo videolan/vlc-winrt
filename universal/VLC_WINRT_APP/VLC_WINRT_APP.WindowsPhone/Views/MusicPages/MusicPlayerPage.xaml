@@ -86,7 +86,7 @@
                                               ItemTemplate="{StaticResource DarkTrackTemplate}">
                                         <triggers:Interactions.Triggers>
                                             <triggers:EventTrigger EventName="ItemClick">
-                                                <triggers:InvokeCommandAction Command="{Binding CurrentArtist.CurrentAlbumItem.PlayTrack}"
+                                                <triggers:InvokeCommandAction Command="{Binding TrackClickedCommand}"
                                                                               PassEventArgsToCommand="True" />
                                             </triggers:EventTrigger>
                                         </triggers:Interactions.Triggers>

@@ -63,6 +63,8 @@ namespace VLC_WINRT_APP.Views.VideoPages
 
         async Task DisplayOrHide()
         {
+            if (timer == null)
+                timer = new DispatcherTimer();
             if (isVisible)
             {
                 await HeaderGrid.FadeOut(_fadeDuration);
@@ -84,6 +86,9 @@ namespace VLC_WINRT_APP.Views.VideoPages
 
         private void ControlsGrid_PointerMoved(object sender, PointerRoutedEventArgs e)
         {
+            if(timer == null)
+                timer = new DispatcherTimer();
+            
             if (timer.IsEnabled)
                 timer.Stop();
         }

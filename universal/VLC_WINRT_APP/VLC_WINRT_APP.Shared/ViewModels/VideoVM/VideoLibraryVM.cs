@@ -136,7 +136,14 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
 
             _lastVideosRepository.Load().ContinueWith((result) =>
             {
-                App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => ViewedVideos = result.Result);
+                App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+                {
+                    ViewedVideos = result.Result;
+                    foreach (VideoVM videoVm in ViewedVideos)
+                    {
+                        videoVm.InitializeFromFilePath();
+                    }
+                });
             });
             GetVideos();
         }

@@ -19,6 +19,7 @@ using Windows.UI.Xaml.Controls;
 using libVLCX;
 #endif
 using VLC_WINRT.Common;
+using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.ViewModels;
 
 namespace VLC_WINRT_APP.Services.RunTime
@@ -48,7 +49,7 @@ namespace VLC_WINRT_APP.Services.RunTime
         public event EventHandler<MediaPlayerState> StatusChanged;
 
         public event EventHandler<Player> MediaEnded;
-        private void UpdateStatus(MediaPlayerState status)
+        private void  UpdateStatus(MediaPlayerState status)
         {
             if (CurrentState != status)
             {
@@ -148,6 +149,7 @@ namespace VLC_WINRT_APP.Services.RunTime
 
         public void Open(string mrl)
         {
+
             DoVLCSafeAction(() => { _vlcPlayer.Open(mrl); });
         }
 
@@ -482,7 +484,7 @@ namespace VLC_WINRT_APP.Services.RunTime
         {
             Debug.WriteLine("Play with dummy player");
             StorageFile file;
-            if (Locator.MusicPlayerVM.IsRunning)
+            if(Locator.VideoVm.PlayingType == PlayingType.Music)
             {
                 var trackItem = Locator.MusicPlayerVM.TrackCollection[Locator.MusicPlayerVM.CurrentTrack];
 

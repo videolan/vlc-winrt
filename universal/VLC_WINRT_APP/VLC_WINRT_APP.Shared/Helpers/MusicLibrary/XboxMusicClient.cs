@@ -54,7 +54,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             return artistList;
         }
 
-        public Task<Album> GetAlbumInfo(string albumId)
+        public Task<Album> GetAlbumInfo(string albumId, string artistName)
         {
             throw new NotImplementedException();
         }

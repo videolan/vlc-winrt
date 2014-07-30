@@ -9,6 +9,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using VLC_WINRT_APP.Helpers.MusicLibrary.LastFm;
 
 namespace VLC_WINRT_APP.Helpers.MusicLibrary.MusicEntities
@@ -52,9 +53,9 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary.MusicEntities
         {
             this.Name = xboxAlbum.Name;
             this.Url = xboxAlbum.Link;
-            var image = new Image{ Url = xboxAlbum.ImageUrl};
-            var imageEx = new Image{Url = xboxAlbum.ImageUrlEx};
-            this.Images = new List<Image>{image, imageEx};
+            var image = new Image { Url = xboxAlbum.ImageUrl };
+            var imageEx = new Image { Url = xboxAlbum.ImageUrlEx };
+            this.Images = new List<Image> { image, imageEx };
         }
 
         public void MapFrom(Deezer.Album deezerAlbum)
@@ -65,6 +66,13 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary.MusicEntities
             var bigImage = new Image() { Url = string.Format("{0}?size=big", deezerAlbum.Cover) };
             this.Images = new List<Image>() { smallImage, mediumImage, bigImage };
             this.Url = deezerAlbum.Link;
+        }
+
+        public void MapFrom(LastFm.Album lastFmAlbum)
+        {
+            Image img = new Image();
+            img.MapFrom(lastFmAlbum.Image.Last());
+            this.Images = new List<Image>() { img };
         }
     }
 }

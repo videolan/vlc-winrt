@@ -69,7 +69,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
         private static async Task<bool> DownloadAlbumPictureFromDeezer(MusicLibraryVM.AlbumItem album)
         {
             var deezerClient = new DeezerClient();
-            var deezerAlbum = await deezerClient.GetAlbumInfo(album.Name);
+            var deezerAlbum = await deezerClient.GetAlbumInfo(album.Name, album.Artist);
             if (deezerAlbum == null) return false;
             if (deezerAlbum.Images == null) return false;
             try
@@ -111,6 +111,52 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                 return false;
             }
         }
+        private static async Task<bool> DownloadAlbumPictureFromLastFm(MusicLibraryVM.AlbumItem album)
+        {
+            var lastFmClient = new LastFmClient();
+            var deezerAlbum = await lastFmClient.GetAlbumInfo(album.Name, album.Artist);
+            if (deezerAlbum == null) return false;
+            if (deezerAlbum.Images == null) return false;
+            try
+            {
+                var clientPic = new HttpClient();
+                HttpResponseMessage responsePic = await clientPic.GetAsync(deezerAlbum.Images.LastOrDefault().Url);
+                string uri = responsePic.RequestMessage.RequestUri.AbsoluteUri;
+                // A cheap hack to avoid using Deezers default image for bands.
+                if (uri.Equals("http://cdn-images.deezer.com/images/album//400x400-000000-80-0-0.jpg"))
+                {
+                    return false;
+                }
+                byte[] img = await responsePic.Content.ReadAsByteArrayAsync();
+                InMemoryRandomAccessStream streamWeb = new InMemoryRandomAccessStream();
+                DataWriter writer = new DataWriter(streamWeb.GetOutputStreamAt(0));
+                writer.WriteBytes(img);
+                await writer.StoreAsync();
+                StorageFolder artistPic = await ApplicationData.Current.LocalFolder.CreateFolderAsync("albumPic",
+                    CreationCollisionOption.OpenIfExists);
+                string fileName = album.Name + "_" + "dPi";
+                var file = await artistPic.CreateFileAsync(fileName + ".jpg", CreationCollisionOption.OpenIfExists);
+                var raStream = await file.OpenAsync(FileAccessMode.ReadWrite);
+
+                using (var thumbnailStream = streamWeb.GetInputStreamAt(0))
+                {
+                    using (var stream = raStream.GetOutputStreamAt(0))
+                    {
+                        await RandomAccessStream.CopyAsync(thumbnailStream, stream);
+                    }
+                }
+                StorageFolder appDataFolder = ApplicationData.Current.LocalFolder;
+                string supposedPictureUriLocal = appDataFolder.Path + "\\albumPic\\" + album.Name + "_" + "dPi" + ".jpg";
+                await DispatchHelper.InvokeAsync(() => album.Picture = supposedPictureUriLocal);
+                return true;
+            }
+            catch (Exception)
+            {
+                Debug.WriteLine("Error getting or saving art from deezer.");
+                return false;
+            }
+        }
+
 
         private static async Task<bool> DownloadArtistPictureFromLastFm(MusicLibraryVM.ArtistItem artist)
         {
@@ -193,7 +239,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                 var gotArt = await DownloadAlbumPictureFromDeezer(album);
                 if (!gotArt)
                 {
-                    //await DownloadAlbumPictureFromLastFm(album);
+                    await DownloadAlbumPictureFromLastFm(album);
                 }
             }
         }
