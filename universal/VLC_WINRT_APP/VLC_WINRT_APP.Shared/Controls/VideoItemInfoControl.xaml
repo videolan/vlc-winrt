@@ -7,7 +7,9 @@
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400">
-    <StackPanel Width="320">
+    <StackPanel Name="RootPanel"
+                Width="320"
+                HorizontalAlignment="Right">
         <TextBlock Text="{Binding Title}"
                    TextWrapping="Wrap"
                    Style="{StaticResource SubtitleTextBlockStyle}"

@@ -1642,6 +1642,11 @@
             </Setter.Value>
         </Setter>
     </Style>
+    <x:Double x:Key="ComboBoxArrowThemeFontSize">21</x:Double>
+    <SolidColorBrush x:Key="ComboBoxArrowDisabledForegroundThemeBrush"
+                     Color="#66FFFFFF" />
+    <SolidColorBrush x:Key="ComboBoxFocusedForegroundThemeBrush"
+                     Color="White" />
     <Style x:Key="ComboBoxStyle1"
            TargetType="ComboBox">
         <Setter Property="Padding"

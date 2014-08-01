@@ -128,7 +128,9 @@ namespace VLC_WINRT_APP.ViewModels
         {
             get
             {
+#if WINDOWS_APP
                 if (_vlcPlayerService != null && _vlcPlayerService.CurrentState == VlcService.MediaPlayerState.Playing)
+#endif
                 {
                     return _mediaService.GetPosition() * TimeTotal.TotalSeconds;
                 }
@@ -144,7 +146,9 @@ namespace VLC_WINRT_APP.ViewModels
         {
             get
             {
+#if WINDOWS_APP
                 if (_vlcPlayerService != null && _vlcPlayerService.CurrentState == VlcService.MediaPlayerState.Playing)
+#endif
                 {
                     return _mediaService.GetPosition() * 1000;
                 }

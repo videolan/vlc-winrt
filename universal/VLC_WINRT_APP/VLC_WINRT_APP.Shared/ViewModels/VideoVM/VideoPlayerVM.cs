@@ -9,8 +9,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
 using System.Threading.Tasks;
 using Windows.UI.Core;
 using Autofac;
@@ -208,6 +206,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             _vlcPlayerService.Open(_mrl);
 #if WINDOWS_APP
             _vlcPlayerService.Play();
+#endif
             await Task.Delay(500);
             if (_timeTotal == TimeSpan.Zero)
             {
@@ -227,8 +226,10 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
                 PositionInSeconds = media.TimeWatched.TotalSeconds;
             }
             await Task.Delay(500);
+#if WINDOWS_APP
             SubtitlesCount = await _vlcPlayerService.GetSubtitleCount();
             AudioTracksCount = await _vlcPlayerService.GetAudioTrackCount();
+
 
             IDictionary<int, string> subtitles = new Dictionary<int, string>();
             await _vlcPlayerService.GetSubtitleDescription(subtitles);

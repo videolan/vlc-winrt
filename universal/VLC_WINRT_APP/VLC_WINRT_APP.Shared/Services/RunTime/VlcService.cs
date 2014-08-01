@@ -227,6 +227,7 @@ namespace VLC_WINRT_APP.Services.RunTime
         public async Task<float> GetPosition()
         {
             float position = 0.0f;
+#if WINDOWS_APP
             if (_vlcPlayer == null || _vlcInitializeTask == null)
                 return position;
 
@@ -242,10 +243,14 @@ namespace VLC_WINRT_APP.Services.RunTime
                 }
             }
             return position;
+#else
+            return _vlcPlayer.GetPosition();
+#endif
         }
 
         public async Task<long> GetLength()
         {
+#if WINDOWS_APP
             long length = 0;
             if (_vlcPlayer == null || _vlcInitializeTask == null)
                 return length;
@@ -256,6 +261,9 @@ namespace VLC_WINRT_APP.Services.RunTime
                 length = _vlcPlayer.GetLength();
             }
             return length;
+#else
+            return _vlcPlayer.GetLength();
+#endif
         }
 
         public async Task SetSizeVideoPlayer(uint x, uint y)
@@ -453,6 +461,7 @@ namespace VLC_WINRT_APP.Services.RunTime
         {
             if (Locator.MusicPlayerVM.IsRunning)
             {
+#if WINDOWS_APP
                 float pos;
                 //#if WINDOWS_APP
                 pos = (float)
@@ -464,6 +473,7 @@ namespace VLC_WINRT_APP.Services.RunTime
                 //                         Locator.MusicPlayer.CurrentPlayingArtist.CurrentAlbumItem.CurrentTrack.Duration.TotalSeconds);
                 //#endif
                 return pos;
+#endif
             }
             else
             {

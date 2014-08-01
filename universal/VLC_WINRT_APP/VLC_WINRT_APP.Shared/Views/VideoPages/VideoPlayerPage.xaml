@@ -47,7 +47,7 @@
         <Grid Background="Transparent"
               Grid.Row="1"
               Tapped="VideoGrid_Tapped"
-              DoubleTapped="VideoGrid_DoubleTapped"/>
+              DoubleTapped="VideoGrid_DoubleTapped" />
         <Grid Grid.Row="2"
               x:Name="FooterGrid"
               VerticalAlignment="Bottom"
@@ -61,22 +61,23 @@
                 <AppBarToggleButton Icon="Permissions"
                                     IsCompact="True"
                                     Margin="42,0,0,0"
-                                    VerticalAlignment="Center" 
-                                    Click="EnableDoubleTapToShowCommands_Click"/>
+                                    VerticalAlignment="Center"
+                                    Click="EnableDoubleTapToShowCommands_Click" />
                 <AppBarButton Icon="More"
                               HorizontalAlignment="Right"
                               IsCompact="True"
                               Margin="0,0,42,0"
                               VerticalAlignment="Center">
                     <AppBarButton.Flyout>
-                        <Flyout>
-                            <Grid Width="300">
+                        <Flyout Opening="Flyout_Opening">
+                            <Grid Width="300"
+                                  HorizontalAlignment="Right">
                                 <StackPanel>
                                     <controls:VideoItemControl DataContext="{Binding CurrentVideo}" />
                                     <TextBlock Text="Subtitles"
                                                Style="{StaticResource TitleTextBlockStyle}"
                                                Margin="0,12,0,0"
-                                               Visibility="{Binding SubtitlesCount, Converter={StaticResource NegatedCountToVisibilityConverter}}"/>
+                                               Visibility="{Binding SubtitlesCount, Converter={StaticResource NegatedCountToVisibilityConverter}}" />
                                     <ComboBox ItemsSource="{Binding Subtitles}"
                                               SelectedItem="{Binding CurrentSubtitle}"
                                               Margin="0,12,0,0"
@@ -92,7 +93,7 @@
                                             Margin="-3,6,0,0"
                                             Command="{Binding OpenSubtitleCommand}"
                                             Background="#404040"
-                                            BorderBrush="#404040"/>
+                                            BorderBrush="#404040" />
 
                                     <TextBlock Text="Audio tracks"
                                                Style="{StaticResource TitleTextBlockStyle}"
@@ -116,7 +117,7 @@
                                         <Slider.Header>
                                             <TextBlock Text="Speed"
                                                        Style="{StaticResource TitleTextBlockStyle}"
-                                                       Margin="-3,12,0,-10"/>
+                                                       Margin="-3,12,0,-10" />
                                         </Slider.Header>
                                     </Slider>
                                     <Grid Margin="0,-32,0,0">
@@ -189,7 +190,7 @@
                         Maximum="{Binding TimeTotal.TotalSeconds}"
                         Margin="0,-8,0,0"
                         Style="{StaticResource VLCSlider}"
-                        ThumbToolTipValueConverter="{StaticResource SecondsStringConverter}"/>
+                        ThumbToolTipValueConverter="{StaticResource SecondsStringConverter}" />
                 <TextBlock HorizontalAlignment="Left"
                            VerticalAlignment="Bottom"
                            Style="{StaticResource BodyTextBlockStyle}"

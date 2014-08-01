@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
 using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.ViewModels;
@@ -84,11 +85,12 @@ namespace VLC_WINRT_APP.Views.VideoPages
             isVisible = !isVisible;
         }
 
+
         private void ControlsGrid_PointerMoved(object sender, PointerRoutedEventArgs e)
         {
-            if(timer == null)
+            if (timer == null)
                 timer = new DispatcherTimer();
-            
+
             if (timer.IsEnabled)
                 timer.Stop();
         }
@@ -97,6 +99,14 @@ namespace VLC_WINRT_APP.Views.VideoPages
         {
             needDoubleTapToAct = !needDoubleTapToAct;
             timer.Start();
+        }
+
+        private void Flyout_Opening(object sender, object e)
+        {
+#if WINDOWS_PHONE_APP
+            (sender as Flyout).Placement = FlyoutPlacementMode.Full;
+            ((sender as Flyout).Content as Grid).Margin = new Thickness(0, 0, 36, 0);
+#endif
         }
     }
 }

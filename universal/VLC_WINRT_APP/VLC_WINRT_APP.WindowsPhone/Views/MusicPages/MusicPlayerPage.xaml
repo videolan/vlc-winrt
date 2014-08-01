@@ -12,7 +12,7 @@
     <Grid Background="Black">
         <Grid.RowDefinitions>
             <RowDefinition Height="80" />
-            <RowDefinition Height="12" />
+            <RowDefinition Height="0" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto " />
         </Grid.RowDefinitions>
@@ -24,7 +24,7 @@
                    Style="{StaticResource TitleTextBlockStyle}"
                    Typography.Capitals="SmallCaps"
                    FontSize="23"
-                   Margin="12,20,0,0"
+                   Margin="18,20,0,0"
                    VerticalAlignment="Center" />
         <Hub Grid.Row="2">
             <Hub.Sections>

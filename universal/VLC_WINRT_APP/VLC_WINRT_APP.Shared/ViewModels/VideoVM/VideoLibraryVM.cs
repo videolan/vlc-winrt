@@ -208,11 +208,6 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
 #endif
                 //}
                 LoadingState = LoadingState.Loaded;
-#if WINDOWS_PHONE_APP
-                //TODO: REMOVE THIS!! ONLY FOR DEMO!!
-                ViewedVideos.Add(Videos[0]);
-                OnPropertyChanged("ViewedVideos");
-#endif
             });
 
         }

@@ -200,7 +200,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
                     }
                     catch
                     {
-                        
+
                     }
 #endif
                     if (videoPicFile != null)
@@ -248,7 +248,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
 
             TimeSpan duration = VideoProperties != null ? VideoProperties.Duration : TimeSpan.FromSeconds(0);
 
-            await DispatchHelper.InvokeAsync(() =>
+            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 Duration = duration;
             });
