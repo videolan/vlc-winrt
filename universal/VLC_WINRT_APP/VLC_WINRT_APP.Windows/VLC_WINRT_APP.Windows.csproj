@@ -257,9 +257,6 @@
     <Content Include="..\..\..\vlc\plugins\access\librtp_plugin.dll">
       <Link>plugins\access\librtp_plugin.dll</Link>
     </Content>
-    <Content Include="..\..\..\vlc\plugins\access\libscreen_plugin.dll">
-      <Link>plugins\access\libscreen_plugin.dll</Link>
-    </Content>
     <Content Include="..\..\..\vlc\plugins\access\libsdp_plugin.dll">
       <Link>plugins\access\libsdp_plugin.dll</Link>
     </Content>
