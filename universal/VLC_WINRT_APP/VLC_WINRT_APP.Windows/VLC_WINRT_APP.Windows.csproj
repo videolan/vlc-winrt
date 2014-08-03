@@ -18,6 +18,7 @@
     <PackageCertificateKeyFile>VLC_WINRT_APP.Windows_TemporaryKey.pfx</PackageCertificateKeyFile>
     <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
     <AppxBundlePlatforms>x86</AppxBundlePlatforms>
+    <AppxBundle>Always</AppxBundle>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -209,7 +210,6 @@
       <SubType>Designer</SubType>
     </AppxManifest>
     <None Include="packages.config" />
-    <None Include="VLC_WINRT_APP.Windows_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\..\..\vlc\libvlc.dll">
@@ -739,6 +739,7 @@
     <Content Include="Assets\StoreLogo.scale-180.png" />
     <Content Include="Assets\Wide310x150Logo.scale-100.png" />
     <Content Include="Assets\Wide310x150Logo.scale-140.png" />
+    <None Include="Package.StoreAssociation.xml" />
     <Content Include="plugins\access\libaccess_winrt_plugin.dll" />
     <Content Include="plugins\audio_output\libxaudio2_winrt_plugin.dll" />
     <Content Include="plugins\video_output\libdirect2d_winrt_plugin.dll" />
