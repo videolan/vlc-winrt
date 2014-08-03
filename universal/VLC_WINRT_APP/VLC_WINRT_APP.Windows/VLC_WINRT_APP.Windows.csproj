@@ -107,8 +107,8 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
-    <SDKReference Include="Microsoft.VCLibs, version=12.0">
-      <Name>Microsoft Visual C++ 2013 Runtime Package for Windows</Name>
+    <SDKReference Include="Microsoft.VCLibs, Version=11.0">
+      <Name>Microsoft Visual C++ Runtime Package</Name>
     </SDKReference>
     <SDKReference Include="SQLite.WinRT81, Version=3.8.5">
       <Name>SQLite for Windows Runtime %28Windows 8.1%291</Name>
