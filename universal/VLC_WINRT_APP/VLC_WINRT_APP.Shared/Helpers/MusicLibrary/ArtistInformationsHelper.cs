@@ -236,10 +236,10 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             }
             else
             {
-                var gotArt = await DownloadAlbumPictureFromDeezer(album);
+                var gotArt = await DownloadAlbumPictureFromLastFm(album);
                 if (!gotArt)
                 {
-                    await DownloadAlbumPictureFromLastFm(album);
+                    await DownloadAlbumPictureFromDeezer(album);
                 }
             }
         }

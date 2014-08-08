@@ -181,7 +181,6 @@
     <Compile Include="Controls\RemovableStorage\PlugARemovableStorage.xaml.cs">
       <DependentUpon>PlugARemovableStorage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\VariableSizedItemsGridView.cs" />
     <Compile Include="DLNAPage.xaml.cs">
       <DependentUpon>DLNAPage.xaml</DependentUpon>
     </Compile>
@@ -736,7 +735,6 @@
     <Content Include="Assets\StoreLogo.scale-180.png" />
     <Content Include="Assets\Wide310x150Logo.scale-100.png" />
     <Content Include="Assets\Wide310x150Logo.scale-140.png" />
-    <None Include="Package.StoreAssociation.xml" />
     <Content Include="plugins\access\libaccess_winrt_plugin.dll" />
     <Content Include="plugins\audio_output\libxaudio2_winrt_plugin.dll" />
     <Content Include="plugins\video_output\libdirect2d_winrt_plugin.dll" />
@@ -861,10 +859,10 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Autofac">
-      <HintPath>..\..\..\app\packages\Autofac.3.4.0\lib\portable-win+net40+sl50+wp8\Autofac.dll</HintPath>
+      <HintPath>..\..\..\app\packages\Autofac.3.5.0\lib\portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1\Autofac.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\..\app\packages\Newtonsoft.Json.6.0.3\lib\netcore45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\..\app\packages\Newtonsoft.Json.6.0.4\lib\netcore45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="WinRT.Triggers">
       <HintPath>..\..\..\app\packages\WinRTTriggers.1.6.0\lib\winrt45\WinRT.Triggers.dll</HintPath>
