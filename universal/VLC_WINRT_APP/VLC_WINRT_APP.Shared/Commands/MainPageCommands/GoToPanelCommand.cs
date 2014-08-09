@@ -7,8 +7,10 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
+using Windows.UI;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
+using Windows.UI.Xaml.Media;
 using VLC_WINRT.Common;
 using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.Views.MainPages;
@@ -22,8 +24,8 @@ namespace VLC_WINRT_APP.Commands.MainPageCommands
             App.RootPage.MainFrameThemeTransition.Edge = EdgeTransitionLocation.Bottom;
             Model.Panel panel = (parameter as ItemClickEventArgs).ClickedItem as Model.Panel;
             foreach (Model.Panel panel1 in Locator.MainVM.Panels)
-                panel1.Opacity = 0.4;
-            panel.Opacity = 1;
+                panel1.Color = new SolidColorBrush(Colors.DimGray);
+            panel.Color = App.Current.Resources["MainColor"] as SolidColorBrush;
             switch (panel.Index)
             {
                 case 0:

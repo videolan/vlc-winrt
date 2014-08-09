@@ -12,8 +12,8 @@
       d:DesignHeight="768"
       d:DesignWidth="400"
       DataContext="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM}">
-    <Grid Margin="24,0,0,0"
-          x:Name="RootGrid">
+    <Grid x:Name="RootGrid"
+          Margin="24,0,0,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="42"
                            x:Name="FirstRowDefinition" />
@@ -38,7 +38,7 @@
                     <Grid Height="50"
                           Width="85">
                         <TextBlock Text="{Binding Title}"
-                                   Opacity="{Binding Opacity}"
+                                   Foreground="{Binding Color}"
                                    TextWrapping="NoWrap"
                                    TextTrimming="None"
                                    Style="{StaticResource SubheaderTextBlockStyle}" />
@@ -65,9 +65,9 @@
                     <ItemsPanelTemplate>
                         <ItemsWrapGrid Orientation="Horizontal"
                                        ItemWidth="310"
-                                       ItemHeight="174" 
+                                       ItemHeight="174"
                                        Loaded="ItemsWrapGrid_Loaded"
-                                       SizeChanged="ItemsWrapGrid_Loaded"/>
+                                       SizeChanged="ItemsWrapGrid_Loaded" />
                     </ItemsPanelTemplate>
                 </GridView.ItemsPanel>
             </GridView>

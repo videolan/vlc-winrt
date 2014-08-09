@@ -43,7 +43,7 @@
                     <Grid Height="50"
                           Width="85">
                         <TextBlock Text="{Binding Title}"
-                                   Opacity="{Binding Opacity}"
+                                   Foreground="{Binding Color}"
                                    TextWrapping="NoWrap"
                                    TextTrimming="None"
                                    Style="{StaticResource SubheaderTextBlockStyle}" />

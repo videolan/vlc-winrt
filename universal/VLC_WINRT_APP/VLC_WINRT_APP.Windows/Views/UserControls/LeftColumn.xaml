@@ -1250,10 +1250,10 @@
             </Setter>
         </Style>
     </UserControl.Resources>
-    
+
     <Grid x:Name="ColumnGrid"
           Width="340"
-          Background="#19FFFFFF">
+          Background="WhiteSmoke">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="1" />
@@ -1265,12 +1265,14 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="24" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="24" x:Name="SeparatorRowDefinition"/>
-            <RowDefinition Height="315" x:Name="MiniPlayersRowDefinition"/>
+            <RowDefinition Height="24"
+                           x:Name="SeparatorRowDefinition" />
+            <RowDefinition Height="315"
+                           x:Name="MiniPlayersRowDefinition" />
         </Grid.RowDefinitions>
-        <Grid Background="#4CFFFFFF"
-              Grid.Column="1"
-              Grid.RowSpan="8" />
+        <Grid Grid.Column="1"
+              Grid.RowSpan="8"
+              Background="{StaticResource MainColor}" />
         <StackPanel Orientation="Horizontal"
                     Height="45"
                     Margin="42,0,0,0"
@@ -1278,16 +1280,21 @@
                     Grid.Row="1">
             <Path Data="{StaticResource VLCFlatPath}"
                   Stretch="Uniform"
-                  Fill="#FFFFFFFF"
+                  Fill="{StaticResource MainColor}"
                   Width="30"
                   Height="30" />
-            <TextBlock Text="{StaticResource AppTitleW8}"
-                       x:Name="TitleTextBlock"
+            <TextBlock x:Name="TitleTextBlock"
                        Style="{StaticResource TitleTextBlockStyle}"
-                       FontSize="18"
                        Margin="6,-2,0,0"
-                       Foreground="WhiteSmoke"
-                       VerticalAlignment="Center" />
+                       VerticalAlignment="Center"
+                       FontWeight="Light">
+                <Run Text="VLC" 
+                     FontSize="28"
+                     Foreground="{StaticResource MainColor}"/>
+                <Run Text="media player"
+                     FontSize="18"
+                     Foreground="Gray"/>
+            </TextBlock>
         </StackPanel>
         <SearchBox Grid.Row="3"
                    x:Name="LargeSearchBox"
@@ -1305,7 +1312,7 @@
                 FontSize="18"
                 HorizontalAlignment="Center"
                 Style="{StaticResource TextBlockButtonStyle}"
-                Visibility="Collapsed"/>
+                Visibility="Collapsed" />
         <ListView Grid.Row="5"
                   x:Name="PanelsListView"
                   ItemsSource="{Binding Panels}"
@@ -1327,7 +1334,7 @@
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
         </ListView>
-        <Grid Background="#4CFFFFFF"
+        <Grid Background="{StaticResource MainColor}"
               Grid.ColumnSpan="2"
               Grid.Row="6"
               Height="1"

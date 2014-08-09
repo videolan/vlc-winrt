@@ -42,14 +42,13 @@
                 </StackPanel>
             </Hub.Header>
             <Hub.Sections>
-                <HubSection>
+                <HubSection Header="favorite albums"
+                            HeaderTemplate="{StaticResource ColoredHeader}">
                     <HubSection.ContentTemplate>
                         <DataTemplate>
                             <Grid>
                                 <GridView DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}"
                                           ItemsSource="{Binding FavoriteAlbums}"
-                                          Header="Favorite Albums"
-                                          HeaderTemplate="{StaticResource ListViewHeaderTemplate}"
                                           ItemTemplate="{StaticResource SemanticZoomInViewAlbumTemplate}">
                                     <GridView.ItemsPanel>
                                         <ItemsPanelTemplate>
@@ -64,7 +63,8 @@
                         </DataTemplate>
                     </HubSection.ContentTemplate>
                 </HubSection>
-                <HubSection Header="last viewed">
+                <HubSection Header="last viewed"
+                            HeaderTemplate="{StaticResource ColoredHeader}">
                     <HubSection.ContentTemplate>
                         <DataTemplate>
                             <GridView ItemsSource="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM.ViewedVideos}"

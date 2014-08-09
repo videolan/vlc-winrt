@@ -7,9 +7,11 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.ViewModels;
@@ -64,9 +66,9 @@ namespace VLC_WINRT_APP.Views.MainPages
             Model.Panel panel = e.ClickedItem as Model.Panel;
             foreach (var panel1 in Locator.MusicLibraryVM.Panels)
             {
-                panel1.Opacity = 0.4;
+                panel1.Color = new SolidColorBrush(Colors.DimGray);
             }
-            panel.Opacity = 1;
+            panel.Color = App.Current.Resources["MainColor"] as SolidColorBrush;
             switch (panel.Index)
             {
                 case 0:

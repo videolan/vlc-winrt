@@ -302,7 +302,7 @@
         <Grid Height="60"
               Width="340">
             <TextBlock Text="{Binding Title}"
-                       Opacity="{Binding Opacity}"
+                       Foreground="{Binding Color}"
                        TextWrapping="NoWrap"
                        TextTrimming="None"
                        Margin="42,-9,0,0"

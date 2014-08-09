@@ -6,7 +6,8 @@
       xmlns:userControls="using:VLC_WINRT_APP.Views.UserControls"
       xmlns:extensions="using:WinRTXamlToolkit.Controls.Extensions"
       mc:Ignorable="d"
-      DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}">
+      DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}"
+      RequestedTheme="Light">
 
     <SwapChainBackgroundPanel x:Name="SwapChainPanel">
         <Grid.ColumnDefinitions>
@@ -20,13 +21,21 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <Grid Background="Black"
+        <Grid Background="White"
               Grid.RowSpan="3"
               Grid.ColumnSpan="2"
               Visibility="{Binding Source={StaticResource Locator}, Path=VideoVm.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}" />
-        <Image Stretch="UniformToFill"
+        <!--<Image Stretch="UniformToFill"
                Source="ms-appx:///Assets/background.jpg"
                Opacity="0.5"
+               Grid.RowSpan="3"
+               Grid.ColumnSpan="2"
+               extensions:ImageExtensions.FadeInOnLoaded="True"
+               Visibility="{Binding Source={StaticResource Locator}, Path=VideoVm.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}" />-->
+
+        <Image Stretch="UniformToFill"
+               Source="ms-appx:///Assets/flatbackground1.png"
+               Opacity="0.8"
                Grid.RowSpan="3"
                Grid.ColumnSpan="2"
                extensions:ImageExtensions.FadeInOnLoaded="True"

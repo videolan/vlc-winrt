@@ -6,7 +6,8 @@
       xmlns:views="using:VLC_WINRT.Views"
       xmlns:controls="using:VLC_WINRT_APP.Controls"
       mc:Ignorable="d"
-      DataContext="{Binding Source={StaticResource Locator}, Path=VideoVm}">
+      DataContext="{Binding Source={StaticResource Locator}, Path=VideoVm}"
+      RequestedTheme="Dark">
 
     <Grid x:Name="ControlsGrid"
           PointerMoved="ControlsGrid_PointerMoved">

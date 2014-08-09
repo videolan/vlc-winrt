@@ -10,14 +10,15 @@
              Visibility="{Binding Count, Converter={StaticResource CountToVisibilityConverter}}">
 
     <StackPanel MaxWidth="600"
-                Margin="0,24,0,0">
+                Margin="0,0,0,0">
         <TextBlock Text="You don't have favorite albums"
                    Style="{StaticResource HeaderTextBlockStyle}"
                    LineStackingStrategy="MaxHeight" 
                    TextWrapping="Wrap"
-                   FontSize="42"/>
+                   FontSize="36"/>
         <TextBlock Style="{StaticResource SubheaderTextBlockStyle}"
-                   Margin="0,12,0,0">
+                   Margin="0,12,0,0"
+                   FontSize="22">
             <Run Text="When playing an album, press the" />
             <Run Text=""
                  FontFamily="Segoe UI Symbol"

@@ -11,6 +11,7 @@
         </Flyout>
     </UserControl.Resources>
     <Grid Holding="Grid_Holding"
+          RequestedTheme="Dark"
           FlyoutBase.AttachedFlyout="{StaticResource VideoInfoFlyout}"
           RightTapped="Grid_RightTapped">
         <Image Source="{Binding Image}"
@@ -54,7 +55,7 @@
                        VerticalAlignment="Bottom"
                        Margin="6"
                        Style="{StaticResource TitleTextBlockStyle}"
-                       Typography.Capitals="SmallCaps">
+                       FontWeight="Normal">
                     <Run Text="{Binding Title}" />
             </TextBlock>
 

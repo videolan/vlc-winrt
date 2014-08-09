@@ -10,6 +10,7 @@
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Resources;
+using Windows.UI.Xaml.Media;
 using VLC_WINRT_APP.Commands.MainPageCommands;
 using VLC_WINRT_APP.Common;
 using VLC_WINRT_APP.Model;
@@ -59,7 +60,7 @@ namespace VLC_WINRT_APP.ViewModels
             // TODO: For Windows 8.1 build, use ResourceLoader.GetForCurrentView(); 
 
             var resourceLoader = new ResourceLoader();
-            Panels.Add(new Panel(resourceLoader.GetString("Home"), 0, 1, App.Current.Resources["HomePath"].ToString()));
+            Panels.Add(new Panel(resourceLoader.GetString("Home"), 0, 1, App.Current.Resources["HomePath"].ToString(), true));
             Panels.Add(new Panel(resourceLoader.GetString("Videos"), 1, 0.4, App.Current.Resources["VideoPath"].ToString()));
             Panels.Add(new Panel(resourceLoader.GetString("Music"), 2, 0.4, App.Current.Resources["MusicPath"].ToString()));
             Panels.Add(new Panel(resourceLoader.GetString("RemovableStorage"), 3, 0.4, App.Current.Resources["RemovablesPath"].ToString()));
