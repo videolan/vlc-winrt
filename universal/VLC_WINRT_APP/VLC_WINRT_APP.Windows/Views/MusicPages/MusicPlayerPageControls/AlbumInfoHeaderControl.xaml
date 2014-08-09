@@ -16,6 +16,12 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid>
+            <Image Stretch="UniformToFill"
+                   Width="{Binding ElementName=CoverImage, Path=ActualWidth}"
+                   Height="{Binding ElementName=CoverImage, Path=ActualHeight}"
+                   VerticalAlignment="Top"
+                   Source="ms-appx:///Assets/NoCover.jpg" 
+                   x:Name="NoCoverImage"/>
             <Image Source="{Binding CurrentPlayingArtist.CurrentAlbumItem.Picture}"
                    Stretch="UniformToFill"
                    Width="200"
