@@ -17,6 +17,7 @@ using Windows.UI.Xaml.Navigation;
 using VLC_WINRT.Views;
 using VLC_WINRT_APP.Services.RunTime;
 using VLC_WINRT_APP.Services.Interface;
+using VLC_WINRT_APP.Views.VariousPages;
 
 namespace VLC_WINRT_APP.Views.MainPages
 {

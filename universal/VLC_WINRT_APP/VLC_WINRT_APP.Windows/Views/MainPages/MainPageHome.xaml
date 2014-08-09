@@ -14,7 +14,12 @@
              Orientation="Vertical"
              HorizontalContentAlignment="Stretch">
             <Hub.Header>
-                <StackPanel Orientation="Horizontal">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
                     <Button Style="{StaticResource TextBlockButtonStyle}"
                             FontSize="22"
                             FontWeight="Light"
@@ -27,7 +32,8 @@
                             </TextBlock>
                         </Button.Content>
                     </Button>
-                    <Button Margin="24,0,0,0"
+                    <Button Grid.Column="1"
+                            Margin="24,0,0,0"
                             Style="{StaticResource TextBlockButtonStyle}"
                             FontSize="22"
                             FontWeight="Light"
@@ -40,7 +46,24 @@
                             </TextBlock>
                         </Button.Content>
                     </Button>
-                </StackPanel>
+                    <Button Grid.Column="2"
+                            HorizontalAlignment="Right"
+                            Margin="24,0,0,0"
+                            Style="{StaticResource TextBlockButtonStyle}"
+                            FontSize="22"
+                            FontWeight="Light"
+                            Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToSettingsPageCommand}">
+                        <Button.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock>
+                                <Run Text="settings" />
+                                <Run Text=""
+                                     FontFamily="Segoe UI Symbol" />
+                                </TextBlock>
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                </Grid>
             </Hub.Header>
             <Hub.Sections>
                 <HubSection Header="favorite albums"

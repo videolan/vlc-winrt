@@ -194,7 +194,7 @@
     <Compile Include="Views\MainPages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SettingsPage.xaml.cs">
+    <Compile Include="Views\VariousPages\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="SpecialThanks.xaml.cs">
@@ -847,7 +847,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="SettingsPage.xaml">
+    <Page Include="Views\VariousPages\SettingsPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

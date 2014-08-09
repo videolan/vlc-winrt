@@ -27,6 +27,8 @@ namespace VLC_WINRT_APP.ViewModels
         private PickVideoCommand _pickVideoCommand;
         private PlayNetworkMRLCommand _playNetworkMRL;
         private GoToPanelCommand _goToPanelCommand;
+        private GoToSettingsPageCommand _goToSettingsPageCommand;
+
         #endregion
         #region public fields
         #endregion
@@ -49,6 +51,12 @@ namespace VLC_WINRT_APP.ViewModels
             get { return _goToPanelCommand; }
             set { SetProperty(ref _goToPanelCommand, value); }
         }
+
+        public GoToSettingsPageCommand GoToSettingsPageCommand
+        {
+            get { return _goToSettingsPageCommand; }
+            set { SetProperty(ref _goToSettingsPageCommand, value); }
+        }
         #endregion
 
 
@@ -57,6 +65,8 @@ namespace VLC_WINRT_APP.ViewModels
             PickVideo = new PickVideoCommand();
             PlayNetworkMRL = new PlayNetworkMRLCommand();
             GoToPanelCommand = new GoToPanelCommand();
+            GoToSettingsPageCommand = new GoToSettingsPageCommand();
+
             // TODO: For Windows 8.1 build, use ResourceLoader.GetForCurrentView(); 
 
             var resourceLoader = new ResourceLoader();
