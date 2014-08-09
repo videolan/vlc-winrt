@@ -46,8 +46,10 @@
                     Visibility="{Binding CurrentStorageVM.CanGoBack, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Button.Content>
                     <StackPanel Orientation="Horizontal">
-                        <SymbolIcon Symbol="Back" />
+                        <SymbolIcon Symbol="Back"
+                                    Foreground="DimGray" />
                         <TextBlock Text="Back"
+                                   Foreground="DimGray"
                                    VerticalAlignment="Center"
                                    Margin="6,0,0,0" />
                     </StackPanel>
@@ -62,7 +64,7 @@
                       IsItemClickEnabled="True"
                       SelectionMode="None"
                       IsSwipeEnabled="False"
-                      ItemContainerStyle="{StaticResource ListViewItemContainerStyle}"
+                      ItemContainerStyle="{StaticResource ListViewItemStyle}"
                       Visibility="{Binding RemovableStorageVMs.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}">
                 <triggers:Interactions.Triggers>
                     <triggers:EventTrigger EventName="ItemClick">
@@ -81,12 +83,13 @@
                                   Height="26"
                                   Width="26"
                                   Stretch="Uniform"
-                                  Fill="WhiteSmoke"
+                                  Fill="DimGray"
                                   HorizontalAlignment="Left" />
                             <TextBlock Grid.Column="1"
                                        Text="{Binding Name}"
                                        TextWrapping="Wrap"
-                                       FontSize="14" />
+                                       FontSize="14"
+                                       Margin="3,4,0,0" />
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>

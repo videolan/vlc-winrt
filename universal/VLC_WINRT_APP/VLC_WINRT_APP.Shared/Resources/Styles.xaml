@@ -1827,6 +1827,7 @@
                                           HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                           Margin="{TemplateBinding Padding}"
                                           Grid.Row="1"
+                                          Foreground="{StaticResource MainColor}"
                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
                             <TextBlock x:Name="PlaceholderTextBlock"
                                        Foreground="{ThemeResource ComboBoxPlaceholderTextForegroundThemeBrush}"
@@ -1836,7 +1837,7 @@
                         <TextBlock x:Name="DropDownGlyph"
                                    AutomationProperties.AccessibilityView="Raw"
                                    Grid.Column="1"
-                                   Foreground="{ThemeResource ComboBoxHeaderForegroundThemeBrush}"
+                                   Foreground="{StaticResource MainColor}"
                                    FontWeight="Light"
                                    FontSize="22"
                                    FontFamily="{ThemeResource SymbolThemeFontFamily}"
