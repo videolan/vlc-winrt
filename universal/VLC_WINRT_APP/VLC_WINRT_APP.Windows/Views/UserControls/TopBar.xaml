@@ -14,17 +14,17 @@
     <Grid x:Name="ColumnGrid"
           Height="100"
           MinWidth="320"
-          Background="#19FFFFFF">
+          Background="WhiteSmoke">
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
             <RowDefinition Height="*" />
             <RowDefinition Height="1" />
         </Grid.RowDefinitions>
-        <Grid Background="#4CFFFFFF"
+        <Grid Background="{StaticResource MainColor}"
               Grid.Row="2" />
         <Path Data="{StaticResource VLCFlatPath}"
               Stretch="Uniform"
-              Fill="#bbFFFFFF"
+              Fill="{StaticResource MainColor}"
               Width="22"
               Height="22" 
               Margin="14,9,0,0"

@@ -315,9 +315,8 @@
                   Width="30"
                   HorizontalAlignment="Center"
                   Stretch="Uniform"
-                  Fill="White"
-                  Margin="-9,0,0,0"
-                  Opacity="{Binding Opacity}" />
+                  Fill="{Binding Color}"
+                  Margin="-9,0,0,0"/>
         </Grid>
     </DataTemplate>
     <DataTemplate x:Name="SidebarMiniIconItemTemplate">
@@ -328,8 +327,7 @@
                   Width="30"
                   HorizontalAlignment="Center"
                   Stretch="Uniform"
-                  Fill="White"
-                  Opacity="{Binding Opacity}" />
+                  Fill="{Binding Color}" />
         </Grid>
     </DataTemplate>
 
