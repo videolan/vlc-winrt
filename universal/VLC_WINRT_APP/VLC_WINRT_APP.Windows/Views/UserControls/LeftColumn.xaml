@@ -1341,13 +1341,12 @@
               Height="1"
               VerticalAlignment="Center"
               Margin="42,0" />
-        <local:MiniPlayer Grid.Row="7"
-                          VerticalAlignment="Bottom"
-                          Margin="42,0,20,24"
-                          x:Name="MiniPlayer" />
         <Grid Grid.Row="7"
               DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}"
               Visibility="{Binding IsRunning, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <local:MiniPlayer VerticalAlignment="Bottom"
+                              Margin="42,0,20,24"
+                              x:Name="MiniPlayer" />
             <Button HorizontalAlignment="Center"
                     Style="{StaticResource TextBlockButtonStyle}"
                     x:Name="SnapMiniPlayer"
@@ -1366,8 +1365,8 @@
                           Fill="{StaticResource MainColor}"
                           Margin="-9,0,0,0" />
                     <TextBlock Text="NOW PLAYING"
-                               TextWrapping="Wrap" 
-                               TextAlignment="Center"/>
+                               TextWrapping="Wrap"
+                               TextAlignment="Center" />
                 </StackPanel>
             </Button>
         </Grid>

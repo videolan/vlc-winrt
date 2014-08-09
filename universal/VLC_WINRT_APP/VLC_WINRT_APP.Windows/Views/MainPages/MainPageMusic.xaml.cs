@@ -45,7 +45,7 @@ namespace VLC_WINRT_APP.Views.MainPages
             }
             else
             {
-                RootGrid.Margin = new Thickness(24, 0, 0, 0);
+                RootGrid.Margin = new Thickness(40, 0, 0, 0);
                 FirstRowDefinition.Height = new GridLength(42);
             }
         }

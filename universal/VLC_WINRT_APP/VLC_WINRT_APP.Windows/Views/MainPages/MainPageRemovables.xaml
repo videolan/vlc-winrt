@@ -9,7 +9,7 @@
       mc:Ignorable="d"
       DataContext="{Binding Source={StaticResource Locator}, Path=ExternalStorageVM}">
 
-    <Grid>
+    <Grid x:Name="RootGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="42" />
             <RowDefinition Height="45" />
