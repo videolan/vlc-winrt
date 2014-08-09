@@ -101,7 +101,9 @@ struct vout_display_sys_t {
 
     //TODO: check to see if these are all needed
     picture_pool_t              *pool;
-    ID2D1Bitmap                 *d2dbmp;
+    ID2D1Bitmap                 *yBitmap;
+    ID2D1Bitmap                 *uvBitmap;
+    ID2D1Effect                    *yuvEffect;
     ComPtr<ID2D1DeviceContext>  d2dContext;
     ComPtr<IDXGISwapChain1>     swapChain;
 };
@@ -130,10 +132,7 @@ static int Open(vlc_object_t *object)
     //info.subpicture_chromas   = d2d_subpicture_chromas;
     vd->info                  = info;
 
-    vd->fmt.i_chroma = VLC_CODEC_RGB32; /* masks change this to BGR32 for ID2D1Bitmap */
-    vd->fmt.i_rmask  = 0x0000ff00;
-    vd->fmt.i_gmask  = 0x00ff0000;
-    vd->fmt.i_bmask  = 0xff000000;
+    vd->fmt.i_chroma = VLC_CODEC_NV12; // YUV NV12 Codec
 
     vd->pool         = Pool;
     vd->prepare      = Prepare;
@@ -164,10 +163,18 @@ static void Close(vlc_object_t * object){
     if (vd->sys->pool)
         picture_pool_Delete(vd->sys->pool);
 
-    if (vd->sys->d2dbmp)
-        vd->sys->d2dbmp->Release();
+    if (vd->sys->yBitmap)
+        vd->sys->yBitmap->Release();
+
+    if (vd->sys->uvBitmap)
+        vd->sys->uvBitmap->Release();
+
+    if (vd->sys->yuvEffect)
+        vd->sys->yuvEffect->Release();
+
     if (vd->sys->d2dContext)
         vd->sys->d2dContext->Flush();
+
 
     free(vd->sys);
     return;
@@ -213,45 +220,87 @@ static picture_pool_t *Pool(vout_display_t *vd, unsigned count)
 
 static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpicture)
 {
+
     vout_display_sys_t     *sys = vd->sys;
-    D2D1_BITMAP_PROPERTIES props;
-    D2D1_PIXEL_FORMAT      pixFormat;
     D2D1_SIZE_U            size;
     float                  dpi = DisplayProperties::LogicalDpi;
-    ComPtr<ID2D1Effect>    scaleEffect;
 
-    if (sys->d2dbmp){
-        // cleanup previous bmp
-        sys->d2dbmp->Release();
-        sys->d2dbmp = nullptr;
-    }
-
+    // Init and clear d2dContext render target
     sys->d2dContext->BeginDraw();
     sys->d2dContext->Clear(D2D1::ColorF(D2D1::ColorF::Black));
 
+    // Get the size avec the current picture
     size.width          = picture->format.i_visible_width;
     size.height         = picture->format.i_visible_height;
-    pixFormat.alphaMode = D2D1_ALPHA_MODE_IGNORE;
-    pixFormat.format    = DXGI_FORMAT_B8G8R8X8_UNORM;
-    props.pixelFormat   = pixFormat;
-    props.dpiX          = dpi;
-    props.dpiY          = dpi;
 
-    sys->d2dContext->CreateEffect(CLSID_D2D1Scale, &scaleEffect);
-    if (scaleEffect == NULL)
-        return;
 
-    if (S_OK != sys->d2dContext->CreateBitmap(size,
-                                              picture->p[0].p_pixels,
-                                              picture->p[0].i_pitch,
-                                              props,
-                                              &sys->d2dbmp) )
-        return;
+    // If needed, create the YCbCr effect
+    if (sys->yuvEffect == nullptr)
+        sys->d2dContext->CreateEffect(CLSID_D2D1YCbCr, &sys->yuvEffect);
+
+    // Init bitmap properties in which will store the y (lumi) plane
+    D2D1_BITMAP_PROPERTIES propsY;
+    D2D1_PIXEL_FORMAT      pixFormatY;
+
+    pixFormatY.alphaMode = D2D1_ALPHA_MODE_IGNORE;
+    pixFormatY.format = DXGI_FORMAT_R8_UNORM;
+    propsY.pixelFormat = pixFormatY;
+    propsY.dpiX = dpi;
+    propsY.dpiY = dpi;
+
+    if (sys->yBitmap == nullptr)
+    {
+        if (S_OK != sys->d2dContext->CreateBitmap(size,
+            picture->p[0].p_pixels,
+            picture->p[0].i_pitch,
+            propsY,
+            &sys->yBitmap))
+            return;
+    }
+    {
+        D2D1_RECT_U destRect = D2D1::RectU(0, 0, size.width, size.height);
+        sys->yBitmap->CopyFromMemory(&destRect, picture->p[0].p_pixels, picture->p[0].i_pitch);
+    }
+
+    sys->yuvEffect->SetInput(0, sys->yBitmap);
+
+    // Init bitmap properties in which will store uv (chroma) plane
+    D2D1_BITMAP_PROPERTIES propsCbCr;
+    D2D1_PIXEL_FORMAT      pixFormatCbCr;
+
+    pixFormatCbCr.alphaMode = D2D1_ALPHA_MODE_IGNORE;
+    pixFormatCbCr.format = DXGI_FORMAT_R8G8_UNORM;
+    propsCbCr.pixelFormat = pixFormatCbCr;
+    propsCbCr.dpiX = dpi;
+    propsCbCr.dpiY = dpi;
+
+    D2D1_SIZE_U halfSize = size;
+    halfSize.width = size.width / 2;
+    halfSize.height = size.height / 2;
+
+    // Create or copy uv (chroma) plane
+    if (sys->uvBitmap == nullptr)
+    {
+        if (S_OK != sys->d2dContext->CreateBitmap(halfSize,
+            picture->p[1].p_pixels,
+            picture->p[1].i_pitch,
+            propsCbCr,
+            &sys->uvBitmap))
+            return;
+    }
+    {
+        D2D1_RECT_U destRect = D2D1::RectU(0, 0, halfSize.width, halfSize.height);
+        sys->uvBitmap->CopyFromMemory(&destRect, picture->p[1].p_pixels, picture->p[1].i_pitch);
+    }
+
+    sys->yuvEffect->SetInput(1, sys->uvBitmap);
+
+
 
     float scaleW = *sys->displayWidth / (float)picture->format.i_visible_width;
     float scaleH = *sys->displayHeight / (float)picture->format.i_visible_height;
-    // OutputDebugString((ref new Platform::String() + scale)->Data());
 
+    // Compute offset and scale factor
     D2D1_POINT_2F offset;
     float scale;
     if( scaleH <= scaleW) {
@@ -264,21 +313,24 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
         offset.y = (*sys->displayHeight - ((float)picture->format.i_visible_height * scale)) / 2.0f;
     }
 
-    /* D2D1_RECT_F displayRect = { 0.0f, (double)*sys->y, (double)*sys->x, 0.0f };
-       D2D1_RECT_F pictureRect = { 0.0f, picture->format.i_visible_height, (double)picture->format.i_visible_width, 0.0f }; */
-    //float scale = __MIN(scaleH, scaleW);
+    // Apply translate + scale transformation
+    D2D1::Matrix3x2F transform =
+        D2D1::Matrix3x2F::Scale(scale, scale) *
+        D2D1::Matrix3x2F::Translation(offset.x, offset.y);
 
-    scaleEffect->SetInput(0, sys->d2dbmp);
-    scaleEffect->SetValue(D2D1_SCALE_PROP_CENTER_POINT, D2D1::Vector2F(0.0f, 0.0f));
-    scaleEffect->SetValue(D2D1_SCALE_PROP_SCALE, D2D1::Vector2F(scale, scale));
+    sys->yuvEffect->SetValue(
+        D2D1_YCBCR_PROP_TRANSFORM_MATRIX,
+        transform
+        );
 
-    sys->d2dContext->DrawImage(scaleEffect.Get(), offset, D2D1_INTERPOLATION_MODE_CUBIC);
+    // Draw the result of the YCbCr effect
+    sys->d2dContext->DrawImage(sys->yuvEffect, D2D1_INTERPOLATION_MODE_CUBIC);
 
     #if 0
     /* FIXME: look at the following example http://code.msdn.microsoft.com/windowsapps/Direct2D-Image-Effects-4819dc5b */
     if (subpicture) {
         for (subpicture_region_t *r = subpicture->p_region; r != NULL; r = r->p_next) {
-  
+
             D2D1_SIZE_U            size2;
             size2.height = r->fmt.i_visible_height;
             size2.width  = r->fmt.i_visible_width;
@@ -290,9 +342,9 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
             props2.pixelFormat   = pixFormat2;
             props2.dpiX = dpi;
             props2.dpiY = dpi;
-            
+
             /* This is awful */
-            const int pixels_offset = r->fmt.i_y_offset * r->p_picture->p->i_pitch + 
+            const int pixels_offset = r->fmt.i_y_offset * r->p_picture->p->i_pitch +
                                       r->fmt.i_x_offset * r->p_picture->p->i_pixel_pitch;
             for (int y = 0; y < r->fmt.i_visible_height; y++) {
                uint8_t *row = (uint8_t*)&r->p_picture->p->p_pixels[pixels_offset + y*r->p_picture->p->i_pitch];
@@ -309,20 +361,20 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
                    row[x + 3] = a;
                }
             }
-            
-            
+
+
             ID2D1Bitmap                 *d2dbmp2;
             HRESULT hr = sys->d2dContext->CreateBitmap(size2, r->p_picture->p[0].p_pixels, r->p_picture->p[0].i_pitch, props2, &d2dbmp2 );
 
             Debug( L"D2DD 0x%x\n", hr);
-            
+
             ComPtr<ID2D1Effect> blendEffect;
             sys->d2dContext->CreateEffect(CLSID_D2D1Blend, &blendEffect);
-            
+
             /* Incorrect if the video is rescaled*/
             D2D1_RECT_F dst_rect = { r->i_x, r->i_y, r->i_x + r->fmt.i_visible_width, r->i_y + r->fmt.i_visible_height};
             if(d2dbmp2)
-                vd->sys->d2dContext->DrawBitmap(d2dbmp2, dst_rect);                
+                vd->sys->d2dContext->DrawBitmap(d2dbmp2, dst_rect);
         }
     }
 #endif
