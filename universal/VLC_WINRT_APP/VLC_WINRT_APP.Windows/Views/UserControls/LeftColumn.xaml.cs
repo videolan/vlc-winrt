@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
@@ -17,9 +18,20 @@ namespace VLC_WINRT_APP.Views.UserControls
         {
             this.InitializeComponent();
             Window.Current.SizeChanged += CurrentOnSizeChanged;
+            Loaded += OnLoaded;
+        }
+
+        private void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
+        {
+            Responsive();
         }
 
         private void CurrentOnSizeChanged(object sender, WindowSizeChangedEventArgs windowSizeChangedEventArgs)
+        {
+            Responsive();
+        }
+
+        void Responsive()
         {
             if (Window.Current.Bounds.Width < 1080)
             {
@@ -43,9 +55,8 @@ namespace VLC_WINRT_APP.Views.UserControls
             HeaderGrid.HorizontalAlignment = HorizontalAlignment.Center;
 
             PanelsListView.ItemTemplate = App.Current.Resources["SidebarIconItemTemplate"] as DataTemplate;
-
-            MiniPlayersRowDefinition.Height = new GridLength(0);
-            SeparatorRowDefinition.Height = new GridLength(0);
+            MiniPlayer.Visibility = Visibility.Collapsed;
+            SnapMiniPlayer.Visibility = Visibility.Visible;
         }
 
         void ToNormalVisualState()
@@ -57,7 +68,8 @@ namespace VLC_WINRT_APP.Views.UserControls
             HeaderGrid.Margin = new Thickness(42, 0, 20, 0);
             HeaderGrid.HorizontalAlignment = HorizontalAlignment.Left;
             PanelsListView.ItemTemplate = App.Current.Resources["SidebarItemTemplate"] as DataTemplate;
-
+            MiniPlayer.Visibility = Visibility.Visible;
+            SnapMiniPlayer.Visibility = Visibility.Collapsed;
             MiniPlayersRowDefinition.Height = new GridLength(315);
             SeparatorRowDefinition.Height = new GridLength(24);
         }
