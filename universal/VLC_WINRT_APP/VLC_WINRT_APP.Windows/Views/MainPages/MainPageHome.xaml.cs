@@ -89,6 +89,5 @@ namespace VLC_WINRT_APP.Views.MainPages
                 itemsWrap.ItemHeight = (usefulWidth / 4) * 0.561;
             }
         }
-
     }
 }

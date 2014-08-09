@@ -678,7 +678,7 @@
                                                                     <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background"
                                                                                                    Storyboard.TargetName="SearchButtonBackground">
                                                                         <DiscreteObjectKeyFrame KeyTime="0"
-                                                                                                Value="{ThemeResource SearchBoxButtonPointerOverBackgroundThemeBrush}" />
+                                                                                                Value="{StaticResource MainColor}" />
                                                                     </ObjectAnimationUsingKeyFrames>
                                                                 </Storyboard>
                                                             </VisualState>
@@ -941,7 +941,7 @@
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background"
                                                                            Storyboard.TargetName="SearchButton">
                                                 <DiscreteObjectKeyFrame KeyTime="0"
-                                                                        Value="{ThemeResource SearchBoxButtonBackgroundThemeBrush}" />
+                                                                        Value="{StaticResource MainColor}" />
                                             </ObjectAnimationUsingKeyFrames>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush"
                                                                            Storyboard.TargetName="SearchSuggestionsPopupBorder">
@@ -1288,12 +1288,12 @@
                        Margin="6,-2,0,0"
                        VerticalAlignment="Center"
                        FontWeight="Light">
-                <Run Text="VLC" 
+                <Run Text="VLC"
                      FontSize="28"
-                     Foreground="{StaticResource MainColor}"/>
+                     Foreground="{StaticResource MainColor}" />
                 <Run Text="media player"
                      FontSize="18"
-                     Foreground="Gray"/>
+                     Foreground="Gray" />
             </TextBlock>
         </StackPanel>
         <SearchBox Grid.Row="3"
@@ -1304,7 +1304,8 @@
                    PlaceholderText="Search"
                    SuggestionsRequested="LargeSearchBox_SuggestionsRequested"
                    QuerySubmitted="LargeSearchBox_QuerySubmitted"
-                   ResultSuggestionChosen="LargeSearchBox_OnResultSuggestionChosen" />
+                   ResultSuggestionChosen="LargeSearchBox_OnResultSuggestionChosen" 
+                   BorderThickness="0"/>
         <Button Grid.Row="3"
                 x:Name="LittleSearchBox"
                 Content=""
