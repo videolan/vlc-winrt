@@ -13,7 +13,7 @@
       d:DesignWidth="400"
       DataContext="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM}">
     <Grid x:Name="RootGrid"
-          Margin="24,0,0,0">
+          Margin="44,0,0,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="42"
                            x:Name="FirstRowDefinition" />

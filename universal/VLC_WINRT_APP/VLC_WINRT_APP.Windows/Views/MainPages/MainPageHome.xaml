@@ -9,9 +9,10 @@
       d:DesignHeight="768"
       d:DesignWidth="550">
 
-    <Grid>
+    <Grid Margin="0">
         <Hub x:Name="MainHub"
-             Orientation="Vertical">
+             Orientation="Vertical"
+             HorizontalContentAlignment="Stretch">
             <Hub.Header>
                 <StackPanel Orientation="Horizontal">
                     <Button Style="{StaticResource TextBlockButtonStyle}"
@@ -64,7 +65,9 @@
                     </HubSection.ContentTemplate>
                 </HubSection>
                 <HubSection Header="last viewed"
-                            HeaderTemplate="{StaticResource ColoredHeader}">
+                            HeaderTemplate="{StaticResource ColoredHeader}"
+                            HorizontalContentAlignment="Stretch"
+                            HorizontalAlignment="Stretch">
                     <HubSection.ContentTemplate>
                         <DataTemplate>
                             <GridView ItemsSource="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM.ViewedVideos}"
@@ -81,7 +84,9 @@
                                     <ItemsPanelTemplate>
                                         <ItemsWrapGrid Orientation="Horizontal"
                                                        ItemWidth="310"
-                                                       ItemHeight="174" />
+                                                       ItemHeight="174"
+                                                       Loaded="VideoItemWrapGrid_Loaded"
+                                                       SizeChanged="VideoItemWrapGrid_OnSizeChanged" />
                                     </ItemsPanelTemplate>
                                 </GridView.ItemsPanel>
                             </GridView>

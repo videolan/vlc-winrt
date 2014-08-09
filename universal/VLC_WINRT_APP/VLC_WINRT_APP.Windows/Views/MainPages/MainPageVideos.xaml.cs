@@ -42,7 +42,7 @@ namespace VLC_WINRT_APP.Views.MainPages
             }
             else
             {
-                RootGrid.Margin = new Thickness(24, 0, 0, 0);
+                RootGrid.Margin = new Thickness(40, 0, 0, 0);
                 FirstRowDefinition.Height = new GridLength(42);
             }
         }
@@ -64,15 +64,15 @@ namespace VLC_WINRT_APP.Views.MainPages
             int sidebar;
             if (Window.Current.Bounds.Width < 400)
             {
-                sidebar = 20;
+                sidebar = 30;
             }
             else if (Window.Current.Bounds.Width < 1080)
             {
-                sidebar = 130;
+                sidebar = 140;
             }
             else
             {
-                sidebar = 390;
+                sidebar = 400;
             }
             usefulWidth -= sidebar;
 
