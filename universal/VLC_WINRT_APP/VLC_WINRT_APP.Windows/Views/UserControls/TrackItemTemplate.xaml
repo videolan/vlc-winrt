@@ -9,7 +9,7 @@
              d:DesignWidth="400">
     <Grid Height="45">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="120" />
+            <ColumnDefinition Width="90" />
             <ColumnDefinition MinWidth="300"
                               Width="*" />
             <ColumnDefinition MinWidth="170"
@@ -19,7 +19,8 @@
         </Grid.ColumnDefinitions>
         <TextBlock Grid.Column="0"
                    Margin="12,0,0,0"
-                   Text="{Binding Duration, Converter={StaticResource TimeSpanShortStringConverter}}" />
+                   Text="{Binding Duration, Converter={StaticResource TimeSpanShortStringConverter}}" 
+                   HorizontalAlignment="Left"/>
         <TextBlock Grid.Column="1"
                    MaxWidth="300"
                    Text="{Binding Name}" />
