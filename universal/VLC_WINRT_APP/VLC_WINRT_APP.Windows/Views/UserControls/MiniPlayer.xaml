@@ -27,7 +27,8 @@
             <TextBlock Text="{Binding CurrentPlayingArtist.CurrentAlbumItem.Name}"
                        Style="{StaticResource TitleTextBlockStyle}"
                        Grid.Column="1"
-                       Margin="12,0,0,0" />
+                       Margin="12,0,0,0"
+                       TextWrapping="Wrap"/>
         </Grid>
         <Slider Value="{Binding PositionInSeconds, Mode=TwoWay}"
                 Maximum="{Binding TimeTotal.TotalSeconds}"
