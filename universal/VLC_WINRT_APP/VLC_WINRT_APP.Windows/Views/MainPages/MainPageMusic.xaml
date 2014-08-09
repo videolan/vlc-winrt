@@ -69,7 +69,8 @@
                           ItemsSource="{Binding Source={StaticResource AlbumsGroupedByName}}"
                           IsItemClickEnabled="True"
                           SelectionMode="None"
-                          ItemTemplate="{StaticResource SemanticZoomInViewAlbumTemplate}">
+                          ItemTemplate="{StaticResource SemanticZoomInViewAlbumTemplate}"
+                          ItemContainerStyle="{StaticResource ListViewItemStyle}">
                     <triggers:Interactions.Triggers>
                         <triggers:EventTrigger EventName="ItemClick">
                             <triggers:InvokeCommandAction Command="{Binding AlbumClickedCommand}"
@@ -81,8 +82,8 @@
                             <GroupStyle.Panel>
                                 <ItemsPanelTemplate>
                                     <VariableSizedWrapGrid Orientation="Horizontal"
-                                                           ItemHeight="200"
-                                                           ItemWidth="200"
+                                                           ItemHeight="300"
+                                                           ItemWidth="250"
                                                            Margin="0,0,0,25" />
                                 </ItemsPanelTemplate>
                             </GroupStyle.Panel>
@@ -90,7 +91,7 @@
                                 <DataTemplate>
                                     <TextBlock Text="{Binding Name}"
                                                VerticalAlignment="Bottom"
-                                               Foreground="White"
+                                               Foreground="{StaticResource MainColor}"
                                                TextWrapping="Wrap"
                                                Typography.Capitals="SmallCaps"
                                                FontSize="22"
@@ -114,7 +115,8 @@
                   ItemsSource="{Binding Artists}"
                   IsItemClickEnabled="True"
                   SelectionMode="None"
-                  ItemTemplate="{StaticResource SemanticZoomViewInArtistTemplate}">
+                  ItemTemplate="{StaticResource SemanticZoomViewInArtistTemplate}"
+                  ItemContainerStyle="{StaticResource ListViewItemStyle}">
             <triggers:Interactions.Triggers>
                 <triggers:EventTrigger EventName="ItemClick">
                     <triggers:InvokeCommandAction Command="{Binding ArtistClickedCommand}"
@@ -124,9 +126,9 @@
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <ItemsWrapGrid Orientation="Horizontal"
-                                           ItemHeight="200"
-                                           ItemWidth="200"
-                                           Margin="0,0,0,25" />
+                                   ItemHeight="300"
+                                   ItemWidth="250"
+                                   Margin="0,0,0,25" />
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
         </ListView>
