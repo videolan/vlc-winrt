@@ -10,6 +10,7 @@
     d:DesignWidth="400">
 
     <GridView x:Name="SimilarItemGridView"
+              RequestedTheme="Dark"
               IsSwipeEnabled="False"
               SelectionMode="None"
               IsItemClickEnabled="True"

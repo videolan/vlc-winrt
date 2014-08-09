@@ -10,6 +10,7 @@
     d:DesignWidth="400">
 
     <GridView x:Name="PopularItemGridView"
+              RequestedTheme="Dark"
               IsSwipeEnabled="False"
               SelectionMode="None"
               IsItemClickEnabled="True"
