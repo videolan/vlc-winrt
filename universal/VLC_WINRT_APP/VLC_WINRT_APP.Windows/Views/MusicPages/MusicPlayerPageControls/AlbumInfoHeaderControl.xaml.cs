@@ -36,6 +36,8 @@ namespace VLC_WINRT_APP.Views.MusicPages.MusicPlayerPageControls
             {
                 CoverImage.Height = 130;
                 CoverImage.Width = 130;
+                NoCoverImage.Height = 130;
+                NoCoverImage.Width = 130;
                 CoverImageColumnDefinition.Width = new GridLength(130);
                 PlayAllAppBarToggleButton.Margin = new Thickness(-27, 0, 0, 0);
             }
@@ -43,6 +45,8 @@ namespace VLC_WINRT_APP.Views.MusicPages.MusicPlayerPageControls
             {
                 CoverImage.Height = 200;
                 CoverImage.Width = 200;
+                NoCoverImage.Height = 200;
+                NoCoverImage.Width = 200;
                 CoverImageColumnDefinition.Width = new GridLength(200);
                 PlayAllAppBarToggleButton.Margin = new Thickness(0);
             }
