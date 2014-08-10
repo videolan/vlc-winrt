@@ -10,8 +10,7 @@
       DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
 
     <Grid DataContext="{Binding CurrentArtist}"
-          RequestedTheme="Dark"
-          Background="White">
+          RequestedTheme="Dark">
         <Grid.RowDefinitions>
             <RowDefinition Height="42"
                            x:Name="FirstRowDefinition" />
