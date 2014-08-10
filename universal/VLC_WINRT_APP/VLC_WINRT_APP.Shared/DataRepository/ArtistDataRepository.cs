@@ -25,6 +25,13 @@ namespace VLC_WINRT_APP.DataRepository
                 db.CreateTable<MusicLibraryVM.ArtistItem>();
             }
         }
+        public void Drop()
+        {
+            using (var db = new SQLite.SQLiteConnection(_dbPath))
+            {
+                db.DropTable<MusicLibraryVM.ArtistItem>();
+            }
+        }
 
         public
             async Task<ObservableCollection<MusicLibraryVM.ArtistItem>> Load()

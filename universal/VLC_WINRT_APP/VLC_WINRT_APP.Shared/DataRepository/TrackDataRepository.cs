@@ -24,7 +24,14 @@ namespace VLC_WINRT_APP.DataRepository
             using (var db = new SQLite.SQLiteConnection(_dbPath))
             {
                 db.CreateTable<MusicLibraryVM.TrackItem>();
+            }
+        }
 
+        public void Drop()
+        {
+            using (var db = new SQLite.SQLiteConnection(_dbPath))
+            {
+                db.DropTable<MusicLibraryVM.TrackItem>();
             }
         }
 
