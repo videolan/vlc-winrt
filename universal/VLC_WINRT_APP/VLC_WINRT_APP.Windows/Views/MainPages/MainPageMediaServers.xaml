@@ -93,9 +93,9 @@
                 </ListView.ItemTemplate>
             </ListView>
         </Grid>
-        <removableStorage:PlugARemovableStorage Grid.Row="2"
+        <!--<removableStorage:PlugARemovableStorage Grid.Row="2"
                                                 Grid.RowSpan="2"
                                                 d:IsHidden="True"
-                                                Visibility="{Binding RemovableStorageVMs.Count, Converter={StaticResource CountToVisibilityConverter}}" />
+                                                Visibility="{Binding DLNAVMs.Count, Converter={StaticResource CountToVisibilityConverter}}" />-->
     </Grid>
 </Page>

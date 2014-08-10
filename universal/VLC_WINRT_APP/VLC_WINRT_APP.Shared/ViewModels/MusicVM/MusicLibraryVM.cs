@@ -270,7 +270,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             if (await DoesMusicDatabaseExist())
             {
                 StorageFile dB = await ApplicationData.Current.LocalFolder.GetFileAsync("mediavlc.sqlite");
-                await dB.DeleteAsync();
+                dB.DeleteAsync();
             }
 
             DispatchHelper.InvokeAsync(() =>
