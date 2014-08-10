@@ -35,6 +35,7 @@ namespace VLC_WINRT_APP.Model
             ".mp2",
             ".mp2v",
             ".mp4",
+            ".m4v",
             ".mp4v",
             ".mpe",
             ".mpeg",
