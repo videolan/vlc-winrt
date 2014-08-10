@@ -14,7 +14,7 @@
              Orientation="Vertical"
              HorizontalContentAlignment="Stretch">
             <Hub.Header>
-                <Grid>
+                <Grid Margin="0,-14,0,-18">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="Auto" />
@@ -67,7 +67,8 @@
             </Hub.Header>
             <Hub.Sections>
                 <HubSection Header="favorite albums"
-                            HeaderTemplate="{StaticResource ColoredHeader}">
+                            HeaderTemplate="{StaticResource ColoredHeader}"
+                            Margin="0,-10,0,0">
                     <HubSection.ContentTemplate>
                         <DataTemplate>
                             <Grid>
