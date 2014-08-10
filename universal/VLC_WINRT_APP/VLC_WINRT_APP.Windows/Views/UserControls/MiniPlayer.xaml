@@ -13,6 +13,8 @@
                    Style="{StaticResource SubheaderTextBlockStyle}" />
         <TextBlock Text="{Binding CurrentTrackItem.Name}"
                    Style="{StaticResource SubheaderTextBlockStyle}"
+                   TextWrapping="NoWrap"
+                   TextTrimming="CharacterEllipsis"
                    FontSize="18" />
         <Grid Margin="0,12,0,0">
             <Grid.ColumnDefinitions>
