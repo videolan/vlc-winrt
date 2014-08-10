@@ -11,7 +11,7 @@
     mc:Ignorable="d"
     DataContext="{Binding Source={StaticResource Locator}, Path=DlnaVM}">
 
-    <Grid>
+    <Grid x:Name="RootGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="42" />
             <RowDefinition Height="45" />
@@ -21,7 +21,8 @@
         <ComboBox Grid.Row="1"
                   Width="280"
                   ItemsSource="{Binding DLNAVMs}"
-                  Visibility="{Binding RemovableStorageVMs.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}"
+                  SelectedItem="{Binding CurrentDlnaVm}"
+                  Visibility="{Binding DLNAVMs.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}"
                   Style="{StaticResource ComboBoxStyle1}"
                   FontSize="26"
                   HorizontalAlignment="Left"
@@ -30,7 +31,7 @@
                   FontWeight="Light">
             <triggers:Interactions.Triggers>
                 <triggers:EventTrigger EventName="SelectionChanged">
-                    <triggers:InvokeCommandAction Command="{Binding RemovableDeviceClicked}"
+                    <triggers:InvokeCommandAction Command="{Binding DlnaClickedCommand}"
                                                   PassEventArgsToCommand="True" />
                 </triggers:EventTrigger>
             </triggers:Interactions.Triggers>
@@ -43,12 +44,14 @@
         <Grid Grid.Row="2"
               Margin="6,0,0,0">
             <Button Style="{StaticResource TextBlockButtonStyle}"
-                    Command="{Binding CurrentStorageVM.GoBackCommand}"
-                    Visibility="{Binding CurrentStorageVM.CanGoBack, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    Command="{Binding CurrentDlnaVm.GoBackCommand}"
+                    Visibility="{Binding CurrentDlnaVm.CanGoBack, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Button.Content>
                     <StackPanel Orientation="Horizontal">
-                        <SymbolIcon Symbol="Back" />
+                        <SymbolIcon Symbol="Back"
+                                    Foreground="DimGray" />
                         <TextBlock Text="Back"
+                                   Foreground="DimGray"
                                    VerticalAlignment="Center"
                                    Margin="6,0,0,0" />
                     </StackPanel>
@@ -57,17 +60,17 @@
         </Grid>
         <Grid Grid.Row="3">
             <controls:NothingToSeeHere Margin="6,0,0,0"
-                                       Visibility="{Binding CurrentStorageVM.IsFolderEmpty, Converter={StaticResource BooleanToVisibilityConverter}}" />
-            <ListView ItemsSource="{Binding CurrentStorageVM.StorageItems}"
+                                       Visibility="{Binding CurrentDlnaVm.IsFolderEmpty, Converter={StaticResource BooleanToVisibilityConverter}}" />
+            <ListView ItemsSource="{Binding CurrentDlnaVm.StorageItems}"
                       Margin="6,0,0,0"
                       IsItemClickEnabled="True"
                       SelectionMode="None"
                       IsSwipeEnabled="False"
-                      ItemContainerStyle="{StaticResource ListViewItemContainerStyle}"
+                      ItemContainerStyle="{StaticResource ListViewItemStyle}"
                       Visibility="{Binding RemovableStorageVMs.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}">
                 <triggers:Interactions.Triggers>
                     <triggers:EventTrigger EventName="ItemClick">
-                        <triggers:InvokeCommandAction Command="{Binding CurrentStorageVM.NavigateToCommand}"
+                        <triggers:InvokeCommandAction Command="{Binding CurrentDlnaVm.NavigateToCommand}"
                                                       PassEventArgsToCommand="True" />
                     </triggers:EventTrigger>
                 </triggers:Interactions.Triggers>
@@ -82,20 +85,21 @@
                                   Height="26"
                                   Width="26"
                                   Stretch="Uniform"
-                                  Fill="WhiteSmoke"
+                                  Fill="DimGray"
                                   HorizontalAlignment="Left" />
                             <TextBlock Grid.Column="1"
                                        Text="{Binding Name}"
                                        TextWrapping="Wrap"
-                                       FontSize="14" />
+                                       FontSize="14"
+                                       Margin="3,4,0,0" />
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
         </Grid>
-        <!--<removableStorage:PlugARemovableStorage Grid.Row="2"
+        <removableStorage:PlugARemovableStorage Grid.Row="2"
                                                 Grid.RowSpan="2"
                                                 d:IsHidden="True"
-                                                Visibility="{Binding DLNAVMs.Count, Converter={StaticResource CountToVisibilityConverter}}" />-->
+                                                Visibility="{Binding DLNAVMs.Count, Converter={StaticResource CountToVisibilityConverter}}" />
     </Grid>
 </Page>
