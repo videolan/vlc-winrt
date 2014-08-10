@@ -2226,7 +2226,7 @@
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Text"
                                                                        Storyboard.TargetProperty="Foreground">
                                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{StaticResource ApplicationPointerOverForegroundThemeBrush}" />
+                                                                    Value="Gray" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -2244,7 +2244,7 @@
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Text"
                                                                        Storyboard.TargetProperty="Foreground">
                                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{StaticResource ApplicationPressedForegroundThemeBrush}" />
+                                                                    Value="LightGray" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -2385,4 +2385,5 @@
         <Setter Property="HorizontalContentAlignment"
                 Value="Stretch" />
     </Style>
+
 </ResourceDictionary>

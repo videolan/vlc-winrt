@@ -1,6 +1,8 @@
-﻿using System.Linq;
-using Windows.UI.Xaml;
+﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Navigation;
+using VLC_WINRT_APP.ViewModels;
 
 namespace VLC_WINRT_APP.Views.VariousPages
 {
@@ -11,24 +13,15 @@ namespace VLC_WINRT_APP.Views.VariousPages
             this.InitializeComponent();
         }
 
-        private void OpenSearchPane(object sender, RoutedEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            base.OnNavigatedTo(e);
+            Locator.SettingsVM.Initialize();
         }
 
-        private void MovieListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void VideoFolder_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            if (!e.AddedItems.Any()) return;
-
-        }
-
-        private void MusicListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (!e.AddedItems.Any()) return;
-        }
-
-        private void GoBack_Click(object sender, RoutedEventArgs e)
-        {
-            Frame.GoBack();
+            Flyout.ShowAttachedFlyout(sender as FrameworkElement);
         }
     }
 }

@@ -30,6 +30,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Commands\RemovableDevices\GoUpperFolderCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\RemovableDevices\IStorageItemClickedCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\RemovableDevices\RemovableDeviceClickedCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\Settings\AddFolderToLibrary.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\Settings\RemoveFolderFromMusicLibrary.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\Settings\RemoveFolderFromVideoLibrary.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Video\FavoriteVideoCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Video\OpenSubtitleCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Video\PlayVideoCommand.cs" />
