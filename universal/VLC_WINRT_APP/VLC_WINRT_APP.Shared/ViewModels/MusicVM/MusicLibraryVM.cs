@@ -16,6 +16,7 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel.Resources;
 using Windows.Storage;
 using Windows.Storage.FileProperties;
+using Windows.System;
 using Windows.UI.Core;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml.Controls;
@@ -267,6 +268,9 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 
         public async Task StartIndexing()
         {
+#if DEBUG
+            Launcher.LaunchUriAsync(new Uri("mailto:thomas.nigro@outlook.com&subject=VLC indexation", UriKind.RelativeOrAbsolute));
+#endif
             if (await DoesMusicDatabaseExist())
             {
                 _artistDataRepository.Drop();

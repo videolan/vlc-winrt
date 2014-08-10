@@ -67,10 +67,13 @@ namespace VLC_WINRT_APP.DataRepository
             return connection.UpdateAsync(track);
         }
 
-        public Task Add(MusicLibraryVM.TrackItem track)
+        public async Task Add(MusicLibraryVM.TrackItem track)
         {
             var connection = new SQLiteAsyncConnection(_dbPath);
-            return connection.InsertAsync(track);
+            var query = connection.Table<MusicLibraryVM.TrackItem>().Where(x => x.Path == track.Path);
+            var result = await query.ToListAsync();
+            if(result.Count == 0)
+                connection.InsertAsync(track);
         }
     }
 }
