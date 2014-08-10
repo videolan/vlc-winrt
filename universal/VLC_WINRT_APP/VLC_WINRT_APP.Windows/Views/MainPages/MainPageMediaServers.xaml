@@ -8,6 +8,7 @@
     xmlns:removableStorage="using:VLC_WINRT_APP.Controls.RemovableStorage"
     xmlns:triggers="using:WinRT.Triggers"
     xmlns:controls="using:VLC_WINRT.Views.Controls"
+    xmlns:dlna="using:VLC_WINRT_APP.Controls.Dlna"
     mc:Ignorable="d"
     DataContext="{Binding Source={StaticResource Locator}, Path=DlnaVM}">
 
@@ -97,7 +98,7 @@
                 </ListView.ItemTemplate>
             </ListView>
         </Grid>
-        <removableStorage:PlugARemovableStorage Grid.Row="2"
+        <dlna:WaitingForNetworkAnswer Grid.Row="2"
                                                 Grid.RowSpan="2"
                                                 d:IsHidden="True"
                                                 Visibility="{Binding DLNAVMs.Count, Converter={StaticResource CountToVisibilityConverter}}" />

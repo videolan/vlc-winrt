@@ -118,6 +118,9 @@
     <Compile Include="AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Dlna\WaitingForNetworkAnswer.xaml.cs">
+      <DependentUpon>WaitingForNetworkAnswer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainPages\MainPageHome.xaml.cs">
       <DependentUpon>MainPageHome.xaml</DependentUpon>
     </Compile>
@@ -746,6 +749,10 @@
     <Page Include="AboutPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Dlna\WaitingForNetworkAnswer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainPages\MainPageHome.xaml">
       <Generator>MSBuild:Compile</Generator>
