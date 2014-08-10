@@ -25,6 +25,31 @@ namespace VLC_WINRT_APP.Views.MainPages
         public MainPageMediaServers()
         {
             this.InitializeComponent();
+
+            SizeChanged += OnSizeChanged;
+            Loaded += OnLoaded;
+        }
+
+        private void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
+        {
+            Responsive();
+        }
+
+        private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
+        {
+            Responsive();
+        }
+
+        void Responsive()
+        {
+            if (Window.Current.Bounds.Width < 400)
+            {
+                RootGrid.Margin = new Thickness(9, 0, 0, 0);
+            }
+            else
+            {
+                RootGrid.Margin = new Thickness(40, 0, 0, 0);
+            }
         }
     }
 }
