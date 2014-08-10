@@ -203,10 +203,13 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             _timeTotal = TimeSpan.Zero;
             _elapsedTime = TimeSpan.Zero;
 
-            _vlcPlayerService.Open(_mrl);
-#if WINDOWS_APP
-            _vlcPlayerService.Play();
-#endif
+//            _vlcPlayerService.Open(_mrl);
+//#if WINDOWS_APP
+//            _vlcPlayerService.Play();
+//#endif
+
+            _mediaService.SetMediaFile(_mrl, isAudioMedia: false);
+            _mediaService.Play();
             await Task.Delay(500);
             if (_timeTotal == TimeSpan.Zero)
             {

@@ -92,7 +92,7 @@ namespace VLC_WINRT_APP.ViewModels.RemovableDevicesVM
                     var external = new FileExplorerViewModel(StorageDevice.FromId(newId), newId);
                     RemovableStorageVMs.Add(external);
                 }
-                if (RemovableStorageVMs.Count == 1)
+                if (RemovableStorageVMs.Count > 1)
                 {
                     CurrentStorageVM = RemovableStorageVMs[0];
                 }

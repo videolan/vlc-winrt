@@ -35,7 +35,7 @@ namespace VLC_WINRT_APP.ViewModels.NetworkVM
         public DlnaClickedCommand DlnaClickedCommand
         {
             get { return _dlnaClickedCommand; }
-            set { _dlnaClickedCommand = value; }
+            set { SetProperty(ref _dlnaClickedCommand, value); }
         }
 
         #endregion
@@ -65,13 +65,13 @@ namespace VLC_WINRT_APP.ViewModels.NetworkVM
                 {
                     StorageFolder newFolder = storageFolder;
                     var videoLib = new FileExplorerViewModel(newFolder);
-                    tasks.Add(videoLib.GetFiles());
                     DLNAVMs.Add(videoLib);
                 }
                 await Task.WhenAll(tasks);
                 if (DLNAVMs.Count > 0)
                 {
                     CurrentDlnaVm = DLNAVMs[0];
+
                 }
             }
         }

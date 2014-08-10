@@ -37,6 +37,7 @@ namespace VLC_WINRT_APP.Views.VariousPages
                 MainHub.Orientation = Orientation.Horizontal;
             }
         }
+
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);

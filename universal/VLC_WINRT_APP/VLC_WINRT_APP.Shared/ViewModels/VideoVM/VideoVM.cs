@@ -230,8 +230,11 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
                     App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
                     {
                         var image = new BitmapImage();
-                        image.SetSourceAsync(thumb);
-                        Image = image;
+                        if (thumb != null)
+                        {
+                            image.SetSourceAsync(thumb);
+                            Image = image;
+                        }
                     });
                 }
             }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using VLC_WINRT.Common;
 using VLC_WINRT_APP.ViewModels;
+using VLC_WINRT_APP.Views.MainPages;
 
 namespace VLC_WINRT_APP.Commands.RemovableDevices
 {
@@ -11,8 +12,18 @@ namespace VLC_WINRT_APP.Commands.RemovableDevices
         public override void Execute(object parameter)
         {
 #if WINDOWS_APP
-            if(Locator.ExternalStorageVM.CurrentStorageVM.CanGoBack)
-                Locator.ExternalStorageVM.CurrentStorageVM.GoBack();
+            if (App.ApplicationFrame.CurrentSourcePageType == typeof (MainPageRemovables))
+            {
+                if (Locator.ExternalStorageVM.CurrentStorageVM != null &&
+                    Locator.ExternalStorageVM.CurrentStorageVM.CanGoBack)
+                    Locator.ExternalStorageVM.CurrentStorageVM.GoBack();
+            }
+            else if(App.ApplicationFrame.CurrentSourcePageType == typeof(MainPageMediaServers))
+            {
+                if(Locator.DlnaVM.CurrentDlnaVm != null &&
+                    Locator.DlnaVM.CurrentDlnaVm.CanGoBack)
+                    Locator.DlnaVM.CurrentDlnaVm.GoBack();
+            }
 #endif
         }
     }
