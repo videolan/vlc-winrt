@@ -15,9 +15,9 @@ using Windows.Foundation;
 using Windows.Storage;
 using Windows.UI.Core;
 using Windows.UI.Xaml.Controls;
-#if WINDOWS_APP
+//#if WINDOWS_APP
 using libVLCX;
-#endif
+//#endif
 using VLC_WINRT.Common;
 using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.ViewModels;
@@ -64,12 +64,12 @@ namespace VLC_WINRT_APP.Services.RunTime
         public void Stop()
         {
             //TODO: fix this work around.
-#if WINDOWS_APP
+//#if WINDOWS_APP
             if (CurrentState == MediaPlayerState.Paused)
             {
                 Play();
             }
-#endif
+//#endif
             DoVLCSafeAction(() =>
             {
                 _vlcPlayer.Stop();
@@ -79,7 +79,7 @@ namespace VLC_WINRT_APP.Services.RunTime
 
         private async void DoVLCSafeAction(Action a)
         {
-#if WINDOWS_APP
+//#if WINDOWS_APP
             if (_vlcPlayer == null || _vlcInitializeTask == null)
                 return;
 
@@ -88,12 +88,12 @@ namespace VLC_WINRT_APP.Services.RunTime
             {
                 a();
             }
-#else
-            lock (_controlLock)
-            {
-                a();
-            }
-#endif
+//#else
+//            lock (_controlLock)
+//            {
+//                a();
+//            }
+//#endif
         }
 
 
@@ -129,12 +129,12 @@ namespace VLC_WINRT_APP.Services.RunTime
                 _vlcInitializeTask = init.AsTask();
             }
             _vlcPlayer.MediaEnded += _vlcPlayer_MediaEnded;
-#if WINDOWS_PHONE_APP
-            _vlcInitializeTask = new Task(() =>
-            {
-                Debug.WriteLine("FakeInitialieTaskCalled");
-            });
-#endif
+//#if WINDOWS_PHONE_APP
+//            _vlcInitializeTask = new Task(() =>
+//            {
+//                Debug.WriteLine("FakeInitialieTaskCalled");
+//            });
+//#endif
             await _vlcInitializeTask;
 
         }
@@ -227,7 +227,7 @@ namespace VLC_WINRT_APP.Services.RunTime
         public async Task<float> GetPosition()
         {
             float position = 0.0f;
-#if WINDOWS_APP
+//#if WINDOWS_APP
             if (_vlcPlayer == null || _vlcInitializeTask == null)
                 return position;
 
@@ -243,14 +243,14 @@ namespace VLC_WINRT_APP.Services.RunTime
                 }
             }
             return position;
-#else
-            return _vlcPlayer.GetPosition();
-#endif
+//#else
+//            return _vlcPlayer.GetPosition();
+//#endif
         }
 
         public async Task<long> GetLength()
         {
-#if WINDOWS_APP
+//#if WINDOWS_APP
             long length = 0;
             if (_vlcPlayer == null || _vlcInitializeTask == null)
                 return length;
@@ -261,9 +261,9 @@ namespace VLC_WINRT_APP.Services.RunTime
                 length = _vlcPlayer.GetLength();
             }
             return length;
-#else
-            return _vlcPlayer.GetLength();
-#endif
+//#else
+//            return _vlcPlayer.GetLength();
+//#endif
         }
 
         public async Task SetSizeVideoPlayer(uint x, uint y)
@@ -377,238 +377,238 @@ namespace VLC_WINRT_APP.Services.RunTime
         }
     }
 
-#if WINDOWS_PHONE_APP
-    public class Player
-    {
-        public event Action MediaEnded;
-        public delegate void MediaEndedHandler();
+//#if WINDOWS_PHONE_APP
+//    public class Player
+//    {
+//        public event Action MediaEnded;
+//        public delegate void MediaEndedHandler();
 
-        public IAsyncAction Initialize()
-        {
-            return null;
-        }
-        public Player(SwapChainBackgroundPanel swapChainBackgroundPanel)
-        {
-        }
+//        public IAsyncAction Initialize()
+//        {
+//            return null;
+//        }
+//        public Player(SwapChainBackgroundPanel swapChainBackgroundPanel)
+//        {
+//        }
 
-        public void SetRate(float rate)
-        {
-        }
+//        public void SetRate(float rate)
+//        {
+//        }
 
-        public void SetAudioTrack(int track)
-        {
+//        public void SetAudioTrack(int track)
+//        {
 
-        }
+//        }
 
-        public void SetSubtitleTrack(int track)
-        {
+//        public void SetSubtitleTrack(int track)
+//        {
 
-        }
+//        }
 
-        public int GetAudioTracksDescription(IDictionary<int, string> audioTracks)
-        {
-            return 0;
-        }
+//        public int GetAudioTracksDescription(IDictionary<int, string> audioTracks)
+//        {
+//            return 0;
+//        }
 
-        public int GetSubtitleDescription(IDictionary<int, string> subtitles)
-        {
-            return 0;
-        }
+//        public int GetSubtitleDescription(IDictionary<int, string> subtitles)
+//        {
+//            return 0;
+//        }
 
-        public int GetAudioTracksCount()
-        {
-            return 0;
-        }
+//        public int GetAudioTracksCount()
+//        {
+//            return 0;
+//        }
 
-        public int GetSubtitleCount()
-        {
-            return 0;
-        }
+//        public int GetSubtitleCount()
+//        {
+//            return 0;
+//        }
 
-        public int GetVolume()
-        {
-            return 0;
-        }
+//        public int GetVolume()
+//        {
+//            return 0;
+//        }
 
-        public void SetVolume(int vol)
-        {
+//        public void SetVolume(int vol)
+//        {
 
-        }
-        public void UpdateSize(uint u, uint u1)
-        {
+//        }
+//        public void UpdateSize(uint u, uint u1)
+//        {
 
-        }
+//        }
 
-        public long GetLength()
-        {
-            if (Locator.MusicPlayerVM.IsRunning)
-            {
-                long length;
-                length = (long)
-                        Locator.MusicPlayerVM.CurrentPlayingArtist.CurrentAlbumItem.Tracks[Locator.MusicPlayerVM.CurrentPlayingArtist.CurrentAlbumItem.CurrentTrackPosition].Duration
-                            .TotalMilliseconds;
-                return length;
-            }
-            else
-            {
-                return (long)Locator.VideoVm.CurrentVideo.Duration.TotalMilliseconds;
-            }
+//        public long GetLength()
+//        {
+//            if (Locator.MusicPlayerVM.IsRunning)
+//            {
+//                long length;
+//                length = (long)
+//                        Locator.MusicPlayerVM.CurrentPlayingArtist.CurrentAlbumItem.Tracks[Locator.MusicPlayerVM.CurrentPlayingArtist.CurrentAlbumItem.CurrentTrackPosition].Duration
+//                            .TotalMilliseconds;
+//                return length;
+//            }
+//            else
+//            {
+//                return (long)Locator.VideoVm.CurrentVideo.Duration.TotalMilliseconds;
+//            }
 
-            return 0;
-        }
+//            return 0;
+//        }
 
-        public float GetPosition()
-        {
-            if (Locator.MusicPlayerVM.IsRunning)
-            {
-#if WINDOWS_APP
-                float pos;
-                //#if WINDOWS_APP
-                pos = (float)
-                    (App.RootPage.MediaElement.Position.TotalSeconds /
-                     Locator.MusicPlayerVM.CurrentPlayingArtist.CurrentAlbumItem.Tracks[Locator.MusicPlayerVM.CurrentPlayingArtist.CurrentAlbumItem.CurrentTrackPosition].Duration.TotalSeconds);
-                //#else
-                //                pos = (float)
-                //                    (BackgroundMediaPlayer.Current.Position.TotalSeconds /
-                //                         Locator.MusicPlayer.CurrentPlayingArtist.CurrentAlbumItem.CurrentTrack.Duration.TotalSeconds);
-                //#endif
-                return pos;
-#endif
-            }
-            else
-            {
-                return (float)(App.RootPage.MediaElement.Position.TotalSeconds / Locator.VideoVm.CurrentVideo.Duration.TotalSeconds);
-            }
-            return 0f;
-        }
+//        public float GetPosition()
+//        {
+//            if (Locator.MusicPlayerVM.IsRunning)
+//            {
+//#if WINDOWS_APP
+//                float pos;
+//                //#if WINDOWS_APP
+//                pos = (float)
+//                    (App.RootPage.MediaElement.Position.TotalSeconds /
+//                     Locator.MusicPlayerVM.CurrentPlayingArtist.CurrentAlbumItem.Tracks[Locator.MusicPlayerVM.CurrentPlayingArtist.CurrentAlbumItem.CurrentTrackPosition].Duration.TotalSeconds);
+//                //#else
+//                //                pos = (float)
+//                //                    (BackgroundMediaPlayer.Current.Position.TotalSeconds /
+//                //                         Locator.MusicPlayer.CurrentPlayingArtist.CurrentAlbumItem.CurrentTrack.Duration.TotalSeconds);
+//                //#endif
+//                return pos;
+//#endif
+//            }
+//            else
+//            {
+//                return (float)(App.RootPage.MediaElement.Position.TotalSeconds / Locator.VideoVm.CurrentVideo.Duration.TotalSeconds);
+//            }
+//            return 0f;
+//        }
 
-        public void Dispose()
-        {
+//        public void Dispose()
+//        {
 
-        }
+//        }
 
-        public void OpenSubtitle(string mrl)
-        {
+//        public void OpenSubtitle(string mrl)
+//        {
 
-        }
+//        }
 
-        public async void Open(string mrl)
-        {
-            Debug.WriteLine("Play with dummy player");
-            StorageFile file;
-            if (Locator.VideoVm.PlayingType == PlayingType.Music)
-            {
-                var trackItem = Locator.MusicPlayerVM.TrackCollection[Locator.MusicPlayerVM.CurrentTrack];
+//        public async void Open(string mrl)
+//        {
+//            Debug.WriteLine("Play with dummy player");
+//            StorageFile file;
+//            if (Locator.VideoVm.PlayingType == PlayingType.Music)
+//            {
+//                var trackItem = Locator.MusicPlayerVM.TrackCollection[Locator.MusicPlayerVM.CurrentTrack];
 
-                file = await StorageFile.GetFileFromPathAsync(trackItem.Path);
-            }
-            else
-            {
-                file = Locator.VideoVm.CurrentVideo.File;
-            }
+//                file = await StorageFile.GetFileFromPathAsync(trackItem.Path);
+//            }
+//            else
+//            {
+//                file = Locator.VideoVm.CurrentVideo.File;
+//            }
 
-            var stream = await file.OpenAsync(FileAccessMode.Read);
+//            var stream = await file.OpenAsync(FileAccessMode.Read);
 
-            //DispatchHelper.Invoke(() =>
-            //{
-            //#if WINDOWS_APP
-            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-            {
-                App.RootPage.MediaElement.SetSource(stream, file.ContentType);
-            });
-            //#else
-            //                if (Locator.MusicPlayer.IsRunning)
-            //                {
-            //                    BackgroundMediaPlayer.SendMessageToBackground(new ValueSet()
-            //                    {
-            //                        {"filePath", file.Path},
-            //                    });
-            //                }
-            //                else
-            //                {
-            //                    App.RootPage.MediaElement.SetSource(stream, file.ContentType);
-            //                }
-            //#endif
-            //});
-        }
+//            //DispatchHelper.Invoke(() =>
+//            //{
+//            //#if WINDOWS_APP
+//            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+//            {
+//                App.RootPage.MediaElement.SetSource(stream, file.ContentType);
+//            });
+//            //#else
+//            //                if (Locator.MusicPlayer.IsRunning)
+//            //                {
+//            //                    BackgroundMediaPlayer.SendMessageToBackground(new ValueSet()
+//            //                    {
+//            //                        {"filePath", file.Path},
+//            //                    });
+//            //                }
+//            //                else
+//            //                {
+//            //                    App.RootPage.MediaElement.SetSource(stream, file.ContentType);
+//            //                }
+//            //#endif
+//            //});
+//        }
 
-        public void Pause()
-        {
-            //if (Locator.MusicPlayer.IsRunning)
-            //{
-            //#if WINDOWS_APP
+//        public void Pause()
+//        {
+//            //if (Locator.MusicPlayer.IsRunning)
+//            //{
+//            //#if WINDOWS_APP
 
-            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => App.RootPage.MediaElement.Pause());
-            //#else
-            //            if (Locator.MusicPlayer.IsRunning)
-            //            {
-            //                BackgroundMediaPlayer.Current.Pause();
-            //            }
-            //            else
-            //            {
-            //                DispatchHelper.Invoke(() => App.RootPage.MediaElement.Pause());
-            //            }
-            //#endif
-            //}
-        }
+//            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => App.RootPage.MediaElement.Pause());
+//            //#else
+//            //            if (Locator.MusicPlayer.IsRunning)
+//            //            {
+//            //                BackgroundMediaPlayer.Current.Pause();
+//            //            }
+//            //            else
+//            //            {
+//            //                DispatchHelper.Invoke(() => App.RootPage.MediaElement.Pause());
+//            //            }
+//            //#endif
+//            //}
+//        }
 
-        public async void Play()
-        {
-            Debug.WriteLine("Play with dummy player");
-            //if (Locator.MusicPlayer.IsRunning)
-            //{
-            //DispatchHelper.Invoke(() =>
-            //{
-            //#if WINDOWS_APP
+//        public async void Play()
+//        {
+//            Debug.WriteLine("Play with dummy player");
+//            //if (Locator.MusicPlayer.IsRunning)
+//            //{
+//            //DispatchHelper.Invoke(() =>
+//            //{
+//            //#if WINDOWS_APP
 
-            //App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, ()=>App.RootPage.MediaElement.Play());
-            //#else
-            //            if (Locator.MusicPlayer.IsRunning)
-            //            {
-            //                BackgroundMediaPlayer.Current.Play();
-            //            }
-            //            else
-            //            {
-            //                DispatchHelper.Invoke(() => App.RootPage.MediaElement.Play());
-            //            }
-            //#endif
-            //});
-            //}
-            //else
-            //{
+//            //App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, ()=>App.RootPage.MediaElement.Play());
+//            //#else
+//            //            if (Locator.MusicPlayer.IsRunning)
+//            //            {
+//            //                BackgroundMediaPlayer.Current.Play();
+//            //            }
+//            //            else
+//            //            {
+//            //                DispatchHelper.Invoke(() => App.RootPage.MediaElement.Play());
+//            //            }
+//            //#endif
+//            //});
+//            //}
+//            //else
+//            //{
 
-            //}
-        }
+//            //}
+//        }
 
-        public void Seek(float position)
-        {
-            if (Locator.MusicPlayerVM.IsRunning)
-            {
-                TimeSpan tS;
-                tS = TimeSpan.FromSeconds(position *
-                                         Locator.MusicPlayerVM.CurrentPlayingArtist.CurrentAlbumItem.Tracks[Locator.MusicPlayerVM.CurrentPlayingArtist.CurrentAlbumItem.CurrentTrackPosition].Duration
-                                             .TotalSeconds);
+//        public void Seek(float position)
+//        {
+//            if (Locator.MusicPlayerVM.IsRunning)
+//            {
+//                TimeSpan tS;
+//                tS = TimeSpan.FromSeconds(position *
+//                                         Locator.MusicPlayerVM.CurrentPlayingArtist.CurrentAlbumItem.Tracks[Locator.MusicPlayerVM.CurrentPlayingArtist.CurrentAlbumItem.CurrentTrackPosition].Duration
+//                                             .TotalSeconds);
 
-                //#if WINDOWS_APP
-                App.RootPage.MediaElement.Position = tS;
-                //#else
-                //                BackgroundMediaPlayer.Current.Position = tS;
-                //#endif
-            }
-            else
-            {
-                App.RootPage.MediaElement.Position =
-                    TimeSpan.FromSeconds(position * Locator.VideoVm.CurrentVideo.Duration.TotalSeconds);
-            }
-        }
+//                //#if WINDOWS_APP
+//                App.RootPage.MediaElement.Position = tS;
+//                //#else
+//                //                BackgroundMediaPlayer.Current.Position = tS;
+//                //#endif
+//            }
+//            else
+//            {
+//                App.RootPage.MediaElement.Position =
+//                    TimeSpan.FromSeconds(position * Locator.VideoVm.CurrentVideo.Duration.TotalSeconds);
+//            }
+//        }
 
-        public void Stop()
-        {
-            App.RootPage.MediaElement.Stop();
-            App.RootPage.MediaElement.Source = null;
-        }
+//        public void Stop()
+//        {
+//            App.RootPage.MediaElement.Stop();
+//            App.RootPage.MediaElement.Source = null;
+//        }
 
-    }
+//    }
     //#endif
-#endif
+//#endif
 }

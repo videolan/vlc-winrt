@@ -18,9 +18,9 @@ using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.Services.Interface;
 using VLC_WINRT_APP.Services.RunTime;
 using VLC_WINRT_APP.Views.MainPages;
-#if WINDOWS_APP
+//#if WINDOWS_APP
 using libVLCX;
-#endif
+//#endif
 
 namespace VLC_WINRT_APP.ViewModels.VideoVM
 {
@@ -229,7 +229,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
                 PositionInSeconds = media.TimeWatched.TotalSeconds;
             }
             await Task.Delay(500);
-#if WINDOWS_APP
+//#if WINDOWS_APP
             SubtitlesCount = await _vlcPlayerService.GetSubtitleCount();
             AudioTracksCount = await _vlcPlayerService.GetAudioTrackCount();
 
@@ -260,7 +260,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             if (_audioTracks.Count > 1)
                 CurrentAudioTrack = _audioTracks[1];
             _vlcPlayerService.MediaEnded += VlcPlayerServiceOnMediaEnded;
-#endif
+//#endif
         }
 
         private void VlcPlayerServiceOnMediaEnded(object sender, Player player)

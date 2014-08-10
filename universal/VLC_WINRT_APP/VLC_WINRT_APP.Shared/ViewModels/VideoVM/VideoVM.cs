@@ -191,18 +191,18 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
                 if (File.FileType == ".mkv")
                 {
                     StorageFile videoPicFile = null;
-#if WINDOWS_APP
+//#if WINDOWS_APP
                     videoPicFile = await videoPic.TryGetItemAsync(Title + ".jpg") as StorageFile;
-#else
-                    try
-                    {
-                        videoPicFile = await videoPic.GetFileAsync(Title + ".jpg");
-                    }
-                    catch
-                    {
+//#else
+//                    try
+//                    {
+//                        videoPicFile = await videoPic.GetFileAsync(Title + ".jpg");
+//                    }
+//                    catch
+//                    {
 
-                    }
-#endif
+//                    }
+//#endif
                     if (videoPicFile != null)
                     {
                         IRandomAccessStream stream = await videoPicFile.OpenReadAsync();
