@@ -648,7 +648,7 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="24"
                            x:Name="SeparatorRowDefinition" />
-            <RowDefinition Height="315"
+            <RowDefinition Height="Auto"
                            x:Name="MiniPlayersRowDefinition" />
         </Grid.RowDefinitions>
         <Grid Grid.Column="1"
@@ -745,13 +745,16 @@
               Grid.Row="6"
               Height="1"
               VerticalAlignment="Center"
-              Margin="42,0" />
+              Margin="42,0"
+              DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}"
+              Visibility="{Binding IsRunning, Converter={StaticResource BooleanToVisibilityConverter}}" />
         <Grid Grid.Row="7"
               DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}"
               Visibility="{Binding IsRunning, Converter={StaticResource BooleanToVisibilityConverter}}">
             <local:MiniPlayer VerticalAlignment="Bottom"
-                              Margin="42,0,20,24"
-                              x:Name="MiniPlayer" />
+                              Margin="42,0,20,0"
+                              x:Name="MiniPlayer" 
+                              Height="315"/>
             <Button HorizontalAlignment="Center"
                     Style="{StaticResource TextBlockButtonStyle}"
                     x:Name="SnapMiniPlayer"
