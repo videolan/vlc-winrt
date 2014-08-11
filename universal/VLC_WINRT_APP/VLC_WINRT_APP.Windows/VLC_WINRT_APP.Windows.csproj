@@ -197,6 +197,9 @@
     <Compile Include="Views\MainPages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserControls\VLCSearchBox.xaml.cs">
+      <DependentUpon>VLCSearchBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\VariousPages\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
@@ -853,6 +856,10 @@
     <Page Include="Views\MainPages\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UserControls\VLCSearchBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\VariousPages\SettingsPage.xaml">
       <Generator>MSBuild:Compile</Generator>

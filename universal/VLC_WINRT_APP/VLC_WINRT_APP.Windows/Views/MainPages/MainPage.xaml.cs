@@ -41,7 +41,7 @@ namespace VLC_WINRT_APP.Views.MainPages
 
         void Responsive()
         {
-            TopBarRowDefinition.Height = Window.Current.Bounds.Width < 400 ? new GridLength(100) : new GridLength(0);
+            TopBarRowDefinition.Height = Window.Current.Bounds.Width < 400 ? new GridLength(150) : new GridLength(0);
             LeftSidebarColumnDefinition.Width = Window.Current.Bounds.Width < 400 ? new GridLength(0) : new GridLength(1, GridUnitType.Auto);
         }
 

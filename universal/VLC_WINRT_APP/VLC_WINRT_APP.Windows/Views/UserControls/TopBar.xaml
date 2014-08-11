@@ -12,16 +12,15 @@
              DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}">
 
     <Grid x:Name="ColumnGrid"
-          Height="100"
+          Height="150"
           MinWidth="320"
           Background="WhiteSmoke">
         <Grid.RowDefinitions>
             <RowDefinition Height="30" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="1" />
         </Grid.RowDefinitions>
-        <Grid Background="{StaticResource MainColor}"
-              Grid.Row="2" />
         <StackPanel Orientation="Horizontal"
                     DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}">
             <Path Data="{StaticResource VLCFlatPath}"
@@ -37,13 +36,13 @@
                     VerticalAlignment="Center">
                 <Button.Flyout>
                     <Flyout>
-                        <local:MiniPlayer Width="300"/>
+                        <local:MiniPlayer Width="300" />
                     </Flyout>
                 </Button.Flyout>
                 <TextBlock>
-                    <Run Text="NOW PLAYING"/>
+                    <Run Text="NOW PLAYING" />
                     <Run Text=" "
-                         FontFamily="Segoe UI Symbol"/>
+                         FontFamily="Segoe UI Symbol" />
                 </TextBlock>
             </Button>
         </StackPanel>
@@ -68,5 +67,8 @@
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
         </ListView>
+        <local:VLCSearchBox Grid.Row="2" Width="320"/>
+        <Grid Background="{StaticResource MainColor}"
+              Grid.Row="3" />
     </Grid>
 </UserControl>
