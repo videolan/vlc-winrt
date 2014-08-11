@@ -268,9 +268,6 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 
         public async Task StartIndexing()
         {
-#if DEBUG
-            Launcher.LaunchUriAsync(new Uri("mailto:thomas.nigro@outlook.com&subject=VLC indexation", UriKind.RelativeOrAbsolute));
-#endif
             if (await DoesMusicDatabaseExist())
             {
                 _artistDataRepository.Drop();
@@ -290,9 +287,10 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                 statusBar.ProgressIndicator.Text = "Indexing music library";
 #endif
             });
-
             _artistDataRepository = new ArtistDataRepository();
             _artistDataRepository.Initialize();
+            _trackDataRepository.Initialize();
+            _albumDataRepository.Initialize();
 
             await GetAllMusicFolders();
 
