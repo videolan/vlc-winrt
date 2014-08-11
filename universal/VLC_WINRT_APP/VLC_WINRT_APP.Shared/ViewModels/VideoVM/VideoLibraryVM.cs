@@ -41,7 +41,6 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
 #endif
         private ObservableCollection<VideoVM> _videos;
         private ObservableCollection<VideoVM> _viewedVideos;
-        private ObservableCollection<VideoVM> _newVideos;
         #endregion
 
         #region private props
@@ -79,11 +78,6 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             }
         }
 
-        public ObservableCollection<VideoVM> NewVideos
-        {
-            get { return _newVideos; }
-            set { SetProperty(ref _newVideos, value); }
-        }
         #endregion
 
         #region public props
@@ -116,7 +110,6 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             OpenVideo = new PlayVideoCommand();
             Videos = new ObservableCollection<VideoVM>();
             ViewedVideos = new ObservableCollection<VideoVM>();
-            NewVideos = new ObservableCollection<VideoVM>();
 #if WINDOWS_APP
             Panels.Add(new Panel("videos", 0, 1, App.Current.Resources["HomePath"].ToString(), true));
             //Panels.Add(new Panel("favorite", 2, 0.4));
@@ -132,8 +125,6 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
         #region methods
         public void GetViewedVideos()
         {
-            App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => NewVideos = new ObservableCollection<VideoVM>());
-
             _lastVideosRepository.Load().ContinueWith((result) =>
             {
                 App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
@@ -162,7 +153,6 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
                     IReadOnlyList<StorageFile> files =
                         await GetMediaFromFolder(storageFolder, CommonFileQuery.OrderByName);
 
-                    //int j = 0;
                     foreach (StorageFile storageFile in files)
                     {
                         var mediaVM = new VideoVM();
@@ -176,13 +166,14 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
                         {
                             mediaVM.TimeWatched = searchVideo.TimeWatched;
                         }
-                        else
-                        {
-                            DispatchHelper.Invoke(() => NewVideos.Add(mediaVM));
-                        }
 
                         // Get back to UI thread
-                        await DispatchHelper.InvokeAsync(() => Videos.Add(mediaVM));
+                        await DispatchHelper.InvokeAsync(() =>
+                        {
+                            Videos.Add(mediaVM);
+                            if (ViewedVideos.Count < 6 && !ViewedVideos.Contains(mediaVM))
+                                ViewedVideos.Add(mediaVM);
+                        });
                     }
                 }
                 catch (Exception exception)

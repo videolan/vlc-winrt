@@ -227,34 +227,31 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         {
             try
             {
-                foreach (AlbumItem album in Artists.SelectMany(artist => artist.Albums))
-                {
-                    if (album.Favorite)
-                    {
-                        App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                        {
-                            RandomAlbums.Add(album);
-                            FavoriteAlbums.Add(album);
-                            OnPropertyChanged("FavoriteAlbums");
-                        });
-                    }
-
-                    if (RandomAlbums.Count < 12)
-                    {
-                        if (!album.Favorite)
-
-                            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                            RandomAlbums.Add(album));
-                    }
-                    foreach (TrackItem trackItem in album.Tracks)
-                    {
-                        App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                            Tracks.Add(trackItem));
-                    }
-                }
-
                 App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                 {
+                    foreach (AlbumItem album in Artists.SelectMany(artist => artist.Albums))
+                    {
+                        FavoriteAlbums.Add(album);
+                        if (album.Favorite && RandomAlbums.Count < 7 && !RandomAlbums.Contains(album))
+                        {
+                            RandomAlbums.Add(album);
+                        }
+
+                        if (RandomAlbums.Count < 7)
+                        {
+                            if (!album.Favorite)
+                            {
+                                RandomAlbums.Add(album);
+                            }
+                        }
+                        foreach (TrackItem trackItem in album.Tracks)
+                        {
+                            Tracks.Add(trackItem);
+                        }
+                    }
+
+                    OnPropertyChanged("RandomAlbums");
+                    OnPropertyChanged("FavoriteAlbums");
                     OnPropertyChanged("Artist");
                     OnPropertyChanged("Albums");
                     OnPropertyChanged("Tracks");

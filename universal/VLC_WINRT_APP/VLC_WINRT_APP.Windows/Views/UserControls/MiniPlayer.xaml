@@ -42,12 +42,12 @@
                        HorizontalAlignment="Left"
                        Grid.Column="0"
                        Style="{StaticResource TitleTextBlockStyle}"
-                       Foreground="#7FFFFFFF" />
+                       Foreground="DimGray" />
             <TextBlock Text="{Binding TimeTotal.TotalSeconds, Converter={StaticResource SecondsStringConverter}}"
                        HorizontalAlignment="Right"
                        Grid.Column="1"
                        Style="{StaticResource TitleTextBlockStyle}"
-                       Foreground="#7FFFFFFF" />
+                       Foreground="DimGray" />
         </Grid>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -102,7 +102,7 @@
                     <TextBlock Text="50"
                                Style="{StaticResource TitleTextBlockStyle}"
                                Margin="12,0,0,0"
-                               Foreground="#7FFFFFFF" />
+                               Foreground="DimGray" />
                 </StackPanel>
             </Button>
         </Grid>

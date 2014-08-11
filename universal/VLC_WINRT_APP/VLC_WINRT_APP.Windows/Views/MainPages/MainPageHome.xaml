@@ -110,29 +110,38 @@
                 </Grid>
             </Hub.Header>
             <Hub.Sections>
-                <HubSection Header="favorites albums &amp; suggestions"
+                <HubSection Header="audio"
                             HeaderTemplate="{StaticResource ColoredHeader}"
                             Margin="0,-10,0,0">
                     <HubSection.ContentTemplate>
                         <DataTemplate>
-                            <Grid>
-                                <GridView DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}"
-                                          ItemsSource="{Binding FavoriteAlbums}"
-                                          ItemTemplate="{StaticResource SemanticZoomInViewAlbumTemplate}">
+                            <Grid DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
+                                <GridView ItemsSource="{Binding RandomAlbums}"
+                                          ItemTemplate="{StaticResource SemanticZoomInViewAlbumTemplate}"
+                                          ItemContainerStyle="{StaticResource GridViewItemStyle}"
+                                          IsItemClickEnabled="True"
+                                          SelectionMode="None">
+                                    <triggers:Interactions.Triggers>
+                                        <triggers:EventTrigger EventName="ItemClick">
+                                            <triggers:InvokeCommandAction Command="{Binding AlbumClickedCommand}"
+                                                                          PassEventArgsToCommand="True" />
+                                        </triggers:EventTrigger>
+                                    </triggers:Interactions.Triggers>
                                     <GridView.ItemsPanel>
                                         <ItemsPanelTemplate>
                                             <VariableSizedWrapGrid Orientation="Horizontal"
-                                                                   ItemHeight="200"
-                                                                   ItemWidth="200" />
+                                                                   ItemHeight="300"
+                                                                   ItemWidth="250"
+                                                                   SizeChanged="RandomAlbumsGridView_SizeChanged" />
                                         </ItemsPanelTemplate>
                                     </GridView.ItemsPanel>
                                 </GridView>
-                                <controls:NoFavoriteAlbumsControl DataContext="{Binding FavoriteAlbums.Count}" />
+                                <controls:NoFavoriteAlbumsControl HorizontalAlignment="Left" />
                             </Grid>
                         </DataTemplate>
                     </HubSection.ContentTemplate>
                 </HubSection>
-                <HubSection Header="last viewed &amp; videos"
+                <HubSection Header="videos"
                             HeaderTemplate="{StaticResource ColoredHeader}"
                             HorizontalContentAlignment="Stretch"
                             HorizontalAlignment="Stretch">

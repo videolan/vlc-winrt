@@ -175,7 +175,7 @@
     </DataTemplate>
 
     <DataTemplate x:Key="LittleDarkTrackTemplate">
-        <Grid>
+        <Grid RequestedTheme="Light">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
