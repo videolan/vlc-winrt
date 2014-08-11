@@ -9,60 +9,104 @@
       d:DesignHeight="768"
       d:DesignWidth="550">
 
-    <Grid Margin="0">
+    <Grid Margin="0"
+          x:Name="MainGrid">
         <Hub x:Name="MainHub"
              Orientation="Vertical"
              HorizontalContentAlignment="Stretch">
             <Hub.Header>
-                <Grid Margin="0,-14,0,-18">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition />
-                    </Grid.ColumnDefinitions>
-                    <Button Style="{StaticResource TextBlockButtonStyle}"
-                            FontSize="22"
-                            FontWeight="Light"
-                            Command="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM.PickVideo}">
-                        <Button.Content>
-                            <TextBlock>
+                <Grid>
+                    <Grid Margin="0,-14,0,-18"
+                          x:Name="StandardHeaderGrid">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Button Style="{StaticResource TextBlockButtonStyle}"
+                                FontSize="22"
+                                FontWeight="Light"
+                                Command="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM.PickVideo}">
+                            <Button.Content>
+                                <TextBlock>
                                 <Run Text="open a video" />
                                 <Run Text=""
                                      FontFamily="Segoe UI Symbol" />
-                            </TextBlock>
-                        </Button.Content>
-                    </Button>
-                    <Button Grid.Column="1"
-                            Margin="24,0,0,0"
-                            Style="{StaticResource TextBlockButtonStyle}"
-                            FontSize="22"
-                            FontWeight="Light"
-                            Command="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM.PickVideo}">
-                        <Button.Content>
-                            <TextBlock>
+                                </TextBlock>
+                            </Button.Content>
+                        </Button>
+                        <Button Grid.Column="1"
+                                Margin="24,0,0,0"
+                                Style="{StaticResource TextBlockButtonStyle}"
+                                FontSize="22"
+                                FontWeight="Light"
+                                Command="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM.PickVideo}">
+                            <Button.Content>
+                                <TextBlock>
                                 <Run Text="open a stream" />
                                 <Run Text=""
                                      FontFamily="Segoe UI Symbol" />
-                            </TextBlock>
-                        </Button.Content>
-                    </Button>
-                    <Button Grid.Column="2"
-                            HorizontalAlignment="Right"
-                            Margin="24,0,0,0"
-                            Style="{StaticResource TextBlockButtonStyle}"
-                            FontSize="22"
-                            FontWeight="Light"
-                            Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToSettingsPageCommand}">
-                        <Button.Content>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock>
+                                </TextBlock>
+                            </Button.Content>
+                        </Button>
+                        <Button Grid.Column="2"
+                                HorizontalAlignment="Right"
+                                Margin="24,0,0,0"
+                                Style="{StaticResource TextBlockButtonStyle}"
+                                FontSize="22"
+                                FontWeight="Light"
+                                Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToSettingsPageCommand}">
+                            <Button.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock>
                                 <Run Text="settings" />
                                 <Run Text=""
-                                     FontFamily="Segoe UI Symbol" />
+                                        FontFamily="Segoe UI Symbol" />
+                                    </TextBlock>
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
+                    </Grid>
+                    <StackPanel x:Name="SnapHeaderGrid">
+                        <Button Style="{StaticResource TextBlockButtonStyle}"
+                                FontSize="22"
+                                FontWeight="Light"
+                                Command="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM.PickVideo}">
+                            <Button.Content>
+                                <TextBlock>
+                                    <Run Text="open a video" />
+                                    <Run Text=""
+                                         FontFamily="Segoe UI Symbol" />
                                 </TextBlock>
-                            </StackPanel>
-                        </Button.Content>
-                    </Button>
+                            </Button.Content>
+                        </Button>
+                        <Button Style="{StaticResource TextBlockButtonStyle}"
+                                FontSize="22"
+                                FontWeight="Light"
+                                Command="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM.PickVideo}">
+                            <Button.Content>
+                                <TextBlock>
+                                    <Run Text="open a stream" />
+                                    <Run Text=""
+                                         FontFamily="Segoe UI Symbol" />
+                                </TextBlock>
+                            </Button.Content>
+                        </Button>
+                        <Button Style="{StaticResource TextBlockButtonStyle}"
+                                FontSize="22"
+                                FontWeight="Light"
+                                Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToSettingsPageCommand}">
+                            <Button.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock>
+                                        <Run Text="settings" />
+                                        <Run Text=""
+                                             FontFamily="Segoe UI Symbol" />
+                                    </TextBlock>
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
+                    </StackPanel>
                 </Grid>
             </Hub.Header>
             <Hub.Sections>
