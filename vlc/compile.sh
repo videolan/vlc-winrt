@@ -98,8 +98,8 @@ echo "Bootstraping"
 echo "Configuring"
 CPPFLAGS="${EXTRA_CPPFLAGS}" \
 LDFLAGS="${EXTRA_LDFLAGS}" \
-CC="${TARGET_TUPLE}-gcc -specs=$NEWSPECFILE -Wl,--disable-runtime-pseudo-reloc" \
-CXX="${TARGET_TUPLE}-g++ -specs=$NEWSPECFILE -Wl,--disable-runtime-pseudo-reloc" \
+CC="${TARGET_TUPLE}-gcc -specs=$NEWSPECFILE" \
+CXX="${TARGET_TUPLE}-g++ -specs=$NEWSPECFILE" \
 ac_cv_search_connect="-lws2_32" \
 ../../configure.sh --host=${TARGET_TUPLE}
 
