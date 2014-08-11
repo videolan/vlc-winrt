@@ -2235,7 +2235,7 @@
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Text"
                                                                        Storyboard.TargetProperty="Foreground">
                                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{StaticResource ApplicationPressedForegroundThemeBrush}" />
+                                                                    Value="{StaticResource MainColor}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
