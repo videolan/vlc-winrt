@@ -40,9 +40,8 @@ TARGET_TUPLE=i686-w64-mingw32
 ${TARGET_TUPLE}-gcc -dumpspecs | sed -e 's/-lmingwex/-lwinstorecompat -lmingwex -lwinstorecompat -lole32 -lruntimeobject/' -e 's/-lmsvcrt/-lmsvcr110/' > ../newspecfile
 NEWSPECFILE="`pwd`/../newspecfile"
 
-WINRTSOCK=`cd ../../winrtsock/winrtsock-86646-build;pwd`
 EXTRA_CPPFLAGS="-D_WIN32_WINNT=0x602 -DWINVER=0x602 -DWINSTORECOMPAT -D_UNICODE -DUNICODE"
-EXTRA_LDFLAGS="-lnormaliz -lwinstorecompat -lruntimeobject -L$WINRTSOCK"
+EXTRA_LDFLAGS="-lnormaliz -lwinstorecompat -lruntimeobject"
 
 echo "Building the contribs"
 mkdir -p contrib/winrt
@@ -101,7 +100,7 @@ CPPFLAGS="${EXTRA_CPPFLAGS}" \
 LDFLAGS="${EXTRA_LDFLAGS}" \
 CC="${TARGET_TUPLE}-gcc -specs=$NEWSPECFILE -Wl,--disable-runtime-pseudo-reloc" \
 CXX="${TARGET_TUPLE}-g++ -specs=$NEWSPECFILE -Wl,--disable-runtime-pseudo-reloc" \
-ac_cv_search_connect="-lwinrtsock -lws2_32" \
+ac_cv_search_connect="-lws2_32" \
 ../../configure.sh --host=${TARGET_TUPLE}
 
 echo "Building"
