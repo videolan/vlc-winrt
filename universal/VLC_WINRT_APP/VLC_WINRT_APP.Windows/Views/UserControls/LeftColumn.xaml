@@ -187,7 +187,8 @@
                                                                                      Storyboard.TargetName="BorderElement" />
                                                                 </Storyboard>
                                                             </VisualState>
-                                                            <VisualState x:Name="Focused" />
+                                                            <VisualState x:Name="Focused">
+                                                            </VisualState>
                                                         </VisualStateGroup>
                                                         <VisualStateGroup x:Name="ButtonStates" />
                                                     </VisualStateManager.VisualStateGroups>
@@ -309,10 +310,10 @@
                                                 <DiscreteObjectKeyFrame KeyTime="0"
                                                                         Value="{ThemeResource SearchBoxFocusedBackgroundThemeBrush}" />
                                             </ObjectAnimationUsingKeyFrames>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush"
-                                                                           Storyboard.TargetName="SearchBoxBorder">
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SearchBoxBorder"
+                                                                           Storyboard.TargetProperty="BorderBrush">
                                                 <DiscreteObjectKeyFrame KeyTime="0"
-                                                                        Value="{ThemeResource SearchBoxFocusedBorderThemeBrush}" />
+                                                                        Value="{StaticResource MainColor}" />
                                             </ObjectAnimationUsingKeyFrames>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
                                                                            Storyboard.TargetName="SearchButton">
@@ -686,8 +687,9 @@
                    SuggestionsRequested="LargeSearchBox_SuggestionsRequested"
                    QuerySubmitted="LargeSearchBox_QuerySubmitted"
                    ResultSuggestionChosen="LargeSearchBox_OnResultSuggestionChosen"
-                   BorderThickness="0"
-                   Style="{StaticResource VLCSearchBox}"/>
+                   BorderThickness="1"
+                   BorderBrush="Transparent"
+                   Style="{StaticResource VLCSearchBox}" />
         <Button Grid.Row="3"
                 x:Name="LittleSearchBox"
                 Content=""
@@ -700,10 +702,12 @@
                 <Flyout>
                     <Flyout.FlyoutPresenterStyle>
                         <Style TargetType="FlyoutPresenter">
-                            <Setter Property="Padding" Value="0"/>
-                            <Setter Property="BorderThickness" Value="1"/>
+                            <Setter Property="Padding"
+                                    Value="0" />
+                            <Setter Property="BorderThickness"
+                                    Value="1" />
                             <Setter Property="BorderBrush"
-                                    Value="{StaticResource MainColor}"/>
+                                    Value="{StaticResource MainColor}" />
                         </Style>
                     </Flyout.FlyoutPresenterStyle>
                     <SearchBox Width="280"
@@ -715,7 +719,7 @@
                                QuerySubmitted="LargeSearchBox_QuerySubmitted"
                                ResultSuggestionChosen="LargeSearchBox_OnResultSuggestionChosen"
                                BorderThickness="0"
-                               Style="{StaticResource VLCSearchBox}"/>
+                               Style="{StaticResource VLCSearchBox}" />
                 </Flyout>
             </Button.Flyout>
         </Button>
@@ -753,8 +757,8 @@
               Visibility="{Binding IsRunning, Converter={StaticResource BooleanToVisibilityConverter}}">
             <local:MiniPlayer VerticalAlignment="Bottom"
                               Margin="42,0,20,0"
-                              x:Name="MiniPlayer" 
-                              Height="315"/>
+                              x:Name="MiniPlayer"
+                              Height="315" />
             <Button HorizontalAlignment="Center"
                     Style="{StaticResource TextBlockButtonStyle}"
                     x:Name="SnapMiniPlayer"
