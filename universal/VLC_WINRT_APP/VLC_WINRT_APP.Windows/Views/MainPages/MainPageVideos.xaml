@@ -54,7 +54,8 @@
                       SelectionMode="None"
                       IsItemClickEnabled="True"
                       ScrollViewer.VerticalScrollBarVisibility="Auto"
-                      ScrollViewer.VerticalScrollMode="Auto">
+                      ScrollViewer.VerticalScrollMode="Auto"
+                      Visibility="{Binding Videos.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}">
                 <triggers:Interactions.Triggers>
                     <triggers:EventTrigger EventName="ItemClick">
                         <triggers:InvokeCommandAction Command="{Binding OpenVideo}"
