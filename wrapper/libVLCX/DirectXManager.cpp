@@ -41,14 +41,52 @@ void DirectXManger::CheckDXOperation(HRESULT hr, Platform::String^ message){
 	}
 }
 
+
+void DirectXManger::UpdateSwapChain(unsigned int width, unsigned int height)
+{
+	if (cp_swapChain)
+	{
+		
+		cp_d2dContext->SetTarget(nullptr);
+		cp_d2dTargetBitmap = nullptr;
+
+		float dpi = Windows::Graphics::Display::DisplayProperties::LogicalDpi;
+
+		D2D1_BITMAP_PROPERTIES1 bitmapProperties =
+			BitmapProperties1(
+			D2D1_BITMAP_OPTIONS_TARGET | D2D1_BITMAP_OPTIONS_CANNOT_DRAW,
+			PixelFormat(DXGI_FORMAT_B8G8R8A8_UNORM, D2D1_ALPHA_MODE_PREMULTIPLIED),
+			dpi,
+			dpi);
+
+
+		cp_swapChain->ResizeBuffers(2, width, height, DXGI_FORMAT_B8G8R8A8_UNORM, 0);
+
+		ComPtr<IDXGISurface> dxgiBackBuffer;
+		CheckDXOperation(cp_swapChain->GetBuffer(0, IID_PPV_ARGS(&dxgiBackBuffer)), "Could not get the DXGI backbuffer");
+
+		//set d2d target
+		HRESULT hr = cp_d2dContext->CreateBitmapFromDxgiSurface(
+			dxgiBackBuffer.Get(),
+			&bitmapProperties,
+			&cp_d2dTargetBitmap
+			);
+
+		CheckDXOperation(hr, "Could not crete the Bitmap");
+
+		cp_d2dContext->SetTarget(cp_d2dTargetBitmap.Get());
+	}
+}
+
 void DirectXManger::CreateSwapPanel(SwapChainBackgroundPanel^ panel){
     HRESULT hr;
     ComPtr<IDXGIFactory2> dxgiFactory;
     ComPtr<IDXGIAdapter> dxgiAdapter;
     ComPtr<IDXGIDevice1> dxgiDevice;
     ComPtr<ID3D11Device> d3dDevice;
-    ComPtr<ID2D1Device> d2dDevice;
-    ComPtr<ID2D1Bitmap1> d2dTargetBitmap;
+    ComPtr<ID2D1Device1> d2dDevice;
+	ComPtr<ID2D1Factory2> d2dFactory;
+   
 
     UINT creationFlags = D3D11_CREATE_DEVICE_BGRA_SUPPORT;
     float dpi = Windows::Graphics::Display::DisplayProperties::LogicalDpi;
@@ -89,12 +127,26 @@ void DirectXManger::CreateSwapPanel(SwapChainBackgroundPanel^ panel){
     CheckDXOperation(dxgiDevice->GetAdapter(&dxgiAdapter),"Could not  get adapter");
     CheckDXOperation(dxgiAdapter->GetParent(IID_PPV_ARGS(&dxgiFactory)),"Could not get adapter parent");
 
+
+	D2D1_FACTORY_OPTIONS options;
+	ZeroMemory(&options, sizeof(D2D1_FACTORY_OPTIONS));
+
+#if defined(_DEBUG)
+	// If the project is in a debug build, enable Direct2D debugging via SDK Layers.
+	options.debugLevel = D2D1_DEBUG_LEVEL_INFORMATION;
+#endif
+
+
+	D2D1CreateFactory(
+		D2D1_FACTORY_TYPE_MULTI_THREADED,
+		__uuidof(ID2D1Factory2),
+		&options,
+		&d2dFactory
+		);
+
+	
     // Create the Direct2D device object and a corresponding context.
-    hr = D2D1CreateDevice(
-        dxgiDevice.Get(),
-        nullptr,
-        &(d2dDevice)
-        );
+	d2dFactory->CreateDevice(dxgiDevice.Get(), &(d2dDevice));
     CheckDXOperation(hr, "Could not create D2D1 device");
 
     hr = d2dDevice->CreateDeviceContext(
@@ -130,6 +182,7 @@ void DirectXManger::CreateSwapPanel(SwapChainBackgroundPanel^ panel){
     CheckDXOperation(hr, "Could not create swapChain");
     CheckDXOperation(dxgiDevice->SetMaximumFrameLatency(1), "Could not set maximum Frame Latency");
 
+	
     //TODO: perform the next 2 calls on the UI thread
     ComPtr<ISwapChainBackgroundPanelNative> panelNative;
     hr = reinterpret_cast<IUnknown*>(panel)->QueryInterface(IID_PPV_ARGS(&panelNative));
@@ -145,10 +198,10 @@ void DirectXManger::CreateSwapPanel(SwapChainBackgroundPanel^ panel){
     hr = cp_d2dContext->CreateBitmapFromDxgiSurface(
         dxgiBackBuffer.Get(),
         &bitmapProperties,
-        &d2dTargetBitmap
+		&cp_d2dTargetBitmap
         );
 
     CheckDXOperation(hr, "Could not crete the Bitmap");
 
-    cp_d2dContext->SetTarget(d2dTargetBitmap.Get());
+	cp_d2dContext->SetTarget(cp_d2dTargetBitmap.Get());
 }
