@@ -189,7 +189,7 @@
             <Grid Grid.Row="1">
                 <Slider Value="{Binding PositionInSeconds, Mode=TwoWay}"
                         Maximum="{Binding TimeTotal.TotalSeconds}"
-                        Margin="0,-8,0,0"
+						Margin="0,-8,0,0"
                         Style="{StaticResource VLCSlider}"
                         ThumbToolTipValueConverter="{StaticResource SecondsStringConverter}" />
                 <TextBlock HorizontalAlignment="Left"
