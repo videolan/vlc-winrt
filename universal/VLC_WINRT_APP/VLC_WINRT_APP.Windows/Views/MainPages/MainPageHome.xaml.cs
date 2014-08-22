@@ -7,11 +7,9 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
-using System;
 using System.Diagnostics;
 using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.ViewModels;
-using VLC_WINRT_APP.ViewModels.MusicVM;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -84,11 +82,11 @@ namespace VLC_WINRT_APP.Views.MainPages
             int sidebar;
             if (Window.Current.Bounds.Width < 400)
             {
-                sidebar = 50;
+                sidebar = 65;
             }
             else if (Window.Current.Bounds.Width < 1080)
             {
-                sidebar = 170;
+                sidebar = 180;
             }
             else
             {
@@ -116,26 +114,6 @@ namespace VLC_WINRT_APP.Views.MainPages
                 itemsWrap.ItemWidth = usefulWidth / 4;
                 itemsWrap.ItemHeight = (usefulWidth / 4) * 0.561;
             }
-        }
-
-        private void RandomAlbumsGridView_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            int usefulWidth = (int)Window.Current.Bounds.Width;
-            int sidebar;
-            if (Window.Current.Bounds.Width < 400)
-            {
-                sidebar = 50;
-            }
-            else if (Window.Current.Bounds.Width < 1080)
-            {
-                sidebar = 170;
-            }
-            else
-            {
-                sidebar = 420;
-            }
-            usefulWidth -= sidebar;
-            (sender as VariableSizedWrapGrid).Width = usefulWidth - 50;
         }
     }
 }
