@@ -20,6 +20,7 @@ using Windows.UI.Notifications;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using VLC_WINRT.Common;
+using VLC_WINRT_APP.Commands.Music;
 using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.Helpers.MusicLibrary.Deezer;
 using VLC_WINRT_APP.Model;
@@ -39,6 +40,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         private bool _canGoNext;
         private bool _isRunning;
         private MusicLibraryVM.ArtistItem _currentPlayingArtist;
+        private GoToMusicPlayerPage _goToMusicPlayerPage;
         #endregion
 
         #region private fields
@@ -55,6 +57,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         }
 
         public SystemMediaTransportControls MediaControl;
+
         public MusicLibraryVM.ArtistItem CurrentPlayingArtist
         {
             get { return _currentPlayingArtist; }
@@ -107,6 +110,12 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             }
         }
 
+        public GoToMusicPlayerPage GoToMusicPlayerPage
+        {
+            get { return _goToMusicPlayerPage; }
+            set { SetProperty(ref _goToMusicPlayerPage, value); }
+        }
+
         #endregion
 
         #region public fields
@@ -123,6 +132,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         {
             _tracksCollection = new ObservableCollection<MusicLibraryVM.TrackItem>();
             _mediaService.MediaEnded += MediaService_MediaEnded;
+            GoToMusicPlayerPage = new GoToMusicPlayerPage();
         }
 
         protected async void MediaService_MediaEnded(object sender, EventArgs e)

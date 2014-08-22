@@ -55,6 +55,7 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Button Style="{StaticResource TextBlockButtonStyle}"
                     Grid.Column="0"
@@ -86,6 +87,12 @@
             </Button>
             <Button Style="{StaticResource TextBlockButtonStyle}"
                     Grid.Column="3"
+                    HorizontalAlignment="Left"
+                    Command="{Binding GoToMusicPlayerPage}">
+                <SymbolIcon Symbol="List"/>
+            </Button>
+            <Button Style="{StaticResource TextBlockButtonStyle}"
+                    Grid.Column="4"
                     HorizontalAlignment="Right">
                 <Button.Flyout>
                     <Flyout>
