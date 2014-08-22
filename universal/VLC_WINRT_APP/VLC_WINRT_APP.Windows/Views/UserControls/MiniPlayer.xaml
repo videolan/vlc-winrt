@@ -101,7 +101,8 @@
                                 Style="{StaticResource VLCSlider}"
                                 Value="{Binding Volume, Mode=TwoWay}"
                                 Maximum="100"
-                                Minimum="0" />
+                                Minimum="0"
+                                ThumbToolTipValueConverter="{StaticResource SecondsStringConverter}" />
                     </Flyout>
                 </Button.Flyout>
                 <StackPanel Orientation="Horizontal">
