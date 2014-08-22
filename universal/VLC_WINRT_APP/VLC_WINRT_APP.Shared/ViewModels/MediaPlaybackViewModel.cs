@@ -182,12 +182,12 @@ namespace VLC_WINRT_APP.ViewModels
             _skipAhead = new ActionCommand(() =>
             {
                 _mediaService.SkipAhead();
-                ToastHelper.Basic("10 seconds ahead", false);
+                VideoHUDHelper.ShowLittleTextWithFadeOut("+10s");
             });
             _skipBack = new ActionCommand(() =>
             {
                 _mediaService.SkipBack();
-                ToastHelper.Basic("10 seconds back", false);
+                VideoHUDHelper.ShowLittleTextWithFadeOut("-10s");
             });
             _playNext = new PlayNextCommand();
             _playPrevious = new PlayPreviousCommand();

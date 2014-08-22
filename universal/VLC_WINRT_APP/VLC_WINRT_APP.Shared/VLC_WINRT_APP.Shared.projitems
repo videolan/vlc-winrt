@@ -44,6 +44,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Common\AutoFacConfiguration.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\BindableBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\DispatchHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\FadeTextBlock.xaml.cs">
+      <DependentUpon>FadeTextBlock.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Controls\SnapMiniPlayer.xaml.cs">
       <DependentUpon>SnapMiniPlayer.xaml</DependentUpon>
     </Compile>
@@ -121,6 +124,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\SearchHelpers.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\ToastHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\UpdateTileHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\VideoHUDHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\LoadingState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Panel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\PlayingType.cs" />
@@ -195,6 +199,10 @@
     <Content Include="$(MSBuildThisFileDirectory)segoeui.ttf" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="$(MSBuildThisFileDirectory)Controls\FadeTextBlock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Controls\SnapMiniPlayer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

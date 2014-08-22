@@ -48,7 +48,17 @@
         <Grid Background="Transparent"
               Grid.Row="1"
               Tapped="VideoGrid_Tapped"
-              DoubleTapped="VideoGrid_DoubleTapped" />
+              DoubleTapped="VideoGrid_DoubleTapped" >
+            <controls:FadeTextBlock x:Name="Hud"
+                                    x:FieldModifier="public">
+                <TextBlock x:Name="HudTextBlock"
+                           x:FieldModifier="public"
+                           Text=""
+                           Style="{StaticResource HeaderTextBlockStyle}"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center" />
+            </controls:FadeTextBlock>
+        </Grid>
         <Grid Grid.Row="2"
               x:Name="FooterGrid"
               VerticalAlignment="Bottom"
