@@ -62,7 +62,7 @@ namespace VLC_WINRT_APP.Views.VideoPages
             timer.Stop();
         }
 
-        async Task DisplayOrHide()
+        async void DisplayOrHide()
         {
             if (timer == null)
                 timer = new DispatcherTimer();
