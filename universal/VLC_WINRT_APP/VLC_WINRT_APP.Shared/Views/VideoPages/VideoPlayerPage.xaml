@@ -10,7 +10,10 @@
       RequestedTheme="Dark">
 
     <Grid x:Name="ControlsGrid"
-          PointerMoved="ControlsGrid_PointerMoved">
+          ManipulationMode="TranslateX"
+          PointerMoved="ControlsGrid_PointerMoved"
+          ManipulationDelta="ControlsGrid_ManipulationDelta"
+          ManipulationStarted="ControlsGrid_ManipulationStarted">
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1"
                                  StartPoint="0.5,0">

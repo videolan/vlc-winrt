@@ -12,6 +12,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using Windows.Devices.Input;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -72,7 +73,6 @@ namespace VLC_WINRT_APP.Views.VideoPages
                 HeaderGrid.IsHitTestVisible = false;
                 await FooterGrid.FadeOut(_fadeDuration);
                 FooterGrid.IsHitTestVisible = false;
-
             }
             else
             {
@@ -107,6 +107,28 @@ namespace VLC_WINRT_APP.Views.VideoPages
             (sender as Flyout).Placement = FlyoutPlacementMode.Full;
             ((sender as Flyout).Content as Grid).Margin = new Thickness(0, 0, 36, 0);
 #endif
+        }
+
+        private void ControlsGrid_ManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
+        {
+            if (e.PointerDeviceType == PointerDeviceType.Mouse)
+                return;
+            (Hud.Content as TextBlock).Text = e.Cumulative.Translation.X.ToString();
+            if (e.Cumulative.Translation.X > 100)
+            {
+                Locator.VideoVm.SkipAhead.Execute(null);
+                e.Handled = true;
+            }
+            else if (e.Cumulative.Translation.X < -100)
+            {
+                Locator.VideoVm.SkipBack.Execute(null);
+                e.Handled = true;
+            }
+        }
+
+        private void ControlsGrid_ManipulationStarted(object sender, ManipulationStartedRoutedEventArgs e)
+        {
+
         }
     }
 }
