@@ -227,12 +227,16 @@ namespace VLC_WINRT_APP.Services.RunTime
 
         private void VlcPlayerService_StatusChanged(object sender, VlcService.MediaPlayerState state)
         {
-            MediaControl.IsPlaying = state == VlcService.MediaPlayerState.Playing;
-            var statusChanged = StatusChanged;
-            if (statusChanged != null)
+            try
             {
-                statusChanged(this, state);
+                MediaControl.IsPlaying = state == VlcService.MediaPlayerState.Playing;
+                var statusChanged = StatusChanged;
+                if (statusChanged != null)
+                {
+                    statusChanged(this, state);
+                }
             }
+            catch { }
         }
 
         private async void ApplicationState_Activated(object sender, WindowActivatedEventArgs e)
