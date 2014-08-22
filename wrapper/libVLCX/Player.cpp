@@ -142,6 +142,7 @@ void Player::DetachEvent(){
 
 void Player::Open(Platform::String^ mrl)
 {
+
     const char *p_mrl = FromPlatformString(mrl);
     if (p_instance){
         libvlc_media_t* m = libvlc_media_new_location(this->p_instance, p_mrl);
@@ -168,6 +169,7 @@ void Player::Open(Platform::String^ mrl)
     }
 
     delete[](p_mrl);
+	p_dxManager->ClearSwapChainBuffers();
 }
 
 void Player::Stop()

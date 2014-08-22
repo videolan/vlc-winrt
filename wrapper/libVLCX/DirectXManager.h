@@ -33,6 +33,7 @@ namespace libVLCX {
         DirectXManger();
         void CreateSwapPanel(SwapChainBackgroundPanel^ panel);
 		void UpdateSwapChain(unsigned int width, unsigned int height);
+		void ClearSwapChainBuffers();
     private:
         void CheckDXOperation(HRESULT hr, Platform::String^ message);
 

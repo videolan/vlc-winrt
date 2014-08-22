@@ -159,6 +159,7 @@ void DirectXManger::CreateSwapPanel(SwapChainBackgroundPanel^ panel){
     cp_d2dContext->SetDpi(dpi, dpi);
     cp_d2dContext->SetUnitMode(D2D1_UNIT_MODE_PIXELS);
 
+	
     //Create the swapchain
     DXGI_SWAP_CHAIN_DESC1 swapChainDesc = { 0 };
     swapChainDesc.Width  = (UINT)(panel->ActualWidth * (double) DisplayProperties::ResolutionScale/100.0f);      // Match the size of the panel.
@@ -204,4 +205,28 @@ void DirectXManger::CreateSwapPanel(SwapChainBackgroundPanel^ panel){
     CheckDXOperation(hr, "Could not crete the Bitmap");
 
 	cp_d2dContext->SetTarget(cp_d2dTargetBitmap.Get());
+}
+
+void DirectXManger::ClearSwapChainBuffers()
+{
+	if (cp_d2dContext)
+	{
+		cp_d2dContext->BeginDraw();
+		cp_d2dContext->Clear(D2D1::ColorF(D2D1::ColorF::Black));
+		cp_d2dContext->EndDraw();
+
+		DXGI_PRESENT_PARAMETERS parameters = { 0 };
+		parameters.DirtyRectsCount = 0;
+		parameters.pDirtyRects = nullptr;
+		parameters.pScrollRect = nullptr;
+		parameters.pScrollOffset = nullptr;
+
+		cp_swapChain->Present1(1, 0, &parameters);
+
+		cp_d2dContext->BeginDraw();
+		cp_d2dContext->Clear(D2D1::ColorF(D2D1::ColorF::Black));
+		cp_d2dContext->EndDraw();
+		cp_swapChain->Present1(1, 0, &parameters);
+
+	}
 }
