@@ -4,31 +4,34 @@
              xmlns:local="using:VLC_WINRT_APP.Views.UserControls"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="using:WinRTXamlToolkit.Controls"
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400">
-    <Grid Height="45">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="90" />
-            <ColumnDefinition MinWidth="300"
-                              Width="*" />
-            <ColumnDefinition MinWidth="170"
-                              Width="*" />
-            <ColumnDefinition MinWidth="170"
-                              Width="*" />
-        </Grid.ColumnDefinitions>
-        <TextBlock Grid.Column="0"
-                   Margin="12,0,0,0"
-                   Text="{Binding Duration, Converter={StaticResource TimeSpanShortStringConverter}}" 
-                   HorizontalAlignment="Left"/>
-        <TextBlock Grid.Column="1"
-                   MaxWidth="300"
-                   Text="{Binding Name}" />
-        <TextBlock Grid.Column="2"
-                   Text="{Binding ArtistName}"
-                   Margin="20,0,0,0" />
-        <TextBlock Grid.Column="3"
-                   Margin="20,0,0,0"
-                   Text="{Binding AlbumName}" />
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <controls:WrapPanel Height="45">
+            <TextBlock Width="300"
+                       Text="{Binding Name}"
+                       HorizontalAlignment="Left"
+                       Margin="0,0,12,0" />
+            <TextBlock Width="100"
+                       Text="{Binding Duration, Converter={StaticResource TimeSpanShortStringConverter}}"
+                       HorizontalAlignment="Left"
+                       Margin="0,0,20,0" />
+            <TextBlock Width="300"
+                       Text="{Binding ArtistName}"
+                       Margin="0,0,20,0" 
+                       x:Name="ArtistName"/>
+            <TextBlock Text="{Binding AlbumName}" 
+                       x:Name="AlbumName"/>
+        </controls:WrapPanel>
+        <Grid Background="LightGray"
+              Height="1"
+              Grid.Row="1" 
+              Margin="0,-12,0,0"/>
     </Grid>
 </UserControl>
