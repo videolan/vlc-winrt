@@ -232,12 +232,11 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                     foreach (AlbumItem album in Artists.SelectMany(artist => artist.Albums))
                     {
                         FavoriteAlbums.Add(album);
-                        if (album.Favorite && RandomAlbums.Count < 7 && !RandomAlbums.Contains(album))
+                        if (album.Favorite && RandomAlbums.Count < 4 && !RandomAlbums.Contains(album))
                         {
                             RandomAlbums.Add(album);
                         }
-
-                        if (RandomAlbums.Count < 7)
+                        if (RandomAlbums.Count < 4)
                         {
                             if (!album.Favorite)
                             {
