@@ -19,5 +19,6 @@
     <converters:ElapsedTimeToPercentageConverter x:Key="ElapsedTimeToPercentageConverter"/>
     <converters:BackgroundVisibilityConverter x:Key="BackgroundVisibilityConverter" />
     <converters:StorageTypeToIconConverter x:Key="StorageTypeToIconConverter"/>
-    <converters:MiniPlayerVisibilityFromPlayingTypeConverter x:Key="MiniPlayerVisibilityFromPlayingTypeConverter"/>
+    <converters:MiniPlayerVisibilityFromPlayingTypeConverter x:Key="MiniPlayerVisibilityFromPlayingTypeConverter" />
+    <converters:DoubleSpeedToUnderstandableSpeedConverter x:Key="DoubleSpeedToUnderstandableSpeedConverter"/>
 </ResourceDictionary>

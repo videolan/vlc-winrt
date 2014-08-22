@@ -64,6 +64,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\BooleanNegationConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\CountToVisibilityConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\DoubleSpeedToUnderstandableSpeedConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ElapsedTimeToPercentageConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\EmptyTimeSpanToVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\MiniPlayerVisibilityFromPlayingTypeConverter.cs" />

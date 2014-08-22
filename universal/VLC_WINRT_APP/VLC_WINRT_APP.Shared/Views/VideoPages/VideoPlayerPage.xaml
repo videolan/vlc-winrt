@@ -48,7 +48,7 @@
         <Grid Background="Transparent"
               Grid.Row="1"
               Tapped="VideoGrid_Tapped"
-              DoubleTapped="VideoGrid_DoubleTapped" >
+              DoubleTapped="VideoGrid_DoubleTapped">
             <controls:FadeTextBlock x:Name="Hud"
                                     x:FieldModifier="public">
                 <TextBlock x:Name="HudTextBlock"
@@ -124,7 +124,8 @@
                                             Minimum="50"
                                             Value="{Binding SpeedRate, Mode=TwoWay}"
                                             Maximum="200"
-                                            IsThumbToolTipEnabled="False">
+                                            IsThumbToolTipEnabled="True"
+                                            ThumbToolTipValueConverter="{StaticResource DoubleSpeedToUnderstandableSpeedConverter}">
                                         <Slider.Header>
                                             <TextBlock Text="Speed"
                                                        Style="{StaticResource TitleTextBlockStyle}"
@@ -199,7 +200,7 @@
             <Grid Grid.Row="1">
                 <Slider Value="{Binding PositionInSeconds, Mode=TwoWay}"
                         Maximum="{Binding TimeTotal.TotalSeconds}"
-						Margin="0,-8,0,0"
+                        Margin="0,-8,0,0"
                         Style="{StaticResource VLCSlider}"
                         ThumbToolTipValueConverter="{StaticResource SecondsStringConverter}" />
                 <TextBlock HorizontalAlignment="Left"
