@@ -16,6 +16,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Resources;
 using Windows.Storage;
 using Windows.Storage.Search;
 using Windows.System.Threading;
@@ -111,7 +112,8 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             Videos = new ObservableCollection<VideoVM>();
             ViewedVideos = new ObservableCollection<VideoVM>();
 #if WINDOWS_APP
-            Panels.Add(new Panel("videos", 0, 1, App.Current.Resources["HomePath"].ToString(), true));
+            var resourceLoader = new ResourceLoader();
+            Panels.Add(new Panel(resourceLoader.GetString("Videos"), 1, 0.4, App.Current.Resources["VideoPath"].ToString()));
             //Panels.Add(new Panel("favorite", 2, 0.4));
 #endif
         }

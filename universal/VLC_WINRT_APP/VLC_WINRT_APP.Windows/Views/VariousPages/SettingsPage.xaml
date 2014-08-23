@@ -10,7 +10,7 @@
       DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}">
 
     <Grid>
-        <Hub Header="settings"
+        <Hub x:Uid="SettingsHeader" Header="settings"
              x:Name="MainHub">
             <Hub.HeaderTemplate>
                 <DataTemplate>
@@ -22,11 +22,11 @@
                 </DataTemplate>
             </Hub.HeaderTemplate>
             <Hub.Sections>
-                <HubSection Header="video settings">
+                <HubSection x:Uid="VideoSettingsHeader" Header="video settings">
                     <HubSection.ContentTemplate>
                         <DataTemplate>
                             <StackPanel Width="300">
-                                <TextBlock Text="VLC will only search videos that are in your video library. You can add folders to your library here:"
+                                <TextBlock x:Uid="VideoSettings" Text="VLC will only search videos that are in your video library. You can add folders to your library here:"
                                            Style="{StaticResource BodyTextBlockStyle}" />
                                 <ListView Margin="0,12,0,0"
                                           ItemsSource="{Binding VideoFolders}"
@@ -40,6 +40,7 @@
                                                         <Button Content="Remove this folder"
                                                                 BorderThickness="0"
                                                                 Background="#454545"
+                                                                x:Uid="RemoveFolder"
                                                                 Command="{Binding Source={StaticResource Locator}, Path=SettingsVM.RemoveFolderFromVideoLibrary}"
                                                                 CommandParameter="{Binding}" />
                                                     </Flyout>
@@ -60,17 +61,18 @@
                                     </ListView.ItemTemplate>
                                 </ListView>
                                 <Button Content="Add a new folder"
+                                        x:Uid="AddFolder"
                                         Command="{Binding AddFolderToLibrary}"
                                         CommandParameter="{Binding VideoLibraryId}" />
                             </StackPanel>
                         </DataTemplate>
                     </HubSection.ContentTemplate>
                 </HubSection>
-                <HubSection Header="music settings">
+                <HubSection x:Uid="MusicSettingsHeader" Header="music settings">
                     <HubSection.ContentTemplate>
                         <DataTemplate>
                             <StackPanel Width="300">
-                                <TextBlock Text="VLC will only search songs that are in your music library. You can add folders to your library here:"
+                                <TextBlock x:Uid="MusicSettings" Text="VLC will only search songs that are in your music library. You can add folders to your library here:"
                                            Style="{StaticResource BodyTextBlockStyle}" />
                                 <ListView Margin="0,12,0,0"
                                           ItemsSource="{Binding MusicFolders}"
@@ -84,6 +86,7 @@
                                                         <Button Content="Remove this folder"
                                                                 BorderThickness="0"
                                                                 Background="#454545"
+                                                                x:Uid="RemoveFolder"
                                                                 Command="{Binding Source={StaticResource Locator}, Path=SettingsVM.RemoveFolderFromMusicLibrary}"
                                                                 CommandParameter="{Binding}" />
                                                     </Flyout>
@@ -104,6 +107,7 @@
                                     </ListView.ItemTemplate>
                                 </ListView>
                                 <Button Content="Add a new folder"
+                                        x:Uid="AddFolder"
                                         Command="{Binding AddFolderToLibrary}"
                                         CommandParameter="{Binding MusicLibraryId}" />
                             </StackPanel>

@@ -123,6 +123,9 @@
   <data name="AddContentCont.Text" xml:space="preserve">
     <value>in order to use this section.</value>
   </data>
+  <data name="AddFolder.Content" xml:space="preserve">
+    <value>Add a new folder</value>
+  </data>
   <data name="Album.Text" xml:space="preserve">
     <value>album</value>
   </data>
@@ -137,6 +140,9 @@
   </data>
   <data name="Artists" xml:space="preserve">
     <value>Artists</value>
+  </data>
+  <data name="AudioHubHeader.Header" xml:space="preserve">
+    <value>audio</value>
   </data>
   <data name="Biography.Text" xml:space="preserve">
     <value>biography</value>
@@ -225,6 +231,9 @@
   <data name="MusicHeader.Text" xml:space="preserve">
     <value>music</value>
   </data>
+  <data name="MusicSettingsHeader.Header" xml:space="preserve">
+    <value>music settings</value>
+  </data>
   <data name="NetworkUrl.Text" xml:space="preserve">
     <value>Network URL:</value>
   </data>
@@ -240,8 +249,14 @@
   <data name="OpenNetworkStream.Text" xml:space="preserve">
     <value>Open Network Stream...</value>
   </data>
+  <data name="OpenStream.Text" xml:space="preserve">
+    <value>open stream</value>
+  </data>
   <data name="OpenVideo" xml:space="preserve">
     <value>Open Video</value>
+  </data>
+  <data name="OpenVideoFile.Text" xml:space="preserve">
+    <value>open video</value>
   </data>
   <data name="Or.Text" xml:space="preserve">
     <value>or</value>
@@ -285,11 +300,17 @@
   <data name="RemoveableDeviceMessage2.Text" xml:space="preserve">
     <value>Waiting for removable storages</value>
   </data>
+  <data name="RemoveFolder.Content" xml:space="preserve">
+    <value>Remove this folder</value>
+  </data>
   <data name="Search.Text" xml:space="preserve">
     <value>Search</value>
   </data>
   <data name="Settings" xml:space="preserve">
     <value>Settings</value>
+  </data>
+  <data name="SettingsHeader.Header" xml:space="preserve">
+    <value>settings</value>
   </data>
   <data name="SimilarArtists.Header" xml:space="preserve">
     <value>similar artists</value>
@@ -315,8 +336,17 @@
   <data name="UnknownTrack" xml:space="preserve">
     <value>Unknown Track</value>
   </data>
+  <data name="VideoHubHeader.Header" xml:space="preserve">
+    <value>videos</value>
+  </data>
   <data name="Videos" xml:space="preserve">
     <value>videos</value>
+  </data>
+  <data name="VideoSettings.Text" xml:space="preserve">
+    <value>VLC will only search videos that are in your video library. You can add folders to your library here:</value>
+  </data>
+  <data name="VideoSettingsHeader.Header" xml:space="preserve">
+    <value>video settings</value>
   </data>
   <data name="VideosHeader.Text" xml:space="preserve">
     <value>videos</value>
@@ -335,5 +365,17 @@
   </data>
   <data name="WelcomeMessage.Text" xml:space="preserve">
     <value>THE VLC TEAM WOULD LIKE TO THANK</value>
+  </data>
+  <data name="NetworkServers.Text" xml:space="preserve">
+    <value>Waiting for network servers</value>
+  </data>
+  <data name="SearchField.PlaceholderText" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="SearchingDLNA.Text" xml:space="preserve">
+    <value>We are searching for DLNA Servers.</value>
+  </data>
+  <data name="SettingsMain.Text" xml:space="preserve">
+    <value>settings</value>
   </data>
 </root>

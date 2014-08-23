@@ -123,6 +123,9 @@
   <data name="AddContentCont.Text" xml:space="preserve">
     <value>in order to use this section.</value>
   </data>
+  <data name="AddFolder.Content" xml:space="preserve">
+    <value>フォルダの作成</value>
+  </data>
   <data name="Album.Text" xml:space="preserve">
     <value>アルバム</value>
   </data>
@@ -131,6 +134,9 @@
   </data>
   <data name="ArtistHeader.Text" xml:space="preserve">
     <value>アーティスト</value>
+  </data>
+  <data name="AudioHubHeader.Header" xml:space="preserve">
+    <value>音楽</value>
   </data>
   <data name="Biography.Text" xml:space="preserve">
     <value>バイオ</value>
@@ -157,7 +163,7 @@
     <value>速度を下げる</value>
   </data>
   <data name="ElementsNotFound.Text" xml:space="preserve">
-    <value>It seems that we didn't find any elements in there.</value>
+    <value>ここには何も見つかりません。</value>
   </data>
   <data name="ExternalStorage.Text" xml:space="preserve">
     <value>外付けドライブ</value>
@@ -222,6 +228,9 @@
   <data name="MusicHeader.Text" xml:space="preserve">
     <value>音楽</value>
   </data>
+  <data name="MusicSettingsHeader.Header" xml:space="preserve">
+    <value>音楽設定</value>
+  </data>
   <data name="NetworkUrl.Text" xml:space="preserve">
     <value>Network URL:</value>
   </data>
@@ -229,7 +238,7 @@
     <value>このアーティストにはまだ解説がありません。</value>
   </data>
   <data name="NothingToSeeHere.Text" xml:space="preserve">
-    <value>Nothing to see here</value>
+    <value>何もないなぁ。</value>
   </data>
   <data name="OpenFile.Text" xml:space="preserve">
     <value>Open a file</value>
@@ -240,7 +249,13 @@
   <data name="OpenNetworkStream.Text" xml:space="preserve">
     <value>Open Network Stream...</value>
   </data>
+  <data name="OpenStream.Text" xml:space="preserve">
+    <value>ストリームを開く</value>
+  </data>
   <data name="OpenVideo" xml:space="preserve">
+    <value>ビデオを開く</value>
+  </data>
+  <data name="OpenVideoFile.Text" xml:space="preserve">
     <value>ビデオを開く</value>
   </data>
   <data name="Or.Text" xml:space="preserve">
@@ -276,11 +291,17 @@
   <data name="RemoveableDeviceMessage2.Text" xml:space="preserve">
     <value>Waiting for removable storages</value>
   </data>
+  <data name="RemoveFolder.Content" xml:space="preserve">
+    <value>フォルダの削除</value>
+  </data>
   <data name="Search.Text" xml:space="preserve">
     <value>検索</value>
   </data>
   <data name="Settings" xml:space="preserve">
-    <value>Settings</value>
+    <value>設定</value>
+  </data>
+  <data name="SettingsHeader.Header" xml:space="preserve">
+    <value>設定</value>
   </data>
   <data name="SimilarArtists.Header" xml:space="preserve">
     <value>似ているアーティスト</value>
@@ -303,8 +324,17 @@
   <data name="UnknownTrack" xml:space="preserve">
     <value>不明なトラック</value>
   </data>
+  <data name="VideoHubHeader.Header" xml:space="preserve">
+    <value>ビデオ</value>
+  </data>
   <data name="Videos" xml:space="preserve">
     <value>ビデオ</value>
+  </data>
+  <data name="VideoSettings.Text" xml:space="preserve">
+    <value>VLC will only search videos that are in your video library. You can add folders to your library here:</value>
+  </data>
+  <data name="VideoSettingsHeader.Header" xml:space="preserve">
+    <value>ビデオ設定</value>
   </data>
   <data name="VideosHeader.Text" xml:space="preserve">
     <value>ビデオ</value>
@@ -316,12 +346,36 @@
     <value>Maybe we didn't search in the right places.</value>
   </data>
   <data name="VlcThankYou.Text" xml:space="preserve">
-    <value>The VLC for Windows 8 Team would like to thank very much the people who made this application possible:</value>
+    <value>私たちは以下の人々にすべてに感謝します。</value>
   </data>
   <data name="Welcome.Text" xml:space="preserve">
     <value>「VLC For Windows 8」βへようこそ！</value>
   </data>
   <data name="WelcomeMessage.Text" xml:space="preserve">
-    <value>THE VLC TEAM WOULD LIKE TO THANK</value>
+    <value>私たちは以下の人々にすべてに感謝します。</value>
+  </data>
+  <data name="Albums" xml:space="preserve">
+    <value>アルバム</value>
+  </data>
+  <data name="Artists" xml:space="preserve">
+    <value>アーティスト</value>
+  </data>
+  <data name="NetworkServers.Text" xml:space="preserve">
+    <value>サーバーへ接続中</value>
+  </data>
+  <data name="RemovableStorage" xml:space="preserve">
+    <value>外付けドライブ</value>
+  </data>
+  <data name="SearchField.PlaceholderText" xml:space="preserve">
+    <value>検索</value>
+  </data>
+  <data name="SearchingDLNA.Text" xml:space="preserve">
+    <value>DLNA メディアサーバーを探しています。</value>
+  </data>
+  <data name="SettingsMain.Text" xml:space="preserve">
+    <value>設定</value>
+  </data>
+  <data name="Songs" xml:space="preserve">
+    <value>楽曲</value>
   </data>
 </root>

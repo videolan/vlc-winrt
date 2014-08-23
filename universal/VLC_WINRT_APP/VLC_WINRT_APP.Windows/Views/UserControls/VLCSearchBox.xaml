@@ -636,6 +636,7 @@
     <SearchBox x:Name="LargeSearchBox"
                Height="37"
                FontSize="17"
+               x:Uid="SearchField"
                PlaceholderText="Search"
                SuggestionsRequested="LargeSearchBox_SuggestionsRequested"
                QuerySubmitted="LargeSearchBox_QuerySubmitted"
