@@ -194,21 +194,26 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             }
             else
             {
-                var gotArt = await DownloadAlbumPictureFromLastFm(album);
-                if (!gotArt)
-                {
-                   gotArt = await DownloadAlbumPictureFromDeezer(album);
-                }
+                await GetAlbumPictureFromInternet(album);
+            }
+        }
 
-                // If we still could not find album art, set it to the default cover.
-                // This way, we won't keep pinging the APIs for album art that may not exist.
-                if (!gotArt)
-                {
-                    StorageFolder install = Windows.ApplicationModel.Package.Current.InstalledLocation;
-                    StorageFile file = await install.GetFileAsync("Assets\\NoCover.jpg");
-                    var bytes = await ConvertImage.ConvertImagetoByte(file);
-                    await SaveAlbumImageAsync(album, bytes);
-                }
+        public static async Task GetAlbumPictureFromInternet(MusicLibraryVM.AlbumItem album)
+        {
+            var gotArt = await DownloadAlbumPictureFromLastFm(album);
+            if (!gotArt)
+            {
+                gotArt = await DownloadAlbumPictureFromDeezer(album);
+            }
+
+            // If we still could not find album art, set it to the default cover.
+            // This way, we won't keep pinging the APIs for album art that may not exist.
+            if (!gotArt)
+            {
+                StorageFolder install = Windows.ApplicationModel.Package.Current.InstalledLocation;
+                StorageFile file = await install.GetFileAsync("Assets\\NoCover.jpg");
+                var bytes = await ConvertImage.ConvertImagetoByte(file);
+                await SaveAlbumImageAsync(album, bytes);
             }
         }
 

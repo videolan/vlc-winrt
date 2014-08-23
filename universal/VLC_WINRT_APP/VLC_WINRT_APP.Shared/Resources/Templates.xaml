@@ -103,6 +103,7 @@
             <FlyoutBase.AttachedFlyout>
                 <MenuFlyout>
                     <MenuFlyoutItem  Command="{Binding DataContext.ChangeAlbumArtCommand, ElementName=MusicLibrary}" CommandParameter="{Binding}" x:Uid="ChangeAlbumArt" Text="Change Album Art"/>
+                    <MenuFlyoutItem  Command="{Binding DataContext.DownloadAlbumArtCommand, ElementName=MusicLibrary}" CommandParameter="{Binding}" x:Uid="DownloadAlbumArt" Text="Download Album Art"/>
                 </MenuFlyout>
             </FlyoutBase.AttachedFlyout>
         </Border>

@@ -56,6 +56,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         #region private props
         private LoadingState _loadingState;
         private ChangeAlbumArtCommand _changeAlbumArtCommand;
+        private DownloadAlbumArtCommand _downloadAlbumArtCommand;
         private AlbumClickedCommand _albumClickedCommand;
         private ArtistClickedCommand _artistClickedCommand;
         private TrackClickedCommand _trackClickedCommand;
@@ -148,6 +149,15 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             set { SetProperty(ref _changeAlbumArtCommand, value); }
         }
 
+        public DownloadAlbumArtCommand DownloadAlbumArtCommand
+        {
+            get
+            {
+                return _downloadAlbumArtCommand;
+            }
+            set { SetProperty(ref _downloadAlbumArtCommand, value); }
+        }
+
         public AlbumClickedCommand AlbumClickedCommand
         {
             get
@@ -201,6 +211,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             _artistClickedCommand = new ArtistClickedCommand();
             _trackClickedCommand = new TrackClickedCommand();
             _changeAlbumArtCommand = new ChangeAlbumArtCommand();
+            _downloadAlbumArtCommand = new DownloadAlbumArtCommand();
             Task.Run(() => GetMusicFromLibrary());
         }
 

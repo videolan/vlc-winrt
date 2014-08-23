@@ -142,7 +142,7 @@
     <value>バイオ</value>
   </data>
   <data name="ChangeAlbumArt.Text" xml:space="preserve">
-    <value>アルバムアートワークの入手</value>
+    <value>アルバムアートワークを追加</value>
   </data>
   <data name="ChangeVideoFolder.Content" xml:space="preserve">
     <value>Change default Video folder</value>
@@ -377,5 +377,8 @@
   </data>
   <data name="Songs" xml:space="preserve">
     <value>楽曲</value>
+  </data>
+  <data name="DownloadAlbumArt.Text" xml:space="preserve">
+    <value>アルバムアートワークの入手</value>
   </data>
 </root>

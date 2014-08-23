@@ -378,4 +378,7 @@
   <data name="SettingsMain.Text" xml:space="preserve">
     <value>settings</value>
   </data>
+  <data name="DownloadAlbumArt.Text" xml:space="preserve">
+    <value>Download Album Art</value>
+  </data>
 </root>
