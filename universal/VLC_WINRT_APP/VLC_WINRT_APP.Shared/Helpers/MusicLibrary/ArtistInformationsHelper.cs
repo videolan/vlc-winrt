@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using VLC_WINRT.Common;
 using Windows.Storage;
 using Windows.Storage.Streams;
+using VLC_WINRT_APP.Common;
 using VLC_WINRT_APP.ViewModels.MusicVM;
 
 namespace VLC_WINRT_APP.Helpers.MusicLibrary
@@ -100,6 +101,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             if (lastFmAlbum.Images == null || lastFmAlbum.Images.Count == 0) return false;
             try
             {
+                if (string.IsNullOrEmpty(lastFmAlbum.Images.LastOrDefault().Url)) return false;
                 var clientPic = new HttpClient();
                 HttpResponseMessage responsePic = await clientPic.GetAsync(lastFmAlbum.Images.LastOrDefault().Url);
                 byte[] img = await responsePic.Content.ReadAsByteArrayAsync();
@@ -195,7 +197,17 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                 var gotArt = await DownloadAlbumPictureFromLastFm(album);
                 if (!gotArt)
                 {
-                    await DownloadAlbumPictureFromDeezer(album);
+                   gotArt = await DownloadAlbumPictureFromDeezer(album);
+                }
+
+                // If we still could not find album art, set it to the default cover.
+                // This way, we won't keep pinging the APIs for album art that may not exist.
+                if (!gotArt)
+                {
+                    StorageFolder install = Windows.ApplicationModel.Package.Current.InstalledLocation;
+                    StorageFile file = await install.GetFileAsync("Assets\\NoCover.jpg");
+                    var bytes = await ConvertImage.ConvertImagetoByte(file);
+                    await SaveAlbumImageAsync(album, bytes);
                 }
             }
         }
