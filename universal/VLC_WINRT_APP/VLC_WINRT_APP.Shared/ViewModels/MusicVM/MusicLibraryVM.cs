@@ -55,6 +55,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         #endregion
         #region private props
         private LoadingState _loadingState;
+        private ChangeAlbumArtCommand _changeAlbumArtCommand;
         private AlbumClickedCommand _albumClickedCommand;
         private ArtistClickedCommand _artistClickedCommand;
         private TrackClickedCommand _trackClickedCommand;
@@ -138,6 +139,15 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             get { return _isMusicLibraryEmpty; }
             set { SetProperty(ref _isMusicLibraryEmpty, value); }
         }
+        public ChangeAlbumArtCommand ChangeAlbumArtCommand
+        {
+            get
+            {
+                return _changeAlbumArtCommand;
+            }
+            set { SetProperty(ref _changeAlbumArtCommand, value); }
+        }
+
         public AlbumClickedCommand AlbumClickedCommand
         {
             get
@@ -190,6 +200,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             _albumClickedCommand = new AlbumClickedCommand();
             _artistClickedCommand = new ArtistClickedCommand();
             _trackClickedCommand = new TrackClickedCommand();
+            _changeAlbumArtCommand = new ChangeAlbumArtCommand();
             Task.Run(() => GetMusicFromLibrary());
         }
 
@@ -674,7 +685,11 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                     }
                     return _picture;
                 }
-                set { SetProperty(ref _picture, value); }
+                set
+                {
+                    SetProperty(ref _picture, value);
+                    OnPropertyChanged();
+                }
             }
 
             public uint Year

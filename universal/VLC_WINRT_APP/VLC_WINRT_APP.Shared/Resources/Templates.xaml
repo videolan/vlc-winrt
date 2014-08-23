@@ -1,7 +1,10 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:VLC_WINRT_APP.Resources"
-                    xmlns:controls="using:VLC_WINRT_APP.Controls">
+                    xmlns:controls="using:VLC_WINRT_APP.Controls"
+                    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+                    xmlns:common="using:VLC_WINRT_APP.Common"
+                    xmlns:interactivity="using:Microsoft.Xaml.Interactivity">
 
     <DataTemplate x:Key="SemanticZoomOutViewArtistTemplate">
         <Grid Width="240"
@@ -92,6 +95,16 @@
                                FontSize="16" />
                 </StackPanel>
             </Grid>
+            <interactivity:Interaction.Behaviors>
+                <core:EventTriggerBehavior EventName="RightTapped">
+                    <common:OpenMenuFlyoutAction />
+                </core:EventTriggerBehavior>
+            </interactivity:Interaction.Behaviors>
+            <FlyoutBase.AttachedFlyout>
+                <MenuFlyout>
+                    <MenuFlyoutItem  Command="{Binding DataContext.ChangeAlbumArtCommand, ElementName=MusicLibrary}" CommandParameter="{Binding}" x:Uid="ChangeAlbumArt" Text="Change Album Art"/>
+                </MenuFlyout>
+            </FlyoutBase.AttachedFlyout>
         </Border>
     </DataTemplate>
 

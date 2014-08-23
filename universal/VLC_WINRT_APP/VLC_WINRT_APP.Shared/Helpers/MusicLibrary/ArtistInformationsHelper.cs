@@ -83,27 +83,8 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                     return false;
                 }
                 byte[] img = await responsePic.Content.ReadAsByteArrayAsync();
-                InMemoryRandomAccessStream streamWeb = new InMemoryRandomAccessStream();
-                DataWriter writer = new DataWriter(streamWeb.GetOutputStreamAt(0));
-                writer.WriteBytes(img);
-                await writer.StoreAsync();
-                StorageFolder artistPic = await ApplicationData.Current.LocalFolder.CreateFolderAsync("albumPic",
-                    CreationCollisionOption.OpenIfExists);
-                string fileName = album.Name + "_" + "dPi";
-                var file = await artistPic.CreateFileAsync(fileName + ".jpg", CreationCollisionOption.OpenIfExists);
-                var raStream = await file.OpenAsync(FileAccessMode.ReadWrite);
-
-                using (var thumbnailStream = streamWeb.GetInputStreamAt(0))
-                {
-                    using (var stream = raStream.GetOutputStreamAt(0))
-                    {
-                        await RandomAccessStream.CopyAsync(thumbnailStream, stream);
-                    }
-                }
-                StorageFolder appDataFolder = ApplicationData.Current.LocalFolder;
-                string supposedPictureUriLocal = appDataFolder.Path + "\\albumPic\\" + album.Name + "_" + "dPi" + ".jpg";
-                await DispatchHelper.InvokeAsync(() => album.Picture = supposedPictureUriLocal);
-                return true;
+                var result = await SaveAlbumImageAsync(album, img);
+                return result;
             }
             catch (Exception)
             {
@@ -114,49 +95,24 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
         private static async Task<bool> DownloadAlbumPictureFromLastFm(MusicLibraryVM.AlbumItem album)
         {
             var lastFmClient = new LastFmClient();
-            var deezerAlbum = await lastFmClient.GetAlbumInfo(album.Name, album.Artist);
-            if (deezerAlbum == null) return false;
-            if (deezerAlbum.Images == null) return false;
+            var lastFmAlbum = await lastFmClient.GetAlbumInfo(album.Name, album.Artist);
+            if (lastFmAlbum == null) return false;
+            if (lastFmAlbum.Images == null || lastFmAlbum.Images.Count == 0) return false;
             try
             {
                 var clientPic = new HttpClient();
-                HttpResponseMessage responsePic = await clientPic.GetAsync(deezerAlbum.Images.LastOrDefault().Url);
-                string uri = responsePic.RequestMessage.RequestUri.AbsoluteUri;
-                // A cheap hack to avoid using Deezers default image for bands.
-                if (uri.Equals("http://cdn-images.deezer.com/images/album//400x400-000000-80-0-0.jpg"))
-                {
-                    return false;
-                }
+                HttpResponseMessage responsePic = await clientPic.GetAsync(lastFmAlbum.Images.LastOrDefault().Url);
                 byte[] img = await responsePic.Content.ReadAsByteArrayAsync();
-                InMemoryRandomAccessStream streamWeb = new InMemoryRandomAccessStream();
-                DataWriter writer = new DataWriter(streamWeb.GetOutputStreamAt(0));
-                writer.WriteBytes(img);
-                await writer.StoreAsync();
-                StorageFolder artistPic = await ApplicationData.Current.LocalFolder.CreateFolderAsync("albumPic",
-                    CreationCollisionOption.OpenIfExists);
-                string fileName = album.Name + "_" + "dPi";
-                var file = await artistPic.CreateFileAsync(fileName + ".jpg", CreationCollisionOption.OpenIfExists);
-                var raStream = await file.OpenAsync(FileAccessMode.ReadWrite);
-
-                using (var thumbnailStream = streamWeb.GetInputStreamAt(0))
-                {
-                    using (var stream = raStream.GetOutputStreamAt(0))
-                    {
-                        await RandomAccessStream.CopyAsync(thumbnailStream, stream);
-                    }
-                }
-                StorageFolder appDataFolder = ApplicationData.Current.LocalFolder;
-                string supposedPictureUriLocal = appDataFolder.Path + "\\albumPic\\" + album.Name + "_" + "dPi" + ".jpg";
-                await DispatchHelper.InvokeAsync(() => album.Picture = supposedPictureUriLocal);
-                return true;
+                var result = await SaveAlbumImageAsync(album, img);
+                return result;
             }
             catch (Exception)
             {
-                Debug.WriteLine("Error getting or saving art from deezer.");
+                Debug.WriteLine("Error getting or saving art from lastFm.");
                 return false;
             }
+            return false;
         }
-
 
         private static async Task<bool> DownloadArtistPictureFromLastFm(MusicLibraryVM.ArtistItem artist)
         {
@@ -296,6 +252,46 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                 Debug.WriteLine("Failed to get artist biography from LastFM. Returning nothing.");
             }
             artist.Biography = System.Net.WebUtility.HtmlDecode(biography);
+        }
+
+        public static async Task<bool> SaveAlbumImageAsync(MusicLibraryVM.AlbumItem album, byte[] img)
+        {
+            try
+            {
+                var streamWeb = new InMemoryRandomAccessStream();
+                var writer = new DataWriter(streamWeb.GetOutputStreamAt(0));
+                writer.WriteBytes(img);
+                await writer.StoreAsync();
+                var albumPic = await ApplicationData.Current.LocalFolder.CreateFolderAsync("albumPic",
+                    CreationCollisionOption.OpenIfExists);
+
+                var fileName = MakeValidFileName(album.Name) + "_" + "dPi";
+                var file = await albumPic.CreateFileAsync(fileName + ".jpg", CreationCollisionOption.OpenIfExists);
+                var raStream = await file.OpenAsync(FileAccessMode.ReadWrite);
+
+                using (var thumbnailStream = streamWeb.GetInputStreamAt(0))
+                {
+                    using (var stream = raStream.GetOutputStreamAt(0))
+                    {
+                        await RandomAccessStream.CopyAsync(thumbnailStream, stream);
+                    }
+                }
+                await GetAlbumPicture(album);
+                return true;
+            }
+            catch (Exception)
+            {
+                Debug.WriteLine("Error saving album art");
+                return false;
+            }
+        }
+
+        private static string MakeValidFileName(string name)
+        {
+            string invalidChars = System.Text.RegularExpressions.Regex.Escape(new string(System.IO.Path.GetInvalidFileNameChars()));
+            string invalidRegStr = string.Format(@"([{0}]*\.+$)|([{0}]+)", invalidChars);
+
+            return System.Text.RegularExpressions.Regex.Replace(name, invalidRegStr, "_");
         }
     }
 }

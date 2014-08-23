@@ -144,7 +144,7 @@
                             Margin="0,-10,0,0">
                     <HubSection.ContentTemplate>
                         <DataTemplate>
-                            <Grid DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
+                            <Grid x:Name="MusicLibrary" DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
                                 <GridView ItemsSource="{Binding RandomAlbums}"
                                           ItemTemplate="{StaticResource SemanticZoomInViewAlbumTemplate}"
                                           ItemContainerStyle="{StaticResource GridViewItemStyle}"

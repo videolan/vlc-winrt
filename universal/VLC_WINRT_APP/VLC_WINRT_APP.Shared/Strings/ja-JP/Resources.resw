@@ -135,6 +135,9 @@
   <data name="Biography.Text" xml:space="preserve">
     <value>バイオ</value>
   </data>
+  <data name="ChangeAlbumArt.Text" xml:space="preserve">
+    <value>アルバムアートワークの入手</value>
+  </data>
   <data name="ChangeVideoFolder.Content" xml:space="preserve">
     <value>Change default Video folder</value>
   </data>

@@ -19,8 +19,14 @@ namespace VLC_WINRT_APP.Commands.Music
             App.RootPage.MainFrameThemeTransition.Edge = EdgeTransitionLocation.Right;
             App.ApplicationFrame.Navigate(typeof(AlbumPage));
             Locator.MusicLibraryVM.IsAlbumPageShown = true;
-            ItemClickEventArgs args = parameter as ItemClickEventArgs;
-            MusicLibraryVM.AlbumItem album = args.ClickedItem as MusicLibraryVM.AlbumItem;
+            MusicLibraryVM.AlbumItem album = parameter as MusicLibraryVM.AlbumItem;
+            
+            if (album == null)
+            {
+                ItemClickEventArgs args = parameter as ItemClickEventArgs;
+                album = args.ClickedItem as MusicLibraryVM.AlbumItem;
+            }
+
             Locator.MusicLibraryVM.CurrentArtist =
                 Locator.MusicLibraryVM.Artists.FirstOrDefault(x => x.Name == album.Artist);
             if (Locator.MusicLibraryVM.CurrentArtist != null)

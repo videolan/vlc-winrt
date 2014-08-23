@@ -22,6 +22,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Commands\MediaPlayback\PlayPreviousCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Music\AlbumClickedCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Music\ArtistClickedCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\Music\ChangeAlbumArtCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Music\FavoriteAlbumCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Music\FavoriteTrackCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Music\GoToMusicPlayerPage.cs" />
@@ -44,7 +45,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Common\AlwaysExecutableCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\AutoFacConfiguration.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\BindableBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\ConvertImage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\DispatchHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\OpenMenuFlyoutAction.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\FadeTextBlock.xaml.cs">
       <DependentUpon>FadeTextBlock.xaml</DependentUpon>
     </Compile>
