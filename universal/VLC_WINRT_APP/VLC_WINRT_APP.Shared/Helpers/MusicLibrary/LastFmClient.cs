@@ -130,6 +130,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                 Debug.WriteLine("Receive TopAlbums from LastFM API");
                 if (albums == null) return null;
                 var albumList = albums.TopAlbums.Album;
+                if (albumList == null) return null;
                 var formattedAlbumList = new List<Album>();
                 foreach (var topAlbum in albumList)
                 {
