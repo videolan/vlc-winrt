@@ -37,6 +37,13 @@ HRESULT I420Effect::SetDisplayedFrameHeight(float height)
 	return S_OK;
 }
 
+float I420Effect::GetScale() const		{ return m_scale; }
+HRESULT I420Effect::SetScale(float scale)
+{
+	m_scale = scale;
+	return S_OK;
+}
+
 
 HRESULT I420Effect::Register(_In_ ID2D1Factory1* pFactory)
 {
@@ -59,9 +66,13 @@ HRESULT I420Effect::Register(_In_ ID2D1Factory1* pFactory)
 			<Property name='DisplayName' type='string' value='RenderTarget Size X' />
 			<Property name='Default' type='float' value='0.0' />
 		</Property>
-		<Property name = 'DisplayedFrameHeight' type = 'float' value = '0'>
+		<Property name='DisplayedFrameHeight' type='float' value='0'>
 			<Property name='DisplayName' type='string' value='RenderTarget Size Y' />
 			<Property name='Default' type='float' value='0.0' />
+		</Property>
+		<Property name='Scale' type='float' value='0'>
+		<Property name='DisplayName' type='string' value='Scale' />
+		<Property name='Default' type='float' value='0.0' />
 		</Property>
 		</Effect>
 		);
@@ -71,6 +82,7 @@ HRESULT I420Effect::Register(_In_ ID2D1Factory1* pFactory)
 	{
 		D2D1_VALUE_TYPE_BINDING(L"DisplayedFrameWidth", &SetDisplayedFrameWidth, &GetDisplayedFrameWidth),
 		D2D1_VALUE_TYPE_BINDING(L"DisplayedFrameHeight", &SetDisplayedFrameHeight, &GetDisplayedFrameHeight),
+		D2D1_VALUE_TYPE_BINDING(L"Scale", &SetScale, &GetScale),
 	};
 
 	// Register the effect in the factory
@@ -252,8 +264,11 @@ IFACEMETHODIMP I420Effect::MapInputRectsToOutputRect(
 	_Out_ D2D1_RECT_L* pOutputOpaqueSubRect
 	)
 {
-
-	*pOutputRect = pInputRects[0];
+	D2D1_RECT_L rects[3];
+	rects[0] = D2D1::RectL(pInputRects[0].left, pInputRects[0].top, pInputRects[0].right * m_scale, pInputRects[0].bottom * m_scale);
+	rects[1] = D2D1::RectL(pInputRects[1].left, pInputRects[1].top, pInputRects[1].right * m_scale, pInputRects[1].bottom * m_scale);
+	rects[2] = D2D1::RectL(pInputRects[2].left, pInputRects[2].top, pInputRects[2].right * m_scale, pInputRects[2].bottom * m_scale);
+	*pOutputRect = rects[0];
 
 	if (m_inputRect.bottom != pInputRects[0].bottom
 		|| m_inputRect.top != pInputRects[0].top

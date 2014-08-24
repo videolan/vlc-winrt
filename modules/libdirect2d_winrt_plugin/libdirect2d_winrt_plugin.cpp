@@ -289,8 +289,8 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
 		sys->lastDisplayHeight = *sys->displayHeight;
 
 
-		float scaleW = *sys->displayWidth / (float)picture->format.i_visible_width;
-		float scaleH = *sys->displayHeight / (float)picture->format.i_visible_height;
+		float scaleW = ceilf(*sys->displayWidth) / (float)picture->format.i_visible_width;
+		float scaleH = ceilf(*sys->displayHeight) / (float)picture->format.i_visible_height;
 
 		// Compute offset and scale factor
 		float scale;
@@ -316,8 +316,9 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
 
 		sys->yuvEffect->SetInputCount(3);
 
-		sys->yuvEffect->SetValue(0, (float)(picture->format.i_visible_width * sys->scale));
-		sys->yuvEffect->SetValue(1, (float)(picture->format.i_visible_height * sys->scale));
+		sys->yuvEffect->SetValue(I420_PROP_DISPLAYEDFRAME_WIDTH, (float)(picture->format.i_visible_width * sys->scale));
+		sys->yuvEffect->SetValue(I420_PROP_DISPLAYEDFRAME_HEIGHT, (float)(picture->format.i_visible_height * sys->scale));
+		sys->yuvEffect->SetValue(I420_PROP_SCALE, sys->scale);
 	}
 
 	sys->d2dContext->SetTransform(D2D1::Matrix3x2F::Translation(floor(sys->offset.x), floor(sys->offset.y)));
@@ -325,7 +326,9 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
 	// Init and clear d2dContext render target
     sys->d2dContext->BeginDraw();
 
-	D2D1_RECT_F pushRect = D2D1::RectF(0, 0, sys->size.width * sys->scale, sys->size.height * sys->scale);
+	// 1 and -1 are ugly fix to remove green pixels around the frame
+	// TODO : find the bad round, and fix correctly.
+	D2D1_RECT_F pushRect = D2D1::RectF(1, 1, sys->size.width * sys->scale - 1, sys->size.height * sys->scale - 1);
 	sys->d2dContext->PushAxisAlignedClip(&pushRect, D2D1_ANTIALIAS_MODE_ALIASED);
     sys->d2dContext->Clear(D2D1::ColorF(D2D1::ColorF::Black));
 

@@ -26,6 +26,7 @@ typedef enum I420_PROP
 {
 	I420_PROP_DISPLAYEDFRAME_WIDTH = 0,
 	I420_PROP_DISPLAYEDFRAME_HEIGHT = 1,
+	I420_PROP_SCALE = 2
 };
 
 struct Vertex{
@@ -45,6 +46,9 @@ public:
 
 	float GetDisplayedFrameHeight() const;
 	HRESULT SetDisplayedFrameHeight(float height);
+
+	float GetScale() const;
+	HRESULT SetScale(float scale);
 
 	// Declare ID2D1EffectImpl implementation methods.
 	IFACEMETHODIMP Initialize(_In_ ID2D1EffectContext* pContextInternal,_In_ ID2D1TransformGraph* pTransformGraph);
@@ -97,6 +101,7 @@ private:
 	D2D1_SIZE_U									m_originalFrame;
 
 	float										m_dpi;
+	float										m_scale;
 
 	struct
 	{
