@@ -69,6 +69,7 @@ namespace VLC_WINRT_APP.Views.VideoPages
                 timer = new DispatcherTimer();
             if (isVisible)
             {
+                await ControlsGrid.FadeOut(_fadeDuration);
                 await HeaderGrid.FadeOut(_fadeDuration);
                 HeaderGrid.IsHitTestVisible = false;
                 await FooterGrid.FadeOut(_fadeDuration);
@@ -80,6 +81,7 @@ namespace VLC_WINRT_APP.Views.VideoPages
                 HeaderGrid.IsHitTestVisible = true;
                 await FooterGrid.FadeIn(_fadeDuration);
                 FooterGrid.IsHitTestVisible = true;
+                await ControlsGrid.FadeIn(_fadeDuration);
                 timer.Start();
             }
             isVisible = !isVisible;
