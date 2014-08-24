@@ -138,7 +138,7 @@
   <data name="AudioHubHeader.Header" xml:space="preserve">
     <value>音楽</value>
   </data>
-  <data name="Biography.Text" xml:space="preserve">
+  <data name="Biography.Header" xml:space="preserve">
     <value>バイオ</value>
   </data>
   <data name="ChangeAlbumArt.Text" xml:space="preserve">
@@ -223,13 +223,13 @@
     <value>映画</value>
   </data>
   <data name="Music" xml:space="preserve">
-    <value>音楽</value>
+    <value>ミュージック</value>
   </data>
   <data name="MusicHeader.Text" xml:space="preserve">
-    <value>音楽</value>
+    <value>ミュージック</value>
   </data>
   <data name="MusicSettingsHeader.Header" xml:space="preserve">
-    <value>音楽設定</value>
+    <value>ミュージック設定</value>
   </data>
   <data name="NetworkUrl.Text" xml:space="preserve">
     <value>Network URL:</value>

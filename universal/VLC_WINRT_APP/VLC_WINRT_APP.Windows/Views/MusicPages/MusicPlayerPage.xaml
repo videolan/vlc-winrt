@@ -57,21 +57,21 @@
                         </DataTemplate>
                     </HubSection.ContentTemplate>
                 </HubSection>
-                <HubSection Header="biography">
+                <HubSection x:Uid="Biography" Header="biography">
                     <HubSection.ContentTemplate>
                         <DataTemplate>
                             <musicPlayerPageControls:BiographyInfoControl/>
                         </DataTemplate>
                     </HubSection.ContentTemplate>
                 </HubSection>
-                <HubSection Header="popular albums">
+                <HubSection x:Uid="PopularAlbums" Header="popular albums">
                     <HubSection.ContentTemplate>
                         <DataTemplate>
                             <musicPlayerPageControls:PopularAlbumsInfoControl/> 
                         </DataTemplate>
                     </HubSection.ContentTemplate>
                 </HubSection>
-                <HubSection Header="similar artists">
+                <HubSection x:Uid="SimilarArtists" Header="similar artists">
                     <HubSection.ContentTemplate>
                         <DataTemplate>
                             <musicPlayerPageControls:SimilarArtistsInfoControl/>

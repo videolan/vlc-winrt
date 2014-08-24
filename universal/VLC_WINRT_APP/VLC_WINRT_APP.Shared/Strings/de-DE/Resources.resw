@@ -132,7 +132,7 @@
   <data name="ArtistHeader.Text" xml:space="preserve">
     <value>Künstler</value>
   </data>
-  <data name="Biography.Text" xml:space="preserve">
+  <data name="Biography.Header" xml:space="preserve">
     <value>Biographie</value>
   </data>
   <data name="ChangeVideoFolder.Content" xml:space="preserve">

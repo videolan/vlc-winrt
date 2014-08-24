@@ -144,7 +144,7 @@
   <data name="AudioHubHeader.Header" xml:space="preserve">
     <value>audio</value>
   </data>
-  <data name="Biography.Text" xml:space="preserve">
+  <data name="Biography.Header" xml:space="preserve">
     <value>biography</value>
   </data>
   <data name="ChangeAlbumArt.Text" xml:space="preserve">
