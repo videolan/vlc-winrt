@@ -26,43 +26,39 @@ namespace VLC_WINRT_APP.Helpers
             tag = tag.ToLower();
             SearchSuggestionsRequestDeferral deferral = args.Request.GetDeferral();
             
+            // We don't need null checks here, because even if nothing was found, the Enumerable items will be loaded with zero items in them.
+            // So the foreach loops will skip past them.
+
             IEnumerable<MusicLibraryVM.TrackItem> trackItems = Locator.MusicLibraryVM.Tracks.Where(x => x.Name.ToLower().Contains(tag));
-            if (trackItems != null && trackItems.Any())
+            foreach (MusicLibraryVM.TrackItem item in trackItems)
             {
-                foreach (MusicLibraryVM.TrackItem item in trackItems)
-                {
-                    args.Request.SearchSuggestionCollection.AppendResultSuggestion(item.Name, "track", "track://" + item.Id, RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/Icons/music.png")), "music");
-                }
+                args.Request.SearchSuggestionCollection.AppendResultSuggestion(item.Name, "track", "track://" + item.Id, RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/Icons/music.png")), "music");
             }
 
             IEnumerable<VideoVM> videoVms = Locator.VideoLibraryVM.Videos.Where(x => x.Title.ToLower().Contains(tag));
-            if (videoVms != null && videoVms.Any())
+            foreach (VideoVM vm in videoVms)
             {
-                foreach (VideoVM vm in videoVms)
-                {
-                    args.Request.SearchSuggestionCollection.AppendResultSuggestion(vm.Title, "video", "video://" + vm.Title,
-                        RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/Icons/Video.png")), "video");
-                }
+                args.Request.SearchSuggestionCollection.AppendResultSuggestion(vm.Title, "video", "video://" + vm.Title,
+                    RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/Icons/Video.png")), "video");
             }
 
             IEnumerable<MusicLibraryVM.ArtistItem> artistItems =
                 Locator.MusicLibraryVM.Artists.Where(x => x.Name.ToLower().Contains(tag));
-            if (artistItems != null && artistItems.Any())
+
+            foreach (var artistItem in artistItems)
             {
-                foreach (MusicLibraryVM.ArtistItem artistItem in artistItems)
-                {
-                    IEnumerable<MusicLibraryVM.AlbumItem> albumItems =
-                        artistItem.Albums.Where(x => x.Name.ToLower().Contains(tag));
-                    if (albumItems != null && albumItems.Any())
-                    {
-                        foreach (MusicLibraryVM.AlbumItem albumItem in albumItems)
-                        {
-                            args.Request.SearchSuggestionCollection.AppendResultSuggestion(albumItem.Name, "album", "album://" + albumItem.Id, RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/Icons/music.png")), "music");
-                        }
-                    }
-                    args.Request.SearchSuggestionCollection.AppendResultSuggestion(artistItem.Name, "artist", "artist://" + artistItem.Id, RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/Icons/music.png")), "music");
-                }
+                args.Request.SearchSuggestionCollection.AppendResultSuggestion(artistItem.Name, "artist", "artist://" + artistItem.Id, RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/Icons/music.png")), "music");
             }
+
+            IEnumerable<MusicLibraryVM.AlbumItem> albumItems =
+                Locator.MusicLibraryVM.Artists.SelectMany(node => node.Albums)
+                    .Where(x => x.Name.ToLower().Contains(tag));
+
+            foreach (MusicLibraryVM.AlbumItem albumItem in albumItems)
+            {
+                args.Request.SearchSuggestionCollection.AppendResultSuggestion(albumItem.Name, "album", "album://" + albumItem.Id, RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/Icons/music.png")), "music");
+            }
+
             deferral.Complete();
         }
 #endif

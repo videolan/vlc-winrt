@@ -26,34 +26,43 @@ namespace VLC_WINRT_APP.Views.UserControls
 
         private async void LargeSearchBox_OnResultSuggestionChosen(SearchBox sender, SearchBoxResultSuggestionChosenEventArgs args)
         {
-            int separatorIndex = args.Tag.IndexOf("://");
+            int separatorIndex = args.Tag.IndexOf("://", System.StringComparison.Ordinal);
             int separatorEndIndex = separatorIndex + 3;
             string type = args.Tag.Remove(separatorIndex);
             string query = args.Tag.Remove(0, separatorEndIndex);
+            // Instead of searching the database, search the music library VM. This way we already have the track and album information and
+            // don't have to call the database for it again.
             switch (type)
             {
                 case "track":
-                    MusicLibraryVM.TrackItem trackItem = await MusicLibraryVM._trackDataRepository.LoadTrack(int.Parse(query));
+                    MusicLibraryVM.TrackItem trackItem = Locator.MusicLibraryVM.Tracks.FirstOrDefault(node => node.Id == int.Parse(query));
                     if (trackItem != null)
-                        Task.Run(() => trackItem.Play());
+                    {
+                        Locator.MusicPlayerVM.CurrentPlayingArtist = Locator.MusicLibraryVM.Artists.FirstOrDefault(node => node.Id == trackItem.ArtistId);
+                        await Task.Run(() => trackItem.Play());
+                    }
                     break;
                 case "album":
                     MusicLibraryVM.AlbumItem albumItem =
-                        await MusicLibraryVM._albumDataRepository.LoadAlbum(int.Parse(query));
+                        Locator.MusicLibraryVM.Artists.SelectMany(node => node.Albums)
+                            .FirstOrDefault(node => node.Id == int.Parse(query));
                     if (albumItem != null)
-                        Task.Run(() => albumItem.Play());
+                    {
+                        Locator.MusicLibraryVM.CurrentArtist = Locator.MusicLibraryVM.Artists.FirstOrDefault(node => node.Id == albumItem.ArtistId);
+                        await Task.Run(() => albumItem.Play());
+                    }
                     break;
                 case "artist":
                     MusicLibraryVM.ArtistItem artistItem =
-                        await MusicLibraryVM._artistDataRepository.LoadArtist(int.Parse(query));
+                        Locator.MusicLibraryVM.Artists.FirstOrDefault(node => node.Id == int.Parse(query));
+                   Locator.MusicLibraryVM.CurrentArtist = artistItem;
 #if WINDOWS_APP
                     App.ApplicationFrame.Navigate(typeof(ArtistPage));
 #endif
-                    Locator.MusicLibraryVM.CurrentArtist = artistItem;
                     break;
                 case "video":
                     VideoVM vm = Locator.VideoLibraryVM.Videos.FirstOrDefault(x => x.Title == query);
-                    vm.Play();
+                    await vm.Play();
                     break;
             }
         }
