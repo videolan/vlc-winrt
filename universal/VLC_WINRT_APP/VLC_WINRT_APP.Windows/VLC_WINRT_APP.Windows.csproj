@@ -118,7 +118,7 @@
     </SDKReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AboutPage.xaml.cs">
+    <Compile Include="Views\VariousPages\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Dlna\WaitingForNetworkAnswer.xaml.cs">
@@ -206,7 +206,7 @@
     <Compile Include="Views\VariousPages\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SpecialThanks.xaml.cs">
+    <Compile Include="Views\VariousPages\SpecialThanks.xaml.cs">
       <DependentUpon>SpecialThanks.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\TopBar.xaml.cs">
@@ -748,7 +748,7 @@
     <Content Include="plugins\video_output\libdirect2d_winrt_plugin.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="AboutPage.xaml">
+    <Page Include="Views\VariousPages\AboutPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -864,7 +864,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="SpecialThanks.xaml">
+    <Page Include="Views\VariousPages\SpecialThanks.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

@@ -91,8 +91,15 @@
                                 Margin="24,0,0,0"
                                 Style="{StaticResource TextBlockButtonStyle}"
                                 FontSize="22"
-                                FontWeight="Light"
-                                Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToSettingsPageCommand}">
+                                FontWeight="Light">
+                            <Button.Flyout>
+                                <MenuFlyout>
+                                    <MenuFlyoutItem Text="App settings"
+                                                    Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToSettingsPageCommand}" />
+                                    <MenuFlyoutItem Text="About the app"
+                                                    Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToAboutPageCommand}" />
+                                </MenuFlyout>
+                            </Button.Flyout>
                             <Button.Content>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock>
@@ -150,8 +157,15 @@
                         </Button>
                         <Button Style="{StaticResource TextBlockButtonStyle}"
                                 FontSize="22"
-                                FontWeight="Light"
-                                Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToSettingsPageCommand}">
+                                FontWeight="Light">
+                            <Button.Flyout>
+                                <MenuFlyout>
+                                    <MenuFlyoutItem Text="App settings"
+                                                    Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToSettingsPageCommand}" />
+                                    <MenuFlyoutItem Text="About the app"
+                                                    Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToAboutPageCommand}" />
+                                </MenuFlyout>
+                            </Button.Flyout>
                             <Button.Content>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock>

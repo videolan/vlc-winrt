@@ -9,11 +9,8 @@
 
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using VLC_WINRT_APP.Services.RunTime;
-using VLC_WINRT_APP;
-using VLC_WINRT_APP.Views.MainPages;
 
-namespace VLC_WINRT.Views
+namespace VLC_WINRT_APP.Views.VariousPages
 {
     /// <summary>
     ///     An empty page that can be used on its own or navigated to within a Frame.
