@@ -27,7 +27,7 @@ namespace VLC_WINRT.Views
 
         private void GoBack_Click(object sender, RoutedEventArgs e)
         {
-            App.ApplicationFrame.Navigate(typeof(MainPage));
+            App.ApplicationFrame.GoBack();
         }
     }
 }
