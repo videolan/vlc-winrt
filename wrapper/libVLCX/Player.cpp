@@ -108,7 +108,7 @@ void Player::UpdateSize(unsigned int x, unsigned int y)
     m_displayWidth = (float)(x * (float)DisplayProperties::ResolutionScale / 100.0f);
     m_displayHeight = (float)(y * (float)DisplayProperties::ResolutionScale / 100.0f);
 
-	p_dxManager->UpdateSwapChain(m_displayWidth, m_displayHeight);
+    p_dxManager->UpdateSwapChain(m_displayWidth, m_displayHeight);
 }
 
 void Player::MediaEndedCall(){
@@ -169,7 +169,7 @@ void Player::Open(Platform::String^ mrl)
     }
 
     delete[](p_mrl);
-	p_dxManager->ClearSwapChainBuffers();
+    p_dxManager->ClearSwapChainBuffers();
 }
 
 void Player::Stop()

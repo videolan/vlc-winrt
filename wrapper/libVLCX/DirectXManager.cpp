@@ -37,45 +37,45 @@ DirectXManger::DirectXManger()
 
 void DirectXManger::CheckDXOperation(HRESULT hr, Platform::String^ message){
     if (hr != S_OK) {
-		throw ref new Platform::Exception(hr, message);
-	}
+        throw ref new Platform::Exception(hr, message);
+    }
 }
 
 
 void DirectXManger::UpdateSwapChain(unsigned int width, unsigned int height)
 {
-	if (cp_swapChain)
-	{
-		
-		cp_d2dContext->SetTarget(nullptr);
-		cp_d2dTargetBitmap = nullptr;
+    if (cp_swapChain)
+    {
 
-		float dpi = Windows::Graphics::Display::DisplayProperties::LogicalDpi;
+        cp_d2dContext->SetTarget(nullptr);
+        cp_d2dTargetBitmap = nullptr;
 
-		D2D1_BITMAP_PROPERTIES1 bitmapProperties =
-			BitmapProperties1(
-			D2D1_BITMAP_OPTIONS_TARGET | D2D1_BITMAP_OPTIONS_CANNOT_DRAW,
-			PixelFormat(DXGI_FORMAT_B8G8R8A8_UNORM, D2D1_ALPHA_MODE_PREMULTIPLIED),
-			dpi,
-			dpi);
+        float dpi = Windows::Graphics::Display::DisplayProperties::LogicalDpi;
+
+        D2D1_BITMAP_PROPERTIES1 bitmapProperties =
+            BitmapProperties1(
+            D2D1_BITMAP_OPTIONS_TARGET | D2D1_BITMAP_OPTIONS_CANNOT_DRAW,
+            PixelFormat(DXGI_FORMAT_B8G8R8A8_UNORM, D2D1_ALPHA_MODE_PREMULTIPLIED),
+            dpi,
+            dpi);
 
 
-		cp_swapChain->ResizeBuffers(2, width, height, DXGI_FORMAT_B8G8R8A8_UNORM, 0);
+        cp_swapChain->ResizeBuffers(2, width, height, DXGI_FORMAT_B8G8R8A8_UNORM, 0);
 
-		ComPtr<IDXGISurface> dxgiBackBuffer;
-		CheckDXOperation(cp_swapChain->GetBuffer(0, IID_PPV_ARGS(&dxgiBackBuffer)), "Could not get the DXGI backbuffer");
+        ComPtr<IDXGISurface> dxgiBackBuffer;
+        CheckDXOperation(cp_swapChain->GetBuffer(0, IID_PPV_ARGS(&dxgiBackBuffer)), "Could not get the DXGI backbuffer");
 
-		//set d2d target
-		HRESULT hr = cp_d2dContext->CreateBitmapFromDxgiSurface(
-			dxgiBackBuffer.Get(),
-			&bitmapProperties,
-			&cp_d2dTargetBitmap
-			);
+        //set d2d target
+        HRESULT hr = cp_d2dContext->CreateBitmapFromDxgiSurface(
+            dxgiBackBuffer.Get(),
+            &bitmapProperties,
+            &cp_d2dTargetBitmap
+            );
 
-		CheckDXOperation(hr, "Could not crete the Bitmap");
+        CheckDXOperation(hr, "Could not crete the Bitmap");
 
-		cp_d2dContext->SetTarget(cp_d2dTargetBitmap.Get());
-	}
+        cp_d2dContext->SetTarget(cp_d2dTargetBitmap.Get());
+    }
 }
 
 void DirectXManger::CreateSwapPanel(SwapChainBackgroundPanel^ panel){
@@ -85,8 +85,8 @@ void DirectXManger::CreateSwapPanel(SwapChainBackgroundPanel^ panel){
     ComPtr<IDXGIDevice1> dxgiDevice;
     ComPtr<ID3D11Device> d3dDevice;
     ComPtr<ID2D1Device1> d2dDevice;
-	ComPtr<ID2D1Factory2> d2dFactory;
-   
+    ComPtr<ID2D1Factory2> d2dFactory;
+
 
     UINT creationFlags = D3D11_CREATE_DEVICE_BGRA_SUPPORT;
     float dpi = Windows::Graphics::Display::DisplayProperties::LogicalDpi;
@@ -128,25 +128,25 @@ void DirectXManger::CreateSwapPanel(SwapChainBackgroundPanel^ panel){
     CheckDXOperation(dxgiAdapter->GetParent(IID_PPV_ARGS(&dxgiFactory)),"Could not get adapter parent");
 
 
-	D2D1_FACTORY_OPTIONS options;
-	ZeroMemory(&options, sizeof(D2D1_FACTORY_OPTIONS));
+    D2D1_FACTORY_OPTIONS options;
+    ZeroMemory(&options, sizeof(D2D1_FACTORY_OPTIONS));
 
 #if defined(_DEBUG)
-	// If the project is in a debug build, enable Direct2D debugging via SDK Layers.
-	options.debugLevel = D2D1_DEBUG_LEVEL_INFORMATION;
+    // If the project is in a debug build, enable Direct2D debugging via SDK Layers.
+    options.debugLevel = D2D1_DEBUG_LEVEL_INFORMATION;
 #endif
 
 
-	D2D1CreateFactory(
-		D2D1_FACTORY_TYPE_MULTI_THREADED,
-		__uuidof(ID2D1Factory2),
-		&options,
-		&d2dFactory
-		);
+    D2D1CreateFactory(
+        D2D1_FACTORY_TYPE_MULTI_THREADED,
+        __uuidof(ID2D1Factory2),
+        &options,
+        &d2dFactory
+        );
 
-	
+
     // Create the Direct2D device object and a corresponding context.
-	d2dFactory->CreateDevice(dxgiDevice.Get(), &(d2dDevice));
+    d2dFactory->CreateDevice(dxgiDevice.Get(), &(d2dDevice));
     CheckDXOperation(hr, "Could not create D2D1 device");
 
     hr = d2dDevice->CreateDeviceContext(
@@ -159,7 +159,7 @@ void DirectXManger::CreateSwapPanel(SwapChainBackgroundPanel^ panel){
     cp_d2dContext->SetDpi(dpi, dpi);
     cp_d2dContext->SetUnitMode(D2D1_UNIT_MODE_PIXELS);
 
-	
+
     //Create the swapchain
     DXGI_SWAP_CHAIN_DESC1 swapChainDesc = { 0 };
     swapChainDesc.Width  = (UINT)(panel->ActualWidth * (double) DisplayProperties::ResolutionScale/100.0f);      // Match the size of the panel.
@@ -183,7 +183,7 @@ void DirectXManger::CreateSwapPanel(SwapChainBackgroundPanel^ panel){
     CheckDXOperation(hr, "Could not create swapChain");
     CheckDXOperation(dxgiDevice->SetMaximumFrameLatency(1), "Could not set maximum Frame Latency");
 
-	
+
     //TODO: perform the next 2 calls on the UI thread
     ComPtr<ISwapChainBackgroundPanelNative> panelNative;
     hr = reinterpret_cast<IUnknown*>(panel)->QueryInterface(IID_PPV_ARGS(&panelNative));
@@ -199,34 +199,34 @@ void DirectXManger::CreateSwapPanel(SwapChainBackgroundPanel^ panel){
     hr = cp_d2dContext->CreateBitmapFromDxgiSurface(
         dxgiBackBuffer.Get(),
         &bitmapProperties,
-		&cp_d2dTargetBitmap
+        &cp_d2dTargetBitmap
         );
 
     CheckDXOperation(hr, "Could not crete the Bitmap");
 
-	cp_d2dContext->SetTarget(cp_d2dTargetBitmap.Get());
+    cp_d2dContext->SetTarget(cp_d2dTargetBitmap.Get());
 }
 
 void DirectXManger::ClearSwapChainBuffers()
 {
-	if (cp_d2dContext)
-	{
-		cp_d2dContext->BeginDraw();
-		cp_d2dContext->Clear(D2D1::ColorF(D2D1::ColorF::Black));
-		cp_d2dContext->EndDraw();
+    if (cp_d2dContext)
+    {
+        cp_d2dContext->BeginDraw();
+        cp_d2dContext->Clear(D2D1::ColorF(D2D1::ColorF::Black));
+        cp_d2dContext->EndDraw();
 
-		DXGI_PRESENT_PARAMETERS parameters = { 0 };
-		parameters.DirtyRectsCount = 0;
-		parameters.pDirtyRects = nullptr;
-		parameters.pScrollRect = nullptr;
-		parameters.pScrollOffset = nullptr;
+        DXGI_PRESENT_PARAMETERS parameters = { 0 };
+        parameters.DirtyRectsCount = 0;
+        parameters.pDirtyRects = nullptr;
+        parameters.pScrollRect = nullptr;
+        parameters.pScrollOffset = nullptr;
 
-		cp_swapChain->Present1(1, 0, &parameters);
+        cp_swapChain->Present1(1, 0, &parameters);
 
-		cp_d2dContext->BeginDraw();
-		cp_d2dContext->Clear(D2D1::ColorF(D2D1::ColorF::Black));
-		cp_d2dContext->EndDraw();
-		cp_swapChain->Present1(1, 0, &parameters);
+        cp_d2dContext->BeginDraw();
+        cp_d2dContext->Clear(D2D1::ColorF(D2D1::ColorF::Black));
+        cp_d2dContext->EndDraw();
+        cp_swapChain->Present1(1, 0, &parameters);
 
-	}
+    }
 }
