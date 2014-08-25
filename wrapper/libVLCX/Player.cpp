@@ -26,7 +26,7 @@
 using namespace libVLCX;
 using namespace Windows::Graphics::Display;
 
-Player::Player(SwapChainBackgroundPanel^ panel) :p_mp(NULL), p_instance(NULL)
+Player::Player(SwapChainPanel^ panel) :p_mp(NULL), p_instance(NULL)
 {
     //OutputDebugStringW(L"Hello, Player!");
     p_panel = panel;

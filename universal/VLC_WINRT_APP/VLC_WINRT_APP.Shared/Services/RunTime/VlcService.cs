@@ -120,7 +120,7 @@ namespace VLC_WINRT_APP.Services.RunTime
             });
         }
 
-        public async Task Initialize(SwapChainBackgroundPanel panel)
+        public async Task Initialize(SwapChainPanel panel)
         {
             _vlcPlayer = new Player(panel);
             IAsyncAction init = _vlcPlayer.Initialize();
@@ -387,7 +387,7 @@ namespace VLC_WINRT_APP.Services.RunTime
 //        {
 //            return null;
 //        }
-//        public Player(SwapChainBackgroundPanel swapChainBackgroundPanel)
+//        public Player(SwapChainPanel SwapChainPanel)
 //        {
 //        }
 

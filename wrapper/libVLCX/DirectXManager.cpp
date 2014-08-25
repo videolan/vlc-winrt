@@ -78,7 +78,7 @@ void DirectXManger::UpdateSwapChain(unsigned int width, unsigned int height)
     }
 }
 
-void DirectXManger::CreateSwapPanel(SwapChainBackgroundPanel^ panel){
+void DirectXManger::CreateSwapPanel(SwapChainPanel^ panel){
     HRESULT hr;
     ComPtr<IDXGIFactory2> dxgiFactory;
     ComPtr<IDXGIAdapter> dxgiAdapter;
@@ -185,7 +185,7 @@ void DirectXManger::CreateSwapPanel(SwapChainBackgroundPanel^ panel){
 
 
     //TODO: perform the next 2 calls on the UI thread
-    ComPtr<ISwapChainBackgroundPanelNative> panelNative;
+    ComPtr<ISwapChainPanelNative> panelNative;
     hr = reinterpret_cast<IUnknown*>(panel)->QueryInterface(IID_PPV_ARGS(&panelNative));
     CheckDXOperation(hr, "Could not initialise the native panel");
 

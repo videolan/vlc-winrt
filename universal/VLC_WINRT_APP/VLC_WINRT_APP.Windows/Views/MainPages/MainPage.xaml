@@ -9,7 +9,7 @@
       DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}"
       RequestedTheme="Light">
 
-    <SwapChainBackgroundPanel x:Name="SwapChainPanel">
+    <SwapChainPanel x:Name="SwapChainPanel">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"
                               x:Name="LeftSidebarColumnDefinition" />
@@ -63,5 +63,5 @@
                 </TransitionCollection>
             </Frame.ContentTransitions>
         </Frame>
-    </SwapChainBackgroundPanel>
+    </SwapChainPanel>
 </Page>

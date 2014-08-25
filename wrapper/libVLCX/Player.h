@@ -40,7 +40,7 @@ namespace libVLCX {
     public ref class Player sealed
     {
     public:
-        Player(SwapChainBackgroundPanel^ panel);
+        Player(SwapChainPanel^ panel);
         IAsyncAction^ Initialize();
 
         void          Open(Platform::String^ mrl);
@@ -83,7 +83,7 @@ namespace libVLCX {
         void                     InitializeVLC();
         libvlc_instance_t        *p_instance;
         libvlc_media_player_t    *p_mp;
-        SwapChainBackgroundPanel ^p_panel;
+        SwapChainPanel ^p_panel;
         DirectXManger            *p_dxManager;
         float                    m_displayWidth;
         float                    m_displayHeight;
