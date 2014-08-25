@@ -35,6 +35,21 @@ namespace VLC_WINRT_APP.Views.VideoPages
         {
             InitializeComponent();
             this.Loaded += OnLoaded;
+            this.SizeChanged += OnSizeChanged;
+        }
+
+        private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
+        {
+            if (sizeChangedEventArgs.NewSize.Width < 550)
+            {
+                LockToggleButton.Visibility = Visibility.Collapsed;
+                MenuButton.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                LockToggleButton.Visibility = Visibility.Visible;
+                MenuButton.Visibility = Visibility.Visible;
+            }
         }
 
         private void OnLoaded(object sender, RoutedEventArgs routedEventArgs)

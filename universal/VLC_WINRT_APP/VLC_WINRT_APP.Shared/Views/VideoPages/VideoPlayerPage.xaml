@@ -72,12 +72,14 @@
                 <RowDefinition Height="50" />
             </Grid.RowDefinitions>
             <Grid>
-                <AppBarToggleButton Icon="Permissions"
+                <AppBarToggleButton Name="LockToggleButton"
+                                    Icon="Permissions"
                                     IsCompact="True"
                                     Margin="42,0,0,0"
                                     VerticalAlignment="Center"
                                     Click="EnableDoubleTapToShowCommands_Click" />
-                <AppBarButton Icon="More"
+                <AppBarButton Name="MenuButton"
+                              Icon="More"
                               HorizontalAlignment="Right"
                               IsCompact="True"
                               Margin="0,0,42,0"
