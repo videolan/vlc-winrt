@@ -26,6 +26,7 @@ namespace VLC_WINRT_APP.ViewModels
         #region private props
         private GoToPanelCommand _goToPanelCommand;
         private GoToSettingsPageCommand _goToSettingsPageCommand;
+        private GoToThanksPageCommand _goToThanksPageCommand;
 
         #endregion
         #region public fields
@@ -43,6 +44,13 @@ namespace VLC_WINRT_APP.ViewModels
             get { return _goToSettingsPageCommand; }
             set { SetProperty(ref _goToSettingsPageCommand, value); }
         }
+
+        public GoToThanksPageCommand GoToThanksPageCommand
+        {
+            get { return _goToThanksPageCommand; }
+            set { SetProperty(ref _goToThanksPageCommand, value); }
+        }
+
         #endregion
 
 
@@ -50,6 +58,7 @@ namespace VLC_WINRT_APP.ViewModels
         {
             GoToPanelCommand = new GoToPanelCommand();
             GoToSettingsPageCommand = new GoToSettingsPageCommand();
+            GoToThanksPageCommand = new GoToThanksPageCommand();
 
             // TODO: For Windows 8.1 build, use ResourceLoader.GetForCurrentView(); 
 

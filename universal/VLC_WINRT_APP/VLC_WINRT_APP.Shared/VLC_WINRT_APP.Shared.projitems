@@ -17,6 +17,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Dlna\DlnaClickedCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\MainPageCommands\GoToPanelCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\MainPageCommands\GoToSettingsPageCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\MainPageCommands\GoToThanksPageCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\MediaPlayback\PlayNextCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\MediaPlayback\PlayPauseCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\MediaPlayback\PlayPreviousCommand.cs" />
