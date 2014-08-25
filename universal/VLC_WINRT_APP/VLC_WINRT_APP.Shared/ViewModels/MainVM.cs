@@ -24,8 +24,6 @@ namespace VLC_WINRT_APP.ViewModels
         private ObservableCollection<Panel> _panels = new ObservableCollection<Panel>();
         #endregion
         #region private props
-        private PickVideoCommand _pickVideoCommand;
-        private PlayNetworkMRLCommand _playNetworkMRL;
         private GoToPanelCommand _goToPanelCommand;
         private GoToSettingsPageCommand _goToSettingsPageCommand;
 
@@ -33,18 +31,6 @@ namespace VLC_WINRT_APP.ViewModels
         #region public fields
         #endregion
         #region public props
-        public PickVideoCommand PickVideo
-        {
-            get { return _pickVideoCommand; }
-            set { SetProperty(ref _pickVideoCommand, value); }
-        }
-
-
-        public PlayNetworkMRLCommand PlayNetworkMRL
-        {
-            get { return _playNetworkMRL; }
-            set { SetProperty(ref _playNetworkMRL, value); }
-        }
 
         public GoToPanelCommand GoToPanelCommand
         {
@@ -62,8 +48,6 @@ namespace VLC_WINRT_APP.ViewModels
 
         public MainVM()
         {
-            PickVideo = new PickVideoCommand();
-            PlayNetworkMRL = new PlayNetworkMRLCommand();
             GoToPanelCommand = new GoToPanelCommand();
             GoToSettingsPageCommand = new GoToSettingsPageCommand();
 

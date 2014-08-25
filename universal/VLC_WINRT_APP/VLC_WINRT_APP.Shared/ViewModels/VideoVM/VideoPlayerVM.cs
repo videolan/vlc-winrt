@@ -189,7 +189,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             base.OnPlaybackStopped();
         }
 
-        public async void SetActiveVideoInfo(string mrl)
+        public async void SetActiveVideoInfo(string mrl, bool isStream = false)
         {
             // Pause the music viewmodel
             Locator.MusicPlayerVM.CleanViewModel();
@@ -199,7 +199,8 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             IsPlaying = true;
             OnPropertyChanged("IsPlaying");
             _fileToken = mrl;
-            _mrl = "file://" + mrl;
+            _mrl = (isStream) ? mrl : "file://" + mrl;
+            
             _timeTotal = TimeSpan.Zero;
             _elapsedTime = TimeSpan.Zero;
 

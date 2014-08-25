@@ -48,6 +48,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
         private LoadingState _loadingState;
         private PlayVideoCommand _openVideo;
         private PickVideoCommand _pickCommand = new PickVideoCommand();
+        private PlayNetworkMRLCommand _playNetworkMRL = new PlayNetworkMRLCommand();
         private bool _hasNoMedia = true;
         public LastVideosRepository _lastVideosRepository = new LastVideosRepository();
         #endregion
@@ -100,6 +101,11 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
         {
             get { return _pickCommand; }
             set { SetProperty(ref _pickCommand, value); }
+        }
+        public PlayNetworkMRLCommand PlayNetworkMRL
+        {
+            get { return _playNetworkMRL; }
+            set { SetProperty(ref _playNetworkMRL, value); }
         }
         #endregion
         #region contructors

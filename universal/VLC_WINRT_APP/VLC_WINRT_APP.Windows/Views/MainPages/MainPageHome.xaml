@@ -29,7 +29,8 @@
                                 Command="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM.PickVideo}">
                             <Button.Content>
                                 <TextBlock>
-                                <Run x:Uid="OpenVideoFile" Text="open a video" />
+                                <Run x:Uid="OpenVideoFile"
+                                     Text="open a video" />
                                 <Run Text=""
                                      FontFamily="Segoe UI Symbol" />
                                 </TextBlock>
@@ -39,11 +40,28 @@
                                 Margin="24,0,0,0"
                                 Style="{StaticResource TextBlockButtonStyle}"
                                 FontSize="22"
-                                FontWeight="Light"
-                                Command="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM.PickVideo}">
+                                FontWeight="Light">
+                            <Button.Flyout>
+                                <Flyout>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBox Name="UrlTextBox"
+                                                 PlaceholderText="Enter a URL"
+                                                 Width="200" />
+                                        <Button Style="{StaticResource TextBlockButtonStyle}"
+                                                Margin="12,0,0,0"
+                                                Command="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM.PlayNetworkMRL}"
+                                                CommandParameter="{Binding ElementName=UrlTextBox, Path=Text}">
+                                            <Button.Content>
+                                                <SymbolIcon Symbol="Accept" />
+                                            </Button.Content>
+                                        </Button>
+                                    </StackPanel>
+                                </Flyout>
+                            </Button.Flyout>
                             <Button.Content>
                                 <TextBlock>
-                                <Run x:Uid="OpenStream" Text="open a stream" />
+                                <Run x:Uid="OpenStream"
+                                     Text="open a stream" />
                                 <Run Text=""
                                      FontFamily="Segoe UI Symbol" />
                                 </TextBlock>
@@ -59,7 +77,8 @@
                             <Button.Content>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock>
-                                <Run x:Uid="SettingsMain" Text="settings" />
+                                <Run x:Uid="SettingsMain"
+                                        Text="settings" />
                                 <Run Text=""
                                         FontFamily="Segoe UI Symbol" />
                                     </TextBlock>
@@ -74,7 +93,8 @@
                                 Command="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM.PickVideo}">
                             <Button.Content>
                                 <TextBlock>
-                                    <Run x:Uid="OpenVideoFile" Text="open a video" />
+                                    <Run x:Uid="OpenVideoFile"
+                                         Text="open a video" />
                                     <Run Text=""
                                          FontFamily="Segoe UI Symbol" />
                                 </TextBlock>
@@ -82,11 +102,28 @@
                         </Button>
                         <Button Style="{StaticResource TextBlockButtonStyle}"
                                 FontSize="22"
-                                FontWeight="Light"
-                                Command="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM.PickVideo}">
+                                FontWeight="Light">
+                            <Button.Flyout>
+                                <Flyout>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBox Name="UrlTextBoxSnap"
+                                                 PlaceholderText="Enter a URL"
+                                                 Width="200" />
+                                        <Button Style="{StaticResource TextBlockButtonStyle}"
+                                                Margin="12,0,0,0"
+                                                Command="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM.PlayNetworkMRL}"
+                                                CommandParameter="{Binding ElementName=UrlTextBoxSnap, Path=Text}">
+                                            <Button.Content>
+                                                <SymbolIcon Symbol="Accept" />
+                                            </Button.Content>
+                                        </Button>
+                                    </StackPanel>
+                                </Flyout>
+                            </Button.Flyout>
                             <Button.Content>
                                 <TextBlock>
-                                    <Run x:Uid="OpenStream" Text="open a stream" />
+                                    <Run x:Uid="OpenStream"
+                                         Text="open a stream" />
                                     <Run Text=""
                                          FontFamily="Segoe UI Symbol" />
                                 </TextBlock>
@@ -110,7 +147,8 @@
                 </Grid>
             </Hub.Header>
             <Hub.Sections>
-                <HubSection x:Uid="VideoHubHeader" Header="videos"
+                <HubSection x:Uid="VideoHubHeader"
+                            Header="videos"
                             HeaderTemplate="{StaticResource ColoredHeader}"
                             HorizontalContentAlignment="Stretch"
                             HorizontalAlignment="Stretch">
@@ -139,12 +177,14 @@
                         </DataTemplate>
                     </HubSection.ContentTemplate>
                 </HubSection>
-                <HubSection x:Uid="AudioHubHeader" Header="audio"
+                <HubSection x:Uid="AudioHubHeader"
+                            Header="audio"
                             HeaderTemplate="{StaticResource ColoredHeader}"
                             Margin="0,-10,0,0">
                     <HubSection.ContentTemplate>
                         <DataTemplate>
-                            <Grid x:Name="MusicLibrary" DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
+                            <Grid x:Name="MusicLibrary"
+                                  DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
                                 <GridView ItemsSource="{Binding RandomAlbums}"
                                           ItemTemplate="{StaticResource SemanticZoomInViewAlbumTemplate}"
                                           ItemContainerStyle="{StaticResource GridViewItemStyle}"
