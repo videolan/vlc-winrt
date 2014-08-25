@@ -113,8 +113,8 @@
     <SDKReference Include="Microsoft.VCLibs, Version=11.0">
       <Name>Microsoft Visual C++ Runtime Package</Name>
     </SDKReference>
-    <SDKReference Include="SQLite.WinRT81, Version=3.8.5">
-      <Name>SQLite for Windows Runtime %28Windows 8.1%291</Name>
+    <SDKReference Include="SQLite.WinRT81, Version=3.8.6">
+      <Name>SQLite for Windows Runtime %28Windows 8.1%29</Name>
     </SDKReference>
   </ItemGroup>
   <ItemGroup>
