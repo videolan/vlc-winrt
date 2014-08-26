@@ -55,6 +55,7 @@ namespace VLC_WINRT_APP
             Container = AutoFacConfiguration.Configure();
         }
 
+
         public static Frame ApplicationFrame
         {
             get
@@ -148,6 +149,7 @@ namespace VLC_WINRT_APP
             {
                 await LaunchTheApp();
             }
+            await Task.Delay(1000);
             if (VLCFileExtensions.FileTypeHelper((args.Files[0] as StorageFile).FileType) ==
                 VLCFileExtensions.VLCFileType.Video)
             {
