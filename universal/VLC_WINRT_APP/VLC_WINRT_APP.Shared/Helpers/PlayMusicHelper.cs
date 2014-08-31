@@ -77,6 +77,8 @@ namespace VLC_WINRT_APP.Helpers
 
         public static void SetCurrentTrackPosition(int index)
         {
+            if (index > Locator.MusicPlayerVM.CurrentPlayingArtist.CurrentAlbumItem.Tracks.Count + 1)
+                index = 0;
             Locator.MusicPlayerVM.CurrentPlayingArtist.CurrentAlbumItem.CurrentTrackPosition = index;
         }
     }

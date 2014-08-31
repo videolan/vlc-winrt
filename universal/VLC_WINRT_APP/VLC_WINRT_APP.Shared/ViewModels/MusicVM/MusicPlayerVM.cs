@@ -100,9 +100,17 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         {
             get
             {
-                if (TrackCollection != null && TrackCollection.Any())
+                try
+                {
+                    if (TrackCollection != null && TrackCollection.Any())
+                        return TrackCollection[CurrentTrack];
+                    else return null;
+                }
+                catch(ArgumentOutOfRangeException exception)
+                {
+                    CurrentTrack = 0;
                     return TrackCollection[CurrentTrack];
-                else return null;
+                }
             }
         }
 
@@ -129,34 +137,9 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             _tracksCollection = new ObservableCollection<MusicLibraryVM.TrackItem>();
             _mediaService.MediaEnded += MediaService_MediaEnded;
             GoToMusicPlayerPage = new GoToMusicPlayerPage();
-            RegisterMediaControls();
         }
 
-        private void RegisterMediaControls()
-        {
-            MediaControl.NextTrackPressed += MediaControlOnNextTrackPressed;
-            MediaControl.PreviousTrackPressed += MediaControlOnPreviousTrackPressed;
-        }
-
-        private void MediaControlOnPreviousTrackPressed(object sender, object o)
-        {
-            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-            {
-                if(CanGoPrevious)
-                    PlayPreviousCommand.Execute("");
-            });
-        }
-
-        private void MediaControlOnNextTrackPressed(object sender, object o)
-        {
-            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-            {
-                if (CanGoNext)
-                    PlayNextCommand.Execute("");
-            });
-        }
-
-
+        
         protected async void MediaService_MediaEnded(object sender, EventArgs e)
         {
             if (TrackCollection.Count == 0 ||
@@ -268,17 +251,10 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 
             // Setting the info for windows 8 controls
             var resourceLoader = new ResourceLoader();
-            MediaControl.ArtistName = trackItem.ArtistName ?? resourceLoader.GetString("UnknownArtist");
-            MediaControl.TrackName = trackItem.Name ?? resourceLoader.GetString("UnknownTrack");
-
-            try
-            {
-                MediaControl.AlbumArt = new Uri(Locator.MusicPlayerVM.CurrentPlayingArtist.CurrentAlbumItem.Picture);
-            }
-            catch
-            {
-                // If album cover is from the internet then it's impossible to pass it to the MediaControl
-            }
+            string artistName = trackItem.ArtistName ?? resourceLoader.GetString("UnknownArtist");
+            string albumName = trackItem.AlbumName;
+            string trackName = trackItem.Name ?? resourceLoader.GetString("UnknownTrack");
+            base._mediaService.SetMediaTransportControlsInfo(artistName, albumName, trackName, Locator.MusicPlayerVM.CurrentPlayingArtist.CurrentAlbumItem.Picture);
         }
 
         public async void SetActiveMusicInfo(string token, MusicLibraryVM.TrackItem track)

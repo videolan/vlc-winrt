@@ -9,6 +9,7 @@
 
 using System;
 using Windows.ApplicationModel.Resources;
+using Windows.Media;
 using Windows.System;
 using Windows.UI.ApplicationSettings;
 using Windows.UI.Xaml;
@@ -30,6 +31,7 @@ namespace VLC_WINRT_APP.Views.MainPages
             this.SizeChanged += OnSizeChanged;
             _vlcService = vlcService;
             (mediaService as MediaService).SetMediaElement(FoudationMediaElement);
+            (mediaService as MediaService).SetMediaTransportControls(SystemMediaTransportControls.GetForCurrentView());
             Loaded += SwapPanelLoaded;
         }
 

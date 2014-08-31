@@ -13,9 +13,12 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Storage.AccessCache;
+using Windows.Storage.Streams;
 using Windows.UI.Popups;
 using VLC_WINRT.Common;
+using VLC_WINRT_APP.Commands.MediaPlayback;
 using VLC_WINRT_APP.Helpers.MusicLibrary.Deezer;
+using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.Services.Interface;
 using Windows.Storage;
 using Windows.UI.Core;
@@ -38,13 +41,13 @@ namespace VLC_WINRT_APP.Services.RunTime
 
         private MediaElement _mediaElement;
 
+        private SystemMediaTransportControls _systemMediaTransportControls;
         public MediaService(VlcService vlcService)
         {
             _vlcService = vlcService;
 
             _vlcService.MediaEnded += VlcPlayerService_MediaEnded;
             _vlcService.StatusChanged += VlcPlayerService_StatusChanged;
-            MediaControl.IsPlaying = false;
             
             CoreWindow.GetForCurrentThread().Activated += ApplicationState_Activated;
         }
@@ -52,6 +55,62 @@ namespace VLC_WINRT_APP.Services.RunTime
         public void SetMediaElement(MediaElement mediaElement)
         {
             _mediaElement = mediaElement;
+        }
+        public void SetMediaTransportControls(SystemMediaTransportControls systemMediaTransportControls)
+        {
+            _systemMediaTransportControls = systemMediaTransportControls;
+            _systemMediaTransportControls.PlaybackStatus = MediaPlaybackStatus.Closed;
+            _systemMediaTransportControls.ButtonPressed += SystemMediaTransportControlsOnButtonPressed;
+            _systemMediaTransportControls.IsEnabled = false;
+        }
+
+        public void SetMediaTransportControlsInfo(string artistName, string albumName, string trackName, string albumUri)
+        {
+            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+            {
+                SystemMediaTransportControlsDisplayUpdater updater = _systemMediaTransportControls.DisplayUpdater;
+                updater.Type = MediaPlaybackType.Music;
+                // Music metadata.
+                updater.MusicProperties.AlbumArtist = artistName;
+                updater.MusicProperties.Artist = artistName;
+                updater.MusicProperties.Title = trackName;
+
+                // Set the album art thumbnail.
+                // RandomAccessStreamReference is defined in Windows.Storage.Streams
+                StorageFile albumCover = await StorageFile.GetFileFromPathAsync(albumUri);
+                updater.Thumbnail = RandomAccessStreamReference.CreateFromFile(albumCover);
+
+                // Update the system media transport controls.
+                updater.Update();
+            });
+        }
+
+        private void SystemMediaTransportControlsOnButtonPressed(SystemMediaTransportControls sender, SystemMediaTransportControlsButtonPressedEventArgs args)
+        {
+            switch (args.Button)
+            {
+                case SystemMediaTransportControlsButton.Pause:
+                    Pause();
+                    break;
+                case SystemMediaTransportControlsButton.Play:
+                    Play();
+                    break;
+                case SystemMediaTransportControlsButton.Stop:
+                    Stop();
+                    break;
+                case SystemMediaTransportControlsButton.Previous:
+                    if (Locator.MusicPlayerVM.PlayingType == PlayingType.Music)
+                        Locator.MusicPlayerVM.PlayPrevious();
+                    else
+                        Locator.VideoVm.SkipBack.Execute("");
+                    break;
+                case SystemMediaTransportControlsButton.Next:
+                    if (Locator.MusicPlayerVM.PlayingType == PlayingType.Music)
+                        Locator.MusicPlayerVM.PlayNext();
+                    else
+                        Locator.VideoVm.SkipAhead.Execute("");
+                    break;
+            }
         }
 
         /// <summary>
@@ -122,7 +181,9 @@ namespace VLC_WINRT_APP.Services.RunTime
                 SetMediaFile(_lastMrl, _isAudioMedia);
             }
             _vlcService.Play();
-            RegisterMediaControls();
+            _systemMediaTransportControls.IsEnabled = true;
+            _systemMediaTransportControls.IsPauseEnabled = true;
+            _systemMediaTransportControls.IsPlayEnabled = true;
         }
 
         public void Pause()
@@ -133,7 +194,6 @@ namespace VLC_WINRT_APP.Services.RunTime
         public void Stop()
         {
             _vlcService.Stop();
-            UnregisterMediaControls();
         }
 
         public void FastForward()
@@ -181,37 +241,12 @@ namespace VLC_WINRT_APP.Services.RunTime
             return _vlcService.GetVolume().Result;
         }
 
-        private async void MediaControl_PausePressed(object sender, object e)
-        {
-            await DispatchHelper.InvokeAsync(() =>
-            {
-                Pause();
-            });
-        }
-
-        private async void MediaControl_PlayPressed(object sender, object e)
-        {
-            await DispatchHelper.InvokeAsync(() =>
-            {
-                Play();
-            });
-        }
-
-        void MediaControl_PlayPauseTogglePressed(object sender, object e)
-        {
-            if (MediaControl.IsPlaying)
-                Pause();
-            else
-                Play();
-        }
 
         async void VlcPlayerService_MediaEnded(object sender, Player e)
         {
             await DispatchHelper.InvokeAsync(() =>
             {
-                MediaControl.IsPlaying = false;
-                UnregisterMediaControls();
-
+                _systemMediaTransportControls.PlaybackStatus = MediaPlaybackStatus.Stopped;
                 var mediaEnded = MediaEnded;
                 if (mediaEnded != null)
                 {
@@ -224,7 +259,21 @@ namespace VLC_WINRT_APP.Services.RunTime
         {
             try
             {
-                MediaControl.IsPlaying = state == VlcService.MediaPlayerState.Playing;
+                switch (state)
+                {
+                    case VlcService.MediaPlayerState.NotPlaying:
+                        _systemMediaTransportControls.PlaybackStatus = MediaPlaybackStatus.Closed;
+                        break;
+                    case VlcService.MediaPlayerState.Paused:
+                        _systemMediaTransportControls.PlaybackStatus = MediaPlaybackStatus.Paused;
+                        break;
+                    case VlcService.MediaPlayerState.Playing:
+                        _systemMediaTransportControls.PlaybackStatus = MediaPlaybackStatus.Playing;
+                        break;
+                    case VlcService.MediaPlayerState.Stopped:
+                        _systemMediaTransportControls.PlaybackStatus = MediaPlaybackStatus.Stopped;
+                        break;
+                }
                 var statusChanged = StatusChanged;
                 if (statusChanged != null)
                 {
@@ -283,30 +332,6 @@ namespace VLC_WINRT_APP.Services.RunTime
 
                 _mediaElement.Stop();
             }
-        }
-
-        private bool _isRegistered;
-
-        private void RegisterMediaControls()
-        {
-            if (_isRegistered)
-                return;
-
-            MediaControl.PlayPressed += MediaControl_PlayPressed;
-            MediaControl.PausePressed += MediaControl_PausePressed;
-            MediaControl.PlayPauseTogglePressed += MediaControl_PlayPauseTogglePressed;
-            _isRegistered = true;
-        }
-
-        private void UnregisterMediaControls()
-        {
-            if (!_isRegistered)
-                return;
-
-            MediaControl.PlayPressed -= MediaControl_PlayPressed;
-            MediaControl.PausePressed -= MediaControl_PausePressed;
-            MediaControl.PlayPauseTogglePressed -= MediaControl_PlayPauseTogglePressed;
-            _isRegistered = false;
         }
 
         public bool IsPlaying

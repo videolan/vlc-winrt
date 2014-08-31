@@ -17,6 +17,8 @@ namespace VLC_WINRT_APP.Services.Interface
         bool IsPlaying { get; }
         bool IsBackground { get; }
 
+        void SetMediaTransportControlsInfo(string artistName, string albumName, string trackName, string albumUri);
+
         /// <summary>
         /// Sets the path of the file to played.
         /// </summary>
