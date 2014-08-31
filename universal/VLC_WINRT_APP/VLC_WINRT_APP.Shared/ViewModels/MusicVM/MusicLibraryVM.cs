@@ -550,7 +550,11 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             public int CurrentAlbumIndex
             {
                 get { return _currentAlbumIndex; }
-                set { SetProperty(ref _currentAlbumIndex, value); }
+                set
+                {
+                    SetProperty(ref _currentAlbumIndex, value);
+                    OnPropertyChanged("CurrentAlbumItem");
+                }
             }
 
             [Ignore]

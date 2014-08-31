@@ -121,7 +121,8 @@
             </Grid.ColumnDefinitions>
             <ListView ItemsSource="{Binding Artists}"
                       IsItemClickEnabled="False"
-                      SelectionMode="Single">
+                      SelectionMode="Single"
+                      ItemContainerStyle="{StaticResource ListViewItemStyle}">
                 <triggers:Interactions.Triggers>
                     <triggers:EventTrigger EventName="SelectionChanged">
                         <triggers:InvokeCommandAction Command="{Binding ArtistClickedCommand}"
@@ -147,9 +148,9 @@
                                      FontSize="22" />
                                 <LineBreak />
                                 <Run Text="{Binding Albums.Count}"
-                                     Foreground="DarkGray" />
-                                <Run Text="albums"
-                                     Foreground="DarkGray" />
+                                     Foreground="DimGray"/>
+                                <Run Text="albums" 
+                                     Foreground="DimGray"/>
                             </TextBlock>
                         </Grid>
                     </DataTemplate>

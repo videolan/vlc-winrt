@@ -7,13 +7,15 @@
     <SolidColorBrush x:Key="MainColor"
                      Color="{StaticResource MainColorBase}" />
     <SolidColorBrush x:Key="ListViewItemSelectedBackgroundThemeBrush"
-                     Color="{StaticResource MainColorBase}" />
+                     Color="{StaticResource MainColorBase}"
+                     Opacity="0.7"/>
     <SolidColorBrush x:Key="ListViewItemPointerOverBackgroundThemeBrush"
                      Color="LightGray" />
     <SolidColorBrush x:Key="ListViewItemSelectedPointerOverBorderThemeBrush"
                      Color="{StaticResource MainColorBase}" />
     <SolidColorBrush x:Key="ListViewItemSelectedPointerOverBackgroundThemeBrush"
-                     Color="{StaticResource MainColorBase}" />
+                     Color="{StaticResource MainColorBase}"
+                     Opacity="0.7"/>
 
     <x:String x:Key="ProgressBarIndeterminateForegroundThemeBrush">#e67e22</x:String>
     <x:String x:Key="ProgressBarForegroundThemeBrush">#e67e22</x:String>

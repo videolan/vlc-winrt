@@ -41,8 +41,8 @@ namespace VLC_WINRT_APP.Helpers
                     SetCurrentPlayingAlbum(album);
                     SetCurrentTrackPosition(index);
                 }
+                Task.Run(() => Locator.MusicPlayerVM.Play());
             });
-            Locator.MusicPlayerVM.Play();
         }
 
         public static async Task AddToQueue(this MusicLibraryVM.AlbumItem album, bool resetQueue = true)
