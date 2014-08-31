@@ -95,6 +95,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             set
             {
                 SetProperty(ref _currentTrack, value);
+                OnPropertyChanged("TrackCollection");
                 OnPropertyChanged("CurrentTrack");
                 OnPropertyChanged("CurrentTrackItem");
             }

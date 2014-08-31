@@ -5,6 +5,7 @@ using System.Linq;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using VLC_WINRT.Common;
+using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.Views.MainPages;
 using VLC_WINRT_APP.ViewModels.MusicVM;
@@ -17,8 +18,8 @@ namespace VLC_WINRT_APP.Commands.Music
         public override async void Execute(object parameter)
         {
             App.RootPage.MainFrameThemeTransition.Edge = EdgeTransitionLocation.Right;
-            App.ApplicationFrame.Navigate(typeof(AlbumPage));
-            Locator.MusicLibraryVM.IsAlbumPageShown = true;
+            App.ApplicationFrame.Navigate(typeof(MusicPlayerPage));
+            Locator.MusicLibraryVM.IsAlbumPageShown = false;
             MusicLibraryVM.AlbumItem album = parameter as MusicLibraryVM.AlbumItem;
             
             if (album == null)
@@ -31,6 +32,7 @@ namespace VLC_WINRT_APP.Commands.Music
                 Locator.MusicLibraryVM.Artists.FirstOrDefault(x => x.Name == album.Artist);
             if (Locator.MusicLibraryVM.CurrentArtist != null)
                 Locator.MusicLibraryVM.CurrentArtist.CurrentAlbumIndex = Locator.MusicLibraryVM.CurrentArtist.Albums.IndexOf(album);
+            PlayMusickHelper.AddToQueue(album);
         }
     }
 }

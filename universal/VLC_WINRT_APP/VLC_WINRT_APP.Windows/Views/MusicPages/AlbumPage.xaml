@@ -109,7 +109,5 @@
                 </ListView.ItemsPanel>
             </ListView>
         </Grid>
-        <!--<local:MiniPlayer Grid.Row="4"
-                          Margin="-12,0,0,0"/>-->
     </Grid>
 </Page>

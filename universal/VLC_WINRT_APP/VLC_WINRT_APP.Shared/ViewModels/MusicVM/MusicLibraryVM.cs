@@ -166,6 +166,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             }
             set { SetProperty(ref _albumClickedCommand, value); }
         }
+
         public ArtistClickedCommand ArtistClickedCommand
         {
             get
