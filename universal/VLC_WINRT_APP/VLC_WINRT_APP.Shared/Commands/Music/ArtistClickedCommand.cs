@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
+﻿using Windows.UI.Xaml.Controls;
 using VLC_WINRT.Common;
 using VLC_WINRT_APP.ViewModels;
-using VLC_WINRT_APP.Views.MainPages;
-using VLC_WINRT_APP.Views.MusicPages;
 using VLC_WINRT_APP.ViewModels.MusicVM;
 
 namespace VLC_WINRT_APP.Commands.Music
@@ -16,11 +10,23 @@ namespace VLC_WINRT_APP.Commands.Music
         public override async void Execute(object parameter)
         {
 #if WINDOWS_PHONE_APP
-            //App.RootFrame.Navigate(typeof(ArtistPage));
+    //App.RootFrame.Navigate(typeof(ArtistPage));
 #endif
-            ItemClickEventArgs args = parameter as ItemClickEventArgs;
-            MusicLibraryVM.ArtistItem artist = args.ClickedItem as MusicLibraryVM.ArtistItem;
-            Locator.MusicLibraryVM.CurrentArtist = artist;
+            MusicLibraryVM.ArtistItem artist = null;
+            if (parameter is ItemClickEventArgs)
+            {
+
+                ItemClickEventArgs args = parameter as ItemClickEventArgs;
+                artist = args.ClickedItem as MusicLibraryVM.ArtistItem;
+            }
+            else if (parameter is SelectionChangedEventArgs)
+            {
+                SelectionChangedEventArgs args = parameter as SelectionChangedEventArgs;
+                if(args.AddedItems.Count > 0)
+                    artist = args.AddedItems[0] as MusicLibraryVM.ArtistItem;
+            }
+            if (artist != null)
+                Locator.MusicLibraryVM.CurrentArtist = artist;
         }
     }
 }

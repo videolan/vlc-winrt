@@ -5,6 +5,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:triggers="using:WinRT.Triggers"
       xmlns:userControls="using:VLC_WINRT_APP.Views.UserControls"
+      xmlns:artistPageControls="using:VLC_WINRT_APP.Views.MusicPages.ArtistPageControls"
       mc:Ignorable="d"
       d:DesignHeight="300"
       d:DesignWidth="600"
@@ -112,16 +113,17 @@
             </SemanticZoom.ZoomedInView>
         </SemanticZoom>
         <Grid Grid.Row="3"
-              x:Name="ArtistsGrid">
+              x:Name="ArtistsGrid"
+              Visibility="Collapsed">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="320" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <ListView ItemsSource="{Binding Artists}"
-                      IsItemClickEnabled="True"
-                      SelectionMode="None">
+                      IsItemClickEnabled="False"
+                      SelectionMode="Single">
                 <triggers:Interactions.Triggers>
-                    <triggers:EventTrigger EventName="ItemClick">
+                    <triggers:EventTrigger EventName="SelectionChanged">
                         <triggers:InvokeCommandAction Command="{Binding ArtistClickedCommand}"
                                                       PassEventArgsToCommand="True" />
                     </triggers:EventTrigger>
@@ -154,7 +156,40 @@
                 </ListView.ItemTemplate>
             </ListView>
             <Grid Grid.Column="1">
-                <GridView ItemsSource="{Binding CurrentArtist.Albums}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="55" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{Binding CurrentArtist.Name}"
+                               Style="{StaticResource SubheaderTextBlockStyle}"
+                               Foreground="{StaticResource MainColor}" />
+                    <Button Style="{StaticResource TextBlockButtonStyle}"
+                            Margin="24,0,0,0"
+                            Command="{Binding CurrentArtist.PlayArtistCommand}"
+                            CommandParameter="{Binding CurrentArtist}"
+                            VerticalAlignment="Top">
+                        <StackPanel Orientation="Horizontal">
+                            <SymbolIcon Symbol="Play" />
+                            <TextBlock Text="Play all"
+                                       Style="{StaticResource BodyTextBlockStyle}"
+                                       VerticalAlignment="Center"
+                                       Margin="5,-10,0,0" />
+                        </StackPanel>
+                    </Button>
+                    <Button Margin="24,0,0,0"
+                            VerticalAlignment="Top"
+                            Content="Biography"
+                            Style="{StaticResource TextBlockButtonStyle}">
+                        <Button.Flyout>
+                            <Flyout>
+                                <artistPageControls:ArtistCoverBiographyControl RequestedTheme="Dark" />
+                            </Flyout>
+                        </Button.Flyout>
+                    </Button>
+                </StackPanel>
+                <GridView Grid.Row="1"
+                          ItemsSource="{Binding CurrentArtist.Albums}">
                     <GridView.ItemContainerStyle>
                         <Style TargetType="GridViewItem">
                             <Setter Property="VerticalContentAlignment"
@@ -169,7 +204,8 @@
                     </GridView.ItemsPanel>
                     <GridView.ItemTemplate>
                         <DataTemplate>
-                            <Grid VerticalAlignment="Top">
+                            <Grid VerticalAlignment="Top"
+                                  Margin="0,0,40,0">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="50" />
                                     <RowDefinition />
@@ -178,23 +214,23 @@
                                            Style="{StaticResource SubheaderTextBlockStyle}" />
                                 <Grid Grid.Row="1">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="130" />
+                                        <ColumnDefinition Width="160" />
+                                        <ColumnDefinition Width="12"/>
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
-                                    <Grid>
-                                        <Image Width="130"
-                                               Height="130"
+                                    <StackPanel>
+                                        <Image Width="160"
+                                               Height="160"
                                                Stretch="UniformToFill"
                                                Source="{Binding Picture}"
                                                VerticalAlignment="Top" />
-                                    </Grid>
-                                    <ListView Grid.Column="1"
-                                              ItemsSource="{Binding Tracks}">
-                                        <ListView.ItemTemplate>
-                                            <DataTemplate>
-                                                <TextBlock Text="{Binding Name}" />
-                                            </DataTemplate>
-                                        </ListView.ItemTemplate>
+                                        <Button Margin="0,24,0,0"
+                                                Content="Play album" />
+                                    </StackPanel>
+                                    <ListView Grid.Column="2"
+                                              ItemsSource="{Binding Tracks}"
+                                              ItemTemplate="{StaticResource LittleDarkTrackTemplate}"
+                                              ItemContainerStyle="{StaticResource ListViewItemContainerStyle}">
                                         <ListView.ItemsPanel>
                                             <ItemsPanelTemplate>
                                                 <ItemsWrapGrid ItemWidth="350"

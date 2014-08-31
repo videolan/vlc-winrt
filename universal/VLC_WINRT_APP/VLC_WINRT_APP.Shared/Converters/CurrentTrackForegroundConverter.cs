@@ -12,11 +12,12 @@ namespace VLC_WINRT_APP.Converters
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             if (value is MusicLibraryVM.TrackItem
-                && ((MusicLibraryVM.TrackItem) value).Path == Locator.MusicPlayerVM.CurrentTrackItem.Path)
+                && Locator.MusicPlayerVM.CurrentTrackItem != null
+                && ((MusicLibraryVM.TrackItem)value).Path == Locator.MusicPlayerVM.CurrentTrackItem.Path)
             {
                 return App.Current.Resources["MainColor"] as SolidColorBrush;
             }
-            return new SolidColorBrush(Colors.Black);
+            return new SolidColorBrush(Color.FromArgb(255, 15, 15, 15));
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
