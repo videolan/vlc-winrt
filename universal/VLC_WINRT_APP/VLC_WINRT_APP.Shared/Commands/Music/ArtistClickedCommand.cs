@@ -18,10 +18,6 @@ namespace VLC_WINRT_APP.Commands.Music
 #if WINDOWS_PHONE_APP
             //App.RootFrame.Navigate(typeof(ArtistPage));
 #endif
-#if WINDOWS_APP
-            App.RootPage.MainFrameThemeTransition.Edge = EdgeTransitionLocation.Right;
-            App.ApplicationFrame.Navigate(typeof(ArtistPage));
-#endif
             ItemClickEventArgs args = parameter as ItemClickEventArgs;
             MusicLibraryVM.ArtistItem artist = args.ClickedItem as MusicLibraryVM.ArtistItem;
             Locator.MusicLibraryVM.CurrentArtist = artist;

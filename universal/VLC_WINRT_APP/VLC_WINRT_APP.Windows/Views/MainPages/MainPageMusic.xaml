@@ -42,7 +42,8 @@
             </ListView.ItemsPanel>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Height="50" Margin="0,0,5,0">
+                    <Grid Height="50"
+                          Margin="0,0,5,0">
                         <TextBlock Text="{Binding Title}"
                                    Foreground="{Binding Color}"
                                    TextWrapping="NoWrap"
@@ -110,29 +111,104 @@
                 </ListView>
             </SemanticZoom.ZoomedInView>
         </SemanticZoom>
-        <ListView x:Name="ZoomedInListViewArtist"
-                  Grid.Row="3"
-                  Visibility="Collapsed"
-                  ItemsSource="{Binding Artists}"
-                  IsItemClickEnabled="True"
-                  SelectionMode="None"
-                  ItemTemplate="{StaticResource SemanticZoomViewInArtistTemplate}"
-                  ItemContainerStyle="{StaticResource ListViewItemStyle}">
-            <triggers:Interactions.Triggers>
-                <triggers:EventTrigger EventName="ItemClick">
-                    <triggers:InvokeCommandAction Command="{Binding ArtistClickedCommand}"
-                                                  PassEventArgsToCommand="True" />
-                </triggers:EventTrigger>
-            </triggers:Interactions.Triggers>
-            <ListView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <ItemsWrapGrid Orientation="Horizontal"
-                                   ItemHeight="300"
-                                   ItemWidth="250"
-                                   Margin="0,0,0,25" />
-                </ItemsPanelTemplate>
-            </ListView.ItemsPanel>
-        </ListView>
+        <Grid Grid.Row="3"
+              x:Name="ArtistsGrid">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="320" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <ListView ItemsSource="{Binding Artists}"
+                      IsItemClickEnabled="True"
+                      SelectionMode="None">
+                <triggers:Interactions.Triggers>
+                    <triggers:EventTrigger EventName="ItemClick">
+                        <triggers:InvokeCommandAction Command="{Binding ArtistClickedCommand}"
+                                                      PassEventArgsToCommand="True" />
+                    </triggers:EventTrigger>
+                </triggers:Interactions.Triggers>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="73" />
+                                <ColumnDefinition Width="12" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Image Width="73"
+                                   Height="55"
+                                   Stretch="UniformToFill"
+                                   Source="{Binding Picture}" />
+                            <TextBlock Grid.Column="2"
+                                       VerticalAlignment="Center">
+                                <Run Text="{Binding Name}"
+                                     FontWeight="Light"
+                                     FontSize="22" />
+                                <LineBreak />
+                                <Run Text="{Binding Albums.Count}"
+                                     Foreground="DarkGray" />
+                                <Run Text="albums"
+                                     Foreground="DarkGray" />
+                            </TextBlock>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Grid Grid.Column="1">
+                <GridView ItemsSource="{Binding CurrentArtist.Albums}">
+                    <GridView.ItemContainerStyle>
+                        <Style TargetType="GridViewItem">
+                            <Setter Property="VerticalContentAlignment"
+                                    Value="Top" />
+                        </Style>
+                    </GridView.ItemContainerStyle>
+                    <GridView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel VirtualizationMode="Standard"
+                                                    Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </GridView.ItemsPanel>
+                    <GridView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid VerticalAlignment="Top">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="50" />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <TextBlock Text="{Binding Name}"
+                                           Style="{StaticResource SubheaderTextBlockStyle}" />
+                                <Grid Grid.Row="1">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="130" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid>
+                                        <Image Width="130"
+                                               Height="130"
+                                               Stretch="UniformToFill"
+                                               Source="{Binding Picture}"
+                                               VerticalAlignment="Top" />
+                                    </Grid>
+                                    <ListView Grid.Column="1"
+                                              ItemsSource="{Binding Tracks}">
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Name}" />
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                        <ListView.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <ItemsWrapGrid ItemWidth="350"
+                                                               Orientation="Vertical" />
+                                            </ItemsPanelTemplate>
+                                        </ListView.ItemsPanel>
+                                    </ListView>
+                                </Grid>
+                            </Grid>
+                        </DataTemplate>
+                    </GridView.ItemTemplate>
+                </GridView>
+            </Grid>
+        </Grid>
         <ListView x:Name="RadDataGrid"
                   Grid.Row="3"
                   Visibility="Collapsed"
@@ -148,7 +224,7 @@
             </triggers:Interactions.Triggers>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <userControls:TrackItemTemplate/>
+                    <userControls:TrackItemTemplate />
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

@@ -73,25 +73,25 @@ namespace VLC_WINRT_APP.Views.MainPages
             {
                 case 0:
                     SemanticZoomAlbumsByArtist.Visibility = Visibility.Visible;
-                    ZoomedInListViewArtist.Visibility = Visibility.Collapsed;
+                    ArtistsGrid.Visibility = Visibility.Collapsed;
                     RadDataGrid.Visibility = Visibility.Collapsed;
                     FavoriteAlbumsGridView.Visibility = Visibility.Collapsed;
                     break;
                 case 1:
                     SemanticZoomAlbumsByArtist.Visibility = Visibility.Collapsed;
-                    ZoomedInListViewArtist.Visibility = Visibility.Visible;
+                    ArtistsGrid.Visibility = Visibility.Visible;
                     RadDataGrid.Visibility = Visibility.Collapsed;
                     FavoriteAlbumsGridView.Visibility = Visibility.Collapsed;
                     break;
                 case 2:
                     SemanticZoomAlbumsByArtist.Visibility = Visibility.Collapsed;
-                    ZoomedInListViewArtist.Visibility = Visibility.Collapsed;
+                    ArtistsGrid.Visibility = Visibility.Collapsed;
                     RadDataGrid.Visibility = Visibility.Visible;
                     FavoriteAlbumsGridView.Visibility = Visibility.Collapsed;
                     break;
                 case 3:
                     SemanticZoomAlbumsByArtist.Visibility = Visibility.Collapsed;
-                    ZoomedInListViewArtist.Visibility = Visibility.Collapsed;
+                    ArtistsGrid.Visibility = Visibility.Collapsed;
                     RadDataGrid.Visibility = Visibility.Collapsed;
                     FavoriteAlbumsGridView.Visibility = Visibility.Visible;
                     break;
