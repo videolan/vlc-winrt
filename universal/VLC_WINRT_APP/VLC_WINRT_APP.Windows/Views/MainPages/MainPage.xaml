@@ -26,8 +26,21 @@
               Grid.ColumnSpan="2"
               Visibility="{Binding Source={StaticResource Locator}, Path=VideoVm.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}" />
 
-        <Image Stretch="UniformToFill"
-               Source="ms-appx:///Assets/flatbackground1.png"
+        <Image Stretch="Uniform"
+               HorizontalAlignment="Right"
+               VerticalAlignment="Top"
+               Height="210"
+               Source="ms-appx:///Assets/backgroundTop.png"
+               Opacity="0.8"
+               Grid.RowSpan="3"
+               Grid.ColumnSpan="2"
+               extensions:ImageExtensions.FadeInOnLoaded="True"
+               Visibility="{Binding Source={StaticResource Locator}, Path=VideoVm.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}" />
+        <Image Stretch="Uniform"
+               HorizontalAlignment="Right"
+               VerticalAlignment="Bottom"
+               Height="325"
+               Source="ms-appx:///Assets/backgroundBot.png"
                Opacity="0.8"
                Grid.RowSpan="3"
                Grid.ColumnSpan="2"
