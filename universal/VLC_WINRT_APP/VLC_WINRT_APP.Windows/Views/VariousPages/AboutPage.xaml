@@ -23,13 +23,25 @@
                             Margin="0,70,0,0">
                     <Grid Margin="100,0,0,0">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="50"/>
-                            <RowDefinition/>
+                            <RowDefinition Height="50" />
+                            <RowDefinition />
                         </Grid.RowDefinitions>
                         <TextBlock Text="developers"
-                                   Style="{StaticResource SubheaderTextBlockStyle}"/>
+                                   Style="{StaticResource SubheaderTextBlockStyle}" />
                         <Grid Grid.Row="1">
-                            
+                            <ListView x:Name="DevsListView">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel>
+                                            <TextBlock Text="{Binding Name}"
+                                                       Style="{StaticResource TitleTextBlockStyle}" />
+                                            <TextBlock Text="{Binding Role}" />
+                                            <HyperlinkButton Content="Twitter"
+                                                             NavigateUri="{Binding TwitterURI}" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
                         </Grid>
                     </Grid>
                     <Grid Margin="100,0,0,0">
@@ -41,7 +53,7 @@
                         </Grid.RowDefinitions>
                         <TextBlock Text="license"
                                    FontSize="30"
-                                   Style="{StaticResource SubheaderTextBlockStyle}"/>
+                                   Style="{StaticResource SubheaderTextBlockStyle}" />
                         <StackPanel Grid.Row="1"
                                     Margin="0,15,0,0"
                                     Width="500">
@@ -69,7 +81,7 @@
                         <TextBlock Grid.Row="2"
                                    Text="music information"
                                    FontSize="30"
-                                   Style="{StaticResource SubheaderTextBlockStyle}"/>
+                                   Style="{StaticResource SubheaderTextBlockStyle}" />
                         <StackPanel Grid.Row="3"
                                     Margin="0,15,0,0"
                                     Width="500">
