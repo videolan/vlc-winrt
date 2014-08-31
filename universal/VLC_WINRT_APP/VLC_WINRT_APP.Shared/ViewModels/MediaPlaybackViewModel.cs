@@ -266,7 +266,8 @@ namespace VLC_WINRT_APP.ViewModels
 
         private void FirePositionUpdate(object sender, object e)
         {
-            UpdatePosition();
+            if(!_mediaService.IsBackground)
+                UpdatePosition();
         }
 
         #endregion

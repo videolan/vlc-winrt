@@ -51,8 +51,6 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             set { _mediaService.SetVolume(value); }
         }
 
-        //public SystemMediaTransportControls MediaControl;
-
         public MusicLibraryVM.ArtistItem CurrentPlayingArtist
         {
             get { return _currentPlayingArtist; }
@@ -150,7 +148,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             }
             else
             {
-                await PlayNext();
+                PlayNext();
             }
         }
 
@@ -201,8 +199,11 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         {
             if (CanGoNext)
             {
-                await DispatchHelper.InvokeAsync(() => CurrentTrack++);
-                await Play();
+                App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                {
+                    CurrentTrack++;
+                    Play();
+                });
             }
             else
             {
