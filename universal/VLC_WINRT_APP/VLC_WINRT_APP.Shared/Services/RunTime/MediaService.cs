@@ -302,10 +302,9 @@ namespace VLC_WINRT_APP.Services.RunTime
                 if (!_isAudioMedia)
                 {
                     // TODO: Route Video Player calls through Media Service
-                    _vlcService.Pause();
+                    //_vlcService.Pause();
 
                     Locator.VideoVm._lastVideosRepository.Update(Locator.VideoVm.CurrentVideo);
-                    return;
                 }
 
                 // Otherwise, set the MediaElement's source to the Audio File in question,
