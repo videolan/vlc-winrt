@@ -2388,6 +2388,12 @@
             </Setter.Value>
         </Setter>
     </Style>
+    <Style x:Name="VerticalContentGridViewItemStyle"
+           BasedOn="{StaticResource GridViewItemStyle}"
+           TargetType="GridViewItem">
+        <Setter Property="VerticalContentAlignment"
+                Value="Top"/>
+    </Style>
     <Style x:Name="HorizontalListViewItemStyle"
            BasedOn="{StaticResource ListViewItemStyle}"
            TargetType="ListViewItem">

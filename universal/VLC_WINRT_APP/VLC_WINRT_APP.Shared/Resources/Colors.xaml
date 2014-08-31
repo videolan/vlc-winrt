@@ -22,4 +22,8 @@
     <SolidColorBrush x:Key="ComboBoxItemSelectedPointerOverBackgroundThemeBrush"
                      Color="{StaticResource MainColorBase}"
                      Opacity="0.8"/>
+
+    <Color x:Key="SecondColorBase">#0092B2</Color>
+    <SolidColorBrush x:Key="SecondColor"
+                     Color="{StaticResource SecondColorBase}"/>
 </ResourceDictionary>

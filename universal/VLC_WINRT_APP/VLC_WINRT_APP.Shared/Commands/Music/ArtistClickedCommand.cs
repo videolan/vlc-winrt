@@ -15,7 +15,6 @@ namespace VLC_WINRT_APP.Commands.Music
             MusicLibraryVM.ArtistItem artist = null;
             if (parameter is ItemClickEventArgs)
             {
-
                 ItemClickEventArgs args = parameter as ItemClickEventArgs;
                 artist = args.ClickedItem as MusicLibraryVM.ArtistItem;
             }
