@@ -143,8 +143,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         protected async void MediaService_MediaEnded(object sender, EventArgs e)
         {
             if (TrackCollection.Count == 0 ||
-                TrackCollection[CurrentTrack] == TrackCollection.Last() ||
-                _mediaService.IsBackground)
+                TrackCollection[CurrentTrack] == TrackCollection.Last())
             {
                 // Playlist is finished
                 App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => IsRunning = false);
