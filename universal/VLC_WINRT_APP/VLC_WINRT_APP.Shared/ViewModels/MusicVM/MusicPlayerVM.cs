@@ -56,7 +56,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             set { _mediaService.SetVolume(value); }
         }
 
-        public SystemMediaTransportControls MediaControl;
+        //public SystemMediaTransportControls MediaControl;
 
         public MusicLibraryVM.ArtistItem CurrentPlayingArtist
         {
@@ -225,12 +225,12 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 
         async void MediaControl_PreviousTrackPressed(object sender, object e)
         {
-            await PlayPrevious();
+            PlayPreviousCommand.Execute("");
         }
 
         async void MediaControl_NextTrackPressed(object sender, object e)
         {
-            await PlayNext();
+            PlayNextCommand.Execute("");
         }
 
         public async Task Play(StorageFile fileFromExplorer = null)
@@ -258,31 +258,30 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                 SetActiveMusicInfo(token, trackItem);
             });
 
-
             // Setting the info for windows 8 controls
-            //var resourceLoader = new ResourceLoader();
-            //MediaControl.IsPlaying = true;
-            //MediaControl.ArtistName = trackItem.ArtistName ?? resourceLoader.GetString("UnknownArtist");
-            //MediaControl.TrackName = trackItem.Name ?? resourceLoader.GetString("UnknownTrack");
+            var resourceLoader = new ResourceLoader();
+            MediaControl.IsPlaying = true;
+            MediaControl.ArtistName = trackItem.ArtistName ?? resourceLoader.GetString("UnknownArtist");
+            MediaControl.TrackName = trackItem.Name ?? resourceLoader.GetString("UnknownTrack");
 
             try
             {
-                //MediaControl.AlbumArt = new Uri(Locator.MusicPlayerVM.CurrentPlayingArtist.CurrentAlbumItem.Picture);
+                MediaControl.AlbumArt = new Uri(Locator.MusicPlayerVM.CurrentPlayingArtist.CurrentAlbumItem.Picture);
             }
             catch
             {
                 // If album cover is from the internet then it's impossible to pass it to the MediaControl
             }
 
-            //if (CanGoNext)
-            //    MediaControl.NextTrackPressed += MediaControl_NextTrackPressed;
-            //else
-            //    MediaControl.NextTrackPressed -= MediaControl_NextTrackPressed;
+            if (CanGoNext)
+                MediaControl.NextTrackPressed += MediaControl_NextTrackPressed;
+            else
+                MediaControl.NextTrackPressed -= MediaControl_NextTrackPressed;
 
-            //if (CanGoPrevious)
-            //MediaControl.PreviousTrackPressed += MediaControl_PreviousTrackPressed;
-            //else
-            //MediaControl.PreviousTrackPressed -= MediaControl_PreviousTrackPressed;
+            if (CanGoPrevious)
+                MediaControl.PreviousTrackPressed += MediaControl_PreviousTrackPressed;
+            else
+                MediaControl.PreviousTrackPressed -= MediaControl_PreviousTrackPressed;
         }
 
         public async Task PlayFromExplorer(StorageFile file)
