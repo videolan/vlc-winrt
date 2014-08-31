@@ -45,7 +45,7 @@ namespace VLC_WINRT_APP.Services.RunTime
             _vlcService.MediaEnded += VlcPlayerService_MediaEnded;
             _vlcService.StatusChanged += VlcPlayerService_StatusChanged;
             MediaControl.IsPlaying = false;
-
+            
             CoreWindow.GetForCurrentThread().Activated += ApplicationState_Activated;
         }
 
@@ -64,8 +64,8 @@ namespace VLC_WINRT_APP.Services.RunTime
                 App.ApplicationFrame.Navigate(typeof(MusicPlayerPage));
             MusicLibraryVM.TrackItem trackItem = new MusicLibraryVM.TrackItem();
             trackItem.Path = file.Path;
-            trackItem.AlbumName = "TestAlbum";
-            trackItem.ArtistName = "TestArtist";
+            trackItem.AlbumName = "Album";
+            trackItem.ArtistName = "Artist";
             if (Locator.MusicPlayerVM.TrackCollection == null)
                 Locator.MusicPlayerVM.TrackCollection = new ObservableCollection<MusicLibraryVM.TrackItem>();
 
@@ -258,7 +258,7 @@ namespace VLC_WINRT_APP.Services.RunTime
                 // generated stream of blank noise, just incase the audio file in question isn't support by
                 // Windows.
                 // TODO: generate blank wave file
-                StorageFile file = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///Void.wav"));
+                StorageFile file = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///audio.wav"));
                 var stream = await file.OpenAsync(FileAccessMode.Read);
                 _mediaElement.SetSource(stream, file.ContentType);
                 _mediaElement.Play();

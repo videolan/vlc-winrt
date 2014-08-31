@@ -17,18 +17,13 @@ using Windows.Storage;
 using Windows.Storage.AccessCache;
 using Windows.UI.Core;
 using Windows.UI.Notifications;
-using Windows.UI.Popups;
-using Windows.UI.Xaml;
 using VLC_WINRT.Common;
 using VLC_WINRT_APP.Commands.Music;
 using VLC_WINRT_APP.Helpers;
-using VLC_WINRT_APP.Helpers.MusicLibrary.Deezer;
-using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.Services.Interface;
 using VLC_WINRT_APP.Services.RunTime;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
-using WinRTXamlToolkit.Controls.Extensions;
 
 namespace VLC_WINRT_APP.ViewModels.MusicVM
 {
@@ -134,7 +129,33 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             _tracksCollection = new ObservableCollection<MusicLibraryVM.TrackItem>();
             _mediaService.MediaEnded += MediaService_MediaEnded;
             GoToMusicPlayerPage = new GoToMusicPlayerPage();
+            RegisterMediaControls();
         }
+
+        private void RegisterMediaControls()
+        {
+            MediaControl.NextTrackPressed += MediaControlOnNextTrackPressed;
+            MediaControl.PreviousTrackPressed += MediaControlOnPreviousTrackPressed;
+        }
+
+        private void MediaControlOnPreviousTrackPressed(object sender, object o)
+        {
+            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                if(CanGoPrevious)
+                    PlayPreviousCommand.Execute("");
+            });
+        }
+
+        private void MediaControlOnNextTrackPressed(object sender, object o)
+        {
+            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                if (CanGoNext)
+                    PlayNextCommand.Execute("");
+            });
+        }
+
 
         protected async void MediaService_MediaEnded(object sender, EventArgs e)
         {
@@ -204,7 +225,6 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             else
             {
                 TileUpdateManager.CreateTileUpdaterForApplication().Clear();
-                //await DispatchHelper.InvokeAsync(() => MediaControl.IsPlaying = false);
             }
         }
 
@@ -218,19 +238,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             else
             {
                 TileUpdateManager.CreateTileUpdaterForApplication().Clear();
-                //await DispatchHelper.InvokeAsync(() => MediaControl.IsPlaying = false);
-                //MediaControl.PreviousTrackPressed -= MediaControl_PreviousTrackPressed;
             }
-        }
-
-        async void MediaControl_PreviousTrackPressed(object sender, object e)
-        {
-            PlayPreviousCommand.Execute("");
-        }
-
-        async void MediaControl_NextTrackPressed(object sender, object e)
-        {
-            PlayNextCommand.Execute("");
         }
 
         public async Task Play(StorageFile fileFromExplorer = null)
@@ -260,7 +268,6 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 
             // Setting the info for windows 8 controls
             var resourceLoader = new ResourceLoader();
-            MediaControl.IsPlaying = true;
             MediaControl.ArtistName = trackItem.ArtistName ?? resourceLoader.GetString("UnknownArtist");
             MediaControl.TrackName = trackItem.Name ?? resourceLoader.GetString("UnknownTrack");
 
@@ -272,54 +279,6 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             {
                 // If album cover is from the internet then it's impossible to pass it to the MediaControl
             }
-
-            if (CanGoNext)
-                MediaControl.NextTrackPressed += MediaControl_NextTrackPressed;
-            else
-                MediaControl.NextTrackPressed -= MediaControl_NextTrackPressed;
-
-            if (CanGoPrevious)
-                MediaControl.PreviousTrackPressed += MediaControl_PreviousTrackPressed;
-            else
-                MediaControl.PreviousTrackPressed -= MediaControl_PreviousTrackPressed;
-        }
-
-        public async Task PlayFromExplorer(StorageFile file)
-        {
-            IsRunning = true;
-            Stop();
-
-            // Wat? This doesn't make any sense.
-            var trackItem = TrackCollection[CurrentTrack];
-
-            string token = StorageApplicationPermissions.FutureAccessList.Add(file);
-
-            Debug.WriteLine("Opening file: " + file.Path);
-
-            SetActiveMusicInfo(token, trackItem);
-
-            // Setting the info for windows 8 controls
-            //MediaControl.IsPlaying = true;
-            //MediaControl.ArtistName = trackItem.ArtistName;
-            //MediaControl.TrackName = trackItem.Name;
-            //try
-            //{
-            //    //MediaControl.AlbumArt = new Uri(Locator.MusicPlayerVM.CurrentPlayingArtist.CurrentAlbumItem.Picture);
-            //}
-            //catch
-            //{
-            //    // If album cover is from the internet then it's impossible to pass it to the MediaControl
-            //}
-
-            //if (CanGoNext)
-            //    MediaControl.NextTrackPressed += MediaControl_NextTrackPressed;
-            //else
-            //    MediaControl.NextTrackPressed -= MediaControl_NextTrackPressed;
-
-            //if (CanGoPrevious)
-            //    MediaControl.PreviousTrackPressed += MediaControl_PreviousTrackPressed;
-            //else
-            //    MediaControl.PreviousTrackPressed -= MediaControl_PreviousTrackPressed;
         }
 
         public async void SetActiveMusicInfo(string token, MusicLibraryVM.TrackItem track)
