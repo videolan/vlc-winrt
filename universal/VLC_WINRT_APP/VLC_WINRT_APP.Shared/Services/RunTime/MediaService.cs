@@ -243,7 +243,6 @@ namespace VLC_WINRT_APP.Services.RunTime
             return _vlcService.GetVolume().Result;
         }
 
-
         async void VlcPlayerService_MediaEnded(object sender, Player e)
         {
             await DispatchHelper.InvokeAsync(() =>
