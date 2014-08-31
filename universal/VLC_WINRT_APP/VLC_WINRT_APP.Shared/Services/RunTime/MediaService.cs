@@ -335,7 +335,7 @@ namespace VLC_WINRT_APP.Services.RunTime
                     return;
                 }
 
-
+                // Stop the MediaElement with fake audio sound
                 _mediaElement.Stop();
             }
         }
