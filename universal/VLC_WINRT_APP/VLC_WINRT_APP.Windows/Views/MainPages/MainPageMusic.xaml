@@ -191,6 +191,8 @@
                     </Button>
                 </StackPanel>
                 <GridView Grid.Row="1"
+                          IsItemClickEnabled="False"
+                          SelectionMode="None"
                           ItemsSource="{Binding CurrentArtist.Albums}"
                           ItemContainerStyle="{StaticResource VerticalContentGridViewItemStyle}">
                     <GridView.ItemsPanel>
