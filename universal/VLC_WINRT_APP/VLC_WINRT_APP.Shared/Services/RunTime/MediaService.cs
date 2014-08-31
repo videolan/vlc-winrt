@@ -184,6 +184,8 @@ namespace VLC_WINRT_APP.Services.RunTime
             _systemMediaTransportControls.IsEnabled = true;
             _systemMediaTransportControls.IsPauseEnabled = true;
             _systemMediaTransportControls.IsPlayEnabled = true;
+            _systemMediaTransportControls.IsNextEnabled = Locator.MusicPlayerVM.PlayingType != PlayingType.Music || Locator.MusicPlayerVM.CanGoNext;
+            _systemMediaTransportControls.IsPreviousEnabled = Locator.MusicPlayerVM.PlayingType != PlayingType.Music || Locator.MusicPlayerVM.CanGoPrevious;
         }
 
         public void Pause()
