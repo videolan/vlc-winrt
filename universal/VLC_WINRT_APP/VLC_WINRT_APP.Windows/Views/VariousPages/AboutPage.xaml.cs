@@ -25,7 +25,7 @@ namespace VLC_WINRT_APP.Views.VariousPages
             Devs.Add(new DevItem("Thomas Nigro", "designer, developer", "ThomasNigro"));
             Devs.Add(new DevItem("Jean Baptiste Kempf", "developer", "videolan"));
             Devs.Add(new DevItem("Hugo Beauzée-Luyssen", "developer", "beauzeh"));
-            Devs.Add(new DevItem("Timothy Miller", "developer"));
+            Devs.Add(new DevItem("Timothy Miller", "developer", "drasticactionSA"));
             Devs.Add(new DevItem("Sébastien Thevenin", "developer", "SebThevenin"));
             DevsListView.ItemsSource = Devs;
         }
