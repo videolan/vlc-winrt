@@ -26,7 +26,8 @@
                            x:Name="FirstRowDefinition" />
             <RowDefinition Height="45" />
             <RowDefinition Height="24" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="13*"/>
         </Grid.RowDefinitions>
         <ListView ItemsSource="{Binding Panels}"
                   IsItemClickEnabled="True"
@@ -57,7 +58,8 @@
         </ListView>
         <SemanticZoom x:Name="SemanticZoomAlbumsByArtist"
                       Grid.Row="3"
-                      ViewChangeCompleted="SemanticZoom_OnViewChangeCompletedArtistByName">
+                      ScrollViewer.HorizontalScrollMode="Disabled"
+                      ViewChangeCompleted="SemanticZoom_OnViewChangeCompletedArtistByName" Grid.RowSpan="2">
             <SemanticZoom.ZoomedOutView>
                 <GridView ScrollViewer.VerticalScrollBarVisibility="Hidden"
                           ItemTemplate="{StaticResource SemanticZoomOutViewArtistTemplate}">
@@ -109,7 +111,7 @@
         </SemanticZoom>
         <Grid Grid.Row="3"
               x:Name="ArtistsGrid"
-              Visibility="Collapsed">
+              Visibility="Collapsed" Grid.RowSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="320" />
                 <ColumnDefinition Width="1" />
@@ -193,6 +195,7 @@
                     </Button>-->
                 </StackPanel>
                 <SemanticZoom Grid.Row="1"
+                              ScrollViewer.HorizontalScrollMode="Disabled"
                               x:Name="CurrentArtistAlbumsSemanticZoom"
                               ViewChangeCompleted="SemanticZoom_OnViewChangeCompletedCurrentArtistAlbum"
                               ViewChangeStarted="SemanticZoom_OnViewChangeCompletedCurrentArtistAlbum">
@@ -315,7 +318,7 @@
                   ItemsSource="{Binding Tracks}"
                   SelectionMode="None"
                   IsItemClickEnabled="True"
-                  ItemContainerStyle="{StaticResource HorizontalListViewItemStyle}">
+                  ItemContainerStyle="{StaticResource HorizontalListViewItemStyle}" Grid.RowSpan="2">
             <triggers:Interactions.Triggers>
                 <triggers:EventTrigger EventName="ItemClick">
                     <triggers:InvokeCommandAction Command="{Binding TrackClickedCommand}"
@@ -354,7 +357,7 @@
                   ItemsSource="{Binding FavoriteAlbums}"
                   ItemTemplate="{StaticResource SemanticZoomInViewAlbumTemplate}"
                   SelectionMode="None"
-                  IsItemClickEnabled="True">
+                  IsItemClickEnabled="True" Grid.RowSpan="2">
             <triggers:Interactions.Triggers>
                 <triggers:EventTrigger EventName="ItemClick">
                     <triggers:InvokeCommandAction Command="{Binding AlbumClickedCommand}"
