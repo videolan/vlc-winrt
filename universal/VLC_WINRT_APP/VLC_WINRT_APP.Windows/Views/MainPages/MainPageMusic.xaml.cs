@@ -91,6 +91,15 @@ namespace VLC_WINRT_APP.Views.MainPages
                     ArtistsGrid.Visibility = Visibility.Visible;
                     RadDataGrid.Visibility = Visibility.Collapsed;
                     FavoriteAlbumsGridView.Visibility = Visibility.Collapsed;
+                    if (Locator.MusicPlayerVM.IsPlaying
+                        && Locator.MusicPlayerVM.PlayingType == PlayingType.Music
+                        && Locator.MusicPlayerVM.CurrentPlayingArtist != null)
+                    {
+                        ArtistListView.SelectedItem =
+                            Locator.MusicLibraryVM.Artists.FirstOrDefault(
+                                x => x.Name == Locator.MusicPlayerVM.CurrentPlayingArtist.Name);
+                        ArtistListView.ScrollIntoView(ArtistListView.SelectedItem);
+                    }
                     if (ArtistListView.SelectedIndex == -1)
                     {
                         ArtistListView.SelectedIndex = 0;
