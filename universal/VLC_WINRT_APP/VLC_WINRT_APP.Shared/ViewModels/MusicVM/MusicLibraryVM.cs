@@ -572,13 +572,13 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             {
                 get
                 {
-                    //if (_biography != null)
-                    //{
-                    //    return _biography;
-                    //}
-                    //if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
-                    //    return "Please verify your internet connection";
-                    //ArtistInformationsHelper.GetArtistBiography(this);
+                    if (_biography != null)
+                    {
+                        return _biography;
+                    }
+                    if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
+                        return "Please verify your internet connection";
+                    Task.Run(() => ArtistInformationsHelper.GetArtistBiography(this));
                     return "Loading";
                 }
                 set { SetProperty(ref _biography, value); }
@@ -589,10 +589,10 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             {
                 get
                 {
-                    //if (_onlinePopularAlbumItems != null)
-                    //    return _onlinePopularAlbumItems;
-                    //if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
-                    //    ArtistInformationsHelper.GetArtistTopAlbums(this);
+                    if (_onlinePopularAlbumItems != null)
+                        return _onlinePopularAlbumItems;
+                    if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
+                        Task.Run(() => ArtistInformationsHelper.GetArtistTopAlbums(this));
                     return null;
                 }
                 set { SetProperty(ref _onlinePopularAlbumItems, value); }
@@ -603,10 +603,10 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             {
                 get
                 {
-                    //if (_onlineRelatedArtists != null)
-                    //    return _onlineRelatedArtists;
-                    //if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
-                    //    ArtistInformationsHelper.GetArtistSimilarsArtist(this);
+                    if (_onlineRelatedArtists != null)
+                        return _onlineRelatedArtists;
+                    if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
+                        Task.Run(() => ArtistInformationsHelper.GetArtistSimilarsArtist(this));
                     return null;
                 }
                 set { SetProperty(ref _onlineRelatedArtists, value); }

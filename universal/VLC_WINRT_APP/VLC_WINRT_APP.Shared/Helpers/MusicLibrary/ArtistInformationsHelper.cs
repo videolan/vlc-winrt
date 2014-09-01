@@ -12,6 +12,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Windows.UI.Core;
 using VLC_WINRT.Common;
 using Windows.Storage;
 using Windows.Storage.Streams;
@@ -227,8 +228,11 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                 Debug.WriteLine("Receive TopAlbums from LastFM API");
                 if (albums != null)
                 {
-                    artist.OnlinePopularAlbumItems = albums;
-                    artist.IsOnlinePopularAlbumItemsLoaded = true;
+                    App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                    {
+                        artist.OnlinePopularAlbumItems = albums;
+                        artist.IsOnlinePopularAlbumItemsLoaded = true;
+                    });
                 }
             }
             catch
@@ -245,8 +249,11 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                 var similarArtists = await lastFmClient.GetSimilarArtists(artist.Name);
                 if (similarArtists != null)
                 {
-                    artist.OnlineRelatedArtists = similarArtists;
-                    artist.IsOnlineRelatedArtistsLoaded = true;
+                    App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                    {
+                        artist.OnlineRelatedArtists = similarArtists;
+                        artist.IsOnlineRelatedArtistsLoaded = true;
+                    });
                 }
             }
             catch
@@ -268,7 +275,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             {
                 Debug.WriteLine("Failed to get artist biography from LastFM. Returning nothing.");
             }
-            artist.Biography = System.Net.WebUtility.HtmlDecode(biography);
+            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, ()=> artist.Biography = System.Net.WebUtility.HtmlDecode(biography));
         }
 
         public static async Task<bool> SaveAlbumImageAsync(MusicLibraryVM.AlbumItem album, byte[] img)
