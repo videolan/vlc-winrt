@@ -381,4 +381,19 @@
   <data name="DownloadAlbumArt.Text" xml:space="preserve">
     <value>アルバムアートワークの入手</value>
   </data>
+  <data name="DevelopersHeader.Text" xml:space="preserve">
+    <value>ソフトウェア開発者</value>
+  </data>
+  <data name="LicenseHeader.Text" xml:space="preserve">
+    <value>ライセンス</value>
+  </data>
+  <data name="MenuAboutApp.Text" xml:space="preserve">
+    <value>VLCについて</value>
+  </data>
+  <data name="MenuAppSettings.Text" xml:space="preserve">
+    <value>アプリ設定</value>
+  </data>
+  <data name="MusicInformation.Text" xml:space="preserve">
+    <value>音楽データベース</value>
+  </data>
 </root>

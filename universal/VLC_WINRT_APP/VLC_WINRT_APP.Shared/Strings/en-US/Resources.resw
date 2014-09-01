@@ -381,4 +381,22 @@
   <data name="DownloadAlbumArt.Text" xml:space="preserve">
     <value>Download Album Art</value>
   </data>
+  <data name="DevelopersHeader.Text" xml:space="preserve">
+    <value>developers</value>
+  </data>
+  <data name="LicenseHeader.Text" xml:space="preserve">
+    <value>license</value>
+  </data>
+  <data name="MenuAboutApp.Text" xml:space="preserve">
+    <value>About the App</value>
+  </data>
+  <data name="MenuAppSettings.Text" xml:space="preserve">
+    <value>App Settings</value>
+  </data>
+  <data name="MusicInformation.Text" xml:space="preserve">
+    <value>music information</value>
+  </data>
+  <data name="VlcLicenseCondition.Text" xml:space="preserve">
+    <value>VLC for Windows 8.1 is licensed under the GNU General Public License, version 2 (herein referred to as GPL).</value>
+  </data>
 </root>

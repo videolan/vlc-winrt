@@ -94,9 +94,9 @@
                                 FontWeight="Light">
                             <Button.Flyout>
                                 <MenuFlyout>
-                                    <MenuFlyoutItem Text="App settings"
+                                    <MenuFlyoutItem x:Uid="MenuAppSettings" Text="App settings"
                                                     Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToSettingsPageCommand}" />
-                                    <MenuFlyoutItem Text="About the app"
+                                    <MenuFlyoutItem x:Uid="MenuAboutApp" Text="About the app"
                                                     Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToAboutPageCommand}" />
                                 </MenuFlyout>
                             </Button.Flyout>

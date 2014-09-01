@@ -26,7 +26,7 @@
                             <RowDefinition Height="50" />
                             <RowDefinition />
                         </Grid.RowDefinitions>
-                        <TextBlock Text="developers"
+                        <TextBlock x:Uid="DevelopersHeader" Text="developers"
                                    Style="{StaticResource SubheaderTextBlockStyle}" />
                         <Grid Grid.Row="1">
                             <ListView x:Name="DevsListView">
@@ -51,7 +51,7 @@
                             <RowDefinition Height="50" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
-                        <TextBlock Text="license"
+                        <TextBlock x:Uid="LicenseHeader" Text="license"
                                    FontSize="30"
                                    Style="{StaticResource SubheaderTextBlockStyle}" />
                         <StackPanel Grid.Row="1"
@@ -63,7 +63,7 @@
                                        HorizontalAlignment="Center"
                                        Text="VLC for Windows 8.1">
                             </TextBlock>
-                            <TextBlock Style="{StaticResource SubheaderTextBlockStyle}"
+                            <TextBlock x:Uid="VlcLicenseCondition" Style="{StaticResource SubheaderTextBlockStyle}"
                                        TextAlignment="Center"
                                        Margin="10"
                                        Text="VLC for Windows 8.1 is licensed under the GNU General Public License, version 2 (herein referred to as GPL)." />
@@ -78,7 +78,7 @@
                                        Margin="10" 
                                        Text="VLC for Windows 8 is licensed under the GNU General Public License, version 2 (herein referred to as GPL)."/>-->
                         </StackPanel>
-                        <TextBlock Grid.Row="2"
+                        <TextBlock x:Uid="MusicInformation" Grid.Row="2"
                                    Text="music information"
                                    FontSize="30"
                                    Style="{StaticResource SubheaderTextBlockStyle}" />
