@@ -7,7 +7,7 @@ using VLC_WINRT_APP.ViewModels.MusicVM;
 
 namespace VLC_WINRT_APP.DataRepository
 {
-    public class ArtistDataRepository
+    public class ArtistDataRepository : IDataRepository
     {
         private static readonly string _dbPath =
     Path.Combine(

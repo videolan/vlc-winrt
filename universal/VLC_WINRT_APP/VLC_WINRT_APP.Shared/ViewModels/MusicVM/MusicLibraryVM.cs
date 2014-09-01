@@ -16,9 +16,8 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel.Resources;
 using Windows.Storage;
 using Windows.Storage.FileProperties;
-using Windows.System;
+using Windows.Storage.Search;
 using Windows.UI.Core;
-using Windows.UI.ViewManagement;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 using SQLite;
@@ -28,11 +27,13 @@ using VLC_WINRT_APP.Common;
 using VLC_WINRT_APP.DataRepository;
 using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.Helpers.MusicLibrary;
-using VLC_WINRT_APP.Helpers.MusicLibrary.MusicEntities;
 using VLC_WINRT_APP.Helpers.MusicLibrary.xboxmusic.Models;
 using VLC_WINRT_APP.Model;
 using XboxMusicLibrary;
 using VLC_WINRT_APP.Commands.Music;
+using XboxMusicLibrary.Models;
+using Album = VLC_WINRT_APP.Helpers.MusicLibrary.MusicEntities.Album;
+using Artist = VLC_WINRT_APP.Helpers.MusicLibrary.MusicEntities.Artist;
 using Panel = VLC_WINRT_APP.Model.Panel;
 
 namespace VLC_WINRT_APP.ViewModels.MusicVM
@@ -42,7 +43,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         public static ArtistDataRepository _artistDataRepository = new ArtistDataRepository();
         public static TrackDataRepository _trackDataRepository = new TrackDataRepository();
         public static AlbumDataRepository _albumDataRepository = new AlbumDataRepository();
-
+        public static MusicFolderDataRepository MusicFolderDataRepository = new MusicFolderDataRepository();
         #region private fields
 #if WINDOWS_APP
         private ObservableCollection<Panel> _panels = new ObservableCollection<Panel>();
@@ -232,11 +233,6 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                 return;
             }
 
-            if (!await VerifyAllFilesAreHere())
-            {
-                await StartIndexing();
-                return;
-            }
 
             App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
             {
@@ -244,6 +240,8 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                 IsLoaded = true;
                 IsBusy = false;
             });
+
+            await VerifyAllFilesAreHere();
         }
 
         private void LoadFavoritesRandomAlbums()
@@ -349,8 +347,20 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 
         }
 
-        private async Task CreateDatabaseFromMusicFolder(StorageFolder musicFolder)
+        private async Task CreateDatabaseFromMusicFolder(StorageFolder musicFolder, int folderDepth = 0, bool indexSubFolder = true)
         {
+            if (folderDepth < 3)
+            {
+                App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+                {
+                    if (!await MusicLibraryVM.MusicFolderDataRepository.Exist(musicFolder.Path))
+                    {
+                        DateTimeOffset dtOffset = (await musicFolder.GetBasicPropertiesAsync()).DateModified;
+                        VLCFolder vlcFol = new VLCFolder(musicFolder.Path, dtOffset);
+                        await MusicFolderDataRepository.Add(vlcFol);
+                    }
+                });
+            }
             IReadOnlyList<IStorageItem> items = await musicFolder.GetItemsAsync();
             foreach (IStorageItem storageItem in items)
             {
@@ -360,7 +370,10 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                 }
                 else
                 {
-                    await CreateDatabaseFromMusicFolder((StorageFolder)storageItem);
+                    if (indexSubFolder)
+                    {
+                        await CreateDatabaseFromMusicFolder((StorageFolder)storageItem, folderDepth + 1);
+                    }
                 }
             }
         }
@@ -410,6 +423,11 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 
         private async Task LoadFromDatabase()
         {
+            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                Artists.Clear();
+                Tracks.Clear();
+            });
             try
             {
                 var artists = await _artistDataRepository.Load();
@@ -466,10 +484,46 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             return await DoesFileExistHelper.DoesFileExistAsync("mediavlc.sqlite");
         }
 
-        private async Task<bool> VerifyAllFilesAreHere()
+        private async Task VerifyAllFilesAreHere()
         {
-            // TODO: Improve the algorithm
-            return true;
+            List<VLCFolder> foldersToCheck = await MusicFolderDataRepository.Load();
+            foreach (VLCFolder vlcFolder in foldersToCheck)
+            {
+                try
+                {
+                    StorageFolder folder = await StorageFolder.GetFolderFromPathAsync(vlcFolder.Path);
+                    if (folder == null)
+                    {
+                        // The folder doesn't exist anymore, we need to delete the files from the database
+                        await MusicLibraryVM._trackDataRepository.Remove(vlcFolder.Path);
+                        await MusicLibraryVM.MusicFolderDataRepository.Remove(vlcFolder);
+                        LoadFromDatabase();
+                        break;
+                    }
+                    else
+                    {
+
+                        DateTimeOffset folderLastModif = (await folder.GetBasicPropertiesAsync()).DateModified;
+                        if (folderLastModif > vlcFolder.LastModified)
+                        {
+                            // The folder has more or less files than before, we need to check it again
+                            // FIRST: Removed the entries in the database from this folder
+                            // SECOND: Add the new entries
+                            await MusicLibraryVM._trackDataRepository.Remove(folder.Path);
+                            await CreateDatabaseFromMusicFolder(folder);
+                            LoadFromDatabase();
+                            break;
+                        }
+                    }
+                }
+                catch
+                {
+                    // The folder doesn't exist anymore, we need to delete the files from the database
+                    MusicLibraryVM._trackDataRepository.Remove(vlcFolder.Path);
+                    MusicLibraryVM.MusicFolderDataRepository.Remove(vlcFolder);
+                    break;
+                }
+            }
         }
         #endregion
 

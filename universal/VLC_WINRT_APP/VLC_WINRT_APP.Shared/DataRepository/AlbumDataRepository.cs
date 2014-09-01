@@ -7,7 +7,7 @@ using VLC_WINRT_APP.ViewModels.MusicVM;
 
 namespace VLC_WINRT_APP.DataRepository
 {
-    public class AlbumDataRepository
+    public class AlbumDataRepository : IDataRepository
     {
         private static readonly string _dbPath =
     Path.Combine(
@@ -71,6 +71,13 @@ namespace VLC_WINRT_APP.DataRepository
         {
             var connection = new SQLiteAsyncConnection(_dbPath);
             return connection.InsertAsync(album);
+        }
+
+        public void Remove(MusicLibraryVM.AlbumItem album)
+        {
+            if (album == null) return;
+            var connection = new SQLiteAsyncConnection(_dbPath);
+            connection.DeleteAsync(album);
         }
     }
 }

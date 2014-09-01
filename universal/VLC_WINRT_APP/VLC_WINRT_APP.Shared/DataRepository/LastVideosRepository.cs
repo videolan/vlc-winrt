@@ -7,7 +7,7 @@ using VLC_WINRT_APP.ViewModels.VideoVM;
 
 namespace VLC_WINRT_APP.DataRepository
 {
-    public class LastVideosRepository
+    public class LastVideosRepository : IDataRepository
     {
         private static readonly string _dbPath =
     Path.Combine(
@@ -24,6 +24,11 @@ namespace VLC_WINRT_APP.DataRepository
             {
                 db.CreateTable<VideoVM>();
             }
+        }
+
+        public void Drop()
+        {
+            throw new System.NotImplementedException();
         }
 
         public

@@ -2,12 +2,13 @@
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using SQLite;
 using VLC_WINRT_APP.ViewModels.MusicVM;
 
 namespace VLC_WINRT_APP.DataRepository
 {
-    public class TrackDataRepository
+    public class TrackDataRepository : IDataRepository
     {
         private static readonly string _dbPath =
     Path.Combine(
@@ -74,6 +75,26 @@ namespace VLC_WINRT_APP.DataRepository
             var result = await query.ToListAsync();
             if(result.Count == 0)
                 connection.InsertAsync(track);
+        }
+
+        public async Task Remove(string folderPath)
+        {
+            // This will delete all the entries that are in folderPath and its subfolders
+            var connection = new SQLiteAsyncConnection(_dbPath);
+            var query = connection.Table<MusicLibraryVM.TrackItem>().Where(x => x.Path.Contains(folderPath));
+            var result = await query.ToListAsync();
+            foreach (MusicLibraryVM.TrackItem trackItem in result)
+            {
+                connection.DeleteAsync(trackItem);
+            }
+
+            // If all tracks for an album are deleted, then remove the album itself
+            foreach (MusicLibraryVM.TrackItem trackItem in result)
+            {
+                MusicLibraryVM.AlbumItem album = await MusicLibraryVM._albumDataRepository.LoadAlbum(trackItem.AlbumId);
+                if(album != null)
+                    MusicLibraryVM._albumDataRepository.Remove(album);
+            }
         }
     }
 }
