@@ -69,5 +69,11 @@ namespace VLC_WINRT_APP.DataRepository
             var result = await query.ToListAsync();
             return result.FirstOrDefault();
         }
+
+        public Task Remove(MusicLibraryVM.ArtistItem artist)
+        {
+            var connection = new SQLiteAsyncConnection(_dbPath);
+            return connection.DeleteAsync(artist);
+        }
     }
 }

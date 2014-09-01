@@ -436,7 +436,12 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                 {
                     foreach (var artist in orderedArtists)
                     {
-                        Artists.Add(artist);
+                        if(artist.Albums.Count != 0)
+                            Artists.Add(artist);
+                        else
+                        {
+                            MusicLibraryVM._artistDataRepository.Remove(artist);
+                        }
                     }
                 });
             }
