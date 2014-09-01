@@ -60,12 +60,6 @@
                                       IsItemClickEnabled="True"
                                       SelectionMode="None"
                                       ItemContainerStyle="{StaticResource GridViewItemStyle}">
-                                <triggers:Interactions.Triggers>
-                                    <triggers:EventTrigger EventName="ItemClick">
-                                        <triggers:InvokeCommandAction Command="{Binding AlbumClickedCommand}"
-                                                                      PassEventArgsToCommand="True" />
-                                    </triggers:EventTrigger>
-                                </triggers:Interactions.Triggers>
                                 <GridView.ItemsPanel>
                                     <ItemsPanelTemplate>
                                         <ItemsWrapGrid Orientation="Vertical"

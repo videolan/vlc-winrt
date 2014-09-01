@@ -75,12 +75,6 @@
                           SelectionMode="None"
                           ItemTemplate="{StaticResource SemanticZoomInViewAlbumTemplate}"
                           ItemContainerStyle="{StaticResource ListViewItemStyle}">
-                    <!--<triggers:Interactions.Triggers>
-                        <triggers:EventTrigger EventName="ItemClick">
-                            <triggers:InvokeCommandAction Command="{Binding AlbumClickedCommand}"
-                                                          PassEventArgsToCommand="True" />
-                        </triggers:EventTrigger>
-                    </triggers:Interactions.Triggers>-->
                     <ListView.GroupStyle>
                         <GroupStyle>
                             <GroupStyle.Panel>
