@@ -168,7 +168,7 @@
                                Style="{StaticResource SubheaderTextBlockStyle}"
                                FontSize="42"
                                Foreground="{StaticResource MainColor}" />
-                    <Button Style="{StaticResource TextBlockButtonStyle}"
+                    <!--<Button Style="{StaticResource TextBlockButtonStyle}"
                             Margin="24,0,0,0"
                             Command="{Binding CurrentArtist.PlayArtistCommand}"
                             CommandParameter="{Binding CurrentArtist}"
@@ -190,7 +190,7 @@
                                 <artistPageControls:ArtistCoverBiographyControl RequestedTheme="Dark" />
                             </Flyout>
                         </Button.Flyout>
-                    </Button>
+                    </Button>-->
                 </StackPanel>
                 <SemanticZoom Grid.Row="1"
                               x:Name="CurrentArtistAlbumsSemanticZoom"
