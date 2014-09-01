@@ -169,7 +169,7 @@
                     <RowDefinition />
                 </Grid.RowDefinitions>
                 <StackPanel Orientation="Horizontal"
-                            Margin="18,0,0,0">
+                            Margin="22,0,0,0">
                     <TextBlock Text="{Binding CurrentArtist.Name}"
                                Style="{StaticResource SubheaderTextBlockStyle}"
                                FontSize="42"
@@ -236,13 +236,20 @@
                                                        Source="{Binding Picture}"
                                                        VerticalAlignment="Top" />
                                                 <Button Margin="0,24,0,0"
-                                                        Content="Play album"
                                                         Style="{StaticResource TextBlockButtonStyle}"
                                                         FontWeight="Light"
                                                         Foreground="{StaticResource SecondColor}"
                                                         FontSize="22"
                                                         Command="{Binding PlayAlbum}"
-                                                        CommandParameter="{Binding}" />
+                                                        CommandParameter="{Binding}">
+                                                    <Button.Content>
+                                                        <TextBlock>
+                                                        <Run Text="Play album" />
+                                                        <Run Text=""
+                                                             FontFamily="Segoe UI Symbol" />
+                                                        </TextBlock>
+                                                    </Button.Content>
+                                                </Button>
                                             </StackPanel>
                                             <ListView Grid.Column="2"
                                                       IsItemClickEnabled="True"
