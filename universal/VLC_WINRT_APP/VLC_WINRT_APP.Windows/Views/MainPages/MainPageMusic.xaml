@@ -118,7 +118,7 @@
               Visibility="Collapsed">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="320" />
-                <ColumnDefinition Width="1"/>
+                <ColumnDefinition Width="1" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <ListView x:Name="ArtistListView"
@@ -162,7 +162,7 @@
             <Grid Grid.Column="1"
                   Width="1"
                   Background="{StaticResource MainColor}"
-                  HorizontalAlignment="Left"/>
+                  HorizontalAlignment="Left" />
             <Grid Grid.Column="2">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="55" />
@@ -198,72 +198,85 @@
                         </Button.Flyout>
                     </Button>
                 </StackPanel>
-                <GridView Grid.Row="1"
-                          IsItemClickEnabled="False"
-                          SelectionMode="None"
-                          ItemsSource="{Binding CurrentArtist.Albums}"
-                          ItemContainerStyle="{StaticResource VerticalContentGridViewItemStyle}">
-                    <GridView.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <VirtualizingStackPanel VirtualizationMode="Standard"
-                                                    Orientation="Horizontal" />
-                        </ItemsPanelTemplate>
-                    </GridView.ItemsPanel>
-                    <GridView.ItemTemplate>
-                        <DataTemplate>
-                            <Grid VerticalAlignment="Top"
-                                  Margin="18,0,40,0">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="50" />
-                                    <RowDefinition />
-                                </Grid.RowDefinitions>
-                                <TextBlock Text="{Binding Name}"
-                                           Style="{StaticResource SubheaderTextBlockStyle}" />
-                                <Grid Grid.Row="1">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="160" />
-                                        <ColumnDefinition Width="12" />
-                                        <ColumnDefinition Width="Auto" />
-                                    </Grid.ColumnDefinitions>
-                                    <StackPanel>
-                                        <Image Width="160"
-                                               Height="160"
-                                               Stretch="UniformToFill"
-                                               Source="{Binding Picture}"
-                                               VerticalAlignment="Top" />
-                                        <Button Margin="0,24,0,0"
-                                                Content="Play album"
-                                                Style="{StaticResource TextBlockButtonStyle}"
-                                                FontWeight="Light"
-                                                Foreground="{StaticResource SecondColor}"
-                                                FontSize="22"
-                                                Command="{Binding PlayAlbum}"
-                                                CommandParameter="{Binding}" />
-                                    </StackPanel>
-                                    <ListView Grid.Column="2"
-                                              IsItemClickEnabled="True"
-                                              SelectionMode="None"
-                                              ItemsSource="{Binding Tracks}"
-                                              ItemTemplate="{StaticResource LittleDarkTrackTemplate}"
-                                              ItemContainerStyle="{StaticResource ListViewItemContainerStyle}">
-                                        <triggers:Interactions.Triggers>
-                                            <triggers:EventTrigger EventName="ItemClick">
-                                                <triggers:InvokeCommandAction Command="{Binding TrackClicked}"
-                                                                              PassEventArgsToCommand="True" />
-                                            </triggers:EventTrigger>
-                                        </triggers:Interactions.Triggers>
-                                        <ListView.ItemsPanel>
-                                            <ItemsPanelTemplate>
-                                                <ItemsWrapGrid ItemWidth="350"
-                                                               Orientation="Vertical" />
-                                            </ItemsPanelTemplate>
-                                        </ListView.ItemsPanel>
-                                    </ListView>
-                                </Grid>
-                            </Grid>
-                        </DataTemplate>
-                    </GridView.ItemTemplate>
-                </GridView>
+                <SemanticZoom Grid.Row="1"
+                              x:Name="CurrentArtistAlbumsSemanticZoom"
+                              ViewChangeCompleted="SemanticZoom_OnViewChangeCompletedCurrentArtistAlbum"
+                              ViewChangeStarted="SemanticZoom_OnViewChangeCompletedCurrentArtistAlbum">
+                    <SemanticZoom.ZoomedInView>
+                        <GridView IsItemClickEnabled="False"
+                                  SelectionMode="None"
+                                  ItemsSource="{Binding CurrentArtist.Albums}"
+                                  ItemContainerStyle="{StaticResource VerticalContentGridViewItemStyle}">
+                            <GridView.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <VirtualizingStackPanel VirtualizationMode="Standard"
+                                                            Orientation="Horizontal" />
+                                </ItemsPanelTemplate>
+                            </GridView.ItemsPanel>
+                            <GridView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid VerticalAlignment="Top"
+                                          Margin="18,0,40,0">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="50" />
+                                            <RowDefinition />
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Text="{Binding Name}"
+                                                   Style="{StaticResource SubheaderTextBlockStyle}" />
+                                        <Grid Grid.Row="1">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="160" />
+                                                <ColumnDefinition Width="12" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+                                            <StackPanel>
+                                                <Image Width="160"
+                                                       Height="160"
+                                                       Stretch="UniformToFill"
+                                                       Source="{Binding Picture}"
+                                                       VerticalAlignment="Top" />
+                                                <Button Margin="0,24,0,0"
+                                                        Content="Play album"
+                                                        Style="{StaticResource TextBlockButtonStyle}"
+                                                        FontWeight="Light"
+                                                        Foreground="{StaticResource SecondColor}"
+                                                        FontSize="22"
+                                                        Command="{Binding PlayAlbum}"
+                                                        CommandParameter="{Binding}" />
+                                            </StackPanel>
+                                            <ListView Grid.Column="2"
+                                                      IsItemClickEnabled="True"
+                                                      SelectionMode="None"
+                                                      ItemsSource="{Binding Tracks}"
+                                                      ItemTemplate="{StaticResource LittleDarkTrackTemplate}"
+                                                      ItemContainerStyle="{StaticResource ListViewItemContainerStyle}">
+                                                <triggers:Interactions.Triggers>
+                                                    <triggers:EventTrigger EventName="ItemClick">
+                                                        <triggers:InvokeCommandAction Command="{Binding TrackClicked}"
+                                                                                      PassEventArgsToCommand="True" />
+                                                    </triggers:EventTrigger>
+                                                </triggers:Interactions.Triggers>
+                                                <ListView.ItemsPanel>
+                                                    <ItemsPanelTemplate>
+                                                        <ItemsWrapGrid ItemWidth="350"
+                                                                       Orientation="Vertical" />
+                                                    </ItemsPanelTemplate>
+                                                </ListView.ItemsPanel>
+                                            </ListView>
+                                        </Grid>
+                                    </Grid>
+                                </DataTemplate>
+                            </GridView.ItemTemplate>
+                        </GridView>
+                    </SemanticZoom.ZoomedInView>
+                    <SemanticZoom.ZoomedOutView>
+                        <GridView ItemsSource="{Binding CurrentArtist.Albums}"
+                                  IsItemClickEnabled="True"
+                                  SelectionMode="None"
+                                  ItemTemplate="{StaticResource SemanticZoomInViewAlbumTemplate}"
+                                  ItemContainerStyle="{StaticResource GridViewItemStyle}" />
+                    </SemanticZoom.ZoomedOutView>
+                </SemanticZoom>
             </Grid>
         </Grid>
         <ListView x:Name="RadDataGrid"

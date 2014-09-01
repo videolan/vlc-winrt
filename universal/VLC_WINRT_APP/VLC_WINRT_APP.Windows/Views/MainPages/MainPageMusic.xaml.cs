@@ -56,6 +56,14 @@ namespace VLC_WINRT_APP.Views.MainPages
             Locator.MusicLibraryVM.ExecuteSemanticZoom(SemanticZoomAlbumsByArtist, AlbumsGroupedByName);
         }
 
+        private void SemanticZoom_OnViewChangeCompletedCurrentArtistAlbum(object sender, SemanticZoomViewChangedEventArgs e)
+        {
+            if (e.IsSourceZoomedInView == false)
+            {
+                e.DestinationItem.Item = e.SourceItem.Item;
+            }
+        }
+
 
         private void Header_Tapped(object sender, TappedRoutedEventArgs e)
         {
