@@ -1,7 +1,9 @@
-﻿using Windows.UI.Xaml.Controls;
+﻿using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using VLC_WINRT.Common;
 using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.ViewModels.MusicVM;
+using VLC_WINRT_APP.Views.MusicPages;
 
 namespace VLC_WINRT_APP.Commands.Music
 {
@@ -26,6 +28,11 @@ namespace VLC_WINRT_APP.Commands.Music
             }
             if (artist != null)
                 Locator.MusicLibraryVM.CurrentArtist = artist;
+
+            if (Window.Current.Bounds.Width < 800)
+            {
+                App.ApplicationFrame.Navigate(typeof (ArtistPage));
+            }
         }
     }
 }

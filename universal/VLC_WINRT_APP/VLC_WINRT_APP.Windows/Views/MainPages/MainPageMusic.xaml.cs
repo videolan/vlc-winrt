@@ -7,6 +7,7 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
+using System.Linq;
 using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -82,6 +83,10 @@ namespace VLC_WINRT_APP.Views.MainPages
                     ArtistsGrid.Visibility = Visibility.Visible;
                     RadDataGrid.Visibility = Visibility.Collapsed;
                     FavoriteAlbumsGridView.Visibility = Visibility.Collapsed;
+                    if (ArtistListView.SelectedIndex == -1)
+                    {
+                        ArtistListView.SelectedIndex = 0;
+                    }
                     break;
                 case 2:
                     SemanticZoomAlbumsByArtist.Visibility = Visibility.Collapsed;

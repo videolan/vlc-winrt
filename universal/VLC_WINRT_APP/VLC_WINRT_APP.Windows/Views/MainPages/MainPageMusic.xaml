@@ -49,8 +49,8 @@
                                    Foreground="{Binding Color}"
                                    TextWrapping="NoWrap"
                                    TextTrimming="None"
-                                   Style="{StaticResource SubheaderTextBlockStyle}" 
-                                   Margin="0,0,5,0"/>
+                                   Style="{StaticResource SubheaderTextBlockStyle}"
+                                   Margin="0,0,5,0" />
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
@@ -118,9 +118,11 @@
               Visibility="Collapsed">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="320" />
+                <ColumnDefinition Width="1"/>
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <ListView ItemsSource="{Binding Artists}"
+            <ListView x:Name="ArtistListView"
+                      ItemsSource="{Binding Artists}"
                       IsItemClickEnabled="False"
                       SelectionMode="Single"
                       ItemContainerStyle="{StaticResource ListViewItemStyle}">
@@ -149,20 +151,25 @@
                                      FontSize="22" />
                                 <LineBreak />
                                 <Run Text="{Binding Albums.Count}"
-                                     Foreground="DimGray"/>
-                                <Run Text="albums" 
-                                     Foreground="DimGray"/>
+                                     Foreground="DimGray" />
+                                <Run Text="albums"
+                                     Foreground="DimGray" />
                             </TextBlock>
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <Grid Grid.Column="1">
+            <Grid Grid.Column="1"
+                  Width="1"
+                  Background="{StaticResource MainColor}"
+                  HorizontalAlignment="Left"/>
+            <Grid Grid.Column="2">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="55" />
                     <RowDefinition />
                 </Grid.RowDefinitions>
-                <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal"
+                            Margin="18,0,0,0">
                     <TextBlock Text="{Binding CurrentArtist.Name}"
                                Style="{StaticResource SubheaderTextBlockStyle}"
                                FontSize="42"
@@ -205,7 +212,7 @@
                     <GridView.ItemTemplate>
                         <DataTemplate>
                             <Grid VerticalAlignment="Top"
-                                  Margin="0,0,40,0">
+                                  Margin="18,0,40,0">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="50" />
                                     <RowDefinition />
@@ -215,7 +222,7 @@
                                 <Grid Grid.Row="1">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="160" />
-                                        <ColumnDefinition Width="12"/>
+                                        <ColumnDefinition Width="12" />
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
                                     <StackPanel>
@@ -231,7 +238,7 @@
                                                 Foreground="{StaticResource SecondColor}"
                                                 FontSize="22"
                                                 Command="{Binding PlayAlbum}"
-                                                CommandParameter="{Binding}"/>
+                                                CommandParameter="{Binding}" />
                                     </StackPanel>
                                     <ListView Grid.Column="2"
                                               IsItemClickEnabled="True"
