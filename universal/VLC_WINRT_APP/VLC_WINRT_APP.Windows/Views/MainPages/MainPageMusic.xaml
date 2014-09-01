@@ -49,7 +49,8 @@
                                    Foreground="{Binding Color}"
                                    TextWrapping="NoWrap"
                                    TextTrimming="None"
-                                   Style="{StaticResource SubheaderTextBlockStyle}" />
+                                   Style="{StaticResource SubheaderTextBlockStyle}" 
+                                   Margin="0,0,5,0"/>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
