@@ -9,6 +9,7 @@
 
 using System.Linq;
 using Windows.UI;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
@@ -119,11 +120,5 @@ namespace VLC_WINRT_APP.Views.MainPages
                     break;
             }
         }
-
-        //private void RadDataGrid_OnSelectionChanged(object sender, DataGridSelectionChangedEventArgs e)
-        //{
-        //    PlayTrackCommand playTrackCommand = new PlayTrackCommand();
-        //    playTrackCommand.Execute(e);
-        //}
     }
 }

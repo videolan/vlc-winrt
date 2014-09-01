@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Linq;
+﻿using System.Linq;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using VLC_WINRT.Common;
 using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.ViewModels;
-using VLC_WINRT_APP.Views.MainPages;
 using VLC_WINRT_APP.ViewModels.MusicVM;
 using VLC_WINRT_APP.Views.MusicPages;
 

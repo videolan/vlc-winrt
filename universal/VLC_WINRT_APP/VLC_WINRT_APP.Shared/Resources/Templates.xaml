@@ -4,7 +4,9 @@
                     xmlns:controls="using:VLC_WINRT_APP.Controls"
                     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
                     xmlns:common="using:VLC_WINRT_APP.Common"
-                    xmlns:interactivity="using:Microsoft.Xaml.Interactivity">
+                    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+                    xmlns:userControls="using:VLC_WINRT_APP.Views.UserControls"
+                    xmlns:triggers="using:WinRT.Triggers">
 
     <DataTemplate x:Key="SemanticZoomOutViewArtistTemplate">
         <Grid Width="240"
@@ -96,15 +98,87 @@
                 </StackPanel>
             </Grid>
             <interactivity:Interaction.Behaviors>
-                <core:EventTriggerBehavior EventName="RightTapped">
+                <core:EventTriggerBehavior EventName="Tapped">
                     <common:OpenMenuFlyoutAction />
                 </core:EventTriggerBehavior>
             </interactivity:Interaction.Behaviors>
             <FlyoutBase.AttachedFlyout>
-                <MenuFlyout>
-                    <MenuFlyoutItem  Command="{Binding DataContext.ChangeAlbumArtCommand, ElementName=MusicLibrary}" CommandParameter="{Binding}" x:Uid="ChangeAlbumArt" Text="Change Album Art"/>
-                    <MenuFlyoutItem  Command="{Binding DataContext.DownloadAlbumArtCommand, ElementName=MusicLibrary}" CommandParameter="{Binding}" x:Uid="DownloadAlbumArt" Text="Download Album Art"/>
-                </MenuFlyout>
+                <Flyout>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50" />
+                            <RowDefinition />
+                            <RowDefinition Height="50" />
+                            <RowDefinition Height="50" />
+                        </Grid.RowDefinitions>
+                        <Button Style="{StaticResource TextBlockButtonStyle}"
+                                FontWeight="Light"
+                                Foreground="{StaticResource SecondColor}"
+                                FontSize="22"
+                                Command="{Binding PlayAlbum}"
+                                CommandParameter="{Binding}">
+                            <Button.Content>
+                                <TextBlock>
+                                    <Run Text="Play album" />
+                                    <Run Text=""
+                                         FontFamily="Segoe UI Symbol" />
+                                </TextBlock>
+                            </Button.Content>
+                        </Button>
+                        <ListView Grid.Row="1"
+                                  ItemsSource="{Binding Tracks}"
+                                  IsItemClickEnabled="True"
+                                  SelectionMode="None"
+                                  ItemTemplate="{StaticResource LittleLightTrackTemplate}"
+                                  ItemContainerStyle="{StaticResource ListViewItemContainerStyle}"
+                                  RequestedTheme="Dark">
+                            <triggers:Interactions.Triggers>
+                                <triggers:EventTrigger EventName="ItemClick">
+                                    <triggers:InvokeCommandAction Command="{Binding TrackClicked}"
+                                                                  PassEventArgsToCommand="True" />
+                                </triggers:EventTrigger>
+                            </triggers:Interactions.Triggers>
+                            <ListView.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <ItemsWrapGrid ItemWidth="300"
+                                                   Orientation="Vertical" />
+                                </ItemsPanelTemplate>
+                            </ListView.ItemsPanel>
+                        </ListView>
+                        <Button Grid.Row="2"
+                                Style="{StaticResource TextBlockButtonStyle}"
+                                FontWeight="Light"
+                                Foreground="{StaticResource SecondColor}"
+                                FontSize="22"
+                                Command="{Binding DataContext.ChangeAlbumArtCommand, ElementName=MusicLibrary}"
+                                CommandParameter="{Binding}">
+                            <Button.Content>
+                                <TextBlock>
+                                    <Run x:Uid="ChangeAlbumArt"
+                                         Text="Change Album Art" />
+                                    <Run Text=""
+                                         FontFamily="Segoe UI Symbol" />
+                                </TextBlock>
+                            </Button.Content>
+                        </Button>
+                        <Button Grid.Row="3"
+                                Style="{StaticResource TextBlockButtonStyle}"
+                                FontWeight="Light"
+                                Foreground="{StaticResource SecondColor}"
+                                FontSize="22"
+                                Command="{Binding DataContext.DownloadAlbumArtCommand, ElementName=MusicLibrary}"
+                                CommandParameter="{Binding}">
+                            <Button.Content>
+                                <TextBlock>
+                                    <Run x:Uid="DownloadAlbumArt"
+                                         Text="Download Album Art" />
+                                    <Run Text=""
+                                         FontFamily="Segoe UI Symbol" />
+                                </TextBlock>
+                            </Button.Content>
+                        </Button>
+                    </Grid>
+                </Flyout>
             </FlyoutBase.AttachedFlyout>
         </Border>
     </DataTemplate>
@@ -139,23 +213,24 @@
     </DataTemplate>
 
     <DataTemplate x:Key="LittleLightTrackTemplate">
-        <Grid>
+        <Grid RequestedTheme="Dark"
+              x:Name="RootTrackGrid">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="12" />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="1"
+            <TextBlock Grid.Column="0"
                        Text="{Binding Index}"
-                       FontSize="36"
-                       FontWeight="ExtraLight" />
-            <StackPanel Grid.Column="2"
+                       FontSize="20"
+                       FontWeight="ExtraLight"
+                       Foreground="DarkGray" />
+            <StackPanel Grid.Column="1"
                         Margin="12,0,0,0"
                         VerticalAlignment="Center">
                 <TextBlock Text="{Binding Name}"
-                           FontSize="20"
-                           FontWeight="Normal"
-                           Foreground="#FF2B2B2B" />
+                           FontSize="19"
+                           FontWeight="SemiLight"
+                           Foreground="{Binding Converter={StaticResource CurrentTrackForegroundConverter}, ConverterParameter='Dark'}" />
                 <TextBlock Text="{Binding ArtistName}"
                            FontSize="14"
                            FontWeight="Normal"
@@ -198,7 +273,7 @@
                        Text="{Binding Index}"
                        FontSize="20"
                        FontWeight="ExtraLight"
-                       Foreground="DarkGray"/>
+                       Foreground="DarkGray" />
             <StackPanel Grid.Column="1"
                         Margin="12,0,0,0"
                         VerticalAlignment="Center">
@@ -213,6 +288,7 @@
             </StackPanel>
         </Grid>
     </DataTemplate>
+
     <DataTemplate x:Key="PopularAlbumTemplate">
         <Grid>
             <Image Source="{Binding Images, Converter={StaticResource AlbumImageConverter}}"
@@ -332,7 +408,7 @@
                   HorizontalAlignment="Center"
                   Stretch="Uniform"
                   Fill="{Binding Color}"
-                  Margin="-9,0,0,0"/>
+                  Margin="-9,0,0,0" />
         </Grid>
     </DataTemplate>
     <DataTemplate x:Name="SidebarMiniIconItemTemplate">

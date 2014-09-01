@@ -75,12 +75,12 @@
                           SelectionMode="None"
                           ItemTemplate="{StaticResource SemanticZoomInViewAlbumTemplate}"
                           ItemContainerStyle="{StaticResource ListViewItemStyle}">
-                    <triggers:Interactions.Triggers>
+                    <!--<triggers:Interactions.Triggers>
                         <triggers:EventTrigger EventName="ItemClick">
                             <triggers:InvokeCommandAction Command="{Binding AlbumClickedCommand}"
                                                           PassEventArgsToCommand="True" />
                         </triggers:EventTrigger>
-                    </triggers:Interactions.Triggers>
+                    </triggers:Interactions.Triggers>-->
                     <ListView.GroupStyle>
                         <GroupStyle>
                             <GroupStyle.Panel>
@@ -203,7 +203,8 @@
                               ViewChangeCompleted="SemanticZoom_OnViewChangeCompletedCurrentArtistAlbum"
                               ViewChangeStarted="SemanticZoom_OnViewChangeCompletedCurrentArtistAlbum">
                     <SemanticZoom.ZoomedInView>
-                        <GridView IsItemClickEnabled="False"
+                        <GridView x:Name="ArtistAlbumsGridView"
+                                  IsItemClickEnabled="False"
                                   SelectionMode="None"
                                   ItemsSource="{Binding CurrentArtist.Albums}"
                                   ItemContainerStyle="{StaticResource VerticalContentGridViewItemStyle}">

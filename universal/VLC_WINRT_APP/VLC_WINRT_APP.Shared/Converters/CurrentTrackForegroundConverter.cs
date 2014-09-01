@@ -9,6 +9,8 @@
 
 using System;
 using Windows.UI;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media;
 using VLC_WINRT_APP.ViewModels;
@@ -25,6 +27,11 @@ namespace VLC_WINRT_APP.Converters
                 && ((MusicLibraryVM.TrackItem)value).Path == Locator.MusicPlayerVM.CurrentTrackItem.Path)
             {
                 return App.Current.Resources["MainColor"] as SolidColorBrush;
+            }
+
+            if (!string.IsNullOrEmpty((string)parameter) && (string)parameter == "Dark")
+            {
+                return new SolidColorBrush(Colors.WhiteSmoke);
             }
             return new SolidColorBrush(Color.FromArgb(255, 15, 15, 15));
         }
