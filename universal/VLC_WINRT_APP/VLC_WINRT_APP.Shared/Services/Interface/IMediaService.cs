@@ -19,6 +19,7 @@ namespace VLC_WINRT_APP.Services.Interface
 
         void SetMediaTransportControlsInfo(string artistName, string albumName, string trackName, string albumUri);
 
+        void SetMediaTransportControlsInfo(string title);
         /// <summary>
         /// Sets the path of the file to played.
         /// </summary>

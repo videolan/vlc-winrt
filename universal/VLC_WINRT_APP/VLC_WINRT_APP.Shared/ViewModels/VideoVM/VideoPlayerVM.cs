@@ -261,7 +261,8 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             if (_audioTracks.Count > 1)
                 CurrentAudioTrack = _audioTracks[1];
             _vlcPlayerService.MediaEnded += VlcPlayerServiceOnMediaEnded;
-//#endif
+            //#endif
+            base._mediaService.SetMediaTransportControlsInfo(media.Title);
         }
 
         private void VlcPlayerServiceOnMediaEnded(object sender, Player player)

@@ -48,7 +48,7 @@ namespace VLC_WINRT_APP.Services.RunTime
 
             _vlcService.MediaEnded += VlcPlayerService_MediaEnded;
             _vlcService.StatusChanged += VlcPlayerService_StatusChanged;
-            
+
             CoreWindow.GetForCurrentThread().Activated += ApplicationState_Activated;
         }
 
@@ -87,6 +87,21 @@ namespace VLC_WINRT_APP.Services.RunTime
                 }
 
                 // Update the system media transport controls.
+                updater.Update();
+            });
+        }
+
+        public void SetMediaTransportControlsInfo(string title)
+        {
+            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                SystemMediaTransportControlsDisplayUpdater updater = _systemMediaTransportControls.DisplayUpdater;
+                updater.Type = MediaPlaybackType.Video;
+
+                //Video metadata
+                updater.VideoProperties.Title = title;
+                //TODO: add full thumbnail suport
+                updater.Thumbnail = null;
                 updater.Update();
             });
         }

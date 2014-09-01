@@ -434,10 +434,6 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                 foreach (var artistItem in artists)
                 {
                     var albums = await _albumDataRepository.LoadAlbumsFromId(artistItem.Id);
-                    if (albums.Count == 0)
-                    {
-                        MusicLibraryVM._artistDataRepository.Remove(artistItem);
-                    }
                     foreach (var album in albums)
                     {
                         var tracks = await _trackDataRepository.LoadTracksByAlbumId(album.Id);
