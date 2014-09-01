@@ -95,13 +95,14 @@
                                                Margin="0,12,0,0"
                                                Visibility="{Binding SubtitlesCount, Converter={StaticResource NegatedCountToVisibilityConverter}}" />
                                     <ComboBox ItemsSource="{Binding Subtitles}"
-                                              SelectedItem="{Binding CurrentSubtitle}"
+                                              SelectedItem="{Binding CurrentSubtitle, Mode=TwoWay}"
                                               Margin="0,12,0,0"
                                               Style="{StaticResource ComboBoxStyleDark}"
                                               Visibility="{Binding SubtitlesCount, Converter={StaticResource NegatedCountToVisibilityConverter}}">
                                         <ComboBox.ItemTemplate>
                                             <DataTemplate>
-                                                <TextBlock Text="{Binding Value}" />
+                                                <TextBlock Text="{Binding Name}"
+                                                           Foreground="White"/>
                                             </DataTemplate>
                                         </ComboBox.ItemTemplate>
                                     </ComboBox>

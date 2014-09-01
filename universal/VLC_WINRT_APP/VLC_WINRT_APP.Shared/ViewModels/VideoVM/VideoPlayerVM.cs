@@ -260,9 +260,11 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             SpeedRate = 100;
             if (_audioTracks.Count > 1)
                 CurrentAudioTrack = _audioTracks[1];
+            if (_subtitlesTracks.Count > 1)
+                CurrentSubtitle = _subtitlesTracks[0];
             _vlcPlayerService.MediaEnded += VlcPlayerServiceOnMediaEnded;
             //#endif
-            base._mediaService.SetMediaTransportControlsInfo(media.Title);
+            base._mediaService.SetMediaTransportControlsInfo(CurrentVideo.Title);
         }
 
         private void VlcPlayerServiceOnMediaEnded(object sender, Player player)
