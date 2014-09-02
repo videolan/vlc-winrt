@@ -177,7 +177,7 @@ namespace VLC_WINRT_APP.ViewModels
 #endif
             _sliderPositionTimer = new DispatcherTimer();
             _sliderPositionTimer.Tick += FirePositionUpdate;
-            _sliderPositionTimer.Interval = TimeSpan.FromMilliseconds(1000);
+            _sliderPositionTimer.Interval = TimeSpan.FromMilliseconds(500);
 
             _skipAhead = new ActionCommand(() =>
             {
