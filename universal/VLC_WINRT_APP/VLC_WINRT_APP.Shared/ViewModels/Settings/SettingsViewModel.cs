@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using Windows.Storage;
 using VLC_WINRT_APP.Commands.Settings;
 using VLC_WINRT_APP.Common;
+using VLC_WINRT_APP.Helpers;
 using XboxMusicLibrary.Models;
 
 namespace VLC_WINRT_APP.ViewModels.Settings
@@ -22,6 +23,8 @@ namespace VLC_WINRT_APP.ViewModels.Settings
     {
         private List<StorageFolder> _musicFolders;
         private List<StorageFolder> _videoFolders;
+        private bool _notificationOnNewSong;
+        private bool _notificationOnNewSongForeground;
 
         public List<StorageFolder> MusicFolders
         {
@@ -41,6 +44,26 @@ namespace VLC_WINRT_APP.ViewModels.Settings
         public KnownLibraryId MusicLibraryId { get; set; }
         public KnownLibraryId VideoLibraryId { get; set; }
 
+        public bool NotificationOnNewSong
+        {
+            get { return _notificationOnNewSong; }
+            set
+            {
+                SetProperty(ref _notificationOnNewSong, value); 
+                ApplicationSettingsHelper.SaveSettingsValue("NotificationOnNewSong", value);
+            }
+        }
+
+        public bool NotificationOnNewSongForeground
+        {
+            get { return _notificationOnNewSongForeground; }
+            set
+            {
+                SetProperty(ref _notificationOnNewSongForeground, value);
+                ApplicationSettingsHelper.SaveSettingsValue("NotificationOnNewSongForeground", value);
+            }
+        }
+
         public SettingsViewModel()
         {
 
@@ -54,6 +77,9 @@ namespace VLC_WINRT_APP.ViewModels.Settings
             AddFolderToLibrary = new AddFolderToLibrary();
             RemoveFolderFromMusicLibrary = new RemoveFolderFromMusicLibrary();
             RemoveFolderFromVideoLibrary = new RemoveFolderFromVideoLibrary();
+
+            NotificationOnNewSong = (bool)ApplicationSettingsHelper.ReadSettingsValue("NotificationOnNewSong");
+            NotificationOnNewSongForeground = (bool)ApplicationSettingsHelper.ReadSettingsValue("NotificationOnNewSongForeground");
             GetLibrariesFolders();
         }
 
