@@ -47,7 +47,7 @@
                                     <StackPanel Orientation="Horizontal">
                                         <TextBox Name="UrlTextBox"
                                                  PlaceholderText="Enter a URL"
-                                                 Width="200" />
+                                                 Width="300" />
                                         <Button Style="{StaticResource TextBlockButtonStyle}"
                                                 Margin="12,0,0,0"
                                                 Command="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM.PlayNetworkMRL}"
