@@ -182,6 +182,39 @@
             </FlyoutBase.AttachedFlyout>
         </Border>
     </DataTemplate>
+    <DataTemplate x:Key="SemanticZoomInViewAlbumTemplateWithoutFlyout">
+        <Border Padding="12"
+                Background="WhiteSmoke">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="200" />
+                    <RowDefinition Height="6" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Image Grid.Row="0"
+                       Source="/Assets/NoCover.jpg"
+                       Stretch="UniformToFill"
+                       Width="200"
+                       Height="200" />
+                <Image Grid.Row="0"
+                       Source="{Binding Picture}"
+                       Stretch="UniformToFill"
+                       Width="200"
+                       Height="200" />
+                <StackPanel Grid.Row="2">
+                    <TextBlock Text="{Binding Artist}"
+                               TextWrapping="NoWrap"
+                               TextTrimming="WordEllipsis"
+                               FontSize="15"
+                               FontWeight="SemiBold" />
+                    <TextBlock Text="{Binding Name}"
+                               TextWrapping="NoWrap"
+                               TextTrimming="WordEllipsis"
+                               FontSize="16" />
+                </StackPanel>
+            </Grid>
+        </Border>
+    </DataTemplate>
 
     <DataTemplate x:Key="SemanticZoomInViewMovieTemplate">
         <controls:VideoItemControl />

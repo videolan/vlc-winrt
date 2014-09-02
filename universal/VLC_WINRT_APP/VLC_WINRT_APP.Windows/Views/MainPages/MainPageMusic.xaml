@@ -306,7 +306,7 @@
                         <GridView ItemsSource="{Binding CurrentArtist.Albums}"
                                   IsItemClickEnabled="True"
                                   SelectionMode="None"
-                                  ItemTemplate="{StaticResource SemanticZoomInViewAlbumTemplate}"
+                                  ItemTemplate="{StaticResource SemanticZoomInViewAlbumTemplateWithoutFlyout}"
                                   ItemContainerStyle="{StaticResource GridViewItemStyle}" />
                     </SemanticZoom.ZoomedOutView>
                 </SemanticZoom>
