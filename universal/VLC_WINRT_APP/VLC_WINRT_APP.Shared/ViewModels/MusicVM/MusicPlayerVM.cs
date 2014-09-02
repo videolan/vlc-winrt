@@ -255,6 +255,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             string albumName = trackItem.AlbumName;
             string trackName = trackItem.Name ?? resourceLoader.GetString("UnknownTrack");
             base._mediaService.SetMediaTransportControlsInfo(artistName, albumName, trackName, Locator.MusicPlayerVM.CurrentPlayingArtist.CurrentAlbumItem.Picture);
+            ToastHelper.ToastImageAndText04(trackName, albumName, artistName, Locator.MusicPlayerVM.CurrentPlayingArtist.CurrentAlbumItem.Picture);
         }
 
         public async void SetActiveMusicInfo(string token, MusicLibraryVM.TrackItem track)
