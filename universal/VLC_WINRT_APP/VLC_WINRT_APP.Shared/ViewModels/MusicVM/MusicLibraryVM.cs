@@ -56,6 +56,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         #endregion
         #region private props
         private LoadingState _loadingState;
+        private ArtistAlbumsSemanticZoomInvertZoomCommand _artistAlbumsSemanticZoomInvertZoomCommand; 
         private ChangeAlbumArtCommand _changeAlbumArtCommand;
         private DownloadAlbumArtCommand _downloadAlbumArtCommand;
         private AlbumClickedCommand _albumClickedCommand;
@@ -67,6 +68,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         private bool _isMusicLibraryEmpty = true;
         private bool _isAlbumPageShown = false;
         private string _currentIndexingStatus = "Loading music";
+        private bool _isMainPageMusicArtistAlbumsSemanticZoomViewedIn;
         #endregion
         #region public fields
         public ObservableCollection<AlbumItem> FavoriteAlbums
@@ -123,7 +125,11 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             get { return _isAlbumPageShown; }
             set { SetProperty(ref _isAlbumPageShown, value); }
         }
-
+        public bool IsMainPageMusicArtistAlbumsSemanticZoomViewedIn
+        {
+            get { return _isMainPageMusicArtistAlbumsSemanticZoomViewedIn; }
+            set { SetProperty(ref _isMainPageMusicArtistAlbumsSemanticZoomViewedIn, value); }
+        }
         public bool IsLoaded
         {
             get { return _isLoaded; }
@@ -141,6 +147,12 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             get { return _isMusicLibraryEmpty; }
             set { SetProperty(ref _isMusicLibraryEmpty, value); }
         }
+        public ArtistAlbumsSemanticZoomInvertZoomCommand ArtistAlbumsSemanticZoomInvertZoomCommand
+        {
+            get { return _artistAlbumsSemanticZoomInvertZoomCommand; }
+            set { SetProperty(ref _artistAlbumsSemanticZoomInvertZoomCommand, value); }
+        }
+
         public ChangeAlbumArtCommand ChangeAlbumArtCommand
         {
             get
@@ -214,6 +226,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             _trackClickedCommand = new TrackClickedCommand();
             _changeAlbumArtCommand = new ChangeAlbumArtCommand();
             _downloadAlbumArtCommand = new DownloadAlbumArtCommand();
+            _artistAlbumsSemanticZoomInvertZoomCommand = new ArtistAlbumsSemanticZoomInvertZoomCommand(); 
             Task.Run(() => GetMusicFromLibrary());
         }
 

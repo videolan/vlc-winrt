@@ -8,6 +8,7 @@
  **********************************************************************/
 
 using System.Linq;
+using Windows.Devices.Input;
 using Windows.UI;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
@@ -92,6 +93,11 @@ namespace VLC_WINRT_APP.Views.MainPages
                     ArtistsGrid.Visibility = Visibility.Visible;
                     RadDataGrid.Visibility = Visibility.Collapsed;
                     FavoriteAlbumsGridView.Visibility = Visibility.Collapsed;
+                    TouchCapabilities touchCap = new TouchCapabilities();
+                    if (touchCap.TouchPresent == 0)
+                    {
+                        Locator.MusicLibraryVM.IsMainPageMusicArtistAlbumsSemanticZoomViewedIn = false;
+                    }
                     if (Locator.MusicPlayerVM.IsPlaying
                         && Locator.MusicPlayerVM.PlayingType == PlayingType.Music
                         && Locator.MusicPlayerVM.CurrentPlayingArtist != null)
