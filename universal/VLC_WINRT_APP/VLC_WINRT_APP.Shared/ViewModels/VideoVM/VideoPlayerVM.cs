@@ -152,7 +152,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
         {
             get { return _subtitlesTracks; }
             set { _subtitlesTracks = value; }
-        } 
+        }
         #endregion
 
         #region constructors
@@ -200,14 +200,9 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             OnPropertyChanged("IsPlaying");
             _fileToken = mrl;
             _mrl = (isStream) ? mrl : "file://" + mrl;
-            
+
             _timeTotal = TimeSpan.Zero;
             _elapsedTime = TimeSpan.Zero;
-
-//            _vlcPlayerService.Open(_mrl);
-//#if WINDOWS_APP
-//            _vlcPlayerService.Play();
-//#endif
 
             _mediaService.SetMediaFile(_mrl, isAudioMedia: false);
             _mediaService.Play();
@@ -264,7 +259,10 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             if (_subtitlesTracks.Count > 1)
                 CurrentSubtitle = _subtitlesTracks[0];
             _vlcPlayerService.MediaEnded += VlcPlayerServiceOnMediaEnded;
-            base._mediaService.SetMediaTransportControlsInfo(CurrentVideo.Title);
+            if (CurrentVideo != null)
+                base._mediaService.SetMediaTransportControlsInfo(CurrentVideo.Title);
+            else
+                base._mediaService.SetMediaTransportControlsInfo("Video");
         }
 
         private void VlcPlayerServiceOnMediaEnded(object sender, Player player)
@@ -272,7 +270,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             _vlcPlayerService.MediaEnded -= VlcPlayerServiceOnMediaEnded;
             App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
             {
-                App.ApplicationFrame.Navigate(typeof (MainPageVideos));
+                App.ApplicationFrame.Navigate(typeof(MainPageVideos));
                 Locator.VideoVm.IsRunning = false;
                 OnPropertyChanged("PlayingType");
             });
