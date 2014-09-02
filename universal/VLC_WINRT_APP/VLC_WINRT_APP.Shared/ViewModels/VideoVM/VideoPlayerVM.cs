@@ -230,13 +230,13 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
                 PositionInSeconds = media.TimeWatched.TotalSeconds;
             }
             await Task.Delay(500);
-//#if WINDOWS_APP
             SubtitlesCount = await _vlcPlayerService.GetSubtitleCount();
             AudioTracksCount = await _vlcPlayerService.GetAudioTrackCount();
 
 
             IDictionary<int, string> subtitles = new Dictionary<int, string>();
             await _vlcPlayerService.GetSubtitleDescription(subtitles);
+            _subtitlesTracks.Clear();
             foreach (KeyValuePair<int, string> subtitle in subtitles)
             {
                 _subtitlesTracks.Add(new DictionaryKeyValue()
@@ -248,6 +248,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
 
             IDictionary<int, string> tracks = new Dictionary<int, string>();
             await _vlcPlayerService.GetAudioTrackDescription(tracks);
+            _audioTracks.Clear();
             foreach (KeyValuePair<int, string> track in tracks)
             {
                 _audioTracks.Add(new DictionaryKeyValue()
@@ -263,7 +264,6 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             if (_subtitlesTracks.Count > 1)
                 CurrentSubtitle = _subtitlesTracks[0];
             _vlcPlayerService.MediaEnded += VlcPlayerServiceOnMediaEnded;
-            //#endif
             base._mediaService.SetMediaTransportControlsInfo(CurrentVideo.Title);
         }
 
