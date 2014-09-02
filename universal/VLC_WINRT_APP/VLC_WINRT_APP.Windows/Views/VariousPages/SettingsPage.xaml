@@ -10,23 +10,42 @@
       DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}">
 
     <Grid>
-        <Hub x:Uid="SettingsHeader" Header="settings"
+        <Hub x:Uid="SettingsHeader"
+             Header="settings"
              x:Name="MainHub">
             <Hub.HeaderTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding}"
-                               Margin="0,-14,0,-18"
-                               Height="45"
-                               FontSize="36"
-                               Foreground="{StaticResource MainColor}" />
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding}"
+                                   Margin="0,-14,0,-18"
+                                   Height="45"
+                                   FontSize="32"
+                                   Foreground="{StaticResource MainColor}" />
+                        <Button Style="{StaticResource TextBlockButtonStyle}"
+                                Margin="16,0,0,0"
+                                Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToAboutPageCommand}"
+                                FontSize="19"
+                                FontWeight="Light">
+                            <Button.Content>
+                                <TextBlock>
+                                    <Run x:Uid="MenuAboutApp"
+                                         Text="About the app" />
+                                    <Run Text=""
+                                         FontFamily="Segoe UI Symbol" />
+                                </TextBlock>
+                            </Button.Content>
+                        </Button>
+                    </StackPanel>
                 </DataTemplate>
             </Hub.HeaderTemplate>
             <Hub.Sections>
-                <HubSection x:Uid="VideoSettingsHeader" Header="video settings">
+                <HubSection x:Uid="VideoSettingsHeader"
+                            Header="video settings">
                     <HubSection.ContentTemplate>
                         <DataTemplate>
                             <StackPanel Width="300">
-                                <TextBlock x:Uid="VideoSettings" Text="VLC will only search videos that are in your video library. You can add folders to your library here:"
+                                <TextBlock x:Uid="VideoSettings"
+                                           Text="VLC will only search videos that are in your video library. You can add folders to your library here:"
                                            Style="{StaticResource BodyTextBlockStyle}" />
                                 <ListView Margin="0,12,0,0"
                                           ItemsSource="{Binding VideoFolders}"
@@ -68,11 +87,13 @@
                         </DataTemplate>
                     </HubSection.ContentTemplate>
                 </HubSection>
-                <HubSection x:Uid="MusicSettingsHeader" Header="music settings">
+                <HubSection x:Uid="MusicSettingsHeader"
+                            Header="music settings">
                     <HubSection.ContentTemplate>
                         <DataTemplate>
                             <StackPanel Width="300">
-                                <TextBlock x:Uid="MusicSettings" Text="VLC will only search songs that are in your music library. You can add folders to your library here:"
+                                <TextBlock x:Uid="MusicSettings"
+                                           Text="VLC will only search songs that are in your music library. You can add folders to your library here:"
                                            Style="{StaticResource BodyTextBlockStyle}" />
                                 <ListView Margin="0,12,0,0"
                                           ItemsSource="{Binding MusicFolders}"
@@ -114,10 +135,10 @@
                                         Margin="0,12"
                                         Background="{StaticResource SecondColor}" />
                                 <ToggleSwitch Header="Notification when a new song starts"
-                                              IsOn="{Binding NotificationOnNewSong, Mode=TwoWay}"/>
+                                              IsOn="{Binding NotificationOnNewSong, Mode=TwoWay}" />
                                 <ToggleSwitch Header="Even if the app is not in background"
                                               IsOn="{Binding NotificationOnNewSongForeground, Mode=TwoWay}"
-                                              Visibility="{Binding NotificationOnNewSong, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                              Visibility="{Binding NotificationOnNewSong, Converter={StaticResource BooleanToVisibilityConverter}}" />
                             </StackPanel>
                         </DataTemplate>
                     </HubSection.ContentTemplate>

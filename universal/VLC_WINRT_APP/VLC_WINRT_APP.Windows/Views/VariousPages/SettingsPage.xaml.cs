@@ -31,10 +31,12 @@ namespace VLC_WINRT_APP.Views.VariousPages
             if (Window.Current.Bounds.Width < 500)
             {
                 MainHub.Orientation = Orientation.Vertical;
+                MainHub.Margin = new Thickness(-30,0,0,0);
             }
             else
             {
                 MainHub.Orientation = Orientation.Horizontal;
+                MainHub.Margin = new Thickness(0);
             }
         }
 
