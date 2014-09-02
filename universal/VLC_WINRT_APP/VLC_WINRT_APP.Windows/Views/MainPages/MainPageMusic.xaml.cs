@@ -16,6 +16,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.ViewModels;
 
@@ -93,8 +94,7 @@ namespace VLC_WINRT_APP.Views.MainPages
                     ArtistsGrid.Visibility = Visibility.Visible;
                     RadDataGrid.Visibility = Visibility.Collapsed;
                     FavoriteAlbumsGridView.Visibility = Visibility.Collapsed;
-                    TouchCapabilities touchCap = new TouchCapabilities();
-                    if (touchCap.TouchPresent == 0)
+                    if (CapabilitiesHelper.IsTouchCapable)
                     {
                         Locator.MusicLibraryVM.IsMainPageMusicArtistAlbumsSemanticZoomViewedIn = false;
                     }
