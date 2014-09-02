@@ -25,10 +25,6 @@ namespace VLC_WINRT_APP.Views.MusicPages
 
         private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
         {
-            if (Window.Current.Bounds.Width < 600)
-            {
-                MainHub.ScrollToSection(MainHub.Sections[1]);
-            }
         }
 
         private void GoBack(object sender, RoutedEventArgs e)

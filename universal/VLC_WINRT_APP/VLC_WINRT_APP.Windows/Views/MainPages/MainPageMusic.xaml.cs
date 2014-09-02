@@ -107,7 +107,8 @@ namespace VLC_WINRT_APP.Views.MainPages
                                 x => x.Name == Locator.MusicPlayerVM.CurrentPlayingArtist.Name);
                         ArtistListView.ScrollIntoView(ArtistListView.SelectedItem);
                     }
-                    if (ArtistListView.SelectedIndex == -1)
+                    if (ArtistListView.SelectedIndex == -1
+                        && Window.Current.Bounds.Width > 800)
                     {
                         ArtistListView.SelectedIndex = 0;
                     }

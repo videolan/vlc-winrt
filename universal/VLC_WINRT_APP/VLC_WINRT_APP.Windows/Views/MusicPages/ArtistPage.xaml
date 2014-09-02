@@ -9,13 +9,12 @@
       x:Name="MusicLibrary"
       DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
 
-    <Grid>
+    <Grid RequestedTheme="Light">
         <Hub x:Name="MainHub">
             <Hub.Header>
                 <StackPanel Orientation="Horizontal"
                             Margin="-40,-14,0,-18"
-                            Height="45"
-                            RequestedTheme="Dark">
+                            Height="45">
                     <AppBarButton Icon="Back"
                                   IsCompact="True"
                                   Click="GoBack"
@@ -41,7 +40,7 @@
                 </StackPanel>
             </Hub.Header>
             <Hub.Sections>
-                <HubSection Margin="-24,0,0,0">
+                <!--<HubSection Margin="-24,0,0,0">
                     <HubSection.Background>
                         <ImageBrush Stretch="UniformToFill"
                                     ImageSource="{Binding CurrentArtist.Picture}" />
@@ -51,7 +50,7 @@
                             <artistPageControls:ArtistCoverBiographyControl RequestedTheme="Dark" />
                         </DataTemplate>
                     </HubSection.ContentTemplate>
-                </HubSection>
+                </HubSection>-->
                 <HubSection Header="albums">
                     <HubSection.ContentTemplate>
                         <DataTemplate>
