@@ -375,6 +375,17 @@ namespace VLC_WINRT_APP.Services.RunTime
                 return vol;
             }
         }
+
+        public async Task Trim()
+        {
+            if (_vlcPlayer == null || _vlcInitializeTask == null)
+                return;
+            await _vlcInitializeTask;
+            lock (_controlLock)
+            {
+                _vlcPlayer.Trim();
+            }
+        }
     }
 
 //#if WINDOWS_PHONE_APP

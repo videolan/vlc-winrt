@@ -210,6 +210,9 @@ void DirectXManger::CreateSwapPanel(SwapChainPanel^ panel){
     CheckDXOperation(hr, "Could not crete the Bitmap");
 
     cp_d2dContext->SetTarget(cp_d2dTargetBitmap.Get());
+
+    hr = dxgiDevice.As(&cp_dxgiDev3);
+    CheckDXOperation(hr, "Failed to get the DXGIDevice3 from Dxgidevice1");
 }
 
 void DirectXManger::ClearSwapChainBuffers()
@@ -234,4 +237,10 @@ void DirectXManger::ClearSwapChainBuffers()
         cp_swapChain->Present1(1, 0, &parameters);
 
     }
+}
+
+void DirectXManger::Trim()
+{
+    if (cp_dxgiDev3 != nullptr)
+        cp_dxgiDev3->Trim();
 }

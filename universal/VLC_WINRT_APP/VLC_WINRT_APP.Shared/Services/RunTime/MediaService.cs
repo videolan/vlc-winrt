@@ -259,6 +259,11 @@ namespace VLC_WINRT_APP.Services.RunTime
             _vlcService.SetVolume(volume);
         }
 
+        public void Trim()
+        {
+            _vlcService.Trim();
+        }
+
         public int GetVolume()
         {
             return _vlcService.GetVolume().Result;

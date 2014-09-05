@@ -34,8 +34,10 @@ namespace libVLCX {
         void CreateSwapPanel(SwapChainPanel^ panel);
         void UpdateSwapChain(unsigned int width, unsigned int height);
         void ClearSwapChainBuffers();
+        void Trim();
     private:
         void CheckDXOperation(HRESULT hr, Platform::String^ message);
+        ComPtr<IDXGIDevice3>        cp_dxgiDev3;
 
     public:
         ComPtr<ID2D1DeviceContext1> cp_d2dContext;

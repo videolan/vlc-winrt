@@ -363,3 +363,9 @@ Player::OpenSubtitle( Platform::String ^ mrl)
         ret = libvlc_video_set_subtitle_file(p_mp, FromPlatformString(mrl));
     Debug( L"Subtitles %i\n", ret);
 };
+
+
+void Player::Trim()
+{
+    p_dxManager->Trim();
+}
