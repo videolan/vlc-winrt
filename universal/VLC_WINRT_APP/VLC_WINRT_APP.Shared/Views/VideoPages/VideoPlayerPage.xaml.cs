@@ -130,7 +130,6 @@ namespace VLC_WINRT_APP.Views.VideoPages
         {
             if (e.PointerDeviceType == PointerDeviceType.Mouse)
                 return;
-            (Hud.Content as TextBlock).Text = e.Cumulative.Translation.X.ToString();
             if (e.Cumulative.Translation.X > 100)
             {
                 Locator.VideoVm.SkipAhead.Execute(null);
