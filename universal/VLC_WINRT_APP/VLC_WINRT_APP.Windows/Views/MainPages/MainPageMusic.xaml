@@ -207,7 +207,7 @@
                                     <Run Text=""
                                          FontFamily="Segoe UI Symbol"
                                          FontSize="22" />
-                                    <Run Text="albumssongs"
+                                    <Run Text="albums+songs"
                                          FontWeight="Light"
                                          FontSize="18" />
                                 </TextBlock>
