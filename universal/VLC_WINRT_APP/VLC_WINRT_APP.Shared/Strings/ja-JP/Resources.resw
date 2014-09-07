@@ -126,7 +126,7 @@
   <data name="AddFolder.Content" xml:space="preserve">
     <value>フォルダの作成</value>
   </data>
-  <data name="Album.Text" xml:space="preserve">
+  <data name="AlbumHeader.Header" xml:space="preserve">
     <value>アルバム</value>
   </data>
   <data name="Artist" xml:space="preserve">
@@ -149,9 +149,6 @@
   </data>
   <data name="Clear.Text" xml:space="preserve">
     <value>Clear</value>
-  </data>
-  <data name="CurrentFeatures.Text" xml:space="preserve">
-    <value>Current Features:</value>
   </data>
   <data name="CustomMusicFolder.Text" xml:space="preserve">
     <value> custom music folders</value>
@@ -200,9 +197,6 @@
   </data>
   <data name="IndexingMusic2.Text" xml:space="preserve">
     <value>VLC may be unresponsive</value>
-  </data>
-  <data name="IntroPara.Text" xml:space="preserve">
-    <value>This app is our attempt to bring the VLC media player to Microsoft's newest OS. It's currently under heavy development so not all features have been included, and many existing features have bugs.</value>
   </data>
   <data name="ItsLonely.Text" xml:space="preserve">
     <value>It's lonely here.</value>
@@ -283,13 +277,13 @@
     <value>外付けドライブ</value>
   </data>
   <data name="RemoveableDevice.Text" xml:space="preserve">
-    <value>Plug-in a removable device</value>
+    <value>外付けドライブを接続</value>
   </data>
   <data name="RemoveableDeviceMessage1.Text" xml:space="preserve">
-    <value>Plug in a removable storage and VLC will detects all the files in it.</value>
+    <value>外付けドライブを接続してください。</value>
   </data>
   <data name="RemoveableDeviceMessage2.Text" xml:space="preserve">
-    <value>Waiting for removable storages</value>
+    <value>外付けドライブを接続しています。</value>
   </data>
   <data name="RemoveFolder.Content" xml:space="preserve">
     <value>フォルダの削除</value>
@@ -348,14 +342,8 @@
   <data name="VlcThankYou.Text" xml:space="preserve">
     <value>私たちは以下の人々にすべてに感謝します。</value>
   </data>
-  <data name="Welcome.Text" xml:space="preserve">
-    <value>「VLC For Windows 8」βへようこそ！</value>
-  </data>
   <data name="WelcomeMessage.Text" xml:space="preserve">
     <value>私たちは以下の人々にすべてに感謝します。</value>
-  </data>
-  <data name="Albums" xml:space="preserve">
-    <value>アルバム</value>
   </data>
   <data name="Artists" xml:space="preserve">
     <value>アーティスト</value>
@@ -395,5 +383,50 @@
   </data>
   <data name="MusicInformation.Text" xml:space="preserve">
     <value>音楽データベース</value>
+  </data>
+  <data name="Albums" xml:space="preserve">
+    <value>アルバム</value>
+  </data>
+  <data name="AlbumsPlusSongs.Text" xml:space="preserve">
+    <value>アルバム+曲</value>
+  </data>
+  <data name="AlbumText.Text" xml:space="preserve">
+    <value>アルバム</value>
+  </data>
+  <data name="AudioTracks.Text" xml:space="preserve">
+    <value>オーディオトラック</value>
+  </data>
+  <data name="LikeAppButton.Label" xml:space="preserve">
+    <value>イイネ！</value>
+  </data>
+  <data name="MusicSettings.Text" xml:space="preserve">
+    <value>VLC will only search for songs that are in your music library. You can add folders to your library here:</value>
+  </data>
+  <data name="NoFavoriteAlbumsHeader.Text" xml:space="preserve">
+    <value>お気に入りアルバムがありません。</value>
+  </data>
+  <data name="NoFavoriteAlbumText1.Text" xml:space="preserve">
+    <value>お気に入りアルバムを追加するために、</value>
+  </data>
+  <data name="NoFavoriteAlbumText2.Text" xml:space="preserve">
+    <value>を押してください。</value>
+  </data>
+  <data name="OpenSubtitle.Content" xml:space="preserve">
+    <value>サブタイトルを開く</value>
+  </data>
+  <data name="PlayAlbum.Text" xml:space="preserve">
+    <value>アルバムを再生</value>
+  </data>
+  <data name="PlayAllAppButton.Label" xml:space="preserve">
+    <value>再生</value>
+  </data>
+  <data name="PlayAllButton.Text" xml:space="preserve">
+    <value>再生</value>
+  </data>
+  <data name="Speed.Text" xml:space="preserve">
+    <value>速度</value>
+  </data>
+  <data name="Subtitles.Text" xml:space="preserve">
+    <value>サブタイトル</value>
   </data>
 </root>

@@ -12,6 +12,7 @@
     <StackPanel MaxWidth="600"
                 Margin="0,0,0,0">
         <TextBlock Text="You don't have favorite albums"
+                   x:Uid="NoFavoriteAlbumsHeader"
                    Style="{StaticResource HeaderTextBlockStyle}"
                    LineStackingStrategy="MaxHeight" 
                    TextWrapping="Wrap"
@@ -19,11 +20,11 @@
         <TextBlock Style="{StaticResource SubheaderTextBlockStyle}"
                    Margin="0,12,0,0"
                    FontSize="22">
-            <Run Text="When playing an album, press the" />
+            <Run x:Uid="NoFavoriteAlbumText1" Text="When playing an album, press the" />
             <Run Text=""
                  FontFamily="Segoe UI Symbol"
                  Foreground="{StaticResource MainColor}" />
-            <Run Text="button and you'll find your favorite albums easier than ever!" />
+            <Run x:Uid="NoFavoriteAlbumText2" Text="button and you'll find your favorite albums easier than ever!" />
         </TextBlock>
 
     </StackPanel>

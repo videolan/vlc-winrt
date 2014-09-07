@@ -119,7 +119,7 @@
                                 CommandParameter="{Binding}">
                             <Button.Content>
                                 <TextBlock>
-                                    <Run Text="Play album" />
+                                    <Run x:Uid="PlayAlbum" Text="Play album" />
                                     <Run Text=""
                                          FontFamily="Segoe UI Symbol" />
                                 </TextBlock>

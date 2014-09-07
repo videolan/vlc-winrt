@@ -150,7 +150,7 @@
                                 <LineBreak />
                                 <Run Text="{Binding Albums.Count}"
                                      Foreground="DimGray" />
-                                <Run Text="albums"
+                                <Run x:Uid="AlbumText" Text="albums"
                                      Foreground="DimGray" />
                             </TextBlock>
                         </Grid>
@@ -207,7 +207,7 @@
                                     <Run Text=""
                                          FontFamily="Segoe UI Symbol"
                                          FontSize="22" />
-                                    <Run Text="albums+songs"
+                                    <Run x:Uid="AlbumsPlusSongs" Text="albums+songs"
                                          FontWeight="Light"
                                          FontSize="18" />
                                 </TextBlock>
@@ -309,7 +309,7 @@
                                                     CommandParameter="{Binding}">
                                                 <Button.Content>
                                                     <TextBlock>
-                                                        <Run Text="Play album" />
+                                                        <Run x:Uid="PlayAlbum" Text="Play album" />
                                                         <Run Text=""
                                                              FontFamily="Segoe UI Symbol" />
                                                     </TextBlock>

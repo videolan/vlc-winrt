@@ -126,11 +126,8 @@
   <data name="AddFolder.Content" xml:space="preserve">
     <value>Add a new folder</value>
   </data>
-  <data name="Album.Text" xml:space="preserve">
-    <value>album</value>
-  </data>
-  <data name="Albums" xml:space="preserve">
-    <value>Albums</value>
+  <data name="AlbumHeader.Header" xml:space="preserve">
+    <value>albums</value>
   </data>
   <data name="Artist" xml:space="preserve">
     <value>Artist</value>
@@ -155,9 +152,6 @@
   </data>
   <data name="Clear.Text" xml:space="preserve">
     <value>Clear</value>
-  </data>
-  <data name="CurrentFeatures.Text" xml:space="preserve">
-    <value>Current Features:</value>
   </data>
   <data name="CustomMusicFolder.Text" xml:space="preserve">
     <value> custom music folders</value>
@@ -203,9 +197,6 @@
   </data>
   <data name="IndexingMusic2.Text" xml:space="preserve">
     <value>VLC may be unresponsive</value>
-  </data>
-  <data name="IntroPara.Text" xml:space="preserve">
-    <value>This app is our attempt to bring the VLC media player to Microsoft's newest OS. It's currently under heavy development so not all features have been included, and many existing features have bugs.</value>
   </data>
   <data name="ItsLonely.Text" xml:space="preserve">
     <value>It's lonely here.</value>
@@ -360,12 +351,6 @@
   <data name="VlcThankYou.Text" xml:space="preserve">
     <value>The VLC for Windows 8 Team would like to thank very much the people who made this application possible:</value>
   </data>
-  <data name="Welcome.Text" xml:space="preserve">
-    <value>Welcome to VLC for Windows 8 Beta!</value>
-  </data>
-  <data name="WelcomeMessage.Text" xml:space="preserve">
-    <value>THE VLC TEAM WOULD LIKE TO THANK</value>
-  </data>
   <data name="NetworkServers.Text" xml:space="preserve">
     <value>Waiting for network servers</value>
   </data>
@@ -398,5 +383,56 @@
   </data>
   <data name="VlcLicenseCondition.Text" xml:space="preserve">
     <value>VLC for Windows 8.1 is licensed under the GNU General Public License, version 2 (herein referred to as GPL).</value>
+  </data>
+  <data name="Albums" xml:space="preserve">
+    <value>Albums</value>
+  </data>
+  <data name="AlbumsPlusSongs.Text" xml:space="preserve">
+    <value>albums+songs</value>
+  </data>
+  <data name="AlbumText.Text" xml:space="preserve">
+    <value>albums</value>
+  </data>
+  <data name="AudioTracks.Text" xml:space="preserve">
+    <value>Audio tracks</value>
+  </data>
+  <data name="LikeAppButton.Label" xml:space="preserve">
+    <value>Like</value>
+  </data>
+  <data name="MusicSettings.Text" xml:space="preserve">
+    <value>VLC will only search for songs that are in your music library. You can add folders to your library here:</value>
+  </data>
+  <data name="NoFavoriteAlbumsHeader.Text" xml:space="preserve">
+    <value>You don't have favorite albums...</value>
+  </data>
+  <data name="NoFavoriteAlbumText1.Text" xml:space="preserve">
+    <value>When playing an album, press the</value>
+  </data>
+  <data name="NoFavoriteAlbumText2.Text" xml:space="preserve">
+    <value>button and you'll find your favorite albums easier than ever!</value>
+  </data>
+  <data name="NotificationNotBackground.Header" xml:space="preserve">
+    <value>Even if the app is not in background</value>
+  </data>
+  <data name="NotificationSongStarts.Header" xml:space="preserve">
+    <value>Notification when a new song starts</value>
+  </data>
+  <data name="OpenSubtitle.Content" xml:space="preserve">
+    <value>Open Subtitle</value>
+  </data>
+  <data name="PlayAlbum.Text" xml:space="preserve">
+    <value>Play Album</value>
+  </data>
+  <data name="PlayAllAppButton.Label" xml:space="preserve">
+    <value>Play All</value>
+  </data>
+  <data name="PlayAllButton.Text" xml:space="preserve">
+    <value>Play All</value>
+  </data>
+  <data name="Speed.Text" xml:space="preserve">
+    <value>Speed</value>
+  </data>
+  <data name="Subtitles.Text" xml:space="preserve">
+    <value>Subtitles</value>
   </data>
 </root>

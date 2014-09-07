@@ -91,6 +91,7 @@
                                 <StackPanel>
                                     <controls:VideoItemControl DataContext="{Binding CurrentVideo}" />
                                     <TextBlock Text="Subtitles"
+                                               x:Uid="Subtitles"
                                                Style="{StaticResource TitleTextBlockStyle}"
                                                Margin="0,12,0,0"
                                                Visibility="{Binding SubtitlesCount, Converter={StaticResource NegatedCountToVisibilityConverter}}" />
@@ -107,12 +108,14 @@
                                         </ComboBox.ItemTemplate>
                                     </ComboBox>
                                     <Button Content="Open a subtitle"
+                                            x:Uid="OpenSubtitle"
                                             Margin="-3,6,0,0"
                                             Command="{Binding OpenSubtitleCommand}"
                                             Background="#404040"
                                             BorderBrush="#404040" />
 
                                     <TextBlock Text="Audio tracks"
+                                               x:Uid="AudioTracks"
                                                Style="{StaticResource TitleTextBlockStyle}"
                                                Margin="0,24,0,0" />
                                     <ComboBox ItemsSource="{Binding AudioTracks}"
@@ -133,7 +136,7 @@
                                             IsThumbToolTipEnabled="True"
                                             ThumbToolTipValueConverter="{StaticResource DoubleSpeedToUnderstandableSpeedConverter}">
                                         <Slider.Header>
-                                            <TextBlock Text="Speed"
+                                            <TextBlock x:Uid="Speed" Text="Speed"
                                                        Style="{StaticResource TitleTextBlockStyle}"
                                                        Margin="-3,12,0,-10" />
                                         </Slider.Header>

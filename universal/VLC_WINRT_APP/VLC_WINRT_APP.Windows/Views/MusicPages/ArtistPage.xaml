@@ -32,6 +32,7 @@
                         <StackPanel Orientation="Horizontal">
                             <SymbolIcon Symbol="Play" />
                             <TextBlock Text="Play all"
+                                       x:Uid="PlayAllButton"
                                        Style="{StaticResource BodyTextBlockStyle}"
                                        VerticalAlignment="Center"
                                        Margin="5,-10,0,0" />
@@ -51,7 +52,7 @@
                         </DataTemplate>
                     </HubSection.ContentTemplate>
                 </HubSection>-->
-                <HubSection Header="albums">
+                <HubSection x:Uid="AlbumHeader">
                     <HubSection.ContentTemplate>
                         <DataTemplate>
                             <GridView ItemsSource="{Binding CurrentArtist.Albums}"

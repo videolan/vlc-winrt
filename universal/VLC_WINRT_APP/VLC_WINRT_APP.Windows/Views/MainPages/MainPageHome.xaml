@@ -155,7 +155,7 @@
                             <Button.Content>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock>
-                                        <Run Text="settings" />
+                                        <Run x:Uid="SettingsMain" Text="settings" />
                                         <Run Text=""
                                              FontFamily="Segoe UI Symbol" />
                                     </TextBlock>

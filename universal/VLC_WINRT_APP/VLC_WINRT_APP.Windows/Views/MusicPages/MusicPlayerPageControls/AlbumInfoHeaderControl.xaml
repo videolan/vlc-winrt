@@ -45,7 +45,7 @@
             <StackPanel Orientation="Horizontal"
                         Margin="-21,0,0,0"
                         VerticalAlignment="Bottom">
-                <AppBarToggleButton IsChecked="{Binding CurrentPlayingArtist.CurrentAlbumItem.Favorite}"
+                <AppBarToggleButton x:Uid="LikeAppButton" IsChecked="{Binding CurrentPlayingArtist.CurrentAlbumItem.Favorite}"
                                     Label="Like">
                     <AppBarToggleButton.Icon>
                         <FontIcon Glyph="&#xE0A5;" />
@@ -53,6 +53,7 @@
                 </AppBarToggleButton>
                 <AppBarToggleButton x:Name="PlayAllAppBarToggleButton"
                                     Icon="Play"
+                                    x:Uid="PlayAllAppButton"
                                     Label="Play all"
                                     Command="{Binding CurrentPlayingArtist.CurrentAlbumItem.PlayAlbum}"
                                     CommandParameter="{Binding CurrentPlayingArtist.CurrentAlbumItem}" />

@@ -51,6 +51,7 @@
                              Style="{StaticResource ThinProgressBar}"
                              VerticalAlignment="Top" />
                 <TextBlock Text="We are searching for DLNA Servers."
+                           x:Uid="SearchingDLNA"
                            VerticalAlignment="Top"
                            HorizontalAlignment="Center"
                            Foreground="DimGray" />
