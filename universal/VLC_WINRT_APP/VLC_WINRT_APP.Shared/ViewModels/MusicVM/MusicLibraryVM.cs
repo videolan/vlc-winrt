@@ -500,6 +500,10 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             {
                 try
                 {
+                    if (string.IsNullOrEmpty(vlcFolder.Path))
+                    {
+                        continue;
+                    }
                     StorageFolder folder = await StorageFolder.GetFolderFromPathAsync(vlcFolder.Path);
                     if (folder == null)
                     {
