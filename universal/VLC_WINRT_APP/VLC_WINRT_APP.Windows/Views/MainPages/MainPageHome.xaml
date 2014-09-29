@@ -176,7 +176,8 @@
                             <GridView ItemsSource="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM.ViewedVideos}"
                                       ItemTemplate="{StaticResource SemanticZoomInViewMovieTemplate}"
                                       IsItemClickEnabled="True"
-                                      SelectionMode="None">
+                                      SelectionMode="None"
+                                      IsSwipeEnabled="False">
                                 <triggers:Interactions.Triggers>
                                     <triggers:EventTrigger EventName="ItemClick">
                                         <triggers:InvokeCommandAction Command="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM.OpenVideo}"
@@ -208,7 +209,8 @@
                                           ItemTemplate="{StaticResource SemanticZoomInViewAlbumTemplate}"
                                           ItemContainerStyle="{StaticResource GridViewItemStyle}"
                                           IsItemClickEnabled="True"
-                                          SelectionMode="None">
+                                          SelectionMode="None"
+                                          IsSwipeEnabled="False">
                                     <GridView.ItemsPanel>
                                         <ItemsPanelTemplate>
                                             <ItemsWrapGrid Orientation="Horizontal"
