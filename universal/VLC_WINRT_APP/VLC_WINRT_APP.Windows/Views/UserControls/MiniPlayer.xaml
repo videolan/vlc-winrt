@@ -93,7 +93,8 @@
             </Button>
             <Button Style="{StaticResource TextBlockButtonStyle}"
                     Grid.Column="4"
-                    HorizontalAlignment="Right">
+                    HorizontalAlignment="Right"
+                    Visibility="Collapsed">
                 <Button.Flyout>
                     <Flyout>
                         <Slider Orientation="Vertical"
