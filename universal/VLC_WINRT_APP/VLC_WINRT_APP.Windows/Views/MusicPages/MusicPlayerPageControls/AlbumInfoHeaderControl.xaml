@@ -46,7 +46,9 @@
                         Margin="-21,0,0,0"
                         VerticalAlignment="Bottom">
                 <AppBarToggleButton x:Uid="LikeAppButton" IsChecked="{Binding CurrentPlayingArtist.CurrentAlbumItem.Favorite}"
-                                    Label="Like">
+                                    Label="Like"
+                                    Command="{Binding CurrentPlayingArtist.CurrentAlbumItem.FavoriteAlbum}"
+                                    CommandParameter="{Binding CurrentPlayingArtist.CurrentAlbumItem}">
                     <AppBarToggleButton.Icon>
                         <FontIcon Glyph="&#xE0A5;" />
                     </AppBarToggleButton.Icon>
