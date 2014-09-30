@@ -61,7 +61,7 @@
                 Style="{StaticResource TextBlockButtonStyle}"
                 Visibility="Collapsed">
             <Button.Flyout>
-                <Flyout>
+                <Flyout Placement="Right">
                     <Flyout.FlyoutPresenterStyle>
                         <Style TargetType="FlyoutPresenter">
                             <Setter Property="Padding"
