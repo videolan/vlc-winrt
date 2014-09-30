@@ -15,7 +15,7 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="VLC_WINRT_APP.Windows.App">
-      <m2:VisualElements DisplayName="VLC for Modern Windows" Square150x150Logo="Assets\Logo.png" Square30x30Logo="Assets\SmallLogo.png" Description="VLC for the Windows Store experience" ForegroundText="light" BackgroundColor="#e67e22" ToastCapable="true">
+      <m2:VisualElements DisplayName="VLC for Modern Windows" Square150x150Logo="Assets\Logo.png" Square30x30Logo="Assets\SmallLogo.png" Description="VLC for the Windows Store experience" ForegroundText="light" BackgroundColor="#ff8800" ToastCapable="true">
         <m2:DefaultTile ShortName="VLC" Wide310x150Logo="Assets\Wide310x150Logo.png" Square70x70Logo="Assets\Square70x70Logo.png">
           <m2:ShowNameOnTiles>
             <m2:ShowOn Tile="square150x150Logo" />

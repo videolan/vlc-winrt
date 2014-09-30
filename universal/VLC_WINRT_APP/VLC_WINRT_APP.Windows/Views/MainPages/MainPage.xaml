@@ -54,6 +54,7 @@
                       AudioCategory="BackgroundCapableMedia"
                       AudioDeviceType="Multimedia" />
         <userControls:LeftColumn x:Name="ColumnGrid"
+                                 x:FieldModifier="public"
                                  Grid.RowSpan="2"
                                  Visibility="{Binding Source={StaticResource Locator}, Path=VideoVm.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}" />
         <Frame x:Name="MainFrame"

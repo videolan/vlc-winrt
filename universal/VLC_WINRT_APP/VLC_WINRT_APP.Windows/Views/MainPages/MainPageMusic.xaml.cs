@@ -112,12 +112,14 @@ namespace VLC_WINRT_APP.Views.MainPages
                     {
                         ArtistListView.SelectedIndex = 0;
                     }
+                    App.RootPage.ColumnGrid.MinimizeSidebar();
                     break;
                 case 2:
                     SemanticZoomAlbumsByArtist.Visibility = Visibility.Collapsed;
                     ArtistsGrid.Visibility = Visibility.Collapsed;
                     RadDataGrid.Visibility = Visibility.Visible;
                     FavoriteAlbumsGridView.Visibility = Visibility.Collapsed;
+                    App.RootPage.ColumnGrid.RestoreSidebar();
                     break;
                 case 3:
                     SemanticZoomAlbumsByArtist.Visibility = Visibility.Collapsed;

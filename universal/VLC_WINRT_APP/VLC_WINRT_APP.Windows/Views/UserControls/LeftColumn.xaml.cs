@@ -33,18 +33,28 @@ namespace VLC_WINRT_APP.Views.UserControls
         {
             if (Window.Current.Bounds.Width < 1080)
             {
-                ColumnGrid.Width = 100;
                 ToMediumVisualState();
             }
             else
             {
-                ColumnGrid.Width = 340;
                 ToNormalVisualState();
             }
         }
 
+        public void MinimizeSidebar()
+        {
+            ToMediumVisualState();
+        }
+
+        public void RestoreSidebar()
+        {
+            if(ColumnGrid.Width == 100)
+                ToNormalVisualState();
+        }
+
         void ToMediumVisualState()
         {
+            ColumnGrid.Width = 100;
             TitleTextBlock.Visibility = Visibility.Collapsed;
             LargeSearchBox.Visibility = Visibility.Collapsed;
             LittleSearchBox.Visibility = Visibility.Visible;
@@ -59,6 +69,7 @@ namespace VLC_WINRT_APP.Views.UserControls
 
         void ToNormalVisualState()
         {
+            ColumnGrid.Width = 340;
             TitleTextBlock.Visibility = Visibility.Visible;
             LargeSearchBox.Visibility = Visibility.Visible;
             LittleSearchBox.Visibility = Visibility.Collapsed;
