@@ -38,7 +38,8 @@
                           IsCompact="True"
                           Command="{Binding GoBack}"
                           Margin="-10,0,0,0"
-                          Style="{StaticResource MiniAppBarButtonStyle}" />
+                          Style="{StaticResource MiniAppBarButtonStyle}" 
+                          IsTabStop="False"/>
             <TextBlock Style="{StaticResource TitleTextBlockStyle}"
                        Typography.Capitals="SmallCaps"
                        FontSize="22">

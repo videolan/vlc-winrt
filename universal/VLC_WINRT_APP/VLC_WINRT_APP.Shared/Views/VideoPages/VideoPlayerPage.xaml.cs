@@ -13,6 +13,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Windows.Devices.Input;
+using Windows.System;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -36,6 +37,7 @@ namespace VLC_WINRT_APP.Views.VideoPages
             InitializeComponent();
             this.Loaded += OnLoaded;
             this.SizeChanged += OnSizeChanged;
+
         }
 
         private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
@@ -58,6 +60,21 @@ namespace VLC_WINRT_APP.Views.VideoPages
             timer.Interval = TimeSpan.FromSeconds(6);
             timer.Tick += TimerOnTick;
             timer.Start();
+            this.Unloaded += OnUnloaded;
+            Window.Current.Content.AddHandler(KeyDownEvent, new KeyEventHandler(KeyPressedDown), true);
+        }
+
+        private void KeyPressedDown(object sender, KeyRoutedEventArgs e)
+        {
+            if (e.Key == VirtualKey.Space)
+            {
+                Locator.VideoVm.PlayOrPauseCommand.Execute("");
+            }
+        }
+
+        private void OnUnloaded(object sender, RoutedEventArgs routedEventArgs)
+        {
+            Window.Current.Content.RemoveHandler(KeyDownEvent, new KeyEventHandler(KeyPressedDown));
         }
 
 
