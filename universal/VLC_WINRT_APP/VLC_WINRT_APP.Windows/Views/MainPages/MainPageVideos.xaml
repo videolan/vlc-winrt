@@ -26,6 +26,7 @@
                   SelectionMode="None"
                   Grid.Row="1"
                   ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                  ScrollViewer.HorizontalScrollMode="Disabled"
                   ItemContainerStyle="{StaticResource ListViewItemContainerStyle}">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
