@@ -32,15 +32,10 @@
               Background="{StaticResource MainColor}" />
         <StackPanel Orientation="Horizontal"
                     Height="45"
-                    Margin="42,0,0,0"
+                    Margin="40,0,0,0"
                     x:Name="HeaderGrid"
                     Grid.Row="1">
-            <!--<Path Data="{StaticResource VLCFlatPath}"
-                  Stretch="Uniform"
-                  Fill="{StaticResource MainColor}"
-                  Width="30"
-                  Height="30" />-->
-            <local:VLCLogoWithGradient /> 
+            <local:VLCLogoWithGradient/> 
             <TextBlock x:Name="TitleTextBlock"
                        Style="{StaticResource TitleTextBlockStyle}"
                        Margin="6,-2,0,0"
