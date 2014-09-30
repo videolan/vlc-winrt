@@ -3,7 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:VLC_WINRT_APP.Resources">
 
-    <Color x:Key="MainColorBase">#e67e22</Color>
+    <Color x:Key="MainColorBase">#ff8800</Color>
     <SolidColorBrush x:Key="MainColor"
                      Color="{StaticResource MainColorBase}" />
     <SolidColorBrush x:Key="ListViewItemSelectedBackgroundThemeBrush"
@@ -17,8 +17,8 @@
                      Color="{StaticResource MainColorBase}"
                      Opacity="0.7"/>
 
-    <x:String x:Key="ProgressBarIndeterminateForegroundThemeBrush">#e67e22</x:String>
-    <x:String x:Key="ProgressBarForegroundThemeBrush">#e67e22</x:String>
+    <x:String x:Key="ProgressBarIndeterminateForegroundThemeBrush">#ff8800</x:String>
+    <x:String x:Key="ProgressBarForegroundThemeBrush">#ff8800</x:String>
     <SolidColorBrush x:Key="ComboBoxItemSelectedBackgroundThemeBrush"
                      Color="{StaticResource MainColorBase}" />
     <SolidColorBrush x:Key="ComboBoxItemSelectedPointerOverBackgroundThemeBrush"
