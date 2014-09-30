@@ -123,6 +123,7 @@
                       ItemsSource="{Binding Artists}"
                       IsItemClickEnabled="False"
                       SelectionMode="Single"
+                      IsSwipeEnabled="False"
                       ItemContainerStyle="{StaticResource ListViewItemStyle}">
                 <triggers:Interactions.Triggers>
                     <triggers:EventTrigger EventName="SelectionChanged">
@@ -249,7 +250,8 @@
                               IsItemClickEnabled="False"
                               SelectionMode="None"
                               ItemsSource="{Binding CurrentArtist.Albums}"
-                              ItemContainerStyle="{StaticResource VerticalContentGridViewItemStyle}">
+                              ItemContainerStyle="{StaticResource VerticalContentGridViewItemStyle}"
+                              IsSwipeEnabled="False">
                         <GridView.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <VirtualizingStackPanel VirtualizationMode="Standard"
@@ -321,7 +323,12 @@
                                                   SelectionMode="None"
                                                   ItemsSource="{Binding Tracks}"
                                                   ItemTemplate="{StaticResource LittleDarkTrackTemplate}"
-                                                  ItemContainerStyle="{StaticResource ListViewItemContainerStyle}">
+                                                  ItemContainerStyle="{StaticResource ListViewItemContainerStyle}"
+                                                  IsSwipeEnabled="False"
+                                                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                                  ScrollViewer.HorizontalScrollMode="Disabled"
+                                                  ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                                                  ScrollViewer.VerticalScrollMode="Disabled">
                                             <triggers:Interactions.Triggers>
                                                 <triggers:EventTrigger EventName="ItemClick">
                                                     <triggers:InvokeCommandAction Command="{Binding TrackClicked}"
@@ -346,7 +353,8 @@
                                   IsItemClickEnabled="True"
                                   SelectionMode="None"
                                   ItemTemplate="{StaticResource SemanticZoomInViewAlbumTemplateWithoutFlyout}"
-                                  ItemContainerStyle="{StaticResource GridViewItemStyle}" />
+                                  ItemContainerStyle="{StaticResource GridViewItemStyle}" 
+                                  IsSwipeEnabled="False"/>
                     </SemanticZoom.ZoomedOutView>
                 </SemanticZoom>
             </Grid>
