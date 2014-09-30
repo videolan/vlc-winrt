@@ -643,6 +643,6 @@
                ResultSuggestionChosen="LargeSearchBox_OnResultSuggestionChosen"
                BorderThickness="1"
                BorderBrush="Transparent"
-               Style="{StaticResource VLCSearchBox}" 
-               IsEnabled="{Binding Source={StaticResource Locator}, Path=VideoVm.IsPlaying, Converter={StaticResource BooleanNegationConverter}}"/>
+               Style="{StaticResource VLCSearchBox}"
+               IsEnabled="{Binding Source={StaticResource Locator}, Path=VideoVm.IsPlaying, Converter={StaticResource VLCSearchBoxConverter}}"/>
 </UserControl>

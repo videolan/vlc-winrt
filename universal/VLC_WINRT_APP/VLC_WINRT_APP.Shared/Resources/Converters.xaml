@@ -22,4 +22,5 @@
     <converters:MiniPlayerVisibilityFromPlayingTypeConverter x:Key="MiniPlayerVisibilityFromPlayingTypeConverter" />
     <converters:DoubleSpeedToUnderstandableSpeedConverter x:Key="DoubleSpeedToUnderstandableSpeedConverter"/>
     <converters:CurrentTrackForegroundConverter x:Key="CurrentTrackForegroundConverter"/>
+    <converters:VLCSearchBoxConverter x:Key="VLCSearchBoxConverter" />
 </ResourceDictionary>
