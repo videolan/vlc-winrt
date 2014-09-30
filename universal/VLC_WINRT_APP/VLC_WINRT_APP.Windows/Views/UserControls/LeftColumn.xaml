@@ -6,8 +6,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:triggers="using:WinRT.Triggers"
              mc:Ignorable="d"
-             d:DesignHeight="300"
-             d:DesignWidth="400">
+             d:DesignHeight="300">
 
     <Grid x:Name="ColumnGrid"
           Width="340"
@@ -22,7 +21,7 @@
             <RowDefinition Height="24" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="24" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="*"/>
             <RowDefinition Height="24"
                            x:Name="SeparatorRowDefinition" />
             <RowDefinition Height="Auto"
@@ -77,7 +76,7 @@
                                     Value="{StaticResource MainColor}" />
                         </Style>
                     </Flyout.FlyoutPresenterStyle>
-                    <local:VLCSearchBox/>
+                    <local:VLCSearchBox />
                 </Flyout>
             </Button.Flyout>
         </Button>
@@ -142,7 +141,5 @@
         </Grid>
         <local:LoadingMusicLibrary Grid.Row="7"
                                    VerticalAlignment="Bottom" />
-        <local:MiniVideoPlayer Grid.Row="7"
-                               VerticalAlignment="Bottom" />
     </Grid>
 </UserControl>

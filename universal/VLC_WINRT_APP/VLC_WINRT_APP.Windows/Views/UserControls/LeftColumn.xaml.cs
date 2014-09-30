@@ -1,6 +1,12 @@
-﻿using Windows.UI.Core;
+﻿using System;
+using System.Diagnostics;
+using Windows.Devices.Input;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using VLC_WINRT_APP.Helpers;
+using WinRTXamlToolkit.AwaitableUI;
+using WinRTXamlToolkit.Controls.Extensions;
 
 namespace VLC_WINRT_APP.Views.UserControls
 {
@@ -62,7 +68,6 @@ namespace VLC_WINRT_APP.Views.UserControls
             PanelsListView.ItemTemplate = App.Current.Resources["SidebarItemTemplate"] as DataTemplate;
             MiniPlayer.Visibility = Visibility.Visible;
             SnapMiniPlayer.Visibility = Visibility.Collapsed;
-            MiniPlayersRowDefinition.Height = new GridLength(315);
             SeparatorRowDefinition.Height = new GridLength(24);
         }
     }
