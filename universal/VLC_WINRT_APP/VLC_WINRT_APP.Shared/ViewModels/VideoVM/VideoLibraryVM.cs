@@ -131,20 +131,32 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
         #endregion
 
         #region methods
-        public void GetViewedVideos()
+        public async void GetViewedVideos()
         {
-            _lastVideosRepository.Load().ContinueWith((result) =>
+            var result = await _lastVideosRepository.Load();
+
+            var testCollection = result;
+            foreach (VideoVM videoVm in testCollection)
             {
-                App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+                try
                 {
-                    ViewedVideos = result.Result;
-                    foreach (VideoVM videoVm in ViewedVideos)
+                    await videoVm.InitializeFromFilePath();
+                    App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
                     {
-                        videoVm.InitializeFromFilePath();
-                    }
-                });
-            });
-            GetVideos();
+                        ViewedVideos.Add(videoVm);
+                    });
+                }
+                catch (Exception)
+                {
+                    // If the video file was deleted, we can't add it to the last viewed files.
+                    // We "should" keep the file in the list, and if the user selects it either tell them that the file
+                    // is now gone (and let them try and find it again, in case they moved it, so we can keep it in the DB)
+                    // but that will require quite a bit of code work to make happen. So for now, we'll catch the error
+                    // and not add it to the list.
+                    Debug.WriteLine("File not found");
+                }
+            }
+            await GetVideos();
         }
 
         public async Task GetVideos()
@@ -310,7 +322,6 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
         {
             (sZ.ZoomedOutView as ListViewBase).ItemsSource = cvs.View.CollectionGroups;
         }
-
         #endregion
     }
 }

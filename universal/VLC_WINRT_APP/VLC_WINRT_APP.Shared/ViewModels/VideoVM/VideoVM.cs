@@ -176,8 +176,15 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
 
         public async Task InitializeFromFilePath()
         {
-            StorageFile file = await StorageFile.GetFileFromPathAsync(FilePath);
-            Initialize(file);
+            try
+            {
+                StorageFile file = await StorageFile.GetFileFromPathAsync(FilePath);
+                Initialize(file);
+            }
+            catch (Exception)
+            {
+                throw new Exception("File not found");
+            }
         }
         #endregion
 
