@@ -368,9 +368,19 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                 {
                     if (!await MusicLibraryVM.MusicFolderDataRepository.Exist(musicFolder.Path))
                     {
-                        DateTimeOffset dtOffset = (await musicFolder.GetBasicPropertiesAsync()).DateModified;
-                        VLCFolder vlcFol = new VLCFolder(musicFolder.Path, dtOffset);
+                        DateTimeOffset dtOffset = (await musicFolder.GetBasicPropertiesAsync()).DateModified.UtcDateTime;
+                        var vlcFol = new VLCFolder(musicFolder.Path, dtOffset);
                         await MusicFolderDataRepository.Add(vlcFol);
+                    }
+                    else
+                    {
+                        var vlcFol = await MusicFolderDataRepository.LoadFolder(musicFolder.Path);
+                        DateTimeOffset dtOffset = (await musicFolder.GetBasicPropertiesAsync()).DateModified.UtcDateTime;
+                        if (vlcFol != null)
+                        {
+                            vlcFol.LastModified = dtOffset;
+                        }
+                        await MusicFolderDataRepository.Update(vlcFol);
                     }
                 });
             }
@@ -498,45 +508,65 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             List<VLCFolder> foldersToCheck = await MusicFolderDataRepository.Load();
             foreach (VLCFolder vlcFolder in foldersToCheck)
             {
+                bool removeFolder = false;
+                bool recheckFolder = false;
+                StorageFolder folder = null;
                 try
                 {
                     if (string.IsNullOrEmpty(vlcFolder.Path))
                     {
                         continue;
                     }
-                    StorageFolder folder = await StorageFolder.GetFolderFromPathAsync(vlcFolder.Path);
+                    folder = await StorageFolder.GetFolderFromPathAsync(vlcFolder.Path);
                     if (folder == null)
                     {
                         // The folder doesn't exist anymore, we need to delete the files from the database
-                        await MusicLibraryVM._trackDataRepository.Remove(vlcFolder.Path);
-                        await MusicLibraryVM.MusicFolderDataRepository.Remove(vlcFolder);
-                        await LoadFromDatabase();
-                        break;
+                        removeFolder = true;
                     }
                     else
                     {
-
                         DateTimeOffset folderLastModif = (await folder.GetBasicPropertiesAsync()).DateModified;
-                        if (folderLastModif > vlcFolder.LastModified)
+                        if (folderLastModif.UtcDateTime > vlcFolder.LastModified.UtcDateTime)
                         {
                             // The folder has more or less files than before, we need to check it again
                             // FIRST: Removed the entries in the database from this folder
                             // SECOND: Add the new entries
-                            await MusicLibraryVM._trackDataRepository.Remove(folder.Path);
-                            await CreateDatabaseFromMusicFolder(folder);
-                            await LoadFromDatabase();
-                            break;
+                            recheckFolder = true;
                         }
                     }
                 }
                 catch
                 {
                     // The folder doesn't exist anymore, we need to delete the files from the database
-                    MusicLibraryVM._trackDataRepository.Remove(vlcFolder.Path);
-                    MusicLibraryVM.MusicFolderDataRepository.Remove(vlcFolder);
-                    break;
+                    removeFolder = true;
+                }
+
+                if (removeFolder)
+                {
+                    await RemoveVlcFolder(vlcFolder);
+                }
+                else if (recheckFolder)
+                {
+                    await RecheckVlcFolder(folder);
                 }
             }
+        }
+
+        private async Task RemoveVlcFolder(VLCFolder vlcFolder)
+        {
+            await _trackDataRepository.Remove(vlcFolder.Path);
+            await MusicFolderDataRepository.Remove(vlcFolder);
+            await LoadFromDatabase();
+        }
+
+        private async Task RecheckVlcFolder(StorageFolder folder)
+        {
+            // The folder has more or less files than before, we need to check it again
+            // FIRST: Removed the entries in the database from this folder
+            // SECOND: Add the new entries
+            await _trackDataRepository.Remove(folder.Path);
+            await CreateDatabaseFromMusicFolder(folder);
+            await LoadFromDatabase();
         }
 
         #endregion

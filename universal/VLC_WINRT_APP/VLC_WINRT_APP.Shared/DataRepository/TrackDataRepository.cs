@@ -79,13 +79,16 @@ namespace VLC_WINRT_APP.DataRepository
 
         public async Task Remove(string folderPath)
         {
+            // TODO: None of this logic should live here. This is for "TrackDataRepository",
+            // so it should not know about the other repositories.
+
             // This will delete all the entries that are in folderPath and its subfolders
             var connection = new SQLiteAsyncConnection(_dbPath);
             var query = connection.Table<MusicLibraryVM.TrackItem>().Where(x => x.Path.Contains(folderPath));
             var result = await query.ToListAsync();
             foreach (MusicLibraryVM.TrackItem trackItem in result)
             {
-                connection.DeleteAsync(trackItem);
+               await connection.DeleteAsync(trackItem);
             }
 
             // If all tracks for an album are deleted, then remove the album itself
@@ -95,6 +98,22 @@ namespace VLC_WINRT_APP.DataRepository
                 if(album != null)
                     MusicLibraryVM._albumDataRepository.Remove(album);
             }
+
+            // If all the albums for the artist are gone, remove the artist
+            var firstTrack = result.FirstOrDefault();
+            if (firstTrack == null)
+            {
+                return;
+            }
+
+            var albums = await MusicLibraryVM._albumDataRepository.LoadAlbumsFromId(firstTrack.ArtistId);
+            if (albums != null && !albums.Any())
+            {
+                var artist = await MusicLibraryVM._artistDataRepository.LoadArtist(firstTrack.ArtistId);
+                await MusicLibraryVM._artistDataRepository.Remove(artist);
+            }
+
+
         }
     }
 }

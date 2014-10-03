@@ -67,5 +67,19 @@ namespace VLC_WINRT_APP.DataRepository
             var result = await query.ToListAsync();
             return result.Count > 0;
         }
+
+        public async Task<VLCFolder> LoadFolder(string path)
+        {
+            var connexion = new SQLiteAsyncConnection(_dbPath);
+            var query = connexion.Table<VLCFolder>().Where(x=>x.Path == path);
+            var result = await query.ToListAsync();
+            return result.FirstOrDefault();
+        }
+
+        public Task Update(VLCFolder folder)
+        {
+            var connection = new SQLiteAsyncConnection(_dbPath);
+            return connection.UpdateAsync(folder);
+        }
     }
 }
