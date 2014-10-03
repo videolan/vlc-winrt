@@ -34,16 +34,24 @@ namespace VLC_WINRT_APP.Commands.Music
                 ItemClickEventArgs args = parameter as ItemClickEventArgs;
                 track = args.ClickedItem as MusicLibraryVM.TrackItem;
             }
+            if (track == null)
+            {
+                // if the track is still null (for some reason), we need to break early.
+                return;
+            }
             MusicLibraryVM.AlbumItem album =
                 Locator.MusicLibraryVM.Artists.FirstOrDefault(x => x.Id == track.ArtistId)
                     .Albums.FirstOrDefault(x => x.Id == track.AlbumId);
             if (album != null)
             {
-                Task.Run(() => album.Play(track.Index-1));
+                // We need to get the index of the clicked track, rather than use the tracknumber
+                // This way, if the user has duplicate tracks, or does not have every track in the playlist,
+                // it will still function.
+                await Task.Run(() => album.Play(album.Tracks.IndexOf(track)));
             }
             else
             {
-                Task.Run(() => track.Play());
+                await Task.Run(() => track.Play());
             }
 #if WINDOWS_APP
             //else if (parameter is DataGridSelectionChangedEventArgs)
