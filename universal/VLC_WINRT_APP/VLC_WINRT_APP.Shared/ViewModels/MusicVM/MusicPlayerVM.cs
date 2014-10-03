@@ -255,9 +255,12 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             string albumName = trackItem.AlbumName;
             string trackName = trackItem.Name ?? resourceLoader.GetString("UnknownTrack");
             base._mediaService.SetMediaTransportControlsInfo(artistName, albumName, trackName, Locator.MusicPlayerVM.CurrentPlayingArtist.CurrentAlbumItem.Picture);
-            if ((bool)ApplicationSettingsHelper.ReadSettingsValue("NotificationOnNewSong"))
+            
+            var notificationOnNewSong = ApplicationSettingsHelper.ReadSettingsValue("NotificationOnNewSong");
+            if (notificationOnNewSong != null && (bool)notificationOnNewSong)
             {
-                if (base._mediaService.IsBackground || (bool)ApplicationSettingsHelper.ReadSettingsValue("NotificationOnNewSongForeground"))
+                var notificationOnNewSongForeground = ApplicationSettingsHelper.ReadSettingsValue("NotificationOnNewSongForeground");
+                if (base._mediaService.IsBackground || (notificationOnNewSongForeground != null && (bool)notificationOnNewSongForeground))
                 {
                     ToastHelper.ToastImageAndText04(trackName, albumName, artistName, Locator.MusicPlayerVM.CurrentPlayingArtist.CurrentAlbumItem.Picture);
                 }

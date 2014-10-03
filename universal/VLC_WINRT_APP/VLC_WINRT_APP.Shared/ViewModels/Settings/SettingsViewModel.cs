@@ -64,11 +64,6 @@ namespace VLC_WINRT_APP.ViewModels.Settings
             }
         }
 
-        public SettingsViewModel()
-        {
-
-        }
-
         public async Task Initialize()
         {
             MusicLibraryId = KnownLibraryId.Music;
@@ -78,9 +73,12 @@ namespace VLC_WINRT_APP.ViewModels.Settings
             RemoveFolderFromMusicLibrary = new RemoveFolderFromMusicLibrary();
             RemoveFolderFromVideoLibrary = new RemoveFolderFromVideoLibrary();
 
-            NotificationOnNewSong = (bool)ApplicationSettingsHelper.ReadSettingsValue("NotificationOnNewSong");
-            NotificationOnNewSongForeground = (bool)ApplicationSettingsHelper.ReadSettingsValue("NotificationOnNewSongForeground");
-            GetLibrariesFolders();
+            var notificationOnNewSong = ApplicationSettingsHelper.ReadSettingsValue("NotificationOnNewSong");
+            NotificationOnNewSong = notificationOnNewSong != null && (bool)notificationOnNewSong;
+
+            var notificationOnNewSongForeground = ApplicationSettingsHelper.ReadSettingsValue("NotificationOnNewSongForeground");
+            NotificationOnNewSongForeground = notificationOnNewSongForeground != null && (bool)notificationOnNewSongForeground;
+            await GetLibrariesFolders();
         }
 
         public async Task GetLibrariesFolders()
