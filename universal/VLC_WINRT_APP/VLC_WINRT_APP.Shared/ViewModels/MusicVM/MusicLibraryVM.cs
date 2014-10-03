@@ -510,7 +510,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                         // The folder doesn't exist anymore, we need to delete the files from the database
                         await MusicLibraryVM._trackDataRepository.Remove(vlcFolder.Path);
                         await MusicLibraryVM.MusicFolderDataRepository.Remove(vlcFolder);
-                        LoadFromDatabase();
+                        await LoadFromDatabase();
                         break;
                     }
                     else
@@ -524,7 +524,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                             // SECOND: Add the new entries
                             await MusicLibraryVM._trackDataRepository.Remove(folder.Path);
                             await CreateDatabaseFromMusicFolder(folder);
-                            LoadFromDatabase();
+                            await LoadFromDatabase();
                             break;
                         }
                     }
@@ -538,6 +538,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                 }
             }
         }
+
         #endregion
 
         public class ArtistItem : BindableBase
@@ -782,10 +783,18 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                     CurrentTrackPosition--;
             }
 
-            private void LoadPicture()
+            private async void LoadPicture()
             {
                 if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable()) return;
-                ArtistInformationsHelper.GetAlbumPicture(this);
+                try
+                {
+                    await ArtistInformationsHelper.GetAlbumPicture(this);
+                }
+                catch (Exception)
+                {
+                    // TODO: Tell user we could not get their album art.
+                    Debug.WriteLine("Error getting album art...");
+                }
                 _isPictureLoaded = true;
             }
 

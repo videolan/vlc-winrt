@@ -185,7 +185,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
         public static async Task GetAlbumPicture(MusicLibraryVM.AlbumItem album)
         {
             StorageFolder appDataFolder = ApplicationData.Current.LocalFolder;
-            string supposedPictureUriLocal = appDataFolder.Path + "\\albumPic\\" + album.Name + "_" + "dPi" + ".jpg";
+            string supposedPictureUriLocal = appDataFolder.Path + "\\albumPic\\" + album.Id + "_" + "dPi" + ".jpg";
             if (await NativeOperationsHelper.FileExist(supposedPictureUriLocal))
             {
                 DispatchHelper.InvokeAsync(() =>
@@ -289,7 +289,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                 var albumPic = await ApplicationData.Current.LocalFolder.CreateFolderAsync("albumPic",
                     CreationCollisionOption.OpenIfExists);
 
-                var fileName = MakeValidFileName(album.Name) + "_" + "dPi";
+                var fileName = album.Id + "_" + "dPi";
                 var file = await albumPic.CreateFileAsync(fileName + ".jpg", CreationCollisionOption.OpenIfExists);
                 var raStream = await file.OpenAsync(FileAccessMode.ReadWrite);
 
