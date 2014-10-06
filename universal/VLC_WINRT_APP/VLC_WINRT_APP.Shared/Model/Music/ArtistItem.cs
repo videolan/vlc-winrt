@@ -17,7 +17,7 @@ namespace VLC_WINRT_APP.Model.Music
         private string _name;
         private string _picture;
         private bool _isPictureLoaded;
-        private ObservableCollection<AlbumItem> _albumItems = new ObservableCollection<AlbumItem>();
+        private ObservableCollection<AlbumItem> _albumItems;
         private int _currentAlbumIndex = 0;
 
         // more informations
@@ -85,7 +85,12 @@ namespace VLC_WINRT_APP.Model.Music
         [Ignore]
         public ObservableCollection<AlbumItem> Albums
         {
-            get { return _albumItems; }
+            get
+            {
+                if (_albumItems == null)
+                    this.GetAlbums();
+                return _albumItems; 
+            }
             set { SetProperty(ref _albumItems, value); }
         }
 

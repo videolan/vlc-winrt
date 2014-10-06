@@ -33,9 +33,6 @@ using VLC_WINRT_APP.Model.Music;
 using VLC_WINRT_APP.Views.UserControls;
 using XboxMusicLibrary;
 using VLC_WINRT_APP.Commands.Music;
-using XboxMusicLibrary.Models;
-using Album = VLC_WINRT_APP.Helpers.MusicLibrary.MusicEntities.Album;
-using Artist = VLC_WINRT_APP.Helpers.MusicLibrary.MusicEntities.Artist;
 using Panel = VLC_WINRT_APP.Model.Panel;
 
 namespace VLC_WINRT_APP.ViewModels.MusicVM
@@ -45,7 +42,6 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         public static ArtistDataRepository _artistDataRepository = new ArtistDataRepository();
         public static TrackDataRepository _trackDataRepository = new TrackDataRepository();
         public static AlbumDataRepository _albumDataRepository = new AlbumDataRepository();
-        public static MusicFolderDataRepository MusicFolderDataRepository = new MusicFolderDataRepository();
         #region private fields
 #if WINDOWS_APP
         private ObservableCollection<Panel> _panels = new ObservableCollection<Panel>();
@@ -59,7 +55,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         #region private props
         private SidebarState _sidebarState;
         private LoadingState _loadingState;
-        private ArtistAlbumsSemanticZoomInvertZoomCommand _artistAlbumsSemanticZoomInvertZoomCommand; 
+        private ArtistAlbumsSemanticZoomInvertZoomCommand _artistAlbumsSemanticZoomInvertZoomCommand;
         private ChangeAlbumArtCommand _changeAlbumArtCommand;
         private DownloadAlbumArtCommand _downloadAlbumArtCommand;
         private AlbumClickedCommand _albumClickedCommand;
@@ -226,82 +222,45 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 #endif
         }
 
-        public void Initialize()
+        public void Initialize(bool InitializeLibrary = true)
         {
-            LoadingState = LoadingState.Loading;
             _albumClickedCommand = new AlbumClickedCommand();
             _artistClickedCommand = new ArtistClickedCommand();
             _trackClickedCommand = new TrackClickedCommand();
             _changeAlbumArtCommand = new ChangeAlbumArtCommand();
             _downloadAlbumArtCommand = new DownloadAlbumArtCommand();
-            _artistAlbumsSemanticZoomInvertZoomCommand = new ArtistAlbumsSemanticZoomInvertZoomCommand(); 
-            Task.Run(() => GetMusicFromLibrary());
+            _artistAlbumsSemanticZoomInvertZoomCommand = new ArtistAlbumsSemanticZoomInvertZoomCommand();
+            if (InitializeLibrary)
+            {
+                LoadingState = LoadingState.Loading;
+                Task.Run(() => GetMusicFromLibrary());
+            }
+            GetFavoriteAndRandomAlbums();
         }
 
         #region methods
+        public async Task GetFavoriteAndRandomAlbums()
+        {
+            await MusicLibraryManagement.LoadFavoriteRandomAlbums();
+            OnPropertyChanged("RandomAlbums");
+            OnPropertyChanged("FavoriteAlbums");
+        }
 
         public async Task GetMusicFromLibrary()
         {
             await LoadFromDatabase();
             App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => IsMusicLibraryEmpty = false);
-            if (Artists.Any())
-            {
-                LoadFavoritesRandomAlbums();
-            }
-            else
+            if (!Artists.Any())
             {
                 await StartIndexing();
                 return;
             }
-
-
             App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
             {
                 LoadingState = LoadingState.Loaded;
                 IsLoaded = true;
                 IsBusy = false;
             });
-
-            await VerifyAllFilesAreHere();
-        }
-
-        private void LoadFavoritesRandomAlbums()
-        {
-            try
-            {
-                App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                {
-                    foreach (AlbumItem album in Artists.SelectMany(artist => artist.Albums))
-                    {
-                        FavoriteAlbums.Add(album);
-                        if (album.Favorite && RandomAlbums.Count < 4 && !RandomAlbums.Contains(album))
-                        {
-                            RandomAlbums.Add(album);
-                        }
-                        if (RandomAlbums.Count < 4)
-                        {
-                            if (!album.Favorite)
-                            {
-                                RandomAlbums.Add(album);
-                            }
-                        }
-                        foreach (TrackItem trackItem in album.Tracks)
-                        {
-                            Tracks.Add(trackItem);
-                        }
-                    }
-
-                    OnPropertyChanged("RandomAlbums");
-                    OnPropertyChanged("FavoriteAlbums");
-                    OnPropertyChanged("Artist");
-                    OnPropertyChanged("Albums");
-                    OnPropertyChanged("Tracks");
-                });
-            }
-            catch (Exception)
-            {
-                Debug.WriteLine("Error selecting random albums.");
-            }
         }
 
         public async Task StartIndexing()
@@ -330,7 +289,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             _trackDataRepository.Initialize();
             _albumDataRepository.Initialize();
 
-            await GetAllMusicFolders();
+            await MusicLibraryManagement.GetAllMusicFolders();
 
             await LoadFromDatabase();
 
@@ -350,107 +309,9 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                 statusBar.ProgressIndicator.HideAsync();
 #endif
             });
-            LoadFavoritesRandomAlbums();
+            GetFavoriteAndRandomAlbums();
         }
 
-        private async Task GetAllMusicFolders()
-        {
-#if WINDOWS_APP
-            StorageLibrary musicLibrary = await StorageLibrary.GetLibraryAsync(KnownLibraryId.Music);
-            foreach (StorageFolder storageFolder in musicLibrary.Folders)
-            {
-                await CreateDatabaseFromMusicFolder(storageFolder);
-            }
-#else
-            StorageFolder musicLibrary = KnownFolders.MusicLibrary;
-            await CreateDatabaseFromMusicFolder(musicLibrary);
-#endif
-
-        }
-
-        private async Task CreateDatabaseFromMusicFolder(StorageFolder musicFolder, int folderDepth = 0, bool indexSubFolder = true)
-        {
-            if (folderDepth < 3)
-            {
-                App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
-                {
-                    if (!await MusicLibraryVM.MusicFolderDataRepository.Exist(musicFolder.Path))
-                    {
-                        DateTimeOffset dtOffset = (await musicFolder.GetBasicPropertiesAsync()).DateModified.UtcDateTime;
-                        var vlcFol = new VLCFolder(musicFolder.Path, dtOffset);
-                        await MusicFolderDataRepository.Add(vlcFol);
-                    }
-                    else
-                    {
-                        var vlcFol = await MusicFolderDataRepository.LoadFolder(musicFolder.Path);
-                        DateTimeOffset dtOffset = (await musicFolder.GetBasicPropertiesAsync()).DateModified.UtcDateTime;
-                        if (vlcFol != null)
-                        {
-                            vlcFol.LastModified = dtOffset;
-                        }
-                        await MusicFolderDataRepository.Update(vlcFol);
-                    }
-                });
-            }
-            IReadOnlyList<IStorageItem> items = await musicFolder.GetItemsAsync();
-            foreach (IStorageItem storageItem in items)
-            {
-                if (storageItem.IsOfType(StorageItemTypes.File))
-                {
-                    await CreateDatabaseFromMusicFile((StorageFile)storageItem);
-                }
-                else
-                {
-                    if (indexSubFolder)
-                    {
-                        await CreateDatabaseFromMusicFolder((StorageFolder)storageItem, folderDepth + 1);
-                    }
-                }
-            }
-        }
-
-        private async Task CreateDatabaseFromMusicFile(StorageFile item)
-        {
-            MusicProperties properties = await item.Properties.GetMusicPropertiesAsync();
-            if (properties != null && !string.IsNullOrEmpty(properties.Album) && !string.IsNullOrEmpty(properties.Artist) && !string.IsNullOrEmpty(properties.Title))
-            {
-                ArtistItem artist = await _artistDataRepository.LoadViaArtistName(properties.Artist);
-                if (artist == null)
-                {
-                    artist = new ArtistItem();
-                    artist.Name = string.IsNullOrEmpty(properties.Artist) ? "Unknown artist" : properties.Artist;
-                    await _artistDataRepository.Add(artist);
-                }
-
-                AlbumItem album = await _albumDataRepository.LoadAlbumViaName(artist.Id, properties.Album);
-                if (album == null)
-                {
-                    album = new AlbumItem
-                    {
-                        Name = string.IsNullOrEmpty(properties.Album) ? "Unknown album" : properties.Album,
-                        Artist = string.IsNullOrEmpty(properties.Artist) ? "Unknown artist" : properties.Artist,
-                        ArtistId = artist.Id,
-                        Favorite = false,
-                    };
-                    await _albumDataRepository.Add(album);
-                }
-
-                TrackItem track = new TrackItem()
-                {
-                    AlbumId = album.Id,
-                    AlbumName = album.Name,
-                    ArtistId = artist.Id,
-                    ArtistName = artist.Name,
-                    CurrentPosition = 0,
-                    Duration = properties.Duration,
-                    Favorite = false,
-                    Name = string.IsNullOrEmpty(properties.Title) ? "Unknown track" : properties.Title,
-                    Path = item.Path,
-                    Index = (int)properties.TrackNumber,
-                };
-                await _trackDataRepository.Add(track);
-            }
-        }
 
         private async Task LoadFromDatabase()
         {
@@ -459,41 +320,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                 Artists.Clear();
                 Tracks.Clear();
             });
-            try
-            {
-                var artists = await _artistDataRepository.Load();
-                foreach (var artistItem in artists)
-                {
-                    var albums = await _albumDataRepository.LoadAlbumsFromId(artistItem.Id);
-                    foreach (var album in albums)
-                    {
-                        var tracks = await _trackDataRepository.LoadTracksByAlbumId(album.Id);
-                        var orderedTracks = tracks.OrderBy(x => x.Index);
-                        foreach (var track in orderedTracks)
-                        {
-                            album.Tracks.Add(track);
-                        }
-                    }
-                    var orderedAlbums = albums.OrderBy(x => x.Name);
-                    foreach (var album in orderedAlbums)
-                    {
-                        artistItem.Albums.Add(album);
-                    }
-                }
-                var orderedArtists = artists.OrderBy(x => x.Name);
-                App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                {
-                    foreach (var artist in orderedArtists)
-                    {
-                        Artists.Add(artist);
-                    }
-                });
-            }
-            catch (Exception)
-            {
-                Debug.WriteLine("Error getting database.");
-            }
-
+            await MusicLibraryManagement.LoadFromSQL();
             DispatchHelper.InvokeAsync(() =>
             {
                 IsMusicLibraryEmpty = !Artists.Any();
@@ -511,71 +338,6 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             return await DoesFileExistHelper.DoesFileExistAsync("mediavlc.sqlite");
         }
 
-        private async Task VerifyAllFilesAreHere()
-        {
-            List<VLCFolder> foldersToCheck = await MusicFolderDataRepository.Load();
-            foreach (VLCFolder vlcFolder in foldersToCheck)
-            {
-                bool removeFolder = false;
-                bool recheckFolder = false;
-                StorageFolder folder = null;
-                try
-                {
-                    if (string.IsNullOrEmpty(vlcFolder.Path))
-                    {
-                        continue;
-                    }
-                    folder = await StorageFolder.GetFolderFromPathAsync(vlcFolder.Path);
-                    if (folder == null)
-                    {
-                        // The folder doesn't exist anymore, we need to delete the files from the database
-                        removeFolder = true;
-                    }
-                    else
-                    {
-                        DateTimeOffset folderLastModif = (await folder.GetBasicPropertiesAsync()).DateModified;
-                        if (folderLastModif.UtcDateTime > vlcFolder.LastModified.UtcDateTime)
-                        {
-                            // The folder has more or less files than before, we need to check it again
-                            // FIRST: Removed the entries in the database from this folder
-                            // SECOND: Add the new entries
-                            recheckFolder = true;
-                        }
-                    }
-                }
-                catch
-                {
-                    // The folder doesn't exist anymore, we need to delete the files from the database
-                    removeFolder = true;
-                }
-
-                if (removeFolder)
-                {
-                    await RemoveVlcFolder(vlcFolder);
-                }
-                else if (recheckFolder)
-                {
-                    await RecheckVlcFolder(folder);
-                }
-            }
-        }
-
-        private async Task RemoveVlcFolder(VLCFolder vlcFolder)
-        {
-            await _trackDataRepository.Remove(vlcFolder.Path);
-            await MusicFolderDataRepository.Remove(vlcFolder);
-            await LoadFromDatabase();
-        }
-
-        private async Task RecheckVlcFolder(StorageFolder folder)
-        {
-            // The folder has more or less files than before, we need to check it again
-            // FIRST: Removed the entries in the database from this folder
-            // SECOND: Add the new entries
-            await _trackDataRepository.Remove(folder.Path);
-            await CreateDatabaseFromMusicFolder(folder);
-            await LoadFromDatabase();
-        }
 
         #endregion
 

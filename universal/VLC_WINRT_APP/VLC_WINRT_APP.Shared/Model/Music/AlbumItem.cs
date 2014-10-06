@@ -23,7 +23,7 @@ namespace VLC_WINRT_APP.Model.Music
         private uint _year;
         private bool _favorite;
         private bool _isPictureLoaded;
-        private ObservableCollection<TrackItem> _trackItems = new ObservableCollection<TrackItem>();
+        private ObservableCollection<TrackItem> _trackItems;
         private PlayAlbumCommand _playAlbumCommand = new PlayAlbumCommand();
         private FavoriteAlbumCommand _favoriteAlbumCommand = new FavoriteAlbumCommand();
         private TrackClickedCommand _trackClickedCommand = new TrackClickedCommand();
@@ -71,7 +71,12 @@ namespace VLC_WINRT_APP.Model.Music
         [Ignore]
         public ObservableCollection<TrackItem> Tracks
         {
-            get { return _trackItems; }
+            get
+            {
+                if (_trackItems == null)
+                    this.GetTracks();
+                return _trackItems;
+            }
             set { SetProperty(ref _trackItems, value); }
         }
 

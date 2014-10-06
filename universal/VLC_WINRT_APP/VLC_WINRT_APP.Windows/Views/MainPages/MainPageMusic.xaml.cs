@@ -81,6 +81,9 @@ namespace VLC_WINRT_APP.Views.MainPages
                 panel1.Color = new SolidColorBrush(Colors.DimGray);
             }
             panel.Color = App.Current.Resources["MainColor"] as SolidColorBrush;
+
+            if (!ArtistListView.Items.Any()) 
+                return;
             switch (panel.Index)
             {
                 case 0:
@@ -119,7 +122,6 @@ namespace VLC_WINRT_APP.Views.MainPages
                     ArtistsGrid.Visibility = Visibility.Collapsed;
                     RadDataGrid.Visibility = Visibility.Visible;
                     FavoriteAlbumsGridView.Visibility = Visibility.Collapsed;
-                    App.RootPage.ColumnGrid.RestoreSidebar();
                     break;
                 case 3:
                     SemanticZoomAlbumsByArtist.Visibility = Visibility.Collapsed;

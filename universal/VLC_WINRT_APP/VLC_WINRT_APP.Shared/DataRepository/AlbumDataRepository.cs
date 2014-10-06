@@ -1,6 +1,8 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using SQLite;
 using VLC_WINRT_APP.Model.Music;
@@ -62,6 +64,13 @@ namespace VLC_WINRT_APP.DataRepository
             return result.FirstOrDefault();
         }
 
+        public async Task<ObservableCollection<AlbumItem>> LoadAlbums(Expression<Func<AlbumItem,bool>> compare)
+        {
+            var connection = new SQLiteAsyncConnection(_dbPath);
+            var query = connection.Table<AlbumItem>().Where(compare);
+            var result = await query.ToListAsync();
+            return new ObservableCollection<AlbumItem>(result);
+        }
         public Task Update(AlbumItem album)
         {
             var connection = new SQLiteAsyncConnection(_dbPath);

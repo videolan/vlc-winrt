@@ -34,7 +34,9 @@ namespace VLC_WINRT_APP.Views.MainPages
             }
             if (Locator.MusicLibraryVM.LoadingState == LoadingState.NotLoaded)
             {
-                Locator.MusicLibraryVM.Initialize();
+                // Do not initialize all musiclibrary
+                // We only need some favorite albums, and random albums. Check them from the SQL database
+                Locator.MusicLibraryVM.Initialize(false);
             }
         }
 
