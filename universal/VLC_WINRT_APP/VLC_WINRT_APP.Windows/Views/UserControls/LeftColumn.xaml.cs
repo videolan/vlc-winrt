@@ -31,6 +31,16 @@ namespace VLC_WINRT_APP.Views.UserControls
 
         void Responsive()
         {
+            if (ApplicationSettingsHelper.ReadSettingsValue("IsSidebarAlwaysMinimized") == null)
+            {
+                ApplicationSettingsHelper.SaveSettingsValue("IsSidebarAlwaysMinimized", false);
+            }
+            if ((bool) ApplicationSettingsHelper.ReadSettingsValue("IsSidebarAlwaysMinimized"))
+            {
+                ToMediumVisualState();
+                return;
+            }
+            
             if (Window.Current.Bounds.Width < 1080)
             {
                 ToMediumVisualState();
@@ -54,6 +64,8 @@ namespace VLC_WINRT_APP.Views.UserControls
 
         void ToMediumVisualState()
         {
+            if ((bool)ApplicationSettingsHelper.ReadSettingsValue("IsSidebarAlwaysMinimized"))
+                return;
             ColumnGrid.Width = 100;
             TitleTextBlock.Visibility = Visibility.Collapsed;
             LargeSearchBox.Visibility = Visibility.Collapsed;

@@ -21,11 +21,24 @@ namespace VLC_WINRT_APP.ViewModels.Settings
 {
     public class SettingsViewModel : BindableBase
     {
+        private bool _isSidebarAlwaysMinimized = false;
         private List<StorageFolder> _musicFolders;
         private List<StorageFolder> _videoFolders;
         private bool _notificationOnNewSong;
         private bool _notificationOnNewSongForeground;
-
+        public bool IsSidebarAlwaysMinimized
+        {
+            get { return _isSidebarAlwaysMinimized; }
+            set
+            {
+                SetProperty(ref _isSidebarAlwaysMinimized, value);
+                ApplicationSettingsHelper.SaveSettingsValue("IsSidebarAlwaysMinimized", value);
+                if(value)
+                    App.RootPage.ColumnGrid.MinimizeSidebar();
+                else
+                    App.RootPage.ColumnGrid.RestoreSidebar();
+            }
+        }
         public List<StorageFolder> MusicFolders
         {
             get { return _musicFolders; }
@@ -78,6 +91,7 @@ namespace VLC_WINRT_APP.ViewModels.Settings
 
             var notificationOnNewSongForeground = ApplicationSettingsHelper.ReadSettingsValue("NotificationOnNewSongForeground");
             NotificationOnNewSongForeground = notificationOnNewSongForeground != null && (bool)notificationOnNewSongForeground;
+            IsSidebarAlwaysMinimized = (bool)ApplicationSettingsHelper.ReadSettingsValue("IsSidebarAlwaysMinimized");
             await GetLibrariesFolders();
         }
 

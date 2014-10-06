@@ -134,11 +134,24 @@
                                 <Border Height="1"
                                         Margin="0,12"
                                         Background="{StaticResource SecondColor}" />
-                                <ToggleSwitch x:Uid="NotificationSongStarts" Header="Notification when a new song starts"
+                                <ToggleSwitch x:Uid="NotificationSongStarts"
+                                              Header="Notification when a new song starts"
                                               IsOn="{Binding NotificationOnNewSong, Mode=TwoWay}" />
-                                <ToggleSwitch x:Uid="NotificationNotBackground" Header="Even if the app is not in background"
+                                <ToggleSwitch x:Uid="NotificationNotBackground"
+                                              Header="Even if the app is not in background"
                                               IsOn="{Binding NotificationOnNewSongForeground, Mode=TwoWay}"
                                               Visibility="{Binding NotificationOnNewSong, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </HubSection.ContentTemplate>
+                </HubSection>
+
+                <HubSection Header="user interface">
+                    <HubSection.ContentTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <ToggleSwitch Header="Sidebar is always in minimized mode"
+                                              IsOn="{Binding IsSidebarAlwaysMinimized, Mode=TwoWay}" />
                             </StackPanel>
                         </DataTemplate>
                     </HubSection.ContentTemplate>
