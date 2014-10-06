@@ -12,7 +12,7 @@
 
     <Grid Height="80"
           Background="WhiteSmoke"
-          Visibility="{Binding IsRunning, Converter={StaticResource IsVisibleDependingOnSidebarState}}">
+          Visibility="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.SidebarState, Converter={StaticResource IsVisibleDependingOnSidebarState}}">
         <Grid.RowDefinitions>
             <RowDefinition Height="1" />
             <RowDefinition Height="79" />

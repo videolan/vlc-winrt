@@ -5,6 +5,7 @@ using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using VLC_WINRT_APP.Helpers;
+using VLC_WINRT_APP.ViewModels;
 using WinRTXamlToolkit.AwaitableUI;
 using WinRTXamlToolkit.Controls.Extensions;
 
@@ -17,14 +18,6 @@ namespace VLC_WINRT_APP.Views.UserControls
     }
     public sealed partial class LeftColumn : UserControl
     {
-        private SidebarState _sidebarState;
-
-        public SidebarState SidebarState
-        {
-            get { return _sidebarState; }
-            set { _sidebarState = value; }
-        }
-
         public LeftColumn()
         {
             this.InitializeComponent();
@@ -48,7 +41,7 @@ namespace VLC_WINRT_APP.Views.UserControls
             {
                 ApplicationSettingsHelper.SaveSettingsValue("IsSidebarAlwaysMinimized", false);
             }
-            if ((bool) ApplicationSettingsHelper.ReadSettingsValue("IsSidebarAlwaysMinimized"))
+            if ((bool)ApplicationSettingsHelper.ReadSettingsValue("IsSidebarAlwaysMinimized"))
             {
                 ToMediumVisualState();
                 return;
@@ -77,7 +70,7 @@ namespace VLC_WINRT_APP.Views.UserControls
 
         void ToMediumVisualState()
         {
-            SidebarState = SidebarState.Minimized;
+            Locator.MusicLibraryVM.SidebarState = SidebarState.Minimized;
             ColumnGrid.Width = 100;
             TitleTextBlock.Visibility = Visibility.Collapsed;
             LargeSearchBox.Visibility = Visibility.Collapsed;
@@ -95,7 +88,7 @@ namespace VLC_WINRT_APP.Views.UserControls
             if ((bool)ApplicationSettingsHelper.ReadSettingsValue("IsSidebarAlwaysMinimized"))
                 return;
             ColumnGrid.Width = 340; 
-            SidebarState = SidebarState.Standard;
+            Locator.MusicLibraryVM.SidebarState = SidebarState.Standard;
             TitleTextBlock.Visibility = Visibility.Visible;
             LargeSearchBox.Visibility = Visibility.Visible;
             LittleSearchBox.Visibility = Visibility.Collapsed;

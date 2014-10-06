@@ -9,7 +9,7 @@ namespace VLC_WINRT_APP.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            if (App.RootPage.ColumnGrid.SidebarState == SidebarState.Minimized)
+            if ((SidebarState)value == SidebarState.Minimized)
             {
                 return Visibility.Visible;
             }

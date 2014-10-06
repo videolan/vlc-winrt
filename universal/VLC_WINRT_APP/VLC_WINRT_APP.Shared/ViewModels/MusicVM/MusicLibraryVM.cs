@@ -29,6 +29,7 @@ using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.Helpers.MusicLibrary;
 using VLC_WINRT_APP.Helpers.MusicLibrary.xboxmusic.Models;
 using VLC_WINRT_APP.Model;
+using VLC_WINRT_APP.Views.UserControls;
 using XboxMusicLibrary;
 using VLC_WINRT_APP.Commands.Music;
 using XboxMusicLibrary.Models;
@@ -55,6 +56,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         private ObservableCollection<AlbumItem> _randomAlbums = new ObservableCollection<AlbumItem>();
         #endregion
         #region private props
+        private SidebarState _sidebarState;
         private LoadingState _loadingState;
         private ArtistAlbumsSemanticZoomInvertZoomCommand _artistAlbumsSemanticZoomInvertZoomCommand; 
         private ChangeAlbumArtCommand _changeAlbumArtCommand;
@@ -108,6 +110,11 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 
         #endregion
         #region public props
+        public SidebarState SidebarState
+        {
+            get { return _sidebarState; }
+            set { SetProperty(ref _sidebarState, value); }
+        }
         public LoadingState LoadingState
         {
             get { return _loadingState; }
