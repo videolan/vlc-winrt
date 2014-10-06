@@ -41,6 +41,7 @@ namespace VLC_WINRT_APP.ViewModels
         protected readonly DisplayRequest _displayAlwaysOnRequest;
         protected DispatcherTimer _sliderPositionTimer;
 
+        protected int _volume = 100;
         #endregion
 
         #region private fields
@@ -53,15 +54,15 @@ namespace VLC_WINRT_APP.ViewModels
         {
             get
             {
-                int vol = _mediaService.GetVolume();
-                if (vol == 0)
-                    return 100;
-                return vol;
+                return _volume;
             }
             set
             {
                 if (value > 0)
+                {
                     _mediaService.SetVolume(value);
+                    SetProperty(ref _volume, value);
+                }
             }
         }
 

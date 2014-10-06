@@ -22,7 +22,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                 var artists = await MusicLibraryVM._artistDataRepository.Load();
                 var orderedArtists = artists.OrderBy(x => x.Name);
                 var tracks = await MusicLibraryVM._trackDataRepository.LoadTracks();
-                App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                 {
                     foreach (var artist in orderedArtists)
                     {

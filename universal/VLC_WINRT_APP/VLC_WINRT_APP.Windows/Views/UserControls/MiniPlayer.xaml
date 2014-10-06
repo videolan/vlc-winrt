@@ -32,7 +32,8 @@
         </Grid>
         <Slider Value="{Binding PositionInSeconds, Mode=TwoWay}"
                 Maximum="{Binding TimeTotal.TotalSeconds}"
-                Style="{StaticResource VLCSlider}" />
+                Style="{StaticResource VLCSlider}"
+                ThumbToolTipValueConverter="{StaticResource SecondsStringConverter}" />
         <Grid Margin="0,-38,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -101,8 +102,7 @@
                                 Style="{StaticResource VLCSlider}"
                                 Value="{Binding Volume, Mode=TwoWay}"
                                 Maximum="100"
-                                Minimum="0"
-                                ThumbToolTipValueConverter="{StaticResource SecondsStringConverter}" />
+                                Minimum="0" />
                     </Flyout>
                 </Button.Flyout>
                 <StackPanel Orientation="Horizontal">

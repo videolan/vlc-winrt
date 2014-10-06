@@ -22,7 +22,7 @@
             <m2:ShowOn Tile="wide310x150Logo" />
           </m2:ShowNameOnTiles>
         </m2:DefaultTile>
-        <m2:SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="#262626" />
+        <m2:SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="#f5f5f5" />
         <m2:ApplicationView MinWidth="width320" />
       </m2:VisualElements>
       <Extensions>
