@@ -13,6 +13,7 @@ using Windows.ApplicationModel.Resources;
 using Windows.UI.Xaml.Media;
 using VLC_WINRT_APP.Commands.MainPageCommands;
 using VLC_WINRT_APP.Common;
+using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.Commands;
 
@@ -83,6 +84,8 @@ namespace VLC_WINRT_APP.ViewModels
         public async Task Initialize()
         {
             //await Locator.SettingsVM.PopulateCustomFolders();
+            if (ApplicationSettingsHelper.ReadSettingsValue("ContinueVideoPlaybackInBackground") == null)
+                ApplicationSettingsHelper.SaveSettingsValue("ContinueVideoPlaybackInBackground", true);
         }
 
         public ObservableCollection<Panel> Panels

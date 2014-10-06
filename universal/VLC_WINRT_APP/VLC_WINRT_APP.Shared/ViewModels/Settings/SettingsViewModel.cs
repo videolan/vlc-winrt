@@ -26,6 +26,17 @@ namespace VLC_WINRT_APP.ViewModels.Settings
         private List<StorageFolder> _videoFolders;
         private bool _notificationOnNewSong;
         private bool _notificationOnNewSongForeground;
+        private bool _continueVideoPlaybackInBackground;
+
+        public bool ContinueVideoPlaybackInBackground
+        {
+            get { return _continueVideoPlaybackInBackground; }
+            set
+            {
+                SetProperty(ref _continueVideoPlaybackInBackground, value);
+                ApplicationSettingsHelper.SaveSettingsValue("ContinueVideoPlaybackInBackground", value);
+            }
+        }
         public bool IsSidebarAlwaysMinimized
         {
             get { return _isSidebarAlwaysMinimized; }
@@ -92,6 +103,8 @@ namespace VLC_WINRT_APP.ViewModels.Settings
             var notificationOnNewSongForeground = ApplicationSettingsHelper.ReadSettingsValue("NotificationOnNewSongForeground");
             NotificationOnNewSongForeground = notificationOnNewSongForeground != null && (bool)notificationOnNewSongForeground;
             IsSidebarAlwaysMinimized = (bool)ApplicationSettingsHelper.ReadSettingsValue("IsSidebarAlwaysMinimized");
+            ContinueVideoPlaybackInBackground =
+                (bool) ApplicationSettingsHelper.ReadSettingsValue("ContinueVideoPlaybackInBackground");
             await GetLibrariesFolders();
         }
 

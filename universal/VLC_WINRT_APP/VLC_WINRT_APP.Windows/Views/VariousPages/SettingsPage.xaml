@@ -83,6 +83,11 @@
                                         x:Uid="AddFolder"
                                         Command="{Binding AddFolderToLibrary}"
                                         CommandParameter="{Binding VideoLibraryId}" />
+                                <Border Height="1"
+                                        Margin="0,12"
+                                        Background="{StaticResource SecondColor}" />
+                                <ToggleSwitch Header="Video playback in background"
+                                              IsOn="{Binding ContinueVideoPlaybackInBackground, Mode=TwoWay}" />
                             </StackPanel>
                         </DataTemplate>
                     </HubSection.ContentTemplate>

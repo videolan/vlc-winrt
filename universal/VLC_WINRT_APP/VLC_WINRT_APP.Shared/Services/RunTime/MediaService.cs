@@ -17,6 +17,7 @@ using Windows.Storage.Streams;
 using Windows.UI.Popups;
 using VLC_WINRT.Common;
 using VLC_WINRT_APP.Commands.MediaPlayback;
+using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.Helpers.MusicLibrary.Deezer;
 using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.Model.Music;
@@ -323,7 +324,8 @@ namespace VLC_WINRT_APP.Services.RunTime
                 if (!_isAudioMedia)
                 {
                     // TODO: Route Video Player calls through Media Service
-                    //_vlcService.Pause();
+                    if (!(bool)ApplicationSettingsHelper.ReadSettingsValue("ContinueVideoPlaybackInBackground"))
+                        _vlcService.Pause();
 
                     Locator.VideoVm._lastVideosRepository.Update(Locator.VideoVm.CurrentVideo);
                 }
@@ -345,11 +347,11 @@ namespace VLC_WINRT_APP.Services.RunTime
             {
                 IsBackground = false;
 
-                if (!IsPlaying)
+                if (!IsPlaying && _isAudioMedia)
                     return;
 
                 // If we're playing a video, start playing again.
-                if (!_isAudioMedia && IsPlaying)
+                if (!_isAudioMedia && IsPlayingOrPaused)
                 {
                     // TODO: Route Video Player calls through Media Service
                     _vlcService.Play();
@@ -366,6 +368,14 @@ namespace VLC_WINRT_APP.Services.RunTime
             get { return _vlcService.CurrentState == VlcService.MediaPlayerState.Playing; }
         }
 
+        public bool IsPlayingOrPaused
+        {
+            get
+            {
+                return _vlcService.CurrentState == VlcService.MediaPlayerState.Playing ||
+                       _vlcService.CurrentState == VlcService.MediaPlayerState.Paused;
+            }
+        }
         public bool IsBackground { get; private set; }
 
         public event EventHandler MediaEnded;
