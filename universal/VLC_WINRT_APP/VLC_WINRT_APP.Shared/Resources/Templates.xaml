@@ -119,7 +119,8 @@
                                 CommandParameter="{Binding}">
                             <Button.Content>
                                 <TextBlock>
-                                    <Run x:Uid="PlayAlbum" Text="Play album" />
+                                    <Run x:Uid="PlayAlbum"
+                                         Text="Play album" />
                                     <Run Text=""
                                          FontFamily="Segoe UI Symbol" />
                                 </TextBlock>
@@ -423,11 +424,23 @@
     <DataTemplate x:Name="SidebarItemTemplate">
         <Grid Height="60"
               Width="340">
-            <TextBlock Text="{Binding Title}"
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Path Data="{Binding PathData}"
+                  Height="30"
+                  Width="30"
+                  HorizontalAlignment="Center"
+                  Stretch="Uniform"
+                  Fill="{Binding Color}"
+                  Margin="42,0,0,0" />
+            <TextBlock Grid.Column="1"
+                       Text="{Binding Title}"
                        Foreground="{Binding Color}"
                        TextWrapping="NoWrap"
                        TextTrimming="None"
-                       Margin="42,-9,0,0"
+                       Margin="12,-12,0,0"
                        VerticalAlignment="Center"
                        Style="{StaticResource SubheaderTextBlockStyle}" />
         </Grid>
