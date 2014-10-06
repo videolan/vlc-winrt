@@ -102,7 +102,10 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         public ObservableCollection<TrackItem> Tracks
         {
             get { return _trackses; }
-            set { SetProperty(ref _trackses, value); }
+            set
+            {
+                SetProperty(ref _trackses, value);
+            }
         }
 
         #endregion

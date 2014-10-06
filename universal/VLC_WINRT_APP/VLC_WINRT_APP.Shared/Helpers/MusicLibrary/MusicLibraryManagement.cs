@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.FileProperties;
 using Windows.UI.Core;
-using VLC_WINRT_APP.Helpers.MusicLibrary.Deezer;
 using VLC_WINRT_APP.Model.Music;
 using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.ViewModels.MusicVM;
@@ -23,13 +21,16 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             {
                 var artists = await MusicLibraryVM._artistDataRepository.Load();
                 var orderedArtists = artists.OrderBy(x => x.Name);
+                var tracks = await MusicLibraryVM._trackDataRepository.LoadTracks();
                 App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                 {
                     foreach (var artist in orderedArtists)
                     {
                         Locator.MusicLibraryVM.Artists.Add(artist);
                     }
+                    Locator.MusicLibraryVM.Tracks = tracks;
                 });
+
             }
             catch (Exception)
             {
