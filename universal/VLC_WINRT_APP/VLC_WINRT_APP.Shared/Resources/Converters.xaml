@@ -23,4 +23,5 @@
     <converters:DoubleSpeedToUnderstandableSpeedConverter x:Key="DoubleSpeedToUnderstandableSpeedConverter"/>
     <converters:CurrentTrackForegroundConverter x:Key="CurrentTrackForegroundConverter"/>
     <converters:VLCSearchBoxConverter x:Key="VLCSearchBoxConverter" />
+    <converters:IsVisibleDependingOnSidebarState x:Key="IsVisibleDependingOnSidebarState" />
 </ResourceDictionary>

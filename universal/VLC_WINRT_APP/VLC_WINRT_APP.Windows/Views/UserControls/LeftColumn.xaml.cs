@@ -10,8 +10,21 @@ using WinRTXamlToolkit.Controls.Extensions;
 
 namespace VLC_WINRT_APP.Views.UserControls
 {
+    public enum SidebarState
+    {
+        Standard,
+        Minimized,
+    }
     public sealed partial class LeftColumn : UserControl
     {
+        private SidebarState _sidebarState;
+
+        public SidebarState SidebarState
+        {
+            get { return _sidebarState; }
+            set { _sidebarState = value; }
+        }
+
         public LeftColumn()
         {
             this.InitializeComponent();
@@ -64,8 +77,7 @@ namespace VLC_WINRT_APP.Views.UserControls
 
         void ToMediumVisualState()
         {
-            if ((bool)ApplicationSettingsHelper.ReadSettingsValue("IsSidebarAlwaysMinimized"))
-                return;
+            SidebarState = SidebarState.Minimized;
             ColumnGrid.Width = 100;
             TitleTextBlock.Visibility = Visibility.Collapsed;
             LargeSearchBox.Visibility = Visibility.Collapsed;
@@ -76,12 +88,14 @@ namespace VLC_WINRT_APP.Views.UserControls
 
             PanelsListView.ItemTemplate = App.Current.Resources["SidebarIconItemTemplate"] as DataTemplate;
             MiniPlayer.Visibility = Visibility.Collapsed;
-            SnapMiniPlayer.Visibility = Visibility.Visible;
         }
 
         void ToNormalVisualState()
         {
-            ColumnGrid.Width = 340;
+            if ((bool)ApplicationSettingsHelper.ReadSettingsValue("IsSidebarAlwaysMinimized"))
+                return;
+            ColumnGrid.Width = 340; 
+            SidebarState = SidebarState.Standard;
             TitleTextBlock.Visibility = Visibility.Visible;
             LargeSearchBox.Visibility = Visibility.Visible;
             LittleSearchBox.Visibility = Visibility.Collapsed;
@@ -90,7 +104,6 @@ namespace VLC_WINRT_APP.Views.UserControls
             HeaderGrid.HorizontalAlignment = HorizontalAlignment.Left;
             PanelsListView.ItemTemplate = App.Current.Resources["SidebarItemTemplate"] as DataTemplate;
             MiniPlayer.Visibility = Visibility.Visible;
-            SnapMiniPlayer.Visibility = Visibility.Collapsed;
             SeparatorRowDefinition.Height = new GridLength(24);
         }
     }

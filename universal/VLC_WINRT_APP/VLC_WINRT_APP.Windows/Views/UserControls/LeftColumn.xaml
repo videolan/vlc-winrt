@@ -113,28 +113,6 @@
                               Margin="42,0,20,0"
                               x:Name="MiniPlayer"
                               Height="315" />
-            <Button HorizontalAlignment="Center"
-                    Style="{StaticResource TextBlockButtonStyle}"
-                    x:Name="SnapMiniPlayer"
-                    Visibility="Collapsed">
-                <Button.Flyout>
-                    <Flyout>
-                        <local:MiniPlayer Width="300" />
-                    </Flyout>
-                </Button.Flyout>
-                <StackPanel>
-                    <Path Data="F1M-224.553,1265L-246.174,1283.52 -267.792,1302.04 -267.792,1265 -267.792,1227.97 -246.174,1246.49 -224.553,1265z"
-                          Height="30"
-                          Width="30"
-                          HorizontalAlignment="Center"
-                          Stretch="Uniform"
-                          Fill="{StaticResource MainColor}"
-                          Margin="-9,0,0,0" />
-                    <TextBlock Text="NOW PLAYING"
-                               TextWrapping="Wrap"
-                               TextAlignment="Center" />
-                </StackPanel>
-            </Button>
         </Grid>
         <local:LoadingMusicLibrary Grid.Row="7"
                                    VerticalAlignment="Bottom" />

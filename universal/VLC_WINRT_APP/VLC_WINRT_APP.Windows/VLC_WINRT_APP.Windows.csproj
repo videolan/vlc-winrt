@@ -118,6 +118,9 @@
     </SDKReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Views\UserControls\HorizontalMiniPlayer.xaml.cs">
+      <DependentUpon>HorizontalMiniPlayer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\VariousPages\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>
@@ -746,6 +749,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="Views\UserControls\HorizontalMiniPlayer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\VariousPages\AboutPage.xaml">
       <Generator>MSBuild:Compile</Generator>

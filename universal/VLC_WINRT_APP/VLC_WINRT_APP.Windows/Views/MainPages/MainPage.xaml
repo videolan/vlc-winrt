@@ -70,5 +70,8 @@
                 </TransitionCollection>
             </Frame.ContentTransitions>
         </Frame>
+
+        <userControls:HorizontalMiniPlayer Grid.Row="2"
+                                          Grid.ColumnSpan="2" />
     </SwapChainPanel>
 </Page>

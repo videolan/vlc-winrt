@@ -53,7 +53,4 @@
     <Capability Name="internetClientServer" />
     <Capability Name="picturesLibrary" />
   </Capabilities>
-  <Dependencies>
-    <PackageDependency Name="Microsoft.VCLibs.110.00" MinVersion="11.0.50727.1" />
-  </Dependencies>
 </Package>
