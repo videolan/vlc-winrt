@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using SQLite;
+using VLC_WINRT_APP.Model.Music;
 using VLC_WINRT_APP.ViewModels.MusicVM;
 
 namespace VLC_WINRT_APP.DataRepository
@@ -24,7 +25,7 @@ namespace VLC_WINRT_APP.DataRepository
         {
             using (var db = new SQLite.SQLiteConnection(_dbPath))
             {
-                db.CreateTable<MusicLibraryVM.TrackItem>();
+                db.CreateTable<TrackItem>();
             }
         }
 
@@ -32,46 +33,46 @@ namespace VLC_WINRT_APP.DataRepository
         {
             using (var db = new SQLite.SQLiteConnection(_dbPath))
             {
-                db.DropTable<MusicLibraryVM.TrackItem>();
+                db.DropTable<TrackItem>();
             }
         }
 
-        public async Task<MusicLibraryVM.TrackItem> LoadTrack(int trackId)
+        public async Task<TrackItem> LoadTrack(int trackId)
         {
             var connection = new SQLiteAsyncConnection(_dbPath);
-            var query = connection.Table<MusicLibraryVM.TrackItem>().Where(x => x.Id.Equals(trackId));
+            var query = connection.Table<TrackItem>().Where(x => x.Id.Equals(trackId));
             var result = await query.ToListAsync();
             return result.FirstOrDefault();
         }
 
-        public async Task<MusicLibraryVM.TrackItem> LoadTrack(int artistId, int albumId, string trackName)
+        public async Task<TrackItem> LoadTrack(int artistId, int albumId, string trackName)
         {
             var connection = new SQLiteAsyncConnection(_dbPath);
-            var query = connection.Table<MusicLibraryVM.TrackItem>().Where(x => x.Name.Equals(trackName)).Where(x => x.ArtistId == artistId).Where(x => x.AlbumId == albumId);
+            var query = connection.Table<TrackItem>().Where(x => x.Name.Equals(trackName)).Where(x => x.ArtistId == artistId).Where(x => x.AlbumId == albumId);
             var result = await query.ToListAsync();
             return result.FirstOrDefault();
         }
 
         public
-            async Task<ObservableCollection<MusicLibraryVM.TrackItem>> LoadTracksByAlbumId(int albumId)
+            async Task<ObservableCollection<TrackItem>> LoadTracksByAlbumId(int albumId)
         {
 
             var connection = new SQLiteAsyncConnection(_dbPath);
-            var query = connection.Table<MusicLibraryVM.TrackItem>().Where(x => x.AlbumId == albumId);
+            var query = connection.Table<TrackItem>().Where(x => x.AlbumId == albumId);
             var result = await query.ToListAsync();
-            return new ObservableCollection<MusicLibraryVM.TrackItem>(result);
+            return new ObservableCollection<TrackItem>(result);
         }
 
-        public Task Update(MusicLibraryVM.TrackItem track)
+        public Task Update(TrackItem track)
         {
             var connection = new SQLiteAsyncConnection(_dbPath);
             return connection.UpdateAsync(track);
         }
 
-        public async Task Add(MusicLibraryVM.TrackItem track)
+        public async Task Add(TrackItem track)
         {
             var connection = new SQLiteAsyncConnection(_dbPath);
-            var query = connection.Table<MusicLibraryVM.TrackItem>().Where(x => x.Path == track.Path);
+            var query = connection.Table<TrackItem>().Where(x => x.Path == track.Path);
             var result = await query.ToListAsync();
             if(result.Count == 0)
                 connection.InsertAsync(track);
@@ -84,17 +85,17 @@ namespace VLC_WINRT_APP.DataRepository
 
             // This will delete all the entries that are in folderPath and its subfolders
             var connection = new SQLiteAsyncConnection(_dbPath);
-            var query = connection.Table<MusicLibraryVM.TrackItem>().Where(x => x.Path.Contains(folderPath));
+            var query = connection.Table<TrackItem>().Where(x => x.Path.Contains(folderPath));
             var result = await query.ToListAsync();
-            foreach (MusicLibraryVM.TrackItem trackItem in result)
+            foreach (TrackItem trackItem in result)
             {
                await connection.DeleteAsync(trackItem);
             }
 
             // If all tracks for an album are deleted, then remove the album itself
-            foreach (MusicLibraryVM.TrackItem trackItem in result)
+            foreach (TrackItem trackItem in result)
             {
-                MusicLibraryVM.AlbumItem album = await MusicLibraryVM._albumDataRepository.LoadAlbum(trackItem.AlbumId);
+                AlbumItem album = await MusicLibraryVM._albumDataRepository.LoadAlbum(trackItem.AlbumId);
                 if(album != null)
                     MusicLibraryVM._albumDataRepository.Remove(album);
             }

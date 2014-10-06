@@ -164,7 +164,7 @@ namespace VLC_WINRT_APP
             //if (file.FileType == ".mp3" || file.FileType == ".wma")
             //{
             //    Locator.MusicPlayerVM.TrackCollection.Clear();
-            //    MusicLibraryVM.TrackItem trackItem =
+            //    TrackItem trackItem =
             //        await GetInformationsFromMusicFile.GetTrackItemFromFile(file);
             //    Locator.MusicPlayerVM.TrackCollection.Add(trackItem);
             //    await Locator.MusicPlayerVM.PlayFromExplorer(file);

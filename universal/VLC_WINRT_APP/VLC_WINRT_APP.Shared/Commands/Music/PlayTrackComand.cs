@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using VLC_WINRT.Common;
 using VLC_WINRT_APP.Helpers;
+using VLC_WINRT_APP.Model.Music;
 using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.ViewModels.MusicVM;
 using VLC_WINRT_APP.Views.MusicPages;
@@ -28,18 +29,18 @@ namespace VLC_WINRT_APP.Commands.Music
             if (App.ApplicationFrame.CurrentSourcePageType != typeof(MusicPlayerPage))
                 App.ApplicationFrame.Navigate(typeof(MusicPlayerPage));
             Locator.MusicLibraryVM.IsAlbumPageShown = false;
-            MusicLibraryVM.TrackItem track = null;
+            TrackItem track = null;
             if (parameter is ItemClickEventArgs)
             {
                 ItemClickEventArgs args = parameter as ItemClickEventArgs;
-                track = args.ClickedItem as MusicLibraryVM.TrackItem;
+                track = args.ClickedItem as TrackItem;
             }
             if (track == null)
             {
                 // if the track is still null (for some reason), we need to break early.
                 return;
             }
-            MusicLibraryVM.AlbumItem album =
+            AlbumItem album =
                 Locator.MusicLibraryVM.Artists.FirstOrDefault(x => x.Id == track.ArtistId)
                     .Albums.FirstOrDefault(x => x.Id == track.AlbumId);
             if (album != null)
@@ -57,7 +58,7 @@ namespace VLC_WINRT_APP.Commands.Music
             //else if (parameter is DataGridSelectionChangedEventArgs)
             //{
             //    DataGridSelectionChangedEventArgs args = parameter as DataGridSelectionChangedEventArgs;
-            //    track = args.AddedItems.First() as MusicLibraryVM.TrackItem;
+            //    track = args.AddedItems.First() as TrackItem;
             //}
 #endif
         }

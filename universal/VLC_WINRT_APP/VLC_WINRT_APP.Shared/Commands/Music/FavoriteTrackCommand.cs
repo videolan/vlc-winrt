@@ -10,6 +10,7 @@
 using System.Linq;
 using VLC_WINRT.Common;
 using VLC_WINRT_APP.DataRepository;
+using VLC_WINRT_APP.Model.Music;
 using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.ViewModels.MusicVM;
 
@@ -19,7 +20,7 @@ namespace VLC_WINRT_APP.Commands.MusicPlayer
     {
         public override async void Execute(object parameter)
         {
-            var track = parameter as MusicLibraryVM.TrackItem;
+            var track = parameter as TrackItem;
             if (track == null)
                 return;
             var trackDataRepository = new TrackDataRepository();
@@ -33,15 +34,15 @@ namespace VLC_WINRT_APP.Commands.MusicPlayer
             var trackFromArtistCollection = Locator.MusicLibraryVM.Artists.FirstOrDefault(
                 x =>
                 {
-                    var trackItem = parameter as MusicLibraryVM.TrackItem;
+                    var trackItem = parameter as TrackItem;
                     return trackItem != null && x.Name == trackItem.ArtistName;
                 })
                 .Albums.FirstOrDefault(y =>
                 {
-                    var item = parameter as MusicLibraryVM.TrackItem;
+                    var item = parameter as TrackItem;
                     return item != null && y.Name == item.AlbumName;
                 })
-                .Tracks.FirstOrDefault(z => z == (parameter as MusicLibraryVM.TrackItem));
+                .Tracks.FirstOrDefault(z => z == (parameter as TrackItem));
 
             // Update Database
             await trackDataRepository.Update(Locator.MusicLibraryVM.Tracks[i]);

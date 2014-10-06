@@ -142,6 +142,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\UpdateTileHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\VideoHUDHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\LoadingState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Music\AlbumItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Music\ArtistItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Music\TrackItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Panel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\PlayingType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Subtitle.cs" />

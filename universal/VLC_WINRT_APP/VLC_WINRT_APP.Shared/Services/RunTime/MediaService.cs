@@ -19,6 +19,7 @@ using VLC_WINRT.Common;
 using VLC_WINRT_APP.Commands.MediaPlayback;
 using VLC_WINRT_APP.Helpers.MusicLibrary.Deezer;
 using VLC_WINRT_APP.Model;
+using VLC_WINRT_APP.Model.Music;
 using VLC_WINRT_APP.Services.Interface;
 using Windows.Storage;
 using Windows.UI.Core;
@@ -142,12 +143,12 @@ namespace VLC_WINRT_APP.Services.RunTime
         {
             if (App.ApplicationFrame.CurrentSourcePageType != typeof(MusicPlayerPage))
                 App.ApplicationFrame.Navigate(typeof(MusicPlayerPage));
-            MusicLibraryVM.TrackItem trackItem = new MusicLibraryVM.TrackItem();
+            TrackItem trackItem = new TrackItem();
             trackItem.Path = file.Path;
             trackItem.AlbumName = "Album";
             trackItem.ArtistName = "Artist";
             if (Locator.MusicPlayerVM.TrackCollection == null)
-                Locator.MusicPlayerVM.TrackCollection = new ObservableCollection<MusicLibraryVM.TrackItem>();
+                Locator.MusicPlayerVM.TrackCollection = new ObservableCollection<TrackItem>();
 
             if (trackItem != null && !Locator.MusicPlayerVM.TrackCollection.Contains(trackItem))
             {

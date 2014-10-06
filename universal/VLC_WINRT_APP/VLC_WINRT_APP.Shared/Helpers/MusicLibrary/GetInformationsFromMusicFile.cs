@@ -9,6 +9,7 @@
 
 using System;
 using System.Threading.Tasks;
+using VLC_WINRT_APP.Model.Music;
 using VLC_WINRT_APP.ViewModels.MusicVM;
 using Windows.Storage;
 
@@ -16,10 +17,10 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
 {
     public static class GetInformationsFromMusicFile
     {
-        public async static Task<MusicLibraryVM.TrackItem> GetTrackItemFromFile(StorageFile track)
+        public async static Task<TrackItem> GetTrackItemFromFile(StorageFile track)
         {
             var trackInfos = await track.Properties.GetMusicPropertiesAsync();
-            var trackItem = new MusicLibraryVM.TrackItem
+            var trackItem = new TrackItem
             {
                 ArtistName = string.IsNullOrEmpty(trackInfos.Artist) ? "Unknown artist" : trackInfos.Artist,
                 AlbumName = trackInfos.Album,

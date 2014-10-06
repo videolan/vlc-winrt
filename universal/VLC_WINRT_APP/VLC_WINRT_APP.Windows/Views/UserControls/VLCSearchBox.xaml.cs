@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
 using VLC_WINRT_APP.Helpers;
+using VLC_WINRT_APP.Model.Music;
 using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.ViewModels.MusicVM;
 using VLC_WINRT_APP.ViewModels.VideoVM;
@@ -35,7 +36,7 @@ namespace VLC_WINRT_APP.Views.UserControls
             switch (type)
             {
                 case "track":
-                    MusicLibraryVM.TrackItem trackItem = Locator.MusicLibraryVM.Tracks.FirstOrDefault(node => node.Id == int.Parse(query));
+                    TrackItem trackItem = Locator.MusicLibraryVM.Tracks.FirstOrDefault(node => node.Id == int.Parse(query));
                     if (trackItem != null)
                     {
                         Locator.MusicPlayerVM.CurrentPlayingArtist = Locator.MusicLibraryVM.Artists.FirstOrDefault(node => node.Id == trackItem.ArtistId);
@@ -43,7 +44,7 @@ namespace VLC_WINRT_APP.Views.UserControls
                     }
                     break;
                 case "album":
-                    MusicLibraryVM.AlbumItem albumItem =
+                    AlbumItem albumItem =
                         Locator.MusicLibraryVM.Artists.SelectMany(node => node.Albums)
                             .FirstOrDefault(node => node.Id == int.Parse(query));
                     if (albumItem != null)
@@ -53,7 +54,7 @@ namespace VLC_WINRT_APP.Views.UserControls
                     }
                     break;
                 case "artist":
-                    MusicLibraryVM.ArtistItem artistItem =
+                    ArtistItem artistItem =
                         Locator.MusicLibraryVM.Artists.FirstOrDefault(node => node.Id == int.Parse(query));
                    Locator.MusicLibraryVM.CurrentArtist = artistItem;
 #if WINDOWS_APP

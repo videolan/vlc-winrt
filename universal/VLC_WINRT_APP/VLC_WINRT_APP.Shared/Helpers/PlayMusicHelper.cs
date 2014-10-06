@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.UI.Core;
+using VLC_WINRT_APP.Model.Music;
 using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.ViewModels.MusicVM;
 
@@ -9,7 +10,7 @@ namespace VLC_WINRT_APP.Helpers
 {
     public static class PlayMusickHelper
     {
-        public static async Task Play(this MusicLibraryVM.TrackItem track)
+        public static async Task Play(this TrackItem track)
         {
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
@@ -29,7 +30,7 @@ namespace VLC_WINRT_APP.Helpers
             Locator.MusicPlayerVM.Play();
         }
 
-        public static async Task Play(this MusicLibraryVM.AlbumItem album, int index = 0)
+        public static async Task Play(this AlbumItem album, int index = 0)
         {
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
             {
@@ -45,7 +46,7 @@ namespace VLC_WINRT_APP.Helpers
             });
         }
 
-        public static async Task AddToQueue(this MusicLibraryVM.AlbumItem album, bool resetQueue = true)
+        public static async Task AddToQueue(this AlbumItem album, bool resetQueue = true)
         {
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
@@ -63,13 +64,13 @@ namespace VLC_WINRT_APP.Helpers
             Locator.MusicPlayerVM.CurrentTrack = index;
         }
 
-        public static async Task SetCurrentPlayingArtist(MusicLibraryVM.AlbumItem album)
+        public static async Task SetCurrentPlayingArtist(AlbumItem album)
         {
             Locator.MusicPlayerVM.CurrentPlayingArtist =
                 Locator.MusicLibraryVM.Artists.FirstOrDefault(x => x.Name == album.Artist);
         }
 
-        public static void SetCurrentPlayingAlbum(MusicLibraryVM.AlbumItem album)
+        public static void SetCurrentPlayingAlbum(AlbumItem album)
         {
             Locator.MusicPlayerVM.CurrentPlayingArtist.CurrentAlbumIndex =
                 Locator.MusicPlayerVM.CurrentPlayingArtist.Albums.IndexOf(album);

@@ -13,6 +13,7 @@ using System.Text;
 using Windows.UI.Xaml.Controls;
 using VLC_WINRT.Common;
 using VLC_WINRT_APP.Helpers.MusicLibrary;
+using VLC_WINRT_APP.Model.Music;
 using VLC_WINRT_APP.ViewModels.MusicVM;
 
 namespace VLC_WINRT_APP.Commands.Music
@@ -21,13 +22,13 @@ namespace VLC_WINRT_APP.Commands.Music
     {
         public async override void Execute(object parameter)
         {
-            var album = parameter as MusicLibraryVM.AlbumItem;
+            var album = parameter as AlbumItem;
 
             if (album == null)
             {
                 var args = parameter as ItemClickEventArgs;
                 if (args != null)
-                    album = args.ClickedItem as MusicLibraryVM.AlbumItem;
+                    album = args.ClickedItem as AlbumItem;
             }
 
             await ArtistInformationsHelper.GetAlbumPictureFromInternet(album);

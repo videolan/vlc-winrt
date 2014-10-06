@@ -9,6 +9,7 @@
 
 using VLC_WINRT.Common;
 using VLC_WINRT_APP.DataRepository;
+using VLC_WINRT_APP.Model.Music;
 using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.ViewModels.MusicVM;
 
@@ -18,7 +19,7 @@ namespace VLC_WINRT_APP.Commands.MusicPlayer
     {
         public override async void Execute(object parameter)
         {
-            var album = parameter as MusicLibraryVM.AlbumItem;
+            var album = parameter as AlbumItem;
             if (album == null)
                 return;
             // If the album is favorite, then now it is not

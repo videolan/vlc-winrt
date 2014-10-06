@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using SQLite;
+using VLC_WINRT_APP.Model.Music;
 using VLC_WINRT_APP.ViewModels.MusicVM;
 
 namespace VLC_WINRT_APP.DataRepository
@@ -22,55 +23,55 @@ namespace VLC_WINRT_APP.DataRepository
         {
             using (var db = new SQLiteConnection(_dbPath))
             {
-                db.CreateTable<MusicLibraryVM.ArtistItem>();
+                db.CreateTable<ArtistItem>();
             }
         }
         public void Drop()
         {
             using (var db = new SQLite.SQLiteConnection(_dbPath))
             {
-                db.DropTable<MusicLibraryVM.ArtistItem>();
+                db.DropTable<ArtistItem>();
             }
         }
 
         public
-            async Task<ObservableCollection<MusicLibraryVM.ArtistItem>> Load()
+            async Task<ObservableCollection<ArtistItem>> Load()
         {
             var connection = new SQLiteAsyncConnection(_dbPath);
 
-            return new ObservableCollection<MusicLibraryVM.ArtistItem>(
-               await connection.QueryAsync<MusicLibraryVM.ArtistItem>(
+            return new ObservableCollection<ArtistItem>(
+               await connection.QueryAsync<ArtistItem>(
                      "select * from ArtistItem"));
         }
-        public async Task<MusicLibraryVM.ArtistItem> LoadViaArtistName(string artistName)
+        public async Task<ArtistItem> LoadViaArtistName(string artistName)
         {
             var connection = new SQLiteAsyncConnection(_dbPath);
-            var query = connection.Table<MusicLibraryVM.ArtistItem>().Where(x => x.Name.Equals(artistName));
+            var query = connection.Table<ArtistItem>().Where(x => x.Name.Equals(artistName));
             var result = await query.ToListAsync();
             return result.FirstOrDefault();
         }
 
-        public Task Update(MusicLibraryVM.ArtistItem artist)
+        public Task Update(ArtistItem artist)
         {
             var connection = new SQLiteAsyncConnection(_dbPath);
             return connection.UpdateAsync(artist);
         }
 
-        public Task Add(MusicLibraryVM.ArtistItem artist)
+        public Task Add(ArtistItem artist)
         {
             var connection = new SQLiteAsyncConnection(_dbPath);
             return connection.InsertAsync(artist);
         }
 
-        public async Task<MusicLibraryVM.ArtistItem> LoadArtist(int artistId)
+        public async Task<ArtistItem> LoadArtist(int artistId)
         {
             var connection = new SQLiteAsyncConnection(_dbPath);
-            var query = connection.Table<MusicLibraryVM.ArtistItem>().Where(x => x.Id.Equals(artistId));
+            var query = connection.Table<ArtistItem>().Where(x => x.Id.Equals(artistId));
             var result = await query.ToListAsync();
             return result.FirstOrDefault();
         }
 
-        public Task Remove(MusicLibraryVM.ArtistItem artist)
+        public Task Remove(ArtistItem artist)
         {
             var connection = new SQLiteAsyncConnection(_dbPath);
             return connection.DeleteAsync(artist);

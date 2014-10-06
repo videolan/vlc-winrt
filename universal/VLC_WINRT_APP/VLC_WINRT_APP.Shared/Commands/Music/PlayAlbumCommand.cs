@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls.Primitives;
 using VLC_WINRT.Common;
 using VLC_WINRT_APP.Helpers;
+using VLC_WINRT_APP.Model.Music;
 using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.ViewModels.MusicVM;
 using VLC_WINRT_APP.Views.MusicPages;
@@ -30,7 +31,7 @@ namespace VLC_WINRT_APP.Commands.Music
             Locator.MusicLibraryVM.IsAlbumPageShown = false;
             try
             {
-                MusicLibraryVM.AlbumItem album = parameter as MusicLibraryVM.AlbumItem;
+                AlbumItem album = parameter as AlbumItem;
                 Task.Run(() => album.Play());
             }
             catch (FileNotFoundException exception)

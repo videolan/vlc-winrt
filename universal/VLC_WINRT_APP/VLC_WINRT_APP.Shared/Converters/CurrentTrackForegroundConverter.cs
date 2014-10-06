@@ -13,6 +13,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media;
+using VLC_WINRT_APP.Model.Music;
 using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.ViewModels.MusicVM;
 
@@ -22,9 +23,9 @@ namespace VLC_WINRT_APP.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            if (value is MusicLibraryVM.TrackItem
+            if (value is TrackItem
                 && Locator.MusicPlayerVM.CurrentTrackItem != null
-                && ((MusicLibraryVM.TrackItem)value).Path == Locator.MusicPlayerVM.CurrentTrackItem.Path)
+                && ((TrackItem)value).Path == Locator.MusicPlayerVM.CurrentTrackItem.Path)
             {
                 return App.Current.Resources["MainColor"] as SolidColorBrush;
             }

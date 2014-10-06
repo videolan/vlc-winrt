@@ -20,6 +20,7 @@ using Windows.UI.Notifications;
 using VLC_WINRT.Common;
 using VLC_WINRT_APP.Commands.Music;
 using VLC_WINRT_APP.Helpers;
+using VLC_WINRT_APP.Model.Music;
 using VLC_WINRT_APP.Services.Interface;
 using VLC_WINRT_APP.Services.RunTime;
 using System.Collections.ObjectModel;
@@ -34,12 +35,12 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         private bool _canGoPrevious;
         private bool _canGoNext;
         private bool _isRunning;
-        private MusicLibraryVM.ArtistItem _currentPlayingArtist;
+        private ArtistItem _currentPlayingArtist;
         private GoToMusicPlayerPage _goToMusicPlayerPage;
         #endregion
 
         #region private fields
-        private ObservableCollection<MusicLibraryVM.TrackItem> _tracksCollection;
+        private ObservableCollection<TrackItem> _tracksCollection;
 
         #endregion
 
@@ -51,7 +52,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             set { _mediaService.SetVolume(value); }
         }
 
-        public MusicLibraryVM.ArtistItem CurrentPlayingArtist
+        public ArtistItem CurrentPlayingArtist
         {
             get { return _currentPlayingArtist; }
             set { SetProperty(ref _currentPlayingArtist, value); }
@@ -94,7 +95,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             }
         }
 
-        public MusicLibraryVM.TrackItem CurrentTrackItem
+        public TrackItem CurrentTrackItem
         {
             get
             {
@@ -121,7 +122,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         #endregion
 
         #region public fields
-        public ObservableCollection<MusicLibraryVM.TrackItem> TrackCollection
+        public ObservableCollection<TrackItem> TrackCollection
         {
             get { return _tracksCollection; }
             set { SetProperty(ref _tracksCollection, value); }
@@ -132,7 +133,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         public MusicPlayerVM(IMediaService mediaService, VlcService mediaPlayerService)
             : base(mediaService, mediaPlayerService)
         {
-            _tracksCollection = new ObservableCollection<MusicLibraryVM.TrackItem>();
+            _tracksCollection = new ObservableCollection<TrackItem>();
             _mediaService.MediaEnded += MediaService_MediaEnded;
             GoToMusicPlayerPage = new GoToMusicPlayerPage();
         }
@@ -173,22 +174,22 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             CurrentTrack = 0;
         }
 
-        public void AddTrack(MusicLibraryVM.TrackItem track)
+        public void AddTrack(TrackItem track)
         {
             TrackCollection.Add(track);
         }
 
-        public void AddTrack(List<MusicLibraryVM.TrackItem> tracks)
+        public void AddTrack(List<TrackItem> tracks)
         {
-            foreach (MusicLibraryVM.TrackItem track in tracks)
+            foreach (TrackItem track in tracks)
                 TrackCollection.Add(track);
         }
 
-        public void AddTrack(MusicLibraryVM.ArtistItem artist)
+        public void AddTrack(ArtistItem artist)
         {
-            foreach (MusicLibraryVM.AlbumItem albumItem in artist.Albums)
+            foreach (AlbumItem albumItem in artist.Albums)
             {
-                foreach (MusicLibraryVM.TrackItem trackItem in albumItem.Tracks)
+                foreach (TrackItem trackItem in albumItem.Tracks)
                 {
                     TrackCollection.Add(trackItem);
                 }
@@ -267,7 +268,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             }
         }
 
-        public async void SetActiveMusicInfo(string token, MusicLibraryVM.TrackItem track)
+        public async void SetActiveMusicInfo(string token, TrackItem track)
         {
             _fileToken = token;
             _mrl = "file://" + token;
