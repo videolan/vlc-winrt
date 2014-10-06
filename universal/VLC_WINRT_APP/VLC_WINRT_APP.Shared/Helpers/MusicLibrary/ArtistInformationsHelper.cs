@@ -59,7 +59,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                     }
                 }
                 StorageFolder appDataFolder = ApplicationData.Current.LocalFolder;
-                string supposedPictureUriLocal = appDataFolder.Path + "\\artistPic\\" + artist.Name + "_" + "dPi" + ".jpg";
+                string supposedPictureUriLocal = appDataFolder.Path + "\\artistPic\\" + artist.Id + "_" + "dPi" + ".jpg";
                 await DispatchHelper.InvokeAsync(() => artist.Picture = supposedPictureUriLocal);
                 return true;
             }
@@ -139,7 +139,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
 
                 StorageFolder artistPic = await ApplicationData.Current.LocalFolder.CreateFolderAsync("artistPic",
                     CreationCollisionOption.OpenIfExists);
-                string fileName = artist.Name + "_" + "dPi";
+                string fileName = artist.Id + "_" + "dPi";
 
                 var file = await artistPic.CreateFileAsync(fileName + ".jpg", CreationCollisionOption.OpenIfExists);
                 var raStream = await file.OpenAsync(FileAccessMode.ReadWrite);
@@ -152,7 +152,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                     }
                 }
                 StorageFolder appDataFolder = ApplicationData.Current.LocalFolder;
-                string supposedPictureUriLocal = appDataFolder.Path + "\\artistPic\\" + artist.Name + "_" + "dPi" + ".jpg";
+                string supposedPictureUriLocal = appDataFolder.Path + "\\artistPic\\" + artist.Id + "_" + "dPi" + ".jpg";
                 DispatchHelper.InvokeAsync(() => artist.Picture = supposedPictureUriLocal);
                 return true;
             }
@@ -166,7 +166,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
         public static async Task GetArtistPicture(ArtistItem artist)
         {
             StorageFolder appDataFolder = ApplicationData.Current.LocalFolder;
-            string supposedPictureUriLocal = appDataFolder.Path + "\\artistPic\\" + artist.Name + "_" + "dPi" + ".jpg";
+            string supposedPictureUriLocal = appDataFolder.Path + "\\artistPic\\" + artist.Id + "_" + "dPi" + ".jpg";
             if (await NativeOperationsHelper.FileExist(supposedPictureUriLocal))
             {
                 DispatchHelper.InvokeAsync(() =>
