@@ -25,7 +25,7 @@
         <Border Height="1"
                 Grid.Column="1"
                 Grid.ColumnSpan="2"
-                Margin="9,0,0,0"
+                Margin="6,0,0,0"
                 Background="{StaticResource MainColor}" />
         <Image Grid.Row="1"
                Margin="12,0,0,0"
@@ -34,7 +34,8 @@
                Stretch="UniformToFill" />
         <StackPanel Grid.Row="1"
                     Grid.Column="1"
-                    Margin="12,0,0,0">
+                    Margin="12,0,0,0"
+                    VerticalAlignment="Center">
             <TextBlock Text="{Binding CurrentPlayingArtist.Name}"
                        Style="{StaticResource SubheaderTextBlockStyle}" />
             <TextBlock Text="{Binding CurrentTrackItem.Name}"
@@ -88,8 +89,7 @@
             </Button>
             <Button Style="{StaticResource TextBlockButtonStyle}"
                     Grid.Column="4"
-                    HorizontalAlignment="Right"
-                    Visibility="Collapsed">
+                    HorizontalAlignment="Left">
                 <Button.Flyout>
                     <Flyout>
                         <Slider Orientation="Vertical"
@@ -103,7 +103,7 @@
                 </Button.Flyout>
                 <StackPanel Orientation="Horizontal">
                     <SymbolIcon Symbol="Volume" />
-                    <TextBlock Text="50"
+                    <TextBlock Text="{Binding Volume}"
                                Style="{StaticResource TitleTextBlockStyle}"
                                Margin="12,0,0,0"
                                Foreground="DimGray" />

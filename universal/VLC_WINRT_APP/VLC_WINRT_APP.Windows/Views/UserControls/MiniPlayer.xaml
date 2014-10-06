@@ -93,8 +93,7 @@
             </Button>
             <Button Style="{StaticResource TextBlockButtonStyle}"
                     Grid.Column="4"
-                    HorizontalAlignment="Right"
-                    Visibility="Collapsed">
+                    HorizontalAlignment="Right">
                 <Button.Flyout>
                     <Flyout>
                         <Slider Orientation="Vertical"
@@ -108,7 +107,7 @@
                 </Button.Flyout>
                 <StackPanel Orientation="Horizontal">
                     <SymbolIcon Symbol="Volume" />
-                    <TextBlock Text="50"
+                    <TextBlock Text="{Binding Volume}"
                                Style="{StaticResource TitleTextBlockStyle}"
                                Margin="12,0,0,0"
                                Foreground="DimGray" />
