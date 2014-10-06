@@ -38,8 +38,8 @@
                           IsCompact="True"
                           Command="{Binding GoBack}"
                           Margin="-10,0,0,0"
-                          Style="{StaticResource MiniAppBarButtonStyle}" 
-                          IsTabStop="False"/>
+                          Style="{StaticResource MiniAppBarButtonStyle}"
+                          IsTabStop="False" />
             <TextBlock Style="{StaticResource TitleTextBlockStyle}"
                        Typography.Capitals="SmallCaps"
                        FontSize="22">
@@ -73,90 +73,108 @@
                 <RowDefinition Height="50" />
             </Grid.RowDefinitions>
             <Grid>
-                <AppBarToggleButton Name="LockToggleButton"
-                                    Icon="Permissions"
-                                    IsCompact="True"
-                                    Margin="42,0,0,0"
-                                    VerticalAlignment="Center"
-                                    Click="EnableDoubleTapToShowCommands_Click" />
-                <AppBarButton Name="MenuButton"
-                              Icon="More"
-                              HorizontalAlignment="Right"
-                              IsCompact="True"
-                              Margin="0,0,42,0"
-                              VerticalAlignment="Center">
-                    <AppBarButton.Flyout>
-                        <Flyout Opening="Flyout_Opening">
-                            <Grid Width="300"
-                                  HorizontalAlignment="Right">
-                                <StackPanel>
-                                    <controls:VideoItemControl DataContext="{Binding CurrentVideo}" />
-                                    <TextBlock Text="Subtitles"
-                                               x:Uid="Subtitles"
-                                               Style="{StaticResource TitleTextBlockStyle}"
-                                               Margin="0,12,0,0"
-                                               Visibility="{Binding SubtitlesCount, Converter={StaticResource NegatedCountToVisibilityConverter}}" />
-                                    <ComboBox ItemsSource="{Binding Subtitles}"
-                                              SelectedItem="{Binding CurrentSubtitle, Mode=TwoWay}"
-                                              Margin="0,12,0,0"
-                                              Style="{StaticResource ComboBoxStyleDark}"
-                                              Visibility="{Binding SubtitlesCount, Converter={StaticResource NegatedCountToVisibilityConverter}}">
-                                        <ComboBox.ItemTemplate>
-                                            <DataTemplate>
-                                                <TextBlock Text="{Binding Name}"
-                                                           Foreground="White"/>
-                                            </DataTemplate>
-                                        </ComboBox.ItemTemplate>
-                                    </ComboBox>
-                                    <Button Content="Open a subtitle"
-                                            x:Uid="OpenSubtitle"
-                                            Margin="-3,6,0,0"
-                                            Command="{Binding OpenSubtitleCommand}"
-                                            Background="#404040"
-                                            BorderBrush="#404040" />
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Left"
+                            Name="LeftButtons">
+                    <AppBarToggleButton Name="LockToggleButton"
+                                        Icon="Permissions"
+                                        IsCompact="True"
+                                        Margin="42,0,0,0"
+                                        VerticalAlignment="Center"
+                                        Click="EnableDoubleTapToShowCommands_Click"
+                                        Loaded="LockToggleButton_OnLoaded" />
+                    <Slider Name="VolumeSlider"
+                            Orientation="Horizontal"
+                            Width="120"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Margin="12,12,0,0"
+                            Style="{StaticResource VLCSlider}"
+                            Value="{Binding Volume, Mode=TwoWay}"
+                            Maximum="100"
+                            Minimum="0" />
+                </StackPanel>
+                <StackPanel Name="RightButtons">
+                    <AppBarButton Name="MenuButton"
+                                  Icon="More"
+                                  HorizontalAlignment="Right"
+                                  IsCompact="True"
+                                  Margin="0,0,42,0"
+                                  VerticalAlignment="Center">
+                        <AppBarButton.Flyout>
+                            <Flyout Opening="Flyout_Opening">
+                                <Grid Width="300"
+                                      HorizontalAlignment="Right">
+                                    <StackPanel>
+                                        <controls:VideoItemControl DataContext="{Binding CurrentVideo}" />
+                                        <TextBlock Text="Subtitles"
+                                                   x:Uid="Subtitles"
+                                                   Style="{StaticResource TitleTextBlockStyle}"
+                                                   Margin="0,12,0,0"
+                                                   Visibility="{Binding SubtitlesCount, Converter={StaticResource NegatedCountToVisibilityConverter}}" />
+                                        <ComboBox ItemsSource="{Binding Subtitles}"
+                                                  SelectedItem="{Binding CurrentSubtitle, Mode=TwoWay}"
+                                                  Margin="0,12,0,0"
+                                                  Style="{StaticResource ComboBoxStyleDark}"
+                                                  Visibility="{Binding SubtitlesCount, Converter={StaticResource NegatedCountToVisibilityConverter}}">
+                                            <ComboBox.ItemTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding Name}"
+                                                               Foreground="White" />
+                                                </DataTemplate>
+                                            </ComboBox.ItemTemplate>
+                                        </ComboBox>
+                                        <Button Content="Open a subtitle"
+                                                x:Uid="OpenSubtitle"
+                                                Margin="-3,6,0,0"
+                                                Command="{Binding OpenSubtitleCommand}"
+                                                Background="#404040"
+                                                BorderBrush="#404040" />
 
-                                    <TextBlock Text="Audio tracks"
-                                               x:Uid="AudioTracks"
-                                               Style="{StaticResource TitleTextBlockStyle}"
-                                               Margin="0,24,0,0" />
-                                    <ComboBox ItemsSource="{Binding AudioTracks}"
-                                              SelectedItem="{Binding CurrentAudioTrack, Mode=TwoWay}"
-                                              Margin="0,12,0,0"
-                                              Style="{StaticResource ComboBoxStyleDark}">
-                                        <ComboBox.ItemTemplate>
-                                            <DataTemplate>
-                                                <TextBlock Text="{Binding Name}"
-                                                           Foreground="White" />
-                                            </DataTemplate>
-                                        </ComboBox.ItemTemplate>
-                                    </ComboBox>
-                                    <Slider Style="{StaticResource VLCSlider}"
-                                            Minimum="50"
-                                            Value="{Binding SpeedRate, Mode=TwoWay}"
-                                            Maximum="200"
-                                            IsThumbToolTipEnabled="True"
-                                            ThumbToolTipValueConverter="{StaticResource DoubleSpeedToUnderstandableSpeedConverter}">
-                                        <Slider.Header>
-                                            <TextBlock x:Uid="Speed" Text="Speed"
-                                                       Style="{StaticResource TitleTextBlockStyle}"
-                                                       Margin="-3,12,0,-10" />
-                                        </Slider.Header>
-                                    </Slider>
-                                    <Grid Margin="0,-32,0,0">
-                                        <TextBlock Text="0.5x"
-                                                   Style="{StaticResource TitleTextBlockStyle}" />
-                                        <TextBlock Text="1x"
-                                                   Margin="96,0,0,0"
-                                                   Style="{StaticResource TitleTextBlockStyle}" />
-                                        <TextBlock Text="2x"
-                                                   HorizontalAlignment="Right"
-                                                   Style="{StaticResource TitleTextBlockStyle}" />
-                                    </Grid>
-                                </StackPanel>
-                            </Grid>
-                        </Flyout>
-                    </AppBarButton.Flyout>
-                </AppBarButton>
+                                        <TextBlock Text="Audio tracks"
+                                                   x:Uid="AudioTracks"
+                                                   Style="{StaticResource TitleTextBlockStyle}"
+                                                   Margin="0,24,0,0" />
+                                        <ComboBox ItemsSource="{Binding AudioTracks}"
+                                                  SelectedItem="{Binding CurrentAudioTrack, Mode=TwoWay}"
+                                                  Margin="0,12,0,0"
+                                                  Style="{StaticResource ComboBoxStyleDark}">
+                                            <ComboBox.ItemTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding Name}"
+                                                               Foreground="White" />
+                                                </DataTemplate>
+                                            </ComboBox.ItemTemplate>
+                                        </ComboBox>
+                                        <Slider Style="{StaticResource VLCSlider}"
+                                                Minimum="50"
+                                                Value="{Binding SpeedRate, Mode=TwoWay}"
+                                                Maximum="200"
+                                                IsThumbToolTipEnabled="True"
+                                                ThumbToolTipValueConverter="{StaticResource DoubleSpeedToUnderstandableSpeedConverter}">
+                                            <Slider.Header>
+                                                <TextBlock x:Uid="Speed"
+                                                           Text="Speed"
+                                                           Style="{StaticResource TitleTextBlockStyle}"
+                                                           Margin="-3,12,0,-10" />
+                                            </Slider.Header>
+                                        </Slider>
+                                        <Grid Margin="0,-32,0,0">
+                                            <TextBlock Text="0.5x"
+                                                       Style="{StaticResource TitleTextBlockStyle}" />
+                                            <TextBlock Text="1x"
+                                                       Margin="96,0,0,0"
+                                                       Style="{StaticResource TitleTextBlockStyle}" />
+                                            <TextBlock Text="2x"
+                                                       HorizontalAlignment="Right"
+                                                       Style="{StaticResource TitleTextBlockStyle}" />
+                                        </Grid>
+                                    </StackPanel>
+                                </Grid>
+                            </Flyout>
+                        </AppBarButton.Flyout>
+                    </AppBarButton>
+                </StackPanel>
                 <Grid HorizontalAlignment="Center"
                       Width="260">
                     <Grid.ColumnDefinitions>

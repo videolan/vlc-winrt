@@ -46,11 +46,6 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 
         #region public props
 
-        public int Volume
-        {
-            get { return base._mediaService.GetVolume(); }
-            set { _mediaService.SetVolume(value); }
-        }
 
         public ArtistItem CurrentPlayingArtist
         {

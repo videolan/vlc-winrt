@@ -36,8 +36,6 @@ namespace VLC_WINRT_APP.Views.VideoPages
         {
             InitializeComponent();
             this.Loaded += OnLoaded;
-            this.SizeChanged += OnSizeChanged;
-
         }
 
         private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
@@ -60,6 +58,7 @@ namespace VLC_WINRT_APP.Views.VideoPages
             timer.Interval = TimeSpan.FromSeconds(6);
             timer.Tick += TimerOnTick;
             timer.Start();
+            this.SizeChanged += OnSizeChanged;
             this.Unloaded += OnUnloaded;
             Window.Current.Content.AddHandler(KeyDownEvent, new KeyEventHandler(KeyPressedDown), true);
         }
@@ -75,6 +74,7 @@ namespace VLC_WINRT_APP.Views.VideoPages
         private void OnUnloaded(object sender, RoutedEventArgs routedEventArgs)
         {
             Window.Current.Content.RemoveHandler(KeyDownEvent, new KeyEventHandler(KeyPressedDown));
+            this.SizeChanged -= OnSizeChanged;
         }
 
 
@@ -162,6 +162,14 @@ namespace VLC_WINRT_APP.Views.VideoPages
         private void ControlsGrid_ManipulationStarted(object sender, ManipulationStartedRoutedEventArgs e)
         {
 
+        }
+
+        private void LockToggleButton_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            if (!CapabilitiesHelper.IsTouchCapable)
+            {
+                LockToggleButton.Visibility = Visibility.Collapsed;
+            }
         }
     }
 }

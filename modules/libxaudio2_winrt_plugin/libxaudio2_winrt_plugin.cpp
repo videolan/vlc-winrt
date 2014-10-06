@@ -81,6 +81,7 @@ static int  MuteSet(audio_output_t *, bool);
 static void Flush(audio_output_t *, bool);
 static void Pause(audio_output_t *, bool, mtime_t);
 static int  VolumeSet(audio_output_t *p_aout, float volume);
+static float  VolumeGet(audio_output_t *p_aout);
 static int  TimeGet(audio_output_t *, mtime_t *);
 
 class VoiceCallback : public IXAudio2VoiceCallback
@@ -189,13 +190,12 @@ static int Open(vlc_object_t *object)
     /* Setup Callbacks */
     aout->start = Start;
     aout->stop = Stop;
-    aout->volume_set = NULL;
     aout->mute_set = MuteSet;
     aout->pause = NULL;
     aout->play = Play;
     aout->flush = Flush;
+	aout->volume_set = VolumeSet;
     //aout->time_get = TimeGet;
-
     return VLC_SUCCESS;
 }
 
@@ -305,7 +305,6 @@ static void Play(audio_output_t * p_aout, block_t * block){
 
     asys->isPlaying = true;
     asys->bufferSampleSize = block->i_nb_samples;
-
     return;
 }
 
@@ -355,4 +354,18 @@ static int TimeGet(audio_output_t * p_aout, mtime_t * drift)
     *drift = (CLOCK_FREQ * 10 * state.BuffersQueued / 1000) + state.SamplesPlayed * CLOCK_FREQ / asys->sampleRate;
 
     return 0;
+}
+
+static int VolumeSet(audio_output_t *p_aout, float volume)
+{
+	aout_sys_t *asys = p_aout->sys;
+
+	if (!asys->isPlaying)
+		return -1;
+	asys->volume.volume = volume;
+	if (asys->sourceVoice->SetVolume(volume, XAUDIO2_COMMIT_NOW) == S_OK)
+	{
+		aout_VolumeReport(p_aout, volume);
+	}
+	return 0;
 }

@@ -48,6 +48,23 @@ namespace VLC_WINRT_APP.ViewModels
         #endregion
 
         #region public props
+
+        public int Volume
+        {
+            get
+            {
+                int vol = _mediaService.GetVolume();
+                if (vol == 0)
+                    return 100;
+                return vol;
+            }
+            set
+            {
+                if (value > 0)
+                    _mediaService.SetVolume(value);
+            }
+        }
+
         public bool IsPlaying
         {
             get
@@ -128,9 +145,9 @@ namespace VLC_WINRT_APP.ViewModels
         {
             get
             {
-//#if WINDOWS_APP
+                //#if WINDOWS_APP
                 if (_vlcPlayerService != null && _vlcPlayerService.CurrentState == VlcService.MediaPlayerState.Playing)
-//#endif
+                //#endif
                 {
                     return _mediaService.GetPosition() * TimeTotal.TotalSeconds;
                 }
@@ -146,9 +163,9 @@ namespace VLC_WINRT_APP.ViewModels
         {
             get
             {
-//#if WINDOWS_APP
+                //#if WINDOWS_APP
                 if (_vlcPlayerService != null && _vlcPlayerService.CurrentState == VlcService.MediaPlayerState.Playing)
-//#endif
+                //#endif
                 {
                     return _mediaService.GetPosition() * 1000;
                 }
@@ -266,7 +283,7 @@ namespace VLC_WINRT_APP.ViewModels
 
         private void FirePositionUpdate(object sender, object e)
         {
-            if(!_mediaService.IsBackground)
+            if (!_mediaService.IsBackground)
                 UpdatePosition();
         }
 
