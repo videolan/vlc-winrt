@@ -8,10 +8,12 @@ using Windows.Storage;
 using Windows.Storage.Streams;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Imaging;
+using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.Model.Music;
 using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.ViewModels.MusicVM;
 using VLC_WINRT_APP.ViewModels.VideoVM;
+using XboxMusicLibrary.Models;
 #if WINDOWS_APP
 using Windows.ApplicationModel.Search;
 #endif
@@ -24,12 +26,15 @@ namespace VLC_WINRT_APP.Helpers
         {
             if (string.IsNullOrEmpty(tag))
                 return;
+            // If the MusicLibrary is not initialized (for example user never navigated to MusicMainPage, we need to initialize it
+            if(Locator.MusicLibraryVM.LoadingState == LoadingState.NotLoaded)
+                Locator.MusicLibraryVM.Initialize(true);
+
             tag = tag.ToLower();
             SearchSuggestionsRequestDeferral deferral = args.Request.GetDeferral();
             
             // We don't need null checks here, because even if nothing was found, the Enumerable items will be loaded with zero items in them.
             // So the foreach loops will skip past them.
-
             IEnumerable<TrackItem> trackItems = Locator.MusicLibraryVM.Tracks.Where(x => x.Name.ToLower().Contains(tag));
             foreach (TrackItem item in trackItems)
             {
