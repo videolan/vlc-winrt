@@ -71,20 +71,20 @@
                 Background="WhiteSmoke">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="200" />
+                    <RowDefinition Height="170" />
                     <RowDefinition Height="6" />
                     <RowDefinition />
                 </Grid.RowDefinitions>
                 <Image Grid.Row="0"
                        Source="/Assets/NoCover.jpg"
                        Stretch="UniformToFill"
-                       Width="200"
-                       Height="200" />
+                       Width="170"
+                       Height="170" />
                 <Image Grid.Row="0"
                        Source="{Binding Picture}"
                        Stretch="UniformToFill"
-                       Width="200"
-                       Height="200" />
+                       Width="170"
+                       Height="170" />
                 <StackPanel Grid.Row="2">
                     <TextBlock Text="{Binding Artist}"
                                TextWrapping="NoWrap"
@@ -188,20 +188,20 @@
                 Background="WhiteSmoke">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="200" />
+                    <RowDefinition Height="170" />
                     <RowDefinition Height="6" />
                     <RowDefinition />
                 </Grid.RowDefinitions>
                 <Image Grid.Row="0"
                        Source="/Assets/NoCover.jpg"
                        Stretch="UniformToFill"
-                       Width="200"
-                       Height="200" />
+                       Width="170"
+                       Height="170" />
                 <Image Grid.Row="0"
                        Source="{Binding Picture}"
                        Stretch="UniformToFill"
-                       Width="200"
-                       Height="200" />
+                       Width="170"
+                       Height="170" />
                 <StackPanel Grid.Row="2">
                     <TextBlock Text="{Binding Artist}"
                                TextWrapping="NoWrap"

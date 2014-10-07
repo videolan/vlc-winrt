@@ -63,8 +63,8 @@
                                 <GridView.ItemsPanel>
                                     <ItemsPanelTemplate>
                                         <ItemsWrapGrid Orientation="Vertical"
-                                                       ItemHeight="300"
-                                                       ItemWidth="250"
+                                                       ItemHeight="270"
+                                                       ItemWidth="220"
                                                        Margin="-14,0,0,0" />
                                     </ItemsPanelTemplate>
                                 </GridView.ItemsPanel>
