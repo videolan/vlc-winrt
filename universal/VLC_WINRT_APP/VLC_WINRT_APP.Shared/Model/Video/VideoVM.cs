@@ -9,7 +9,6 @@
 
 using System;
 using System.Diagnostics;
-using System.IO;
 using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.AccessCache;
@@ -20,16 +19,14 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Autofac;
 using SQLite;
-using VLC_WINRT.Common;
 using VLC_WINRT_APP.Commands.Video;
 using VLC_WINRT_APP.Common;
-using VLC_WINRT_APP.Helpers.MusicLibrary.EchoNest;
 using VLC_WINRT_APP.Services.Interface;
 using WinRTXamlToolkit.Imaging;
 
-namespace VLC_WINRT_APP.ViewModels.VideoVM
+namespace VLC_WINRT_APP.Model.Video
 {
-    public class VideoVM : BindableBase
+    public class VideoVM : BindableBase, IVideo
     {
         #region private props
         private char _alphaKey;

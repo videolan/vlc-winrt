@@ -150,6 +150,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Model\Panel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\PlayingType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Subtitle.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Video\IVideo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Video\TVShow.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Video\VideoVM.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\VLCFileExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\VLCFolder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\DesignTime\ThumbnailService.cs" />
@@ -173,7 +176,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MusicVM\MusicLibraryVM.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MusicVM\MusicPlayerVM.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RemovableDevicesVM\ExternalStorageViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\VideoVM\VideoVM.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\VideoVM\VideoPlayerVM.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Settings\SettingsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\VideoVM\VideoLibraryVM.cs" />
@@ -275,7 +277,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Commands\VLCFileExplorer\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Model\Video\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)Assets\flatbackground1.psd" />

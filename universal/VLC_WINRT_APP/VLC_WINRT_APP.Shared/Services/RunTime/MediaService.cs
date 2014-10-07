@@ -21,6 +21,7 @@ using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.Helpers.MusicLibrary.Deezer;
 using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.Model.Music;
+using VLC_WINRT_APP.Model.Video;
 using VLC_WINRT_APP.Services.Interface;
 using Windows.Storage;
 using Windows.UI.Core;
@@ -173,7 +174,7 @@ namespace VLC_WINRT_APP.Services.RunTime
         public static async Task PlayVideoFile(StorageFile file)
         {
             App.ApplicationFrame.Navigate(typeof(VideoPlayerPage));
-            ViewModels.VideoVM.VideoVM videoVm = new ViewModels.VideoVM.VideoVM();
+            VideoVM videoVm = new VideoVM();
             videoVm.Initialize(file);
             if (string.IsNullOrEmpty(videoVm.Token))
             {

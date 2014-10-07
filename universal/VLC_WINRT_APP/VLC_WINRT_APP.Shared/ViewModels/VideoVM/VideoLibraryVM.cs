@@ -41,8 +41,8 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
 #if WINDOWS_APP
         private ObservableCollection<Panel> _panels = new ObservableCollection<Panel>();
 #endif
-        private ObservableCollection<VideoVM> _videos;
-        private ObservableCollection<VideoVM> _viewedVideos;
+        private ObservableCollection<Model.Video.VideoVM> _videos;
+        private ObservableCollection<Model.Video.VideoVM> _viewedVideos;
         #endregion
 
         #region private props
@@ -66,13 +66,13 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
         }
 #endif
 
-        public ObservableCollection<VideoVM> Videos
+        public ObservableCollection<Model.Video.VideoVM> Videos
         {
             get { return _videos; }
             set { SetProperty(ref _videos, value); }
         }
 
-        public ObservableCollection<VideoVM> ViewedVideos
+        public ObservableCollection<Model.Video.VideoVM> ViewedVideos
         {
             get { return _viewedVideos; }
             set
@@ -110,14 +110,12 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
         }
         #endregion
         #region contructors
-
-
         public VideoLibraryVM()
         {
             LoadingState = LoadingState.NotLoaded;
             OpenVideo = new PlayVideoCommand();
-            Videos = new ObservableCollection<VideoVM>();
-            ViewedVideos = new ObservableCollection<VideoVM>();
+            Videos = new ObservableCollection<Model.Video.VideoVM>();
+            ViewedVideos = new ObservableCollection<Model.Video.VideoVM>();
 #if WINDOWS_APP
             var resourceLoader = new ResourceLoader();
             Panels.Add(new Panel(resourceLoader.GetString("Videos"), 1, 0.4, App.Current.Resources["VideoPath"].ToString()));
@@ -137,7 +135,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             var result = await _lastVideosRepository.Load();
 
             var testCollection = result;
-            foreach (VideoVM videoVm in testCollection)
+            foreach (Model.Video.VideoVM videoVm in testCollection)
             {
                 try
                 {
@@ -176,7 +174,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
 
                     foreach (StorageFile storageFile in files)
                     {
-                        var mediaVM = new VideoVM();
+                        var mediaVM = new Model.Video.VideoVM();
                         mediaVM.Initialize(storageFile);
                         if (string.IsNullOrEmpty(mediaVM.Title))
                             continue;
@@ -184,7 +182,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
                         Dictionary<string, string> serie = TitleDecrapifier.tvShowEpisodeInfoFromString(mediaVM.Title);
                         if(serie.Count > 0)
                             Debug.WriteLine(serie.First());
-                        VideoVM searchVideo = ViewedVideos.FirstOrDefault(x => x.Title == mediaVM.Title);
+                        Model.Video.VideoVM searchVideo = ViewedVideos.FirstOrDefault(x => x.Title == mediaVM.Title);
                         if (searchVideo != null)
                         {
                             mediaVM.TimeWatched = searchVideo.TimeWatched;

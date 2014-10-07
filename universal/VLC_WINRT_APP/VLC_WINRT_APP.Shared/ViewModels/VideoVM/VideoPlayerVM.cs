@@ -30,7 +30,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
 #if WINDOWS_APP
         private MouseService _mouseService;
 #endif
-        private VideoVM _currentVideo;
+        private Model.Video.VideoVM _currentVideo;
         private DictionaryKeyValue _currentSubtitle;
         private DictionaryKeyValue _currentAudioTrack;
 
@@ -63,7 +63,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             }
         }
 
-        public VideoVM CurrentVideo
+        public Model.Video.VideoVM CurrentVideo
         {
             get { return _currentVideo; }
             set { SetProperty(ref _currentVideo, value); }
@@ -214,7 +214,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             }
             OnPropertyChanged("TimeTotal");
 
-            VideoVM media = await _lastVideosRepository.LoadViaToken(_fileToken);
+            Model.Video.VideoVM media = await _lastVideosRepository.LoadViaToken(_fileToken);
             if (media == null)
             {
                 PositionInSeconds = 0;

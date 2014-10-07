@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Windows.Storage.AccessCache;
+using VLC_WINRT_APP.Model.Video;
 using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.ViewModels.VideoVM;
 using VLC_WINRT_APP.Views.VideoPages;
