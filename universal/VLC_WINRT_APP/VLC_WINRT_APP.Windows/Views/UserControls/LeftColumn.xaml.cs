@@ -81,6 +81,7 @@ namespace VLC_WINRT_APP.Views.UserControls
 
             PanelsListView.ItemTemplate = App.Current.Resources["SidebarIconItemTemplate"] as DataTemplate;
             MiniPlayer.Visibility = Visibility.Collapsed;
+            Separator.Visibility = Visibility.Collapsed;
         }
 
         void ToNormalVisualState()
@@ -97,7 +98,7 @@ namespace VLC_WINRT_APP.Views.UserControls
             HeaderGrid.HorizontalAlignment = HorizontalAlignment.Left;
             PanelsListView.ItemTemplate = App.Current.Resources["SidebarItemTemplate"] as DataTemplate;
             MiniPlayer.Visibility = Visibility.Visible;
-            SeparatorRowDefinition.Height = new GridLength(24);
+            Separator.Visibility = Visibility.Visible;
         }
     }
 }

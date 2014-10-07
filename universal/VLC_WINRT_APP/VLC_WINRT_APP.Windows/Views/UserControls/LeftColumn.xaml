@@ -22,7 +22,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="24" />
             <RowDefinition Height="*"/>
-            <RowDefinition Height="24"
+            <RowDefinition Height="12"
                            x:Name="SeparatorRowDefinition" />
             <RowDefinition Height="Auto"
                            x:Name="MiniPlayersRowDefinition" />
@@ -102,10 +102,11 @@
               Grid.ColumnSpan="2"
               Grid.Row="6"
               Height="1"
-              VerticalAlignment="Center"
+              VerticalAlignment="Top"
               Margin="42,0"
               DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}"
-              Visibility="{Binding IsRunning, Converter={StaticResource BooleanToVisibilityConverter}}" />
+              Visibility="{Binding IsRunning, Converter={StaticResource BooleanToVisibilityConverter}}" 
+              x:Name="Separator"/>
         <Grid Grid.Row="7"
               DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}"
               Visibility="{Binding IsRunning, Converter={StaticResource BooleanToVisibilityConverter}}">
