@@ -12,7 +12,6 @@
       x:Name="MusicLibrary"
       DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
 
-
     <Grid Margin="24,0,0,0"
           x:Name="RootGrid">
         <Grid.RowDefinitions>

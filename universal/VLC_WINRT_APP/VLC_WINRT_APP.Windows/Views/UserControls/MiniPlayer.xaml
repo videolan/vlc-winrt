@@ -57,6 +57,7 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Button Style="{StaticResource TextBlockButtonStyle}"
                     Grid.Column="0"
@@ -105,14 +106,14 @@
                                 Minimum="0" />
                     </Flyout>
                 </Button.Flyout>
-                <StackPanel Orientation="Horizontal">
-                    <SymbolIcon Symbol="Volume" />
-                    <TextBlock Text="{Binding Volume}"
-                               Style="{StaticResource TitleTextBlockStyle}"
-                               Margin="6,-2,0,0"
-                               Foreground="DimGray" />
-                </StackPanel>
+                <SymbolIcon Symbol="Volume" />
             </Button>
+            <ToggleButton Style="{StaticResource TextBlockButtonStyle}"
+                          Grid.Column="5"
+                          HorizontalAlignment="Right"
+                          Command="{Binding Shuffle}">
+                <SymbolIcon Symbol="Shuffle" />
+            </ToggleButton>
         </Grid>
     </StackPanel>
 </UserControl>

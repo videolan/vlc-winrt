@@ -52,6 +52,11 @@
                                                            Orientation="Vertical" />
                                         </ItemsPanelTemplate>
                                     </ListView.ItemsPanel>
+                                    <ListView.ItemContainerTransitions>
+                                        <TransitionCollection>
+                                            <EntranceThemeTransition FromHorizontalOffset="150"/>
+                                        </TransitionCollection>
+                                    </ListView.ItemContainerTransitions>
                                 </ListView>
                             </Grid>
                         </DataTemplate>

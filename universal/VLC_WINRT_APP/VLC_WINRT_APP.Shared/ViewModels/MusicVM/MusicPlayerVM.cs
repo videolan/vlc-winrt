@@ -18,6 +18,7 @@ using Windows.Storage.AccessCache;
 using Windows.UI.Core;
 using Windows.UI.Notifications;
 using VLC_WINRT.Common;
+using VLC_WINRT_APP.Commands.MediaPlayback;
 using VLC_WINRT_APP.Commands.Music;
 using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.Model.Music;
@@ -41,6 +42,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 
         #region private fields
         private ObservableCollection<TrackItem> _tracksCollection;
+        private ShuffleCommand _shuffle;
 
         #endregion
 
@@ -100,7 +102,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                         return TrackCollection[CurrentTrack];
                     else return null;
                 }
-                catch(ArgumentOutOfRangeException exception)
+                catch (ArgumentOutOfRangeException exception)
                 {
                     CurrentTrack = 0;
                     return TrackCollection[CurrentTrack];
@@ -112,6 +114,16 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         {
             get { return _goToMusicPlayerPage; }
             set { SetProperty(ref _goToMusicPlayerPage, value); }
+        }
+
+        public ShuffleCommand Shuffle
+        {
+            get
+            {
+                _shuffle = _shuffle ?? new ShuffleCommand();
+                return _shuffle;
+            }
+            set { SetProperty(ref _shuffle, value); }
         }
 
         #endregion
@@ -133,7 +145,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             GoToMusicPlayerPage = new GoToMusicPlayerPage();
         }
 
-        
+
         protected async void MediaService_MediaEnded(object sender, EventArgs e)
         {
             if (TrackCollection.Count == 0 ||
@@ -251,7 +263,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             string albumName = trackItem.AlbumName;
             string trackName = trackItem.Name ?? resourceLoader.GetString("UnknownTrack");
             base._mediaService.SetMediaTransportControlsInfo(artistName, albumName, trackName, Locator.MusicPlayerVM.CurrentPlayingArtist.CurrentAlbumItem.Picture);
-            
+
             var notificationOnNewSong = ApplicationSettingsHelper.ReadSettingsValue("NotificationOnNewSong");
             if (notificationOnNewSong != null && (bool)notificationOnNewSong)
             {
