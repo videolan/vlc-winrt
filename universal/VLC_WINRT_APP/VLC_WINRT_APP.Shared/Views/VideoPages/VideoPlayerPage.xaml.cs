@@ -42,13 +42,13 @@ namespace VLC_WINRT_APP.Views.VideoPages
         {
             if (sizeChangedEventArgs.NewSize.Width < 550)
             {
-                LockToggleButton.Visibility = Visibility.Collapsed;
-                MenuButton.Visibility = Visibility.Collapsed;
+                LeftButtons.Visibility = Visibility.Collapsed;
+                RightButtons.Visibility = Visibility.Collapsed;
             }
             else
             {
-                LockToggleButton.Visibility = Visibility.Visible;
-                MenuButton.Visibility = Visibility.Visible;
+                LeftButtons.Visibility = Visibility.Visible;
+                RightButtons.Visibility = Visibility.Visible;
             }
         }
 
