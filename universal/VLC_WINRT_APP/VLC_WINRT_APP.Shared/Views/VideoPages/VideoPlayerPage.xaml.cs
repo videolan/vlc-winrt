@@ -119,7 +119,6 @@ namespace VLC_WINRT_APP.Views.VideoPages
             isVisible = !isVisible;
         }
 
-
         private void ControlsGrid_PointerMoved(object sender, PointerRoutedEventArgs e)
         {
             if (timer == null)

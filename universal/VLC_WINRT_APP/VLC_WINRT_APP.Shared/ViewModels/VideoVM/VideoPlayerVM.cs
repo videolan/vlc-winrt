@@ -54,9 +54,14 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
 
         public int SpeedRate
         {
-            get { return _speedRate; }
+            get
+            {
+                return _speedRate;
+            }
             set
             {
+                if (value > 95 && value < 105)
+                    value = 100;
                 _speedRate = value;
                 float r = (float)value / 100;
                 SetRate(r);
