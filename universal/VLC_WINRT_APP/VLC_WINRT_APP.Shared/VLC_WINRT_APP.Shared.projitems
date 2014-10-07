@@ -143,6 +143,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\ToastHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\UpdateTileHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\VideoHUDHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\VideoLibrary\VideoLibraryManagement.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\LoadingState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Music\AlbumItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Music\ArtistItem.cs" />
@@ -150,7 +151,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Model\Panel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\PlayingType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Subtitle.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Model\Video\IVideo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Video\TVEpisodeItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Video\TVShow.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Video\VideoVM.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\VLCFileExtensions.cs" />

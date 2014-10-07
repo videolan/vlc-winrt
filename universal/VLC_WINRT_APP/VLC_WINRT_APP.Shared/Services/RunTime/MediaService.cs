@@ -174,7 +174,7 @@ namespace VLC_WINRT_APP.Services.RunTime
         public static async Task PlayVideoFile(StorageFile file)
         {
             App.ApplicationFrame.Navigate(typeof(VideoPlayerPage));
-            VideoVM videoVm = new VideoVM();
+            VideoItem videoVm = new VideoItem();
             videoVm.Initialize(file);
             if (string.IsNullOrEmpty(videoVm.Token))
             {

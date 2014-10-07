@@ -127,6 +127,12 @@
     <Compile Include="Views\MainPages\MusicPanes\SongsListView.xaml.cs">
       <DependentUpon>SongsListView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\MainPages\VideoPanes\TVShowTwoPanes.xaml.cs">
+      <DependentUpon>TVShowTwoPanes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainPages\VideoPanes\VideosPage.xaml.cs">
+      <DependentUpon>VideosPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserControls\HorizontalMiniPlayer.xaml.cs">
       <DependentUpon>HorizontalMiniPlayer.xaml</DependentUpon>
     </Compile>
@@ -768,6 +774,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainPages\MusicPanes\SongsListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainPages\VideoPanes\TVShowTwoPanes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainPages\VideoPanes\VideosPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

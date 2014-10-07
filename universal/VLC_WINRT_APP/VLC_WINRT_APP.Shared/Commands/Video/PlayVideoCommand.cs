@@ -24,7 +24,7 @@ namespace VLC_WINRT_APP.Commands.Video
                 App.ApplicationFrame.Navigate(typeof(VideoPlayerPage));
 
             ItemClickEventArgs args = parameter as ItemClickEventArgs;
-            VideoVM videoVm = args.ClickedItem as VideoVM;
+            VideoItem videoVm = args.ClickedItem as VideoItem;
             videoVm.Play();
         }
     }

@@ -31,6 +31,7 @@ using VLC_WINRT_APP.Common;
 using VLC_WINRT_APP.DataRepository;
 using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.Model;
+using VLC_WINRT_APP.Model.Video;
 using Panel = VLC_WINRT_APP.Model.Panel;
 
 namespace VLC_WINRT_APP.ViewModels.VideoVM
@@ -41,8 +42,8 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
 #if WINDOWS_APP
         private ObservableCollection<Panel> _panels = new ObservableCollection<Panel>();
 #endif
-        private ObservableCollection<Model.Video.VideoVM> _videos;
-        private ObservableCollection<Model.Video.VideoVM> _viewedVideos;
+        private ObservableCollection<VideoItem> _videos;
+        private ObservableCollection<VideoItem> _viewedVideos;
         #endregion
 
         #region private props
@@ -52,6 +53,8 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
         private PlayNetworkMRLCommand _playNetworkMRL = new PlayNetworkMRLCommand();
         private bool _hasNoMedia = true;
         public LastVideosRepository _lastVideosRepository = new LastVideosRepository();
+        private ObservableCollection<TvShow> _shows = new ObservableCollection<TvShow>();
+
         #endregion
 
         #region public fields
@@ -66,19 +69,25 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
         }
 #endif
 
-        public ObservableCollection<Model.Video.VideoVM> Videos
+        public ObservableCollection<VideoItem> Videos
         {
             get { return _videos; }
             set { SetProperty(ref _videos, value); }
         }
 
-        public ObservableCollection<Model.Video.VideoVM> ViewedVideos
+        public ObservableCollection<VideoItem> ViewedVideos
         {
             get { return _viewedVideos; }
             set
             {
                 SetProperty(ref _viewedVideos, value);
             }
+        }
+
+        public ObservableCollection<TvShow> Shows
+        {
+            get { return _shows; }
+            set { SetProperty(ref _shows, value); }
         }
 
         #endregion
@@ -114,11 +123,11 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
         {
             LoadingState = LoadingState.NotLoaded;
             OpenVideo = new PlayVideoCommand();
-            Videos = new ObservableCollection<Model.Video.VideoVM>();
-            ViewedVideos = new ObservableCollection<Model.Video.VideoVM>();
+            Videos = new ObservableCollection<VideoItem>();
+            ViewedVideos = new ObservableCollection<VideoItem>();
 #if WINDOWS_APP
             var resourceLoader = new ResourceLoader();
-            Panels.Add(new Panel(resourceLoader.GetString("Videos"), 1, 0.4, App.Current.Resources["VideoPath"].ToString()));
+            Panels.Add(new Panel(resourceLoader.GetString("Videos"), 0, 1, App.Current.Resources["VideoPath"].ToString(), true));
             //Panels.Add(new Panel("favorite", 2, 0.4));
 #endif
         }
@@ -135,7 +144,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             var result = await _lastVideosRepository.Load();
 
             var testCollection = result;
-            foreach (Model.Video.VideoVM videoVm in testCollection)
+            foreach (VideoItem videoVm in testCollection)
             {
                 try
                 {
@@ -174,24 +183,45 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
 
                     foreach (StorageFile storageFile in files)
                     {
-                        var mediaVM = new Model.Video.VideoVM();
+                        // Analyse to see if it's a tv show
+                        // if the file is from a tv show, we push it to this tvshow item
+                        Dictionary<string, string> showInfoDictionary = TitleDecrapifier.tvShowEpisodeInfoFromString(storageFile.DisplayName);
+                        bool isTvShow = showInfoDictionary != null && showInfoDictionary.Count > 0;
+
+                        VideoItem mediaVM = !isTvShow ? new VideoItem() : new TVEpisodeItem(showInfoDictionary["season"], showInfoDictionary["episode"]);
                         mediaVM.Initialize(storageFile);
                         if (string.IsNullOrEmpty(mediaVM.Title))
                             continue;
-
-                        Dictionary<string, string> serie = TitleDecrapifier.tvShowEpisodeInfoFromString(mediaVM.Title);
-                        if(serie.Count > 0)
-                            Debug.WriteLine(serie.First());
-                        Model.Video.VideoVM searchVideo = ViewedVideos.FirstOrDefault(x => x.Title == mediaVM.Title);
+                        VideoItem searchVideo = ViewedVideos.FirstOrDefault(x => x.Title == mediaVM.Title);
                         if (searchVideo != null)
                         {
                             mediaVM.TimeWatched = searchVideo.TimeWatched;
                         }
 
+                        if (isTvShow)
+                        {
+                            if (Panels.Count == 1)
+                            {
+                                App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                                    Panels.Add(new Panel("shows", 1, 0.4, null)));
+                            }
+                            TvShow show = Shows.FirstOrDefault(x => x.ShowTitle == showInfoDictionary["tvShowName"]);
+                            if (show == null)
+                            {
+                                show = new TvShow(showInfoDictionary["tvShowName"]);
+                                show.Episodes.Add(mediaVM as TVEpisodeItem);
+                                Shows.Add(show);
+                            }
+                            else
+                            {
+                                show.Episodes.Add(mediaVM as TVEpisodeItem);
+                            }
+                        }
                         // Get back to UI thread
                         await DispatchHelper.InvokeAsync(() =>
                         {
-                            Videos.Add(mediaVM);
+                            if (!isTvShow)
+                                Videos.Add(mediaVM);
                             if (ViewedVideos.Count < 6 && !ViewedVideos.Contains(mediaVM))
                                 ViewedVideos.Add(mediaVM);
                         });

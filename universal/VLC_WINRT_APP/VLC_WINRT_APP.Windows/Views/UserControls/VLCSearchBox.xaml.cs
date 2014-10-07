@@ -63,7 +63,7 @@ namespace VLC_WINRT_APP.Views.UserControls
 #endif
                     break;
                 case "video":
-                    VideoVM vm = Locator.VideoLibraryVM.Videos.FirstOrDefault(x => x.Title == query);
+                    VideoItem vm = Locator.VideoLibraryVM.Videos.FirstOrDefault(x => x.Title == query);
                     await vm.Play();
                     break;
             }

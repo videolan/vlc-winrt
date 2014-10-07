@@ -9,7 +9,7 @@ namespace VLC_WINRT_APP.Helpers
 {
     public static class PlayVideoHelper
     {
-        public static async Task Play(this VideoVM videoVm)
+        public static async Task Play(this VideoItem videoVm)
         {
             if (string.IsNullOrEmpty(videoVm.Token))
             {

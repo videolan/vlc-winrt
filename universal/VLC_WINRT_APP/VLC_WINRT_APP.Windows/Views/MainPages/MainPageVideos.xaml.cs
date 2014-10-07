@@ -7,12 +7,14 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
-using System.Diagnostics;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.ViewModels;
+using VLC_WINRT_APP.Views.MainPages.VideoPanes;
 
 namespace VLC_WINRT_APP.Views.MainPages
 {
@@ -22,6 +24,7 @@ namespace VLC_WINRT_APP.Views.MainPages
         {
             InitializeComponent();
             this.SizeChanged += OnSizeChanged;
+            this.NavigationCacheMode = NavigationCacheMode.Enabled;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -47,54 +50,31 @@ namespace VLC_WINRT_APP.Views.MainPages
             }
         }
 
-        private void ItemsWrapGrid_Loaded(object sender, RoutedEventArgs e)
+        private void VideoPanesFrame_OnLoadedcPanesFrame_OnLoaded(object sender, RoutedEventArgs e)
         {
-            Responsive(sender as ItemsWrapGrid);
+            if (VideoPanesFrame.CurrentSourcePageType == null)
+                VideoPanesFrame.Navigate(typeof(VideosPage));
         }
 
-        private void ItemsWrapGrid_Loaded(object sender, SizeChangedEventArgs e)
+        private void Panels_OnItemClick(object sender, ItemClickEventArgs e)
         {
-            Responsive(sender as ItemsWrapGrid);
-        }
+            var panel = e.ClickedItem as Model.Panel;
+            foreach (var panel1 in Locator.VideoLibraryVM.Panels)
+            {
+                panel1.Color = new SolidColorBrush(Colors.DimGray);
+            }
+            panel.Color = App.Current.Resources["MainColor"] as SolidColorBrush;
 
-        void Responsive(ItemsWrapGrid itemsWrap)
-        {
-            int usefulWidth = (int)Window.Current.Bounds.Width;
-            Debug.WriteLine(usefulWidth);
-            int sidebar;
-            if (Window.Current.Bounds.Width < 400)
+            switch (panel.Index)
             {
-                sidebar = 30;
-            }
-            else if (Window.Current.Bounds.Width < 1080)
-            {
-                sidebar = 140;
-            }
-            else
-            {
-                sidebar = 400;
-            }
-            usefulWidth -= sidebar;
-
-            if (usefulWidth < 400)
-            {
-                itemsWrap.ItemWidth = usefulWidth;
-                itemsWrap.ItemHeight = usefulWidth * 0.561;
-            }
-            else if (usefulWidth < 890)
-            {
-                itemsWrap.ItemWidth = usefulWidth / 2;
-                itemsWrap.ItemHeight = (usefulWidth / 2) * 0.561;
-            }
-            else if (usefulWidth < 1300)
-            {
-                itemsWrap.ItemWidth = usefulWidth / 3;
-                itemsWrap.ItemHeight = (usefulWidth / 3) * 0.561;
-            }
-            else
-            {
-                itemsWrap.ItemWidth = usefulWidth / 4;
-                itemsWrap.ItemHeight = (usefulWidth / 4) * 0.561;
+                case 0:
+                    if (VideoPanesFrame.CurrentSourcePageType != typeof(VideosPage))
+                        VideoPanesFrame.Navigate(typeof(VideosPage));
+                    break;
+                case 1:
+                    if (VideoPanesFrame.CurrentSourcePageType != typeof(TVShowTwoPanes))
+                        VideoPanesFrame.Navigate(typeof(TVShowTwoPanes));
+                    break;
             }
         }
     }

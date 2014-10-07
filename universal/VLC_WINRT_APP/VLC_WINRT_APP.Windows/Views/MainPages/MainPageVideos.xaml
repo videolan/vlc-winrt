@@ -27,7 +27,8 @@
                   Grid.Row="1"
                   ScrollViewer.VerticalScrollBarVisibility="Disabled"
                   ScrollViewer.HorizontalScrollMode="Disabled"
-                  ItemContainerStyle="{StaticResource ListViewItemContainerStyle}">
+                  ItemContainerStyle="{StaticResource ListViewItemContainerStyle}"
+                  ItemClick="Panels_OnItemClick">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Orientation="Horizontal"
@@ -47,32 +48,14 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Grid Grid.Row="3"
-              x:Name="AllVideosGrid">
-            <userControls:NoVideos Visibility="{Binding Videos.Count, Converter={StaticResource CountToVisibilityConverter}}" />
-            <GridView ItemsSource="{Binding Videos}"
-                      ItemTemplate="{StaticResource SemanticZoomInViewMovieTemplate}"
-                      SelectionMode="None"
-                      IsItemClickEnabled="True"
-                      ScrollViewer.VerticalScrollBarVisibility="Auto"
-                      ScrollViewer.VerticalScrollMode="Auto"
-                      Visibility="{Binding Videos.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}">
-                <triggers:Interactions.Triggers>
-                    <triggers:EventTrigger EventName="ItemClick">
-                        <triggers:InvokeCommandAction Command="{Binding OpenVideo}"
-                                                      PassEventArgsToCommand="True" />
-                    </triggers:EventTrigger>
-                </triggers:Interactions.Triggers>
-                <GridView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <ItemsWrapGrid Orientation="Horizontal"
-                                       ItemWidth="310"
-                                       ItemHeight="174"
-                                       Loaded="ItemsWrapGrid_Loaded"
-                                       SizeChanged="ItemsWrapGrid_Loaded" />
-                    </ItemsPanelTemplate>
-                </GridView.ItemsPanel>
-            </GridView>
-        </Grid>
+        <Frame Grid.Row="3"
+               x:Name="VideoPanesFrame"
+               Loaded="VideoPanesFrame_OnLoadedcPanesFrame_OnLoaded">
+            <Frame.ContentTransitions>
+                <TransitionCollection>
+                    <EdgeUIThemeTransition Edge="Right" />
+                </TransitionCollection>
+            </Frame.ContentTransitions>
+        </Frame>
     </Grid>
 </Page>

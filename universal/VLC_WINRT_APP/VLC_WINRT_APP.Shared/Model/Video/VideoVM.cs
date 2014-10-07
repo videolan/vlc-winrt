@@ -26,7 +26,7 @@ using WinRTXamlToolkit.Imaging;
 
 namespace VLC_WINRT_APP.Model.Video
 {
-    public class VideoVM : BindableBase, IVideo
+    public class VideoItem : BindableBase
     {
         #region private props
         private char _alphaKey;
@@ -91,6 +91,7 @@ namespace VLC_WINRT_APP.Model.Video
             get { return _alphaKey; }
             set { SetProperty(ref _alphaKey, value); }
         }
+
         public string Title
         {
             get { return _title; }
@@ -142,7 +143,7 @@ namespace VLC_WINRT_APP.Model.Video
         #endregion
 
         #region constructors
-        public VideoVM()
+        public VideoItem()
         {
             FavoriteVideo = new FavoriteVideoCommand();
             _thumbsService = App.Container.Resolve<IThumbnailService>();
