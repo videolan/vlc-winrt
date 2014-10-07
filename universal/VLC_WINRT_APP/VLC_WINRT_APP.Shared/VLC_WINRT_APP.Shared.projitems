@@ -99,6 +99,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\CapabilitiesHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\DoesFileExistHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\DownloadAndSaveHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\ExceptionHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\MathHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\MusicLibrary\ArtistInformationsHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\MusicLibrary\DeezerClient.cs" />

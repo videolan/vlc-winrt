@@ -1,6 +1,4 @@
-﻿// The Blank Application template is documented at http://go.microsoft.com/fwlink/?LinkId=234227
-using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
@@ -16,6 +14,7 @@ using Windows.UI.Xaml.Navigation;
 using Autofac;
 using Autofac.Core;
 using VLC_WINRT.Common;
+using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.Helpers.MusicLibrary;
 using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.Services.Interface;
@@ -53,9 +52,9 @@ namespace VLC_WINRT_APP
         {
             InitializeComponent();
             Suspending += OnSuspending;
+            UnhandledException += ExceptionHelper.ExceptionStringBuilder;
             Container = AutoFacConfiguration.Configure();
         }
-
 
         public static Frame ApplicationFrame
         {
@@ -109,6 +108,12 @@ namespace VLC_WINRT_APP
 
             // Ensure the current window is active
             Window.Current.Activate();
+
+            try
+            {
+                ExceptionHelper.ExceptionLogCheckup();
+            }
+            catch { }
         }
 
 #if WINDOWS_PHONE_APP
@@ -161,32 +166,6 @@ namespace VLC_WINRT_APP
             {
                 MediaService.PlayAudioFile(args.Files[0] as StorageFile);
             }
-            //if (file.FileType == ".mp3" || file.FileType == ".wma")
-            //{
-            //    Locator.MusicPlayerVM.TrackCollection.Clear();
-            //    TrackItem trackItem =
-            //        await GetInformationsFromMusicFile.GetTrackItemFromFile(file);
-            //    Locator.MusicPlayerVM.TrackCollection.Add(trackItem);
-            //    await Locator.MusicPlayerVM.PlayFromExplorer(file);
-            //}
-            //else if (file.FileType == ".mkv"
-            //         || file.FileType == ".avi"
-            //         || file.FileType == ".mp4"
-            //         || file.FileType == ".wmv"
-            //         || file.FileType == ".mov")
-            //{
-            //    TemporaryFileName = file.Name;
-            //    TemporaryMRL = StorageApplicationPermissions.FutureAccessList.Add(file);
-            //    if (Window.Current.Content == null)
-            //    {
-            //        await LaunchTheApp();
-            //    }
-            //    else
-            //    {
-            //        RootPage.MainFrame.Navigate(typeof(MainPage));
-            //        (ApplicationFrame.Content as MainPage).OpenVideoFromFileExplorer();
-            //    }
-            //}
         }
 
         private async Task LaunchTheApp()

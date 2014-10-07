@@ -15,6 +15,14 @@ namespace VLC_WINRT_APP.Helpers
     static class ApplicationSettingsHelper
     {
         /// <summary>
+        /// Function that checks if the entry exists in Application settings
+        /// </summary>
+        public static bool Contains(string key)
+        {
+            return ApplicationData.Current.LocalSettings.Values.ContainsKey(key);
+        }
+
+        /// <summary>
         /// Function to read a setting value and clear it after reading it
         /// </summary>
         public static object ReadResetSettingsValue(string key)
