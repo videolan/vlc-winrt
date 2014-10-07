@@ -41,6 +41,9 @@ namespace VLC_WINRT_APP.Model.Video
         private StorageFile _file;
         private FavoriteVideoCommand _favoriteVideo;
         private readonly IThumbnailService _thumbsService;
+        // TVShows related
+        private int _season;
+        private int _episode;
         #endregion
 
         #region private fields
@@ -48,6 +51,20 @@ namespace VLC_WINRT_APP.Model.Video
         #endregion
 
         #region public props
+        #region tvshows related
+        public int Season
+        {
+            get { return _season; }
+            private set { SetProperty(ref _season, value); }
+        }
+
+        public int Episode
+        {
+            get { return _episode; }
+            private set { SetProperty(ref _episode, value); }
+        }
+        #endregion
+
         [Ignore]
         public ImageSource Image
         {
@@ -136,6 +153,10 @@ namespace VLC_WINRT_APP.Model.Video
         public VideoProperties VideoProperties;
         private string _filePath;
 
+        public bool IsTvShow
+        {
+            get { return _season != null; }
+        }
         #endregion
 
         #region public fields
@@ -147,6 +168,14 @@ namespace VLC_WINRT_APP.Model.Video
         {
             FavoriteVideo = new FavoriteVideoCommand();
             _thumbsService = App.Container.Resolve<IThumbnailService>();
+        }
+
+        public VideoItem(string season, string episode)
+        {
+            FavoriteVideo = new FavoriteVideoCommand();
+            _thumbsService = App.Container.Resolve<IThumbnailService>();
+            Season = int.Parse(season);
+            Episode = int.Parse(episode);
         }
 
         public void Initialize(StorageFile storageFile)

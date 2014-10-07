@@ -55,7 +55,7 @@ namespace VLC_WINRT_APP.Views.VideoPages
         private void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
         {
             timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(6);
+            timer.Interval = TimeSpan.FromSeconds(5);
             timer.Tick += TimerOnTick;
             timer.Start();
             this.SizeChanged += OnSizeChanged;
@@ -101,19 +101,19 @@ namespace VLC_WINRT_APP.Views.VideoPages
                 timer = new DispatcherTimer();
             if (isVisible)
             {
-                await ControlsGrid.FadeOut(_fadeDuration);
-                await HeaderGrid.FadeOut(_fadeDuration);
+                ControlsGrid.FadeOut(_fadeDuration);
+                HeaderGrid.FadeOut(_fadeDuration);
                 HeaderGrid.IsHitTestVisible = false;
-                await FooterGrid.FadeOut(_fadeDuration);
+                FooterGrid.FadeOut(_fadeDuration);
                 FooterGrid.IsHitTestVisible = false;
             }
             else
             {
-                await HeaderGrid.FadeIn(_fadeDuration);
+                HeaderGrid.FadeIn(_fadeDuration);
                 HeaderGrid.IsHitTestVisible = true;
-                await FooterGrid.FadeIn(_fadeDuration);
+                FooterGrid.FadeIn(_fadeDuration);
                 FooterGrid.IsHitTestVisible = true;
-                await ControlsGrid.FadeIn(_fadeDuration);
+                ControlsGrid.FadeIn(_fadeDuration);
                 timer.Start();
             }
             isVisible = !isVisible;
@@ -126,7 +126,14 @@ namespace VLC_WINRT_APP.Views.VideoPages
                 timer = new DispatcherTimer();
 
             if (timer.IsEnabled)
+            {
                 timer.Stop();
+                timer.Start();
+            }
+            else
+            {
+                DisplayOrHide();
+            }
         }
 
         private void EnableDoubleTapToShowCommands_Click(object sender, RoutedEventArgs e)

@@ -151,7 +151,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Model\Panel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\PlayingType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Subtitle.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Model\Video\TVEpisodeItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Video\TVShow.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Video\VideoVM.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\VLCFileExtensions.cs" />

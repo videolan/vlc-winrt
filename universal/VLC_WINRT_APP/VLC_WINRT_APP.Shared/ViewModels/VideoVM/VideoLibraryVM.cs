@@ -188,7 +188,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
                         Dictionary<string, string> showInfoDictionary = TitleDecrapifier.tvShowEpisodeInfoFromString(storageFile.DisplayName);
                         bool isTvShow = showInfoDictionary != null && showInfoDictionary.Count > 0;
 
-                        VideoItem mediaVM = !isTvShow ? new VideoItem() : new TVEpisodeItem(showInfoDictionary["season"], showInfoDictionary["episode"]);
+                        VideoItem mediaVM = !isTvShow ? new VideoItem() : new VideoItem(showInfoDictionary["season"], showInfoDictionary["episode"]);
                         mediaVM.Initialize(storageFile);
                         if (string.IsNullOrEmpty(mediaVM.Title))
                             continue;
@@ -209,12 +209,12 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
                             if (show == null)
                             {
                                 show = new TvShow(showInfoDictionary["tvShowName"]);
-                                show.Episodes.Add(mediaVM as TVEpisodeItem);
+                                show.Episodes.Add(mediaVM as VideoItem);
                                 Shows.Add(show);
                             }
                             else
                             {
-                                show.Episodes.Add(mediaVM as TVEpisodeItem);
+                                show.Episodes.Add(mediaVM as VideoItem);
                             }
                         }
                         // Get back to UI thread
