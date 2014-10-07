@@ -215,7 +215,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
                 //if (NewVideos.Any())
                 //{
 #if WINDOWS_APP
-                    //Panels.Add(new Panel("new", 1, 0.4, App.Current.Resources["HomePath"].ToString()));
+                //Panels.Add(new Panel("new", 1, 0.4, App.Current.Resources["HomePath"].ToString()));
 #endif
                 //}
                 LoadingState = LoadingState.Loaded;
@@ -224,84 +224,13 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
         }
 
 
-        private static async Task<IReadOnlyList<StorageFile>> GetMediaFromFolder(StorageFolder folder,
+        private static async Task<List<StorageFile>> GetMediaFromFolder(StorageFolder folder,
                                                                             CommonFileQuery query)
         {
             IReadOnlyList<StorageFile> files = null;
-            StorageFileQueryResult fileQuery;
-#if WINDOWS_APP
-            var queryOptions = new QueryOptions(query,
-                                               new List<string>
-                                               {
-                                                   ".3g2",
-                                                   ".3gp",
-                                                   ".3gp2",
-                                                   ".3gpp",
-                                                   ".amv",
-                                                   ".asf",
-                                                   ".avi",
-                                                   ".divx",
-                                                   ".drc",
-                                                   ".dv",
-                                                   ".f4v",
-                                                   ".flv",
-                                                   ".gvi",
-                                                   ".gxf",
-                                                   ".ismv",
-                                                   ".iso",
-                                                   ".m1v",
-                                                   ".m2v",
-                                                   ".m2t",
-                                                   ".m2ts",
-                                                   ".m3u8",
-                                                   ".mkv",
-                                                   ".mov",
-                                                   ".mp2",
-                                                   ".mp2v",
-                                                   ".mp4",
-                                                   ".mp4v",
-                                                   ".mpe",
-                                                   ".mpeg",
-                                                   ".mpeg1",
-                                                   ".mpeg2",
-                                                   ".mpeg4",
-                                                   ".mpg",
-                                                   ".mpv2",
-                                                   ".mts",
-                                                   ".mtv",
-                                                   ".mxf",
-                                                   ".mxg",
-                                                   ".nsv",
-                                                   ".nut",
-                                                   ".nuv",
-                                                   ".ogm",
-                                                   ".ogv",
-                                                   ".ogx",
-                                                   ".ps",
-                                                   ".rec",
-                                                   ".rm",
-                                                   ".rmvb",
-                                                   ".tob",
-                                                   ".ts",
-                                                   ".tts",
-                                                   ".vob",
-                                                   ".vro",
-                                                   ".webm",
-                                                   ".wm",
-                                                   ".wmv",
-                                                   ".wtv",
-                                                   ".xesc",
-                                               });
-#endif
             try
             {
-#if WINDOWS_APP
-                fileQuery = folder.CreateFileQueryWithOptions(queryOptions);
-                files = await fileQuery.GetFilesAsync();
-#else
-
                 files = await folder.GetFilesAsync();
-#endif
             }
             catch (Exception ex)
             {
@@ -311,11 +240,20 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             // DLNA folders don't support advanced file listings, us a basic file query
             if (files == null)
             {
-                fileQuery = folder.CreateFileQuery(CommonFileQuery.OrderByName);
+                StorageFileQueryResult fileQuery = folder.CreateFileQuery(CommonFileQuery.OrderByName);
                 files = await fileQuery.GetFilesAsync();
             }
+            List<StorageFile> videoFiles = new List<StorageFile>(files);
 
-            return files;
+            // Verify that the file format is a video
+            foreach (StorageFile storageFile in videoFiles)
+            {
+                if (!VLCFileExtensions.VideoExtensions.Contains(storageFile.FileType.ToLower()))
+                {
+                    videoFiles.Remove(storageFile);
+                }
+            }
+            return videoFiles;
         }
 
         public void ExecuteSemanticZoom(SemanticZoom sZ, CollectionViewSource cvs)
