@@ -29,6 +29,7 @@ using VLC_WINRT_APP.Commands;
 using VLC_WINRT_APP.Commands.Video;
 using VLC_WINRT_APP.Common;
 using VLC_WINRT_APP.DataRepository;
+using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.Model;
 using Panel = VLC_WINRT_APP.Model.Panel;
 
@@ -177,10 +178,12 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
                     {
                         var mediaVM = new VideoVM();
                         mediaVM.Initialize(storageFile);
-
                         if (string.IsNullOrEmpty(mediaVM.Title))
                             continue;
 
+                        Dictionary<string, string> serie = TitleDecrapifier.tvShowEpisodeInfoFromString(mediaVM.Title);
+                        if(serie.Count > 0)
+                            Debug.WriteLine(serie.First());
                         VideoVM searchVideo = ViewedVideos.FirstOrDefault(x => x.Title == mediaVM.Title);
                         if (searchVideo != null)
                         {
