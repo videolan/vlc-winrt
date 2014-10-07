@@ -9,6 +9,7 @@ using VLC_WINRT_APP.Model.Video;
 using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.ViewModels.VideoVM;
 using VLC_WINRT_APP.Views.VideoPages;
+using VLC_WINRT_APP.Helpers.VideoPlayer;
 
 namespace VLC_WINRT_APP.Commands.Video
 {

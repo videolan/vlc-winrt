@@ -135,9 +135,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\MusicLibrary\xboxmusic\Settings\Extras.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\MusicLibrary\xboxmusic\Settings\Filters.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\MusicLibrary\xboxmusic\Settings\ImageMode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\MusicPlayer\PlayMusicHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\NativeOperationsHelper.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Helpers\PlayMusicHelper.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Helpers\PlayVideoHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\PointersUtils.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\SearchHelpers.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\TitleDecrapifier.cs" />
@@ -145,6 +144,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\UpdateTileHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\VideoHUDHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\VideoLibrary\VideoLibraryManagement.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\VideoPlayer\PlayVideoHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\LoadingState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Music\AlbumItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Music\ArtistItem.cs" />

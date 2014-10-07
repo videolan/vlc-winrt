@@ -5,8 +5,8 @@ using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.Model.Music;
 using VLC_WINRT_APP.Model.Video;
 using VLC_WINRT_APP.ViewModels;
-using VLC_WINRT_APP.ViewModels.MusicVM;
-using VLC_WINRT_APP.ViewModels.VideoVM;
+using VLC_WINRT_APP.Helpers.MusicPlayer;
+using VLC_WINRT_APP.Helpers.VideoPlayer;
 using VLC_WINRT_APP.Views.MusicPages;
 
 namespace VLC_WINRT_APP.Views.UserControls
