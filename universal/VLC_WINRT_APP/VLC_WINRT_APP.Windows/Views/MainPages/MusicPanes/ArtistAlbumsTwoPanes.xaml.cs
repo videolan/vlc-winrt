@@ -44,7 +44,6 @@ namespace VLC_WINRT_APP.Views.MainPages.MusicPanes
                 if(ArtistListView.Items != null && ArtistListView.Items.Count > 0)
                     ArtistListView.SelectedIndex = 0;
             }
-            App.RootPage.ColumnGrid.MinimizeSidebar();
         }
     }
 }
