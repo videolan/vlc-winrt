@@ -21,11 +21,22 @@ namespace VLC_WINRT_APP.Commands.Video
             {
                 Locator.MusicPlayerVM.CleanViewModel();
             }
-            if (App.ApplicationFrame.CurrentSourcePageType != typeof(VideoPlayerPage))
-                App.ApplicationFrame.Navigate(typeof(VideoPlayerPage));
-
-            ItemClickEventArgs args = parameter as ItemClickEventArgs;
-            VideoItem videoVm = args.ClickedItem as VideoItem;
+            try
+            {
+                if (App.ApplicationFrame.CurrentSourcePageType != typeof (VideoPlayerPage))
+                    App.ApplicationFrame.Navigate(typeof (VideoPlayerPage));
+            }
+            catch { }
+            VideoItem videoVm = null;
+            if (parameter is ItemClickEventArgs)
+            {
+                ItemClickEventArgs args = parameter as ItemClickEventArgs;
+                videoVm = args.ClickedItem as VideoItem;
+            }
+            else if(parameter is VideoItem)
+            {
+                videoVm = parameter as VideoItem;
+            }
             videoVm.Play();
         }
     }

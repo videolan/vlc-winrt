@@ -185,7 +185,8 @@
                     </Grid.ColumnDefinitions>
                     <Button Style="{StaticResource TextButtonStyle}"
                             HorizontalAlignment="Center"
-                            Command="{Binding SkipBack}">
+                            Command="{Binding SkipBack}"
+                            IsTabStop="True">
                         <Button.Content>
                             <TextBlock Text=""
                                        FontFamily="Segoe UI Symbol"
@@ -196,7 +197,8 @@
                             Grid.Column="1"
                             HorizontalAlignment="Center"
                             Command="{Binding PlayOrPauseCommand}"
-                            Visibility="{Binding IsPlaying, Converter={StaticResource NegatedBooleanToVisibilityConverter}}">
+                            Visibility="{Binding IsPlaying, Converter={StaticResource NegatedBooleanToVisibilityConverter}}"
+                            IsTabStop="True">
                         <Button.Content>
                             <TextBlock Text=""
                                        FontFamily="Segoe UI Symbol"
@@ -207,7 +209,8 @@
                             Grid.Column="1"
                             HorizontalAlignment="Center"
                             Command="{Binding PlayOrPauseCommand}"
-                            Visibility="{Binding IsPlaying, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            Visibility="{Binding IsPlaying, Converter={StaticResource BooleanToVisibilityConverter}}"
+                            IsTabStop="True">
                         <Button.Content>
                             <TextBlock Text=""
                                        FontFamily="Segoe UI Symbol"
@@ -217,7 +220,8 @@
                     <Button Style="{StaticResource TextButtonStyle}"
                             Grid.Column="2"
                             HorizontalAlignment="Center"
-                            Command="{Binding SkipAhead}">
+                            Command="{Binding SkipAhead}"
+                            IsTabStop="True">
                         <Button.Content>
                             <TextBlock Text=""
                                        FontFamily="Segoe UI Symbol"
