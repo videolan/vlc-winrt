@@ -221,8 +221,10 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
                         await DispatchHelper.InvokeAsync(() =>
                         {
                             if (!isTvShow)
+                            {
                                 Videos.Add(mediaVM);
-                            if (ViewedVideos.Count < 6 && !ViewedVideos.Contains(mediaVM))
+                            }
+                            if (ViewedVideos.Count < 6 && ViewedVideos.FirstOrDefault(x=>x.FilePath == mediaVM.FilePath && x.TimeWatched == TimeSpan.Zero) == null)
                                 ViewedVideos.Add(mediaVM);
                         });
                     }
