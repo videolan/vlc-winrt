@@ -18,7 +18,6 @@ namespace VLC_WINRT_APP.Model.Music
     {
         private string _name;
         private string _artist;
-        private int _currentTrackPosition;
         private string _picture = "/Assets/GreyPylon/280x156.jpg";
         private uint _year;
         private bool _favorite;
@@ -45,17 +44,6 @@ namespace VLC_WINRT_APP.Model.Music
             set
             {
                 SetProperty(ref _artist, value);
-            }
-        }
-
-        [Ignore]
-        public int CurrentTrackPosition
-        {
-            get { return _currentTrackPosition; }
-            set
-            {
-                SetProperty(ref _currentTrackPosition, value);
-                OnPropertyChanged("CurrentTrackPosition");
             }
         }
 
@@ -101,18 +89,6 @@ namespace VLC_WINRT_APP.Model.Music
         {
             get { return _year; }
             set { SetProperty(ref _year, value); }
-        }
-
-        public void NextTrack()
-        {
-            if (CurrentTrackPosition < _trackItems.Count)
-                CurrentTrackPosition++;
-        }
-
-        public void PreviousTrack()
-        {
-            if (CurrentTrackPosition > 0)
-                CurrentTrackPosition--;
         }
 
         private async void LoadPicture()

@@ -22,7 +22,7 @@
                    VerticalAlignment="Top"
                    Source="ms-appx:///Assets/NoCover.jpg" 
                    x:Name="NoCoverImage"/>
-            <Image Source="{Binding CurrentPlayingArtist.CurrentAlbumItem.Picture}"
+            <Image Source="{Binding CurrentAlbum.Picture}"
                    Stretch="UniformToFill"
                    Width="200"
                    Height="200"
@@ -33,22 +33,22 @@
               Height="200"
               VerticalAlignment="Top">
             <StackPanel>
-                <TextBlock Text="{Binding CurrentPlayingArtist.Name}"
+                <TextBlock Text="{Binding CurrentArtist.Name}"
                            Style="{StaticResource TitleTextBlockStyle}" />
-                <TextBlock Text="{Binding CurrentPlayingArtist.CurrentAlbumItem.Year}"
+                <TextBlock Text="{Binding CurrentAlbum.Year}"
                            Style="{StaticResource TitleTextBlockStyle}" />
                 <TextBlock Style="{StaticResource TitleTextBlockStyle}">
-                                        <Run Text="{Binding CurrentPlayingArtist.CurrentAlbumItem.Tracks.Count}" />
+                                        <Run Text="{Binding CurrentAlbum.Tracks.Count}" />
                                         <Run Text="tracks" />
                 </TextBlock>
             </StackPanel>
             <StackPanel Orientation="Horizontal"
                         Margin="-21,0,0,0"
                         VerticalAlignment="Bottom">
-                <AppBarToggleButton x:Uid="LikeAppButton" IsChecked="{Binding CurrentPlayingArtist.CurrentAlbumItem.Favorite}"
+                <AppBarToggleButton x:Uid="LikeAppButton" IsChecked="{Binding CurrentAlbum.Favorite}"
                                     Label="Like"
-                                    Command="{Binding CurrentPlayingArtist.CurrentAlbumItem.FavoriteAlbum}"
-                                    CommandParameter="{Binding CurrentPlayingArtist.CurrentAlbumItem}">
+                                    Command="{Binding CurrentAlbum.FavoriteAlbum}"
+                                    CommandParameter="{Binding CurrentAlbum}">
                     <AppBarToggleButton.Icon>
                         <FontIcon Glyph="&#xE0A5;" />
                     </AppBarToggleButton.Icon>
@@ -56,9 +56,9 @@
                 <AppBarToggleButton x:Name="PlayAllAppBarToggleButton"
                                     Icon="Play"
                                     x:Uid="PlayAllAppButton"
-                                    Label="Play all"
-                                    Command="{Binding CurrentPlayingArtist.CurrentAlbumItem.PlayAlbum}"
-                                    CommandParameter="{Binding CurrentPlayingArtist.CurrentAlbumItem}" />
+                                    Label="Play this album"
+                                    Command="{Binding CurrentAlbum.PlayAlbum}"
+                                    CommandParameter="{Binding CurrentAlbum}" />
             </StackPanel>
         </Grid>
     </Grid>

@@ -24,8 +24,8 @@ namespace VLC_WINRT_APP.Converters
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             if (value is TrackItem
-                && Locator.MusicPlayerVM.CurrentTrackItem != null
-                && ((TrackItem)value).Path == Locator.MusicPlayerVM.CurrentTrackItem.Path)
+                && Locator.MusicPlayerVM.CurrentTrack != null
+                && ((TrackItem)value).Path == Locator.MusicPlayerVM.CurrentTrack.Path)
             {
                 return App.Current.Resources["MainColor"] as SolidColorBrush;
             }

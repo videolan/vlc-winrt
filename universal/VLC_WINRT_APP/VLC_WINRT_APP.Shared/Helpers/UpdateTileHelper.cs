@@ -21,12 +21,13 @@ namespace VLC_WINRT_APP.Helpers
 
             var tileTextAttributes = tileXml.GetElementsByTagName("text");
             tileTextAttributes[0].InnerText = "playing";
-            if (Locator.MusicPlayerVM.CurrentPlayingArtist != null)
+            if (Locator.MusicPlayerVM.CurrentTrack != null)
             {
-                tileTextAttributes[1].InnerText = Locator.MusicPlayerVM.CurrentPlayingArtist.CurrentAlbumItem.Tracks[Locator.MusicPlayerVM.CurrentPlayingArtist.CurrentAlbumItem.CurrentTrackPosition].Name + " - " + Locator.MusicPlayerVM.CurrentPlayingArtist.CurrentAlbumItem.Artist;
+                tileTextAttributes[1].InnerText = Locator.MusicPlayerVM.CurrentTrack.Name + " - " + Locator.MusicPlayerVM.CurrentTrack.ArtistName;
 
                 var tileImgAttribues = tileXml.GetElementsByTagName("image");
-                tileImgAttribues[0].Attributes[1].NodeValue = Locator.MusicPlayerVM.CurrentPlayingArtist.CurrentAlbumItem.Picture;
+                if(Locator.MusicPlayerVM.CurrentAlbum != null)
+                    tileImgAttribues[0].Attributes[1].NodeValue = Locator.MusicPlayerVM.CurrentAlbum.Picture;
             }
 
             var tileNotification = new TileNotification(tileXml);
@@ -41,13 +42,15 @@ namespace VLC_WINRT_APP.Helpers
 
             var tileTextAttributes = tileXml.GetElementsByTagName("text");
             tileTextAttributes[0].InnerText = "Now playing";
-            if (Locator.MusicPlayerVM.CurrentPlayingArtist != null)
+            if (Locator.MusicPlayerVM.CurrentTrack != null)
             {
-                tileTextAttributes[1].InnerText = Locator.MusicPlayerVM.CurrentPlayingArtist.CurrentAlbumItem.Tracks[Locator.MusicPlayerVM.CurrentPlayingArtist.CurrentAlbumItem.CurrentTrackPosition].Name + " - " + Locator.MusicPlayerVM.CurrentPlayingArtist.CurrentAlbumItem.Artist;
+                tileTextAttributes[1].InnerText = Locator.MusicPlayerVM.CurrentTrack.Name + " - " + Locator.MusicPlayerVM.CurrentTrack.ArtistName;
 
                 var tileImgAttribues = tileXml.GetElementsByTagName("image");
-                tileImgAttribues[0].Attributes[1].NodeValue = Locator.MusicPlayerVM.CurrentPlayingArtist.Picture;
-                tileImgAttribues[1].Attributes[1].NodeValue = Locator.MusicPlayerVM.CurrentPlayingArtist.CurrentAlbumItem.Picture;
+                tileImgAttribues[0].Attributes[1].NodeValue = Locator.MusicPlayerVM.CurrentArtist.Picture;
+
+                if (Locator.MusicPlayerVM.CurrentAlbum != null)
+                    tileImgAttribues[1].Attributes[1].NodeValue = Locator.MusicPlayerVM.CurrentAlbum.Picture;
             }
 
             var tileNotification = new TileNotification(tileXml);

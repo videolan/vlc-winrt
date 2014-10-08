@@ -18,7 +18,7 @@
                                   IsCompact="True"
                                   Click="GoBack"
                                   Style="{StaticResource MiniAppBarButtonStyle}" />
-                    <TextBlock Text="{Binding CurrentPlayingArtist.CurrentAlbumItem.Name}"
+                    <TextBlock Text="{Binding CurrentAlbum.Name}"
                                Style="{StaticResource TitleTextBlockStyle}"
                                Typography.Capitals="SmallCaps"
                                FontSize="23"
@@ -35,7 +35,7 @@
                     <HubSection.ContentTemplate>
                         <DataTemplate>
                             <Grid>
-                                <ListView ItemsSource="{Binding TrackCollection}"
+                                <ListView ItemsSource="{Binding TrackCollection.Playlist}"
                                           IsItemClickEnabled="True"
                                           SelectionMode="None"
                                           ItemTemplate="{StaticResource LittleDarkTrackTemplate}"

@@ -14,7 +14,7 @@
               IsSwipeEnabled="False"
               SelectionMode="None"
               IsItemClickEnabled="True"
-              ItemsSource="{Binding CurrentPlayingArtist.OnlinePopularAlbumItems}"
+              ItemsSource="{Binding CurrentArtist.OnlinePopularAlbumItems}"
               ItemTemplate="{StaticResource PopularAlbumTemplate}">
         <GridView.ItemsPanel>
             <ItemsPanelTemplate>

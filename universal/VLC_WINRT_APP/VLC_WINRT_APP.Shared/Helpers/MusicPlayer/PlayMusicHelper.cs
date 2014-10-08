@@ -5,91 +5,92 @@ using System.Threading.Tasks;
 using Windows.UI.Core;
 using VLC_WINRT_APP.Model.Music;
 using VLC_WINRT_APP.ViewModels;
-using VLC_WINRT_APP.ViewModels.MusicVM;
 
 namespace VLC_WINRT_APP.Helpers.MusicPlayer
 {
     public static class PlayMusickHelper
     {
-        public static async Task Play(this TrackItem track)
+        /// <summary>
+        /// Play a track
+        /// If the track is already in the Playlist, we set the CurrenTrack to reach this new track
+        /// If not, we reset the Playlist, and set the CurrentTrack to 0
+        /// </summary>
+        /// <param name="track"></param>
+        /// <returns></returns>
+        public static async Task PlayTrack(this TrackItem track)
         {
+            if (track == null) return;
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                if (track != null && !Locator.MusicPlayerVM.TrackCollection.Contains(track))
+                if (!Locator.MusicPlayerVM.TrackCollection.Playlist.Contains(track))
                 {
-                    Locator.MusicPlayerVM.ResetCollection();
+                    Locator.MusicPlayerVM.TrackCollection.ResetCollection();
                     Locator.MusicPlayerVM.AddTrack(track);
                 }
                 else
                 {
-                    Locator.MusicPlayerVM.CurrentTrack =
-                        Locator.MusicPlayerVM.TrackCollection.IndexOf(track);
-                    int index = Locator.MusicPlayerVM.CurrentPlayingArtist.CurrentAlbumItem.Tracks.IndexOf(track);
-                    Locator.MusicPlayerVM.CurrentPlayingArtist.CurrentAlbumItem.CurrentTrackPosition = index;
                 }
+                SetCurrentTrackPosition(Locator.MusicPlayerVM.TrackCollection.Playlist.IndexOf(track));
             });
-            Locator.MusicPlayerVM.Play();
+            Task.Run(() => Locator.MusicPlayerVM.Play());
         }
 
-        public static async Task Play(this AlbumItem album, int index = 0)
+        /// <summary>
+        /// Play an album from the start
+        /// </summary>
+        /// <param name="album"></param>
+        /// <param name="index">
+        /// Possibility to set the CurrentTrack index
+        /// </param>
+        /// <returns></returns>
+        public static async Task PlayAlbum(this AlbumItem album, int index = 0)
         {
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
             {
                 await album.AddToQueue();
-                await SetIndex(index);
-                await SetCurrentPlayingArtist(album);
-                if (Locator.MusicPlayerVM.CurrentPlayingArtist != null)
-                {
-                    SetCurrentPlayingAlbum(album);
-                    SetCurrentTrackPosition(index);
-                }
-                Task.Run(() => Locator.MusicPlayerVM.Play());
+                SetCurrentTrackPosition(index);
             });
+            Task.Run(() => Locator.MusicPlayerVM.Play());
         }
 
+        public static async Task PlayArtist(this ArtistItem artist)
+        {
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+            {
+                foreach (AlbumItem album in artist.Albums)
+                {
+                    await album.AddToQueue(false);
+                }
+                SetCurrentTrackPosition(0);
+            });
+            Task.Run(() => Locator.MusicPlayerVM.Play());
+        }
+
+        /// <summary>
+        /// Adds an album to the Playlist
+        /// </summary>
+        /// <param name="album"></param>
+        /// <param name="resetQueue">Reset or not the current Playlist before adding new elements</param>
+        /// <returns></returns>
         public static async Task AddToQueue(this AlbumItem album, bool resetQueue = true)
         {
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 if (resetQueue)
                 {
-                    Locator.MusicPlayerVM.ResetCollection();
+                    Locator.MusicPlayerVM.TrackCollection.ResetCollection();
                 }
                 Locator.MusicPlayerVM.AddTrack(album.Tracks.ToList());
-                SetCurrentPlayingArtist(album);
             });
         }
-        public static async Task Play(IEnumerable<TrackItem> tracks)
-        {
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-            {
-                Locator.MusicPlayerVM.ResetCollection();
 
-                Locator.MusicPlayerVM.AddTrack(tracks.ToList());
-            });
-        }
-        public static async Task SetIndex(int index = 0)
-        {
-            Locator.MusicPlayerVM.CurrentTrack = index;
-        }
-
-        public static async Task SetCurrentPlayingArtist(AlbumItem album)
-        {
-            Locator.MusicPlayerVM.CurrentPlayingArtist =
-                Locator.MusicLibraryVM.Artists.FirstOrDefault(x => x.Name == album.Artist);
-        }
-
-        public static void SetCurrentPlayingAlbum(AlbumItem album)
-        {
-            Locator.MusicPlayerVM.CurrentPlayingArtist.CurrentAlbumIndex =
-                Locator.MusicPlayerVM.CurrentPlayingArtist.Albums.IndexOf(album);
-        }
-
+        /// <summary>
+        /// Only this method should set the CurrentTrack property of TrackCollection.
+        /// </summary>
+        /// <param name="index"></param>
         public static void SetCurrentTrackPosition(int index)
         {
-            if (index > Locator.MusicPlayerVM.CurrentPlayingArtist.CurrentAlbumItem.Tracks.Count + 1)
-                index = 0;
-            Locator.MusicPlayerVM.CurrentPlayingArtist.CurrentAlbumItem.CurrentTrackPosition = index;
+            Locator.MusicPlayerVM.TrackCollection.CurrentTrack = index;
         }
     }
 }

@@ -31,7 +31,7 @@
                   Margin="14,9,0,0"
                   HorizontalAlignment="Left" />
             <Button Style="{StaticResource TextBlockButtonStyle}"
-                    Visibility="{Binding IsRunning, Converter={StaticResource BooleanToVisibilityConverter}}"
+                    Visibility="{Binding TrackCollection.IsRunning, Converter={StaticResource BooleanToVisibilityConverter}}"
                     Margin="12,9,0,0"
                     VerticalAlignment="Center">
                 <Button.Flyout>

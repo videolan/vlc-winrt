@@ -17,7 +17,7 @@ namespace VLC_WINRT_APP.Commands.Video
     {
         public override void Execute(object parameter)
         {
-            if (Locator.MusicPlayerVM.IsRunning)
+            if (Locator.MusicPlayerVM.TrackCollection.IsRunning)
             {
                 Locator.MusicPlayerVM.CleanViewModel();
             }

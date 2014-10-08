@@ -33,7 +33,7 @@ namespace VLC_WINRT_APP.Commands.Music
             try
             {
                 AlbumItem album = parameter as AlbumItem;
-                Task.Run(() => album.Play());
+                Task.Run(() => album.PlayAlbum());
             }
             catch (FileNotFoundException exception)
             {

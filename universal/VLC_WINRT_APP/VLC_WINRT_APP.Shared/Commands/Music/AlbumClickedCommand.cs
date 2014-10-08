@@ -27,8 +27,6 @@ namespace VLC_WINRT_APP.Commands.Music
 
             Locator.MusicLibraryVM.CurrentArtist =
                 Locator.MusicLibraryVM.Artists.FirstOrDefault(x => x.Name == album.Artist);
-            if (Locator.MusicLibraryVM.CurrentArtist != null)
-                Locator.MusicLibraryVM.CurrentArtist.CurrentAlbumIndex = Locator.MusicLibraryVM.CurrentArtist.Albums.IndexOf(album);
             //PlayMusickHelper.AddToQueue(album);
         }
     }

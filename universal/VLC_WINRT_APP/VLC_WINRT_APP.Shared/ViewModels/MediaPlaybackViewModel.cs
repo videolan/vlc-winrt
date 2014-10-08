@@ -94,7 +94,7 @@ namespace VLC_WINRT_APP.ViewModels
         {
             get
             {
-                if (Locator.MusicPlayerVM.IsRunning)
+                if (Locator.MusicPlayerVM.TrackCollection.IsRunning)
                     return PlayingType.Music;
                 return Locator.VideoVm.IsRunning ? PlayingType.Video : PlayingType.NotPlaying;
             }

@@ -40,8 +40,7 @@ namespace VLC_WINRT_APP.Views.UserControls
                     TrackItem trackItem = Locator.MusicLibraryVM.Tracks.FirstOrDefault(node => node.Id == int.Parse(query));
                     if (trackItem != null)
                     {
-                        Locator.MusicPlayerVM.CurrentPlayingArtist = Locator.MusicLibraryVM.Artists.FirstOrDefault(node => node.Id == trackItem.ArtistId);
-                        await Task.Run(() => trackItem.Play());
+                        await Task.Run(() => trackItem.PlayTrack());
                     }
                     break;
                 case "album":
@@ -51,7 +50,7 @@ namespace VLC_WINRT_APP.Views.UserControls
                     if (albumItem != null)
                     {
                         Locator.MusicLibraryVM.CurrentArtist = Locator.MusicLibraryVM.Artists.FirstOrDefault(node => node.Id == albumItem.ArtistId);
-                        await Task.Run(() => albumItem.Play());
+                        await Task.Run(() => albumItem.PlayAlbum());
                     }
                     break;
                 case "artist":

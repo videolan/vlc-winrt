@@ -19,6 +19,7 @@ using VLC_WINRT.Common;
 using VLC_WINRT_APP.Commands.MediaPlayback;
 using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.Helpers.MusicLibrary.Deezer;
+using VLC_WINRT_APP.Helpers.MusicPlayer;
 using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.Model.Music;
 using VLC_WINRT_APP.Model.Video;
@@ -149,22 +150,8 @@ namespace VLC_WINRT_APP.Services.RunTime
             trackItem.Path = file.Path;
             trackItem.AlbumName = "Album";
             trackItem.ArtistName = "Artist";
-            if (Locator.MusicPlayerVM.TrackCollection == null)
-                Locator.MusicPlayerVM.TrackCollection = new ObservableCollection<TrackItem>();
-
-            if (trackItem != null && !Locator.MusicPlayerVM.TrackCollection.Contains(trackItem))
-            {
-                Locator.MusicPlayerVM.ResetCollection();
-                Locator.MusicPlayerVM.AddTrack(trackItem);
-            }
-            else
-            {
-                Locator.MusicPlayerVM.CurrentTrack =
-                    Locator.MusicPlayerVM.TrackCollection.IndexOf(trackItem);
-            }
             await Task.Delay(1000);
-
-            await Locator.MusicPlayerVM.Play(file);
+            await trackItem.PlayTrack();
         }
 
         /// <summary>
@@ -208,8 +195,8 @@ namespace VLC_WINRT_APP.Services.RunTime
             _systemMediaTransportControls.IsEnabled = true;
             _systemMediaTransportControls.IsPauseEnabled = true;
             _systemMediaTransportControls.IsPlayEnabled = true;
-            _systemMediaTransportControls.IsNextEnabled = Locator.MusicPlayerVM.PlayingType != PlayingType.Music || Locator.MusicPlayerVM.CanGoNext;
-            _systemMediaTransportControls.IsPreviousEnabled = Locator.MusicPlayerVM.PlayingType != PlayingType.Music || Locator.MusicPlayerVM.CanGoPrevious;
+            _systemMediaTransportControls.IsNextEnabled = Locator.MusicPlayerVM.PlayingType != PlayingType.Music || Locator.MusicPlayerVM.TrackCollection.CanGoNext;
+            _systemMediaTransportControls.IsPreviousEnabled = Locator.MusicPlayerVM.PlayingType != PlayingType.Music || Locator.MusicPlayerVM.TrackCollection.CanGoPrevious;
         }
 
         public void Pause()

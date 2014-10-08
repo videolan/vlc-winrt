@@ -12,7 +12,6 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Resources;
-using Windows.Media;
 using Windows.Storage;
 using Windows.Storage.AccessCache;
 using Windows.UI.Core;
@@ -24,7 +23,6 @@ using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.Model.Music;
 using VLC_WINRT_APP.Services.Interface;
 using VLC_WINRT_APP.Services.RunTime;
-using System.Collections.ObjectModel;
 using System.Collections.Generic;
 
 namespace VLC_WINRT_APP.ViewModels.MusicVM
@@ -32,81 +30,54 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
     public class MusicPlayerVM : MediaPlaybackViewModel
     {
         #region private props
-        private int _currentTrack = 0;
-        private bool _canGoPrevious;
-        private bool _canGoNext;
-        private bool _isRunning;
-        private ArtistItem _currentPlayingArtist;
+        private TrackCollection _trackCollection;
         private GoToMusicPlayerPage _goToMusicPlayerPage;
         #endregion
 
         #region private fields
-        private ObservableCollection<TrackItem> _tracksCollection;
         private ShuffleCommand _shuffle;
 
         #endregion
 
         #region public props
 
-
-        public ArtistItem CurrentPlayingArtist
-        {
-            get { return _currentPlayingArtist; }
-            set { SetProperty(ref _currentPlayingArtist, value); }
-        }
-
-        public bool CanGoPrevious
+        public TrackCollection TrackCollection
         {
             get
             {
-                return (CurrentTrack > 0);
+                _trackCollection = _trackCollection ?? new TrackCollection();
+                return _trackCollection;
             }
         }
 
-        public bool CanGoNext
-        {
-            get { return (TrackCollection.Count != 1) && (CurrentTrack < TrackCollection.Count - 1); }
-        }
-
-        public bool IsRunning
+        public ArtistItem CurrentArtist
         {
             get
             {
-                return _isRunning;
-            }
-            set
-            {
-                SetProperty(ref _isRunning, value);
+                ArtistItem artist = Locator.MusicLibraryVM.Artists.FirstOrDefault(x=>x.Id == CurrentTrack.ArtistId);
+                return artist;
             }
         }
 
-        public int CurrentTrack
-        {
-            get { return _currentTrack; }
-            set
-            {
-                SetProperty(ref _currentTrack, value);
-                OnPropertyChanged("TrackCollection");
-                OnPropertyChanged("CurrentTrack");
-                OnPropertyChanged("CurrentTrackItem");
-            }
-        }
-
-        public TrackItem CurrentTrackItem
+        public AlbumItem CurrentAlbum
         {
             get
             {
-                try
-                {
-                    if (TrackCollection != null && TrackCollection.Any())
-                        return TrackCollection[CurrentTrack];
-                    else return null;
-                }
-                catch (ArgumentOutOfRangeException exception)
-                {
-                    CurrentTrack = 0;
-                    return TrackCollection[CurrentTrack];
-                }
+                if (CurrentArtist == null) return null;
+                if(CurrentArtist.Albums == null || !CurrentArtist.Albums.Any()) return null;
+                AlbumItem album = CurrentArtist.Albums.FirstOrDefault(x => x.Id == CurrentTrack.AlbumId);
+                return album;
+            }
+        }
+
+        public TrackItem CurrentTrack
+        {
+            get
+            {
+                if (TrackCollection.CurrentTrack == -1
+                    || TrackCollection.CurrentTrack == TrackCollection.Playlist.Count)
+                    return null;
+                return TrackCollection.Playlist[TrackCollection.CurrentTrack];
             }
         }
 
@@ -128,19 +99,9 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 
         #endregion
 
-        #region public fields
-        public ObservableCollection<TrackItem> TrackCollection
-        {
-            get { return _tracksCollection; }
-            set { SetProperty(ref _tracksCollection, value); }
-        }
-        #endregion
-
-
         public MusicPlayerVM(IMediaService mediaService, VlcService mediaPlayerService)
             : base(mediaService, mediaPlayerService)
         {
-            _tracksCollection = new ObservableCollection<TrackItem>();
             _mediaService.MediaEnded += MediaService_MediaEnded;
             GoToMusicPlayerPage = new GoToMusicPlayerPage();
         }
@@ -148,11 +109,11 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 
         protected async void MediaService_MediaEnded(object sender, EventArgs e)
         {
-            if (TrackCollection.Count == 0 ||
-                TrackCollection[CurrentTrack] == TrackCollection.Last())
+            if (TrackCollection.Playlist.Count == 0 ||
+                !TrackCollection.CanGoNext)
             {
                 // Playlist is finished
-                App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => IsRunning = false);
+                App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => TrackCollection.IsRunning = false);
             }
             else
             {
@@ -175,21 +136,15 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             _mediaService.Stop();
         }
 
-        public void ResetCollection()
-        {
-            TrackCollection.Clear();
-            CurrentTrack = 0;
-        }
-
         public void AddTrack(TrackItem track)
         {
-            TrackCollection.Add(track);
+            TrackCollection.Playlist.Add(track);
         }
 
         public void AddTrack(List<TrackItem> tracks)
         {
             foreach (TrackItem track in tracks)
-                TrackCollection.Add(track);
+                TrackCollection.Playlist.Add(track);
         }
 
         public void AddTrack(ArtistItem artist)
@@ -198,18 +153,18 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             {
                 foreach (TrackItem trackItem in albumItem.Tracks)
                 {
-                    TrackCollection.Add(trackItem);
+                    TrackCollection.Playlist.Add(trackItem);
                 }
             }
         }
 
         public async Task PlayNext()
         {
-            if (CanGoNext)
+            if (TrackCollection.CanGoNext)
             {
                 App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                 {
-                    CurrentTrack++;
+                    TrackCollection.CurrentTrack++;
                     Play();
                 });
             }
@@ -221,9 +176,9 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 
         public async Task PlayPrevious()
         {
-            if (CanGoPrevious)
+            if (TrackCollection.CanGoPrevious)
             {
-                await DispatchHelper.InvokeAsync(() => CurrentTrack--);
+                await DispatchHelper.InvokeAsync(() => TrackCollection.CurrentTrack--);
                 await Play();
             }
             else
@@ -235,12 +190,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         public async Task Play(StorageFile fileFromExplorer = null)
         {
             Stop();
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.High, async () =>
-            {
-                IsRunning = true;
-                OnPropertyChanged("PlayingType");
-            });
-            var trackItem = TrackCollection[CurrentTrack];
+            var trackItem = CurrentTrack;
             Task.Run(async () =>
             {
                 StorageFile file;
@@ -262,7 +212,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             string artistName = trackItem.ArtistName ?? resourceLoader.GetString("UnknownArtist");
             string albumName = trackItem.AlbumName;
             string trackName = trackItem.Name ?? resourceLoader.GetString("UnknownTrack");
-            base._mediaService.SetMediaTransportControlsInfo(artistName, albumName, trackName, Locator.MusicPlayerVM.CurrentPlayingArtist.CurrentAlbumItem.Picture);
+            base._mediaService.SetMediaTransportControlsInfo(artistName, albumName, trackName, Locator.MusicPlayerVM.CurrentAlbum.Picture);
 
             var notificationOnNewSong = ApplicationSettingsHelper.ReadSettingsValue("NotificationOnNewSong");
             if (notificationOnNewSong != null && (bool)notificationOnNewSong)
@@ -270,9 +220,17 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                 var notificationOnNewSongForeground = ApplicationSettingsHelper.ReadSettingsValue("NotificationOnNewSongForeground");
                 if (base._mediaService.IsBackground || (notificationOnNewSongForeground != null && (bool)notificationOnNewSongForeground))
                 {
-                    ToastHelper.ToastImageAndText04(trackName, albumName, artistName, Locator.MusicPlayerVM.CurrentPlayingArtist.CurrentAlbumItem.Picture);
+                    ToastHelper.ToastImageAndText04(trackName, albumName, artistName, Locator.MusicPlayerVM.CurrentAlbum.Picture);
                 }
             }
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.High, async () =>
+            {
+                TrackCollection.IsRunning = true;
+                OnPropertyChanged("PlayingType");
+                OnPropertyChanged("CurrentTrack");
+                OnPropertyChanged("CurrentAlbum");
+                OnPropertyChanged("CurrentArtist");
+            });
         }
 
         public async void SetActiveMusicInfo(string token, TrackItem track)
@@ -289,8 +247,6 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             App.Dispatcher.RunAsync(CoreDispatcherPriority.High, async () =>
             {
                 ElapsedTime = TimeSpan.Zero;
-                OnPropertyChanged("CanGoPrevious");
-                OnPropertyChanged("CanGoNext");
                 await Task.Delay(500);
                 TimeTotal = TimeSpan.FromMilliseconds(_mediaService.GetLength());
                 OnPropertyChanged("TimeTotal");
@@ -300,9 +256,8 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         public override void CleanViewModel()
         {
             base.CleanViewModel();
-            TrackCollection.Clear();
-            IsRunning = false;
-            CurrentPlayingArtist = null;
+            TrackCollection.ResetCollection();
+            TrackCollection.IsRunning = false;
             GC.Collect();
         }
     }

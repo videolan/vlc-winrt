@@ -32,11 +32,10 @@ namespace VLC_WINRT_APP.Views.MainPages.MusicPanes
             }
             if (Locator.MusicPlayerVM.IsPlaying
                 && Locator.MusicPlayerVM.PlayingType == PlayingType.Music
-                && Locator.MusicPlayerVM.CurrentPlayingArtist != null)
+                && Locator.MusicPlayerVM.CurrentArtist != null)
             {
                 ArtistListView.SelectedItem =
-                    Locator.MusicLibraryVM.Artists.FirstOrDefault(
-                        x => x.Name == Locator.MusicPlayerVM.CurrentPlayingArtist.Name);
+                    Locator.MusicLibraryVM.Artists.FirstOrDefault(x=>x.Id == Locator.MusicPlayerVM.CurrentArtist.Id);
                 ArtistListView.ScrollIntoView(ArtistListView.SelectedItem);
             }
             if (ArtistListView.SelectedIndex == -1

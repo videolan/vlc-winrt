@@ -98,18 +98,20 @@
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
         </ListView>
-        <Grid Background="{StaticResource MainColor}"
+        <Grid 
               Grid.ColumnSpan="2"
               Grid.Row="6"
-              Height="1"
               VerticalAlignment="Top"
               Margin="42,0"
               DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}"
-              Visibility="{Binding IsRunning, Converter={StaticResource BooleanToVisibilityConverter}}" 
-              x:Name="Separator"/>
+              x:Name="Separator">
+            <Border Height="1"
+                    Background="{StaticResource MainColor}"
+                    Visibility="{Binding TrackCollection.IsRunning, Converter={StaticResource BooleanToVisibilityConverter}}" />
+        </Grid>
         <Grid Grid.Row="7"
               DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}"
-              Visibility="{Binding IsRunning, Converter={StaticResource BooleanToVisibilityConverter}}">
+              Visibility="{Binding TrackCollection.IsRunning, Converter={StaticResource BooleanToVisibilityConverter}}">
             <local:MiniPlayer VerticalAlignment="Bottom"
                               Margin="42,0,20,0"
                               x:Name="MiniPlayer"

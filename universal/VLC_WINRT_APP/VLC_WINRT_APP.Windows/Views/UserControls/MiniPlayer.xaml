@@ -7,11 +7,11 @@
              xmlns:converters="using:VLC_WINRT_APP.Converters"
              mc:Ignorable="d"
              DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}"
-             Visibility="{Binding IsRunning, Converter={StaticResource BooleanToVisibilityConverter}}">
+             Visibility="{Binding TrackCollection.IsRunning, Converter={StaticResource BooleanToVisibilityConverter}}">
     <StackPanel>
-        <TextBlock Text="{Binding CurrentPlayingArtist.Name}"
+        <TextBlock Text="{Binding CurrentArtist.Name}"
                    Style="{StaticResource SubheaderTextBlockStyle}" />
-        <TextBlock Text="{Binding CurrentTrackItem.Name}"
+        <TextBlock Text="{Binding CurrentTrack.Name}"
                    Style="{StaticResource SubheaderTextBlockStyle}"
                    TextWrapping="NoWrap"
                    TextTrimming="CharacterEllipsis"
@@ -21,10 +21,10 @@
                 <ColumnDefinition Width="130" />
                 <ColumnDefinition Width="170" />
             </Grid.ColumnDefinitions>
-            <Image Source="{Binding CurrentPlayingArtist.CurrentAlbumItem.Picture}"
+            <Image Source="{Binding CurrentAlbum.Picture}"
                    Width="130"
                    Stretch="UniformToFill" />
-            <TextBlock Text="{Binding CurrentPlayingArtist.CurrentAlbumItem.Name}"
+            <TextBlock Text="{Binding CurrentAlbum.Name}"
                        Style="{StaticResource TitleTextBlockStyle}"
                        Grid.Column="1"
                        Margin="12,0,0,0"
@@ -63,7 +63,7 @@
                     Grid.Column="0"
                     HorizontalAlignment="Left"
                     Command="{Binding PlayPreviousCommand}"
-                    IsEnabled="{Binding CanGoPrevious}">
+                    IsEnabled="{Binding TrackCollection.CanGoPrevious}">
                 <SymbolIcon Symbol="Previous" />
             </Button>
             <Button Style="{StaticResource TextBlockButtonStyle}"
@@ -84,7 +84,7 @@
                     Grid.Column="2"
                     HorizontalAlignment="Left"
                     Command="{Binding PlayNextCommand}"
-                    IsEnabled="{Binding CanGoNext}">
+                    IsEnabled="{Binding TrackCollection.CanGoNext}">
                 <SymbolIcon Symbol="Next" />
             </Button>
             <Button Style="{StaticResource TextBlockButtonStyle}"

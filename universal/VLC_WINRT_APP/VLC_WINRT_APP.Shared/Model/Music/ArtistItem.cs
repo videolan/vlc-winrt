@@ -18,7 +18,6 @@ namespace VLC_WINRT_APP.Model.Music
         private string _picture;
         private bool _isPictureLoaded;
         private ObservableCollection<AlbumItem> _albumItems;
-        private int _currentAlbumIndex = 0;
 
         // more informations
         private bool _isFavorite;
@@ -92,23 +91,6 @@ namespace VLC_WINRT_APP.Model.Music
                 return _albumItems; 
             }
             set { SetProperty(ref _albumItems, value); }
-        }
-
-        [Ignore]
-        public int CurrentAlbumIndex
-        {
-            get { return _currentAlbumIndex; }
-            set
-            {
-                SetProperty(ref _currentAlbumIndex, value);
-                OnPropertyChanged("CurrentAlbumItem");
-            }
-        }
-
-        [Ignore]
-        public AlbumItem CurrentAlbumItem
-        {
-            get { return _albumItems[_currentAlbumIndex]; }
         }
 
         [Ignore]

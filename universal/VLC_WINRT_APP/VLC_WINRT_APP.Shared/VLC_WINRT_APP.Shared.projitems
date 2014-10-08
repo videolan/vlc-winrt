@@ -169,6 +169,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)SQLiteAsync.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Locator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainVM.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MusicVM\TrackCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\NetworkVM\DLNAVM.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Others\BackerCountryViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Others\SpecialThanksViewModel.cs" />
