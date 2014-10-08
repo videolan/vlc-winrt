@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.UI.Core;
+using VLC_WINRT.Common;
 using VLC_WINRT_APP.Helpers.MusicLibrary;
 using VLC_WINRT_APP.Model.Music;
 using VLC_WINRT_APP.ViewModels;
@@ -75,7 +76,7 @@ namespace VLC_WINRT_APP.Helpers.MusicPlayer
         /// <returns></returns>
         public static async Task AddToQueue(this AlbumItem album, bool resetQueue = true)
         {
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+            await DispatchHelper.InvokeAsync(() =>
             {
                 if (resetQueue)
                 {

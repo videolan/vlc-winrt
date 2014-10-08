@@ -21,6 +21,9 @@
                 <ColumnDefinition Width="130" />
                 <ColumnDefinition Width="170" />
             </Grid.ColumnDefinitions>
+            <Image Width="130"
+                   Stretch="UniformToFill"
+                   Source="ms-appx:///Assets/NoCover.jpg" />
             <Image Source="{Binding CurrentAlbum.Picture}"
                    Width="130"
                    Stretch="UniformToFill" />

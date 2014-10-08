@@ -191,6 +191,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         public async Task Play(StorageFile fileFromExplorer = null)
         {
             Stop();
+            if (CurrentTrack == null) return;
             var trackItem = CurrentTrack;
             Task.Run(async () =>
             {
