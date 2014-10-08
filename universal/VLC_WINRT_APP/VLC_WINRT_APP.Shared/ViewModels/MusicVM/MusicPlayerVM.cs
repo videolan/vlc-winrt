@@ -233,6 +233,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                 OnPropertyChanged("CurrentTrack");
                 OnPropertyChanged("CurrentAlbum");
                 OnPropertyChanged("CurrentArtist");
+                OnPropertyChanged("TrackCollection");
             });
         }
 
