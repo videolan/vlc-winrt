@@ -70,7 +70,10 @@
                 </TransitionCollection>
             </Frame.ContentTransitions>
         </Frame>
-
+        <userControls:LoadingMusicLibrary Grid.Column="1"
+                                          Grid.Row="1"
+                                          VerticalAlignment="Top"
+                                          HorizontalAlignment="Right"/>
         <userControls:HorizontalMiniPlayer Grid.Row="2"
                                           Grid.ColumnSpan="2" />
     </SwapChainPanel>

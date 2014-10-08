@@ -21,7 +21,7 @@
             <RowDefinition Height="24" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="24" />
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="*" />
             <RowDefinition Height="12"
                            x:Name="SeparatorRowDefinition" />
             <RowDefinition Height="Auto"
@@ -35,7 +35,7 @@
                     Margin="40,0,0,0"
                     x:Name="HeaderGrid"
                     Grid.Row="1">
-            <local:VLCLogoWithGradient/> 
+            <local:VLCLogoWithGradient />
             <TextBlock x:Name="TitleTextBlock"
                        Style="{StaticResource TitleTextBlockStyle}"
                        Margin="6,-2,0,0"
@@ -98,8 +98,7 @@
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
         </ListView>
-        <Grid 
-              Grid.ColumnSpan="2"
+        <Grid Grid.ColumnSpan="2"
               Grid.Row="6"
               VerticalAlignment="Top"
               Margin="42,0"
@@ -117,7 +116,5 @@
                               x:Name="MiniPlayer"
                               Height="315" />
         </Grid>
-        <local:LoadingMusicLibrary Grid.Row="7"
-                                   VerticalAlignment="Bottom" />
     </Grid>
 </UserControl>

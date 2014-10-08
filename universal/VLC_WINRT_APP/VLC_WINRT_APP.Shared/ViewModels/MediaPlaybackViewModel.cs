@@ -243,8 +243,13 @@ namespace VLC_WINRT_APP.ViewModels
 #endif
         }
 
-        private void UpdatePosition()
+        private async void UpdatePosition()
         {
+            if (TimeTotal == null || TimeTotal == TimeSpan.Zero)
+            {
+                double timeInMilliseconds = await _vlcPlayerService.GetLength();
+                TimeTotal = TimeSpan.FromMilliseconds(timeInMilliseconds);
+            }
             ElapsedTime = TimeSpan.FromSeconds(double.IsNaN(PositionInSeconds) ? 0 : PositionInSeconds);
             OnPropertyChanged("PositionInSeconds");
             OnPropertyChanged("Position");

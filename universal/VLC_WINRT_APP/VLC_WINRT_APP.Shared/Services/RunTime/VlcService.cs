@@ -151,7 +151,6 @@ namespace VLC_WINRT_APP.Services.RunTime
 
         public void Open(string mrl)
         {
-
             DoVLCSafeAction(() => { _vlcPlayer.Open(mrl); });
         }
 

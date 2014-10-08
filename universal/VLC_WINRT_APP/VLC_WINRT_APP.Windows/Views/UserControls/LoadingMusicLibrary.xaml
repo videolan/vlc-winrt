@@ -9,12 +9,11 @@
              d:DesignWidth="400"
              DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
 
-    <StackPanel Margin="42,0,20,24"
-                Visibility="{Binding IsLoaded, Converter={StaticResource NegatedBooleanToVisibilityConverter}}">
-        <ProgressBar IsIndeterminate="True"
-                     IsEnabled="True" />
+    <StackPanel Visibility="{Binding IsLoaded, Converter={StaticResource NegatedBooleanToVisibilityConverter}}"
+                Orientation="Horizontal"
+                Margin="12">
         <TextBlock Text="{Binding CurrentIndexingStatus}"
-                   Style="{StaticResource TitleTextBlockStyle}" />
+                   Style="{StaticResource TitleTextBlockStyle}"
+                   VerticalAlignment="Center" />
     </StackPanel>
-
 </UserControl>

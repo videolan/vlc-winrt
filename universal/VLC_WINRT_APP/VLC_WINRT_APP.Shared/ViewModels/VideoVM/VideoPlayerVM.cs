@@ -15,6 +15,7 @@ using Autofac;
 using VLC_WINRT_APP.Commands.Video;
 using VLC_WINRT_APP.DataRepository;
 using VLC_WINRT_APP.Model;
+using VLC_WINRT_APP.Model.Video;
 using VLC_WINRT_APP.Services.Interface;
 using VLC_WINRT_APP.Services.RunTime;
 using VLC_WINRT_APP.Views.MainPages;
@@ -212,24 +213,21 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             _mediaService.SetMediaFile(_mrl, isAudioMedia: false);
             _mediaService.Play();
             await Task.Delay(1000);
-            if (_timeTotal == TimeSpan.Zero)
-            {
-                double timeInMilliseconds = await _vlcPlayerService.GetLength();
-                TimeTotal = TimeSpan.FromMilliseconds(timeInMilliseconds);
-            }
+            double timeInMilliseconds = await _vlcPlayerService.GetLength();
+            TimeTotal = TimeSpan.FromMilliseconds(timeInMilliseconds);
             OnPropertyChanged("TimeTotal");
 
-            Model.Video.VideoItem media = await _lastVideosRepository.LoadViaToken(_fileToken);
+            PositionInSeconds = 0;
+            VideoItem media = await _lastVideosRepository.LoadViaToken(_fileToken);
             if (media == null)
             {
-                PositionInSeconds = 0;
                 _lastVideosRepository.Add(CurrentVideo);
             }
             else
             {
                 PositionInSeconds = media.TimeWatched.TotalSeconds;
             }
-            await Task.Delay(500);
+            OnPropertyChanged("PositionInSeconds");
             SubtitlesCount = await _vlcPlayerService.GetSubtitleCount();
             AudioTracksCount = await _vlcPlayerService.GetAudioTrackCount();
 

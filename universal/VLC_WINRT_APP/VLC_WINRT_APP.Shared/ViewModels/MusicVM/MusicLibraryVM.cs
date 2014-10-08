@@ -66,7 +66,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         private bool _isBusy = false;
         private bool _isMusicLibraryEmpty = true;
         private bool _isAlbumPageShown = false;
-        private string _currentIndexingStatus = "Loading music";
+        private string _currentIndexingStatus = "";
         private bool _isMainPageMusicArtistAlbumsSemanticZoomViewedIn;
         #endregion
         #region public fields
@@ -235,6 +235,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             _artistAlbumsSemanticZoomInvertZoomCommand = new ArtistAlbumsSemanticZoomInvertZoomCommand();
             if (InitializeLibrary)
             {
+                CurrentIndexingStatus = "Loading music";
                 LoadingState = LoadingState.Loading;
                 Task.Run(() => GetMusicFromLibrary());
             }
@@ -277,6 +278,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 
             DispatchHelper.InvokeAsync(() =>
             {
+                CurrentIndexingStatus = "Searching for music";
                 IsBusy = true;
                 IsLoaded = false;
                 OnPropertyChanged("IsBusy");
