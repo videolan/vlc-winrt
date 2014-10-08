@@ -54,6 +54,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         {
             get
             {
+                if (CurrentTrack == null) return null;
                 ArtistItem artist = Locator.MusicLibraryVM.Artists.FirstOrDefault(x=>x.Id == CurrentTrack.ArtistId);
                 return artist;
             }
@@ -223,6 +224,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                     ToastHelper.ToastImageAndText04(trackName, albumName, artistName, Locator.MusicPlayerVM.CurrentAlbum.Picture);
                 }
             }
+            await Task.Delay(250);
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.High, async () =>
             {
                 TrackCollection.IsRunning = true;
