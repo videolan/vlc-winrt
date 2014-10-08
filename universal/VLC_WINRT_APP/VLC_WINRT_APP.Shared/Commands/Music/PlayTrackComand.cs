@@ -13,6 +13,7 @@ using Windows.Globalization.DateTimeFormatting;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using VLC_WINRT.Common;
+using VLC_WINRT_APP.Helpers.MusicLibrary;
 using VLC_WINRT_APP.Helpers.MusicPlayer;
 using VLC_WINRT_APP.Model.Music;
 using VLC_WINRT_APP.ViewModels;
@@ -48,7 +49,11 @@ namespace VLC_WINRT_APP.Commands.Music
                 // We need to get the index of the clicked track, rather than use the tracknumber
                 // This way, if the user has duplicate tracks, or does not have every track in the playlist,
                 // it will still function.
-                await Task.Run(() => album.PlayAlbum(album.Tracks.IndexOf(track)));
+                int index = album.Tracks.IndexOf(track);
+                if (index == -1)
+                {
+                }
+                else await Task.Run(() => album.PlayAlbum(index));
             }
             else
             {
