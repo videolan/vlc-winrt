@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Windows.ApplicationModel.Resources;
 using Microsoft.VisualBasic.CompilerServices;
 
 namespace VLC_WINRT_APP.Helpers
@@ -83,35 +84,76 @@ namespace VLC_WINRT_APP.Helpers
             if (string.IsNullOrEmpty(title)) return null;
             title = title.ToLower();
             bool successfulSearch = false;
-            Dictionary<string, string> dictionary = new Dictionary<string, string>();
+            var dictionary = new Dictionary<string, string>();
             int stringLength = title.Length;
 
             if (stringLength < 6) return null;
+            var resourceLoader = new ResourceLoader();
 
             // Search for s01e10.
             for (int i = 0; i < stringLength - 5; i++)
             {
-                if (title.ElementAt(i) == 's' &&
-                    isDigit(title.ElementAt(i + 1)) &&
-                    isDigit(title.ElementAt(i + 2)) &&
-                    title.ElementAt(i + 3) == 'e' &&
-                    isDigit(title.ElementAt(i + 4)) &&
-                    isDigit(title.ElementAt(i + 5)))
+                if (title.ElementAt(i) != 's' || !isDigit(title.ElementAt(i + 1)) || !isDigit(title.ElementAt(i + 2)) ||
+                    title.ElementAt(i + 3) != 'e' || !isDigit(title.ElementAt(i + 4)) ||
+                    !isDigit(title.ElementAt(i + 5)))
                 {
-                    string season = title.ElementAt(i + 1).ToString() + title.ElementAt(i + 2).ToString();
-                    string episode;
-                    if (isDigit(title.ElementAt(i + 6)))
-                        episode = title.ElementAt(i + 4).ToString() + title.ElementAt(i + 5).ToString() + title.ElementAt(i + 6).ToString();
-                    else
-                        episode = title.ElementAt(i + 4).ToString() + title.ElementAt(i + 5).ToString();
+                    // Inverted "if" statement to reduce nesting.
+                    continue;
+                }
+                string season = title.ElementAt(i + 1).ToString() + title.ElementAt(i + 2).ToString();
+                string episode;
+                if (isDigit(title.ElementAt(i + 6)))
+                    episode = title.ElementAt(i + 4).ToString() + title.ElementAt(i + 5).ToString() + title.ElementAt(i + 6).ToString();
+                else
+                    episode = title.ElementAt(i + 4).ToString() + title.ElementAt(i + 5).ToString();
 
-                    string tvShowName = i > 0 ? title.Substring(0, i) : "Untitled show";
+                string tvShowName = i > 0 ? title.Substring(0, i) : resourceLoader.GetString("UntitledShow");
+                if (tvShowName != null)
+                {
+                    tvShowName = CapitalizedString(Decrapify(tvShowName));
+                }
+
+                string episodeName = stringLength > i + 4 ? title.Substring(0, i + 6) : null;
+                if (episodeName != null)
+                {
+                    episodeName = Decrapify(episodeName);
+                }
+
+                dictionary["season"] = season;
+                dictionary["episode"] = episode;
+                if (tvShowName != null && !string.IsNullOrEmpty(tvShowName))
+                {
+                    dictionary["tvShowName"] = tvShowName;
+                }
+                if (episodeName != null && !string.IsNullOrEmpty(episodeName))
+                {
+                    dictionary["tvEpisodeName"] = CapitalizedString(episodeName);
+                }
+                successfulSearch = true;
+            }
+
+            // search for 0x00
+            if (!successfulSearch)
+            {
+                for (int i = 0; i < stringLength - 4; i++)
+                {
+                    if (!isDigit(title.ElementAt(i)) || title.ElementAt(i + 1) != 'x' ||
+                        !isDigit(title.ElementAt(i + 2)) || !isDigit(title.ElementAt(i + 3)))
+                    {
+                        // Inverted "if" statement to reduce nesting.
+                        continue;
+                    }
+
+                    string season = title.ElementAt(i).ToString();
+                    string episode = title.ElementAt(i + 2).ToString() + title.ElementAt(i + 3).ToString();
+
+                    string tvShowName = i > 0 ? title.Substring(0, i) : resourceLoader.GetString("UntitledShow"); ;
                     if (tvShowName != null)
                     {
                         tvShowName = CapitalizedString(Decrapify(tvShowName));
                     }
 
-                    string episodeName = stringLength > i + 4 ? title.Substring(0, i + 6) : null;
+                    string episodeName = stringLength > i + 4 ? title.Substring(0, i + 4) : null;
                     if (episodeName != null)
                     {
                         episodeName = Decrapify(episodeName);
@@ -121,10 +163,10 @@ namespace VLC_WINRT_APP.Helpers
                     {
                         dictionary["season"] = season;
                     }
-                    if (episode != null)
-                    {
-                        dictionary["episode"] = episode;
-                    }
+
+                    // 'episode' will never be null according to conditions above, so checking for it is not needed.
+                    dictionary["episode"] = episode;
+
                     if (tvShowName != null && !string.IsNullOrEmpty(tvShowName))
                     {
                         dictionary["tvShowName"] = tvShowName;
@@ -136,55 +178,7 @@ namespace VLC_WINRT_APP.Helpers
                     successfulSearch = true;
                 }
             }
-
-            // search for 0x00
-            if (!successfulSearch)
-            {
-                for (int i = 0; i < stringLength - 4; i++)
-                {
-                    if (isDigit(title.ElementAt(i)) &&
-                        title.ElementAt(i + 1) == 'x' &&
-                        isDigit(title.ElementAt(i + 2)) &&
-                        isDigit(title.ElementAt(i + 3)))
-                    {
-                        string season = title.ElementAt(i).ToString();
-                        string episode = title.ElementAt(i + 2).ToString() + title.ElementAt(i + 3).ToString();
-
-                        string tvShowName = i > 0 ? title.Substring(0, i) : "Untitled show";
-                        if (tvShowName != null)
-                        {
-                            tvShowName = CapitalizedString(Decrapify(tvShowName));
-                        }
-
-                        string episodeName = stringLength > i + 4 ? title.Substring(0, i + 4) : null;
-                        if (episodeName != null)
-                        {
-                            episodeName = Decrapify(episodeName);
-                        }
-
-                        if (season != null)
-                        {
-                            dictionary["season"] = season;
-                        }
-                        if (episode != null)
-                        {
-                            dictionary["episode"] = episode;
-                        }
-                        if (tvShowName != null && !string.IsNullOrEmpty(tvShowName))
-                        {
-                            dictionary["tvShowName"] = tvShowName;
-                        }
-                        if (episodeName != null && !string.IsNullOrEmpty(episodeName))
-                        {
-                            dictionary["tvEpisodeName"] = CapitalizedString(episodeName);
-                        }
-                        successfulSearch = true;
-                    }
-                }
-            }
-            if (successfulSearch)
-                return dictionary;
-            return null;
+            return successfulSearch ? dictionary : null;
         }
 
         static bool isDigit(char c)
@@ -195,12 +189,8 @@ namespace VLC_WINRT_APP.Helpers
         private static string CapitalizedString(string input)
         {
             string[] arr = input.Split(' ');
-            string result = string.Empty;
-            foreach (string s in arr)
-            {
-                if(s.Length > 1)
-                    result = result + (s.First().ToString().ToUpper() + s.Substring(1) + " ");
-            }
+            // Converted from foreach to LINQ
+            string result = arr.Where(s => s.Length > 1).Aggregate(string.Empty, (current, s) => current + (s.First().ToString().ToUpper() + s.Substring(1) + " "));
             return result.Trim();
         }
 

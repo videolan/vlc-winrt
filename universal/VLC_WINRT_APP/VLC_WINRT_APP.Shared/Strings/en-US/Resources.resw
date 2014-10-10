@@ -435,4 +435,7 @@
   <data name="Subtitles.Text" xml:space="preserve">
     <value>Subtitles</value>
   </data>
+  <data name="UntitledShow" xml:space="preserve">
+    <value>Untitled Show</value>
+  </data>
 </root>

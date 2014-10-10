@@ -136,7 +136,7 @@
     <value>アーティスト</value>
   </data>
   <data name="AudioHubHeader.Header" xml:space="preserve">
-    <value>音楽</value>
+    <value>ミュージック</value>
   </data>
   <data name="Biography.Header" xml:space="preserve">
     <value>バイオ</value>
@@ -232,7 +232,7 @@
     <value>このアーティストにはまだ解説がありません。</value>
   </data>
   <data name="NothingToSeeHere.Text" xml:space="preserve">
-    <value>何もないなぁ。</value>
+    <value>(･ω･)＞何もないなぁ。</value>
   </data>
   <data name="OpenFile.Text" xml:space="preserve">
     <value>Open a file</value>
@@ -428,5 +428,8 @@
   </data>
   <data name="Subtitles.Text" xml:space="preserve">
     <value>サブタイトル</value>
+  </data>
+  <data name="UntitledShow" xml:space="preserve">
+    <value>不明なテレビ番組</value>
   </data>
 </root>
