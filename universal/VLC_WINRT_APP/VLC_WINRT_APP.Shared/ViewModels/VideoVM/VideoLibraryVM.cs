@@ -263,7 +263,9 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             IReadOnlyList<StorageFile> files = null;
             try
             {
-                files = await folder.GetFilesAsync();
+                // By giving a CommonFileQuery, we can search folders AND sub-folders.
+                // If we don't give it, it only gets the top level files.
+                files = await folder.GetFilesAsync(query);
             }
             catch (Exception ex)
             {
@@ -276,17 +278,10 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
                 StorageFileQueryResult fileQuery = folder.CreateFileQuery(CommonFileQuery.OrderByName);
                 files = await fileQuery.GetFilesAsync();
             }
-            List<StorageFile> videoFiles = new List<StorageFile>(files);
-
+            var videoFiles = new List<StorageFile>(files);
+            
             // Verify that the file format is a video
-            foreach (StorageFile storageFile in videoFiles)
-            {
-                if (!VLCFileExtensions.VideoExtensions.Contains(storageFile.FileType.ToLower()))
-                {
-                    videoFiles.Remove(storageFile);
-                }
-            }
-            return videoFiles;
+            return videoFiles.Where(storageFile => VLCFileExtensions.VideoExtensions.Contains(storageFile.FileType.ToLower())).ToList();
         }
 
         public void ExecuteSemanticZoom(SemanticZoom sZ, CollectionViewSource cvs)
