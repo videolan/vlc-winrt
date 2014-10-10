@@ -146,12 +146,22 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
         public static async Task LoadFavoriteRandomAlbums()
         {
             try
-            {   
+            {
+                if (Locator.MusicLibraryVM.RandomAlbums != null && Locator.MusicLibraryVM.RandomAlbums.Any()) return;
                 ObservableCollection<AlbumItem> favAlbums = await MusicLibraryVM._albumDataRepository.LoadAlbums(x => x.Favorite);
                 if (favAlbums != null && favAlbums.Any())
                 {
                     Locator.MusicLibraryVM.FavoriteAlbums = favAlbums;
                     Locator.MusicLibraryVM.RandomAlbums = new ObservableCollection<AlbumItem>(favAlbums.Take(3));
+                }
+                ObservableCollection<AlbumItem> nonfavAlbums = await MusicLibraryVM._albumDataRepository.LoadAlbums(x => x.Favorite==false);
+                if (nonfavAlbums != null && nonfavAlbums.Any())
+                {
+                    if(Locator.MusicLibraryVM.RandomAlbums.Count > 3) return;
+                    for(int i= 0; i < 3;i++)
+                    {
+                        Locator.MusicLibraryVM.RandomAlbums.Add(nonfavAlbums[i]);
+                    }
                 }
             }
             catch (Exception)
