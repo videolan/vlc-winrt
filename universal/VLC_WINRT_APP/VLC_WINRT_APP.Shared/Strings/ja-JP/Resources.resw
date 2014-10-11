@@ -429,6 +429,9 @@
   <data name="Subtitles.Text" xml:space="preserve">
     <value>サブタイトル</value>
   </data>
+  <data name="Shows" xml:space="preserve">
+    <value>テレビ番組</value>
+  </data>
   <data name="UntitledShow" xml:space="preserve">
     <value>不明なテレビ番組</value>
   </data>

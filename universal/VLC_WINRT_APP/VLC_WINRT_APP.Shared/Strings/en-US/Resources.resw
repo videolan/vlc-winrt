@@ -438,4 +438,7 @@
   <data name="UntitledShow" xml:space="preserve">
     <value>Untitled Show</value>
   </data>
+  <data name="Shows" xml:space="preserve">
+    <value>shows</value>
+  </data>
 </root>

@@ -169,6 +169,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
 
         public async Task GetVideos()
         {
+            var resourceLoader = new ResourceLoader();
 #if WINDOWS_APP
             StorageLibrary videoLibrary = await StorageLibrary.GetLibraryAsync(KnownLibraryId.Videos);
             foreach (StorageFolder storageFolder in videoLibrary.Folders)
@@ -203,7 +204,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
                             if (Panels.Count == 1)
                             {
                                 App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                                    Panels.Add(new Panel("shows", 1, 0.4, null)));
+                                    Panels.Add(new Panel(resourceLoader.GetString("Shows"), 1, 0.4, null)));
                             }
                             TvShow show = Shows.FirstOrDefault(x => x.ShowTitle == showInfoDictionary["tvShowName"]);
                             if (show == null)
