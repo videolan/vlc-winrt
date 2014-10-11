@@ -220,7 +220,10 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             VideoItem media = await _lastVideosRepository.LoadViaToken(_fileToken);
             if (media == null)
             {
-                _lastVideosRepository.Add(CurrentVideo);
+                if (CurrentVideo.TimeWatched > TimeSpan.FromMinutes(1))
+                {
+                    await _lastVideosRepository.Add(CurrentVideo);
+                }
             }
             else
             {
@@ -262,10 +265,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             if (_subtitlesTracks.Count > 1)
                 CurrentSubtitle = _subtitlesTracks[0];
             _vlcPlayerService.MediaEnded += VlcPlayerServiceOnMediaEnded;
-            if (CurrentVideo != null)
-                base._mediaService.SetMediaTransportControlsInfo(CurrentVideo.Title);
-            else
-                base._mediaService.SetMediaTransportControlsInfo("Video");
+            _mediaService.SetMediaTransportControlsInfo(CurrentVideo != null ? CurrentVideo.Title : "Video");
         }
 
         private void VlcPlayerServiceOnMediaEnded(object sender, Player player)

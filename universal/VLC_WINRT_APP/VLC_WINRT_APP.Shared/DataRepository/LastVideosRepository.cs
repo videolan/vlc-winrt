@@ -60,9 +60,6 @@ namespace VLC_WINRT_APP.DataRepository
 
         public Task Add(VideoItem video)
         {
-            // If TimeWatched is zero, no need to add it to the history
-            if (video.TimeWatched == null || video.TimeWatched < TimeSpan.FromMinutes(1))
-                return null;
             var connection = new SQLiteAsyncConnection(_dbPath);
             return connection.InsertAsync(video);
         }
