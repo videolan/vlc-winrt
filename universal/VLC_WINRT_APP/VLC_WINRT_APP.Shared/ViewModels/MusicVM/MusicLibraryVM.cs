@@ -44,7 +44,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         private ObservableCollection<TrackItem> _trackses = new ObservableCollection<TrackItem>();
         private ObservableCollection<AlbumItem> _favoriteAlbums = new ObservableCollection<AlbumItem>();
         private ObservableCollection<AlbumItem> _randomAlbums = new ObservableCollection<AlbumItem>();
-        private ObservableCollection<AlbumItem> _albums = new ObservableCollection<AlbumItem>(); 
+        private ObservableCollection<AlbumItem> _albums = new ObservableCollection<AlbumItem>();
         #endregion
         #region private props
         private SidebarState _sidebarState;
@@ -55,7 +55,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         private AlbumClickedCommand _albumClickedCommand;
         private ArtistClickedCommand _artistClickedCommand;
         private TrackClickedCommand _trackClickedCommand;
-        private ArtistItem _currentArtist;
+        private AlbumItem _currentAlbum;
         private bool _isLoaded = false;
         private bool _isBusy = false;
         private bool _isMusicLibraryEmpty = true;
@@ -204,9 +204,19 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 
         public ArtistItem CurrentArtist
         {
-            get { return _currentArtist; }
-            set { SetProperty(ref _currentArtist, value); }
+            get { return Artists.FirstOrDefault(x=>x.Id == CurrentAlbum.ArtistId); }
         }
+
+        public AlbumItem CurrentAlbum
+        {
+            get { return _currentAlbum; }
+            set
+            {
+                SetProperty(ref _currentAlbum, value); 
+                OnPropertyChanged("CurrentArtist");
+            }
+        }
+
         #endregion
         #region XBOX Music Stuff
         public MusicHelper XboxMusicHelper = new MusicHelper();
@@ -272,7 +282,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 #if WINDOWS_PHONE_APP
             App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
             {
-                Albums = await _albumDataRepository.LoadAlbums(x=>x.ArtistId != 0);
+                Albums = await _albumDataRepository.LoadAlbums(x => x.ArtistId != 0);
             });
 #endif
         }

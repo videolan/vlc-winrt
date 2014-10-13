@@ -9,7 +9,7 @@
       DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}"
       Background="White">
 
-    <Grid DataContext="{Binding CurrentArtist}"
+    <Grid
           Margin="12,0,0,0"
           RequestedTheme="Dark">
         <Grid.RowDefinitions>
@@ -22,11 +22,11 @@
         <Grid Background="Black"
               Grid.RowSpan="3"
               Margin="-12,0,0,0">
-            <Image Source="{Binding Picture}"
+            <Image Source="{Binding CurrentArtist.Picture}"
                    Stretch="UniformToFill"
                    Opacity="0.5" />
         </Grid>
-        <TextBlock Text="{Binding CurrentAlbumItem.Name}"
+        <TextBlock Text="{Binding CurrentAlbum.Name}"
                    Style="{StaticResource TitleTextBlockStyle}"
                    Typography.Capitals="SmallCaps"
                    FontSize="23"
@@ -38,7 +38,7 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Grid>
-                <Image Source="{Binding CurrentAlbumItem.Picture}"
+                <Image Source="{Binding CurrentAlbum.Picture}"
                        Stretch="UniformToFill"
                        Width="200"
                        Height="200"
@@ -48,36 +48,36 @@
                   Height="200"
                   VerticalAlignment="Top">
                 <StackPanel>
-                    <TextBlock Text="{Binding Name}"
+                    <TextBlock Text="{Binding CurrentArtist.Name}"
                                Style="{StaticResource MessageDialogTitleStyle}" />
-                    <TextBlock Text="{Binding CurrentAlbumItem.Year}"
+                    <TextBlock Text="{Binding CurrentAlbum.Year}"
                                Style="{StaticResource TitleTextBlockStyle}" />
                     <TextBlock Style="{StaticResource TitleTextBlockStyle}">
-                    <Run Text="{Binding CurrentAlbumItem.Tracks.Count}" />
+                    <Run Text="{Binding CurrentAlbum.Tracks.Count}" />
                     <Run Text="tracks" />
                     </TextBlock>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal"
                             Margin="-21,0,0,0"
                             VerticalAlignment="Bottom">
-                    <AppBarToggleButton IsChecked="{Binding CurrentAlbumItem.Favorite}"
+                    <AppBarToggleButton IsChecked="{Binding CurrentAlbum.Favorite}"
                                         Label="Like"
-                                        Command="{Binding CurrentAlbumItem.FavoriteAlbum}"
-                                        CommandParameter="{Binding CurrentAlbumItem}">
+                                        Command="{Binding CurrentAlbum.FavoriteAlbum}"
+                                        CommandParameter="{Binding CurrentAlbum}">
                         <AppBarToggleButton.Icon>
                             <FontIcon Glyph="&#xE0A5;" />
                         </AppBarToggleButton.Icon>
                     </AppBarToggleButton>
                     <AppBarButton Icon="Play"
                                   Label="Play all"
-                                  Command="{Binding CurrentAlbumItem.PlayAlbum}"
-                                  CommandParameter="{Binding CurrentAlbumItem}" />
+                                  Command="{Binding CurrentAlbum.PlayAlbum}"
+                                  CommandParameter="{Binding CurrentAlbum}" />
                 </StackPanel>
             </Grid>
         </Grid>
         <Grid Grid.Row="3"
               RequestedTheme="Light">
-            <ListView ItemsSource="{Binding CurrentAlbumItem.Tracks}"
+            <ListView ItemsSource="{Binding CurrentAlbum.Tracks}"
                       IsItemClickEnabled="True"
                       SelectionMode="None"
                       ItemTemplate="{StaticResource LightTrackTemplate}">

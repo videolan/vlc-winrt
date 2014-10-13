@@ -49,7 +49,14 @@
                         <GridView ItemsSource="{Binding Albums}"
                                   ItemTemplate="{StaticResource WPSemanticZoomInViewAlbumTemplateLittleSize}"
                                   Margin="0,0,-20,0"
+                                  IsItemClickEnabled="True"
                                   Background="Bisque">
+                            <triggers:Interactions.Triggers>
+                                <triggers:EventTrigger EventName="ItemClick">
+                                    <triggers:InvokeCommandAction Command="{Binding AlbumClickedCommand}"
+                                                                  PassEventArgsToCommand="True" />
+                                </triggers:EventTrigger>
+                            </triggers:Interactions.Triggers>
                             <GridView.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <ItemsWrapGrid ItemHeight="194"

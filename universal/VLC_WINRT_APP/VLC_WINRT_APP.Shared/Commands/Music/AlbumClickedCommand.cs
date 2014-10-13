@@ -2,10 +2,8 @@
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using VLC_WINRT.Common;
-using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.Model.Music;
 using VLC_WINRT_APP.ViewModels;
-using VLC_WINRT_APP.ViewModels.MusicVM;
 using VLC_WINRT_APP.Views.MusicPages;
 
 namespace VLC_WINRT_APP.Commands.Music
@@ -15,19 +13,18 @@ namespace VLC_WINRT_APP.Commands.Music
         public override async void Execute(object parameter)
         {
             App.Transition.Edge = EdgeTransitionLocation.Right;
-            App.ApplicationFrame.Navigate(typeof(MusicPlayerPage));
-            Locator.MusicLibraryVM.IsAlbumPageShown = false;
+#if WINDOWS_PHONE_APP
+            App.ApplicationFrame.Navigate(typeof (AlbumPage));
+            Locator.MusicLibraryVM.IsAlbumPageShown = true;
             AlbumItem album = parameter as AlbumItem;
-            
+
             if (album == null)
             {
                 ItemClickEventArgs args = parameter as ItemClickEventArgs;
                 album = args.ClickedItem as AlbumItem;
             }
-
-            Locator.MusicLibraryVM.CurrentArtist =
-                Locator.MusicLibraryVM.Artists.FirstOrDefault(x => x.Name == album.Artist);
-            //PlayMusickHelper.AddToQueue(album);
+            Locator.MusicLibraryVM.CurrentAlbum = album;
+#endif
         }
     }
 }
