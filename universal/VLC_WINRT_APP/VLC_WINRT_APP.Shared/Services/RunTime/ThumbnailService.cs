@@ -16,10 +16,9 @@ using VLC_WINRT_APP.Services.Interface;
 using Windows.Storage;
 using Windows.Storage.FileProperties;
 
-//#if WINDOWS_APP
-
+#if WINDOWS_APP
 using libVLCX;
-//#endif
+#endif
 namespace VLC_WINRT_APP.Services.RunTime
 {
     public class ThumbnailService : IThumbnailService
@@ -43,14 +42,14 @@ namespace VLC_WINRT_APP.Services.RunTime
 
         public async Task<WriteableBitmap> GetScreenshot(StorageFile file)
         {
-//#if WINDOWS_APP
+#if WINDOWS_APP
             Thumbnailer thumbnailer = new Thumbnailer();
             string token = StorageApplicationPermissions.FutureAccessList.Add(file);
             var screenshot = await thumbnailer.TakeScreenshot("winrt://" + token, 342, 234);
             return screenshot;
-//#else
-//            return null;
-//#endif
+#else
+            return null;
+#endif
 
         }
     }

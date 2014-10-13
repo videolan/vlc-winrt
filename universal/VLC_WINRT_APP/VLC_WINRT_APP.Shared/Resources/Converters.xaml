@@ -24,4 +24,5 @@
     <converters:CurrentTrackForegroundConverter x:Key="CurrentTrackForegroundConverter"/>
     <converters:VLCSearchBoxConverter x:Key="VLCSearchBoxConverter" />
     <converters:IsVisibleDependingOnSidebarState x:Key="IsVisibleDependingOnSidebarState" />
+    <converters:OpacityDecreaserConverter  x:Key="OpacityDecreaserConverter" />
 </ResourceDictionary>

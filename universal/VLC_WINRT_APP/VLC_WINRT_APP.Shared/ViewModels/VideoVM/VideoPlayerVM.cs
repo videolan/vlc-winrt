@@ -19,9 +19,9 @@ using VLC_WINRT_APP.Model.Video;
 using VLC_WINRT_APP.Services.Interface;
 using VLC_WINRT_APP.Services.RunTime;
 using VLC_WINRT_APP.Views.MainPages;
-//#if WINDOWS_APP
+#if WINDOWS_APP
 using libVLCX;
-//#endif
+#endif
 
 namespace VLC_WINRT_APP.ViewModels.VideoVM
 {

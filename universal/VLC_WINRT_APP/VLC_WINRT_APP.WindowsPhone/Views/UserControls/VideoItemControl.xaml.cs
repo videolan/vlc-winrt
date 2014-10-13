@@ -9,6 +9,7 @@ namespace VLC_WINRT_APP.Views.UserControls
         {
             this.InitializeComponent();
         }
+
         private void ImageVideo_Loaded(object sender, RoutedEventArgs e)
         {
             FadeInVideoImg.Begin();

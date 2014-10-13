@@ -8,6 +8,9 @@
                     xmlns:userControls="using:VLC_WINRT_APP.Views.UserControls"
                     xmlns:triggers="using:WinRT.Triggers">
 
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Templates/VideoTemplates.xaml" />
+    </ResourceDictionary.MergedDictionaries>
     <DataTemplate x:Key="SemanticZoomOutViewArtistTemplate">
         <Grid Width="240"
               Height="156">
@@ -183,6 +186,125 @@
             </FlyoutBase.AttachedFlyout>
         </Border>
     </DataTemplate>
+    <DataTemplate x:Key="SemanticZoomInViewAlbumTemplateLittleSize">
+        <Border Background="WhiteSmoke"
+                Margin="0,0,12,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="154" />
+                    <RowDefinition Height="6" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Image Grid.Row="0"
+                       Source="/Assets/NoCover.jpg"
+                       Stretch="UniformToFill"
+                       Width="154"
+                       Height="154" />
+                <Image Grid.Row="0"
+                       Source="{Binding Picture}"
+                       Stretch="UniformToFill"
+                       Width="154"
+                       Height="154" />
+                <StackPanel Grid.Row="2"
+                            Width="130"
+                            Margin="10,0,0,12">
+                    <TextBlock Text="{Binding Artist}"
+                               TextWrapping="NoWrap"
+                               TextTrimming="WordEllipsis"
+                               FontSize="15"
+                               FontWeight="SemiBold" />
+                    <TextBlock Text="{Binding Name}"
+                               TextWrapping="NoWrap"
+                               TextTrimming="WordEllipsis"
+                               FontSize="16" />
+                </StackPanel>
+            </Grid>
+            <interactivity:Interaction.Behaviors>
+                <core:EventTriggerBehavior EventName="Tapped">
+                    <common:OpenMenuFlyoutAction />
+                </core:EventTriggerBehavior>
+            </interactivity:Interaction.Behaviors>
+            <FlyoutBase.AttachedFlyout>
+                <Flyout>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50" />
+                            <RowDefinition />
+                            <RowDefinition Height="50" />
+                            <RowDefinition Height="50" />
+                        </Grid.RowDefinitions>
+                        <Button Style="{StaticResource TextBlockButtonStyle}"
+                                FontWeight="Light"
+                                Foreground="{StaticResource SecondColor}"
+                                FontSize="22"
+                                Command="{Binding PlayAlbum}"
+                                CommandParameter="{Binding}">
+                            <Button.Content>
+                                <TextBlock>
+                                    <Run x:Uid="PlayAlbum"
+                                         Text="Play album" />
+                                    <Run Text=""
+                                         FontFamily="Segoe UI Symbol" />
+                                </TextBlock>
+                            </Button.Content>
+                        </Button>
+                        <ListView Grid.Row="1"
+                                  ItemsSource="{Binding Tracks}"
+                                  IsItemClickEnabled="True"
+                                  SelectionMode="None"
+                                  ItemTemplate="{StaticResource LittleLightTrackTemplate}"
+                                  ItemContainerStyle="{StaticResource ListViewItemContainerStyle}"
+                                  RequestedTheme="Dark">
+                            <triggers:Interactions.Triggers>
+                                <triggers:EventTrigger EventName="ItemClick">
+                                    <triggers:InvokeCommandAction Command="{Binding TrackClicked}"
+                                                                  PassEventArgsToCommand="True" />
+                                </triggers:EventTrigger>
+                            </triggers:Interactions.Triggers>
+                            <ListView.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <ItemsWrapGrid ItemWidth="300"
+                                                   Orientation="Vertical" />
+                                </ItemsPanelTemplate>
+                            </ListView.ItemsPanel>
+                        </ListView>
+                        <Button Grid.Row="2"
+                                Style="{StaticResource TextBlockButtonStyle}"
+                                FontWeight="Light"
+                                Foreground="{StaticResource SecondColor}"
+                                FontSize="22"
+                                Command="{Binding DataContext.ChangeAlbumArtCommand, ElementName=MusicLibrary}"
+                                CommandParameter="{Binding}">
+                            <Button.Content>
+                                <TextBlock>
+                                    <Run x:Uid="ChangeAlbumArt"
+                                         Text="Change Album Art" />
+                                    <Run Text=""
+                                         FontFamily="Segoe UI Symbol" />
+                                </TextBlock>
+                            </Button.Content>
+                        </Button>
+                        <Button Grid.Row="3"
+                                Style="{StaticResource TextBlockButtonStyle}"
+                                FontWeight="Light"
+                                Foreground="{StaticResource SecondColor}"
+                                FontSize="22"
+                                Command="{Binding DataContext.DownloadAlbumArtCommand, ElementName=MusicLibrary}"
+                                CommandParameter="{Binding}">
+                            <Button.Content>
+                                <TextBlock>
+                                    <Run x:Uid="DownloadAlbumArt"
+                                         Text="Download Album Art" />
+                                    <Run Text=""
+                                         FontFamily="Segoe UI Symbol" />
+                                </TextBlock>
+                            </Button.Content>
+                        </Button>
+                    </Grid>
+                </Flyout>
+            </FlyoutBase.AttachedFlyout>
+        </Border>
+    </DataTemplate>
     <DataTemplate x:Key="SemanticZoomInViewAlbumTemplateWithoutFlyout">
         <Border Padding="12"
                 Background="WhiteSmoke">
@@ -215,10 +337,6 @@
                 </StackPanel>
             </Grid>
         </Border>
-    </DataTemplate>
-
-    <DataTemplate x:Key="SemanticZoomInViewMovieTemplate">
-        <controls:VideoItemControl />
     </DataTemplate>
 
     <DataTemplate x:Key="LightTrackTemplate">

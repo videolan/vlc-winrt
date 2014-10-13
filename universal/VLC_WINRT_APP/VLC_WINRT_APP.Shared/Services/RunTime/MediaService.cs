@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Windows.Foundation;
+using Windows.Media;
 using Windows.Storage.AccessCache;
 using Windows.Storage.Streams;
 using Windows.UI.Popups;
@@ -32,10 +33,10 @@ using VLC_WINRT_APP.ViewModels.MusicVM;
 using VLC_WINRT_APP.Views.MusicPages;
 using VLC_WINRT_APP.Views.VideoPages;
 using WinRTXamlToolkit.Controls.Extensions;
-//#if WINDOWS_APP
+#if WINDOWS_APP
 using libVLCX;
 using Windows.Media;
-//#endif
+#endif
 
 namespace VLC_WINRT_APP.Services.RunTime
 {

@@ -2,6 +2,7 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using VLC_WINRT_APP.Helpers;
+using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.ViewModels;
 
 namespace VLC_WINRT_APP.Views.UserControls

@@ -3358,4 +3358,13 @@
                 Value="Stretch" />
     </Style>
 
+    <Style x:Key="VLCCommandBarStyle"
+           TargetType="CommandBar">
+        <Setter Property="Background"
+                Value="{StaticResource MainColor}" />
+        <Setter Property="Opacity"
+                Value="0.8" />
+        <Setter Property="RequestedTheme"
+                Value="Dark" />
+    </Style>
 </ResourceDictionary>

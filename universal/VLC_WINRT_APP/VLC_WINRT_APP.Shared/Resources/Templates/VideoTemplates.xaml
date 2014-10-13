@@ -1,0 +1,16 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:VLC_WINRT_APP.Resources.Templates"
+    xmlns:controls="using:VLC_WINRT_APP.Controls">
+    <!-- WINDOWS -->
+
+    <DataTemplate x:Key="SemanticZoomInViewMovieTemplate">
+        <controls:VideoItemControl />
+    </DataTemplate>
+
+    <!-- WINDOWS PHONE -->
+    <DataTemplate x:Key="VideoTemplateWP">
+        <controls:VideoItemControl />
+    </DataTemplate>
+</ResourceDictionary>

@@ -19,7 +19,7 @@ namespace VLC_WINRT_APP.Views.MainPages
             this.InitializeComponent();
             this.NavigationCacheMode = NavigationCacheMode.Enabled;
             _vlcService = vlcService;
-            //(mediaService as MediaService).SetMediaElement(FoudationMediaElement);
+            (mediaService as MediaService).SetMediaElement(MediaElement);
             (mediaService as MediaService).SetMediaTransportControls(SystemMediaTransportControls.GetForCurrentView());
             Loaded += SwapPanelLoaded;
             ApplicationView.GetForCurrentView().SetDesiredBoundsMode(ApplicationViewBoundsMode.UseCoreWindow);
