@@ -1,20 +1,15 @@
-﻿using System;
-using System.Diagnostics;
-using Windows.Devices.Input;
-using Windows.UI.Core;
+﻿using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.ViewModels;
-using WinRTXamlToolkit.AwaitableUI;
-using WinRTXamlToolkit.Controls.Extensions;
 
 namespace VLC_WINRT_APP.Views.UserControls
 {
     public enum SidebarState
     {
-        Standard,
-        Minimized,
+        Standard = 340,
+        Minimized = 100,
     }
     public sealed partial class LeftColumn : UserControl
     {

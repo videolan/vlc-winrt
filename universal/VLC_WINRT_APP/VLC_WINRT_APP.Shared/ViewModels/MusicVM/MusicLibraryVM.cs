@@ -238,8 +238,11 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         public async Task GetFavoriteAndRandomAlbums()
         {
             await MusicLibraryManagement.LoadFavoriteRandomAlbums();
-            OnPropertyChanged("RandomAlbums");
-            OnPropertyChanged("FavoriteAlbums");
+            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                OnPropertyChanged("RandomAlbums");
+                OnPropertyChanged("FavoriteAlbums");
+            });
         }
 
         public async Task GetMusicFromLibrary()

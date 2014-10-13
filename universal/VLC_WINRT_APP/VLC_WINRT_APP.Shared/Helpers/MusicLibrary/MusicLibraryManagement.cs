@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.FileProperties;
 using Windows.UI.Core;
+using Windows.UI.Xaml;
 using VLC_WINRT_APP.Model.Music;
 using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.ViewModels.MusicVM;
@@ -154,20 +155,36 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                     Locator.MusicLibraryVM.FavoriteAlbums = favAlbums;
                     Locator.MusicLibraryVM.RandomAlbums = new ObservableCollection<AlbumItem>(favAlbums.Take(3));
                 }
-                ObservableCollection<AlbumItem> nonfavAlbums = await MusicLibraryVM._albumDataRepository.LoadAlbums(x => x.Favorite==false);
+                ObservableCollection<AlbumItem> nonfavAlbums = await MusicLibraryVM._albumDataRepository.LoadAlbums(x => x.Favorite == false);
                 if (nonfavAlbums != null && nonfavAlbums.Any())
                 {
-                    if(Locator.MusicLibraryVM.RandomAlbums.Count > 3) return;
-                    for(int i= 0; i < 3;i++)
+                    if (Locator.MusicLibraryVM.RandomAlbums != null && Locator.MusicLibraryVM.RandomAlbums.Count > 6)
+                        return;
+                    App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                     {
-                        Locator.MusicLibraryVM.RandomAlbums.Add(nonfavAlbums[i]);
-                    }
+                        int howManyAlbums = HowManyAlbumsToDisplayWithTwoRows();
+                        for (int i = 0; i < ((howManyAlbums < nonfavAlbums.Count) ? howManyAlbums : nonfavAlbums.Count - 1); i++)
+                        {
+                            Locator.MusicLibraryVM
+                                .RandomAlbums.Add(
+                                    nonfavAlbums[i]);
+                        }
+                    });
                 }
             }
             catch (Exception)
             {
                 Debug.WriteLine("Error selecting random albums.");
             }
+        }
+
+        public static int HowManyAlbumsToDisplayWithTwoRows()
+        {
+            var width = Window.Current.Bounds.Width;
+            // an album is 220 pixels wide
+            width -= (int)Locator.MusicLibraryVM.SidebarState;
+            var nbAlbumsPerRow = width/220;
+            return (int)nbAlbumsPerRow*2;
         }
     }
 }
