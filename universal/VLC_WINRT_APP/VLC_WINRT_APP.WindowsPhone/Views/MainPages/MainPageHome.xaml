@@ -5,66 +5,84 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:musicPages="using:VLC_WINRT_APP.Views.MusicPages"
+      xmlns:triggers="using:WinRT.Triggers"
+      xmlns:controls="using:VLC_WINRT_APP.Controls"
+      xmlns:userControls="using:VLC_WINRT_APP.Views.UserControls"
       mc:Ignorable="d"
       DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}">
 
-    <Grid Background="Black">
+    <Page.Resources>
+    </Page.Resources>
+
+    <Grid Margin="0"
+          x:Name="MainGrid"
+          DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="80" />
-            <RowDefinition Height="12" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition Height="30" />
         </Grid.RowDefinitions>
-        <Image Source="/Assets/background.jpg"
-               Stretch="UniformToFill"
-               Opacity="0.4"
-               Grid.RowSpan="4" />
-        <StackPanel Orientation="Horizontal"
-                    Margin="16,20,0,0">
-            <Path Data="{StaticResource VLCFlatPath}"
-                  Stretch="Uniform"
-                  Fill="#FFFFFFFF"
-                  Width="32"
-                  Height="32" />
-            <TextBlock Text="{StaticResource AppTitle}"
-                       Style="{StaticResource TitleTextBlockStyle}"
-                       Typography.Capitals="SmallCaps"
-                       FontSize="23"
-                       Margin="12,0,0,0"
-                       VerticalAlignment="Center" />
-        </StackPanel>
-        <Hub x:Name="MainHub"
-             x:FieldModifier="public"
-             Grid.Row="2">
-            <Hub.Sections>
-                <HubSection Header="HOME">
-                    <HubSection.ContentTemplate>
-                        <DataTemplate>
-                            <local:MainLastViewedPinnedPage Margin="-16,0,0,0"/>
-                        </DataTemplate>
-                    </HubSection.ContentTemplate>
-                </HubSection>
-                <HubSection Header="VIDEOS">
-                    <HubSection.ContentTemplate>
-                        <DataTemplate>
-                            <local:MainPageVideos />
-                        </DataTemplate>
-                    </HubSection.ContentTemplate>
-                </HubSection>
-                <HubSection Header="MUSIC">
-                    <HubSection.ContentTemplate>
-                        <DataTemplate>
-                            <local:MainPageMusic />
-                        </DataTemplate>
-                    </HubSection.ContentTemplate>
-                </HubSection>
-            </Hub.Sections>
-        </Hub>
-        <musicPages:MiniPlayer Grid.Row="3" />
+
+        <ScrollViewer>
+            <StackPanel Margin="12,0,0,0">
+                <TextBlock Text="Favorites and suggestions"
+                           Margin="0,36,0,0"
+                           FontSize="32"
+                           Foreground="{StaticResource MainColor}"
+                           Style="{StaticResource HeaderTextBlockStyle}" />
+                <StackPanel x:Name="MusicLibrary"
+                            DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
+                    <TextBlock Text="albums"
+                               Margin="0,12,0,0"
+                               FontSize="24"
+                               Style="{StaticResource SubheaderTextBlockStyle}" />
+                    <GridView ItemsSource="{Binding RandomAlbums}"
+                              ItemTemplate="{StaticResource SemanticZoomInViewAlbumTemplateLittleSize}"
+                              IsItemClickEnabled="True"
+                              SelectionMode="None"
+                              ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                              ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                              ScrollViewer.HorizontalScrollMode="Enabled"
+                              ScrollViewer.VerticalScrollMode="Disabled">
+                        <GridView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal" />
+                            </ItemsPanelTemplate>
+                        </GridView.ItemsPanel>
+                    </GridView>
+                    <controls:NoFavoriteAlbumsControl HorizontalAlignment="Left" />
+                </StackPanel>
+                <StackPanel x:Name="VideoLibrary"
+                            DataContext="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM}">
+                    <TextBlock Text="videos"
+                               Margin="0,12,0,0"
+                               FontSize="24"
+                               Style="{StaticResource SubheaderTextBlockStyle}" />
+                    <ListView ItemsSource="{Binding Videos}"
+                              ItemTemplate="{StaticResource VideoTemplateWP}"
+                              Margin="-12,0,0,0"
+                              ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                        <ListView.ItemContainerTransitions>
+                            <TransitionCollection>
+                                <EntranceThemeTransition />
+                                <RepositionThemeTransition />
+                            </TransitionCollection>
+                        </ListView.ItemContainerTransitions>
+                    </ListView>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
     <Page.BottomAppBar>
-        <CommandBar ClosedDisplayMode="Minimal">
-            
+        <CommandBar Style="{StaticResource VLCCommandBarStyle}">
+            <AppBarButton Icon="OpenFile"
+                          Label="open a file" />
+            <AppBarButton Label="open a stream"
+                          Icon="World" />
+            <CommandBar.SecondaryCommands>
+
+                <AppBarButton Label="special thanks" />
+                <AppBarButton Label="settings" />
+            </CommandBar.SecondaryCommands>
         </CommandBar>
     </Page.BottomAppBar>
 </Page>

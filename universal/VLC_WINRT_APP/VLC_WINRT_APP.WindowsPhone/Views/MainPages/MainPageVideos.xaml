@@ -1,40 +1,37 @@
-﻿<UserControl x:Class="VLC_WINRT_APP.Views.MainPages.MainPageVideos"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="using:VLC_WINRT_APP.Views.MainPages"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:triggers="using:WinRT.Triggers"
-             mc:Ignorable="d"
-             d:DesignHeight="300"
-             d:DesignWidth="400"
-             DataContext="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM}">
+﻿<Page x:Class="VLC_WINRT_APP.Views.MainPages.MainPageVideos"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:VLC_WINRT_APP.Views.MainPages"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:triggers="using:WinRT.Triggers"
+      mc:Ignorable="d"
+      d:DesignHeight="300"
+      d:DesignWidth="400"
+      DataContext="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM}">
 
-    <UserControl.Resources>
+    <Page.Resources>
         <CollectionViewSource x:Name="VideoGroupedByAlphaKey"
                               Source="{Binding MediaGroupedByAlphabet}"
                               IsSourceGrouped="True" />
-    </UserControl.Resources>
+    </Page.Resources>
 
     <Grid>
-        <!--<SemanticZoom x:Name="SemanticZoom"
-                          ViewChangeCompleted="SemanticZoom_OnViewChangeCompleted">
-            <SemanticZoom.ZoomedOutView>
-                <ListView>
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Foreground="White"
-                                       FontSize="40"
-                                       Text="{Binding Group.Key}" />
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </SemanticZoom.ZoomedOutView>
-            <SemanticZoom.ZoomedInView>-->
-        <ListView ItemsSource="{Binding Videos}"
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <TextBlock Text="Videos"
+                   Margin="12,36,0,0"
+                   FontSize="32"
+                   Foreground="{StaticResource MainColor}"
+                   Style="{StaticResource HeaderTextBlockStyle}" />
+        <ListView Grid.Row="1"
+                  ItemsSource="{Binding Videos}"
                   ItemTemplate="{StaticResource SemanticZoomInViewMovieTemplate}"
                   SelectionMode="None"
-                  IsItemClickEnabled="True">
+                  IsItemClickEnabled="True"
+                  Margin="0,36,0,0">
             <triggers:Interactions.Triggers>
                 <triggers:EventTrigger EventName="ItemClick">
                     <triggers:InvokeCommandAction Command="{Binding OpenVideo}"
@@ -57,4 +54,4 @@
         <!--</SemanticZoom.ZoomedInView>
         </SemanticZoom>-->
     </Grid>
-</UserControl>
+</Page>
