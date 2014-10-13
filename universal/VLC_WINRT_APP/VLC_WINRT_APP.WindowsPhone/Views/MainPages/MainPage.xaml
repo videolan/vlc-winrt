@@ -4,24 +4,47 @@
       xmlns:local="using:VLC_WINRT_APP.Views.MainPages"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:userControls="using:VLC_WINRT_APP.Views.UserControls"
+      xmlns:panelsFrame="using:PanelsFrame"
       mc:Ignorable="d">
-    <SwapChainBackgroundPanel x:Name="SwapChainPanel">
+
+    <SwapChainPanel x:Name="SwapChainPanel"
+                    RequestedTheme="Light">
         <MediaElement AudioCategory="BackgroundCapableMedia"
                       AudioDeviceType="Multimedia"
                       x:Name="MediaElement"
-                      x:FieldModifier="public" />
-        <Frame x:Name="MainFrame"
-               Grid.Row="1"
-               Grid.Column="1"
-               x:FieldModifier="public"
-               Background="Transparent">
-            <Frame.ContentTransitions>
-                <TransitionCollection>
-                    <EdgeUIThemeTransition x:Name="MainFrameThemeTransition"
-                                           x:FieldModifier="public"
-                                           Edge="Bottom" />
-                </TransitionCollection>
-            </Frame.ContentTransitions>
-        </Frame>
-    </SwapChainBackgroundPanel>
+                      x:FieldModifier="public"
+                      Grid.RowSpan="2" />
+
+        <Grid Background="White"
+              Grid.RowSpan="2"
+              Visibility="{Binding Source={StaticResource Locator}, Path=VideoVm.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}" />
+
+        <Image Source="/Assets/backgroundTop.png"
+               Stretch="Uniform"
+               Opacity="{Binding ElementName=PanelsFrame, Path=Scrolling, Converter={StaticResource OpacityDecreaserConverter}}"
+               Grid.RowSpan="2"
+               VerticalAlignment="Top" />
+        <Image Source="/Assets/backgroundBot.png"
+               Stretch="Uniform"
+               Opacity="{Binding ElementName=PanelsFrame, Path=Scrolling, Converter={StaticResource OpacityDecreaserConverter}}"
+               Grid.RowSpan="2"
+               VerticalAlignment="Bottom" />
+        <Image Source="/Assets/backgroundTopBlurred.png"
+               Stretch="Uniform"
+               Opacity="{Binding ElementName=PanelsFrame, Path=Scrolling}"
+               Grid.RowSpan="2"
+               VerticalAlignment="Top" />
+        <Image Source="/Assets/backgroundBotBlurred.png"
+               Stretch="Uniform"
+               Opacity="{Binding ElementName=PanelsFrame, Path=Scrolling}"
+               Grid.RowSpan="2"
+               VerticalAlignment="Bottom" />
+        <panelsFrame:PanelsFrame x:Name="PanelsFrame"
+                                 x:FieldModifier="public">
+            <panelsFrame:PanelsFrame.SideBarContent>
+                <userControls:LeftColumn DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}" />
+            </panelsFrame:PanelsFrame.SideBarContent>
+        </panelsFrame:PanelsFrame>
+    </SwapChainPanel>
 </Page>
