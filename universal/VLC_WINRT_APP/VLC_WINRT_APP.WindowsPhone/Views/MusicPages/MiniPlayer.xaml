@@ -11,12 +11,11 @@
             HorizontalContentAlignment="Stretch">
         <Button.Flyout>
             <ListPickerFlyout ItemsSource="{Binding TrackCollection}"
-                              Title="{Binding CurrentTrackItem.AlbumName}"
-                              >
+                              Title="{Binding CurrentTrackItem.AlbumName}">
                 <ListPickerFlyout.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding Name}"
-                                   Style="{StaticResource TitleTextBlockStyle}"/>
+                                   Style="{StaticResource TitleTextBlockStyle}" />
                     </DataTemplate>
                 </ListPickerFlyout.ItemTemplate>
             </ListPickerFlyout>

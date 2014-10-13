@@ -1,0 +1,235 @@
+﻿<UserControl x:Class="VLC_WINRT_APP.Views.MusicPages.ArtistsPivotItem"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="using:VLC_WINRT_APP.Views.MusicPages"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:triggers="using:WinRT.Triggers"
+             mc:Ignorable="d"
+             d:DesignHeight="300"
+             d:DesignWidth="400">
+
+    <Grid x:Name="ArtistsGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition x:Name="ArtistListViewColumnDefinition" />
+            <ColumnDefinition Width="1" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <GridView x:Name="ArtistListView"
+                  ItemsSource="{Binding Artists}"
+                  IsItemClickEnabled="False"
+                  SelectionMode="Single"
+                  ItemContainerStyle="{StaticResource GridViewItemStyle}"
+                  ItemTemplate="{StaticResource ArtistSquareTemplate}"
+                  HorizontalAlignment="Left">
+            <GridView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <ItemsWrapGrid Orientation="Horizontal"
+                                   ItemHeight="275"
+                                   ItemWidth="199" />
+                </ItemsPanelTemplate>
+            </GridView.ItemsPanel>
+            <triggers:Interactions.Triggers>
+                <triggers:EventTrigger EventName="SelectionChanged">
+                    <triggers:InvokeCommandAction Command="{Binding ArtistClickedCommand}"
+                                                  PassEventArgsToCommand="True" />
+                </triggers:EventTrigger>
+            </triggers:Interactions.Triggers>
+        </GridView>
+        <Grid Grid.Column="1"
+              Width="1"
+              Background="{StaticResource MainColor}"
+              HorizontalAlignment="Left" />
+        <Grid Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="55" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="{Binding CurrentArtist.Name}"
+                           Style="{StaticResource SubheaderTextBlockStyle}"
+                           FontSize="42"
+                           Foreground="{StaticResource MainColor}"
+                           Margin="22,0,0,0" />
+                <StackPanel Grid.Column="1"
+                            HorizontalAlignment="Left"
+                            Orientation="Horizontal"
+                            Margin="22,0,0,0">
+
+                    <Button Style="{StaticResource TextBlockButtonStyle}"
+                            Margin="0,-12,0,0"
+                            Foreground="{StaticResource SecondColor}"
+                            Visibility="{Binding IsMainPageMusicArtistAlbumsSemanticZoomViewedIn, Converter={StaticResource BooleanToVisibilityConverter}}"
+                            Command="{Binding ArtistAlbumsSemanticZoomInvertZoomCommand}">
+                        <Button.Content>
+                            <TextBlock>
+                                    <Run Text=""
+                                         FontFamily="Segoe UI Symbol"
+                                         FontSize="22" />
+                                    <Run Text="all albums"
+                                         FontWeight="Light"
+                                         FontSize="18" />
+                            </TextBlock>
+                        </Button.Content>
+                    </Button>
+                    <Button Style="{StaticResource TextBlockButtonStyle}"
+                            Margin="0,-12,0,0"
+                            Foreground="{StaticResource SecondColor}"
+                            Visibility="{Binding IsMainPageMusicArtistAlbumsSemanticZoomViewedIn, Converter={StaticResource NegatedBooleanToVisibilityConverter}}"
+                            Command="{Binding ArtistAlbumsSemanticZoomInvertZoomCommand}">
+                        <Button.Content>
+                            <TextBlock>
+                                    <Run Text=""
+                                         FontFamily="Segoe UI Symbol"
+                                         FontSize="22" />
+                                    <Run x:Uid="AlbumsPlusSongs"
+                                         Text="albums+songs"
+                                         FontWeight="Light"
+                                         FontSize="18" />
+                            </TextBlock>
+                        </Button.Content>
+                    </Button>
+                    <!--<Button Style="{StaticResource TextBlockButtonStyle}"
+                            Margin="24,0,0,0"
+                            Command="{Binding CurrentArtist.PlayArtistCommand}"
+                            CommandParameter="{Binding CurrentArtist}"
+                            VerticalAlignment="Top">
+                        <StackPanel Orientation="Horizontal">
+                            <SymbolIcon Symbol="Play" />
+                            <TextBlock Text="Play all"
+                                       Style="{StaticResource BodyTextBlockStyle}"
+                                       VerticalAlignment="Center"
+                                       Margin="5,-10,0,0" />
+                        </StackPanel>
+                    </Button>
+                    <Button Margin="24,0,0,0"
+                            VerticalAlignment="Top"
+                            Content="Biography"
+                            Style="{StaticResource TextBlockButtonStyle}">
+                        <Button.Flyout>
+                            <Flyout>
+                                <artistPageControls:ArtistCoverBiographyControl RequestedTheme="Dark" />
+                            </Flyout>
+                        </Button.Flyout>
+                    </Button>-->
+                </StackPanel>
+            </Grid>
+            <SemanticZoom Grid.Row="1"
+                          ScrollViewer.HorizontalScrollMode="Disabled"
+                          x:Name="CurrentArtistAlbumsSemanticZoom"
+                          ViewChangeCompleted="SemanticZoom_OnViewChangeCompletedCurrentArtistAlbum"
+                          ViewChangeStarted="SemanticZoom_OnViewChangeCompletedCurrentArtistAlbum"
+                          IsZoomedInViewActive="{Binding IsMainPageMusicArtistAlbumsSemanticZoomViewedIn, Mode=TwoWay}">
+                <SemanticZoom.ZoomedInView>
+                    <GridView x:Name="ArtistAlbumsGridView"
+                              IsItemClickEnabled="False"
+                              SelectionMode="None"
+                              ItemsSource="{Binding CurrentArtist.Albums}"
+                              ItemContainerStyle="{StaticResource VerticalContentGridViewItemStyle}">
+                        <GridView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <VirtualizingStackPanel VirtualizationMode="Standard"
+                                                        Orientation="Horizontal" />
+                            </ItemsPanelTemplate>
+                        </GridView.ItemsPanel>
+                        <GridView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid VerticalAlignment="Top"
+                                      Margin="18,0,40,0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="50" />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Text="{Binding Name}"
+                                               Style="{StaticResource SubheaderTextBlockStyle}" />
+                                    <Grid Grid.Row="1">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="160" />
+                                            <ColumnDefinition Width="12" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <StackPanel>
+                                            <Grid>
+                                                <Image Width="160"
+                                                       Height="160"
+                                                       Stretch="UniformToFill"
+                                                       Source="{Binding Picture}"
+                                                       VerticalAlignment="Top" />
+                                                <Button Style="{StaticResource TextBlockButtonStyle}"
+                                                        Content="..."
+                                                        VerticalAlignment="Bottom"
+                                                        HorizontalAlignment="Left"
+                                                        Margin="3,0,0,0"
+                                                        FontSize="30"
+                                                        Foreground="White">
+                                                    <Button.Flyout>
+                                                        <MenuFlyout>
+                                                            <MenuFlyoutItem x:Uid="ChangeAlbumArt"
+                                                                            Text="Change Album Art"
+                                                                            Command="{Binding DataContext.ChangeAlbumArtCommand, ElementName=MusicLibrary}"
+                                                                            CommandParameter="{Binding}" />
+                                                            <MenuFlyoutItem x:Uid="DownloadAlbumArt"
+                                                                            Text="Download Album Art"
+                                                                            Command="{Binding DataContext.DownloadAlbumArtCommand, ElementName=MusicLibrary}"
+                                                                            CommandParameter="{Binding}" />
+                                                        </MenuFlyout>
+                                                    </Button.Flyout>
+                                                </Button>
+                                            </Grid>
+                                            <Button Margin="0,12,0,0"
+                                                    Style="{StaticResource TextBlockButtonStyle}"
+                                                    FontWeight="Light"
+                                                    Foreground="{StaticResource SecondColor}"
+                                                    FontSize="22"
+                                                    Command="{Binding PlayAlbum}"
+                                                    CommandParameter="{Binding}">
+                                                <Button.Content>
+                                                    <TextBlock>
+                                                        <Run x:Uid="PlayAlbum"
+                                                             Text="Play album" />
+                                                        <Run Text=""
+                                                             FontFamily="Segoe UI Symbol" />
+                                                    </TextBlock>
+                                                </Button.Content>
+                                            </Button>
+                                        </StackPanel>
+                                        <ListView Grid.Column="2"
+                                                  IsItemClickEnabled="True"
+                                                  SelectionMode="None"
+                                                  ItemsSource="{Binding Tracks}"
+                                                  ItemTemplate="{StaticResource LittleDarkTrackTemplate}"
+                                                  ItemContainerStyle="{StaticResource ListViewItemContainerStyle}">
+                                            <triggers:Interactions.Triggers>
+                                                <triggers:EventTrigger EventName="ItemClick">
+                                                    <triggers:InvokeCommandAction Command="{Binding TrackClicked}"
+                                                                                  PassEventArgsToCommand="True" />
+                                                </triggers:EventTrigger>
+                                            </triggers:Interactions.Triggers>
+                                            <ListView.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <ItemsWrapGrid ItemWidth="350"
+                                                                   Orientation="Vertical" />
+                                                </ItemsPanelTemplate>
+                                            </ListView.ItemsPanel>
+                                        </ListView>
+                                    </Grid>
+                                </Grid>
+                            </DataTemplate>
+                        </GridView.ItemTemplate>
+                    </GridView>
+                </SemanticZoom.ZoomedInView>
+                <SemanticZoom.ZoomedOutView>
+                    <GridView ItemsSource="{Binding CurrentArtist.Albums}"
+                              IsItemClickEnabled="True"
+                              SelectionMode="None"
+                              ItemTemplate="{StaticResource SemanticZoomInViewAlbumTemplateWithoutFlyout}"
+                              ItemContainerStyle="{StaticResource GridViewItemStyle}" />
+                </SemanticZoom.ZoomedOutView>
+            </SemanticZoom>
+        </Grid>
+    </Grid>
+</UserControl>
