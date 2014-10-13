@@ -21,7 +21,7 @@ namespace VLC_WINRT_APP.Helpers
                 IXmlNode toastNode = toastXml.SelectSingleNode("/toast"); 
                 XmlElement audio = toastXml.CreateElement("audio"); 
                 audio.SetAttribute("silent", "true");
-                toastNode.AppendChild(audio);
+                if (toastNode != null) toastNode.AppendChild(audio);
             }
 
             ToastNotification toast = new ToastNotification(toastXml);
@@ -51,8 +51,8 @@ namespace VLC_WINRT_APP.Helpers
             }
             IXmlNode toastNode = toastXml.SelectSingleNode("/toast");
             XmlElement audio = toastXml.CreateElement("audio");
-            audio.SetAttribute("silent", "true"); 
-            toastNode.AppendChild(audio);
+            audio.SetAttribute("silent", "true");
+            if (toastNode != null) toastNode.AppendChild(audio);
 
             ToastNotification toast = new ToastNotification(toastXml);
             ToastNotificationManager.CreateToastNotifier().Show(toast);

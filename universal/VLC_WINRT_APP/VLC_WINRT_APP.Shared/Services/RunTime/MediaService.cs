@@ -86,8 +86,11 @@ namespace VLC_WINRT_APP.Services.RunTime
                 }
                 else
                 {
-                    StorageFile albumCover = await StorageFile.GetFileFromPathAsync(albumUri);
-                    updater.Thumbnail = RandomAccessStreamReference.CreateFromFile(albumCover);
+                    if (albumUri != null && !string.IsNullOrEmpty(albumUri))
+                    {
+                        StorageFile albumCover = await StorageFile.GetFileFromPathAsync(albumUri);
+                        updater.Thumbnail = RandomAccessStreamReference.CreateFromFile(albumCover);
+                    }
                 }
 
                 // Update the system media transport controls.

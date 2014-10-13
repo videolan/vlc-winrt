@@ -1,20 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-
-using Windows.Networking.Vpn;
-using Windows.Storage;
 using Windows.Storage.Streams;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media.Imaging;
-using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.Model.Music;
 using VLC_WINRT_APP.Model.Video;
 using VLC_WINRT_APP.ViewModels;
-using VLC_WINRT_APP.ViewModels.MusicVM;
-using VLC_WINRT_APP.ViewModels.VideoVM;
-using XboxMusicLibrary.Models;
 #if WINDOWS_APP
 using Windows.ApplicationModel.Search;
 #endif

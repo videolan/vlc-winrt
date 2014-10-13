@@ -47,7 +47,8 @@ namespace VLC_WINRT_APP.Helpers
                 tileTextAttributes[1].InnerText = Locator.MusicPlayerVM.CurrentTrack.Name + " - " + Locator.MusicPlayerVM.CurrentTrack.ArtistName;
 
                 var tileImgAttribues = tileXml.GetElementsByTagName("image");
-                tileImgAttribues[0].Attributes[1].NodeValue = Locator.MusicPlayerVM.CurrentArtist.Picture;
+                if (Locator.MusicPlayerVM.CurrentArtist != null)
+                    tileImgAttribues[0].Attributes[1].NodeValue = Locator.MusicPlayerVM.CurrentArtist.Picture;
 
                 if (Locator.MusicPlayerVM.CurrentAlbum != null)
                     tileImgAttribues[1].Attributes[1].NodeValue = Locator.MusicPlayerVM.CurrentAlbum.Picture;

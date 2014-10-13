@@ -10,12 +10,14 @@
 using System;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Resources;
 using Windows.Storage;
 using Windows.Storage.AccessCache;
 using Windows.UI.Core;
 using Windows.UI.Notifications;
+using SQLite;
 using VLC_WINRT.Common;
 using VLC_WINRT_APP.Commands.MediaPlayback;
 using VLC_WINRT_APP.Commands.Music;
@@ -55,7 +57,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             get
             {
                 if (CurrentTrack == null) return null;
-                ArtistItem artist = Locator.MusicLibraryVM.Artists.FirstOrDefault(x=>x.Id == CurrentTrack.ArtistId);
+                ArtistItem artist = Locator.MusicLibraryVM.Artists.FirstOrDefault(x => x.Id == CurrentTrack.ArtistId);
                 return artist;
             }
         }
@@ -65,7 +67,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             get
             {
                 if (CurrentArtist == null) return null;
-                if(CurrentArtist.Albums == null || !CurrentArtist.Albums.Any()) return null;
+                if (CurrentArtist.Albums == null || !CurrentArtist.Albums.Any()) return null;
                 AlbumItem album = CurrentArtist.Albums.FirstOrDefault(x => x.Id == CurrentTrack.AlbumId);
                 return album;
             }
@@ -214,7 +216,8 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             string artistName = trackItem.ArtistName ?? resourceLoader.GetString("UnknownArtist");
             string albumName = trackItem.AlbumName;
             string trackName = trackItem.Name ?? resourceLoader.GetString("UnknownTrack");
-            base._mediaService.SetMediaTransportControlsInfo(artistName, albumName, trackName, Locator.MusicPlayerVM.CurrentAlbum.Picture);
+
+            base._mediaService.SetMediaTransportControlsInfo(artistName, albumName, trackName, Locator.MusicPlayerVM.CurrentAlbum.Picture ?? null);
 
             var notificationOnNewSong = ApplicationSettingsHelper.ReadSettingsValue("NotificationOnNewSong");
             if (notificationOnNewSong != null && (bool)notificationOnNewSong)
@@ -222,7 +225,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                 var notificationOnNewSongForeground = ApplicationSettingsHelper.ReadSettingsValue("NotificationOnNewSongForeground");
                 if (base._mediaService.IsBackground || (notificationOnNewSongForeground != null && (bool)notificationOnNewSongForeground))
                 {
-                    ToastHelper.ToastImageAndText04(trackName, albumName, artistName, Locator.MusicPlayerVM.CurrentAlbum.Picture);
+                    ToastHelper.ToastImageAndText04(trackName, albumName, artistName, Locator.MusicPlayerVM.CurrentAlbum.Picture ?? null);
                 }
             }
             await Task.Delay(250);
