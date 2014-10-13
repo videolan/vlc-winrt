@@ -21,6 +21,7 @@ namespace VLC_WINRT_APP.ViewModels.Settings
 {
     public class SettingsViewModel : BindableBase
     {
+#if WINDOWS_APP
         private bool _isSidebarAlwaysMinimized = false;
         private List<StorageFolder> _musicFolders;
         private List<StorageFolder> _videoFolders;
@@ -116,5 +117,6 @@ namespace VLC_WINRT_APP.ViewModels.Settings
             var videosLib = await StorageLibrary.GetLibraryAsync(KnownLibraryId.Videos);
             VideoFolders = videosLib.Folders.ToList();   
         }
+#endif
     }
 }

@@ -1,7 +1,8 @@
 ﻿﻿using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
-using VLC_WINRT_APP.Views.UserControls;
+﻿using VLC_WINRT_APP.Model;
+﻿using VLC_WINRT_APP.Views.UserControls;
 
 namespace VLC_WINRT_APP.Converters
 {

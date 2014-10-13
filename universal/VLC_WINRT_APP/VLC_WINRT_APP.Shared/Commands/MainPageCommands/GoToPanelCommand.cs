@@ -21,7 +21,7 @@ namespace VLC_WINRT_APP.Commands.MainPageCommands
     {
         public override void Execute(object parameter)
         {
-            App.RootPage.MainFrameThemeTransition.Edge = EdgeTransitionLocation.Bottom;
+            App.Transition.Edge = EdgeTransitionLocation.Bottom;
             Model.Panel panel = (parameter as ItemClickEventArgs).ClickedItem as Model.Panel;
             foreach (Model.Panel panel1 in Locator.MainVM.Panels)
                 panel1.Color = new SolidColorBrush(Colors.DimGray);

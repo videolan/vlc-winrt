@@ -201,11 +201,13 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
 
                         if (isTvShow)
                         {
+#if WINDOWS_APP
                             if (Panels.Count == 1)
                             {
                                 App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                                     Panels.Add(new Panel(resourceLoader.GetString("Shows"), 1, 0.4, null)));
                             }
+#endif
                             TvShow show = Shows.FirstOrDefault(x => x.ShowTitle == showInfoDictionary["tvShowName"]);
                             if (show == null)
                             {

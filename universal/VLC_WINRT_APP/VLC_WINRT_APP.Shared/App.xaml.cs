@@ -60,14 +60,29 @@ namespace VLC_WINRT_APP
         {
             get
             {
-                var root = Window.Current.Content as MainPage;
-                return root != null ? root.MainFrame : null;
+#if WINDOWS_APP
+                return RootPage != null ? RootPage.MainFrame : null;
+#else
+                return RootPage != null ? RootPage.PanelsView.MainFrame : null;
+#endif
             }
         }
 
         public static MainPage RootPage
         {
             get { return Window.Current.Content as MainPage; }
+        }
+
+        public static EdgeUIThemeTransition Transition
+        {
+            get
+            {
+#if WINDOWS_APP
+                return RootPage.MainFrameThemeTransition;
+#else
+                return RootPage.PanelsView.MainFrameThemeTransition;
+#endif
+            }
         }
 
         /// <summary>

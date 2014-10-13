@@ -6,11 +6,6 @@ using VLC_WINRT_APP.ViewModels;
 
 namespace VLC_WINRT_APP.Views.UserControls
 {
-    public enum SidebarState
-    {
-        Standard = 340,
-        Minimized = 100,
-    }
     public sealed partial class LeftColumn : UserControl
     {
         public LeftColumn()

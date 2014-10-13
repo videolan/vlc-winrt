@@ -81,6 +81,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\UserControls\LeftColumn.xaml.cs">
+      <DependentUpon>LeftColumn.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainPages\MainLastViewedPinnedPage.xaml.cs">
       <DependentUpon>MainLastViewedPinnedPage.xaml</DependentUpon>
     </Compile>
@@ -110,6 +113,27 @@
     </Compile>
     <Compile Include="Views\MusicPages\MusicPlayerPage.xaml.cs">
       <DependentUpon>MusicPlayerPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\MiniPlayer.xaml.cs">
+      <DependentUpon>MiniPlayer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\TrackItemTemplate.xaml.cs">
+      <DependentUpon>TrackItemTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\VideoItemControl.xaml.cs">
+      <DependentUpon>VideoItemControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\VLCSearchBox.xaml.cs">
+      <DependentUpon>VLCSearchBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\VariousPages\AboutPage.xaml.cs">
+      <DependentUpon>AboutPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\VariousPages\SettingsPage.xaml.cs">
+      <DependentUpon>SettingsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\VariousPages\SpecialThanks.xaml.cs">
+      <DependentUpon>SpecialThanks.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -156,6 +180,10 @@
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
+    <Page Include="Views\UserControls\LeftColumn.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainPages\MainLastViewedPinnedPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -196,13 +224,38 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\UserControls\MiniPlayer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\TrackItemTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\VideoItemControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\VLCSearchBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\VariousPages\AboutPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\VariousPages\SettingsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\VariousPages\SpecialThanks.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <SDKReference Include="BehaviorsXamlSDKManaged, Version=12.0">
       <Name>Behaviors SDK %28XAML%29</Name>
-    </SDKReference>
-    <SDKReference Include="Microsoft.VCLibs, version=12.0">
-      <Name>Microsoft Visual C++ 2013 Runtime Package for Windows Phone</Name>
     </SDKReference>
     <SDKReference Include="SQLite.WP81, Version=3.8.6">
       <Name>SQLite for Windows Phone 8.1</Name>
@@ -229,9 +282,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\LeftColumn\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>
   </PropertyGroup>

@@ -21,7 +21,7 @@ namespace VLC_WINRT_APP.Views.MainPages
 
         private void HardwareButtonsOnBackPressed(object sender, BackPressedEventArgs backPressedEventArgs)
         {
-            if (App.RootPage.PanelsFrame.IsSideBarVisible) return;
+            if (App.RootPage.PanelsView.IsSideBarVisible) return;
             if (App.ApplicationFrame.CanGoBack)
             {
                 backPressedEventArgs.Handled = true;

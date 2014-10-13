@@ -11,7 +11,6 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using VLC_WINRT.Common;
-using VLC_WINRT.Views;
 using VLC_WINRT_APP.Views.VariousPages;
 
 namespace VLC_WINRT_APP.Commands.MainPageCommands

@@ -26,7 +26,7 @@ namespace VLC_WINRT_APP.Commands.Music
     {
         public override async void Execute(object parameter)
         {
-            App.RootPage.MainFrameThemeTransition.Edge = EdgeTransitionLocation.Right;
+            App.Transition.Edge = EdgeTransitionLocation.Right;
             if (App.ApplicationFrame.CurrentSourcePageType != typeof(MusicPlayerPage))
                 App.ApplicationFrame.Navigate(typeof(MusicPlayerPage));
             Locator.MusicLibraryVM.IsAlbumPageShown = false;
