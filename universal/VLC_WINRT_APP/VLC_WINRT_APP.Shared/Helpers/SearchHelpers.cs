@@ -27,9 +27,6 @@ namespace VLC_WINRT_APP.Helpers
         {
             if (string.IsNullOrEmpty(tag))
                 return;
-            // If the MusicLibrary is not initialized (for example user never navigated to MusicMainPage, we need to initialize it
-            if(Locator.MusicLibraryVM.LoadingState == LoadingState.NotLoaded)
-                Locator.MusicLibraryVM.Initialize(true);
 
             tag = tag.ToLower();
             SearchSuggestionsRequestDeferral deferral = args.Request.GetDeferral();

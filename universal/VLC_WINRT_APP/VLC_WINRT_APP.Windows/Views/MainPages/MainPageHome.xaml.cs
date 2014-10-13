@@ -36,7 +36,7 @@ namespace VLC_WINRT_APP.Views.MainPages
             {
                 // Do not initialize all musiclibrary
                 // We only need some favorite albums, and random albums. Check them from the SQL database
-                Locator.MusicLibraryVM.Initialize(false);
+                Locator.MusicLibraryVM.Initialize();
             }
         }
 

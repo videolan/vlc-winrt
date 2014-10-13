@@ -7,22 +7,14 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Resources;
-using Windows.Storage;
-using Windows.Storage.FileProperties;
-using Windows.Storage.Search;
 using Windows.UI.Core;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
-using SQLite;
 using VLC_WINRT.Common;
-using VLC_WINRT_APP.Commands.MusicPlayer;
 using VLC_WINRT_APP.Common;
 using VLC_WINRT_APP.DataRepository;
 using VLC_WINRT_APP.Helpers;
@@ -225,7 +217,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 #endif
         }
 
-        public void Initialize(bool InitializeLibrary = true)
+        public void Initialize()
         {
             _albumClickedCommand = new AlbumClickedCommand();
             _artistClickedCommand = new ArtistClickedCommand();
@@ -233,13 +225,13 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             _changeAlbumArtCommand = new ChangeAlbumArtCommand();
             _downloadAlbumArtCommand = new DownloadAlbumArtCommand();
             _artistAlbumsSemanticZoomInvertZoomCommand = new ArtistAlbumsSemanticZoomInvertZoomCommand();
-            if (InitializeLibrary)
+            CurrentIndexingStatus = "Loading music";
+            LoadingState = LoadingState.Loading;
+            Task.Run(async () =>
             {
-                CurrentIndexingStatus = "Loading music";
-                LoadingState = LoadingState.Loading;
-                Task.Run(() => GetMusicFromLibrary());
-            }
-            GetFavoriteAndRandomAlbums();
+                await GetMusicFromLibrary();
+                await GetFavoriteAndRandomAlbums();
+            });
         }
 
         #region methods
@@ -342,9 +334,6 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         {
             return await DoesFileExistHelper.DoesFileExistAsync("mediavlc.sqlite");
         }
-
-
         #endregion
-
     }
 }

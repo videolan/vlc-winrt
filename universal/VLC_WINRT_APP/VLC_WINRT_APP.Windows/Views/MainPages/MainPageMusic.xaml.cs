@@ -35,10 +35,6 @@ namespace VLC_WINRT_APP.Views.MainPages
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            if (e.NavigationMode == NavigationMode.New && Locator.MusicLibraryVM.LoadingState == LoadingState.NotLoaded)
-            {
-                Locator.MusicLibraryVM.Initialize();
-            }
         }
 
         private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
