@@ -759,7 +759,7 @@
     <Content Include="plugins\video_output\libdirect2d_winrt_plugin.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Resources\Styles.xaml">
+    <Page Include="Resources\PlatformStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

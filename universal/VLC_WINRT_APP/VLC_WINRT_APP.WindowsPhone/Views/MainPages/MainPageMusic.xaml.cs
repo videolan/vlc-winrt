@@ -5,7 +5,9 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
+using VLC_WINRT_APP.Helpers.MusicLibrary;
 using VLC_WINRT_APP.Model;
+using VLC_WINRT_APP.Model.Music;
 using VLC_WINRT_APP.ViewModels;
 
 
@@ -61,7 +63,7 @@ namespace VLC_WINRT_APP.Views.MainPages
 
         private void SemanticZoom_OnViewChangeCompletedArtistByName(object sender, SemanticZoomViewChangedEventArgs e)
         {
-            Locator.MusicLibraryVM.ExecuteSemanticZoom(SemanticZoomAlbumsByArtist, AlbumsGroupedByName);
+            //Locator.MusicLibraryVM.ExecuteSemanticZoom(SemanticZoomAlbumsByArtist, AlbumsGroupedByName);
         }
 
 

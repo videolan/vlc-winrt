@@ -13,16 +13,14 @@
       x:Name="MusicLibrary"
       DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
 
-    <Page.Resources>
-        <CollectionViewSource x:Name="AlbumsGroupedByName"
-                              Source="{Binding Artists}"
-                              IsSourceGrouped="True"
-                              ItemsPath="Albums" />
-    </Page.Resources>
-
     <Grid Margin="0,0,0,0"
           x:Name="RootGrid">
-        <Pivot Title="music">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="281*" />
+            <ColumnDefinition Width="19*" />
+        </Grid.ColumnDefinitions>
+        <Pivot Title="music"
+               Grid.ColumnSpan="2">
             <Pivot.TitleTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding}"
@@ -47,53 +45,19 @@
                 <SemanticZoom x:Name="SemanticZoomAlbumsByArtist"
                               ScrollViewer.HorizontalScrollMode="Disabled"
                               ViewChangeCompleted="SemanticZoom_OnViewChangeCompletedArtistByName">
-                    <SemanticZoom.ZoomedOutView>
-                        <GridView ScrollViewer.VerticalScrollBarVisibility="Hidden"
-                                  ItemTemplate="{StaticResource SemanticZoomOutViewArtistTemplate}">
+                    <SemanticZoom.ZoomedInView>
+                        <GridView ItemsSource="{Binding Albums}"
+                                  ItemTemplate="{StaticResource WPSemanticZoomInViewAlbumTemplateLittleSize}"
+                                  Margin="0,0,-20,0"
+                                  Background="Bisque">
                             <GridView.ItemsPanel>
                                 <ItemsPanelTemplate>
-                                    <ItemsWrapGrid x:Name="ZoomedOutItemsWrapGrid" />
+                                    <ItemsWrapGrid ItemHeight="194"
+                                                   ItemWidth="156"
+                                                   Orientation="Horizontal" />
                                 </ItemsPanelTemplate>
                             </GridView.ItemsPanel>
                         </GridView>
-                    </SemanticZoom.ZoomedOutView>
-                    <SemanticZoom.ZoomedInView>
-                        <ListView x:Name="ZoomedInListView"
-                                  ItemsSource="{Binding Source={StaticResource AlbumsGroupedByName}}"
-                                  IsItemClickEnabled="True"
-                                  SelectionMode="None"
-                                  ItemTemplate="{StaticResource SemanticZoomInViewAlbumTemplate}"
-                                  ItemContainerStyle="{StaticResource ListViewItemStyle}">
-                            <ListView.GroupStyle>
-                                <GroupStyle>
-                                    <GroupStyle.Panel>
-                                        <ItemsPanelTemplate>
-                                            <VariableSizedWrapGrid Orientation="Horizontal"
-                                                                   ItemHeight="300"
-                                                                   ItemWidth="250"
-                                                                   Margin="0,0,0,25" />
-                                        </ItemsPanelTemplate>
-                                    </GroupStyle.Panel>
-                                    <GroupStyle.HeaderTemplate>
-                                        <DataTemplate>
-                                            <TextBlock Text="{Binding Name}"
-                                                       VerticalAlignment="Bottom"
-                                                       Foreground="{StaticResource MainColor}"
-                                                       TextWrapping="Wrap"
-                                                       Typography.Capitals="SmallCaps"
-                                                       FontSize="22"
-                                                       FontWeight="Light"
-                                                       Tapped="Header_Tapped" />
-                                        </DataTemplate>
-                                    </GroupStyle.HeaderTemplate>
-                                </GroupStyle>
-                            </ListView.GroupStyle>
-                            <ListView.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <VirtualizingStackPanel />
-                                </ItemsPanelTemplate>
-                            </ListView.ItemsPanel>
-                        </ListView>
                     </SemanticZoom.ZoomedInView>
                 </SemanticZoom>
             </PivotItem>
@@ -170,14 +134,13 @@
                                          Header="ALBUM" />
             </grid:RadDataGrid.Columns>
         </grid:RadDataGrid>-->
-        <GridView Grid.Row="3"
-                  x:Name="FavoriteAlbumsGridView"
+        <GridView x:Name="FavoriteAlbumsGridView"
                   Visibility="Collapsed"
                   ItemsSource="{Binding FavoriteAlbums}"
                   ItemTemplate="{StaticResource SemanticZoomInViewAlbumTemplate}"
                   SelectionMode="None"
                   IsItemClickEnabled="True"
-                  Grid.RowSpan="2">
+                  Grid.ColumnSpan="2">
             <triggers:Interactions.Triggers>
                 <triggers:EventTrigger EventName="ItemClick">
                     <triggers:InvokeCommandAction Command="{Binding AlbumClickedCommand}"

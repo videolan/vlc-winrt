@@ -44,6 +44,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         private ObservableCollection<TrackItem> _trackses = new ObservableCollection<TrackItem>();
         private ObservableCollection<AlbumItem> _favoriteAlbums = new ObservableCollection<AlbumItem>();
         private ObservableCollection<AlbumItem> _randomAlbums = new ObservableCollection<AlbumItem>();
+        private ObservableCollection<AlbumItem> _albums = new ObservableCollection<AlbumItem>(); 
         #endregion
         #region private props
         private SidebarState _sidebarState;
@@ -99,6 +100,12 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             {
                 SetProperty(ref _trackses, value);
             }
+        }
+
+        public ObservableCollection<AlbumItem> Albums
+        {
+            get { return _albums; }
+            set { SetProperty(ref _albums, value); }
         }
 
         #endregion
@@ -204,6 +211,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         #region XBOX Music Stuff
         public MusicHelper XboxMusicHelper = new MusicHelper();
         public Authenication XboxMusicAuthenication;
+
         #endregion
         public MusicLibraryVM()
         {
@@ -261,6 +269,12 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                 IsLoaded = true;
                 IsBusy = false;
             });
+#if WINDOWS_PHONE_APP
+            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+            {
+                Albums = await _albumDataRepository.LoadAlbums(x=>x.ArtistId != 0);
+            });
+#endif
         }
 
         public async Task StartIndexing()
