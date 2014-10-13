@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:userControls="using:VLC_WINRT_APP.Views.UserControls"
-      xmlns:panelsFrame="using:PanelsFrame"
+      xmlns:panelsView="using:PanelsView"
       mc:Ignorable="d">
 
     <SwapChainPanel x:Name="SwapChainPanel"
@@ -22,29 +22,29 @@
 
         <Image Source="/Assets/backgroundTop.png"
                Stretch="Uniform"
-               Opacity="{Binding ElementName=PanelsFrame, Path=Scrolling, Converter={StaticResource OpacityDecreaserConverter}}"
+               Opacity="{Binding ElementName=PanelsView, Path=Scrolling, Converter={StaticResource OpacityDecreaserConverter}}"
                Grid.RowSpan="2"
                VerticalAlignment="Top" />
         <Image Source="/Assets/backgroundBot.png"
                Stretch="Uniform"
-               Opacity="{Binding ElementName=PanelsFrame, Path=Scrolling, Converter={StaticResource OpacityDecreaserConverter}}"
+               Opacity="{Binding ElementName=PanelsView, Path=Scrolling, Converter={StaticResource OpacityDecreaserConverter}}"
                Grid.RowSpan="2"
                VerticalAlignment="Bottom" />
         <Image Source="/Assets/backgroundTopBlurred.png"
                Stretch="Uniform"
-               Opacity="{Binding ElementName=PanelsFrame, Path=Scrolling}"
+               Opacity="{Binding ElementName=PanelsView, Path=Scrolling}"
                Grid.RowSpan="2"
                VerticalAlignment="Top" />
         <Image Source="/Assets/backgroundBotBlurred.png"
                Stretch="Uniform"
-               Opacity="{Binding ElementName=PanelsFrame, Path=Scrolling}"
+               Opacity="{Binding ElementName=PanelsView, Path=Scrolling}"
                Grid.RowSpan="2"
                VerticalAlignment="Bottom" />
-        <panelsFrame:PanelsFrame x:Name="PanelsFrame"
+        <panelsView:PanelsFrame x:Name="PanelsView"
                                  x:FieldModifier="public">
-            <panelsFrame:PanelsFrame.SideBarContent>
+            <panelsView:PanelsFrame.SideBarContent>
                 <userControls:LeftColumn DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}" />
-            </panelsFrame:PanelsFrame.SideBarContent>
-        </panelsFrame:PanelsFrame>
+            </panelsView:PanelsFrame.SideBarContent>
+        </panelsView:PanelsFrame>
     </SwapChainPanel>
 </Page>
