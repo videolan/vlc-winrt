@@ -10,7 +10,9 @@
              Visibility="{Binding TrackCollection.IsRunning, Converter={StaticResource BooleanToVisibilityConverter}}">
     <StackPanel>
         <TextBlock Text="{Binding CurrentArtist.Name}"
-                   Style="{StaticResource SubheaderTextBlockStyle}" />
+                   Style="{StaticResource SubheaderTextBlockStyle}" 
+                   TextWrapping="NoWrap"
+                   TextTrimming="CharacterEllipsis"/>
         <TextBlock Text="{Binding CurrentTrack.Name}"
                    Style="{StaticResource SubheaderTextBlockStyle}"
                    TextWrapping="NoWrap"
