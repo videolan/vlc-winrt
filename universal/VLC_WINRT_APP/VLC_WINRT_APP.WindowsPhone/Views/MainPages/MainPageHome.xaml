@@ -18,12 +18,14 @@
           x:Name="MainGrid"
           DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
         <Grid.RowDefinitions>
+            <RowDefinition Height="80" />
             <RowDefinition />
             <RowDefinition Height="30" />
         </Grid.RowDefinitions>
-
-        <ScrollViewer>
-            <StackPanel Margin="12,0,0,0">
+        <userControls:TopBar Grid.Row="0"
+                             HeaderTextBlock="VLC" />
+        <ScrollViewer Grid.Row="1">
+            <StackPanel Margin="24,0,0,0">
                 <TextBlock Text="Favorites and suggestions"
                            Margin="0,36,0,0"
                            FontSize="32"

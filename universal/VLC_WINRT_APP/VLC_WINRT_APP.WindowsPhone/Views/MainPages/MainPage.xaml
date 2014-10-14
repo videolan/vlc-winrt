@@ -13,35 +13,24 @@
         <MediaElement AudioCategory="BackgroundCapableMedia"
                       AudioDeviceType="Multimedia"
                       x:Name="MediaElement"
-                      x:FieldModifier="public"
-                      Grid.RowSpan="2" />
+                      x:FieldModifier="public" />
 
         <Grid Background="White"
-              Grid.RowSpan="2"
               Visibility="{Binding Source={StaticResource Locator}, Path=VideoVm.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}" />
 
-        <Image Source="/Assets/backgroundTop.png"
-               Stretch="Uniform"
-               Opacity="{Binding ElementName=PanelsView, Path=Scrolling, Converter={StaticResource OpacityDecreaserConverter}}"
-               Grid.RowSpan="2"
-               VerticalAlignment="Top" />
         <Image Source="/Assets/backgroundBot.png"
                Stretch="Uniform"
                Opacity="{Binding ElementName=PanelsView, Path=Scrolling, Converter={StaticResource OpacityDecreaserConverter}}"
                Grid.RowSpan="2"
                VerticalAlignment="Bottom" />
-        <Image Source="/Assets/backgroundTopBlurred.png"
-               Stretch="Uniform"
-               Opacity="{Binding ElementName=PanelsView, Path=Scrolling}"
-               Grid.RowSpan="2"
-               VerticalAlignment="Top" />
         <Image Source="/Assets/backgroundBotBlurred.png"
                Stretch="Uniform"
                Opacity="{Binding ElementName=PanelsView, Path=Scrolling}"
                Grid.RowSpan="2"
                VerticalAlignment="Bottom" />
+
         <panelsView:PanelsFrame x:Name="PanelsView"
-                                 x:FieldModifier="public">
+                                x:FieldModifier="public">
             <panelsView:PanelsFrame.SideBarContent>
                 <userControls:LeftColumn DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}" />
             </panelsView:PanelsFrame.SideBarContent>

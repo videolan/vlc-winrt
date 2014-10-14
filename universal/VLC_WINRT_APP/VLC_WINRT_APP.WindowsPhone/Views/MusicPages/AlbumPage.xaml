@@ -5,81 +5,80 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:triggers="using:WinRT.Triggers"
+      xmlns:userControls="using:VLC_WINRT_APP.Views.UserControls"
       mc:Ignorable="d"
       DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}"
       Background="White">
-
+    <Page.Resources>
+        <Storyboard x:Name="FadeOutHeader">
+            <DoubleAnimation EnableDependentAnimation="True"
+                             Storyboard.TargetName="HeaderGrid"
+                             Storyboard.TargetProperty="(FrameworkElement.Height)"
+                             To="170">
+                <DoubleAnimation.EasingFunction>
+                    <ExponentialEase EasingMode="EaseOut"
+                                     Exponent="3" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+        <SolidColorBrush x:Key="MyTransparent"
+                         Color="Transparent"
+                         Opacity="0" />
+    </Page.Resources>
     <Grid Margin="12,0,0,0"
           RequestedTheme="Dark">
         <Grid.RowDefinitions>
-            <RowDefinition Height="80" />
-            <RowDefinition Height="12" />
-            <RowDefinition MaxHeight="230" />
+            <RowDefinition Height="Auto"
+                           x:Name="HeaderRowDefinition" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <Grid Background="Black"
-              Grid.RowSpan="3"
-              Margin="-12,0,0,0">
-            <Image Source="{Binding CurrentArtist.Picture}"
+        <Grid Grid.Row="0"
+              x:Name="HeaderGrid"
+              Margin="-12,0,0,0"
+              Height="300"
+              Background="Black">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Image Grid.RowSpan="2"
+                   Source="{Binding CurrentArtist.Picture}"
                    Stretch="UniformToFill"
-                   Opacity="0.5"/>
-        </Grid>
-        <TextBlock Text="{Binding CurrentAlbum.Name}"
-                   Style="{StaticResource TitleTextBlockStyle}"
-                   Typography.Capitals="SmallCaps"
-                   FontSize="23"
-                   VerticalAlignment="Center" />
-        <Grid Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200" />
-                <ColumnDefinition Width="12" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <Grid>
+                   Opacity="0.6" />
+            <userControls:TopBar HeaderTextBlock="{Binding CurrentAlbum.Name}"
+                                 HeaderBackground="#00ffffff" />
+            <StackPanel Grid.Row="1"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Center">
                 <Image Source="{Binding CurrentAlbum.Picture}"
-                       Stretch="UniformToFill"
-                       Width="200"
-                       Height="200"
-                       VerticalAlignment="Top" />
-            </Grid>
-            <Grid Grid.Column="2"
-                  Height="200"
-                  VerticalAlignment="Top">
-                <StackPanel>
+                       MaxHeight="200"
+                       MaxWidth="200"
+                       Margin="0,0,0,6" />
+                <StackPanel Margin="12,0,0,0"
+                            VerticalAlignment="Center">
                     <TextBlock Text="{Binding CurrentArtist.Name}"
-                               Style="{StaticResource MessageDialogTitleStyle}" />
-                    <TextBlock Text="{Binding CurrentAlbum.Year}"
-                               Style="{StaticResource TitleTextBlockStyle}" />
-                    <TextBlock Style="{StaticResource TitleTextBlockStyle}">
-                    <Run Text="{Binding CurrentAlbum.Tracks.Count}" />
-                    <Run Text="tracks" />
+                               Style="{StaticResource SubheaderTextBlockStyle}" />
+                    <TextBlock Style="{StaticResource BaseTextBlockStyle}">
+                        <Run Text="{Binding CurrentAlbum.Tracks.Count}" />
+                        <Run Text="tracks" />
                     </TextBlock>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal"
-                            Margin="-21,0,0,0"
-                            VerticalAlignment="Bottom">
-                    <AppBarToggleButton IsChecked="{Binding CurrentAlbum.Favorite}"
-                                        Label="Like"
-                                        Command="{Binding CurrentAlbum.FavoriteAlbum}"
-                                        CommandParameter="{Binding CurrentAlbum}">
-                        <AppBarToggleButton.Icon>
-                            <FontIcon Glyph="&#xE0A5;" />
-                        </AppBarToggleButton.Icon>
-                    </AppBarToggleButton>
-                    <AppBarButton Icon="Play"
-                                  Label="Play all"
-                                  Command="{Binding CurrentAlbum.PlayAlbum}"
-                                  CommandParameter="{Binding CurrentAlbum}" />
-                </StackPanel>
-            </Grid>
+            </StackPanel>
         </Grid>
-        <Grid Grid.Row="3"
+        <Grid Grid.Row="1"
               RequestedTheme="Light">
             <ListView ItemsSource="{Binding CurrentAlbum.Tracks}"
                       IsItemClickEnabled="True"
                       SelectionMode="None"
-                      ItemTemplate="{StaticResource LightTrackTemplate}">
+                      ItemTemplate="{StaticResource LightTrackTemplate}"
+                      ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                      Loaded="PlaylistView_Loaded"
+                      Margin="12,0,0,0">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Margin="0,0,0,60"/>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
                 <triggers:Interactions.Triggers>
                     <triggers:EventTrigger EventName="ItemClick">
                         <triggers:InvokeCommandAction Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.TrackClickedCommand}"
@@ -88,7 +87,16 @@
                 </triggers:Interactions.Triggers>
             </ListView>
         </Grid>
-        <local:MiniPlayer Grid.Row="4"
-                          Margin="-12,0,0,0" />
     </Grid>
+
+    <Page.BottomAppBar>
+        <CommandBar Style="{StaticResource VLCCommandBarStyle}">
+            <CommandBar.PrimaryCommands>
+                <AppBarButton Icon="Play"
+                              Label="play all" />
+                <AppBarButton Icon="Favorite"
+                              Label="favorite" />
+            </CommandBar.PrimaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
 </Page>
