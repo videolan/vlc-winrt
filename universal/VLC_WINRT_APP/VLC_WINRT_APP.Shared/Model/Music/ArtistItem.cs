@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Core;
 using SQLite;
 using VLC_WINRT_APP.Common;
 using VLC_WINRT_APP.Helpers.MusicLibrary;
@@ -71,14 +73,26 @@ namespace VLC_WINRT_APP.Model.Music
             set
             {
                 SetProperty(ref _picture, value);
+                OnPropertyChanged();
             }
         }
 
-        private void LoadPicture()
+        private async Task LoadPicture()
         {
             if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable()) return;
-            ArtistInformationsHelper.GetArtistPicture(this);
+            try
+            {
+                await ArtistInformationsHelper.GetArtistPicture(this);
+            }
+            catch(Exception)
+            {
+                Debug.WriteLine("Error getting artist picture : " + _name);
+            }
             _isPictureLoaded = true;
+            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                OnPropertyChanged("Picture");
+            });
         }
 
         [Ignore]

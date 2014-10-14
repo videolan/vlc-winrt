@@ -56,6 +56,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         private ArtistClickedCommand _artistClickedCommand;
         private TrackClickedCommand _trackClickedCommand;
         private AlbumItem _currentAlbum;
+        private ArtistItem _currentArtist;
         private bool _isLoaded = false;
         private bool _isBusy = false;
         private bool _isMusicLibraryEmpty = true;
@@ -204,7 +205,13 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 
         public ArtistItem CurrentArtist
         {
-            get { return Artists.FirstOrDefault(x=>x.Id == CurrentAlbum.ArtistId); }
+            get
+            {
+                if (_currentArtist == null)
+                    return Artists.FirstOrDefault(x => x.Id == CurrentAlbum.ArtistId);
+                return _currentArtist;
+            }
+            set { SetProperty(ref _currentArtist, value); }
         }
 
         public AlbumItem CurrentAlbum
