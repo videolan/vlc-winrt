@@ -28,8 +28,7 @@
                   ItemsSource="{Binding Videos}"
                   ItemTemplate="{StaticResource SemanticZoomInViewMovieTemplate}"
                   SelectionMode="None"
-                  IsItemClickEnabled="True"
-                  Margin="0,36,0,0">
+                  IsItemClickEnabled="True">
             <triggers:Interactions.Triggers>
                 <triggers:EventTrigger EventName="ItemClick">
                     <triggers:InvokeCommandAction Command="{Binding OpenVideo}"

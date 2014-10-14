@@ -89,84 +89,41 @@ namespace VLC_WINRT_APP.Helpers
 
             if (stringLength < 6) return null;
             var resourceLoader = new ResourceLoader();
-
-            // Search for s01e10.
-            for (int i = 0; i < stringLength - 5; i++)
+            try
             {
-                if (title.ElementAt(i) != 's' || !isDigit(title.ElementAt(i + 1)) || !isDigit(title.ElementAt(i + 2)) ||
-                    title.ElementAt(i + 3) != 'e' || !isDigit(title.ElementAt(i + 4)) ||
-                    !isDigit(title.ElementAt(i + 5)))
+                // Search for s01e10.
+                for (int i = 0; i < stringLength - 5; i++)
                 {
-                    // Inverted "if" statement to reduce nesting.
-                    continue;
-                }
-                string season = title.ElementAt(i + 1).ToString() + title.ElementAt(i + 2).ToString();
-                string episode;
-                if (isDigit(title.ElementAt(i + 6)))
-                    episode = title.ElementAt(i + 4).ToString() + title.ElementAt(i + 5).ToString() + title.ElementAt(i + 6).ToString();
-                else
-                    episode = title.ElementAt(i + 4).ToString() + title.ElementAt(i + 5).ToString();
-
-                string tvShowName = i > 0 ? title.Substring(0, i) : resourceLoader.GetString("UntitledShow");
-                if (tvShowName != null)
-                {
-                    tvShowName = CapitalizedString(Decrapify(tvShowName));
-                }
-
-                string episodeName = stringLength > i + 4 ? title.Substring(0, i + 6) : null;
-                if (episodeName != null)
-                {
-                    episodeName = Decrapify(episodeName);
-                }
-
-                dictionary["season"] = season;
-                dictionary["episode"] = episode;
-                if (tvShowName != null && !string.IsNullOrEmpty(tvShowName))
-                {
-                    dictionary["tvShowName"] = tvShowName;
-                }
-                if (episodeName != null && !string.IsNullOrEmpty(episodeName))
-                {
-                    dictionary["tvEpisodeName"] = CapitalizedString(episodeName);
-                }
-                successfulSearch = true;
-            }
-
-            // search for 0x00
-            if (!successfulSearch)
-            {
-                for (int i = 0; i < stringLength - 4; i++)
-                {
-                    if (!isDigit(title.ElementAt(i)) || title.ElementAt(i + 1) != 'x' ||
-                        !isDigit(title.ElementAt(i + 2)) || !isDigit(title.ElementAt(i + 3)))
+                    if (title.ElementAt(i) != 's' || !isDigit(title.ElementAt(i + 1)) ||
+                        !isDigit(title.ElementAt(i + 2)) ||
+                        title.ElementAt(i + 3) != 'e' || !isDigit(title.ElementAt(i + 4)) ||
+                        !isDigit(title.ElementAt(i + 5)))
                     {
                         // Inverted "if" statement to reduce nesting.
                         continue;
                     }
+                    string season = title.ElementAt(i + 1).ToString() + title.ElementAt(i + 2).ToString();
+                    string episode;
+                    if (isDigit(title.ElementAt(i + 6)))
+                        episode = title.ElementAt(i + 4).ToString() + title.ElementAt(i + 5).ToString() +
+                                  title.ElementAt(i + 6).ToString();
+                    else
+                        episode = title.ElementAt(i + 4).ToString() + title.ElementAt(i + 5).ToString();
 
-                    string season = title.ElementAt(i).ToString();
-                    string episode = title.ElementAt(i + 2).ToString() + title.ElementAt(i + 3).ToString();
-
-                    string tvShowName = i > 0 ? title.Substring(0, i) : resourceLoader.GetString("UntitledShow"); ;
+                    string tvShowName = i > 0 ? title.Substring(0, i) : resourceLoader.GetString("UntitledShow");
                     if (tvShowName != null)
                     {
                         tvShowName = CapitalizedString(Decrapify(tvShowName));
                     }
 
-                    string episodeName = stringLength > i + 4 ? title.Substring(0, i + 4) : null;
+                    string episodeName = stringLength > i + 4 ? title.Substring(0, i + 6) : null;
                     if (episodeName != null)
                     {
                         episodeName = Decrapify(episodeName);
                     }
 
-                    if (season != null)
-                    {
-                        dictionary["season"] = season;
-                    }
-
-                    // 'episode' will never be null according to conditions above, so checking for it is not needed.
+                    dictionary["season"] = season;
                     dictionary["episode"] = episode;
-
                     if (tvShowName != null && !string.IsNullOrEmpty(tvShowName))
                     {
                         dictionary["tvShowName"] = tvShowName;
@@ -177,7 +134,56 @@ namespace VLC_WINRT_APP.Helpers
                     }
                     successfulSearch = true;
                 }
+
+                // search for 0x00
+                if (!successfulSearch)
+                {
+                    for (int i = 0; i < stringLength - 4; i++)
+                    {
+                        if (!isDigit(title.ElementAt(i)) || title.ElementAt(i + 1) != 'x' ||
+                            !isDigit(title.ElementAt(i + 2)) || !isDigit(title.ElementAt(i + 3)))
+                        {
+                            // Inverted "if" statement to reduce nesting.
+                            continue;
+                        }
+
+                        string season = title.ElementAt(i).ToString();
+                        string episode = title.ElementAt(i + 2).ToString() + title.ElementAt(i + 3).ToString();
+
+                        string tvShowName = i > 0 ? title.Substring(0, i) : resourceLoader.GetString("UntitledShow");
+                        ;
+                        if (tvShowName != null)
+                        {
+                            tvShowName = CapitalizedString(Decrapify(tvShowName));
+                        }
+
+                        string episodeName = stringLength > i + 4 ? title.Substring(0, i + 4) : null;
+                        if (episodeName != null)
+                        {
+                            episodeName = Decrapify(episodeName);
+                        }
+
+                        if (season != null)
+                        {
+                            dictionary["season"] = season;
+                        }
+
+                        // 'episode' will never be null according to conditions above, so checking for it is not needed.
+                        dictionary["episode"] = episode;
+
+                        if (tvShowName != null && !string.IsNullOrEmpty(tvShowName))
+                        {
+                            dictionary["tvShowName"] = tvShowName;
+                        }
+                        if (episodeName != null && !string.IsNullOrEmpty(episodeName))
+                        {
+                            dictionary["tvEpisodeName"] = CapitalizedString(episodeName);
+                        }
+                        successfulSearch = true;
+                    }
+                }
             }
+            catch { }
             return successfulSearch ? dictionary : null;
         }
 

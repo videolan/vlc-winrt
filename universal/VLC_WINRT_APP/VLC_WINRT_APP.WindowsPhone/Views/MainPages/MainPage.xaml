@@ -22,12 +22,14 @@
                Stretch="Uniform"
                Opacity="{Binding ElementName=PanelsView, Path=Scrolling, Converter={StaticResource OpacityDecreaserConverter}}"
                Grid.RowSpan="2"
-               VerticalAlignment="Bottom" />
+               VerticalAlignment="Bottom"
+               Visibility="{Binding Source={StaticResource Locator}, Path=VideoVm.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}" />
         <Image Source="/Assets/backgroundBotBlurred.png"
                Stretch="Uniform"
                Opacity="{Binding ElementName=PanelsView, Path=Scrolling}"
                Grid.RowSpan="2"
-               VerticalAlignment="Bottom" />
+               VerticalAlignment="Bottom"
+               Visibility="{Binding Source={StaticResource Locator}, Path=VideoVm.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}" />
 
         <panelsView:PanelsFrame x:Name="PanelsView"
                                 x:FieldModifier="public">

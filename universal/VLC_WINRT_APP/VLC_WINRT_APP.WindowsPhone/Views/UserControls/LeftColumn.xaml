@@ -36,11 +36,7 @@
                     Margin="32,0,0,0"
                     x:Name="HeaderGrid"
                     Grid.Row="1">
-            <Path Data="{StaticResource VLCFlatPath}"
-                  Stretch="Uniform"
-                  Fill="{StaticResource MainColor}"
-                  Width="30"
-                  Height="30" />
+            <local:VLCLogoWithGradient />
             <TextBlock x:Name="TitleTextBlock"
                        Style="{StaticResource TitleTextBlockStyle}"
                        Margin="6,-2,0,0"
@@ -56,7 +52,7 @@
         </StackPanel>
         <local:VLCSearchBox Grid.Row="3"
                             x:Name="LargeSearchBox"
-                            Margin="32,0,20,0" />
+                            Margin="32,0,0,0" />
         <ListView Grid.Row="5"
                   x:Name="PanelsListView"
                   ItemsSource="{Binding Panels}"

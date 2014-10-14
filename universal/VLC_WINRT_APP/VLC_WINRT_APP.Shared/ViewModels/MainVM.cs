@@ -76,8 +76,9 @@ namespace VLC_WINRT_APP.ViewModels
             Panels.Add(new Panel(resourceLoader.GetString("Videos"), 1, 0.4, App.Current.Resources["VideoPath"].ToString()));
             Panels.Add(new Panel(resourceLoader.GetString("Music"), 2, 0.4, App.Current.Resources["MusicPath"].ToString()));
             Panels.Add(new Panel(resourceLoader.GetString("RemovableStorage"), 3, 0.4, App.Current.Resources["RemovablesPath"].ToString()));
+#if WINDOWS_APP
             Panels.Add(new Panel(resourceLoader.GetString("MediaServers"), 4, 0.4, App.Current.Resources["ServerPath"].ToString()));
-
+#endif
             Initialize();
         }
 

@@ -20,31 +20,32 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="80" />
             <RowDefinition />
-            <RowDefinition Height="30" />
         </Grid.RowDefinitions>
         <userControls:TopBar Grid.Row="0"
-                             HeaderTextBlock="VLC" />
+                             HeaderTextBlock="Favorites and suggestions" />
         <ScrollViewer Grid.Row="1">
             <StackPanel Margin="24,0,0,0">
-                <TextBlock Text="Favorites and suggestions"
-                           Margin="0,36,0,0"
-                           FontSize="32"
-                           Foreground="{StaticResource MainColor}"
-                           Style="{StaticResource HeaderTextBlockStyle}" />
                 <StackPanel x:Name="MusicLibrary"
                             DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
                     <TextBlock Text="albums"
                                Margin="0,12,0,0"
                                FontSize="24"
+                               Foreground="{StaticResource MainColor}"
                                Style="{StaticResource SubheaderTextBlockStyle}" />
                     <GridView ItemsSource="{Binding RandomAlbums}"
-                              ItemTemplate="{StaticResource SemanticZoomInViewAlbumTemplateLittleSize}"
+                              ItemTemplate="{StaticResource WPSemanticZoomInViewAlbumTemplateLittleSize}"
                               IsItemClickEnabled="True"
                               SelectionMode="None"
                               ScrollViewer.HorizontalScrollBarVisibility="Auto"
                               ScrollViewer.VerticalScrollBarVisibility="Disabled"
                               ScrollViewer.HorizontalScrollMode="Enabled"
                               ScrollViewer.VerticalScrollMode="Disabled">
+                        <triggers:Interactions.Triggers>
+                            <triggers:EventTrigger EventName="ItemClick">
+                                <triggers:InvokeCommandAction Command="{Binding AlbumClickedCommand}"
+                                                              PassEventArgsToCommand="True" />
+                            </triggers:EventTrigger>
+                        </triggers:Interactions.Triggers>
                         <GridView.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <StackPanel Orientation="Horizontal" />
@@ -58,17 +59,18 @@
                     <TextBlock Text="videos"
                                Margin="0,12,0,0"
                                FontSize="24"
+                               Foreground="{StaticResource MainColor}"
                                Style="{StaticResource SubheaderTextBlockStyle}" />
                     <ListView ItemsSource="{Binding Videos}"
                               ItemTemplate="{StaticResource VideoTemplateWP}"
-                              Margin="-12,0,0,0"
-                              ScrollViewer.VerticalScrollBarVisibility="Disabled">
-                        <ListView.ItemContainerTransitions>
-                            <TransitionCollection>
-                                <EntranceThemeTransition />
-                                <RepositionThemeTransition />
-                            </TransitionCollection>
-                        </ListView.ItemContainerTransitions>
+                              Margin="-24,0,0,0"
+                              ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                              ScrollViewer.VerticalScrollMode="Disabled">
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <VirtualizingStackPanel Margin="0,0,0,60"/>
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
                     </ListView>
                 </StackPanel>
             </StackPanel>
@@ -77,13 +79,14 @@
     <Page.BottomAppBar>
         <CommandBar Style="{StaticResource VLCCommandBarStyle}">
             <AppBarButton Icon="OpenFile"
-                          Label="open a file" />
-            <AppBarButton Label="open a stream"
+                          Label="open file" />
+            <AppBarButton Label="open stream"
                           Icon="World" />
             <CommandBar.SecondaryCommands>
-
-                <AppBarButton Label="special thanks" />
-                <AppBarButton Label="settings" />
+                <AppBarButton Label="special thanks" 
+                              Command="{Binding GoToThanksPageCommand}"/>
+                <AppBarButton Label="settings" 
+                              Command="{Binding GoToSettingsPageCommand}"/>
             </CommandBar.SecondaryCommands>
         </CommandBar>
     </Page.BottomAppBar>

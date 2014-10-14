@@ -73,15 +73,16 @@
                   HorizontalAlignment="Center"
                   Stretch="Uniform"
                   Fill="{Binding Color}"
-                  Margin="42,0,0,0" />
+                  Margin="25,0,0,0" />
             <TextBlock Grid.Column="1"
                        Text="{Binding Title}"
                        Foreground="{Binding Color}"
                        TextWrapping="NoWrap"
                        TextTrimming="None"
-                       Margin="12,-12,0,0"
+                       Margin="12,-9,0,0"
                        VerticalAlignment="Center"
-                       Style="{StaticResource SubheaderTextBlockStyle}" />
+                       Style="{StaticResource SubheaderTextBlockStyle}"
+                       FontSize="28"/>
         </Grid>
     </DataTemplate>
     <DataTemplate x:Name="SidebarIconItemTemplate">

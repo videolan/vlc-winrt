@@ -13,6 +13,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Windows.Devices.Input;
+using Windows.Phone.UI.Input;
 using Windows.System;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
@@ -40,6 +41,7 @@ namespace VLC_WINRT_APP.Views.VideoPages
 
         private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
         {
+#if WINDOWS_APP
             if (sizeChangedEventArgs.NewSize.Width < 550)
             {
                 LeftButtons.Visibility = Visibility.Collapsed;
@@ -50,6 +52,9 @@ namespace VLC_WINRT_APP.Views.VideoPages
                 LeftButtons.Visibility = Visibility.Visible;
                 RightButtons.Visibility = Visibility.Visible;
             }
+#else
+            VolumeSlider.Visibility = Visibility.Collapsed;
+#endif
         }
 
         private void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
@@ -61,6 +66,29 @@ namespace VLC_WINRT_APP.Views.VideoPages
             this.SizeChanged += OnSizeChanged;
             this.Unloaded += OnUnloaded;
             Window.Current.Content.AddHandler(KeyDownEvent, new KeyEventHandler(KeyPressedDown), true);
+#if WINDOWS_PHONE_APP
+            HardwareButtons.BackPressed += HardwareButtonsOnBackPressed;
+#endif
+        }
+
+        private void HardwareButtonsOnBackPressed(object sender, BackPressedEventArgs backPressedEventArgs)
+        {
+            backPressedEventArgs.Handled = true;
+            if (isVisible)
+            {
+                DisplayOrHide();
+            }
+            else
+            {
+                Locator.VideoVm.GoBack.Execute("");
+            }
+        }
+
+        private void OnUnloaded(object sender, RoutedEventArgs routedEventArgs)
+        {
+            Window.Current.Content.RemoveHandler(KeyDownEvent, new KeyEventHandler(KeyPressedDown));
+            this.SizeChanged -= OnSizeChanged;
+            HardwareButtons.BackPressed -= HardwareButtonsOnBackPressed;
         }
 
         private void KeyPressedDown(object sender, KeyRoutedEventArgs e)
@@ -71,11 +99,6 @@ namespace VLC_WINRT_APP.Views.VideoPages
             }
         }
 
-        private void OnUnloaded(object sender, RoutedEventArgs routedEventArgs)
-        {
-            Window.Current.Content.RemoveHandler(KeyDownEvent, new KeyEventHandler(KeyPressedDown));
-            this.SizeChanged -= OnSizeChanged;
-        }
 
 
         private void VideoGrid_Tapped(object sender, TappedRoutedEventArgs e)
