@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:triggers="using:WinRT.Triggers"
+      xmlns:userControls="using:VLC_WINRT_APP.Views.UserControls"
       mc:Ignorable="d"
       d:DesignHeight="300"
       d:DesignWidth="400"
@@ -21,11 +22,8 @@
             <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <TextBlock Text="Videos"
-                   Margin="12,36,0,0"
-                   FontSize="32"
-                   Foreground="{StaticResource MainColor}"
-                   Style="{StaticResource HeaderTextBlockStyle}" />
+        <userControls:TopBar Grid.Row="0"
+                             HeaderTextBlock="videos" />
         <ListView Grid.Row="1"
                   ItemsSource="{Binding Videos}"
                   ItemTemplate="{StaticResource SemanticZoomInViewMovieTemplate}"
@@ -51,7 +49,5 @@
                 </GroupStyle>
             </ListView.GroupStyle>
         </ListView>
-        <!--</SemanticZoom.ZoomedInView>
-        </SemanticZoom>-->
     </Grid>
 </Page>
