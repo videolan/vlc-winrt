@@ -13,7 +13,6 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Windows.Devices.Input;
-using Windows.Phone.UI.Input;
 using Windows.System;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
@@ -23,7 +22,9 @@ using Windows.UI.Xaml.Input;
 using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.ViewModels;
 using WinRTXamlToolkit.Controls.Extensions;
-
+#if WINDOWS_PHONE_APP
+using Windows.Phone.UI.Input;
+#endif
 namespace VLC_WINRT_APP.Views.VideoPages
 {
     public sealed partial class VideoPlayerPage : Page
@@ -70,7 +71,7 @@ namespace VLC_WINRT_APP.Views.VideoPages
             HardwareButtons.BackPressed += HardwareButtonsOnBackPressed;
 #endif
         }
-
+#if WINDOWS_PHONE_APP
         private void HardwareButtonsOnBackPressed(object sender, BackPressedEventArgs backPressedEventArgs)
         {
             backPressedEventArgs.Handled = true;
@@ -83,13 +84,17 @@ namespace VLC_WINRT_APP.Views.VideoPages
                 Locator.VideoVm.GoBack.Execute("");
             }
         }
+#endif
 
         private void OnUnloaded(object sender, RoutedEventArgs routedEventArgs)
         {
             Window.Current.Content.RemoveHandler(KeyDownEvent, new KeyEventHandler(KeyPressedDown));
             this.SizeChanged -= OnSizeChanged;
+#if WINDOWS_PHONE_APP
             HardwareButtons.BackPressed -= HardwareButtonsOnBackPressed;
+#endif
         }
+
 
         private void KeyPressedDown(object sender, KeyRoutedEventArgs e)
         {

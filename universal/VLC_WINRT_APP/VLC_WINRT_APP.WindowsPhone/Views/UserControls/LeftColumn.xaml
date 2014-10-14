@@ -59,7 +59,7 @@
                   IsItemClickEnabled="True"
                   SelectionMode="None"
                   ItemContainerStyle="{StaticResource ListViewItemContainerStyle}"
-                  ItemTemplate="{StaticResource SidebarItemTemplate}"
+                  ItemTemplate="{StaticResource WPSidebarItemTemplate}"
                   ScrollViewer.VerticalScrollBarVisibility="Hidden"
                   ScrollViewer.VerticalScrollMode="Disabled">
             <triggers:Interactions.Triggers>
