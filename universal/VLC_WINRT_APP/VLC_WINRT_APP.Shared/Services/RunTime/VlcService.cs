@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Windows.Foundation;
+using VLC_WINRT_APP.Model.Music;
 #if WINDOWS_PHONE_APP
 using Windows.Media.Playback;
 #endif
@@ -92,10 +93,7 @@ namespace VLC_WINRT_APP.Services.RunTime
                 a();
             }
 #else
-            lock (_controlLock)
-            {
-                a();
-            }
+            a();
 #endif
         }
 
@@ -154,7 +152,6 @@ namespace VLC_WINRT_APP.Services.RunTime
 
         public void Open(string mrl)
         {
-
             DoVLCSafeAction(() => { _vlcPlayer.Open(mrl); });
         }
 
@@ -471,8 +468,10 @@ namespace VLC_WINRT_APP.Services.RunTime
 
         public float GetPosition()
         {
-            if (Locator.MusicPlayerVM.TrackCollection.IsRunning)
+            try
             {
+                if (Locator.MusicPlayerVM.TrackCollection.IsRunning)
+                {
 #if WINDOWS_APP
                 float pos;
                 //#if WINDOWS_APP
@@ -486,11 +485,16 @@ namespace VLC_WINRT_APP.Services.RunTime
                 //#endif
                 return pos;
 #endif
+                }
+                else
+                {
+                    return
+                        (float)
+                            (App.RootPage.MediaElement.Position.TotalSeconds /
+                             Locator.VideoVm.CurrentVideo.Duration.TotalSeconds);
+                }
             }
-            else
-            {
-                return (float)(App.RootPage.MediaElement.Position.TotalSeconds / Locator.VideoVm.CurrentVideo.Duration.TotalSeconds);
-            }
+            catch { }
             return 0f;
         }
 
@@ -506,26 +510,36 @@ namespace VLC_WINRT_APP.Services.RunTime
 
         public async void Open(string mrl)
         {
-            Debug.WriteLine("Play with dummy player");
-            StorageFile file;
-            if (Locator.VideoVm.PlayingType == PlayingType.Music)
+            await DispatchHelper.InvokeAsync(async () =>
             {
-                var trackItem = Locator.MusicPlayerVM.CurrentTrack;
+                Debug.WriteLine("Play with dummy player");
+                StorageFile file = null;
+                TrackItem trackItem = null;
+                try
+                {
+                    if (Locator.VideoVm.PlayingType == PlayingType.Music)
+                    {
+                        trackItem = Locator.MusicPlayerVM.CurrentTrack;
+                    }
+                    else
+                    {
+                        file = Locator.VideoVm.CurrentVideo.File;
+                    }
+                }
+                catch
+                {
+                    trackItem = Locator.MusicPlayerVM.CurrentTrack;
 
-                file = await StorageFile.GetFileFromPathAsync(trackItem.Path);
-            }
-            else
-            {
-                file = Locator.VideoVm.CurrentVideo.File;
-            }
+                }
+                if (trackItem != null)
+                {
+                    file = await StorageFile.GetFileFromPathAsync(trackItem.Path);
+                }
+                var stream = await file.OpenAsync(FileAccessMode.Read);
 
-            var stream = await file.OpenAsync(FileAccessMode.Read);
-
-            //DispatchHelper.Invoke(() =>
-            //{
-            //#if WINDOWS_APP
-            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-            {
+                //DispatchHelper.Invoke(() =>
+                //{
+                //#if WINDOWS_APP
                 App.RootPage.MediaElement.SetSource(stream, file.ContentType);
             });
             //#else

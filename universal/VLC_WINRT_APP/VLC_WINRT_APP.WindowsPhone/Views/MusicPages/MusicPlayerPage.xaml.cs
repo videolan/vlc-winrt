@@ -21,8 +21,8 @@ namespace VLC_WINRT_APP.Views.MusicPages
         {
             base.OnNavigatedFrom(e);
             HardwareButtons.BackPressed -= HardwareButtonsOnBackPressed;
-
         }
+
         private void HardwareButtonsOnBackPressed(object sender, BackPressedEventArgs backPressedEventArgs)
         {
             App.ApplicationFrame.GoBack();

@@ -8,18 +8,12 @@
  **********************************************************************/
 
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Threading.Tasks;
-using Windows.Foundation;
 using Windows.Media;
 using Windows.Storage.AccessCache;
 using Windows.Storage.Streams;
-using Windows.UI.Popups;
 using VLC_WINRT.Common;
-using VLC_WINRT_APP.Commands.MediaPlayback;
 using VLC_WINRT_APP.Helpers;
-using VLC_WINRT_APP.Helpers.MusicLibrary.Deezer;
 using VLC_WINRT_APP.Helpers.MusicPlayer;
 using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.Model.Music;
@@ -29,10 +23,9 @@ using Windows.Storage;
 using Windows.UI.Core;
 using Windows.UI.Xaml.Controls;
 using VLC_WINRT_APP.ViewModels;
-using VLC_WINRT_APP.ViewModels.MusicVM;
 using VLC_WINRT_APP.Views.MusicPages;
 using VLC_WINRT_APP.Views.VideoPages;
-using WinRTXamlToolkit.Controls.Extensions;
+
 #if WINDOWS_APP
 using libVLCX;
 using Windows.Media;

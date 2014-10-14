@@ -211,8 +211,8 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             _elapsedTime = TimeSpan.Zero;
 
             _mediaService.SetMediaFile(_mrl, isAudioMedia: false);
-
             _mediaService.Play();
+
             await Task.Delay(1000);
             PositionInSeconds = 0;
             double timeInMilliseconds = await _vlcPlayerService.GetLength();
