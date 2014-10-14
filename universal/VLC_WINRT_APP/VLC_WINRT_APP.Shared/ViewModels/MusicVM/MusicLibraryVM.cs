@@ -207,8 +207,6 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         {
             get
             {
-                if (_currentArtist == null)
-                    return Artists.FirstOrDefault(x => x.Id == CurrentAlbum.ArtistId);
                 return _currentArtist;
             }
             set { SetProperty(ref _currentArtist, value); }
