@@ -93,9 +93,13 @@
         <CommandBar Style="{StaticResource VLCCommandBarStyle}">
             <CommandBar.PrimaryCommands>
                 <AppBarButton Icon="Play"
-                              Label="play all" />
+                              Label="play all" 
+                              Command="{Binding CurrentAlbum.PlayAlbum}"
+                              CommandParameter="{Binding CurrentAlbum}"/>
                 <AppBarButton Icon="Favorite"
-                              Label="favorite" />
+                              Label="favorite"
+                              Command="{Binding CurrentAlbum.FavoriteAlbum}"
+                              CommandParameter="{Binding CurrentAlbum}" />
             </CommandBar.PrimaryCommands>
         </CommandBar>
     </Page.BottomAppBar>

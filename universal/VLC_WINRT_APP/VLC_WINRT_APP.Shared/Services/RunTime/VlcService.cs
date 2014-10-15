@@ -453,7 +453,7 @@ namespace VLC_WINRT_APP.Services.RunTime
 
         public long GetLength()
         {
-            if (Locator.MusicPlayerVM.TrackCollection.IsRunning)
+            if (Locator.VideoVm.PlayingType == PlayingType.Music)
             {
                 long length;
                 length = (long)Locator.MusicPlayerVM.CurrentTrack.Duration.TotalMilliseconds;
@@ -485,6 +485,11 @@ namespace VLC_WINRT_APP.Services.RunTime
                 //                         Locator.MusicPlayer.CurrentPlayingArtist.CurrentAlbumItem.CurrentTrack.Duration.TotalSeconds);
                 //#endif
                 return pos;
+#else
+                    return
+                        (float)
+                            (App.RootPage.MediaElement.Position.TotalSeconds /
+                             Locator.MusicPlayerVM.CurrentTrack.Duration.TotalSeconds);
 #endif
                 }
                 else
@@ -605,7 +610,11 @@ namespace VLC_WINRT_APP.Services.RunTime
             //            {
 
             //            }
-            App.RootPage.MediaElement.Play();
+            try
+            {
+                App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => App.RootPage.MediaElement.Play());
+            }
+            catch { }
         }
 
         public void Seek(float position)

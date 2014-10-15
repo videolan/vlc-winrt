@@ -6,21 +6,15 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:triggers="using:WinRT.Triggers"
       mc:Ignorable="d"
-      Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
       DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
 
-    <Grid Background="Black">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="80" />
             <RowDefinition Height="0" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="Auto " />
         </Grid.RowDefinitions>
-        <Image Source="/Assets/background.jpg"
-               Stretch="UniformToFill"
-               Opacity="0.4"
-               Grid.RowSpan="4" />
-        <TextBlock Text="{Binding CurrentArtist.CurrentAlbumItem.Name}"
+        <TextBlock Text="{Binding CurrentAlbum.Name}"
                    Style="{StaticResource TitleTextBlockStyle}"
                    Typography.Capitals="SmallCaps"
                    FontSize="23"
@@ -43,7 +37,7 @@
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
                                     <Grid>
-                                        <Image Source="{Binding CurrentArtist.CurrentAlbumItem.Picture}"
+                                        <Image Source="{Binding CurrentAlbum.Picture}"
                                                Stretch="UniformToFill"
                                                Width="173"
                                                Height="173"
@@ -55,17 +49,17 @@
                                         <StackPanel>
                                             <TextBlock Text="{Binding CurrentArtist.Name}"
                                                        Style="{StaticResource MessageDialogTitleStyle}" />
-                                            <TextBlock Text="{Binding CurrentArtist.CurrentAlbumItem.Year}"
+                                            <TextBlock Text="{Binding CurrentAlbum.Year}"
                                                        Style="{StaticResource TitleTextBlockStyle}" />
                                             <TextBlock Style="{StaticResource TitleTextBlockStyle}">
-                    <Run Text="{Binding CurrentArtist.CurrentAlbumItem.Tracks.Count}" />
+                    <Run Text="{Binding CurrentAlbum.Tracks.Count}" />
                     <Run Text="tracks" />
                                             </TextBlock>
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal"
                                                     Margin="-21,0,0,0"
                                                     VerticalAlignment="Bottom">
-                                            <AppBarToggleButton IsChecked="{Binding CurrentArtist.CurrentAlbumItem.Favorite}"
+                                            <AppBarToggleButton IsChecked="{Binding CurrentAlbum.Favorite}"
                                                                 Label="Like">
                                                 <AppBarToggleButton.Icon>
                                                     <FontIcon Glyph="&#xE0A5;" />
@@ -74,13 +68,13 @@
                                             <AppBarToggleButton Margin="-9,0,0,0"
                                                                 Icon="Play"
                                                                 Label="Play all"
-                                                                Command="{Binding CurrentArtist.CurrentAlbumItem.PlayAlbum}"
-                                                                CommandParameter="{Binding CurrentArtist.CurrentAlbumItem}" />
+                                                                Command="{Binding CurrentAlbum.PlayAlbum}"
+                                                                CommandParameter="{Binding CurrentAlbum}" />
                                         </StackPanel>
                                     </Grid>
                                 </Grid>
-                                <Grid Grid.Row="3">
-                                    <ListView ItemsSource="{Binding CurrentArtist.CurrentAlbumItem.Tracks}"
+                                <Grid Grid.Row="1">
+                                    <ListView ItemsSource="{Binding CurrentAlbum.Tracks}"
                                               IsItemClickEnabled="True"
                                               SelectionMode="None"
                                               ItemTemplate="{StaticResource DarkTrackTemplate}">
@@ -144,7 +138,5 @@
                 </HubSection>
             </Hub.Sections>
         </Hub>
-        <local:MiniPlayer Grid.Row="3"
-                          Margin="-12,0,0,0" />
     </Grid>
 </Page>

@@ -229,15 +229,6 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                 }
             }
             await Task.Delay(250);
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.High, async () =>
-            {
-                TrackCollection.IsRunning = true;
-                OnPropertyChanged("PlayingType");
-                OnPropertyChanged("CurrentTrack");
-                OnPropertyChanged("CurrentAlbum");
-                OnPropertyChanged("CurrentArtist");
-                OnPropertyChanged("TrackCollection");
-            });
         }
 
         public async void SetActiveMusicInfo(string token, TrackItem track)
@@ -253,10 +244,15 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 
             App.Dispatcher.RunAsync(CoreDispatcherPriority.High, async () =>
             {
-                ElapsedTime = TimeSpan.Zero;
+                TrackCollection.IsRunning = true;
+                OnPropertyChanged("TrackCollection");
+                OnPropertyChanged("TimeTotal");
+                OnPropertyChanged("PlayingType");
+                OnPropertyChanged("CurrentTrack");
+                OnPropertyChanged("CurrentAlbum");
+                OnPropertyChanged("CurrentArtist");
                 await Task.Delay(500);
                 TimeTotal = TimeSpan.FromMilliseconds(_mediaService.GetLength());
-                OnPropertyChanged("TimeTotal");
             });
         }
 

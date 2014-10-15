@@ -11,9 +11,8 @@ using VLC_WINRT.Common;
 using VLC_WINRT_APP.DataRepository;
 using VLC_WINRT_APP.Model.Music;
 using VLC_WINRT_APP.ViewModels;
-using VLC_WINRT_APP.ViewModels.MusicVM;
 
-namespace VLC_WINRT_APP.Commands.MusicPlayer
+namespace VLC_WINRT_APP.Commands.Music
 {
     public class FavoriteAlbumCommand : AlwaysExecutableCommand
     {

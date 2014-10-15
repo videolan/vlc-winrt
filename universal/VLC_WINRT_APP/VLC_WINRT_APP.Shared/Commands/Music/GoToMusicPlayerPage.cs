@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using VLC_WINRT.Common;
+﻿using VLC_WINRT.Common;
 using VLC_WINRT_APP.Views.MusicPages;
 
 namespace VLC_WINRT_APP.Commands.Music
@@ -12,6 +9,9 @@ namespace VLC_WINRT_APP.Commands.Music
         {
             if(App.ApplicationFrame.CurrentSourcePageType != typeof(MusicPlayerPage))
                 App.ApplicationFrame.Navigate(typeof (MusicPlayerPage));
+#if WINDOWS_PHONE_APP
+            App.RootPage.PanelsView.HideSidebar();
+#endif
         }
     }
 }
