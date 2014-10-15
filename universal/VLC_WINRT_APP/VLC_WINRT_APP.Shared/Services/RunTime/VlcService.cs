@@ -509,39 +509,39 @@ namespace VLC_WINRT_APP.Services.RunTime
 
         }
 
-        public async void Open(string mrl)
+        public async Task Open(string mrl)
         {
-            await DispatchHelper.InvokeAsync(async () =>
+            Debug.WriteLine("Play with dummy player");
+            StorageFile file = null;
+            TrackItem trackItem = null;
+            try
             {
-                Debug.WriteLine("Play with dummy player");
-                StorageFile file = null;
-                TrackItem trackItem = null;
-                try
-                {
-                    if (Locator.VideoVm.PlayingType == PlayingType.Music)
-                    {
-                        trackItem = Locator.MusicPlayerVM.CurrentTrack;
-                    }
-                    else
-                    {
-                        file = Locator.VideoVm.CurrentVideo.File;
-                    }
-                }
-                catch
+                if (Locator.VideoVm.PlayingType == PlayingType.Music)
                 {
                     trackItem = Locator.MusicPlayerVM.CurrentTrack;
-
                 }
-                if (trackItem != null)
+                else
                 {
-                    file = await StorageFile.GetFileFromPathAsync(trackItem.Path);
+                    file = Locator.VideoVm.CurrentVideo.File;
                 }
-                var stream = await file.OpenAsync(FileAccessMode.Read);
+            }
+            catch
+            {
+                trackItem = Locator.MusicPlayerVM.CurrentTrack;
+            }
+            if (trackItem != null)
+            {
+                file = await StorageFile.GetFileFromPathAsync(trackItem.Path);
+            }
+            var stream = await file.OpenAsync(FileAccessMode.Read);
 
-                //DispatchHelper.Invoke(() =>
-                //{
-                //#if WINDOWS_APP
-                App.RootPage.MediaElement.SetSource(stream, file.ContentType);
+            //DispatchHelper.Invoke(() =>
+            //{
+            //#if WINDOWS_APP
+            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                App.RootPage.MediaElement.SetSource(
+                    stream, file.ContentType);
             });
             //#else
             //                if (Locator.MusicPlayer.IsRunning)
@@ -605,6 +605,7 @@ namespace VLC_WINRT_APP.Services.RunTime
             //            {
 
             //            }
+            App.RootPage.MediaElement.Play();
         }
 
         public void Seek(float position)

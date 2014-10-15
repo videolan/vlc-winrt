@@ -13,6 +13,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Windows.Devices.Input;
+using Windows.Graphics.Display;
 using Windows.System;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
@@ -69,6 +70,7 @@ namespace VLC_WINRT_APP.Views.VideoPages
             Window.Current.Content.AddHandler(KeyDownEvent, new KeyEventHandler(KeyPressedDown), true);
 #if WINDOWS_PHONE_APP
             HardwareButtons.BackPressed += HardwareButtonsOnBackPressed;
+            DisplayInformation.AutoRotationPreferences = DisplayOrientations.Landscape;
 #endif
         }
 #if WINDOWS_PHONE_APP
@@ -82,6 +84,7 @@ namespace VLC_WINRT_APP.Views.VideoPages
             else
             {
                 Locator.VideoVm.GoBack.Execute("");
+                DisplayInformation.AutoRotationPreferences = DisplayOrientations.None;
             }
         }
 #endif

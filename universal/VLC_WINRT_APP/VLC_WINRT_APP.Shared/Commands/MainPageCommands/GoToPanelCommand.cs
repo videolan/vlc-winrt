@@ -51,6 +51,9 @@ namespace VLC_WINRT_APP.Commands.MainPageCommands
                     break;
 #endif
             }
+#if WINDOWS_PHONE_APP
+            App.RootPage.PanelsView.HideSidebar();
+#endif
         }
     }
 }

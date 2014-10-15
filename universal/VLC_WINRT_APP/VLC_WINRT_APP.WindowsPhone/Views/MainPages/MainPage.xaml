@@ -14,7 +14,6 @@
                       AudioDeviceType="Multimedia"
                       x:Name="MediaElement"
                       x:FieldModifier="public" />
-
         <Grid Background="White"
               Visibility="{Binding Source={StaticResource Locator}, Path=VideoVm.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}" />
 
