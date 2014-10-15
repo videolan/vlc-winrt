@@ -5,15 +5,20 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Phone.UI.Input;
+using Windows.UI.Core;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 
 // Pour en savoir plus sur le modèle d’élément Page vierge, consultez la page http://go.microsoft.com/fwlink/?LinkID=390556
+using WinRTXamlToolkit.Controls.Extensions;
 
 namespace VLC_WINRT_APP.Views.MusicPages
 {
@@ -27,6 +32,18 @@ namespace VLC_WINRT_APP.Views.MusicPages
             this.InitializeComponent();
         }
 
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            base.OnNavigatedFrom(e);
+            HardwareButtons.BackPressed -= HardwareButtonsOnBackPressed;
+        }
+
+        private void HardwareButtonsOnBackPressed(object sender, BackPressedEventArgs backPressedEventArgs)
+        {
+            App.ApplicationFrame.GoBack();
+            backPressedEventArgs.Handled = true;
+        }
+
         /// <summary>
         /// Invoqué lorsque cette page est sur le point d'être affichée dans un frame.
         /// </summary>
@@ -34,6 +51,19 @@ namespace VLC_WINRT_APP.Views.MusicPages
         /// Ce paramètre est généralement utilisé pour configurer la page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            HardwareButtons.BackPressed += HardwareButtonsOnBackPressed;
+        }
+
+        private void AlbumsView_Loaded(object sender, RoutedEventArgs e)
+        {
+            ScrollViewer sV = (sender as GridView).GetFirstDescendantOfType<ScrollViewer>();
+            sV.ViewChanging += (o, args) =>
+            {
+                if (args.NextView.VerticalOffset > 50 && FadeOutHeader.GetCurrentState() == ClockState.Stopped)
+                {
+                    Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => FadeOutHeader.Begin());
+                }
+            };
         }
     }
 }

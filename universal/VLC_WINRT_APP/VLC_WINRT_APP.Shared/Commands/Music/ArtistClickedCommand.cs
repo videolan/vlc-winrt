@@ -12,9 +12,6 @@ namespace VLC_WINRT_APP.Commands.Music
     {
         public override async void Execute(object parameter)
         {
-//#if WINDOWS_PHONE_APP
-    //App.RootFrame.Navigate(typeof(ArtistPage));
-//#endif
             ArtistItem artist = null;
             if (parameter is ItemClickEventArgs)
             {
@@ -29,11 +26,16 @@ namespace VLC_WINRT_APP.Commands.Music
             }
             if (artist != null)
                 Locator.MusicLibraryVM.CurrentArtist = artist;
-
+#if WINDOWS_APP
             if (Window.Current.Bounds.Width < 800)
             {
                 App.ApplicationFrame.Navigate(typeof(ArtistPage));
             }
+#endif
+
+#if WINDOWS_PHONE_APP
+            App.RootFrame.Navigate(typeof(ArtistPage));
+#endif
         }
     }
 }

@@ -21,9 +21,6 @@
                 </DoubleAnimation.EasingFunction>
             </DoubleAnimation>
         </Storyboard>
-        <SolidColorBrush x:Key="MyTransparent"
-                         Color="Transparent"
-                         Opacity="0" />
     </Page.Resources>
     <Grid Margin="12,0,0,0"
           RequestedTheme="Dark">

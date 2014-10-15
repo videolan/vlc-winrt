@@ -32,7 +32,6 @@ namespace VLC_WINRT_APP.Views.MusicPages
 
         void Responsive()
         {
-            ArtistListViewColumnDefinition.Width = new GridLength(Window.Current.Bounds.Width, GridUnitType.Pixel);
         }
 
         private void SemanticZoom_OnViewChangeCompletedCurrentArtistAlbum(object sender, SemanticZoomViewChangedEventArgs e)
