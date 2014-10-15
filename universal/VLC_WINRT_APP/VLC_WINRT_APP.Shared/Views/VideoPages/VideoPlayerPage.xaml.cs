@@ -44,7 +44,7 @@ namespace VLC_WINRT_APP.Views.VideoPages
         private void Responsive()
         {
 #if WINDOWS_APP
-            if (sizeChangedEventArgs.NewSize.Width < 550)
+            if (Window.Current.Bounds.Width < 550)
             {
                 LeftButtons.Visibility = Visibility.Collapsed;
                 RightButtons.Visibility = Visibility.Collapsed;
