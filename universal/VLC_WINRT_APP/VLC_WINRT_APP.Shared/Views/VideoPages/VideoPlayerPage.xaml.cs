@@ -33,7 +33,7 @@ namespace VLC_WINRT_APP.Views.VideoPages
         private bool isVisible = true;
         private bool needDoubleTapToAct = false;
         private TimeSpan _fadeDuration = TimeSpan.FromMilliseconds(350);
-        DispatcherTimer timer;
+        private DispatcherTimer timer;
 
         public VideoPlayerPage()
         {
@@ -41,7 +41,7 @@ namespace VLC_WINRT_APP.Views.VideoPages
             this.Loaded += OnLoaded;
         }
 
-        private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
+        private void Responsive()
         {
 #if WINDOWS_APP
             if (sizeChangedEventArgs.NewSize.Width < 550)
@@ -59,6 +59,11 @@ namespace VLC_WINRT_APP.Views.VideoPages
 #endif
         }
 
+        private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
+        {
+            Responsive();
+        }
+
         private void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
         {
             timer = new DispatcherTimer();
@@ -68,10 +73,12 @@ namespace VLC_WINRT_APP.Views.VideoPages
             this.SizeChanged += OnSizeChanged;
             this.Unloaded += OnUnloaded;
             Window.Current.Content.AddHandler(KeyDownEvent, new KeyEventHandler(KeyPressedDown), true);
+            Responsive();
 #if WINDOWS_PHONE_APP
             HardwareButtons.BackPressed += HardwareButtonsOnBackPressed;
             DisplayInformation.AutoRotationPreferences = DisplayOrientations.Landscape;
 #endif
+
         }
 #if WINDOWS_PHONE_APP
         private void HardwareButtonsOnBackPressed(object sender, BackPressedEventArgs backPressedEventArgs)
