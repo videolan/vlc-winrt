@@ -66,6 +66,7 @@
                     <ListView ItemsSource="{Binding Videos}"
                               ItemTemplate="{StaticResource VideoTemplateWP}"
                               Margin="-24,0,0,0"
+                              IsItemClickEnabled="True"
                               ScrollViewer.VerticalScrollBarVisibility="Disabled"
                               ScrollViewer.VerticalScrollMode="Disabled">
                         <triggers:Interactions.Triggers>
