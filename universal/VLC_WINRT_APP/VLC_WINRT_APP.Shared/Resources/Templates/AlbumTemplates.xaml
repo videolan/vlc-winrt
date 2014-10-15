@@ -314,7 +314,7 @@
     </DataTemplate>
 
     <DataTemplate x:Key="PopularAlbumTemplate">
-        <Grid>
+        <Grid RequestedTheme="Dark">
             <Image Source="{Binding Images, Converter={StaticResource AlbumImageConverter}}"
                    Stretch="UniformToFill" />
             <Grid Height="80"

@@ -27,6 +27,7 @@
                            x:Name="SeparatorRowDefinition" />
             <RowDefinition Height="Auto"
                            x:Name="MiniPlayersRowDefinition" />
+            <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
         <Grid Grid.Column="1"
               Grid.RowSpan="8"
