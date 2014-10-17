@@ -169,7 +169,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="PanelsView">
-      <HintPath>..\..\..\..\..\..\PanelsView\PanelsView\PanelsView\bin\Release\PanelsView.dll</HintPath>
+      <HintPath>..\..\..\..\..\PanelsView\PanelsView\PanelsView\bin\Release\PanelsView.dll</HintPath>
     </Reference>
     <Reference Include="WinRT.Triggers">
       <HintPath>..\..\..\app\packages\WinRTTriggers.1.6.0\lib\winrt45\WinRT.Triggers.dll</HintPath>

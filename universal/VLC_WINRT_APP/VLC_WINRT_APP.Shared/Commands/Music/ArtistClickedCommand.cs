@@ -34,7 +34,7 @@ namespace VLC_WINRT_APP.Commands.Music
 #endif
 
 #if WINDOWS_PHONE_APP
-            App.RootFrame.Navigate(typeof(ArtistPage));
+            App.ApplicationFrame.Navigate(typeof(ArtistPage));
 #endif
         }
     }
