@@ -38,7 +38,6 @@ namespace VLC_WINRT_APP.Views.VideoPages
         public VideoPlayerPage()
         {
             InitializeComponent();
-            this.Loaded += OnLoaded;
         }
 
         private void Responsive()
@@ -64,22 +63,22 @@ namespace VLC_WINRT_APP.Views.VideoPages
             Responsive();
         }
 
-        private void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
+        protected override void OnNavigatedTo(Windows.UI.Xaml.Navigation.NavigationEventArgs e)
         {
+            base.OnNavigatedTo(e);
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(5);
             timer.Tick += TimerOnTick;
             timer.Start();
             this.SizeChanged += OnSizeChanged;
-            this.Unloaded += OnUnloaded;
             Window.Current.Content.AddHandler(KeyDownEvent, new KeyEventHandler(KeyPressedDown), true);
             Responsive();
 #if WINDOWS_PHONE_APP
             HardwareButtons.BackPressed += HardwareButtonsOnBackPressed;
             DisplayInformation.AutoRotationPreferences = DisplayOrientations.Landscape;
 #endif
-
         }
+
 #if WINDOWS_PHONE_APP
         private void HardwareButtonsOnBackPressed(object sender, BackPressedEventArgs backPressedEventArgs)
         {
@@ -95,9 +94,9 @@ namespace VLC_WINRT_APP.Views.VideoPages
             }
         }
 #endif
-
-        private void OnUnloaded(object sender, RoutedEventArgs routedEventArgs)
+        protected override void OnNavigatingFrom(Windows.UI.Xaml.Navigation.NavigatingCancelEventArgs e)
         {
+            base.OnNavigatingFrom(e);
             Window.Current.Content.RemoveHandler(KeyDownEvent, new KeyEventHandler(KeyPressedDown));
             this.SizeChanged -= OnSizeChanged;
 #if WINDOWS_PHONE_APP
