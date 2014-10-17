@@ -62,7 +62,8 @@
                        Stretch="UniformToFill"
                        Width="170"
                        Height="170" />
-                <StackPanel Grid.Row="2">
+                <StackPanel Grid.Row="2"
+                            Width="170">
                     <TextBlock Text="{Binding Artist}"
                                TextWrapping="NoWrap"
                                TextTrimming="WordEllipsis"
@@ -298,7 +299,8 @@
                        Stretch="UniformToFill"
                        Width="170"
                        Height="170" />
-                <StackPanel Grid.Row="2">
+                <StackPanel Grid.Row="2"
+                            Width="170">
                     <TextBlock Text="{Binding Artist}"
                                TextWrapping="NoWrap"
                                TextTrimming="WordEllipsis"

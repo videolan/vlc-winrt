@@ -20,7 +20,7 @@ namespace VLC_WINRT_APP.Views.MainPages.MusicPanes
 
         private void SemanticZoom_OnViewChangeCompletedArtistByName(object sender, SemanticZoomViewChangedEventArgs e)
         {
-            Locator.MusicLibraryVM.ExecuteSemanticZoom(SemanticZoomAlbumsByArtist, AlbumsGroupedByName);
+            //Locator.MusicLibraryVM.ExecuteSemanticZoom(SemanticZoomAlbumsByArtist, AlbumsGroupedByName);
         }
     }
 }

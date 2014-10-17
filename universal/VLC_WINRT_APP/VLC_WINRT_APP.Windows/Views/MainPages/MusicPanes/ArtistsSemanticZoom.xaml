@@ -7,64 +7,36 @@
       mc:Ignorable="d"
       DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
 
-    <Page.Resources>
-        <CollectionViewSource x:Name="AlbumsGroupedByName"
-                              Source="{Binding Artists}"
-                              IsSourceGrouped="True"
-                              ItemsPath="Albums" />
-    </Page.Resources>
-    <SemanticZoom x:Name="SemanticZoomAlbumsByArtist"
-                  Grid.Row="3"
-                  ScrollViewer.HorizontalScrollMode="Disabled"
-                  ViewChangeCompleted="SemanticZoom_OnViewChangeCompletedArtistByName"
-                  Grid.RowSpan="2">
-        <SemanticZoom.ZoomedOutView>
-            <GridView ScrollViewer.VerticalScrollBarVisibility="Hidden"
-                      ItemTemplate="{StaticResource SemanticZoomOutViewArtistTemplate}">
-                <GridView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <ItemsWrapGrid x:Name="ZoomedOutItemsWrapGrid" />
-                    </ItemsPanelTemplate>
-                </GridView.ItemsPanel>
-            </GridView>
-        </SemanticZoom.ZoomedOutView>
-        <SemanticZoom.ZoomedInView>
-            <ListView x:Name="ZoomedInListView"
-                      ItemsSource="{Binding Source={StaticResource AlbumsGroupedByName}}"
-                      IsItemClickEnabled="True"
-                      SelectionMode="None"
-                      ItemTemplate="{StaticResource SemanticZoomInViewAlbumTemplate}"
-                      ItemContainerStyle="{StaticResource ListViewItemStyle}">
-                <ListView.GroupStyle>
-                    <GroupStyle>
-                        <GroupStyle.Panel>
-                            <ItemsPanelTemplate>
-                                <VariableSizedWrapGrid Orientation="Horizontal"
-                                                       ItemHeight="270"
-                                                       ItemWidth="220"
-                                                       Margin="0,0,0,25" />
-                            </ItemsPanelTemplate>
-                        </GroupStyle.Panel>
-                        <GroupStyle.HeaderTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Name}"
-                                           VerticalAlignment="Bottom"
-                                           Foreground="{StaticResource MainColor}"
-                                           TextWrapping="Wrap"
-                                           Typography.Capitals="SmallCaps"
-                                           FontSize="22"
-                                           FontWeight="Light"
-                                           Tapped="Header_Tapped" />
-                            </DataTemplate>
-                        </GroupStyle.HeaderTemplate>
-                    </GroupStyle>
-                </ListView.GroupStyle>
-                <ListView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <VirtualizingStackPanel />
-                    </ItemsPanelTemplate>
-                </ListView.ItemsPanel>
-            </ListView>
-        </SemanticZoom.ZoomedInView>
-    </SemanticZoom>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid>
+            <ComboBox Style="{StaticResource ComboBoxStyle1}"
+                      SelectedIndex="0"
+                      HorizontalAlignment="Left">
+                <ComboBoxItem>By artist</ComboBoxItem>
+                <ComboBoxItem>By date</ComboBoxItem>
+            </ComboBox>
+        </Grid>
+        <SemanticZoom x:Name="SemanticZoomAlbumsByArtist"
+                      Grid.Row="1"
+                      ScrollViewer.HorizontalScrollMode="Disabled"
+                      ViewChangeCompleted="SemanticZoom_OnViewChangeCompletedArtistByName">
+            <SemanticZoom.ZoomedInView>
+                <GridView ItemsSource="{Binding Albums}"
+                          ItemTemplate="{StaticResource SemanticZoomInViewAlbumTemplate}"
+                          Margin="0,0,-20,0"
+                          IsItemClickEnabled="True">
+                    <GridView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <ItemsWrapGrid Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </GridView.ItemsPanel>
+                </GridView>
+
+            </SemanticZoom.ZoomedInView>
+        </SemanticZoom>
+    </Grid>
 </Page>

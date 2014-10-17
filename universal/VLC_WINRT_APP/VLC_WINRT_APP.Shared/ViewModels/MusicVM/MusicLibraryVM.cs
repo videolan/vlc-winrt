@@ -284,12 +284,10 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                 IsLoaded = true;
                 IsBusy = false;
             });
-#if WINDOWS_PHONE_APP
             App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
             {
                 Albums = await _albumDataRepository.LoadAlbums(x => x.ArtistId != 0);
             });
-#endif
         }
 
         public async Task StartIndexing()
