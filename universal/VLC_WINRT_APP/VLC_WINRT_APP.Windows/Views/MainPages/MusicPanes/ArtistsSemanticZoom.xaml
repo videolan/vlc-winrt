@@ -4,6 +4,7 @@
       xmlns:local="using:VLC_WINRT_APP.Views.MainPages.MusicPanes"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:triggers="using:WinRT.Triggers"
       mc:Ignorable="d"
       DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
 
@@ -12,12 +13,30 @@
             <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <Grid>
-            <ComboBox Style="{StaticResource ComboBoxStyle1}"
-                      SelectedIndex="0"
-                      HorizontalAlignment="Left">
-                <ComboBoxItem>By artist</ComboBoxItem>
-                <ComboBoxItem>By date</ComboBoxItem>
+        <Grid DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <ComboBox HorizontalAlignment="Left"
+                      ItemsSource="{Binding AlbumsOrderTypeCollection}"
+                      SelectedItem="{Binding AlbumsOrderType, Mode=TwoWay}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Converter={StaticResource OrderTypeStringifyConverter}}" />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <ComboBox Grid.Column="1"
+                      Margin="12,0,0,0"
+                      HorizontalAlignment="Left"
+                      ItemsSource="{Binding AlbumsListingTypeCollection}"
+                      SelectedItem="{Binding AlbumsOrderListing, Mode=TwoWay}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Converter={StaticResource OrderTypeStringifyConverter}}" />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
             </ComboBox>
         </Grid>
         <SemanticZoom x:Name="SemanticZoomAlbumsByArtist"
@@ -35,7 +54,6 @@
                         </ItemsPanelTemplate>
                     </GridView.ItemsPanel>
                 </GridView>
-
             </SemanticZoom.ZoomedInView>
         </SemanticZoom>
     </Grid>

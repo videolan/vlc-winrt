@@ -9,13 +9,16 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.Storage;
 using VLC_WINRT_APP.Commands.Settings;
 using VLC_WINRT_APP.Common;
 using VLC_WINRT_APP.Helpers;
+using VLC_WINRT_APP.Helpers.MusicLibrary;
 using XboxMusicLibrary.Models;
+using VLC_WINRT_APP.Model;
 
 namespace VLC_WINRT_APP.ViewModels.Settings
 {
@@ -28,6 +31,8 @@ namespace VLC_WINRT_APP.ViewModels.Settings
         private bool _notificationOnNewSong;
         private bool _notificationOnNewSongForeground;
         private bool _continueVideoPlaybackInBackground;
+        private OrderType _albumsOrderType;
+        private OrderListing _albumsOrderListing;
 
         public bool ContinueVideoPlaybackInBackground
         {
@@ -51,6 +56,9 @@ namespace VLC_WINRT_APP.ViewModels.Settings
                     App.RootPage.ColumnGrid.RestoreSidebar();
             }
         }
+        public ObservableCollection<OrderType> AlbumsOrderTypeCollection { get; set; }
+        public ObservableCollection<OrderListing> AlbumsListingTypeCollection { get; set; }
+
         public List<StorageFolder> MusicFolders
         {
             get { return _musicFolders; }
@@ -89,6 +97,61 @@ namespace VLC_WINRT_APP.ViewModels.Settings
             }
         }
 
+        public OrderType AlbumsOrderType
+        {
+            get
+            {
+                var albumsOrderType = ApplicationSettingsHelper.ReadSettingsValue("AlbumsOrderType");
+                if (albumsOrderType == null)
+                {
+                    _albumsOrderType = OrderType.ByArtist;
+                }
+                else
+                {
+                    _albumsOrderType = (OrderType)albumsOrderType;
+                }
+                return _albumsOrderType;
+            }
+            set
+            {
+                SetProperty(ref _albumsOrderType, value);
+                MusicLibraryManagement.OrderAlbums();
+            }
+        }
+
+        public OrderListing AlbumsOrderListing
+        {
+            get
+            {
+                var albumsOrderListing = ApplicationSettingsHelper.ReadSettingsValue("AlbumsOrderListing");
+                if (albumsOrderListing == null)
+                {
+                    _albumsOrderListing = OrderListing.Ascending;
+                }
+                else
+                {
+                    _albumsOrderListing = (OrderListing)albumsOrderListing;
+                } 
+                return _albumsOrderListing;
+            }
+            set
+            {
+                SetProperty(ref _albumsOrderListing, value);
+                MusicLibraryManagement.OrderAlbums();
+            }
+        }
+
+        public SettingsViewModel()
+        {
+            AlbumsOrderTypeCollection = new ObservableCollection<OrderType>();
+            AlbumsOrderTypeCollection.Add(OrderType.ByArtist);
+            AlbumsOrderTypeCollection.Add(OrderType.ByDate);
+
+            AlbumsListingTypeCollection = new ObservableCollection<OrderListing>();
+            AlbumsListingTypeCollection.Add(OrderListing.Ascending);
+            AlbumsListingTypeCollection.Add(OrderListing.Descending);
+        }
+
         public async Task Initialize()
         {
             MusicLibraryId = KnownLibraryId.Music;
@@ -106,6 +169,7 @@ namespace VLC_WINRT_APP.ViewModels.Settings
             IsSidebarAlwaysMinimized = (bool)ApplicationSettingsHelper.ReadSettingsValue("IsSidebarAlwaysMinimized");
             ContinueVideoPlaybackInBackground =
                 (bool) ApplicationSettingsHelper.ReadSettingsValue("ContinueVideoPlaybackInBackground");
+
             await GetLibrariesFolders();
         }
 

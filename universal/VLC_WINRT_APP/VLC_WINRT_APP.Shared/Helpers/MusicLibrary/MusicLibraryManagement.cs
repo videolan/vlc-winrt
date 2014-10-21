@@ -8,6 +8,7 @@ using Windows.Storage;
 using Windows.Storage.FileProperties;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
+using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.Model.Music;
 using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.ViewModels.MusicVM;
@@ -183,8 +184,36 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             var width = Window.Current.Bounds.Width;
             // an album is 220 pixels wide
             width -= (int)Locator.MusicLibraryVM.SidebarState;
-            var nbAlbumsPerRow = width/220;
-            return (int)nbAlbumsPerRow*2;
+            var nbAlbumsPerRow = width / 220;
+            return (int)nbAlbumsPerRow * 2;
+        }
+
+        public static void OrderAlbums()
+        {
+            if (Locator.SettingsVM.AlbumsOrderType == OrderType.ByArtist)
+            {
+                if (Locator.SettingsVM.AlbumsOrderListing == OrderListing.Ascending)
+                {
+                    Locator.MusicLibraryVM.Albums =
+                        new ObservableCollection<AlbumItem>(Locator.MusicLibraryVM.Albums.OrderBy(x => x.Artist));
+                }
+                else if (Locator.SettingsVM.AlbumsOrderListing == OrderListing.Descending)
+                {
+                    Locator.MusicLibraryVM.Albums = new ObservableCollection<AlbumItem>(Locator.MusicLibraryVM.Albums.OrderByDescending(x => x.Artist));
+                }
+            }
+            else if (Locator.SettingsVM.AlbumsOrderType == OrderType.ByDate)
+            {
+                if (Locator.SettingsVM.AlbumsOrderListing == OrderListing.Ascending)
+                {
+                    Locator.MusicLibraryVM.Albums =
+                        new ObservableCollection<AlbumItem>(Locator.MusicLibraryVM.Albums.OrderBy(x => x.Year));
+                }
+                else if (Locator.SettingsVM.AlbumsOrderListing == OrderListing.Descending)
+                {
+                    Locator.MusicLibraryVM.Albums = new ObservableCollection<AlbumItem>(Locator.MusicLibraryVM.Albums.OrderByDescending(x => x.Year));
+                }
+            }
         }
     }
 }

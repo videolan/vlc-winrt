@@ -7,6 +7,8 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
+using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -64,6 +66,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         private string _currentIndexingStatus = "";
         private bool _isMainPageMusicArtistAlbumsSemanticZoomViewedIn;
         #endregion
+
         #region public fields
         public ObservableCollection<AlbumItem> FavoriteAlbums
         {

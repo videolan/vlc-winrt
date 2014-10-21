@@ -25,4 +25,5 @@
     <converters:VLCSearchBoxConverter x:Key="VLCSearchBoxConverter" />
     <converters:IsVisibleDependingOnSidebarState x:Key="IsVisibleDependingOnSidebarState" />
     <converters:OpacityDecreaserConverter  x:Key="OpacityDecreaserConverter" />
+    <converters:OrderTypeStringifyConverter x:Key="OrderTypeStringifyConverter"/>
 </ResourceDictionary>

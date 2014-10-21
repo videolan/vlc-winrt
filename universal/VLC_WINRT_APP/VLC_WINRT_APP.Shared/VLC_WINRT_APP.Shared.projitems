@@ -27,6 +27,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Music\ArtistAlbumsSemanticZoomInvertZoomCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Music\ArtistClickedCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Music\ChangeAlbumArtCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\Music\ChangeAlbumOrderCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Music\DownloadAlbumArtCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Music\FavoriteAlbumCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Music\FavoriteTrackCommand.cs" />
@@ -83,6 +84,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\NegatedCountToVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\NullToVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\OpacityDecreaserConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\OrderTypeStringifyConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\SecondsStringConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\StorageTypeToIconConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\StringToUpperConverter.cs" />
@@ -150,6 +152,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Model\Music\AlbumItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Music\ArtistItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Music\TrackItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\OrderSettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Panel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\PlayingType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\SidebarState.cs" />
