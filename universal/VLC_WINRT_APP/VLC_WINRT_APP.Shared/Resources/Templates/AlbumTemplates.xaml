@@ -33,11 +33,11 @@
                                FontSize="15"
                                FontWeight="SemiBold"
                                Margin="7,0" />
-                    <TextBlock Text="{Binding ArtistName}"
+                    <TextBlock Text="{Binding Artist}"
                                TextWrapping="NoWrap"
                                TextTrimming="WordEllipsis"
                                FontSize="16"
-                               Margin="7,0" />
+                               Margin="7,0,7,7" />
                 </StackPanel>
             </Grid>
         </Border>

@@ -164,7 +164,8 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                     App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                     {
                         int howManyAlbums = HowManyAlbumsToDisplayWithTwoRows();
-                        for (int i = 0; i < ((howManyAlbums < nonfavAlbums.Count) ? howManyAlbums : nonfavAlbums.Count - 1); i++)
+                        int total = ((howManyAlbums < nonfavAlbums.Count) ? howManyAlbums : nonfavAlbums.Count - 1);
+                        for (int i = 0; i < total; i++)
                         {
                             Locator.MusicLibraryVM
                                 .RandomAlbums.Add(

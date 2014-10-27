@@ -23,6 +23,8 @@ namespace VLC_WINRT_APP.Commands.Music
                 ItemClickEventArgs args = parameter as ItemClickEventArgs;
                 album = args.ClickedItem as AlbumItem;
             }
+            Locator.MusicLibraryVM.CurrentArtist =
+                Locator.MusicLibraryVM.Artists.FirstOrDefault(x => x.Id == album.ArtistId);
             Locator.MusicLibraryVM.CurrentAlbum = album;
 #endif
         }
