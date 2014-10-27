@@ -232,7 +232,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
                         });
                     }
                 }
-                catch (Exception exception)
+                catch
                 {
                     Debug.WriteLine("An error occured while indexing a video folder");
                 }
