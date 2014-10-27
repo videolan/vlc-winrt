@@ -49,7 +49,7 @@
                             </triggers:Interactions.Triggers>
                             <GridView.ItemsPanel>
                                 <ItemsPanelTemplate>
-                                    <ItemsWrapGrid ItemHeight="194"
+                                    <ItemsWrapGrid ItemHeight="200"
                                                    ItemWidth="156"
                                                    Orientation="Horizontal" />
                                 </ItemsPanelTemplate>

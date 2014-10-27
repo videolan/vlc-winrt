@@ -9,14 +9,12 @@
 
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls.Primitives;
 using VLC_WINRT.Common;
 using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.Model.Music;
 using VLC_WINRT_APP.ViewModels;
-using VLC_WINRT_APP.ViewModels.MusicVM;
 using VLC_WINRT_APP.Helpers.MusicPlayer;
 using VLC_WINRT_APP.Views.MusicPages;
 

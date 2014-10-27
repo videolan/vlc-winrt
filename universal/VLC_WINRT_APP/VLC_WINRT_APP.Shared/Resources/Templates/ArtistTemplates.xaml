@@ -5,34 +5,38 @@
 
     <!-- WINDOWS PHONE -->
     <DataTemplate x:Key="ArtistSquareTemplate">
-        <Border Padding="12"
-                Background="WhiteSmoke">
+        <Border Background="WhiteSmoke">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="175" />
+                    <RowDefinition Height="144" />
                     <RowDefinition Height="6" />
                     <RowDefinition />
                 </Grid.RowDefinitions>
                 <Image Grid.Row="0"
                        Source="/Assets/NoCover.jpg"
                        Stretch="UniformToFill"
-                       Width="175"
-                       Height="175" />
+                       Width="144"
+                       Height="144" />
                 <Image Grid.Row="0"
                        Source="{Binding Picture}"
                        Stretch="UniformToFill"
-                       Width="175"
-                       Height="175" />
-                <StackPanel Grid.Row="2">
+                       Width="144"
+                       Height="144" />
+                <StackPanel Grid.Row="2"
+                            Width="144">
                     <TextBlock Text="{Binding Name}"
                                TextWrapping="NoWrap"
                                TextTrimming="WordEllipsis"
                                FontSize="15"
-                               FontWeight="SemiBold" />
-                    <TextBlock Text="{Binding Albums.Count}"
-                               TextWrapping="NoWrap"
+                               FontWeight="SemiBold" 
+                               Margin="7,0"/>
+                    <TextBlock TextWrapping="NoWrap"
                                TextTrimming="WordEllipsis"
-                               FontSize="16" />
+                               FontSize="16"
+                               Margin="7,0,7,7">
+                        <Run Text="{Binding Albums.Count}" />
+                        <Run Text="albums" />
+                    </TextBlock>
                 </StackPanel>
             </Grid>
         </Border>

@@ -26,6 +26,7 @@ namespace VLC_WINRT_APP.Model.Music
         private PlayAlbumCommand _playAlbumCommand = new PlayAlbumCommand();
         private FavoriteAlbumCommand _favoriteAlbumCommand = new FavoriteAlbumCommand();
         private TrackClickedCommand _trackClickedCommand = new TrackClickedCommand();
+        private ArtistClickedCommand _viewArtist = new ArtistClickedCommand();
 
         [PrimaryKey, AutoIncrement, Column("_id")]
         public int Id { get; set; }
@@ -104,6 +105,13 @@ namespace VLC_WINRT_APP.Model.Music
                 Debug.WriteLine("Error getting album art...");
             }
             _isPictureLoaded = true;
+        }
+
+        [Ignore]
+        public ArtistClickedCommand ViewArtist
+        {
+            get { return _viewArtist; }
+            set { SetProperty(ref _viewArtist, value); }
         }
 
         [Ignore]

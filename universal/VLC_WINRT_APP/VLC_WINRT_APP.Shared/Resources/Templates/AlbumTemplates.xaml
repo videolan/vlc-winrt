@@ -5,7 +5,7 @@
                     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
                     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
                     xmlns:common="using:VLC_WINRT_APP.Common">
-    
+
     <!-- WINDOWS PHONE -->
     <DataTemplate x:Key="WPSemanticZoomInViewAlbumTemplateLittleSize">
         <Border Background="WhiteSmoke">
@@ -25,24 +25,57 @@
                        Stretch="UniformToFill"
                        Width="144"
                        Height="144" />
-                <StackPanel Grid.Row="2"
-                            Width="144">
-                    <TextBlock Text="{Binding Name}"
+                <Grid Grid.Row="2"
+                      Width="144">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0"
+                               Text="{Binding Name}"
                                TextWrapping="NoWrap"
                                TextTrimming="WordEllipsis"
                                FontSize="15"
                                FontWeight="SemiBold"
                                Margin="7,0" />
-                    <TextBlock Text="{Binding Artist}"
+                    <TextBlock Grid.Row="1"
+                               Grid.Column="0"
+                               Text="{Binding Artist}"
                                TextWrapping="NoWrap"
                                TextTrimming="WordEllipsis"
                                FontSize="16"
                                Margin="7,0,7,7" />
-                </StackPanel>
+                    <Button Grid.Column="1"
+                            Grid.Row="0"
+                            Grid.RowSpan="2"
+                            Style="{StaticResource TextBlockButtonStyle}"
+                            Content=""
+                            FontFamily="Segoe UI Symbol"
+                            Margin="0,0,0,7">
+                        <Button.Flyout>
+                            <MenuFlyout>
+                                <MenuFlyoutItem Text="play all" 
+                                                Command="{Binding PlayAlbum}"
+                                                CommandParameter="{Binding}"/>
+                                <MenuFlyoutItem Text="favorite"
+                                                Command="{Binding FavoriteAlbum}"
+                                                CommandParameter="{Binding}" />
+                                <MenuFlyoutItem Text="add to playlist" />
+                                <MenuFlyoutItem Text="view artist"
+                                                Command="{Binding ViewArtist}"
+                                                CommandParameter="{Binding Id}"/>
+                            </MenuFlyout>
+                        </Button.Flyout>
+                    </Button>
+                </Grid>
             </Grid>
         </Border>
     </DataTemplate>
-    
+
     <DataTemplate x:Key="SemanticZoomInViewAlbumTemplate">
         <Border Padding="12"
                 Background="WhiteSmoke">
@@ -185,13 +218,13 @@
                                TextWrapping="NoWrap"
                                TextTrimming="WordEllipsis"
                                FontSize="15"
-                               FontWeight="SemiBold" 
-                               Margin="7,0"/>
+                               FontWeight="SemiBold"
+                               Margin="7,0" />
                     <TextBlock Text="{Binding ArtistName}"
                                TextWrapping="NoWrap"
                                TextTrimming="WordEllipsis"
                                FontSize="16"
-                               Margin="7,0"/>
+                               Margin="7,0" />
                 </StackPanel>
             </Grid>
             <interactivity:Interaction.Behaviors>

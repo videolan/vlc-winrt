@@ -17,12 +17,13 @@
                   SelectionMode="None"
                   ItemContainerStyle="{StaticResource GridViewItemStyle}"
                   ItemTemplate="{StaticResource ArtistSquareTemplate}"
-                  HorizontalAlignment="Left">
+                  HorizontalAlignment="Left"
+                  Margin="-6,0,0,0">
             <GridView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <ItemsWrapGrid Orientation="Horizontal"
-                                   ItemHeight="275"
-                                   ItemWidth="199" />
+                                   ItemHeight="200"
+                                   ItemWidth="156" />
                 </ItemsPanelTemplate>
             </GridView.ItemsPanel>
             <triggers:Interactions.Triggers>
