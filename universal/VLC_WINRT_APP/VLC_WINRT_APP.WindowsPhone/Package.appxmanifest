@@ -27,6 +27,26 @@
         <m3:ApplicationView MinWidth="width320" />
         <!--Used in XAML Designer. DO NOT REMOVE-->
       </m3:VisualElements>
+      <Extensions>
+        <Extension Category="windows.fileTypeAssociation" EntryPoint="VLC_WINRT_APP.WindowsPhone.App">
+          <FileTypeAssociation Name="vlc">
+            <DisplayName>VLC Media Player</DisplayName>
+            <SupportedFileTypes>
+              <FileType>.mp4</FileType>
+              <FileType>.mkv</FileType>
+            </SupportedFileTypes>
+          </FileTypeAssociation>
+        </Extension>
+        <Extension Category="windows.fileOpenPicker" EntryPoint="VLC_WINRT_APP.WindowsPhone.App">
+          <FileOpenPicker>
+            <SupportedFileTypes>
+              <FileType>.mp4</FileType>
+              <FileType>.mov</FileType>
+              <FileType>.mkv</FileType>
+            </SupportedFileTypes>
+          </FileOpenPicker>
+        </Extension>
+      </Extensions>
     </Application>
   </Applications>
   <Capabilities>
