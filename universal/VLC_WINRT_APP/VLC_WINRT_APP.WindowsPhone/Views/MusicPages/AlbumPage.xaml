@@ -7,8 +7,7 @@
       xmlns:triggers="using:WinRT.Triggers"
       xmlns:userControls="using:VLC_WINRT_APP.Views.UserControls"
       mc:Ignorable="d"
-      DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}"
-      Background="White">
+      DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
     <Page.Resources>
         <Storyboard x:Name="FadeOutHeader">
             <DoubleAnimation EnableDependentAnimation="True"
@@ -55,10 +54,21 @@
                             VerticalAlignment="Center">
                     <TextBlock Text="{Binding CurrentArtist.Name}"
                                Style="{StaticResource SubheaderTextBlockStyle}" />
+                    <TextBlock Text="{Binding CurrentAlbum.Year}"
+                               Style="{StaticResource BaseTextBlockStyle}"/>
                     <TextBlock Style="{StaticResource BaseTextBlockStyle}">
                         <Run Text="{Binding CurrentAlbum.Tracks.Count}" />
                         <Run Text="tracks" />
                     </TextBlock>
+                    <AppBarToggleButton Icon="Favorite"
+                                        Label="Favorite"
+                                        IsChecked="{Binding CurrentAlbum.Favorite}"
+                                        Command="{Binding CurrentAlbum.FavoriteAlbum}"
+                                        Style="{StaticResource AppBarToggleButtonStyleHorizontal}"/>
+                    <AppBarButton Icon="Play"
+                                  Label="Play all"
+                                  Command="{Binding CurrentAlbum.PlayAlbum}"
+                                  CommandParameter="{Binding CurrentAlbum}"/>
                 </StackPanel>
             </StackPanel>
         </Grid>
@@ -89,19 +99,4 @@
             </ListView>
         </Grid>
     </Grid>
-
-    <Page.BottomAppBar>
-        <CommandBar Style="{StaticResource VLCCommandBarStyle}">
-            <CommandBar.PrimaryCommands>
-                <AppBarButton Icon="Play"
-                              Label="play all" 
-                              Command="{Binding CurrentAlbum.PlayAlbum}"
-                              CommandParameter="{Binding CurrentAlbum}"/>
-                <AppBarButton Icon="Favorite"
-                              Label="favorite"
-                              Command="{Binding CurrentAlbum.FavoriteAlbum}"
-                              CommandParameter="{Binding CurrentAlbum}" />
-            </CommandBar.PrimaryCommands>
-        </CommandBar>
-    </Page.BottomAppBar>
 </Page>
