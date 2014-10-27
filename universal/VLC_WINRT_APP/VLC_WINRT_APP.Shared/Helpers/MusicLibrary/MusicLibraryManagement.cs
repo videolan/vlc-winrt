@@ -153,8 +153,11 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                 ObservableCollection<AlbumItem> favAlbums = await MusicLibraryVM._albumDataRepository.LoadAlbums(x => x.Favorite);
                 if (favAlbums != null && favAlbums.Any())
                 {
-                    Locator.MusicLibraryVM.FavoriteAlbums = favAlbums;
-                    Locator.MusicLibraryVM.RandomAlbums = new ObservableCollection<AlbumItem>(favAlbums.Take(3));
+                    App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                    {
+                        Locator.MusicLibraryVM.FavoriteAlbums = favAlbums;
+                        Locator.MusicLibraryVM.RandomAlbums = new ObservableCollection<AlbumItem>(favAlbums.Take(3));
+                    });
                 }
                 ObservableCollection<AlbumItem> nonfavAlbums = await MusicLibraryVM._albumDataRepository.LoadAlbums(x => x.Favorite == false);
                 if (nonfavAlbums != null && nonfavAlbums.Any())

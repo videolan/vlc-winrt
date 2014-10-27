@@ -64,6 +64,7 @@
                                         Label="Favorite"
                                         IsChecked="{Binding CurrentAlbum.Favorite}"
                                         Command="{Binding CurrentAlbum.FavoriteAlbum}"
+                                        CommandParameter="{Binding CurrentAlbum}"
                                         Style="{StaticResource AppBarToggleButtonStyleHorizontal}"/>
                     <AppBarButton Icon="Play"
                                   Label="Play all"
