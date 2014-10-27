@@ -9,6 +9,37 @@
              d:DesignWidth="400">
 
     <Grid>
-
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Column="0"
+                   Grid.Row="0"
+                   Text="{Binding Name}" 
+                   Style="{StaticResource TitleTextBlockStyle}"/>
+        <TextBlock Grid.Column="0"
+                   Grid.Row="1"
+                   Text="{Binding ArtistName}" 
+                   Style="{StaticResource BaseTextBlockStyle}"
+                   Foreground="DimGray"/>
+        <Button Grid.Column="1"
+                Grid.Row="0"
+                Grid.RowSpan="2"
+                Style="{StaticResource TextBlockButtonStyle}"
+                Content=""
+                FontFamily="Segoe UI Symbol">
+            <Button.Flyout>
+                <MenuFlyout>
+                    <MenuFlyoutItem Text="add to playlist" />
+                    <MenuFlyoutItem Text="view artist"
+                                    Command="{Binding ViewArtist}"
+                                    CommandParameter="{Binding ArtistId}" />
+                </MenuFlyout>
+            </Button.Flyout>
+        </Button>
     </Grid>
 </UserControl>

@@ -127,6 +127,7 @@ namespace VLC_WINRT_APP.Model.Music
             get { return _favoriteAlbumCommand; }
             set { SetProperty(ref _favoriteAlbumCommand, value); }
         }
+
         [Ignore]
         public TrackClickedCommand TrackClicked
         {

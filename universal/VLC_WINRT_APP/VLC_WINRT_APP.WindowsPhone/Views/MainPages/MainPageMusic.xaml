@@ -63,19 +63,21 @@
             </PivotItem>
             <PivotItem Header="songs">
                 <ListView x:Name="RadDataGrid"
-                          Grid.Row="3"
-                          Visibility="Collapsed"
                           ItemsSource="{Binding Tracks}"
                           SelectionMode="None"
                           IsItemClickEnabled="True"
-                          ItemContainerStyle="{StaticResource HorizontalListViewItemStyle}"
-                          Grid.RowSpan="2">
+                          ItemContainerStyle="{StaticResource HorizontalListViewItemStyle}">
                     <triggers:Interactions.Triggers>
                         <triggers:EventTrigger EventName="ItemClick">
                             <triggers:InvokeCommandAction Command="{Binding TrackClickedCommand}"
                                                           PassEventArgsToCommand="True" />
                         </triggers:EventTrigger>
                     </triggers:Interactions.Triggers>
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Margin="0,0,0,60"/>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <userControls:TrackItemTemplate />
