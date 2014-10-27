@@ -31,9 +31,11 @@ namespace VLC_WINRT_APP.ViewModels.Settings
         private bool _notificationOnNewSong;
         private bool _notificationOnNewSongForeground;
         private bool _continueVideoPlaybackInBackground;
+#endif
         private OrderType _albumsOrderType;
         private OrderListing _albumsOrderListing;
 
+#if WINDOWS_APP
         public bool ContinueVideoPlaybackInBackground
         {
             get { return _continueVideoPlaybackInBackground; }
@@ -56,9 +58,10 @@ namespace VLC_WINRT_APP.ViewModels.Settings
                     App.RootPage.ColumnGrid.RestoreSidebar();
             }
         }
+#endif
         public ObservableCollection<OrderType> AlbumsOrderTypeCollection { get; set; }
         public ObservableCollection<OrderListing> AlbumsListingTypeCollection { get; set; }
-
+#if WINDOWS_APP
         public List<StorageFolder> MusicFolders
         {
             get { return _musicFolders; }
@@ -96,7 +99,7 @@ namespace VLC_WINRT_APP.ViewModels.Settings
                 ApplicationSettingsHelper.SaveSettingsValue("NotificationOnNewSongForeground", value);
             }
         }
-
+#endif
         public OrderType AlbumsOrderType
         {
             get
@@ -152,8 +155,10 @@ namespace VLC_WINRT_APP.ViewModels.Settings
             AlbumsListingTypeCollection.Add(OrderListing.Descending);
         }
 
+
         public async Task Initialize()
         {
+#if WINDOWS_APP
             MusicLibraryId = KnownLibraryId.Music;
             VideoLibraryId = KnownLibraryId.Videos;
 
@@ -171,8 +176,9 @@ namespace VLC_WINRT_APP.ViewModels.Settings
                 (bool) ApplicationSettingsHelper.ReadSettingsValue("ContinueVideoPlaybackInBackground");
 
             await GetLibrariesFolders();
+#endif
         }
-
+#if WINDOWS_APP
         public async Task GetLibrariesFolders()
         {
             var musicLib = await StorageLibrary.GetLibraryAsync(KnownLibraryId.Music);

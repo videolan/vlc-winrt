@@ -621,6 +621,7 @@ namespace VLC_WINRT_APP.Services.RunTime
         {
             if (Locator.MusicPlayerVM.TrackCollection.IsRunning)
             {
+                if (double.IsNaN(position)) return;
                 TimeSpan tS;
                 tS = TimeSpan.FromSeconds(position *
                                          Locator.MusicPlayerVM.CurrentTrack.Duration.TotalSeconds);
@@ -635,7 +636,6 @@ namespace VLC_WINRT_APP.Services.RunTime
             {
                 if (!double.IsNaN(position))
                 {
-
                     App.RootPage.MediaElement.Position =
                         TimeSpan.FromSeconds(position * (int)Locator.VideoVm.CurrentVideo.Duration.TotalSeconds);
                 }
