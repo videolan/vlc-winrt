@@ -29,7 +29,7 @@
                             DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
                     <TextBlock Text="albums"
                                Margin="0,12,0,0"
-                               FontSize="24"
+                               FontSize="26"
                                Foreground="{StaticResource MainColor}"
                                Style="{StaticResource SubheaderTextBlockStyle}" />
                     <GridView ItemsSource="{Binding RandomAlbums}"
@@ -39,7 +39,8 @@
                               ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                               ScrollViewer.VerticalScrollBarVisibility="Disabled"
                               ScrollViewer.HorizontalScrollMode="Disabled"
-                              ScrollViewer.VerticalScrollMode="Disabled">
+                              ScrollViewer.VerticalScrollMode="Disabled"
+                              Margin="-6,6,0,0">
                         <triggers:Interactions.Triggers>
                             <triggers:EventTrigger EventName="ItemClick">
                                 <triggers:InvokeCommandAction Command="{Binding AlbumClickedCommand}"
@@ -60,7 +61,7 @@
                             DataContext="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM}">
                     <TextBlock Text="videos"
                                Margin="0,12,0,0"
-                               FontSize="24"
+                               FontSize="26"
                                Foreground="{StaticResource MainColor}"
                                Style="{StaticResource SubheaderTextBlockStyle}" />
                     <ListView ItemsSource="{Binding Videos}"

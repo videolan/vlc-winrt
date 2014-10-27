@@ -5,6 +5,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:views="using:VLC_WINRT.Views"
       xmlns:controls="using:VLC_WINRT_APP.Controls"
+      xmlns:userControls="using:VLC_WINRT_APP.Views.UserControls"
       mc:Ignorable="d"
       DataContext="{Binding Source={StaticResource Locator}, Path=VideoVm}"
       RequestedTheme="Dark">
@@ -107,7 +108,7 @@
                                 <Grid Width="300"
                                       HorizontalAlignment="Right">
                                     <StackPanel>
-                                        <controls:VideoItemControl DataContext="{Binding CurrentVideo}" />
+                                        <userControls:VideoItemControl DataContext="{Binding CurrentVideo}" />
                                         <TextBlock Text="Subtitles"
                                                    x:Uid="Subtitles"
                                                    Style="{StaticResource TitleTextBlockStyle}"

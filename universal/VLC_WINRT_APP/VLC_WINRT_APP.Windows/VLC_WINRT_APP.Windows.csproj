@@ -135,6 +135,9 @@
     <Compile Include="Views\UserControls\HorizontalMiniPlayer.xaml.cs">
       <DependentUpon>HorizontalMiniPlayer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserControls\VideoItemControl.xaml.cs">
+      <DependentUpon>VideoItemControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\VariousPages\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>
@@ -787,6 +790,10 @@
     <Page Include="Views\UserControls\HorizontalMiniPlayer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\VideoItemControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\VariousPages\AboutPage.xaml">
       <Generator>MSBuild:Compile</Generator>

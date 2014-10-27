@@ -14,6 +14,7 @@
         </Storyboard>
     </UserControl.Resources>
     <Border Padding="12"
+            Margin="0,0,0,12"
             Background="WhiteSmoke">
         <Grid>
             <Grid.RowDefinitions>
@@ -50,13 +51,15 @@
             </Grid>
             <Grid Grid.Row="3">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
+                    <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <TextBlock>
-                        <Run Text="{Binding TimeWatched, Converter={StaticResource TimeSpanShortStringConverter}}" />
-                        <Run Text="-" />
-                        <Run Text="{Binding Duration, Converter={StaticResource TimeSpanShortStringConverter}}" />
+                <TextBlock Visibility="{Binding TimeWatched, Converter={StaticResource EmptyTimeSpanToVisibilityConverter}}">
+                    <Run Text="{Binding TimeWatched, Converter={StaticResource TimeSpanShortStringConverter}}" />
+                    <Run Text="-" />
+                </TextBlock>
+                <TextBlock Grid.Column="1">
+                    <Run Text="{Binding Duration, Converter={StaticResource TimeSpanShortStringConverter}}" />
                 </TextBlock>
             </Grid>
         </Grid>
