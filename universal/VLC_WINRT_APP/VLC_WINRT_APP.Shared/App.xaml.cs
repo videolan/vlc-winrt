@@ -106,7 +106,7 @@ namespace VLC_WINRT_APP
             if (rootFrame != null && rootFrame.Content == null)
             {
 #if WINDOWS_PHONE_APP
-    // Removes the turnstile navigation for startup.
+                // Removes the turnstile navigation for startup.
                 if (rootFrame.ContentTransitions != null)
                 {
                     this.transitions = new TransitionCollection();
@@ -132,17 +132,26 @@ namespace VLC_WINRT_APP
         }
 
 #if WINDOWS_PHONE_APP
-    /// <summary>
-    /// Restores the content transitions after the app has launched.
-    /// </summary>
-    /// <param name="sender">The object where the handler is attached.</param>
-    /// <param name="args">Details about the navigation event.</param>
+        /// <summary>
+        /// Restores the content transitions after the app has launched.
+        /// </summary>
+        /// <param name="sender">The object where the handler is attached.</param>
+        /// <param name="args">Details about the navigation event.</param>
         private void RootFrame_FirstNavigated(object sender, NavigationEventArgs args)
         {
             var rootFrame = sender as Frame;
             rootFrame.ContentTransitions = this.transitions ?? new TransitionCollection() { new NavigationThemeTransition() };
             rootFrame.Navigated -= this.RootFrame_FirstNavigated;
         }
+
+        protected override void OnActivated(IActivatedEventArgs args)
+        {
+            base.OnActivated(args);
+            var continueArgs =
+              args as FileOpenPickerContinuationEventArgs;
+            OpenFile(continueArgs.Files[0]);
+        }
+
 #endif
 
         /// <summary>
@@ -167,19 +176,25 @@ namespace VLC_WINRT_APP
 
         private async Task ManageOpeningFiles(FileActivatedEventArgs args)
         {
+            OpenFile(args.Files[0] as StorageFile);
+        }
+
+        private async Task OpenFile(StorageFile file)
+        {
+            if (file == null) return;
             if (Window.Current.Content == null)
             {
                 await LaunchTheApp();
             }
             await Task.Delay(1000);
-            if (VLCFileExtensions.FileTypeHelper((args.Files[0] as StorageFile).FileType) ==
+            if (VLCFileExtensions.FileTypeHelper(file.FileType) ==
                 VLCFileExtensions.VLCFileType.Video)
             {
-                MediaService.PlayVideoFile(args.Files[0] as StorageFile);
+                MediaService.PlayVideoFile(file as StorageFile);
             }
             else
             {
-                MediaService.PlayAudioFile(args.Files[0] as StorageFile);
+                MediaService.PlayAudioFile(file as StorageFile);
             }
         }
 

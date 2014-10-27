@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Windows.Storage.AccessCache;
-using Windows.UI.Xaml.Controls;
+﻿using Windows.UI.Xaml.Controls;
 using VLC_WINRT.Common;
-using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.Model.Video;
 using VLC_WINRT_APP.ViewModels;
-using VLC_WINRT_APP.ViewModels.VideoVM;
 using VLC_WINRT_APP.Views.VideoPages;
 using VLC_WINRT_APP.Helpers.VideoPlayer;
 

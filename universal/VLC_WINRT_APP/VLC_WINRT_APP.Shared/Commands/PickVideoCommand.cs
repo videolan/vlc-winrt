@@ -48,7 +48,9 @@ namespace VLC_WINRT_APP.Commands
                 picker.FileTypeFilter.Add(videoExtension);
             }
 
-            StorageFile file = await picker.PickSingleFileAsync();
+            StorageFile file = null;
+#if WINDOWS_APP
+            file = await picker.PickSingleFileAsync();
             if (file != null)
             {
                 Debug.WriteLine("Opening file: " + file.Path);
@@ -58,7 +60,9 @@ namespace VLC_WINRT_APP.Commands
             {
                 Debug.WriteLine("Cancelled");
             }
-
+#else
+            picker.PickSingleFileAndContinue();
+#endif
             //lock (Locker)
             //{
             //    _canExecute = true;
