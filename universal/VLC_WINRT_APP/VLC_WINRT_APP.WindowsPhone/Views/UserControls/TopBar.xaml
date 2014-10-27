@@ -12,9 +12,8 @@
           Height="80"
           Background="{Binding HeaderBackground, Mode=TwoWay}">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition />
             <ColumnDefinition Width="Auto" />
-            <ColumnDefinition />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid Tapped="Menu_Click"
               Background="Transparent">
@@ -25,11 +24,8 @@
                   VerticalAlignment="Center"
                   Margin="24,6,0,0"/>
         </Grid>
-        <StackPanel Grid.Column="1"
-                    VerticalAlignment="Center">
-            <TextBlock Text="{Binding HeaderTextBlock}"
+        <TextBlock Margin="20,0,0,0" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap" VerticalAlignment="Center" Grid.Column="1" Text="{Binding HeaderTextBlock}"
                        Foreground="WhiteSmoke"
                        Style="{StaticResource SubheaderTextBlockStyle}" />
-        </StackPanel>
     </Grid>
 </UserControl>
