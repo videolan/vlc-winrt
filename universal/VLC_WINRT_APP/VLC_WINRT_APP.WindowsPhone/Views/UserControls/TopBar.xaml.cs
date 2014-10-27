@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Diagnostics;
 using Windows.UI;
+using Windows.UI.Input;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 
 namespace VLC_WINRT_APP.Views.UserControls
@@ -50,7 +52,7 @@ namespace VLC_WINRT_APP.Views.UserControls
             }
         }
 
-        private void Menu_Click(object sender, RoutedEventArgs e)
+        private void Menu_Click(object sender, TappedRoutedEventArgs tappedRoutedEventArgs)
         {
             App.RootPage.PanelsView.ShowSidebar();
         }
