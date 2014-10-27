@@ -62,6 +62,10 @@
                 </StackPanel>
             </StackPanel>
         </Grid>
+        <Image Grid.Row="1"
+               Source="/Assets/backgroundTop.png"
+               Stretch="Uniform"
+               VerticalAlignment="Top" />
         <Grid Grid.Row="1"
               RequestedTheme="Light">
             <ListView ItemsSource="{Binding CurrentAlbum.Tracks}"

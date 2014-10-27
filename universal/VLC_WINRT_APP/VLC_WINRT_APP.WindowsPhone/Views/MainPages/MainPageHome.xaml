@@ -23,6 +23,10 @@
         </Grid.RowDefinitions>
         <userControls:TopBar Grid.Row="0"
                              HeaderTextBlock="Favorites and suggestions" />
+        <Image Grid.Row="1"
+               Source="/Assets/backgroundTop.png"
+               Stretch="Uniform"
+               VerticalAlignment="Top" />
         <ScrollViewer Grid.Row="1">
             <StackPanel Margin="24,0,0,0">
                 <StackPanel x:Name="MusicLibrary"

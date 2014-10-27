@@ -21,6 +21,10 @@
         </Grid.RowDefinitions>
         <userControls:TopBar Grid.Row="0"
                              HeaderTextBlock="music" />
+        <Image Grid.Row="1"
+               Source="/Assets/backgroundTop.png"
+               Stretch="Uniform"
+               VerticalAlignment="Top" />
         <Pivot Grid.Row="1"
                Style="{StaticResource PivotStyle1}"
                HeaderTemplate="{StaticResource PivotTitleTemplate}">
