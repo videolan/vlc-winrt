@@ -2,6 +2,15 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:VLC_WINRT_APP.Resources">
 
+    <Style TargetType="FlyoutPresenter">
+        <Setter Property="BorderThickness"
+                Value="0" />
+        <Setter Property="RequestedTheme"
+                Value="Light" />
+        <Setter Property="Background"
+                Value="#4C1A1A1A" />
+    </Style>
+    
     <DataTemplate x:Key="PivotTitleTemplate">
         <TextBlock Text="{Binding}"
                    Height="50"

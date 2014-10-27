@@ -78,7 +78,7 @@
                         </triggers:Interactions.Triggers>
                         <ListView.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <VirtualizingStackPanel Margin="0,0,0,60"/>
+                                <VirtualizingStackPanel Margin="0,0,0,60" />
                             </ItemsPanelTemplate>
                         </ListView.ItemsPanel>
                     </ListView>
@@ -91,12 +91,39 @@
             <AppBarButton Icon="OpenFile"
                           Label="open file" />
             <AppBarButton Label="open stream"
-                          Icon="World" />
+                          Icon="World">
+                <AppBarButton.Flyout>
+                    <Flyout Placement="Full">
+                        <Grid>
+                            <StackPanel VerticalAlignment="Center"
+                                        Background="WhiteSmoke">
+                                <TextBlock Text="Open a stream"
+                                           Style="{StaticResource SubheaderTextBlockStyle}" 
+                                           Margin="12"/>
+                                <StackPanel Orientation="Horizontal"
+                                            Margin="12">
+                                    <TextBox Name="UrlTextBox"
+                                             PlaceholderText="Enter a URL"
+                                             Width="350" />
+                                    <Button Style="{StaticResource TextBlockButtonStyle}"
+                                            Margin="12,0,0,0"
+                                            Command="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM.PlayNetworkMRL}"
+                                            CommandParameter="{Binding ElementName=UrlTextBox, Path=Text}">
+                                        <Button.Content>
+                                            <SymbolIcon Symbol="Accept" />
+                                        </Button.Content>
+                                    </Button>
+                                </StackPanel>
+                            </StackPanel>
+                        </Grid>
+                    </Flyout>
+                </AppBarButton.Flyout>
+            </AppBarButton>
             <CommandBar.SecondaryCommands>
-                <AppBarButton Label="special thanks" 
-                              Command="{Binding GoToThanksPageCommand}"/>
-                <AppBarButton Label="settings" 
-                              Command="{Binding GoToSettingsPageCommand}"/>
+                <AppBarButton Label="special thanks"
+                              Command="{Binding GoToThanksPageCommand}" />
+                <AppBarButton Label="settings"
+                              Command="{Binding GoToSettingsPageCommand}" />
             </CommandBar.SecondaryCommands>
         </CommandBar>
     </Page.BottomAppBar>
