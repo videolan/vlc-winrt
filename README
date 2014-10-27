@@ -1,4 +1,4 @@
-This project is about the port of VLC to the WinRT platform.
+﻿This project is about the port of VLC to the WinRT platform.
 
 The goal is to target Windows 8/8.1 Modern environment, on x86 and ARM (Windows RT).
 But also Windows Phone 8/8.1 and other devices running the WinRT platform.
@@ -104,3 +104,10 @@ And Procmon ( http://technet.microsoft.com/en-ca/sysinternals/bb896645.aspx ) he
 Quick one-liners to remove ugly mode changes and ugly CR-LF line endings.
 git status -s | grep "^ M " | awk '{ print $2; }' | xargs chmod 644
 git status -s | grep "^ M " | awk '{ print $2; }' | xargs dos2unix
+
+
+6) For Windows Phone developers:
+------------------------------------
+You'll need PanelsView control. The project is available here.
+https://github.com/ThomasNigro/PanelsView
+
