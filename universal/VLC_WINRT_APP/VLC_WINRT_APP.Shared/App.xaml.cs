@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
@@ -144,12 +145,12 @@ namespace VLC_WINRT_APP
             rootFrame.Navigated -= this.RootFrame_FirstNavigated;
         }
 
-        protected override void OnActivated(IActivatedEventArgs args)
+        protected async override void OnActivated(IActivatedEventArgs args)
         {
             base.OnActivated(args);
             var continueArgs =
               args as FileOpenPickerContinuationEventArgs;
-            OpenFile(continueArgs.Files[0]);
+            if (continueArgs != null && continueArgs.Files.Any()) await OpenFile(continueArgs.Files[0]);
         }
 
 #endif
