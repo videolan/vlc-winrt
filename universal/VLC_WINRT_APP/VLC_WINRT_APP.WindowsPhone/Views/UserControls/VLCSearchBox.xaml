@@ -11,8 +11,8 @@
     <UserControl.Resources>
     </UserControl.Resources>
 
-    <Grid Height="40">
-        <Grid.ColumnDefinitions>
+    <Grid>
+        <!--<Grid.ColumnDefinitions>
             <ColumnDefinition MaxWidth="200" />
             <ColumnDefinition Width="40" />
         </Grid.ColumnDefinitions>
@@ -29,6 +29,16 @@
                        HorizontalAlignment="Center"
                        Foreground="White"
                        FontSize="17" />
-        </Grid>
+        </Grid>-->
+        <AutoSuggestBox PlaceholderText="Search"
+                        TextChanged="AutoSuggestBox_OnTextChanged"
+                        IsEnabled="{Binding Source={StaticResource Locator}, Path=VideoVm.IsPlaying, Converter={StaticResource VLCSearchBoxConverter}}"
+                        Margin="0,0,20,0">
+            <AutoSuggestBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Text}"/>
+                </DataTemplate>
+            </AutoSuggestBox.ItemTemplate>
+        </AutoSuggestBox>
     </Grid>
 </UserControl>

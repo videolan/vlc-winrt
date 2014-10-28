@@ -13,6 +13,68 @@ namespace VLC_WINRT_APP.Helpers
 {
     public static class SearchHelpers
     {
+//#if WINDOWS_PHONE_APP
+        public class SearchResult
+        {
+            private string _text  ;
+
+            public string Text
+            {
+                get { return _text; }
+                set { _text   = value; }
+            }
+
+            public SearchResult(string text)
+            {
+                Text = text;
+            }
+        }
+
+        public static List<SearchResult> Search(string tag)
+        {
+            tag = tag.ToLower();
+            var results = new List<SearchResult>();
+
+            // We don't need null checks here, because even if nothing was found, the Enumerable items will be loaded with zero items in them.
+            // So the foreach loops will skip past them.
+            IEnumerable<TrackItem> trackItems = Locator.MusicLibraryVM.Tracks.Where(x => x.Name.ToLower().Contains(tag));
+            foreach (TrackItem item in trackItems)
+            {
+                results.Add(new SearchResult(item.Name));
+                //args.Request.SearchSuggestionCollection.AppendResultSuggestion(item.Name, "track", "track://" + item.Id, RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/Icons/music.png")), "music");
+            }
+
+            IEnumerable<VideoItem> videoVms = Locator.VideoLibraryVM.Videos.Where(x => x.Title.ToLower().Contains(tag));
+            foreach (VideoItem vm in videoVms)
+            {
+                results.Add(new SearchResult(vm.Title));
+                //args.Request.SearchSuggestionCollection.AppendResultSuggestion(vm.Title, "video", "video://" + vm.Title,
+                //    RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/Icons/Video.png")), "video");
+            }
+
+            IEnumerable<ArtistItem> artistItems =
+                Locator.MusicLibraryVM.Artists.Where(x => x.Name.ToLower().Contains(tag));
+
+            foreach (var artistItem in artistItems)
+            {
+                results.Add(new SearchResult(artistItem.Name));
+                //args.Request.SearchSuggestionCollection.AppendResultSuggestion(artistItem.Name, "artist", "artist://" + artistItem.Id, RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/Icons/music.png")), "music");
+            }
+
+            IEnumerable<AlbumItem> albumItems =
+                Locator.MusicLibraryVM.Artists.SelectMany(node => node.Albums)
+                    .Where(x => x.Name.ToLower().Contains(tag));
+
+            foreach (AlbumItem albumItem in albumItems)
+            {
+                results.Add(new SearchResult(albumItem.Name));
+                //args.Request.SearchSuggestionCollection.AppendResultSuggestion(albumItem.Name, "album", "album://" + albumItem.Id, RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/Icons/music.png")), "music");
+            }
+            return results;
+        }
+
+//}
+//#endif
 #if WINDOWS_APP
         public static void Search(string tag, SearchBoxSuggestionsRequestedEventArgs args)
         {
