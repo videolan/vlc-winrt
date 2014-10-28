@@ -1,0 +1,66 @@
+﻿<UserControl x:Class="VLC_WINRT_APP.Views.MusicPages.AlbumPageControls.MainAlbumHeader"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="using:VLC_WINRT_APP.Views.MusicPages.AlbumPage"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             d:DesignHeight="300"
+             d:DesignWidth="400">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Left">
+            <Image Source="{Binding CurrentAlbum.Picture}"
+                   MaxHeight="200"
+                   MaxWidth="200"
+                   Margin="24,0,0,6" />
+            <Grid Margin="24,0,0,0"
+                  VerticalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition Height="Auto"
+                                   x:Name="AlbumsCommandRowDefinition" />
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0"
+                            VerticalAlignment="Center">
+                    <TextBlock Text="{Binding CurrentArtist.Name}"
+                               Style="{StaticResource SubheaderTextBlockStyle}" />
+                    <TextBlock Style="{StaticResource BaseTextBlockStyle}">
+                        <Run Text="{Binding CurrentAlbum.Tracks.Count}" />
+                        <Run Text="tracks" />
+                    </TextBlock>
+                </StackPanel>
+                <StackPanel Grid.Row="1"
+                            VerticalAlignment="Center"
+                            x:Name="AlbumCommandsPanel">
+                    <AppBarToggleButton Margin="0,12,0,0"
+                                        Icon="Favorite"
+                                        Label="Favorite"
+                                        IsChecked="{Binding CurrentAlbum.Favorite}"
+                                        Command="{Binding CurrentAlbum.FavoriteAlbum}"
+                                        CommandParameter="{Binding CurrentAlbum}"
+                                        Style="{StaticResource AppBarToggleButtonStyleHorizontal}" />
+                    <AppBarButton Margin="0,-6,0,0"
+                                  Icon="Play"
+                                  Label="Play all album"
+                                  Command="{Binding CurrentAlbum.PlayAlbum}"
+                                  CommandParameter="{Binding CurrentAlbum}"
+                                  Style="{StaticResource AppBarButtonStyleHorizontal}" />
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+        <Button Grid.Column="1"
+                Content=""
+                FontFamily="Segoe UI Symbol"
+                FontSize="32"
+                VerticalAlignment="Center"
+                Margin="0,0,6,0"
+                Style="{StaticResource TextBlockButtonStyle}"
+                Click="SwypeRightToLeft_Button_Click" />
+    </Grid>
+</UserControl>

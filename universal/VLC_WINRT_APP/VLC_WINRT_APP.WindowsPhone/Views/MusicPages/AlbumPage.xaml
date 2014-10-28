@@ -6,6 +6,9 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:triggers="using:WinRT.Triggers"
       xmlns:userControls="using:VLC_WINRT_APP.Views.UserControls"
+      xmlns:scrollWatchedListView="using:ScrollWatchedListView"
+      xmlns:albumPage="using:VLC_WINRT_APP.Views.MusicPages.AlbumPage"
+      xmlns:albumPageControls="using:VLC_WINRT_APP.Views.MusicPages.AlbumPageControls"
       mc:Ignorable="d"
       DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
     <Page.Resources>
@@ -14,6 +17,30 @@
                              Storyboard.TargetName="HeaderGrid"
                              Storyboard.TargetProperty="(FrameworkElement.Height)"
                              To="170">
+                <DoubleAnimation.EasingFunction>
+                    <ExponentialEase EasingMode="EaseOut"
+                                     Exponent="3" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+        <Storyboard x:Name="FadeInBigHeader">
+            <DoubleAnimation EnableDependentAnimation="True"
+                             Storyboard.TargetName="HeaderGrid"
+                             Storyboard.TargetProperty="(FrameworkElement.Height)"
+                             To="550"
+                             SpeedRatio="2">
+                <DoubleAnimation.EasingFunction>
+                    <ExponentialEase EasingMode="EaseOut"
+                                     Exponent="3" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+        <Storyboard x:Name="ToNormalHeader">
+            <DoubleAnimation EnableDependentAnimation="True"
+                             Storyboard.TargetName="HeaderGrid"
+                             Storyboard.TargetProperty="(FrameworkElement.Height)"
+                             To="300"
+                             SpeedRatio="2">
                 <DoubleAnimation.EasingFunction>
                     <ExponentialEase EasingMode="EaseOut"
                                      Exponent="3" />
@@ -37,67 +64,50 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <Image Grid.RowSpan="2"
+            <Image Grid.RowSpan="3"
                    Source="{Binding CurrentArtist.Picture}"
                    Stretch="UniformToFill"
                    Opacity="0.6" />
             <userControls:TopBar HeaderTextBlock="{Binding CurrentAlbum.Name}"
                                  HeaderBackground="#00ffffff" />
-            <StackPanel Grid.Row="1"
-                        Orientation="Horizontal"
-                        HorizontalAlignment="Center">
-                <Image Source="{Binding CurrentAlbum.Picture}"
-                       MaxHeight="200"
-                       MaxWidth="200"
-                       Margin="0,0,0,6" />
-                <StackPanel Margin="12,0,0,0"
-                            VerticalAlignment="Center">
-                    <TextBlock Text="{Binding CurrentArtist.Name}"
-                               Style="{StaticResource SubheaderTextBlockStyle}" />
-                    <TextBlock Text="{Binding CurrentAlbum.Year}"
-                               Style="{StaticResource BaseTextBlockStyle}"/>
-                    <TextBlock Style="{StaticResource BaseTextBlockStyle}">
-                        <Run Text="{Binding CurrentAlbum.Tracks.Count}" />
-                        <Run Text="tracks" />
-                    </TextBlock>
-                    <AppBarToggleButton Icon="Favorite"
-                                        Label="Favorite"
-                                        IsChecked="{Binding CurrentAlbum.Favorite}"
-                                        Command="{Binding CurrentAlbum.FavoriteAlbum}"
-                                        CommandParameter="{Binding CurrentAlbum}"
-                                        Style="{StaticResource AppBarToggleButtonStyleHorizontal}"/>
-                    <AppBarButton Icon="Play"
-                                  Label="Play all"
-                                  Command="{Binding CurrentAlbum.PlayAlbum}"
-                                  CommandParameter="{Binding CurrentAlbum}"/>
-                </StackPanel>
-            </StackPanel>
+            <FlipView x:Name="HeaderFlipView"
+                      x:FieldModifier="public"
+                      Grid.Row="1"
+                      SelectionChanged="Selector_OnSelectionChanged">
+                <FlipViewItem>
+                    <albumPageControls:MainAlbumHeader />
+                </FlipViewItem>
+                <FlipViewItem>
+                    <albumPageControls:SecondAlbumHeader />
+                </FlipViewItem>
+            </FlipView>
         </Grid>
-        <Image Grid.Row="1"
+        <!--<Image Grid.Row="1"
                Source="/Assets/backgroundTop.png"
                Stretch="Uniform"
-               VerticalAlignment="Top" />
+               VerticalAlignment="Top" />-->
         <Grid Grid.Row="1"
               RequestedTheme="Light">
-            <ListView ItemsSource="{Binding CurrentAlbum.Tracks}"
-                      IsItemClickEnabled="True"
-                      SelectionMode="None"
-                      ItemTemplate="{StaticResource LightTrackTemplate}"
-                      ItemContainerStyle="{StaticResource ListViewItemStyle}"
-                      Loaded="PlaylistView_Loaded"
-                      Margin="12,0,0,0">
-                <ListView.ItemsPanel>
+            <scrollWatchedListView:ScrollWatchedListView ItemsSource="{Binding CurrentAlbum.Tracks}"
+                                                         IsItemClickEnabled="True"
+                                                         SelectionMode="None"
+                                                         ItemTemplate="{StaticResource LightTrackTemplate}"
+                                                         ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                                                         Loaded="PlaylistView_Loaded"
+                                                         Margin="12,0,0,0"
+                                                         GoingTopOrBottom="ScrollWatchedListView_OnGoingTopOrBottom">
+                <scrollWatchedListView:ScrollWatchedListView.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <StackPanel Margin="0,0,0,60"/>
+                        <StackPanel Margin="0,0,0,60" />
                     </ItemsPanelTemplate>
-                </ListView.ItemsPanel>
+                </scrollWatchedListView:ScrollWatchedListView.ItemsPanel>
                 <triggers:Interactions.Triggers>
                     <triggers:EventTrigger EventName="ItemClick">
                         <triggers:InvokeCommandAction Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.TrackClickedCommand}"
                                                       PassEventArgsToCommand="True" />
                     </triggers:EventTrigger>
                 </triggers:Interactions.Triggers>
-            </ListView>
+            </scrollWatchedListView:ScrollWatchedListView>
         </Grid>
     </Grid>
 </Page>

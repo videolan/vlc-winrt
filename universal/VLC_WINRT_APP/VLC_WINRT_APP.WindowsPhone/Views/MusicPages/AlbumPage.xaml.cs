@@ -1,10 +1,13 @@
-﻿using Windows.Phone.UI.Input;
+﻿using System;
+using System.Diagnostics;
+using Windows.Phone.UI.Input;
 using Windows.UI.Core;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
+using ScrollWatchedListView;
 using WinRTXamlToolkit.Controls.Extensions;
 
 namespace VLC_WINRT_APP.Views.MusicPages
@@ -36,14 +39,33 @@ namespace VLC_WINRT_APP.Views.MusicPages
 
         private void PlaylistView_Loaded(object sender, RoutedEventArgs e)
         {
-            ScrollViewer sV = (sender as ListView).GetFirstDescendantOfType<ScrollViewer>();
-            sV.ViewChanging += (o, args) =>
+        }
+
+        private void Selector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if ((sender as FlipView).SelectedIndex == 0)
             {
-                if (args.NextView.VerticalOffset > 50 && FadeOutHeader.GetCurrentState() == ClockState.Stopped)
-                {
-                    Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => FadeOutHeader.Begin());
-                }
-            };
+                if (ToNormalHeader == null) return;
+                ToNormalHeader.Begin();
+            }
+            else if ((sender as FlipView).SelectedIndex == 1)
+            {
+                if (FadeInBigHeader == null) return;
+                FadeInBigHeader.Begin();
+            }
+        }
+
+        private void ScrollWatchedListView_OnGoingTopOrBottom(ScrollWatchedListView.ScrollWatchedListView lv, EventArgs eventArgs)
+        {
+            var e = eventArgs as ScrollingEventArgs;
+            if (e.ScrollingType == ScrollingType.ToBottom)
+            {
+                Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => FadeOutHeader.Begin());
+            }
+            else if (e.ScrollingType == ScrollingType.ToTop)
+            {
+                Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => ToNormalHeader.Begin());
+            }
         }
     }
 }
