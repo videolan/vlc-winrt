@@ -93,9 +93,11 @@
     <Page.BottomAppBar>
         <CommandBar Style="{StaticResource VLCCommandBarStyle}">
             <AppBarButton Icon="OpenFile"
+                          x:Uid="OpenFile2"
                           Label="open file"
                           Command="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM.PickVideo}" />
             <AppBarButton Label="open stream"
+                          x:Uid="OpenNetworkStream2"
                           Icon="World">
                 <AppBarButton.Flyout>
                     <Flyout Placement="Full">

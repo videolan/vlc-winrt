@@ -435,6 +435,12 @@
   <data name="UntitledShow" xml:space="preserve">
     <value>不明なテレビ番組</value>
   </data>
+  <data name="OpenFile2.Label" xml:space="preserve">
+    <value>ファイルを開く</value>
+  </data>
+  <data name="OpenNetworkStream2.Label" xml:space="preserve">
+    <value>ストリームを見る</value>
+  </data>
   <data name="Playlist.Header" xml:space="preserve">
     <value>プレイリスト</value>
   </data>

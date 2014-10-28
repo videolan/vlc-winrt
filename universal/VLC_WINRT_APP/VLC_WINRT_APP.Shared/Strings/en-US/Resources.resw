@@ -453,6 +453,12 @@
   <data name="OrderDescending" xml:space="preserve">
     <value>Descending</value>
   </data>
+  <data name="OpenFile2.Label" xml:space="preserve">
+    <value>Open a file</value>
+  </data>
+  <data name="OpenNetworkStream2.Label" xml:space="preserve">
+    <value>Open stream</value>
+  </data>
   <data name="Playlist.Header" xml:space="preserve">
     <value>playlist</value>
   </data>
