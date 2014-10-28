@@ -435,4 +435,7 @@
   <data name="UntitledShow" xml:space="preserve">
     <value>不明なテレビ番組</value>
   </data>
+  <data name="Playlist.Header" xml:space="preserve">
+    <value>プレイリスト</value>
+  </data>
 </root>

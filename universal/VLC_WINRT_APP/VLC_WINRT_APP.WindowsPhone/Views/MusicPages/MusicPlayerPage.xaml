@@ -56,7 +56,7 @@
         <Pivot Grid.Row="1"
                Style="{StaticResource PivotStyle1}"
                HeaderTemplate="{StaticResource PivotTitleTemplate}">
-            <PivotItem Header="playlist">
+            <PivotItem x:Uid="Playlist" Header="playlist">
                 <ListView ItemsSource="{Binding CurrentAlbum.Tracks}"
                           IsItemClickEnabled="True"
                           SelectionMode="None"
@@ -70,11 +70,13 @@
                     </triggers:Interactions.Triggers>
                 </ListView>
             </PivotItem>
-            <PivotItem Header="biography">
-                <TextBlock Text="{Binding CurrentArtist.Biography}"
+            <PivotItem x:Uid="Biography" Header="biography">
+                <ScrollViewer ZoomMode="Disabled">
+                    <TextBlock Text="{Binding CurrentArtist.Biography}"
                            Style="{StaticResource BodyTextBlockStyle}" />
+                </ScrollViewer>
             </PivotItem>
-            <PivotItem Header="popular albums">
+            <PivotItem x:Uid="PopularAlbums" Header="popular albums">
                 <GridView IsSwipeEnabled="False"
                           SelectionMode="None"
                           IsItemClickEnabled="True"
@@ -88,7 +90,7 @@
                     </GridView.ItemsPanel>
                 </GridView>
             </PivotItem>
-            <PivotItem Header="similar artists">
+            <PivotItem  x:Uid="SimilarArtists" Header="similar artists">
                 <GridView IsSwipeEnabled="False"
                           SelectionMode="None"
                           IsItemClickEnabled="True"

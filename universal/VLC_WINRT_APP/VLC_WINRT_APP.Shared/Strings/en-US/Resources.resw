@@ -453,4 +453,7 @@
   <data name="OrderDescending" xml:space="preserve">
     <value>Descending</value>
   </data>
+  <data name="Playlist.Header" xml:space="preserve">
+    <value>playlist</value>
+  </data>
 </root>
