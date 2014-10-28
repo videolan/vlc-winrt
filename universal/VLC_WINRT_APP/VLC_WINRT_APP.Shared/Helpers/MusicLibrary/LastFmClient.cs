@@ -32,10 +32,22 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                 // Get users language/region
                 // If their region is not support by LastFM, it won't return an artist biography.
                 var region = new Windows.Globalization.GeographicRegion();
+                string regionCode = "en";
+                // LastFM does not take in normal windows region codes as valid language values.
+                // We must set them ourselves.
+                switch (Windows.System.UserProfile.GlobalizationPreferences.Languages.First())
+                {
+                    case "en-US":
+                        regionCode = "en";
+                        break;
+                    case "ja":
+                        regionCode = "jp";
+                        break;
+                }
                 string url =
                     string.Format(
- "http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist={1}&api_key={0}&format=json",
-                        App.ApiKeyLastFm, artistName, region.Code.ToLower());
+ "http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist={1}&api_key={0}&lang={2}&format=json",
+                        App.ApiKeyLastFm, artistName, regionCode);
                 var reponse = await lastFmClient.GetStringAsync(url);
                 {
                     var artistInfo = JsonConvert.DeserializeObject<ArtistInformation>(reponse);
