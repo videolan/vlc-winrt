@@ -4,6 +4,7 @@ using VLC_WINRT.Common;
 using VLC_WINRT_APP.Model.Music;
 using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.Views.MusicPages;
+using Windows.UI.Xaml;
 
 namespace VLC_WINRT_APP.Commands.Music
 {

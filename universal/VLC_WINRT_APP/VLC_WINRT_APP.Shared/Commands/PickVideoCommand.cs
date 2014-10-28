@@ -12,6 +12,8 @@ using System.Windows.Input;
 using Windows.Storage;
 using Windows.Storage.Pickers;
 using VLC_WINRT_APP.Model;
+using System.Diagnostics;
+using VLC_WINRT_APP.Services.RunTime;
 
 namespace VLC_WINRT_APP.Commands
 {
