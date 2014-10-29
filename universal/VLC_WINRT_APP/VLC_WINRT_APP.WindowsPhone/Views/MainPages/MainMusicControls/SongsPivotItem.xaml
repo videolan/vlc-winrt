@@ -50,6 +50,7 @@
                                                      SelectionMode="None"
                                                      IsItemClickEnabled="True"
                                                      ItemContainerStyle="{StaticResource HorizontalListViewItemStyle}"
+                                                     ItemTemplate="{StaticResource WPLightTrackTemplateWONumber}"
                                                      GoingTopOrBottom="RadDataGrid_OnGoingTopOrBottom">
             <triggers:Interactions.Triggers>
                 <triggers:EventTrigger EventName="ItemClick">
@@ -62,11 +63,6 @@
                     <StackPanel Margin="0,0,0,60" />
                 </ItemsPanelTemplate>
             </scrollWatchedSelector:ScrollWatchedListView.ItemsPanel>
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <userControls:TrackItemTemplate />
-                </DataTemplate>
-            </ListView.ItemTemplate>
         </scrollWatchedSelector:ScrollWatchedListView>
     </Grid>
 </UserControl>

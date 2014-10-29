@@ -7,60 +7,149 @@
       xmlns:triggers="using:WinRT.Triggers"
       xmlns:userControls="using:VLC_WINRT_APP.Views.UserControls"
       mc:Ignorable="d"
-      DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
+      DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}">
 
-    <Grid RequestedTheme="Light">
+    <Grid RequestedTheme="Dark"
+          Background="Black">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
+            <RowDefinition />
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0"
-              x:Name="HeaderGrid"
-              Margin="-12,0,0,0"
-              Height="170"
-              Background="Black"
-              RequestedTheme="Dark">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition />
-            </Grid.RowDefinitions>
-            <Image Grid.RowSpan="2"
-                   Source="{Binding CurrentArtist.Picture}"
-                   Stretch="UniformToFill"
-                   Opacity="0.6" />
-            <userControls:TopBar HeaderTextBlock="{Binding CurrentAlbum.Name}"
-                                 HeaderBackground="#00ffffff" />
-            <StackPanel Grid.Row="1"
-                        Orientation="Horizontal"
-                        HorizontalAlignment="Center">
-                <Image Source="{Binding CurrentAlbum.Picture}"
-                       MaxHeight="200"
-                       MaxWidth="200"
-                       Margin="0,0,0,6" />
-                <StackPanel Margin="12,0,0,0"
-                            VerticalAlignment="Center">
-                    <TextBlock Text="{Binding CurrentArtist.Name}"
-                               Style="{StaticResource SubheaderTextBlockStyle}" />
-                    <TextBlock Style="{StaticResource BaseTextBlockStyle}">
-                        <Run Text="{Binding CurrentAlbum.Tracks.Count}" />
-                        <Run Text="tracks" />
+        <Image Grid.Row="0"
+               Grid.RowSpan="2"
+               Source="{Binding CurrentArtist.Picture}"
+               Stretch="UniformToFill"
+               Opacity="0.3" />
+        <FlipView Grid.Row="1">
+            <FlipViewItem>
+                <Grid Margin="12,24,12,12">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="12" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <TextBlock FontSize="36"
+                               FontWeight="ExtraLight"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Bottom"
+                               TextAlignment="Center">
+                                    <Run Text="{Binding CurrentArtist.Name}" />
+                                    <LineBreak />
+                                    <Run Text="{Binding CurrentAlbum.Name}"
+                                         FontSize="26" />
                     </TextBlock>
-                </StackPanel>
-            </StackPanel>
-        </Grid>
-        <Image Grid.Row="1"
-               Source="/Assets/backgroundTop.png"
-               Stretch="Uniform"
-               VerticalAlignment="Top"/>
-
-        <Pivot Grid.Row="1"
-               Style="{StaticResource PivotStyle1}"
-               HeaderTemplate="{StaticResource PivotTitleTemplate}">
-            <PivotItem x:Uid="Playlist" Header="playlist">
-                <ListView ItemsSource="{Binding CurrentAlbum.Tracks}"
+                    <Image Grid.Row="1"
+                           Source="{Binding CurrentAlbum.Picture}"
+                           Stretch="Uniform"
+                           Margin="0,12" />
+                    <TextBlock Grid.Row="2"
+                               Text="{Binding CurrentTrack.Name}"
+                               FontWeight="ExtraLight"
+                               FontSize="22"
+                               HorizontalAlignment="Center"
+                               TextAlignment="Center" />
+                    <Grid Grid.Row="4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Margin="6,9,0,0"
+                                   Grid.Column="0"
+                                   Text="{Binding PositionInSeconds, Converter={StaticResource SecondsStringConverter}}"
+                                   HorizontalAlignment="Left"
+                                   FontWeight="Light"
+                                   FontSize="22"
+                                   Foreground="White" />
+                        <Slider Grid.Column="1"
+                                Margin="6,0"
+                                Value="{Binding PositionInSeconds, Mode=TwoWay}"
+                                Maximum="{Binding TimeTotal.TotalSeconds}"
+                                Style="{StaticResource VLCSlider}"
+                                ThumbToolTipValueConverter="{StaticResource SecondsStringConverter}" />
+                        <TextBlock Grid.Column="2"
+                                   Margin="0,9,0,0"
+                                   Text="{Binding TimeTotal.TotalSeconds, Converter={StaticResource SecondsStringConverter}}"
+                                   HorizontalAlignment="Right"
+                                   FontWeight="Light"
+                                   FontSize="22"
+                                   Foreground="White" />
+                    </Grid>
+                    <Grid Grid.Row="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <AppBarButton Grid.Column="0"
+                                      Icon="Shuffle"
+                                      IsCompact="True" 
+                                      VerticalAlignment="Center"/>
+                        <AppBarButton Grid.Column="1"
+                                      HorizontalAlignment="Center"
+                                      IsCompact="True"
+                                      Style="{StaticResource AppBarButtonStyleHuge}"
+                                      Height="50"
+                                      Width="50"
+                                      VerticalAlignment="Center">
+                            <AppBarButton.Icon>
+                                <FontIcon Glyph="&#xE100;"
+                                          FontSize="30" />
+                            </AppBarButton.Icon>
+                        </AppBarButton>
+                        <AppBarButton Grid.Column="2"
+                                      IsCompact="True"
+                                      Visibility="{Binding IsPlaying, Converter={StaticResource NegatedBooleanToVisibilityConverter}}"
+                                      Height="80"
+                                      Width="80"
+                                      Style="{StaticResource AppBarButtonStyleHuge}"
+                                      VerticalAlignment="Center">
+                            <AppBarButton.Icon>
+                                <FontIcon Glyph="&#xE102;"
+                                          FontSize="42" />
+                            </AppBarButton.Icon>
+                        </AppBarButton>
+                        <AppBarButton Grid.Column="2"
+                                      IsCompact="True"
+                                      Visibility="{Binding IsPlaying, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                      Height="80"
+                                      Width="80"
+                                      Style="{StaticResource AppBarButtonStyleHuge}"
+                                      VerticalAlignment="Center">
+                            <AppBarButton.Icon>
+                                <FontIcon Glyph="&#xE103;"
+                                          FontSize="42" />
+                            </AppBarButton.Icon>
+                        </AppBarButton>
+                        <AppBarButton Grid.Column="3"
+                                      IsCompact="True"
+                                      Style="{StaticResource AppBarButtonStyleHuge}"
+                                      Height="50"
+                                      Width="50"
+                                      VerticalAlignment="Center"
+                                      HorizontalAlignment="Center">
+                            <AppBarButton.Icon>
+                                <FontIcon Glyph="&#xE101;"
+                                          FontSize="30" />
+                            </AppBarButton.Icon>
+                        </AppBarButton>
+                        <AppBarButton Grid.Column="4"
+                                      Icon="Favorite"
+                                      IsCompact="True"
+                                      VerticalAlignment="Center" />
+                    </Grid>
+                </Grid>
+            </FlipViewItem>
+            <FlipViewItem>
+                <ListView ItemsSource="{Binding TrackCollection.Playlist}"
                           IsItemClickEnabled="True"
                           SelectionMode="None"
-                          ItemTemplate="{StaticResource LightTrackTemplate}"
+                          ItemTemplate="{StaticResource WPDarkTrackTemplateWNumber}"
                           ItemContainerStyle="{StaticResource ListViewItemStyle}">
                     <triggers:Interactions.Triggers>
                         <triggers:EventTrigger EventName="ItemClick">
@@ -69,41 +158,48 @@
                         </triggers:EventTrigger>
                     </triggers:Interactions.Triggers>
                 </ListView>
-            </PivotItem>
-            <PivotItem x:Uid="Biography" Header="biography">
-                <ScrollViewer ZoomMode="Disabled">
-                    <TextBlock Text="{Binding CurrentArtist.Biography}"
-                           Style="{StaticResource BodyTextBlockStyle}" />
+            </FlipViewItem>
+            <FlipViewItem>
+                <ScrollViewer>
+                    <StackPanel>
+                        <TextBlock Text="{Binding CurrentArtist.Biography}"
+                                   Style="{StaticResource BodyTextBlockStyle}" />
+                        <GridView IsSwipeEnabled="False"
+                                  SelectionMode="None"
+                                  IsItemClickEnabled="True"
+                                  ItemsSource="{Binding CurrentArtist.OnlinePopularAlbumItems}"
+                                  ItemTemplate="{StaticResource PopularAlbumTemplate}">
+                            <GridView.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <VariableSizedWrapGrid Orientation="Horizontal"
+                                                           Loaded="VariableSizedWrapGrid_Loaded" />
+                                </ItemsPanelTemplate>
+                            </GridView.ItemsPanel>
+                        </GridView>
+                        <GridView IsSwipeEnabled="False"
+                                  SelectionMode="None"
+                                  IsItemClickEnabled="True"
+                                  ItemsSource="{Binding CurrentArtist.OnlineRelatedArtists}"
+                                  ItemTemplate="{StaticResource SimilarArtistTemplate}">
+                            <GridView.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <VariableSizedWrapGrid Orientation="Horizontal"
+                                                           Loaded="VariableSizedWrapGrid_Loaded" />
+                                </ItemsPanelTemplate>
+                            </GridView.ItemsPanel>
+                        </GridView>
+                    </StackPanel>
                 </ScrollViewer>
-            </PivotItem>
-            <PivotItem x:Uid="PopularAlbums" Header="popular albums">
-                <GridView IsSwipeEnabled="False"
-                          SelectionMode="None"
-                          IsItemClickEnabled="True"
-                          ItemsSource="{Binding CurrentArtist.OnlinePopularAlbumItems}"
-                          ItemTemplate="{StaticResource PopularAlbumTemplate}">
-                    <GridView.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <VariableSizedWrapGrid Orientation="Horizontal"
-                                                   Loaded="VariableSizedWrapGrid_Loaded" />
-                        </ItemsPanelTemplate>
-                    </GridView.ItemsPanel>
-                </GridView>
-            </PivotItem>
-            <PivotItem  x:Uid="SimilarArtists" Header="similar artists">
-                <GridView IsSwipeEnabled="False"
-                          SelectionMode="None"
-                          IsItemClickEnabled="True"
-                          ItemsSource="{Binding CurrentArtist.OnlineRelatedArtists}"
-                          ItemTemplate="{StaticResource SimilarArtistTemplate}">
-                    <GridView.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <VariableSizedWrapGrid Orientation="Horizontal"
-                                                   Loaded="VariableSizedWrapGrid_Loaded" />
-                        </ItemsPanelTemplate>
-                    </GridView.ItemsPanel>
-                </GridView>
-            </PivotItem>
-        </Pivot>
+            </FlipViewItem>
+        </FlipView>
+
+        <userControls:TopBar Grid.Row="0"
+                             x:Name="HeaderGrid"
+                             HeaderTextBlock="Now playing"
+                             HeaderBackground="#00ffffff"
+                             RequestedTheme="Dark"
+                             VerticalAlignment="Top"
+                             Height="80" />
+
     </Grid>
 </Page>

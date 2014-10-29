@@ -1,7 +1,42 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="using:VLC_WINRT_APP.Resources.Templates">
+                    xmlns:local="using:VLC_WINRT_APP.Resources.Templates"
+                    xmlns:userControls="using:VLC_WINRT_APP.Views.UserControls">
 
+    <!-- WINDOWS PHONE -->
+    <DataTemplate x:Key="WPLightTrackTemplateWONumber">
+        <userControls:TrackItemTemplate />
+    </DataTemplate>
+
+    <DataTemplate x:Key="WPDarkTrackTemplateWNumber">
+        <Grid RequestedTheme="Dark">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0"
+                       Text="{Binding Index}"
+                       FontSize="30"
+                       FontWeight="ExtraLight" />
+            <userControls:TrackItemTemplate Grid.Column="1" />
+        </Grid>
+    </DataTemplate>
+
+    <DataTemplate x:Key="WPLightTrackTemplateWNumber">
+        <Grid RequestedTheme="Light">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0"
+                       Text="{Binding Index}"
+                       FontSize="30"
+                       FontWeight="ExtraLight" />
+            <userControls:TrackItemTemplate Grid.Column="1" />
+        </Grid>
+    </DataTemplate>
+    
+    <!-- WINDOWS -->
     <DataTemplate x:Key="LightTrackTemplate">
         <Grid>
             <Grid.ColumnDefinitions>
@@ -27,8 +62,8 @@
             </StackPanel>
             <TextBlock Grid.Column="2"
                        Text="{Binding Duration.TotalSeconds, Converter={StaticResource SecondsStringConverter}}"
-                       Foreground="#FF838383" 
-                       VerticalAlignment="Center"/>
+                       Foreground="#FF838383"
+                       VerticalAlignment="Center" />
         </Grid>
     </DataTemplate>
 

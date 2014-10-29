@@ -22,6 +22,7 @@ using VLC_WINRT.Common;
 using VLC_WINRT_APP.Commands.MediaPlayback;
 using VLC_WINRT_APP.Commands.Music;
 using VLC_WINRT_APP.Helpers;
+using VLC_WINRT_APP.Helpers.MusicLibrary;
 using VLC_WINRT_APP.Model.Music;
 using VLC_WINRT_APP.Services.Interface;
 using VLC_WINRT_APP.Services.RunTime;
@@ -67,9 +68,15 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             get
             {
                 if (CurrentArtist == null) return null;
-                if (CurrentArtist.Albums == null || !CurrentArtist.Albums.Any()) return null;
-                AlbumItem album = CurrentArtist.Albums.FirstOrDefault(x => x.Id == CurrentTrack.AlbumId);
-                return album;
+                if (CurrentArtist.Albums == null || !CurrentArtist.Albums.Any())
+                {
+                    if (CurrentTrack != null)
+                    {
+                        return Locator.MusicLibraryVM.Albums.FirstOrDefault(x => x.Id == CurrentTrack.AlbumId);
+                    }
+                    return null;
+                }
+                return CurrentArtist.Albums.FirstOrDefault(x => x.Id == CurrentTrack.AlbumId);
             }
         }
 

@@ -28,9 +28,8 @@
                    Foreground="DimGray" />
         <Button Grid.Column="1"
                 Grid.Row="0"
-                Grid.RowSpan="2"
                 Style="{StaticResource TextBlockButtonStyle}"
-                Content=""
+                Content=""
                 FontFamily="Segoe UI Symbol">
             <Button.Flyout>
                 <Flyout Placement="Full">
@@ -39,7 +38,7 @@
                           Margin="40,0">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="120" />
-                            <RowDefinition Height="230"/>
+                            <RowDefinition Height="230" />
                         </Grid.RowDefinitions>
                         <StackPanel Orientation="Horizontal">
                             <Image Source="{Binding Thumbnail}"
@@ -57,7 +56,7 @@
                                 <TextBlock Text="{Binding ArtistName}"
                                            TextWrapping="Wrap"
                                            Style="{StaticResource BodyTextBlockStyle}"
-                                           Foreground="DimGray"/>
+                                           Foreground="DimGray" />
                             </StackPanel>
                         </StackPanel>
                         <StackPanel Grid.Row="1"
@@ -65,18 +64,21 @@
                                     VerticalAlignment="Center">
                             <AppBarButton Label="play track"
                                           Icon="Play"
-                                          Style="{StaticResource AppBarButtonStyleHorizontal}" 
-                                          Foreground="{StaticResource MainColor}"/>
+                                          Style="{StaticResource AppBarButtonStyleHorizontal}"
+                                          Foreground="{StaticResource MainColor}" />
                             <AppBarButton Label="view album"
                                           Icon="SlideShow"
                                           Style="{StaticResource AppBarButtonStyleHorizontal}" />
                             <AppBarButton Label="add to playlist ..."
                                           Icon="Add"
-                                          Style="{StaticResource AppBarButtonStyleHorizontal}"/>
+                                          Style="{StaticResource AppBarButtonStyleHorizontal}" />
                         </StackPanel>
                     </Grid>
                 </Flyout>
             </Button.Flyout>
         </Button>
+        <TextBlock Grid.Column="1"
+                   Grid.Row="1"
+                   Text="{Binding Duration.TotalSeconds, Converter={StaticResource SecondsStringConverter}}"/>
     </Grid>
 </UserControl>
