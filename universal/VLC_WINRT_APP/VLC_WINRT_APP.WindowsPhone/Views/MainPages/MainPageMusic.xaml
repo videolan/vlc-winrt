@@ -43,6 +43,9 @@
             <PivotItem Header="songs">
                 <mainMusicControls:SongsPivotItem />
             </PivotItem>
+            <PivotItem Header="playlist">
+                <mainMusicControls:PlaylistPivotItem />
+            </PivotItem>
         </Pivot>
     </Grid>
     <Page.BottomAppBar>
