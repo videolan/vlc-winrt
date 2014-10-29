@@ -25,10 +25,8 @@ using VLC_WINRT_APP.Helpers.MusicLibrary;
 using VLC_WINRT_APP.Helpers.MusicLibrary.xboxmusic.Models;
 using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.Model.Music;
-using VLC_WINRT_APP.Views.UserControls;
 using XboxMusicLibrary;
 using VLC_WINRT_APP.Commands.Music;
-using Panel = VLC_WINRT_APP.Model.Panel;
 
 namespace VLC_WINRT_APP.ViewModels.MusicVM
 {
@@ -37,6 +35,8 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         public static ArtistDataRepository _artistDataRepository = new ArtistDataRepository();
         public static TrackDataRepository _trackDataRepository = new TrackDataRepository();
         public static AlbumDataRepository _albumDataRepository = new AlbumDataRepository();
+        public static TracklistItemRepository TracklistItemRepository = new TracklistItemRepository();
+        public static TrackCollectionRepository TrackCollectionRepository = new TrackCollectionRepository();
         #region private fields
 #if WINDOWS_APP
         private ObservableCollection<Panel> _panels = new ObservableCollection<Panel>();

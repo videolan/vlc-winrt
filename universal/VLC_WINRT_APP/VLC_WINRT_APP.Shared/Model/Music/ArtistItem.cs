@@ -84,7 +84,7 @@ namespace VLC_WINRT_APP.Model.Music
             {
                 await ArtistInformationsHelper.GetArtistPicture(this);
             }
-            catch(Exception)
+            catch (Exception)
             {
                 Debug.WriteLine("Error getting artist picture : " + _name);
             }
@@ -102,7 +102,7 @@ namespace VLC_WINRT_APP.Model.Music
             {
                 if (_albumItems == null)
                     this.GetAlbums();
-                return _albumItems; 
+                return _albumItems;
             }
             set { SetProperty(ref _albumItems, value); }
         }

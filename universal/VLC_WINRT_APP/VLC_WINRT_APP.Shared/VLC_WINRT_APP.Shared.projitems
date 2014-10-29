@@ -95,7 +95,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)DataRepository\ArtistDataRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataRepository\IDataRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataRepository\LastVideosRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataRepository\TrackCollectionRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataRepository\TrackDataRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataRepository\TracklistItemRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataTemplateSelectors\MediaItemDataTemplateSelector.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataTemplateSelectors\StorageItemDataTemplateSelector.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\ApplicationSettingsHelper.cs" />
@@ -151,7 +153,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Model\LoadingState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Music\AlbumItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Music\ArtistItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Music\TrackCollectionItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Music\TrackItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Music\TracklistItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\OrderSettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Panel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\PlayingType.cs" />
