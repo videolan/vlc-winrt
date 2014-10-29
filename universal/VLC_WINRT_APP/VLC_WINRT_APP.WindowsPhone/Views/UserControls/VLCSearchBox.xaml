@@ -12,31 +12,13 @@
     </UserControl.Resources>
 
     <Grid>
-        <!--<Grid.ColumnDefinitions>
-            <ColumnDefinition MaxWidth="200" />
-            <ColumnDefinition Width="40" />
-        </Grid.ColumnDefinitions>
-        <TextBox PlaceholderText="Search"
-                 Padding="0"
-                 Margin="0" 
-                 IsTabStop="False"/>
-        <Grid Grid.Column="1"
-              Background="{StaticResource MainColor}"
-              Margin="0,0,0,2">
-            <TextBlock Text=""
-                       FontFamily="Segoe UI Symbol"
-                       VerticalAlignment="Center"
-                       HorizontalAlignment="Center"
-                       Foreground="White"
-                       FontSize="17" />
-        </Grid>-->
-        <AutoSuggestBox PlaceholderText="Search"
+        <AutoSuggestBox IsTabStop="False"
+                        PlaceholderText="Search"
                         TextChanged="AutoSuggestBox_OnTextChanged"
-                        IsEnabled="{Binding Source={StaticResource Locator}, Path=VideoVm.IsPlaying, Converter={StaticResource VLCSearchBoxConverter}}"
                         Margin="0,0,20,0">
             <AutoSuggestBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding Text}"/>
+                    <TextBlock Text="{Binding Text}" />
                 </DataTemplate>
             </AutoSuggestBox.ItemTemplate>
         </AutoSuggestBox>
