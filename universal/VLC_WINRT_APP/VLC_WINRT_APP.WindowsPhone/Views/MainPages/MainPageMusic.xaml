@@ -43,7 +43,7 @@
             <PivotItem Header="songs">
                 <mainMusicControls:SongsPivotItem />
             </PivotItem>
-            <PivotItem Header="playlist">
+            <PivotItem Header="playlists">
                 <mainMusicControls:PlaylistPivotItem />
             </PivotItem>
         </Pivot>

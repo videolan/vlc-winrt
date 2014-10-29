@@ -15,7 +15,8 @@
         <AutoSuggestBox IsTabStop="False"
                         PlaceholderText="Search"
                         TextChanged="AutoSuggestBox_OnTextChanged"
-                        Margin="0,0,20,0">
+                        Margin="0,0,20,0"
+                        IsEnabled="{Binding Source={StaticResource Locator}, Path=VideoVm.IsPlaying, Converter={StaticResource VLCSearchBoxConverter}}" >
             <AutoSuggestBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Text}" />
