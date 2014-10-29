@@ -24,25 +24,25 @@ namespace VLC_WINRT_APP.DataRepository
         {
             using (var db = new SQLite.SQLiteConnection(DbPath))
             {
-                db.CreateTable<TrackCollectionItem>();
+                db.CreateTable<TrackCollection>();
             }
         }
-        public async Task<ObservableCollection<TrackCollectionItem>> LoadTrackCollections()
+        public async Task<ObservableCollection<TrackCollection>> LoadTrackCollections()
         {
             var connection = new SQLiteAsyncConnection(DbPath);
 
-            return new ObservableCollection<TrackCollectionItem>(
-               await connection.QueryAsync<TrackCollectionItem>(
-                     "select * from TrackCollectionItem"));
+            return new ObservableCollection<TrackCollection>(
+               await connection.QueryAsync<TrackCollection>(
+                     "select * from TrackCollection"));
         }
 
-        public Task Add(TrackCollectionItem trackCollection)
+        public Task Add(TrackCollection trackCollection)
         {
             var connection = new SQLiteAsyncConnection(DbPath);
             return connection.InsertAsync(trackCollection);
         }
 
-        public async Task Remove(TrackCollectionItem trackCollection)
+        public async Task Remove(TrackCollection trackCollection)
         {
             var connection = new SQLiteAsyncConnection(DbPath);
             var loadTracks = await MusicLibraryVM.TracklistItemRepository.LoadTracks(trackCollection);

@@ -42,11 +42,11 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         private ObservableCollection<Panel> _panels = new ObservableCollection<Panel>();
 #endif
         private ObservableCollection<ArtistItem> _artistses = new ObservableCollection<ArtistItem>();
-        private ObservableCollection<string> _albumsCover = new ObservableCollection<string>();
         private ObservableCollection<TrackItem> _trackses = new ObservableCollection<TrackItem>();
         private ObservableCollection<AlbumItem> _favoriteAlbums = new ObservableCollection<AlbumItem>();
         private ObservableCollection<AlbumItem> _randomAlbums = new ObservableCollection<AlbumItem>();
         private ObservableCollection<AlbumItem> _albums = new ObservableCollection<AlbumItem>();
+        private ObservableCollection<TrackCollection> _trackCollections = new ObservableCollection<TrackCollection>();
         #endregion
         #region private props
         private SidebarState _sidebarState;
@@ -68,6 +68,13 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         #endregion
 
         #region public fields
+
+        public ObservableCollection<TrackCollection> TrackCollections
+        {
+            get { return _trackCollections; }
+            set { SetProperty(ref _trackCollections, value); }
+        }
+
         public ObservableCollection<AlbumItem> FavoriteAlbums
         {
             get { return _favoriteAlbums; }

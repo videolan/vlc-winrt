@@ -153,7 +153,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Model\LoadingState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Music\AlbumItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Music\ArtistItem.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Model\Music\TrackCollectionItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Music\TrackItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Music\TracklistItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\OrderSettings.cs" />

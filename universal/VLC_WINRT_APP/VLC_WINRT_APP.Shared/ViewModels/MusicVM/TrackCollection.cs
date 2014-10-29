@@ -8,6 +8,7 @@
  **********************************************************************/
 
 using System.Collections.ObjectModel;
+using SQLite;
 using VLC_WINRT_APP.Common;
 using VLC_WINRT_APP.Model.Music;
 
@@ -19,12 +20,17 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         private int _currentTrack;
         private bool _isRunning;
 
+        [PrimaryKey, AutoIncrement, Column("_id")]
+        public int Id { get; set; }
+        public string Name { get; set; }
+
         public int CurrentTrack
         {
             get { return _currentTrack; }
             set { SetProperty(ref _currentTrack, value); }
         }
 
+        [Ignore]
         public bool CanGoPrevious
         {
             get
@@ -33,11 +39,13 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             }
         }
 
+        [Ignore]
         public bool CanGoNext
         {
             get { return (Playlist.Count != 1) && (CurrentTrack < Playlist.Count - 1); }
         }
 
+        [Ignore]
         public bool IsRunning
         {
             get
@@ -52,6 +60,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 
 
         #region public fields
+        [Ignore]
         public ObservableCollection<TrackItem> Playlist
         {
             get { return _tracksCollection; }
