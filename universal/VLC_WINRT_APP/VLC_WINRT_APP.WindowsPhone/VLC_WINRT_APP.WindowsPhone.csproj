@@ -82,6 +82,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\MainPages\MainMusicControls\AlbumsPivotItem.xaml.cs">
+      <DependentUpon>AlbumsPivotItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainPages\MainMusicControls\SongsPivotItem.xaml.cs">
+      <DependentUpon>SongsPivotItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MusicPages\AlbumPageControls\MainAlbumHeader.xaml.cs">
       <DependentUpon>MainAlbumHeader.xaml</DependentUpon>
     </Compile>
@@ -109,7 +115,7 @@
     <Compile Include="Views\MusicPages\ArtistPage.xaml.cs">
       <DependentUpon>ArtistPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MusicPages\ArtistsPivotItem.xaml.cs">
+    <Compile Include="Views\MainPages\MainMusicControls\ArtistsPivotItem.xaml.cs">
       <DependentUpon>ArtistsPivotItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MusicPages\MiniPlayer.xaml.cs">
@@ -174,8 +180,8 @@
     <Reference Include="PanelsView">
       <HintPath>..\..\..\..\..\..\PanelsView\PanelsView\PanelsView\bin\Release\PanelsView.dll</HintPath>
     </Reference>
-    <Reference Include="ScrollWatchedListView">
-      <HintPath>\\psf\Home\Documents\Visual Studio 2013\Projects\ScrollWatchedListView\ScrollWatchedListView\bin\Debug\ScrollWatchedListView.dll</HintPath>
+    <Reference Include="ScrollWatchedSelector">
+      <HintPath>\\psf\Home\Documents\Visual Studio 2013\Projects\ScrollWatchedListView\ScrollWatchedListView\bin\Debug\ScrollWatchedSelector.dll</HintPath>
     </Reference>
     <Reference Include="WinRT.Triggers">
       <HintPath>..\..\..\app\packages\WinRTTriggers.1.6.0\lib\winrt45\WinRT.Triggers.dll</HintPath>
@@ -189,6 +195,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="Views\MainPages\MainMusicControls\AlbumsPivotItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainPages\MainMusicControls\SongsPivotItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MusicPages\AlbumPageControls\MainAlbumHeader.xaml">
       <SubType>Designer</SubType>
@@ -226,7 +240,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\MusicPages\ArtistsPivotItem.xaml">
+    <Page Include="Views\MainPages\MainMusicControls\ArtistsPivotItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

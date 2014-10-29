@@ -1,9 +1,7 @@
-﻿using System;
-using Windows.UI.Xaml;
+﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-
-namespace VLC_WINRT_APP.Views.MusicPages
+namespace VLC_WINRT_APP.Views.MainPages.MainMusicControls
 {
     public sealed partial class ArtistsPivotItem : UserControl
     {

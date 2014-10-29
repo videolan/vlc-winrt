@@ -52,7 +52,7 @@ namespace VLC_WINRT_APP.Views.MusicPages
             }
         }
 
-        private void ScrollWatchedListView_OnGoingTopOrBottom(ScrollWatchedListView lv, EventArgs eventArgs)
+        private void ScrollWatchedListView_OnGoingTopOrBottom(IScrollWatchedSelector lv, EventArgs eventArgs)
         {
             var e = eventArgs as ScrollingEventArgs;
             if (e.ScrollingType == ScrollingType.ToBottom)

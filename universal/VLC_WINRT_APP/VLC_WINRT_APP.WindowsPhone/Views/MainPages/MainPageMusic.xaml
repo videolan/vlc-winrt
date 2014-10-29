@@ -8,6 +8,7 @@
       xmlns:artistPageControls="using:VLC_WINRT_APP.Views.MusicPages.ArtistPageControls"
       xmlns:musicPages="using:VLC_WINRT_APP.Views.MusicPages"
       xmlns:scrollWatchedSelector="using:ScrollWatchedSelector"
+      xmlns:mainMusicControls="using:VLC_WINRT_APP.Views.MainPages.MainMusicControls"
       mc:Ignorable="d"
       d:DesignHeight="300"
       d:DesignWidth="600"
@@ -34,154 +35,15 @@
                 </DataTemplate>
             </Pivot.TitleTemplate>
             <PivotItem Header="albums">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition />
-                    </Grid.RowDefinitions>
-                    <Grid DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-                        <ComboBox HorizontalAlignment="Left"
-                                  ItemsSource="{Binding AlbumsOrderTypeCollection}"
-                                  SelectedItem="{Binding AlbumsOrderType, Mode=TwoWay}">
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding Converter={StaticResource OrderTypeStringifyConverter}}" />
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                        </ComboBox>
-                        <ComboBox Grid.Column="1"
-                                  Margin="12,0,0,0"
-                                  HorizontalAlignment="Left"
-                                  ItemsSource="{Binding AlbumsListingTypeCollection}"
-                                  SelectedItem="{Binding AlbumsOrderListing, Mode=TwoWay}">
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding Converter={StaticResource OrderTypeStringifyConverter}}" />
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                        </ComboBox>
-                    </Grid>
-                    <scrollWatchedSelector:ScrollWatchedGridView Grid.Row="1"
-                              ItemsSource="{Binding Albums}"
-                              ItemTemplate="{StaticResource WPSemanticZoomInViewAlbumTemplateLittleSize}"
-                              Margin="0,0,-20,0"
-                              IsItemClickEnabled="True">
-                        <triggers:Interactions.Triggers>
-                            <triggers:EventTrigger EventName="ItemClick">
-                                <triggers:InvokeCommandAction Command="{Binding AlbumClickedCommand}"
-                                                              PassEventArgsToCommand="True" />
-                            </triggers:EventTrigger>
-                        </triggers:Interactions.Triggers>
-                        <scrollWatchedSelector:ScrollWatchedGridView.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <ItemsWrapGrid ItemHeight="200"
-                                               ItemWidth="156"
-                                               Orientation="Horizontal" />
-                            </ItemsPanelTemplate>
-                        </scrollWatchedSelector:ScrollWatchedGridView.ItemsPanel>
-                    </scrollWatchedSelector:ScrollWatchedGridView>
-                </Grid>
+                <mainMusicControls:AlbumsPivotItem />
             </PivotItem>
             <PivotItem Header="artists">
-                <musicPages:ArtistsPivotItem />
+                <mainMusicControls:ArtistsPivotItem />
             </PivotItem>
             <PivotItem Header="songs">
-                <ListView x:Name="RadDataGrid"
-                          ItemsSource="{Binding Tracks}"
-                          SelectionMode="None"
-                          IsItemClickEnabled="True"
-                          ItemContainerStyle="{StaticResource HorizontalListViewItemStyle}">
-                    <triggers:Interactions.Triggers>
-                        <triggers:EventTrigger EventName="ItemClick">
-                            <triggers:InvokeCommandAction Command="{Binding TrackClickedCommand}"
-                                                          PassEventArgsToCommand="True" />
-                        </triggers:EventTrigger>
-                    </triggers:Interactions.Triggers>
-                    <ListView.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <StackPanel Margin="0,0,0,60" />
-                        </ItemsPanelTemplate>
-                    </ListView.ItemsPanel>
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <userControls:TrackItemTemplate />
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                <mainMusicControls:SongsPivotItem />
             </PivotItem>
         </Pivot>
-        <!--<ListView ItemsSource="{Binding Panels}"
-                  IsItemClickEnabled="True"
-                  SelectionMode="None"
-                  Grid.Row="1"
-                  ItemClick="Panels_OnItemClick"
-                  ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                  ItemContainerStyle="{StaticResource ListViewItemContainerStyle}">
-            <ListView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <StackPanel Orientation="Horizontal"
-                                Height="50" />
-                </ItemsPanelTemplate>
-            </ListView.ItemsPanel>
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Grid Height="50"
-                          Margin="0,0,5,0">
-                        <TextBlock Text="{Binding Title}"
-                                   Foreground="{Binding Color}"
-                                   TextWrapping="NoWrap"
-                                   TextTrimming="None"
-                                   Style="{StaticResource SubheaderTextBlockStyle}"
-                                   Margin="0,0,5,0" />
-                    </Grid>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>-->
-        <!--<grid:RadDataGrid x:Name="RadDataGrid"
-                          ItemsSource="{Binding Track}"
-                          Grid.Row="3"
-                          AutoGenerateColumns="False"
-                          UserGroupMode="Disabled"
-                          UserEditMode="None"
-                          Visibility="Collapsed"
-                          GridLinesBrush="#15FFFFFF"
-                          BorderBrush="#15FFFFFF"
-                          SelectionMode="Single"
-                          SelectionChanged="RadDataGrid_OnSelectionChanged">
-            <grid:RadDataGrid.Columns>
-                <grid:DataGridTextColumn PropertyName="Name"
-                                         Header="NAME" />
-                <grid:DataGridTextColumn PropertyName="ArtistName"
-                                         Header="ARTIST" />
-                <grid:DataGridTextColumn PropertyName="AlbumName"
-                                         Header="ALBUM" />
-            </grid:RadDataGrid.Columns>
-        </grid:RadDataGrid>-->
-        <GridView x:Name="FavoriteAlbumsGridView"
-                  Visibility="Collapsed"
-                  ItemsSource="{Binding FavoriteAlbums}"
-                  ItemTemplate="{StaticResource SemanticZoomInViewAlbumTemplate}"
-                  SelectionMode="None"
-                  IsItemClickEnabled="True"
-                  Grid.ColumnSpan="2">
-            <triggers:Interactions.Triggers>
-                <triggers:EventTrigger EventName="ItemClick">
-                    <triggers:InvokeCommandAction Command="{Binding AlbumClickedCommand}"
-                                                  PassEventArgsToCommand="True" />
-                </triggers:EventTrigger>
-            </triggers:Interactions.Triggers>
-            <GridView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <VariableSizedWrapGrid Orientation="Horizontal"
-                                           ItemHeight="200"
-                                           ItemWidth="200" />
-                </ItemsPanelTemplate>
-            </GridView.ItemsPanel>
-        </GridView>
     </Grid>
     <Page.BottomAppBar>
         <CommandBar Style="{StaticResource VLCCommandBarStyle}">
