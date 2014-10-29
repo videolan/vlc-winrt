@@ -39,6 +39,18 @@
                    Source="{Binding CurrentArtist.Picture}"
                    Stretch="UniformToFill"
                    Opacity="1" />
+            <Grid>
+                <Grid.Background>
+                    <LinearGradientBrush EndPoint="0.5,1"
+                                         StartPoint="0.5,0">
+                        <GradientStop Color="#66000000"
+                                      Offset="0" />
+                        <GradientStop Offset="1" />
+                        <GradientStop Color="#00545454"
+                                      Offset="0.28" />
+                    </LinearGradientBrush>
+                </Grid.Background>
+            </Grid>
             <userControls:TopBar HeaderTextBlock="{Binding CurrentArtist.Name}"
                                  HeaderBackground="#00ffffff"
                                  VerticalAlignment="Top"/>
