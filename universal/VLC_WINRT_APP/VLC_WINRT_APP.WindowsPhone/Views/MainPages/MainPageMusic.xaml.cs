@@ -61,15 +61,5 @@ namespace VLC_WINRT_APP.Views.MainPages
         {
         }
 
-        private void SemanticZoom_OnViewChangeCompletedArtistByName(object sender, SemanticZoomViewChangedEventArgs e)
-        {
-            //Locator.MusicLibraryVM.ExecuteSemanticZoom(SemanticZoomAlbumsByArtist, AlbumsGroupedByName);
-        }
-
-
-        private void Header_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            SemanticZoomAlbumsByArtist.IsZoomedInViewActive = false;
-        }
     }
 }

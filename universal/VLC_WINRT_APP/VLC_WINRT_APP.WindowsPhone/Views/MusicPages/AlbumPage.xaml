@@ -6,7 +6,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:triggers="using:WinRT.Triggers"
       xmlns:userControls="using:VLC_WINRT_APP.Views.UserControls"
-      xmlns:scrollWatchedListView="using:ScrollWatchedListView"
+      xmlns:scrollWatchedSelector="using:ScrollWatchedSelector"
       xmlns:albumPage="using:VLC_WINRT_APP.Views.MusicPages.AlbumPage"
       xmlns:albumPageControls="using:VLC_WINRT_APP.Views.MusicPages.AlbumPageControls"
       mc:Ignorable="d"
@@ -88,7 +88,7 @@
                VerticalAlignment="Top" />-->
         <Grid Grid.Row="1"
               RequestedTheme="Light">
-            <scrollWatchedListView:ScrollWatchedListView ItemsSource="{Binding CurrentAlbum.Tracks}"
+            <scrollWatchedSelector:ScrollWatchedListView ItemsSource="{Binding CurrentAlbum.Tracks}"
                                                          IsItemClickEnabled="True"
                                                          SelectionMode="None"
                                                          ItemTemplate="{StaticResource LightTrackTemplate}"
@@ -96,18 +96,18 @@
                                                          Loaded="PlaylistView_Loaded"
                                                          Margin="12,0,0,0"
                                                          GoingTopOrBottom="ScrollWatchedListView_OnGoingTopOrBottom">
-                <scrollWatchedListView:ScrollWatchedListView.ItemsPanel>
+                <scrollWatchedSelector:ScrollWatchedListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <StackPanel Margin="0,0,0,60" />
                     </ItemsPanelTemplate>
-                </scrollWatchedListView:ScrollWatchedListView.ItemsPanel>
+                </scrollWatchedSelector:ScrollWatchedListView.ItemsPanel>
                 <triggers:Interactions.Triggers>
                     <triggers:EventTrigger EventName="ItemClick">
                         <triggers:InvokeCommandAction Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.TrackClickedCommand}"
                                                       PassEventArgsToCommand="True" />
                     </triggers:EventTrigger>
                 </triggers:Interactions.Triggers>
-            </scrollWatchedListView:ScrollWatchedListView>
+            </scrollWatchedSelector:ScrollWatchedListView>
         </Grid>
     </Grid>
 </Page>

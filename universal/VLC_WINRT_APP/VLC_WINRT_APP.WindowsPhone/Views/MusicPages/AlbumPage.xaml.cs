@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Diagnostics;
 using Windows.Phone.UI.Input;
 using Windows.UI.Core;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
-using ScrollWatchedListView;
-using WinRTXamlToolkit.Controls.Extensions;
+using ScrollWatchedSelector;
 
 namespace VLC_WINRT_APP.Views.MusicPages
 {
@@ -55,7 +52,7 @@ namespace VLC_WINRT_APP.Views.MusicPages
             }
         }
 
-        private void ScrollWatchedListView_OnGoingTopOrBottom(ScrollWatchedListView.ScrollWatchedListView lv, EventArgs eventArgs)
+        private void ScrollWatchedListView_OnGoingTopOrBottom(ScrollWatchedListView lv, EventArgs eventArgs)
         {
             var e = eventArgs as ScrollingEventArgs;
             if (e.ScrollingType == ScrollingType.ToBottom)
