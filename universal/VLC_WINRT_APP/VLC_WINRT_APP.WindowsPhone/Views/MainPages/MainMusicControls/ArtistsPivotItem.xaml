@@ -18,7 +18,7 @@
                   ItemContainerStyle="{StaticResource GridViewItemStyle}"
                   ItemTemplate="{StaticResource ArtistSquareTemplate}"
                   HorizontalAlignment="Left"
-                  Margin="-6,0,0,0">
+                  Margin="-6,0,-20,0">
             <GridView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <ItemsWrapGrid Orientation="Horizontal"
