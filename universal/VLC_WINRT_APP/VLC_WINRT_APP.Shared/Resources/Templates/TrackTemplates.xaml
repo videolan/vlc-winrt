@@ -18,7 +18,8 @@
                        Text="{Binding Index}"
                        FontSize="30"
                        FontWeight="ExtraLight" />
-            <userControls:TrackItemTemplate Grid.Column="1" />
+            <userControls:TrackItemTemplate Margin="12,0,0,0"
+                                            Grid.Column="1" />
         </Grid>
     </DataTemplate>
 
@@ -32,10 +33,11 @@
                        Text="{Binding Index}"
                        FontSize="30"
                        FontWeight="ExtraLight" />
-            <userControls:TrackItemTemplate Grid.Column="1" />
+            <userControls:TrackItemTemplate Margin="12,0,0,0"
+                                            Grid.Column="1" />
         </Grid>
     </DataTemplate>
-    
+
     <!-- WINDOWS -->
     <DataTemplate x:Key="LightTrackTemplate">
         <Grid>
