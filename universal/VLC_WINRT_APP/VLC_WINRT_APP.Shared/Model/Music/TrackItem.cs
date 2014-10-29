@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using SQLite;
 using VLC_WINRT_APP.Commands.Music;
 using VLC_WINRT_APP.Commands.MusicPlayer;
 using VLC_WINRT_APP.Common;
+using VLC_WINRT_APP.ViewModels;
 
 namespace VLC_WINRT_APP.Model.Music
 {
@@ -61,6 +63,12 @@ namespace VLC_WINRT_APP.Model.Music
             set { SetProperty(ref _duration, value); }
         }
         public bool Favorite { get { return _favorite; } set { SetProperty(ref _favorite, value); } }
+
+        [Ignore]
+        public string Thumbnail
+        {
+            get { return Locator.MusicLibraryVM.Albums.FirstOrDefault(x => x.Id == this.AlbumId).Picture; }
+        }
 
         [Ignore]
         public int CurrentPosition

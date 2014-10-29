@@ -22,7 +22,7 @@
             <GridView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <ItemsWrapGrid Orientation="Horizontal"
-                                   ItemHeight="200"
+                                   ItemHeight="207"
                                    ItemWidth="156" />
                 </ItemsPanelTemplate>
             </GridView.ItemsPanel>

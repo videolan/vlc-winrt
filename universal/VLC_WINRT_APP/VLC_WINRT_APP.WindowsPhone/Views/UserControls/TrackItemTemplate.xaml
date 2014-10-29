@@ -19,13 +19,13 @@
         </Grid.RowDefinitions>
         <TextBlock Grid.Column="0"
                    Grid.Row="0"
-                   Text="{Binding Name}" 
-                   Style="{StaticResource TitleTextBlockStyle}"/>
+                   Text="{Binding Name}"
+                   Style="{StaticResource TitleTextBlockStyle}" />
         <TextBlock Grid.Column="0"
                    Grid.Row="1"
-                   Text="{Binding ArtistName}" 
+                   Text="{Binding ArtistName}"
                    Style="{StaticResource BaseTextBlockStyle}"
-                   Foreground="DimGray"/>
+                   Foreground="DimGray" />
         <Button Grid.Column="1"
                 Grid.Row="0"
                 Grid.RowSpan="2"
@@ -33,12 +33,49 @@
                 Content=""
                 FontFamily="Segoe UI Symbol">
             <Button.Flyout>
-                <MenuFlyout>
-                    <MenuFlyoutItem Text="add to playlist" />
-                    <MenuFlyoutItem Text="view artist"
-                                    Command="{Binding ViewArtist}"
-                                    CommandParameter="{Binding ArtistId}" />
-                </MenuFlyout>
+                <Flyout Placement="Full">
+                    <Grid Background="WhiteSmoke"
+                          MaxHeight="350"
+                          Margin="40,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="120" />
+                            <RowDefinition Height="230"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="{Binding Thumbnail}"
+                                   Height="120"
+                                   Width="120"
+                                   Stretch="UniformToFill" />
+                            <StackPanel VerticalAlignment="Center"
+                                        Margin="12,0,0,0">
+                                <TextBlock Text="{Binding Name}"
+                                           TextWrapping="Wrap"
+                                           Style="{StaticResource SubheaderTextBlockStyle}" />
+                                <TextBlock Text="{Binding AlbumName}"
+                                           TextWrapping="Wrap"
+                                           Style="{StaticResource BodyTextBlockStyle}" />
+                                <TextBlock Text="{Binding ArtistName}"
+                                           TextWrapping="Wrap"
+                                           Style="{StaticResource BodyTextBlockStyle}"
+                                           Foreground="DimGray"/>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Grid.Row="1"
+                                    Margin="12,0,0,0"
+                                    VerticalAlignment="Center">
+                            <AppBarButton Label="play track"
+                                          Icon="Play"
+                                          Style="{StaticResource AppBarButtonStyleHorizontal}" 
+                                          Foreground="{StaticResource MainColor}"/>
+                            <AppBarButton Label="view album"
+                                          Icon="SlideShow"
+                                          Style="{StaticResource AppBarButtonStyleHorizontal}" />
+                            <AppBarButton Label="add to playlist ..."
+                                          Icon="Add"
+                                          Style="{StaticResource AppBarButtonStyleHorizontal}"/>
+                        </StackPanel>
+                    </Grid>
+                </Flyout>
             </Button.Flyout>
         </Button>
     </Grid>
