@@ -62,7 +62,7 @@
                                    Text="{Binding PositionInSeconds, Converter={StaticResource SecondsStringConverter}}"
                                    HorizontalAlignment="Left"
                                    FontWeight="Light"
-                                   FontSize="22"
+                                   FontSize="18"
                                    Foreground="White" />
                         <Slider Grid.Column="1"
                                 Margin="6,0"
@@ -75,7 +75,7 @@
                                    Text="{Binding TimeTotal.TotalSeconds, Converter={StaticResource SecondsStringConverter}}"
                                    HorizontalAlignment="Right"
                                    FontWeight="Light"
-                                   FontSize="22"
+                                   FontSize="18"
                                    Foreground="White" />
                     </Grid>
                     <Grid Grid.Row="5">
@@ -88,8 +88,8 @@
                         </Grid.ColumnDefinitions>
                         <AppBarButton Grid.Column="0"
                                       Icon="Shuffle"
-                                      IsCompact="True" 
-                                      VerticalAlignment="Center"/>
+                                      IsCompact="True"
+                                      VerticalAlignment="Center" />
                         <AppBarButton Grid.Column="1"
                                       HorizontalAlignment="Center"
                                       IsCompact="True"
@@ -146,29 +146,41 @@
                 </Grid>
             </FlipViewItem>
             <FlipViewItem>
-                <ListView ItemsSource="{Binding TrackCollection.Playlist}"
-                          IsItemClickEnabled="True"
-                          SelectionMode="None"
-                          ItemTemplate="{StaticResource WPDarkTrackTemplateWNumber}"
-                          ItemContainerStyle="{StaticResource ListViewItemStyle}">
-                    <triggers:Interactions.Triggers>
-                        <triggers:EventTrigger EventName="ItemClick">
-                            <triggers:InvokeCommandAction Command="{Binding TrackClickedCommand}"
-                                                          PassEventArgsToCommand="True" />
-                        </triggers:EventTrigger>
-                    </triggers:Interactions.Triggers>
-                </ListView>
+                <Grid Margin="12,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="playlist"
+                               Margin="6,0,0,0"
+                               Style="{StaticResource SubheaderTextBlockStyle}" />
+                    <ListView Grid.Row="1"
+                              ItemsSource="{Binding TrackCollection.Playlist}"
+                              IsItemClickEnabled="True"
+                              SelectionMode="None"
+                              ItemTemplate="{StaticResource WPDarkTrackTemplateWNumber}"
+                              ItemContainerStyle="{StaticResource ListViewItemStyle}">
+                        <triggers:Interactions.Triggers>
+                            <triggers:EventTrigger EventName="ItemClick">
+                                <triggers:InvokeCommandAction Command="{Binding TrackClickedCommand}"
+                                                              PassEventArgsToCommand="True" />
+                            </triggers:EventTrigger>
+                        </triggers:Interactions.Triggers>
+                    </ListView>
+                </Grid>
             </FlipViewItem>
             <FlipViewItem>
                 <ScrollViewer>
-                    <StackPanel>
+                    <StackPanel Margin="24,0,0,0">
                         <TextBlock Text="{Binding CurrentArtist.Biography}"
                                    Style="{StaticResource BodyTextBlockStyle}" />
-                        <GridView IsSwipeEnabled="False"
+                        <GridView Margin="0,12,0,0"
+                                  IsSwipeEnabled="False"
                                   SelectionMode="None"
                                   IsItemClickEnabled="True"
                                   ItemsSource="{Binding CurrentArtist.OnlinePopularAlbumItems}"
-                                  ItemTemplate="{StaticResource PopularAlbumTemplate}">
+                                  ItemTemplate="{StaticResource PopularAlbumTemplate}"
+                                  Header="popular albums">
                             <GridView.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <VariableSizedWrapGrid Orientation="Horizontal"
@@ -176,11 +188,13 @@
                                 </ItemsPanelTemplate>
                             </GridView.ItemsPanel>
                         </GridView>
-                        <GridView IsSwipeEnabled="False"
+                        <GridView Margin="0,12,0,0"
+                                  IsSwipeEnabled="False"
                                   SelectionMode="None"
                                   IsItemClickEnabled="True"
                                   ItemsSource="{Binding CurrentArtist.OnlineRelatedArtists}"
-                                  ItemTemplate="{StaticResource SimilarArtistTemplate}">
+                                  ItemTemplate="{StaticResource SimilarArtistTemplate}"
+                                  Header="similar artists">
                             <GridView.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <VariableSizedWrapGrid Orientation="Horizontal"
