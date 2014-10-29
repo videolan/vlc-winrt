@@ -117,6 +117,7 @@ namespace VLC_WINRT_APP.ViewModels.Settings
             }
             set
             {
+                ApplicationSettingsHelper.SaveSettingsValue("AlbumsOrderType", (int)value);
                 SetProperty(ref _albumsOrderType, value);
                 MusicLibraryManagement.OrderAlbums();
             }
@@ -139,6 +140,7 @@ namespace VLC_WINRT_APP.ViewModels.Settings
             }
             set
             {
+                ApplicationSettingsHelper.SaveSettingsValue("AlbumsOrderListing", (int)value);
                 SetProperty(ref _albumsOrderListing, value);
                 MusicLibraryManagement.OrderAlbums();
             }

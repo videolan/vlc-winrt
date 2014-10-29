@@ -275,6 +275,10 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         public async Task GetMusicFromLibrary()
         {
             await LoadFromDatabase();
+            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+            {
+                Albums = await _albumDataRepository.LoadAlbums(x => x.ArtistId != 0);
+            });
             App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => IsMusicLibraryEmpty = false);
             if (!Artists.Any())
             {
@@ -286,10 +290,6 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                 LoadingState = LoadingState.Loaded;
                 IsLoaded = true;
                 IsBusy = false;
-            });
-            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
-            {
-                Albums = await _albumDataRepository.LoadAlbums(x => x.ArtistId != 0);
             });
         }
 

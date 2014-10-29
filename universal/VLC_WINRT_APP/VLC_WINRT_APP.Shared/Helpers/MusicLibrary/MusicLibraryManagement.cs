@@ -103,6 +103,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                     {
                         Locator.MusicLibraryVM.Artists.FirstOrDefault(x => x.Id == album.ArtistId).Albums.Add(album);
                         Locator.MusicLibraryVM.CurrentIndexingStatus = "Found album " + album.Name;
+                        Locator.MusicLibraryVM.Albums.Add(album);
                     });
                 }
 
