@@ -21,10 +21,12 @@
                VerticalAlignment="Top" />
         <ListView x:Name="PlayListView"
                   Grid.Row="1"
-                  ItemsSource="{Binding CurrentTrackCollection.Playlist, Mode=TwoWay}"
+                  SelectionMode="Multiple"
+                  ItemsSource="{Binding CurrentTrackCollection.Playlist}"
                   ItemTemplate="{StaticResource WPLightTrackTemplateWONumber}"
                   ItemContainerStyle="{StaticResource HorizontalListViewItemStyle}"
-                  Margin="24,24,0,0">
+                  Margin="24,24,0,0"
+                  SelectionChanged="PlayListView_OnSelectionChanged">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Margin="0,0,0,60" />
@@ -35,10 +37,16 @@
 
     <Page.BottomAppBar>
         <CommandBar Style="{StaticResource VLCCommandBarStyle}">
-            <AppBarButton Icon="Play"
+            <AppBarButton Icon="Delete"
+                          Label="remove track"
+                          x:Name="DeleteButton"
+                          Click="DeleteButton_OnClick"
+                          Visibility="Collapsed" />
+            <AppBarButton x:Name="PlayButton"
+                          Icon="Play"
                           Label="play"
                           Command="{Binding CurrentTrackCollection.PlayTrackCollCommand}"
-                          CommandParameter="{Binding CurrentTrackCollection}"/>
+                          CommandParameter="{Binding CurrentTrackCollection}" />
         </CommandBar>
     </Page.BottomAppBar>
 </Page>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 using SQLite;
 using VLC_WINRT_APP.Model.Music;
 using VLC_WINRT_APP.ViewModels.MusicVM;
@@ -51,6 +52,15 @@ namespace VLC_WINRT_APP.DataRepository
         {
             var connection = new SQLiteAsyncConnection(DbPath);
             return connection.DeleteAsync(track);
+        }
+
+        public Task Remove(int trackId, int trackCollectionId)
+        {
+            var connection = new SQLiteAsyncConnection(DbPath);
+            return
+                connection.QueryAsync<TracklistItem>("delete from TracklistItem where TrackCollectionId=\'" +
+                                                     trackCollectionId.ToString() + "\'" + " AND TrackId=\'" +
+                                                     trackId.ToString() + "\';");
         }
 
         public async Task Clear()

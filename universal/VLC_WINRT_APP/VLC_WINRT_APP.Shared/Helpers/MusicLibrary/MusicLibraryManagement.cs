@@ -47,7 +47,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                     ObservableCollection<TracklistItem> observableCollection = await MusicLibraryVM.TracklistItemRepository.LoadTracks(trackCollection);
                     foreach (TracklistItem tracklistItem in observableCollection)
                     {
-                        TrackItem item = await MusicLibraryVM._trackDataRepository.LoadTrack(tracklistItem.Id);
+                        TrackItem item = await MusicLibraryVM._trackDataRepository.LoadTrack(tracklistItem.TrackId);
                         trackCollection.Playlist.Add(item);
                     }
                 }
