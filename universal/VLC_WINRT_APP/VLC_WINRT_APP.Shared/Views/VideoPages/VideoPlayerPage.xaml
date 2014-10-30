@@ -51,7 +51,8 @@
             </TextBlock>
         </StackPanel>
         <Grid Background="Transparent"
-              Grid.Row="1"
+              Grid.Row="0"
+              Grid.RowSpan="3"
               Tapped="VideoGrid_Tapped"
               DoubleTapped="VideoGrid_DoubleTapped">
             <controls:FadeTextBlock x:Name="Hud"

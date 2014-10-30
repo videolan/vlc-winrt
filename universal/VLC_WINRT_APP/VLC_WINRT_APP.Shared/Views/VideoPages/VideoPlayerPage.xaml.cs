@@ -8,14 +8,9 @@
  **********************************************************************/
 
 using System;
-using System.Diagnostics;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
 using Windows.Devices.Input;
 using Windows.Graphics.Display;
 using Windows.System;
-using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -129,7 +124,6 @@ namespace VLC_WINRT_APP.Views.VideoPages
         private void TimerOnTick(object sender, object o)
         {
             DisplayOrHide();
-            timer.Stop();
         }
 
         async void DisplayOrHide()
@@ -143,6 +137,7 @@ namespace VLC_WINRT_APP.Views.VideoPages
                 HeaderGrid.IsHitTestVisible = false;
                 FooterGrid.FadeOut(_fadeDuration);
                 FooterGrid.IsHitTestVisible = false;
+                timer.Stop();
             }
             else
             {
@@ -158,6 +153,7 @@ namespace VLC_WINRT_APP.Views.VideoPages
 
         private void ControlsGrid_PointerMoved(object sender, PointerRoutedEventArgs e)
         {
+#if WINDOWS_APP
             if (timer == null)
                 timer = new DispatcherTimer();
 
@@ -169,7 +165,8 @@ namespace VLC_WINRT_APP.Views.VideoPages
             else
             {
                 DisplayOrHide();
-            }
+            }   
+#endif
         }
 
         private void EnableDoubleTapToShowCommands_Click(object sender, RoutedEventArgs e)
