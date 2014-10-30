@@ -229,6 +229,9 @@
     <Compile Include="Views\UserControls\TrackItemTemplate.xaml.cs">
       <DependentUpon>TrackItemTemplate.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\VideoPages\VideoPlayerPage.xaml.cs">
+      <DependentUpon>VideoPlayerPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -914,6 +917,10 @@
     <Page Include="Views\UserControls\TrackItemTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\VideoPages\VideoPlayerPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>

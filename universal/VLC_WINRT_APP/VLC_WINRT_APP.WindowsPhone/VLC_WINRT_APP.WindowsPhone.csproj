@@ -157,6 +157,9 @@
     <Compile Include="Views\VariousPages\SpecialThanks.xaml.cs">
       <DependentUpon>SpecialThanks.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\VideoPages\VideoPlayerPage.xaml.cs">
+      <DependentUpon>VideoPlayerPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -305,6 +308,10 @@
     <Page Include="Views\VariousPages\SpecialThanks.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\VideoPages\VideoPlayerPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>

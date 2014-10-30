@@ -196,9 +196,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\VLCLogoWithGradient.xaml.cs">
       <DependentUpon>VLCLogoWithGradient.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\VideoPages\VideoPlayerPage.xaml.cs">
-      <DependentUpon>VideoPlayerPage.xaml</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <PRIResource Include="$(MSBuildThisFileDirectory)Strings\de-DE\Resources.resw" />
@@ -308,13 +305,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Views\VideoPages\VideoPlayerPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Commands\VLCFileExplorer\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Views\VideoPages\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)Assets\flatbackground1.psd" />
