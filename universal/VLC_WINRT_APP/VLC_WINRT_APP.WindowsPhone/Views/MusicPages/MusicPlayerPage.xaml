@@ -96,7 +96,9 @@
                                       Style="{StaticResource AppBarButtonStyleHuge}"
                                       Height="50"
                                       Width="50"
-                                      VerticalAlignment="Center">
+                                      VerticalAlignment="Center"
+                                      Command="{Binding PlayPreviousCommand}"
+                                      IsEnabled="{Binding TrackCollection.CanGoPrevious}">
                             <AppBarButton.Icon>
                                 <FontIcon Glyph="&#xE100;"
                                           FontSize="30" />
@@ -108,7 +110,8 @@
                                       Height="80"
                                       Width="80"
                                       Style="{StaticResource AppBarButtonStyleHuge}"
-                                      VerticalAlignment="Center">
+                                      VerticalAlignment="Center"
+                                      Command="{Binding PlayOrPauseCommand}">
                             <AppBarButton.Icon>
                                 <FontIcon Glyph="&#xE102;"
                                           FontSize="42" />
@@ -120,7 +123,8 @@
                                       Height="80"
                                       Width="80"
                                       Style="{StaticResource AppBarButtonStyleHuge}"
-                                      VerticalAlignment="Center">
+                                      VerticalAlignment="Center"
+                                      Command="{Binding PlayOrPauseCommand}">
                             <AppBarButton.Icon>
                                 <FontIcon Glyph="&#xE103;"
                                           FontSize="42" />
@@ -132,7 +136,9 @@
                                       Height="50"
                                       Width="50"
                                       VerticalAlignment="Center"
-                                      HorizontalAlignment="Center">
+                                      HorizontalAlignment="Center"
+                                      Command="{Binding PlayNextCommand}"
+                                      IsEnabled="{Binding TrackCollection.CanGoNext}">
                             <AppBarButton.Icon>
                                 <FontIcon Glyph="&#xE101;"
                                           FontSize="30" />
