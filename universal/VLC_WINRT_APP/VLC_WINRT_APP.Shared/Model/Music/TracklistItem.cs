@@ -6,6 +6,8 @@ namespace VLC_WINRT_APP.Model.Music
     {
         [PrimaryKey, AutoIncrement, Column("_id")]
         public int Id { get; set; }
+
+        public int TrackId { get; set; }
         public int TrackCollectionId { get; set; }
     }
 }

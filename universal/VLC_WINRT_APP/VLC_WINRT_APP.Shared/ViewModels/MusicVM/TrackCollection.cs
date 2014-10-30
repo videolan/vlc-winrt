@@ -9,7 +9,9 @@
 
 using System.Collections.ObjectModel;
 using SQLite;
+using VLC_WINRT_APP.Commands.Music;
 using VLC_WINRT_APP.Common;
+using VLC_WINRT_APP.Helpers.MusicLibrary;
 using VLC_WINRT_APP.Model.Music;
 
 namespace VLC_WINRT_APP.ViewModels.MusicVM
@@ -19,6 +21,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         private ObservableCollection<TrackItem> _tracksCollection;
         private int _currentTrack;
         private bool _isRunning;
+        private PlayTrackCollCommand _playTrackCollCommand;
 
         [PrimaryKey, AutoIncrement, Column("_id")]
         public int Id { get; set; }
@@ -59,13 +62,20 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             }
         }
 
+        public PlayTrackCollCommand PlayTrackCollCommand
+        {
+            get { return _playTrackCollCommand ?? (_playTrackCollCommand = new PlayTrackCollCommand()); }
+        }
 
         #region public fields
         [Ignore]
         public ObservableCollection<TrackItem> Playlist
         {
             get { return _tracksCollection; }
-            set { SetProperty(ref _tracksCollection, value); }
+            set
+            {
+                SetProperty(ref _tracksCollection, value);
+            }
         }
         #endregion
 

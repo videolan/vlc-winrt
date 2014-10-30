@@ -7,11 +7,23 @@ using VLC_WINRT.Common;
 using VLC_WINRT_APP.Helpers.MusicLibrary;
 using VLC_WINRT_APP.Model.Music;
 using VLC_WINRT_APP.ViewModels;
+using VLC_WINRT_APP.ViewModels.MusicVM;
 
 namespace VLC_WINRT_APP.Helpers.MusicPlayer
 {
     public static class PlayMusickHelper
     {
+        public static async Task PlayTrackCollection(this TrackCollection trackCollection)
+        {
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                Locator.MusicPlayerVM.TrackCollection.ResetCollection();
+                Locator.MusicPlayerVM.TrackCollection.Playlist = trackCollection.Playlist;
+                SetCurrentTrackPosition(0);
+            });
+            Task.Run(() => Locator.MusicPlayerVM.Play());
+        }
+
         /// <summary>
         /// Play a track
         /// If the track is already in the Playlist, we set the CurrenTrack to reach this new track

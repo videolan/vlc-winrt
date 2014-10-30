@@ -41,7 +41,6 @@ namespace VLC_WINRT_APP.DataRepository
             return new ObservableCollection<TracklistItem>(await connection.QueryAsync<TracklistItem>("select * from TracklistItem where TrackCollectionId = \'" + trackCollection.Id + "\'"));
         }
 
-
         public Task Add(TracklistItem track)
         {
             var connection = new SQLiteAsyncConnection(DbPath);

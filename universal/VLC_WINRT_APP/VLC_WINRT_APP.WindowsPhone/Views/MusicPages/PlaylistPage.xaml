@@ -19,23 +19,26 @@
                Source="/Assets/backgroundTop.png"
                Stretch="Uniform"
                VerticalAlignment="Top" />
-        <ListView Grid.Row="1"
-                  ItemsSource="{Binding CurrentTrackCollection.Playlist}"
+        <ListView x:Name="PlayListView"
+                  Grid.Row="1"
+                  ItemsSource="{Binding CurrentTrackCollection.Playlist, Mode=TwoWay}"
                   ItemTemplate="{StaticResource WPLightTrackTemplateWONumber}"
                   ItemContainerStyle="{StaticResource HorizontalListViewItemStyle}"
                   Margin="24,24,0,0">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <StackPanel Margin="0,0,0,60"/>
+                    <StackPanel Margin="0,0,0,60" />
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
         </ListView>
     </Grid>
-    
+
     <Page.BottomAppBar>
         <CommandBar Style="{StaticResource VLCCommandBarStyle}">
             <AppBarButton Icon="Play"
-                          Label="play"/>
+                          Label="play"
+                          Command="{Binding CurrentTrackCollection.PlayTrackCollCommand}"
+                          CommandParameter="{Binding CurrentTrackCollection}"/>
         </CommandBar>
     </Page.BottomAppBar>
 </Page>

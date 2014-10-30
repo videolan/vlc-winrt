@@ -14,17 +14,31 @@ namespace VLC_WINRT_APP.Commands.Music
         {
             App.Transition.Edge = EdgeTransitionLocation.Right;
 #if WINDOWS_PHONE_APP
-            App.ApplicationFrame.Navigate(typeof (AlbumPage));
             Locator.MusicLibraryVM.IsAlbumPageShown = true;
-            AlbumItem album = parameter as AlbumItem;
-
-            if (album == null)
+            AlbumItem album = null;
+            if (parameter is AlbumItem)
             {
-                ItemClickEventArgs args = parameter as ItemClickEventArgs;
+                album = parameter as AlbumItem;
+            }
+            else if (parameter is ItemClickEventArgs)
+            {
+                var args = parameter as ItemClickEventArgs;
                 album = args.ClickedItem as AlbumItem;
             }
+            // searching artist from his id
+            else if (parameter is int)
+            {
+                var id = (int)parameter;
+                album = Locator.MusicLibraryVM.Albums.FirstOrDefault(x => x.Id == id);
+            }
+
             Locator.MusicLibraryVM.CurrentArtist =
                 Locator.MusicLibraryVM.Artists.FirstOrDefault(x => x.Id == album.ArtistId);
+            if (Locator.MusicLibraryVM.CurrentAlbum != album
+                && App.ApplicationFrame.CurrentSourcePageType != typeof(AlbumPage))
+            {
+                App.ApplicationFrame.Navigate(typeof (AlbumPage));
+            }
             Locator.MusicLibraryVM.CurrentAlbum = album;
 #endif
         }

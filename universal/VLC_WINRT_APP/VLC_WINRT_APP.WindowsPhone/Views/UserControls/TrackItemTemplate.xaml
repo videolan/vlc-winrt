@@ -68,10 +68,14 @@
                             <AppBarButton Label="play track"
                                           Icon="Play"
                                           Style="{StaticResource AppBarButtonStyleHorizontal}"
-                                          Foreground="{StaticResource MainColor}" />
+                                          Foreground="{StaticResource MainColor}" 
+                                          Command="{Binding TrackClicked}"
+                                          CommandParameter="{Binding}"/>
                             <AppBarButton Label="view album"
                                           Icon="SlideShow"
-                                          Style="{StaticResource AppBarButtonStyleHorizontal}" />
+                                          Style="{StaticResource AppBarButtonStyleHorizontal}" 
+                                          Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.AlbumClickedCommand}"
+                                          CommandParameter="{Binding AlbumId}"/>
                         </StackPanel>
                         <Grid Grid.Row="2"
                               Margin="12,12,12,0"
