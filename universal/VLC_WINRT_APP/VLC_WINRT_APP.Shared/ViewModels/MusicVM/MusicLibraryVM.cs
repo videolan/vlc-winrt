@@ -51,6 +51,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         #region private props
         private SidebarState _sidebarState;
         private LoadingState _loadingState;
+        private ShowCreateNewPlaylistPane _showCreateNewPlaylistPaneCommamd;
         private ArtistAlbumsSemanticZoomInvertZoomCommand _artistAlbumsSemanticZoomInvertZoomCommand;
         private ChangeAlbumArtCommand _changeAlbumArtCommand;
         private DownloadAlbumArtCommand _downloadAlbumArtCommand;
@@ -59,6 +60,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         private TrackClickedCommand _trackClickedCommand;
         private AlbumItem _currentAlbum;
         private ArtistItem _currentArtist;
+        private TrackCollection _currentTrackCollection;
         private bool _isLoaded = false;
         private bool _isBusy = false;
         private bool _isMusicLibraryEmpty = true;
@@ -165,6 +167,16 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             get { return _isMusicLibraryEmpty; }
             set { SetProperty(ref _isMusicLibraryEmpty, value); }
         }
+
+        public ShowCreateNewPlaylistPane ShowCreateNewPlaylistPaneCommand
+        {
+            get
+            {
+                return _showCreateNewPlaylistPaneCommamd ??
+                       (_showCreateNewPlaylistPaneCommamd = new ShowCreateNewPlaylistPane());
+            }
+        }
+
         public ArtistAlbumsSemanticZoomInvertZoomCommand ArtistAlbumsSemanticZoomInvertZoomCommand
         {
             get { return _artistAlbumsSemanticZoomInvertZoomCommand; }
@@ -227,9 +239,15 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             get { return _currentAlbum; }
             set
             {
-                SetProperty(ref _currentAlbum, value); 
+                SetProperty(ref _currentAlbum, value);
                 OnPropertyChanged("CurrentArtist");
             }
+        }
+
+        public TrackCollection CurrentTrackCollection
+        {
+            get { return _currentTrackCollection; }
+            set { SetProperty(ref _currentTrackCollection, value); }
         }
 
         #endregion

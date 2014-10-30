@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using SQLite;
 using VLC_WINRT_APP.Model.Music;
@@ -27,6 +28,14 @@ namespace VLC_WINRT_APP.DataRepository
                 db.CreateTable<TrackCollection>();
             }
         }
+
+        public async Task<TrackCollection> LoadFromName(string name)
+        {
+            var connection = new SQLiteAsyncConnection(DbPath);
+            return (await connection.QueryAsync<TrackCollection>(
+                "select * from TrackCollection WHERE TrackCollection.Name = \'" + name + "\'")).FirstOrDefault();
+        }
+
         public async Task<ObservableCollection<TrackCollection>> LoadTrackCollections()
         {
             var connection = new SQLiteAsyncConnection(DbPath);

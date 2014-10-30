@@ -23,6 +23,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Commands\MediaPlayback\PlayPauseCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\MediaPlayback\PlayPreviousCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\MediaPlayback\ShuffleCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\Music\AddToPlaylistCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Music\AlbumClickedCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Music\ArtistAlbumsSemanticZoomInvertZoomCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Music\ArtistClickedCommand.cs" />
@@ -34,6 +35,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Music\GoToMusicPlayerPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Music\PlayAlbumCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Music\PlayTrackComand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\Music\ShowCreateNewPlaylistPane.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\PickVideoCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\PlayNetworkMRLCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\RemovableDevices\GoUpperFolderCommand.cs" />

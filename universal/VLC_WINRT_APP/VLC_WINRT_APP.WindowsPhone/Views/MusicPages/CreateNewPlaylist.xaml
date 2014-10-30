@@ -1,0 +1,29 @@
+﻿<ContentDialog x:Class="VLC_WINRT_APP.Views.MusicPages.CreateNewPlaylist"
+               xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+               xmlns:local="using:VLC_WINRT_APP.Views.MusicPages"
+               xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+               xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+               mc:Ignorable="d"
+               Title="CREATE NEW PLAYLIST"
+               PrimaryButtonText="ok"
+               SecondaryButtonText="cancel"
+               PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
+               SecondaryButtonClick="ContentDialog_SecondaryButtonClick"
+               RequestedTheme="Light">
+
+    <StackPanel VerticalAlignment="Stretch"
+                HorizontalAlignment="Stretch">
+        <TextBox Name="playlistName"
+                 PlaceholderText="Playlist name"/>
+        
+        <!-- Corps de contenu -->
+        <TextBlock Name="body"
+                   Style="{StaticResource MessageDialogContentStyle}"
+                   TextWrapping="Wrap">
+            <TextBlock.Text>
+                The playlist will also be available on your Windows computer, laptop or tablet, only if the audio files are on your other devices.
+            </TextBlock.Text>
+        </TextBlock>
+    </StackPanel>
+</ContentDialog>

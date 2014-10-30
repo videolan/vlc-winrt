@@ -4,10 +4,13 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Windows.Phone.ApplicationModel;
 using Windows.Storage;
 using Windows.Storage.FileProperties;
 using Windows.UI.Core;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
+using VLC_WINRT_APP.Helpers.MusicLibrary.Deezer;
 using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.Model.Music;
 using VLC_WINRT_APP.ViewModels;
@@ -33,6 +36,11 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                     Locator.MusicLibraryVM.Tracks = tracks;
                 });
 
+                var trackColl = await MusicLibraryVM.TrackCollectionRepository.LoadTrackCollections();
+                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                {
+                    Locator.MusicLibraryVM.TrackCollections = trackColl;
+                });
             }
             catch (Exception)
             {
@@ -219,6 +227,50 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                     Locator.MusicLibraryVM.Albums = new ObservableCollection<AlbumItem>(Locator.MusicLibraryVM.Albums.OrderByDescending(x => x.Year));
                 }
             }
+        }
+
+        public static async Task AddNewPlaylist(string trackCollectionName)
+        {
+            TrackCollection trackCollection = null;
+            trackCollection = await MusicLibraryVM.TrackCollectionRepository.LoadFromName(trackCollectionName);
+            if (trackCollection != null)
+            {
+                App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+                {
+                    await
+                        new MessageDialog(
+                            "A playlist with this name already exists", "Sorry ...")
+                            .ShowAsync();
+                });
+            }
+            else
+            {
+                trackCollection = new TrackCollection();
+                trackCollection.Name = trackCollectionName;
+                await MusicLibraryVM.TrackCollectionRepository.Add(trackCollection);
+                App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                Locator.MusicLibraryVM.TrackCollections.Add(trackCollection));
+            }
+        }
+
+        public static async Task AddToPlaylist(TrackItem trackItem, bool displayToastNotif = true)
+        {
+            Locator.MusicLibraryVM.CurrentTrackCollection.Playlist.Add(trackItem);
+            await MusicLibraryVM.TracklistItemRepository.Add(new TracklistItem()
+            {
+                Id = trackItem.Id,
+                TrackCollectionId = Locator.MusicLibraryVM.CurrentTrackCollection.Id,
+            });
+            ToastHelper.Basic(trackItem.Name + " added to your playlist");
+        }
+
+        public static async Task AddToPlaylist(AlbumItem albumItem)
+        {
+            foreach (TrackItem trackItem in albumItem.Tracks)
+            {
+                await AddToPlaylist(trackItem, false);
+            }
+            ToastHelper.Basic(albumItem.Name + " added to your playlist");
         }
     }
 }

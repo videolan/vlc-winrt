@@ -23,13 +23,21 @@
             <AppBarButton Grid.Column="1"
                           Label="new playlist"
                           Icon="Add"
-                          Style="{StaticResource AppBarButtonStyleHorizontal}" />
+                          Style="{StaticResource AppBarButtonStyleHorizontal}"
+                          Command="{Binding ShowCreateNewPlaylistPaneCommand}"/>
         </Grid>
         <!-- /!\ Playlists not implemented yet /!\ -->
-        <!--<ListView Grid.Row="1"
-                                  ItemsSource="{Binding Playlists}">
-
-                        </ListView>-->
+        <ListView Grid.Row="1"
+                  ItemsSource="{Binding TrackCollections}"
+                  SelectedItem="{Binding CurrentTrackCollection, Mode=TwoWay}"
+                  Margin="24,0,0,0">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}"
+                               Style="{StaticResource BodyTextBlockStyle}"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
         <Button Grid.Row="0"
                 Grid.RowSpan="2"
                 Content=""
