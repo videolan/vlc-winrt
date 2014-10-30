@@ -41,6 +41,16 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                 {
                     Locator.MusicLibraryVM.TrackCollections = trackColl;
                 });
+
+                foreach (TrackCollection trackCollection in Locator.MusicLibraryVM.TrackCollections)
+                {
+                    ObservableCollection<TracklistItem> observableCollection = await MusicLibraryVM.TracklistItemRepository.LoadTracks(trackCollection);
+                    foreach (TracklistItem tracklistItem in observableCollection)
+                    {
+                        TrackItem item = await MusicLibraryVM._trackDataRepository.LoadTrack(tracklistItem.Id);
+                        trackCollection.Playlist.Add(item);
+                    }
+                }
             }
             catch (Exception)
             {
@@ -261,7 +271,8 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                 Id = trackItem.Id,
                 TrackCollectionId = Locator.MusicLibraryVM.CurrentTrackCollection.Id,
             });
-            ToastHelper.Basic(trackItem.Name + " added to your playlist");
+            if(displayToastNotif)
+                ToastHelper.Basic(trackItem.Name + " added to your playlist");
         }
 
         public static async Task AddToPlaylist(AlbumItem albumItem)

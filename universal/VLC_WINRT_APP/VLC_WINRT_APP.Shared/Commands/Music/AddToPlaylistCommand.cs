@@ -1,6 +1,7 @@
 ﻿using VLC_WINRT.Common;
 using VLC_WINRT_APP.Helpers.MusicLibrary;
 using VLC_WINRT_APP.Model.Music;
+using VLC_WINRT_APP.ViewModels;
 
 namespace VLC_WINRT_APP.Commands.Music
 {
@@ -16,6 +17,7 @@ namespace VLC_WINRT_APP.Commands.Music
             {
                 MusicLibraryManagement.AddToPlaylist(parameter as AlbumItem);
             }
+            Locator.MusicLibraryVM.CurrentTrackCollection = null;
         }
     }
 }

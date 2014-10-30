@@ -5,11 +5,22 @@
     xmlns:local="using:VLC_WINRT_APP.Views.MainPages.MainMusicControls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:triggers="using:WinRT.Triggers"
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
     
     <Grid>
-        <TextBlock Text="TODO"/>
+        <ListView ItemsSource="{Binding TrackCollections}"
+                  IsItemClickEnabled="True"
+                  ItemTemplate="{StaticResource PhoneTrackCollectionTemplate}"
+                  ItemContainerStyle="{StaticResource HorizontalListViewItemStyle}">
+            <triggers:Interactions.Triggers>
+                <triggers:EventTrigger EventName="ItemClick">
+                    <triggers:InvokeCommandAction Command="{Binding TrackCollectionClickedCommand}"
+                                                  PassEventArgsToCommand="True" />
+                </triggers:EventTrigger>
+            </triggers:Interactions.Triggers>
+        </ListView>
     </Grid>
 </UserControl>

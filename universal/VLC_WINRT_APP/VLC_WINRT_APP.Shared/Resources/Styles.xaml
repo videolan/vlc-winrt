@@ -2300,11 +2300,11 @@
         <Setter Property="VerticalContentAlignment"
                 Value="Top" />
     </Style>
+
     <Style x:Name="HorizontalListViewItemStyle"
            BasedOn="{StaticResource ListViewItemStyle}"
            TargetType="ListViewItem">
         <Setter Property="HorizontalContentAlignment"
                 Value="Stretch" />
     </Style>
-
 </ResourceDictionary>

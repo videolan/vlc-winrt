@@ -4,6 +4,7 @@
              xmlns:local="using:VLC_WINRT_APP.Views.MusicPages.AlbumPageControls"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:triggers="using:WinRT.Triggers"
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400">
@@ -24,19 +25,21 @@
                           Label="new playlist"
                           Icon="Add"
                           Style="{StaticResource AppBarButtonStyleHorizontal}"
-                          Command="{Binding ShowCreateNewPlaylistPaneCommand}"/>
+                          Command="{Binding ShowCreateNewPlaylistPaneCommand}" />
         </Grid>
         <!-- /!\ Playlists not implemented yet /!\ -->
         <ListView Grid.Row="1"
                   ItemsSource="{Binding TrackCollections}"
                   SelectedItem="{Binding CurrentTrackCollection, Mode=TwoWay}"
-                  Margin="24,0,0,0">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding Name}"
-                               Style="{StaticResource BodyTextBlockStyle}"/>
-                </DataTemplate>
-            </ListView.ItemTemplate>
+                  Margin="24,0,0,0"
+                  ItemTemplate="{StaticResource PhoneTrackCollectionTemplate}"
+                  ItemContainerStyle="{StaticResource HorizontalListViewItemStyle}">
+            <triggers:Interactions.Triggers>
+                <triggers:EventTrigger EventName="SelectionChanged">
+                    <triggers:InvokeCommandAction Command="{Binding AddToPlaylistCommand}"
+                                                  CommandParameter="{Binding CurrentAlbum}" />
+                </triggers:EventTrigger>
+            </triggers:Interactions.Triggers>
         </ListView>
         <Button Grid.Row="0"
                 Grid.RowSpan="2"

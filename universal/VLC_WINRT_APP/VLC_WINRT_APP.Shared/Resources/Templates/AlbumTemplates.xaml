@@ -65,7 +65,6 @@
                                 <MenuFlyoutItem Text="favorite"
                                                 Command="{Binding FavoriteAlbum}"
                                                 CommandParameter="{Binding}" />
-                                <MenuFlyoutItem Text="add to playlist" />
                                 <MenuFlyoutItem Text="view artist"
                                                 Command="{Binding ViewArtist}"
                                                 CommandParameter="{Binding ArtistId}"/>

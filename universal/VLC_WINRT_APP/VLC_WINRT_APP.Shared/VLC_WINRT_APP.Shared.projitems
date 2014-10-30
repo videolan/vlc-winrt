@@ -36,6 +36,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Music\PlayAlbumCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Music\PlayTrackComand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Music\ShowCreateNewPlaylistPane.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\Music\TrackCollectionClickedCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\PickVideoCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\PlayNetworkMRLCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\RemovableDevices\GoUpperFolderCommand.cs" />
@@ -287,6 +288,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Resources\Templates\ArtistTemplates.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Resources\Templates\TrackCollectionTemplates.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

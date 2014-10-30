@@ -13,6 +13,7 @@
         <ResourceDictionary Source="Templates/ArtistTemplates.xaml" />
         <ResourceDictionary Source="Templates/AlbumTemplates.xaml" />
         <ResourceDictionary Source="Templates/TrackTemplates.xaml" />
+        <ResourceDictionary Source="Templates/TrackCollectionTemplates.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
     <DataTemplate x:Key="ListViewHeaderTemplate">

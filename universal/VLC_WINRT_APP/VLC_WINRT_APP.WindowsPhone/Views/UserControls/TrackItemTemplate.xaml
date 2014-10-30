@@ -4,6 +4,7 @@
              xmlns:local="using:VLC_WINRT_APP.Views.UserControls"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:triggers="using:WinRT.Triggers"
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400">
@@ -34,11 +35,13 @@
             <Button.Flyout>
                 <Flyout Placement="Full">
                     <Grid Background="WhiteSmoke"
-                          MaxHeight="350"
+                          MaxHeight="500"
                           Margin="40,0">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="120" />
-                            <RowDefinition Height="230" />
+                            <RowDefinition Height="140" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition />
                         </Grid.RowDefinitions>
                         <StackPanel Orientation="Horizontal">
                             <Image Source="{Binding Thumbnail}"
@@ -69,16 +72,37 @@
                             <AppBarButton Label="view album"
                                           Icon="SlideShow"
                                           Style="{StaticResource AppBarButtonStyleHorizontal}" />
-                            <AppBarButton Label="add to playlist ..."
-                                          Icon="Add"
-                                          Style="{StaticResource AppBarButtonStyleHorizontal}" />
                         </StackPanel>
+                        <Grid Grid.Row="2"
+                              Margin="12,12,12,0"
+                              DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Add to playlist"
+                                       Style="{StaticResource SubheaderTextBlockStyle}" />
+                            <AppBarButton Grid.Column="1"
+                                          Label="new playlist"
+                                          Icon="Add"
+                                          Style="{StaticResource AppBarButtonStyleHorizontal}"
+                                          Command="{Binding ShowCreateNewPlaylistPaneCommand}" 
+                                          Margin="0,-5,0,0"/>
+                        </Grid>
+                        <Grid Grid.Row="3"
+                              DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
+                            <ListView ItemsSource="{Binding TrackCollections}"
+                                      Margin="24,0,0,0"
+                                      ItemTemplate="{StaticResource PhoneTrackCollectionTemplate}"
+                                      ItemContainerStyle="{StaticResource HorizontalListViewItemStyle}"
+                                      SelectionChanged="Selector_OnSelectionChanged"/>
+                        </Grid>
                     </Grid>
                 </Flyout>
             </Button.Flyout>
         </Button>
         <TextBlock Grid.Column="1"
                    Grid.Row="1"
-                   Text="{Binding Duration.TotalSeconds, Converter={StaticResource SecondsStringConverter}}"/>
+                   Text="{Binding Duration.TotalSeconds, Converter={StaticResource SecondsStringConverter}}" />
     </Grid>
 </UserControl>

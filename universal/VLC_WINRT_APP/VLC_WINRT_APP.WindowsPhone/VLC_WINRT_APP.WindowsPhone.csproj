@@ -100,6 +100,9 @@
     <Compile Include="Views\MusicPages\CreateNewPlaylist.xaml.cs">
       <DependentUpon>CreateNewPlaylist.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\MusicPages\PlaylistPage.xaml.cs">
+      <DependentUpon>PlaylistPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserControls\LeftColumn.xaml.cs">
       <DependentUpon>LeftColumn.xaml</DependentUpon>
     </Compile>
@@ -223,6 +226,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MusicPages\CreateNewPlaylist.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MusicPages\PlaylistPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

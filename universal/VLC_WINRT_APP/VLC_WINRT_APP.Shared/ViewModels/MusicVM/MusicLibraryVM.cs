@@ -51,6 +51,8 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         #region private props
         private SidebarState _sidebarState;
         private LoadingState _loadingState;
+        private AddToPlaylistCommand _addToPlaylistCommand;
+        private TrackCollectionClickedCommand _trackCollectionClickedCommand;
         private ShowCreateNewPlaylistPane _showCreateNewPlaylistPaneCommamd;
         private ArtistAlbumsSemanticZoomInvertZoomCommand _artistAlbumsSemanticZoomInvertZoomCommand;
         private ChangeAlbumArtCommand _changeAlbumArtCommand;
@@ -166,6 +168,20 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         {
             get { return _isMusicLibraryEmpty; }
             set { SetProperty(ref _isMusicLibraryEmpty, value); }
+        }
+
+        public AddToPlaylistCommand AddToPlaylistCommand
+        {
+            get { return _addToPlaylistCommand ?? (_addToPlaylistCommand = new AddToPlaylistCommand()); }
+        }
+
+        public TrackCollectionClickedCommand TrackCollectionClickedCommand
+        {
+            get
+            {
+                return _trackCollectionClickedCommand ??
+                       (_trackCollectionClickedCommand = new TrackCollectionClickedCommand());
+            }
         }
 
         public ShowCreateNewPlaylistPane ShowCreateNewPlaylistPaneCommand

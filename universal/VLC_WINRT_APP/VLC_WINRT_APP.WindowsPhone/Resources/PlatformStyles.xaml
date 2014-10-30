@@ -803,14 +803,14 @@
                                 </VisualState>
                                 <VisualState x:Name="Selected">
                                     <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="SelectionBackground"
+                                        <!--<DoubleAnimation Storyboard.TargetName="SelectionBackground"
                                                          Storyboard.TargetProperty="Opacity"
                                                          Duration="0"
-                                                         To="1" />
-                                        <DoubleAnimation Storyboard.TargetName="SelectedBorder"
+                                                         To="1" />-->
+                                        <!--<DoubleAnimation Storyboard.TargetName="SelectedBorder"
                                                          Storyboard.TargetProperty="Opacity"
                                                          Duration="0"
-                                                         To="1" />
+                                                         To="1" />-->
                                         <DoubleAnimation Storyboard.TargetName="SelectedCheckMark"
                                                          Storyboard.TargetProperty="Opacity"
                                                          Duration="0"
@@ -824,14 +824,14 @@
                                 </VisualState>
                                 <VisualState x:Name="SelectedSwiping">
                                     <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="SelectionBackground"
+                                        <!--<DoubleAnimation Storyboard.TargetName="SelectionBackground"
                                                          Storyboard.TargetProperty="Opacity"
                                                          Duration="0"
                                                          To="1" />
                                         <DoubleAnimation Storyboard.TargetName="SelectedBorder"
                                                          Storyboard.TargetProperty="Opacity"
                                                          Duration="0"
-                                                         To="1" />
+                                                         To="1" />-->
                                         <DoubleAnimation Storyboard.TargetName="SelectedCheckMark"
                                                          Storyboard.TargetProperty="Opacity"
                                                          Duration="0"
@@ -845,14 +845,14 @@
                                 </VisualState>
                                 <VisualState x:Name="SelectedUnfocused">
                                     <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="SelectionBackground"
+                                        <!--<DoubleAnimation Storyboard.TargetName="SelectionBackground"
                                                          Storyboard.TargetProperty="Opacity"
                                                          Duration="0"
                                                          To="1" />
                                         <DoubleAnimation Storyboard.TargetName="SelectedBorder"
                                                          Storyboard.TargetProperty="Opacity"
                                                          Duration="0"
-                                                         To="1" />
+                                                         To="1" />-->
                                         <DoubleAnimation Storyboard.TargetName="SelectedCheckMark"
                                                          Storyboard.TargetProperty="Opacity"
                                                          Duration="0"
