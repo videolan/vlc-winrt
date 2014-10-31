@@ -9,6 +9,7 @@
 
 using System;
 using Windows.ApplicationModel.Resources;
+using Windows.Graphics.Display;
 using Windows.Media;
 using Windows.System;
 using Windows.UI.ApplicationSettings;

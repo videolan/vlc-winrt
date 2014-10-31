@@ -1,4 +1,5 @@
-﻿using Windows.Media;
+﻿using Windows.Graphics.Display;
+using Windows.Media;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -23,7 +24,24 @@ namespace VLC_WINRT_APP.Views.MainPages
             (mediaService as MediaService).SetMediaTransportControls(SystemMediaTransportControls.GetForCurrentView());
             Loaded += SwapPanelLoaded;
             ApplicationView.GetForCurrentView().SetDesiredBoundsMode(ApplicationViewBoundsMode.UseCoreWindow);
+            DisplayProperties.OrientationChanged += DisplayPropertiesOnOrientationChanged;
         }
+
+        private void DisplayPropertiesOnOrientationChanged(object sender)
+        {
+            StatusBar sb = StatusBar.GetForCurrentView();
+            if (DisplayProperties.CurrentOrientation == DisplayOrientations.Landscape
+                || DisplayProperties.CurrentOrientation == DisplayOrientations.LandscapeFlipped)
+            {
+                sb.HideAsync();
+            }
+            else if (DisplayProperties.CurrentOrientation == DisplayOrientations.Portrait
+                     || DisplayProperties.CurrentOrientation == DisplayOrientations.PortraitFlipped)
+            {
+                sb.ShowAsync();
+            }
+        }
+
         private async void SwapPanelLoaded(object sender, RoutedEventArgs e)
         {
             await _vlcService.Initialize(SwapChainPanel);
