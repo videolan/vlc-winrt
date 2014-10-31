@@ -107,7 +107,9 @@
                             Maximum="100"
                             Minimum="0" />
                 </StackPanel>
-                <StackPanel Name="RightButtons">
+                <StackPanel Name="RightButtons"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center">
                     <AppBarButton Name="MenuButton"
                                   Icon="More"
                                   HorizontalAlignment="Right"
