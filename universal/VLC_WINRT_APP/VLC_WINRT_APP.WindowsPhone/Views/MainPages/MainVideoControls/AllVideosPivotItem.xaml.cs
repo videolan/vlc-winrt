@@ -10,7 +10,8 @@ namespace VLC_WINRT_APP.Views.MainPages.MainVideoControls
         {
             this.InitializeComponent();
         }
-        private void ItemsWrapGrid_Loaded(object sender, RoutedEventArgs e)
+
+        private void VideosWrapGrid_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             TemplateSizer.ComputeCompactVideo(sender as ItemsWrapGrid);
         }

@@ -22,7 +22,7 @@
         <GridView.ItemsPanel>
             <ItemsPanelTemplate>
                 <ItemsWrapGrid Orientation="Horizontal"
-                               Loaded="ItemsWrapGrid_Loaded" />
+                               SizeChanged="VideosWrapGrid_SizeChanged"/>
             </ItemsPanelTemplate>
         </GridView.ItemsPanel>
     </GridView>
