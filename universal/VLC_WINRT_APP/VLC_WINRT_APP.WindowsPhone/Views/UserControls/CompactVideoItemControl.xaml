@@ -26,7 +26,7 @@
                    Stretch="UniformToFill"
                    Width="Auto"
                    Height="Auto"
-                   HorizontalAlignment="Center"/>
+                   HorizontalAlignment="Center" />
             <Grid Grid.Row="2"
                   Width="Auto">
                 <Grid.RowDefinitions>
@@ -51,6 +51,14 @@
                            TextTrimming="WordEllipsis"
                            FontSize="16"
                            Margin="7,0,7,7" />
+                <TextBlock Grid.Row="1"
+                           Grid.Column="0"
+                           TextWrapping="NoWrap"
+                           TextTrimming="WordEllipsis"
+                           FontSize="16"
+                           Margin="0,0,7,7"
+                           Text="{Binding Duration, Converter={StaticResource TimeSpanShortStringConverter}}"
+                           HorizontalAlignment="Right" />
                 <Button Grid.Column="1"
                         Grid.Row="0"
                         Grid.RowSpan="2"
@@ -60,17 +68,46 @@
                         FontFamily="Segoe UI Symbol"
                         Margin="0,0,0,7">
                     <Button.Flyout>
-                        <MenuFlyout>
-                            <MenuFlyoutItem Text="play all"
-                                            Command="{Binding PlayAlbum}"
-                                            CommandParameter="{Binding}" />
-                            <MenuFlyoutItem Text="favorite"
-                                            Command="{Binding FavoriteAlbum}"
-                                            CommandParameter="{Binding}" />
-                            <MenuFlyoutItem Text="view artist"
-                                            Command="{Binding ViewArtist}"
-                                            CommandParameter="{Binding ArtistId}" />
-                        </MenuFlyout>
+                        <Flyout Placement="Full">
+                            <Grid Background="WhiteSmoke"
+                                  MaxHeight="400"
+                                  Margin="40,0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="120" />
+                                    <RowDefinition />
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="{Binding Image}"
+                                           Height="120"
+                                           Width="120"
+                                           Stretch="UniformToFill" />
+                                    <StackPanel VerticalAlignment="Center"
+                                                Margin="12,0,0,0">
+                                        <TextBlock Text="{Binding Title}"
+                                                   TextWrapping="Wrap"
+                                                   Style="{StaticResource SubheaderTextBlockStyle}" />
+                                        <TextBlock Text="{Binding Type}"
+                                                   TextWrapping="Wrap"
+                                                   Style="{StaticResource BodyTextBlockStyle}" />
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel Grid.Row="1"
+                                            Margin="12,0,0,0"
+                                            VerticalAlignment="Center">
+                                    <AppBarButton Label="play video"
+                                                  Icon="Play"
+                                                  Style="{StaticResource AppBarButtonStyleHorizontal}"
+                                                  Foreground="{StaticResource MainColor}"
+                                                  Command="{Binding TrackClicked}"
+                                                  CommandParameter="{Binding}" />
+                                </StackPanel>
+                                <TextBlock Grid.Row="2"
+                                           Margin="12,0,12,12"
+                                           Text="{Binding FilePath}"
+                                           Style="{StaticResource BodyTextBlockStyle}" />
+                            </Grid>
+                        </Flyout>
                     </Button.Flyout>
                 </Button>
             </Grid>
