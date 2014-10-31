@@ -59,8 +59,7 @@
             </triggers:Interactions.Triggers>
             <scrollWatchedSelector:ScrollWatchedGridView.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <ItemsWrapGrid ItemHeight="207"
-                                   ItemWidth="156"
+                    <ItemsWrapGrid SizeChanged="AlbumsWrapGrid_SizeChanged"
                                    Orientation="Horizontal" />
                 </ItemsPanelTemplate>
             </scrollWatchedSelector:ScrollWatchedGridView.ItemsPanel>

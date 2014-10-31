@@ -22,8 +22,7 @@
             <GridView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <ItemsWrapGrid Orientation="Horizontal"
-                                   ItemHeight="207"
-                                   ItemWidth="156" />
+                                   SizeChanged="ArtistsWrapGrid_SizeChanged"/>
                 </ItemsPanelTemplate>
             </GridView.ItemsPanel>
             <triggers:Interactions.Triggers>

@@ -1,5 +1,6 @@
 ﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using VLC_WINRT_APP.Model.Video;
 
 namespace VLC_WINRT_APP.Views.MainPages.MainMusicControls
 {
@@ -32,12 +33,9 @@ namespace VLC_WINRT_APP.Views.MainPages.MainMusicControls
         {
         }
 
-        private void SemanticZoom_OnViewChangeCompletedCurrentArtistAlbum(object sender, SemanticZoomViewChangedEventArgs e)
+        private void ArtistsWrapGrid_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            if (e.IsSourceZoomedInView == false)
-            {
-                e.DestinationItem.Item = e.SourceItem.Item;
-            }
+            TemplateSizer.ComputeAlbums(sender as ItemsWrapGrid);
         }
     }
 }
