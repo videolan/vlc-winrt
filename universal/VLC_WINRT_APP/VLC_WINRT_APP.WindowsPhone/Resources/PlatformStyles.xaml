@@ -1652,7 +1652,7 @@
         <Setter Property="Background"
                 Value="{StaticResource MainColor}" />
         <Setter Property="Opacity"
-                Value="0.8" />
+                Value="0.9" />
         <Setter Property="RequestedTheme"
                 Value="Dark" />
     </Style>
