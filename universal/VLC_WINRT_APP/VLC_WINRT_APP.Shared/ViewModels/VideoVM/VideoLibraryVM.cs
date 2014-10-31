@@ -54,6 +54,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
         private bool _hasNoMedia = true;
         public LastVideosRepository _lastVideosRepository = new LastVideosRepository();
         private ObservableCollection<TvShow> _shows = new ObservableCollection<TvShow>();
+        private TvShow _currentShow;
 
         #endregion
 
@@ -93,6 +94,13 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
         #endregion
 
         #region public props
+
+        public TvShow CurrentShow
+        {
+            get { return _currentShow; }
+            set { SetProperty(ref _currentShow, value); }
+        }
+
         public LoadingState LoadingState { get { return _loadingState; } set { SetProperty(ref _loadingState, value); } }
         public bool HasNoMedia
         {
@@ -212,12 +220,18 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
                             if (show == null)
                             {
                                 show = new TvShow(showInfoDictionary["tvShowName"]);
-                                show.Episodes.Add(mediaVM as VideoItem);
-                                Shows.Add(show);
+                                await DispatchHelper.InvokeAsync(() =>
+                                {
+                                    show.Episodes.Add(mediaVM as VideoItem);
+                                    Shows.Add(show);
+                                    if (Shows.Count == 1)
+                                        CurrentShow = Shows[0];
+                                });
                             }
                             else
                             {
-                                show.Episodes.Add(mediaVM as VideoItem);
+                                await DispatchHelper.InvokeAsync(() =>
+                                show.Episodes.Add(mediaVM as VideoItem));
                             }
                         }
                         // Get back to UI thread
@@ -227,7 +241,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
                             {
                                 Videos.Add(mediaVM);
                             }
-                            if (ViewedVideos.Count < 6 && ViewedVideos.FirstOrDefault(x=>x.FilePath == mediaVM.FilePath && x.TimeWatched == TimeSpan.Zero) == null)
+                            if (ViewedVideos.Count < 6 && ViewedVideos.FirstOrDefault(x => x.FilePath == mediaVM.FilePath && x.TimeWatched == TimeSpan.Zero) == null)
                                 ViewedVideos.Add(mediaVM);
                         });
                     }
@@ -282,7 +296,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
                 files = await fileQuery.GetFilesAsync();
             }
             var videoFiles = new List<StorageFile>(files);
-            
+
             // Verify that the file format is a video
             return videoFiles.Where(storageFile => VLCFileExtensions.VideoExtensions.Contains(storageFile.FileType.ToLower())).ToList();
         }

@@ -6,16 +6,13 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:triggers="using:WinRT.Triggers"
       xmlns:userControls="using:VLC_WINRT_APP.Views.UserControls"
-      xmlns:scrollWatchedSelector="using:ScrollWatchedSelector"
+      xmlns:mainVideoControls="using:VLC_WINRT_APP.Views.MainPages.MainVideoControls"
       mc:Ignorable="d"
       d:DesignHeight="300"
       d:DesignWidth="400"
       DataContext="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM}">
 
     <Page.Resources>
-        <CollectionViewSource x:Name="VideoGroupedByAlphaKey"
-                              Source="{Binding MediaGroupedByAlphabet}"
-                              IsSourceGrouped="True" />
         <CollectionViewSource x:Name="ShowsGroupedByName"
                               Source="{Binding Shows}"
                               IsSourceGrouped="True"
@@ -41,28 +38,34 @@
                 </DataTemplate>
             </Pivot.TitleTemplate>
             <PivotItem Header="all">
+                <mainVideoControls:AllVideosPivotItem />
             </PivotItem>
             <PivotItem Header="shows">
-                <ListView ItemsSource="{Binding Source={StaticResource ShowsGroupedByName}}"
-                          IsItemClickEnabled="True"
-                          ItemTemplate="{StaticResource PhoneShowTemplate}">
-                    <triggers:Interactions.Triggers>
-                        <triggers:EventTrigger EventName="ItemClick">
-                            <triggers:InvokeCommandAction Command="{Binding OpenVideo}"
-                                                          PassEventArgsToCommand="True" />
-                        </triggers:EventTrigger>
-                    </triggers:Interactions.Triggers>
-                    <ListView.GroupStyle>
-                        <GroupStyle>
-                            <GroupStyle.HeaderTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding ShowTitle}"
-                                               Style="{StaticResource SubheaderTextBlockStyle}" />
-                                </DataTemplate>
-                            </GroupStyle.HeaderTemplate>
-                        </GroupStyle>
-                    </ListView.GroupStyle>
-                </ListView>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <ComboBox ItemsSource="{Binding Shows}"
+                              SelectedItem="{Binding CurrentShow, Mode=TwoWay}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding ShowTitle}"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <ListView Grid.Row="1"
+                              ItemsSource="{Binding CurrentShow.Episodes}"
+                              ItemTemplate="{StaticResource PhoneShowTemplate}"
+                              IsItemClickEnabled="True">
+                        <triggers:Interactions.Triggers>
+                            <triggers:EventTrigger EventName="ItemClick">
+                                <triggers:InvokeCommandAction Command="{Binding OpenVideo}"
+                                                              PassEventArgsToCommand="True" />
+                            </triggers:EventTrigger>
+                        </triggers:Interactions.Triggers>
+                    </ListView>
+                </Grid>
             </PivotItem>
         </Pivot>
     </Grid>
