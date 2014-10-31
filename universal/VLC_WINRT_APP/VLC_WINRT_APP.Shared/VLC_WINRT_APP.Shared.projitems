@@ -107,6 +107,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\ApplicationSettingsHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\AsyncLock.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\CapabilitiesHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\DisplayHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\DoesFileExistHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\DownloadAndSaveHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\ExceptionHelper.cs" />

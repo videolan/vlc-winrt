@@ -48,7 +48,7 @@
         </Grid>
         <scrollWatchedSelector:ScrollWatchedGridView Grid.Row="1"
                                                      ItemsSource="{Binding Albums}"
-                                                     ItemTemplate="{StaticResource WPSemanticZoomInViewAlbumTemplateLittleSize}"
+                                                     ItemTemplate="{StaticResource PhoneSemanticZoomInViewAlbumTemplateLittleSize}"
                                                      Margin="-6,0,-20,0"
                                                      IsItemClickEnabled="True">
             <triggers:Interactions.Triggers>

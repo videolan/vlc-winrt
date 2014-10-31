@@ -37,14 +37,14 @@
                                Foreground="{StaticResource MainColor}"
                                Style="{StaticResource SubheaderTextBlockStyle}" />
                     <GridView ItemsSource="{Binding RandomAlbums}"
-                              ItemTemplate="{StaticResource WPSemanticZoomInViewAlbumTemplateLittleSize}"
+                              ItemTemplate="{StaticResource PhoneSemanticZoomInViewAlbumTemplateLittleSize}"
                               IsItemClickEnabled="True"
                               SelectionMode="None"
                               ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                               ScrollViewer.VerticalScrollBarVisibility="Disabled"
                               ScrollViewer.HorizontalScrollMode="Disabled"
                               ScrollViewer.VerticalScrollMode="Disabled"
-                              Margin="-6,6,0,0">
+                              Margin="0,6,0,0">
                         <triggers:Interactions.Triggers>
                             <triggers:EventTrigger EventName="ItemClick">
                                 <triggers:InvokeCommandAction Command="{Binding AlbumClickedCommand}"
@@ -53,9 +53,8 @@
                         </triggers:Interactions.Triggers>
                         <GridView.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <ItemsWrapGrid ItemHeight="207"
-                                               ItemWidth="156"
-                                               Orientation="Horizontal" />
+                                <ItemsWrapGrid Orientation="Horizontal"
+                                               SizeChanged="AlbumsWrapGrid_SizeChanged" />
                             </ItemsPanelTemplate>
                         </GridView.ItemsPanel>
                     </GridView>
@@ -70,7 +69,7 @@
                                Style="{StaticResource SubheaderTextBlockStyle}" />
                     <GridView ItemsSource="{Binding Videos}"
                               ItemTemplate="{StaticResource PhoneCompactVideoTemplate}"
-                              Margin="-24,0,0,0"
+                              Margin="0,0,-20,0"
                               IsItemClickEnabled="True">
                         <triggers:Interactions.Triggers>
                             <triggers:EventTrigger EventName="ItemClick">
@@ -81,29 +80,11 @@
                         <GridView.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <ItemsWrapGrid Orientation="Horizontal"
-                                               Loaded="ItemsWrapGrid_Loaded"
+                                               SizeChanged="VideoWrapGrid_SizeChanged"
                                                Margin="0,0,0,60" />
                             </ItemsPanelTemplate>
                         </GridView.ItemsPanel>
                     </GridView>
-                    <ListView ItemsSource="{Binding Videos}"
-                              ItemTemplate="{StaticResource VideoTemplateWP}"
-                              Margin="-24,0,0,0"
-                              IsItemClickEnabled="True"
-                              ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                              ScrollViewer.VerticalScrollMode="Disabled">
-                        <triggers:Interactions.Triggers>
-                            <triggers:EventTrigger EventName="ItemClick">
-                                <triggers:InvokeCommandAction Command="{Binding OpenVideo}"
-                                                              PassEventArgsToCommand="True" />
-                            </triggers:EventTrigger>
-                        </triggers:Interactions.Triggers>
-                        <ListView.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <VirtualizingStackPanel Margin="0,0,0,60" />
-                            </ItemsPanelTemplate>
-                        </ListView.ItemsPanel>
-                    </ListView>
                 </StackPanel>
             </StackPanel>
         </ScrollViewer>

@@ -62,7 +62,7 @@
         <Grid Grid.Row="1"
               RequestedTheme="Light">
             <GridView ItemsSource="{Binding CurrentArtist.Albums}"
-                      ItemTemplate="{StaticResource WPSemanticZoomInViewAlbumTemplateLittleSize}"
+                      ItemTemplate="{StaticResource PhoneSemanticZoomInViewAlbumTemplateLittleSize}"
                       Margin="0,12,-20,0"
                       IsItemClickEnabled="True"
                       Loaded="AlbumsView_Loaded">

@@ -38,7 +38,7 @@ namespace VLC_WINRT_APP.Views.MainPages
 
         private void ItemsWrapGrid_Loaded(object sender, RoutedEventArgs e)
         {
-            VideoTemplateSizer.ComputeCompactVideo(sender as ItemsWrapGrid);
+            TemplateSizer.ComputeCompactVideo(sender as ItemsWrapGrid);
         }
     }
 }

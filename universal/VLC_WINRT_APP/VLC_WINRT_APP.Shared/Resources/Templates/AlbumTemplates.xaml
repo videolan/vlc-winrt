@@ -7,26 +7,27 @@
                     xmlns:common="using:VLC_WINRT_APP.Common">
 
     <!-- WINDOWS PHONE -->
-    <DataTemplate x:Key="WPSemanticZoomInViewAlbumTemplateLittleSize">
-        <Border Background="WhiteSmoke">
+    <DataTemplate x:Key="PhoneSemanticZoomInViewAlbumTemplateLittleSize">
+        <Border Background="WhiteSmoke"
+                Margin="0,0,6,0">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="144" />
+                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="6" />
                     <RowDefinition />
                 </Grid.RowDefinitions>
                 <Image Grid.Row="0"
                        Source="/Assets/NoCover.jpg"
                        Stretch="UniformToFill"
-                       Width="144"
-                       Height="144" />
+                       Width="Auto"
+                       Height="Auto" />
                 <Image Grid.Row="0"
                        Source="{Binding Picture}"
                        Stretch="UniformToFill"
-                       Width="144"
-                       Height="144" />
+                       Width="Auto"
+                       Height="Auto" />
                 <Grid Grid.Row="2"
-                      Width="144">
+                      Width="Auto">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />

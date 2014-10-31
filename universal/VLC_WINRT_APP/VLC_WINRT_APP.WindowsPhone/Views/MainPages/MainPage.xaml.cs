@@ -4,6 +4,7 @@ using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.Services.Interface;
 using VLC_WINRT_APP.Services.RunTime;
 
@@ -30,15 +31,13 @@ namespace VLC_WINRT_APP.Views.MainPages
         private void DisplayPropertiesOnOrientationChanged(object sender)
         {
             StatusBar sb = StatusBar.GetForCurrentView();
-            if (DisplayProperties.CurrentOrientation == DisplayOrientations.Landscape
-                || DisplayProperties.CurrentOrientation == DisplayOrientations.LandscapeFlipped)
-            {
-                sb.HideAsync();
-            }
-            else if (DisplayProperties.CurrentOrientation == DisplayOrientations.Portrait
-                     || DisplayProperties.CurrentOrientation == DisplayOrientations.PortraitFlipped)
+            if (DisplayHelper.IsPortrait())
             {
                 sb.ShowAsync();
+            }
+            else
+            {
+                sb.HideAsync();
             }
         }
 

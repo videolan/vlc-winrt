@@ -47,9 +47,16 @@ namespace VLC_WINRT_APP.Views.MainPages
             Debug.WriteLine(width);
         }
 
-        private void ItemsWrapGrid_Loaded(object sender, RoutedEventArgs e)
+
+        private void VideoWrapGrid_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            VideoTemplateSizer.ComputeCompactVideo(sender as ItemsWrapGrid);
+            TemplateSizer.ComputeCompactVideo(sender as ItemsWrapGrid);
         }
+
+        private void AlbumsWrapGrid_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            TemplateSizer.ComputeAlbums(sender as ItemsWrapGrid);
+        }
+
     }
 }
