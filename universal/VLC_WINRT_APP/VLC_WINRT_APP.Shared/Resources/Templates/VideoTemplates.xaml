@@ -14,4 +14,35 @@
     <DataTemplate x:Key="VideoTemplateWP">
         <userControls:VideoItemControl />
     </DataTemplate>
+    
+    <DataTemplate x:Key="PhoneCompactVideoTemplate">
+        <userControls:CompactVideoItemControl />
+    </DataTemplate>
+    
+    <DataTemplate x:Key="PhoneShowTemplate">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="6" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Image Width="190"
+                   Height="105"
+                   Source="{Binding Image}"
+                   Stretch="UniformToFill"
+                   Margin="-6,0,0,0" />
+            <TextBlock Grid.Column="2"
+                       Margin="0,-16,0,0"
+                       Style="{StaticResource SubheaderTextBlockStyle}"
+                       VerticalAlignment="Center">
+                                    <Run Text="Season" />
+                                    <Run Text="{Binding Season}" />
+                                    <LineBreak />
+                                    <Run Text="Episode"
+                                         FontSize="22" />
+                                    <Run Text="{Binding Episode}"
+                                         FontSize="22" />
+            </TextBlock>
+        </Grid>
+    </DataTemplate>
 </ResourceDictionary>

@@ -1,6 +1,8 @@
-﻿using Windows.Phone.UI.Input;
+﻿using Windows.Graphics.Display;
+using Windows.Phone.UI.Input;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using VLC_WINRT_APP.Model.Video;
 using VLC_WINRT_APP.ViewModels;
 
 namespace VLC_WINRT_APP.Views.MainPages
@@ -33,9 +35,10 @@ namespace VLC_WINRT_APP.Views.MainPages
         {
             HardwareButtons.BackPressed -= HardwareButtonsOnBackPressed;
         }
-        private void SemanticZoom_OnViewChangeCompleted(object sender, SemanticZoomViewChangedEventArgs e)
+
+        private void ItemsWrapGrid_Loaded(object sender, RoutedEventArgs e)
         {
-            Locator.VideoLibraryVM.ExecuteSemanticZoom(sender as SemanticZoom, VideoGroupedByAlphaKey);
+            VideoTemplateSizer.ComputeCompactVideo(sender as ItemsWrapGrid);
         }
     }
 }

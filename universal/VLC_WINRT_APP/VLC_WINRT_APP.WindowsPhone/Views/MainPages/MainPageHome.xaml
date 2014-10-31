@@ -68,6 +68,24 @@
                                FontSize="26"
                                Foreground="{StaticResource MainColor}"
                                Style="{StaticResource SubheaderTextBlockStyle}" />
+                    <GridView ItemsSource="{Binding Videos}"
+                              ItemTemplate="{StaticResource PhoneCompactVideoTemplate}"
+                              Margin="-24,0,0,0"
+                              IsItemClickEnabled="True">
+                        <triggers:Interactions.Triggers>
+                            <triggers:EventTrigger EventName="ItemClick">
+                                <triggers:InvokeCommandAction Command="{Binding OpenVideo}"
+                                                              PassEventArgsToCommand="True" />
+                            </triggers:EventTrigger>
+                        </triggers:Interactions.Triggers>
+                        <GridView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <ItemsWrapGrid Orientation="Horizontal"
+                                               Loaded="ItemsWrapGrid_Loaded"
+                                               Margin="0,0,0,60" />
+                            </ItemsPanelTemplate>
+                        </GridView.ItemsPanel>
+                    </GridView>
                     <ListView ItemsSource="{Binding Videos}"
                               ItemTemplate="{StaticResource VideoTemplateWP}"
                               Margin="-24,0,0,0"
@@ -105,8 +123,8 @@
                             <StackPanel VerticalAlignment="Center"
                                         Background="WhiteSmoke">
                                 <TextBlock Text="Open a stream"
-                                           Style="{StaticResource SubheaderTextBlockStyle}" 
-                                           Margin="12"/>
+                                           Style="{StaticResource SubheaderTextBlockStyle}"
+                                           Margin="12" />
                                 <StackPanel Orientation="Horizontal"
                                             Margin="12">
                                     <TextBox Name="UrlTextBox"
