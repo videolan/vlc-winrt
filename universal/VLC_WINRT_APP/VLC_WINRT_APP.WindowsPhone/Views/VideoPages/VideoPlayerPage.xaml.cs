@@ -73,7 +73,6 @@ namespace VLC_WINRT_APP.Views.VideoPages
             Responsive();
 #if WINDOWS_PHONE_APP
             HardwareButtons.BackPressed += HardwareButtonsOnBackPressed;
-            DisplayInformation.AutoRotationPreferences = DisplayOrientations.Landscape;
             StatusBar sB = StatusBar.GetForCurrentView();
             sB.HideAsync();
 #endif
