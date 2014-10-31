@@ -14,7 +14,8 @@ namespace VLC_WINRT_APP.Model.Video
             if (!DisplayHelper.IsPortrait())
                 splitScreen = 4;
             var itemWidth = (width / splitScreen);
-            var itemHeight = (itemWidth*1.33) - 40;
+            //var itemHeight = (itemWidth*1.33) - 40;
+            var itemHeight = (itemWidth);
             wrapGrid.ItemWidth = itemWidth - 15;
             wrapGrid.ItemHeight = itemHeight;
         }
