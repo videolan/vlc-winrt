@@ -90,7 +90,8 @@
         </ScrollViewer>
     </Grid>
     <Page.BottomAppBar>
-        <CommandBar Style="{StaticResource VLCCommandBarStyle}">
+        <CommandBar Style="{StaticResource VLCCommandBarStyle}"
+                    x:Name="CommandBar">
             <AppBarButton Icon="OpenFile"
                           x:Uid="OpenFile2"
                           Label="open file"

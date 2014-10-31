@@ -2,6 +2,7 @@
 using Windows.Graphics.Display;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.Model.Video;
 using VLC_WINRT_APP.ViewModels;
@@ -43,8 +44,14 @@ namespace VLC_WINRT_APP.Views.MainPages
 
         private void Responsive()
         {
-            var width = Window.Current.Bounds.Width;
-            Debug.WriteLine(width);
+            if (DisplayHelper.IsPortrait())
+            {
+                CommandBar.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                CommandBar.Visibility = Visibility.Collapsed;
+            }
         }
 
 
