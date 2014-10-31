@@ -31,13 +31,18 @@ namespace VLC_WINRT_APP.Views.MainPages
         private void DisplayPropertiesOnOrientationChanged(object sender)
         {
             StatusBar sb = StatusBar.GetForCurrentView();
+
+            var appView = ApplicationView.GetForCurrentView();
+            
             if (DisplayHelper.IsPortrait())
             {
                 sb.ShowAsync();
+                appView.SuppressSystemOverlays = false;
             }
             else
             {
                 sb.HideAsync();
+                appView.SuppressSystemOverlays = true;
             }
         }
 
