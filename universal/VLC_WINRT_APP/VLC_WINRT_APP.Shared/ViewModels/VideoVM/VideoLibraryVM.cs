@@ -151,12 +151,12 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
         {
             var result = await _lastVideosRepository.Load();
 
-            var testCollection = result;
-            foreach (VideoItem videoVm in testCollection)
+            foreach (VideoItem videoVm in result)
             {
                 try
                 {
-                    await videoVm.InitializeFromFilePath();
+                    StorageFile file = await StorageFile.GetFileFromPathAsync(videoVm.FilePath);
+                    videoVm.File = file;
                     App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
                     {
                         ViewedVideos.Add(videoVm);
@@ -241,8 +241,10 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
                             {
                                 Videos.Add(mediaVM);
                             }
+#if WINDOWS_APP
                             if (ViewedVideos.Count < 6 && ViewedVideos.FirstOrDefault(x => x.FilePath == mediaVM.FilePath && x.TimeWatched == TimeSpan.Zero) == null)
                                 ViewedVideos.Add(mediaVM);
+#endif
                         });
                     }
                 }

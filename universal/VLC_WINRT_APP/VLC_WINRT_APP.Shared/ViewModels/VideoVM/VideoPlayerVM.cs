@@ -220,7 +220,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             VideoItem media = await _lastVideosRepository.LoadViaToken(_fileToken);
             if (media == null)
             {
-                if (CurrentVideo.TimeWatched > TimeSpan.FromMinutes(1))
+                if (CurrentVideo.Duration > TimeSpan.FromMinutes(1))
                 {
                     await _lastVideosRepository.Add(CurrentVideo);
                 }
@@ -297,6 +297,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
         {
             return _vlcPlayerService.SetSubtitleTrack(i);
         }
+
         public Task SetAudioTrack(int i)
         {
             return _vlcPlayerService.SetAudioTrack(i);

@@ -284,7 +284,9 @@ namespace VLC_WINRT_APP.Model.Video
                 VideoProperties = await _file.Properties.GetVideoPropertiesAsync();
 
             TimeSpan duration = VideoProperties != null ? VideoProperties.Duration : TimeSpan.FromSeconds(0);
-
+#if WINDOWS_PHONE_APP
+            duration = TimeSpan.FromTicks(duration.Ticks*10000);
+#endif
             App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 Duration = duration;

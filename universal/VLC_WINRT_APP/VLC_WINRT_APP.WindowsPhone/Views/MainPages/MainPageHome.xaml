@@ -67,7 +67,7 @@
                                FontSize="26"
                                Foreground="{StaticResource MainColor}"
                                Style="{StaticResource SubheaderTextBlockStyle}" />
-                    <GridView ItemsSource="{Binding Videos}"
+                    <GridView ItemsSource="{Binding ViewedVideos}"
                               ItemTemplate="{StaticResource PhoneCompactVideoTemplate}"
                               Margin="0,0,-20,0"
                               IsItemClickEnabled="True">
@@ -131,6 +131,8 @@
                               Command="{Binding GoToThanksPageCommand}" />
                 <AppBarButton Label="settings"
                               Command="{Binding GoToSettingsPageCommand}" />
+                <AppBarButton Label="DEBUG viewedvideos"
+                              Click="DEBUGHISTORY"/>
             </CommandBar.SecondaryCommands>
         </CommandBar>
     </Page.BottomAppBar>

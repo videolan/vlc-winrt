@@ -6,6 +6,7 @@ using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.Model.Video;
 using VLC_WINRT_APP.ViewModels;
+using VLC_WINRT_APP.Views.VariousPages.DEBUG;
 
 namespace VLC_WINRT_APP.Views.MainPages
 {
@@ -65,5 +66,9 @@ namespace VLC_WINRT_APP.Views.MainPages
             TemplateSizer.ComputeAlbums(sender as ItemsWrapGrid);
         }
 
+        private void DEBUGHISTORY(object sender, RoutedEventArgs e)
+        {
+            App.ApplicationFrame.Navigate(typeof (historyvideo));
+        }
     }
 }
