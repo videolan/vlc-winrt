@@ -41,46 +41,6 @@
                 </DataTemplate>
             </Pivot.TitleTemplate>
             <PivotItem Header="all">
-                <!--<ListView ItemsSource="{Binding Videos}"
-                          ItemTemplate="{StaticResource SemanticZoomInViewMovieTemplate}"
-                          SelectionMode="None"
-                          IsItemClickEnabled="True">
-                    <triggers:Interactions.Triggers>
-                        <triggers:EventTrigger EventName="ItemClick">
-                            <triggers:InvokeCommandAction Command="{Binding OpenVideo}"
-                                                          PassEventArgsToCommand="True" />
-                        </triggers:EventTrigger>
-                    </triggers:Interactions.Triggers>
-                    <ListView.GroupStyle>
-                        <GroupStyle>
-                            <GroupStyle.HeaderTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding Key}"
-                                               Height="Auto"
-                                               Margin="0"
-                                               Style="{StaticResource SubheaderTextBlockStyle}" />
-                                </DataTemplate>
-                            </GroupStyle.HeaderTemplate>
-                        </GroupStyle>
-                    </ListView.GroupStyle>
-                </ListView>-->
-                <GridView ItemsSource="{Binding Videos}"
-                          ItemTemplate="{StaticResource PhoneCompactVideoTemplate}"
-                          Margin="0,0,-20,0"
-                          IsItemClickEnabled="True">
-                    <triggers:Interactions.Triggers>
-                        <triggers:EventTrigger EventName="ItemClick">
-                            <triggers:InvokeCommandAction Command="{Binding OpenVideo}"
-                                                          PassEventArgsToCommand="True" />
-                        </triggers:EventTrigger>
-                    </triggers:Interactions.Triggers>
-                    <GridView.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <ItemsWrapGrid Orientation="Horizontal"
-                                           Loaded="ItemsWrapGrid_Loaded" />
-                        </ItemsPanelTemplate>
-                    </GridView.ItemsPanel>
-                </GridView>
             </PivotItem>
             <PivotItem Header="shows">
                 <ListView ItemsSource="{Binding Source={StaticResource ShowsGroupedByName}}"

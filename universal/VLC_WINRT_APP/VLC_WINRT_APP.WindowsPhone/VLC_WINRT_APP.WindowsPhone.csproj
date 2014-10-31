@@ -91,6 +91,9 @@
     <Compile Include="Views\MainPages\MainMusicControls\SongsPivotItem.xaml.cs">
       <DependentUpon>SongsPivotItem.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\MainPages\MainVideoControls\AllVideosPivotItem.xaml.cs">
+      <DependentUpon>AllVideosPivotItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MusicPages\AlbumPageControls\MainAlbumHeader.xaml.cs">
       <DependentUpon>MainAlbumHeader.xaml</DependentUpon>
     </Compile>
@@ -221,6 +224,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainPages\MainMusicControls\SongsPivotItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainPages\MainVideoControls\AllVideosPivotItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

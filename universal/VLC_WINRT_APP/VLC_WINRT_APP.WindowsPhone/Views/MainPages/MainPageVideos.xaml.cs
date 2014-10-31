@@ -36,9 +36,5 @@ namespace VLC_WINRT_APP.Views.MainPages
             HardwareButtons.BackPressed -= HardwareButtonsOnBackPressed;
         }
 
-        private void ItemsWrapGrid_Loaded(object sender, RoutedEventArgs e)
-        {
-            TemplateSizer.ComputeCompactVideo(sender as ItemsWrapGrid);
-        }
     }
 }
