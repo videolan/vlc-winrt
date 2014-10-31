@@ -49,7 +49,8 @@
         </Pivot>
     </Grid>
     <Page.BottomAppBar>
-        <CommandBar Style="{StaticResource VLCCommandBarStyle}">
+        <CommandBar x:Name="CommandBar"
+                    Style="{StaticResource VLCCommandBarStyle}">
             <CommandBar.PrimaryCommands>
                 <AppBarButton Icon="Shuffle"
                               Label="random" />

@@ -5,6 +5,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
+using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.Helpers.MusicLibrary;
 using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.Model.Music;
@@ -59,7 +60,14 @@ namespace VLC_WINRT_APP.Views.MainPages
 
         private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
         {
+            if (DisplayHelper.IsPortrait())
+            {
+                CommandBar.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                CommandBar.Visibility = Visibility.Collapsed;
+            }
         }
-
     }
 }
