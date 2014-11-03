@@ -1,30 +1,19 @@
-﻿/**********************************************************************
- * VLC for WinRT
- **********************************************************************
- * Copyright © 2013-2014 VideoLAN and Authors
- *
- * Licensed under GPLv2+ and MPLv2
- * Refer to COPYING file of the official project for license
- **********************************************************************/
-
-using System.Linq;
-using System.Threading.Tasks;
-using Windows.Globalization.DateTimeFormatting;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using VLC_WINRT.Common;
-using VLC_WINRT_APP.Helpers.MusicLibrary;
 using VLC_WINRT_APP.Helpers.MusicPlayer;
 using VLC_WINRT_APP.Model.Music;
 using VLC_WINRT_APP.ViewModels;
-using VLC_WINRT_APP.ViewModels.MusicVM;
 using VLC_WINRT_APP.Views.MusicPages;
 
 namespace VLC_WINRT_APP.Commands.Music
 {
-    public class TrackClickedCommand : AlwaysExecutableCommand
+    public class AlbumTrackClickedCommand : AlwaysExecutableCommand
     {
-        public async override void Execute(object parameter)
+        public override async void Execute(object parameter)
         {
             App.Transition.Edge = EdgeTransitionLocation.Right;
             if (App.ApplicationFrame.CurrentSourcePageType != typeof(MusicPlayerPage))
@@ -41,7 +30,7 @@ namespace VLC_WINRT_APP.Commands.Music
                 // if the track is still null (for some reason), we need to break early.
                 return;
             }
-            await PlayMusicHelper.AddTrackToPlaylist(track.Id, false);
+            PlayMusicHelper.AddAlbumToPlaylist(track.AlbumId, true, true, track);
         }
     }
 }

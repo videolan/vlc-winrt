@@ -25,7 +25,7 @@ namespace VLC_WINRT_APP.Model.Music
         private ObservableCollection<TrackItem> _trackItems;
         private PlayAlbumCommand _playAlbumCommand = new PlayAlbumCommand();
         private FavoriteAlbumCommand _favoriteAlbumCommand = new FavoriteAlbumCommand();
-        private TrackClickedCommand _trackClickedCommand = new TrackClickedCommand();
+        private AlbumTrackClickedCommand _trackClickedCommand = new AlbumTrackClickedCommand();
         private ArtistClickedCommand _viewArtist = new ArtistClickedCommand();
 
         [PrimaryKey, AutoIncrement, Column("_id")]
@@ -129,7 +129,7 @@ namespace VLC_WINRT_APP.Model.Music
         }
 
         [Ignore]
-        public TrackClickedCommand TrackClicked
+        public AlbumTrackClickedCommand TrackClicked
         {
             get { return _trackClickedCommand; }
             set { SetProperty(ref _trackClickedCommand, value); }

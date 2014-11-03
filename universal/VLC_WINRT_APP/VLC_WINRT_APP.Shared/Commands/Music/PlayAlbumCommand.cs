@@ -13,9 +13,9 @@ using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls.Primitives;
 using VLC_WINRT.Common;
 using VLC_WINRT_APP.Helpers;
+using VLC_WINRT_APP.Helpers.MusicPlayer;
 using VLC_WINRT_APP.Model.Music;
 using VLC_WINRT_APP.ViewModels;
-using VLC_WINRT_APP.Helpers.MusicPlayer;
 using VLC_WINRT_APP.Views.MusicPages;
 
 namespace VLC_WINRT_APP.Commands.Music
@@ -30,8 +30,11 @@ namespace VLC_WINRT_APP.Commands.Music
             Locator.MusicLibraryVM.IsAlbumPageShown = false;
             try
             {
-                AlbumItem album = parameter as AlbumItem;
-                Task.Run(() => album.PlayAlbum());
+                var album = parameter as AlbumItem;
+                Task.Run(async () =>
+                {
+                    await PlayMusicHelper.AddAlbumToPlaylist(album.Id, true, true, null, 0);
+                });
             }
             catch (FileNotFoundException exception)
             {

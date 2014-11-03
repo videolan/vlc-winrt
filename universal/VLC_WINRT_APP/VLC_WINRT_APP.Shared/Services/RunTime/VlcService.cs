@@ -397,8 +397,10 @@ namespace VLC_WINRT_APP.Services.RunTime
 
         public IAsyncAction Initialize()
         {
+            App.RootPage.MediaElement.MediaEnded += (sender, args) => MediaEnded();
             return null;
         }
+
         public Player(SwapChainPanel SwapChainPanel)
         {
         }

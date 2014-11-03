@@ -143,12 +143,12 @@ namespace VLC_WINRT_APP.Services.RunTime
         {
             if (App.ApplicationFrame.CurrentSourcePageType != typeof(MusicPlayerPage))
                 App.ApplicationFrame.Navigate(typeof(MusicPlayerPage));
-            TrackItem trackItem = new TrackItem();
+            var trackItem = new TrackItem();
             trackItem.Path = file.Path;
             trackItem.AlbumName = "Album";
             trackItem.ArtistName = "Artist";
             await Task.Delay(1000);
-            await trackItem.PlayTrack();
+            await PlayMusicHelper.PlayTrack(trackItem.Id);
         }
 
         /// <summary>

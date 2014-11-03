@@ -127,6 +127,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             }
             else
             {
+                base.PositionInSeconds = 0;
                 PlayNext();
             }
         }
@@ -144,28 +145,6 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         public void Stop()
         {
             _mediaService.Stop();
-        }
-
-        public void AddTrack(TrackItem track)
-        {
-            TrackCollection.Playlist.Add(track);
-        }
-
-        public void AddTrack(List<TrackItem> tracks)
-        {
-            foreach (TrackItem track in tracks)
-                TrackCollection.Playlist.Add(track);
-        }
-
-        public void AddTrack(ArtistItem artist)
-        {
-            foreach (AlbumItem albumItem in artist.Albums)
-            {
-                foreach (TrackItem trackItem in albumItem.Tracks)
-                {
-                    TrackCollection.Playlist.Add(trackItem);
-                }
-            }
         }
 
         public async Task PlayNext()

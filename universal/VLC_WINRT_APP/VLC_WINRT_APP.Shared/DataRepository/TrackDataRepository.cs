@@ -56,9 +56,16 @@ namespace VLC_WINRT_APP.DataRepository
         public
             async Task<ObservableCollection<TrackItem>> LoadTracksByAlbumId(int albumId)
         {
-
             var connection = new SQLiteAsyncConnection(_dbPath);
             var query = connection.Table<TrackItem>().Where(x => x.AlbumId == albumId);
+            var result = await query.ToListAsync();
+            return new ObservableCollection<TrackItem>(result);
+        }
+        public
+            async Task<ObservableCollection<TrackItem>> LoadTracksByArtistId(int artistId)
+        {
+            var connection = new SQLiteAsyncConnection(_dbPath);
+            var query = connection.Table<TrackItem>().Where(x => x.ArtistId == artistId);
             var result = await query.ToListAsync();
             return new ObservableCollection<TrackItem>(result);
         }

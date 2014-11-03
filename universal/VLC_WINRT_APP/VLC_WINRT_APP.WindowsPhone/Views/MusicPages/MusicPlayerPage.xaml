@@ -208,7 +208,7 @@
                               ItemContainerStyle="{StaticResource ListViewItemStyle}">
                         <triggers:Interactions.Triggers>
                             <triggers:EventTrigger EventName="ItemClick">
-                                <triggers:InvokeCommandAction Command="{Binding TrackClickedCommand}"
+                                <triggers:InvokeCommandAction Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.TrackClickedCommand}"
                                                               PassEventArgsToCommand="True" />
                             </triggers:EventTrigger>
                         </triggers:Interactions.Triggers>
