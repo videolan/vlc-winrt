@@ -267,6 +267,9 @@
   <data name="Search.Text" xml:space="preserve">
     <value>Suchen</value>
   </data>
+  <data name="Search1" xml:space="preserve">
+    <value>Suchen</value>
+  </data>
   <data name="SimilarArtists.Header" xml:space="preserve">
     <value>Ähnliche Künstler</value>
   </data>

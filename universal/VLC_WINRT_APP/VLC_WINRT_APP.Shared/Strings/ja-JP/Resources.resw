@@ -444,4 +444,7 @@
   <data name="Playlist.Header" xml:space="preserve">
     <value>プレイリスト</value>
   </data>
+  <data name="Search1" xml:space="preserve">
+    <value>検索</value>
+  </data>
 </root>

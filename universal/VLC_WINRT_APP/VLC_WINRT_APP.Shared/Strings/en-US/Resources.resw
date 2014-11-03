@@ -465,4 +465,7 @@
   <data name="SdCard" xml:space="preserve">
     <value>SD Card</value>
   </data>
+  <data name="Search1" xml:space="preserve">
+    <value>search</value>
+  </data>
 </root>

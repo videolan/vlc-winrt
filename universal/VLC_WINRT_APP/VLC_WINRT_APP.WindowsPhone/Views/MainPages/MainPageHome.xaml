@@ -92,6 +92,10 @@
     <Page.BottomAppBar>
         <CommandBar Style="{StaticResource VLCCommandBarStyle}"
                     x:Name="CommandBar">
+            <AppBarButton Icon="Find"
+                          x:Uid="Search1"
+                          Label="search"
+                          Command="{Binding Source={StaticResource Locator}, Path=MainVM.OpenSidebarCommand}"/>
             <AppBarButton Icon="OpenFile"
                           x:Uid="OpenFile2"
                           Label="open file"

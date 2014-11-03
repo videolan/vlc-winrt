@@ -11,6 +11,7 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Resources;
 using Windows.UI.Xaml.Media;
+using VLC_WINRT.Common;
 using VLC_WINRT_APP.Commands.MainPageCommands;
 using VLC_WINRT_APP.Common;
 using VLC_WINRT_APP.Helpers;
@@ -29,6 +30,7 @@ namespace VLC_WINRT_APP.ViewModels
         private GoToSettingsPageCommand _goToSettingsPageCommand;
         private GoToThanksPageCommand _goToThanksPageCommand;
         private GoToAboutPageCommand _goToAboutPageCommand;
+        private AlwaysExecutableCommand _openSidebarCommand;
 
         #endregion
         #region public fields
@@ -58,7 +60,13 @@ namespace VLC_WINRT_APP.ViewModels
             get { return _goToAboutPageCommand; }
             set { SetProperty(ref _goToAboutPageCommand, value); }
         }
-
+#if WINDOWS_PHONE_APP
+        public AlwaysExecutableCommand OpenSidebarCommand
+        {
+            get { return _openSidebarCommand; }
+            set { SetProperty(ref _openSidebarCommand, value); }
+        }
+#endif
         #endregion
 
 
@@ -68,7 +76,10 @@ namespace VLC_WINRT_APP.ViewModels
             GoToSettingsPageCommand = new GoToSettingsPageCommand();
             GoToThanksPageCommand = new GoToThanksPageCommand();
             GoToAboutPageCommand = new GoToAboutPageCommand();
-
+            OpenSidebarCommand = new ActionCommand(() =>
+            {
+                App.RootPage.PanelsView.ShowSidebar();
+            });
             // TODO: For Windows 8.1 build, use ResourceLoader.GetForCurrentView(); 
 
             var resourceLoader = new ResourceLoader();
