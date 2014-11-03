@@ -462,4 +462,7 @@
   <data name="Playlist.Header" xml:space="preserve">
     <value>playlist</value>
   </data>
+  <data name="SdCard" xml:space="preserve">
+    <value>SD Card</value>
+  </data>
 </root>

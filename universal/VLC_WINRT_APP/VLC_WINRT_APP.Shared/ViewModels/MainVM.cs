@@ -75,7 +75,13 @@ namespace VLC_WINRT_APP.ViewModels
             Panels.Add(new Panel(resourceLoader.GetString("Home"), 0, 1, App.Current.Resources["HomePath"].ToString(), true));
             Panels.Add(new Panel(resourceLoader.GetString("Videos"), 1, 0.4, App.Current.Resources["VideoPath"].ToString()));
             Panels.Add(new Panel(resourceLoader.GetString("Music"), 2, 0.4, App.Current.Resources["MusicPath"].ToString()));
-            Panels.Add(new Panel(resourceLoader.GetString("RemovableStorage"), 3, 0.4, App.Current.Resources["RemovablesPath"].ToString()));
+            string removableName = "";
+#if WINDOWS_APP
+            removableName = resourceLoader.GetString("RemovableStorage");
+#else
+            removableName = resourceLoader.GetString("SdCard");
+#endif
+            Panels.Add(new Panel(removableName, 3, 0.4, App.Current.Resources["RemovablesPath"].ToString()));
 #if WINDOWS_APP
             Panels.Add(new Panel(resourceLoader.GetString("MediaServers"), 4, 0.4, App.Current.Resources["ServerPath"].ToString()));
 #endif
@@ -84,7 +90,6 @@ namespace VLC_WINRT_APP.ViewModels
 
         public async Task Initialize()
         {
-            //await Locator.SettingsVM.PopulateCustomFolders();
             if (ApplicationSettingsHelper.ReadSettingsValue("ContinueVideoPlaybackInBackground") == null)
                 ApplicationSettingsHelper.SaveSettingsValue("ContinueVideoPlaybackInBackground", true);
         }
