@@ -20,7 +20,46 @@
                Source="{Binding CurrentArtist.Picture}"
                Stretch="UniformToFill"
                Opacity="0.3" />
-        <FlipView Grid.Row="1">
+        <FlipView Grid.Row="1"
+                  SelectedIndex="1">
+            <FlipViewItem>
+                <ScrollViewer>
+                    <StackPanel Margin="24,0,0,0">
+                        <TextBlock Text="{Binding CurrentArtist.Biography}"
+                                   Style="{StaticResource BodyTextBlockStyle}" />
+                        <GridView Margin="0,24,0,0"
+                                  IsSwipeEnabled="False"
+                                  SelectionMode="None"
+                                  IsItemClickEnabled="True"
+                                  ItemsSource="{Binding CurrentArtist.OnlinePopularAlbumItems}"
+                                  ItemTemplate="{StaticResource PopularAlbumTemplate}"
+                                  Header="popular albums"
+                                  HeaderTemplate="{StaticResource PhoneHeaderTemplate}">
+                            <GridView.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <VariableSizedWrapGrid Orientation="Horizontal"
+                                                           Loaded="VariableSizedWrapGrid_Loaded" />
+                                </ItemsPanelTemplate>
+                            </GridView.ItemsPanel>
+                        </GridView>
+                        <GridView Margin="0,24,0,0"
+                                  IsSwipeEnabled="False"
+                                  SelectionMode="None"
+                                  IsItemClickEnabled="True"
+                                  ItemsSource="{Binding CurrentArtist.OnlineRelatedArtists}"
+                                  ItemTemplate="{StaticResource SimilarArtistTemplate}"
+                                  Header="similar artists"
+                                  HeaderTemplate="{StaticResource PhoneHeaderTemplate}">
+                            <GridView.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <VariableSizedWrapGrid Orientation="Horizontal"
+                                                           Loaded="VariableSizedWrapGrid_Loaded" />
+                                </ItemsPanelTemplate>
+                            </GridView.ItemsPanel>
+                        </GridView>
+                    </StackPanel>
+                </ScrollViewer>
+            </FlipViewItem>
             <FlipViewItem>
                 <Grid Margin="12,24,12,12">
                     <Grid.RowDefinitions>
@@ -31,15 +70,16 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
-                    <TextBlock FontSize="36"
+                    <TextBlock Grid.Row="0"
+                               FontSize="36"
                                FontWeight="ExtraLight"
                                HorizontalAlignment="Center"
                                VerticalAlignment="Bottom"
                                TextAlignment="Center">
-                                    <Run Text="{Binding CurrentArtist.Name}" />
-                                    <LineBreak />
-                                    <Run Text="{Binding CurrentAlbum.Name}"
-                                         FontSize="26" />
+                        <Run Text="{Binding CurrentArtist.Name}" />
+                        <LineBreak />
+                        <Run Text="{Binding CurrentAlbum.Name}"
+                             FontSize="26" />
                     </TextBlock>
                     <Image Grid.Row="1"
                            Source="{Binding CurrentAlbum.Picture}"
@@ -174,42 +214,6 @@
                         </triggers:Interactions.Triggers>
                     </ListView>
                 </Grid>
-            </FlipViewItem>
-            <FlipViewItem>
-                <ScrollViewer>
-                    <StackPanel Margin="24,0,0,0">
-                        <TextBlock Text="{Binding CurrentArtist.Biography}"
-                                   Style="{StaticResource BodyTextBlockStyle}" />
-                        <GridView Margin="0,12,0,0"
-                                  IsSwipeEnabled="False"
-                                  SelectionMode="None"
-                                  IsItemClickEnabled="True"
-                                  ItemsSource="{Binding CurrentArtist.OnlinePopularAlbumItems}"
-                                  ItemTemplate="{StaticResource PopularAlbumTemplate}"
-                                  Header="popular albums">
-                            <GridView.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <VariableSizedWrapGrid Orientation="Horizontal"
-                                                           Loaded="VariableSizedWrapGrid_Loaded" />
-                                </ItemsPanelTemplate>
-                            </GridView.ItemsPanel>
-                        </GridView>
-                        <GridView Margin="0,12,0,0"
-                                  IsSwipeEnabled="False"
-                                  SelectionMode="None"
-                                  IsItemClickEnabled="True"
-                                  ItemsSource="{Binding CurrentArtist.OnlineRelatedArtists}"
-                                  ItemTemplate="{StaticResource SimilarArtistTemplate}"
-                                  Header="similar artists">
-                            <GridView.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <VariableSizedWrapGrid Orientation="Horizontal"
-                                                           Loaded="VariableSizedWrapGrid_Loaded" />
-                                </ItemsPanelTemplate>
-                            </GridView.ItemsPanel>
-                        </GridView>
-                    </StackPanel>
-                </ScrollViewer>
             </FlipViewItem>
         </FlipView>
 

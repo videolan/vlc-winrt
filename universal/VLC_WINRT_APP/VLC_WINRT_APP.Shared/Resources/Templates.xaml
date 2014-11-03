@@ -61,8 +61,13 @@
                          FontFamily="Segoe UI Symbol" />
         </TextBlock>
     </DataTemplate>
+    
+    <DataTemplate x:Key="PhoneHeaderTemplate">
+        <TextBlock Text="{Binding}" Style="{StaticResource SubheaderTextBlockStyle}"/>
+    </DataTemplate>
+    
     <!-- WINDOWS PHONE -->
-    <DataTemplate x:Name="WPSidebarItemTemplate">
+    <DataTemplate x:Key="WPSidebarItemTemplate">
         <Grid Height="60"
               Width="340">
             <Grid.ColumnDefinitions>
@@ -89,7 +94,7 @@
     </DataTemplate>
     
     <!-- WINDOWS -->
-    <DataTemplate x:Name="SidebarItemTemplate">
+    <DataTemplate x:Key="SidebarItemTemplate">
         <Grid Height="60"
               Width="340">
             <Grid.ColumnDefinitions>
@@ -114,7 +119,8 @@
                        FontSize="28" />
         </Grid>
     </DataTemplate>
-    <DataTemplate x:Name="SidebarIconItemTemplate">
+    
+    <DataTemplate x:Key="SidebarIconItemTemplate">
         <Grid Height="60"
               Width="100">
             <Path Data="{Binding PathData}"
@@ -126,7 +132,8 @@
                   Margin="-9,0,0,0" />
         </Grid>
     </DataTemplate>
-    <DataTemplate x:Name="SidebarMiniIconItemTemplate">
+    
+    <DataTemplate x:Key="SidebarMiniIconItemTemplate">
         <Grid Height="60"
               Width="40">
             <Path Data="{Binding PathData}"
