@@ -97,7 +97,7 @@
                     Command="{Binding GoToMusicPlayerPage}">
                 <SymbolIcon Symbol="List" />
             </Button>
-            <Button Style="{StaticResource TextBlockButtonStyle}"
+            <!--<Button Style="{StaticResource TextBlockButtonStyle}"
                     Grid.Column="4"
                     HorizontalAlignment="Right">
                 <Button.Flyout>
@@ -111,7 +111,7 @@
                     </Flyout>
                 </Button.Flyout>
                 <SymbolIcon Symbol="Volume" />
-            </Button>
+            </Button>-->
             <ToggleButton Style="{StaticResource TextBlockButtonStyle}"
                           Grid.Column="5"
                           HorizontalAlignment="Right"
