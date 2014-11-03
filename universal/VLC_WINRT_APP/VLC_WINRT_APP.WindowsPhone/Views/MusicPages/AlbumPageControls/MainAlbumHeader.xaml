@@ -28,8 +28,17 @@
                 </Grid.RowDefinitions>
                 <StackPanel Grid.Row="0"
                             VerticalAlignment="Center">
-                    <TextBlock Text="{Binding CurrentArtist.Name}"
-                               Style="{StaticResource SubheaderTextBlockStyle}" />
+                    <Button Style="{StaticResource TextBlockButtonStyle}"
+                            Command="{Binding CurrentAlbum.ViewArtist}"
+                            CommandParameter="{Binding CurrentAlbum.ArtistId}">
+                        <Button.Content>
+                            <TextBlock Style="{StaticResource SubheaderTextBlockStyle}">
+                                <Run Text="{Binding CurrentArtist.Name}" />
+                                <Run Text=""
+                                     FontFamily="Segoe UI Symbol" />
+                            </TextBlock>
+                        </Button.Content>
+                    </Button>
                     <TextBlock Style="{StaticResource BaseTextBlockStyle}">
                         <Run Text="{Binding CurrentAlbum.Tracks.Count}" />
                         <Run Text="tracks" />

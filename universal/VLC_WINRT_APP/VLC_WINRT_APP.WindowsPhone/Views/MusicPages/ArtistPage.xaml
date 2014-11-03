@@ -42,7 +42,7 @@
             <Image Grid.RowSpan="2"
                    Source="{Binding CurrentArtist.Picture}"
                    Stretch="UniformToFill"
-                   Opacity="0.6" />
+                   Opacity="0.5" />
             <userControls:TopBar Grid.Row="0"
                                  HeaderTextBlock="{Binding CurrentArtist.Name}"
                                  HeaderBackground="#00ffffff"
