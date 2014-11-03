@@ -100,7 +100,7 @@ namespace VLC_WINRT_APP
                 DebugSettings.EnableFrameRateCounter = true;
             }
 #endif
-
+            if (Window.Current.Content != null) return; 
             await LaunchTheApp();
             ApplicationFrame.Navigate(typeof(MainPageHome));
             var rootFrame = Window.Current.Content as Frame;
