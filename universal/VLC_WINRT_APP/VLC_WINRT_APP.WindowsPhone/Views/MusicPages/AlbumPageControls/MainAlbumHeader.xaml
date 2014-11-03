@@ -39,10 +39,6 @@
                             </TextBlock>
                         </Button.Content>
                     </Button>
-                    <TextBlock Style="{StaticResource BaseTextBlockStyle}">
-                        <Run Text="{Binding CurrentAlbum.Tracks.Count}" />
-                        <Run Text="tracks" />
-                    </TextBlock>
                 </StackPanel>
                 <StackPanel Grid.Row="1"
                             VerticalAlignment="Center"

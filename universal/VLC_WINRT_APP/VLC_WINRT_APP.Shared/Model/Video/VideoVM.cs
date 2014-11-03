@@ -281,16 +281,23 @@ namespace VLC_WINRT_APP.Model.Video
         private async Task GetTimeInformation()
         {
             if (VideoProperties == null)
-                VideoProperties = await _file.Properties.GetVideoPropertiesAsync();
-
-            TimeSpan duration = VideoProperties != null ? VideoProperties.Duration : TimeSpan.FromSeconds(0);
-#if WINDOWS_PHONE_APP
-            duration = TimeSpan.FromTicks(duration.Ticks*10000);
-#endif
-            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                Duration = duration;
-            });
+                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+                {
+                    VideoProperties = await _file.Properties.GetVideoPropertiesAsync();
+                    TimeSpan duration = VideoProperties != null ? VideoProperties.Duration : TimeSpan.FromSeconds(0);
+#if WINDOWS_PHONE_APP
+                    // Absolutely totally bad workaround
+                    if(duration.Seconds < 1)
+                        duration = TimeSpan.FromTicks(duration.Ticks * 10000);
+#endif
+                    Duration = duration;
+                });
+            }
+
+            //App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            //{
+            //});
         }
         #endregion
     }
