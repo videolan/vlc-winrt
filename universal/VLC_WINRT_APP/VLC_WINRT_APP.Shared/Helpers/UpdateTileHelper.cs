@@ -16,7 +16,7 @@ namespace VLC_WINRT_APP.Helpers
     {
         public static void UpdateMediumTileWithMusicInfo()
         {
-            const TileTemplateType template = TileTemplateType.TileSquarePeekImageAndText02;
+            const TileTemplateType template = TileTemplateType.TileSquare150x150PeekImageAndText02;
             var tileXml = TileUpdateManager.GetTemplateContent(template);
 
             var tileTextAttributes = tileXml.GetElementsByTagName("text");
@@ -37,21 +37,33 @@ namespace VLC_WINRT_APP.Helpers
 
         public static void UpdateBigTileWithMusicInfo()
         {
-            const TileTemplateType template = TileTemplateType.TileWidePeekImage05;
+            const TileTemplateType template = TileTemplateType.TileWide310x150PeekImage05;
             var tileXml = TileUpdateManager.GetTemplateContent(template);
 
             var tileTextAttributes = tileXml.GetElementsByTagName("text");
+#if WINDOWS_APP
             tileTextAttributes[0].InnerText = "Now playing";
+#endif
             if (Locator.MusicPlayerVM.CurrentTrack != null)
             {
+#if WINDOWS_APP
                 tileTextAttributes[1].InnerText = Locator.MusicPlayerVM.CurrentTrack.Name + " - " + Locator.MusicPlayerVM.CurrentTrack.ArtistName;
-
+#else
+                tileTextAttributes[0].InnerText = Locator.MusicPlayerVM.CurrentTrack.Name;
+                tileTextAttributes[1].InnerText = Locator.MusicPlayerVM.CurrentTrack.AlbumName;
+                tileTextAttributes[1].InnerText = Locator.MusicPlayerVM.CurrentTrack.ArtistName;
+#endif
                 var tileImgAttribues = tileXml.GetElementsByTagName("image");
+#if WINDOWS_APP
                 if (Locator.MusicPlayerVM.CurrentArtist != null)
                     tileImgAttribues[0].Attributes[1].NodeValue = Locator.MusicPlayerVM.CurrentArtist.Picture;
-
+                
                 if (Locator.MusicPlayerVM.CurrentAlbum != null)
                     tileImgAttribues[1].Attributes[1].NodeValue = Locator.MusicPlayerVM.CurrentAlbum.Picture;
+#else
+                if (Locator.MusicPlayerVM.CurrentAlbum != null)
+                    tileImgAttribues[0].Attributes[1].NodeValue = Locator.MusicPlayerVM.CurrentAlbum.Picture;
+#endif
             }
 
             var tileNotification = new TileNotification(tileXml);

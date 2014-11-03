@@ -245,9 +245,9 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             _mediaService.SetMediaFile(_mrl, isAudioMedia: true);
             _mediaService.Play();
 
-#if WINDOWS_APP
+//#if WINDOWS_APP
             UpdateTileHelper.UpdateMediumTileWithMusicInfo();
-#endif
+//#endif
 
             App.Dispatcher.RunAsync(CoreDispatcherPriority.High, async () =>
             {
