@@ -94,6 +94,7 @@
                                         IsCompact="True"
                                         Margin="42,0,0,0"
                                         VerticalAlignment="Center"
+                                        HorizontalAlignment="Left"
                                         Click="EnableDoubleTapToShowCommands_Click"
                                         Loaded="LockToggleButton_OnLoaded" />
                     <Slider Name="VolumeSlider"

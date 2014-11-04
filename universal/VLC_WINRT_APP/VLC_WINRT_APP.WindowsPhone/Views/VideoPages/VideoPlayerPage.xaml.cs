@@ -53,7 +53,7 @@ namespace VLC_WINRT_APP.Views.VideoPages
             }
 #else
             VolumeSlider.Visibility = Visibility.Collapsed;
-            if (width < 400 && !DisplayHelper.IsPortrait())
+            if (width <= 400 && DisplayHelper.IsPortrait())
             {
                 LockToggleButton.Margin = new Thickness(12, 0, 0, 0);
                 MenuButton.Margin = new Thickness(12, 0, 0, 0);
