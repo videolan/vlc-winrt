@@ -22,7 +22,7 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <userControls:TopBar Grid.Row="0"
-                             HeaderTextBlock="Home" />
+                             HeaderTextBlock="VLC" />
         <Image Grid.Row="1"
                Source="/Assets/backgroundTop.png"
                Stretch="Uniform"
