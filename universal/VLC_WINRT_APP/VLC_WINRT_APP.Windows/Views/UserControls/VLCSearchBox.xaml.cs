@@ -40,23 +40,19 @@ namespace VLC_WINRT_APP.Views.UserControls
                     TrackItem trackItem = Locator.MusicLibraryVM.Tracks.FirstOrDefault(node => node.Id == int.Parse(query));
                     if (trackItem != null)
                     {
-                        await Task.Run(() => trackItem.PlayTrack());
+                        Locator.MusicLibraryVM.TrackClickedCommand.Execute(trackItem);
                     }
                     break;
                 case "album":
-                    AlbumItem albumItem =
-                        Locator.MusicLibraryVM.Artists.SelectMany(node => node.Albums)
-                            .FirstOrDefault(node => node.Id == int.Parse(query));
+
+                    AlbumItem albumItem = Locator.MusicLibraryVM.Albums.FirstOrDefault(x => x.Id == int.Parse(query));
                     if (albumItem != null)
-                    {
-                        Locator.MusicLibraryVM.CurrentArtist = Locator.MusicLibraryVM.Artists.FirstOrDefault(node => node.Id == albumItem.ArtistId);
-                        await Task.Run(() => albumItem.PlayAlbum());
-                    }
+                        albumItem.PlayAlbum.Execute(albumItem);
                     break;
                 case "artist":
                     ArtistItem artistItem =
                         Locator.MusicLibraryVM.Artists.FirstOrDefault(node => node.Id == int.Parse(query));
-                   Locator.MusicLibraryVM.CurrentArtist = artistItem;
+                    Locator.MusicLibraryVM.CurrentArtist = artistItem;
 #if WINDOWS_APP
                     App.ApplicationFrame.Navigate(typeof(ArtistPage));
 #endif

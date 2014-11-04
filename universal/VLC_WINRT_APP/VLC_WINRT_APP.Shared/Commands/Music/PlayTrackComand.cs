@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using VLC_WINRT.Common;
 using VLC_WINRT_APP.Helpers.MusicLibrary;
+using VLC_WINRT_APP.Helpers.MusicLibrary.Deezer;
 using VLC_WINRT_APP.Helpers.MusicPlayer;
 using VLC_WINRT_APP.Model.Music;
 using VLC_WINRT_APP.ViewModels;
@@ -36,6 +37,11 @@ namespace VLC_WINRT_APP.Commands.Music
                 var args = parameter as ItemClickEventArgs;
                 track = args.ClickedItem as TrackItem;
             }
+            else if (parameter is TrackItem)
+            {
+                track = parameter as TrackItem;
+            }
+
             if (track == null)
             {
                 // if the track is still null (for some reason), we need to break early.

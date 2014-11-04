@@ -4,7 +4,9 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+#if WINDOWS_PHONE_APP
 using Windows.Phone.ApplicationModel;
+#endif
 using Windows.Storage;
 using Windows.Storage.FileProperties;
 using Windows.UI.Core;

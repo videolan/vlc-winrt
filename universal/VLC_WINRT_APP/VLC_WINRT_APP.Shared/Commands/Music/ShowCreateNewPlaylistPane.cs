@@ -10,8 +10,10 @@ namespace VLC_WINRT_APP.Commands.Music
         {
             App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
+#if WINDOWS_PHONE_APP
                 var createPlaylist = new CreateNewPlaylist();
                 createPlaylist.ShowAsync();
+#endif
             });
         }
     }

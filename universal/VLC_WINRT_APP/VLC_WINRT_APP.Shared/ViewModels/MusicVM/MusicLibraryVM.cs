@@ -39,7 +39,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         public static TrackCollectionRepository TrackCollectionRepository = new TrackCollectionRepository();
         #region private fields
 #if WINDOWS_APP
-        private ObservableCollection<Panel> _panels = new ObservableCollection<Panel>();
+        private ObservableCollection<Model.Panel> _panels = new ObservableCollection<Model.Panel>();
 #endif
         private ObservableCollection<ArtistItem> _artistses = new ObservableCollection<ArtistItem>();
         private ObservableCollection<TrackItem> _trackses = new ObservableCollection<TrackItem>();
@@ -92,7 +92,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         }
 
 #if WINDOWS_APP
-        public ObservableCollection<Panel> Panels
+        public ObservableCollection<Model.Panel> Panels
         {
             get { return _panels; }
             set
@@ -277,9 +277,9 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             LoadingState = LoadingState.NotLoaded;
             var resourceLoader = new ResourceLoader();
 #if WINDOWS_APP
-            Panels.Add(new Panel(resourceLoader.GetString("Albums").ToLower(), 0, 1, App.Current.Resources["HomePath"].ToString(), true));
-            Panels.Add(new Panel(resourceLoader.GetString("Artists").ToLower(), 1, 0.4, App.Current.Resources["HomePath"].ToString()));
-            Panels.Add(new Panel(resourceLoader.GetString("Songs").ToLower(), 2, 0.4, App.Current.Resources["HomePath"].ToString()));
+            Panels.Add(new Model.Panel(resourceLoader.GetString("Albums").ToLower(), 0, 1, App.Current.Resources["HomePath"].ToString(), true));
+            Panels.Add(new Model.Panel(resourceLoader.GetString("Artists").ToLower(), 1, 0.4, App.Current.Resources["HomePath"].ToString()));
+            Panels.Add(new Model.Panel(resourceLoader.GetString("Songs").ToLower(), 2, 0.4, App.Current.Resources["HomePath"].ToString()));
             //Panels.Add(new Panel(resourceLoader.GetString("Pinned").ToLower(), 2, 0.4, App.Current.Resources["HomePath"].ToString()));
             //Panels.Add(new Panel(resourceLoader.GetString("Playlists").ToLower(), 2, 0.4, App.Current.Resources["HomePath"].ToString()));
 #endif

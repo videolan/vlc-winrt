@@ -76,10 +76,12 @@ namespace VLC_WINRT_APP.ViewModels
             GoToSettingsPageCommand = new GoToSettingsPageCommand();
             GoToThanksPageCommand = new GoToThanksPageCommand();
             GoToAboutPageCommand = new GoToAboutPageCommand();
+#if WINDOWS_PHONE_APP
             OpenSidebarCommand = new ActionCommand(() =>
             {
                 App.RootPage.PanelsView.ShowSidebar();
             });
+#endif
             // TODO: For Windows 8.1 build, use ResourceLoader.GetForCurrentView(); 
 
             var resourceLoader = new ResourceLoader();

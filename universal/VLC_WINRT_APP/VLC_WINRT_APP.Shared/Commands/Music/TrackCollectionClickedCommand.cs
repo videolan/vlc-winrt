@@ -10,6 +10,7 @@ namespace VLC_WINRT_APP.Commands.Music
     {
         public override void Execute(object parameter)
         {
+#if WINDOWS_PHONE_APP
             if (parameter is TrackCollection)
             {
                 Locator.MusicLibraryVM.CurrentTrackCollection = parameter as TrackCollection;
@@ -27,6 +28,7 @@ namespace VLC_WINRT_APP.Commands.Music
                     (parameter as ItemClickEventArgs).ClickedItem as TrackCollection;
                 App.ApplicationFrame.Navigate(typeof (PlaylistPage));
             }
+#endif
         }
     }
 }
