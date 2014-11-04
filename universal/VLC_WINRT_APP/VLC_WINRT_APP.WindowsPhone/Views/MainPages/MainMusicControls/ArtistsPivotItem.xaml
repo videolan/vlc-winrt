@@ -16,7 +16,7 @@
                   IsItemClickEnabled="True"
                   SelectionMode="None"
                   ItemContainerStyle="{StaticResource GridViewItemStyle}"
-                  ItemTemplate="{StaticResource ArtistSquareTemplate}"
+                  ItemTemplate="{StaticResource PhoneArtistSquareTemplate}"
                   HorizontalAlignment="Left"
                   Margin="-6,0,-20,0">
             <GridView.ItemsPanel>

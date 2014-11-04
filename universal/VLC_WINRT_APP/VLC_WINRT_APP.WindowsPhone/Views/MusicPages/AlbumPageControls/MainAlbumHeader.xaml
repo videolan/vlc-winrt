@@ -10,56 +10,60 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="24" />
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="4*" />
+            <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <StackPanel Orientation="Horizontal"
-                    HorizontalAlignment="Left">
-            <Image Source="{Binding CurrentAlbum.Picture}"
-                   MaxHeight="200"
-                   MaxWidth="200"
-                   Margin="24,0,0,6" />
-            <Grid Margin="24,0,0,0"
-                  VerticalAlignment="Center">
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition Height="Auto"
-                                   x:Name="AlbumsCommandRowDefinition" />
-                </Grid.RowDefinitions>
-                <StackPanel Grid.Row="0"
-                            VerticalAlignment="Center">
-                    <Button Style="{StaticResource TextBlockButtonStyle}"
-                            Command="{Binding CurrentAlbum.ViewArtist}"
-                            CommandParameter="{Binding CurrentAlbum.ArtistId}">
-                        <Button.Content>
-                            <TextBlock Style="{StaticResource SubheaderTextBlockStyle}">
+        <Image Grid.Column="1"
+               Source="{Binding CurrentAlbum.Picture}"
+               Margin="-6,0,0,6" 
+               HorizontalAlignment="Left"/>
+        <Grid Margin="24,0,0,0"
+              Grid.Column="2"
+              HorizontalAlignment="Left"
+              VerticalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="Auto"
+                               x:Name="AlbumsCommandRowDefinition" />
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Left">
+                <Button Style="{StaticResource TextBlockButtonStyle}"
+                        Command="{Binding CurrentAlbum.ViewArtist}"
+                        CommandParameter="{Binding CurrentAlbum.ArtistId}">
+                    <Button.Content>
+                        <TextBlock Style="{StaticResource SubheaderTextBlockStyle}"
+                                   TextWrapping="NoWrap">
                                 <Run Text="{Binding CurrentArtist.Name}" />
                                 <Run Text=""
                                      FontFamily="Segoe UI Symbol" />
-                            </TextBlock>
-                        </Button.Content>
-                    </Button>
-                </StackPanel>
-                <StackPanel Grid.Row="1"
-                            VerticalAlignment="Center"
-                            x:Name="AlbumCommandsPanel">
-                    <AppBarToggleButton Margin="0,12,0,0"
-                                        Icon="Favorite"
-                                        Label="Favorite"
-                                        IsChecked="{Binding CurrentAlbum.Favorite}"
-                                        Command="{Binding CurrentAlbum.FavoriteAlbum}"
-                                        CommandParameter="{Binding CurrentAlbum}"
-                                        Style="{StaticResource AppBarToggleButtonStyleHorizontal}" />
-                    <AppBarButton Margin="0,-6,0,0"
-                                  Icon="Play"
-                                  Label="Play all album"
-                                  Command="{Binding CurrentAlbum.PlayAlbum}"
-                                  CommandParameter="{Binding CurrentAlbum}"
-                                  Style="{StaticResource AppBarButtonStyleHorizontal}" />
-                </StackPanel>
-            </Grid>
-        </StackPanel>
-        <Button Grid.Column="1"
+                        </TextBlock>
+                    </Button.Content>
+                </Button>
+            </StackPanel>
+            <StackPanel Grid.Row="1"
+                        VerticalAlignment="Center"
+                        x:Name="AlbumCommandsPanel"
+                        HorizontalAlignment="Left">
+                <AppBarToggleButton Margin="0,12,0,0"
+                                    Icon="Favorite"
+                                    Label="Favorite"
+                                    IsChecked="{Binding CurrentAlbum.Favorite}"
+                                    Command="{Binding CurrentAlbum.FavoriteAlbum}"
+                                    CommandParameter="{Binding CurrentAlbum}"
+                                    Style="{StaticResource AppBarToggleButtonStyleHorizontal}" />
+                <AppBarButton Margin="0,-6,0,0"
+                              Icon="Play"
+                              Label="Play all album"
+                              Command="{Binding CurrentAlbum.PlayAlbum}"
+                              CommandParameter="{Binding CurrentAlbum}"
+                              Style="{StaticResource AppBarButtonStyleHorizontal}" />
+            </StackPanel>
+        </Grid>
+        <Button Grid.Column="3"
                 Content=""
                 FontFamily="Segoe UI Symbol"
                 FontSize="32"

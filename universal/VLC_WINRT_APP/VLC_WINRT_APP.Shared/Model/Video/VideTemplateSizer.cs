@@ -31,7 +31,6 @@ namespace VLC_WINRT_APP.Model.Video
             wrapGrid.ItemWidth = itemWidth - 12;
             wrapGrid.ItemHeight = itemHeight;
         }
-
 #endif
     }
 }
