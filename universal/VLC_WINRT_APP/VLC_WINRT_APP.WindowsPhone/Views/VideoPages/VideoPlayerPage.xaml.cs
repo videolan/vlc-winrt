@@ -39,8 +39,9 @@ namespace VLC_WINRT_APP.Views.VideoPages
 
         private void Responsive()
         {
+            var width = Window.Current.Bounds.Width;
 #if WINDOWS_APP
-            if (Window.Current.Bounds.Width < 550)
+            if (width < 550)
             {
                 LeftButtons.Visibility = Visibility.Collapsed;
                 RightButtons.Visibility = Visibility.Collapsed;
@@ -52,6 +53,16 @@ namespace VLC_WINRT_APP.Views.VideoPages
             }
 #else
             VolumeSlider.Visibility = Visibility.Collapsed;
+            if (width < 400 && !DisplayHelper.IsPortrait())
+            {
+                LockToggleButton.Margin = new Thickness(12, 0, 0, 0);
+                MenuButton.Margin = new Thickness(12, 0, 0, 0);
+            }
+            else
+            {
+                LockToggleButton.Margin = new Thickness(42, 0, 0, 0);
+                MenuButton.Margin = new Thickness(42, 0, 0, 0);
+            }
 #endif
         }
 
