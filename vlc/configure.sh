@@ -28,7 +28,6 @@ OPTIONS="
       --disable-zvbi --disable-telx
       --enable-mad
       --disable-a52
-      --enable-vlc
       --disable-libgcrypt
       --disable-taglib
       --disable-dirac"
