@@ -128,8 +128,7 @@
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y $(TargetPath) $(SolutionDir)\ui\plugins\access
-copy /Y $(TargetPath) $(SolutionDir)\..\universal\VLC_WINRT_APP\VLC_WINRT_APP.Windows\plugins\access\</Command>
+      <Command>copy /Y $(TargetPath) $(SolutionDir)..\universal\VLC_WINRT_APP\VLC_WINRT_APP.Windows\plugins\access\</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -150,8 +149,7 @@ copy /Y $(TargetPath) $(SolutionDir)\..\universal\VLC_WINRT_APP\VLC_WINRT_APP.Wi
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y $(TargetPath) $(SolutionDir)\ui\plugins\access
-copy /Y $(TargetPath) $(SolutionDir)\..\universal\VLC_WINRT_APP\VLC_WINRT_APP.Windows\plugins\access\</Command>
+      <Command>copy /Y $(TargetPath) $(SolutionDir)..\universal\VLC_WINRT_APP\VLC_WINRT_APP.Windows\plugins\access\</Command>
     </PostBuildEvent>
     <Bscmake>
       <PreserveSbr>true</PreserveSbr>
@@ -174,8 +172,7 @@ copy /Y $(TargetPath) $(SolutionDir)\..\universal\VLC_WINRT_APP\VLC_WINRT_APP.Wi
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y $(TargetPath) $(SolutionDir)\ui\plugins\access
-copy /Y $(TargetPath) $(SolutionDir)\..\universal\VLC_WINRT_APP\VLC_WINRT_APP.Windows\plugins\access\</Command>
+      <Command>copy /Y $(TargetPath) $(SolutionDir)..\universal\VLC_WINRT_APP\VLC_WINRT_APP.Windows\plugins\access\</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
@@ -196,8 +193,7 @@ copy /Y $(TargetPath) $(SolutionDir)\..\universal\VLC_WINRT_APP\VLC_WINRT_APP.Wi
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y $(TargetPath) $(SolutionDir)\ui\plugins\access
-copy /Y $(TargetPath) $(SolutionDir)\..\universal\VLC_WINRT_APP\VLC_WINRT_APP.Windows\plugins\access\</Command>
+      <Command>copy /Y $(TargetPath) $(SolutionDir)..\universal\VLC_WINRT_APP\VLC_WINRT_APP.Windows\plugins\access\</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -217,8 +213,7 @@ copy /Y $(TargetPath) $(SolutionDir)\..\universal\VLC_WINRT_APP\VLC_WINRT_APP.Wi
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y $(TargetPath) $(SolutionDir)\ui\plugins\access
-copy /Y $(TargetPath) $(SolutionDir)\..\universal\VLC_WINRT_APP\VLC_WINRT_APP.Windows\plugins\access\</Command>
+      <Command>copy /Y $(TargetPath) $(SolutionDir)..\universal\VLC_WINRT_APP\VLC_WINRT_APP.Windows\plugins\access\</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -239,8 +234,7 @@ copy /Y $(TargetPath) $(SolutionDir)\..\universal\VLC_WINRT_APP\VLC_WINRT_APP.Wi
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y $(TargetPath) $(SolutionDir)\ui\plugins\access
-copy /Y $(TargetPath) $(SolutionDir)\..\universal\VLC_WINRT_APP\VLC_WINRT_APP.Windows\plugins\access\</Command>
+      <Command>copy /Y $(TargetPath) $(SolutionDir)..\universal\VLC_WINRT_APP\VLC_WINRT_APP.Windows\plugins\access\</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
