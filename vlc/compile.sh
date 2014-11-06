@@ -2,6 +2,39 @@
 
 set -e
 
+function usage
+{
+    echo "Usage: compile [arch]"
+    echo "archs: i686,x64_64,armv7"
+}
+
+function using
+{
+    echo "preparing for MSVC target: $MSVC_TUPLE"
+}
+
+if [ "$1" != "" ]; then
+
+case "$1" in
+
+i686)
+    MSVC_TUPLE="Win32"
+    using
+    ;;
+x86_64)
+    MSVC_TUPLE="x64"
+    using
+    ;;
+armv7)
+    MSVC_TUPLE="ARM"
+    using
+    ;;
+*) echo "Unknown arch: $1"
+   usage
+   exit 1
+   ;;
+esac
+
 # 1/ libvlc, libvlccore and its plugins
 TESTED_HASH=45df8a6415
 if [ ! -d "vlc" ]; then
@@ -34,8 +67,7 @@ then
 MAKEFLAGS=-j`nproc`
 fi
 
-TARGET_TUPLE=i686-w64-mingw32
-[ $# = 1 ] && TARGET_TUPLE=$1
+TARGET_TUPLE=${1}-w64-mingw32
 
 ${TARGET_TUPLE}-gcc -dumpspecs | sed -e 's/-lmingwex/-lwinstorecompat -lmingwex -lwinstorecompat -lole32 -lruntimeobject/' -e 's/-lmsvcrt/-lmsvcr110/' > ../newspecfile
 NEWSPECFILE="`pwd`/../newspecfile"
@@ -174,7 +206,10 @@ cp lib/.libs/libvlc.dll.a tmp/vlc.lib
 cp src/.libs/libvlccore.dll.a tmp/vlccore.lib
 
 cd tmp
-7z a ../vlc.7z *
+7z a ../vlc-${MSVC_TUPLE}.7z *
 cd ..
-
 rm -rf tmp
+
+else
+    usage
+fi
