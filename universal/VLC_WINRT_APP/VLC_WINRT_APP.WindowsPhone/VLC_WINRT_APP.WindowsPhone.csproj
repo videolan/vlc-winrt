@@ -346,7 +346,24 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\modules\libaccess_winrt_plugin.WindowsPhone\libaccess_winrt_plugin.WindowsPhone.vcxproj">
+      <Project>{544ebd72-c9e2-4c3f-9038-36683f843241}</Project>
+      <Name>libaccess_winrt_plugin.WindowsPhone</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\modules\libdirect2d_winrt_plugin.WindowsPhone\libdirect2d_winrt_plugin.WindowsPhone.vcxproj">
+      <Project>{5ebf73c4-9c76-4666-9b92-f75b8f7fa688}</Project>
+      <Name>libdirect2d_winrt_plugin.WindowsPhone</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\modules\libxaudio2_winrt_plugin.WindowsPhone\libxaudio2_winrt_plugin.WindowsPhone.vcxproj">
+      <Project>{cad463f6-be44-4f9e-9a1e-6872b668019a}</Project>
+      <Name>libxaudio2_winrt_plugin.WindowsPhone</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\wrapper\libVLCX.WindowsPhone\libVLCX.WindowsPhone.vcxproj">
+      <Project>{5d78f68e-c377-449e-a508-5b8e706d0039}</Project>
+      <Name>libVLCX.WindowsPhone</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>
   </PropertyGroup>
