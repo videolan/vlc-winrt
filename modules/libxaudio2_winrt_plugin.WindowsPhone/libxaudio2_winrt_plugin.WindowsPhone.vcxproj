@@ -89,7 +89,7 @@
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <AdditionalDependencies>runtimeobject.lib;windowscodecs.lib;xaudio2.lib;vlccore.lib;vlc.lib;WindowsPhoneCore.lib;PhoneAppModelHost.lib;runtimeobject.lib;windowscodecs.lib;xaudio2.lib;vlccore.lib;vlc.lib;WindowsPhoneCore.lib;PhoneAppModelHost.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(ProjectDir)\..\..\vlc</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)\..\..\vlc\vlc-$(Platform)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Command>copy /Y $(TargetPath) $(SolutionDir)..\universal\VLC_WINRT_APP\VLC_WINRT_APP.WindowsPhone\plugins\audio_output\</Command>
@@ -109,7 +109,7 @@
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <AdditionalDependencies>runtimeobject.lib;windowscodecs.lib;xaudio2.lib;vlccore.lib;vlc.lib;WindowsPhoneCore.lib;PhoneAppModelHost.lib;WindowsPhoneCore.lib;RuntimeObject.lib;PhoneAppModelHost.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(ProjectDir)\..\..\vlc</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)\..\..\vlc\vlc-$(Platform)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Command>copy /Y $(TargetPath) $(SolutionDir)..\universal\VLC_WINRT_APP\VLC_WINRT_APP.WindowsPhone\plugins\audio_output\</Command>
@@ -131,7 +131,7 @@
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <AdditionalDependencies>runtimeobject.lib;windowscodecs.lib;xaudio2.lib;vlccore.lib;vlc.lib;WindowsPhoneCore.lib;PhoneAppModelHost.lib;WindowsPhoneCore.lib;RuntimeObject.lib;xaudio2.lib;PhoneAppModelHost.lib;vlccore.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(ProjectDir)\..\..\vlc</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)\..\..\vlc\vlc-$(Platform)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Command>copy /Y $(TargetPath) $(SolutionDir)..\universal\VLC_WINRT_APP\VLC_WINRT_APP.WindowsPhone\plugins\audio_output\</Command>
@@ -151,7 +151,7 @@
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <AdditionalDependencies>runtimeobject.lib;windowscodecs.lib;xaudio2.lib;vlccore.lib;vlc.lib;WindowsPhoneCore.lib;PhoneAppModelHost.lib;WindowsPhoneCore.lib;RuntimeObject.lib;PhoneAppModelHost.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(ProjectDir)\..\..\vlc</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)\..\..\vlc\vlc-$(Platform)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Command>copy /Y $(TargetPath) $(SolutionDir)..\universal\VLC_WINRT_APP\VLC_WINRT_APP.WindowsPhone\plugins\audio_output\</Command>
