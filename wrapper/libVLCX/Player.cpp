@@ -52,11 +52,18 @@ void Player::InitializeVLC()
     ComPtr<MMDeviceLocator> audioReg = Make<MMDeviceLocator>();
 
     audioReg->m_AudioClient = NULL;
+    audioReg->m_audioClientReady = CreateEventEx(NULL, TEXT("AudioClientReady"), 0, EVENT_ALL_ACCESS);
     audioReg->RegisterForWASAPI();
 
     void *addr = NULL;
-    while (!WaitOnAddress(&audioReg->m_AudioClient, &addr, sizeof(void*), 1000)) {
+    DWORD res;
+    while ((res = WaitForSingleObjectEx(&audioReg->m_audioClientReady, 1000, TRUE)) != WAIT_TIMEOUT) {
         OutputDebugStringW(L"Waiting for audio\n");
+    }
+    CloseHandle(audioReg->m_audioClientReady);
+    if (res != WAIT_OBJECT_0) {
+        OutputDebugString(TEXT("Failure while waiting for audio client"));
+        return;
     }
 
     char ptr_astring[40];

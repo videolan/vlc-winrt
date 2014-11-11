@@ -48,6 +48,10 @@ HRESULT MMDeviceLocator::ActivateCompleted(IActivateAudioInterfaceAsyncOperation
         {
             hr = E_FAIL;
         }
+        else
+        {
+            SetEvent(m_audioClientReady);
+        }
     }
 
     return hr;

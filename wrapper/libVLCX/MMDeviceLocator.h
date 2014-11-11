@@ -42,5 +42,6 @@ public:
     STDMETHOD(RegisterForWASAPI)();
     STDMETHOD(ActivateCompleted)(IActivateAudioInterfaceAsyncOperation *operation);
     IAudioClient           *m_AudioClient;
+    HANDLE                 m_audioClientReady;
 };
 
