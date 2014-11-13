@@ -104,7 +104,7 @@ namespace VLC_WINRT_APP.Helpers
                     }
                     string season = title.ElementAt(i + 1).ToString() + title.ElementAt(i + 2).ToString();
                     string episode;
-                    if (isDigit(title.ElementAt(i + 6)))
+                    if (title.Length > i + 6 && isDigit(title.ElementAt(i + 6)))
                         episode = title.ElementAt(i + 4).ToString() + title.ElementAt(i + 5).ToString() +
                                   title.ElementAt(i + 6).ToString();
                     else
