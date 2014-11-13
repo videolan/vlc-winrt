@@ -57,7 +57,7 @@ void Player::InitializeVLC()
 
     void *addr = NULL;
     DWORD res;
-    while ((res = WaitForSingleObjectEx(&audioReg->m_audioClientReady, 1000, TRUE)) != WAIT_TIMEOUT) {
+    while ((res = WaitForSingleObjectEx(audioReg->m_audioClientReady, 1000, TRUE)) == WAIT_TIMEOUT) {
         OutputDebugStringW(L"Waiting for audio\n");
     }
     CloseHandle(audioReg->m_audioClientReady);
