@@ -27,7 +27,7 @@ HRESULT MMDeviceLocator::RegisterForWASAPI(){
     IActivateAudioInterfaceAsyncOperation *asyncOp;
 
     Platform::String^ id = MediaDevice::GetDefaultAudioRenderId(Windows::Media::Devices::AudioDeviceRole::Default);
-    hr = ActivateAudioInterfaceAsync(id->Data(), __uuidof(IAudioClient), nullptr, this, &asyncOp);
+    hr = ActivateAudioInterfaceAsync(id->Data(), __uuidof(IAudioClient2), nullptr, this, &asyncOp);
 
     SafeRelease(&asyncOp);
 
@@ -50,6 +50,16 @@ HRESULT MMDeviceLocator::ActivateCompleted(IActivateAudioInterfaceAsyncOperation
         }
         else
         {
+            AudioClientProperties props = AudioClientProperties{
+                sizeof(props),
+                FALSE,
+                AudioCategory_BackgroundCapableMedia,
+                AUDCLNT_STREAMOPTIONS_RAW
+            };
+            auto res = m_AudioClient->SetClientProperties(&props);
+            if (res != S_OK) {
+                OutputDebugString(TEXT("Failed to set audio client properties"));
+            }
             SetEvent(m_audioClientReady);
         }
     }
