@@ -25,7 +25,7 @@ namespace VLC_WINRT_APP.ViewModels
     {
         #region private props
         protected readonly IMediaService _mediaService;
-        protected VlcService _vlcPlayerService;
+        protected IVlcService _vlcPlayerService;
 
         protected bool _isPlaying;
         protected TimeSpan _timeTotal;
@@ -148,7 +148,7 @@ namespace VLC_WINRT_APP.ViewModels
             {
                 //#if WINDOWS_APP
                 if (_vlcPlayerService != null
-                    && _vlcPlayerService.CurrentState == VlcService.MediaPlayerState.Playing
+                    && _vlcPlayerService.CurrentState == VlcState.Playing
                     && TimeTotal != TimeSpan.Zero)
                 {
                     return _mediaService.GetPosition() * TimeTotal.TotalSeconds;
@@ -166,7 +166,7 @@ namespace VLC_WINRT_APP.ViewModels
             get
             {
                 //#if WINDOWS_APP
-                if (_vlcPlayerService != null && _vlcPlayerService.CurrentState == VlcService.MediaPlayerState.Playing)
+                if (_vlcPlayerService != null && _vlcPlayerService.CurrentState == VlcState.Playing)
                 //#endif
                 {
                     return _mediaService.GetPosition() * 1000;
@@ -185,7 +185,7 @@ namespace VLC_WINRT_APP.ViewModels
         #endregion
         #region constructors
 
-        protected MediaPlaybackViewModel(IMediaService mediaService, VlcService mediaPlayerService)
+        protected MediaPlaybackViewModel(IMediaService mediaService, IVlcService mediaPlayerService)
         {
             _mediaService = mediaService;
             _mediaService.StatusChanged += PlayerStateChanged;
@@ -279,11 +279,11 @@ namespace VLC_WINRT_APP.ViewModels
 
         #region Events
 
-        protected void PlayerStateChanged(object sender, VlcService.MediaPlayerState e)
+        protected void PlayerStateChanged(object sender, VlcState e)
         {
             App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
             {
-                IsPlaying = e == VlcService.MediaPlayerState.Playing;
+                IsPlaying = e == VlcState.Playing;
                 OnPropertyChanged("IsPlaying");
             });
         }

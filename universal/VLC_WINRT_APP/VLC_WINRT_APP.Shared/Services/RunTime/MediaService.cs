@@ -35,12 +35,12 @@ namespace VLC_WINRT_APP.Services.RunTime
 {
     public class MediaService : IMediaService
     {
-        private readonly VlcService _vlcService;
+        private readonly IVlcService _vlcService;
 
         private MediaElement _mediaElement;
 
         private SystemMediaTransportControls _systemMediaTransportControls;
-        public MediaService(VlcService vlcService)
+        public MediaService(IVlcService vlcService)
         {
             _vlcService = vlcService;
 
@@ -183,7 +183,7 @@ namespace VLC_WINRT_APP.Services.RunTime
         public void Play()
         {
             var position = GetPosition();
-            if (_vlcService.CurrentState == VlcService.MediaPlayerState.NotPlaying && !string.IsNullOrWhiteSpace(_lastMrl))
+            if (_vlcService.CurrentState == VlcState.NotPlaying && !string.IsNullOrWhiteSpace(_lastMrl))
             {
                 SetPosition(0);
                 SetMediaFile(_lastMrl, _isAudioMedia);
@@ -256,7 +256,7 @@ namespace VLC_WINRT_APP.Services.RunTime
             return _vlcService.GetVolume().Result;
         }
 
-        async void VlcPlayerService_MediaEnded(object sender, Player e)
+        async void VlcPlayerService_MediaEnded(object sender, object e)
         {
             await DispatchHelper.InvokeAsync(() =>
             {
@@ -269,22 +269,22 @@ namespace VLC_WINRT_APP.Services.RunTime
             });
         }
 
-        private void VlcPlayerService_StatusChanged(object sender, VlcService.MediaPlayerState state)
+        private void VlcPlayerService_StatusChanged(object sender, VlcState state)
         {
             try
             {
                 switch (state)
                 {
-                    case VlcService.MediaPlayerState.NotPlaying:
+                    case VlcState.NotPlaying:
                         _systemMediaTransportControls.PlaybackStatus = MediaPlaybackStatus.Closed;
                         break;
-                    case VlcService.MediaPlayerState.Paused:
+                    case VlcState.Paused:
                         _systemMediaTransportControls.PlaybackStatus = MediaPlaybackStatus.Paused;
                         break;
-                    case VlcService.MediaPlayerState.Playing:
+                    case VlcState.Playing:
                         _systemMediaTransportControls.PlaybackStatus = MediaPlaybackStatus.Playing;
                         break;
-                    case VlcService.MediaPlayerState.Stopped:
+                    case VlcState.Stopped:
                         _systemMediaTransportControls.PlaybackStatus = MediaPlaybackStatus.Stopped;
                         break;
                 }
@@ -350,21 +350,21 @@ namespace VLC_WINRT_APP.Services.RunTime
 
         public bool IsPlaying
         {
-            get { return _vlcService.CurrentState == VlcService.MediaPlayerState.Playing; }
+            get { return _vlcService.CurrentState == VlcState.Playing; }
         }
 
         public bool IsPlayingOrPaused
         {
             get
             {
-                return _vlcService.CurrentState == VlcService.MediaPlayerState.Playing ||
-                       _vlcService.CurrentState == VlcService.MediaPlayerState.Paused;
+                return _vlcService.CurrentState == VlcState.Playing ||
+                       _vlcService.CurrentState == VlcState.Paused;
             }
         }
         public bool IsBackground { get; private set; }
 
         public event EventHandler MediaEnded;
-        public event EventHandler<VlcService.MediaPlayerState> StatusChanged;
+        public event EventHandler<VlcState> StatusChanged;
 
     }
 }

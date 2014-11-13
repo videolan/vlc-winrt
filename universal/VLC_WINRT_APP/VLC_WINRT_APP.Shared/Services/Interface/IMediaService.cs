@@ -45,6 +45,6 @@ namespace VLC_WINRT_APP.Services.Interface
         void Trim();
 
         event EventHandler MediaEnded;
-        event EventHandler<VlcService.MediaPlayerState> StatusChanged;
+        event EventHandler<VlcState> StatusChanged;
     }
 }

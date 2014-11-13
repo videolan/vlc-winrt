@@ -162,7 +162,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
         #endregion
 
         #region constructors
-        public VideoPlayerVM(IMediaService mediaService, VlcService mediaPlayerService)
+        public VideoPlayerVM(IMediaService mediaService, IVlcService mediaPlayerService)
             : base(mediaService, mediaPlayerService)
         {
             _subtitlesTracks = new List<DictionaryKeyValue>();
@@ -268,7 +268,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             _mediaService.SetMediaTransportControlsInfo(CurrentVideo != null ? CurrentVideo.Title : "Video");
         }
 
-        private void VlcPlayerServiceOnMediaEnded(object sender, Player player)
+        private void VlcPlayerServiceOnMediaEnded(object sender, object e)
         {
             _vlcPlayerService.MediaEnded -= VlcPlayerServiceOnMediaEnded;
             App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>

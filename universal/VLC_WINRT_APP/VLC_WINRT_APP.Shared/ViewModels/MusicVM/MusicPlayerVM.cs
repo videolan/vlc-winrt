@@ -109,7 +109,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 
         #endregion
 
-        public MusicPlayerVM(IMediaService mediaService, VlcService mediaPlayerService)
+        public MusicPlayerVM(IMediaService mediaService, IVlcService mediaPlayerService)
             : base(mediaService, mediaPlayerService)
         {
             _mediaService.MediaEnded += MediaService_MediaEnded;

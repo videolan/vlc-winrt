@@ -175,6 +175,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Services\Interface\IMediaControl.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Interface\IMediaService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Interface\IThumbnailService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Interface\IVlcService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\Mocks\VlcServiceMock.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\ExternalDeviceService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\MediaService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\MouseService.cs" />

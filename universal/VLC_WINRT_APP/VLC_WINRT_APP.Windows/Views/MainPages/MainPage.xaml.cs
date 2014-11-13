@@ -25,8 +25,8 @@ namespace VLC_WINRT_APP.Views.MainPages
 {
     public sealed partial class MainPage : Page
     {
-        private readonly VlcService _vlcService;
-        public MainPage(VlcService vlcService, IMediaService mediaService)
+        private readonly IVlcService _vlcService;
+        public MainPage(IVlcService vlcService, IMediaService mediaService)
         {
             InitializeComponent();
             this.SizeChanged += OnSizeChanged;
