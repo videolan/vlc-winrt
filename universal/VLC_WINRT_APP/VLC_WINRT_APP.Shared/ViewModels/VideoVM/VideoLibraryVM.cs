@@ -187,8 +187,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             {
                 try
                 {
-                    IReadOnlyList<StorageFile> files =
-                        await GetMediaFromFolder(storageFolder, CommonFileQuery.OrderByName);
+                    IReadOnlyList<StorageFile> files = await GetMediaFromFolder(storageFolder);
 
                     foreach (StorageFile storageFile in files)
                     {
@@ -275,32 +274,38 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
 
         }
 
-
-        private static async Task<List<StorageFile>> GetMediaFromFolder(StorageFolder folder,
-                                                                            CommonFileQuery query)
+        private static async Task GetFilesFromSubFolders(StorageFolder folder, List<StorageFile> files)
         {
-            IReadOnlyList<StorageFile> files = null;
+            var items = await folder.GetItemsAsync();
+            foreach (IStorageItem storageItem in items)
+            {
+                if (storageItem.IsOfType(StorageItemTypes.Folder))
+                    await GetFilesFromSubFolders(storageItem as StorageFolder, files);
+                else if(storageItem.IsOfType(StorageItemTypes.File))
+                {
+                    var file = storageItem as StorageFile;
+                    if (VLCFileExtensions.VideoExtensions.Contains(file.FileType.ToLower()))
+                    {
+                        files.Add(file);
+                    }
+                }
+            }
+        }
+
+        private static async Task<List<StorageFile>> GetMediaFromFolder(StorageFolder folder)
+        {
+            var videoFiles = new List<StorageFile>();
             try
             {
-                // By giving a CommonFileQuery, we can search folders AND sub-folders.
-                // If we don't give it, it only gets the top level files.
-                files = await folder.GetFilesAsync(query);
+                await GetFilesFromSubFolders(folder, videoFiles);
+                return videoFiles;
             }
             catch (Exception ex)
             {
                 Debug.WriteLine("exception listing files");
                 Debug.WriteLine(ex.ToString());
             }
-            // DLNA folders don't support advanced file listings, us a basic file query
-            if (files == null)
-            {
-                StorageFileQueryResult fileQuery = folder.CreateFileQuery(CommonFileQuery.OrderByName);
-                files = await fileQuery.GetFilesAsync();
-            }
-            var videoFiles = new List<StorageFile>(files);
-
-            // Verify that the file format is a video
-            return videoFiles.Where(storageFile => VLCFileExtensions.VideoExtensions.Contains(storageFile.FileType.ToLower())).ToList();
+            return null;
         }
 
         public void ExecuteSemanticZoom(SemanticZoom sZ, CollectionViewSource cvs)
