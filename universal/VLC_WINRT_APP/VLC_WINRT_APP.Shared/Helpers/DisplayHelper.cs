@@ -7,7 +7,8 @@ namespace VLC_WINRT_APP.Helpers
     {
         public static bool IsPortrait()
         {
-            return DisplayProperties.CurrentOrientation != DisplayOrientations.Landscape && DisplayProperties.CurrentOrientation != DisplayOrientations.LandscapeFlipped;
+            return DisplayInformation.GetForCurrentView().CurrentOrientation != DisplayOrientations.Landscape &&
+                DisplayInformation.GetForCurrentView().CurrentOrientation != DisplayOrientations.LandscapeFlipped;
         }
     }
 }

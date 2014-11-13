@@ -25,10 +25,10 @@ namespace VLC_WINRT_APP.Views.MainPages
             (mediaService as MediaService).SetMediaTransportControls(SystemMediaTransportControls.GetForCurrentView());
             Loaded += SwapPanelLoaded;
             ApplicationView.GetForCurrentView().SetDesiredBoundsMode(ApplicationViewBoundsMode.UseCoreWindow);
-            DisplayProperties.OrientationChanged += DisplayPropertiesOnOrientationChanged;
+            DisplayInformation.GetForCurrentView().OrientationChanged += DisplayPropertiesOnOrientationChanged;
         }
 
-        private void DisplayPropertiesOnOrientationChanged(object sender)
+        private void DisplayPropertiesOnOrientationChanged(DisplayInformation info, object sender)
         {
             StatusBar sb = StatusBar.GetForCurrentView();
 

@@ -38,7 +38,7 @@ namespace VLC_WINRT_APP.Helpers
 
         private static double DipToPixel(double dip)
         {
-            return (dip * DisplayProperties.LogicalDpi) / 96.0;
+            return (dip * DisplayInformation.GetForCurrentView().LogicalDpi) / 96.0;
         }
     }
 }
