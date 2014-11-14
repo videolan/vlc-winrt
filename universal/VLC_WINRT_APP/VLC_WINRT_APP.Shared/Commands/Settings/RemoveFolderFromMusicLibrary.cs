@@ -13,8 +13,8 @@ namespace VLC_WINRT_APP.Commands.Settings
         {
 #if WINDOWS_APP
             var lib = await StorageLibrary.GetLibraryAsync(KnownLibraryId.Music);
-            lib.RequestRemoveFolderAsync(parameter as StorageFolder);
-            Locator.SettingsVM.GetLibrariesFolders();
+            await lib.RequestRemoveFolderAsync(parameter as StorageFolder);
+            await Locator.SettingsVM.GetLibrariesFolders();
 #endif
         }
     }

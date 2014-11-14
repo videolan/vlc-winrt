@@ -7,14 +7,14 @@ namespace VLC_WINRT_APP.Commands.Music
 {
     public class PlayTrackCollCommand : AlwaysExecutableCommand
     {
-        public override void Execute(object parameter)
+        public override async void Execute(object parameter)
         {
             TrackCollection trackCollection = null;
             if (parameter is TrackCollection)
             {
                 trackCollection = parameter as TrackCollection;
             }
-            PlayMusicHelper.AddTrackCollectionToPlaylist(trackCollection);
+            await PlayMusicHelper.AddTrackCollectionToPlaylist(trackCollection);
             if (App.ApplicationFrame.CurrentSourcePageType != typeof (MusicPlayerPage))
                 App.ApplicationFrame.Navigate(typeof (MusicPlayerPage));
         }

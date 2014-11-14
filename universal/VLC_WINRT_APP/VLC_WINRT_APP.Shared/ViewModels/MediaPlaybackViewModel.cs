@@ -280,9 +280,9 @@ namespace VLC_WINRT_APP.ViewModels
 
         #region Events
 
-        protected void PlayerStateChanged(object sender, VlcState e)
+        protected async void PlayerStateChanged(object sender, VlcState e)
         {
-            App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
             {
                 IsPlaying = e == VlcState.Playing;
                 OnPropertyChanged("IsPlaying");

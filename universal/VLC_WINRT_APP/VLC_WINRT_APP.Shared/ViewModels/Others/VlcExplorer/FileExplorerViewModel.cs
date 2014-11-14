@@ -114,7 +114,7 @@ namespace VLC_WINRT_APP.ViewModels.Others.VlcExplorer
             });
         }
 
-        public void NavigateTo(IStorageItem storageItem)
+        public async Task NavigateTo(IStorageItem storageItem)
         {
             if (storageItem is StorageFolder)
             {
@@ -125,14 +125,14 @@ namespace VLC_WINRT_APP.ViewModels.Others.VlcExplorer
             {
                 StorageFile file = storageItem as StorageFile;
                 Model.Video.VideoItem videoVm = new Model.Video.VideoItem();
-                videoVm.Initialize(file);
+                await videoVm.Initialize(file);
                 if (string.IsNullOrEmpty(videoVm.Token))
                 {
                     string token = StorageApplicationPermissions.FutureAccessList.Add(videoVm.File);
                     videoVm.Token = token;
                 }
                 Locator.VideoVm.CurrentVideo = videoVm;
-                Locator.VideoVm.SetActiveVideoInfo(videoVm.Token);
+                await Locator.VideoVm.SetActiveVideoInfo(videoVm.Token);
                 App.ApplicationFrame.Navigate(typeof(VideoPlayerPage));
             }
         }

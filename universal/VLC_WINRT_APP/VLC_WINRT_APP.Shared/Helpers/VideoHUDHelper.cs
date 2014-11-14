@@ -1,4 +1,5 @@
-﻿using Windows.UI.Core;
+﻿using System;
+using Windows.UI.Core;
 using Windows.UI.Xaml.Controls;
 using VLC_WINRT_APP.Views.VideoPages;
 
@@ -6,15 +7,15 @@ namespace VLC_WINRT_APP.Helpers
 {
     public static class VideoHUDHelper
     {
-        public static void ShowLittleTextWithFadeOut(string msg)
+        public static async void ShowLittleTextWithFadeOut(string msg)
         {
-            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
             {
                 if (App.ApplicationFrame.CurrentSourcePageType != typeof (VideoPlayerPage))
                     return;
-                ((App.ApplicationFrame.Content as VideoPlayerPage).Hud.Content as TextBlock).Text = msg;
-                (App.ApplicationFrame.Content as
-                    VideoPlayerPage).Hud.Show();
+                var page = App.ApplicationFrame.Content as VideoPlayerPage;
+                (page.Hud.Content as TextBlock).Text = msg;
+                await page.Hud.Show();
             });
         }
     }

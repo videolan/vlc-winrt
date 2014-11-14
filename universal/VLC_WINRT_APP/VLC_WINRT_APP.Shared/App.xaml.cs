@@ -127,7 +127,7 @@ namespace VLC_WINRT_APP
 
             try
             {
-                ExceptionHelper.ExceptionLogCheckup();
+                await ExceptionHelper.ExceptionLogCheckup();
             }
             catch { }
         }
@@ -175,9 +175,9 @@ namespace VLC_WINRT_APP
             await ManageOpeningFiles(args);
         }
 
-        private async Task ManageOpeningFiles(FileActivatedEventArgs args)
+        private Task ManageOpeningFiles(FileActivatedEventArgs args)
         {
-            OpenFile(args.Files[0] as StorageFile);
+            return OpenFile(args.Files[0] as StorageFile);
         }
 
         private async Task OpenFile(StorageFile file)
@@ -191,11 +191,11 @@ namespace VLC_WINRT_APP
             if (VLCFileExtensions.FileTypeHelper(file.FileType) ==
                 VLCFileExtensions.VLCFileType.Video)
             {
-                MediaService.PlayVideoFile(file as StorageFile);
+                await MediaService.PlayVideoFile(file as StorageFile);
             }
             else
             {
-                MediaService.PlayAudioFile(file as StorageFile);
+                await MediaService.PlayAudioFile(file as StorageFile);
             }
         }
 

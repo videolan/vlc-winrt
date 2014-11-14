@@ -12,16 +12,16 @@ namespace VLC_WINRT_APP.Views.MainPages.MainMusicControls
             this.InitializeComponent();
         }
 
-        private void RadDataGrid_OnGoingTopOrBottom(IScrollWatchedSelector lv, EventArgs eventArgs)
+        private async void RadDataGrid_OnGoingTopOrBottom(IScrollWatchedSelector lv, EventArgs eventArgs)
         {
             var e = eventArgs as ScrollingEventArgs;
             if (e.ScrollingType == ScrollingType.ToBottom)
             {
-                Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => FadeOutHeader.Begin());
+                await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => FadeOutHeader.Begin());
             }
             else if (e.ScrollingType == ScrollingType.ToTop)
             {
-                Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => FadeInHeader.Begin());
+                await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => FadeInHeader.Begin());
             }
         }
     }

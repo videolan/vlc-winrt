@@ -21,14 +21,14 @@ namespace VLC_WINRT_APP.Commands
 {
     public class PlayNetworkMRLCommand : AlwaysExecutableCommand
     {
-        public override void Execute(object parameter)
+        public override async void Execute(object parameter)
         {
             var mrl = parameter as string;
             if (string.IsNullOrEmpty(mrl))
                 throw new ArgumentException("Expecting to see a string mrl for this command");
 
             //TODO: pass MRL to vlc
-            Locator.VideoVm.SetActiveVideoInfo(mrl, true);
+            await Locator.VideoVm.SetActiveVideoInfo(mrl, true);
             #if WINDOWS_APP
             App.ApplicationFrame.Navigate(typeof(VideoPlayerPage));
             #endif

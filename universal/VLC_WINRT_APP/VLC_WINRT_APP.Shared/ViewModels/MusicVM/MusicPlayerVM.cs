@@ -181,7 +181,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             Stop();
             if (CurrentTrack == null) return;
             var trackItem = CurrentTrack;
-            Task.Run(async () =>
+            var _ = Task.Run(async () =>
             {
                 StorageFile file;
                 if (fileFromExplorer == null)
@@ -194,7 +194,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                 }
                 string token = StorageApplicationPermissions.FutureAccessList.Add(file);
                 Debug.WriteLine("Opening file: " + file.Path);
-                SetActiveMusicInfo(token, trackItem);
+                await SetActiveMusicInfo(token, trackItem);
             });
 
             // Setting the info for windows 8 controls
@@ -203,7 +203,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             string albumName = trackItem.AlbumName;
             string trackName = trackItem.Name ?? resourceLoader.GetString("UnknownTrack");
 
-            base._mediaService.SetMediaTransportControlsInfo(artistName, albumName, trackName, Locator.MusicPlayerVM.CurrentAlbum.Picture ?? null);
+            await base._mediaService.SetMediaTransportControlsInfo(artistName, albumName, trackName, Locator.MusicPlayerVM.CurrentAlbum.Picture ?? null);
 
             var notificationOnNewSong = ApplicationSettingsHelper.ReadSettingsValue("NotificationOnNewSong");
             if (notificationOnNewSong != null && (bool)notificationOnNewSong)

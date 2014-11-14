@@ -62,9 +62,9 @@ namespace VLC_WINRT_APP.Services.RunTime
             _systemMediaTransportControls.IsEnabled = false;
         }
 
-        public void SetMediaTransportControlsInfo(string artistName, string albumName, string trackName, string albumUri)
+        public async Task SetMediaTransportControlsInfo(string artistName, string albumName, string trackName, string albumUri)
         {
-            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
             {
                 SystemMediaTransportControlsDisplayUpdater updater = _systemMediaTransportControls.DisplayUpdater;
                 updater.Type = MediaPlaybackType.Music;
@@ -92,9 +92,9 @@ namespace VLC_WINRT_APP.Services.RunTime
             });
         }
 
-        public void SetMediaTransportControlsInfo(string title)
+        public async Task SetMediaTransportControlsInfo(string title)
         {
-            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 SystemMediaTransportControlsDisplayUpdater updater = _systemMediaTransportControls.DisplayUpdater;
                 updater.Type = MediaPlaybackType.Video;
@@ -159,7 +159,7 @@ namespace VLC_WINRT_APP.Services.RunTime
         {
             App.ApplicationFrame.Navigate(typeof(VideoPlayerPage));
             VideoItem videoVm = new VideoItem();
-            videoVm.Initialize(file);
+            await videoVm.Initialize(file);
             if (string.IsNullOrEmpty(videoVm.Token))
             {
                 string token = StorageApplicationPermissions.FutureAccessList.Add(videoVm.File);
@@ -167,7 +167,7 @@ namespace VLC_WINRT_APP.Services.RunTime
             }
             Locator.VideoVm.CurrentVideo = videoVm;
             await Task.Delay(1000);
-            Locator.VideoVm.SetActiveVideoInfo(videoVm.Token);
+            await Locator.VideoVm.SetActiveVideoInfo(videoVm.Token);
         }
 
         private string _lastMrl;
@@ -312,7 +312,7 @@ namespace VLC_WINRT_APP.Services.RunTime
                     if (!(bool)ApplicationSettingsHelper.ReadSettingsValue("ContinueVideoPlaybackInBackground"))
                         _vlcService.Pause();
 
-                    Locator.VideoVm._lastVideosRepository.Update(Locator.VideoVm.CurrentVideo);
+                    await Locator.VideoVm._lastVideosRepository.Update(Locator.VideoVm.CurrentVideo);
                 }
 
                 // Otherwise, set the MediaElement's source to the Audio File in question,

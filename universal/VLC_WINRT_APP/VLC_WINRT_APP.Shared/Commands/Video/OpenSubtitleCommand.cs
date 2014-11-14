@@ -23,6 +23,7 @@ namespace VLC_WINRT_APP.Commands.Video
     {
         public async override void Execute(object parameter)
         {
+            String error;
             try
             {
                 var picker = new FileOpenPicker
@@ -45,11 +46,14 @@ namespace VLC_WINRT_APP.Commands.Video
                 {
                     Debug.WriteLine("Cancelled Opening subtitle");
                 }
+                return;
             }
             catch(Exception exception)
             {
-                new MessageDialog(exception.ToString()).ShowAsync();
+                error = exception.ToString();
             }
+            var dialog = new MessageDialog(error);
+            await dialog.ShowAsync();
         }
     }
 }

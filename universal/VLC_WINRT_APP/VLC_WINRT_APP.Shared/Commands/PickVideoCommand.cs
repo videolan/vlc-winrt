@@ -48,13 +48,13 @@ namespace VLC_WINRT_APP.Commands
                 picker.FileTypeFilter.Add(videoExtension);
             }
 
-            StorageFile file = null;
 #if WINDOWS_APP
+            StorageFile file = null;
             file = await picker.PickSingleFileAsync();
             if (file != null)
             {
                 Debug.WriteLine("Opening file: " + file.Path);
-                MediaService.PlayVideoFile(file);
+                await MediaService.PlayVideoFile(file);
             }
             else
             {

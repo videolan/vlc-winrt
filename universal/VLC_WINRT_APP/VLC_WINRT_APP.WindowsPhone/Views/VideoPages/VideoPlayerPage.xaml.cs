@@ -72,7 +72,7 @@ namespace VLC_WINRT_APP.Views.VideoPages
             Responsive();
         }
 
-        protected override void OnNavigatedTo(Windows.UI.Xaml.Navigation.NavigationEventArgs e)
+        protected override async void OnNavigatedTo(Windows.UI.Xaml.Navigation.NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
 
@@ -86,17 +86,17 @@ namespace VLC_WINRT_APP.Views.VideoPages
 #if WINDOWS_PHONE_APP
             HardwareButtons.BackPressed += HardwareButtonsOnBackPressed;
             StatusBar sB = StatusBar.GetForCurrentView();
-            sB.HideAsync();
+            await sB.HideAsync();
 #endif
         }
 
 #if WINDOWS_PHONE_APP
-        private void HardwareButtonsOnBackPressed(object sender, BackPressedEventArgs backPressedEventArgs)
+        private async void HardwareButtonsOnBackPressed(object sender, BackPressedEventArgs backPressedEventArgs)
         {
             backPressedEventArgs.Handled = true;
             if (isVisible)
             {
-                DisplayOrHide();
+                await DisplayOrHide();
             }
             else
             {
@@ -105,7 +105,7 @@ namespace VLC_WINRT_APP.Views.VideoPages
             }
         }
 #endif
-        protected override void OnNavigatingFrom(Windows.UI.Xaml.Navigation.NavigatingCancelEventArgs e)
+        protected override async void OnNavigatingFrom(Windows.UI.Xaml.Navigation.NavigatingCancelEventArgs e)
         {
             base.OnNavigatingFrom(e);
             Window.Current.Content.RemoveHandler(KeyDownEvent, new KeyEventHandler(KeyPressedDown));
@@ -113,7 +113,7 @@ namespace VLC_WINRT_APP.Views.VideoPages
 #if WINDOWS_PHONE_APP
             HardwareButtons.BackPressed -= HardwareButtonsOnBackPressed;
             StatusBar sB = StatusBar.GetForCurrentView();
-            sB.ShowAsync();
+            await sB.ShowAsync();
 #endif
         }
 
@@ -128,40 +128,43 @@ namespace VLC_WINRT_APP.Views.VideoPages
 
 
 
-        private void VideoGrid_Tapped(object sender, TappedRoutedEventArgs e)
+        private async void VideoGrid_Tapped(object sender, TappedRoutedEventArgs e)
         {
             if (!needDoubleTapToAct)
-                DisplayOrHide();
+                await DisplayOrHide();
         }
 
-        private void VideoGrid_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
+        private async void VideoGrid_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
         {
-            DisplayOrHide();
+            await DisplayOrHide();
         }
 
-        private void TimerOnTick(object sender, object o)
+        private async void TimerOnTick(object sender, object o)
         {
-            DisplayOrHide();
+            await DisplayOrHide();
         }
 
         async Task DisplayOrHide()
         {
             if (timer == null)
                 timer = new DispatcherTimer();
+            Task t1;
+            Task t2;
             if (isVisible)
             {
-                ControlsGrid.FadeOut(_fadeDuration);
-                FooterGrid.FadeOut(_fadeDuration);
+                t1 = ControlsGrid.FadeOut(_fadeDuration);
+                t2 = FooterGrid.FadeOut(_fadeDuration);
                 FooterGrid.IsHitTestVisible = false;
                 timer.Stop();
             }
             else
             {
-                FooterGrid.FadeIn(_fadeDuration);
+                t1 = FooterGrid.FadeIn(_fadeDuration);
+                t2 = ControlsGrid.FadeIn(_fadeDuration);
                 FooterGrid.IsHitTestVisible = true;
-                ControlsGrid.FadeIn(_fadeDuration);
                 timer.Start();
             }
+            await Task.WhenAll(t1, t2);
             isVisible = !isVisible;
         }
 

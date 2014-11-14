@@ -40,10 +40,10 @@ namespace VLC_WINRT_APP.Views.VariousPages
             }
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            Locator.SettingsVM.Initialize();
+            await Locator.SettingsVM.Initialize();
         }
 
         private void VideoFolder_Tapped(object sender, TappedRoutedEventArgs e)

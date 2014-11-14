@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.System;
 using Windows.UI.Notifications;
@@ -11,7 +12,7 @@ namespace VLC_WINRT_APP.Helpers
 {
     public static class ExceptionHelper
     {
-        public static void ExceptionLogCheckup() 
+        public static async Task ExceptionLogCheckup() 
         {
             if (ApplicationSettingsHelper.Contains("ExceptionLog"))
             {
@@ -26,10 +27,10 @@ namespace VLC_WINRT_APP.Helpers
                                 ApplicationSettingsHelper.ReadResetSettingsValue("ExceptionLog").ToString());
                     await Launcher.LaunchUriAsync(uri);
                 }));
-                dialog.Commands.Add(new UICommand("Non", async command =>
+                dialog.Commands.Add(new UICommand("Non", command =>
                 {
                 }));
-                dialog.ShowAsync();
+                await dialog.ShowAsync();
             }
         }
 

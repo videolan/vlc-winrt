@@ -179,6 +179,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
         #endregion
 
         #region methods
+
         protected override void OnPlaybackStarting()
         {
 #if WINDOWS_APP
@@ -265,7 +266,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             if (_subtitlesTracks.Count > 1)
                 CurrentSubtitle = _subtitlesTracks[0];
             _vlcPlayerService.MediaEnded += VlcPlayerServiceOnMediaEnded;
-            _mediaService.SetMediaTransportControlsInfo(CurrentVideo != null ? CurrentVideo.Title : "Video");
+            await _mediaService.SetMediaTransportControlsInfo(CurrentVideo != null ? CurrentVideo.Title : "Video");
         }
 
         private async void VlcPlayerServiceOnMediaEnded(object sender, object e)

@@ -19,7 +19,7 @@ namespace VLC_WINRT_APP.Commands.MediaPlayback
             if (Locator.MusicPlayerVM.IsPlaying)
             {
                 // Music Logic
-                Locator.MusicPlayerVM.PlayPrevious();
+                await Locator.MusicPlayerVM.PlayPrevious();
             }
             else
             {

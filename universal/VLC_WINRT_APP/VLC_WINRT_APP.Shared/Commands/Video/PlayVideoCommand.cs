@@ -9,7 +9,7 @@ namespace VLC_WINRT_APP.Commands.Video
 {
     public class PlayVideoCommand : AlwaysExecutableCommand
     {
-        public override void Execute(object parameter)
+        public override async void Execute(object parameter)
         {
             if (Locator.MusicPlayerVM.TrackCollection.IsRunning)
             {
@@ -31,7 +31,7 @@ namespace VLC_WINRT_APP.Commands.Video
             {
                 videoVm = parameter as VideoItem;
             }
-            videoVm.Play();
+            await videoVm.Play();
         }
     }
 }

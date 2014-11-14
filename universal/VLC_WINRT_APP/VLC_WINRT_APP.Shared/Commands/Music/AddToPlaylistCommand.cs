@@ -6,15 +6,15 @@ namespace VLC_WINRT_APP.Commands.Music
 {
     public class AddToPlaylistCommand : AlwaysExecutableCommand
     {
-        public override void Execute(object parameter)
+        public override async void Execute(object parameter)
         {
             if (parameter is TrackItem)
             {
-                MusicLibraryManagement.AddToPlaylist(parameter as TrackItem);
+                await MusicLibraryManagement.AddToPlaylist(parameter as TrackItem);
             }
             else if (parameter is AlbumItem)
             {
-                MusicLibraryManagement.AddToPlaylist(parameter as AlbumItem);
+                await MusicLibraryManagement.AddToPlaylist(parameter as AlbumItem);
             }
         }
     }

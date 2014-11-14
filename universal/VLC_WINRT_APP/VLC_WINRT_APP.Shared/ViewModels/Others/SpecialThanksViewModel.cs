@@ -17,7 +17,7 @@ namespace VLC_WINRT_APP.ViewModels.RemovableDevicesVM
 
         public SpecialThanksViewModel()
         {
-            ThreadPool.RunAsync(async aa =>
+            var _ = ThreadPool.RunAsync(async aa =>
             {
                 List<Backer> backers = await ParseBackers();
                 var backerDictionary = new SortedDictionary<string, List<string>>();

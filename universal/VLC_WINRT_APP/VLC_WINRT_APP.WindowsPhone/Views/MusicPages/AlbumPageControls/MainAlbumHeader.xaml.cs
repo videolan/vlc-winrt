@@ -1,4 +1,5 @@
-﻿using Windows.UI.Core;
+﻿using System;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using WinRTXamlToolkit.Controls.Extensions;
@@ -28,7 +29,7 @@ namespace VLC_WINRT_APP.Views.MusicPages.AlbumPageControls
             {
                 isminimized = true;
                 AlbumsCommandRowDefinition.Height = new GridLength(0, GridUnitType.Pixel);
-                AlbumCommandsPanel.FadeOut();
+                await AlbumCommandsPanel.FadeOut();
             }
             else if (this.ActualHeight > 170 && isminimized)
             {
@@ -37,7 +38,7 @@ namespace VLC_WINRT_APP.Views.MusicPages.AlbumPageControls
             }
             else if (this.ActualHeight == originalHeight)
             {
-                AlbumCommandsPanel.FadeIn();
+                await AlbumCommandsPanel.FadeIn();
             }
         }
 
@@ -46,11 +47,11 @@ namespace VLC_WINRT_APP.Views.MusicPages.AlbumPageControls
             this.SizeChanged -= OnSizeChanged;
         }
 
-        private void SwypeRightToLeft_Button_Click(object sender, RoutedEventArgs e)
+        private async void SwypeRightToLeft_Button_Click(object sender, RoutedEventArgs e)
         {
             var albumPage = App.ApplicationFrame.Content as AlbumPage;
             if (albumPage != null)
-                Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => albumPage.HeaderFlipView.SelectedIndex = 1);
+                await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => albumPage.HeaderFlipView.SelectedIndex = 1);
         }
     }
 }

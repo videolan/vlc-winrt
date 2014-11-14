@@ -11,9 +11,9 @@ namespace VLC_WINRT_APP.Views.MusicPages
             this.InitializeComponent();
         }
 
-        private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        private async void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
-            MusicLibraryManagement.AddNewPlaylist(playlistName.Text);
+            await MusicLibraryManagement.AddNewPlaylist(playlistName.Text);
         }
 
         private void ContentDialog_SecondaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)

@@ -210,7 +210,7 @@ namespace VLC_WINRT_APP.Model.Video
             }
             catch (Exception)
             {
-                throw new Exception("File not found");
+                throw;
             }
         }
         #endregion

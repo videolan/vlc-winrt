@@ -19,7 +19,7 @@ namespace VLC_WINRT_APP.Helpers.VideoPlayer
             if (App.ApplicationFrame.CurrentSourcePageType != typeof (VideoPlayerPage))
                 App.ApplicationFrame.Navigate(typeof (VideoPlayerPage));
             Locator.VideoVm.CurrentVideo = videoVm;
-            Locator.VideoVm.SetActiveVideoInfo(videoVm.Token);
+            await Locator.VideoVm.SetActiveVideoInfo(videoVm.Token);
         }
     }
 }

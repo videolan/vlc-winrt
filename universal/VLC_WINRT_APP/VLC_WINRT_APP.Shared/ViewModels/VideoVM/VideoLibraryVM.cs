@@ -139,10 +139,10 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             //Panels.Add(new Panel("favorite", 2, 0.4));
 #endif
         }
-        public void Initialize()
+        public Task Initialize()
         {
             LoadingState = LoadingState.Loading;
-            Task.Run(() => ThreadPool.RunAsync(operation => GetViewedVideos()));
+            return GetViewedVideos();
         }
         #endregion
 
@@ -198,7 +198,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
                         bool isTvShow = showInfoDictionary != null && showInfoDictionary.Count > 0;
 
                         VideoItem mediaVM = !isTvShow ? new VideoItem() : new VideoItem(showInfoDictionary["season"], showInfoDictionary["episode"]);
-                        mediaVM.Initialize(storageFile);
+                        await mediaVM.Initialize(storageFile);
                         if (string.IsNullOrEmpty(mediaVM.Title))
                             continue;
                         VideoItem searchVideo = ViewedVideos.FirstOrDefault(x => x.Title == mediaVM.Title);
@@ -212,7 +212,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
 #if WINDOWS_APP
                             if (Panels.Count == 1)
                             {
-                                App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                                     Panels.Add(new Panel(resourceLoader.GetString("Shows"), 1, 0.4, null)));
                             }
 #endif

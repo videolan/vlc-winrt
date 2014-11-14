@@ -365,7 +365,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 
             await LoadFromDatabase();
 
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
             {
                 IsBusy = false;
                 IsLoaded = true;
@@ -378,7 +378,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                 LoadingState = LoadingState.Loaded;
 #if WINDOWS_PHONE_APP
                 StatusBar statusBar = StatusBar.GetForCurrentView();
-                statusBar.ProgressIndicator.HideAsync();
+                await statusBar.ProgressIndicator.HideAsync();
 #endif
             });
             await GetFavoriteAndRandomAlbums();
