@@ -306,7 +306,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         public async Task GetFavoriteAndRandomAlbums()
         {
             await MusicLibraryManagement.LoadFavoriteRandomAlbums();
-            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 OnPropertyChanged("RandomAlbums");
                 OnPropertyChanged("FavoriteAlbums");
@@ -316,17 +316,17 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         public async Task GetMusicFromLibrary()
         {
             await LoadFromDatabase();
-            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
             {
                 Albums = await _albumDataRepository.LoadAlbums(x => x.ArtistId != 0);
             });
-            App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => IsMusicLibraryEmpty = false);
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => IsMusicLibraryEmpty = false);
             if (!Artists.Any())
             {
                 await StartIndexing();
                 return;
             }
-            App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
             {
                 LoadingState = LoadingState.Loaded;
                 IsLoaded = true;
@@ -343,7 +343,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                 _albumDataRepository.Drop();
             }
 
-            DispatchHelper.InvokeAsync(() =>
+            await DispatchHelper.InvokeAsync(async () =>
             {
                 CurrentIndexingStatus = "Searching for music";
                 IsBusy = true;
@@ -352,7 +352,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                 OnPropertyChanged("IsLoaded");
 #if WINDOWS_PHONE_APP
                 StatusBar statusBar = StatusBar.GetForCurrentView();
-                statusBar.ProgressIndicator.ShowAsync();
+                await statusBar.ProgressIndicator.ShowAsync();
                 statusBar.ProgressIndicator.Text = "Indexing music library";
 #endif
             });
@@ -365,7 +365,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 
             await LoadFromDatabase();
 
-            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 IsBusy = false;
                 IsLoaded = true;
@@ -381,19 +381,19 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                 statusBar.ProgressIndicator.HideAsync();
 #endif
             });
-            GetFavoriteAndRandomAlbums();
+            await GetFavoriteAndRandomAlbums();
         }
 
 
         private async Task LoadFromDatabase()
         {
-            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 Artists.Clear();
                 Tracks.Clear();
             });
             await MusicLibraryManagement.LoadFromSQL();
-            DispatchHelper.InvokeAsync(() =>
+            await DispatchHelper.InvokeAsync(() =>
             {
                 IsMusicLibraryEmpty = !Artists.Any();
                 OnPropertyChanged("IsMusicLibraryEmpty");

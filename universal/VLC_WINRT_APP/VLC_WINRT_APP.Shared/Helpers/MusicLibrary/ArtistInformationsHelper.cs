@@ -189,7 +189,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             string supposedPictureUriLocal = appDataFolder.Path + "\\albumPic\\" + album.Id + "_" + "dPi" + ".jpg";
             if (await NativeOperationsHelper.FileExist(supposedPictureUriLocal))
             {
-                DispatchHelper.InvokeAsync(() =>
+                await DispatchHelper.InvokeAsync(() =>
                 {
                     album.Picture = supposedPictureUriLocal;
                 });
@@ -229,7 +229,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                 Debug.WriteLine("Receive TopAlbums from LastFM API");
                 if (albums != null)
                 {
-                    App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                     {
                         artist.OnlinePopularAlbumItems = albums;
                         artist.IsOnlinePopularAlbumItemsLoaded = true;
@@ -250,7 +250,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                 var similarArtists = await lastFmClient.GetSimilarArtists(artist.Name);
                 if (similarArtists != null)
                 {
-                    App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                     {
                         artist.OnlineRelatedArtists = similarArtists;
                         artist.IsOnlineRelatedArtistsLoaded = true;
@@ -276,7 +276,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             {
                 Debug.WriteLine("Failed to get artist biography from LastFM. Returning nothing.");
             }
-            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, ()=> artist.Biography = System.Net.WebUtility.HtmlDecode(biography));
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, ()=> artist.Biography = System.Net.WebUtility.HtmlDecode(biography));
         }
 
         public static async Task<bool> SaveAlbumImageAsync(AlbumItem album, byte[] img)

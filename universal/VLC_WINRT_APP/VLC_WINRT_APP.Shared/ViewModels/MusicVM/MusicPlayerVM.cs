@@ -123,12 +123,12 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                 !TrackCollection.CanGoNext)
             {
                 // Playlist is finished
-                App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => TrackCollection.IsRunning = false);
+                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => TrackCollection.IsRunning = false);
             }
             else
             {
                 base.PositionInSeconds = 0;
-                PlayNext();
+                await PlayNext();
             }
         }
 
@@ -151,10 +151,10 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         {
             if (TrackCollection.CanGoNext)
             {
-                App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
                 {
                     TrackCollection.CurrentTrack++;
-                    Play();
+                    await Play();
                 });
             }
             else
@@ -217,7 +217,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             await Task.Delay(250);
         }
 
-        public async void SetActiveMusicInfo(string token, TrackItem track)
+        public async Task SetActiveMusicInfo(string token, TrackItem track)
         {
             _fileToken = token;
             _mrl = "file://" + token;
@@ -228,7 +228,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             UpdateTileHelper.UpdateMediumTileWithMusicInfo();
 //#endif
 
-            App.Dispatcher.RunAsync(CoreDispatcherPriority.High, async () =>
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.High, async () =>
             {
                 TrackCollection.IsRunning = true;
                 OnPropertyChanged("TrackCollection");

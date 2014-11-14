@@ -254,13 +254,13 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             }
             if (Videos.Count > 0)
             {
-                DispatchHelper.InvokeAsync(() => HasNoMedia = false);
+                await DispatchHelper.InvokeAsync(() => HasNoMedia = false);
             }
             else
             {
-                DispatchHelper.InvokeAsync(() => HasNoMedia = true);
+                await DispatchHelper.InvokeAsync(() => HasNoMedia = true);
             }
-            App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
             {
 
                 //if (NewVideos.Any())

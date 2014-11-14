@@ -107,7 +107,7 @@ namespace VLC_WINRT_APP.Services.RunTime
             });
         }
 
-        private void SystemMediaTransportControlsOnButtonPressed(SystemMediaTransportControls sender, SystemMediaTransportControlsButtonPressedEventArgs args)
+        private async void SystemMediaTransportControlsOnButtonPressed(SystemMediaTransportControls sender, SystemMediaTransportControlsButtonPressedEventArgs args)
         {
             switch (args.Button)
             {
@@ -122,13 +122,13 @@ namespace VLC_WINRT_APP.Services.RunTime
                     break;
                 case SystemMediaTransportControlsButton.Previous:
                     if (Locator.MusicPlayerVM.PlayingType == PlayingType.Music)
-                        Locator.MusicPlayerVM.PlayPrevious();
+                        await Locator.MusicPlayerVM.PlayPrevious();
                     else
                         Locator.VideoVm.SkipBack.Execute("");
                     break;
                 case SystemMediaTransportControlsButton.Next:
                     if (Locator.MusicPlayerVM.PlayingType == PlayingType.Music)
-                        Locator.MusicPlayerVM.PlayNext();
+                        await Locator.MusicPlayerVM.PlayNext();
                     else
                         Locator.VideoVm.SkipAhead.Execute("");
                     break;

@@ -7,6 +7,7 @@ using Windows.UI.Xaml.Navigation;
 using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.Services.Interface;
 using VLC_WINRT_APP.Services.RunTime;
+using System;
 
 namespace VLC_WINRT_APP.Views.MainPages
 {
@@ -28,7 +29,7 @@ namespace VLC_WINRT_APP.Views.MainPages
             DisplayInformation.GetForCurrentView().OrientationChanged += DisplayPropertiesOnOrientationChanged;
         }
 
-        private void DisplayPropertiesOnOrientationChanged(DisplayInformation info, object sender)
+        private async void DisplayPropertiesOnOrientationChanged(DisplayInformation info, object sender)
         {
             StatusBar sb = StatusBar.GetForCurrentView();
 
@@ -36,12 +37,12 @@ namespace VLC_WINRT_APP.Views.MainPages
             
             if (DisplayHelper.IsPortrait())
             {
-                sb.ShowAsync();
+                await sb.ShowAsync();
                 appView.SuppressSystemOverlays = false;
             }
             else
             {
-                sb.HideAsync();
+                await sb.HideAsync();
                 appView.SuppressSystemOverlays = true;
             }
         }

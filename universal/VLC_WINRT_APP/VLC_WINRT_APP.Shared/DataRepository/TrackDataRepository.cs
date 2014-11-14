@@ -90,7 +90,7 @@ namespace VLC_WINRT_APP.DataRepository
             var query = connection.Table<TrackItem>().Where(x => x.Path == track.Path);
             var result = await query.ToListAsync();
             if(result.Count == 0)
-                connection.InsertAsync(track);
+                await connection.InsertAsync(track);
         }
 
         public async Task Remove(string folderPath)

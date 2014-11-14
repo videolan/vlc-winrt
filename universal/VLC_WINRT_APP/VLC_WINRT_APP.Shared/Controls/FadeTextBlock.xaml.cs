@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -18,12 +19,12 @@ namespace VLC_WINRT_APP.Controls
         {
             Timer = new DispatcherTimer();
             Timer.Interval = new TimeSpan(0, 0, 0, 5);
-            Timer.Tick += (sender, o) => Hide();
+            Timer.Tick += async (sender, o) => await Hide();
         }
 
-        public void Show()
+        public async Task Show()
         {
-            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 this.FadeIn();
                 if (Timer == null || !Timer.IsEnabled)
@@ -34,9 +35,9 @@ namespace VLC_WINRT_APP.Controls
             });
         }
 
-        void Hide()
+        async Task Hide()
         {
-            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 this.FadeOut();
                 Timer.Stop();

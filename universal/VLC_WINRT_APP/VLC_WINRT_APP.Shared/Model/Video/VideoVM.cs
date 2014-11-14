@@ -178,13 +178,13 @@ namespace VLC_WINRT_APP.Model.Video
             Episode = int.Parse(episode);
         }
 
-        public void Initialize(StorageFile storageFile)
+        public async Task Initialize(StorageFile storageFile)
         {
             if (storageFile != null)
             {
                 if (Image == null)
                 {
-                    App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                     {
                         var img = new BitmapImage(new Uri("ms-appx:/Assets/NoCoverWide.jpg", UriKind.RelativeOrAbsolute));
                         Image = img;
@@ -197,7 +197,7 @@ namespace VLC_WINRT_APP.Model.Video
                 Type = storageFile.FileType.Replace(".", "").ToLower();
                 Token = StorageApplicationPermissions.FutureAccessList.Add(File);
                 FilePath = storageFile.Path;
-                GetTimeInformation();
+                await GetTimeInformation();
             }
         }
 
@@ -206,7 +206,7 @@ namespace VLC_WINRT_APP.Model.Video
             try
             {
                 StorageFile file = await StorageFile.GetFileFromPathAsync(FilePath);
-                Initialize(file);
+                await Initialize(file);
             }
             catch (Exception)
             {
@@ -216,7 +216,7 @@ namespace VLC_WINRT_APP.Model.Video
         #endregion
 
         #region methods
-        private async void GenerateThumbnail()
+        private async Task GenerateThumbnail()
         {
             try
             {
@@ -240,7 +240,7 @@ namespace VLC_WINRT_APP.Model.Video
                     if (videoPicFile != null)
                     {
                         IRandomAccessStream stream = await videoPicFile.OpenReadAsync();
-                        App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+                        await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
                         {
                             var img = new BitmapImage();
                             img.SetSource(stream);
@@ -250,7 +250,7 @@ namespace VLC_WINRT_APP.Model.Video
                     else
                     {
                         WriteableBitmap thumb = await _thumbsService.GetScreenshot(File);
-                        App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+                        await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
                         {
                             Image = thumb;
                             thumb.SaveToFile(videoPic, Title + ".jpg");
@@ -261,12 +261,12 @@ namespace VLC_WINRT_APP.Model.Video
                 else
                 {
                     StorageItemThumbnail thumb = await _thumbsService.GetThumbnail(File);
-                    App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, async () =>
                     {
                         var image = new BitmapImage();
                         if (thumb != null)
                         {
-                            image.SetSourceAsync(thumb);
+                            await image.SetSourceAsync(thumb);
                             Image = image;
                         }
                     });

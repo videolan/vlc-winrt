@@ -268,10 +268,10 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             _mediaService.SetMediaTransportControlsInfo(CurrentVideo != null ? CurrentVideo.Title : "Video");
         }
 
-        private void VlcPlayerServiceOnMediaEnded(object sender, object e)
+        private async void VlcPlayerServiceOnMediaEnded(object sender, object e)
         {
             _vlcPlayerService.MediaEnded -= VlcPlayerServiceOnMediaEnded;
-            App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
             {
                 App.ApplicationFrame.Navigate(typeof(MainPageVideos));
                 Locator.VideoVm.IsRunning = false;

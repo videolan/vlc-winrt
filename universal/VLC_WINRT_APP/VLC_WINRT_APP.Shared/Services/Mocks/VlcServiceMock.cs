@@ -176,7 +176,7 @@ namespace VLC_WINRT_APP.Services.Mocks
             //DispatchHelper.Invoke(() =>
             //{
             //#if WINDOWS_APP
-            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 App.RootPage.MediaElement.SetSource(
                     stream, file.ContentType);

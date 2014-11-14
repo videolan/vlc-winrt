@@ -89,7 +89,7 @@ namespace VLC_WINRT_APP.Model.Music
                 Debug.WriteLine("Error getting artist picture : " + _name);
             }
             _isPictureLoaded = true;
-            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 OnPropertyChanged("Picture");
             });

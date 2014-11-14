@@ -52,16 +52,16 @@ namespace VLC_WINRT_APP.Views.MusicPages
             }
         }
 
-        private void ScrollWatchedListView_OnGoingTopOrBottom(IScrollWatchedSelector lv, EventArgs eventArgs)
+        private async void ScrollWatchedListView_OnGoingTopOrBottom(IScrollWatchedSelector lv, EventArgs eventArgs)
         {
             var e = eventArgs as ScrollingEventArgs;
             if (e.ScrollingType == ScrollingType.ToBottom)
             {
-                Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => FadeOutHeader.Begin());
+                await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => FadeOutHeader.Begin());
             }
             else if (e.ScrollingType == ScrollingType.ToTop)
             {
-                Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => ToNormalHeader.Begin());
+                await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => ToNormalHeader.Begin());
             }
         }
     }
