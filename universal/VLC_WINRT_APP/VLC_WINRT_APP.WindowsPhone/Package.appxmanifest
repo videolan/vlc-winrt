@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest" xmlns:m3="http://schemas.microsoft.com/appx/2014/manifest" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest">
-  <Identity Name="4639bdf0-410a-43a6-ae5b-29730068c920" Publisher="CN=Kellen" Version="1.0.0.0" />
+  <Identity Name="4639bdf0-410a-43a6-ae5b-29730068c920" Publisher="CN=716F2E5E-A03A-486B-BC67-9B18474B9D51" Version="1.0.0.0" />
   <mp:PhoneIdentity PhoneProductId="4639bdf0-410a-43a6-ae5b-29730068c920" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>VLC_WINRT_APP.WindowsPhone</DisplayName>
-    <PublisherDisplayName>Kellen</PublisherDisplayName>
+    <PublisherDisplayName>VideoLAN</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
   <Prerequisites>
