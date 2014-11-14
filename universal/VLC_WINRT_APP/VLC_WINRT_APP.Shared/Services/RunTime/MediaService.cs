@@ -28,7 +28,6 @@ using VLC_WINRT_APP.Views.VideoPages;
 
 #if WINDOWS_APP
 using libVLCX;
-using Windows.Media;
 #endif
 
 namespace VLC_WINRT_APP.Services.RunTime
