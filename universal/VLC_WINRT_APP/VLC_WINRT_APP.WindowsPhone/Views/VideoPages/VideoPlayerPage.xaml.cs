@@ -22,6 +22,7 @@ using VLC_WINRT_APP.ViewModels;
 using WinRTXamlToolkit.Controls.Extensions;
 #if WINDOWS_PHONE_APP
 using Windows.Phone.UI.Input;
+using System.Threading.Tasks;
 #endif
 namespace VLC_WINRT_APP.Views.VideoPages
 {
@@ -143,7 +144,7 @@ namespace VLC_WINRT_APP.Views.VideoPages
             DisplayOrHide();
         }
 
-        async void DisplayOrHide()
+        async Task DisplayOrHide()
         {
             if (timer == null)
                 timer = new DispatcherTimer();

@@ -18,6 +18,7 @@ using VLC_WINRT_APP.Services.RunTime;
 using Windows.System.Display;
 using Windows.UI.Xaml;
 using VLC_WINRT_APP.Commands.MediaPlayback;
+using System.Threading.Tasks;
 
 namespace VLC_WINRT_APP.ViewModels
 {
@@ -244,7 +245,7 @@ namespace VLC_WINRT_APP.ViewModels
 #endif
         }
 
-        private async void UpdatePosition()
+        private async Task UpdatePosition()
         {
             if (TimeTotal == null || TimeTotal == TimeSpan.Zero)
             {
@@ -288,10 +289,10 @@ namespace VLC_WINRT_APP.ViewModels
             });
         }
 
-        private void FirePositionUpdate(object sender, object e)
+        private async void FirePositionUpdate(object sender, object e)
         {
             if (!_mediaService.IsBackground)
-                UpdatePosition();
+                await UpdatePosition();
         }
 
         #endregion

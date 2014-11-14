@@ -195,7 +195,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             base.OnPlaybackStopped();
         }
 
-        public async void SetActiveVideoInfo(string mrl, bool isStream = false)
+        public async Task SetActiveVideoInfo(string mrl, bool isStream = false)
         {
             // Pause the music viewmodel
             Locator.MusicPlayerVM.CleanViewModel();

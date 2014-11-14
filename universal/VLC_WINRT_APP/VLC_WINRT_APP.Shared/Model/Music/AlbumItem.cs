@@ -92,7 +92,7 @@ namespace VLC_WINRT_APP.Model.Music
             set { SetProperty(ref _year, value); }
         }
 
-        private async void LoadPicture()
+        private async Task LoadPicture()
         {
             if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable()) return;
             try
