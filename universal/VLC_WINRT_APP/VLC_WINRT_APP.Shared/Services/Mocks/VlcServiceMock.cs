@@ -75,7 +75,7 @@ namespace VLC_WINRT_APP.Services.Mocks
             }
         }
 
-        public async void Play()
+        public void Play()
         {
             //            Debug.WriteLine("Play with dummy player");
             //            if (Locator.MusicPlayerVM.IsRunning)
@@ -213,10 +213,10 @@ namespace VLC_WINRT_APP.Services.Mocks
             SeekToRelativeTime(relativeTimeSpan);
         }
 
-        private async void SeekToRelativeTime(TimeSpan relativeTimeSpan)
+        private void SeekToRelativeTime(TimeSpan relativeTimeSpan)
         {
-            double position = await GetPosition();
-            double length = await GetLength();
+            double position = GetPosition();
+            double length = GetLength();
             TimeSpan seekTo = TimeSpan.FromMilliseconds(position * length) + relativeTimeSpan;
             double relativePosition = seekTo.TotalMilliseconds / length;
             if (relativePosition < 0.0f)
@@ -238,7 +238,7 @@ namespace VLC_WINRT_APP.Services.Mocks
             }
         }
 
-        public Task<float> GetPosition()
+        public float GetPosition()
         {
             float res = 0.0f;
             try
@@ -269,10 +269,10 @@ namespace VLC_WINRT_APP.Services.Mocks
                 }
             }
             catch { }
-            return Task.FromResult(res);
+            return res;
         }
         
-        public Task<long> GetLength()
+        public long GetLength()
         {
             long length = 0;
             if (Locator.VideoVm.PlayingType == PlayingType.Music)
@@ -283,62 +283,56 @@ namespace VLC_WINRT_APP.Services.Mocks
             {
                 length = (long)Locator.VideoVm.CurrentVideo.Duration.TotalMilliseconds;
             }
-            return Task.FromResult(length);
+            return length;
         }
 
-        public Task SetSizeVideoPlayer(uint x, uint y)
+        public void SetSizeVideoPlayer(uint x, uint y)
         {
-            return Task.FromResult(false);
         }
 
-        public Task<int> GetSubtitleCount()
+        public int GetSubtitleCount()
         {
-            return Task.FromResult(0);
+            return 0;
         }
 
-        public Task<int> GetAudioTrackCount()
+        public int GetAudioTrackCount()
         {
-            return Task.FromResult(0);
+            return 0;
         }
 
-        public Task<int> GetSubtitleDescription(IDictionary<int, string> subtitles)
+        public int GetSubtitleDescription(IDictionary<int, string> subtitles)
         {
-            return Task.FromResult(0);
+            return 0;
         }
 
-        public Task<int> GetAudioTrackDescription(IDictionary<int, string> audioTracks)
+        public int GetAudioTrackDescription(IDictionary<int, string> audioTracks)
         {
-            return Task.FromResult(0);
+            return 0;
         }
 
-        public Task SetSubtitleTrack(int track)
+        public void SetSubtitleTrack(int track)
         {
-            return Task.FromResult(false);
         }
 
-        public Task SetAudioTrack(int track)
+        public void SetAudioTrack(int track)
         {
-            return Task.FromResult(false);
         }
 
-        public Task SetRate(float rate)
+        public void SetRate(float rate)
         {
-            return Task.FromResult(false);
         }
 
-        public Task SetVolume(int volume)
+        public void SetVolume(int volume)
         {
-            return Task.FromResult(false);
         }
 
-        public Task<int> GetVolume()
+        public int GetVolume()
         {
-            return Task.FromResult(0);
+            return 0;
         }
 
-        public Task Trim()
+        public void Trim()
         {
-            return Task.FromResult(0);
         }
     }
 #endif

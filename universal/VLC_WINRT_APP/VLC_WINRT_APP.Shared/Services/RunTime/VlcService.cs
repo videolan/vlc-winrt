@@ -29,7 +29,6 @@ namespace VLC_WINRT_APP.Services.RunTime
         private readonly object _controlLock = new object();
 
         public VlcState CurrentState { get; private set; }
-        private Task _vlcInitializeTask;
         private Player _vlcPlayer;
 
         public VlcService()
@@ -65,12 +64,11 @@ namespace VLC_WINRT_APP.Services.RunTime
             });
         }
 
-        private async void DoVLCSafeAction(Action a)
+        private void DoVLCSafeAction(Action a)
         {
-            if (_vlcPlayer == null || _vlcInitializeTask == null)
+            if (_vlcPlayer == null)
                 return;
 
-            await _vlcInitializeTask;
             lock (_controlLock)
             {
                 a();
@@ -104,12 +102,8 @@ namespace VLC_WINRT_APP.Services.RunTime
         {
             _vlcPlayer = new Player(panel);
             IAsyncAction init = _vlcPlayer.Initialize();
-            if (init != null)
-            {
-                _vlcInitializeTask = init.AsTask();
-            }
             _vlcPlayer.MediaEnded += _vlcPlayer_MediaEnded;
-            await _vlcInitializeTask;
+            await init.AsTask();
         }
 
         private void _vlcPlayer_MediaEnded()
@@ -144,10 +138,10 @@ namespace VLC_WINRT_APP.Services.RunTime
             SeekToRelativeTime(relativeTimeSpan);
         }
 
-        private async void SeekToRelativeTime(TimeSpan relativeTimeSpan)
+        private void SeekToRelativeTime(TimeSpan relativeTimeSpan)
         {
-            double position = await GetPosition();
-            double length = await GetLength();
+            double position = GetPosition();
+            double length = GetLength();
             TimeSpan seekTo = TimeSpan.FromMilliseconds(position * length) + relativeTimeSpan;
             double relativePosition = seekTo.TotalMilliseconds / length;
             if (relativePosition < 0.0f)
@@ -172,16 +166,6 @@ namespace VLC_WINRT_APP.Services.RunTime
 
                 lock (_controlLock)
                 {
-                    if (_vlcInitializeTask != null)
-                    {
-                        _vlcInitializeTask.Wait(20000);
-                        _vlcInitializeTask = null;
-                        GC.Collect();
-                    }
-                }
-
-                lock (_controlLock)
-                {
                     try
                     {
                         _vlcPlayer.Dispose();
@@ -196,160 +180,85 @@ namespace VLC_WINRT_APP.Services.RunTime
             }
         }
 
-        public async Task<float> GetPosition()
+        public float GetPosition()
         {
+            if (CurrentState != VlcState.Playing && CurrentState == VlcState.Paused)
+                return 0.0f;
             float position = 0.0f;
 
-            if (_vlcPlayer == null || _vlcInitializeTask == null)
-                return position;
-
-            await _vlcInitializeTask;
-            lock (_controlLock)
-            {
-                {
-                    if (CurrentState == VlcState.Playing
-                        || CurrentState == VlcState.Paused)
-                    {
-                        position = _vlcPlayer.GetPosition();
-                    }
-                }
-            }
+            DoVLCSafeAction(() => position = _vlcPlayer.GetPosition());
             return position;
         }
 
-        public async Task<long> GetLength()
+        public long GetLength()
         {
             long length = 0;
-            if (_vlcPlayer == null || _vlcInitializeTask == null)
-                return length;
-
-            await _vlcInitializeTask;
-            lock (_controlLock)
-            {
-                length = _vlcPlayer.GetLength();
-            }
+            DoVLCSafeAction(() => length = _vlcPlayer.GetLength());
             return length;
         }
 
-        public async Task SetSizeVideoPlayer(uint x, uint y)
+        public void SetSizeVideoPlayer(uint x, uint y)
         {
-            if (_vlcPlayer == null || _vlcInitializeTask == null)
-                return;
-            await _vlcInitializeTask;
-
-            lock (_controlLock)
-            {
-                _vlcPlayer.UpdateSize(x, y);
-            }
+            DoVLCSafeAction(() => _vlcPlayer.UpdateSize(x, y));
         }
 
-        public async Task<int> GetSubtitleCount()
+        public int GetSubtitleCount()
         {
-            if (_vlcPlayer == null || _vlcInitializeTask == null)
-                return 0;
-            await _vlcInitializeTask;
-            lock (_controlLock)
-            {
-                return _vlcPlayer.GetSubtitleCount();
-            }
+            int subtitleCount = 0;
+            DoVLCSafeAction(() => subtitleCount = _vlcPlayer.GetSubtitleCount());
+            return subtitleCount;
         }
 
-        public async Task<int> GetAudioTrackCount()
+        public int GetAudioTrackCount()
         {
-            if (_vlcPlayer == null || _vlcInitializeTask == null)
-                return 0;
-            await _vlcInitializeTask;
-            lock (_controlLock)
-            {
-                return _vlcPlayer.GetAudioTracksCount();
-            }
+            int audioTracksCount = 0;
+            DoVLCSafeAction(() => audioTracksCount = _vlcPlayer.GetAudioTracksCount());
+            return audioTracksCount;
         }
 
-        public async Task<int> GetSubtitleDescription(IDictionary<int, string> subtitles)
+        public int GetSubtitleDescription(IDictionary<int, string> subtitles)
         {
-            if (_vlcPlayer == null || _vlcInitializeTask == null)
-                return 0;
-            await _vlcInitializeTask;
-            lock (_controlLock)
-            {
-                return _vlcPlayer.GetSubtitleDescription(subtitles);
-            }
+            int subtitleDescription = 0;
+            DoVLCSafeAction(() => subtitleDescription = _vlcPlayer.GetSubtitleDescription(subtitles));
+            return subtitleDescription;
         }
-        public async Task<int> GetAudioTrackDescription(IDictionary<int, string> audioTracks)
+        public int GetAudioTrackDescription(IDictionary<int, string> audioTracks)
         {
-            if (_vlcPlayer == null || _vlcInitializeTask == null)
-                return 0;
-            await _vlcInitializeTask;
-            lock (_controlLock)
-            {
-                return _vlcPlayer.GetAudioTracksDescription(audioTracks);
-            }
+            int audioTrackDescription = 0;
+            DoVLCSafeAction(()=> audioTrackDescription = _vlcPlayer.GetAudioTracksDescription(audioTracks));
+            return audioTrackDescription;
         }
 
-        public async Task SetSubtitleTrack(int track)
+        public void SetSubtitleTrack(int track)
         {
-            if (_vlcPlayer == null || _vlcInitializeTask == null)
-                return;
-            await _vlcInitializeTask;
-            lock (_controlLock)
-            {
-                _vlcPlayer.SetSubtitleTrack(track);
-            }
+            DoVLCSafeAction(() => _vlcPlayer.SetSubtitleTrack(track));
         }
 
-        public async Task SetAudioTrack(int track)
+        public void SetAudioTrack(int track)
         {
-            if (_vlcPlayer == null || _vlcInitializeTask == null)
-                return;
-            await _vlcInitializeTask;
-            lock (_controlLock)
-            {
-                _vlcPlayer.SetAudioTrack(track);
-            }
-        }
-        public async Task SetRate(float rate)
-        {
-            if (_vlcPlayer == null || _vlcInitializeTask == null)
-                return;
-            await _vlcInitializeTask;
-            lock (_controlLock)
-            {
-                _vlcPlayer.SetRate(rate);
-            }
+            DoVLCSafeAction(() => _vlcPlayer.SetAudioTrack(track));
         }
 
-        public async Task SetVolume(int volume)
+        public void SetRate(float rate)
         {
-            if (_vlcPlayer == null || _vlcInitializeTask == null)
-                return;
-            await _vlcInitializeTask;
-            lock (_controlLock)
-            {
-                _vlcPlayer.SetVolume(volume);
-            }
+            DoVLCSafeAction(() => _vlcPlayer.SetRate(rate));
         }
 
-        public async Task<int> GetVolume()
+        public void SetVolume(int volume)
         {
-            if (_vlcPlayer == null || _vlcInitializeTask == null)
-                return 0;
-            await _vlcInitializeTask;
-            lock (_controlLock)
-            {
-                int vol = _vlcPlayer.GetVolume();
-                return vol;
-            }
+            DoVLCSafeAction(() => _vlcPlayer.SetVolume(volume));
         }
 
-        public async Task Trim()
+        public int GetVolume()
         {
-            if (_vlcPlayer == null || _vlcInitializeTask == null)
-                return;
-            await _vlcInitializeTask;
-            lock (_controlLock)
-            {
-                _vlcPlayer.Trim();
-            }
+            int vol = 0;
+            DoVLCSafeAction(() => vol = _vlcPlayer.GetVolume());
+            return vol;
+        }
+
+        public void Trim()
+        {
+            DoVLCSafeAction(() => _vlcPlayer.Trim());
         }
     }
 }

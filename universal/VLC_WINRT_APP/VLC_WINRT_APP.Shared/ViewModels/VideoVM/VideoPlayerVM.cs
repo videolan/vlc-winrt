@@ -215,7 +215,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
 
             await Task.Delay(1000);
             PositionInSeconds = 0;
-            double timeInMilliseconds = await _vlcPlayerService.GetLength();
+            double timeInMilliseconds = _vlcPlayerService.GetLength();
             TimeTotal = TimeSpan.FromMilliseconds(timeInMilliseconds);
             VideoItem media = await _lastVideosRepository.LoadViaToken(_fileToken);
             if (media == null)
@@ -231,12 +231,12 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             }
             OnPropertyChanged("PositionInSeconds");
             OnPropertyChanged("TimeTotal");
-            SubtitlesCount = await _vlcPlayerService.GetSubtitleCount();
-            AudioTracksCount = await _vlcPlayerService.GetAudioTrackCount();
+            SubtitlesCount = _vlcPlayerService.GetSubtitleCount();
+            AudioTracksCount = _vlcPlayerService.GetAudioTrackCount();
 
 
             IDictionary<int, string> subtitles = new Dictionary<int, string>();
-            await _vlcPlayerService.GetSubtitleDescription(subtitles);
+            _vlcPlayerService.GetSubtitleDescription(subtitles);
             _subtitlesTracks.Clear();
             foreach (KeyValuePair<int, string> subtitle in subtitles)
             {
@@ -248,7 +248,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             }
 
             IDictionary<int, string> tracks = new Dictionary<int, string>();
-            await _vlcPlayerService.GetAudioTrackDescription(tracks);
+            _vlcPlayerService.GetAudioTrackDescription(tracks);
             _audioTracks.Clear();
             foreach (KeyValuePair<int, string> track in tracks)
             {
@@ -288,19 +288,19 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             _lastVideosRepository.Update(CurrentVideo);
         }
 
-        public Task SetSizeVideoPlayer(uint x, uint y)
+        public void SetSizeVideoPlayer(uint x, uint y)
         {
-            return _vlcPlayerService.SetSizeVideoPlayer(x, y);
+            _vlcPlayerService.SetSizeVideoPlayer(x, y);
         }
 
-        public Task SetSubtitleTrack(int i)
+        public void SetSubtitleTrack(int i)
         {
-            return _vlcPlayerService.SetSubtitleTrack(i);
+            _vlcPlayerService.SetSubtitleTrack(i);
         }
 
-        public Task SetAudioTrack(int i)
+        public void SetAudioTrack(int i)
         {
-            return _vlcPlayerService.SetAudioTrack(i);
+            _vlcPlayerService.SetAudioTrack(i);
         }
 
         public void OpenSubtitle(string mrl)
@@ -308,9 +308,9 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             _vlcPlayerService.OpenSubtitle(mrl);
         }
 
-        public Task SetRate(float rate)
+        public void SetRate(float rate)
         {
-            return _vlcPlayerService.SetRate(rate);
+            _vlcPlayerService.SetRate(rate);
         }
         #endregion
     }

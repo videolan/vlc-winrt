@@ -248,7 +248,7 @@ namespace VLC_WINRT_APP.ViewModels
         {
             if (TimeTotal == null || TimeTotal == TimeSpan.Zero)
             {
-                double timeInMilliseconds = await _vlcPlayerService.GetLength();
+                double timeInMilliseconds = _vlcPlayerService.GetLength();
                 TimeTotal = TimeSpan.FromMilliseconds(timeInMilliseconds);
             }
             ElapsedTime = TimeSpan.FromSeconds(double.IsNaN(PositionInSeconds) ? 0 : PositionInSeconds);

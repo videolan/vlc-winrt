@@ -14,9 +14,9 @@ namespace VLC_WINRT_APP.Commands.Video
 {
     public class SetSubtitleTrackCommand : AlwaysExecutableCommand
     {
-        public override async void Execute(object parameter)
+        public override void Execute(object parameter)
         {
-            await Locator.VideoVm.SetSubtitleTrack((int)parameter);
+            Locator.VideoVm.SetSubtitleTrack((int)parameter);
         }
     }
 }

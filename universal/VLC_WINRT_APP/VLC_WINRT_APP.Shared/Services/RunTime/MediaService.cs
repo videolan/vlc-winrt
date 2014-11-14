@@ -228,12 +228,12 @@ namespace VLC_WINRT_APP.Services.RunTime
 
         public float GetPosition()
         {
-            return _vlcService.GetPosition().Result;
+            return _vlcService.GetPosition();
         }
 
         public float GetLength()
         {
-            return _vlcService.GetLength().Result;
+            return _vlcService.GetLength();
         }
 
         public void SetPosition(float position)
@@ -253,7 +253,7 @@ namespace VLC_WINRT_APP.Services.RunTime
 
         public int GetVolume()
         {
-            return _vlcService.GetVolume().Result;
+            return _vlcService.GetVolume();
         }
 
         async void VlcPlayerService_MediaEnded(object sender, object e)

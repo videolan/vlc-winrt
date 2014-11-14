@@ -16,7 +16,7 @@ namespace VLC_WINRT_APP.Commands.Video
     {
         public override async void Execute(object parameter)
         {
-            await Locator.VideoVm.SetAudioTrack((int)parameter);
+            Locator.VideoVm.SetAudioTrack((int)parameter);
         }
     }
 }

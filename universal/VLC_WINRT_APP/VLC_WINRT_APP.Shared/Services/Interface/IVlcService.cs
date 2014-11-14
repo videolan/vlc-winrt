@@ -40,19 +40,19 @@ namespace VLC_WINRT_APP.Services.Interface
         void SkipAhead();
         void SkipBack();
         void Close();
-        Task<float> GetPosition();
-        Task<long> GetLength();
-        Task SetSizeVideoPlayer(uint x, uint y);
-        Task<int> GetSubtitleCount();
-        Task<int> GetAudioTrackCount();
-        Task<int> GetSubtitleDescription(IDictionary<int, string> subtitles);
-        Task<int> GetAudioTrackDescription(IDictionary<int, string> audioTracks);
-        Task SetSubtitleTrack(int track);
-        Task SetAudioTrack(int track);
-        Task SetRate(float rate);
-        Task SetVolume(int volume);
-        Task<int> GetVolume();
-        Task Trim();
+        float GetPosition();
+        long GetLength();
+        void SetSizeVideoPlayer(uint x, uint y);
+        int GetSubtitleCount();
+        int GetAudioTrackCount();
+        int GetSubtitleDescription(IDictionary<int, string> subtitles);
+        int GetAudioTrackDescription(IDictionary<int, string> audioTracks);
+        void SetSubtitleTrack(int track);
+        void SetAudioTrack(int track);
+        void SetRate(float rate);
+        void SetVolume(int volume);
+        int GetVolume();
+        void Trim();
 
     }
 }
