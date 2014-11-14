@@ -147,7 +147,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
         #endregion
 
         #region methods
-        public async void GetViewedVideos()
+        public async Task GetViewedVideos()
         {
             var result = await _lastVideosRepository.Load();
 
@@ -157,7 +157,8 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
                 {
                     StorageFile file = await StorageFile.GetFileFromPathAsync(videoVm.FilePath);
                     videoVm.File = file;
-                    App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+                    await videoVm.GenerateThumbnail();
+                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
                     {
                         ViewedVideos.Add(videoVm);
                     });

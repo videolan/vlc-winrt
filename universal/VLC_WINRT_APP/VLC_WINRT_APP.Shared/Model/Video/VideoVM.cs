@@ -79,7 +79,6 @@ namespace VLC_WINRT_APP.Model.Video
             set
             {
                 SetProperty(ref _file, value);
-                Task.Run(() => GenerateThumbnail());
             }
         }
 
@@ -191,6 +190,7 @@ namespace VLC_WINRT_APP.Model.Video
                     });
                 }
                 File = storageFile;
+                await GenerateThumbnail();
                 Title = storageFile.DisplayName;
                 AlphaKey = Title.ToUpper()[0];
                 Subtitle = storageFile.FileType.ToUpper() + " File";
@@ -216,7 +216,7 @@ namespace VLC_WINRT_APP.Model.Video
         #endregion
 
         #region methods
-        private async Task GenerateThumbnail()
+        public async Task GenerateThumbnail()
         {
             try
             {
