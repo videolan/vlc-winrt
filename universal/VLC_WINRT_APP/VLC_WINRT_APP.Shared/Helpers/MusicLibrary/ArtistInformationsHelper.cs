@@ -110,10 +110,9 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                 var result = await SaveAlbumImageAsync(album, img);
                 return result;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                Debug.WriteLine("Error getting or saving art from lastFm.");
-                return false;
+                Debug.WriteLine("Error getting or saving art from lastFm. {0}", ex);
             }
             return false;
         }
