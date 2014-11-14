@@ -31,10 +31,7 @@ namespace VLC_WINRT_APP.Commands.Music
             try
             {
                 var album = parameter as AlbumItem;
-                Task.Run(async () =>
-                {
-                    await PlayMusicHelper.AddAlbumToPlaylist(album.Id, true, true, null, 0);
-                });
+                await PlayMusicHelper.AddAlbumToPlaylist(album.Id, true, true, null, 0);
             }
             catch (FileNotFoundException exception)
             {
