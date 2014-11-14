@@ -42,7 +42,7 @@ namespace VLC_WINRT_APP.Model.Video
         private FavoriteVideoCommand _favoriteVideo;
         private readonly IThumbnailService _thumbsService;
         // TVShows related
-        private int _season;
+        private int _season = -1;
         private int _episode;
         #endregion
 
@@ -154,7 +154,7 @@ namespace VLC_WINRT_APP.Model.Video
 
         public bool IsTvShow
         {
-            get { return _season != null; }
+            get { return _season != -1; }
         }
         #endregion
 

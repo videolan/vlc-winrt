@@ -21,7 +21,6 @@ namespace VLC_WINRT_APP.Helpers.MusicPlayer
         /// <returns></returns>
         public static async Task PlayTrack(int trackId)
         {
-            if (trackId == null) return;
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 var track = Locator.MusicPlayerVM.TrackCollection.Playlist.FirstOrDefault(x => x.Id == trackId);
