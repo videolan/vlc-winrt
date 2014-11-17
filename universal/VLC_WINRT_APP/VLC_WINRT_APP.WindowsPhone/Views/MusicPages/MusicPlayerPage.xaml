@@ -74,8 +74,7 @@
                                FontSize="36"
                                FontWeight="ExtraLight"
                                HorizontalAlignment="Left"
-                               VerticalAlignment="Bottom"
-                               TextAlignment="Center">
+                               VerticalAlignment="Bottom">
                         <Run Text="{Binding CurrentArtist.Name}" />
                         <LineBreak />
                         <Run Text="{Binding CurrentAlbum.Name}"
