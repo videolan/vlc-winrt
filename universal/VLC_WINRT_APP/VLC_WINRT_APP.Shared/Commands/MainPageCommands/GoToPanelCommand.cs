@@ -25,7 +25,7 @@ namespace VLC_WINRT_APP.Commands.MainPageCommands
         public static readonly SolidColorBrush DefaultColorBrush = new SolidColorBrush(Colors.DimGray);
 #else
         public static  readonly SolidColorBrush SelectedColorBrush = new SolidColorBrush(Colors.WhiteSmoke);
-        public static readonly SolidColorBrush DefaultColorBrush = new SolidColorBrush(Color.FromArgb(150, 0, 0, 0));
+        public static readonly SolidColorBrush DefaultColorBrush = new SolidColorBrush(Color.FromArgb(110, 0, 0, 0));
 #endif
         public override void Execute(object parameter)
         {

@@ -135,10 +135,10 @@
     
     <DataTemplate x:Key="SidebarMiniIconItemTemplate">
         <Grid Height="60"
-              Width="30">
+              Width="36">
             <Path Data="{Binding PathData}"
-                  Height="30"
-                  Width="30"
+                  Height="36"
+                  Width="36"
                   HorizontalAlignment="Center"
                   Stretch="Uniform"
                   Fill="{Binding Color}" />
