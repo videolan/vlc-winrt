@@ -31,14 +31,13 @@ Player::Player(SwapChainPanel^ panel) :p_mp(NULL), p_instance(NULL)
     //OutputDebugStringW(L"Hello, Player!");
     p_panel = panel;
     p_dxManager = new DirectXManger();
-
-    UpdateSize(p_panel->ActualWidth, p_panel->ActualHeight);
 }
 
 //Todo: don't block UI during initialization
 IAsyncAction^ Player::Initialize()
 {
     p_dxManager->CreateSwapPanel(p_panel);
+    UpdateSize(p_panel->ActualWidth, p_panel->ActualHeight);
 
     IAsyncAction^ vlcInitTask = ThreadPool::RunAsync(ref new WorkItemHandler([=](IAsyncAction^ operation)
     {
