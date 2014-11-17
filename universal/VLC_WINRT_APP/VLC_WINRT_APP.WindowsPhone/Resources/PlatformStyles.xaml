@@ -386,7 +386,7 @@
         <Setter Property="RequestedTheme"
                 Value="Light" />
         <Setter Property="Background"
-                Value="#4C1A1A1A" />
+                Value="#C6000000" />
     </Style>
     
     <DataTemplate x:Key="PivotTitleTemplate">

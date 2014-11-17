@@ -121,12 +121,6 @@
                         <AppBarButton.Flyout>
                             <Flyout Opening="Flyout_Opening"
                                     Placement="Full">
-                                <Flyout.FlyoutPresenterStyle>
-                                    <Style TargetType="FlyoutPresenter">
-                                        <Setter Property="Background"
-                                                Value="#C6000000"/>
-                                    </Style>
-                                </Flyout.FlyoutPresenterStyle>
                                 <Grid RequestedTheme="Dark"
                                       HorizontalAlignment="Stretch"
                                       VerticalAlignment="Stretch"
