@@ -111,8 +111,14 @@ void Player::InitializeVLC()
 
 void Player::UpdateSize(unsigned int x, unsigned int y)
 {
-    m_displayWidth = (float)(x * (float)DisplayProperties::ResolutionScale / 100.0f);
-    m_displayHeight = (float)(y * (float)DisplayProperties::ResolutionScale / 100.0f);
+#if WINAPI_FAMILY == WINAPI_FAMILY_PHONE_APP
+    const float scaleFactor = Windows::Graphics::Display::DisplayInformation::GetForCurrentView()->RawPixelsPerViewPixel;
+#else
+    const float scaleFactor = (float) DisplayProperties::ResolutionScale / 100.f;
+#endif
+
+    m_displayWidth = (float)x * scaleFactor;
+    m_displayHeight = (float)y * scaleFactor;
 
     p_dxManager->UpdateSwapChain(m_displayWidth, m_displayHeight);
 }
