@@ -43,6 +43,7 @@ typedef struct
     size_t                                  thumbSize;
     HANDLE                                  hLock;
     libvlc_media_player_t*                  mp;
+    libvlc_event_manager_t*                 eventMgr;
 } thumbnailer_sys_t;
 
 Thumbnailer::Thumbnailer()
@@ -63,12 +64,23 @@ Thumbnailer::Thumbnailer()
     }
 }
 
+
+
+static void onError(const libvlc_event_t*, void* data)
+{
+    auto sys = reinterpret_cast<thumbnailer_sys_t*>(data);
+    sys->screenshotCompleteEvent.set(nullptr);
+}
+
 /**
 * Thumbnailer vout lock
 **/
 static void *Lock(void *opaque, void **pixels)
 {
     thumbnailer_sys_t *sys = (thumbnailer_sys_t*)opaque;
+    // We rendered at least one frame, no need to check for EOF anymore
+    libvlc_event_detach(sys->eventMgr, libvlc_MediaPlayerEndReached, &onError, sys);
+
     WaitForSingleObjectEx(sys->hLock, INFINITE, TRUE);
     *pixels = sys->thumbData;
     if (sys->mp && sys->state == THUMB_SEEKING
@@ -155,6 +167,10 @@ IAsyncOperation<WriteableBitmap^>^ Thumbnailer::TakeScreenshot(Platform::String^
 
             mp = libvlc_media_player_new_from_media(m);
             libvlc_media_release(m);
+            sys->eventMgr = libvlc_media_player_event_manager(mp);
+            libvlc_event_attach(sys->eventMgr, libvlc_MediaPlayerEncounteredError, &onError, sys);
+            // Workaround some short and weird samples can reach the end without getting a snapshot generated.
+            libvlc_event_attach(sys->eventMgr, libvlc_MediaPlayerEndReached, &onError, sys);
 
             /* Set the video format and the callbacks. */
             unsigned int pitch = width * PIXEL_SIZE;
