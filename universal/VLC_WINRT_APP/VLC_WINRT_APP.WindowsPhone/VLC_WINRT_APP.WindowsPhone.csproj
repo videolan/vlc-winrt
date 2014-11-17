@@ -176,6 +176,621 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\access\access_bd_plugin.dll">
+      <Link>plugins\access\access_bd_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\access\access_mms_plugin.dll">
+      <Link>plugins\access\access_mms_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\access\attachment_plugin.dll">
+      <Link>plugins\access\attachment_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\access\cdda_plugin.dll">
+      <Link>plugins\access\cdda_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\access\filesystem_plugin.dll">
+      <Link>plugins\access\filesystem_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\access\ftp_plugin.dll">
+      <Link>plugins\access\ftp_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\access\http_plugin.dll">
+      <Link>plugins\access\http_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\access\idummy_plugin.dll">
+      <Link>plugins\access\idummy_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\access\imem_plugin.dll">
+      <Link>plugins\access\imem_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\access\rar_plugin.dll">
+      <Link>plugins\access\rar_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\access\rtp_plugin.dll">
+      <Link>plugins\access\rtp_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\access\sdp_plugin.dll">
+      <Link>plugins\access\sdp_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\access\shm_plugin.dll">
+      <Link>plugins\access\shm_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\access\tcp_plugin.dll">
+      <Link>plugins\access\tcp_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\access\timecode_plugin.dll">
+      <Link>plugins\access\timecode_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\access\udp_plugin.dll">
+      <Link>plugins\access\udp_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\access\vcd_plugin.dll">
+      <Link>plugins\access\vcd_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\access\vdr_plugin.dll">
+      <Link>plugins\access\vdr_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\access\zip_plugin.dll">
+      <Link>plugins\access\zip_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\audio_filter\a52tofloat32_plugin.dll">
+      <Link>plugins\audio_filter\a52tofloat32_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\audio_filter\a52tospdif_plugin.dll">
+      <Link>plugins\audio_filter\a52tospdif_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\audio_filter\audiobargraph_a_plugin.dll">
+      <Link>plugins\audio_filter\audiobargraph_a_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\audio_filter\audio_format_plugin.dll">
+      <Link>plugins\audio_filter\audio_format_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\audio_filter\chorus_flanger_plugin.dll">
+      <Link>plugins\audio_filter\chorus_flanger_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\audio_filter\compressor_plugin.dll">
+      <Link>plugins\audio_filter\compressor_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\audio_filter\dolby_surround_decoder_plugin.dll">
+      <Link>plugins\audio_filter\dolby_surround_decoder_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\audio_filter\dtstospdif_plugin.dll">
+      <Link>plugins\audio_filter\dtstospdif_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\audio_filter\equalizer_plugin.dll">
+      <Link>plugins\audio_filter\equalizer_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\audio_filter\gain_plugin.dll">
+      <Link>plugins\audio_filter\gain_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\audio_filter\headphone_channel_mixer_plugin.dll">
+      <Link>plugins\audio_filter\headphone_channel_mixer_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\audio_filter\karaoke_plugin.dll">
+      <Link>plugins\audio_filter\karaoke_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\audio_filter\mono_plugin.dll">
+      <Link>plugins\audio_filter\mono_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\audio_filter\normvol_plugin.dll">
+      <Link>plugins\audio_filter\normvol_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\audio_filter\param_eq_plugin.dll">
+      <Link>plugins\audio_filter\param_eq_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\audio_filter\remap_plugin.dll">
+      <Link>plugins\audio_filter\remap_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\audio_filter\scaletempo_plugin.dll">
+      <Link>plugins\audio_filter\scaletempo_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\audio_filter\simple_channel_mixer_plugin.dll">
+      <Link>plugins\audio_filter\simple_channel_mixer_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\audio_filter\spatializer_plugin.dll">
+      <Link>plugins\audio_filter\spatializer_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\audio_filter\stereo_widen_plugin.dll">
+      <Link>plugins\audio_filter\stereo_widen_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\audio_filter\trivial_channel_mixer_plugin.dll">
+      <Link>plugins\audio_filter\trivial_channel_mixer_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\audio_filter\ugly_resampler_plugin.dll">
+      <Link>plugins\audio_filter\ugly_resampler_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\audio_mixer\float_mixer_plugin.dll">
+      <Link>plugins\audio_mixer\float_mixer_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\audio_mixer\integer_mixer_plugin.dll">
+      <Link>plugins\audio_mixer\integer_mixer_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\audio_output\adummy_plugin.dll">
+      <Link>plugins\audio_output\adummy_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\audio_output\afile_plugin.dll">
+      <Link>plugins\audio_output\afile_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\audio_output\amem_plugin.dll">
+      <Link>plugins\audio_output\amem_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\codec\a52_plugin.dll">
+      <Link>plugins\codec\a52_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\codec\adpcm_plugin.dll">
+      <Link>plugins\codec\adpcm_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\codec\aes3_plugin.dll">
+      <Link>plugins\codec\aes3_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\codec\araw_plugin.dll">
+      <Link>plugins\codec\araw_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\codec\avcodec_plugin.dll">
+      <Link>plugins\codec\avcodec_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\codec\cc_plugin.dll">
+      <Link>plugins\codec\cc_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\codec\cdg_plugin.dll">
+      <Link>plugins\codec\cdg_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\codec\cvdsub_plugin.dll">
+      <Link>plugins\codec\cvdsub_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\codec\ddummy_plugin.dll">
+      <Link>plugins\codec\ddummy_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\codec\dmo_plugin.dll">
+      <Link>plugins\codec\dmo_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\codec\dts_plugin.dll">
+      <Link>plugins\codec\dts_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\codec\dvbsub_plugin.dll">
+      <Link>plugins\codec\dvbsub_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\codec\g711_plugin.dll">
+      <Link>plugins\codec\g711_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\codec\kate_plugin.dll">
+      <Link>plugins\codec\kate_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\codec\lpcm_plugin.dll">
+      <Link>plugins\codec\lpcm_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\codec\mpeg_audio_plugin.dll">
+      <Link>plugins\codec\mpeg_audio_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\codec\opus_plugin.dll">
+      <Link>plugins\codec\opus_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\codec\rawvideo_plugin.dll">
+      <Link>plugins\codec\rawvideo_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\codec\scte27_plugin.dll">
+      <Link>plugins\codec\scte27_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\codec\spudec_plugin.dll">
+      <Link>plugins\codec\spudec_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\codec\stl_plugin.dll">
+      <Link>plugins\codec\stl_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\codec\subsdec_plugin.dll">
+      <Link>plugins\codec\subsdec_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\codec\substx3g_plugin.dll">
+      <Link>plugins\codec\substx3g_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\codec\subsusf_plugin.dll">
+      <Link>plugins\codec\subsusf_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\codec\svcdsub_plugin.dll">
+      <Link>plugins\codec\svcdsub_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\codec\uleaddvaudio_plugin.dll">
+      <Link>plugins\codec\uleaddvaudio_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\codec\vorbis_plugin.dll">
+      <Link>plugins\codec\vorbis_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\control\dummy_plugin.dll">
+      <Link>plugins\control\dummy_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\control\gestures_plugin.dll">
+      <Link>plugins\control\gestures_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\control\hotkeys_plugin.dll">
+      <Link>plugins\control\hotkeys_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\control\netsync_plugin.dll">
+      <Link>plugins\control\netsync_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\demux\aiff_plugin.dll">
+      <Link>plugins\demux\aiff_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\demux\asf_plugin.dll">
+      <Link>plugins\demux\asf_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\demux\au_plugin.dll">
+      <Link>plugins\demux\au_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\demux\avi_plugin.dll">
+      <Link>plugins\demux\avi_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\demux\caf_plugin.dll">
+      <Link>plugins\demux\caf_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\demux\demuxdump_plugin.dll">
+      <Link>plugins\demux\demuxdump_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\demux\demux_cdg_plugin.dll">
+      <Link>plugins\demux\demux_cdg_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\demux\demux_stl_plugin.dll">
+      <Link>plugins\demux\demux_stl_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\demux\diracsys_plugin.dll">
+      <Link>plugins\demux\diracsys_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\demux\es_plugin.dll">
+      <Link>plugins\demux\es_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\demux\flacsys_plugin.dll">
+      <Link>plugins\demux\flacsys_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\demux\h264_plugin.dll">
+      <Link>plugins\demux\h264_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\demux\hevc_plugin.dll">
+      <Link>plugins\demux\hevc_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\demux\image_plugin.dll">
+      <Link>plugins\demux\image_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\demux\mjpeg_plugin.dll">
+      <Link>plugins\demux\mjpeg_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\demux\mkv_plugin.dll">
+      <Link>plugins\demux\mkv_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\demux\mp4_plugin.dll">
+      <Link>plugins\demux\mp4_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\demux\mpc_plugin.dll">
+      <Link>plugins\demux\mpc_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\demux\mpgv_plugin.dll">
+      <Link>plugins\demux\mpgv_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\demux\nsc_plugin.dll">
+      <Link>plugins\demux\nsc_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\demux\nsv_plugin.dll">
+      <Link>plugins\demux\nsv_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\demux\nuv_plugin.dll">
+      <Link>plugins\demux\nuv_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\demux\ogg_plugin.dll">
+      <Link>plugins\demux\ogg_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\demux\playlist_plugin.dll">
+      <Link>plugins\demux\playlist_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\demux\ps_plugin.dll">
+      <Link>plugins\demux\ps_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\demux\pva_plugin.dll">
+      <Link>plugins\demux\pva_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\demux\rawaud_plugin.dll">
+      <Link>plugins\demux\rawaud_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\demux\rawdv_plugin.dll">
+      <Link>plugins\demux\rawdv_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\demux\rawvid_plugin.dll">
+      <Link>plugins\demux\rawvid_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\demux\real_plugin.dll">
+      <Link>plugins\demux\real_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\demux\smf_plugin.dll">
+      <Link>plugins\demux\smf_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\demux\subtitle_plugin.dll">
+      <Link>plugins\demux\subtitle_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\demux\ts_plugin.dll">
+      <Link>plugins\demux\ts_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\demux\tta_plugin.dll">
+      <Link>plugins\demux\tta_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\demux\ty_plugin.dll">
+      <Link>plugins\demux\ty_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\demux\vc1_plugin.dll">
+      <Link>plugins\demux\vc1_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\demux\vobsub_plugin.dll">
+      <Link>plugins\demux\vobsub_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\demux\voc_plugin.dll">
+      <Link>plugins\demux\voc_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\demux\wav_plugin.dll">
+      <Link>plugins\demux\wav_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\demux\xa_plugin.dll">
+      <Link>plugins\demux\xa_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\meta_engine\folder_plugin.dll">
+      <Link>plugins\meta_engine\folder_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\misc\addonsfsstorage_plugin.dll">
+      <Link>plugins\misc\addonsfsstorage_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\misc\addonsvorepository_plugin.dll">
+      <Link>plugins\misc\addonsvorepository_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\misc\audioscrobbler_plugin.dll">
+      <Link>plugins\misc\audioscrobbler_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\misc\export_plugin.dll">
+      <Link>plugins\misc\export_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\misc\fingerprinter_plugin.dll">
+      <Link>plugins\misc\fingerprinter_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\misc\logger_plugin.dll">
+      <Link>plugins\misc\logger_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\misc\stats_plugin.dll">
+      <Link>plugins\misc\stats_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\misc\xml_plugin.dll">
+      <Link>plugins\misc\xml_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\packetizer\packetizer_dirac_plugin.dll">
+      <Link>plugins\packetizer\packetizer_dirac_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\packetizer\packetizer_flac_plugin.dll">
+      <Link>plugins\packetizer\packetizer_flac_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\packetizer\packetizer_h264_plugin.dll">
+      <Link>plugins\packetizer\packetizer_h264_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\packetizer\packetizer_hevc_plugin.dll">
+      <Link>plugins\packetizer\packetizer_hevc_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\packetizer\packetizer_mlp_plugin.dll">
+      <Link>plugins\packetizer\packetizer_mlp_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\packetizer\packetizer_mpeg4audio_plugin.dll">
+      <Link>plugins\packetizer\packetizer_mpeg4audio_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\packetizer\packetizer_mpeg4video_plugin.dll">
+      <Link>plugins\packetizer\packetizer_mpeg4video_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\packetizer\packetizer_mpegvideo_plugin.dll">
+      <Link>plugins\packetizer\packetizer_mpegvideo_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\packetizer\packetizer_vc1_plugin.dll">
+      <Link>plugins\packetizer\packetizer_vc1_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\services_discovery\mediadirs_plugin.dll">
+      <Link>plugins\services_discovery\mediadirs_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\services_discovery\podcast_plugin.dll">
+      <Link>plugins\services_discovery\podcast_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\services_discovery\sap_plugin.dll">
+      <Link>plugins\services_discovery\sap_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\stream_filter\dash_plugin.dll">
+      <Link>plugins\stream_filter\dash_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\stream_filter\hds_plugin.dll">
+      <Link>plugins\stream_filter\hds_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\stream_filter\record_plugin.dll">
+      <Link>plugins\stream_filter\record_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\stream_filter\smooth_plugin.dll">
+      <Link>plugins\stream_filter\smooth_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\text_renderer\freetype_plugin.dll">
+      <Link>plugins\text_renderer\freetype_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\text_renderer\tdummy_plugin.dll">
+      <Link>plugins\text_renderer\tdummy_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\video_chroma\chain_plugin.dll">
+      <Link>plugins\video_chroma\chain_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\video_chroma\grey_yuv_plugin.dll">
+      <Link>plugins\video_chroma\grey_yuv_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\video_chroma\i420_rgb_plugin.dll">
+      <Link>plugins\video_chroma\i420_rgb_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\video_chroma\i420_yuy2_plugin.dll">
+      <Link>plugins\video_chroma\i420_yuy2_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\video_chroma\i422_i420_plugin.dll">
+      <Link>plugins\video_chroma\i422_i420_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\video_chroma\i422_yuy2_plugin.dll">
+      <Link>plugins\video_chroma\i422_yuy2_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\video_chroma\rv32_plugin.dll">
+      <Link>plugins\video_chroma\rv32_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\video_chroma\swscale_plugin.dll">
+      <Link>plugins\video_chroma\swscale_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\video_chroma\yuy2_i420_plugin.dll">
+      <Link>plugins\video_chroma\yuy2_i420_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\video_chroma\yuy2_i422_plugin.dll">
+      <Link>plugins\video_chroma\yuy2_i422_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\video_filter\adjust_plugin.dll">
+      <Link>plugins\video_filter\adjust_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\video_filter\alphamask_plugin.dll">
+      <Link>plugins\video_filter\alphamask_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\video_filter\anaglyph_plugin.dll">
+      <Link>plugins\video_filter\anaglyph_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\video_filter\antiflicker_plugin.dll">
+      <Link>plugins\video_filter\antiflicker_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\video_filter\audiobargraph_v_plugin.dll">
+      <Link>plugins\video_filter\audiobargraph_v_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\video_filter\ball_plugin.dll">
+      <Link>plugins\video_filter\ball_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\video_filter\blendbench_plugin.dll">
+      <Link>plugins\video_filter\blendbench_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\video_filter\blend_plugin.dll">
+      <Link>plugins\video_filter\blend_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\video_filter\bluescreen_plugin.dll">
+      <Link>plugins\video_filter\bluescreen_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\video_filter\canvas_plugin.dll">
+      <Link>plugins\video_filter\canvas_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\video_filter\colorthres_plugin.dll">
+      <Link>plugins\video_filter\colorthres_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\video_filter\croppadd_plugin.dll">
+      <Link>plugins\video_filter\croppadd_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\video_filter\deinterlace_plugin.dll">
+      <Link>plugins\video_filter\deinterlace_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\video_filter\erase_plugin.dll">
+      <Link>plugins\video_filter\erase_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\video_filter\extract_plugin.dll">
+      <Link>plugins\video_filter\extract_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\video_filter\freeze_plugin.dll">
+      <Link>plugins\video_filter\freeze_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\video_filter\gaussianblur_plugin.dll">
+      <Link>plugins\video_filter\gaussianblur_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\video_filter\gradfun_plugin.dll">
+      <Link>plugins\video_filter\gradfun_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\video_filter\gradient_plugin.dll">
+      <Link>plugins\video_filter\gradient_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\video_filter\grain_plugin.dll">
+      <Link>plugins\video_filter\grain_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\video_filter\hqdn3d_plugin.dll">
+      <Link>plugins\video_filter\hqdn3d_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\video_filter\invert_plugin.dll">
+      <Link>plugins\video_filter\invert_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\video_filter\logo_plugin.dll">
+      <Link>plugins\video_filter\logo_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\video_filter\magnify_plugin.dll">
+      <Link>plugins\video_filter\magnify_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\video_filter\marq_plugin.dll">
+      <Link>plugins\video_filter\marq_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\video_filter\mirror_plugin.dll">
+      <Link>plugins\video_filter\mirror_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\video_filter\mosaic_plugin.dll">
+      <Link>plugins\video_filter\mosaic_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\video_filter\motionblur_plugin.dll">
+      <Link>plugins\video_filter\motionblur_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\video_filter\motiondetect_plugin.dll">
+      <Link>plugins\video_filter\motiondetect_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\video_filter\oldmovie_plugin.dll">
+      <Link>plugins\video_filter\oldmovie_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\video_filter\posterize_plugin.dll">
+      <Link>plugins\video_filter\posterize_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\video_filter\psychedelic_plugin.dll">
+      <Link>plugins\video_filter\psychedelic_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\video_filter\puzzle_plugin.dll">
+      <Link>plugins\video_filter\puzzle_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\video_filter\ripple_plugin.dll">
+      <Link>plugins\video_filter\ripple_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\video_filter\rss_plugin.dll">
+      <Link>plugins\video_filter\rss_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\video_filter\scale_plugin.dll">
+      <Link>plugins\video_filter\scale_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\video_filter\scene_plugin.dll">
+      <Link>plugins\video_filter\scene_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\video_filter\sepia_plugin.dll">
+      <Link>plugins\video_filter\sepia_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\video_filter\sharpen_plugin.dll">
+      <Link>plugins\video_filter\sharpen_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\video_filter\subsdelay_plugin.dll">
+      <Link>plugins\video_filter\subsdelay_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\video_filter\transform_plugin.dll">
+      <Link>plugins\video_filter\transform_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\video_filter\vhs_plugin.dll">
+      <Link>plugins\video_filter\vhs_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\video_filter\wave_plugin.dll">
+      <Link>plugins\video_filter\wave_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\video_filter\yuvp_plugin.dll">
+      <Link>plugins\video_filter\yuvp_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\video_output\vdummy_plugin.dll">
+      <Link>plugins\video_output\vdummy_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\video_output\vmem_plugin.dll">
+      <Link>plugins\video_output\vmem_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\video_output\yuv_plugin.dll">
+      <Link>plugins\video_output\yuv_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\video_splitter\clone_plugin.dll">
+      <Link>plugins\video_splitter\clone_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\video_splitter\panoramix_plugin.dll">
+      <Link>plugins\video_splitter\panoramix_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\video_splitter\wall_plugin.dll">
+      <Link>plugins\video_splitter\wall_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\..\..\nov11\winrt\vlc\vlc-ARM\plugins\visualization\visual_plugin.dll">
+      <Link>plugins\visualization\visual_plugin.dll</Link>
+    </Content>
     <Content Include="Assets\BadgeLogo.scale-100.png" />
     <Content Include="Assets\BadgeLogo.scale-140.png" />
     <Content Include="Assets\Logo.scale-100.png" />
@@ -189,6 +804,15 @@
     <Content Include="Assets\WideLogo.scale-100.png" />
     <Content Include="Assets\WideLogo.scale-140.png" />
     <Content Include="Assets\WideLogo.scale-240.png" />
+    <Content Include="plugins\access\libaccess_winrt_plugin.WindowsPhone.dll" />
+    <Content Include="plugins\audio_output\libxaudio2_winrt_plugin.WindowsPhone.dll" />
+    <Content Include="plugins\video_output\libdirect2d_winrt_plugin.WindowsPhone.dll" />
+    <Content Include="vlc.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="vlccore.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Autofac">

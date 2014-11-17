@@ -119,9 +119,12 @@
                                   IsTabStop="False"
                                   VerticalAlignment="Center">
                         <AppBarButton.Flyout>
-                            <Flyout Opening="Flyout_Opening">
-                                <Grid Width="300"
-                                      HorizontalAlignment="Right">
+                            <Flyout Opening="Flyout_Opening"
+                                    Placement="Full">
+                                <Grid RequestedTheme="Dark"
+                                      HorizontalAlignment="Stretch"
+                                      VerticalAlignment="Stretch"
+                                      Margin="120,0,24,0">
                                     <StackPanel>
                                         <TextBlock Text="Subtitles"
                                                    x:Uid="Subtitles"
