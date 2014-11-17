@@ -121,6 +121,13 @@
                         <AppBarButton.Flyout>
                             <Flyout Opening="Flyout_Opening"
                                     Placement="Full">
+                                <Flyout.FlyoutPresenterStyle>
+                                    <Style TargetType="FlyoutPresenter">
+                                        <Setter Property="Background"
++                                                Value="#C6000000"/>
+                                    </Style>
+                                    +
+                                </Flyout.FlyoutPresenterStyle>
                                 <Grid RequestedTheme="Dark"
                                       HorizontalAlignment="Stretch"
                                       VerticalAlignment="Stretch"
@@ -145,7 +152,7 @@
                                         </ComboBox>
                                         <Button Content="Open a subtitle"
                                                 x:Uid="OpenSubtitle"
-                                                Margin="-3,6,0,0"
+                                                Margin="0,6,0,0"
                                                 Command="{Binding OpenSubtitleCommand}"
                                                 Background="#404040"
                                                 BorderBrush="#404040" />
@@ -175,7 +182,7 @@
                                                 <TextBlock x:Uid="Speed"
                                                            Text="Speed"
                                                            Style="{StaticResource TitleTextBlockStyle}"
-                                                           Margin="-3,12,0,-10" />
+                                                           Margin="-6,12,0,-10" />
                                             </Slider.Header>
                                         </Slider>
                                         <Grid Margin="0,-32,0,0">
