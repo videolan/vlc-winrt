@@ -10,7 +10,7 @@
              d:DesignHeight="300"
              d:DesignWidth="400">
 
-    <Grid>
+    <Grid Margin="0,-12,0,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition />
@@ -49,7 +49,7 @@
         <scrollWatchedSelector:ScrollWatchedGridView Grid.Row="1"
                                                      ItemsSource="{Binding Albums}"
                                                      ItemTemplate="{StaticResource PhoneSemanticZoomInViewAlbumTemplateLittleSize}"
-                                                     Margin="-6,0,-20,0"
+                                                     Margin="0,0,-20,0"
                                                      IsItemClickEnabled="True">
             <triggers:Interactions.Triggers>
                 <triggers:EventTrigger EventName="ItemClick">
