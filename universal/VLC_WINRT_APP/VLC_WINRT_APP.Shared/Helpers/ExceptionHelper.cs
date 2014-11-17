@@ -29,6 +29,7 @@ namespace VLC_WINRT_APP.Helpers
                 }));
                 dialog.Commands.Add(new UICommand("Non", command =>
                 {
+                    ApplicationSettingsHelper.ReadResetSettingsValue("ExceptionLog");
                 }));
                 await dialog.ShowAsync();
             }
