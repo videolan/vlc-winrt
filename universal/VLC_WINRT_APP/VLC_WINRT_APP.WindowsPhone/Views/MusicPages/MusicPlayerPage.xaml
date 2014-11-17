@@ -73,7 +73,7 @@
                     <TextBlock Grid.Row="0"
                                FontSize="36"
                                FontWeight="ExtraLight"
-                               HorizontalAlignment="Center"
+                               HorizontalAlignment="Left"
                                VerticalAlignment="Bottom"
                                TextAlignment="Center">
                         <Run Text="{Binding CurrentArtist.Name}" />
