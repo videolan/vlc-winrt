@@ -61,6 +61,7 @@ namespace VLC_WINRT_APP.Commands
                 Debug.WriteLine("Cancelled");
             }
 #else
+            App.OpenFilePickerReason = OpenFilePickerReason.OnOpeningVideo;
             picker.PickSingleFileAndContinue();
 #endif
             //lock (Locker)

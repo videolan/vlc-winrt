@@ -15,6 +15,7 @@ using Windows.Storage.Pickers;
 using Windows.UI.Core;
 using Windows.UI.Popups;
 using VLC_WINRT.Common;
+using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.ViewModels;
 
 namespace VLC_WINRT_APP.Commands.Video
@@ -33,7 +34,7 @@ namespace VLC_WINRT_APP.Commands.Video
                 };
                 picker.FileTypeFilter.Add(".srt");
                 picker.FileTypeFilter.Add(".ass");
-
+#if WINDOWS_APP
                 StorageFile file = await picker.PickSingleFileAsync();
                 if (file != null)
                 {
@@ -46,6 +47,10 @@ namespace VLC_WINRT_APP.Commands.Video
                 {
                     Debug.WriteLine("Cancelled Opening subtitle");
                 }
+#else
+                App.OpenFilePickerReason = OpenFilePickerReason.OnOpeningSubtitle;
+                picker.PickSingleFileAndContinue();
+#endif
                 return;
             }
             catch(Exception exception)

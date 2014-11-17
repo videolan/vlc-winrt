@@ -1890,7 +1890,7 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
+
     <SolidColorBrush x:Key="ComboBoxHeaderForegroundThemeBrush"
                      Color="#FFFFFFFF" />
 
@@ -1911,6 +1911,8 @@
     <SolidColorBrush x:Key="ComboBoxPopupForegroundThemeBrush"
                      Color="#FF000000" />
     <x:Double x:Key="ComboBoxPopupThemeMinWidth">80</x:Double>
+    <SolidColorBrush x:Key="ComboBoxSelectedPointerOverBackgroundThemeBrush"
+                     Color="#FF5F37BE" />
     <Style x:Key="ComboBoxStyleDark"
            TargetType="ComboBox">
         <Setter Property="Padding"
@@ -2292,8 +2294,8 @@
         <TextBlock Foreground="{StaticResource MainColor}"
                    Text="{Binding}" />
     </DataTemplate>
-    
-    
+
+
     <Style x:Name="VerticalContentGridViewItemStyle"
            BasedOn="{StaticResource GridViewItemStyle}"
            TargetType="GridViewItem">

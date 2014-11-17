@@ -42,7 +42,9 @@ namespace VLC_WINRT_APP
         public static CoreDispatcher Dispatcher;
         public static IPropertySet LocalSettings = ApplicationData.Current.LocalSettings.Values;
         public static string ApiKeyLastFm = "a8eba7d40559e6f3d15e7cca1bfeaa1c";
-        public static string DeezerAppID = "135671";
+        public static string DeezerAppID = "135671";+        
+        public static OpenFilePickerReason OpenFilePickerReason = OpenFilePickerReason.Null;
+
         public static IContainer Container;
 
         /// <summary>
@@ -100,7 +102,7 @@ namespace VLC_WINRT_APP
                 DebugSettings.EnableFrameRateCounter = true;
             }
 #endif
-            if (Window.Current.Content != null) return; 
+            if (Window.Current.Content != null) return;
             await LaunchTheApp();
             ApplicationFrame.Navigate(typeof(MainPageHome));
             var rootFrame = Window.Current.Content as Frame;
@@ -150,7 +152,18 @@ namespace VLC_WINRT_APP
             base.OnActivated(args);
             var continueArgs =
               args as FileOpenPickerContinuationEventArgs;
-            if (continueArgs != null && continueArgs.Files.Any()) await OpenFile(continueArgs.Files[0]);
+            if (continueArgs != null && continueArgs.Files.Any())
+            {
+                if (OpenFilePickerReason == OpenFilePickerReason.OnOpeningVideo)
+                    await OpenFile(continueArgs.Files[0]);
+                else if (OpenFilePickerReason == OpenFilePickerReason.OnOpeningSubtitle)
+                {
+                    string mru = StorageApplicationPermissions.FutureAccessList.Add(continueArgs.Files[0]);
+                    string mrl = "file://" + mru;
+                    Locator.VideoVm.OpenSubtitle(mrl);
+                }
+            }
+            OpenFilePickerReason = OpenFilePickerReason.Null;
         }
 
 #endif
