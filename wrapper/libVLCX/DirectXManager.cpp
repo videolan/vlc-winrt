@@ -50,14 +50,16 @@ void DirectXManger::UpdateSwapChain(unsigned int width, unsigned int height)
         cp_d2dContext->SetTarget(nullptr);
         cp_d2dTargetBitmap = nullptr;
 
-        float dpi = Windows::Graphics::Display::DisplayProperties::LogicalDpi;
+        const auto displayInfo = Windows::Graphics::Display::DisplayInformation::GetForCurrentView();
+        float dpiX = displayInfo->RawDpiX;
+        float dpiY = displayInfo->RawDpiY;
 
         D2D1_BITMAP_PROPERTIES1 bitmapProperties =
             BitmapProperties1(
             D2D1_BITMAP_OPTIONS_TARGET | D2D1_BITMAP_OPTIONS_CANNOT_DRAW,
             PixelFormat(DXGI_FORMAT_B8G8R8A8_UNORM, D2D1_ALPHA_MODE_PREMULTIPLIED),
-            dpi,
-            dpi);
+            displayInfo->RawDpiX,
+            displayInfo->RawDpiY);
 
 
         cp_swapChain->ResizeBuffers(2, width, height, DXGI_FORMAT_B8G8R8A8_UNORM, 0);
