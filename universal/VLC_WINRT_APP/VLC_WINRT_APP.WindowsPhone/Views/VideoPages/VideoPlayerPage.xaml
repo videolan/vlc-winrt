@@ -124,9 +124,8 @@
                                 <Flyout.FlyoutPresenterStyle>
                                     <Style TargetType="FlyoutPresenter">
                                         <Setter Property="Background"
-+                                                Value="#C6000000"/>
+                                                Value="#C6000000"/>
                                     </Style>
-                                    +
                                 </Flyout.FlyoutPresenterStyle>
                                 <Grid RequestedTheme="Dark"
                                       HorizontalAlignment="Stretch"
