@@ -63,11 +63,11 @@ namespace VLC_WINRT_APP
         {
             get
             {
-//#if WINDOWS_APP
+#if WINDOWS_APP
                 return RootPage != null ? RootPage.MainFrame : null;
-//#else
-//                return RootPage != null ? RootPage.MainFrame : null;
-//#endif
+#else
+                return RootPage != null ? RootPage.PanelsView.MainFrame : null;
+#endif
             }
         }
 
@@ -83,7 +83,7 @@ namespace VLC_WINRT_APP
 #if WINDOWS_APP
                 return RootPage.MainFrameThemeTransition;
 #else
-                return RootPage.MainFrameThemeTransition;
+                return RootPage.PanelsView.MainFrameThemeTransition;
 #endif
             }
         }

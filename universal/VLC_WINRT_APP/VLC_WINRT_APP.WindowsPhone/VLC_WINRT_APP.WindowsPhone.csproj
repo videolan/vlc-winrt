@@ -201,6 +201,9 @@
       <HintPath>..\..\..\app\packages\Newtonsoft.Json.6.0.5\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="PanelsView">
+      <HintPath>..\..\..\..\..\..\PanelsView\PanelsView\PanelsView\bin\Release\PanelsView.dll</HintPath>
+    </Reference>
     <Reference Include="ScrollWatchedSelector, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\Documents\Visual Studio 2013\Projects\ScrollWatchedListView\ScrollWatchedListView\bin\Debug\ScrollWatchedSelector.dll</HintPath>

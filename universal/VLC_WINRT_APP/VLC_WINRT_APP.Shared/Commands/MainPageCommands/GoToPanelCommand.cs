@@ -24,8 +24,10 @@ namespace VLC_WINRT_APP.Commands.MainPageCommands
         public static readonly SolidColorBrush SelectedColorBrush = App.Current.Resources["MainColor"] as SolidColorBrush;
         public static readonly SolidColorBrush DefaultColorBrush = new SolidColorBrush(Colors.DimGray);
 #else
-        public static  readonly SolidColorBrush SelectedColorBrush = new SolidColorBrush(Colors.WhiteSmoke);
-        public static readonly SolidColorBrush DefaultColorBrush = new SolidColorBrush(Color.FromArgb(110, 0, 0, 0));
+//        public static  readonly SolidColorBrush SelectedColorBrush = new SolidColorBrush(Colors.WhiteSmoke);
+//        public static readonly SolidColorBrush DefaultColorBrush = new SolidColorBrush(Color.FromArgb(110, 0, 0, 0));
+        public static readonly SolidColorBrush SelectedColorBrush = App.Current.Resources["MainColor"] as SolidColorBrush;
+        public static readonly SolidColorBrush DefaultColorBrush = new SolidColorBrush(Colors.DimGray);
 #endif
         public override void Execute(object parameter)
         {
@@ -60,7 +62,7 @@ namespace VLC_WINRT_APP.Commands.MainPageCommands
 #endif
             }
 #if WINDOWS_PHONE_APP
-            //App.RootPage.PanelsView.HideSidebar();
+            App.RootPage.PanelsView.HideSidebar();
 #endif
         }
     }

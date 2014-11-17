@@ -10,22 +10,27 @@
 
     <Grid Name="HeaderGrid"
           Height="80"
-          Background="{Binding HeaderBackground, Mode=TwoWay}">
-        <!--<Grid.ColumnDefinitions>
+          Background="{Binding HeaderBackground, Mode=TwoWay}"
+          Tapped="Menu_Click">
+        <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <Grid Tapped="Menu_Click"
-              Background="Transparent">
+        <Grid Background="Transparent">
             <Path Data="M0,21.388L30.408001, 21.388 30.408001, 24.414    0,24.414z 
                         M0,10.695L30.408001, 10.695 30.408001, 13.721    0,13.721z 
                         M0,0     L30.408001, 0      30.408001, 3.0259995 0,3.0259995z"
                   Fill="WhiteSmoke"
                   VerticalAlignment="Center"
-                  Margin="24,6,0,0"/>
-        </Grid>-->
-        <TextBlock Margin="20,0,0,0" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap" VerticalAlignment="Center" Grid.Column="1" Text="{Binding HeaderTextBlock}"
-                       Foreground="WhiteSmoke"
-                       Style="{StaticResource SubheaderTextBlockStyle}" />
+                  Margin="24,6,0,0" />
+        </Grid>
+        <TextBlock Margin="20,0,0,0"
+                   TextTrimming="CharacterEllipsis"
+                   TextWrapping="NoWrap"
+                   VerticalAlignment="Center"
+                   Grid.Column="1"
+                   Text="{Binding HeaderTextBlock}"
+                   Foreground="WhiteSmoke"
+                   Style="{StaticResource SubheaderTextBlockStyle}" />
     </Grid>
 </UserControl>

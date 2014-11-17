@@ -5,14 +5,15 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:userControls="using:VLC_WINRT_APP.Views.UserControls"
+      xmlns:panelsView="using:PanelsView"
       mc:Ignorable="d">
 
     <SwapChainPanel x:Name="SwapChainPanel"
                     RequestedTheme="Light">
-        <Grid.RowDefinitions>
+        <!--<Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition />
-        </Grid.RowDefinitions>
+        </Grid.RowDefinitions>-->
         <MediaElement Grid.RowSpan="2"
                       AudioCategory="BackgroundCapableMedia"
                       AudioDeviceType="Multimedia"
@@ -28,8 +29,7 @@
                Grid.RowSpan="2"
                VerticalAlignment="Bottom"
                Visibility="{Binding Source={StaticResource Locator}, Path=VideoVm.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}" />
-        <userControls:TopBar />
-        <Frame Grid.Row="1"
+        <!--<Frame Grid.Row="1"
                x:Name="MainFrame"
                x:FieldModifier="public"
                Background="Transparent">
@@ -40,12 +40,12 @@
                                            Edge="Bottom" />
                 </TransitionCollection>
             </Frame.ContentTransitions>
-        </Frame>
-        <!--<panelsView:PanelsFrame x:Name="PanelsView"
+        </Frame>-->
+        <panelsView:PanelsFrame x:Name="PanelsView"
                                 x:FieldModifier="public">
             <panelsView:PanelsFrame.SideBarContent>
                 <userControls:LeftColumn DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}" />
             </panelsView:PanelsFrame.SideBarContent>
-        </panelsView:PanelsFrame>-->
+        </panelsView:PanelsFrame>
     </SwapChainPanel>
 </Page>
