@@ -11,7 +11,7 @@
     <Grid Name="HeaderGrid"
           Height="80"
           Background="{Binding HeaderBackground, Mode=TwoWay}">
-        <Grid.ColumnDefinitions>
+        <!--<Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
@@ -23,7 +23,7 @@
                   Fill="WhiteSmoke"
                   VerticalAlignment="Center"
                   Margin="24,6,0,0"/>
-        </Grid>
+        </Grid>-->
         <TextBlock Margin="20,0,0,0" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap" VerticalAlignment="Center" Grid.Column="1" Text="{Binding HeaderTextBlock}"
                        Foreground="WhiteSmoke"
                        Style="{StaticResource SubheaderTextBlockStyle}" />

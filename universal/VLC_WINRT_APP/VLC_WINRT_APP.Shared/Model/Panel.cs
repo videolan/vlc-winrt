@@ -33,6 +33,7 @@ namespace VLC_WINRT_APP.Model
                 ? GoToPanelCommand.SelectedColorBrush
                 : GoToPanelCommand.DefaultColorBrush;
         }
+
         public string Title { get { return _title; } set { SetProperty(ref _title, value); } }
         public int Index { get { return _index; } set { SetProperty(ref _index, value); } }
         public double Opacity { get { return _opacity; } set { SetProperty(ref _opacity, value); } }
