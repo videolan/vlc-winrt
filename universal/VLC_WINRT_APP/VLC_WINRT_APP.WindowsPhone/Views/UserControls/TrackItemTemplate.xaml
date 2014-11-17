@@ -21,17 +21,23 @@
         <TextBlock Grid.Column="0"
                    Grid.Row="0"
                    Text="{Binding Name}"
-                   Style="{StaticResource TitleTextBlockStyle}" />
+                   TextWrapping="NoWrap"
+                   TextTrimming="CharacterEllipsis"
+                   Style="{StaticResource TitleTextBlockStyle}" 
+                   FontSize="20"
+                   Margin="0,0,6,0"/>
         <TextBlock Grid.Column="0"
                    Grid.Row="1"
                    Text="{Binding ArtistName}"
                    Style="{StaticResource BaseTextBlockStyle}"
                    Foreground="DimGray" />
         <Button Grid.Column="1"
-                Grid.Row="0"
+                Grid.Row="1"
                 Style="{StaticResource TextBlockButtonStyle}"
                 Content=""
-                FontFamily="Segoe UI Symbol">
+                Foreground="DimGray"
+                FontFamily="Segoe UI Symbol"
+                HorizontalAlignment="Right">
             <Button.Flyout>
                 <Flyout Placement="Full">
                     <Grid Background="WhiteSmoke"
@@ -106,7 +112,8 @@
             </Button.Flyout>
         </Button>
         <TextBlock Grid.Column="1"
-                   Grid.Row="1"
-                   Text="{Binding Duration.TotalSeconds, Converter={StaticResource SecondsStringConverter}}" />
+                   Grid.Row="0"
+                   Text="{Binding Duration.TotalSeconds, Converter={StaticResource SecondsStringConverter}}" 
+                   VerticalAlignment="Center"/>
     </Grid>
 </UserControl>
