@@ -83,18 +83,18 @@
         </Grid>
     </Grid>
 
-    <Page.BottomAppBar>
+    <!--<Page.BottomAppBar>
         <CommandBar Style="{StaticResource VLCCommandBarStyle}">
             <CommandBar.PrimaryCommands>
                 <AppBarButton Icon="Play"
                               Label="play all"
-                              Command="{Binding CurrentAlbum.PlayAlbum}"
+                              Command="{Binding CurrentArtist.PlayArtist CurrentAlbum.PlayAlbum}"
                               CommandParameter="{Binding CurrentAlbum}" />
                 <AppBarButton Icon="Favorite"
                               Label="favorite"
-                              Command="{Binding CurrentAlbum.FavoriteAlbum}"
+                              Command="{Binding CurrentArtist.IsFavorite}"
                               CommandParameter="{Binding CurrentAlbum}" />
             </CommandBar.PrimaryCommands>
         </CommandBar>
-    </Page.BottomAppBar>
+    </Page.BottomAppBar>-->
 </Page>
