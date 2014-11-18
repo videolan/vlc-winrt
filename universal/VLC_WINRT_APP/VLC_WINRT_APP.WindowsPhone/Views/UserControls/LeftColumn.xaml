@@ -11,8 +11,8 @@
 
     <Grid x:Name="ColumnGrid"
           Width="340"
-          Background="WhiteSmoke"
-          Margin="0,80,0,0">
+          Background="WhiteSmoke">
+          <!--Margin="0,80,0,0">-->
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="1" />
