@@ -18,6 +18,7 @@ using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 
 // Pour en savoir plus sur le modèle d’élément Page vierge, consultez la page http://go.microsoft.com/fwlink/?LinkID=390556
+using VLC_WINRT_APP.Model.Video;
 using WinRTXamlToolkit.Controls.Extensions;
 
 namespace VLC_WINRT_APP.Views.MusicPages
@@ -64,6 +65,11 @@ namespace VLC_WINRT_APP.Views.MusicPages
                     await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => FadeOutHeader.Begin());
                 }
             };
+        }
+
+        private void ItemsWrapGrid_Loaded(object sender, RoutedEventArgs e)
+        {
+            TemplateSizer.ComputeAlbums(sender as ItemsWrapGrid, TemplateSize.Normal);
         }
     }
 }

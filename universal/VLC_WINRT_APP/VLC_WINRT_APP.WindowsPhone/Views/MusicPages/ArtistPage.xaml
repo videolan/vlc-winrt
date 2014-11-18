@@ -44,9 +44,9 @@
                    Stretch="UniformToFill"
                    Opacity="0.5" />
             <userControls:HeaderControl Grid.Row="0"
-                                 HeaderTextBlock="{Binding CurrentArtist.Name}"
-                                 HeaderBackground="#00ffffff"
-                                 VerticalAlignment="Top" />
+                                        HeaderTextBlock="{Binding CurrentArtist.Name}"
+                                        HeaderBackground="#00ffffff"
+                                        VerticalAlignment="Top" />
             <Grid Grid.Row="1">
                 <TextBlock Text="{Binding CurrentArtist.Biography}"
                            Style="{StaticResource BodyTextBlockStyle}"
@@ -64,7 +64,7 @@
               RequestedTheme="Light">
             <GridView ItemsSource="{Binding CurrentArtist.Albums}"
                       ItemTemplate="{StaticResource PhoneSemanticZoomInViewAlbumTemplateLittleSize}"
-                      Margin="0,12,-20,0"
+                      Margin="0,0,-20,0"
                       IsItemClickEnabled="True"
                       Loaded="AlbumsView_Loaded">
                 <triggers:Interactions.Triggers>
@@ -75,9 +75,8 @@
                 </triggers:Interactions.Triggers>
                 <GridView.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <ItemsWrapGrid ItemHeight="200"
-                                       ItemWidth="156"
-                                       Orientation="Horizontal" />
+                        <ItemsWrapGrid Orientation="Horizontal"
+                                       Loaded="ItemsWrapGrid_Loaded" />
                     </ItemsPanelTemplate>
                 </GridView.ItemsPanel>
             </GridView>

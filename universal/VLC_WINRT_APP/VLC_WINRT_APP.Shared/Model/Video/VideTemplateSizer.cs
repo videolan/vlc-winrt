@@ -4,6 +4,11 @@ using VLC_WINRT_APP.Helpers;
 
 namespace VLC_WINRT_APP.Model.Video
 {
+    public enum TemplateSize
+    {
+        Normal,
+        Compact
+    }
     public static class TemplateSizer
     {
 #if WINDOWS_PHONE_APP
@@ -20,10 +25,10 @@ namespace VLC_WINRT_APP.Model.Video
             wrapGrid.ItemHeight = itemHeight;
         }
 
-        public static void ComputeAlbums(ItemsWrapGrid wrapGrid)
+        public static void ComputeAlbums(ItemsWrapGrid wrapGrid, TemplateSize size = TemplateSize.Compact)
         {
             var width = Window.Current.Bounds.Width;
-            var splitScreen = 3;
+            var splitScreen = (size == TemplateSize.Compact) ? 3 : 2;
             if (!DisplayHelper.IsPortrait())
                 splitScreen = 5;
             var itemWidth = (width / splitScreen);

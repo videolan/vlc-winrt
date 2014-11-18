@@ -145,6 +145,9 @@
     <Compile Include="Views\UserControls\HeaderControl.xaml.cs">
       <DependentUpon>HeaderControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserControls\Placeholder\NoFavoriteAlbumsControl.xaml.cs">
+      <DependentUpon>NoFavoriteAlbumsControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserControls\Placeholder\NoPlaylistPlaceholder.xaml.cs">
       <DependentUpon>NoPlaylistPlaceholder.xaml</DependentUpon>
     </Compile>
@@ -310,6 +313,10 @@
     <Page Include="Views\UserControls\HeaderControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\Placeholder\NoFavoriteAlbumsControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\UserControls\Placeholder\NoPlaylistPlaceholder.xaml">
       <SubType>Designer</SubType>
