@@ -146,24 +146,30 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
 
         public static async Task GetTracks(this AlbumItem album)
         {
-            album.Tracks = new ObservableCollection<TrackItem>();
             var tracks = await MusicLibraryVM._trackDataRepository.LoadTracksByAlbumId(album.Id);
             var orderedTracks = tracks.OrderBy(x => x.Index);
-            foreach (var track in orderedTracks)
+            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                album.Tracks.Add(track);
-            }
+                album.Tracks = new ObservableCollection<TrackItem>();
+                foreach (var track in orderedTracks)
+                {
+                    album.Tracks.Add(track);
+                }
+            });
         }
 
         public static async Task GetAlbums(this ArtistItem artist)
         {
-            artist.Albums = new ObservableCollection<AlbumItem>();
             var albums = await MusicLibraryVM._albumDataRepository.LoadAlbumsFromId(artist.Id);
             var orderedAlbums = albums.OrderBy(x => x.Name);
-            foreach (AlbumItem album in orderedAlbums)
+            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                artist.Albums.Add(album);
-            }
+                artist.Albums = new ObservableCollection<AlbumItem>();
+                foreach (AlbumItem album in orderedAlbums)
+                {
+                    artist.Albums.Add(album);
+                }
+            });
         }
 
         public static async Task LoadFavoriteRandomAlbums()
@@ -273,7 +279,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                 TrackId = trackItem.Id,
                 TrackCollectionId = Locator.MusicLibraryVM.CurrentTrackCollection.Id,
             });
-            if(displayToastNotif)
+            if (displayToastNotif)
                 ToastHelper.Basic(trackItem.Name + " added to your playlist");
         }
 
@@ -295,7 +301,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             }
             foreach (TrackItem trackItem in trackCollection.Playlist)
             {
-                var trackListItem = new TracklistItem {TrackId = trackItem.Id, TrackCollectionId = trackCollection.Id};
+                var trackListItem = new TracklistItem { TrackId = trackItem.Id, TrackCollectionId = trackCollection.Id };
                 await MusicLibraryVM.TracklistItemRepository.Add(trackListItem);
             }
         }

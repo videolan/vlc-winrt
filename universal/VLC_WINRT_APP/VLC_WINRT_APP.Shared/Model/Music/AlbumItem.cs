@@ -63,7 +63,7 @@ namespace VLC_WINRT_APP.Model.Music
             get
             {
                 if (_trackItems == null)
-                    this.GetTracks();
+                    Task.Run(async () => await this.GetTracks());
                 return _trackItems;
             }
             set { SetProperty(ref _trackItems, value); }

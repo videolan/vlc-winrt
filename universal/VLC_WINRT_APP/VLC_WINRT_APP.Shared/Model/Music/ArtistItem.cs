@@ -101,7 +101,7 @@ namespace VLC_WINRT_APP.Model.Music
             get
             {
                 if (_albumItems == null)
-                    this.GetAlbums();
+                    Task.Run(async () => await this.GetAlbums());
                 return _albumItems;
             }
             set { SetProperty(ref _albumItems, value); }
@@ -118,7 +118,7 @@ namespace VLC_WINRT_APP.Model.Music
                 }
                 if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
                     return "Please verify your internet connection";
-                Task.Run(() => ArtistInformationsHelper.GetArtistBiography(this));
+                Task.Run(async () => await ArtistInformationsHelper.GetArtistBiography(this));
                 return "Loading";
             }
             set { SetProperty(ref _biography, value); }

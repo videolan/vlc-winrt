@@ -275,7 +275,11 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             {
                 Debug.WriteLine("Failed to get artist biography from LastFM. Returning nothing.");
             }
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, ()=> artist.Biography = System.Net.WebUtility.HtmlDecode(biography));
+            if (!string.IsNullOrEmpty(biography))
+                await
+                    App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
+                        () => artist.Biography = System.Net.WebUtility.HtmlDecode(biography));
+            else await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => artist.Biography = "ERROR");
         }
 
         public static async Task<bool> SaveAlbumImageAsync(AlbumItem album, byte[] img)
