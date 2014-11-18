@@ -76,7 +76,7 @@
                                      Stroke="{ThemeResource AppBarItemForegroundThemeBrush}"
                                      StrokeThickness="1.5"
                                      UseLayoutRounding="False"
-                                     Width="{TemplateBinding Width}"/>
+                                     Width="{TemplateBinding Width}" />
                             <Grid x:Name="ContentRoot"
                                   Background="Transparent">
                                 <ContentPresenter x:Name="Content"
@@ -388,7 +388,18 @@
         <Setter Property="Background"
                 Value="#C6000000" />
     </Style>
-    
+
+    <Style TargetType="MenuFlyoutPresenter">
+        <Setter Property="BorderThickness"
+                Value="1" />
+        <Setter Property="RequestedTheme"
+                Value="Light" />
+        <Setter Property="Background"
+                Value="WhiteSmoke" />
+        <Setter Property="BorderBrush"
+                Value="#ff8800" />
+    </Style>
+
     <DataTemplate x:Key="PivotTitleTemplate">
         <TextBlock Text="{Binding}"
                    Height="50"
