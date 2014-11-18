@@ -60,6 +60,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         private AlbumClickedCommand _albumClickedCommand;
         private ArtistClickedCommand _artistClickedCommand;
         private TrackClickedCommand _trackClickedCommand;
+        private PlayAllRandomCommand _playAllRandomCommand;
         private AlbumItem _currentAlbum;
         private ArtistItem _currentArtist;
         private TrackCollection _currentTrackCollection;
@@ -241,6 +242,12 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             set { SetProperty(ref _trackClickedCommand, value); }
         }
 
+        public PlayAllRandomCommand PlayAllRandomCommand
+        {
+            get { return _playAllRandomCommand; }
+            set { SetProperty(ref _playAllRandomCommand, value); }
+        }
+
         public ArtistItem CurrentArtist
         {
             get
@@ -293,6 +300,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             _changeAlbumArtCommand = new ChangeAlbumArtCommand();
             _downloadAlbumArtCommand = new DownloadAlbumArtCommand();
             _artistAlbumsSemanticZoomInvertZoomCommand = new ArtistAlbumsSemanticZoomInvertZoomCommand();
+            _playAllRandomCommand = new PlayAllRandomCommand();
             CurrentIndexingStatus = "Loading music";
             LoadingState = LoadingState.Loading;
             Task.Run(async () =>

@@ -53,7 +53,8 @@
                     Style="{StaticResource VLCCommandBarStyle}">
             <CommandBar.PrimaryCommands>
                 <AppBarButton Icon="Shuffle"
-                              Label="random" />
+                              Label="random" 
+                              Command="{Binding PlayAllRandomCommand}"/>
             </CommandBar.PrimaryCommands>
         </CommandBar>
     </Page.BottomAppBar>
