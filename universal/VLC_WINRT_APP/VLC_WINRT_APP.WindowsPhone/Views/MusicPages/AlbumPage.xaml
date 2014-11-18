@@ -68,7 +68,7 @@
                    Source="{Binding CurrentArtist.Picture}"
                    Stretch="UniformToFill"
                    Opacity="0.6" />
-            <userControls:TopBar HeaderTextBlock="{Binding CurrentAlbum.Name}"
+            <userControls:HeaderControl HeaderTextBlock="{Binding CurrentAlbum.Name}"
                                  HeaderBackground="#00ffffff" />
             <FlipView x:Name="HeaderFlipView"
                       x:FieldModifier="public"

@@ -13,7 +13,7 @@
             <RowDefinition Height="80" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <userControls:TopBar Grid.Row="0"
+        <userControls:HeaderControl Grid.Row="0"
                              HeaderTextBlock="Settings" />
         <Pivot Grid.Row="1"
                HeaderTemplate="{StaticResource PivotTitleTemplate}">

@@ -1,4 +1,5 @@
-﻿using Windows.Graphics.Display;
+﻿using System.Diagnostics;
+using Windows.Graphics.Display;
 using Windows.Media;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;

@@ -79,7 +79,7 @@ namespace VLC_WINRT_APP.ViewModels
 #if WINDOWS_PHONE_APP
             OpenSidebarCommand = new ActionCommand(() =>
             {
-                App.RootPage.PanelsView.ShowSidebar();
+                //App.RootPage.PanelsView.ShowSidebar();
             });
 #endif
             // TODO: For Windows 8.1 build, use ResourceLoader.GetForCurrentView(); 

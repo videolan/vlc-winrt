@@ -34,8 +34,8 @@ namespace VLC_WINRT_APP.Views.MainPages
         {
             App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                if (App.RootPage.PanelsView.IsSideBarVisible)
-                    return;
+                //if (App.RootPage.PanelsView.IsSideBarVisible)
+                //    return;
                 if (App.ApplicationFrame.CanGoBack)
                 {
                     backPressedEventArgs.Handled = true;

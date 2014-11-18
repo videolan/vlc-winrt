@@ -10,6 +10,7 @@
 using Windows.UI;
 using Windows.UI.Xaml.Media;
 using VLC_WINRT.Common;
+using VLC_WINRT_APP.Commands.MainPageCommands;
 using VLC_WINRT_APP.Common;
 
 namespace VLC_WINRT_APP.Model
@@ -29,8 +30,8 @@ namespace VLC_WINRT_APP.Model
             _opacity = o;
             _pathData = pd;
             _color = isdefault
-                ? App.Current.Resources["MainColor"] as SolidColorBrush
-                : new SolidColorBrush(Colors.DimGray);
+                ? GoToPanelCommand.SelectedColorBrush
+                : GoToPanelCommand.DefaultColorBrush;
         }
         public string Title { get { return _title; } set { SetProperty(ref _title, value); } }
         public int Index { get { return _index; } set { SetProperty(ref _index, value); } }

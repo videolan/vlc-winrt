@@ -14,7 +14,7 @@
             <RowDefinition Height="80" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <userControls:TopBar Grid.Row="0"
+        <userControls:HeaderControl Grid.Row="0"
                              HeaderTextBlock="Special thanks" />
         <Grid Grid.Row="1">
             <TextBlock Text="The VLC team would like to thank ..."/>

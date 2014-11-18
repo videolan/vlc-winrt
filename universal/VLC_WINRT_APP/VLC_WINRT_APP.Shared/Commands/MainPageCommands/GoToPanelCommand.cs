@@ -17,15 +17,23 @@ using VLC_WINRT_APP.Views.MainPages;
 
 namespace VLC_WINRT_APP.Commands.MainPageCommands
 {
+
     public class GoToPanelCommand : AlwaysExecutableCommand
     {
+#if WINDOWS_APP
+        public static readonly SolidColorBrush SelectedColorBrush = App.Current.Resources["MainColor"] as SolidColorBrush;
+        public static readonly SolidColorBrush DefaultColorBrush = new SolidColorBrush(Colors.DimGray);
+#else
+        public static  readonly SolidColorBrush SelectedColorBrush = new SolidColorBrush(Colors.WhiteSmoke);
+        public static readonly SolidColorBrush DefaultColorBrush = new SolidColorBrush(Color.FromArgb(150, 0, 0, 0));
+#endif
         public override void Execute(object parameter)
         {
             App.Transition.Edge = EdgeTransitionLocation.Bottom;
             Model.Panel panel = (parameter as ItemClickEventArgs).ClickedItem as Model.Panel;
             foreach (Model.Panel panel1 in Locator.MainVM.Panels)
-                panel1.Color = new SolidColorBrush(Colors.DimGray);
-            panel.Color = App.Current.Resources["MainColor"] as SolidColorBrush;
+                panel1.Color = DefaultColorBrush;
+            panel.Color = SelectedColorBrush;
             switch (panel.Index)
             {
                 case 0:
@@ -52,7 +60,7 @@ namespace VLC_WINRT_APP.Commands.MainPageCommands
 #endif
             }
 #if WINDOWS_PHONE_APP
-            App.RootPage.PanelsView.HideSidebar();
+            //App.RootPage.PanelsView.HideSidebar();
 #endif
         }
     }

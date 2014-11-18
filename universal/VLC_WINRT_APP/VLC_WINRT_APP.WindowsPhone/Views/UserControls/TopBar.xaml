@@ -4,28 +4,56 @@
              xmlns:local="using:VLC_WINRT_APP.Views.UserControls"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:triggers="using:WinRT.Triggers"
              mc:Ignorable="d"
              d:DesignHeight="300"
-             d:DesignWidth="400">
-
-    <Grid Name="HeaderGrid"
-          Height="80"
-          Background="{Binding HeaderBackground, Mode=TwoWay}">
+             d:DesignWidth="400"
+             DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}">
+    <Grid x:Name="ColumnGrid"
+          Height="95"
+          MinWidth="320"
+          Background="{StaticResource MainColor}">
         <Grid.ColumnDefinitions>
+            <ColumnDefinition />
             <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <Grid Tapped="Menu_Click"
-              Background="Transparent">
-            <Path Data="M0,21.388L30.408001, 21.388 30.408001, 24.414    0,24.414z 
-                        M0,10.695L30.408001, 10.695 30.408001, 13.721    0,13.721z 
-                        M0,0     L30.408001, 0      30.408001, 3.0259995 0,3.0259995z"
+        <StackPanel Orientation="Horizontal"
+                    VerticalAlignment="Center"
+                    Margin="24,16,0,0">
+            <Path Data="{StaticResource VLCFlatPath}"
+                  Stretch="Uniform"
                   Fill="WhiteSmoke"
+                  Width="30"
+                  Height="30"
+                  Margin="0,4,0,0"
+                  HorizontalAlignment="Left" />
+            <TextBlock Text="VLC"
+                       Style="{StaticResource TitleTextBlockStyle}"
+                       FontSize="28"
+                       FontWeight="Light"
+                       Foreground="WhiteSmoke" />
+        </StackPanel>
+        <ListView Grid.Column="1"
+                  x:Name="PanelsListView"
+                  Margin="12,16,0,0"
+                  ItemsSource="{Binding Panels}"
+                  IsItemClickEnabled="True"
+                  SelectionMode="None"
                   VerticalAlignment="Center"
-                  Margin="24,6,0,0"/>
-        </Grid>
-        <TextBlock Margin="20,0,0,0" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap" VerticalAlignment="Center" Grid.Column="1" Text="{Binding HeaderTextBlock}"
-                       Foreground="WhiteSmoke"
-                       Style="{StaticResource SubheaderTextBlockStyle}" />
+                  ItemContainerStyle="{StaticResource ListViewItemContainerStyle}"
+                  ItemTemplate="{StaticResource SidebarMiniIconItemTemplate}"
+                  ScrollViewer.VerticalScrollBarVisibility="Disabled">
+            <triggers:Interactions.Triggers>
+                <triggers:EventTrigger EventName="ItemClick">
+                    <triggers:InvokeCommandAction Command="{Binding GoToPanelCommand}"
+                                                  PassEventArgsToCommand="True" />
+                </triggers:EventTrigger>
+            </triggers:Interactions.Triggers>
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+        </ListView>
     </Grid>
 </UserControl>

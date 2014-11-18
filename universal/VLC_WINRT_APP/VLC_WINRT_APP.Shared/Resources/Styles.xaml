@@ -1158,7 +1158,7 @@
         <Setter Property="IsHoldingEnabled"
                 Value="True" />
         <Setter Property="Margin"
-                Value="0,0,18,2" />
+                Value="{StaticResource HorizontalListViewItemMargin}" />
         <Setter Property="HorizontalContentAlignment"
                 Value="Left" />
         <Setter Property="VerticalContentAlignment"

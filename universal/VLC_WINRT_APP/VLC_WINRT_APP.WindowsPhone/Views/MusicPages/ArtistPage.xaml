@@ -43,7 +43,7 @@
                    Source="{Binding CurrentArtist.Picture}"
                    Stretch="UniformToFill"
                    Opacity="0.5" />
-            <userControls:TopBar Grid.Row="0"
+            <userControls:HeaderControl Grid.Row="0"
                                  HeaderTextBlock="{Binding CurrentArtist.Name}"
                                  HeaderBackground="#00ffffff"
                                  VerticalAlignment="Top" />

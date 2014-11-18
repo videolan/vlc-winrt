@@ -142,6 +142,9 @@
     <Compile Include="Views\UserControls\MiniPlayer.xaml.cs">
       <DependentUpon>MiniPlayer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserControls\HeaderControl.xaml.cs">
+      <DependentUpon>HeaderControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserControls\TopBar.xaml.cs">
       <DependentUpon>TopBar.xaml</DependentUpon>
     </Compile>
@@ -197,9 +200,6 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\..\app\packages\Newtonsoft.Json.6.0.5\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
-    </Reference>
-    <Reference Include="PanelsView">
-      <HintPath>..\..\..\..\..\..\PanelsView\PanelsView\PanelsView\bin\Release\PanelsView.dll</HintPath>
     </Reference>
     <Reference Include="ScrollWatchedSelector, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -295,6 +295,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControls\MiniPlayer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\HeaderControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

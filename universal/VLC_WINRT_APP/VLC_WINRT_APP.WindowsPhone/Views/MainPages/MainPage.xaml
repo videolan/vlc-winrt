@@ -5,16 +5,21 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:userControls="using:VLC_WINRT_APP.Views.UserControls"
-      xmlns:panelsView="using:PanelsView"
       mc:Ignorable="d">
 
     <SwapChainPanel x:Name="SwapChainPanel"
                     RequestedTheme="Light">
-        <MediaElement AudioCategory="BackgroundCapableMedia"
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <MediaElement Grid.RowSpan="2"
+                      AudioCategory="BackgroundCapableMedia"
                       AudioDeviceType="Multimedia"
                       x:Name="MediaElement"
                       x:FieldModifier="public" />
-        <Grid Background="White"
+        <Grid Grid.RowSpan="2"
+              Background="White"
               Visibility="{Binding Source={StaticResource Locator}, Path=VideoVm.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}" />
 
         <Image Source="/Assets/backgroundBot.png"
@@ -23,18 +28,24 @@
                Grid.RowSpan="2"
                VerticalAlignment="Bottom"
                Visibility="{Binding Source={StaticResource Locator}, Path=VideoVm.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}" />
-        <Image Source="/Assets/backgroundBotBlurred.png"
-               Stretch="Uniform"
-               Opacity="{Binding ElementName=PanelsView, Path=Scrolling}"
-               Grid.RowSpan="2"
-               VerticalAlignment="Bottom"
-               Visibility="{Binding Source={StaticResource Locator}, Path=VideoVm.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}" />
-
-        <panelsView:PanelsFrame x:Name="PanelsView"
+        <userControls:TopBar />
+        <Frame Grid.Row="1"
+               x:Name="MainFrame"
+               x:FieldModifier="public"
+               Background="Transparent">
+            <Frame.ContentTransitions>
+                <TransitionCollection>
+                    <EdgeUIThemeTransition x:Name="MainFrameThemeTransition"
+                                           x:FieldModifier="public"
+                                           Edge="Bottom" />
+                </TransitionCollection>
+            </Frame.ContentTransitions>
+        </Frame>
+        <!--<panelsView:PanelsFrame x:Name="PanelsView"
                                 x:FieldModifier="public">
             <panelsView:PanelsFrame.SideBarContent>
                 <userControls:LeftColumn DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}" />
             </panelsView:PanelsFrame.SideBarContent>
-        </panelsView:PanelsFrame>
+        </panelsView:PanelsFrame>-->
     </SwapChainPanel>
 </Page>

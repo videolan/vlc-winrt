@@ -10,7 +10,7 @@ namespace VLC_WINRT_APP.Commands.Music
             if(App.ApplicationFrame.CurrentSourcePageType != typeof(MusicPlayerPage))
                 App.ApplicationFrame.Navigate(typeof (MusicPlayerPage));
 #if WINDOWS_PHONE_APP
-            App.RootPage.PanelsView.HideSidebar();
+            //App.RootPage.PanelsView.HideSidebar();
 #endif
         }
     }

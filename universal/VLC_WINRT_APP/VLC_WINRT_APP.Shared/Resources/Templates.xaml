@@ -135,7 +135,7 @@
     
     <DataTemplate x:Key="SidebarMiniIconItemTemplate">
         <Grid Height="60"
-              Width="40">
+              Width="30">
             <Path Data="{Binding PathData}"
                   Height="30"
                   Width="30"

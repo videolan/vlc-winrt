@@ -21,16 +21,16 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
+            <!--<RowDefinition Height="Auto" />-->
             <RowDefinition />
         </Grid.RowDefinitions>
-        <userControls:TopBar Grid.Row="0"
-                             HeaderTextBlock="videos" />
-        <Image Grid.Row="1"
+        <!--<userControls:HeaderControl Grid.Row="0"
+                             HeaderTextBlock="videos" />-->
+        <Image Grid.Row="0"
                Source="/Assets/backgroundTop.png"
                Stretch="Uniform"
                VerticalAlignment="Top" />
-        <Pivot Grid.Row="1"
+        <Pivot Grid.Row="0"
                Style="{StaticResource PivotStyle1}"
                HeaderTemplate="{StaticResource PivotTitleTemplate}">
             <Pivot.TitleTemplate>

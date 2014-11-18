@@ -18,16 +18,16 @@
           x:Name="MainGrid"
           DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="80" />
+            <!--<RowDefinition Height="80" />-->
             <RowDefinition />
         </Grid.RowDefinitions>
-        <userControls:TopBar Grid.Row="0"
-                             HeaderTextBlock="VLC" />
-        <Image Grid.Row="1"
+        <!--<userControls:HeaderControl Grid.Row="0"
+                             HeaderTextBlock="VLC" />-->
+        <Image Grid.Row="0"
                Source="/Assets/backgroundTop.png"
                Stretch="Uniform"
                VerticalAlignment="Top" />
-        <ScrollViewer Grid.Row="1">
+        <ScrollViewer Grid.Row="0">
             <StackPanel Margin="24,0,0,0">
                 <StackPanel x:Name="MusicLibrary"
                             DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">

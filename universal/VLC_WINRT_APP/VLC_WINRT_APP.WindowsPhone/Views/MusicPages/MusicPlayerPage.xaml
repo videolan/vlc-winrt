@@ -217,7 +217,7 @@
             </FlipViewItem>
         </FlipView>
 
-        <userControls:TopBar Grid.Row="0"
+        <userControls:HeaderControl Grid.Row="0"
                              x:Name="HeaderGrid"
                              HeaderTextBlock="Now playing"
                              HeaderBackground="#00ffffff"
