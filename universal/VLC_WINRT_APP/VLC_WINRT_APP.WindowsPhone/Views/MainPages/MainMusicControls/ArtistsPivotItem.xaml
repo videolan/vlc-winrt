@@ -15,7 +15,6 @@
                   ItemsSource="{Binding Artists}"
                   IsItemClickEnabled="True"
                   SelectionMode="None"
-                  ItemContainerStyle="{StaticResource GridViewItemStyle}"
                   ItemTemplate="{StaticResource PhoneArtistSquareTemplate}"
                   HorizontalAlignment="Left"
                   Margin="-6,0,-20,0">

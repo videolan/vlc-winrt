@@ -9,9 +9,8 @@
                 Margin="0,0,6,0">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="6" />
-                    <RowDefinition />
+                    <RowDefinition Height="3*" />
+                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Image Grid.Row="0"
                        Source="/Assets/NoCover.jpg"
@@ -23,22 +22,33 @@
                        Stretch="UniformToFill"
                        Width="Auto"
                        Height="Auto" />
-                <StackPanel Grid.Row="2"
-                            Width="Auto">
-                    <TextBlock Text="{Binding Name}"
+                <Grid Grid.Row="1"
+                      Width="Auto">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0"
+                               Text="{Binding Name}"
                                TextWrapping="NoWrap"
                                TextTrimming="WordEllipsis"
                                FontSize="15"
-                               FontWeight="SemiBold" 
-                               Margin="7,0"/>
-                    <TextBlock TextWrapping="NoWrap"
+                               FontWeight="SemiBold"
+                               Margin="7,0" />
+                    <TextBlock Grid.Row="1"
+                               Grid.Column="0"
+                               TextWrapping="NoWrap"
                                TextTrimming="WordEllipsis"
                                FontSize="16"
                                Margin="7,0,7,7">
                         <Run Text="{Binding Albums.Count}" />
                         <Run Text="albums" />
                     </TextBlock>
-                </StackPanel>
+                </Grid>
             </Grid>
         </Border>
     </DataTemplate>
