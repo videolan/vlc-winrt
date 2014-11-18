@@ -12,7 +12,7 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
-            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="30" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition />
@@ -37,7 +37,7 @@
                 Content=""
                 Foreground="DimGray"
                 FontFamily="Segoe UI Symbol"
-                HorizontalAlignment="Right">
+                HorizontalAlignment="Center">
             <Button.Flyout>
                 <Flyout Placement="Full">
                     <Grid Background="WhiteSmoke"
@@ -114,6 +114,7 @@
         <TextBlock Grid.Column="1"
                    Grid.Row="0"
                    Text="{Binding Duration.TotalSeconds, Converter={StaticResource SecondsStringConverter}}" 
-                   VerticalAlignment="Center"/>
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"/>
     </Grid>
 </UserControl>
