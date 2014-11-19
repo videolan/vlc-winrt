@@ -9,8 +9,10 @@
 
 using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Windows.Storage;
 using Autofac;
 using VLC_WINRT.Common;
 using VLC_WINRT_APP.Commands.RemovableDevices;
@@ -120,6 +122,34 @@ namespace VLC_WINRT_APP.ViewModels.RemovableDevicesVM
         private async void DeviceAdded(object sender, string id)
         {
             await AddFolder(id);
+        }
+    }
+#else
+    public class ExternalStorageViewModel : BindableBase
+    {
+        private FileExplorerViewModel _currentStorageVM;
+        public FileExplorerViewModel CurrentStorageVM
+        {
+            get
+            {
+                return _currentStorageVM;
+            }
+            set { SetProperty(ref _currentStorageVM, value); }
+        }
+        public ExternalStorageViewModel()
+        {
+            Get();
+        }
+
+        private async Task Get()
+        {
+            var test = KnownFolders.RemovableDevices;
+            var cards = await test.GetFoldersAsync();
+            if (cards.Any())
+            {
+                CurrentStorageVM = new FileExplorerViewModel(cards[0]);
+                CurrentStorageVM.GetFiles();
+            }
         }
     }
 #endif

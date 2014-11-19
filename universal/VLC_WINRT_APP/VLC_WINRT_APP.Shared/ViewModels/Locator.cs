@@ -64,12 +64,11 @@ namespace VLC_WINRT_APP.ViewModels
         {
             get { return App.Container.Resolve<VideoPlayerVM>(); }
         }
-#if WINDOWS_APP
         public static ExternalStorageViewModel ExternalStorageVM
         {
             get { return App.Container.Resolve<ExternalStorageViewModel>(); }
         }
-#endif
+
 
         public static DLNAVM DlnaVM
         {

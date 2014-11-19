@@ -91,6 +91,9 @@
     <Compile Include="Views\MainPages\MainMusicControls\SongsPivotItem.xaml.cs">
       <DependentUpon>SongsPivotItem.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\MainPages\MainPageSDCard.xaml.cs">
+      <DependentUpon>MainPageSDCard.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainPages\MainVideoControls\AllVideosPivotItem.xaml.cs">
       <DependentUpon>AllVideosPivotItem.xaml</DependentUpon>
     </Compile>
@@ -153,6 +156,9 @@
     </Compile>
     <Compile Include="Views\UserControls\Placeholder\NoShowPlaceholder.xaml.cs">
       <DependentUpon>NoShowPlaceholder.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\Placeholder\NothingToSeeHere.xaml.cs">
+      <DependentUpon>NothingToSeeHere.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\TopBar.xaml.cs">
       <DependentUpon>TopBar.xaml</DependentUpon>
@@ -242,6 +248,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\MainPages\MainPageSDCard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainPages\MainVideoControls\AllVideosPivotItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -323,6 +333,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControls\Placeholder\NoShowPlaceholder.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\Placeholder\NothingToSeeHere.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

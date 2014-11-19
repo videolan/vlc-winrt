@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
@@ -53,6 +54,11 @@ namespace VLC_WINRT_APP.ViewModels.Others.VlcExplorer
             get { return _isFolderEmpty; }
             set { SetProperty(ref _isFolderEmpty, value); }
         }
+
+        public string CurrentFolderName
+        {
+            get { return BackStack.Last().Name; }
+        }
         #endregion
 
         #region public fields
@@ -76,7 +82,6 @@ namespace VLC_WINRT_APP.ViewModels.Others.VlcExplorer
             GoBackCommand = new GoUpperFolderCommand();
             BackStack.Add(root);
             Name = root.DisplayName;
-
             if (id != null)
                 Id = id;
         }
@@ -90,10 +95,14 @@ namespace VLC_WINRT_APP.ViewModels.Others.VlcExplorer
                     _storageItems.Clear();
                     IsFolderEmpty = false;
                 });
+                IReadOnlyList<IStorageItem> items = null;
+#if WINDOWS_APP
                 var queryOptions = new QueryOptions(CommonFileQuery.DefaultQuery, VLCFileExtensions.Supported);
-
                 var fileQuery = BackStack.Last().CreateItemQueryWithOptions(queryOptions);
-                var items = await fileQuery.GetItemsAsync();
+                items = await fileQuery.GetItemsAsync();
+#else
+                items = await BackStack.Last().GetItemsAsync();
+#endif
                 foreach (IStorageItem storageItem in items)
                 {
                     await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
@@ -135,6 +144,7 @@ namespace VLC_WINRT_APP.ViewModels.Others.VlcExplorer
                 await Locator.VideoVm.SetActiveVideoInfo(videoVm.Token);
                 App.ApplicationFrame.Navigate(typeof(VideoPlayerPage));
             }
+            OnPropertyChanged("CurrentFolderName");
         }
 
         public void GoBack()
@@ -144,6 +154,7 @@ namespace VLC_WINRT_APP.ViewModels.Others.VlcExplorer
                 BackStack.Remove(BackStack.Last());
                 Task.Run(() => GetFiles());
                 OnPropertyChanged("CanGoBack");
+                OnPropertyChanged("CurrentFolderName");
             }
         }
     }

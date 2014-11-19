@@ -24,6 +24,13 @@ namespace VLC_WINRT_APP.Commands.RemovableDevices
                     Locator.DlnaVM.CurrentDlnaVm.CanGoBack)
                     Locator.DlnaVM.CurrentDlnaVm.GoBack();
             }
+#else
+            if (App.ApplicationFrame.CurrentSourcePageType == typeof(MainPageSDCard))
+            {
+                if (Locator.ExternalStorageVM.CurrentStorageVM != null &&
+                    Locator.ExternalStorageVM.CurrentStorageVM.CanGoBack)
+                    Locator.ExternalStorageVM.CurrentStorageVM.GoBack();
+            }
 #endif
         }
     }
