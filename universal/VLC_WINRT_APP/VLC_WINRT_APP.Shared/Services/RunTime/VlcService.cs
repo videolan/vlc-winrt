@@ -53,10 +53,6 @@ namespace VLC_WINRT_APP.Services.RunTime
 
         public void Stop()
         {
-            if (CurrentState == VlcState.Paused)
-            {
-                Play();
-            }
             DoVLCSafeAction(() =>
             {
                 _vlcPlayer.Stop();
