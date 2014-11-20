@@ -2,13 +2,13 @@
 
 set -e
 
-function usage
+usage()
 {
     echo "Usage: compile [arch]"
     echo "archs: i686,x64_64,armv7"
 }
 
-function using
+using()
 {
     echo "preparing for MSVC target: $MSVC_TUPLE"
 }
