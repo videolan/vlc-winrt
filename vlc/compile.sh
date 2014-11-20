@@ -118,6 +118,8 @@ cd contrib/winrt
 echo "EXTRA_CFLAGS=-DNDEBUG -DWINAPI_FAMILY=WINAPI_FAMILY_APP ${EXTRA_CPPFLAGS}" >> config.mak
 echo "EXTRA_LDFLAGS=${EXTRA_LDFLAGS}" >> config.mak
 echo "HAVE_WINRT := 1" >> config.mak
+echo "CC=${TARGET_TUPLE}-gcc -specs=$NEWSPECFILE" >> config.mak
+echo "CXX=${TARGET_TUPLE}-g++ -specs=$NEWSPECFILE" >> config.mak
 export PKG_CONFIG_LIBDIR="`pwd`/contrib/${TARGET_TUPLE}/lib/pkgconfig"
 
 make fetch
