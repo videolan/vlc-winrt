@@ -189,6 +189,10 @@ dmo
 sap
 panoramix
 netsync
+screen
+direct3d
+win_msg
+win_hotkeys
 "
 regexp=
 for i in ${blacklist}
