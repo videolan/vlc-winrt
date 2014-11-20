@@ -65,10 +65,7 @@ namespace VLC_WINRT_APP.Services.RunTime
             if (_vlcPlayer == null)
                 return;
 
-            lock (_controlLock)
-            {
-                a();
-            }
+            a();
         }
 
         public void Seek(float position)
