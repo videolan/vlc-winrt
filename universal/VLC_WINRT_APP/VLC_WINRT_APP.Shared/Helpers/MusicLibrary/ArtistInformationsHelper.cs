@@ -19,6 +19,7 @@ using Windows.Storage.Streams;
 using VLC_WINRT_APP.Common;
 using VLC_WINRT_APP.Model.Music;
 using VLC_WINRT_APP.ViewModels.MusicVM;
+using WinRTXamlToolkit.IO.Extensions;
 
 namespace VLC_WINRT_APP.Helpers.MusicLibrary
 {
@@ -47,7 +48,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                 await writer.StoreAsync();
                 StorageFolder artistPic = await ApplicationData.Current.LocalFolder.CreateFolderAsync("artistPic",
                     CreationCollisionOption.OpenIfExists);
-                string fileName = artist.Name + "_" + "dPi";
+                string fileName = artist.Id.ToString();
                 var file = await artistPic.CreateFileAsync(fileName + ".jpg", CreationCollisionOption.OpenIfExists);
                 var raStream = await file.OpenAsync(FileAccessMode.ReadWrite);
 
@@ -59,7 +60,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                     }
                 }
                 StorageFolder appDataFolder = ApplicationData.Current.LocalFolder;
-                string supposedPictureUriLocal = appDataFolder.Path + "\\artistPic\\" + artist.Id + "_" + "dPi" + ".jpg";
+                string supposedPictureUriLocal = appDataFolder.Path + "\\artistPic\\" + artist.Id + ".jpg";
                 await DispatchHelper.InvokeAsync(() => artist.Picture = supposedPictureUriLocal);
                 return true;
             }
@@ -138,7 +139,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
 
                 StorageFolder artistPic = await ApplicationData.Current.LocalFolder.CreateFolderAsync("artistPic",
                     CreationCollisionOption.OpenIfExists);
-                string fileName = artist.Id + "_" + "dPi";
+                string fileName = artist.Id.ToString();
 
                 var file = await artistPic.CreateFileAsync(fileName + ".jpg", CreationCollisionOption.OpenIfExists);
                 var raStream = await file.OpenAsync(FileAccessMode.ReadWrite);
@@ -150,8 +151,8 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                         await RandomAccessStream.CopyAsync(thumbnailStream, stream);
                     }
                 }
-                StorageFolder appDataFolder = ApplicationData.Current.LocalFolder;
-                string supposedPictureUriLocal = appDataFolder.Path + "\\artistPic\\" + artist.Id + "_" + "dPi" + ".jpg";
+                StorageFolder appDataFolder = ApplicationData.Current.LocalFolder; 
+                string supposedPictureUriLocal = appDataFolder.Path + "\\artistPic\\" + artist.Id + ".jpg";
                 await DispatchHelper.InvokeAsync(() => artist.Picture = supposedPictureUriLocal);
                 return true;
             }
@@ -165,32 +166,40 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
         public static async Task GetArtistPicture(ArtistItem artist)
         {
             StorageFolder appDataFolder = ApplicationData.Current.LocalFolder;
-            string supposedPictureUriLocal = appDataFolder.Path + "\\artistPic\\" + artist.Id + "_" + "dPi" + ".jpg";
-            if (await NativeOperationsHelper.FileExist(supposedPictureUriLocal))
+            bool picFolderExist = await appDataFolder.ContainsFolderAsync("artistPic");
+            StorageFolder picFolder = null;
+            bool picExist = false;
+            if (picFolderExist)
             {
-                await DispatchHelper.InvokeAsync(() =>
-                {
-                    artist.Picture = supposedPictureUriLocal;
-                });
+                picFolder = await StorageFolder.GetFolderFromPathAsync(appDataFolder.Path + "\\artistPic\\");
+                picExist = await picFolder.ContainsFileAsync(artist.Id + ".jpg");
             }
-            else
-            {
-                var gotArt = await DownloadArtistPictureFromDeezer(artist);
-                if (!gotArt)
-                {
-                    await DownloadArtistPictureFromLastFm(artist);
-                }
-            }
+
+            if (picFolderExist && picExist)
+              {
+                  await DispatchHelper.InvokeAsync(() =>
+                  {
+                    artist.Picture = picFolder.Path + "\\" + artist.Id + ".jpg";
+                  });
+              }
         }
         public static async Task GetAlbumPicture(AlbumItem album)
         {
             StorageFolder appDataFolder = ApplicationData.Current.LocalFolder;
-            string supposedPictureUriLocal = appDataFolder.Path + "\\albumPic\\" + album.Id + "_" + "dPi" + ".jpg";
-            if (await NativeOperationsHelper.FileExist(supposedPictureUriLocal))
+            StorageFolder picFolder = null; 
+            bool picFolderExist = await appDataFolder.ContainsFolderAsync("albumPic");
+            bool picExist = false;
+            if (picFolderExist)
+            {
+                picFolder = await StorageFolder.GetFolderFromPathAsync(appDataFolder.Path + "\\albumPic\\");
+                picExist = await picFolder.ContainsFileAsync(album.Id + ".jpg");
+            }
+
+            if (picFolderExist && picExist)
             {
                 await DispatchHelper.InvokeAsync(() =>
                 {
-                    album.Picture = supposedPictureUriLocal;
+                    album.Picture = picFolder.Path + "\\" + album.Id + ".jpg";
                 });
             }
             else
