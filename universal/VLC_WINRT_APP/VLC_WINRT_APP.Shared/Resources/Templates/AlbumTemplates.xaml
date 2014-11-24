@@ -12,8 +12,8 @@
                 Margin="0,0,6,0">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="4*" />
-                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="3*" />
+                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Image Grid.Row="0"
                        Source="/Assets/NoCover.jpg"
