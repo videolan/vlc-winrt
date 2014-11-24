@@ -7,6 +7,13 @@ namespace VLC_WINRT_APP.Model
 {
     public static class VLCFileExtensions
     {
+        public static List<string> MFSupported = new List<string>()
+        {
+            ".avi",
+            ".wmv",
+            ".mov"
+        };
+
         public static List<string> Supported = new List<string>()
         {
             ".3g2",

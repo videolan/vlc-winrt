@@ -223,7 +223,7 @@ namespace VLC_WINRT_APP.Model.Video
             {
                 // If file is a mkv, we save the thumbnail in a VideoPic folder so we don't consume CPU and resources each launch
                 StorageFolder videoPic = await ApplicationData.Current.LocalFolder.CreateFolderAsync("videoPic", CreationCollisionOption.OpenIfExists);
-                if (File.FileType == ".mkv")
+                if (!VLCFileExtensions.MFSupported.Contains(File.FileType.ToLower()))
                 {
                     StorageFile videoPicFile = null;
                     bool doesFileExist = false;
