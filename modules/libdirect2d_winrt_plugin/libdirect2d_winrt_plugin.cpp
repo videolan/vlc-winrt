@@ -182,7 +182,7 @@ static void Close(vlc_object_t * object){
     vout_display_t *vd = (vout_display_t *) object;
 
     if (vd->sys->pool)
-        picture_pool_Delete(vd->sys->pool);
+        picture_pool_Release(vd->sys->pool);
 
     if (vd->sys->yBitmap)
         vd->sys->yBitmap->Release();
