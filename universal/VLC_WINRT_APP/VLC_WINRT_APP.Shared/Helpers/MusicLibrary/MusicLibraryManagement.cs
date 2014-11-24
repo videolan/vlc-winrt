@@ -26,7 +26,9 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
         {
             try
             {
+                LogHelper.Log("Loading artists from MusicDB ...");
                 var artists = await MusicLibraryVM._artistDataRepository.Load();
+                LogHelper.Log("Found " + artists.Count + " artists from MusicDB");
                 var orderedArtists = artists.OrderBy(x => x.Name);
                 var tracks = await MusicLibraryVM._trackDataRepository.LoadTracks();
                 await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
@@ -71,6 +73,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
 #else
             StorageFolder musicLibrary = KnownFolders.MusicLibrary;
             await CreateDatabaseFromMusicFolder(musicLibrary);
+            LogHelper.Log("Searching for music from Phone MusicLibrary ...");
 #endif
 
         }
