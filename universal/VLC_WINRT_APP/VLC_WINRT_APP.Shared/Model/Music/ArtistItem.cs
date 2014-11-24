@@ -67,6 +67,7 @@ namespace VLC_WINRT_APP.Model.Music
             {
                 if (!_isPictureLoaded)
                 {
+                    _isPictureLoaded = true;
                     Task.Run(() => LoadPicture());
                 }
                 return _picture;
@@ -89,7 +90,6 @@ namespace VLC_WINRT_APP.Model.Music
             {
                 Debug.WriteLine("Error getting artist picture : " + _name);
             }
-            _isPictureLoaded = true;
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 OnPropertyChanged("Picture");

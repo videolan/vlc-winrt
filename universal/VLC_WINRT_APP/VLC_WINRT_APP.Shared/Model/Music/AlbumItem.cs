@@ -79,6 +79,7 @@ namespace VLC_WINRT_APP.Model.Music
             {
                 if (!_isPictureLoaded)
                 {
+                    _isPictureLoaded = true;
                     Task.Run(() => LoadPicture());
                 }
                 return _picture;
@@ -108,7 +109,6 @@ namespace VLC_WINRT_APP.Model.Music
                 // TODO: Tell user we could not get their album art.
                 Debug.WriteLine("Error getting album art...");
             }
-            _isPictureLoaded = true;
         }
 
         [Ignore]
