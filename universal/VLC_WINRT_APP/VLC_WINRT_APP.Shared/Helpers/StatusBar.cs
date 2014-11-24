@@ -25,7 +25,7 @@ namespace VLC_WINRT_APP.Helpers
             if (background != null) 
                 sB.BackgroundColor = background.Color;
             sB.BackgroundOpacity = opacity;
-            sB.ProgressIndicator.ShowAsync();
+            var _ = sB.ProgressIndicator.ShowAsync();
             if (text != null) sB.ProgressIndicator.Text = text;
             var appView = ApplicationView.GetForCurrentView();
             appView.SetDesiredBoundsMode(boundsMode);
