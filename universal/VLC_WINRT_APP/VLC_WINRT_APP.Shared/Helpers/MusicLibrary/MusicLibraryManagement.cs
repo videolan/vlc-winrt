@@ -96,6 +96,8 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
 
         private static async Task CreateDatabaseFromMusicFile(StorageFile item)
         {
+            if (!VLCFileExtensions.AudioExtensions.Contains(item.FileType.ToLower())) return;
+            LogHelper.Log("Music indexation: found music file " + item.Path);
             MusicProperties properties = await item.Properties.GetMusicPropertiesAsync();
             if (properties != null && !string.IsNullOrEmpty(properties.Album) && !string.IsNullOrEmpty(properties.Artist) && !string.IsNullOrEmpty(properties.Title))
             {
