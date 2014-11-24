@@ -4,7 +4,8 @@
                     xmlns:triggers="using:WinRT.Triggers"
                     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
                     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
-                    xmlns:common="using:VLC_WINRT_APP.Common">
+                    xmlns:common="using:VLC_WINRT_APP.Common"
+                    xmlns:winrtext="using:WinRTXamlToolkit.Controls.Extensions">
 
     <!-- WINDOWS PHONE -->
     <DataTemplate x:Key="PhoneSemanticZoomInViewAlbumTemplateLittleSize">
@@ -24,7 +25,8 @@
                        Source="{Binding Picture}"
                        Stretch="UniformToFill"
                        Width="Auto"
-                       Height="Auto" />
+                       Height="Auto"
+                       winrtext:ImageExtensions.FadeInOnLoaded="True" />
                 <Grid Grid.Row="1"
                       Width="Auto">
                     <Grid.RowDefinitions>
@@ -94,7 +96,8 @@
                        Source="{Binding Picture}"
                        Stretch="UniformToFill"
                        Width="170"
-                       Height="170" />
+                       Height="170"
+                       winrtext:ImageExtensions.FadeInOnLoaded="True" />
                 <StackPanel Grid.Row="2"
                             Width="170">
                     <TextBlock Text="{Binding Artist}"
@@ -211,7 +214,8 @@
                        Source="{Binding Picture}"
                        Stretch="UniformToFill"
                        Width="144"
-                       Height="144" />
+                       Height="144"
+                       winrtext:ImageExtensions.FadeInOnLoaded="True" />
                 <StackPanel Grid.Row="2"
                             Width="144">
                     <TextBlock Text="{Binding Name}"
@@ -331,7 +335,8 @@
                        Source="{Binding Picture}"
                        Stretch="UniformToFill"
                        Width="170"
-                       Height="170" />
+                       Height="170"
+                       winrtext:ImageExtensions.FadeInOnLoaded="True" />
                 <StackPanel Grid.Row="2"
                             Width="170">
                     <TextBlock Text="{Binding Artist}"
