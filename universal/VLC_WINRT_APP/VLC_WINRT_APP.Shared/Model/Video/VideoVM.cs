@@ -190,8 +190,8 @@ namespace VLC_WINRT_APP.Model.Video
                     });
                 }
                 File = storageFile;
-                await GenerateThumbnail();
                 Title = storageFile.DisplayName;
+                await GenerateThumbnail();
                 AlphaKey = Title.ToUpper()[0];
                 Subtitle = storageFile.FileType.ToUpper() + " File";
                 Type = storageFile.FileType.Replace(".", "").ToLower();
