@@ -5,12 +5,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:triggers="using:WinRT.Triggers"
+             xmlns:placeholder="using:VLC_WINRT_APP.Views.UserControls.Placeholder"
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400"
              DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
 
     <Grid x:Name="ArtistsGrid">
+        <placeholder:NothingToSeeHere Visibility="{Binding Artists.Count, Converter={StaticResource CountToVisibilityConverter}}" />
         <GridView x:Name="ArtistListView"
                   ItemsSource="{Binding Artists}"
                   IsItemClickEnabled="True"
@@ -21,7 +23,7 @@
             <GridView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <ItemsWrapGrid Orientation="Horizontal"
-                                   SizeChanged="ArtistsWrapGrid_SizeChanged"/>
+                                   SizeChanged="ArtistsWrapGrid_SizeChanged" />
                 </ItemsPanelTemplate>
             </GridView.ItemsPanel>
             <triggers:Interactions.Triggers>

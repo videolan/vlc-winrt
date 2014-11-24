@@ -7,6 +7,7 @@
              xmlns:scrollWatchedSelector="using:ScrollWatchedSelector"
              xmlns:triggers="using:WinRT.Triggers"
              xmlns:userControls="using:VLC_WINRT_APP.Views.UserControls"
+             xmlns:placeholder="using:VLC_WINRT_APP.Views.UserControls.Placeholder"
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400">
@@ -44,6 +45,8 @@
               Height="60">
             <TextBox PlaceholderText="Filter ..." />
         </Grid>
+        <placeholder:NothingToSeeHere Grid.Row="1"
+                                      Visibility="{Binding Tracks.Count, Converter={StaticResource CountToVisibilityConverter}}" />
         <scrollWatchedSelector:ScrollWatchedListView x:Name="RadDataGrid"
                                                      Grid.Row="1"
                                                      ItemsSource="{Binding Tracks}"

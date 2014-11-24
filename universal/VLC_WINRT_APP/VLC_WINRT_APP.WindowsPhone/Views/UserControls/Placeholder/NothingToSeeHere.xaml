@@ -6,11 +6,21 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              d:DesignHeight="300"
-             d:DesignWidth="400">
+             d:DesignWidth="400"
+             VerticalAlignment="Center"
+             HorizontalAlignment="Center">
 
-    <Grid>
+    <Grid Margin="0,-50,0,0">
+        <TextBlock Text=""
+                   FontFamily="Segoe UI Symbol"
+                   Foreground="#E3E3E3"
+                   FontSize="120"
+                   HorizontalAlignment="Center"
+                   TextAlignment="Center"
+                   VerticalAlignment="Center" />
         <TextBlock TextWrapping="Wrap"
-                   Style="{StaticResource SubheaderTextBlockStyle}">
+                   Style="{StaticResource SubheaderTextBlockStyle}"
+                   TextAlignment="Center">
             <Run x:Uid="NothingToSeeHere"
                  Text="Nothing to see here." />
             <LineBreak />
