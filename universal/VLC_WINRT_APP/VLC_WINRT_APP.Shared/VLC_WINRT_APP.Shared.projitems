@@ -149,7 +149,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\MusicLibrary\xboxmusic\Settings\Filters.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\MusicLibrary\xboxmusic\Settings\ImageMode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\MusicPlayer\PlayMusicHelper.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Helpers\NativeOperationsHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\PointersUtils.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\SearchHelpers.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\StatusBar.cs" />
