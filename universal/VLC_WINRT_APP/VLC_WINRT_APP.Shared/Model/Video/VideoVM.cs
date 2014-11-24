@@ -23,6 +23,7 @@ using VLC_WINRT_APP.Commands.Video;
 using VLC_WINRT_APP.Common;
 using VLC_WINRT_APP.Services.Interface;
 using WinRTXamlToolkit.Imaging;
+using WinRTXamlToolkit.IO.Extensions;
 
 namespace VLC_WINRT_APP.Model.Video
 {
@@ -225,19 +226,25 @@ namespace VLC_WINRT_APP.Model.Video
                 if (File.FileType == ".mkv")
                 {
                     StorageFile videoPicFile = null;
+                    bool doesFileExist = false;
 #if WINDOWS_APP
                     videoPicFile = await videoPic.TryGetItemAsync(Title + ".jpg") as StorageFile;
+                    if(videoPicFile != null) doesFileExist = true;
 #else
-                    try
+                    doesFileExist = await videoPic.ContainsFileAsync(Title + ".jpg");
+                    if (doesFileExist)
                     {
-                        videoPicFile = await videoPic.GetFileAsync(Title + ".jpg");
-                    }
-                    catch
-                    {
+                        try
+                        {
+                            videoPicFile = await videoPic.GetFileAsync(Title + ".jpg");
+                        }
+                        catch
+                        {
 
+                        }
                     }
 #endif
-                    if (videoPicFile != null)
+                    if (doesFileExist)
                     {
                         IRandomAccessStream stream = await videoPicFile.OpenReadAsync();
                         await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
