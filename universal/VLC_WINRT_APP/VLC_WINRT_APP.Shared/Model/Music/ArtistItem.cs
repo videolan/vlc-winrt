@@ -20,6 +20,7 @@ namespace VLC_WINRT_APP.Model.Music
         private string _picture;
         private bool _isPictureLoaded;
         private ObservableCollection<AlbumItem> _albumItems;
+        private bool _isAlbumsLoaded = false;
 
         // more informations
         private bool _isFavorite;
@@ -100,9 +101,12 @@ namespace VLC_WINRT_APP.Model.Music
         {
             get
             {
-                if (_albumItems == null)
+                if (!_isAlbumsLoaded)
+                {
+                    _isAlbumsLoaded = true;
                     Task.Run(async () => await this.GetAlbums());
-                return _albumItems;
+                }
+                return _albumItems ?? (_albumItems = new ObservableCollection<AlbumItem>());
             }
             set { SetProperty(ref _albumItems, value); }
         }

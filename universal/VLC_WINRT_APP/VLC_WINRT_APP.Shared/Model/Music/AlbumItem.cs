@@ -22,6 +22,7 @@ namespace VLC_WINRT_APP.Model.Music
         private uint _year;
         private bool _favorite;
         private bool _isPictureLoaded;
+        private bool _isTracksLoaded = false;
         private ObservableCollection<TrackItem> _trackItems;
         private PlayAlbumCommand _playAlbumCommand = new PlayAlbumCommand();
         private FavoriteAlbumCommand _favoriteAlbumCommand = new FavoriteAlbumCommand();
@@ -62,9 +63,12 @@ namespace VLC_WINRT_APP.Model.Music
         {
             get
             {
-                if (_trackItems == null)
+                if (_isTracksLoaded)
+                {
+                    _isTracksLoaded = true;
                     Task.Run(async () => await this.GetTracks());
-                return _trackItems;
+                }
+                return _trackItems ?? (_trackItems = new ObservableCollection<TrackItem>());
             }
             set { SetProperty(ref _trackItems, value); }
         }
