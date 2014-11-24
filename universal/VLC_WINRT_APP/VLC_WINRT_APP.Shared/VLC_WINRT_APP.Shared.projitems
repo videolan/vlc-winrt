@@ -152,6 +152,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\NativeOperationsHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\PointersUtils.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\SearchHelpers.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\StatusBar.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\TitleDecrapifier.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\ToastHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\UpdateTileHelper.cs" />
