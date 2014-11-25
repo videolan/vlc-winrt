@@ -34,7 +34,9 @@ namespace VLC_WINRT_APP.ViewModels.Settings
 #endif
         private OrderType _albumsOrderType;
         private OrderListing _albumsOrderListing;
-
+#if WINDOWS_PHONE_APP
+        private bool _enableSidebar;
+#endif
 #if WINDOWS_APP
         public bool ContinueVideoPlaybackInBackground
         {
@@ -97,6 +99,30 @@ namespace VLC_WINRT_APP.ViewModels.Settings
             {
                 SetProperty(ref _notificationOnNewSongForeground, value);
                 ApplicationSettingsHelper.SaveSettingsValue("NotificationOnNewSongForeground", value);
+            }
+        }
+#endif
+
+#if WINDOWS_PHONE_APP
+        public bool EnableSidebar
+        {
+            get
+            {
+                var enableSide = ApplicationSettingsHelper.ReadSettingsValue("EnableSidebar");
+                if (enableSide != null && (bool) enableSide)
+                {
+                    _enableSidebar = true;
+                }
+                else
+                {
+                    _enableSidebar = false;
+                }
+                return _enableSidebar;
+            }
+            set
+            {
+                SetProperty(ref _enableSidebar, value);
+                ApplicationSettingsHelper.SaveSettingsValue("EnableSidebar", (bool)value);
             }
         }
 #endif
@@ -178,6 +204,12 @@ namespace VLC_WINRT_APP.ViewModels.Settings
                 (bool) ApplicationSettingsHelper.ReadSettingsValue("ContinueVideoPlaybackInBackground");
 
             await GetLibrariesFolders();
+#else
+            var enableSide = ApplicationSettingsHelper.ReadSettingsValue("EnableSidebar");
+            if (enableSide == null)
+            {
+                EnableSidebar = false;
+            }
 #endif
         }
 #if WINDOWS_APP

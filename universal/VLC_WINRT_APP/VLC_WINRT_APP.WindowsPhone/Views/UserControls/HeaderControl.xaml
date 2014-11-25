@@ -16,7 +16,9 @@
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <Grid Background="Transparent">
+        <Grid Background="Transparent"
+              DataContext="{Binding Source={StaticResource Locator},Path=SettingsVM}"
+              Visibility="{Binding EnableSidebar, Converter={StaticResource BooleanToVisibilityConverter}}">
             <Path Data="M0,21.388L30.408001, 21.388 30.408001, 24.414    0,24.414z 
                         M0,10.695L30.408001, 10.695 30.408001, 13.721    0,13.721z 
                         M0,0     L30.408001, 0      30.408001, 3.0259995 0,3.0259995z"
