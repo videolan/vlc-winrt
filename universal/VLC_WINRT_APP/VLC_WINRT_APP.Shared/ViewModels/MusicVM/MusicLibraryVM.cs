@@ -359,9 +359,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                 OnPropertyChanged("IsBusy");
                 OnPropertyChanged("IsLoaded");
 #if WINDOWS_PHONE_APP
-                StatusBar statusBar = StatusBar.GetForCurrentView();
-                await statusBar.ProgressIndicator.ShowAsync();
-                statusBar.ProgressIndicator.Text = "Indexing music library";
+                StatusBarHelper.UpdateTitle("VLC Beta - Searching for music ...");
 #endif
             });
             _artistDataRepository = new ArtistDataRepository();
@@ -385,8 +383,8 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                 OnPropertyChanged("IsLoaded");
                 LoadingState = LoadingState.Loaded;
 #if WINDOWS_PHONE_APP
-                StatusBar statusBar = StatusBar.GetForCurrentView();
-                await statusBar.ProgressIndicator.HideAsync();
+                if (App.ApplicationFrame != null)
+                    StatusBarHelper.SetDefaultForPage(App.ApplicationFrame.SourcePageType);
 #endif
             });
             await GetFavoriteAndRandomAlbums();
