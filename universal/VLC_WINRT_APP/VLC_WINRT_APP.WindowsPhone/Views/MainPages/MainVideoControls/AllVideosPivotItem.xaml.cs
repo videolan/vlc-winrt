@@ -4,7 +4,7 @@ using VLC_WINRT_APP.Model.Video;
 
 namespace VLC_WINRT_APP.Views.MainPages.MainVideoControls
 {
-    public sealed partial class AllVideosPivotItem : UserControl
+    public sealed partial class AllVideosPivotItem : Page
     {
         public AllVideosPivotItem()
         {
