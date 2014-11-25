@@ -78,14 +78,12 @@ static void onError(const libvlc_event_t*, void* data)
 static void *Lock(void *opaque, void **pixels)
 {
     thumbnailer_sys_t *sys = (thumbnailer_sys_t*)opaque;
-    // We rendered at least one frame, no need to check for EOF anymore
-    libvlc_event_detach(sys->eventMgr, libvlc_MediaPlayerEndReached, &onError, sys);
 
     WaitForSingleObjectEx(sys->hLock, INFINITE, TRUE);
     *pixels = sys->thumbData;
     if (sys->mp && sys->state == THUMB_SEEKING
         && libvlc_media_player_is_playing(sys->mp)
-        && libvlc_media_player_get_position(sys->mp) >= SEEK_POSITION){
+        && libvlc_media_player_get_position(sys->mp) >= SEEK_POSITION) {
         sys->state = THUMB_SEEKED;
     }
     return NULL;
@@ -193,7 +191,9 @@ IAsyncOperation<WriteableBitmap^>^ Thumbnailer::TakeScreenshot(Platform::String^
                 libvlc_media_player_set_position(mp, SEEK_POSITION);
             }
 
-            completionTask.then([mp](WriteableBitmap^ bmp){
+            completionTask.then([mp, sys](WriteableBitmap^ bmp){
+                // We rendered at least one frame, no need to check for EOF anymore
+                libvlc_event_detach(sys->eventMgr, libvlc_MediaPlayerEndReached, &onError, sys);
                 libvlc_media_player_stop(mp);
                 libvlc_media_player_release(mp);
             });
