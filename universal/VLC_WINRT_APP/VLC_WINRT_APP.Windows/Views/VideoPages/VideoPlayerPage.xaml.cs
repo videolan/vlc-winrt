@@ -19,6 +19,7 @@ using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.ViewModels;
 using WinRTXamlToolkit.Controls.Extensions;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 #if WINDOWS_PHONE_APP
 using Windows.Phone.UI.Input;
 #endif
@@ -131,24 +132,26 @@ namespace VLC_WINRT_APP.Views.VideoPages
         {
             if (timer == null)
                 timer = new DispatcherTimer();
+            var tasks = new List<Task>();
             if (isVisible)
             {
-                ControlsGrid.FadeOut(_fadeDuration);
-                HeaderGrid.FadeOut(_fadeDuration);
+                tasks.Add(ControlsGrid.FadeOut(_fadeDuration));
+                tasks.Add(HeaderGrid.FadeOut(_fadeDuration));
                 HeaderGrid.IsHitTestVisible = false;
-                FooterGrid.FadeOut(_fadeDuration);
+                tasks.Add(FooterGrid.FadeOut(_fadeDuration));
                 FooterGrid.IsHitTestVisible = false;
                 timer.Stop();
             }
             else
             {
-                HeaderGrid.FadeIn(_fadeDuration);
+                tasks.Add(HeaderGrid.FadeIn(_fadeDuration));
                 HeaderGrid.IsHitTestVisible = true;
-                FooterGrid.FadeIn(_fadeDuration);
+                tasks.Add(FooterGrid.FadeIn(_fadeDuration));
                 FooterGrid.IsHitTestVisible = true;
-                ControlsGrid.FadeIn(_fadeDuration);
+                tasks.Add(ControlsGrid.FadeIn(_fadeDuration));
                 timer.Start();
             }
+            await Task.WhenAll(tasks);
             isVisible = !isVisible;
         }
 
