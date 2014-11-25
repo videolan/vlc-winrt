@@ -30,7 +30,7 @@ using namespace libVLCX;
 enum thumbnail_state{
     THUMB_SEEKING,
     THUMB_SEEKED,
-    THUMB_FIRST_FRAME_DROPPED
+    THUMB_RENDERED
 };
 
 typedef struct
@@ -119,18 +119,12 @@ static WriteableBitmap^ CopyToBitmap(thumbnailer_sys_t* sys)
 static void Unlock(void *opaque, void *picture, void *const *pixels){
     thumbnailer_sys_t* sys = (thumbnailer_sys_t*) opaque;
 
-    int state = sys->state;
-    if (state == THUMB_SEEKED)
-    {
-        sys->state = THUMB_FIRST_FRAME_DROPPED;
-    }
-
-    if (state != THUMB_FIRST_FRAME_DROPPED)
+    if (sys->state != THUMB_SEEKED)
     {
         SetEvent(sys->hLock);
         return;
     }
-   
+
     CoreWindow^ window = CoreApplication::MainView->CoreWindow;
     auto dispatcher = window->Dispatcher;
     auto priority = CoreDispatcherPriority::Low;
@@ -138,6 +132,7 @@ static void Unlock(void *opaque, void *picture, void *const *pixels){
     {
         WriteableBitmap^ bitmap = CopyToBitmap(sys);
         sys->screenshotCompleteEvent.set(bitmap);
+        sys->state = THUMB_RENDERED;
         SetEvent(sys->hLock);
     }));
 }
