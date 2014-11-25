@@ -21,16 +21,24 @@
     </UserControl.Resources>
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition />
-        </Grid.RowDefinitions>
-        <ContentPresenter x:Name="MainPageVideosContentPresenter"
+        <Frame x:Name="MainPageVideoContentPresenter"
+               x:FieldModifier="public"
+               Background="Transparent"
+               Loaded="MainPageVideoContentPresenter_OnLoaded">
+            <Frame.ContentTransitions>
+                <TransitionCollection>
+                    <EdgeUIThemeTransition x:Name="MainFrameThemeTransition"
+                                           x:FieldModifier="public"
+                                           Edge="Bottom" />
+                </TransitionCollection>
+            </Frame.ContentTransitions>
+        </Frame>
+        <!--<Frame x:Name="MainPageVideosContentPresenter"
                           x:FieldModifier="public">
             <ContentPresenter.Content>
                 <mainVideoControls:AllVideosPivotItem />
             </ContentPresenter.Content>
-        </ContentPresenter>
+        </Frame>-->
         <!--<Pivot Grid.Row="1"
                Style="{StaticResource PivotStyle1}"
                HeaderTemplate="{StaticResource PivotTitleTemplate}">

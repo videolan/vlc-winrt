@@ -1,22 +1,29 @@
 ﻿using System;
 using Windows.Phone.UI.Input;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using VLC_WINRT_APP.ViewModels;
 
 namespace VLC_WINRT_APP.Views.MainPages
 {
-    public sealed partial class MainPageSDCard : Page
+    public sealed partial class MainPageSDCard : UserControl
     {
         public MainPageSDCard()
         {
             this.InitializeComponent();
+            this.Loaded += OnLoaded;
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        private void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
         {
-            base.OnNavigatedTo(e);
+            this.Unloaded += OnUnloaded;
             HardwareButtons.BackPressed += HardwareButtonsOnBackPressed;
+        }
+
+        private void OnUnloaded(object sender, RoutedEventArgs routedEventArgs)
+        {
+            HardwareButtons.BackPressed -= HardwareButtonsOnBackPressed;
         }
 
         private void HardwareButtonsOnBackPressed(object sender, BackPressedEventArgs backPressedEventArgs)
@@ -32,10 +39,5 @@ namespace VLC_WINRT_APP.Views.MainPages
             }
         }
 
-        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
-        {
-            base.OnNavigatingFrom(e);
-            HardwareButtons.BackPressed -= HardwareButtonsOnBackPressed;
-        }
     }
 }

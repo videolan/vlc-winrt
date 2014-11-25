@@ -2,6 +2,8 @@
 using Windows.Phone.UI.Input;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using VLC_WINRT_APP.Views.MainPages.MainMusicControls;
+using VLC_WINRT_APP.Views.MainPages.MainVideoControls;
 
 namespace VLC_WINRT_APP.Views.MainPages
 {
@@ -34,5 +36,9 @@ namespace VLC_WINRT_APP.Views.MainPages
             HardwareButtons.BackPressed -= HardwareButtonsOnBackPressed;
         }
 
+        private void MainPageVideoContentPresenter_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            MainPageVideoContentPresenter.Navigate(typeof(AllVideosPivotItem));
+        }
     }
 }
