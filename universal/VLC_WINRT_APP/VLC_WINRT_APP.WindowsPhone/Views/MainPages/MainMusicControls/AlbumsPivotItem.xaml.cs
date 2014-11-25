@@ -4,7 +4,7 @@ using VLC_WINRT_APP.Model.Video;
 
 namespace VLC_WINRT_APP.Views.MainPages.MainMusicControls
 {
-    public sealed partial class AlbumsPivotItem : UserControl
+    public sealed partial class AlbumsPivotItem : Page
     {
         public AlbumsPivotItem()
         {
