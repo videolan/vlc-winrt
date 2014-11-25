@@ -47,8 +47,14 @@
                        HorizontalAlignment="Right"
                        VerticalAlignment="Bottom" />
         </Grid>
+        <ProgressBar VerticalAlignment="Bottom"
+                     Margin="0,0,0,-2"
+                     Style="{StaticResource ThinProgressBar}"
+                     Value="{Binding TimeWatched, Converter={StaticResource TimeSpanSecondsDoubleConverter}}"
+                     Maximum="{Binding Duration, Converter={StaticResource TimeSpanSecondsDoubleConverter}}"
+                     Visibility="{Binding TimeWatched.TotalSeconds, Converter={StaticResource NegatedCountToVisibilityConverter}}" />
     </Grid>
-    
+
     <!-- /!\ DO NOT REMOVE THIS COMMENTED CODE !! /!\ -->
     <!--<Border Background="WhiteSmoke"
             Margin="0,0,6,0">
