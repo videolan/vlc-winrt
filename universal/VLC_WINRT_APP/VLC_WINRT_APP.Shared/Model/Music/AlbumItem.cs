@@ -63,7 +63,7 @@ namespace VLC_WINRT_APP.Model.Music
         {
             get
             {
-                if (_isTracksLoaded)
+                if (!_isTracksLoaded)
                 {
                     _isTracksLoaded = true;
                     Task.Run(async () => await this.GetTracks());
