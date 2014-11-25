@@ -19,6 +19,7 @@ using VLC_WINRT_APP.Model.Video;
 using VLC_WINRT_APP.Services.Interface;
 using VLC_WINRT_APP.Services.RunTime;
 using VLC_WINRT_APP.Views.MainPages;
+using VLC_WINRT_APP.Helpers;
 #if WINDOWS_APP
 using libVLCX;
 #endif
@@ -174,7 +175,9 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             _setAudioTrackCommand = new SetAudioTrackCommand();
             _openSubtitleCommand = new OpenSubtitleCommand();
             _goBackCommand = new StopVideoCommand();
-            _lastVideosRepository.Load();
+            _lastVideosRepository.Load().ContinueWith((t) => {
+                LogHelper.Log(t);
+            }, TaskContinuationOptions.OnlyOnFaulted);
         }
         #endregion
 
