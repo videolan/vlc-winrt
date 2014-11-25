@@ -25,7 +25,7 @@ namespace VLC_WINRT_APP.Commands.RemovableDevices
                     Locator.DlnaVM.CurrentDlnaVm.GoBack();
             }
 #else
-            if (App.ApplicationFrame.CurrentSourcePageType == typeof(MainPageSDCard))
+            if (App.ApplicationFrame.CurrentSourcePageType == typeof(MainPageHome) && (App.ApplicationFrame.Content as MainPageHome).MainPivot.SelectedIndex == 3)
             {
                 if (Locator.ExternalStorageVM.CurrentStorageVM != null &&
                     Locator.ExternalStorageVM.CurrentStorageVM.CanGoBack)
