@@ -216,6 +216,30 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             }
         }
 
+        public static async Task GetAlbumPicture(TrackItem track)
+        {
+            StorageFolder appDataFolder = ApplicationData.Current.LocalFolder;
+            StorageFolder picFolder = null;
+            bool picFolderExist = await appDataFolder.ContainsFolderAsync("albumPic");
+            bool picExist = false;
+            if (picFolderExist)
+            {
+                picFolder = await StorageFolder.GetFolderFromPathAsync(appDataFolder.Path + "\\albumPic\\");
+                picExist = await picFolder.ContainsFileAsync(track.AlbumId + ".jpg");
+            }
+
+            if (picFolderExist && picExist)
+            {
+                await DispatchHelper.InvokeAsync(() =>
+                {
+                    track.Thumbnail = picFolder.Path + "\\" + track.AlbumId + ".jpg";
+                });
+            }
+            else
+            {
+            }
+        }
+
         public static async Task GetAlbumPictureFromInternet(AlbumItem album)
         {
             var gotArt = await DownloadAlbumPictureFromLastFm(album);
