@@ -294,8 +294,6 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
         float scaleH = ceilf(*sys->displayHeight) / (float)picture->format.i_visible_height;
 
         // Compute offset and scale factor
-        float scale;
-
         if (scaleH <= scaleW) {
             sys->scale = scaleH;
             sys->offset.x = (*sys->displayWidth - ((float)picture->format.i_visible_width * sys->scale)) / 2.0f;
