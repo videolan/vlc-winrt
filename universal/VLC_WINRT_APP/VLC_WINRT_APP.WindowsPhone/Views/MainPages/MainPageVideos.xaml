@@ -1,4 +1,4 @@
-﻿<Page x:Class="VLC_WINRT_APP.Views.MainPages.MainPageVideos"
+﻿<UserControl x:Class="VLC_WINRT_APP.Views.MainPages.MainPageVideos"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:local="using:VLC_WINRT_APP.Views.MainPages"
@@ -13,34 +13,33 @@
       d:DesignWidth="400"
       DataContext="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM}">
 
-    <Page.Resources>
+    <UserControl.Resources>
         <CollectionViewSource x:Name="ShowsGroupedByName"
                               Source="{Binding Shows}"
                               IsSourceGrouped="True"
                               ItemsPath="Episodes" />
-    </Page.Resources>
+    </UserControl.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <userControls:HeaderControl Grid.Row="0"
-                             HeaderTextBlock="videos" />
-        <Image Grid.Row="1"
-               Source="/Assets/backgroundTop.png"
-               Stretch="Uniform"
-               VerticalAlignment="Top" />
-        <Pivot Grid.Row="1"
+        <ContentPresenter x:Name="MainPageVideosContentPresenter"
+                          x:FieldModifier="public">
+            <ContentPresenter.Content>
+                <mainVideoControls:AllVideosPivotItem />
+            </ContentPresenter.Content>
+        </ContentPresenter>
+        <!--<Pivot Grid.Row="1"
                Style="{StaticResource PivotStyle1}"
                HeaderTemplate="{StaticResource PivotTitleTemplate}">
             <Pivot.TitleTemplate>
                 <DataTemplate>
                 </DataTemplate>
             </Pivot.TitleTemplate>
-            <PivotItem Header="all">
-                <mainVideoControls:AllVideosPivotItem />
-            </PivotItem>
+            <PivotItem Header="all">-->
+            <!--</PivotItem>
             <PivotItem Header="shows">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -70,6 +69,6 @@
                     <placeholder:NoShowPlaceholder Visibility="{Binding Shows.Count, Converter={StaticResource CountToVisibilityConverter}}" />
                 </Grid>
             </PivotItem>
-        </Pivot>
+        </Pivot>-->
     </Grid>
-</Page>
+</UserControl>

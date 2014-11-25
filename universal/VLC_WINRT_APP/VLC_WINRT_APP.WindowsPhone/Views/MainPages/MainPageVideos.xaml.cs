@@ -2,12 +2,10 @@
 using Windows.Phone.UI.Input;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using VLC_WINRT_APP.Model.Video;
-using VLC_WINRT_APP.ViewModels;
 
 namespace VLC_WINRT_APP.Views.MainPages
 {
-    public sealed partial class MainPageVideos : Page
+    public sealed partial class MainPageVideos : UserControl
     {
         public MainPageVideos()
         {
