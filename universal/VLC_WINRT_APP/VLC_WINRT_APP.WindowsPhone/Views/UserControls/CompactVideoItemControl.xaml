@@ -8,7 +8,7 @@
              d:DesignHeight="300"
              d:DesignWidth="400">
 
-    <Grid Margin="0,0,6,6"
+    <!--<Grid Margin="0,0,6,6"
           RequestedTheme="Dark">
         <Image Source="/Assets/NoCover.jpg"
                Stretch="UniformToFill"
@@ -53,16 +53,16 @@
                      Value="{Binding TimeWatched, Converter={StaticResource TimeSpanSecondsDoubleConverter}}"
                      Maximum="{Binding Duration, Converter={StaticResource TimeSpanSecondsDoubleConverter}}"
                      Visibility="{Binding TimeWatched.TotalSeconds, Converter={StaticResource NegatedCountToVisibilityConverter}}" />
-    </Grid>
+    </Grid>-->
 
     <!-- /!\ DO NOT REMOVE THIS COMMENTED CODE !! /!\ -->
-    <!--<Border Background="WhiteSmoke"
-            Margin="0,0,6,0">
+    <Border Margin="0,0,12,0"
+            Background="White">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="6" />
-                <RowDefinition />
+                <RowDefinition Height="5*" />
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="2" />
             </Grid.RowDefinitions>
             <Image Grid.Row="0"
                    Source="/Assets/NoCover.jpg"
@@ -75,8 +75,9 @@
                    Width="Auto"
                    Height="Auto"
                    HorizontalAlignment="Center" />
-            <Grid Grid.Row="2"
-                  Width="Auto">
+            <Grid Grid.Row="1"
+                  Width="Auto"
+                  Margin="0,3,0,0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
@@ -86,35 +87,30 @@
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Column="0"
+                           Grid.ColumnSpan="3"
                            Text="{Binding Title}"
                            TextWrapping="NoWrap"
-                           TextTrimming="WordEllipsis"
+                           TextTrimming="CharacterEllipsis"
                            FontSize="15"
-                           FontWeight="SemiBold"
+                           FontWeight="Normal"
                            Margin="7,0" />
                 <TextBlock Grid.Row="1"
                            Grid.Column="0"
-                           Text="{Binding Type}"
-                           TextWrapping="NoWrap"
-                           TextTrimming="WordEllipsis"
-                           FontSize="16"
-                           Margin="7,0,7,7" />
-                <TextBlock Grid.Row="1"
-                           Grid.Column="0"
-                           TextWrapping="NoWrap"
-                           TextTrimming="WordEllipsis"
-                           FontSize="16"
-                           Margin="0,0,7,7"
                            Text="{Binding Duration, Converter={StaticResource TimeSpanShortStringConverter}}"
-                           HorizontalAlignment="Right" />
+                           Foreground="DimGray"
+                           TextWrapping="NoWrap"
+                           TextTrimming="CharacterEllipsis"
+                           FontSize="16"
+                           Margin="7,0,7,0"
+                           FontWeight="Light" />
                 <Button Grid.Column="1"
-                        Grid.Row="0"
-                        Grid.RowSpan="2"
+                        Grid.Row="1"
+                        VerticalAlignment="Bottom"
                         Style="{StaticResource TextBlockButtonStyle}"
-                        Content=""
-                        Foreground="DimGray"
+                        Content=""
+                        Foreground="#ACACAC"
                         FontFamily="Segoe UI Symbol"
-                        Margin="0,0,0,7">
+                        Margin="0,0,3,0">
                     <Button.Flyout>
                         <Flyout Placement="Full">
                             <Grid Background="WhiteSmoke"
@@ -123,7 +119,7 @@
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="120" />
                                     <RowDefinition />
-                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
                                 <StackPanel Orientation="Horizontal">
                                     <Image Source="{Binding Image}"
@@ -159,8 +155,15 @@
                     </Button.Flyout>
                 </Button>
             </Grid>
+            <ProgressBar Grid.Row="2"
+                         VerticalAlignment="Bottom"
+                         Margin="0,0,0,-2"
+                         Style="{StaticResource ThinProgressBar}"
+                         Value="{Binding TimeWatched, Converter={StaticResource TimeSpanSecondsDoubleConverter}}"
+                         Maximum="{Binding Duration, Converter={StaticResource TimeSpanSecondsDoubleConverter}}"
+                         Visibility="{Binding TimeWatched.TotalSeconds, Converter={StaticResource NegatedCountToVisibilityConverter}}" />
         </Grid>
-    </Border>-->
+    </Border>
 
 
 </UserControl>

@@ -40,13 +40,13 @@
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="{Binding Title}"
                            TextWrapping="NoWrap"
-                           TextTrimming="WordEllipsis"
+                           TextTrimming="CharacterEllipsis"
                            FontSize="15"
-                           FontWeight="SemiBold" />
+                           FontWeight="Normal" />
                 <TextBlock Grid.Column="1"
                            Text="{Binding Type}"
                            TextWrapping="NoWrap"
-                           TextTrimming="WordEllipsis"
+                           TextTrimming="CharacterEllipsis"
                            FontSize="15" />
             </Grid>
             <Grid Grid.Row="3">
