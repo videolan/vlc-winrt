@@ -154,7 +154,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
         {
             var tracks = await MusicLibraryVM._trackDataRepository.LoadTracksByAlbumId(album.Id);
             var orderedTracks = tracks.OrderBy(x => x.Index);
-            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 album.Tracks = new ObservableCollection<TrackItem>();
                 foreach (var track in orderedTracks)
@@ -168,7 +168,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
         {
             var albums = await MusicLibraryVM._albumDataRepository.LoadAlbumsFromId(artist.Id);
             var orderedAlbums = albums.OrderBy(x => x.Name);
-            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 artist.Albums = new ObservableCollection<AlbumItem>();
                 foreach (AlbumItem album in orderedAlbums)
