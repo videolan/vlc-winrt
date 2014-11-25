@@ -13,7 +13,7 @@
     <Grid Margin="0,-50,0,0">
         <TextBlock Text=""
                    FontFamily="Segoe UI Symbol"
-                   Foreground="#E3E3E3"
+                   Foreground="#7AE3E3E3"
                    FontSize="120" 
                    HorizontalAlignment="Center"
                    TextAlignment="Center"
