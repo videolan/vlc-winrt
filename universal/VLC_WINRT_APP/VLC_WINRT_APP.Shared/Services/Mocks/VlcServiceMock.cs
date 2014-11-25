@@ -103,7 +103,7 @@ namespace VLC_WINRT_APP.Services.Mocks
             //            }
             try
             {
-                App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => App.RootPage.MediaElement.Play());
+                var _ = App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => App.RootPage.MediaElement.Play());
             }
             catch { }
             UpdateStatus(VlcState.Playing);
@@ -115,7 +115,7 @@ namespace VLC_WINRT_APP.Services.Mocks
             //{
             //#if WINDOWS_APP
 
-            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => App.RootPage.MediaElement.Pause());
+            var _ = App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => App.RootPage.MediaElement.Pause());
             //#else
             //            if (Locator.MusicPlayer.IsRunning)
             //            {
