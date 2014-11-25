@@ -270,14 +270,13 @@ namespace VLC_WINRT_APP.Model.Video
                 else
                 {
                     StorageItemThumbnail thumb = await _thumbsService.GetThumbnail(File);
+                    if (thumb == null)
+                        return;
                     await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, async () =>
                     {
                         var image = new BitmapImage();
-                        if (thumb != null)
-                        {
-                            await image.SetSourceAsync(thumb);
-                            Image = image;
-                        }
+                        await image.SetSourceAsync(thumb);
+                        Image = image;
                     });
                 }
             }
