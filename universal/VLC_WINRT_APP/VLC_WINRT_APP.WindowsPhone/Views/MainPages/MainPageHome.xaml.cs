@@ -1,8 +1,10 @@
-﻿using System.Diagnostics;
-using Windows.Graphics.Display;
+﻿using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Navigation;
 using VLC_WINRT_APP.Helpers;
+using VLC_WINRT_APP.Helpers.MusicLibrary.EchoNest;
 using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.Model.Video;
 using VLC_WINRT_APP.ViewModels;
@@ -15,6 +17,7 @@ namespace VLC_WINRT_APP.Views.MainPages
         public MainPageHome()
         {
             InitializeComponent();
+            this.NavigationCacheMode = NavigationCacheMode.Required;
             this.SizeChanged += OnSizeChanged;
             Loaded += OnLoaded;
         }
@@ -23,6 +26,9 @@ namespace VLC_WINRT_APP.Views.MainPages
         protected override void OnNavigatedTo(Windows.UI.Xaml.Navigation.NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
+            //Locator.MainVM.UpdateAppBar(0);
+            StatusBarHelper.Default();
+            //StatusBarHelper.SetForeground(new SolidColorBrush(Colors.DimGray));
             if (Locator.VideoLibraryVM.LoadingState == LoadingState.NotLoaded)
             {
                 Locator.VideoLibraryVM.Initialize();
@@ -69,6 +75,11 @@ namespace VLC_WINRT_APP.Views.MainPages
         private void DEBUGHISTORY(object sender, RoutedEventArgs e)
         {
             App.ApplicationFrame.Navigate(typeof (historyvideo));
+        }
+
+        private void MainPivot_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Locator.MainVM.UpdateAppBar(MainPivot.SelectedIndex);
         }
     }
 }
