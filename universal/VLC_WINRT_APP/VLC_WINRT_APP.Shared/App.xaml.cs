@@ -120,10 +120,10 @@ namespace VLC_WINRT_APP
                 }
 
                 rootFrame.ContentTransitions = null;
-                rootFrame.Navigated += this.RootFrame_FirstNavigated;
 #endif
             }
 
+            ApplicationFrame.Navigated += this.RootFrame_FirstNavigated;
             // Ensure the current window is active
             Window.Current.Activate();
 
@@ -142,9 +142,9 @@ namespace VLC_WINRT_APP
         /// <param name="args">Details about the navigation event.</param>
         private void RootFrame_FirstNavigated(object sender, NavigationEventArgs args)
         {
-            var rootFrame = sender as Frame;
-            rootFrame.ContentTransitions = this.transitions ?? new TransitionCollection() { new NavigationThemeTransition() };
-            rootFrame.Navigated -= this.RootFrame_FirstNavigated;
+            if(args.SourcePageType == typeof(MainPageHome))
+                StatusBarHelper.Default();
+            else StatusBarHelper.SetTransparent();
         }
 
         protected async override void OnActivated(IActivatedEventArgs args)
