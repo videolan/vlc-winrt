@@ -8,94 +8,170 @@
       xmlns:triggers="using:WinRT.Triggers"
       xmlns:controls="using:VLC_WINRT_APP.Controls"
       xmlns:userControls="using:VLC_WINRT_APP.Views.UserControls"
+      xmlns:mainVideoControls="using:VLC_WINRT_APP.Views.MainPages.MainVideoControls"
+      xmlns:mainMusicControls="using:VLC_WINRT_APP.Views.MainPages.MainMusicControls"
       mc:Ignorable="d"
       DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}">
 
-    <Page.Resources>
-    </Page.Resources>
-
     <Grid Margin="0"
-          x:Name="MainGrid"
           DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="80" />
+        <!--<Grid.RowDefinitions>
+            <RowDefinition Height="60" />
             <RowDefinition />
-        </Grid.RowDefinitions>
-        <userControls:HeaderControl Grid.Row="0"
-                             HeaderTextBlock="VLC" />
-        <Image Grid.Row="1"
-               Source="/Assets/backgroundTop.png"
+        </Grid.RowDefinitions>-->
+        <Grid Background="{StaticResource MainColor}"
+              DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}"
+              Height="50"
+              VerticalAlignment="Top" />
+        <!--<Grid Grid.Row="0"
+              Background="WhiteSmoke"
+              VerticalAlignment="Top"
+              DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20" />
+                <RowDefinition />
+                <RowDefinition Height="1" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid Background="{StaticResource MainColor}"
+                  Grid.ColumnSpan="3"
+                  Grid.Row="2" />
+            <userControls:VLCLogoWithGradient Grid.Row="1"
+                                              Margin="8,6,0,6" />
+            <TextBlock x:Name="TitleTextBlock"
+                       Grid.Column="1"
+                       Grid.Row="1"
+                       Style="{StaticResource TitleTextBlockStyle}"
+                       Margin="6,-2,0,0"
+                       VerticalAlignment="Center"
+                       FontWeight="Light">
+                <Run Text="VLC"
+                     FontSize="28"
+                     Foreground="{StaticResource MainColor}" />
+            </TextBlock>
+            <ListView x:Name="PanelsListView"
+                      Grid.Column="2"
+                      Grid.Row="1"
+                      Margin="12,-3,-13,0"
+                      ItemsSource="{Binding Panels}"
+                      IsItemClickEnabled="False"
+                      SelectionMode="Single"
+                      SelectedIndex="{Binding ElementName=MainPivot, Path=SelectedIndex, Mode=TwoWay}"
+                      VerticalAlignment="Center"
+                      HorizontalAlignment="Right"
+                      ItemContainerStyle="{StaticResource ListViewItemContainerStyleNoSelectCheck}"
+                      ItemTemplate="{StaticResource SidebarMiniIconItemTemplate}"
+                      ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                <triggers:Interactions.Triggers>
+                    <triggers:EventTrigger EventName="SelectionChanged">
+                        <triggers:InvokeCommandAction Command="{Binding GoToPanelCommand}"
+                                                      PassEventArgsToCommand="True" />
+                    </triggers:EventTrigger>
+                </triggers:Interactions.Triggers>
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+            </ListView>
+        </Grid>-->
+        <Image Source="/Assets/backgroundTop.png"
                Stretch="Uniform"
-               VerticalAlignment="Top" />
-        <ScrollViewer Grid.Row="1">
-            <StackPanel Margin="24,0,0,0">
-                <StackPanel x:Name="MusicLibrary"
-                            DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
-                    <TextBlock Text="albums"
-                               Margin="0,12,0,0"
-                               FontSize="30"
-                               Foreground="{StaticResource MainColor}"
-                               Style="{StaticResource SubheaderTextBlockStyle}" />
-                    <GridView ItemsSource="{Binding RandomAlbums}"
-                              ItemTemplate="{StaticResource PhoneSemanticZoomInViewAlbumTemplateLittleSize}"
-                              IsItemClickEnabled="True"
-                              SelectionMode="None"
-                              ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                              ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                              ScrollViewer.HorizontalScrollMode="Disabled"
-                              ScrollViewer.VerticalScrollMode="Disabled"
-                              Margin="0,6,0,0">
-                        <triggers:Interactions.Triggers>
-                            <triggers:EventTrigger EventName="ItemClick">
-                                <triggers:InvokeCommandAction Command="{Binding AlbumClickedCommand}"
-                                                              PassEventArgsToCommand="True" />
-                            </triggers:EventTrigger>
-                        </triggers:Interactions.Triggers>
-                        <GridView.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <ItemsWrapGrid Orientation="Horizontal"
-                                               SizeChanged="AlbumsWrapGrid_SizeChanged" />
-                            </ItemsPanelTemplate>
-                        </GridView.ItemsPanel>
-                    </GridView>
-                    <controls:NoFavoriteAlbumsControl HorizontalAlignment="Left" />
-                </StackPanel>
-                <StackPanel x:Name="VideoLibrary"
-                            DataContext="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM}">
-                    <TextBlock Text="videos"
-                               Margin="0,12,0,0"
-                               FontSize="30"
-                               Foreground="{StaticResource MainColor}"
-                               Style="{StaticResource SubheaderTextBlockStyle}" />
-                    <GridView ItemsSource="{Binding ViewedVideos}"
-                              ItemTemplate="{StaticResource PhoneCompactVideoTemplate}"
-                              Margin="0,0,-20,0"
-                              IsItemClickEnabled="True">
-                        <triggers:Interactions.Triggers>
-                            <triggers:EventTrigger EventName="ItemClick">
-                                <triggers:InvokeCommandAction Command="{Binding OpenVideo}"
-                                                              PassEventArgsToCommand="True" />
-                            </triggers:EventTrigger>
-                        </triggers:Interactions.Triggers>
-                        <GridView.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <ItemsWrapGrid Orientation="Horizontal"
-                                               SizeChanged="VideoWrapGrid_SizeChanged"
-                                               Margin="0,0,0,60" />
-                            </ItemsPanelTemplate>
-                        </GridView.ItemsPanel>
-                    </GridView>
-                </StackPanel>
-            </StackPanel>
-        </ScrollViewer>
+               VerticalAlignment="Top"
+               Margin="0,50,0,0" />
+        <Pivot x:Name="MainPivot"
+               x:FieldModifier="public"
+               Margin="-7,15,0,0"
+               Style="{StaticResource PivotStyle1}"
+               HeaderTemplate="{StaticResource PivotTitleTemplate}"
+               SelectionChanged="MainPivot_OnSelectionChanged">
+            <PivotItem Header="home">
+                <Grid>
+                    <ScrollViewer>
+                        <StackPanel>
+                            <StackPanel x:Name="MusicLibrary"
+                                        DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
+                                <TextBlock Text="albums"
+                                           FontSize="30"
+                                           Foreground="{StaticResource MainColor}"
+                                           Style="{StaticResource SubheaderTextBlockStyle}" />
+                                <GridView ItemsSource="{Binding RandomAlbums}"
+                                          ItemTemplate="{StaticResource PhoneSemanticZoomInViewAlbumTemplateLittleSize}"
+                                          IsItemClickEnabled="True"
+                                          SelectionMode="None"
+                                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                          ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                                          ScrollViewer.HorizontalScrollMode="Disabled"
+                                          ScrollViewer.VerticalScrollMode="Disabled"
+                                          Margin="0,6,0,0">
+                                    <triggers:Interactions.Triggers>
+                                        <triggers:EventTrigger EventName="ItemClick">
+                                            <triggers:InvokeCommandAction Command="{Binding AlbumClickedCommand}"
+                                                                          PassEventArgsToCommand="True" />
+                                        </triggers:EventTrigger>
+                                    </triggers:Interactions.Triggers>
+                                    <GridView.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <ItemsWrapGrid Orientation="Horizontal"
+                                                           SizeChanged="AlbumsWrapGrid_SizeChanged" />
+                                        </ItemsPanelTemplate>
+                                    </GridView.ItemsPanel>
+                                </GridView>
+                                <controls:NoFavoriteAlbumsControl HorizontalAlignment="Left" />
+                            </StackPanel>
+                            <StackPanel x:Name="VideoLibrary"
+                                        DataContext="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM}">
+                                <TextBlock Text="videos"
+                                           Margin="0,12,0,0"
+                                           FontSize="30"
+                                           Foreground="{StaticResource MainColor}"
+                                           Style="{StaticResource SubheaderTextBlockStyle}" />
+                                <GridView ItemsSource="{Binding ViewedVideos}"
+                                          ItemTemplate="{StaticResource PhoneCompactVideoTemplate}"
+                                          Margin="0,0,-20,0"
+                                          IsItemClickEnabled="True">
+                                    <triggers:Interactions.Triggers>
+                                        <triggers:EventTrigger EventName="ItemClick">
+                                            <triggers:InvokeCommandAction Command="{Binding OpenVideo}"
+                                                                          PassEventArgsToCommand="True" />
+                                        </triggers:EventTrigger>
+                                    </triggers:Interactions.Triggers>
+                                    <GridView.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <ItemsWrapGrid Orientation="Horizontal"
+                                                           SizeChanged="VideoWrapGrid_SizeChanged"
+                                                           Margin="0,0,0,60" />
+                                        </ItemsPanelTemplate>
+                                    </GridView.ItemsPanel>
+                                </GridView>
+                            </StackPanel>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
+            </PivotItem>
+            <PivotItem Header="videos">
+                <local:MainPageVideos />
+            </PivotItem>
+            <PivotItem Header="music">
+                <local:MainPageMusic x:Name="MainPageMusicPivotItem"
+                                     x:FieldModifier="public" />
+            </PivotItem>
+            <PivotItem Header="more">
+
+            </PivotItem>
+        </Pivot>
     </Grid>
     <Page.BottomAppBar>
         <CommandBar Style="{StaticResource VLCCommandBarStyle}"
                     x:Name="CommandBar">
-            <AppBarButton Icon="Find"
+            <!--<AppBarButton Icon="Find"
                           x:Uid="Search1"
                           Label="search"
-                          Command="{Binding Source={StaticResource Locator}, Path=MainVM.OpenSidebarCommand}"/>
+                          Command="{Binding Source={StaticResource Locator}, Path=MainVM.OpenSidebarCommand}" />
             <AppBarButton Icon="OpenFile"
                           x:Uid="OpenFile2"
                           Label="open file"
@@ -129,14 +205,14 @@
                         </Grid>
                     </Flyout>
                 </AppBarButton.Flyout>
-            </AppBarButton>
+            </AppBarButton>-->
             <CommandBar.SecondaryCommands>
                 <AppBarButton Label="special thanks"
                               Command="{Binding GoToThanksPageCommand}" />
                 <AppBarButton Label="settings"
                               Command="{Binding GoToSettingsPageCommand}" />
                 <AppBarButton Label="DEBUG viewedvideos"
-                              Click="DEBUGHISTORY"/>
+                              Click="DEBUGHISTORY" />
             </CommandBar.SecondaryCommands>
         </CommandBar>
     </Page.BottomAppBar>
