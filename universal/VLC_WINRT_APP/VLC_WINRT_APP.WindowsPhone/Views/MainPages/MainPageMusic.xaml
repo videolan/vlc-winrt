@@ -8,22 +8,16 @@
       d:DesignWidth="600"
       DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
 
-    <Grid Margin="0,0,0,0">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition />
-        </Grid.RowDefinitions>
-        <Frame x:Name="MainPageMusicContentPresenter"
-               x:FieldModifier="public"
-               Background="Transparent"
-               Loaded="MainPageMusicContentPresenter_OnLoaded">
-            <Frame.ContentTransitions>
-                <TransitionCollection>
-                    <EdgeUIThemeTransition x:Name="MainFrameThemeTransition"
-                                           x:FieldModifier="public"
-                                           Edge="Bottom" />
-                </TransitionCollection>
-            </Frame.ContentTransitions>
-        </Frame>
-    </Grid>
+    <Frame x:Name="MainPageMusicContentPresenter"
+           x:FieldModifier="public"
+           Background="Transparent"
+           Loaded="MainPageMusicContentPresenter_OnLoaded">
+        <Frame.ContentTransitions>
+            <TransitionCollection>
+                <EdgeUIThemeTransition x:Name="MainFrameThemeTransition"
+                                       x:FieldModifier="public"
+                                       Edge="Bottom" />
+            </TransitionCollection>
+        </Frame.ContentTransitions>
+    </Frame>
 </UserControl>
