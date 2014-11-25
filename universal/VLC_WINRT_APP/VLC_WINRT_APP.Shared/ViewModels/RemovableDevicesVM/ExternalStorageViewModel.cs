@@ -148,7 +148,7 @@ namespace VLC_WINRT_APP.ViewModels.RemovableDevicesVM
             if (cards.Any())
             {
                 CurrentStorageVM = new FileExplorerViewModel(cards[0]);
-                CurrentStorageVM.GetFiles();
+                await CurrentStorageVM.GetFiles();
             }
         }
     }
