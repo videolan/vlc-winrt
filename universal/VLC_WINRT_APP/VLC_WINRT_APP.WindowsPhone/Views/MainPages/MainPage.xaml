@@ -6,7 +6,8 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:userControls="using:VLC_WINRT_APP.Views.UserControls"
       xmlns:panelsView="using:PanelsView"
-      mc:Ignorable="d">
+      mc:Ignorable="d"
+      Background="{StaticResource MainColor}">
 
     <SwapChainPanel x:Name="SwapChainPanel"
                     RequestedTheme="Light">
@@ -20,7 +21,7 @@
                       x:Name="MediaElement"
                       x:FieldModifier="public" />
         <Grid Grid.RowSpan="2"
-              Background="White"
+              Background="WhiteSmoke"
               Visibility="{Binding Source={StaticResource Locator}, Path=VideoVm.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}" />
 
         <Image Source="/Assets/backgroundBot.png"

@@ -1,4 +1,5 @@
-﻿using Windows.UI;
+﻿using Windows.Graphics.Display;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
@@ -54,10 +55,12 @@ namespace VLC_WINRT_APP.Views.MainPages
             if (DisplayHelper.IsPortrait())
             {
                 CommandBar.Visibility = Visibility.Visible;
+                MainPivot.Margin = new Thickness(-7, 15, -15, 0);
             }
             else
             {
                 CommandBar.Visibility = Visibility.Collapsed;
+                MainPivot.Margin = new Thickness(-7,-15,-25,0);
             }
         }
 
@@ -74,7 +77,7 @@ namespace VLC_WINRT_APP.Views.MainPages
 
         private void DEBUGHISTORY(object sender, RoutedEventArgs e)
         {
-            App.ApplicationFrame.Navigate(typeof (historyvideo));
+            App.ApplicationFrame.Navigate(typeof(historyvideo));
         }
 
         private void MainPivot_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
