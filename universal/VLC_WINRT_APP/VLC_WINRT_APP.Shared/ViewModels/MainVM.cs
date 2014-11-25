@@ -150,7 +150,7 @@ namespace VLC_WINRT_APP.ViewModels
                     {
                         Label = "open file",
                         Icon = new SymbolIcon(Symbol.OpenFile),
-                        Command = Locator.VideoLibraryVM.OpenVideo
+                        Command = Locator.VideoLibraryVM.PickVideo
                     });
                     AppBarElements.Add(new AppBarButton()
                     {
