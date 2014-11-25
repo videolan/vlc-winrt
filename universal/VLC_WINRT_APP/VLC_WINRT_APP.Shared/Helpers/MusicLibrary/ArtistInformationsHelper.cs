@@ -302,7 +302,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                 var albumPic = await ApplicationData.Current.LocalFolder.CreateFolderAsync("albumPic",
                     CreationCollisionOption.OpenIfExists);
 
-                var fileName = album.Id + "_" + "dPi";
+                var fileName = album.Id;
                 var file = await albumPic.CreateFileAsync(fileName + ".jpg", CreationCollisionOption.OpenIfExists);
                 var raStream = await file.OpenAsync(FileAccessMode.ReadWrite);
 
