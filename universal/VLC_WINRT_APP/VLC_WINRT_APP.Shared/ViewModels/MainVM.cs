@@ -101,7 +101,7 @@ namespace VLC_WINRT_APP.ViewModels
             Initialize();
         }
 
-        public async Task Initialize()
+        public void Initialize()
         {
             if (ApplicationSettingsHelper.ReadSettingsValue("ContinueVideoPlaybackInBackground") == null)
                 ApplicationSettingsHelper.SaveSettingsValue("ContinueVideoPlaybackInBackground", true);
