@@ -6,7 +6,7 @@
 
     <!-- WINDOWS PHONE -->
     <DataTemplate x:Key="PhoneArtistSquareTemplate">
-        <Border Background="WhiteSmoke"
+        <Border Background="White"
                 Margin="0,0,6,0">
             <Grid>
                 <Grid.RowDefinitions>
@@ -37,14 +37,14 @@
                     <TextBlock Grid.Column="0"
                                Text="{Binding Name}"
                                TextWrapping="NoWrap"
-                               TextTrimming="WordEllipsis"
+                               TextTrimming="CharacterEllipsis"
                                FontSize="15"
-                               FontWeight="SemiBold"
+                               FontWeight="Normal"
                                Margin="7,0" />
                     <TextBlock Grid.Row="1"
                                Grid.Column="0"
                                TextWrapping="NoWrap"
-                               TextTrimming="WordEllipsis"
+                               TextTrimming="CharacterEllipsis"
                                FontSize="16"
                                Margin="7,0,7,7">
                         <Run Text="{Binding Albums.Count}" />
@@ -88,7 +88,7 @@
 
     <DataTemplate x:Key="SemanticZoomViewInArtistTemplate">
         <Border Padding="12"
-                Background="WhiteSmoke">
+                Background="White">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="200" />
@@ -136,7 +136,7 @@
                             Margin="5">
                     <TextBlock Text="{Binding Name}"
                                TextWrapping="NoWrap"
-                               TextTrimming="WordEllipsis"
+                               TextTrimming="CharacterEllipsis"
                                FontSize="16" />
                 </StackPanel>
             </Grid>
