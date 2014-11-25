@@ -11,12 +11,12 @@ namespace VLC_WINRT_APP.Commands.Music
 {
     public class PlayAllRandomCommand : AlwaysExecutableCommand
     {
-        public override void Execute(object parameter)
+        public override async void Execute(object parameter)
         {
             var shuffledTracks = Locator.MusicLibraryVM.Tracks.Shuffle();
             TrackCollection trackCollection = new TrackCollection();
             trackCollection.Playlist = new ObservableCollection<TrackItem>(shuffledTracks);
-            PlayMusicHelper.AddTrackCollectionToPlaylist(trackCollection);
+            await PlayMusicHelper.AddTrackCollectionToPlaylist(trackCollection);
             if (App.ApplicationFrame.CurrentSourcePageType != typeof (MusicPlayerPage))
                 App.ApplicationFrame.Navigate(typeof (MusicPlayerPage));
         }
