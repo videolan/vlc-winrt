@@ -82,7 +82,6 @@ static void *Lock(void *opaque, void **pixels)
     WaitForSingleObjectEx(sys->hLock, INFINITE, TRUE);
     *pixels = sys->thumbData;
     if (sys->mp && sys->state == THUMB_SEEKING
-        && libvlc_media_player_is_playing(sys->mp)
         && libvlc_media_player_get_position(sys->mp) >= SEEK_POSITION) {
         sys->state = THUMB_SEEKED;
     }
