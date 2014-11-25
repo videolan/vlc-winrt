@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="VLC_WINRT_APP.Views.MainPages.MainMusicControls.SongsPivotItem"
+﻿<Page x:Class="VLC_WINRT_APP.Views.MainPages.MainMusicControls.SongsPivotItem"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="using:VLC_WINRT_APP.Views.MainPages.MainMusicControls"
@@ -11,7 +11,7 @@
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400">
-    <UserControl.Resources>
+    <Page.Resources>
         <Storyboard x:Name="FadeOutHeader">
             <DoubleAnimation EnableDependentAnimation="True"
                              Storyboard.TargetName="HeaderGrid"
@@ -35,18 +35,22 @@
                 </DoubleAnimation.EasingFunction>
             </DoubleAnimation>
         </Storyboard>
-    </UserControl.Resources>
+    </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <Grid x:Name="HeaderGrid"
+        <TextBlock Text="songs"
+                   Style="{StaticResource SubheaderTextBlockStyle}"
+                   Foreground="{StaticResource MainColor}" />
+        <!--<Grid x:Name="HeaderGrid"
               Height="60">
             <TextBox PlaceholderText="Filter ..." />
-        </Grid>
+        </Grid>-->
         <placeholder:NothingToSeeHere Grid.Row="1"
-                                      Visibility="{Binding Tracks.Count, Converter={StaticResource CountToVisibilityConverter}}" />
+                                      Visibility="{Binding Tracks.Count, Converter={StaticResource CountToVisibilityConverter}}" 
+                                      VerticalAlignment="Center"/>
         <scrollWatchedSelector:ScrollWatchedListView x:Name="RadDataGrid"
                                                      Grid.Row="1"
                                                      ItemsSource="{Binding Tracks}"
@@ -68,4 +72,4 @@
             </scrollWatchedSelector:ScrollWatchedListView.ItemsPanel>
         </scrollWatchedSelector:ScrollWatchedListView>
     </Grid>
-</UserControl>
+</Page>

@@ -5,7 +5,7 @@ using ScrollWatchedSelector;
 
 namespace VLC_WINRT_APP.Views.MainPages.MainMusicControls
 {
-    public sealed partial class SongsPivotItem : UserControl
+    public sealed partial class SongsPivotItem : Page
     {
         public SongsPivotItem()
         {
