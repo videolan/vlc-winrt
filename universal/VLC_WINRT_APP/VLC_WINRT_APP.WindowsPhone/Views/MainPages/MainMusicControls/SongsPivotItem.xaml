@@ -12,7 +12,7 @@
              d:DesignHeight="300"
              d:DesignWidth="400">
     <Page.Resources>
-        <Storyboard x:Name="FadeOutHeader">
+        <!--<Storyboard x:Name="FadeOutHeader">
             <DoubleAnimation EnableDependentAnimation="True"
                              Storyboard.TargetName="HeaderGrid"
                              Storyboard.TargetProperty="(FrameworkElement.Height)"
@@ -34,7 +34,7 @@
                                      Exponent="3" />
                 </DoubleAnimation.EasingFunction>
             </DoubleAnimation>
-        </Storyboard>
+        </Storyboard>-->
     </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
