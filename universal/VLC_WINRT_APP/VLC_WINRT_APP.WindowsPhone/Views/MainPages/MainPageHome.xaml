@@ -211,8 +211,8 @@
                               Command="{Binding GoToThanksPageCommand}" />
                 <AppBarButton Label="settings"
                               Command="{Binding GoToSettingsPageCommand}" />
-                <AppBarButton Label="DEBUG viewedvideos"
-                              Click="DEBUGHISTORY" />
+                <!--<AppBarButton Label="DEBUG viewedvideos"
+                              Click="DEBUGHISTORY" />-->
             </CommandBar.SecondaryCommands>
         </CommandBar>
     </Page.BottomAppBar>
