@@ -160,8 +160,8 @@
                 <local:MainPageMusic x:Name="MainPageMusicPivotItem"
                                      x:FieldModifier="public" />
             </PivotItem>
-            <PivotItem Header="more">
-
+            <PivotItem Header="sd card">
+                <local:MainPageSDCard />
             </PivotItem>
         </Pivot>
     </Grid>
