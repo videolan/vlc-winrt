@@ -129,6 +129,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                         var artistFromCollection = Locator.MusicLibraryVM.Artists.FirstOrDefault(x => x.Id == album.ArtistId);
                         if (artistFromCollection != null) artistFromCollection.Albums.Add(album);
                         Locator.MusicLibraryVM.CurrentIndexingStatus = "Found album " + album.Name;
+                        StatusBarHelper.UpdateTitle("Found" + album.Name);
                         Locator.MusicLibraryVM.Albums.Add(album);
                     });
                 }
