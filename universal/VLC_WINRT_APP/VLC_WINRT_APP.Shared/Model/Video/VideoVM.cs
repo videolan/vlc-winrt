@@ -257,6 +257,8 @@ namespace VLC_WINRT_APP.Model.Video
                     else
                     {
                         WriteableBitmap thumb = await _thumbsService.GetScreenshot(File);
+                        if (thumb == null)
+                            return;
                         await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
                         {
                             Image = thumb;
