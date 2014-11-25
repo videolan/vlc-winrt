@@ -480,7 +480,8 @@
                                       ZoomMode="Disabled">
                             <PivotPanel x:Name="Panel"
                                         VerticalAlignment="Stretch">
-                                <PivotHeaderPanel x:Name="Header">
+                                <PivotHeaderPanel x:Name="Header"
+                                                  RequestedTheme="Dark">
                                     <PivotHeaderPanel.RenderTransform>
                                         <CompositeTransform x:Name="HeaderTranslateTransform"
                                                             TranslateX="0" />
@@ -1664,7 +1665,7 @@
         <Setter Property="Background"
                 Value="{StaticResource MainColor}" />
         <Setter Property="Opacity"
-                Value="1" />
+                Value="0.99" />
         <Setter Property="RequestedTheme"
                 Value="Dark" />
     </Style>
