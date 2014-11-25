@@ -241,10 +241,10 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
                             {
                                 Videos.Add(mediaVM);
                             }
-#if WINDOWS_APP
+//#if WINDOWS_APP
                             if (ViewedVideos.Count < 6 && ViewedVideos.FirstOrDefault(x => x.FilePath == mediaVM.FilePath && x.TimeWatched == TimeSpan.Zero) == null)
                                 ViewedVideos.Add(mediaVM);
-#endif
+//#endif
                         });
                     }
                 }
