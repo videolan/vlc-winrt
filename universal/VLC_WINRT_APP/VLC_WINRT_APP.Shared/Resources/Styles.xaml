@@ -60,7 +60,7 @@
         <Setter Property="Maximum"
                 Value="100" />
         <Setter Property="MinHeight"
-                Value="1" />
+                Value="3" />
         <Setter Property="IsTabStop"
                 Value="False" />
         <Setter Property="VerticalAlignment"
