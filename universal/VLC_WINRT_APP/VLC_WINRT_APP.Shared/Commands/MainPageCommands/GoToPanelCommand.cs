@@ -8,6 +8,7 @@
  **********************************************************************/
 
 using System;
+using System.Linq;
 using Windows.UI;
 using Windows.UI.Core;
 using Windows.UI.Xaml.Controls;
@@ -47,9 +48,15 @@ namespace VLC_WINRT_APP.Commands.MainPageCommands
             {
                 panel = (parameter as SelectionChangedEventArgs).AddedItems[0] as Model.Panel;
             }
+            else if (parameter is string)
+            {
+                panel = Locator.MainVM.Panels.First(x => x.Index == int.Parse(parameter.ToString()));
+            }
             foreach (Model.Panel panel1 in Locator.MainVM.Panels)
                 panel1.Color = DefaultColorBrush;
-            panel.Color = SelectedColorBrush;
+            if (panel != null)
+            {
+                panel.Color = SelectedColorBrush;
 #if WINDOWS_APP
             switch (panel.Index)
             {
@@ -76,10 +83,11 @@ namespace VLC_WINRT_APP.Commands.MainPageCommands
             }
 #else
 
-            if (App.ApplicationFrame.CurrentSourcePageType != typeof(MainPageHome))
-                App.ApplicationFrame.Navigate(typeof(MainPageHome));
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-            (App.ApplicationFrame.Content as MainPageHome).MainPivot.SelectedIndex = panel.Index);
+                if (App.ApplicationFrame.CurrentSourcePageType != typeof(MainPageHome))
+                    App.ApplicationFrame.Navigate(typeof(MainPageHome));
+                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                    (App.ApplicationFrame.Content as MainPageHome).MainPivot.SelectedIndex = panel.Index);
+            }
 
 #endif
 #if WINDOWS_PHONE_APP
