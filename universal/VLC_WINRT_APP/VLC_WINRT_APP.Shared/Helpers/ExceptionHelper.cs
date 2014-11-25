@@ -58,9 +58,11 @@ namespace VLC_WINRT_APP.Helpers
             stringExceptionBuilder.AppendLine(unhandledExceptionEventArgs.Exception.Message);
             stringExceptionBuilder.AppendLine(unhandledExceptionEventArgs.Exception.Source);
             stringExceptionBuilder.AppendLine(unhandledExceptionEventArgs.Exception.StackTrace);
-            stringExceptionBuilder.AppendLine(unhandledExceptionEventArgs.Exception.Data.ToString());
+            if (unhandledExceptionEventArgs.Exception.Data != null)
+                stringExceptionBuilder.AppendLine(unhandledExceptionEventArgs.Exception.Data.ToString());
             stringExceptionBuilder.AppendLine(unhandledExceptionEventArgs.Exception.HResult.ToString());
-            stringExceptionBuilder.AppendLine(unhandledExceptionEventArgs.Exception.InnerException.ToString());
+            if (unhandledExceptionEventArgs.Exception.InnerException != null)
+                stringExceptionBuilder.AppendLine(unhandledExceptionEventArgs.Exception.InnerException.ToString());
             stringExceptionBuilder.AppendLine(unhandledExceptionEventArgs.Handled.ToString());
             ApplicationSettingsHelper.SaveSettingsValue("ExceptionLog", stringExceptionBuilder.ToString());
         }
