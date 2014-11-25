@@ -23,7 +23,7 @@ namespace VLC_WINRT_APP.Helpers
                 dialog.Commands.Add(new UICommand("Oui", async command =>
                 {
                     var uri =
-                        new Uri("mailto:vlcmetro-feedback@outlook.com?subject=VLC for Windows 8.1 bugreport&body=" +
+                        new Uri("mailto:modernvlc@outlook.com?subject=VLC for Windows 8.1 bugreport&body=" +
                                 ApplicationSettingsHelper.ReadResetSettingsValue("ExceptionLog").ToString());
                     await Launcher.LaunchUriAsync(uri);
                 }));
