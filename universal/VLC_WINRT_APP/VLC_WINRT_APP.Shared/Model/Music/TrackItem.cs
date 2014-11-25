@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using SQLite;
 using VLC_WINRT_APP.Commands.Music;
 using VLC_WINRT_APP.Commands.MusicPlayer;
 using VLC_WINRT_APP.Common;
+using VLC_WINRT_APP.Helpers.MusicLibrary;
 using VLC_WINRT_APP.ViewModels;
 
 namespace VLC_WINRT_APP.Model.Music
@@ -20,6 +22,7 @@ namespace VLC_WINRT_APP.Model.Music
         private TimeSpan _duration;
         private bool _favorite;
         private int _currentPosition;
+        private string _thumbnail;
         private TrackClickedCommand _trackClickedCommand = new TrackClickedCommand();
         private FavoriteTrackCommand _favoriteTrackCommand = new FavoriteTrackCommand();
         private ArtistClickedCommand _viewArtist = new ArtistClickedCommand();
@@ -67,7 +70,12 @@ namespace VLC_WINRT_APP.Model.Music
         [Ignore]
         public string Thumbnail
         {
-            get { return Locator.MusicLibraryVM.Albums.FirstOrDefault(x => x.Id == this.AlbumId).Picture; }
+            get
+            {
+                Task.Run(()=>ArtistInformationsHelper.GetAlbumPicture(this));
+                return _thumbnail;
+            }
+            set { SetProperty(ref _thumbnail, value); }
         }
 
         [Ignore]

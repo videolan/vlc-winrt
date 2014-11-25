@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Core;
 using SQLite;
 using VLC_WINRT_APP.Commands.Music;
 using VLC_WINRT_APP.Commands.MusicPlayer;
@@ -18,7 +19,7 @@ namespace VLC_WINRT_APP.Model.Music
     {
         private string _name;
         private string _artist;
-        private string _picture = "/Assets/GreyPylon/280x156.jpg";
+        private string _picture = "/Assets/NoCover.jpg";
         private uint _year;
         private bool _favorite;
         private bool _isPictureLoaded;
@@ -97,7 +98,7 @@ namespace VLC_WINRT_APP.Model.Music
             set { SetProperty(ref _year, value); }
         }
 
-        private async Task LoadPicture()
+        public async Task LoadPicture()
         {
             if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable()) return;
             try
@@ -109,6 +110,10 @@ namespace VLC_WINRT_APP.Model.Music
                 // TODO: Tell user we could not get their album art.
                 Debug.WriteLine("Error getting album art...");
             }
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                OnPropertyChanged("Picture");
+            });
         }
 
         [Ignore]
