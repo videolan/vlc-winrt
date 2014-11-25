@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="VLC_WINRT_APP.Views.MainPages.MainMusicControls.AlbumsPivotItem"
+﻿<Page x:Class="VLC_WINRT_APP.Views.MainPages.MainMusicControls.AlbumsPivotItem"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="using:VLC_WINRT_APP.Views.MainPages.MainMusicControls"
@@ -14,9 +14,13 @@
     <Grid Margin="0,-12,0,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <Grid DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}">
+        <TextBlock Text="albums"
+                   Style="{StaticResource SubheaderTextBlockStyle}"
+                   Foreground="{StaticResource MainColor}"/>
+        <Grid Grid.Row="1" DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
@@ -47,9 +51,9 @@
                 </ComboBox.ItemTemplate>
             </ComboBox>
         </Grid>
-        <placeholder:NothingToSeeHere Grid.Row="1" 
+        <placeholder:NothingToSeeHere Grid.Row="2" 
                                       Visibility="{Binding Albums.Count, Converter={StaticResource CountToVisibilityConverter}}"/>
-        <scrollWatchedSelector:ScrollWatchedGridView Grid.Row="1"
+        <scrollWatchedSelector:ScrollWatchedGridView Grid.Row="2"
                                                      ItemsSource="{Binding Albums}"
                                                      ItemTemplate="{StaticResource PhoneSemanticZoomInViewAlbumTemplateLittleSize}"
                                                      Margin="0,0,-20,0"
@@ -68,4 +72,4 @@
             </scrollWatchedSelector:ScrollWatchedGridView.ItemsPanel>
         </scrollWatchedSelector:ScrollWatchedGridView>
     </Grid>
-</UserControl>
+</Page>
