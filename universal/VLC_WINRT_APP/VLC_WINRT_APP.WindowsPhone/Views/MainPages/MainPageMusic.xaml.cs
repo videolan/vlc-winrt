@@ -30,9 +30,9 @@ namespace VLC_WINRT_APP.Views.MainPages
             HardwareButtons.BackPressed += HardwareButtonsOnBackPressed;
         }
 
-        private void HardwareButtonsOnBackPressed(object sender, BackPressedEventArgs backPressedEventArgs)
+        private async void HardwareButtonsOnBackPressed(object sender, BackPressedEventArgs backPressedEventArgs)
         {
-            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 if (App.RootPage.PanelsView.IsSideBarVisible)
                     return;
