@@ -8,7 +8,7 @@
       mc:Ignorable="d"
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+    <Grid DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}">
         <Grid.RowDefinitions>
             <RowDefinition Height="80" />
             <RowDefinition />
@@ -21,6 +21,11 @@
                 <DataTemplate>
                 </DataTemplate>
             </Pivot.TitleTemplate>
+            <PivotItem Header="user interface">
+                <ToggleSwitch Header="Enable Sidebar"
+                              IsOn="{Binding EnableSidebar, Mode=TwoWay}"
+                              VerticalAlignment="Top"/>    
+            </PivotItem>
             <PivotItem Header="music settings">
                 <TextBlock Text="Coming soon!"
                            Style="{StaticResource TitleTextBlockStyle}" />
