@@ -142,9 +142,7 @@ namespace VLC_WINRT_APP
         /// <param name="args">Details about the navigation event.</param>
         private void RootFrame_FirstNavigated(object sender, NavigationEventArgs args)
         {
-            if(args.SourcePageType == typeof(MainPageHome))
-                StatusBarHelper.Default();
-            else StatusBarHelper.SetTransparent();
+            StatusBarHelper.SetDefaultForPage(args.SourcePageType);
         }
 
         protected async override void OnActivated(IActivatedEventArgs args)

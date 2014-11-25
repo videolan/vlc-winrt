@@ -1,5 +1,7 @@
-﻿using Windows.UI.ViewManagement;
+﻿using System;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml.Media;
+using VLC_WINRT_APP.Views.MainPages;
 
 namespace VLC_WINRT_APP.Helpers
 {
@@ -17,16 +19,21 @@ namespace VLC_WINRT_APP.Helpers
             Set(null, null, 0, title, ApplicationViewBoundsMode.UseCoreWindow);
         }
 
+        public static void UpdateTitle(string t)
+        {
+            Set(App.Current.Resources["MainColor"] as SolidColorBrush, null, 1, t, ApplicationViewBoundsMode.UseVisible, null);
+        }
+
         public static void SetForeground(SolidColorBrush color)
         {
             StatusBar sB = StatusBar.GetForCurrentView();
             if (color != null) sB.ForegroundColor = color.Color;
         }
 
-        static void Set(SolidColorBrush background, SolidColorBrush foreground, double opacity, string text, ApplicationViewBoundsMode boundsMode)
+        static void Set(SolidColorBrush background, SolidColorBrush foreground, double opacity, string text, ApplicationViewBoundsMode? boundsMode, double? progress = 0)
         {
             StatusBar sB = StatusBar.GetForCurrentView();
-            if (background != null) 
+            if (background != null)
                 sB.BackgroundColor = background.Color;
             if (foreground != null)
                 sB.ForegroundColor = foreground.Color;
@@ -35,8 +42,16 @@ namespace VLC_WINRT_APP.Helpers
             var _ = sB.ProgressIndicator.ShowAsync();
             if (text != null) sB.ProgressIndicator.Text = text;
             var appView = ApplicationView.GetForCurrentView();
-            appView.SetDesiredBoundsMode(boundsMode);
+            if (boundsMode != null && boundsMode.HasValue)
+                appView.SetDesiredBoundsMode(boundsMode.Value);
+            sB.ProgressIndicator.ProgressValue = progress;
+        }
 
+        public static void SetDefaultForPage(Type type)
+        {
+            if (type == typeof(MainPageHome))
+                StatusBarHelper.Default();
+            else StatusBarHelper.SetTransparent();
         }
     }
 #endif
