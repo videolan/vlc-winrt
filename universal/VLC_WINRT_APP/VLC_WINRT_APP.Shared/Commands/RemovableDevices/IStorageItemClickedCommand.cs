@@ -8,17 +8,17 @@ namespace VLC_WINRT_APP.Commands.RemovableDevices
 {
     public class IStorageItemClickedCommand : AlwaysExecutableCommand
     {
-        public override void Execute(object parameter)
+        public override async void Execute(object parameter)
         {
             IStorageItem storageItem = ((ItemClickEventArgs) parameter).ClickedItem as IStorageItem;
 #if WINDOWS_APP
             if(App.ApplicationFrame.CurrentSourcePageType == typeof(MainPageRemovables))
-                Locator.ExternalStorageVM.CurrentStorageVM.NavigateTo(storageItem);
+                await Locator.ExternalStorageVM.CurrentStorageVM.NavigateTo(storageItem);
             else if(App.ApplicationFrame.CurrentSourcePageType == typeof(MainPageMediaServers))
-                Locator.DlnaVM.CurrentDlnaVm.NavigateTo(storageItem);
+                await Locator.DlnaVM.CurrentDlnaVm.NavigateTo(storageItem);
 #else
             if (App.ApplicationFrame.CurrentSourcePageType == typeof(MainPageSDCard))
-                Locator.ExternalStorageVM.CurrentStorageVM.NavigateTo(storageItem);
+                await Locator.ExternalStorageVM.CurrentStorageVM.NavigateTo(storageItem);
 #endif
         }
     }
