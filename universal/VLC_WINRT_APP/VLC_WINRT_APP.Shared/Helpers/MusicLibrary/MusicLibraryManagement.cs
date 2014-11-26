@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using XboxMusicLibrary.Models;
 #if WINDOWS_PHONE_APP
 using Windows.Phone.ApplicationModel;
 #endif
@@ -62,30 +63,40 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             }
         }
 
-        public static async Task GetAllMusicFolders()
+        public static async Task GetAllMusicFolders(bool routineCheck = false)
         {
 #if WINDOWS_APP
             StorageLibrary musicLibrary = await StorageLibrary.GetLibraryAsync(KnownLibraryId.Music);
             foreach (StorageFolder storageFolder in musicLibrary.Folders)
             {
-                await CreateDatabaseFromMusicFolder(storageFolder);
+                await CreateDatabaseFromMusicFolder(storageFolder, routineCheck);
             }
 #else
             StorageFolder musicLibrary = KnownFolders.MusicLibrary;
-            await CreateDatabaseFromMusicFolder(musicLibrary);
+            await CreateDatabaseFromMusicFolder(musicLibrary, routineCheck);
             LogHelper.Log("Searching for music from Phone MusicLibrary ...");
 #endif
 
         }
 
-        private static async Task CreateDatabaseFromMusicFolder(StorageFolder musicFolder)
+        private static async Task CreateDatabaseFromMusicFolder(StorageFolder musicFolder, bool checkIfAlreadyInDB = false)
         {
             IReadOnlyList<IStorageItem> items = await musicFolder.GetItemsAsync();
             foreach (IStorageItem storageItem in items)
             {
                 if (storageItem.IsOfType(StorageItemTypes.File))
                 {
-                    await CreateDatabaseFromMusicFile((StorageFile)storageItem);
+                    if (!checkIfAlreadyInDB)
+                    {
+                        await CreateDatabaseFromMusicFile((StorageFile)storageItem);
+                    }
+                    else
+                    {
+                        if (!await MusicLibraryVM._trackDataRepository.DoesTrackExist((storageItem as StorageFile).Path))
+                        {
+                            await CreateDatabaseFromMusicFile((StorageFile)storageItem);
+                        }
+                    }
                 }
                 else
                 {
@@ -122,6 +133,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                         Artist = string.IsNullOrEmpty(properties.Artist) ? "Unknown artist" : properties.Artist,
                         ArtistId = artist.Id,
                         Favorite = false,
+                        Year = properties.Year
                     };
                     await MusicLibraryVM._albumDataRepository.Add(album);
                     await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
@@ -129,7 +141,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                         var artistFromCollection = Locator.MusicLibraryVM.Artists.FirstOrDefault(x => x.Id == album.ArtistId);
                         if (artistFromCollection != null) artistFromCollection.Albums.Add(album);
                         Locator.MusicLibraryVM.CurrentIndexingStatus = "Found album " + album.Name;
-                        StatusBarHelper.UpdateTitle("Found" + album.Name);
+                        StatusBarHelper.UpdateTitle("Found " + album.Name);
                         Locator.MusicLibraryVM.Albums.Add(album);
                     });
                 }
@@ -311,6 +323,24 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                 var trackListItem = new TracklistItem { TrackId = trackItem.Id, TrackCollectionId = trackCollection.Id };
                 await MusicLibraryVM.TracklistItemRepository.Add(trackListItem);
             }
+        }
+
+        public static async Task RemoveTrackFromCollectionAndDatabase(TrackItem trackItem)
+        {
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                MusicLibraryVM._trackDataRepository.Remove(Locator.MusicLibraryVM.Tracks.FirstOrDefault(x => x.Path == trackItem.Path));
+                Locator.MusicLibraryVM.Tracks.Remove(Locator.MusicLibraryVM.Tracks.FirstOrDefault(x=>x.Path == trackItem.Path));
+                var album = Locator.MusicLibraryVM.Albums.FirstOrDefault(x => x.Id == trackItem.AlbumId);
+                if (album != null)
+                    album.Tracks.Remove(album.Tracks.FirstOrDefault(x => x.Path == trackItem.Path));
+                var artist = Locator.MusicLibraryVM.Artists.FirstOrDefault(x => x.Id == trackItem.ArtistId);
+                if (artist != null)
+                {
+                    var artistalbum = artist.Albums.FirstOrDefault(x => x.Id == trackItem.AlbumId);
+                    if (artistalbum != null) artistalbum.Tracks.Remove(artistalbum.Tracks.FirstOrDefault(x => x.Path == trackItem.Path));
+                }
+            });
         }
     }
 }
