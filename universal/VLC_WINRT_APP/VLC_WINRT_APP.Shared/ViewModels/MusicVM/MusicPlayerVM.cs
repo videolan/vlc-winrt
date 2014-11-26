@@ -196,17 +196,19 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                     }
                     catch(FileNotFoundException exception)
                     {
-                        new MessageDialog("File not found").ShowAsyncIfPossible();
+                        App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                        {
+#if WINDOWS_PHONE_APP
+                            Locator.MainVM.GoToPanelCommand.Execute(2);
+#endif
+                            new MessageDialog("File not found. Can't play").ShowAsyncIfPossible();
+                            MusicLibraryManagement.RemoveTrackFromCollectionAndDatabase(trackItem);
+                        });
                     }
                 }
                 else
                 {
                     file = fileFromExplorer;
-                }
-                if (file == null)
-                {
-                    trackItem = null;
-                    return;
                 }
                 string token = StorageApplicationPermissions.FutureAccessList.Add(file);
                 Debug.WriteLine("Opening file: " + file.Path);
