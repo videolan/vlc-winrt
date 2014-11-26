@@ -12,17 +12,17 @@
     <Grid Height="80"
           Background="WhiteSmoke">
         <Grid.RowDefinitions>
-            <RowDefinition Height="1" />
+            <RowDefinition Height="3" />
             <RowDefinition Height="79" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="400" />
+            <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
         <Border Height="1"
-                Grid.Column="1"
-                Grid.ColumnSpan="2"
+                Grid.Column="0"
+                Grid.ColumnSpan="3"
                 Background="{StaticResource MainColor}" />
         <Image Grid.Row="1"
                Margin="12,0,0,0"
@@ -34,8 +34,10 @@
                     Margin="12,0,0,0"
                     VerticalAlignment="Center">
             <TextBlock Text="{Binding CurrentArtist.Name}"
+                       Foreground="Black"
                        Style="{StaticResource SubheaderTextBlockStyle}" />
             <TextBlock Text="{Binding CurrentTrack.Name}"
+                       Foreground="Black"
                        Style="{StaticResource SubheaderTextBlockStyle}"
                        TextWrapping="NoWrap"
                        TextTrimming="CharacterEllipsis"
@@ -45,32 +47,25 @@
               Grid.Column="2"
               VerticalAlignment="Top"
               Margin="0,20,24,0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
             <Button Style="{StaticResource TextBlockButtonStyle}"
-                    Grid.Column="1"
                     HorizontalAlignment="Left"
                     Command="{Binding PlayOrPauseCommand}"
                     Visibility="{Binding IsPlaying, Converter={StaticResource NegatedBooleanToVisibilityConverter}}">
                 <SymbolIcon Symbol="Play" />
             </Button>
             <Button Style="{StaticResource TextBlockButtonStyle}"
-                    Grid.Column="1"
                     HorizontalAlignment="Left"
                     Command="{Binding PlayOrPauseCommand}"
                     Visibility="{Binding IsPlaying, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <SymbolIcon Symbol="Pause" />
             </Button>
         </Grid>
-        <Slider Grid.Row="1"
-                Grid.Column="2"
-                VerticalAlignment="Bottom"
-                Margin="0,0,12,-20"
+        <Slider Grid.Row="0"
+                Grid.RowSpan="2"
+                Grid.Column="0"
+                Grid.ColumnSpan="3"
+                VerticalAlignment="Top"
+                Margin="0,-16,0,0"
                 Value="{Binding PositionInSeconds, Mode=TwoWay}"
                 Maximum="{Binding TimeTotal.TotalSeconds}"
                 Style="{StaticResource VLCSlider}"
