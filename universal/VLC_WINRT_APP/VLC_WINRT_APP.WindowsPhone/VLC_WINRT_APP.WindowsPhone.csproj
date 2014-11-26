@@ -178,6 +178,9 @@
     <Compile Include="Views\VariousPages\DEBUG\historyvideo.xaml.cs">
       <DependentUpon>historyvideo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\VariousPages\SearchPage.xaml.cs">
+      <DependentUpon>SearchPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\VariousPages\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
@@ -194,6 +197,641 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="..\..\..\app\ARM\Debug\libaccess_winrt_plugin.WindowsPhone\libaccess_winrt_plugin.WindowsPhone.dll">
+      <Link>plugins\access\libaccess_winrt_plugin.WindowsPhone.dll</Link>
+    </Content>
+    <Content Include="..\..\..\app\ARM\Debug\libdirect2d_winrt_plugin.WindowsPhone\libdirect2d_winrt_plugin.WindowsPhone.dll">
+      <Link>plugins\video_output\libdirect2d_winrt_plugin.WindowsPhone.dll</Link>
+    </Content>
+    <Content Include="..\..\..\app\ARM\Debug\libxaudio2_winrt_plugin.WindowsPhone\libxaudio2_winrt_plugin.WindowsPhone.dll">
+      <Link>plugins\audio_output\libxaudio2_winrt_plugin.WindowsPhone.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\access\access_bd_plugin.dll">
+      <Link>plugins\access\access_bd_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\access\access_mms_plugin.dll">
+      <Link>plugins\access\access_mms_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\access\attachment_plugin.dll">
+      <Link>plugins\access\attachment_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\access\cdda_plugin.dll">
+      <Link>plugins\access\cdda_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\access\filesystem_plugin.dll">
+      <Link>plugins\access\filesystem_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\access\ftp_plugin.dll">
+      <Link>plugins\access\ftp_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\access\http_plugin.dll">
+      <Link>plugins\access\http_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\access\idummy_plugin.dll">
+      <Link>plugins\access\idummy_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\access\imem_plugin.dll">
+      <Link>plugins\access\imem_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\access\rar_plugin.dll">
+      <Link>plugins\access\rar_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\access\rtp_plugin.dll">
+      <Link>plugins\access\rtp_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\access\sdp_plugin.dll">
+      <Link>plugins\access\sdp_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\access\shm_plugin.dll">
+      <Link>plugins\access\shm_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\access\tcp_plugin.dll">
+      <Link>plugins\access\tcp_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\access\timecode_plugin.dll">
+      <Link>plugins\access\timecode_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\access\udp_plugin.dll">
+      <Link>plugins\access\udp_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\access\vcd_plugin.dll">
+      <Link>plugins\access\vcd_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\access\vdr_plugin.dll">
+      <Link>plugins\access\vdr_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\access\zip_plugin.dll">
+      <Link>plugins\access\zip_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\audio_filter\a52tofloat32_plugin.dll">
+      <Link>plugins\audio_filter\a52tofloat32_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\audio_filter\a52tospdif_plugin.dll">
+      <Link>plugins\audio_filter\a52tospdif_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\audio_filter\audiobargraph_a_plugin.dll">
+      <Link>plugins\audio_filter\audiobargraph_a_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\audio_filter\audio_format_plugin.dll">
+      <Link>plugins\audio_filter\audio_format_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\audio_filter\chorus_flanger_plugin.dll">
+      <Link>plugins\audio_filter\chorus_flanger_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\audio_filter\compressor_plugin.dll">
+      <Link>plugins\audio_filter\compressor_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\audio_filter\dolby_surround_decoder_plugin.dll">
+      <Link>plugins\audio_filter\dolby_surround_decoder_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\audio_filter\dtstospdif_plugin.dll">
+      <Link>plugins\audio_filter\dtstospdif_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\audio_filter\equalizer_plugin.dll">
+      <Link>plugins\audio_filter\equalizer_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\audio_filter\gain_plugin.dll">
+      <Link>plugins\audio_filter\gain_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\audio_filter\headphone_channel_mixer_plugin.dll">
+      <Link>plugins\audio_filter\headphone_channel_mixer_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\audio_filter\karaoke_plugin.dll">
+      <Link>plugins\audio_filter\karaoke_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\audio_filter\mono_plugin.dll">
+      <Link>plugins\audio_filter\mono_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\audio_filter\normvol_plugin.dll">
+      <Link>plugins\audio_filter\normvol_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\audio_filter\param_eq_plugin.dll">
+      <Link>plugins\audio_filter\param_eq_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\audio_filter\remap_plugin.dll">
+      <Link>plugins\audio_filter\remap_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\audio_filter\scaletempo_plugin.dll">
+      <Link>plugins\audio_filter\scaletempo_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\audio_filter\simple_channel_mixer_plugin.dll">
+      <Link>plugins\audio_filter\simple_channel_mixer_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\audio_filter\spatializer_plugin.dll">
+      <Link>plugins\audio_filter\spatializer_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\audio_filter\stereo_widen_plugin.dll">
+      <Link>plugins\audio_filter\stereo_widen_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\audio_filter\trivial_channel_mixer_plugin.dll">
+      <Link>plugins\audio_filter\trivial_channel_mixer_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\audio_filter\ugly_resampler_plugin.dll">
+      <Link>plugins\audio_filter\ugly_resampler_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\audio_mixer\float_mixer_plugin.dll">
+      <Link>plugins\audio_mixer\float_mixer_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\audio_mixer\integer_mixer_plugin.dll">
+      <Link>plugins\audio_mixer\integer_mixer_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\audio_output\adummy_plugin.dll">
+      <Link>plugins\audio_output\adummy_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\audio_output\afile_plugin.dll">
+      <Link>plugins\audio_output\afile_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\audio_output\amem_plugin.dll">
+      <Link>plugins\audio_output\amem_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\codec\a52_plugin.dll">
+      <Link>plugins\codec\a52_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\codec\adpcm_plugin.dll">
+      <Link>plugins\codec\adpcm_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\codec\aes3_plugin.dll">
+      <Link>plugins\codec\aes3_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\codec\araw_plugin.dll">
+      <Link>plugins\codec\araw_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\codec\avcodec_plugin.dll">
+      <Link>plugins\codec\avcodec_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\codec\cc_plugin.dll">
+      <Link>plugins\codec\cc_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\codec\cdg_plugin.dll">
+      <Link>plugins\codec\cdg_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\codec\cvdsub_plugin.dll">
+      <Link>plugins\codec\cvdsub_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\codec\ddummy_plugin.dll">
+      <Link>plugins\codec\ddummy_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\codec\dmo_plugin.dll">
+      <Link>plugins\codec\dmo_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\codec\dts_plugin.dll">
+      <Link>plugins\codec\dts_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\codec\dvbsub_plugin.dll">
+      <Link>plugins\codec\dvbsub_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\codec\g711_plugin.dll">
+      <Link>plugins\codec\g711_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\codec\kate_plugin.dll">
+      <Link>plugins\codec\kate_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\codec\lpcm_plugin.dll">
+      <Link>plugins\codec\lpcm_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\codec\mft_plugin.dll">
+      <Link>plugins\codec\mft_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\codec\mpeg_audio_plugin.dll">
+      <Link>plugins\codec\mpeg_audio_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\codec\opus_plugin.dll">
+      <Link>plugins\codec\opus_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\codec\rawvideo_plugin.dll">
+      <Link>plugins\codec\rawvideo_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\codec\scte27_plugin.dll">
+      <Link>plugins\codec\scte27_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\codec\spudec_plugin.dll">
+      <Link>plugins\codec\spudec_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\codec\stl_plugin.dll">
+      <Link>plugins\codec\stl_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\codec\subsdec_plugin.dll">
+      <Link>plugins\codec\subsdec_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\codec\substx3g_plugin.dll">
+      <Link>plugins\codec\substx3g_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\codec\subsusf_plugin.dll">
+      <Link>plugins\codec\subsusf_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\codec\svcdsub_plugin.dll">
+      <Link>plugins\codec\svcdsub_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\codec\uleaddvaudio_plugin.dll">
+      <Link>plugins\codec\uleaddvaudio_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\codec\vorbis_plugin.dll">
+      <Link>plugins\codec\vorbis_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\control\dummy_plugin.dll">
+      <Link>plugins\control\dummy_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\control\gestures_plugin.dll">
+      <Link>plugins\control\gestures_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\control\hotkeys_plugin.dll">
+      <Link>plugins\control\hotkeys_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\control\netsync_plugin.dll">
+      <Link>plugins\control\netsync_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\demux\aiff_plugin.dll">
+      <Link>plugins\demux\aiff_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\demux\asf_plugin.dll">
+      <Link>plugins\demux\asf_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\demux\au_plugin.dll">
+      <Link>plugins\demux\au_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\demux\avi_plugin.dll">
+      <Link>plugins\demux\avi_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\demux\caf_plugin.dll">
+      <Link>plugins\demux\caf_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\demux\demuxdump_plugin.dll">
+      <Link>plugins\demux\demuxdump_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\demux\demux_cdg_plugin.dll">
+      <Link>plugins\demux\demux_cdg_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\demux\demux_stl_plugin.dll">
+      <Link>plugins\demux\demux_stl_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\demux\diracsys_plugin.dll">
+      <Link>plugins\demux\diracsys_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\demux\es_plugin.dll">
+      <Link>plugins\demux\es_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\demux\flacsys_plugin.dll">
+      <Link>plugins\demux\flacsys_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\demux\h264_plugin.dll">
+      <Link>plugins\demux\h264_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\demux\hevc_plugin.dll">
+      <Link>plugins\demux\hevc_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\demux\image_plugin.dll">
+      <Link>plugins\demux\image_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\demux\mjpeg_plugin.dll">
+      <Link>plugins\demux\mjpeg_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\demux\mkv_plugin.dll">
+      <Link>plugins\demux\mkv_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\demux\mp4_plugin.dll">
+      <Link>plugins\demux\mp4_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\demux\mpc_plugin.dll">
+      <Link>plugins\demux\mpc_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\demux\mpgv_plugin.dll">
+      <Link>plugins\demux\mpgv_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\demux\nsc_plugin.dll">
+      <Link>plugins\demux\nsc_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\demux\nsv_plugin.dll">
+      <Link>plugins\demux\nsv_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\demux\nuv_plugin.dll">
+      <Link>plugins\demux\nuv_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\demux\ogg_plugin.dll">
+      <Link>plugins\demux\ogg_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\demux\playlist_plugin.dll">
+      <Link>plugins\demux\playlist_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\demux\ps_plugin.dll">
+      <Link>plugins\demux\ps_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\demux\pva_plugin.dll">
+      <Link>plugins\demux\pva_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\demux\rawaud_plugin.dll">
+      <Link>plugins\demux\rawaud_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\demux\rawdv_plugin.dll">
+      <Link>plugins\demux\rawdv_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\demux\rawvid_plugin.dll">
+      <Link>plugins\demux\rawvid_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\demux\real_plugin.dll">
+      <Link>plugins\demux\real_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\demux\smf_plugin.dll">
+      <Link>plugins\demux\smf_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\demux\subtitle_plugin.dll">
+      <Link>plugins\demux\subtitle_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\demux\ts_plugin.dll">
+      <Link>plugins\demux\ts_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\demux\tta_plugin.dll">
+      <Link>plugins\demux\tta_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\demux\ty_plugin.dll">
+      <Link>plugins\demux\ty_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\demux\vc1_plugin.dll">
+      <Link>plugins\demux\vc1_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\demux\vobsub_plugin.dll">
+      <Link>plugins\demux\vobsub_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\demux\voc_plugin.dll">
+      <Link>plugins\demux\voc_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\demux\wav_plugin.dll">
+      <Link>plugins\demux\wav_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\demux\xa_plugin.dll">
+      <Link>plugins\demux\xa_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\meta_engine\folder_plugin.dll">
+      <Link>plugins\meta_engine\folder_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\misc\addonsfsstorage_plugin.dll">
+      <Link>plugins\misc\addonsfsstorage_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\misc\addonsvorepository_plugin.dll">
+      <Link>plugins\misc\addonsvorepository_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\misc\audioscrobbler_plugin.dll">
+      <Link>plugins\misc\audioscrobbler_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\misc\export_plugin.dll">
+      <Link>plugins\misc\export_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\misc\fingerprinter_plugin.dll">
+      <Link>plugins\misc\fingerprinter_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\misc\logger_plugin.dll">
+      <Link>plugins\misc\logger_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\misc\stats_plugin.dll">
+      <Link>plugins\misc\stats_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\misc\xml_plugin.dll">
+      <Link>plugins\misc\xml_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\packetizer\packetizer_dirac_plugin.dll">
+      <Link>plugins\packetizer\packetizer_dirac_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\packetizer\packetizer_flac_plugin.dll">
+      <Link>plugins\packetizer\packetizer_flac_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\packetizer\packetizer_h264_plugin.dll">
+      <Link>plugins\packetizer\packetizer_h264_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\packetizer\packetizer_hevc_plugin.dll">
+      <Link>plugins\packetizer\packetizer_hevc_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\packetizer\packetizer_mlp_plugin.dll">
+      <Link>plugins\packetizer\packetizer_mlp_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\packetizer\packetizer_mpeg4audio_plugin.dll">
+      <Link>plugins\packetizer\packetizer_mpeg4audio_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\packetizer\packetizer_mpeg4video_plugin.dll">
+      <Link>plugins\packetizer\packetizer_mpeg4video_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\packetizer\packetizer_mpegvideo_plugin.dll">
+      <Link>plugins\packetizer\packetizer_mpegvideo_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\packetizer\packetizer_vc1_plugin.dll">
+      <Link>plugins\packetizer\packetizer_vc1_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\services_discovery\mediadirs_plugin.dll">
+      <Link>plugins\services_discovery\mediadirs_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\services_discovery\podcast_plugin.dll">
+      <Link>plugins\services_discovery\podcast_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\services_discovery\sap_plugin.dll">
+      <Link>plugins\services_discovery\sap_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\stream_filter\dash_plugin.dll">
+      <Link>plugins\stream_filter\dash_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\stream_filter\hds_plugin.dll">
+      <Link>plugins\stream_filter\hds_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\stream_filter\record_plugin.dll">
+      <Link>plugins\stream_filter\record_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\stream_filter\smooth_plugin.dll">
+      <Link>plugins\stream_filter\smooth_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\text_renderer\freetype_plugin.dll">
+      <Link>plugins\text_renderer\freetype_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\text_renderer\tdummy_plugin.dll">
+      <Link>plugins\text_renderer\tdummy_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\video_chroma\chain_plugin.dll">
+      <Link>plugins\video_chroma\chain_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\video_chroma\grey_yuv_plugin.dll">
+      <Link>plugins\video_chroma\grey_yuv_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\video_chroma\i420_rgb_plugin.dll">
+      <Link>plugins\video_chroma\i420_rgb_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\video_chroma\i420_yuy2_plugin.dll">
+      <Link>plugins\video_chroma\i420_yuy2_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\video_chroma\i422_i420_plugin.dll">
+      <Link>plugins\video_chroma\i422_i420_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\video_chroma\i422_yuy2_plugin.dll">
+      <Link>plugins\video_chroma\i422_yuy2_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\video_chroma\rv32_plugin.dll">
+      <Link>plugins\video_chroma\rv32_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\video_chroma\swscale_plugin.dll">
+      <Link>plugins\video_chroma\swscale_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\video_chroma\yuy2_i420_plugin.dll">
+      <Link>plugins\video_chroma\yuy2_i420_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\video_chroma\yuy2_i422_plugin.dll">
+      <Link>plugins\video_chroma\yuy2_i422_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\adjust_plugin.dll">
+      <Link>plugins\video_filter\adjust_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\alphamask_plugin.dll">
+      <Link>plugins\video_filter\alphamask_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\anaglyph_plugin.dll">
+      <Link>plugins\video_filter\anaglyph_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\antiflicker_plugin.dll">
+      <Link>plugins\video_filter\antiflicker_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\audiobargraph_v_plugin.dll">
+      <Link>plugins\video_filter\audiobargraph_v_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\ball_plugin.dll">
+      <Link>plugins\video_filter\ball_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\blendbench_plugin.dll">
+      <Link>plugins\video_filter\blendbench_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\blend_plugin.dll">
+      <Link>plugins\video_filter\blend_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\bluescreen_plugin.dll">
+      <Link>plugins\video_filter\bluescreen_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\canvas_plugin.dll">
+      <Link>plugins\video_filter\canvas_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\colorthres_plugin.dll">
+      <Link>plugins\video_filter\colorthres_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\croppadd_plugin.dll">
+      <Link>plugins\video_filter\croppadd_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\deinterlace_plugin.dll">
+      <Link>plugins\video_filter\deinterlace_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\erase_plugin.dll">
+      <Link>plugins\video_filter\erase_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\extract_plugin.dll">
+      <Link>plugins\video_filter\extract_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\freeze_plugin.dll">
+      <Link>plugins\video_filter\freeze_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\gaussianblur_plugin.dll">
+      <Link>plugins\video_filter\gaussianblur_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\gradfun_plugin.dll">
+      <Link>plugins\video_filter\gradfun_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\gradient_plugin.dll">
+      <Link>plugins\video_filter\gradient_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\grain_plugin.dll">
+      <Link>plugins\video_filter\grain_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\hqdn3d_plugin.dll">
+      <Link>plugins\video_filter\hqdn3d_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\invert_plugin.dll">
+      <Link>plugins\video_filter\invert_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\logo_plugin.dll">
+      <Link>plugins\video_filter\logo_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\magnify_plugin.dll">
+      <Link>plugins\video_filter\magnify_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\marq_plugin.dll">
+      <Link>plugins\video_filter\marq_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\mirror_plugin.dll">
+      <Link>plugins\video_filter\mirror_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\mosaic_plugin.dll">
+      <Link>plugins\video_filter\mosaic_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\motionblur_plugin.dll">
+      <Link>plugins\video_filter\motionblur_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\motiondetect_plugin.dll">
+      <Link>plugins\video_filter\motiondetect_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\oldmovie_plugin.dll">
+      <Link>plugins\video_filter\oldmovie_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\posterize_plugin.dll">
+      <Link>plugins\video_filter\posterize_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\psychedelic_plugin.dll">
+      <Link>plugins\video_filter\psychedelic_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\puzzle_plugin.dll">
+      <Link>plugins\video_filter\puzzle_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\ripple_plugin.dll">
+      <Link>plugins\video_filter\ripple_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\rss_plugin.dll">
+      <Link>plugins\video_filter\rss_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\scale_plugin.dll">
+      <Link>plugins\video_filter\scale_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\scene_plugin.dll">
+      <Link>plugins\video_filter\scene_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\sepia_plugin.dll">
+      <Link>plugins\video_filter\sepia_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\sharpen_plugin.dll">
+      <Link>plugins\video_filter\sharpen_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\subsdelay_plugin.dll">
+      <Link>plugins\video_filter\subsdelay_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\transform_plugin.dll">
+      <Link>plugins\video_filter\transform_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\vhs_plugin.dll">
+      <Link>plugins\video_filter\vhs_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\wave_plugin.dll">
+      <Link>plugins\video_filter\wave_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\yuvp_plugin.dll">
+      <Link>plugins\video_filter\yuvp_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\video_output\drawable_plugin.dll">
+      <Link>plugins\video_output\drawable_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\video_output\vdummy_plugin.dll">
+      <Link>plugins\video_output\vdummy_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\video_output\vmem_plugin.dll">
+      <Link>plugins\video_output\vmem_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\video_output\yuv_plugin.dll">
+      <Link>plugins\video_output\yuv_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\video_splitter\clone_plugin.dll">
+      <Link>plugins\video_splitter\clone_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\video_splitter\wall_plugin.dll">
+      <Link>plugins\video_splitter\wall_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\plugins\visualization\visual_plugin.dll">
+      <Link>plugins\visualization\visual_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\vlc.dll">
+      <Link>vlc.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\vlc\vlc-ARM\vlccore.dll">
+      <Link>vlccore.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Assets\BadgeLogo.scale-100.png" />
     <Content Include="Assets\BadgeLogo.scale-140.png" />
     <Content Include="Assets\Logo.scale-100.png" />
@@ -217,11 +855,11 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="PanelsView">
-      <HintPath>..\..\..\..\..\..\PanelsView\PanelsView\PanelsView\bin\Release\PanelsView.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\PanelsView\PanelsView\PanelsView\bin\Debug\PanelsView.dll</HintPath>
     </Reference>
     <Reference Include="ScrollWatchedSelector, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\Documents\Visual Studio 2013\Projects\ScrollWatchedListView\ScrollWatchedListView\bin\Debug\ScrollWatchedSelector.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\ScrollWatchedSelector\ScrollWatchedListView\bin\Debug\ScrollWatchedSelector.dll</HintPath>
     </Reference>
     <Reference Include="WinRT.Triggers">
       <HintPath>..\..\..\app\packages\WinRTTriggers.1.6.0\lib\winrt45\WinRT.Triggers.dll</HintPath>
@@ -364,6 +1002,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\VariousPages\SearchPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\VariousPages\SettingsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -386,6 +1028,1230 @@
     </SDKReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\access\access_bd_plugin.dll.lib">
+      <Link>plugins\access\access_bd_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\access\access_mms_plugin.dll.lib">
+      <Link>plugins\access\access_mms_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\access\attachment_plugin.dll.lib">
+      <Link>plugins\access\attachment_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\access\filesystem_plugin.dll.lib">
+      <Link>plugins\access\filesystem_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\access\ftp_plugin.dll.lib">
+      <Link>plugins\access\ftp_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\access\http_plugin.dll.lib">
+      <Link>plugins\access\http_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\access\idummy_plugin.dll.lib">
+      <Link>plugins\access\idummy_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\access\imem_plugin.dll.lib">
+      <Link>plugins\access\imem_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\access\libaccess_bd_plugin.la">
+      <Link>plugins\access\libaccess_bd_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\access\libaccess_mms_plugin.la">
+      <Link>plugins\access\libaccess_mms_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\access\libattachment_plugin.la">
+      <Link>plugins\access\libattachment_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\access\libfilesystem_plugin.la">
+      <Link>plugins\access\libfilesystem_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\access\libftp_plugin.la">
+      <Link>plugins\access\libftp_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\access\libhttp_plugin.la">
+      <Link>plugins\access\libhttp_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\access\libidummy_plugin.la">
+      <Link>plugins\access\libidummy_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\access\libimem_plugin.la">
+      <Link>plugins\access\libimem_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\access\librar_plugin.la">
+      <Link>plugins\access\librar_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\access\librtp_plugin.la">
+      <Link>plugins\access\librtp_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\access\libsdp_plugin.la">
+      <Link>plugins\access\libsdp_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\access\libshm_plugin.la">
+      <Link>plugins\access\libshm_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\access\libtcp_plugin.la">
+      <Link>plugins\access\libtcp_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\access\libtimecode_plugin.la">
+      <Link>plugins\access\libtimecode_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\access\libudp_plugin.la">
+      <Link>plugins\access\libudp_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\access\libvdr_plugin.la">
+      <Link>plugins\access\libvdr_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\access\libzip_plugin.la">
+      <Link>plugins\access\libzip_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\access\rar_plugin.dll.lib">
+      <Link>plugins\access\rar_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\access\rtp_plugin.dll.lib">
+      <Link>plugins\access\rtp_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\access\sdp_plugin.dll.lib">
+      <Link>plugins\access\sdp_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\access\shm_plugin.dll.lib">
+      <Link>plugins\access\shm_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\access\tcp_plugin.dll.lib">
+      <Link>plugins\access\tcp_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\access\timecode_plugin.dll.lib">
+      <Link>plugins\access\timecode_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\access\udp_plugin.dll.lib">
+      <Link>plugins\access\udp_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\access\vdr_plugin.dll.lib">
+      <Link>plugins\access\vdr_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\access\zip_plugin.dll.lib">
+      <Link>plugins\access\zip_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\audio_filter\a52tofloat32_plugin.dll.lib">
+      <Link>plugins\audio_filter\a52tofloat32_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\audio_filter\a52tospdif_plugin.dll.lib">
+      <Link>plugins\audio_filter\a52tospdif_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\audio_filter\audiobargraph_a_plugin.dll.lib">
+      <Link>plugins\audio_filter\audiobargraph_a_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\audio_filter\audio_format_plugin.dll.lib">
+      <Link>plugins\audio_filter\audio_format_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\audio_filter\chorus_flanger_plugin.dll.lib">
+      <Link>plugins\audio_filter\chorus_flanger_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\audio_filter\compressor_plugin.dll.lib">
+      <Link>plugins\audio_filter\compressor_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\audio_filter\dolby_surround_decoder_plugin.dll.lib">
+      <Link>plugins\audio_filter\dolby_surround_decoder_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\audio_filter\dtstospdif_plugin.dll.lib">
+      <Link>plugins\audio_filter\dtstospdif_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\audio_filter\equalizer_plugin.dll.lib">
+      <Link>plugins\audio_filter\equalizer_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\audio_filter\gain_plugin.dll.lib">
+      <Link>plugins\audio_filter\gain_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\audio_filter\headphone_channel_mixer_plugin.dll.lib">
+      <Link>plugins\audio_filter\headphone_channel_mixer_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\audio_filter\karaoke_plugin.dll.lib">
+      <Link>plugins\audio_filter\karaoke_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\audio_filter\liba52tofloat32_plugin.la">
+      <Link>plugins\audio_filter\liba52tofloat32_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\audio_filter\liba52tospdif_plugin.la">
+      <Link>plugins\audio_filter\liba52tospdif_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\audio_filter\libaudiobargraph_a_plugin.la">
+      <Link>plugins\audio_filter\libaudiobargraph_a_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\audio_filter\libaudio_format_plugin.la">
+      <Link>plugins\audio_filter\libaudio_format_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\audio_filter\libchorus_flanger_plugin.la">
+      <Link>plugins\audio_filter\libchorus_flanger_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\audio_filter\libcompressor_plugin.la">
+      <Link>plugins\audio_filter\libcompressor_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\audio_filter\libdolby_surround_decoder_plugin.la">
+      <Link>plugins\audio_filter\libdolby_surround_decoder_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\audio_filter\libdtstospdif_plugin.la">
+      <Link>plugins\audio_filter\libdtstospdif_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\audio_filter\libequalizer_plugin.la">
+      <Link>plugins\audio_filter\libequalizer_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\audio_filter\libgain_plugin.la">
+      <Link>plugins\audio_filter\libgain_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\audio_filter\libheadphone_channel_mixer_plugin.la">
+      <Link>plugins\audio_filter\libheadphone_channel_mixer_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\audio_filter\libkaraoke_plugin.la">
+      <Link>plugins\audio_filter\libkaraoke_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\audio_filter\libmono_plugin.la">
+      <Link>plugins\audio_filter\libmono_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\audio_filter\libnormvol_plugin.la">
+      <Link>plugins\audio_filter\libnormvol_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\audio_filter\libparam_eq_plugin.la">
+      <Link>plugins\audio_filter\libparam_eq_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\audio_filter\libremap_plugin.la">
+      <Link>plugins\audio_filter\libremap_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\audio_filter\libscaletempo_plugin.la">
+      <Link>plugins\audio_filter\libscaletempo_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\audio_filter\libsimple_channel_mixer_plugin.la">
+      <Link>plugins\audio_filter\libsimple_channel_mixer_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\audio_filter\libspatializer_plugin.la">
+      <Link>plugins\audio_filter\libspatializer_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\audio_filter\libstereo_widen_plugin.la">
+      <Link>plugins\audio_filter\libstereo_widen_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\audio_filter\libtrivial_channel_mixer_plugin.la">
+      <Link>plugins\audio_filter\libtrivial_channel_mixer_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\audio_filter\libugly_resampler_plugin.la">
+      <Link>plugins\audio_filter\libugly_resampler_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\audio_filter\mono_plugin.dll.lib">
+      <Link>plugins\audio_filter\mono_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\audio_filter\normvol_plugin.dll.lib">
+      <Link>plugins\audio_filter\normvol_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\audio_filter\param_eq_plugin.dll.lib">
+      <Link>plugins\audio_filter\param_eq_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\audio_filter\remap_plugin.dll.lib">
+      <Link>plugins\audio_filter\remap_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\audio_filter\scaletempo_plugin.dll.lib">
+      <Link>plugins\audio_filter\scaletempo_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\audio_filter\simple_channel_mixer_plugin.dll.lib">
+      <Link>plugins\audio_filter\simple_channel_mixer_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\audio_filter\spatializer_plugin.dll.lib">
+      <Link>plugins\audio_filter\spatializer_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\audio_filter\stereo_widen_plugin.dll.lib">
+      <Link>plugins\audio_filter\stereo_widen_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\audio_filter\trivial_channel_mixer_plugin.dll.lib">
+      <Link>plugins\audio_filter\trivial_channel_mixer_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\audio_filter\ugly_resampler_plugin.dll.lib">
+      <Link>plugins\audio_filter\ugly_resampler_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\audio_mixer\float_mixer_plugin.dll.lib">
+      <Link>plugins\audio_mixer\float_mixer_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\audio_mixer\integer_mixer_plugin.dll.lib">
+      <Link>plugins\audio_mixer\integer_mixer_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\audio_mixer\libfloat_mixer_plugin.la">
+      <Link>plugins\audio_mixer\libfloat_mixer_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\audio_mixer\libinteger_mixer_plugin.la">
+      <Link>plugins\audio_mixer\libinteger_mixer_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\audio_output\adummy_plugin.dll.lib">
+      <Link>plugins\audio_output\adummy_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\audio_output\afile_plugin.dll.lib">
+      <Link>plugins\audio_output\afile_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\audio_output\amem_plugin.dll.lib">
+      <Link>plugins\audio_output\amem_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\audio_output\libadummy_plugin.la">
+      <Link>plugins\audio_output\libadummy_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\audio_output\libafile_plugin.la">
+      <Link>plugins\audio_output\libafile_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\audio_output\libamem_plugin.la">
+      <Link>plugins\audio_output\libamem_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\codec\a52_plugin.dll.lib">
+      <Link>plugins\codec\a52_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\codec\adpcm_plugin.dll.lib">
+      <Link>plugins\codec\adpcm_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\codec\aes3_plugin.dll.lib">
+      <Link>plugins\codec\aes3_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\codec\araw_plugin.dll.lib">
+      <Link>plugins\codec\araw_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\codec\avcodec_plugin.dll.lib">
+      <Link>plugins\codec\avcodec_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\codec\cc_plugin.dll.lib">
+      <Link>plugins\codec\cc_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\codec\cdg_plugin.dll.lib">
+      <Link>plugins\codec\cdg_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\codec\cvdsub_plugin.dll.lib">
+      <Link>plugins\codec\cvdsub_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\codec\ddummy_plugin.dll.lib">
+      <Link>plugins\codec\ddummy_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\codec\dmo_plugin.dll.lib">
+      <Link>plugins\codec\dmo_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\codec\dts_plugin.dll.lib">
+      <Link>plugins\codec\dts_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\codec\dvbsub_plugin.dll.lib">
+      <Link>plugins\codec\dvbsub_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\codec\g711_plugin.dll.lib">
+      <Link>plugins\codec\g711_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\codec\kate_plugin.dll.lib">
+      <Link>plugins\codec\kate_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\codec\liba52_plugin.la">
+      <Link>plugins\codec\liba52_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\codec\libadpcm_plugin.la">
+      <Link>plugins\codec\libadpcm_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\codec\libaes3_plugin.la">
+      <Link>plugins\codec\libaes3_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\codec\libaraw_plugin.la">
+      <Link>plugins\codec\libaraw_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\codec\libavcodec_plugin.la">
+      <Link>plugins\codec\libavcodec_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\codec\libcc_plugin.la">
+      <Link>plugins\codec\libcc_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\codec\libcdg_plugin.la">
+      <Link>plugins\codec\libcdg_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\codec\libcvdsub_plugin.la">
+      <Link>plugins\codec\libcvdsub_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\codec\libddummy_plugin.la">
+      <Link>plugins\codec\libddummy_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\codec\libdmo_plugin.la">
+      <Link>plugins\codec\libdmo_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\codec\libdts_plugin.la">
+      <Link>plugins\codec\libdts_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\codec\libdvbsub_plugin.la">
+      <Link>plugins\codec\libdvbsub_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\codec\libg711_plugin.la">
+      <Link>plugins\codec\libg711_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\codec\libkate_plugin.la">
+      <Link>plugins\codec\libkate_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\codec\liblpcm_plugin.la">
+      <Link>plugins\codec\liblpcm_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\codec\libmft_plugin.la">
+      <Link>plugins\codec\libmft_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\codec\libmpeg_audio_plugin.la">
+      <Link>plugins\codec\libmpeg_audio_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\codec\libopus_plugin.la">
+      <Link>plugins\codec\libopus_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\codec\librawvideo_plugin.la">
+      <Link>plugins\codec\librawvideo_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\codec\libscte27_plugin.la">
+      <Link>plugins\codec\libscte27_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\codec\libspudec_plugin.la">
+      <Link>plugins\codec\libspudec_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\codec\libstl_plugin.la">
+      <Link>plugins\codec\libstl_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\codec\libsubsdec_plugin.la">
+      <Link>plugins\codec\libsubsdec_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\codec\libsubstx3g_plugin.la">
+      <Link>plugins\codec\libsubstx3g_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\codec\libsubsusf_plugin.la">
+      <Link>plugins\codec\libsubsusf_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\codec\libsvcdsub_plugin.la">
+      <Link>plugins\codec\libsvcdsub_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\codec\libuleaddvaudio_plugin.la">
+      <Link>plugins\codec\libuleaddvaudio_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\codec\libvorbis_plugin.la">
+      <Link>plugins\codec\libvorbis_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\codec\lpcm_plugin.dll.lib">
+      <Link>plugins\codec\lpcm_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\codec\mft_plugin.dll.lib">
+      <Link>plugins\codec\mft_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\codec\mpeg_audio_plugin.dll.lib">
+      <Link>plugins\codec\mpeg_audio_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\codec\opus_plugin.dll.lib">
+      <Link>plugins\codec\opus_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\codec\rawvideo_plugin.dll.lib">
+      <Link>plugins\codec\rawvideo_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\codec\scte27_plugin.dll.lib">
+      <Link>plugins\codec\scte27_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\codec\spudec_plugin.dll.lib">
+      <Link>plugins\codec\spudec_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\codec\stl_plugin.dll.lib">
+      <Link>plugins\codec\stl_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\codec\subsdec_plugin.dll.lib">
+      <Link>plugins\codec\subsdec_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\codec\substx3g_plugin.dll.lib">
+      <Link>plugins\codec\substx3g_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\codec\subsusf_plugin.dll.lib">
+      <Link>plugins\codec\subsusf_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\codec\svcdsub_plugin.dll.lib">
+      <Link>plugins\codec\svcdsub_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\codec\uleaddvaudio_plugin.dll.lib">
+      <Link>plugins\codec\uleaddvaudio_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\codec\vorbis_plugin.dll.lib">
+      <Link>plugins\codec\vorbis_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\control\dummy_plugin.dll.lib">
+      <Link>plugins\control\dummy_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\control\gestures_plugin.dll.lib">
+      <Link>plugins\control\gestures_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\control\hotkeys_plugin.dll.lib">
+      <Link>plugins\control\hotkeys_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\control\libdummy_plugin.la">
+      <Link>plugins\control\libdummy_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\control\libgestures_plugin.la">
+      <Link>plugins\control\libgestures_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\control\libhotkeys_plugin.la">
+      <Link>plugins\control\libhotkeys_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\control\libnetsync_plugin.la">
+      <Link>plugins\control\libnetsync_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\control\netsync_plugin.dll.lib">
+      <Link>plugins\control\netsync_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\aiff_plugin.dll.lib">
+      <Link>plugins\demux\aiff_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\asf_plugin.dll.lib">
+      <Link>plugins\demux\asf_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\au_plugin.dll.lib">
+      <Link>plugins\demux\au_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\avi_plugin.dll.lib">
+      <Link>plugins\demux\avi_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\caf_plugin.dll.lib">
+      <Link>plugins\demux\caf_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\demuxdump_plugin.dll.lib">
+      <Link>plugins\demux\demuxdump_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\demux_cdg_plugin.dll.lib">
+      <Link>plugins\demux\demux_cdg_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\demux_stl_plugin.dll.lib">
+      <Link>plugins\demux\demux_stl_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\diracsys_plugin.dll.lib">
+      <Link>plugins\demux\diracsys_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\es_plugin.dll.lib">
+      <Link>plugins\demux\es_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\flacsys_plugin.dll.lib">
+      <Link>plugins\demux\flacsys_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\h264_plugin.dll.lib">
+      <Link>plugins\demux\h264_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\hevc_plugin.dll.lib">
+      <Link>plugins\demux\hevc_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\image_plugin.dll.lib">
+      <Link>plugins\demux\image_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\libaiff_plugin.la">
+      <Link>plugins\demux\libaiff_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\libasf_plugin.la">
+      <Link>plugins\demux\libasf_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\libau_plugin.la">
+      <Link>plugins\demux\libau_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\libavi_plugin.la">
+      <Link>plugins\demux\libavi_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\libcaf_plugin.la">
+      <Link>plugins\demux\libcaf_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\libdemuxdump_plugin.la">
+      <Link>plugins\demux\libdemuxdump_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\libdemux_cdg_plugin.la">
+      <Link>plugins\demux\libdemux_cdg_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\libdemux_stl_plugin.la">
+      <Link>plugins\demux\libdemux_stl_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\libdiracsys_plugin.la">
+      <Link>plugins\demux\libdiracsys_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\libes_plugin.la">
+      <Link>plugins\demux\libes_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\libflacsys_plugin.la">
+      <Link>plugins\demux\libflacsys_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\libh264_plugin.la">
+      <Link>plugins\demux\libh264_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\libhevc_plugin.la">
+      <Link>plugins\demux\libhevc_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\libimage_plugin.la">
+      <Link>plugins\demux\libimage_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\libmjpeg_plugin.la">
+      <Link>plugins\demux\libmjpeg_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\libmkv_plugin.la">
+      <Link>plugins\demux\libmkv_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\libmp4_plugin.la">
+      <Link>plugins\demux\libmp4_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\libmpc_plugin.la">
+      <Link>plugins\demux\libmpc_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\libmpgv_plugin.la">
+      <Link>plugins\demux\libmpgv_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\libnsc_plugin.la">
+      <Link>plugins\demux\libnsc_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\libnsv_plugin.la">
+      <Link>plugins\demux\libnsv_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\libnuv_plugin.la">
+      <Link>plugins\demux\libnuv_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\libogg_plugin.la">
+      <Link>plugins\demux\libogg_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\libplaylist_plugin.la">
+      <Link>plugins\demux\libplaylist_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\libps_plugin.la">
+      <Link>plugins\demux\libps_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\libpva_plugin.la">
+      <Link>plugins\demux\libpva_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\librawaud_plugin.la">
+      <Link>plugins\demux\librawaud_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\librawdv_plugin.la">
+      <Link>plugins\demux\librawdv_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\librawvid_plugin.la">
+      <Link>plugins\demux\librawvid_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\libreal_plugin.la">
+      <Link>plugins\demux\libreal_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\libsmf_plugin.la">
+      <Link>plugins\demux\libsmf_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\libsubtitle_plugin.la">
+      <Link>plugins\demux\libsubtitle_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\libts_plugin.la">
+      <Link>plugins\demux\libts_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\libtta_plugin.la">
+      <Link>plugins\demux\libtta_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\libty_plugin.la">
+      <Link>plugins\demux\libty_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\libvc1_plugin.la">
+      <Link>plugins\demux\libvc1_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\libvobsub_plugin.la">
+      <Link>plugins\demux\libvobsub_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\libvoc_plugin.la">
+      <Link>plugins\demux\libvoc_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\libwav_plugin.la">
+      <Link>plugins\demux\libwav_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\libxa_plugin.la">
+      <Link>plugins\demux\libxa_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\mjpeg_plugin.dll.lib">
+      <Link>plugins\demux\mjpeg_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\mkv_plugin.dll.lib">
+      <Link>plugins\demux\mkv_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\mp4_plugin.dll.lib">
+      <Link>plugins\demux\mp4_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\mpc_plugin.dll.lib">
+      <Link>plugins\demux\mpc_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\mpgv_plugin.dll.lib">
+      <Link>plugins\demux\mpgv_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\nsc_plugin.dll.lib">
+      <Link>plugins\demux\nsc_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\nsv_plugin.dll.lib">
+      <Link>plugins\demux\nsv_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\nuv_plugin.dll.lib">
+      <Link>plugins\demux\nuv_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\ogg_plugin.dll.lib">
+      <Link>plugins\demux\ogg_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\playlist_plugin.dll.lib">
+      <Link>plugins\demux\playlist_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\ps_plugin.dll.lib">
+      <Link>plugins\demux\ps_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\pva_plugin.dll.lib">
+      <Link>plugins\demux\pva_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\rawaud_plugin.dll.lib">
+      <Link>plugins\demux\rawaud_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\rawdv_plugin.dll.lib">
+      <Link>plugins\demux\rawdv_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\rawvid_plugin.dll.lib">
+      <Link>plugins\demux\rawvid_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\real_plugin.dll.lib">
+      <Link>plugins\demux\real_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\smf_plugin.dll.lib">
+      <Link>plugins\demux\smf_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\subtitle_plugin.dll.lib">
+      <Link>plugins\demux\subtitle_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\ts_plugin.dll.lib">
+      <Link>plugins\demux\ts_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\tta_plugin.dll.lib">
+      <Link>plugins\demux\tta_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\ty_plugin.dll.lib">
+      <Link>plugins\demux\ty_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\vc1_plugin.dll.lib">
+      <Link>plugins\demux\vc1_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\vobsub_plugin.dll.lib">
+      <Link>plugins\demux\vobsub_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\voc_plugin.dll.lib">
+      <Link>plugins\demux\voc_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\wav_plugin.dll.lib">
+      <Link>plugins\demux\wav_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\demux\xa_plugin.dll.lib">
+      <Link>plugins\demux\xa_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\meta_engine\folder_plugin.dll.lib">
+      <Link>plugins\meta_engine\folder_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\meta_engine\libfolder_plugin.la">
+      <Link>plugins\meta_engine\libfolder_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\misc\addonsfsstorage_plugin.dll.lib">
+      <Link>plugins\misc\addonsfsstorage_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\misc\addonsvorepository_plugin.dll.lib">
+      <Link>plugins\misc\addonsvorepository_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\misc\audioscrobbler_plugin.dll.lib">
+      <Link>plugins\misc\audioscrobbler_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\misc\export_plugin.dll.lib">
+      <Link>plugins\misc\export_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\misc\fingerprinter_plugin.dll.lib">
+      <Link>plugins\misc\fingerprinter_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\misc\libaddonsfsstorage_plugin.la">
+      <Link>plugins\misc\libaddonsfsstorage_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\misc\libaddonsvorepository_plugin.la">
+      <Link>plugins\misc\libaddonsvorepository_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\misc\libaudioscrobbler_plugin.la">
+      <Link>plugins\misc\libaudioscrobbler_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\misc\libexport_plugin.la">
+      <Link>plugins\misc\libexport_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\misc\libfingerprinter_plugin.la">
+      <Link>plugins\misc\libfingerprinter_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\misc\liblogger_plugin.la">
+      <Link>plugins\misc\liblogger_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\misc\libstats_plugin.la">
+      <Link>plugins\misc\libstats_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\misc\libxml_plugin.la">
+      <Link>plugins\misc\libxml_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\misc\logger_plugin.dll.lib">
+      <Link>plugins\misc\logger_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\misc\stats_plugin.dll.lib">
+      <Link>plugins\misc\stats_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\misc\xml_plugin.dll.lib">
+      <Link>plugins\misc\xml_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\packetizer\libpacketizer_dirac_plugin.la">
+      <Link>plugins\packetizer\libpacketizer_dirac_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\packetizer\libpacketizer_flac_plugin.la">
+      <Link>plugins\packetizer\libpacketizer_flac_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\packetizer\libpacketizer_h264_plugin.la">
+      <Link>plugins\packetizer\libpacketizer_h264_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\packetizer\libpacketizer_hevc_plugin.la">
+      <Link>plugins\packetizer\libpacketizer_hevc_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\packetizer\libpacketizer_mlp_plugin.la">
+      <Link>plugins\packetizer\libpacketizer_mlp_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\packetizer\libpacketizer_mpeg4audio_plugin.la">
+      <Link>plugins\packetizer\libpacketizer_mpeg4audio_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\packetizer\libpacketizer_mpeg4video_plugin.la">
+      <Link>plugins\packetizer\libpacketizer_mpeg4video_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\packetizer\libpacketizer_mpegvideo_plugin.la">
+      <Link>plugins\packetizer\libpacketizer_mpegvideo_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\packetizer\libpacketizer_vc1_plugin.la">
+      <Link>plugins\packetizer\libpacketizer_vc1_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\packetizer\packetizer_dirac_plugin.dll.lib">
+      <Link>plugins\packetizer\packetizer_dirac_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\packetizer\packetizer_flac_plugin.dll.lib">
+      <Link>plugins\packetizer\packetizer_flac_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\packetizer\packetizer_h264_plugin.dll.lib">
+      <Link>plugins\packetizer\packetizer_h264_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\packetizer\packetizer_hevc_plugin.dll.lib">
+      <Link>plugins\packetizer\packetizer_hevc_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\packetizer\packetizer_mlp_plugin.dll.lib">
+      <Link>plugins\packetizer\packetizer_mlp_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\packetizer\packetizer_mpeg4audio_plugin.dll.lib">
+      <Link>plugins\packetizer\packetizer_mpeg4audio_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\packetizer\packetizer_mpeg4video_plugin.dll.lib">
+      <Link>plugins\packetizer\packetizer_mpeg4video_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\packetizer\packetizer_mpegvideo_plugin.dll.lib">
+      <Link>plugins\packetizer\packetizer_mpegvideo_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\packetizer\packetizer_vc1_plugin.dll.lib">
+      <Link>plugins\packetizer\packetizer_vc1_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\services_discovery\libmediadirs_plugin.la">
+      <Link>plugins\services_discovery\libmediadirs_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\services_discovery\libpodcast_plugin.la">
+      <Link>plugins\services_discovery\libpodcast_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\services_discovery\libsap_plugin.la">
+      <Link>plugins\services_discovery\libsap_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\services_discovery\mediadirs_plugin.dll.lib">
+      <Link>plugins\services_discovery\mediadirs_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\services_discovery\podcast_plugin.dll.lib">
+      <Link>plugins\services_discovery\podcast_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\services_discovery\sap_plugin.dll.lib">
+      <Link>plugins\services_discovery\sap_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\stream_filter\dash_plugin.dll.lib">
+      <Link>plugins\stream_filter\dash_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\stream_filter\hds_plugin.dll.lib">
+      <Link>plugins\stream_filter\hds_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\stream_filter\libdash_plugin.la">
+      <Link>plugins\stream_filter\libdash_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\stream_filter\libhds_plugin.la">
+      <Link>plugins\stream_filter\libhds_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\stream_filter\librecord_plugin.la">
+      <Link>plugins\stream_filter\librecord_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\stream_filter\libsmooth_plugin.la">
+      <Link>plugins\stream_filter\libsmooth_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\stream_filter\record_plugin.dll.lib">
+      <Link>plugins\stream_filter\record_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\stream_filter\smooth_plugin.dll.lib">
+      <Link>plugins\stream_filter\smooth_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\text_renderer\freetype_plugin.dll.lib">
+      <Link>plugins\text_renderer\freetype_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\text_renderer\libfreetype_plugin.la">
+      <Link>plugins\text_renderer\libfreetype_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\text_renderer\libtdummy_plugin.la">
+      <Link>plugins\text_renderer\libtdummy_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\text_renderer\tdummy_plugin.dll.lib">
+      <Link>plugins\text_renderer\tdummy_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_chroma\chain_plugin.dll.lib">
+      <Link>plugins\video_chroma\chain_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_chroma\grey_yuv_plugin.dll.lib">
+      <Link>plugins\video_chroma\grey_yuv_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_chroma\i420_rgb_plugin.dll.lib">
+      <Link>plugins\video_chroma\i420_rgb_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_chroma\i420_yuy2_plugin.dll.lib">
+      <Link>plugins\video_chroma\i420_yuy2_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_chroma\i422_i420_plugin.dll.lib">
+      <Link>plugins\video_chroma\i422_i420_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_chroma\i422_yuy2_plugin.dll.lib">
+      <Link>plugins\video_chroma\i422_yuy2_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_chroma\libchain_plugin.la">
+      <Link>plugins\video_chroma\libchain_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_chroma\libgrey_yuv_plugin.la">
+      <Link>plugins\video_chroma\libgrey_yuv_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_chroma\libi420_rgb_plugin.la">
+      <Link>plugins\video_chroma\libi420_rgb_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_chroma\libi420_yuy2_plugin.la">
+      <Link>plugins\video_chroma\libi420_yuy2_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_chroma\libi422_i420_plugin.la">
+      <Link>plugins\video_chroma\libi422_i420_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_chroma\libi422_yuy2_plugin.la">
+      <Link>plugins\video_chroma\libi422_yuy2_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_chroma\librv32_plugin.la">
+      <Link>plugins\video_chroma\librv32_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_chroma\libswscale_plugin.la">
+      <Link>plugins\video_chroma\libswscale_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_chroma\libyuy2_i420_plugin.la">
+      <Link>plugins\video_chroma\libyuy2_i420_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_chroma\libyuy2_i422_plugin.la">
+      <Link>plugins\video_chroma\libyuy2_i422_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_chroma\rv32_plugin.dll.lib">
+      <Link>plugins\video_chroma\rv32_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_chroma\swscale_plugin.dll.lib">
+      <Link>plugins\video_chroma\swscale_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_chroma\yuy2_i420_plugin.dll.lib">
+      <Link>plugins\video_chroma\yuy2_i420_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_chroma\yuy2_i422_plugin.dll.lib">
+      <Link>plugins\video_chroma\yuy2_i422_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\adjust_plugin.dll.lib">
+      <Link>plugins\video_filter\adjust_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\alphamask_plugin.dll.lib">
+      <Link>plugins\video_filter\alphamask_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\anaglyph_plugin.dll.lib">
+      <Link>plugins\video_filter\anaglyph_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\antiflicker_plugin.dll.lib">
+      <Link>plugins\video_filter\antiflicker_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\audiobargraph_v_plugin.dll.lib">
+      <Link>plugins\video_filter\audiobargraph_v_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\ball_plugin.dll.lib">
+      <Link>plugins\video_filter\ball_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\blendbench_plugin.dll.lib">
+      <Link>plugins\video_filter\blendbench_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\blend_plugin.dll.lib">
+      <Link>plugins\video_filter\blend_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\bluescreen_plugin.dll.lib">
+      <Link>plugins\video_filter\bluescreen_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\canvas_plugin.dll.lib">
+      <Link>plugins\video_filter\canvas_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\colorthres_plugin.dll.lib">
+      <Link>plugins\video_filter\colorthres_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\croppadd_plugin.dll.lib">
+      <Link>plugins\video_filter\croppadd_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\deinterlace_plugin.dll.lib">
+      <Link>plugins\video_filter\deinterlace_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\erase_plugin.dll.lib">
+      <Link>plugins\video_filter\erase_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\extract_plugin.dll.lib">
+      <Link>plugins\video_filter\extract_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\freeze_plugin.dll.lib">
+      <Link>plugins\video_filter\freeze_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\gaussianblur_plugin.dll.lib">
+      <Link>plugins\video_filter\gaussianblur_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\gradfun_plugin.dll.lib">
+      <Link>plugins\video_filter\gradfun_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\gradient_plugin.dll.lib">
+      <Link>plugins\video_filter\gradient_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\grain_plugin.dll.lib">
+      <Link>plugins\video_filter\grain_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\hqdn3d_plugin.dll.lib">
+      <Link>plugins\video_filter\hqdn3d_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\invert_plugin.dll.lib">
+      <Link>plugins\video_filter\invert_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\libadjust_plugin.la">
+      <Link>plugins\video_filter\libadjust_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\libalphamask_plugin.la">
+      <Link>plugins\video_filter\libalphamask_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\libanaglyph_plugin.la">
+      <Link>plugins\video_filter\libanaglyph_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\libantiflicker_plugin.la">
+      <Link>plugins\video_filter\libantiflicker_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\libaudiobargraph_v_plugin.la">
+      <Link>plugins\video_filter\libaudiobargraph_v_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\libball_plugin.la">
+      <Link>plugins\video_filter\libball_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\libblendbench_plugin.la">
+      <Link>plugins\video_filter\libblendbench_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\libblend_plugin.la">
+      <Link>plugins\video_filter\libblend_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\libbluescreen_plugin.la">
+      <Link>plugins\video_filter\libbluescreen_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\libcanvas_plugin.la">
+      <Link>plugins\video_filter\libcanvas_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\libcolorthres_plugin.la">
+      <Link>plugins\video_filter\libcolorthres_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\libcroppadd_plugin.la">
+      <Link>plugins\video_filter\libcroppadd_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\libdeinterlace_plugin.la">
+      <Link>plugins\video_filter\libdeinterlace_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\liberase_plugin.la">
+      <Link>plugins\video_filter\liberase_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\libextract_plugin.la">
+      <Link>plugins\video_filter\libextract_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\libfreeze_plugin.la">
+      <Link>plugins\video_filter\libfreeze_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\libgaussianblur_plugin.la">
+      <Link>plugins\video_filter\libgaussianblur_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\libgradfun_plugin.la">
+      <Link>plugins\video_filter\libgradfun_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\libgradient_plugin.la">
+      <Link>plugins\video_filter\libgradient_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\libgrain_plugin.la">
+      <Link>plugins\video_filter\libgrain_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\libhqdn3d_plugin.la">
+      <Link>plugins\video_filter\libhqdn3d_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\libinvert_plugin.la">
+      <Link>plugins\video_filter\libinvert_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\liblogo_plugin.la">
+      <Link>plugins\video_filter\liblogo_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\libmagnify_plugin.la">
+      <Link>plugins\video_filter\libmagnify_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\libmarq_plugin.la">
+      <Link>plugins\video_filter\libmarq_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\libmirror_plugin.la">
+      <Link>plugins\video_filter\libmirror_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\libmosaic_plugin.la">
+      <Link>plugins\video_filter\libmosaic_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\libmotionblur_plugin.la">
+      <Link>plugins\video_filter\libmotionblur_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\libmotiondetect_plugin.la">
+      <Link>plugins\video_filter\libmotiondetect_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\liboldmovie_plugin.la">
+      <Link>plugins\video_filter\liboldmovie_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\libposterize_plugin.la">
+      <Link>plugins\video_filter\libposterize_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\libpsychedelic_plugin.la">
+      <Link>plugins\video_filter\libpsychedelic_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\libpuzzle_plugin.la">
+      <Link>plugins\video_filter\libpuzzle_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\libripple_plugin.la">
+      <Link>plugins\video_filter\libripple_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\librss_plugin.la">
+      <Link>plugins\video_filter\librss_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\libscale_plugin.la">
+      <Link>plugins\video_filter\libscale_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\libscene_plugin.la">
+      <Link>plugins\video_filter\libscene_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\libsepia_plugin.la">
+      <Link>plugins\video_filter\libsepia_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\libsharpen_plugin.la">
+      <Link>plugins\video_filter\libsharpen_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\libsubsdelay_plugin.la">
+      <Link>plugins\video_filter\libsubsdelay_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\libtransform_plugin.la">
+      <Link>plugins\video_filter\libtransform_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\libvhs_plugin.la">
+      <Link>plugins\video_filter\libvhs_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\libwave_plugin.la">
+      <Link>plugins\video_filter\libwave_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\libyuvp_plugin.la">
+      <Link>plugins\video_filter\libyuvp_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\logo_plugin.dll.lib">
+      <Link>plugins\video_filter\logo_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\magnify_plugin.dll.lib">
+      <Link>plugins\video_filter\magnify_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\marq_plugin.dll.lib">
+      <Link>plugins\video_filter\marq_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\mirror_plugin.dll.lib">
+      <Link>plugins\video_filter\mirror_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\mosaic_plugin.dll.lib">
+      <Link>plugins\video_filter\mosaic_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\motionblur_plugin.dll.lib">
+      <Link>plugins\video_filter\motionblur_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\motiondetect_plugin.dll.lib">
+      <Link>plugins\video_filter\motiondetect_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\oldmovie_plugin.dll.lib">
+      <Link>plugins\video_filter\oldmovie_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\posterize_plugin.dll.lib">
+      <Link>plugins\video_filter\posterize_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\psychedelic_plugin.dll.lib">
+      <Link>plugins\video_filter\psychedelic_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\puzzle_plugin.dll.lib">
+      <Link>plugins\video_filter\puzzle_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\ripple_plugin.dll.lib">
+      <Link>plugins\video_filter\ripple_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\rss_plugin.dll.lib">
+      <Link>plugins\video_filter\rss_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\scale_plugin.dll.lib">
+      <Link>plugins\video_filter\scale_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\scene_plugin.dll.lib">
+      <Link>plugins\video_filter\scene_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\sepia_plugin.dll.lib">
+      <Link>plugins\video_filter\sepia_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\sharpen_plugin.dll.lib">
+      <Link>plugins\video_filter\sharpen_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\subsdelay_plugin.dll.lib">
+      <Link>plugins\video_filter\subsdelay_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\transform_plugin.dll.lib">
+      <Link>plugins\video_filter\transform_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\vhs_plugin.dll.lib">
+      <Link>plugins\video_filter\vhs_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\wave_plugin.dll.lib">
+      <Link>plugins\video_filter\wave_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_filter\yuvp_plugin.dll.lib">
+      <Link>plugins\video_filter\yuvp_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_output\drawable_plugin.dll.lib">
+      <Link>plugins\video_output\drawable_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_output\libdrawable_plugin.la">
+      <Link>plugins\video_output\libdrawable_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_output\libvdummy_plugin.la">
+      <Link>plugins\video_output\libvdummy_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_output\libvmem_plugin.la">
+      <Link>plugins\video_output\libvmem_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_output\libyuv_plugin.la">
+      <Link>plugins\video_output\libyuv_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_output\vdummy_plugin.dll.lib">
+      <Link>plugins\video_output\vdummy_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_output\vmem_plugin.dll.lib">
+      <Link>plugins\video_output\vmem_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_output\yuv_plugin.dll.lib">
+      <Link>plugins\video_output\yuv_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_splitter\clone_plugin.dll.lib">
+      <Link>plugins\video_splitter\clone_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_splitter\libclone_plugin.la">
+      <Link>plugins\video_splitter\libclone_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_splitter\libwall_plugin.la">
+      <Link>plugins\video_splitter\libwall_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\video_splitter\wall_plugin.dll.lib">
+      <Link>plugins\video_splitter\wall_plugin.dll.lib</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\visualization\libvisual_plugin.la">
+      <Link>plugins\visualization\libvisual_plugin.la</Link>
+    </None>
+    <None Include="..\..\..\vlc\vlc-ARM\plugins\visualization\visual_plugin.dll.lib">
+      <Link>plugins\visualization\visual_plugin.dll.lib</Link>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

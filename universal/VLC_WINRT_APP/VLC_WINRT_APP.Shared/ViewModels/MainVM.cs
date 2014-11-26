@@ -20,6 +20,7 @@ using VLC_WINRT_APP.Common;
 using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.Commands;
 using VLC_WINRT_APP.Views.MainPages;
+using VLC_WINRT_APP.Views.VariousPages;
 using Panel = VLC_WINRT_APP.Model.Panel;
 
 namespace VLC_WINRT_APP.ViewModels
@@ -37,6 +38,7 @@ namespace VLC_WINRT_APP.ViewModels
         private AlwaysExecutableCommand _openSidebarCommand;
 #if WINDOWS_PHONE_APP
         private ChangeMainPageMusicViewCommand _changeMainPageMusicViewCommand;
+        private AlwaysExecutableCommand _goToSearchPage;
 #endif
         #endregion
         #region public fields
@@ -89,6 +91,12 @@ namespace VLC_WINRT_APP.ViewModels
             get { return _openSidebarCommand; }
             set { SetProperty(ref _openSidebarCommand, value); }
         }
+
+        public AlwaysExecutableCommand GoToSearchPage
+        {
+            get { return _goToSearchPage; }
+            set { _goToSearchPage = value; }
+        }
 #endif
         #endregion
 
@@ -103,6 +111,10 @@ namespace VLC_WINRT_APP.ViewModels
             OpenSidebarCommand = new ActionCommand(() =>
             {
                 App.RootPage.PanelsView.ShowSidebar();
+            });
+            GoToSearchPage = new ActionCommand(() =>
+            {
+                App.ApplicationFrame.Navigate(typeof (SearchPage));
             });
             ChangeMainPageMusicViewCommand = new ChangeMainPageMusicViewCommand();
 #endif
@@ -144,7 +156,7 @@ namespace VLC_WINRT_APP.ViewModels
                     {
                         Label = "search",
                         Icon = new SymbolIcon(Symbol.Find),
-                        Command = OpenSidebarCommand
+                        Command = GoToSearchPage
                     });
                     AppBarElements.Add(new AppBarButton()
                     {
