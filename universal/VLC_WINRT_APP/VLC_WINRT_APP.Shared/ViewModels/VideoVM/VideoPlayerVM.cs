@@ -277,9 +277,16 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             _vlcPlayerService.MediaEnded -= VlcPlayerServiceOnMediaEnded;
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
             {
-                if(App.ApplicationFrame.CanGoBack)
+                if (App.ApplicationFrame.CanGoBack)
                     App.ApplicationFrame.GoBack();
-                else App.ApplicationFrame.Navigate(typeof(MainPageVideos));
+                else
+                {
+#if WINDOWS_APP
+                    App.ApplicationFrame.Navigate(typeof(MainPageVideos));
+#else
+                    Locator.MainVM.GoToPanelCommand.Execute(0);
+#endif
+                    }
                 Locator.VideoVm.IsRunning = false;
                 OnPropertyChanged("PlayingType");
             });
