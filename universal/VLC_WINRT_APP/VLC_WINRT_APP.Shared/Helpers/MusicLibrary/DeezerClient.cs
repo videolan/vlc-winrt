@@ -62,7 +62,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
         public async Task<Album> GetAlbumInfo(string albumTitle, string artistName)
         {
             var deezerClient = new HttpClient();
-            string json = await deezerClient.GetStringAsync(string.Format("http://api.deezer.com/search/album?q={0}&appid={1}", albumTitle, App.DeezerAppID));
+            string json = await deezerClient.GetStringAsync(string.Format("http://api.deezer.com/search/album?q={0} {1}&appid={2}", albumTitle, artistName, App.DeezerAppID));
             if (json == "{\"data\":[],\"total\":0}")
             {
                 return null;
