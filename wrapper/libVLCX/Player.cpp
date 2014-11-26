@@ -129,7 +129,7 @@ void Player::MediaEndedCall(){
 
 void vlc_event_callback(const libvlc_event_t *ev, void *data)
 {
-    Player ^player = ((PlayerPointerWrapper*)data)->player;
+    Player^ player = reinterpret_cast<Player^>(data);
     if (ev->type == libvlc_MediaPlayerEndReached)
     {
         player->DetachEvent();
@@ -149,7 +149,7 @@ void Player::DetachEvent(){
         libvlc_MediaPlayerEncounteredError
     };
     for (int i = 0; i < (sizeof(mp_events) / sizeof(*mp_events)); i++)
-        libvlc_event_detach(ev, mp_events[i], vlc_event_callback, new PlayerPointerWrapper(this));
+        libvlc_event_detach(ev, mp_events[i], vlc_event_callback, reinterpret_cast<void*>(this));
 }
 
 void Player::Open(Platform::String^ mrl)
@@ -174,7 +174,7 @@ void Player::Open(Platform::String^ mrl)
 
         for (int i = 0; i < (sizeof(mp_events) / sizeof(*mp_events)); i++)
         {
-            libvlc_event_attach(ev, mp_events[i], vlc_event_callback, new PlayerPointerWrapper(this));
+            libvlc_event_attach(ev, mp_events[i], vlc_event_callback, reinterpret_cast<void*>(this));
         }
 
         libvlc_media_release(m);

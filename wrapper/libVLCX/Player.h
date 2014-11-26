@@ -90,17 +90,5 @@ namespace libVLCX {
         float                    m_displayWidth;
         float                    m_displayHeight;
     };
-
-    class PlayerPointerWrapper
-    {
-    public:
-        Player^ player;
-
-    public:
-        PlayerPointerWrapper(Player^ player)
-        {
-            this->player = player;
-        }
-    };
 }
 
