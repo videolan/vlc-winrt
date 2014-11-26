@@ -7,6 +7,7 @@
       xmlns:controls="using:VLC_WINRT_APP.Controls"
       xmlns:userControls="using:VLC_WINRT_APP.Views.UserControls"
       mc:Ignorable="d"
+      Background="Transparent"
       DataContext="{Binding Source={StaticResource Locator}, Path=VideoVm}"
       RequestedTheme="Dark">
 

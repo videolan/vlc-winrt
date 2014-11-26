@@ -6,8 +6,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:userControls="using:VLC_WINRT_APP.Views.UserControls"
       xmlns:panelsView="using:PanelsView"
-      mc:Ignorable="d"
-      Background="{StaticResource MainColor}">
+      mc:Ignorable="d">
 
     <SwapChainPanel x:Name="SwapChainPanel"
                     RequestedTheme="Light">
