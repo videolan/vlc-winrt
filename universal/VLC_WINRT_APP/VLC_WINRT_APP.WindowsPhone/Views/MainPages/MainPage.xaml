@@ -11,10 +11,10 @@
 
     <SwapChainPanel x:Name="SwapChainPanel"
                     RequestedTheme="Light">
-        <!--<Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
+        <Grid.RowDefinitions>
             <RowDefinition />
-        </Grid.RowDefinitions>-->
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
         <MediaElement Grid.RowSpan="2"
                       AudioCategory="BackgroundCapableMedia"
                       AudioDeviceType="Multimedia"
@@ -43,10 +43,12 @@
             </Frame.ContentTransitions>
         </Frame>-->
         <panelsView:PanelsFrame x:Name="PanelsView"
-                                x:FieldModifier="public">
+                                x:FieldModifier="public"
+                                Grid.Row="0">
             <panelsView:PanelsFrame.SideBarContent>
                 <userControls:LeftColumn DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}" />
             </panelsView:PanelsFrame.SideBarContent>
         </panelsView:PanelsFrame>
+        <userControls:BottomMiniPlayer Grid.Row="1"/>
     </SwapChainPanel>
 </Page>

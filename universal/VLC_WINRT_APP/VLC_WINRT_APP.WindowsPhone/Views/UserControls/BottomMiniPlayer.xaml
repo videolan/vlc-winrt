@@ -1,0 +1,79 @@
+﻿<UserControl x:Class="VLC_WINRT_APP.Views.UserControls.BottomMiniPlayer"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="using:VLC_WINRT_APP.Views.UserControls"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             d:DesignHeight="300"
+             d:DesignWidth="400"
+             DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}"
+             Visibility="{Binding TrackCollection.IsRunning, Converter={StaticResource BooleanToVisibilityConverter}}">
+    <Grid Height="80"
+          Background="WhiteSmoke">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1" />
+            <RowDefinition Height="79" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="400" />
+        </Grid.ColumnDefinitions>
+        <Border Height="1"
+                Grid.Column="1"
+                Grid.ColumnSpan="2"
+                Background="{StaticResource MainColor}" />
+        <Image Grid.Row="1"
+               Margin="12,0,0,0"
+               Source="{Binding CurrentAlbum.Picture}"
+               Width="80"
+               Stretch="UniformToFill" />
+        <StackPanel Grid.Row="1"
+                    Grid.Column="1"
+                    Margin="12,0,0,0"
+                    VerticalAlignment="Center">
+            <TextBlock Text="{Binding CurrentArtist.Name}"
+                       Style="{StaticResource SubheaderTextBlockStyle}" />
+            <TextBlock Text="{Binding CurrentTrack.Name}"
+                       Style="{StaticResource SubheaderTextBlockStyle}"
+                       TextWrapping="NoWrap"
+                       TextTrimming="CharacterEllipsis"
+                       FontSize="18" />
+        </StackPanel>
+        <Grid Grid.Row="1"
+              Grid.Column="2"
+              VerticalAlignment="Top"
+              Margin="0,20,24,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button Style="{StaticResource TextBlockButtonStyle}"
+                    Grid.Column="1"
+                    HorizontalAlignment="Left"
+                    Command="{Binding PlayOrPauseCommand}"
+                    Visibility="{Binding IsPlaying, Converter={StaticResource NegatedBooleanToVisibilityConverter}}">
+                <SymbolIcon Symbol="Play" />
+            </Button>
+            <Button Style="{StaticResource TextBlockButtonStyle}"
+                    Grid.Column="1"
+                    HorizontalAlignment="Left"
+                    Command="{Binding PlayOrPauseCommand}"
+                    Visibility="{Binding IsPlaying, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <SymbolIcon Symbol="Pause" />
+            </Button>
+        </Grid>
+        <Slider Grid.Row="1"
+                Grid.Column="2"
+                VerticalAlignment="Bottom"
+                Margin="0,0,12,-20"
+                Value="{Binding PositionInSeconds, Mode=TwoWay}"
+                Maximum="{Binding TimeTotal.TotalSeconds}"
+                Style="{StaticResource VLCSlider}"
+                ThumbToolTipValueConverter="{StaticResource SecondsStringConverter}" />
+    </Grid>
+</UserControl>
