@@ -175,6 +175,9 @@
     <Compile Include="Views\UserControls\VideoItemControl.xaml.cs">
       <DependentUpon>VideoItemControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserControls\VideoPlayerSettings.xaml.cs">
+      <DependentUpon>VideoPlayerSettings.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserControls\VLCSearchBox.xaml.cs">
       <DependentUpon>VLCSearchBox.xaml</DependentUpon>
     </Compile>
@@ -366,6 +369,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControls\VideoItemControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\VideoPlayerSettings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

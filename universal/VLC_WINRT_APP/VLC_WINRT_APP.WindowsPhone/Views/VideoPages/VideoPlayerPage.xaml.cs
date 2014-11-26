@@ -196,7 +196,6 @@ namespace VLC_WINRT_APP.Views.VideoPages
         {
 #if WINDOWS_PHONE_APP
             (sender as Flyout).Placement = FlyoutPlacementMode.Full;
-            ((sender as Flyout).Content as Grid).Margin = new Thickness(0, 0, 36, 0);
 #endif
         }
 
