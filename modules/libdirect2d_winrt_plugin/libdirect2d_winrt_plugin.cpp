@@ -335,8 +335,8 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
     D2D1_BITMAP_PROPERTIES1 props;
     D2D1_PIXEL_FORMAT      pixFormat;
 
-    pixFormat.alphaMode = D2D1_ALPHA_MODE_IGNORE;
-    pixFormat.format = DXGI_FORMAT_R8_UNORM;
+    pixFormat.alphaMode = D2D1_ALPHA_MODE_STRAIGHT;
+    pixFormat.format = DXGI_FORMAT_A8_UNORM;
     props.pixelFormat = pixFormat;
     props.dpiX = sys->dpi;
     props.dpiY = sys->dpi;
