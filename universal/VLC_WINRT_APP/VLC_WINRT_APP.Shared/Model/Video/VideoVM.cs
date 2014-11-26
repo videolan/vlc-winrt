@@ -223,61 +223,61 @@ namespace VLC_WINRT_APP.Model.Video
             {
                 // If file is a mkv, we save the thumbnail in a VideoPic folder so we don't consume CPU and resources each launch
                 StorageFolder videoPic = await ApplicationData.Current.LocalFolder.CreateFolderAsync("videoPic", CreationCollisionOption.OpenIfExists);
-                if (!VLCFileExtensions.MFSupported.Contains(File.FileType.ToLower()))
+                if (VLCFileExtensions.MFSupported.Contains(File.FileType.ToLower()))
                 {
-                    StorageFile videoPicFile = null;
-                    bool doesFileExist = false;
+                    StorageItemThumbnail thumb = await _thumbsService.GetThumbnail(File);
+                    if (thumb != null)
+                    {
+                        await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, async () =>
+                        {
+                            var image = new BitmapImage();
+                            await image.SetSourceAsync(thumb);
+                            Image = image;
+                        });
+                        return;
+                    }
+                }
+                // Fall through if MF failed to generate the screenshot, or if the format isn't supported
+                StorageFile videoPicFile = null;
+                bool doesFileExist = false;
 #if WINDOWS_APP
-                    videoPicFile = await videoPic.TryGetItemAsync(Title + ".jpg") as StorageFile;
-                    if(videoPicFile != null) doesFileExist = true;
+                videoPicFile = await videoPic.TryGetItemAsync(Title + ".jpg") as StorageFile;
+                if(videoPicFile != null) doesFileExist = true;
 #else
-                    doesFileExist = await videoPic.ContainsFileAsync(Title + ".jpg");
-                    if (doesFileExist)
+                doesFileExist = await videoPic.ContainsFileAsync(Title + ".jpg");
+                if (doesFileExist)
+                {
+                    try
                     {
-                        try
-                        {
-                            videoPicFile = await videoPic.GetFileAsync(Title + ".jpg");
-                        }
-                        catch
-                        {
-
-                        }
+                        videoPicFile = await videoPic.GetFileAsync(Title + ".jpg");
                     }
-#endif
-                    if (doesFileExist)
+                    catch
                     {
-                        IRandomAccessStream stream = await videoPicFile.OpenReadAsync();
-                        await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
-                        {
-                            var img = new BitmapImage();
-                            img.SetSource(stream);
-                            Image = img;
-                        });
-                    }
-                    else
-                    {
-                        WriteableBitmap thumb = await _thumbsService.GetScreenshot(File);
-                        if (thumb == null)
-                            return;
-                        await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
-                        {
-                            Image = thumb;
-                            thumb.SaveToFile(videoPic, Title + ".jpg");
-                        });
 
                     }
                 }
+#endif
+                if (doesFileExist)
+                {
+                    IRandomAccessStream stream = await videoPicFile.OpenReadAsync();
+                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+                    {
+                        var img = new BitmapImage();
+                        img.SetSource(stream);
+                        Image = img;
+                    });
+                }
                 else
                 {
-                    StorageItemThumbnail thumb = await _thumbsService.GetThumbnail(File);
-                    if (thumb == null)
-                        return;
-                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, async () =>
+                    WriteableBitmap screenshot = await _thumbsService.GetScreenshot(File);
+                    if (screenshot != null)
                     {
-                        var image = new BitmapImage();
-                        await image.SetSourceAsync(thumb);
-                        Image = image;
-                    });
+                        await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+                        {
+                            Image = screenshot;
+                            screenshot.SaveToFile(videoPic, Title + ".jpg");
+                        });
+                    }
                 }
             }
             catch (Exception ex)
