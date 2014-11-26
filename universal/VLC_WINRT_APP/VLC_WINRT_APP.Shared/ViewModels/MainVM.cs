@@ -29,6 +29,9 @@ namespace VLC_WINRT_APP.ViewModels
     {
         #region private fields
         private ObservableCollection<Panel> _panels = new ObservableCollection<Panel>();
+#if WINDOWS_PHONE_APP
+        private ObservableCollection<SearchHelpers.SearchResult> _searchResults;
+#endif
         #endregion
         #region private props
         private GoToPanelCommand _goToPanelCommand;
@@ -53,6 +56,12 @@ namespace VLC_WINRT_APP.ViewModels
                 }
                 return null;
             }
+        }
+
+        public ObservableCollection<SearchHelpers.SearchResult> SearchResults
+        {
+            get { return _searchResults; }
+            set { SetProperty(ref _searchResults, value); }
         }
 #endif
         #endregion
@@ -117,6 +126,7 @@ namespace VLC_WINRT_APP.ViewModels
                 App.ApplicationFrame.Navigate(typeof (SearchPage));
             });
             ChangeMainPageMusicViewCommand = new ChangeMainPageMusicViewCommand();
+            SearchResults = new ObservableCollection<SearchHelpers.SearchResult>();
 #endif
             // TODO: For Windows 8.1 build, use ResourceLoader.GetForCurrentView(); 
 
