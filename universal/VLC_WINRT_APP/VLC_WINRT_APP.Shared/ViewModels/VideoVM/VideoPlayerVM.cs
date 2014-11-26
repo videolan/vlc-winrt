@@ -277,7 +277,9 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             _vlcPlayerService.MediaEnded -= VlcPlayerServiceOnMediaEnded;
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
             {
-                App.ApplicationFrame.Navigate(typeof(MainPageVideos));
+                if(App.ApplicationFrame.CanGoBack)
+                    App.ApplicationFrame.GoBack();
+                else App.ApplicationFrame.Navigate(typeof(MainPageVideos));
                 Locator.VideoVm.IsRunning = false;
                 OnPropertyChanged("PlayingType");
             });
