@@ -160,7 +160,8 @@
                 </Grid>
             </PivotItem>
             <PivotItem Header="videos">
-                <local:MainPageVideos />
+                <local:MainPageVideos x:Name="MainPageVideoPivotItem"
+                                      x:FieldModifier="public"/>
             </PivotItem>
             <PivotItem Header="music">
                 <local:MainPageMusic x:Name="MainPageMusicPivotItem"

@@ -33,50 +33,5 @@
                 </TransitionCollection>
             </Frame.ContentTransitions>
         </Frame>
-        <!--<Frame x:Name="MainPageVideosContentPresenter"
-                          x:FieldModifier="public">
-            <ContentPresenter.Content>
-                <mainVideoControls:AllVideosPivotItem />
-            </ContentPresenter.Content>
-        </Frame>-->
-        <!--<Pivot Grid.Row="1"
-               Style="{StaticResource PivotStyle1}"
-               HeaderTemplate="{StaticResource PivotTitleTemplate}">
-            <Pivot.TitleTemplate>
-                <DataTemplate>
-                </DataTemplate>
-            </Pivot.TitleTemplate>
-            <PivotItem Header="all">-->
-            <!--</PivotItem>
-            <PivotItem Header="shows">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition />
-                    </Grid.RowDefinitions>
-                    <ComboBox ItemsSource="{Binding Shows}"
-                              SelectedItem="{Binding CurrentShow, Mode=TwoWay}"
-                              Visibility="{Binding Shows.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}">
-                        <ComboBox.ItemTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding ShowTitle}"/>
-                            </DataTemplate>
-                        </ComboBox.ItemTemplate>
-                    </ComboBox>
-                    <ListView Grid.Row="1"
-                              ItemsSource="{Binding CurrentShow.Episodes}"
-                              ItemTemplate="{StaticResource PhoneShowTemplate}"
-                              IsItemClickEnabled="True">
-                        <triggers:Interactions.Triggers>
-                            <triggers:EventTrigger EventName="ItemClick">
-                                <triggers:InvokeCommandAction Command="{Binding OpenVideo}"
-                                                              PassEventArgsToCommand="True" />
-                            </triggers:EventTrigger>
-                        </triggers:Interactions.Triggers>
-                    </ListView>
-                    <placeholder:NoShowPlaceholder Visibility="{Binding Shows.Count, Converter={StaticResource CountToVisibilityConverter}}" />
-                </Grid>
-            </PivotItem>
-        </Pivot>-->
     </Grid>
 </UserControl>

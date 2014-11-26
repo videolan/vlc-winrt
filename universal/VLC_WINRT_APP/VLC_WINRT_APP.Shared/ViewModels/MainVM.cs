@@ -41,6 +41,7 @@ namespace VLC_WINRT_APP.ViewModels
         private AlwaysExecutableCommand _openSidebarCommand;
 #if WINDOWS_PHONE_APP
         private ChangeMainPageMusicViewCommand _changeMainPageMusicViewCommand;
+        private ChangeMainPageVideoViewCommand _changeMainPageVideoViewCommand;
         private AlwaysExecutableCommand _goToSearchPage;
 #endif
         #endregion
@@ -95,6 +96,11 @@ namespace VLC_WINRT_APP.ViewModels
             get { return _changeMainPageMusicViewCommand; }
             set { SetProperty(ref _changeMainPageMusicViewCommand, value); }
         }
+        public ChangeMainPageVideoViewCommand ChangeMainPageVideoViewCommand
+        {
+            get { return _changeMainPageVideoViewCommand; }
+            set { SetProperty(ref _changeMainPageVideoViewCommand, value); }
+        }
         public AlwaysExecutableCommand OpenSidebarCommand
         {
             get { return _openSidebarCommand; }
@@ -126,6 +132,7 @@ namespace VLC_WINRT_APP.ViewModels
                 App.ApplicationFrame.Navigate(typeof (SearchPage));
             });
             ChangeMainPageMusicViewCommand = new ChangeMainPageMusicViewCommand();
+            ChangeMainPageVideoViewCommand = new ChangeMainPageVideoViewCommand();
             SearchResults = new ObservableCollection<SearchHelpers.SearchResult>();
 #endif
             // TODO: For Windows 8.1 build, use ResourceLoader.GetForCurrentView(); 
@@ -182,6 +189,12 @@ namespace VLC_WINRT_APP.ViewModels
                     });
                     break;
                 case 1:
+                    AppBarElements.Add(new AppBarButton()
+                    {
+                        Label = "view all",
+                        Icon = new SymbolIcon(Symbol.ViewAll),
+                        Flyout = App.Current.Resources["PhoneChangeVideoViewFlyout"] as MenuFlyout,
+                    });
                     break;
                 case 2:
                     AppBarElements.Add(new AppBarButton()
