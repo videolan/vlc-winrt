@@ -37,6 +37,13 @@ namespace VLC_WINRT_APP.DataRepository
             }
         }
 
+        public async Task<bool> DoesTrackExist(string path)
+        {
+            var connection = new SQLiteAsyncConnection(_dbPath);
+            var query = connection.Table<TrackItem>().Where(x => x.Path == path);
+            return await query.CountAsync() != 0;
+        }
+
         public async Task<TrackItem> LoadTrack(int trackId)
         {
             var connection = new SQLiteAsyncConnection(_dbPath);
@@ -93,6 +100,13 @@ namespace VLC_WINRT_APP.DataRepository
                 await connection.InsertAsync(track);
         }
 
+        public Task Remove(TrackItem track)
+        {
+            var connection = new SQLiteAsyncConnection(_dbPath);
+            return connection.DeleteAsync(track);
+        }
+
+
         public async Task Remove(string folderPath)
         {
             // TODO: None of this logic should live here. This is for "TrackDataRepository",
@@ -128,8 +142,6 @@ namespace VLC_WINRT_APP.DataRepository
                 var artist = await MusicLibraryVM._artistDataRepository.LoadArtist(firstTrack.ArtistId);
                 await MusicLibraryVM._artistDataRepository.Remove(artist);
             }
-
-
         }
 
     }
