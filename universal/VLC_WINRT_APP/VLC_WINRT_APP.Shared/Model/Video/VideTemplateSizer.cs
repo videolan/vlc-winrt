@@ -28,6 +28,7 @@ namespace VLC_WINRT_APP.Model.Video
         public static void ComputeAlbums(ItemsWrapGrid wrapGrid, TemplateSize size = TemplateSize.Compact)
         {
             var width = Window.Current.Bounds.Width;
+            if(width == 400) size = TemplateSize.Normal;
             var splitScreen = (size == TemplateSize.Compact) ? 3 : 2;
             if (!DisplayHelper.IsPortrait())
                 splitScreen = 5;
