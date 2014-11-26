@@ -61,7 +61,7 @@ namespace VLC_WINRT_APP.Services.RunTime
         public async Task<WriteableBitmap> GetScreenshot(StorageFile file)
         {
             string token = StorageApplicationPermissions.FutureAccessList.Add(file);
-            var screenshot = await _thumbnailer.TakeScreenshot("winrt://" + token, 342, 234);
+            var screenshot = await _thumbnailer.TakeScreenshot("winrt://" + token, 320, 200);
             return screenshot;
         }
     }
