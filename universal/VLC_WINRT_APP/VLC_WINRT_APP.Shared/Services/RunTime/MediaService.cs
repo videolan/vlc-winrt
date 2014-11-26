@@ -74,7 +74,7 @@ namespace VLC_WINRT_APP.Services.RunTime
 
                 // Set the album art thumbnail.
                 // RandomAccessStreamReference is defined in Windows.Storage.Streams
-                if (albumUri == "/Assets/GreyPylon/280x156.jpg")
+                if (albumUri == "/Assets/NoCover.jpg")
                 {
                 }
                 else
