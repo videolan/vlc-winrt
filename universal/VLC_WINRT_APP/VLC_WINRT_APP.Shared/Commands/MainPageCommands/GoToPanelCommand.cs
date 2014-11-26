@@ -48,7 +48,7 @@ namespace VLC_WINRT_APP.Commands.MainPageCommands
             {
                 panel = (parameter as SelectionChangedEventArgs).AddedItems[0] as Model.Panel;
             }
-            else if (parameter is string)
+            else if (parameter is string || parameter is int)
             {
                 panel = Locator.MainVM.Panels.First(x => x.Index == int.Parse(parameter.ToString()));
             }
