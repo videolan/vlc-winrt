@@ -190,6 +190,7 @@ IAsyncOperation<WriteableBitmap^>^ Thumbnailer::TakeScreenshot(Platform::String^
                 libvlc_event_detach(sys->eventMgr, libvlc_MediaPlayerEndReached, &onError, sys);
                 libvlc_media_player_stop(mp);
                 libvlc_media_player_release(mp);
+                free(sys->thumbData);
                 delete sys;
             });
         }
