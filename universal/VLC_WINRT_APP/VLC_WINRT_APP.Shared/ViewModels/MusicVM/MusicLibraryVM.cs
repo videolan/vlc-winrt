@@ -305,8 +305,8 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             LoadingState = LoadingState.Loading;
             Task.Run(async () =>
             {
-                await GetMusicFromLibrary();
                 await GetFavoriteAndRandomAlbums();
+                await GetMusicFromLibrary();
             });
         }
 
@@ -340,6 +340,13 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                 IsLoaded = true;
                 IsBusy = false;
             });
+
+            // Routine check to add new files if there are new ones
+            await MusicLibraryManagement.GetAllMusicFolders(true);
+#if WINDOWS_PHONE_APP
+            if (App.ApplicationFrame != null)
+                StatusBarHelper.SetDefaultForPage(App.ApplicationFrame.SourcePageType);
+#endif
         }
 
         public async Task StartIndexing()
