@@ -27,6 +27,7 @@ namespace VLC_WINRT_APP.Views.VariousPages
 
         private void HardwareButtonsOnBackPressed(object sender, BackPressedEventArgs backPressedEventArgs)
         {
+            backPressedEventArgs.Handled = true;
             if(App.ApplicationFrame.CanGoBack)
                 App.ApplicationFrame.GoBack();
         }
