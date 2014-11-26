@@ -89,7 +89,8 @@
                                FontWeight="ExtraLight"
                                FontSize="22"
                                HorizontalAlignment="Center"
-                               TextAlignment="Center" />
+                               TextWrapping="NoWrap"
+                               TextTrimming="CharacterEllipsis"/>
                     <Grid Grid.Row="4">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
