@@ -6,6 +6,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:userControls="using:VLC_WINRT_APP.Views.UserControls"
       xmlns:panelsView="using:PanelsView"
+      xmlns:extensions="using:WinRTXamlToolkit.Controls.Extensions"
       mc:Ignorable="d">
 
     <SwapChainPanel x:Name="SwapChainPanel"
@@ -28,7 +29,8 @@
                Opacity="{Binding ElementName=PanelsView, Path=Scrolling, Converter={StaticResource OpacityDecreaserConverter}}"
                Grid.RowSpan="2"
                VerticalAlignment="Bottom"
-               Visibility="{Binding Source={StaticResource Locator}, Path=VideoVm.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}" />
+               Visibility="{Binding Source={StaticResource Locator}, Path=VideoVm.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}"
+               extensions:ImageExtensions.FadeInOnLoaded="True" />
         <!--<Frame Grid.Row="1"
                x:Name="MainFrame"
                x:FieldModifier="public"
