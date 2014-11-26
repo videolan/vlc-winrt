@@ -38,15 +38,17 @@
                                Text="{Binding Name}"
                                TextWrapping="NoWrap"
                                TextTrimming="CharacterEllipsis"
-                               FontSize="15"
+                               FontSize="16"
                                FontWeight="Normal"
                                Margin="7,0" />
                     <TextBlock Grid.Row="1"
                                Grid.Column="0"
                                TextWrapping="NoWrap"
                                TextTrimming="CharacterEllipsis"
-                               FontSize="16"
-                               Margin="7,0,7,7">
+                               FontSize="14"
+                               FontWeight="Light"
+                               Foreground="DimGray"
+                               Margin="7,0,7,0">
                         <Run Text="{Binding Albums.Count}" />
                         <Run Text="albums" />
                     </TextBlock>
