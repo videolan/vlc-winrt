@@ -45,8 +45,11 @@ namespace VLC_WINRT_APP.Services.Mocks
 
         public void Stop()
         {
-            App.RootPage.MediaElement.Stop();
-            App.RootPage.MediaElement.Source = null;
+            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                App.RootPage.MediaElement.Stop();
+                App.RootPage.MediaElement.Source = null;
+            });
             UpdateStatus(VlcState.Stopped);
         }
 
