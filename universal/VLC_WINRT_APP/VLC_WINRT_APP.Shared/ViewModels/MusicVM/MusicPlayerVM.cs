@@ -9,6 +9,7 @@
 
 using System;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.ComTypes;
 using System.Threading.Tasks;
@@ -17,16 +18,19 @@ using Windows.Storage;
 using Windows.Storage.AccessCache;
 using Windows.UI.Core;
 using Windows.UI.Notifications;
+using Windows.UI.Popups;
 using SQLite;
 using VLC_WINRT.Common;
 using VLC_WINRT_APP.Commands.MediaPlayback;
 using VLC_WINRT_APP.Commands.Music;
 using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.Helpers.MusicLibrary;
+using VLC_WINRT_APP.Helpers.MusicLibrary.Deezer;
 using VLC_WINRT_APP.Model.Music;
 using VLC_WINRT_APP.Services.Interface;
 using VLC_WINRT_APP.Services.RunTime;
 using System.Collections.Generic;
+using WinRTXamlToolkit.Controls.Extensions;
 
 namespace VLC_WINRT_APP.ViewModels.MusicVM
 {
@@ -183,20 +187,32 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             var trackItem = CurrentTrack;
             var _ = Task.Run(async () =>
             {
-                StorageFile file;
+                StorageFile file = null;
                 if (fileFromExplorer == null)
                 {
-                    file = await StorageFile.GetFileFromPathAsync(trackItem.Path);
+                    try
+                    {
+                        file = await StorageFile.GetFileFromPathAsync(trackItem.Path);
+                    }
+                    catch(FileNotFoundException exception)
+                    {
+                        new MessageDialog("File not found").ShowAsyncIfPossible();
+                    }
                 }
                 else
                 {
                     file = fileFromExplorer;
                 }
+                if (file == null)
+                {
+                    trackItem = null;
+                    return;
+                }
                 string token = StorageApplicationPermissions.FutureAccessList.Add(file);
                 Debug.WriteLine("Opening file: " + file.Path);
                 await SetActiveMusicInfo(token, trackItem);
             });
-
+            if (trackItem == null) return;
             // Setting the info for windows 8 controls
             var resourceLoader = new ResourceLoader();
             string artistName = trackItem.ArtistName ?? resourceLoader.GetString("UnknownArtist");
