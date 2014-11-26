@@ -31,9 +31,9 @@ namespace VLC_WINRT_APP.Views.VariousPages
                 App.ApplicationFrame.GoBack();
         }
 
-        private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
+        private async void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            ListviewResults.ItemsSource = SearchHelpers.Search((sender as TextBox).Text);
+            SearchHelpers.Search((sender as TextBox).Text);
         }
     }
 }

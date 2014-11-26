@@ -5,21 +5,40 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:userControls="using:VLC_WINRT_APP.Views.UserControls"
-      mc:Ignorable="d"
-      Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+      mc:Ignorable="d">
 
-    <Grid>
+    <Grid Margin="12,12,0,0"
+          DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <TextBox PlaceholderText="Search"
-                 TextChanged="SearchBox_TextChanged" />
+        <TextBlock Text="SEARCH"
+                   Style="{StaticResource TitleTextBlockStyle}"/>
+        <TextBox Grid.Row="1" PlaceholderText="Search"
+                 TextChanged="SearchBox_TextChanged"
+                 Margin="0,12,12,0"/>
         <ListView x:Name="ListviewResults"
-                  Grid.Row="1">
+                  Grid.Row="2"
+                  ItemsSource="{Binding SearchResults}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding Text}" />
+                    <Grid Margin="0,0,0,12">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="110" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Image Source="{Binding Picture}"
+                               Stretch="UniformToFill" />
+                        <TextBlock Grid.Column="1"
+                                   Margin="12,0,0,0"
+                                   Text="{Binding Text}" 
+                                   TextWrapping="Wrap"
+                                   FontSize="21"
+                                   FontWeight="Light"
+                                   VerticalAlignment="Center"/>
+                    </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
