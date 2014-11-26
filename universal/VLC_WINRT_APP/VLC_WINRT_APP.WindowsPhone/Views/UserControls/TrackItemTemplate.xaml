@@ -25,13 +25,15 @@
                    TextWrapping="NoWrap"
                    TextTrimming="CharacterEllipsis"
                    Style="{StaticResource TitleTextBlockStyle}" 
+                   FontWeight="Normal"
                    FontSize="20"
                    Margin="0,0,6,0"/>
         <TextBlock Grid.Column="0"
                    Grid.Row="1"
                    Text="{Binding ArtistName}"
                    Style="{StaticResource BaseTextBlockStyle}"
-                   Foreground="DimGray" />
+                   Foreground="DimGray" 
+                   FontWeight="Light"/>
         <Button Grid.Column="1"
                 Grid.Row="1"
                 Style="{StaticResource TextBlockButtonStyle}"
@@ -116,6 +118,8 @@
         </Button>
         <TextBlock Grid.Column="1"
                    Grid.Row="0"
+                   FontWeight="Light"
+                   Foreground="DimGray"
                    Text="{Binding Duration.TotalSeconds, Converter={StaticResource SecondsStringConverter}}" 
                    VerticalAlignment="Center"
                    HorizontalAlignment="Center"/>
