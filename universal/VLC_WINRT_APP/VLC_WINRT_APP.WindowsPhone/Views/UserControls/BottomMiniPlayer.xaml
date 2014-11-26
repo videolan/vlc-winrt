@@ -10,32 +10,25 @@
              DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}"
              Visibility="{Binding TrackCollection.IsRunning, Converter={StaticResource BooleanToVisibilityConverter}}">
     <Grid Height="80"
-          Background="WhiteSmoke">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="3" />
-            <RowDefinition Height="79" />
-        </Grid.RowDefinitions>
+          Background="WhiteSmoke"
+          Tapped="RootMiniPlayer_Tapped">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
-        <Border Height="1"
-                Grid.Column="0"
-                Grid.ColumnSpan="3"
-                Background="{StaticResource MainColor}" />
-        <Image Grid.Row="1"
-               Margin="12,0,0,0"
+        <Image Grid.Row="0"
                Source="{Binding CurrentAlbum.Picture}"
                Width="80"
                Stretch="UniformToFill" />
-        <StackPanel Grid.Row="1"
+        <StackPanel Grid.Row="0"
                     Grid.Column="1"
                     Margin="12,0,0,0"
                     VerticalAlignment="Center">
             <TextBlock Text="{Binding CurrentArtist.Name}"
                        Foreground="Black"
-                       Style="{StaticResource SubheaderTextBlockStyle}" />
+                       Style="{StaticResource SubheaderTextBlockStyle}" 
+                       FontSize="22"/>
             <TextBlock Text="{Binding CurrentTrack.Name}"
                        Foreground="Black"
                        Style="{StaticResource SubheaderTextBlockStyle}"
@@ -43,10 +36,10 @@
                        TextTrimming="CharacterEllipsis"
                        FontSize="18" />
         </StackPanel>
-        <Grid Grid.Row="1"
+        <Grid Grid.Row="0"
               Grid.Column="2"
-              VerticalAlignment="Top"
-              Margin="0,20,24,0">
+              VerticalAlignment="Center"
+              Margin="0,0,12,0">
             <Button Style="{StaticResource TextBlockButtonStyle}"
                     HorizontalAlignment="Left"
                     Command="{Binding PlayOrPauseCommand}"
@@ -60,15 +53,12 @@
                 <SymbolIcon Symbol="Pause" />
             </Button>
         </Grid>
-        <Slider Grid.Row="0"
-                Grid.RowSpan="2"
-                Grid.Column="0"
-                Grid.ColumnSpan="3"
-                VerticalAlignment="Top"
-                Margin="0,-16,0,0"
-                Value="{Binding PositionInSeconds, Mode=TwoWay}"
-                Maximum="{Binding TimeTotal.TotalSeconds}"
-                Style="{StaticResource VLCSlider}"
-                ThumbToolTipValueConverter="{StaticResource SecondsStringConverter}" />
+        <ProgressBar Style="{StaticResource ThinProgressBar}"
+                     Grid.Row="0"
+                     Grid.ColumnSpan="3"
+                     Margin="0,-3,0,0"
+                     VerticalAlignment="Top"
+                     Value="{Binding PositionInSeconds, Mode=TwoWay}"
+                     Maximum="{Binding TimeTotal.TotalSeconds}" />
     </Grid>
 </UserControl>
