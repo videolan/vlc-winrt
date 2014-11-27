@@ -29,8 +29,4 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)..\libVLCX\Player.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\libVLCX\Thumbnailer.h" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="$(MSBuildThisFileDirectory)..\..\vlc\libvlc.dll" />
-    <None Include="$(MSBuildThisFileDirectory)..\..\vlc\libvlccore.dll" />
-  </ItemGroup>
 </Project>
