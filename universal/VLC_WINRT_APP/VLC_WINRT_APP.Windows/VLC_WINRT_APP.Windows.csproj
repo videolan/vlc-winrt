@@ -876,8 +876,8 @@
     <Content Include="Assets\StoreLogo.scale-180.png" />
     <Content Include="Assets\Wide310x150Logo.scale-100.png" />
     <Content Include="Assets\Wide310x150Logo.scale-140.png" />
-    <Content Include="libvlc.dll" />
-    <Content Include="libvlccore.dll" />
+    <Content Include="vlc.dll" />
+    <Content Include="vlccore.dll" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="Resources\PlatformStyles.xaml">
