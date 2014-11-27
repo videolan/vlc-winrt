@@ -37,7 +37,9 @@ Run ./compile.sh and generate vlc.7z
 
 If you skipped step 0), take the nightly build vlc.7z
 
-Extract the libVLC contents from vlc.7z to vlc/
+Extract the libVLC contents from vlc.7z to vlc/vlc-<platform>/<configuration>
+<platform> is either ARM or x86
+<configuration>  is Debug or Release
 
 2) Build and package the front-end
 ----------------------------------
