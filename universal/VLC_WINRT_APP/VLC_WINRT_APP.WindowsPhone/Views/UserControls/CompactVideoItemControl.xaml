@@ -117,25 +117,49 @@
                                   MaxHeight="400"
                                   Margin="40,0">
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="120" />
+                                    <RowDefinition Height="200" />
                                     <RowDefinition />
                                     <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
-                                <StackPanel Orientation="Horizontal">
-                                    <Image Source="{Binding Image}"
-                                           Height="120"
-                                           Width="120"
+                                <Grid RequestedTheme="Dark">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+                                    <Image Grid.Row="0"
+                                           Grid.RowSpan="2"
+                                           Source="{Binding Image}"
                                            Stretch="UniformToFill" />
-                                    <StackPanel VerticalAlignment="Center"
-                                                Margin="12,0,0,0">
-                                        <TextBlock Text="{Binding Title}"
+                                    <Grid Grid.Row="1"
+                                          VerticalAlignment="Bottom">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0"
+                                                   Margin="12,0,0,4"
+                                                   Text="{Binding Title}"
                                                    TextWrapping="Wrap"
                                                    Style="{StaticResource SubheaderTextBlockStyle}" />
-                                        <TextBlock Text="{Binding Type}"
+                                        <TextBlock Grid.Column="1"
+                                                   Text="{Binding Type}"
                                                    TextWrapping="Wrap"
-                                                   Style="{StaticResource BodyTextBlockStyle}" />
-                                    </StackPanel>
-                                </StackPanel>
+                                                   Style="{StaticResource BodyTextBlockStyle}" 
+                                                   VerticalAlignment="Bottom"
+                                                   Margin="0,0,7,7"/>
+                                        <Grid.Background>
+                                            <LinearGradientBrush StartPoint="0.5,0"
+                                                                 EndPoint="0.5,1">
+                                                <GradientStopCollection>
+                                                    <GradientStop Color="#00000000"
+                                                                  Offset="0" />
+                                                    <GradientStop Color="#87000000"
+                                                                  Offset="1" />
+                                                </GradientStopCollection>
+                                            </LinearGradientBrush>
+                                        </Grid.Background>
+                                    </Grid>
+                                </Grid>
                                 <StackPanel Grid.Row="1"
                                             Margin="12,0,0,0"
                                             VerticalAlignment="Center">
@@ -143,13 +167,14 @@
                                                   Icon="Play"
                                                   Style="{StaticResource AppBarButtonStyleHorizontal}"
                                                   Foreground="{StaticResource MainColor}"
-                                                  Command="{Binding TrackClicked}"
+                                                  Command="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM.OpenVideo}"
                                                   CommandParameter="{Binding}" />
                                 </StackPanel>
                                 <TextBlock Grid.Row="2"
                                            Margin="12,0,12,12"
                                            Text="{Binding FilePath}"
-                                           Style="{StaticResource BodyTextBlockStyle}" />
+                                           Style="{StaticResource BodyTextBlockStyle}"
+                                           Foreground="DimGray"/>
                             </Grid>
                         </Flyout>
                     </Button.Flyout>
