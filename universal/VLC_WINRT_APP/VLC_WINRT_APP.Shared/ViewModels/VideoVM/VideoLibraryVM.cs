@@ -14,6 +14,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Resources;
@@ -32,6 +33,7 @@ using VLC_WINRT_APP.DataRepository;
 using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.Model.Video;
+using WinRTXamlToolkit.IO.Extensions;
 using Panel = VLC_WINRT_APP.Model.Panel;
 
 namespace VLC_WINRT_APP.ViewModels.VideoVM
@@ -44,6 +46,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
 #endif
         private ObservableCollection<VideoItem> _videos;
         private ObservableCollection<VideoItem> _viewedVideos;
+        private ObservableCollection<VideoItem> _cameraRoll; 
         #endregion
 
         #region private props
@@ -91,6 +94,11 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             set { SetProperty(ref _shows, value); }
         }
 
+        public ObservableCollection<VideoItem> CameraRoll
+        {
+            get { return _cameraRoll; }
+            set { SetProperty(ref _cameraRoll, value); }
+        } 
         #endregion
 
         #region public props
@@ -133,16 +141,19 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             OpenVideo = new PlayVideoCommand();
             Videos = new ObservableCollection<VideoItem>();
             ViewedVideos = new ObservableCollection<VideoItem>();
+            CameraRoll = new ObservableCollection<VideoItem>();
 #if WINDOWS_APP
             var resourceLoader = new ResourceLoader();
             Panels.Add(new Panel(resourceLoader.GetString("Videos"), 0, 1, App.Current.Resources["VideoPath"].ToString(), true));
             //Panels.Add(new Panel("favorite", 2, 0.4));
 #endif
         }
-        public Task Initialize()
+        public async Task Initialize()
         {
             LoadingState = LoadingState.Loading;
-            return GetViewedVideos();
+            await GetViewedVideos();
+            await GetVideos();
+            await GetVideosFromCameraRoll();
         }
         #endregion
 
@@ -173,7 +184,6 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
                     Debug.WriteLine("File not found");
                 }
             }
-            await GetVideos();
         }
 
         public async Task GetVideos()
@@ -273,6 +283,33 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
                 LoadingState = LoadingState.Loaded;
             });
 
+        }
+
+        public async Task GetVideosFromCameraRoll()
+        {
+            try
+            {
+                if (await KnownFolders.PicturesLibrary.ContainsFolderAsync("Camera Roll"))
+                {
+                    var cameraRoll = await KnownFolders.PicturesLibrary.GetFolderAsync("Camera Roll");
+                    var videos = await GetMediaFromFolder(cameraRoll);
+                    foreach (var storageFile in videos)
+                    {
+                        var mediaVM = new VideoItem();
+                        await mediaVM.Initialize(storageFile);
+                        if (string.IsNullOrEmpty(mediaVM.Title))
+                            continue;
+                        await DispatchHelper.InvokeAsync(() =>
+                        {
+                            CameraRoll.Add(mediaVM);
+                        });
+                    }
+                }
+            }
+            catch (FileNotFoundException fileNotFoundException)
+            {
+                LogHelper.Log("Failed to get videos from Camera Roll. Aborting.");
+            }
         }
 
         private static async Task GetFilesFromSubFolders(StorageFolder folder, List<StorageFile> files)

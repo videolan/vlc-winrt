@@ -54,5 +54,6 @@
     <Capability Name="videosLibrary" />
     <Capability Name="musicLibrary" />
     <Capability Name="removableStorage" />
+    <Capability Name="picturesLibrary" />
   </Capabilities>
 </Package>

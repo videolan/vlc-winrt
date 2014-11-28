@@ -48,9 +48,12 @@
                 Placement="Top">
         <MenuFlyoutItem Text="all videos"
                         Command="{Binding Source={StaticResource Locator}, Path=MainVM.ChangeMainPageVideoViewCommand}"
-                        CommandParameter="0"/>
+                        CommandParameter="0" />
         <MenuFlyoutItem Text="shows"
                         Command="{Binding Source={StaticResource Locator}, Path=MainVM.ChangeMainPageVideoViewCommand}"
-                        CommandParameter="1"/>
+                        CommandParameter="1" />
+        <MenuFlyoutItem Text="camera roll"
+                        Command="{Binding Source={StaticResource Locator}, Path=MainVM.ChangeMainPageVideoViewCommand}"
+                        CommandParameter="2" />
     </MenuFlyout>
 </ResourceDictionary>

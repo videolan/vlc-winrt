@@ -9,6 +9,7 @@ namespace VLC_WINRT_APP.Commands.MainPageCommands
     {
         public override void Execute(object parameter)
         {
+#if WINDOWS_PHONE_APP
             var index = int.Parse(parameter.ToString());
             if (App.ApplicationFrame.CurrentSourcePageType != typeof(MainPageHome)) return;
             if ((App.ApplicationFrame.Content as MainPageHome).MainPivot.SelectedIndex != 1) return;
@@ -22,15 +23,16 @@ namespace VLC_WINRT_APP.Commands.MainPageCommands
                     (App.ApplicationFrame.Content as MainPageHome).MainPageVideoPivotItem.MainPageVideoContentPresenter
                         .Navigate(typeof(ShowsPivotItem));
                     break;
-                //case 2:
-                //    (App.ApplicationFrame.Content as MainPageHome).MainPageVideoPivotItem.MainPageVideoContentPresenter
-                //        .Navigate(typeof(SongsPivotItem));
-                //    break;
+                case 2:
+                    (App.ApplicationFrame.Content as MainPageHome).MainPageVideoPivotItem.MainPageVideoContentPresenter
+                        .Navigate(typeof(CameraRollPivotItem));
+                    break;
                 //case 3:
                 //    (App.ApplicationFrame.Content as MainPageHome).MainPageMusicContentPresenter
                 //        .Navigate(typeof(PlaylistPivotItem));
                 //    break;
             }
+#endif
         }
     }
 }

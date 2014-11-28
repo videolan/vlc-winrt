@@ -99,6 +99,9 @@
     <Compile Include="Views\MainPages\MainVideoControls\AllVideosPivotItem.xaml.cs">
       <DependentUpon>AllVideosPivotItem.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\MainPages\MainVideoControls\CameraRollPivotItem.xaml.cs">
+      <DependentUpon>CameraRollPivotItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainPages\MainVideoControls\ShowsPivotItem.xaml.cs">
       <DependentUpon>ShowsPivotItem.xaml</DependentUpon>
     </Compile>
@@ -155,6 +158,9 @@
     </Compile>
     <Compile Include="Views\UserControls\HeaderControl.xaml.cs">
       <DependentUpon>HeaderControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\Placeholder\NoCameraVideos.xaml.cs">
+      <DependentUpon>NoCameraVideos.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\Placeholder\NoFavoriteAlbumsControl.xaml.cs">
       <DependentUpon>NoFavoriteAlbumsControl.xaml</DependentUpon>
@@ -857,10 +863,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="PanelsView">
-      <HintPath>..\..\..\..\..\..\PanelsView\PanelsView\PanelsView\bin\Debug\PanelsView.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\PanelsView\PanelsView\PanelsView\bin\Release\PanelsView.dll</HintPath>
     </Reference>
     <Reference Include="ScrollWatchedSelector">
-      <HintPath>..\..\..\..\..\..\ScrollWatchedSelector\ScrollWatchedListView\bin\Debug\ScrollWatchedSelector.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\Documents\Visual Studio 2013\Projects\ScrollWatchedListView\ScrollWatchedListView\bin\Debug\ScrollWatchedSelector.dll</HintPath>
     </Reference>
     <Reference Include="WinRT.Triggers">
       <HintPath>..\..\..\app\packages\WinRTTriggers.1.6.0\lib\winrt45\WinRT.Triggers.dll</HintPath>
@@ -892,6 +898,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainPages\MainVideoControls\AllVideosPivotItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainPages\MainVideoControls\CameraRollPivotItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -968,6 +978,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControls\HeaderControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\Placeholder\NoCameraVideos.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
