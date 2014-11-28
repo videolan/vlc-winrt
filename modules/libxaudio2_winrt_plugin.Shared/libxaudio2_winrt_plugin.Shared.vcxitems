@@ -19,7 +19,4 @@
   <ItemGroup>
     <ProjectCapability Include="SourceItemsFromImports" />
   </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\libxaudio2_winrt_plugin\inttypes.h" />
-  </ItemGroup>
 </Project>

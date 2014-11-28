@@ -27,7 +27,6 @@
 *****************************************************************************/
 
 #include "pch.h"
-#include "targetver.h"
 #include <sstream>
 #include <ppltasks.h>
 #include <windows.ui.xaml.media.dxinterop.h>

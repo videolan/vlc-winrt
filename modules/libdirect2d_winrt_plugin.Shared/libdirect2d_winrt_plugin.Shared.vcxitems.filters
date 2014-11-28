@@ -2,8 +2,6 @@
 <Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)..\libdirect2d_winrt_plugin\DirectXHelper.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\libdirect2d_winrt_plugin\inttypes.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\libdirect2d_winrt_plugin\targetver.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)I420Effect.h" />
   </ItemGroup>
   <ItemGroup>

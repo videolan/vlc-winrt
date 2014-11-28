@@ -24,7 +24,6 @@
 *****************************************************************************/
 
 #include "pch.h"
-#include "targetver.h"
 #include <ppltasks.h>
 #include "xaudio2.h"
 #include <chrono>

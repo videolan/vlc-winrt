@@ -3,7 +3,4 @@
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)..\libxaudio2_winrt_plugin\libxaudio2_winrt_plugin.cpp" />
   </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\libxaudio2_winrt_plugin\inttypes.h" />
-  </ItemGroup>
 </Project>
