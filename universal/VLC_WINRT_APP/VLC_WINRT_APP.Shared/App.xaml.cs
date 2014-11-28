@@ -76,18 +76,6 @@ namespace VLC_WINRT_APP
             get { return Window.Current.Content as MainPage; }
         }
 
-        public static EdgeUIThemeTransition Transition
-        {
-            get
-            {
-#if WINDOWS_APP
-                return RootPage.MainFrameThemeTransition;
-#else
-                return RootPage.PanelsView.MainFrameThemeTransition;
-#endif
-            }
-        }
-
         /// <summary>
         ///     Invoked when the application is launched normally by the end user.  Other entry points
         ///     will be used when the application is launched to open a specific file, to display

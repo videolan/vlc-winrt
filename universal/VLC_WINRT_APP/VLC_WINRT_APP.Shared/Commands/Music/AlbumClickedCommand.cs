@@ -12,7 +12,6 @@ namespace VLC_WINRT_APP.Commands.Music
     {
         public override async void Execute(object parameter)
         {
-            App.Transition.Edge = EdgeTransitionLocation.Right;
 #if WINDOWS_PHONE_APP
             Locator.MusicLibraryVM.IsAlbumPageShown = true;
             AlbumItem album = null;

@@ -38,7 +38,6 @@ namespace VLC_WINRT_APP.Commands.MainPageCommands
 
         public override async void Execute(object parameter)
         {
-            App.Transition.Edge = EdgeTransitionLocation.Bottom;
             Model.Panel panel = null;
             if (parameter is ItemClickEventArgs)
             {
