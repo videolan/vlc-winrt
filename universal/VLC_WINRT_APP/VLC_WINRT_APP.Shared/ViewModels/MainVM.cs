@@ -122,6 +122,7 @@ namespace VLC_WINRT_APP.ViewModels
                 SetProperty(ref _searchTag, value.ToLower());
                 if (!string.IsNullOrEmpty(value))
                     SearchHelpers.Search();
+                else if (SearchResults != null) SearchResults.Clear();
             }
         }
 #endif
