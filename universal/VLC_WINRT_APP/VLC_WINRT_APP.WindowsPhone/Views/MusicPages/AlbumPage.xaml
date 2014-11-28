@@ -106,9 +106,15 @@
                                                          Loaded="PlaylistView_Loaded"
                                                          Margin="12,0,0,0"
                                                          GoingTopOrBottom="ScrollWatchedListView_OnGoingTopOrBottom">
+                <scrollWatchedSelector:ScrollWatchedListView.ItemContainerTransitions>
+                    <TransitionCollection>
+                        <AddDeleteThemeTransition />
+                        <EntranceThemeTransition />
+                    </TransitionCollection>
+                </scrollWatchedSelector:ScrollWatchedListView.ItemContainerTransitions>
                 <scrollWatchedSelector:ScrollWatchedListView.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <StackPanel Margin="0,0,0,60" />
+                        <ItemsStackPanel Margin="0,0,0,60" />
                     </ItemsPanelTemplate>
                 </scrollWatchedSelector:ScrollWatchedListView.ItemsPanel>
                 <triggers:Interactions.Triggers>

@@ -29,6 +29,12 @@
                   ItemTemplate="{StaticResource PhoneArtistSquareTemplate}"
                   HorizontalAlignment="Left"
                   Margin="0,0,-20,0">
+            <GridView.ItemContainerTransitions>
+                <TransitionCollection>
+                    <AddDeleteThemeTransition />
+                    <EntranceThemeTransition />
+                </TransitionCollection>
+            </GridView.ItemContainerTransitions>
             <GridView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <ItemsWrapGrid Orientation="Horizontal"

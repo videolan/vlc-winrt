@@ -119,6 +119,12 @@
                                                                           PassEventArgsToCommand="True" />
                                         </triggers:EventTrigger>
                                     </triggers:Interactions.Triggers>
+                                    <GridView.ItemContainerTransitions>
+                                        <TransitionCollection>
+                                            <AddDeleteThemeTransition/>
+                                            <EntranceThemeTransition />
+                                        </TransitionCollection>
+                                    </GridView.ItemContainerTransitions>
                                     <GridView.ItemsPanel>
                                         <ItemsPanelTemplate>
                                             <ItemsWrapGrid Orientation="Horizontal"
@@ -148,6 +154,12 @@
                                                                           PassEventArgsToCommand="True" />
                                         </triggers:EventTrigger>
                                     </triggers:Interactions.Triggers>
+                                    <GridView.ItemContainerTransitions>
+                                        <TransitionCollection>
+                                            <AddDeleteThemeTransition />
+                                            <EntranceThemeTransition />
+                                        </TransitionCollection>
+                                    </GridView.ItemContainerTransitions>
                                     <GridView.ItemsPanel>
                                         <ItemsPanelTemplate>
                                             <ItemsWrapGrid Orientation="Horizontal"

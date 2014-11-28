@@ -65,9 +65,15 @@
                                                   PassEventArgsToCommand="True" />
                 </triggers:EventTrigger>
             </triggers:Interactions.Triggers>
+            <scrollWatchedSelector:ScrollWatchedListView.ItemContainerTransitions>
+                <TransitionCollection>
+                    <AddDeleteThemeTransition />
+                    <EntranceThemeTransition />
+                </TransitionCollection>
+            </scrollWatchedSelector:ScrollWatchedListView.ItemContainerTransitions>
             <scrollWatchedSelector:ScrollWatchedListView.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <StackPanel Margin="0,0,0,60" />
+                    <ItemsStackPanel Margin="0,0,0,60" />
                 </ItemsPanelTemplate>
             </scrollWatchedSelector:ScrollWatchedListView.ItemsPanel>
         </scrollWatchedSelector:ScrollWatchedListView>
