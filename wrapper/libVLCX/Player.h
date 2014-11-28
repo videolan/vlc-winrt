@@ -86,7 +86,7 @@ namespace libVLCX {
         libvlc_instance_t        *p_instance;
         libvlc_media_player_t    *p_mp;
         SwapChainPanel ^p_panel;
-        DirectXManger            *p_dxManager;
+        std::unique_ptr<DirectXManger> p_dxManager;
         float                    m_displayWidth;
         float                    m_displayHeight;
     };

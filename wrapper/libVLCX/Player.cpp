@@ -26,11 +26,12 @@
 using namespace libVLCX;
 using namespace Windows::Graphics::Display;
 
-Player::Player(SwapChainPanel^ panel) :p_mp(NULL), p_instance(NULL)
+Player::Player(SwapChainPanel^ panel) 
+    : p_mp(NULL)
+    , p_instance(NULL)
+    , p_dxManager(new DirectXManger)
 {
-    //OutputDebugStringW(L"Hello, Player!");
     p_panel = panel;
-    p_dxManager = new DirectXManger();
 }
 
 //Todo: don't block UI during initialization
@@ -326,12 +327,6 @@ Player::~Player()
     if (p_instance){
         libvlc_release(p_instance);
     }
-
-
-    /*if (p_dxManager){
-        delete p_dxManager;
-        p_dxManager = nullptr;
-        }*/
 }
 
 float
