@@ -124,7 +124,7 @@ int Open(vlc_object_t *object)
     if( !(futureAccesToken->Begin()[0] == '{') && (futureAccesToken->Length() > 32) )
         return VLC_EGENERIC;
 
-    access_sys_t *p_sys = access->p_sys = new access_sys_t();
+    access_sys_t *p_sys = access->p_sys = new(std::nothrow) access_sys_t();
     if( p_sys == nullptr )
         return VLC_EGENERIC;
 
