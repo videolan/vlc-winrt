@@ -11,7 +11,8 @@ namespace VLC_WINRT_APP.Model
         {
             ".avi",
             ".wmv",
-            ".mov"
+            ".mov",
+            ".mp4"
         };
 
         public static List<string> Supported = new List<string>()
