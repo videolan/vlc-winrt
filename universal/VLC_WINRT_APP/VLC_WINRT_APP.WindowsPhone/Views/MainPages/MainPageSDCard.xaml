@@ -34,6 +34,17 @@
                                                       PassEventArgsToCommand="True" />
                     </triggers:EventTrigger>
                 </triggers:Interactions.Triggers>
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <ItemsStackPanel/>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemContainerTransitions>
+                    <TransitionCollection>
+                        <AddDeleteThemeTransition />
+                        <EntranceThemeTransition />
+                    </TransitionCollection>
+                </ListView.ItemContainerTransitions>
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Grid VerticalAlignment="Center">
