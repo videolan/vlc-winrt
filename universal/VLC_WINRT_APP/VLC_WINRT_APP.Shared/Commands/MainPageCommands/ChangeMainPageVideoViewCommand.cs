@@ -16,14 +16,17 @@ namespace VLC_WINRT_APP.Commands.MainPageCommands
             switch (index)
             {
                 case 0:
+                    if ((App.ApplicationFrame.Content as MainPageHome).MainPageVideoPivotItem.MainPageVideoContentPresenter.CurrentSourcePageType != typeof(AllVideosPivotItem))
                     (App.ApplicationFrame.Content as MainPageHome).MainPageVideoPivotItem.MainPageVideoContentPresenter
                         .Navigate(typeof(AllVideosPivotItem));
                     break;
                 case 1:
+                    if ((App.ApplicationFrame.Content as MainPageHome).MainPageVideoPivotItem.MainPageVideoContentPresenter.CurrentSourcePageType != typeof(ShowsPivotItem))
                     (App.ApplicationFrame.Content as MainPageHome).MainPageVideoPivotItem.MainPageVideoContentPresenter
                         .Navigate(typeof(ShowsPivotItem));
                     break;
                 case 2:
+                    if ((App.ApplicationFrame.Content as MainPageHome).MainPageVideoPivotItem.MainPageVideoContentPresenter.CurrentSourcePageType != typeof(CameraRollPivotItem))
                     (App.ApplicationFrame.Content as MainPageHome).MainPageVideoPivotItem.MainPageVideoContentPresenter
                         .Navigate(typeof(CameraRollPivotItem));
                     break;

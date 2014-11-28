@@ -18,18 +18,22 @@ namespace VLC_WINRT_APP.Commands.MainPageCommands
             switch (index)
             {
                 case 0:
+                    if ((App.ApplicationFrame.Content as MainPageHome).MainPageMusicPivotItem.MainPageMusicContentPresenter.CurrentSourcePageType != typeof(AlbumsPivotItem))
                     (App.ApplicationFrame.Content as MainPageHome).MainPageMusicPivotItem.MainPageMusicContentPresenter
                         .Navigate(typeof (AlbumsPivotItem));
                     break;
                 case 1:
+                    if ((App.ApplicationFrame.Content as MainPageHome).MainPageMusicPivotItem.MainPageMusicContentPresenter.CurrentSourcePageType != typeof(ArtistsPivotItem))
                     (App.ApplicationFrame.Content as MainPageHome).MainPageMusicPivotItem.MainPageMusicContentPresenter
                         .Navigate(typeof (ArtistsPivotItem));
                     break;
                 case 2:
+                    if ((App.ApplicationFrame.Content as MainPageHome).MainPageMusicPivotItem.MainPageMusicContentPresenter.CurrentSourcePageType != typeof(SongsPivotItem))
                     (App.ApplicationFrame.Content as MainPageHome).MainPageMusicPivotItem.MainPageMusicContentPresenter
                         .Navigate(typeof(SongsPivotItem));
                     break;
                 case 3:
+                    if ((App.ApplicationFrame.Content as MainPageHome).MainPageMusicPivotItem.MainPageMusicContentPresenter.CurrentSourcePageType != typeof(PlaylistPivotItem))
                     (App.ApplicationFrame.Content as MainPageHome).MainPageMusicPivotItem.MainPageMusicContentPresenter
                         .Navigate(typeof (PlaylistPivotItem));
                     break;
