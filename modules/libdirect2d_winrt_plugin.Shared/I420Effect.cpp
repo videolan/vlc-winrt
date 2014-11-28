@@ -101,13 +101,8 @@ HRESULT __stdcall I420Effect::CreateRippleImpl(_Outptr_ IUnknown** ppEffectImpl)
 	*ppEffectImpl = static_cast<ID2D1EffectImpl*>(new (std::nothrow) I420Effect());
 
 	if (*ppEffectImpl == nullptr)
-	{
 		return E_OUTOFMEMORY;
-	}
-	else
-	{
-		return S_OK;
-	}
+	return S_OK;
 }
 
 
@@ -116,8 +111,6 @@ IFACEMETHODIMP I420Effect::Initialize(
 	_In_ ID2D1TransformGraph* pTransformGraph
 	)
 {
-
-
 	HRESULT hr = pEffectContext->LoadPixelShader(GUID_I420PixelShader, I420Effect_ByteCode, ARRAYSIZE(I420Effect_ByteCode));
 	if (SUCCEEDED(hr))
 	{
@@ -130,50 +123,43 @@ IFACEMETHODIMP I420Effect::Initialize(
 			if (m_vertexBuffer == nullptr)
 			{
 				// Create two triangles to shape the rectangle
-				Vertex* mesh = new Vertex[6];
-				mesh[0].x = 0; mesh[0].y = 1;
-				mesh[1].x = 0; mesh[1].y = 0;
-				mesh[2].x = 1; mesh[2].y = 0;
+                const Vertex mesh[6] = {
+                    { 0, 1 },
+                    { 0, 0 },
+                    { 1, 0 },
+                    { 1, 0 },
+                    { 1, 1 },
+                    { 0, 1 }
+                };
 
-				mesh[3].x = 1; mesh[3].y = 0;
-				mesh[4].x = 1; mesh[4].y = 1;
-				mesh[5].x = 0; mesh[5].y = 1;
+				D2D1_VERTEX_BUFFER_PROPERTIES vbProp = { 0 };
+				vbProp.byteWidth = sizeof(Vertex) * 6;
+				vbProp.data = reinterpret_cast<const BYTE*>(&mesh);
+				vbProp.inputCount = 1;
+				vbProp.usage = D2D1_VERTEX_USAGE_STATIC;
 
-				if (SUCCEEDED(hr))
+				// Define the inputLayout
+				static const D2D1_INPUT_ELEMENT_DESC vertexLayout[] =
 				{
+					{ "MESH_POSITION", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 0 },
+				};
 
-					D2D1_VERTEX_BUFFER_PROPERTIES vbProp = { 0 };
-					vbProp.byteWidth = sizeof(Vertex) * 6;
-					vbProp.data = reinterpret_cast<BYTE*>(mesh);
-					vbProp.inputCount = 1;
-					vbProp.usage = D2D1_VERTEX_USAGE_STATIC;
+				D2D1_CUSTOM_VERTEX_BUFFER_PROPERTIES cvbProp = { 0 };
+				cvbProp.elementCount = ARRAYSIZE(vertexLayout);
+				cvbProp.inputElements = vertexLayout;
+				cvbProp.stride = sizeof(Vertex);
+				cvbProp.shaderBufferWithInputSignature = I420Effect_VS_ByteCode;
+				cvbProp.shaderBufferSize = ARRAYSIZE(I420Effect_VS_ByteCode);
 
-					// Define the inputLayout
-					static const D2D1_INPUT_ELEMENT_DESC vertexLayout[] =
-					{
-						{ "MESH_POSITION", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 0 },
-					};
-
-					D2D1_CUSTOM_VERTEX_BUFFER_PROPERTIES cvbProp = { 0 };
-					cvbProp.elementCount = ARRAYSIZE(vertexLayout);
-					cvbProp.inputElements = vertexLayout;
-					cvbProp.stride = sizeof(Vertex);
-					cvbProp.shaderBufferWithInputSignature = I420Effect_VS_ByteCode;
-					cvbProp.shaderBufferSize = ARRAYSIZE(I420Effect_VS_ByteCode);
-
-					// The GUID is optional, and is provided here to register the geometry globally.
-					// As mentioned above, this avoids duplication if multiple versions of the effect
-					// are created.
-					hr = pEffectContext->CreateVertexBuffer(
-						&vbProp,
-						&GUID_I420VertexShader,
-						&cvbProp,
-						&m_vertexBuffer
-						);
-				}
-
-				// Since mesh has already been transferred to GPU, it can be removed.
-				delete[] mesh;
+				// The GUID is optional, and is provided here to register the geometry globally.
+				// As mentioned above, this avoids duplication if multiple versions of the effect
+				// are created.
+				hr = pEffectContext->CreateVertexBuffer(
+					&vbProp,
+					&GUID_I420VertexShader,
+					&cvbProp,
+					&m_vertexBuffer
+					);
 			}
 
 			// This loads the shader into the Direct2D image effects system and associates it with the GUID passed in.
@@ -206,8 +192,7 @@ IFACEMETHODIMP I420Effect::PrepareForRender(D2D1_CHANGE_TYPE changeType)
 // as a single input effect.
 IFACEMETHODIMP I420Effect::SetGraph(_In_ ID2D1TransformGraph* pGraph)
 {
-
-	return E_NOTIMPL;
+return E_NOTIMPL;
 }
 
 // Called to assign a new render info class, which is used to inform D2D on
@@ -224,16 +209,12 @@ IFACEMETHODIMP I420Effect::SetDrawInfo(_In_ ID2D1DrawInfo* pDrawInfo)
 
 	hr = m_drawInfo->SetVertexProcessing(m_vertexBuffer.Get(), D2D1_VERTEX_OPTIONS_USE_DEPTH_BUFFER, nullptr, &range, &GUID_I420VertexShader);
 
-
-
 	hr = m_drawInfo->SetPixelShader(GUID_I420PixelShader);
 	
-
 	if (SUCCEEDED(hr))
 	{
 		// Providing this hint allows D2D to optimize performance when processing large images.
 		m_drawInfo->SetInstructionCountHint(sizeof(I420Effect_ByteCode));
-
 	}
 
 	return hr;
