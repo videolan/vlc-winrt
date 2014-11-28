@@ -12,9 +12,14 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <ComboBox ItemsSource="{Binding Shows}"
+        <TextBlock Text="shows"
+                   Style="{StaticResource SubheaderTextBlockStyle}"
+                   Foreground="{StaticResource MainColor}" />
+        <ComboBox Grid.Row="1"
+                  ItemsSource="{Binding Shows}"
                   SelectedItem="{Binding CurrentShow, Mode=TwoWay}"
                   Visibility="{Binding Shows.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}">
             <ComboBox.ItemTemplate>
@@ -23,7 +28,7 @@
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-        <ListView Grid.Row="1"
+        <ListView Grid.Row="2"
                   ItemsSource="{Binding CurrentShow.Episodes}"
                   ItemTemplate="{StaticResource PhoneShowTemplate}"
                   IsItemClickEnabled="True">
@@ -34,7 +39,9 @@
                 </triggers:EventTrigger>
             </triggers:Interactions.Triggers>
         </ListView>
-        <placeholder:NoShowPlaceholder Margin="0,50,0,0"
+        <placeholder:NoShowPlaceholder Grid.Row="1"
+                                       Grid.RowSpan="2"
+                                       Margin="0,50,0,0"
                                        Visibility="{Binding Shows.Count, Converter={StaticResource CountToVisibilityConverter}}" />
     </Grid>
 </Page>

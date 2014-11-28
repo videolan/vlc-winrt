@@ -9,22 +9,31 @@
       d:DesignHeight="300"
       d:DesignWidth="400"
       DataContext="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM}">
-
-    <GridView ItemsSource="{Binding Videos}"
-              ItemTemplate="{StaticResource PhoneCompactVideoTemplate}"
-              Margin="0,0,-20,0"
-              IsItemClickEnabled="True">
-        <triggers:Interactions.Triggers>
-            <triggers:EventTrigger EventName="ItemClick">
-                <triggers:InvokeCommandAction Command="{Binding OpenVideo}"
-                                              PassEventArgsToCommand="True" />
-            </triggers:EventTrigger>
-        </triggers:Interactions.Triggers>
-        <GridView.ItemsPanel>
-            <ItemsPanelTemplate>
-                <ItemsWrapGrid Orientation="Horizontal"
-                               SizeChanged="VideosWrapGrid_SizeChanged" />
-            </ItemsPanelTemplate>
-        </GridView.ItemsPanel>
-    </GridView>
+    <Grid Margin="0,-12,0,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <TextBlock Text="all videos"
+                   Style="{StaticResource SubheaderTextBlockStyle}"
+                   Foreground="{StaticResource MainColor}" />
+        <GridView Grid.Row="1"
+                  ItemsSource="{Binding Videos}"
+                  ItemTemplate="{StaticResource PhoneCompactVideoTemplate}"
+                  Margin="0,0,-20,0"
+                  IsItemClickEnabled="True">
+            <triggers:Interactions.Triggers>
+                <triggers:EventTrigger EventName="ItemClick">
+                    <triggers:InvokeCommandAction Command="{Binding OpenVideo}"
+                                                  PassEventArgsToCommand="True" />
+                </triggers:EventTrigger>
+            </triggers:Interactions.Triggers>
+            <GridView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <ItemsWrapGrid Orientation="Horizontal"
+                                   SizeChanged="VideosWrapGrid_SizeChanged" />
+                </ItemsPanelTemplate>
+            </GridView.ItemsPanel>
+        </GridView>
+    </Grid>
 </Page>
