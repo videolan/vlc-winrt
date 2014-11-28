@@ -162,11 +162,17 @@
     <Compile Include="Views\UserControls\Placeholder\NoPlaylistPlaceholder.xaml.cs">
       <DependentUpon>NoPlaylistPlaceholder.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserControls\Placeholder\NoResults.xaml.cs">
+      <DependentUpon>NoResults.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserControls\Placeholder\NoShowPlaceholder.xaml.cs">
       <DependentUpon>NoShowPlaceholder.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\Placeholder\NothingToSeeHere.xaml.cs">
       <DependentUpon>NothingToSeeHere.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\Placeholder\StartSearchingSomething.xaml.cs">
+      <DependentUpon>StartSearchingSomething.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\TopBar.xaml.cs">
       <DependentUpon>TopBar.xaml</DependentUpon>
@@ -841,7 +847,6 @@
     <Content Include="Assets\WideLogo.scale-100.png" />
     <Content Include="Assets\WideLogo.scale-140.png" />
     <Content Include="Assets\WideLogo.scale-240.png" />
-    <None Include="Package.StoreAssociation.xml" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Autofac">
@@ -851,13 +856,11 @@
       <HintPath>..\..\..\app\packages\Newtonsoft.Json.6.0.5\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="PanelsView, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\PanelsView\PanelsView\PanelsView\bin\Release\PanelsView.dll</HintPath>
+    <Reference Include="PanelsView">
+      <HintPath>..\..\..\..\..\..\PanelsView\PanelsView\PanelsView\bin\Debug\PanelsView.dll</HintPath>
     </Reference>
-    <Reference Include="ScrollWatchedSelector, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\ScrollWatchedSelector\ScrollWatchedListView\bin\Release\ScrollWatchedSelector.dll</HintPath>
+    <Reference Include="ScrollWatchedSelector">
+      <HintPath>..\..\..\..\..\..\ScrollWatchedSelector\ScrollWatchedListView\bin\Debug\ScrollWatchedSelector.dll</HintPath>
     </Reference>
     <Reference Include="WinRT.Triggers">
       <HintPath>..\..\..\app\packages\WinRTTriggers.1.6.0\lib\winrt45\WinRT.Triggers.dll</HintPath>
@@ -976,11 +979,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\UserControls\Placeholder\NoResults.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\UserControls\Placeholder\NoShowPlaceholder.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControls\Placeholder\NothingToSeeHere.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\Placeholder\StartSearchingSomething.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

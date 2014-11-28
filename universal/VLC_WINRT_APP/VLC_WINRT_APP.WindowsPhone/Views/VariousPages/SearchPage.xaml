@@ -5,39 +5,75 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:userControls="using:VLC_WINRT_APP.Views.UserControls"
+      xmlns:placeholder="using:VLC_WINRT_APP.Views.UserControls.Placeholder"
       mc:Ignorable="d">
 
     <Grid Margin="12,12,0,0"
           DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="32" />
             <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <TextBlock Text="SEARCH"
-                   Style="{StaticResource TitleTextBlockStyle}"/>
-        <TextBox Grid.Row="1" PlaceholderText="Search"
-                 TextChanged="SearchBox_TextChanged"
-                 Margin="0,12,12,0"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="SEARCH"
+                       VerticalAlignment="Center"
+                       Style="{StaticResource TitleTextBlockStyle}" />
+            <ScrollViewer Grid.Column="1"
+                          Style="{StaticResource HorizontalScrollViewerStyle}"
+                          DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}">
+                <StackPanel Orientation="Horizontal"
+                            VerticalAlignment="Center"
+                            Margin="12,-16,0,-16">
+                    <CheckBox IsChecked="{Binding SearchVideos, Mode=TwoWay}"
+                              Content="Videos" />
+                    
+                    <CheckBox IsChecked="{Binding SearchAlbums, Mode=TwoWay}"
+                              Content="Albums">
+                    </CheckBox>
+
+                    <CheckBox IsChecked="{Binding SearchTracks, Mode=TwoWay}"
+                              Content="Tracks" />
+
+                    <CheckBox IsChecked="{Binding SearchArtists, Mode=TwoWay}"
+                              Content="Artists" />
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+        <TextBox Grid.Row="1"
+                 PlaceholderText="Search"
+                 Margin="0,12,12,0"
+                 x:Name="SearchBox"
+                 TextChanged="SearchBox_OnTextChanged">
+        </TextBox>
+        <StackPanel Grid.Row="2">
+            <placeholder:StartSearchingSomething Visibility="{Binding SearchTag.Length, Converter={StaticResource CountToVisibilityConverter}}" />
+            <placeholder:NoResults Visibility="{Binding SearchResults.Count, Converter={StaticResource CountToVisibilityConverter}}" />
+        </StackPanel>
         <ListView x:Name="ListviewResults"
                   Grid.Row="2"
+                  Visibility="{Binding SearchResults.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}"
                   ItemsSource="{Binding SearchResults}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid Margin="0,0,0,12">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="110" />
+                            <ColumnDefinition Width="90" />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
                         <Image Source="{Binding Picture}"
                                Stretch="UniformToFill" />
                         <TextBlock Grid.Column="1"
                                    Margin="12,0,0,0"
-                                   Text="{Binding Text}" 
+                                   Text="{Binding Text}"
                                    TextWrapping="Wrap"
                                    FontSize="21"
                                    FontWeight="Light"
-                                   VerticalAlignment="Center"/>
+                                   VerticalAlignment="Center" />
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>

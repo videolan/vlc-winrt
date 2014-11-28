@@ -14,12 +14,11 @@
         <TextBlock Text=""
                    FontFamily="Segoe UI Symbol"
                    Foreground="#7AE3E3E3"
-                   FontSize="120" 
+                   FontSize="120"
                    HorizontalAlignment="Center"
                    TextAlignment="Center"
-                   VerticalAlignment="Center"/>
-        <TextBlock
-                   Style="{StaticResource SubheaderTextBlockStyle}"
+                   VerticalAlignment="Center" />
+        <TextBlock Style="{StaticResource SubheaderTextBlockStyle}"
                    TextAlignment="Center">
             <Run Text="It's empty here" />
             <LineBreak />

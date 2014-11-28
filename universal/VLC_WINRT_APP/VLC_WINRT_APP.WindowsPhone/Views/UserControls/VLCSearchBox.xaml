@@ -11,10 +11,10 @@
     <UserControl.Resources>
     </UserControl.Resources>
 
-    <Grid>
+    <Grid DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}">
         <AutoSuggestBox IsTabStop="False"
                         PlaceholderText="Search"
-                        TextChanged="AutoSuggestBox_OnTextChanged"
+                        Text="{Binding SearchTag, Mode=TwoWay}"
                         Margin="0,0,20,0"
                         IsEnabled="{Binding Source={StaticResource Locator}, Path=VideoVm.IsPlaying, Converter={StaticResource VLCSearchBoxConverter}}" >
             <AutoSuggestBox.ItemTemplate>

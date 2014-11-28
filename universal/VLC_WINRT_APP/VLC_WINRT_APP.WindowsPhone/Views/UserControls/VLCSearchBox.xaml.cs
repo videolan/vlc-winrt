@@ -10,10 +10,5 @@ namespace VLC_WINRT_APP.Views.UserControls
         {
             this.InitializeComponent();
         }
-
-        private void AutoSuggestBox_OnTextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
-        {
-            sender.ItemsSource = SearchHelpers.Search(sender.Text);
-        }
     }
 }

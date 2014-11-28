@@ -43,6 +43,7 @@ namespace VLC_WINRT_APP.ViewModels
         private ChangeMainPageMusicViewCommand _changeMainPageMusicViewCommand;
         private ChangeMainPageVideoViewCommand _changeMainPageVideoViewCommand;
         private AlwaysExecutableCommand _goToSearchPage;
+        private string _searchTag;
 #endif
         #endregion
         #region public fields
@@ -112,6 +113,17 @@ namespace VLC_WINRT_APP.ViewModels
             get { return _goToSearchPage; }
             set { _goToSearchPage = value; }
         }
+
+        public string SearchTag
+        {
+            get { return _searchTag; }
+            set
+            {
+                SetProperty(ref _searchTag, value.ToLower());
+                if (!string.IsNullOrEmpty(value))
+                    SearchHelpers.Search();
+            }
+        }
 #endif
         #endregion
 
@@ -129,7 +141,7 @@ namespace VLC_WINRT_APP.ViewModels
             });
             GoToSearchPage = new ActionCommand(() =>
             {
-                App.ApplicationFrame.Navigate(typeof (SearchPage));
+                App.ApplicationFrame.Navigate(typeof(SearchPage));
             });
             ChangeMainPageMusicViewCommand = new ChangeMainPageMusicViewCommand();
             ChangeMainPageVideoViewCommand = new ChangeMainPageVideoViewCommand();

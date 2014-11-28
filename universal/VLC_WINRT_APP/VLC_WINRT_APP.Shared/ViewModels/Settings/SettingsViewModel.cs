@@ -36,6 +36,10 @@ namespace VLC_WINRT_APP.ViewModels.Settings
         private OrderListing _albumsOrderListing;
 #if WINDOWS_PHONE_APP
         private bool _enableSidebar;
+        private bool _searchArtist;
+        private bool _searchAlbum;
+        private bool _searchTrack;
+        private bool _searchVideo;
 #endif
 #if WINDOWS_APP
         public bool ContinueVideoPlaybackInBackground
@@ -104,6 +108,112 @@ namespace VLC_WINRT_APP.ViewModels.Settings
 #endif
 
 #if WINDOWS_PHONE_APP
+        public bool SearchArtists
+        {
+            get
+            {
+                var searchArtist = ApplicationSettingsHelper.ReadSettingsValue("SearchArtists");
+                if (searchArtist != null && (bool)searchArtist)
+                {
+                    _searchArtist = true;
+                }
+                else
+                {
+                    _searchArtist = false;
+                }
+                return _searchArtist;
+            }
+            set
+            {
+                SetProperty(ref _searchArtist, value);
+                ApplicationSettingsHelper.SaveSettingsValue("SearchArtists", (bool)value);
+                if (!string.IsNullOrEmpty(Locator.MainVM.SearchTag))
+                {
+                    SearchHelpers.Search();
+                }
+            }
+        }
+
+        public bool SearchAlbums
+        {
+            get
+            {
+                var searchAlbum = ApplicationSettingsHelper.ReadSettingsValue("SearchAlbums");
+                if (searchAlbum != null && (bool)searchAlbum)
+                {
+                    _searchAlbum = true;
+                }
+                else
+                {
+                    _searchAlbum = false;
+                }
+                return _searchAlbum;
+            }
+            set
+            {
+                SetProperty(ref _searchAlbum, value);
+                ApplicationSettingsHelper.SaveSettingsValue("SearchAlbums", (bool)value);
+                if (!string.IsNullOrEmpty(Locator.MainVM.SearchTag))
+                {
+                    SearchHelpers.Search();
+                }
+            }
+        }
+
+        public bool SearchTracks
+        {
+            get
+            {
+                var searchTrack = ApplicationSettingsHelper.ReadSettingsValue("SearchTracks");
+                if (searchTrack != null && (bool)searchTrack)
+                {
+                    _searchTrack = true;
+                }
+                else
+                {
+                    _searchTrack = false;
+                }
+                return _searchTrack;
+            }
+            set
+            {
+                SetProperty(ref _searchAlbum, value);
+                ApplicationSettingsHelper.SaveSettingsValue("SearchTracks", (bool)value);
+                if (!string.IsNullOrEmpty(Locator.MainVM.SearchTag))
+                {
+                    SearchHelpers.Search();
+                }
+            }
+        }
+
+        public bool SearchVideos
+        {
+            get
+            {
+                if (!ApplicationSettingsHelper.Contains("SearchVideos")) SearchVideos = true;
+                var searchVideos = ApplicationSettingsHelper.ReadSettingsValue("SearchVideos");
+                
+                if (searchVideos != null && (bool)searchVideos)
+                {
+                    _searchVideo = true;
+                }
+                else
+                {
+                    _searchVideo = false;
+                }
+                return _searchVideo;
+            }
+            set
+            {
+                SetProperty(ref _searchVideo, value);
+                ApplicationSettingsHelper.SaveSettingsValue("SearchVideos", (bool)value);
+                if (!string.IsNullOrEmpty(Locator.MainVM.SearchTag))
+                {
+                    SearchHelpers.Search();
+                }
+            }
+        }
+
         public bool EnableSidebar
         {
             get
@@ -209,6 +319,30 @@ namespace VLC_WINRT_APP.ViewModels.Settings
             if (enableSide == null)
             {
                 EnableSidebar = false;
+            }
+
+            var searchArtist = ApplicationSettingsHelper.ReadSettingsValue("SearchArtists");
+            if (searchArtist == null)
+            {
+                SearchArtists = false;
+            }
+
+            var searchVideo = ApplicationSettingsHelper.ReadSettingsValue("SearchVideos");
+            if (searchVideo == null)
+            {
+                SearchVideos = true;
+            }
+
+            var searchAlbum = ApplicationSettingsHelper.ReadSettingsValue("SearchAlbums");
+            if (searchAlbum == null)
+            {
+                SearchAlbums = false;
+            }
+
+            var searchTrack = ApplicationSettingsHelper.ReadSettingsValue("SearchTracks");
+            if (searchTrack == null)
+            {
+                SearchTracks = false;
             }
 #endif
         }
