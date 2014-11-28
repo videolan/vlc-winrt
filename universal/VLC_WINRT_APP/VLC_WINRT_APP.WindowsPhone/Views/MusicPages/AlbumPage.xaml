@@ -126,4 +126,10 @@
             </scrollWatchedSelector:ScrollWatchedListView>
         </Grid>
     </Grid>
+    
+    <Page.BottomAppBar>
+        <CommandBar ClosedDisplayMode="Minimal"
+                    Style="{StaticResource VLCCommandBarStyle}">
+        </CommandBar>
+    </Page.BottomAppBar>
 </Page>
