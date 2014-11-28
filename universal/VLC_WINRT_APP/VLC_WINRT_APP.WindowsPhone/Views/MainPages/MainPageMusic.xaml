@@ -14,9 +14,7 @@
            Loaded="MainPageMusicContentPresenter_OnLoaded">
         <Frame.ContentTransitions>
             <TransitionCollection>
-                <EdgeUIThemeTransition x:Name="MainFrameThemeTransition"
-                                       x:FieldModifier="public"
-                                       Edge="Bottom" />
+                <NavigationThemeTransition/>
             </TransitionCollection>
         </Frame.ContentTransitions>
     </Frame>

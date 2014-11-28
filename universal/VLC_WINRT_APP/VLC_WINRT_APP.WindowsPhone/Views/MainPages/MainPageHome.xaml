@@ -227,14 +227,6 @@
                     </Flyout>
                 </AppBarButton.Flyout>
             </AppBarButton>-->
-            <CommandBar.SecondaryCommands>
-                <AppBarButton Label="special thanks"
-                              Command="{Binding GoToThanksPageCommand}" />
-                <AppBarButton Label="settings"
-                              Command="{Binding GoToSettingsPageCommand}" />
-                <!--<AppBarButton Label="DEBUG viewedvideos"
-                              Click="DEBUGHISTORY" />-->
-            </CommandBar.SecondaryCommands>
         </CommandBar>
     </Page.BottomAppBar>
 </Page>
