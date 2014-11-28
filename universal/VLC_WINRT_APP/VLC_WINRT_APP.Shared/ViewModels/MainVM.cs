@@ -9,6 +9,7 @@
 
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Resources;
 using Windows.Foundation.Collections;
@@ -55,6 +56,17 @@ namespace VLC_WINRT_APP.ViewModels
                 if (App.ApplicationFrame != null && App.ApplicationFrame.CurrentSourcePageType == typeof(MainPageHome))
                 {
                     return ((App.ApplicationFrame.Content as MainPageHome).BottomAppBar as CommandBar).PrimaryCommands;
+                }
+                return null;
+            }
+        }
+        public IObservableVector<ICommandBarElement> SecondaryAppBarElements
+        {
+            get
+            {
+                if ((App.ApplicationFrame.Content as Page).BottomAppBar != null)
+                {
+                    return ((App.ApplicationFrame.Content as Page).BottomAppBar as CommandBar).SecondaryCommands;
                 }
                 return null;
             }
@@ -175,6 +187,21 @@ namespace VLC_WINRT_APP.ViewModels
         }
 
 #if WINDOWS_PHONE_APP
+        public void UpdateSecondaryAppBarButtons()
+        {
+            if (SecondaryAppBarElements == null || SecondaryAppBarElements.Count != 0) return;
+            SecondaryAppBarElements.Add(new AppBarButton()
+            {
+                Label = "special thanks",
+                Command = GoToThanksPageCommand,
+            });
+            SecondaryAppBarElements.Add(new AppBarButton()
+            {
+                Label = "settings",
+                Command = GoToSettingsPageCommand
+            });
+        }
+
         public void UpdateAppBar(int index)
         {
             if (AppBarElements == null) return;

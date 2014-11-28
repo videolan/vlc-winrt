@@ -131,6 +131,7 @@ namespace VLC_WINRT_APP
         private void RootFrame_FirstNavigated(object sender, NavigationEventArgs args)
         {
             StatusBarHelper.SetDefaultForPage(args.SourcePageType);
+            Locator.MainVM.UpdateSecondaryAppBarButtons();
         }
 
         protected async override void OnActivated(IActivatedEventArgs args)
