@@ -74,7 +74,7 @@ void DirectXManger::UpdateSwapChain(unsigned int width, unsigned int height)
             &cp_d2dTargetBitmap
             );
 
-        CheckDXOperation(hr, "Could not crete the Bitmap");
+        CheckDXOperation(hr, "Could not create the Bitmap");
 
         cp_d2dContext->SetTarget(cp_d2dTargetBitmap.Get());
     }

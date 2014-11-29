@@ -264,7 +264,7 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
 
     if (*sys->displayWidth != sys->lastDisplayWidth || *sys->displayHeight != sys->lastDisplayHeight)
     {
-        // Get the size avec the current picture
+        // Get the size from the current picture
         sys->size.width = picture->format.i_visible_width;
         sys->size.height = picture->format.i_visible_height;
 
@@ -293,19 +293,37 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
             sys->offset.y = (*sys->displayHeight - ((float)picture->format.i_visible_height * sys->scale)) / 2.0f;
         }
         UpdateResourcesFromWindowSizeChanged(vd);
-    }
 
-    HRESULT hrx = S_OK;
-    // If needed, create the YCbCr effect
-    if (sys->yuvEffect == nullptr)
-    {
-        hrx = sys->d2dContext->CreateEffect(CLSID_CustomI420Effect, &sys->yuvEffect);
+        HRESULT hrx = sys->d2dContext->CreateEffect(CLSID_CustomI420Effect, &sys->yuvEffect);
 
         sys->yuvEffect->SetInputCount(3);
 
-        sys->yuvEffect->SetValue(I420_PROP_DISPLAYEDFRAME_WIDTH, (float)(picture->format.i_visible_width * sys->scale));
-        sys->yuvEffect->SetValue(I420_PROP_DISPLAYEDFRAME_HEIGHT, (float)(picture->format.i_visible_height * sys->scale));
+        sys->yuvEffect->SetValue(I420_PROP_DISPLAYEDFRAME_WIDTH, (float) (picture->format.i_visible_width * sys->scale));
+        sys->yuvEffect->SetValue(I420_PROP_DISPLAYEDFRAME_HEIGHT, (float) (picture->format.i_visible_height * sys->scale));
         sys->yuvEffect->SetValue(I420_PROP_SCALE, sys->scale);
+
+        // Init bitmap properties in which will store the y (lumi) plane
+        D2D1_BITMAP_PROPERTIES1 props;
+        D2D1_PIXEL_FORMAT      pixFormat;
+
+        pixFormat.alphaMode = D2D1_ALPHA_MODE_STRAIGHT;
+        pixFormat.format = DXGI_FORMAT_A8_UNORM;
+        props.pixelFormat = pixFormat;
+        props.dpiX = sys->dpi;
+        props.dpiY = sys->dpi;
+        props.bitmapOptions = D2D1_BITMAP_OPTIONS_NONE;
+        props.colorContext = nullptr;
+
+        if (S_OK != sys->d2dContext->CreateBitmap(sys->size, picture->p[0].p_pixels, picture->p[0].i_pitch, props, &sys->yBitmap))
+            return;
+
+        // Create or copy uv (chroma) plane
+        if (S_OK != sys->d2dContext->CreateBitmap(sys->halfSize, picture->p[1].p_pixels, picture->p[1].i_pitch ,props, &sys->uBitmap))
+            return;
+
+        // Create or copy uv (chroma) plane
+        if (S_OK != sys->d2dContext->CreateBitmap(sys->halfSize, picture->p[2].p_pixels, picture->p[2].i_pitch, props, &sys->vBitmap))
+            return;
     }
 
     sys->d2dContext->SetTransform(D2D1::Matrix3x2F::Translation(floor(sys->offset.x), floor(sys->offset.y)));
@@ -319,69 +337,21 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
     sys->d2dContext->PushAxisAlignedClip(&pushRect, D2D1_ANTIALIAS_MODE_ALIASED);
     sys->d2dContext->Clear(D2D1::ColorF(D2D1::ColorF::Black));
 
-    // Init bitmap properties in which will store the y (lumi) plane
-    D2D1_BITMAP_PROPERTIES1 props;
-    D2D1_PIXEL_FORMAT      pixFormat;
-
-    pixFormat.alphaMode = D2D1_ALPHA_MODE_STRAIGHT;
-    pixFormat.format = DXGI_FORMAT_A8_UNORM;
-    props.pixelFormat = pixFormat;
-    props.dpiX = sys->dpi;
-    props.dpiY = sys->dpi;
-    props.bitmapOptions = D2D1_BITMAP_OPTIONS_NONE;
-    props.colorContext = nullptr;
 
 
-    if (sys->yBitmap == nullptr)
-    {
-        if (S_OK != sys->d2dContext->CreateBitmap(sys->size,
-            picture->p[0].p_pixels,
-            picture->p[0].i_pitch,
-            props,
-            &sys->yBitmap))
-            return;
 
-    }
-    else{
-        D2D1_RECT_U destRect = D2D1::RectU(0, 0, sys->size.width, sys->size.height);
-        sys->yBitmap->CopyFromMemory(&destRect, picture->p[0].p_pixels, picture->p[0].i_pitch);
-    }
+    D2D1_RECT_U destRect = D2D1::RectU(0, 0, sys->size.width, sys->size.height);
+    sys->yBitmap->CopyFromMemory(&destRect, picture->p[0].p_pixels, picture->p[0].i_pitch);
     sys->yuvEffect->SetInput(0, sys->yBitmap);
 
 
-
-    // Create or copy uv (chroma) plane
-    if (sys->uBitmap == nullptr)
-    {
-
-        if (S_OK != sys->d2dContext->CreateBitmap(sys->halfSize,
-            picture->p[1].p_pixels,
-            picture->p[1].i_pitch,
-            props,
-            &sys->uBitmap))
-            return;
-    }
-    else{
-        D2D1_RECT_U destRect = D2D1::RectU(0, 0, sys->halfSize.width, sys->halfSize.height);
-        sys->uBitmap->CopyFromMemory(&destRect, picture->p[1].p_pixels, picture->p[1].i_pitch);
-    }
+    destRect = D2D1::RectU(0, 0, sys->halfSize.width, sys->halfSize.height);
+    sys->uBitmap->CopyFromMemory(&destRect, picture->p[1].p_pixels, picture->p[1].i_pitch);
 
     sys->yuvEffect->SetInput(1, sys->uBitmap);
 
-    // Create or copy uv (chroma) plane
-    if (sys->vBitmap == nullptr)
-    {
-        if (S_OK != sys->d2dContext->CreateBitmap(sys->halfSize,
-            picture->p[2].p_pixels,
-            picture->p[2].i_pitch,
-            props,
-            &sys->vBitmap))
-            return;
-    }
-    else{
-        D2D1_RECT_U destRect = D2D1::RectU(0, 0, sys->halfSize.width, sys->halfSize.height);
-        sys->vBitmap->CopyFromMemory(&destRect, picture->p[2].p_pixels, picture->p[2].i_pitch);
-    }
+    destRect = D2D1::RectU(0, 0, sys->halfSize.width, sys->halfSize.height);
+    sys->vBitmap->CopyFromMemory(&destRect, picture->p[2].p_pixels, picture->p[2].i_pitch);
 
     sys->yuvEffect->SetInput(2, sys->vBitmap);
 
