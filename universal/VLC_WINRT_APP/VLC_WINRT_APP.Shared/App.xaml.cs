@@ -166,7 +166,7 @@ namespace VLC_WINRT_APP
         /// </summary>
         /// <param name="sender">The source of the suspend request.</param>
         /// <param name="e">Details about the suspend request.</param>
-        private async void OnSuspending(object sender, SuspendingEventArgs e)
+        private void OnSuspending(object sender, SuspendingEventArgs e)
         {
             SuspendingDeferral deferral = e.SuspendingOperation.GetDeferral();
             Container.Resolve<IMediaService>().Trim();
