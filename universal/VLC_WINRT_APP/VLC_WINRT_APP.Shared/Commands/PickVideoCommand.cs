@@ -14,6 +14,7 @@ using Windows.Storage.Pickers;
 using VLC_WINRT_APP.Model;
 using System.Diagnostics;
 using VLC_WINRT_APP.Services.RunTime;
+using System.Collections.Generic;
 
 namespace VLC_WINRT_APP.Commands
 {
@@ -21,6 +22,19 @@ namespace VLC_WINRT_APP.Commands
     {
         private static readonly object Locker = new object();
         private bool _canExecute = true;
+
+        static List<String> _allowedExtensions = new List<string>();
+        static PickVideoCommand()
+        {
+            foreach (string videoExtension in VLCFileExtensions.VideoExtensions)
+            {
+                _allowedExtensions.Add(videoExtension);
+            }
+            foreach (string audioExtension in VLCFileExtensions.AudioExtensions)
+            {
+                _allowedExtensions.Add(audioExtension);
+            }
+        }
 
         public bool CanExecute(object parameter)
         {
@@ -43,14 +57,9 @@ namespace VLC_WINRT_APP.Commands
                 ViewMode = PickerViewMode.List,
                 SuggestedStartLocation = PickerLocationId.VideosLibrary
             };
-            foreach (string videoExtension in VLCFileExtensions.VideoExtensions)
-            {
-                picker.FileTypeFilter.Add(videoExtension);
-            }
-            foreach (string audioExtension in VLCFileExtensions.AudioExtensions)
-            {
-                picker.FileTypeFilter.Add(audioExtension);
-            }
+            foreach(var ext in _allowedExtensions)
+                picker.FileTypeFilter.Add(ext);
+            
 
 #if WINDOWS_APP
             StorageFile file = null;
