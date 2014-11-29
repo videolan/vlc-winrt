@@ -146,8 +146,10 @@ namespace VLC_WINRT_APP.Services.RunTime
             trackItem.Path = file.Path;
             trackItem.AlbumName = "Album";
             trackItem.ArtistName = "Artist";
+            Locator.MusicPlayerVM.TrackCollection.Playlist.Clear();
+            Locator.MusicPlayerVM.TrackCollection.Playlist.Add(trackItem);
             await Task.Delay(1000);
-            await PlayMusicHelper.PlayTrack(trackItem.Id);
+            await PlayMusicHelper.PlayTrack(0);
         }
 
         /// <summary>
