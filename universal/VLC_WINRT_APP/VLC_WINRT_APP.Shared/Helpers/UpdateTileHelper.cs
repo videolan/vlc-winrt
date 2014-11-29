@@ -49,7 +49,7 @@ namespace VLC_WINRT_APP.Helpers
 #if WINDOWS_APP
                 tileTextAttributes[1].InnerText = Locator.MusicPlayerVM.CurrentTrack.Name + " - " + Locator.MusicPlayerVM.CurrentTrack.ArtistName;
 #else
-                tileTextAttributes[0].InnerText = Locator.MusicPlayerVM.CurrentTrack.Name;
+                tileTextAttributes[0].InnerText = Locator.MusicPlayerVM.CurrentTrack.Name ?? "";
                 tileTextAttributes[1].InnerText = Locator.MusicPlayerVM.CurrentTrack.AlbumName;
                 tileTextAttributes[1].InnerText = Locator.MusicPlayerVM.CurrentTrack.ArtistName;
 #endif
