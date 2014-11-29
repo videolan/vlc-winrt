@@ -47,6 +47,10 @@ namespace VLC_WINRT_APP.Commands
             {
                 picker.FileTypeFilter.Add(videoExtension);
             }
+            foreach (string audioExtension in VLCFileExtensions.AudioExtensions)
+            {
+                picker.FileTypeFilter.Add(audioExtension);
+            }
 
 #if WINDOWS_APP
             StorageFile file = null;
