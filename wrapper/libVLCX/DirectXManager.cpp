@@ -89,14 +89,14 @@ void DirectXManger::CreateSwapPanel(SwapChainPanel^ panel){
     ComPtr<ID2D1Factory2> d2dFactory;
 
     UINT creationFlags = D3D11_CREATE_DEVICE_BGRA_SUPPORT;
-    float dpi = Windows::Graphics::Display::DisplayProperties::LogicalDpi;
+    const auto displayInfo = Windows::Graphics::Display::DisplayInformation::GetForCurrentView();
 
     D2D1_BITMAP_PROPERTIES1 bitmapProperties =
         BitmapProperties1(
         D2D1_BITMAP_OPTIONS_TARGET | D2D1_BITMAP_OPTIONS_CANNOT_DRAW,
         PixelFormat(DXGI_FORMAT_B8G8R8A8_UNORM, D2D1_ALPHA_MODE_PREMULTIPLIED),
-        dpi,
-        dpi);
+        displayInfo->RawDpiX,
+        displayInfo->RawDpiY);
 
     // Feature sets supported
     const D3D_FEATURE_LEVEL featureLevels[] =
@@ -156,7 +156,7 @@ void DirectXManger::CreateSwapPanel(SwapChainPanel^ panel){
     CheckDXOperation(hr, "Could not create device context");
 
     // Set DPI to the display's current DPI.
-    cp_d2dContext->SetDpi(dpi, dpi);
+    cp_d2dContext->SetDpi(displayInfo->RawDpiX, displayInfo->RawDpiY);
     cp_d2dContext->SetUnitMode(D2D1_UNIT_MODE_PIXELS);
 
     //Create the swapchain
