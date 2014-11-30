@@ -111,7 +111,6 @@ struct vout_display_sys_t {
     D2D1_POINT_2F                offset;
     D2D1_SIZE_U                  size;
     D2D1_SIZE_U                  halfSize;
-    float                        dpi;
 
     //TODO: check to see if these are all needed
     picture_pool_t               *pool;
@@ -273,7 +272,9 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
         sys->halfSize.width = sys->size.width / 2;
         sys->halfSize.height = sys->size.height / 2;
 
-        sys->dpi = DisplayProperties::LogicalDpi;
+        float dpiX;
+        float dpiY;
+        sys->d2dContext->GetDpi(&dpiX, &dpiY);
         sys->lastDisplayWidth = *sys->displayWidth;
         sys->lastDisplayHeight = *sys->displayHeight;
 
@@ -309,8 +310,8 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
         pixFormat.alphaMode = D2D1_ALPHA_MODE_STRAIGHT;
         pixFormat.format = DXGI_FORMAT_A8_UNORM;
         props.pixelFormat = pixFormat;
-        props.dpiX = sys->dpi;
-        props.dpiY = sys->dpi;
+        props.dpiX = dpiX;
+        props.dpiY = dpiY;
         props.bitmapOptions = D2D1_BITMAP_OPTIONS_NONE;
         props.colorContext = nullptr;
 
