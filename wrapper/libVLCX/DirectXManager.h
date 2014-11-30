@@ -32,7 +32,7 @@ namespace libVLCX {
     public:
         DirectXManger();
         void CreateSwapPanel(SwapChainPanel^ panel);
-        void UpdateSwapChain(unsigned int width, unsigned int height);
+        void UpdateSwapChain();
         void ClearSwapChainBuffers();
         void Trim();
     private:

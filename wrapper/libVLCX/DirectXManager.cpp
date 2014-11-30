@@ -42,11 +42,10 @@ void DirectXManger::CheckDXOperation(HRESULT hr, Platform::String^ message){
 }
 
 
-void DirectXManger::UpdateSwapChain(unsigned int width, unsigned int height)
+void DirectXManger::UpdateSwapChain()
 {
     if (cp_swapChain)
     {
-
         cp_d2dContext->SetTarget(nullptr);
         cp_d2dTargetBitmap = nullptr;
 
@@ -62,7 +61,7 @@ void DirectXManger::UpdateSwapChain(unsigned int width, unsigned int height)
             displayInfo->RawDpiY);
 
 
-        cp_swapChain->ResizeBuffers(2, width, height, DXGI_FORMAT_B8G8R8A8_UNORM, 0);
+        cp_swapChain->ResizeBuffers(0, 0, 0, DXGI_FORMAT_UNKNOWN, 0);
 
         ComPtr<IDXGISurface> dxgiBackBuffer;
         CheckDXOperation(cp_swapChain->GetBuffer(0, IID_PPV_ARGS(&dxgiBackBuffer)), "Could not get the DXGI backbuffer");

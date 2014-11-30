@@ -121,7 +121,7 @@ void Player::UpdateSize(unsigned int x, unsigned int y)
     m_displayWidth = (float)x * scaleFactor;
     m_displayHeight = (float)y * scaleFactor;
 
-    p_dxManager->UpdateSwapChain(m_displayWidth, m_displayHeight);
+    p_dxManager->UpdateSwapChain();
 }
 
 void Player::MediaEndedCall(){
