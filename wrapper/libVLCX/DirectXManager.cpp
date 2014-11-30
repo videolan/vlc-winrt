@@ -161,8 +161,14 @@ void DirectXManger::CreateSwapPanel(SwapChainPanel^ panel){
 
     //Create the swapchain
     DXGI_SWAP_CHAIN_DESC1 swapChainDesc = { 0 };
-    swapChainDesc.Width = (UINT)(panel->ActualWidth * (double)DisplayProperties::ResolutionScale / 100.0f);      // Match the size of the panel.
-    swapChainDesc.Height = (UINT)(panel->ActualHeight * (double)DisplayProperties::ResolutionScale / 100.0f);
+#if WINAPI_FAMILY == WINAPI_FAMILY_PHONE_APP
+    double rpp = displayInfo->RawPixelsPerViewPixel;
+    swapChainDesc.Width = (UINT) (panel->ActualWidth * rpp);      // Match the size of the panel.
+    swapChainDesc.Height = (UINT) (panel->ActualHeight * rpp);
+#else
+    swapChainDesc.Width = (UINT) (panel->ActualWidth * (double) displayInfo->ResolutionScale / 100.0f);      // Match the size of the panel.
+    swapChainDesc.Height = (UINT) (panel->ActualHeight * (double) displayInfo->ResolutionScale / 100.0f);
+#endif
     swapChainDesc.Format = DXGI_FORMAT_B8G8R8A8_UNORM;
     swapChainDesc.Stereo = false;
     swapChainDesc.SampleDesc.Count = 1;
