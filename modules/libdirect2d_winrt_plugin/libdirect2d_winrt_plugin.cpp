@@ -285,7 +285,7 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
         if (scaleH <= scaleW) {
             sys->scale = scaleH;
             sys->offset.x = (*sys->displayWidth - ((float)picture->format.i_visible_width * sys->scale)) / 2.0f;
-            sys->offset.y = 0.0f;;
+            sys->offset.y = 0.0f;
         }
         else {
             sys->scale = scaleW;
@@ -331,9 +331,7 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
     // Init and clear d2dContext render target
     sys->d2dContext->BeginDraw();
 
-    // 1 and -1 are ugly fix to remove green pixels around the frame
-    // TODO : find the bad round, and fix correctly.
-    D2D1_RECT_F pushRect = D2D1::RectF(1, 1, sys->size.width * sys->scale - 1, sys->size.height * sys->scale - 1);
+    D2D1_RECT_F pushRect = D2D1::RectF(1, 1, sys->size.width * sys->scale, sys->size.height * sys->scale);
     sys->d2dContext->PushAxisAlignedClip(&pushRect, D2D1_ANTIALIAS_MODE_ALIASED);
     sys->d2dContext->Clear(D2D1::ColorF(D2D1::ColorF::Black));
 
