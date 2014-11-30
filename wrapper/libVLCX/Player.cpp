@@ -110,7 +110,7 @@ void Player::InitializeVLC()
     }
 }
 
-void Player::UpdateSize(unsigned int x, unsigned int y)
+void Player::UpdateSize(float x, float y)
 {
 #if WINAPI_FAMILY == WINAPI_FAMILY_PHONE_APP
     const float scaleFactor = Windows::Graphics::Display::DisplayInformation::GetForCurrentView()->RawPixelsPerViewPixel;
@@ -118,8 +118,8 @@ void Player::UpdateSize(unsigned int x, unsigned int y)
     const float scaleFactor = (float) DisplayProperties::ResolutionScale / 100.f;
 #endif
 
-    m_displayWidth = (float)x * scaleFactor;
-    m_displayHeight = (float)y * scaleFactor;
+    m_displayWidth = x * scaleFactor;
+    m_displayHeight = y * scaleFactor;
 
     p_dxManager->UpdateSwapChain();
 }

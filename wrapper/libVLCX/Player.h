@@ -70,7 +70,7 @@ namespace libVLCX {
 
         virtual       ~Player();
         void          DetachEvent();
-        void          UpdateSize(unsigned int x, unsigned int y);
+        void          UpdateSize(float x, float y);
 
         void OpenSubtitle( Platform::String ^mrl);
 
