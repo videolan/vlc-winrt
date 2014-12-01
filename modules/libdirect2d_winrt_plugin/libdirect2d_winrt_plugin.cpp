@@ -181,16 +181,16 @@ static int Open(vlc_object_t *object)
 static void ClearBuffers(vout_display_sys_t* p_sys)
 {
     DXGI_PRESENT_PARAMETERS parameters = { 0 };
+    DXGI_SWAP_CHAIN_DESC1 desc;
 
-    p_sys->d2dContext->BeginDraw();
-    p_sys->d2dContext->Clear();
-    p_sys->d2dContext->EndDraw();
-    p_sys->swapChain->Present1(1, 0, &parameters);
-
-    p_sys->d2dContext->BeginDraw();
-    p_sys->d2dContext->Clear();
-    p_sys->d2dContext->EndDraw();
-    p_sys->swapChain->Present1(1, 0, &parameters);
+    p_sys->swapChain->GetDesc1(&desc);
+    for (unsigned int i = 0; i < desc.BufferCount; ++i)
+    {
+        p_sys->d2dContext->BeginDraw();
+        p_sys->d2dContext->Clear();
+        p_sys->d2dContext->EndDraw();
+        p_sys->swapChain->Present1(1, 0, &parameters);
+    }
 }
 
 static void Close(vlc_object_t * object){
