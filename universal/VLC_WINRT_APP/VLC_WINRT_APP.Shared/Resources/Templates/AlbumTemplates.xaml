@@ -73,6 +73,9 @@
                                 <MenuFlyoutItem Text="view artist"
                                                 Command="{Binding ViewArtist}"
                                                 CommandParameter="{Binding ArtistId}"/>
+                                <MenuFlyoutItem Text="pin album"
+                                                Command="{Binding PinAlbumCommand}"
+                                                CommandParameter="{Binding}"/>
                             </MenuFlyout>
                         </Button.Flyout>
                     </Button>

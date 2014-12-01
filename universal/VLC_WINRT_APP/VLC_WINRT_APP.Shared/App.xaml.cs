@@ -1,9 +1,11 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation.Collections;
+using Windows.Phone.Management.Deployment;
 using Windows.Storage;
 using Windows.Storage.AccessCache;
 using Windows.UI.Core;
@@ -15,6 +17,7 @@ using Windows.UI.Xaml.Navigation;
 using Autofac;
 using Autofac.Core;
 using VLC_WINRT.Common;
+using VLC_WINRT_APP.Commands.Music;
 using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.Helpers.MusicLibrary;
 using VLC_WINRT_APP.Model;
@@ -42,7 +45,7 @@ namespace VLC_WINRT_APP
         public static CoreDispatcher Dispatcher;
         public static IPropertySet LocalSettings = ApplicationData.Current.LocalSettings.Values;
         public static string ApiKeyLastFm = "a8eba7d40559e6f3d15e7cca1bfeaa1c";
-        public static string DeezerAppID = "135671";        
+        public static string DeezerAppID = "135671";
         public static OpenFilePickerReason OpenFilePickerReason = OpenFilePickerReason.Null;
 
         public static IContainer Container;
@@ -90,37 +93,82 @@ namespace VLC_WINRT_APP
                 DebugSettings.EnableFrameRateCounter = true;
             }
 #endif
-            if (Window.Current.Content != null) return;
-            await LaunchTheApp();
-            ApplicationFrame.Navigate(typeof(MainPageHome));
-            var rootFrame = Window.Current.Content as Frame;
-            if (rootFrame != null && rootFrame.Content == null)
+            if (Window.Current.Content == null)
             {
-#if WINDOWS_PHONE_APP
-                // Removes the turnstile navigation for startup.
-                if (rootFrame.ContentTransitions != null)
+                await LaunchTheApp();
+                ApplicationFrame.Navigate(typeof(MainPageHome));
+                var rootFrame = Window.Current.Content as Frame;
+                if (rootFrame != null && rootFrame.Content == null)
                 {
-                    this.transitions = new TransitionCollection();
-                    foreach (var c in rootFrame.ContentTransitions)
-                    {
-                        this.transitions.Add(c);
-                    }
-                }
-
-                rootFrame.ContentTransitions = null;
-#endif
-            }
 #if WINDOWS_PHONE_APP
-            ApplicationFrame.Navigated += this.RootFrame_FirstNavigated;
-#endif
-            // Ensure the current window is active
-            Window.Current.Activate();
+                    // Removes the turnstile navigation for startup.
+                    if (rootFrame.ContentTransitions != null)
+                    {
+                        this.transitions = new TransitionCollection();
+                        foreach (var c in rootFrame.ContentTransitions)
+                        {
+                            this.transitions.Add(c);
+                        }
+                    }
 
+                    rootFrame.ContentTransitions = null;
+#endif
+                }
+#if WINDOWS_PHONE_APP
+                ApplicationFrame.Navigated += this.RootFrame_FirstNavigated;
+#endif
+                // Ensure the current window is active
+                Window.Current.Activate();
+
+                try
+                {
+                    await ExceptionHelper.ExceptionLogCheckup();
+                }
+                catch
+                {
+                }
+            }
+            if (args.Arguments.Contains("SecondaryTile"))
+            {
+                RedirectFromSecondaryTile(args.Arguments);
+            }
+        }
+
+        private void RedirectFromSecondaryTile(string args)
+        {
             try
             {
-                await ExceptionHelper.ExceptionLogCheckup();
+                VLCItemType itemType;
+                var query = "";
+                int id;
+                if (args.Contains("Album"))
+                {
+                    itemType = VLCItemType.Album;
+                    query = args.Replace("SecondaryTile-Album-", "");
+                    id = int.Parse(query);
+                    if (Locator.MusicLibraryVM.LoadingState == LoadingState.Loaded)
+                    {
+                        App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                    Locator.MusicLibraryVM.AlbumClickedCommand.Execute(id));
+                    }
+                    else
+                    {
+                        MusicLibraryVM.MusicCollectionLoaded += (sender, eventArgs) =>
+                        {
+                            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                            Locator.MusicLibraryVM.AlbumClickedCommand.Execute(id));
+                        };
+                    }
+                }
+                else
+                {
+                    itemType = VLCItemType.Artist;
+                }
             }
-            catch { }
+            catch (Exception e)
+            {
+                //new MessageDialog(e.ToString()).ShowAsync();
+            }
         }
 
 #if WINDOWS_PHONE_APP
@@ -148,11 +196,11 @@ namespace VLC_WINRT_APP
                         await OpenFile(continueArgs.Files[0]);
                         break;
                     case OpenFilePickerReason.OnOpeningSubtitle:
-                    {
-                        string mru = StorageApplicationPermissions.FutureAccessList.Add(continueArgs.Files[0]);
-                        string mrl = "file://" + mru;
-                        Locator.VideoVm.OpenSubtitle(mrl);
-                    }                        break;
+                        {
+                            string mru = StorageApplicationPermissions.FutureAccessList.Add(continueArgs.Files[0]);
+                            string mrl = "file://" + mru;
+                            Locator.VideoVm.OpenSubtitle(mrl);
+                        } break;
                 }
             }
             OpenFilePickerReason = OpenFilePickerReason.Null;

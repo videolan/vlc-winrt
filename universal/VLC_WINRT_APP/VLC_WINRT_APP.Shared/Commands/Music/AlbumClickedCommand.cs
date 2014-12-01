@@ -1,4 +1,7 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using Windows.UI.Core;
+using Windows.UI.Popups;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using VLC_WINRT.Common;
@@ -35,7 +38,7 @@ namespace VLC_WINRT_APP.Commands.Music
                 Locator.MusicLibraryVM.Artists.FirstOrDefault(x => x.Id == album.ArtistId);
             if (App.ApplicationFrame.CurrentSourcePageType != typeof(AlbumPage))
             {
-                App.ApplicationFrame.Navigate(typeof (AlbumPage));
+                App.ApplicationFrame.Navigate(typeof(AlbumPage));
             }
             Locator.MusicLibraryVM.CurrentAlbum = album;
 #endif

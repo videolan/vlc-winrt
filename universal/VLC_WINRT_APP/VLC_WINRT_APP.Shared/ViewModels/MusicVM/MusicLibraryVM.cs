@@ -27,6 +27,7 @@ using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.Model.Music;
 using XboxMusicLibrary;
 using VLC_WINRT_APP.Commands.Music;
+using XboxMusicLibrary.Models;
 
 namespace VLC_WINRT_APP.ViewModels.MusicVM
 {
@@ -37,6 +38,9 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         public static AlbumDataRepository _albumDataRepository = new AlbumDataRepository();
         public static TracklistItemRepository TracklistItemRepository = new TracklistItemRepository();
         public static TrackCollectionRepository TrackCollectionRepository = new TrackCollectionRepository();
+        public delegate void LoadingEnded(object sender, string myValue);
+        public static LoadingEnded MusicCollectionLoaded = delegate { };
+
         #region private fields
 #if WINDOWS_APP
         private ObservableCollection<Model.Panel> _panels = new ObservableCollection<Model.Panel>();
@@ -311,6 +315,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         }
 
         #region methods
+
         public async Task GetFavoriteAndRandomAlbums()
         {
             await MusicLibraryManagement.LoadFavoriteRandomAlbums();
@@ -340,7 +345,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                 IsLoaded = true;
                 IsBusy = false;
             });
-
+            MusicCollectionLoaded(null, "music");
             // Routine check to add new files if there are new ones
             await MusicLibraryManagement.GetAllMusicFolders(true);
 #if WINDOWS_PHONE_APP

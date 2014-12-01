@@ -7,7 +7,11 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
+using System;
+using Windows.Storage;
 using Windows.UI.Notifications;
+using Windows.UI.StartScreen;
+using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.ViewModels;
 
 namespace VLC_WINRT_APP.Helpers
@@ -26,7 +30,7 @@ namespace VLC_WINRT_APP.Helpers
                 tileTextAttributes[1].InnerText = Locator.MusicPlayerVM.CurrentTrack.Name + " - " + Locator.MusicPlayerVM.CurrentTrack.ArtistName;
 
                 var tileImgAttribues = tileXml.GetElementsByTagName("image");
-                if(Locator.MusicPlayerVM.CurrentAlbum != null)
+                if (Locator.MusicPlayerVM.CurrentAlbum != null)
                     tileImgAttribues[0].Attributes[1].NodeValue = Locator.MusicPlayerVM.CurrentAlbum.Picture;
             }
 
@@ -68,6 +72,31 @@ namespace VLC_WINRT_APP.Helpers
 
             var tileNotification = new TileNotification(tileXml);
             TileUpdateManager.CreateTileUpdaterForApplication().Update(tileNotification);
+        }
+
+        public static async void CreateOrReplaceSecondaryTile(VLCItemType type, int id, string title)
+        {
+            string tileId = "SecondaryTile-" + type.ToString() + "-" + id;
+            var tileData = new SecondaryTile()
+            {
+                TileId = tileId,
+                DisplayName = title,
+                Arguments = tileId
+            };
+            string subfolder = null;
+            switch (type)
+            {
+                case VLCItemType.Album:
+                    subfolder = "albumPic";
+                    break;
+                case VLCItemType.Artist:
+                    subfolder = "artistPic";
+                    break;
+            }
+            tileData.VisualElements.ShowNameOnSquare150x150Logo = true;
+            tileData.DisplayName = title;
+            tileData.VisualElements.Square150x150Logo = new Uri("ms-appdata:///local/" + subfolder + "/" + id + ".jpg");
+            await tileData.RequestCreateAsync();
         }
     }
 }
