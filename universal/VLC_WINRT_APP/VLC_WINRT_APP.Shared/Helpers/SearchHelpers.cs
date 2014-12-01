@@ -7,6 +7,7 @@ using Windows.Storage.Streams;
 using Windows.UI.Xaml.Controls;
 using VLC_WINRT_APP.Helpers.MusicLibrary;
 using VLC_WINRT_APP.Helpers.VideoPlayer;
+using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.Model.Music;
 using VLC_WINRT_APP.Model.Search;
 using VLC_WINRT_APP.Model.Video;
@@ -20,29 +21,29 @@ namespace VLC_WINRT_APP.Helpers
 {
     public static class SearchHelpers
     {
-        public static async Task OpenSearchItem(SearchItemType type, string query, int idquery)
+        public static async Task OpenSearchItem(VLCItemType type, string query, int idquery)
         {
             switch (type)
             {
-                case SearchItemType.Track:
+                case VLCItemType.Track:
                     TrackItem trackItem = Locator.MusicLibraryVM.Tracks.FirstOrDefault(node => node.Id == idquery);
                     if (trackItem != null)
                     {
                         Locator.MusicLibraryVM.TrackClickedCommand.Execute(trackItem);
                     }
                     break;
-                case SearchItemType.Album:
+                case VLCItemType.Album:
                     AlbumItem albumItem = Locator.MusicLibraryVM.Albums.FirstOrDefault(x => x.Id == idquery);
                     if (albumItem != null)
                         albumItem.PlayAlbum.Execute(albumItem);
                     break;
-                case SearchItemType.Artist:
+                case VLCItemType.Artist:
                     ArtistItem artistItem =
                         Locator.MusicLibraryVM.Artists.FirstOrDefault(node => node.Id == idquery);
                     if (artistItem != null) Locator.MusicLibraryVM.CurrentArtist = artistItem;
                     App.ApplicationFrame.Navigate(typeof(ArtistPage));
                     break;
-                case SearchItemType.Video:
+                case VLCItemType.Video:
                     VideoItem vm = Locator.VideoLibraryVM.Videos.FirstOrDefault(x => x.Title == query);
                     await vm.Play();
                     break;
@@ -63,7 +64,7 @@ namespace VLC_WINRT_APP.Helpers
                 foreach (TrackItem item in trackItems)
                 {
                     Locator.MainVM.SearchResults.Add(new SearchResult(item.Name, item.Thumbnail,
-                        SearchItemType.Track, item.Id));
+                        VLCItemType.Track, item.Id));
                     //args.Request.SearchSuggestionCollection.AppendResultSuggestion(item.Name, "track", "track://" + item.Id, RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/Icons/music.png")), "music");
                 }
             }
@@ -76,7 +77,7 @@ namespace VLC_WINRT_APP.Helpers
                 {
                     Locator.MainVM.SearchResults.Add(new SearchResult(vm.Title,
                         ApplicationData.Current.LocalFolder.Path + "\\videoPic\\" + vm.Title + ".jpg",
-                        SearchItemType.Video));
+                        VLCItemType.Video));
                     //args.Request.SearchSuggestionCollection.AppendResultSuggestion(vm.Title, "video", "video://" + vm.Title,
                     //    RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/Icons/Video.png")), "video");
                 }
@@ -91,7 +92,7 @@ namespace VLC_WINRT_APP.Helpers
                 {
                     Locator.MainVM.SearchResults.Add(new SearchResult(artistItem.Name,
                         ApplicationData.Current.LocalFolder.Path + "\\artistPic\\" + artistItem.Id + ".jpg",
-                        SearchItemType.Artist, artistItem.Id));
+                        VLCItemType.Artist, artistItem.Id));
                     //args.Request.SearchSuggestionCollection.AppendResultSuggestion(artistItem.Name, "artist", "artist://" + artistItem.Id, RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/Icons/music.png")), "music");
                 }
             }
@@ -106,7 +107,7 @@ namespace VLC_WINRT_APP.Helpers
                 {
                     Locator.MainVM.SearchResults.Add(new SearchResult(albumItem.Name,
                         ApplicationData.Current.LocalFolder.Path + "\\albumPic\\" + albumItem.Id + ".jpg",
-                        SearchItemType.Album,
+                        VLCItemType.Album,
                         albumItem.Id));
                     //args.Request.SearchSuggestionCollection.AppendResultSuggestion(albumItem.Name, "album", "album://" + albumItem.Id, RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/Icons/music.png")), "music");
                 }

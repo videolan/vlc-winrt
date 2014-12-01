@@ -31,7 +31,7 @@ namespace VLC_WINRT_APP.Views.UserControls
         {
             int separatorIndex = args.Tag.IndexOf("://", System.StringComparison.Ordinal);
             int separatorEndIndex = separatorIndex + 3;
-            var type = (SearchItemType)int.Parse(args.Tag.Remove(separatorIndex));
+            var type = (VLCItemType)int.Parse(args.Tag.Remove(separatorIndex));
             string query = args.Tag.Remove(0, separatorEndIndex);
             // Instead of searching the database, search the music library VM. This way we already have the track and album information and
             // don't have to call the database for it again.

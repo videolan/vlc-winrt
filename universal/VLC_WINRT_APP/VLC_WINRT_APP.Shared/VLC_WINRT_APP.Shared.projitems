@@ -171,7 +171,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Model\OrderSettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Panel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\PlayingType.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Model\Search\SearchItemType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Search\SearchResult.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\SidebarState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Subtitle.cs" />
@@ -180,6 +179,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Model\Video\VideTemplateSizer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\VLCFileExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\VLCFolder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\VLCItemType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\DesignTime\ThumbnailService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Interface\IMediaControl.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Interface\IMediaService.cs" />

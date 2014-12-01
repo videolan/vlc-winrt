@@ -1,6 +1,6 @@
-﻿namespace VLC_WINRT_APP.Model.Search
+﻿namespace VLC_WINRT_APP.Model
 {
-    public enum SearchItemType
+    public enum VLCItemType
     {
         Video = 0,
         Album = 1,

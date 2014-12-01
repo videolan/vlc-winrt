@@ -9,7 +9,7 @@ namespace VLC_WINRT_APP.Model.Search
         private string _text;
         private string _picture;
         private int _id;
-        private SearchItemType _searchItemType;
+        private VLCItemType _searchItemType;
 
         public int Id
         {
@@ -29,13 +29,13 @@ namespace VLC_WINRT_APP.Model.Search
             set { _picture = value; }
         }
 
-        public SearchItemType SearchItemType
+        public VLCItemType SearchItemType
         {
             get { return _searchItemType; }
             set { _searchItemType = value; }
         }
 
-        public SearchResult(string text, string pic, SearchItemType itemType, int? id = null)
+        public SearchResult(string text, string pic, VLCItemType itemType, int? id = null)
         {
             Picture = pic;
             Text = text;
