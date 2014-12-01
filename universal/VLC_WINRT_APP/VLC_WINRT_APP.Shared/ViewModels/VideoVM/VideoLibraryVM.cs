@@ -41,6 +41,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
 {
     public class VideoLibraryVM : BindableBase
     {
+        public static LastVideosRepository _lastVideosRepository = new LastVideosRepository();
         #region private fields
 #if WINDOWS_APP
         private ObservableCollection<Panel> _panels = new ObservableCollection<Panel>();
@@ -56,7 +57,6 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
         private PickVideoCommand _pickCommand = new PickVideoCommand();
         private PlayNetworkMRLCommand _playNetworkMRL = new PlayNetworkMRLCommand();
         private bool _hasNoMedia = true;
-        public LastVideosRepository _lastVideosRepository = new LastVideosRepository();
         private ObservableCollection<TvShow> _shows = new ObservableCollection<TvShow>();
         private TvShow _currentShow;
 

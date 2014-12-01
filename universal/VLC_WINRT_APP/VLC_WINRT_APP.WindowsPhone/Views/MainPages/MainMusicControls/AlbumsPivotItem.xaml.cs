@@ -10,7 +10,7 @@ namespace VLC_WINRT_APP.Views.MainPages.MainMusicControls
         {
             this.InitializeComponent();
         }
-
+        
         private void AlbumsWrapGrid_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             TemplateSizer.ComputeAlbums(sender as ItemsWrapGrid);

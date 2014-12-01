@@ -59,7 +59,7 @@ namespace VLC_WINRT_APP.Views.MainPages
             else
             {
                 CommandBar.Visibility = Visibility.Collapsed;
-                MainPivot.Margin = new Thickness(-7,-15,-25,0);
+                MainPivot.Margin = new Thickness(-7, -15, -25, 0);
             }
         }
 

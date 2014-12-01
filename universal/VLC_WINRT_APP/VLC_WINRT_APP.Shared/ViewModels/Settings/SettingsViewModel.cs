@@ -192,7 +192,7 @@ namespace VLC_WINRT_APP.ViewModels.Settings
             {
                 if (!ApplicationSettingsHelper.Contains("SearchVideos")) SearchVideos = true;
                 var searchVideos = ApplicationSettingsHelper.ReadSettingsValue("SearchVideos");
-                
+
                 if (searchVideos != null && (bool)searchVideos)
                 {
                     _searchVideo = true;
@@ -219,7 +219,7 @@ namespace VLC_WINRT_APP.ViewModels.Settings
             get
             {
                 var enableSide = ApplicationSettingsHelper.ReadSettingsValue("EnableSidebar");
-                if (enableSide != null && (bool) enableSide)
+                if (enableSide != null && (bool)enableSide)
                 {
                     _enableSidebar = true;
                 }
