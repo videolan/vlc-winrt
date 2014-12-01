@@ -41,6 +41,5 @@ namespace libVLCX {
     public:
         ComPtr<ID2D1DeviceContext1> cp_d2dContext;
         ComPtr<IDXGISwapChain1>     cp_swapChain;
-        ComPtr<ID2D1Bitmap1>        cp_d2dTargetBitmap;
     };
 }
