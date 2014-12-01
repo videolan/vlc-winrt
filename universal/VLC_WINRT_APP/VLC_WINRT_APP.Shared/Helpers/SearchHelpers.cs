@@ -48,7 +48,7 @@ namespace VLC_WINRT_APP.Helpers
                     break;
             }
         }
-        //#if WINDOWS_PHONE_APP
+        #if WINDOWS_PHONE_APP
 
         public static async Task Search()
         {
@@ -114,7 +114,7 @@ namespace VLC_WINRT_APP.Helpers
         }
 
         //}
-        //#endif
+#endif
 #if WINDOWS_APP
         public static void Search(string tag, SearchBoxSuggestionsRequestedEventArgs args)
         {

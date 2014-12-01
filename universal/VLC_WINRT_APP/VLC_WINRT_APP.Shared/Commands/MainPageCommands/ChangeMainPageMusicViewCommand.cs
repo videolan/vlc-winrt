@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if WINDOWS_PHONE_APP
+using System;
 using System.Collections.Generic;
 using System.Text;
 using VLC_WINRT.Common;
@@ -41,3 +42,4 @@ namespace VLC_WINRT_APP.Commands.MainPageCommands
         }
     }
 }
+#endif

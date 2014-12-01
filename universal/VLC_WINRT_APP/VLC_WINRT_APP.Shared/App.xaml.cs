@@ -110,8 +110,9 @@ namespace VLC_WINRT_APP
                 rootFrame.ContentTransitions = null;
 #endif
             }
-
+#if WINDOWS_PHONE_APP
             ApplicationFrame.Navigated += this.RootFrame_FirstNavigated;
+#endif
             // Ensure the current window is active
             Window.Current.Activate();
 

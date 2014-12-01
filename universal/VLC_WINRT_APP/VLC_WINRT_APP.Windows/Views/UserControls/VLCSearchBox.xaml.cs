@@ -35,7 +35,15 @@ namespace VLC_WINRT_APP.Views.UserControls
             string query = args.Tag.Remove(0, separatorEndIndex);
             // Instead of searching the database, search the music library VM. This way we already have the track and album information and
             // don't have to call the database for it again.
-            SearchHelpers.OpenSearchItem(type, query);
+            int id = 0;
+            if (int.TryParse(query, out id))
+            {
+                SearchHelpers.OpenSearchItem(type, query, id);
+            }
+            else
+            {
+                SearchHelpers.OpenSearchItem(type, query, -1);
+            }
         }
     }
 }
