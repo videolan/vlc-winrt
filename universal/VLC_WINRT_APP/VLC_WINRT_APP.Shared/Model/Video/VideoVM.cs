@@ -45,6 +45,8 @@ namespace VLC_WINRT_APP.Model.Video
         // TVShows related
         private int _season = -1;
         private int _episode;
+
+        private bool _isImgLoaded = false;
         #endregion
 
         #region private fields
@@ -69,7 +71,10 @@ namespace VLC_WINRT_APP.Model.Video
         [Ignore]
         public ImageSource Image
         {
-            get { return _imageBrush; }
+            get
+            {
+                return _imageBrush;
+            }
             set { SetProperty(ref _imageBrush, value); }
         }
 
@@ -182,17 +187,8 @@ namespace VLC_WINRT_APP.Model.Video
         {
             if (storageFile != null)
             {
-                if (Image == null)
-                {
-                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                    {
-                        var img = new BitmapImage(new Uri("ms-appx:/Assets/NoCoverWide.jpg", UriKind.RelativeOrAbsolute));
-                        Image = img;
-                    });
-                }
                 File = storageFile;
                 Title = storageFile.DisplayName;
-                await GenerateThumbnail();
                 AlphaKey = Title.ToUpper()[0];
                 Subtitle = storageFile.FileType.ToUpper() + " File";
                 Type = storageFile.FileType.Replace(".", "").ToLower();

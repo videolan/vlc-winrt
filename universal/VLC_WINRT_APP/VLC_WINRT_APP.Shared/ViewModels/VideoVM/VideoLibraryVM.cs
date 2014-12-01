@@ -155,6 +155,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             await VideoLibraryManagement.GetViewedVideos();
             await VideoLibraryManagement.GetVideos();
             await VideoLibraryManagement.GetVideosFromCameraRoll();
+            await VideoLibraryManagement.GenerateAllThumbnails();
         }
         #endregion
 
