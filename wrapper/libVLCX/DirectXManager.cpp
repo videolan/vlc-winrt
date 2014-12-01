@@ -167,30 +167,6 @@ void DirectXManger::CreateSwapPanel(SwapChainPanel^ panel){
     CheckDXOperation(panelNative->SetSwapChain(cp_swapChain.Get()), "Could not associate the swapChain");
 }
 
-void DirectXManger::ClearSwapChainBuffers()
-{
-    if (cp_d2dContext)
-    {
-        cp_d2dContext->BeginDraw();
-        cp_d2dContext->Clear(D2D1::ColorF(D2D1::ColorF::Black));
-        cp_d2dContext->EndDraw();
-
-        DXGI_PRESENT_PARAMETERS parameters = { 0 };
-        parameters.DirtyRectsCount = 0;
-        parameters.pDirtyRects = nullptr;
-        parameters.pScrollRect = nullptr;
-        parameters.pScrollOffset = nullptr;
-
-        cp_swapChain->Present1(1, 0, &parameters);
-
-        cp_d2dContext->BeginDraw();
-        cp_d2dContext->Clear(D2D1::ColorF(D2D1::ColorF::Black));
-        cp_d2dContext->EndDraw();
-        cp_swapChain->Present1(1, 0, &parameters);
-
-    }
-}
-
 void DirectXManger::Trim()
 {
     if (cp_dxgiDev3 != nullptr)

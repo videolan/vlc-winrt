@@ -159,7 +159,6 @@ static int Open(vlc_object_t *object)
     vd->manage       = Manage;
     vd->control      = Control;
 
-
    sys->displayWidth = (float*)var_CreateGetInteger(vd, "winrt-width");
    sys->displayHeight = (float*)var_CreateGetInteger(vd, "winrt-height");
 
@@ -179,8 +178,25 @@ static int Open(vlc_object_t *object)
     return VLC_SUCCESS;
 }
 
+static void ClearBuffers(vout_display_sys_t* p_sys)
+{
+    DXGI_PRESENT_PARAMETERS parameters = { 0 };
+
+    p_sys->d2dContext->BeginDraw();
+    p_sys->d2dContext->Clear();
+    p_sys->d2dContext->EndDraw();
+    p_sys->swapChain->Present1(1, 0, &parameters);
+
+    p_sys->d2dContext->BeginDraw();
+    p_sys->d2dContext->Clear();
+    p_sys->d2dContext->EndDraw();
+    p_sys->swapChain->Present1(1, 0, &parameters);
+}
+
 static void Close(vlc_object_t * object){
     vout_display_t *vd = (vout_display_t *) object;
+
+    ClearBuffers(vd->sys);
 
     if (vd->sys->pool)
         picture_pool_Release(vd->sys->pool);
@@ -282,7 +298,6 @@ static void ResizeBuffers(vout_display_sys_t* p_sys, float dpiX, float dpiY)
         dpiY,
         D2D1_BITMAP_OPTIONS_TARGET | D2D1_BITMAP_OPTIONS_CANNOT_DRAW,
     };
-
 
     p_sys->swapChain->ResizeBuffers(0, *p_sys->displayWidth, *p_sys->displayHeight, DXGI_FORMAT_UNKNOWN, 0);
 

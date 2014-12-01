@@ -180,7 +180,6 @@ void Player::Open(Platform::String^ mrl)
     }
 
     delete[](p_mrl);
-    p_dxManager->ClearSwapChainBuffers();
 }
 
 void Player::Stop()
