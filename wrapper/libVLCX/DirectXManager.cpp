@@ -165,24 +165,6 @@ void DirectXManger::CreateSwapPanel(SwapChainPanel^ panel){
 
     // Associate swap chain with SwapChainPanel.  This must be done on the UI thread.
     CheckDXOperation(panelNative->SetSwapChain(cp_swapChain.Get()), "Could not associate the swapChain");
-
-    ComPtr<IDXGISurface> backBuffer;
-    CheckDXOperation(cp_swapChain->GetBuffer(0, IID_PPV_ARGS(&backBuffer)), "Could not get the DXGI backbuffer");
-
-    //set d2d target
-    ComPtr<ID2D1Bitmap1> d2dTargetBitmap;
-    hr = cp_d2dContext->CreateBitmapFromDxgiSurface(
-        backBuffer.Get(),
-        &bitmapProperties,
-        &d2dTargetBitmap
-        );
-
-    CheckDXOperation(hr, "Could not crete the Bitmap");
-
-    cp_d2dContext->SetTarget(d2dTargetBitmap.Get());
-
-    hr = dxgiDevice.As(&cp_dxgiDev3);
-    CheckDXOperation(hr, "Failed to get the DXGIDevice3 from Dxgidevice1");
 }
 
 void DirectXManger::ClearSwapChainBuffers()
