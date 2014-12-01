@@ -254,8 +254,9 @@ namespace VLC_WINRT_APP.ViewModels.Settings
             set
             {
                 ApplicationSettingsHelper.SaveSettingsValue("AlbumsOrderType", (int)value);
+                if (value != _albumsOrderType)
+                    MusicLibraryManagement.OrderAlbums();
                 SetProperty(ref _albumsOrderType, value);
-                MusicLibraryManagement.OrderAlbums();
             }
         }
 
@@ -271,14 +272,15 @@ namespace VLC_WINRT_APP.ViewModels.Settings
                 else
                 {
                     _albumsOrderListing = (OrderListing)albumsOrderListing;
-                } 
+                }
                 return _albumsOrderListing;
             }
             set
             {
                 ApplicationSettingsHelper.SaveSettingsValue("AlbumsOrderListing", (int)value);
+                if (value != _albumsOrderListing)
+                    MusicLibraryManagement.OrderAlbums();
                 SetProperty(ref _albumsOrderListing, value);
-                MusicLibraryManagement.OrderAlbums();
             }
         }
 
