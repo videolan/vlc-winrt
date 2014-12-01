@@ -41,44 +41,6 @@ void DirectXManger::CheckDXOperation(HRESULT hr, Platform::String^ message){
     }
 }
 
-
-void DirectXManger::UpdateSwapChain()
-{
-    if (cp_swapChain)
-    {
-        cp_d2dContext->SetTarget(nullptr);
-        cp_d2dTargetBitmap = nullptr;
-
-        const auto displayInfo = Windows::Graphics::Display::DisplayInformation::GetForCurrentView();
-        float dpiX = displayInfo->RawDpiX;
-        float dpiY = displayInfo->RawDpiY;
-
-        D2D1_BITMAP_PROPERTIES1 bitmapProperties =
-            BitmapProperties1(
-            D2D1_BITMAP_OPTIONS_TARGET | D2D1_BITMAP_OPTIONS_CANNOT_DRAW,
-            PixelFormat(DXGI_FORMAT_B8G8R8A8_UNORM, D2D1_ALPHA_MODE_PREMULTIPLIED),
-            displayInfo->RawDpiX,
-            displayInfo->RawDpiY);
-
-
-        cp_swapChain->ResizeBuffers(0, 0, 0, DXGI_FORMAT_UNKNOWN, 0);
-
-        ComPtr<IDXGISurface> dxgiBackBuffer;
-        CheckDXOperation(cp_swapChain->GetBuffer(0, IID_PPV_ARGS(&dxgiBackBuffer)), "Could not get the DXGI backbuffer");
-
-        //set d2d target
-        HRESULT hr = cp_d2dContext->CreateBitmapFromDxgiSurface(
-            dxgiBackBuffer.Get(),
-            &bitmapProperties,
-            &cp_d2dTargetBitmap
-            );
-
-        CheckDXOperation(hr, "Could not create the Bitmap");
-
-        cp_d2dContext->SetTarget(cp_d2dTargetBitmap.Get());
-    }
-}
-
 void DirectXManger::CreateSwapPanel(SwapChainPanel^ panel){
     HRESULT hr;
     ComPtr<IDXGIFactory2> dxgiFactory;
@@ -163,7 +125,7 @@ void DirectXManger::CreateSwapPanel(SwapChainPanel^ panel){
     DXGI_SWAP_CHAIN_DESC1 swapChainDesc = { 0 };
 #if WINAPI_FAMILY == WINAPI_FAMILY_PHONE_APP
     double rpp = displayInfo->RawPixelsPerViewPixel;
-    swapChainDesc.Width = (UINT) (panel->ActualWidth * rpp);      // Match the size of the panel.
+    swapChainDesc.Width = (UINT) (panel->ActualWidth * rpp);
     swapChainDesc.Height = (UINT) (panel->ActualHeight * rpp);
 #else
     swapChainDesc.Width = (UINT) (panel->ActualWidth * (double) displayInfo->ResolutionScale / 100.0f);      // Match the size of the panel.

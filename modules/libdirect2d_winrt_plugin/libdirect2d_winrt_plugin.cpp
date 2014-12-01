@@ -30,6 +30,9 @@
 #include <sstream>
 #include <ppltasks.h>
 #include <windows.ui.xaml.media.dxinterop.h>
+#include <d2d1_1helper.h>
+#include <d2d1helper.h>
+#include <objbase.h>
 #include "../../wrapper/libVLCX/Helpers.h"
 
 #include "I420Effect.h"
@@ -121,6 +124,8 @@ struct vout_display_sys_t {
     ComPtr<ID2D1Factory2>        d2dFactory;
     ComPtr<ID2D1DeviceContext1>  d2dContext;
     ComPtr<IDXGISwapChain1>      swapChain;
+    ComPtr<IDXGISurface>         backBuffer;
+    ComPtr<ID2D1Bitmap1>         targetBitmap;
 };
 
 
@@ -163,8 +168,6 @@ static int Open(vlc_object_t *object)
 
     uintptr_t swapChainInt = (uintptr_t)var_CreateGetInteger(vd, "winrt-swapchain");
     reinterpret_cast<IUnknown*>(swapChainInt)->QueryInterface(IID_PPV_ARGS(&sys->swapChain));
-
-
 
     if (sys->d2dContext == NULL || sys->swapChain == NULL) {
         free(sys);
@@ -256,6 +259,36 @@ static picture_pool_t *Pool(vout_display_t *vd, unsigned count)
     return sys->pool;
 }
 
+static void ResizeBuffers(vout_display_sys_t* p_sys, float dpiX, float dpiY)
+{
+    p_sys->d2dContext->SetTarget(nullptr);
+    p_sys->backBuffer = nullptr;
+    p_sys->targetBitmap = nullptr;
+
+    D2D1_PIXEL_FORMAT pixelFormat = {
+        DXGI_FORMAT_B8G8R8A8_UNORM,
+        D2D1_ALPHA_MODE_PREMULTIPLIED
+    };
+
+    D2D1_BITMAP_PROPERTIES1 bitmapProperties = {
+        pixelFormat,
+        dpiX,
+        dpiY,
+        D2D1_BITMAP_OPTIONS_TARGET | D2D1_BITMAP_OPTIONS_CANNOT_DRAW,
+    };
+
+
+    p_sys->swapChain->ResizeBuffers(0, *p_sys->displayWidth, *p_sys->displayHeight, DXGI_FORMAT_UNKNOWN, 0);
+
+    p_sys->swapChain->GetBuffer(0, IID_PPV_ARGS(&p_sys->backBuffer));
+
+    //set d2d target
+    p_sys->d2dContext->CreateBitmapFromDxgiSurface(p_sys->backBuffer.Get(), &bitmapProperties, &p_sys->targetBitmap);
+
+    p_sys->d2dContext->SetTarget(p_sys->targetBitmap.Get());
+
+}
+
 static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpicture)
 {
 
@@ -267,7 +300,6 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
         sys->size.width = picture->format.i_visible_width;
         sys->size.height = picture->format.i_visible_height;
 
-
         sys->halfSize = sys->size;
         sys->halfSize.width = sys->size.width / 2;
         sys->halfSize.height = sys->size.height / 2;
@@ -277,7 +309,6 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
         sys->d2dContext->GetDpi(&dpiX, &dpiY);
         sys->lastDisplayWidth = *sys->displayWidth;
         sys->lastDisplayHeight = *sys->displayHeight;
-
 
         float scaleW = ceilf(*sys->displayWidth) / (float)picture->format.i_visible_width;
         float scaleH = ceilf(*sys->displayHeight) / (float)picture->format.i_visible_height;
@@ -295,6 +326,8 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
         }
         UpdateResourcesFromWindowSizeChanged(vd);
 
+        ResizeBuffers(sys, dpiX, dpiY);
+
         HRESULT hrx = sys->d2dContext->CreateEffect(CLSID_CustomI420Effect, &sys->yuvEffect);
 
         sys->yuvEffect->SetInputCount(3);
@@ -305,7 +338,7 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
 
         // Init bitmap properties in which will store the y (lumi) plane
         D2D1_BITMAP_PROPERTIES1 props;
-        D2D1_PIXEL_FORMAT      pixFormat;
+        D2D1_PIXEL_FORMAT       pixFormat;
 
         pixFormat.alphaMode = D2D1_ALPHA_MODE_STRAIGHT;
         pixFormat.format = DXGI_FORMAT_A8_UNORM;
