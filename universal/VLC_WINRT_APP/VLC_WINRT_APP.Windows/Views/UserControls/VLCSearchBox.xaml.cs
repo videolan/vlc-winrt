@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
 using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.Model.Music;
+using VLC_WINRT_APP.Model.Search;
 using VLC_WINRT_APP.Model.Video;
 using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.Helpers.MusicPlayer;
@@ -30,38 +31,11 @@ namespace VLC_WINRT_APP.Views.UserControls
         {
             int separatorIndex = args.Tag.IndexOf("://", System.StringComparison.Ordinal);
             int separatorEndIndex = separatorIndex + 3;
-            string type = args.Tag.Remove(separatorIndex);
+            var type = (SearchItemType)int.Parse(args.Tag.Remove(separatorIndex));
             string query = args.Tag.Remove(0, separatorEndIndex);
             // Instead of searching the database, search the music library VM. This way we already have the track and album information and
             // don't have to call the database for it again.
-            switch (type)
-            {
-                case "track":
-                    TrackItem trackItem = Locator.MusicLibraryVM.Tracks.FirstOrDefault(node => node.Id == int.Parse(query));
-                    if (trackItem != null)
-                    {
-                        Locator.MusicLibraryVM.TrackClickedCommand.Execute(trackItem);
-                    }
-                    break;
-                case "album":
-
-                    AlbumItem albumItem = Locator.MusicLibraryVM.Albums.FirstOrDefault(x => x.Id == int.Parse(query));
-                    if (albumItem != null)
-                        albumItem.PlayAlbum.Execute(albumItem);
-                    break;
-                case "artist":
-                    ArtistItem artistItem =
-                        Locator.MusicLibraryVM.Artists.FirstOrDefault(node => node.Id == int.Parse(query));
-                    Locator.MusicLibraryVM.CurrentArtist = artistItem;
-#if WINDOWS_APP
-                    App.ApplicationFrame.Navigate(typeof(ArtistPage));
-#endif
-                    break;
-                case "video":
-                    VideoItem vm = Locator.VideoLibraryVM.Videos.FirstOrDefault(x => x.Title == query);
-                    await vm.Play();
-                    break;
-            }
+            SearchHelpers.OpenSearchItem(type, query);
         }
     }
 }

@@ -6,39 +6,49 @@ using Windows.Storage;
 using Windows.Storage.Streams;
 using Windows.UI.Xaml.Controls;
 using VLC_WINRT_APP.Helpers.MusicLibrary;
+using VLC_WINRT_APP.Helpers.VideoPlayer;
 using VLC_WINRT_APP.Model.Music;
+using VLC_WINRT_APP.Model.Search;
 using VLC_WINRT_APP.Model.Video;
 using VLC_WINRT_APP.ViewModels;
 #if WINDOWS_APP
 using Windows.ApplicationModel.Search;
 #endif
+using VLC_WINRT_APP.Views.MusicPages;
+
 namespace VLC_WINRT_APP.Helpers
 {
     public static class SearchHelpers
     {
-//#if WINDOWS_PHONE_APP
-        public class SearchResult
+        public static async Task OpenSearchItem(SearchItemType type, string query, int idquery)
         {
-            private string _text  ;
-            private string _picture;
-
-            public string Text
+            switch (type)
             {
-                get { return _text; }
-                set { _text   = value; }
-            }
-
-            public string Picture
-            {
-                get { return _picture; }
-                set { _picture = value; }
-            }
-            public SearchResult(string text, string pic)
-            {
-                Picture = pic;
-                Text = text;
+                case SearchItemType.Track:
+                    TrackItem trackItem = Locator.MusicLibraryVM.Tracks.FirstOrDefault(node => node.Id == idquery);
+                    if (trackItem != null)
+                    {
+                        Locator.MusicLibraryVM.TrackClickedCommand.Execute(trackItem);
+                    }
+                    break;
+                case SearchItemType.Album:
+                    AlbumItem albumItem = Locator.MusicLibraryVM.Albums.FirstOrDefault(x => x.Id == idquery);
+                    if (albumItem != null)
+                        albumItem.PlayAlbum.Execute(albumItem);
+                    break;
+                case SearchItemType.Artist:
+                    ArtistItem artistItem =
+                        Locator.MusicLibraryVM.Artists.FirstOrDefault(node => node.Id == idquery);
+                    if (artistItem != null) Locator.MusicLibraryVM.CurrentArtist = artistItem;
+                    App.ApplicationFrame.Navigate(typeof(ArtistPage));
+                    break;
+                case SearchItemType.Video:
+                    VideoItem vm = Locator.VideoLibraryVM.Videos.FirstOrDefault(x => x.Title == query);
+                    await vm.Play();
+                    break;
             }
         }
+        //#if WINDOWS_PHONE_APP
 
         public static async Task Search()
         {
@@ -52,7 +62,8 @@ namespace VLC_WINRT_APP.Helpers
                     Locator.MusicLibraryVM.Tracks.Where(x => x.Name.ToLower().Contains(Locator.MainVM.SearchTag));
                 foreach (TrackItem item in trackItems)
                 {
-                    Locator.MainVM.SearchResults.Add(new SearchResult(item.Name, item.Thumbnail));
+                    Locator.MainVM.SearchResults.Add(new SearchResult(item.Name, item.Thumbnail,
+                        SearchItemType.Track, item.Id));
                     //args.Request.SearchSuggestionCollection.AppendResultSuggestion(item.Name, "track", "track://" + item.Id, RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/Icons/music.png")), "music");
                 }
             }
@@ -64,7 +75,8 @@ namespace VLC_WINRT_APP.Helpers
                 foreach (VideoItem vm in videoVms)
                 {
                     Locator.MainVM.SearchResults.Add(new SearchResult(vm.Title,
-                        ApplicationData.Current.LocalFolder.Path + "\\videoPic\\" + vm.Title + ".jpg"));
+                        ApplicationData.Current.LocalFolder.Path + "\\videoPic\\" + vm.Title + ".jpg",
+                        SearchItemType.Video));
                     //args.Request.SearchSuggestionCollection.AppendResultSuggestion(vm.Title, "video", "video://" + vm.Title,
                     //    RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/Icons/Video.png")), "video");
                 }
@@ -78,7 +90,8 @@ namespace VLC_WINRT_APP.Helpers
                 foreach (var artistItem in artistItems)
                 {
                     Locator.MainVM.SearchResults.Add(new SearchResult(artistItem.Name,
-                        ApplicationData.Current.LocalFolder.Path + "\\artistPic\\" + artistItem.Id + ".jpg"));
+                        ApplicationData.Current.LocalFolder.Path + "\\artistPic\\" + artistItem.Id + ".jpg",
+                        SearchItemType.Artist, artistItem.Id));
                     //args.Request.SearchSuggestionCollection.AppendResultSuggestion(artistItem.Name, "artist", "artist://" + artistItem.Id, RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/Icons/music.png")), "music");
                 }
             }
@@ -92,14 +105,16 @@ namespace VLC_WINRT_APP.Helpers
                 foreach (AlbumItem albumItem in albumItems)
                 {
                     Locator.MainVM.SearchResults.Add(new SearchResult(albumItem.Name,
-                        ApplicationData.Current.LocalFolder.Path + "\\albumPic\\" + albumItem.Id + ".jpg"));
+                        ApplicationData.Current.LocalFolder.Path + "\\albumPic\\" + albumItem.Id + ".jpg",
+                        SearchItemType.Album,
+                        albumItem.Id));
                     //args.Request.SearchSuggestionCollection.AppendResultSuggestion(albumItem.Name, "album", "album://" + albumItem.Id, RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/Icons/music.png")), "music");
                 }
             }
         }
 
-//}
-//#endif
+        //}
+        //#endif
 #if WINDOWS_APP
         public static void Search(string tag, SearchBoxSuggestionsRequestedEventArgs args)
         {
@@ -114,13 +129,13 @@ namespace VLC_WINRT_APP.Helpers
             IEnumerable<TrackItem> trackItems = Locator.MusicLibraryVM.Tracks.Where(x => x.Name.ToLower().Contains(tag));
             foreach (TrackItem item in trackItems)
             {
-                args.Request.SearchSuggestionCollection.AppendResultSuggestion(item.Name, "track", "track://" + item.Id, RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/Icons/music.png")), "music");
+                args.Request.SearchSuggestionCollection.AppendResultSuggestion(item.Name, "3", "track://" + item.Id, RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/Icons/music.png")), "music");
             }
 
             IEnumerable<VideoItem> videoVms = Locator.VideoLibraryVM.Videos.Where(x => x.Title.ToLower().Contains(tag));
             foreach (VideoItem vm in videoVms)
             {
-                args.Request.SearchSuggestionCollection.AppendResultSuggestion(vm.Title, "video", "video://" + vm.Title,
+                args.Request.SearchSuggestionCollection.AppendResultSuggestion(vm.Title, "0", "video://" + vm.Title,
                     RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/Icons/Video.png")), "video");
             }
 
@@ -129,7 +144,7 @@ namespace VLC_WINRT_APP.Helpers
 
             foreach (var artistItem in artistItems)
             {
-                args.Request.SearchSuggestionCollection.AppendResultSuggestion(artistItem.Name, "artist", "artist://" + artistItem.Id, RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/Icons/music.png")), "music");
+                args.Request.SearchSuggestionCollection.AppendResultSuggestion(artistItem.Name, "2", "artist://" + artistItem.Id, RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/Icons/music.png")), "music");
             }
 
             IEnumerable<AlbumItem> albumItems =
@@ -138,7 +153,7 @@ namespace VLC_WINRT_APP.Helpers
 
             foreach (AlbumItem albumItem in albumItems)
             {
-                args.Request.SearchSuggestionCollection.AppendResultSuggestion(albumItem.Name, "album", "album://" + albumItem.Id, RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/Icons/music.png")), "music");
+                args.Request.SearchSuggestionCollection.AppendResultSuggestion(albumItem.Name, "1", "album://" + albumItem.Id, RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/Icons/music.png")), "music");
             }
 
             deferral.Complete();

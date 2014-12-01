@@ -21,6 +21,7 @@ using VLC_WINRT_APP.Commands.MainPageCommands;
 using VLC_WINRT_APP.Common;
 using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.Commands;
+using VLC_WINRT_APP.Model.Search;
 using VLC_WINRT_APP.Views.MainPages;
 using VLC_WINRT_APP.Views.VariousPages;
 using Panel = VLC_WINRT_APP.Model.Panel;
@@ -32,7 +33,7 @@ namespace VLC_WINRT_APP.ViewModels
         #region private fields
         private ObservableCollection<Panel> _panels = new ObservableCollection<Panel>();
 #if WINDOWS_PHONE_APP
-        private ObservableCollection<SearchHelpers.SearchResult> _searchResults;
+        private ObservableCollection<SearchResult> _searchResults;
 #endif
         #endregion
         #region private props
@@ -45,6 +46,7 @@ namespace VLC_WINRT_APP.ViewModels
         private ChangeMainPageMusicViewCommand _changeMainPageMusicViewCommand;
         private ChangeMainPageVideoViewCommand _changeMainPageVideoViewCommand;
         private AlwaysExecutableCommand _goToSearchPage;
+        private SearchClickedCommand _searchClickedCommand;
         private string _searchTag;
 #endif
         #endregion
@@ -73,7 +75,7 @@ namespace VLC_WINRT_APP.ViewModels
             }
         }
 
-        public ObservableCollection<SearchHelpers.SearchResult> SearchResults
+        public ObservableCollection<SearchResult> SearchResults
         {
             get { return _searchResults; }
             set { SetProperty(ref _searchResults, value); }
@@ -127,6 +129,11 @@ namespace VLC_WINRT_APP.ViewModels
             set { _goToSearchPage = value; }
         }
 
+        public SearchClickedCommand SearchClickedCommand
+        {
+            get { return _searchClickedCommand; }
+            set { SetProperty(ref _searchClickedCommand, value); }
+        }
         public string SearchTag
         {
             get { return _searchTag; }
@@ -159,7 +166,8 @@ namespace VLC_WINRT_APP.ViewModels
             });
             ChangeMainPageMusicViewCommand = new ChangeMainPageMusicViewCommand();
             ChangeMainPageVideoViewCommand = new ChangeMainPageVideoViewCommand();
-            SearchResults = new ObservableCollection<SearchHelpers.SearchResult>();
+            SearchResults = new ObservableCollection<SearchResult>();
+            SearchClickedCommand = new SearchClickedCommand();
 #endif
             // TODO: For Windows 8.1 build, use ResourceLoader.GetForCurrentView(); 
 
