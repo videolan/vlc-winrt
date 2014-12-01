@@ -31,7 +31,23 @@
             <RowDefinition />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal"
+        <Grid Background="Transparent"
+              Grid.Row="0"
+              Grid.RowSpan="3"
+              Tapped="VideoGrid_Tapped"
+              DoubleTapped="VideoGrid_DoubleTapped">
+            <controls:FadeTextBlock x:Name="Hud"
+                                    x:FieldModifier="public">
+                <TextBlock x:Name="HudTextBlock"
+                           x:FieldModifier="public"
+                           Text=""
+                           Style="{StaticResource HeaderTextBlockStyle}"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center" />
+            </controls:FadeTextBlock>
+        </Grid>
+        <StackPanel Grid.Row="0"
+                    Orientation="Horizontal"
                     VerticalAlignment="Top"
                     Margin="42"
                     x:Name="HeaderGrid">
@@ -50,21 +66,6 @@
                          Foreground="#7FFFFFFF" />
             </TextBlock>
         </StackPanel>
-        <Grid Background="Transparent"
-              Grid.Row="0"
-              Grid.RowSpan="3"
-              Tapped="VideoGrid_Tapped"
-              DoubleTapped="VideoGrid_DoubleTapped">
-            <controls:FadeTextBlock x:Name="Hud"
-                                    x:FieldModifier="public">
-                <TextBlock x:Name="HudTextBlock"
-                           x:FieldModifier="public"
-                           Text=""
-                           Style="{StaticResource HeaderTextBlockStyle}"
-                           VerticalAlignment="Center"
-                           HorizontalAlignment="Center" />
-            </controls:FadeTextBlock>
-        </Grid>
         <Grid Grid.Row="2"
               x:Name="FooterGrid"
               VerticalAlignment="Bottom"
