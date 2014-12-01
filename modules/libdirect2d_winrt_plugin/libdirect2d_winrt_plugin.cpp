@@ -198,8 +198,14 @@ static void Close(vlc_object_t * object){
         vd->sys->yuvEffect->Release();
 
     if (vd->sys->d2dContext)
+    {
         vd->sys->d2dContext->Flush();
-
+        vd->sys->d2dContext = nullptr;
+    }
+    vd->sys->d2dFactory = nullptr;
+    vd->sys->swapChain = nullptr;
+    vd->sys->backBuffer = nullptr;
+    vd->sys->targetBitmap = nullptr;
 
     free(vd->sys);
     return;
@@ -286,7 +292,6 @@ static void ResizeBuffers(vout_display_sys_t* p_sys, float dpiX, float dpiY)
     p_sys->d2dContext->CreateBitmapFromDxgiSurface(p_sys->backBuffer.Get(), &bitmapProperties, &p_sys->targetBitmap);
 
     p_sys->d2dContext->SetTarget(p_sys->targetBitmap.Get());
-
 }
 
 static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpicture)
