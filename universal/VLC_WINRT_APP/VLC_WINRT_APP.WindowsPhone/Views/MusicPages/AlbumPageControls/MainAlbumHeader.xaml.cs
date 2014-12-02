@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
 using WinRTXamlToolkit.Controls.Extensions;
 
 namespace VLC_WINRT_APP.Views.MusicPages.AlbumPageControls
@@ -47,7 +49,17 @@ namespace VLC_WINRT_APP.Views.MusicPages.AlbumPageControls
             this.SizeChanged -= OnSizeChanged;
         }
 
-        private async void SwypeRightToLeft_Button_Click(object sender, RoutedEventArgs e)
+        private void SwypeRightToLeft_Button_Click(object sender, RoutedEventArgs e)
+        {
+            SwypeToPanelTwo();
+        }
+
+        private void SwypeRightToLeft_Button_Tap(object sender, TappedRoutedEventArgs e)
+        {
+            SwypeToPanelTwo();
+        }
+
+        async Task SwypeToPanelTwo()
         {
             var albumPage = App.ApplicationFrame.Content as AlbumPage;
             if (albumPage != null)

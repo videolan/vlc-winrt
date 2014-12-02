@@ -13,12 +13,12 @@
             <ColumnDefinition Width="24" />
             <ColumnDefinition Width="3*" />
             <ColumnDefinition Width="4*" />
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
         <Image Grid.Column="1"
                Source="{Binding CurrentAlbum.Picture}"
-               Margin="-6,0,0,6" 
-               HorizontalAlignment="Left"/>
+               Margin="-6,0,0,6"
+               HorizontalAlignment="Left" />
         <Grid Margin="24,0,0,0"
               Grid.Column="2"
               HorizontalAlignment="Left"
@@ -63,13 +63,16 @@
                               Style="{StaticResource AppBarButtonStyleHorizontal}" />
             </StackPanel>
         </Grid>
-        <Button Grid.Column="3"
-                Content=""
-                FontFamily="Segoe UI Symbol"
-                FontSize="32"
-                VerticalAlignment="Center"
-                Margin="0,0,6,0"
-                Style="{StaticResource TextBlockButtonStyle}"
-                Click="SwypeRightToLeft_Button_Click" />
+        <Grid Grid.Column="3"
+              Background="Transparent"
+              Tapped="SwypeRightToLeft_Button_Tap">
+            <Button Content=""
+                    FontFamily="Segoe UI Symbol"
+                    FontSize="32"
+                    VerticalAlignment="Center"
+                    Margin="0,0,6,0"
+                    Style="{StaticResource TextBlockButtonStyle}"
+                    Click="SwypeRightToLeft_Button_Click" />
+        </Grid>
     </Grid>
 </UserControl>
