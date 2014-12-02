@@ -136,8 +136,7 @@ void DirectXManger::CreateSwapPanel(SwapChainPanel^ panel){
     swapChainDesc.SampleDesc.Count = 1;
     swapChainDesc.SampleDesc.Quality = 0;
     swapChainDesc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
-    // This seems to NOT include the front buffer http://www.gamedev.net/topic/633807-swap-chain-buffer-count/
-    swapChainDesc.BufferCount = 1;
+    swapChainDesc.BufferCount = 2;
     swapChainDesc.SwapEffect = DXGI_SWAP_EFFECT_FLIP_SEQUENTIAL;
     swapChainDesc.Flags = 0;
     swapChainDesc.AlphaMode = DXGI_ALPHA_MODE_UNSPECIFIED;
