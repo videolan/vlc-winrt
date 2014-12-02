@@ -11,8 +11,8 @@ How to compile VLC for WinRT:
 -----------------------------
 
 You need:
-* Visual Studio 2012
-* Windows 8
+* Visual Studio 2013 update 4
+* Windows 8.1
 
 If you are only on Windows, skip the step 0)
 
