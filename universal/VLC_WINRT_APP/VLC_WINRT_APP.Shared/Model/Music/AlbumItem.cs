@@ -29,7 +29,8 @@ namespace VLC_WINRT_APP.Model.Music
         private FavoriteAlbumCommand _favoriteAlbumCommand = new FavoriteAlbumCommand();
         private AlbumTrackClickedCommand _trackClickedCommand = new AlbumTrackClickedCommand();
         private ArtistClickedCommand _viewArtist = new ArtistClickedCommand();
-        private PinAlbumCommand _pinAlbumCommand= new PinAlbumCommand();
+        private PinAlbumCommand _pinAlbumCommand = new PinAlbumCommand();
+        private SeeArtistShowsCommand seeArtistShowsCommand;
 
         [PrimaryKey, AutoIncrement, Column("_id")]
         public int Id { get; set; }
@@ -152,5 +153,13 @@ namespace VLC_WINRT_APP.Model.Music
             set { SetProperty(ref _pinAlbumCommand, value); }
         }
 
+        [Ignore]
+        public SeeArtistShowsCommand SeeArtistShowsCommand
+        {
+            get
+            {
+                return seeArtistShowsCommand ?? (seeArtistShowsCommand = new SeeArtistShowsCommand());
+            }
+        }
     }
 }
