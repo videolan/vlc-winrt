@@ -24,6 +24,15 @@
               DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}"
               Height="50"
               VerticalAlignment="Top" />
+        <Grid Margin="0,50,0,0" Height="7"
+              VerticalAlignment="Top">
+           <Grid.Background>
+               <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                   <GradientStop Color="#23000000" Offset="0"/>
+                   <GradientStop Color="#00000000" Offset="1"/>
+               </LinearGradientBrush>
+           </Grid.Background>
+        </Grid>
         <!--<Grid Grid.Row="0"
               Background="WhiteSmoke"
               VerticalAlignment="Top"
