@@ -9,6 +9,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 using Windows.ApplicationModel.Resources;
 using VLC_WINRT_APP.Helpers.MusicLibrary.LastFm;
@@ -35,6 +36,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary.MusicEntities
 
         public bool OnTour { get; set; }
 
+        public List<Event> Shows { get; set; }  
         /// <summary>
         /// Map from LastFmClient TopArtist LastFmClient Entity.
         /// </summary>
@@ -130,6 +132,14 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary.MusicEntities
             var bigImage = new Image() { Url = string.Format("{0}?size=big", deezerArtist.Picture) };
             this.Images = new List<Image>(){smallImage, mediumImage, bigImage};
             this.DeezerId = deezerArtist.Id.ToString();
+        }
+
+        public void MapFrom(ArtistEventInformation artistEventInformation)
+        {
+            if (artistEventInformation == null) return;
+            if (artistEventInformation.Events == null) return;
+            if (artistEventInformation.Events.Event == null) return;
+            this.Shows = artistEventInformation.Events.Event.ToList();
         }
     }
 }

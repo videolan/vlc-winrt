@@ -133,6 +133,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\MusicLibrary\IMusicInformationManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\MusicLibrary\LastFmClient.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\MusicLibrary\LastFm\AlbumInformation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\MusicLibrary\LastFm\ArtistEventInformation.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\MusicLibrary\LastFm\ArtistInformation.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\MusicLibrary\LastFm\SimilarArtistInformation.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\MusicLibrary\LastFm\TopAlbumInformation.cs" />

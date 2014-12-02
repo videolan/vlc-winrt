@@ -24,6 +24,30 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
 {
     public class LastFmClient : IMusicInformationManager
     {
+        public async Task<Artist> GetArtistEventInfo(string artistName)
+        {
+            try
+            {
+                var lastFmClient = new HttpClient();
+                string url =
+                    string.Format(
+                        "http://ws.audioscrobbler.com/2.0/?method=artist.getevents&artist={1}&api_key={0}&format=json&pretty=true",
+                        App.ApiKeyLastFm, artistName);
+                var reponse = await lastFmClient.GetStringAsync(url);
+                var artistEventInfo = JsonConvert.DeserializeObject<ArtistEventInformation>(reponse);
+                if (artistEventInfo == null) return null;
+                if (artistEventInfo.Events == null) return null;
+                if (artistEventInfo.Events.Event == null) return null;
+                var artist = new Artist();
+                artist.MapFrom(artistEventInfo);
+                return artist;
+            }
+            catch (Exception e)
+            {
+                LogHelper.Log("Error when trying to get Shows for artist : " + artistName + " exception log " + e.ToString());
+            } return null;
+        }
+
         public async Task<Artist> GetArtistInfo(string artistName)
         {
             try

@@ -8,11 +8,14 @@
  **********************************************************************/
 
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Windows.UI.Core;
+using Newtonsoft.Json.Linq;
 using VLC_WINRT.Common;
 using Windows.Storage;
 using Windows.Storage.Streams;
@@ -96,6 +99,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                 return false;
             }
         }
+
         private static async Task<bool> DownloadAlbumPictureFromLastFm(AlbumItem album)
         {
             var lastFmClient = new LastFmClient();
@@ -114,6 +118,49 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             catch (Exception ex)
             {
                 Debug.WriteLine("Error getting or saving art from lastFm. {0}", ex);
+            }
+            return false;
+        }
+
+        public static async Task GetArtistEvents(ArtistItem artist)
+        {
+            await DownloadArtistEventFromLastFm(artist);
+        }
+
+        private static async Task<bool> DownloadArtistEventFromLastFm(ArtistItem artist)
+        {
+            var lastFmClient = new LastFmClient();
+            var lastfmArtistEvents = await lastFmClient.GetArtistEventInfo(artist.Name);
+            if (lastfmArtistEvents == null) return false;
+            try
+            {
+                var showItems = new List<ShowItem>();
+                foreach (var show in lastfmArtistEvents.Shows)
+                {
+                    DateTime date;
+                    ShowItem showItem = null;
+                    bool tryParse = DateTime.TryParse(show.StartDate, out date);
+                    if (tryParse)
+                        showItem = new ShowItem(show.Title, date, show.Venue.Location.City, show.Venue.Location.Country);
+                    else continue;
+                    foreach (var artistShow in show.Artists.Artists)
+                    {
+                        // dirty hack
+                        if (artistShow is JValue)
+                            showItem.Artists.Add(artistShow.Value);
+                    }
+                    showItems.Add(showItem);
+                }
+                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                {
+                    artist.UpcomingShows = showItems;
+                });
+                return true;
+            }
+            catch (Exception exception)
+            {
+                LogHelper.Log("Error when trying to map from Events collection to Artist object for artist : " + artist.Name + " exceptio log " + exception.ToString());
+                return false;
             }
             return false;
         }
@@ -191,6 +238,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                 }
             }
         }
+
         public static async Task GetAlbumPicture(AlbumItem album)
         {
             StorageFolder appDataFolder = ApplicationData.Current.LocalFolder;
