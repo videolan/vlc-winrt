@@ -1,5 +1,6 @@
 ﻿using System;
 using Windows.Phone.UI.Input;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
@@ -28,6 +29,11 @@ namespace VLC_WINRT_APP.Views.VariousPages
         {
             base.OnNavigatingFrom(e);
             HardwareButtons.BackPressed -= HardwareButtonsOnBackPressed;
+        }
+
+        private void ItemsWrapGrid_Loaded(object sender, RoutedEventArgs e)
+        {
+            (sender as ItemsWrapGrid).ItemWidth = Window.Current.Bounds.Width/2;
         }
     }
 }

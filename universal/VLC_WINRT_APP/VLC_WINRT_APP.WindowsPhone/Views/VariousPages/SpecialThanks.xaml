@@ -1,23 +1,160 @@
-﻿<Page
-    x:Class="VLC_WINRT_APP.Views.VariousPages.SpecialThanks"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:VLC_WINRT_APP.Views.VariousPages"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:userControls="using:VLC_WINRT_APP.Views.UserControls"
-    mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+﻿<Page x:Class="VLC_WINRT_APP.Views.VariousPages.SpecialThanks"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:VLC_WINRT_APP.Views.VariousPages"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:userControls="using:VLC_WINRT_APP.Views.UserControls"
+      xmlns:extensions="using:WinRTXamlToolkit.Controls.Extensions"
+      mc:Ignorable="d"
+      DataContext="{Binding Source={StaticResource Locator}, Path=SpecialThanksVM}"
+      RequestedTheme="Light">
+
+    <Page.Resources>
+        <CollectionViewSource x:Name="backersViewSource"
+                              Source="{Binding BackerCountries}"
+                              IsSourceGrouped="true"
+                              ItemsPath="BackerNames" />
+    </Page.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="80" />
+            <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
         <userControls:HeaderControl Grid.Row="0"
-                             HeaderTextBlock="Special thanks" />
+                                    HeaderTextBlock="Special thanks" />
         <Grid Grid.Row="1">
-            <TextBlock Text="The VLC team would like to thank ..."/>
+            <TextBlock Text="The VLC team would like to thank everyone who is in this page"
+                       Margin="12,0,0,0"
+                       Style="{StaticResource TitleTextBlockStyle}"
+                       TextWrapping="Wrap" />
+        </Grid>
+        <Grid Grid.Row="2">
+            <Pivot HeaderTemplate="{StaticResource PivotTitleTemplate}">
+                <PivotItem Header="sponsored">
+                    <ScrollViewer>
+                        <StackPanel Orientation="Vertical"
+                                    Margin="0,0,0,0">
+                            <Grid Margin="0,0,0,0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="50" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <TextBlock x:Uid="PartnersGold"
+                                           Text="gold partners"
+                                           FontSize="32"
+                                           Style="{StaticResource TitleTextBlockStyle}"
+                                           Foreground="{StaticResource MainColor}" />
+                                <StackPanel Grid.Row="1"
+                                            Margin="0,15,0,0">
+                                    <StackPanel Margin="0,20">
+                                        <TextBlock Text="Judson White"
+                                                   Style="{StaticResource SubheaderTextBlockStyle}"
+                                                   FontSize="24" />
+                                        <HyperlinkButton NavigateUri="http://www.judsonwhite.com/"
+                                                         Content="Website"
+                                                         Margin="0,4,0,0" />
+                                    </StackPanel>
+                                    <StackPanel Margin="0,20">
+                                        <TextBlock Text="Monostream GmbH"
+                                                   Style="{StaticResource SubheaderTextBlockStyle}"
+                                                   FontSize="24" />
+                                        <HyperlinkButton NavigateUri="http://www.monostream.ch/"
+                                                         Content="Website"
+                                                         Margin="0,4,0,0" />
+                                    </StackPanel>
+                                    <StackPanel Margin="0,20">
+                                        <TextBlock Text="Rogier Pieters"
+                                                   Style="{StaticResource SubheaderTextBlockStyle}"
+                                                   FontSize="24" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </Grid>
+                            <Grid Margin="0,0,0,0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="50" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <TextBlock x:Uid="PartnersSilver"
+                                           Text="silver partners"
+                                           FontSize="32"
+                                           Style="{StaticResource TitleTextBlockStyle}"
+                                           Foreground="{StaticResource MainColor}" />
+                                <StackPanel Grid.Row="1"
+                                            Margin="0,0,0,0">
+                                    <StackPanel Margin="0,20">
+                                        <TextBlock Text="Kaoxee Web"
+                                                   Style="{StaticResource SubheaderTextBlockStyle}" />
+                                        <HyperlinkButton NavigateUri="http://www.kaoxee.com/"
+                                                         Content="Website"
+                                                         Margin="0,4,0,0" />
+                                    </StackPanel>
+                                    <StackPanel Margin="0,20">
+                                        <TextBlock Text="7digital"
+                                                   Style="{StaticResource SubheaderTextBlockStyle}" />
+                                        <HyperlinkButton NavigateUri="http://www.7digital.com/"
+                                                         Content="Website"
+                                                         Margin="0,4,0,0" />
+                                    </StackPanel>
+                                    <StackPanel Margin="0,20">
+                                        <TextBlock Text="Gabriel Topala"
+                                                   Style="{StaticResource SubheaderTextBlockStyle}" />
+                                        <HyperlinkButton NavigateUri="http://www.gtopala.com/"
+                                                         Content="Website"
+                                                         Margin="0,4,0,0" />
+                                    </StackPanel>
+                                    <StackPanel Margin="0,20">
+                                        <TextBlock Text="MySurround"
+                                                   Style="{StaticResource SubheaderTextBlockStyle}" />
+                                        <HyperlinkButton NavigateUri="http://www.mysurround.com/"
+                                                         Content="Website"
+                                                         Margin="0,4,0,0" />
+                                    </StackPanel>
+                                    <StackPanel Margin="0,20">
+                                        <TextBlock Text="Melissa Pack"
+                                                   Style="{StaticResource SubheaderTextBlockStyle}" />
+                                        <HyperlinkButton NavigateUri="http://freeldssheetmusic.org/"
+                                                         Content="Website"
+                                                         Margin="0,4,0,0" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </Grid>
+                        </StackPanel>
+                    </ScrollViewer>
+                </PivotItem>
+                <PivotItem Header="all">
+                    <ListView ItemsSource="{Binding Source={StaticResource backersViewSource}}">
+                        <ListView.GroupStyle>
+                            <GroupStyle>
+                                <GroupStyle.HeaderTemplate>
+                                    <DataTemplate>
+                                        <Grid  VerticalAlignment="Center">
+                                            <TextBlock Text="{Binding Name}"
+                                                       Style="{StaticResource SubheaderTextBlockStyle}"
+                                                       Foreground="{StaticResource MainColor}"
+                                                       VerticalAlignment="Center" />
+                                        </Grid>
+                                    </DataTemplate>
+                                </GroupStyle.HeaderTemplate>
+                            </GroupStyle>
+                        </ListView.GroupStyle>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Style="{StaticResource BaseTextBlockStyle}"
+                                           Text="{Binding}" />
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <ItemsStackPanel />
+                                <!--<ItemsWrapGrid Loaded="ItemsWrapGrid_Loaded" Orientation="Vertical" />-->
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                    </ListView>
+                </PivotItem>
+            </Pivot>
         </Grid>
     </Grid>
 </Page>
