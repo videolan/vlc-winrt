@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Core;
 using SQLite;
+using VLC_WINRT_APP.Commands.Music;
 using VLC_WINRT_APP.Common;
 using VLC_WINRT_APP.Helpers.MusicLibrary;
 using VLC_WINRT_APP.Helpers.MusicLibrary.MusicEntities;
@@ -30,6 +31,8 @@ namespace VLC_WINRT_APP.Model.Music
         private List<Artist> _onlineRelatedArtists;
         private bool _isOnlineMusicVideosLoaded;
         private string _biography;
+
+        private PinArtistCommand pinArtistCommand;
 
         [PrimaryKey, AutoIncrement, Column("_id")]
         public int Id { get; set; }
@@ -154,6 +157,12 @@ namespace VLC_WINRT_APP.Model.Music
                 return null;
             }
             set { SetProperty(ref _onlineRelatedArtists, value); }
+        }
+
+        [Ignore]
+        public PinArtistCommand PinArtistCommand
+        {
+            get { return pinArtistCommand ?? (pinArtistCommand = new PinArtistCommand()); }
         }
 
         public bool IsFavorite

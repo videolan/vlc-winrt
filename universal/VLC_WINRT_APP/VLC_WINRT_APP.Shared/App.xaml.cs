@@ -138,12 +138,10 @@ namespace VLC_WINRT_APP
         {
             try
             {
-                VLCItemType itemType;
                 var query = "";
                 int id;
                 if (args.Contains("Album"))
                 {
-                    itemType = VLCItemType.Album;
                     query = args.Replace("SecondaryTile-Album-", "");
                     id = int.Parse(query);
                     if (Locator.MusicLibraryVM.LoadingState == LoadingState.Loaded)
@@ -160,9 +158,23 @@ namespace VLC_WINRT_APP
                         };
                     }
                 }
-                else
+                else if(args.Contains("Artist"))
                 {
-                    itemType = VLCItemType.Artist;
+                    query = args.Replace("SecondaryTile-Artist-", "");
+                    id = int.Parse(query);
+                    if (Locator.MusicLibraryVM.LoadingState == LoadingState.Loaded)
+                    {
+                        App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
+                            () => Locator.MusicLibraryVM.ArtistClickedCommand.Execute(id));
+                    }
+                    else
+                    {
+                        MusicLibraryVM.MusicCollectionLoaded += (sender, value) =>
+                        {
+                            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                                Locator.MusicLibraryVM.ArtistClickedCommand.Execute(id));
+                        };
+                    }
                 }
             }
             catch (Exception e)

@@ -77,26 +77,30 @@ namespace VLC_WINRT_APP.Helpers
         public static async void CreateOrReplaceSecondaryTile(VLCItemType type, int id, string title)
         {
             string tileId = "SecondaryTile-" + type.ToString() + "-" + id;
-            var tileData = new SecondaryTile()
+            if (!SecondaryTile.Exists(tileId))
             {
-                TileId = tileId,
-                DisplayName = title,
-                Arguments = tileId
-            };
-            string subfolder = null;
-            switch (type)
-            {
-                case VLCItemType.Album:
-                    subfolder = "albumPic";
-                    break;
-                case VLCItemType.Artist:
-                    subfolder = "artistPic";
-                    break;
+                var tileData = new SecondaryTile()
+                {
+                    TileId = tileId,
+                    DisplayName = title,
+                    Arguments = tileId
+                };
+                string subfolder = null;
+                switch (type)
+                {
+                    case VLCItemType.Album:
+                        subfolder = "albumPic";
+                        break;
+                    case VLCItemType.Artist:
+                        subfolder = "artistPic";
+                        break;
+                }
+                tileData.VisualElements.ShowNameOnSquare150x150Logo = true;
+                tileData.DisplayName = title;
+                tileData.VisualElements.Square150x150Logo =
+                    new Uri("ms-appdata:///local/" + subfolder + "/" + id + ".jpg");
+                await tileData.RequestCreateAsync();
             }
-            tileData.VisualElements.ShowNameOnSquare150x150Logo = true;
-            tileData.DisplayName = title;
-            tileData.VisualElements.Square150x150Logo = new Uri("ms-appdata:///local/" + subfolder + "/" + id + ".jpg");
-            await tileData.RequestCreateAsync();
         }
     }
 }

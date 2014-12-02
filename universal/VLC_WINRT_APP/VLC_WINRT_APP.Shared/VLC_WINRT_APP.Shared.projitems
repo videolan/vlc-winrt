@@ -37,6 +37,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Music\FavoriteTrackCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Music\GoToMusicPlayerPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Music\PinAlbumCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\Music\PinArtistCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Music\PlayAlbumCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Music\PlayAllRandomCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Music\PlayTrackCollCommand.cs" />

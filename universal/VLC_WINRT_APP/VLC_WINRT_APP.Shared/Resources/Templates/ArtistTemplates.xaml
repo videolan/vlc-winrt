@@ -52,6 +52,22 @@
                         <Run Text="{Binding Albums.Count}" />
                         <Run Text="albums" />
                     </TextBlock>
+                    <Button Grid.Column="1"
+                            Grid.Row="1"
+                            Style="{StaticResource TextBlockButtonStyle}"
+                            Content=""
+                            VerticalAlignment="Bottom"
+                            Foreground="#ACACAC"
+                            FontFamily="Segoe UI Symbol"
+                            Margin="0,0,3,0">
+                        <Button.Flyout>
+                            <MenuFlyout>
+                                <MenuFlyoutItem Text="pin artist"
+                                                Command="{Binding PinArtistCommand}"
+                                                CommandParameter="{Binding}" />
+                            </MenuFlyout>
+                        </Button.Flyout>
+                    </Button>
                 </Grid>
             </Grid>
         </Border>
