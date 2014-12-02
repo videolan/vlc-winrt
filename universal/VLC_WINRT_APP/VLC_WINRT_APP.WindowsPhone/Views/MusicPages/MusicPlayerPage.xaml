@@ -30,7 +30,8 @@
                         <TextBlock Text="{Binding CurrentArtist.Biography}"
                                    Style="{StaticResource BodyTextBlockStyle}" />
                         <Button Content="see shows"
-                                Command="{Binding CurrentArtist.SeeArtistShowsCommand}"/>
+                                Command="{Binding CurrentArtist.SeeArtistShowsCommand}"
+                                CommandParameter="{Binding CurrentArtist}"/>
                         <GridView Margin="0,24,0,0"
                                   IsSwipeEnabled="False"
                                   SelectionMode="None"

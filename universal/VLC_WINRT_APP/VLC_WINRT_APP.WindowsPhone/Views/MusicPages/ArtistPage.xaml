@@ -112,9 +112,12 @@
                 <Button.Flyout>
                     <MenuFlyout>
                         <MenuFlyoutItem Text="play all albums" />
+                        <MenuFlyoutItem Text="upcoming shows"
+                                        Command="{Binding CurrentArtist.SeeArtistShowsCommand}"
+                                        CommandParameter="{Binding CurrentArtist}"/>
                         <MenuFlyoutItem Text="pin"
                                         Command="{Binding CurrentArtist.PinArtistCommand}"
-                                        CommandParameter="{Binding}" />
+                                        CommandParameter="{Binding CurrentArtist}" />
                     </MenuFlyout>
                 </Button.Flyout>
             </Button>
