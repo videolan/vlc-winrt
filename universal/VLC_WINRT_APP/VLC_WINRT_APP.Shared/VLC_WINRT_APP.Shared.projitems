@@ -42,6 +42,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Music\PlayAllRandomCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Music\PlayTrackCollCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Music\PlayTrackComand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\Music\SeeArtistShowsCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Music\ShowCreateNewPlaylistPane.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Music\TrackCollectionClickedCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\PickVideoCommand.cs" />
@@ -86,6 +87,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\CountToVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\CurrentTrackForegroundConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\DateTimeToShortDescriptionConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\DateTimeToShortMonthConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\DoubleSpeedToUnderstandableSpeedConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ElapsedTimeToPercentageConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\EmptyTimeSpanToVisibilityConverter.cs" />
@@ -167,6 +170,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Model\LoadingState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Music\AlbumItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Music\ArtistItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Music\ShowItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Music\TrackItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Music\TracklistItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\OpenFilePickerReason.cs" />

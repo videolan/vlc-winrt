@@ -29,6 +29,8 @@
                     <StackPanel Margin="24,0,0,0">
                         <TextBlock Text="{Binding CurrentArtist.Biography}"
                                    Style="{StaticResource BodyTextBlockStyle}" />
+                        <Button Content="see shows"
+                                Command="{Binding CurrentArtist.SeeArtistShowsCommand}"/>
                         <GridView Margin="0,24,0,0"
                                   IsSwipeEnabled="False"
                                   SelectionMode="None"

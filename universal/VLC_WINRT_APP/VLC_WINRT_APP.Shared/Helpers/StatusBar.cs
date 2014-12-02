@@ -2,6 +2,7 @@
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml.Media;
 using VLC_WINRT_APP.Views.MainPages;
+using VLC_WINRT_APP.Views.MusicPages.ArtistPages;
 
 namespace VLC_WINRT_APP.Helpers
 {
@@ -49,7 +50,7 @@ namespace VLC_WINRT_APP.Helpers
 
         public static void SetDefaultForPage(Type type)
         {
-            if (type == typeof(MainPageHome))
+            if (type == typeof(MainPageHome) || type == typeof(ArtistShowsPage))
                 StatusBarHelper.Default();
             else StatusBarHelper.SetTransparent();
         }

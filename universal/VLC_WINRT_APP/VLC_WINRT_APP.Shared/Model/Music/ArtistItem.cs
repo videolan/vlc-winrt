@@ -25,14 +25,16 @@ namespace VLC_WINRT_APP.Model.Music
 
         // more informations
         private bool _isFavorite;
-        private bool _isOnlinePopularAlbumItemsLoaded;
+        private bool _isOnlinePopularAlbumItemsLoaded = false;
         private List<Album> _onlinePopularAlbumItems;
-        private bool _isOnlineRelatedArtistsLoaded;
+        private bool _isOnlineRelatedArtistsLoaded = false;
         private List<Artist> _onlineRelatedArtists;
-        private bool _isOnlineMusicVideosLoaded;
+        private bool _isOnlineMusicVideosLoaded = false;
         private string _biography;
-
+        private List<ShowItem> _upcomingShowItems;
+        private bool _isUpcomingShowsItemsLoaded = false;
         private PinArtistCommand pinArtistCommand;
+        private SeeArtistShowsCommand seeArtistShowsCommand;
 
         [PrimaryKey, AutoIncrement, Column("_id")]
         public int Id { get; set; }
@@ -163,6 +165,31 @@ namespace VLC_WINRT_APP.Model.Music
         public PinArtistCommand PinArtistCommand
         {
             get { return pinArtistCommand ?? (pinArtistCommand = new PinArtistCommand()); }
+        }
+
+
+        [Ignore]
+        public SeeArtistShowsCommand SeeArtistShowsCommand
+        {
+            get
+            {
+                return seeArtistShowsCommand ?? (seeArtistShowsCommand = new SeeArtistShowsCommand());
+            }
+        }
+
+        [Ignore]
+        public List<ShowItem> UpcomingShows
+        {
+            get
+            {
+                if (!_isUpcomingShowsItemsLoaded)
+                {
+                    _isUpcomingShowsItemsLoaded = true;
+                    Task.Run(() => ArtistInformationsHelper.GetArtistEvents(this));
+                }
+                return _upcomingShowItems;
+            }
+            set { SetProperty(ref _upcomingShowItems, value); }
         }
 
         public bool IsFavorite
