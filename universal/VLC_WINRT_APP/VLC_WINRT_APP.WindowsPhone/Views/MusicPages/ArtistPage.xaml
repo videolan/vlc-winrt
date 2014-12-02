@@ -8,7 +8,7 @@
       xmlns:triggers="using:WinRT.Triggers"
       mc:Ignorable="d"
       DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}"
-      Background="White">
+      Background="WhiteSmoke">
 
     <Page.Resources>
         <Storyboard x:Name="FadeOutHeader">
@@ -86,6 +86,38 @@
                     </ItemsPanelTemplate>
                 </GridView.ItemsPanel>
             </GridView>
+            <Button Style="{StaticResource TextBlockButtonStyle}"
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Right"
+                    Margin="0,0,24,24"
+                    RequestedTheme="Dark">
+                <Button.Content>
+                    <Grid>
+                        <Image Source="ms-appx:///Assets/Icons/circleShadow.png"
+                               Stretch="UniformToFill"
+                               Height="84"
+                               Width="84"
+                               Margin="0,0,0,-2"
+                               Opacity="0.6" />
+                        <Ellipse Fill="{StaticResource MainColor}"
+                                 Height="70"
+                                 Width="70" />
+                        <TextBlock Text=""
+                                   FontSize="28"
+                                   FontFamily="Segoe UI Symbol"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center" />
+                    </Grid>
+                </Button.Content>
+                <Button.Flyout>
+                    <MenuFlyout>
+                        <MenuFlyoutItem Text="play all albums" />
+                        <MenuFlyoutItem Text="pin"
+                                        Command="{Binding CurrentArtist.PinArtistCommand}"
+                                        CommandParameter="{Binding}" />
+                    </MenuFlyout>
+                </Button.Flyout>
+            </Button>
         </Grid>
     </Grid>
 

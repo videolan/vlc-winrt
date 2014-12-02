@@ -224,6 +224,7 @@
     <Content Include="$(MSBuildThisFileDirectory)Assets\flatbackground1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Icons\circleShadow.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Icons\icons.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\NoCover.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
