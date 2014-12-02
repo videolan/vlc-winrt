@@ -20,7 +20,7 @@
         <GridView Grid.Row="1"
                   ItemsSource="{Binding Videos}"
                   ItemTemplate="{StaticResource PhoneCompactVideoTemplate}"
-                  Margin="0,0,-20,0"
+                  Margin="0,0,-25,0"
                   IsItemClickEnabled="True">
             <triggers:Interactions.Triggers>
                 <triggers:EventTrigger EventName="ItemClick">
