@@ -82,7 +82,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                     return artist;
                 }
             }
-            catch(Exception exception)
+            catch (Exception exception)
             {
                 Debug.WriteLine("Failed to get artist biography from LastFM. Returning nothing." + exception.ToString());
             }
@@ -151,7 +151,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
         /// </summary>
         /// <param name="name">The artists name.</param>
         /// <returns>A list of Albums.</returns>
-        public async Task<List<Album>>  GetArtistTopAlbums(string name)
+        public async Task<List<Album>> GetArtistTopAlbums(string name)
         {
             try
             {
