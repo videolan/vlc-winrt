@@ -8,6 +8,11 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libdirect2d_winrt_plugin", "..\modules\libdirect2d_winrt_plugin\libdirect2d_winrt_plugin.vcxproj", "{231DFAAB-C462-49BF-8611-1FA6EE39983D}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libVLCX", "..\wrapper\libVLCX\libVLCX.vcxproj", "{22532381-BE8B-40E0-A881-22CE24342D5A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{542C7405-778D-4AC6-A43D-D2A6BAF70B09} = {542C7405-778D-4AC6-A43D-D2A6BAF70B09}
+		{231DFAAB-C462-49BF-8611-1FA6EE39983D} = {231DFAAB-C462-49BF-8611-1FA6EE39983D}
+		{A3345ED6-A13A-487B-9EF3-412FED4916D1} = {A3345ED6-A13A-487B-9EF3-412FED4916D1}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libxaudio2_winrt_plugin", "..\modules\libxaudio2_winrt_plugin\libxaudio2_winrt_plugin.vcxproj", "{542C7405-778D-4AC6-A43D-D2A6BAF70B09}"
 EndProject
