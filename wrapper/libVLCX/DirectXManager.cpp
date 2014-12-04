@@ -157,7 +157,7 @@ void DirectXManger::CreateSwapPanel(SwapChainPanel^ panel){
     ComPtr<IDXGISwapChain2> spSwapChain2;
     CheckDXOperation(cp_swapChain.As<IDXGISwapChain2>(&spSwapChain2), L"Could not retrieve SwapChain");
     CheckDXOperation(spSwapChain2->SetMatrixTransform(&inverseScale), L"Failed to set matrix transform");
-    
+
     //TODO: perform the next 2 calls on the UI thread
     ComPtr<ISwapChainPanelNative> panelNative;
     hr = reinterpret_cast<IUnknown*>(panel)->QueryInterface(IID_PPV_ARGS(&panelNative));
@@ -166,6 +166,7 @@ void DirectXManger::CreateSwapPanel(SwapChainPanel^ panel){
     // Associate swap chain with SwapChainPanel.  This must be done on the UI thread.
     CheckDXOperation(panelNative->SetSwapChain(cp_swapChain.Get()), "Could not associate the swapChain");
 
+    // This is necessary so we can call Trim() on suspend
     hr = dxgiDevice.As(&cp_dxgiDev3);
     CheckDXOperation(hr, "Failed to get the DXGIDevice3 from Dxgidevice1");
 }
