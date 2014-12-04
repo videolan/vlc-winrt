@@ -256,9 +256,6 @@
     <Content Include="..\..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\access\attachment_plugin.dll">
       <Link>plugins\access\attachment_plugin.dll</Link>
     </Content>
-    <Content Include="..\..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\access\cdda_plugin.dll">
-      <Link>plugins\access\cdda_plugin.dll</Link>
-    </Content>
     <Content Include="..\..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\access\filesystem_plugin.dll">
       <Link>plugins\access\filesystem_plugin.dll</Link>
     </Content>
@@ -297,9 +294,6 @@
     </Content>
     <Content Include="..\..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\access\udp_plugin.dll">
       <Link>plugins\access\udp_plugin.dll</Link>
-    </Content>
-    <Content Include="..\..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\access\vcd_plugin.dll">
-      <Link>plugins\access\vcd_plugin.dll</Link>
     </Content>
     <Content Include="..\..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\access\vdr_plugin.dll">
       <Link>plugins\access\vdr_plugin.dll</Link>
