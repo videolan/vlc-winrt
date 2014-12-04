@@ -165,6 +165,9 @@ void DirectXManger::CreateSwapPanel(SwapChainPanel^ panel){
 
     // Associate swap chain with SwapChainPanel.  This must be done on the UI thread.
     CheckDXOperation(panelNative->SetSwapChain(cp_swapChain.Get()), "Could not associate the swapChain");
+
+    hr = dxgiDevice.As(&cp_dxgiDev3);
+    CheckDXOperation(hr, "Failed to get the DXGIDevice3 from Dxgidevice1");
 }
 
 void DirectXManger::Trim()
