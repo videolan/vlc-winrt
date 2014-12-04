@@ -241,6 +241,12 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="..\..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\vlc.dll">
+      <Link>vlc.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\vlccore.dll">
+      <Link>vlccore.dll</Link>
+    </Content>
     <Content Include="..\..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\access\access_bd_plugin.dll">
       <Link>plugins\access\access_bd_plugin.dll</Link>
     </Content>
@@ -882,8 +888,6 @@
     <Content Include="Assets\StoreLogo.scale-180.png" />
     <Content Include="Assets\Wide310x150Logo.scale-100.png" />
     <Content Include="Assets\Wide310x150Logo.scale-140.png" />
-    <Content Include="vlc.dll" />
-    <Content Include="vlccore.dll" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="Resources\PlatformStyles.xaml">
