@@ -859,6 +859,12 @@
     <Content Include="..\..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\visualization\visual_plugin.dll">
       <Link>plugins\visualization\visual_plugin.dll</Link>
     </Content>
+    <Content Include="..\..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\video_output\libdirect2d_winrt_plugin.dll">
+      <Link>plugins\video_output\libdirect2d_winrt_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\audio_output\libxaudio2_winrt_plugin.dll">
+      <Link>plugins\audio_output\libxaudio2_winrt_plugin.dll</Link>
+    </Content>
     <Content Include="Assets\BadgeLogo.scale-100.png" />
     <Content Include="Assets\BadgeLogo.scale-140.png" />
     <Content Include="Assets\Logo.scale-100.png" />
