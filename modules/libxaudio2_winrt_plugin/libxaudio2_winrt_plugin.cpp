@@ -193,7 +193,7 @@ static int Open(vlc_object_t *object)
     aout->pause = NULL;
     aout->play = Play;
     aout->flush = Flush;
-	aout->volume_set = VolumeSet;
+    aout->volume_set = VolumeSet;
     //aout->time_get = TimeGet;
     return VLC_SUCCESS;
 }
@@ -357,14 +357,14 @@ static int TimeGet(audio_output_t * p_aout, mtime_t * drift)
 
 static int VolumeSet(audio_output_t *p_aout, float volume)
 {
-	aout_sys_t *asys = p_aout->sys;
+    aout_sys_t *asys = p_aout->sys;
 
-	if (!asys->isPlaying)
-		return -1;
-	asys->volume.volume = volume;
-	if (asys->sourceVoice->SetVolume(volume, XAUDIO2_COMMIT_NOW) == S_OK)
-	{
-		aout_VolumeReport(p_aout, volume);
-	}
-	return 0;
+    if (!asys->isPlaying)
+        return -1;
+    asys->volume.volume = volume;
+    if (asys->sourceVoice->SetVolume(volume, XAUDIO2_COMMIT_NOW) == S_OK)
+    {
+        aout_VolumeReport(p_aout, volume);
+    }
+    return 0;
 }
