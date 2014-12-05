@@ -113,7 +113,6 @@ struct aout_sys_t
     VoiceCallback* callbackHandler;
 
     bool isPlaying;
-    int bufferSampleSize;
 
     struct
     {
@@ -303,7 +302,6 @@ static void Play(audio_output_t * p_aout, block_t * block){
     }
 
     asys->isPlaying = true;
-    asys->bufferSampleSize = block->i_nb_samples;
     return;
 }
 
