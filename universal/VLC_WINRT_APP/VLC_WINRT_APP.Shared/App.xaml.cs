@@ -267,9 +267,6 @@ namespace VLC_WINRT_APP
             Window.Current.Content = Container.Resolve<MainPage>();
             Dispatcher = Window.Current.Content.Dispatcher;
             Window.Current.Activate();
-#if WINDOWS_PHONE_APP
-            await Task.Delay(200);
-#endif
         }
     }
 }
