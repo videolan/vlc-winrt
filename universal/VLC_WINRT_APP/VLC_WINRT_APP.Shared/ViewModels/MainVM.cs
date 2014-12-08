@@ -41,7 +41,6 @@ namespace VLC_WINRT_APP.ViewModels
         private GoToSettingsPageCommand _goToSettingsPageCommand;
         private GoToThanksPageCommand _goToThanksPageCommand;
         private GoToAboutPageCommand _goToAboutPageCommand;
-        private AlwaysExecutableCommand _openSidebarCommand;
 #if WINDOWS_PHONE_APP
         private ChangeMainPageMusicViewCommand _changeMainPageMusicViewCommand;
         private ChangeMainPageVideoViewCommand _changeMainPageVideoViewCommand;
@@ -117,11 +116,6 @@ namespace VLC_WINRT_APP.ViewModels
             get { return _changeMainPageVideoViewCommand; }
             set { SetProperty(ref _changeMainPageVideoViewCommand, value); }
         }
-        public AlwaysExecutableCommand OpenSidebarCommand
-        {
-            get { return _openSidebarCommand; }
-            set { SetProperty(ref _openSidebarCommand, value); }
-        }
 
         public AlwaysExecutableCommand GoToSearchPage
         {
@@ -156,10 +150,6 @@ namespace VLC_WINRT_APP.ViewModels
             GoToThanksPageCommand = new GoToThanksPageCommand();
             GoToAboutPageCommand = new GoToAboutPageCommand();
 #if WINDOWS_PHONE_APP
-            OpenSidebarCommand = new ActionCommand(() =>
-            {
-                App.RootPage.PanelsView.ShowSidebar();
-            });
             GoToSearchPage = new ActionCommand(() =>
             {
                 App.ApplicationFrame.Navigate(typeof(SearchPage));

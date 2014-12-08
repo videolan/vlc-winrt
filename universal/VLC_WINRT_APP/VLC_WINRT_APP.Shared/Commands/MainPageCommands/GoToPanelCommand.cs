@@ -90,9 +90,6 @@ namespace VLC_WINRT_APP.Commands.MainPageCommands
             }
 
 #endif
-#if WINDOWS_PHONE_APP
-            App.RootPage.PanelsView.HideSidebar();
-#endif
 
         }
     }

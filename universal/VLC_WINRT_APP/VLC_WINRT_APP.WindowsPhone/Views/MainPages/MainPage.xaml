@@ -31,25 +31,9 @@
                VerticalAlignment="Bottom"
                Visibility="{Binding Source={StaticResource Locator}, Path=VideoVm.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}"
                extensions:ImageExtensions.FadeInOnLoaded="True" />
-        <!--<Frame Grid.Row="1"
-               x:Name="MainFrame"
+        <Frame x:Name="MainFrame"
                x:FieldModifier="public"
-               Background="Transparent">
-            <Frame.ContentTransitions>
-                <TransitionCollection>
-                    <EdgeUIThemeTransition x:Name="MainFrameThemeTransition"
-                                           x:FieldModifier="public"
-                                           Edge="Bottom" />
-                </TransitionCollection>
-            </Frame.ContentTransitions>
-        </Frame>-->
-        <panelsView:PanelsFrame x:Name="PanelsView"
-                                x:FieldModifier="public"
-                                Grid.Row="0">
-            <panelsView:PanelsFrame.SideBarContent>
-                <userControls:LeftColumn DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}" />
-            </panelsView:PanelsFrame.SideBarContent>
-        </panelsView:PanelsFrame>
-        <userControls:BottomMiniPlayer Grid.Row="1"/>
-    </SwapChainPanel>
+               Background="Transparent" />
+        <userControls:BottomMiniPlayer Grid.Row="1" />
+        </SwapChainPanel>
 </Page>
