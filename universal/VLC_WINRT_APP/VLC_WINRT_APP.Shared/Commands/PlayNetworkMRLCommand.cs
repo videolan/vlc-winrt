@@ -25,7 +25,7 @@ namespace VLC_WINRT_APP.Commands
         {
             var mrl = parameter as string;
             if (string.IsNullOrEmpty(mrl))
-                throw new ArgumentException("Expecting to see a string mrl for this command");
+                return;
 
             //TODO: pass MRL to vlc
             await Locator.VideoVm.SetActiveVideoInfo(mrl, true);
