@@ -93,8 +93,8 @@ namespace VLC_WINRT_APP.Services.RunTime
 
         public async Task Initialize(SwapChainPanel panel)
         {
-            _vlcPlayer = new Player(panel);
-            IAsyncAction init = _vlcPlayer.Initialize();
+            _vlcPlayer = new Player();
+            IAsyncAction init = _vlcPlayer.Initialize(panel);
             _vlcPlayer.MediaEnded += _vlcPlayer_MediaEnded;
             await init.AsTask();
         }

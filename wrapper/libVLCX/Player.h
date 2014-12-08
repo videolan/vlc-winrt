@@ -40,8 +40,8 @@ namespace libVLCX {
     public ref class Player sealed
     {
     public:
-        Player(SwapChainPanel^ panel);
-        IAsyncAction^ Initialize();
+        Player();
+        IAsyncAction^ Initialize(SwapChainPanel^ panel);
 
         void          Open(Platform::String^ mrl);
 

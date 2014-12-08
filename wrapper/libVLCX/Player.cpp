@@ -26,17 +26,17 @@
 using namespace libVLCX;
 using namespace Windows::Graphics::Display;
 
-Player::Player(SwapChainPanel^ panel) 
+Player::Player() 
     : p_mp(NULL)
     , p_instance(NULL)
     , p_dxManager(new DirectXManger)
 {
-    p_panel = panel;
 }
 
 //Todo: don't block UI during initialization
-IAsyncAction^ Player::Initialize()
+IAsyncAction^ Player::Initialize(SwapChainPanel^ panel)
 {
+    p_panel = panel;
     p_dxManager->CreateSwapPanel(p_panel);
     UpdateSize(p_panel->ActualWidth, p_panel->ActualHeight);
 
