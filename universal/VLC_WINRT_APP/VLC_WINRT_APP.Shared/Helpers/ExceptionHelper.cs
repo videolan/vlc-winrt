@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
+using Windows.ApplicationModel.Resources;
 using Windows.System;
 using Windows.UI.Notifications;
 using Windows.UI.Popups;
@@ -16,18 +17,17 @@ namespace VLC_WINRT_APP.Helpers
         {
             if (ApplicationSettingsHelper.Contains("ExceptionLog"))
             {
+                var resourcesLoader = ResourceLoader.GetForCurrentView("Resources");
                 var dialog =
-                    new MessageDialog(
-                        "VLC has crashed and made an automatic bug report. Do you allow us to sent it?",
-                        "We need your help");
-                dialog.Commands.Add(new UICommand("Oui", async command =>
+                    new MessageDialog(resourcesLoader.GetString("CrashReport"), resourcesLoader.GetString("WeNeedYourHelp"));
+                dialog.Commands.Add(new UICommand(resourcesLoader.GetString("Yes"), async command =>
                 {
                     var uri =
                         new Uri("mailto:modernvlc@outlook.com?subject=VLC for Windows 8.1 bugreport&body=" +
                                 ApplicationSettingsHelper.ReadResetSettingsValue("ExceptionLog").ToString());
                     await Launcher.LaunchUriAsync(uri);
                 }));
-                dialog.Commands.Add(new UICommand("Non", command =>
+                dialog.Commands.Add(new UICommand(resourcesLoader.GetString("No"), command =>
                 {
                     ApplicationSettingsHelper.ReadResetSettingsValue("ExceptionLog");
                 }));

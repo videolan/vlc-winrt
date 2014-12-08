@@ -468,4 +468,16 @@
   <data name="Search1" xml:space="preserve">
     <value>search</value>
   </data>
+  <data name="CrashReport" xml:space="preserve">
+    <value>"VLC has crashed and made an automatic bug report. Do you allow us to sent it?"</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="WeNeedYourHelp" xml:space="preserve">
+    <value>We need your help</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
 </root>
