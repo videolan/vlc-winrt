@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if WINDOWS_PHONE_APP
+using System;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml.Media;
 using VLC_WINRT_APP.Views.MainPages;
@@ -6,7 +7,6 @@ using VLC_WINRT_APP.Views.MusicPages.ArtistPages;
 
 namespace VLC_WINRT_APP.Helpers
 {
-#if WINDOWS_PHONE_APP
     public static class StatusBarHelper
     {
         private static string title = "VLC Beta";
@@ -55,5 +55,5 @@ namespace VLC_WINRT_APP.Helpers
             else StatusBarHelper.SetTransparent();
         }
     }
-#endif
 }
+#endif

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿#if WINDOWS_PHONE_APP
+using System.Linq;
 using VLC_WINRT.Common;
 using VLC_WINRT_APP.Model.Music;
 using VLC_WINRT_APP.ViewModels;
@@ -24,3 +25,4 @@ namespace VLC_WINRT_APP.Commands.Music
         }
     }
 }
+#endif

@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation.Collections;
-using Windows.Phone.Management.Deployment;
 using Windows.Storage;
 using Windows.Storage.AccessCache;
 using Windows.UI.Core;
@@ -30,6 +29,9 @@ using VLC_WINRT_APP.Common;
 using VLC_WINRT_APP.ViewModels.MusicVM;
 using VLC_WINRT_APP.Views.VideoPages;
 using WinRTXamlToolkit.Controls.Extensions;
+#if WINDOWS_PHONE_APP
+using Windows.Phone.Management.Deployment;
+#endif
 
 namespace VLC_WINRT_APP
 {

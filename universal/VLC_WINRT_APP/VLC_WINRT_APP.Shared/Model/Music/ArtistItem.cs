@@ -34,7 +34,9 @@ namespace VLC_WINRT_APP.Model.Music
         private List<ShowItem> _upcomingShowItems;
         private bool _isUpcomingShowsItemsLoaded = false;
         private PinArtistCommand pinArtistCommand;
+#if WINDOWS_PHONE_APP
         private SeeArtistShowsCommand seeArtistShowsCommand;
+#endif
 
         [PrimaryKey, AutoIncrement, Column("_id")]
         public int Id { get; set; }
@@ -168,6 +170,7 @@ namespace VLC_WINRT_APP.Model.Music
         }
 
 
+#if WINDOWS_PHONE_APP
         [Ignore]
         public SeeArtistShowsCommand SeeArtistShowsCommand
         {
@@ -176,6 +179,7 @@ namespace VLC_WINRT_APP.Model.Music
                 return seeArtistShowsCommand ?? (seeArtistShowsCommand = new SeeArtistShowsCommand());
             }
         }
+#endif
 
         [Ignore]
         public List<ShowItem> UpcomingShows

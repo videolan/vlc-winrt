@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
 using VLC_WINRT_APP.Helpers;
+using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.Model.Music;
 using VLC_WINRT_APP.Model.Search;
 using VLC_WINRT_APP.Model.Video;
