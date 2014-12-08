@@ -7,12 +7,12 @@ namespace VLC_WINRT_APP.Commands
 {
     public class SearchClickedCommand : AlwaysExecutableCommand
     {
-        public override void Execute(object parameter)
+        public override async void Execute(object parameter)
         {
             if (parameter is ItemClickEventArgs)
             {
                 var item = (parameter as ItemClickEventArgs).ClickedItem as SearchResult;
-                SearchHelpers.OpenSearchItem(item.SearchItemType, item.Text, item.Id);
+                await SearchHelpers.OpenSearchItem(item.SearchItemType, item.Text, item.Id);
             }
             else
             {
