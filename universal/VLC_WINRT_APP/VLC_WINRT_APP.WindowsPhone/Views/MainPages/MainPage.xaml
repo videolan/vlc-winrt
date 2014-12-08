@@ -1,39 +1,36 @@
-﻿<Page x:Class="VLC_WINRT_APP.Views.MainPages.MainPage"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:local="using:VLC_WINRT_APP.Views.MainPages"
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:userControls="using:VLC_WINRT_APP.Views.UserControls"
-      xmlns:panelsView="using:PanelsView"
-      xmlns:extensions="using:WinRTXamlToolkit.Controls.Extensions"
-      mc:Ignorable="d">
-
-    <SwapChainPanel x:Name="SwapChainPanel"
-                    RequestedTheme="Light">
-        <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        <MediaElement Grid.RowSpan="2"
-                      AudioCategory="BackgroundCapableMedia"
-                      AudioDeviceType="Multimedia"
-                      x:Name="MediaElement"
-                      x:FieldModifier="public" />
-        <Grid Grid.RowSpan="2"
-              Background="WhiteSmoke"
-              Visibility="{Binding Source={StaticResource Locator}, Path=VideoVm.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}" />
-
-        <Image Source="/Assets/backgroundBot.png"
-               Stretch="Uniform"
-               Opacity="{Binding ElementName=PanelsView, Path=Scrolling, Converter={StaticResource OpacityDecreaserConverter}}"
-               Grid.RowSpan="2"
-               VerticalAlignment="Bottom"
-               Visibility="{Binding Source={StaticResource Locator}, Path=VideoVm.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}"
-               extensions:ImageExtensions.FadeInOnLoaded="True" />
-        <Frame x:Name="MainFrame"
-               x:FieldModifier="public"
-               Background="Transparent" />
-        <userControls:BottomMiniPlayer Grid.Row="1" />
-        </SwapChainPanel>
-</Page>
+﻿<SwapChainPanel x:Class="VLC_WINRT_APP.Views.MainPages.MainPage"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:local="using:VLC_WINRT_APP.Views.MainPages"
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                xmlns:userControls="using:VLC_WINRT_APP.Views.UserControls"
+                xmlns:panelsView="using:PanelsView"
+                xmlns:extensions="using:WinRTXamlToolkit.Controls.Extensions"
+                mc:Ignorable="d"
+                x:Name="SwapChainPanel"
+                RequestedTheme="Light">
+    <Grid.RowDefinitions>
+        <RowDefinition />
+        <RowDefinition Height="Auto" />
+    </Grid.RowDefinitions>
+    <MediaElement Grid.RowSpan="2"
+                  AudioCategory="BackgroundCapableMedia"
+                  AudioDeviceType="Multimedia"
+                  x:Name="MediaElement"
+                  x:FieldModifier="public" />
+    <Grid Grid.RowSpan="2"
+          Background="WhiteSmoke"
+          Visibility="{Binding Source={StaticResource Locator}, Path=VideoVm.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}" />
+    <Image Source="/Assets/backgroundBot.png"
+           Stretch="Uniform"
+           Opacity="{Binding ElementName=PanelsView, Path=Scrolling, Converter={StaticResource OpacityDecreaserConverter}}"
+           Grid.RowSpan="2"
+           VerticalAlignment="Bottom"
+           Visibility="{Binding Source={StaticResource Locator}, Path=VideoVm.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}"
+           extensions:ImageExtensions.FadeInOnLoaded="True" />
+    <Frame x:Name="MainFrame"
+           x:FieldModifier="public"
+           Background="Transparent" />
+    <userControls:BottomMiniPlayer Grid.Row="1" />
+</SwapChainPanel>

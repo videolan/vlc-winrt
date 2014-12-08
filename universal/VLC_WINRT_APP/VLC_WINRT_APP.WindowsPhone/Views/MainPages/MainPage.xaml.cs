@@ -15,13 +15,12 @@ namespace VLC_WINRT_APP.Views.MainPages
     /// <summary>
     /// Une page vide peut être utilisée seule ou constituer une page de destination au sein d'un frame.
     /// </summary>
-    public sealed partial class MainPage : Page
+    public sealed partial class MainPage : SwapChainPanel
     {
         private readonly IVlcService _vlcService;
         public MainPage(IVlcService vlcService, IMediaService mediaService)
         {
             this.InitializeComponent();
-            this.NavigationCacheMode = NavigationCacheMode.Enabled;
             _vlcService = vlcService;
             (mediaService as MediaService).SetMediaElement(MediaElement);
             (mediaService as MediaService).SetMediaTransportControls(SystemMediaTransportControls.GetForCurrentView());
@@ -57,15 +56,6 @@ namespace VLC_WINRT_APP.Views.MainPages
         private async void SwapPanelLoaded(object sender, RoutedEventArgs e)
         {
             await _vlcService.Initialize(SwapChainPanel);
-        }
-
-        /// <summary>
-        /// Invoked when this page is about to be displayed in a Frame.
-        /// </summary>
-        /// <param name="e">Event data that describes how this page was reached.
-        /// This parameter is typically used to configure the page.</param>
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
         }
     }
 }
