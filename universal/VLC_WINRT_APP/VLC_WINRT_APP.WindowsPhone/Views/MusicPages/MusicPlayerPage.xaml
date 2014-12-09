@@ -148,10 +148,13 @@
                                           FontSize="30" />
                             </AppBarButton.Icon>
                         </AppBarButton>
-                        <AppBarButton Grid.Column="4"
-                                      Icon="Favorite"
-                                      IsCompact="True"
-                                      VerticalAlignment="Center" />
+                        <AppBarToggleButton Grid.Column="4"
+                                            Icon="Favorite"
+                                            IsCompact="True"
+                                            VerticalAlignment="Center" 
+                                            IsChecked="{Binding CurrentAlbum.Favorite}"
+                                            Command="{Binding CurrentAlbum.FavoriteAlbum}"
+                                            CommandParameter="{Binding CurrentAlbum}"/>
                     </Grid>
                 </Grid>
             </FlipViewItem>
