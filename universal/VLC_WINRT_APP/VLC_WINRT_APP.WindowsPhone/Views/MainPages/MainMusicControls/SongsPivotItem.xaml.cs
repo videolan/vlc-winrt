@@ -24,5 +24,11 @@ namespace VLC_WINRT_APP.Views.MainPages.MainMusicControls
             //    await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => FadeInHeader.Begin());
             //}
         }
+
+        private void SemanticZoom_OnViewChangeCompleted(object sender, SemanticZoomViewChangedEventArgs e)
+        {
+            if (TracksZoomedOutView.ItemsSource == null)
+                TracksZoomedOutView.ItemsSource = GroupTracks.View.CollectionGroups;
+        }
     }
 }
