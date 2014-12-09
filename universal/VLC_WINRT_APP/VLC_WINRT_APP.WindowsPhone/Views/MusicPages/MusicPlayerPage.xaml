@@ -93,7 +93,8 @@
                         <AppBarButton Grid.Column="0"
                                       Icon="Shuffle"
                                       IsCompact="True"
-                                      VerticalAlignment="Center" />
+                                      VerticalAlignment="Center" 
+                                      Command="{Binding Shuffle}"/>
                         <AppBarButton Grid.Column="1"
                                       HorizontalAlignment="Center"
                                       IsCompact="True"
