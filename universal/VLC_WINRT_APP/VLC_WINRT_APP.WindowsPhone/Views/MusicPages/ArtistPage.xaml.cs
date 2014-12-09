@@ -39,18 +39,6 @@ namespace VLC_WINRT_APP.Views.MusicPages
             HardwareButtons.BackPressed += HardwareButtonsOnBackPressed;
         }
 
-        private async void AlbumsView_Loaded(object sender, RoutedEventArgs e)
-        {
-            ScrollViewer sV = (sender as GridView).GetFirstDescendantOfType<ScrollViewer>();
-            sV.ViewChanging += async (o, args) =>
-            {
-                if (args.NextView.VerticalOffset > 50 && FadeOutHeader.GetCurrentState() == ClockState.Stopped)
-                {
-                    await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => FadeOutHeader.Begin());
-                }
-            };
-        }
-
         private void ItemsWrapGrid_Loaded(object sender, RoutedEventArgs e)
         {
             TemplateSizer.ComputeAlbums(sender as ItemsWrapGrid, TemplateSize.Normal);

@@ -9,70 +9,50 @@
       mc:Ignorable="d"
       DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}"
       Background="WhiteSmoke">
-
-    <Page.Resources>
-        <Storyboard x:Name="FadeOutHeader">
-            <DoubleAnimation EnableDependentAnimation="True"
-                             Storyboard.TargetName="HeaderGrid"
-                             Storyboard.TargetProperty="(FrameworkElement.Height)"
-                             To="200">
-                <DoubleAnimation.EasingFunction>
-                    <ExponentialEase EasingMode="EaseOut"
-                                     Exponent="3" />
-                </DoubleAnimation.EasingFunction>
-            </DoubleAnimation>
-        </Storyboard>
-    </Page.Resources>
-    <Grid Margin="12,0,0,0"
-          RequestedTheme="Dark">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"
-                           x:Name="HeaderRowDefinition" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <Grid Grid.Row="0"
-              x:Name="HeaderGrid"
-              Margin="-12,0,0,0"
-              Height="350"
-              Background="Black">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition />
-            </Grid.RowDefinitions>
-            <Image Grid.RowSpan="2"
-                   Source="{Binding CurrentArtist.Picture}"
-                   Stretch="UniformToFill"
-                   Opacity="0.5" />
-            <userControls:HeaderControl Grid.Row="0"
-                                        HeaderTextBlock="{Binding CurrentArtist.Name}"
-                                        HeaderBackground="#00ffffff"
-                                        VerticalAlignment="Top" />
-            <Grid Grid.Row="1">
-                <TextBlock Text="{Binding CurrentArtist.Biography}"
-                           Style="{StaticResource BodyTextBlockStyle}"
-                           TextTrimming="CharacterEllipsis"
-                           Margin="24,0,12,12"
-                           HorizontalAlignment="Left"
-                           VerticalAlignment="Top" />
-            </Grid>
-        </Grid>
-        <Image Grid.Row="1"
-               Source="/Assets/backgroundTop.png"
+    <Grid RequestedTheme="Dark">
+        <Image Source="/Assets/backgroundTop.png"
                Stretch="Uniform"
                VerticalAlignment="Top" />
-        <Grid Grid.Row="1"
-              RequestedTheme="Light">
+        <Grid RequestedTheme="Light">
             <GridView ItemsSource="{Binding CurrentArtist.Albums}"
                       ItemTemplate="{StaticResource PhoneSemanticZoomInViewAlbumTemplateLittleSize}"
                       Margin="0,0,-20,0"
-                      IsItemClickEnabled="True"
-                      Loaded="AlbumsView_Loaded">
+                      IsItemClickEnabled="True">
                 <triggers:Interactions.Triggers>
                     <triggers:EventTrigger EventName="ItemClick">
                         <triggers:InvokeCommandAction Command="{Binding AlbumClickedCommand}"
                                                       PassEventArgsToCommand="True" />
                     </triggers:EventTrigger>
                 </triggers:Interactions.Triggers>
+                <GridView.HeaderTemplate>
+                    <DataTemplate>
+                        <Grid x:Name="HeaderGrid"
+                              Height="350"
+                              Background="Black"
+                              RequestedTheme="Dark">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Image Grid.RowSpan="2"
+                                   Source="{Binding CurrentArtist.Picture}"
+                                   Stretch="UniformToFill"
+                                   Opacity="0.5" />
+                            <userControls:HeaderControl Grid.Row="0"
+                                                        HeaderTextBlock="{Binding CurrentArtist.Name}"
+                                                        HeaderBackground="#00ffffff"
+                                                        VerticalAlignment="Top" />
+                            <Grid Grid.Row="1">
+                                <TextBlock Text="{Binding CurrentArtist.Biography}"
+                                           Style="{StaticResource BodyTextBlockStyle}"
+                                           TextTrimming="CharacterEllipsis"
+                                           Margin="24,0,24,12"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Top" />
+                            </Grid>
+                        </Grid>
+                    </DataTemplate>
+                </GridView.HeaderTemplate>
                 <GridView.ItemContainerTransitions>
                     <TransitionCollection>
                         <AddDeleteThemeTransition />
@@ -82,6 +62,7 @@
                 <GridView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <ItemsWrapGrid Orientation="Horizontal"
+                                       Margin="12,0,0,0"
                                        Loaded="ItemsWrapGrid_Loaded" />
                     </ItemsPanelTemplate>
                 </GridView.ItemsPanel>
@@ -114,7 +95,7 @@
                         <MenuFlyoutItem Text="play all albums" />
                         <MenuFlyoutItem Text="upcoming shows"
                                         Command="{Binding CurrentArtist.SeeArtistShowsCommand}"
-                                        CommandParameter="{Binding CurrentArtist}"/>
+                                        CommandParameter="{Binding CurrentArtist}" />
                         <MenuFlyoutItem Text="pin"
                                         Command="{Binding CurrentArtist.PinArtistCommand}"
                                         CommandParameter="{Binding CurrentArtist}" />
