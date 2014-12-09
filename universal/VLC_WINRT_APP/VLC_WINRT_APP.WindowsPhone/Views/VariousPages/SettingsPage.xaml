@@ -14,7 +14,7 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <userControls:HeaderControl Grid.Row="0"
-                             HeaderTextBlock="Settings" />
+                                    HeaderTextBlock="Settings" />
         <Pivot Grid.Row="1"
                HeaderTemplate="{StaticResource PivotTitleTemplate}">
             <Pivot.TitleTemplate>
@@ -24,11 +24,40 @@
             <PivotItem Header="user interface">
                 <ToggleSwitch Header="Enable Sidebar"
                               IsOn="{Binding EnableSidebar, Mode=TwoWay}"
-                              VerticalAlignment="Top"/>    
+                              VerticalAlignment="Top" />
             </PivotItem>
             <PivotItem Header="music settings">
-                <TextBlock Text="Coming soon!"
-                           Style="{StaticResource TitleTextBlockStyle}" />
+                <ScrollViewer>
+                    <StackPanel>
+                        <TextBlock Text="WARNING This is not working yet"
+                                   Foreground="Red"/>
+                        <StackPanel x:Name="LastFmGrid"
+                              Margin="0,20,0,0">
+                            <StackPanel Orientation="Horizontal"
+                                        HorizontalAlignment="Center">
+                                <userControls:VLCLogoWithGradient Height="50"
+                                                                  VerticalAlignment="Center" />
+                                <TextBlock Margin="6,0,0,0"
+                                           Text=""
+                                           Style="{StaticResource HeaderTextBlockStyle}"
+                                           VerticalAlignment="Center" />
+                                <Image Margin="10,0,0,0"
+                                       Source="http://cdn.last.fm/flatness/badges/lastfm_black.gif"
+                                       Height="50"
+                                       VerticalAlignment="Center" />
+                                <TextBlock Margin="12,0,0,0"
+                                           Style="{StaticResource HeaderTextBlockStyle}">
+                                    <Run Text="=" />
+                                    <Run Text=""
+                                         FontFamily="Segoe UI Symbol" />
+                                </TextBlock>
+                            </StackPanel>
+                            <Button Content="Connect to Last.FM (enables scrobbling)"
+                                    Command="{Binding NavToLastFmPage}"
+                                    HorizontalAlignment="Center" />
+                        </StackPanel>
+                    </StackPanel>
+                </ScrollViewer>
             </PivotItem>
         </Pivot>
     </Grid>

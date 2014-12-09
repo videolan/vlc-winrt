@@ -13,6 +13,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.Storage;
+using VLC_WINRT_APP.Commands.Music;
 using VLC_WINRT_APP.Commands.Settings;
 using VLC_WINRT_APP.Common;
 using VLC_WINRT_APP.Helpers;
@@ -40,6 +41,9 @@ namespace VLC_WINRT_APP.ViewModels.Settings
         private bool _searchAlbum;
         private bool _searchTrack;
         private bool _searchVideo;
+        private string _lastFmUserName;
+        private string _lastFmPassword;
+        private bool _lastFmIsConnecting = false;
 #endif
 #if WINDOWS_APP
         public bool ContinueVideoPlaybackInBackground
@@ -284,6 +288,61 @@ namespace VLC_WINRT_APP.ViewModels.Settings
             }
         }
 
+        
+        public string LastFmUserName
+        {
+            get
+            {
+                var username = ApplicationSettingsHelper.ReadSettingsValue("LastFmUserName");
+                if (username == null)
+                {
+                    _lastFmUserName = "";
+                }
+                else
+                {
+                    _lastFmUserName = username.ToString();
+                }
+                return _lastFmUserName;
+            }
+            set
+            {
+                ApplicationSettingsHelper.SaveSettingsValue("LastFmUserName", value);
+                SetProperty(ref _lastFmUserName, value);
+            }
+        }
+
+        public string LastFmPassword
+        {
+            get
+            {
+                var password = ApplicationSettingsHelper.ReadSettingsValue("LastFmPassword");
+                if (password == null)
+                {
+                    _lastFmPassword = "";
+                }
+                else
+                {
+                    _lastFmPassword = password.ToString();
+                }
+                return _lastFmPassword;
+            }
+            set
+            {
+                ApplicationSettingsHelper.SaveSettingsValue("LastFmPassword", value);
+                SetProperty(ref _lastFmPassword, value);
+            }
+        }
+
+        public bool LastFmIsConnecting
+        {
+            get { return _lastFmIsConnecting; }
+            set { SetProperty(ref _lastFmIsConnecting, value); }
+        }
+
+        public NavToLastFmPage NavToLastFmPage
+        {
+            get { return new NavToLastFmPage();}
+        }
         public SettingsViewModel()
         {
             AlbumsOrderTypeCollection = new ObservableCollection<OrderType>();

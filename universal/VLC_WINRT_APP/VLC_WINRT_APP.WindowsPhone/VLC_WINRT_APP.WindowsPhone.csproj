@@ -126,6 +126,9 @@
     <Compile Include="Views\UserControls\CompactVideoItemControl.xaml.cs">
       <DependentUpon>CompactVideoItemControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserControls\ConnectToLastFm.xaml.cs">
+      <DependentUpon>ConnectToLastFm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserControls\LeftColumn.xaml.cs">
       <DependentUpon>LeftColumn.xaml</DependentUpon>
     </Compile>
@@ -937,6 +940,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControls\CompactVideoItemControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\ConnectToLastFm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
