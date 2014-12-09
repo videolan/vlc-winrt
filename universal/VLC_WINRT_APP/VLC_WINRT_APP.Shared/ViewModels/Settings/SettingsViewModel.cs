@@ -36,7 +36,6 @@ namespace VLC_WINRT_APP.ViewModels.Settings
         private OrderType _albumsOrderType;
         private OrderListing _albumsOrderListing;
 #if WINDOWS_PHONE_APP
-        private bool _enableSidebar;
         private bool _searchArtist;
         private bool _searchAlbum;
         private bool _searchTrack;
@@ -217,28 +216,6 @@ namespace VLC_WINRT_APP.ViewModels.Settings
                 }
             }
         }
-
-        public bool EnableSidebar
-        {
-            get
-            {
-                var enableSide = ApplicationSettingsHelper.ReadSettingsValue("EnableSidebar");
-                if (enableSide != null && (bool)enableSide)
-                {
-                    _enableSidebar = true;
-                }
-                else
-                {
-                    _enableSidebar = false;
-                }
-                return _enableSidebar;
-            }
-            set
-            {
-                SetProperty(ref _enableSidebar, value);
-                ApplicationSettingsHelper.SaveSettingsValue("EnableSidebar", (bool)value);
-            }
-        }
 #endif
         public OrderType AlbumsOrderType
         {
@@ -376,12 +353,6 @@ namespace VLC_WINRT_APP.ViewModels.Settings
 
             await GetLibrariesFolders();
 #else
-            var enableSide = ApplicationSettingsHelper.ReadSettingsValue("EnableSidebar");
-            if (enableSide == null)
-            {
-                EnableSidebar = false;
-            }
-
             var searchArtist = ApplicationSettingsHelper.ReadSettingsValue("SearchArtists");
             if (searchArtist == null)
             {

@@ -21,11 +21,6 @@
                 <DataTemplate>
                 </DataTemplate>
             </Pivot.TitleTemplate>
-            <PivotItem Header="user interface">
-                <ToggleSwitch Header="Enable Sidebar"
-                              IsOn="{Binding EnableSidebar, Mode=TwoWay}"
-                              VerticalAlignment="Top" />
-            </PivotItem>
             <PivotItem Header="music settings">
                 <ScrollViewer>
                     <StackPanel>
