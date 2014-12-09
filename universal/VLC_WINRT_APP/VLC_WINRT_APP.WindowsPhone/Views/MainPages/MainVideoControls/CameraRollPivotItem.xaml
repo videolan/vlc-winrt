@@ -30,7 +30,8 @@
             <GridView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <ItemsWrapGrid Orientation="Horizontal"
-                                   SizeChanged="VideosWrapGrid_SizeChanged" />
+                                   SizeChanged="VideosWrapGrid_SizeChanged" 
+                                   Margin="0,0,0,60"/>
                 </ItemsPanelTemplate>
             </GridView.ItemsPanel>
         </GridView>
