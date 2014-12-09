@@ -292,6 +292,12 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             }
         }
 
+        public static async Task DeletePlaylist(TrackCollection trackCollection)
+        {
+            await MusicLibraryVM.TrackCollectionRepository.Remove(trackCollection);
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Locator.MusicLibraryVM.TrackCollections.Remove(trackCollection));
+        }
+
         public static async Task AddToPlaylist(TrackItem trackItem, bool displayToastNotif = true)
         {
             Locator.MusicLibraryVM.CurrentTrackCollection.Playlist.Add(trackItem);
@@ -332,7 +338,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 MusicLibraryVM._trackDataRepository.Remove(Locator.MusicLibraryVM.Tracks.FirstOrDefault(x => x.Path == trackItem.Path));
-                Locator.MusicLibraryVM.Tracks.Remove(Locator.MusicLibraryVM.Tracks.FirstOrDefault(x=>x.Path == trackItem.Path));
+                Locator.MusicLibraryVM.Tracks.Remove(Locator.MusicLibraryVM.Tracks.FirstOrDefault(x => x.Path == trackItem.Path));
                 var album = Locator.MusicLibraryVM.Albums.FirstOrDefault(x => x.Id == trackItem.AlbumId);
                 if (album != null)
                     album.Tracks.Remove(album.Tracks.FirstOrDefault(x => x.Path == trackItem.Path));

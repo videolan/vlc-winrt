@@ -27,7 +27,6 @@ namespace VLC_WINRT_APP.DataRepository
             using (var db = new SQLite.SQLiteConnection(DbPath))
             {
                 db.CreateTable<TracklistItem>();
-
             }
         }
 
