@@ -7,15 +7,9 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
-using System;
 using VLC_WINRT.Common;
-using VLC_WINRT_APP.Services.RunTime;
-using VLC_WINRT_APP;
 using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.Views.VideoPages;
-#if WINDOWS_PHONE_APP
-
-#endif
 
 namespace VLC_WINRT_APP.Commands
 {
