@@ -16,10 +16,6 @@
 
     <Grid Margin="0"
           DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
-        <!--<Grid.RowDefinitions>
-            <RowDefinition Height="60" />
-            <RowDefinition />
-        </Grid.RowDefinitions>-->
         <Grid Background="{StaticResource MainColor}"
               DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}"
               Height="70"
@@ -33,62 +29,6 @@
                </LinearGradientBrush>
            </Grid.Background>
         </Grid>
-        <!--<Grid Grid.Row="0"
-              Background="WhiteSmoke"
-              VerticalAlignment="Top"
-              DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="20" />
-                <RowDefinition />
-                <RowDefinition Height="1" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <Grid Background="{StaticResource MainColor}"
-                  Grid.ColumnSpan="3"
-                  Grid.Row="2" />
-            <userControls:VLCLogoWithGradient Grid.Row="1"
-                                              Margin="8,6,0,6" />
-            <TextBlock x:Name="TitleTextBlock"
-                       Grid.Column="1"
-                       Grid.Row="1"
-                       Style="{StaticResource TitleTextBlockStyle}"
-                       Margin="6,-2,0,0"
-                       VerticalAlignment="Center"
-                       FontWeight="Light">
-                <Run Text="VLC"
-                     FontSize="28"
-                     Foreground="{StaticResource MainColor}" />
-            </TextBlock>
-            <ListView x:Name="PanelsListView"
-                      Grid.Column="2"
-                      Grid.Row="1"
-                      Margin="12,-3,-13,0"
-                      ItemsSource="{Binding Panels}"
-                      IsItemClickEnabled="False"
-                      SelectionMode="Single"
-                      SelectedIndex="{Binding ElementName=MainPivot, Path=SelectedIndex, Mode=TwoWay}"
-                      VerticalAlignment="Center"
-                      HorizontalAlignment="Right"
-                      ItemContainerStyle="{StaticResource ListViewItemContainerStyleNoSelectCheck}"
-                      ItemTemplate="{StaticResource SidebarMiniIconItemTemplate}"
-                      ScrollViewer.VerticalScrollBarVisibility="Disabled">
-                <triggers:Interactions.Triggers>
-                    <triggers:EventTrigger EventName="SelectionChanged">
-                        <triggers:InvokeCommandAction Command="{Binding GoToPanelCommand}"
-                                                      PassEventArgsToCommand="True" />
-                    </triggers:EventTrigger>
-                </triggers:Interactions.Triggers>
-                <ListView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel Orientation="Horizontal" />
-                    </ItemsPanelTemplate>
-                </ListView.ItemsPanel>
-            </ListView>
-        </Grid>-->
         <Image Source="/Assets/backgroundTop.png"
                Stretch="Uniform"
                VerticalAlignment="Top"
@@ -200,44 +140,6 @@
     <Page.BottomAppBar>
         <CommandBar Style="{StaticResource VLCCommandBarStyle}"
                     x:Name="CommandBar">
-            <!--<AppBarButton Icon="Find"
-                          x:Uid="Search1"
-                          Label="search"
-                          Command="{Binding Source={StaticResource Locator}, Path=MainVM.OpenSidebarCommand}" />
-            <AppBarButton Icon="OpenFile"
-                          x:Uid="OpenFile2"
-                          Label="open file"
-                          Command="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM.PickVideo}" />
-            <AppBarButton Label="open stream"
-                          x:Uid="OpenNetworkStream2"
-                          Icon="World">
-                <AppBarButton.Flyout>
-                    <Flyout Placement="Full">
-                        <Grid>
-                            <StackPanel VerticalAlignment="Center"
-                                        Background="WhiteSmoke">
-                                <TextBlock Text="Open a stream"
-                                           Style="{StaticResource SubheaderTextBlockStyle}"
-                                           Margin="12" />
-                                <StackPanel Orientation="Horizontal"
-                                            Margin="12">
-                                    <TextBox Name="UrlTextBox"
-                                             PlaceholderText="Enter a URL"
-                                             Width="350" />
-                                    <Button Style="{StaticResource TextBlockButtonStyle}"
-                                            Margin="12,0,0,0"
-                                            Command="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM.PlayNetworkMRL}"
-                                            CommandParameter="{Binding ElementName=UrlTextBox, Path=Text}">
-                                        <Button.Content>
-                                            <SymbolIcon Symbol="Accept" />
-                                        </Button.Content>
-                                    </Button>
-                                </StackPanel>
-                            </StackPanel>
-                        </Grid>
-                    </Flyout>
-                </AppBarButton.Flyout>
-            </AppBarButton>-->
         </CommandBar>
     </Page.BottomAppBar>
 </Page>
