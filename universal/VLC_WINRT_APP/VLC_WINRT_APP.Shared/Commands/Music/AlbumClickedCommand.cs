@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using Windows.UI.Core;
 using Windows.UI.Popups;
 using Windows.UI.Xaml.Controls;
@@ -16,6 +17,10 @@ namespace VLC_WINRT_APP.Commands.Music
         public override async void Execute(object parameter)
         {
 #if WINDOWS_PHONE_APP
+            if (App.ApplicationFrame.CurrentSourcePageType != typeof (AlbumPage))
+            {
+                App.ApplicationFrame.Navigate(typeof (AlbumPage));
+            }
             Locator.MusicLibraryVM.IsAlbumPageShown = true;
             AlbumItem album = null;
             if (parameter is AlbumItem)
@@ -36,10 +41,6 @@ namespace VLC_WINRT_APP.Commands.Music
 
             Locator.MusicLibraryVM.CurrentArtist =
                 Locator.MusicLibraryVM.Artists.FirstOrDefault(x => x.Id == album.ArtistId);
-            if (App.ApplicationFrame.CurrentSourcePageType != typeof(AlbumPage))
-            {
-                App.ApplicationFrame.Navigate(typeof(AlbumPage));
-            }
             Locator.MusicLibraryVM.CurrentAlbum = album;
 #endif
         }
