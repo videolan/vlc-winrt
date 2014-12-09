@@ -40,8 +40,8 @@
                                   Offset="1" />
                 </LinearGradientBrush>
             </Grid.Background>
-            <userControls:HeaderControl HeaderTextBlock="{Binding CurrentAlbum.Name}" 
-                                        Background="#00000000"/>
+            <userControls:HeaderControl HeaderTextBlock="{Binding CurrentAlbum.Name}"
+                                        HeaderBackground="#00ffffff"/>
         </Grid>
         <Grid Grid.Row="2"
               RequestedTheme="Dark">
