@@ -17,9 +17,9 @@ namespace VLC_WINRT_APP.Views.VariousPages
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            StatusBarHelper.Default();
             HardwareButtons.BackPressed += HardwareButtonsOnBackPressed;
         }
+
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
             base.OnNavigatingFrom(e);

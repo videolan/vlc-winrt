@@ -375,7 +375,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                 OnPropertyChanged("IsBusy");
                 OnPropertyChanged("IsLoaded");
 #if WINDOWS_PHONE_APP
-                StatusBarHelper.UpdateTitle("VLC Beta - Searching for music ...");
+                StatusBarHelper.UpdateTitle("Searching for music ...");
 #endif
             });
             _artistDataRepository = new ArtistDataRepository();

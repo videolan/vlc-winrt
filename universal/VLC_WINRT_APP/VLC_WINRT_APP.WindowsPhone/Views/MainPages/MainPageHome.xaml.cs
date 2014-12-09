@@ -27,7 +27,6 @@ namespace VLC_WINRT_APP.Views.MainPages
         protected override void OnNavigatedTo(Windows.UI.Xaml.Navigation.NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            StatusBarHelper.Default();
             Locator.MainVM.UpdateSecondaryAppBarButtons();
             if (Locator.VideoLibraryVM.LoadingState == LoadingState.NotLoaded)
             {
