@@ -6,7 +6,10 @@
     <Color x:Key="MainColorBase">#ff8800</Color>
     <SolidColorBrush x:Key="MainColor"
                      Color="{StaticResource MainColorBase}" />
-    <SolidColorBrush x:Key="ListViewItemSelectedBackgroundThemeBrush"
+    <SolidColorBrush x:Key="LightMainSolidColorBrush"
+                     Color="{StaticResource MainColorBase}"
+                     Opacity="0.1" />
+        <SolidColorBrush x:Key="ListViewItemSelectedBackgroundThemeBrush"
                      Color="{StaticResource MainColorBase}"
                      Opacity="0.7"/>
     <SolidColorBrush x:Key="ListViewItemPointerOverBackgroundThemeBrush"
