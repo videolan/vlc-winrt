@@ -21,7 +21,7 @@ namespace VLC_WINRT_APP.Helpers
 
         public static void UpdateTitle(string t)
         {
-            Set(App.Current.Resources["MainColor"] as SolidColorBrush, null, 1, t, ApplicationViewBoundsMode.UseVisible, null);
+            Set(null, null, 0, t, ApplicationViewBoundsMode.UseCoreWindow, null);
         }
 
         public static void SetForeground(SolidColorBrush color)
