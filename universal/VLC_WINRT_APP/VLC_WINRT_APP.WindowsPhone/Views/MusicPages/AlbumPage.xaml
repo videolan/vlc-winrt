@@ -11,52 +11,6 @@
       xmlns:albumPageControls="using:VLC_WINRT_APP.Views.MusicPages.AlbumPageControls"
       mc:Ignorable="d"
       DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
-    <Page.Resources>
-        <Storyboard x:Name="FadeOutHeader">
-            <DoubleAnimation EnableDependentAnimation="True"
-                             Storyboard.TargetName="HeaderGrid"
-                             Storyboard.TargetProperty="(FrameworkElement.Height)"
-                             To="170">
-                <DoubleAnimation.EasingFunction>
-                    <ExponentialEase EasingMode="EaseOut"
-                                     Exponent="3" />
-                </DoubleAnimation.EasingFunction>
-            </DoubleAnimation>
-            <DoubleAnimation Storyboard.TargetName="HeaderArtistImage"
-                             Storyboard.TargetProperty="Opacity"
-                             To="0.6" />
-        </Storyboard>
-        <Storyboard x:Name="FadeInBigHeader">
-            <DoubleAnimation EnableDependentAnimation="True"
-                             Storyboard.TargetName="HeaderGrid"
-                             Storyboard.TargetProperty="(FrameworkElement.Height)"
-                             To="550"
-                             SpeedRatio="2">
-                <DoubleAnimation.EasingFunction>
-                    <ExponentialEase EasingMode="EaseOut"
-                                     Exponent="3" />
-                </DoubleAnimation.EasingFunction>
-            </DoubleAnimation>
-            <DoubleAnimation Storyboard.TargetName="HeaderArtistImage"
-                             Storyboard.TargetProperty="Opacity"
-                             To="0.4"/>
-        </Storyboard>
-        <Storyboard x:Name="ToNormalHeader">
-            <DoubleAnimation EnableDependentAnimation="True"
-                             Storyboard.TargetName="HeaderGrid"
-                             Storyboard.TargetProperty="(FrameworkElement.Height)"
-                             To="300"
-                             SpeedRatio="2">
-                <DoubleAnimation.EasingFunction>
-                    <ExponentialEase EasingMode="EaseOut"
-                                     Exponent="3" />
-                </DoubleAnimation.EasingFunction>
-            </DoubleAnimation>
-            <DoubleAnimation Storyboard.TargetName="HeaderArtistImage"
-                             Storyboard.TargetProperty="Opacity"
-                             To="0.6" />
-        </Storyboard>
-    </Page.Resources>
     <Grid Margin="0,0,0,0"
           RequestedTheme="Dark">
         <Grid.RowDefinitions>
@@ -64,22 +18,20 @@
                            x:Name="HeaderRowDefinition" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <!--<Image Grid.Row="1"
-               Source="/Assets/backgroundTop.png"
-               Stretch="Uniform"
-               VerticalAlignment="Top" />-->
         <Grid Grid.Row="1"
               RequestedTheme="Light">
+            <Image Source="/Assets/backgroundTop.png"
+                   Stretch="Uniform"
+                   VerticalAlignment="Top" />
             <ListView ItemsSource="{Binding CurrentAlbum.Tracks}"
-                                                         IsItemClickEnabled="True"
-                                                         SelectionMode="None"
-                                                         ItemTemplate="{StaticResource WPLightTrackTemplateWNumber}"
-                                                         ItemContainerStyle="{StaticResource ListViewItemStyle}"
-                                                         Loaded="PlaylistView_Loaded"
-                                                         Margin="0,0,0,0">
+                      IsItemClickEnabled="True"
+                      SelectionMode="None"
+                      ItemTemplate="{StaticResource WPLightTrackTemplateWNumber}"
+                      ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                      Margin="0,0,0,0">
                 <ListView.HeaderTemplate>
                     <DataTemplate>
-                        <albumPageControls:MainAlbumHeader/>
+                        <albumPageControls:MainAlbumHeader />
                     </DataTemplate>
                 </ListView.HeaderTemplate>
                 <ListView.ItemContainerTransitions>
@@ -102,10 +54,9 @@
             </ListView>
         </Grid>
     </Grid>
-    
+
     <Page.BottomAppBar>
-        <CommandBar 
-                    Style="{StaticResource VLCCommandBarStyle}">
+        <CommandBar Style="{StaticResource VLCCommandBarStyle}">
         </CommandBar>
     </Page.BottomAppBar>
 </Page>

@@ -28,7 +28,6 @@
                           Style="{StaticResource AppBarButtonStyleHorizontal}"
                           Command="{Binding ShowCreateNewPlaylistPaneCommand}" />
         </Grid>
-        <!-- /!\ Playlists not implemented yet /!\ -->
         <ListView Grid.Row="1"
                   ItemsSource="{Binding TrackCollections}"
                   SelectedItem="{Binding CurrentTrackCollection, Mode=TwoWay}"

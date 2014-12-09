@@ -1,0 +1,52 @@
+﻿<ContentDialog x:Class="VLC_WINRT_APP.Views.MusicPages.AddAlbumToPlaylist"
+               xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+               xmlns:local="using:VLC_WINRT_APP.Views.MusicPages"
+               xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+               xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+               xmlns:triggers="using:WinRT.Triggers"
+               xmlns:placeholder="using:VLC_WINRT_APP.Views.UserControls.Placeholder"
+               mc:Ignorable="d"
+               Title="ADD TO PLAYLIST"
+               PrimaryButtonText="ok"
+               SecondaryButtonText="cancel"
+               PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
+               SecondaryButtonClick="ContentDialog_SecondaryButtonClick"
+               RequestedTheme="Light"
+               DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
+
+    <Grid VerticalAlignment="Stretch"
+          HorizontalAlignment="Stretch">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <TextBox Name="playlistName"
+                     PlaceholderText="Playlist name" />
+            <Button Grid.Column="1"
+                    Content="Add"
+                    Click="NewPlaylistButton_Click" />
+        </Grid>
+        <ListView Grid.Row="1"
+                  ItemsSource="{Binding TrackCollections}"
+                  SelectedItem="{Binding CurrentTrackCollection, Mode=TwoWay}"
+                  Margin="24,0,0,0"
+                  ItemTemplate="{StaticResource PhoneTrackCollectionTemplate}"
+                  ItemContainerStyle="{StaticResource HorizontalListViewItemStyle}">
+            <triggers:Interactions.Triggers>
+                <triggers:EventTrigger EventName="SelectionChanged">
+                    <triggers:InvokeCommandAction Command="{Binding AddToPlaylistCommand}"
+                                                  CommandParameter="{Binding CurrentAlbum}" />
+                </triggers:EventTrigger>
+            </triggers:Interactions.Triggers>
+        </ListView>
+        <placeholder:NoPlaylistPlaceholder Grid.Row="1"
+                                           Visibility="{Binding TrackCollections.Count, Converter={StaticResource CountToVisibilityConverter}}"
+                                           Margin="24,40,0,0" />
+    </Grid>
+</ContentDialog>

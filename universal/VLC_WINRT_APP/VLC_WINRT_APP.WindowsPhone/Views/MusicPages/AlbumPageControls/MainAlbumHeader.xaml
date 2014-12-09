@@ -32,6 +32,15 @@
                                     HeaderBackground="#00ffffff" />
         <Grid Grid.Row="2"
               RequestedTheme="Dark">
+            <Grid.Background>
+                <LinearGradientBrush StartPoint="0.5,0"
+                                     EndPoint="0.5,1">
+                    <GradientStop Color="#00000000"
+                                  Offset="0" />
+                    <GradientStop Color="#5C000000"
+                                  Offset="0.7" />
+                </LinearGradientBrush>
+            </Grid.Background>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="24" />
                 <ColumnDefinition Width="Auto" />
@@ -113,7 +122,8 @@
                     </Button.Content>
                     <Button.Flyout>
                         <MenuFlyout>
-                            <MenuFlyoutItem Text="add to playlist" />
+                            <MenuFlyoutItem Text="add to playlist"
+                                            Command="{Binding OpenAddAlbumToPlaylistDialogCommand}"/>
                             <MenuFlyoutItem Text="pin album"
                                             Command="{Binding CurrentAlbum.PinAlbumCommand}"
                                             CommandParameter="{Binding CurrentAlbum}"/>

@@ -66,6 +66,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         private ArtistClickedCommand _artistClickedCommand;
         private TrackClickedCommand _trackClickedCommand;
         private PlayAllRandomCommand _playAllRandomCommand;
+        private OpenAddAlbumToPlaylistDialog _openAddAlbumToPlaylistDialogCommand;
         private AlbumItem _currentAlbum;
         private ArtistItem _currentArtist;
         private TrackCollection _currentTrackCollection;
@@ -261,6 +262,16 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         {
             get { return _playAllRandomCommand; }
             set { SetProperty(ref _playAllRandomCommand, value); }
+        }
+
+        public OpenAddAlbumToPlaylistDialog OpenAddAlbumToPlaylistDialogCommand
+        {
+            get
+            {
+                return _openAddAlbumToPlaylistDialogCommand ??
+                       (_openAddAlbumToPlaylistDialogCommand = new OpenAddAlbumToPlaylistDialog());
+            }
+            set { SetProperty(ref _openAddAlbumToPlaylistDialogCommand, value); }
         }
 
         public ArtistItem CurrentArtist

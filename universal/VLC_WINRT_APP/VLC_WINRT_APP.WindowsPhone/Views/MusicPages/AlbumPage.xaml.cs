@@ -33,36 +33,5 @@ namespace VLC_WINRT_APP.Views.MusicPages
             App.ApplicationFrame.GoBack();
             backPressedEventArgs.Handled = true;
         }
-
-        private void PlaylistView_Loaded(object sender, RoutedEventArgs e)
-        {
-        }
-
-        private void Selector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if ((sender as FlipView).SelectedIndex == 0)
-            {
-                if (ToNormalHeader == null) return;
-                ToNormalHeader.Begin();
-            }
-            else if ((sender as FlipView).SelectedIndex == 1)
-            {
-                if (FadeInBigHeader == null) return;
-                FadeInBigHeader.Begin();
-            }
-        }
-
-        private async void ScrollWatchedListView_OnGoingTopOrBottom(IScrollWatchedSelector lv, EventArgs eventArgs)
-        {
-            var e = eventArgs as ScrollingEventArgs;
-            if (e.ScrollingType == ScrollingType.ToBottom)
-            {
-                await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => FadeOutHeader.Begin());
-            }
-            else if (e.ScrollingType == ScrollingType.ToTop)
-            {
-                await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => ToNormalHeader.Begin());
-            }
-        }
     }
 }
