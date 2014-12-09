@@ -56,6 +56,7 @@ namespace VLC_WINRT_APP.Helpers
 
         public static void SetDefaultForPage(Type type)
         {
+            SetTransparent();
         }
     }
 }

@@ -376,8 +376,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             {
                 if (App.ApplicationFrame != null)
                     StatusBarHelper.SetDefaultForPage(App.ApplicationFrame.SourcePageType);
-            }
-            );
+            });
 #endif
         }
 
