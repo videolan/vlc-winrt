@@ -21,11 +21,15 @@ namespace VLC_WINRT_APP.Commands
             if (string.IsNullOrEmpty(mrl))
                 return;
 
+            if (App.ApplicationFrame.CurrentSourcePageType != typeof(VideoPlayerPage))
+            {
+                App.ApplicationFrame.Navigate(typeof(VideoPlayerPage));
+            }
+
+            Locator.MainVM.CloseStreamFlyout();
+
             //TODO: pass MRL to vlc
             await Locator.VideoVm.SetActiveVideoInfo(mrl, true);
-            #if WINDOWS_APP
-            App.ApplicationFrame.Navigate(typeof(VideoPlayerPage));
-            #endif
         }
     }
 }

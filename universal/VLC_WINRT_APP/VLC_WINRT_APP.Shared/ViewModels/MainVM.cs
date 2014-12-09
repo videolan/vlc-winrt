@@ -252,6 +252,16 @@ namespace VLC_WINRT_APP.ViewModels
             }
         }
 #endif
+
+        public void CloseStreamFlyout()
+        {
+            var streamFLyout = App.Current.Resources["PhoneOpenStreamFlyout"] as Flyout;
+            if (streamFLyout != null)
+            {
+                streamFLyout.Hide();
+            }
+        }
+
         public ObservableCollection<Panel> Panels
         {
             get { return _panels; }
