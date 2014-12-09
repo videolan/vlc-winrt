@@ -28,14 +28,14 @@ namespace VLC_WINRT_APP.Views.MainPages
 
         private void HardwareButtonsOnBackPressed(object sender, BackPressedEventArgs backPressedEventArgs)
         {
-                backPressedEventArgs.Handled = true;
             if (Locator.ExternalStorageVM.CurrentStorageVM.CanGoBack)
             {
+                backPressedEventArgs.Handled = true;
                 Locator.ExternalStorageVM.CurrentStorageVM.GoBackCommand.Execute(null);
             }
             else
             {
-                App.ApplicationFrame.Navigate(typeof (MainPageHome));
+                App.ApplicationFrame.Navigate(typeof(MainPageHome));
             }
         }
 
