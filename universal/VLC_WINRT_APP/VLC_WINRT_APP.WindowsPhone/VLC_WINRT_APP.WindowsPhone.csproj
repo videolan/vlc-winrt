@@ -186,6 +186,9 @@
     <Compile Include="Views\UserControls\Placeholder\NothingToSeeHere.xaml.cs">
       <DependentUpon>NothingToSeeHere.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserControls\Placeholder\NoVideosPlaceholder.xaml.cs">
+      <DependentUpon>NoVideosPlaceholder.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserControls\Placeholder\StartSearchingSomething.xaml.cs">
       <DependentUpon>StartSearchingSomething.xaml</DependentUpon>
     </Compile>
@@ -1020,6 +1023,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControls\Placeholder\NothingToSeeHere.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\Placeholder\NoVideosPlaceholder.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
