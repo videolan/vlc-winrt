@@ -103,7 +103,6 @@ namespace VLC_WINRT_APP.Model.Music
 
         public async Task LoadPicture()
         {
-            if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable()) return;
             try
             {
                 await ArtistInformationsHelper.GetAlbumPicture(this);

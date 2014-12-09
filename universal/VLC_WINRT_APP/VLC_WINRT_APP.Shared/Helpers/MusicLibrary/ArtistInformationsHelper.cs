@@ -260,6 +260,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             }
             else
             {
+                if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable()) return;
                 await GetAlbumPictureFromInternet(album);
             }
         }
