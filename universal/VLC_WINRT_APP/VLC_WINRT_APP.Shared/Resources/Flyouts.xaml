@@ -32,7 +32,7 @@
                 Placement="Top">
         <MenuFlyoutItem Text="albums"
                         Command="{Binding Source={StaticResource Locator}, Path=MainVM.ChangeMainPageMusicViewCommand}"
-                        CommandParameter="0"/>
+                        CommandParameter="0" />
         <MenuFlyoutItem Text="artists"
                         Command="{Binding Source={StaticResource Locator}, Path=MainVM.ChangeMainPageMusicViewCommand}"
                         CommandParameter="1" />
@@ -43,7 +43,7 @@
                         Command="{Binding Source={StaticResource Locator}, Path=MainVM.ChangeMainPageMusicViewCommand}"
                         CommandParameter="3" />
     </MenuFlyout>
-    
+
     <MenuFlyout x:Key="PhoneChangeVideoViewFlyout"
                 Placement="Top">
         <MenuFlyoutItem Text="all videos"

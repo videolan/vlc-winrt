@@ -51,7 +51,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         private ObservableCollection<AlbumItem> _randomAlbums = new ObservableCollection<AlbumItem>();
         private ObservableCollection<AlbumItem> _albums = new ObservableCollection<AlbumItem>();
         private ObservableCollection<TrackCollection> _trackCollections = new ObservableCollection<TrackCollection>();
-        private IEnumerable<IGrouping<char, TrackItem>> _alphaGroupedTracks; 
+        private IEnumerable<IGrouping<char, TrackItem>> _alphaGroupedTracks;
         #endregion
         #region private props
         private SidebarState _sidebarState;
@@ -354,7 +354,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
             {
                 Albums = await _albumDataRepository.LoadAlbums(x => x.ArtistId != 0);
-                AlphaGroupedTracks = _trackses.OrderBy(x=>x.Name != null ? x.Name.ElementAt(0) : '\0').GroupBy(x => x.Name != null ? x.Name.ElementAt(0) : '\0');
+                AlphaGroupedTracks = _trackses.OrderBy(x => x.Name != null ? x.Name.ElementAt(0) : '\0').GroupBy(x => x.Name != null ? x.Name.ElementAt(0) : '\0');
             });
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => IsMusicLibraryEmpty = false);
             if (!Artists.Any())
