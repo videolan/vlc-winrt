@@ -19,7 +19,17 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston MA 02110-1301, USA.
  *****************************************************************************/
 
-#include "pch.h"
+#include <wrl.h>
+#include <wrl/client.h>
+
+#include <dxgi.h>
+#include <dxgi1_2.h>
+#include <dxgi1_3.h>
+#include <d3d11_1.h>
+#include <d2d1_2.h>
+
+#include "windows.ui.xaml.media.dxinterop.h"
+
 #include "Player.h"
 #include "Helpers.h"
 #include <map>
