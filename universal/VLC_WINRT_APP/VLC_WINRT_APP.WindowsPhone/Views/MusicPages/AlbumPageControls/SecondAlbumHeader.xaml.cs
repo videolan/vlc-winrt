@@ -13,23 +13,5 @@ namespace VLC_WINRT_APP.Views.MusicPages.AlbumPageControls
         {
             this.InitializeComponent();
         }
-
-        private void SwypeLeftToRight_Button_Click(object sender, RoutedEventArgs e)
-        {
-            SwypeToPanelOne();
-        }
-
-        private void SwypeLeftToRight_Button_Tap(object sender, TappedRoutedEventArgs e)
-        {
-            SwypeToPanelOne();
-        }
-
-        async Task SwypeToPanelOne()
-        {
-            var albumPage = App.ApplicationFrame.Content as AlbumPage;
-            if (albumPage != null)
-                await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => albumPage.HeaderFlipView.SelectedIndex = 0);
-        
-        }
     }
 }

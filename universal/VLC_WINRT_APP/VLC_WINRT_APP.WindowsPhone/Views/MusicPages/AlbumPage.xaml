@@ -57,78 +57,54 @@
                              To="0.6" />
         </Storyboard>
     </Page.Resources>
-    <Grid Margin="12,0,0,0"
+    <Grid Margin="0,0,0,0"
           RequestedTheme="Dark">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"
                            x:Name="HeaderRowDefinition" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0"
-              x:Name="HeaderGrid"
-              Margin="-12,0,0,0"
-              Height="300"
-              Background="Black">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition />
-            </Grid.RowDefinitions>
-            <Image Grid.RowSpan="3"
-                   x:Name="HeaderArtistImage"
-                   Source="{Binding CurrentArtist.Picture}"
-                   Stretch="UniformToFill"
-                   Opacity="0.6"/>
-            <userControls:HeaderControl HeaderTextBlock="{Binding CurrentAlbum.Name}"
-                                 HeaderBackground="#00ffffff" />
-            <FlipView x:Name="HeaderFlipView"
-                      x:FieldModifier="public"
-                      Grid.Row="1"
-                      SelectionChanged="Selector_OnSelectionChanged">
-                <FlipViewItem>
-                    <albumPageControls:MainAlbumHeader />
-                </FlipViewItem>
-                <FlipViewItem>
-                    <albumPageControls:SecondAlbumHeader />
-                </FlipViewItem>
-            </FlipView>
-        </Grid>
         <!--<Image Grid.Row="1"
                Source="/Assets/backgroundTop.png"
                Stretch="Uniform"
                VerticalAlignment="Top" />-->
         <Grid Grid.Row="1"
               RequestedTheme="Light">
-            <scrollWatchedSelector:ScrollWatchedListView ItemsSource="{Binding CurrentAlbum.Tracks}"
+            <ListView ItemsSource="{Binding CurrentAlbum.Tracks}"
                                                          IsItemClickEnabled="True"
                                                          SelectionMode="None"
                                                          ItemTemplate="{StaticResource WPLightTrackTemplateWNumber}"
                                                          ItemContainerStyle="{StaticResource ListViewItemStyle}"
                                                          Loaded="PlaylistView_Loaded"
-                                                         Margin="12,0,0,0"
-                                                         GoingTopOrBottom="ScrollWatchedListView_OnGoingTopOrBottom">
-                <scrollWatchedSelector:ScrollWatchedListView.ItemContainerTransitions>
+                                                         Margin="0,0,0,0">
+                <ListView.HeaderTemplate>
+                    <DataTemplate>
+                        <albumPageControls:MainAlbumHeader/>
+                    </DataTemplate>
+                </ListView.HeaderTemplate>
+                <ListView.ItemContainerTransitions>
                     <TransitionCollection>
                         <AddDeleteThemeTransition />
                         <EntranceThemeTransition />
                     </TransitionCollection>
-                </scrollWatchedSelector:ScrollWatchedListView.ItemContainerTransitions>
-                <scrollWatchedSelector:ScrollWatchedListView.ItemsPanel>
+                </ListView.ItemContainerTransitions>
+                <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <ItemsStackPanel Margin="0,0,0,60" />
+                        <ItemsStackPanel Margin="24,24,0,60" />
                     </ItemsPanelTemplate>
-                </scrollWatchedSelector:ScrollWatchedListView.ItemsPanel>
+                </ListView.ItemsPanel>
                 <triggers:Interactions.Triggers>
                     <triggers:EventTrigger EventName="ItemClick">
                         <triggers:InvokeCommandAction Command="{Binding CurrentAlbum.TrackClicked}"
                                                       PassEventArgsToCommand="True" />
                     </triggers:EventTrigger>
                 </triggers:Interactions.Triggers>
-            </scrollWatchedSelector:ScrollWatchedListView>
+            </ListView>
         </Grid>
     </Grid>
     
     <Page.BottomAppBar>
-        <CommandBar ClosedDisplayMode="Minimal"
+        <CommandBar 
                     Style="{StaticResource VLCCommandBarStyle}">
         </CommandBar>
     </Page.BottomAppBar>

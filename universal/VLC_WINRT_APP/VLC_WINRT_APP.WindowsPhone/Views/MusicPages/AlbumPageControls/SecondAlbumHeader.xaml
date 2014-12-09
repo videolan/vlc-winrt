@@ -47,16 +47,14 @@
                                            Margin="24,0,0,0" />
         <Grid Background="Transparent"
               Grid.Row="0"
-              Grid.RowSpan="2"
-              Tapped="SwypeLeftToRight_Button_Tap">
+              Grid.RowSpan="2">
             <Button Content=""
                     FontFamily="Segoe UI Symbol"
                     FontSize="32"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Left"
                     Margin="6,0,0,0"
-                    Style="{StaticResource TextBlockButtonStyle}"
-                    Click="SwypeLeftToRight_Button_Click" />
+                    Style="{StaticResource TextBlockButtonStyle}"/>
         </Grid>
     </Grid>
 </UserControl>

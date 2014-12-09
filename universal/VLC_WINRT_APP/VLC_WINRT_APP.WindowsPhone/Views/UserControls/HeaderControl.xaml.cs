@@ -51,9 +51,5 @@ namespace VLC_WINRT_APP.Views.UserControls
                 
             }
         }
-
-        private void Menu_Click(object sender, TappedRoutedEventArgs tappedRoutedEventArgs)
-        {
-        }
     }
 }

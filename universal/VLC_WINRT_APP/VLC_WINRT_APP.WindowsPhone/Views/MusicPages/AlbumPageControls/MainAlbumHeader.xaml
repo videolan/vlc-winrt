@@ -4,75 +4,130 @@
              xmlns:local="using:VLC_WINRT_APP.Views.MusicPages.AlbumPage"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:userControls="using:VLC_WINRT_APP.Views.UserControls"
+             xmlns:albumPageControls="using:VLC_WINRT_APP.Views.MusicPages.AlbumPageControls"
+             xmlns:ext="using:WinRTXamlToolkit.Controls.Extensions"
              mc:Ignorable="d"
              d:DesignHeight="300"
-             d:DesignWidth="400">
+             d:DesignWidth="400"
+             d:DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
 
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="24" />
-            <ColumnDefinition Width="3*" />
-            <ColumnDefinition Width="4*" />
-            <ColumnDefinition Width="Auto" />
-        </Grid.ColumnDefinitions>
-        <Image Grid.Column="1"
+    <Grid Grid.Row="0"
+          x:Name="HeaderGrid"
+          Margin="-12,0,0,0"
+          Height="450"
+          Background="Black">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Image Grid.RowSpan="3"
+               x:Name="HeaderArtistImage"
                Source="{Binding CurrentAlbum.Picture}"
-               Margin="-6,0,0,6"
-               HorizontalAlignment="Left" />
-        <Grid Margin="24,0,0,0"
-              Grid.Column="2"
-              HorizontalAlignment="Left"
-              VerticalAlignment="Center">
-            <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition Height="Auto"
-                               x:Name="AlbumsCommandRowDefinition" />
-            </Grid.RowDefinitions>
-            <StackPanel Grid.Row="0"
-                        VerticalAlignment="Center"
-                        HorizontalAlignment="Left">
+               Stretch="UniformToFill"
+               Opacity="1" 
+               ext:ImageExtensions.FadeInOnLoaded="True"/>
+        <userControls:HeaderControl HeaderTextBlock="{Binding CurrentAlbum.Name}"
+                                    HeaderBackground="#00ffffff" />
+        <Grid Grid.Row="2"
+              RequestedTheme="Dark">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="24" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="1"
+                    Style="{StaticResource TextBlockButtonStyle}"
+                    Command="{Binding CurrentAlbum.ViewArtist}"
+                    CommandParameter="{Binding CurrentAlbum.ArtistId}"
+                    Margin="18,0,0,-33">
+                <Button.Content>
+                    <TextBlock TextWrapping="NoWrap">
+                        <Run Text="{Binding CurrentArtist.Name}" 
+                             FontWeight="Light"
+                             FontSize="24"/>
+                        <Run Text=""
+                             FontFamily="Segoe UI Symbol"
+                             FontSize="24" />
+                        <LineBreak />
+                        <Run Text="{Binding CurrentAlbum.Tracks.Count}" 
+                             FontSize="18"
+                             Foreground="DimGray"/>
+                        <Run Text="tracks" 
+                             FontSize="18"
+                             Foreground="DimGray"/>
+                    </TextBlock>
+                </Button.Content>
+            </Button>
+
+            <StackPanel Grid.Column="2"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Right">
                 <Button Style="{StaticResource TextBlockButtonStyle}"
-                        Command="{Binding CurrentAlbum.ViewArtist}"
-                        CommandParameter="{Binding CurrentAlbum.ArtistId}">
+                        VerticalAlignment="Bottom"
+                        Margin="0,0,0,-40"
+                        RequestedTheme="Dark"
+                        Command="{Binding CurrentAlbum.PlayAlbum}"
+                        CommandParameter="{Binding CurrentAlbum}">
                     <Button.Content>
-                        <TextBlock Style="{StaticResource SubheaderTextBlockStyle}"
-                                   TextWrapping="NoWrap">
-                                <Run Text="{Binding CurrentArtist.Name}" />
-                                <Run Text=""
-                                     FontFamily="Segoe UI Symbol" />
-                        </TextBlock>
+                        <Grid>
+                            <Image Source="ms-appx:///Assets/Icons/circleShadow.png"
+                                   Stretch="UniformToFill"
+                                   Height="84"
+                                   Width="84"
+                                   Margin="0,0,0,-2"
+                                   Opacity="0.6" />
+                            <Ellipse Fill="{StaticResource MainColor}"
+                                     Height="70"
+                                     Width="70" />
+                            <TextBlock Text=""
+                                       FontSize="28"
+                                       FontFamily="Segoe UI Symbol"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center" />
+                        </Grid>
                     </Button.Content>
                 </Button>
+                <Button Style="{StaticResource TextBlockButtonStyle}"
+                        VerticalAlignment="Bottom"
+                        Margin="12,0,5,-30">
+                    <Button.Content>
+                        <Grid>
+                            <Image Source="ms-appx:///Assets/Icons/circleShadow.png"
+                                   Stretch="UniformToFill"
+                                   Height="62"
+                                   Width="62"
+                                   Margin="0,0,0,-2"
+                                   Opacity="0.6" />
+                            <Ellipse Fill="White"
+                                     Height="50"
+                                     Width="50" />
+                            <TextBlock Text=""
+                                       Foreground="DimGray"
+                                       FontSize="22"
+                                       FontFamily="Segoe UI Symbol"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center" />
+                        </Grid>
+                    </Button.Content>
+                    <Button.Flyout>
+                        <MenuFlyout>
+                            <MenuFlyoutItem Text="add to playlist" />
+                            <MenuFlyoutItem Text="pin album"
+                                            Command="{Binding CurrentAlbum.PinAlbumCommand}"
+                                            CommandParameter="{Binding CurrentAlbum}"/>
+                            <MenuFlyoutItem Text="artist upcoming shows"
+                                            Command="{Binding CurrentArtist.SeeArtistShowsCommand}"
+                                            CommandParameter="{Binding CurrentArtist}" />
+                            <MenuFlyoutItem Text="pin artist"
+                                            Command="{Binding CurrentArtist.PinArtistCommand}"
+                                            CommandParameter="{Binding CurrentArtist}" />
+                            
+                        </MenuFlyout>
+                    </Button.Flyout>
+                </Button>
             </StackPanel>
-            <StackPanel Grid.Row="1"
-                        VerticalAlignment="Center"
-                        x:Name="AlbumCommandsPanel"
-                        HorizontalAlignment="Left">
-                <AppBarToggleButton Margin="0,12,0,0"
-                                    Icon="Favorite"
-                                    Label="Favorite"
-                                    IsChecked="{Binding CurrentAlbum.Favorite}"
-                                    Command="{Binding CurrentAlbum.FavoriteAlbum}"
-                                    CommandParameter="{Binding CurrentAlbum}"
-                                    Style="{StaticResource AppBarToggleButtonStyleHorizontal}" />
-                <AppBarButton Margin="0,-6,0,0"
-                              Icon="Play"
-                              Label="Play all album"
-                              Command="{Binding CurrentAlbum.PlayAlbum}"
-                              CommandParameter="{Binding CurrentAlbum}"
-                              Style="{StaticResource AppBarButtonStyleHorizontal}" />
-            </StackPanel>
-        </Grid>
-        <Grid Grid.Column="3"
-              Background="Transparent"
-              Tapped="SwypeRightToLeft_Button_Tap">
-            <Button Content=""
-                    FontFamily="Segoe UI Symbol"
-                    FontSize="32"
-                    VerticalAlignment="Center"
-                    Margin="0,0,6,0"
-                    Style="{StaticResource TextBlockButtonStyle}"
-                    Click="SwypeRightToLeft_Button_Click" />
         </Grid>
     </Grid>
 </UserControl>
