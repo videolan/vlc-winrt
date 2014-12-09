@@ -382,7 +382,7 @@
     <value>アプリ設定</value>
   </data>
   <data name="MusicInformation.Text" xml:space="preserve">
-    <value>音楽データベース</value>
+    <value>ミュージックデータベース</value>
   </data>
   <data name="Albums" xml:space="preserve">
     <value>アルバム</value>
@@ -458,5 +458,20 @@
   </data>
   <data name="Yes" xml:space="preserve">
     <value>はい</value>
+  </data>
+  <data name="TopAlbums.Content" xml:space="preserve">
+    <value>ベストアルバム</value>
+  </data>
+  <data name="TopVideos.Content" xml:space="preserve">
+    <value>ベストビデオ</value>
+  </data>
+  <data name="HomeHeader.Header" xml:space="preserve">
+    <value>ホーム</value>
+  </data>
+  <data name="MusicHubHeader.Header" xml:space="preserve">
+    <value>ミュージック</value>
+  </data>
+  <data name="SACardHeader.Header" xml:space="preserve">
+    <value>SDカード</value>
   </data>
 </root>

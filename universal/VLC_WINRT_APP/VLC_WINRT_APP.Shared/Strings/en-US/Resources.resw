@@ -480,4 +480,19 @@
   <data name="Yes" xml:space="preserve">
     <value>Yes</value>
   </data>
+  <data name="HomeHeader.Header" xml:space="preserve">
+    <value>home</value>
+  </data>
+  <data name="MusicHubHeader.Header" xml:space="preserve">
+    <value>music</value>
+  </data>
+  <data name="SACardHeader.Header" xml:space="preserve">
+    <value>sd card</value>
+  </data>
+  <data name="TopAlbums.Content" xml:space="preserve">
+    <value>top albums</value>
+  </data>
+  <data name="TopVideos.Content" xml:space="preserve">
+    <value>top videos</value>
+  </data>
 </root>

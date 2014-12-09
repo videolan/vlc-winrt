@@ -100,13 +100,14 @@
                Style="{StaticResource PivotStyle1}"
                HeaderTemplate="{StaticResource PivotTitleTemplate}"
                SelectionChanged="MainPivot_OnSelectionChanged">
-            <PivotItem Header="home">
+            <PivotItem x:Uid="HomeHeader" Header="home">
                 <Grid>
                     <ScrollViewer>
                         <StackPanel>
                             <StackPanel x:Name="MusicLibrary"
                                         DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
-                                <Button Content="top albums"
+                                <Button x:Uid="TopAlbums"
+                                        Content="top albums"
                                         FontSize="30"
                                         Foreground="{StaticResource MainColor}"
                                         Style="{StaticResource TextBlockButtonStyle}"
@@ -145,7 +146,8 @@
                             </StackPanel>
                             <StackPanel x:Name="VideoLibrary"
                                         DataContext="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM}">
-                                <Button Content="top videos"
+                                <Button x:Uid="TopVideos"
+                                        Content="top videos"
                                         Margin="0,12,0,0"
                                         FontSize="30"
                                         Foreground="{StaticResource MainColor}"
@@ -182,15 +184,15 @@
                     </ScrollViewer>
                 </Grid>
             </PivotItem>
-            <PivotItem Header="videos">
+            <PivotItem x:Uid="VideoHubHeader" Header="videos">
                 <local:MainPageVideos x:Name="MainPageVideoPivotItem"
                                       x:FieldModifier="public"/>
             </PivotItem>
-            <PivotItem Header="music">
+            <PivotItem x:Uid="MusicHubHeader" Header="music">
                 <local:MainPageMusic x:Name="MainPageMusicPivotItem"
                                      x:FieldModifier="public" />
             </PivotItem>
-            <PivotItem Header="sd card">
+            <PivotItem x:Uid="SACardHeader" Header="sd card">
                 <local:MainPageSDCard />
             </PivotItem>
         </Pivot>
