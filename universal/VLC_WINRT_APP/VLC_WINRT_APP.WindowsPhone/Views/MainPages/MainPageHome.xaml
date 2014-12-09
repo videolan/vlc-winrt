@@ -22,9 +22,9 @@
         </Grid.RowDefinitions>-->
         <Grid Background="{StaticResource MainColor}"
               DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}"
-              Height="50"
+              Height="70"
               VerticalAlignment="Top" />
-        <Grid Margin="0,50,0,0" Height="7"
+        <Grid Margin="0,70,0,0" Height="7"
               VerticalAlignment="Top">
            <Grid.Background>
                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
@@ -92,7 +92,7 @@
         <Image Source="/Assets/backgroundTop.png"
                Stretch="Uniform"
                VerticalAlignment="Top"
-               Margin="0,50,0,0"
+               Margin="0,70,0,0"
                extensions:ImageExtensions.FadeInOnLoaded="True" />
         <Pivot x:Name="MainPivot"
                x:FieldModifier="public"
