@@ -72,7 +72,13 @@ Select your "VLC_WINRT_1.0.0.0_x86_Debug.cer"
 Next
 Finish
 
-4) Build
+4) Install libvlcpp
+-------------------
+Clone libvlcpp from http://git.videolan.org/vlc-bindings/libvlcpp.git
+into the wrapper/ directory
+
+
+5) Build
 --------
 Click on Build Solution. 
 
