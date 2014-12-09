@@ -22,49 +22,7 @@
                Stretch="UniformToFill"
                Opacity="0.3" 
                winrtext:ImageExtensions.FadeInOnLoaded="True"/>
-        <FlipView Grid.Row="1"
-                  SelectedIndex="1">
-            <FlipViewItem>
-                <ScrollViewer>
-                    <StackPanel Margin="24,0,0,0">
-                        <TextBlock Text="{Binding CurrentArtist.Biography}"
-                                   Style="{StaticResource BodyTextBlockStyle}" />
-                        <Button Content="see shows"
-                                Command="{Binding CurrentArtist.SeeArtistShowsCommand}"
-                                CommandParameter="{Binding CurrentArtist}"/>
-                        <GridView Margin="0,24,0,0"
-                                  IsSwipeEnabled="False"
-                                  SelectionMode="None"
-                                  IsItemClickEnabled="True"
-                                  ItemsSource="{Binding CurrentArtist.OnlinePopularAlbumItems}"
-                                  ItemTemplate="{StaticResource PopularAlbumTemplate}"
-                                  Header="popular albums"
-                                  HeaderTemplate="{StaticResource PhoneHeaderTemplate}">
-                            <GridView.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <VariableSizedWrapGrid Orientation="Horizontal"
-                                                           Loaded="VariableSizedWrapGrid_Loaded" />
-                                </ItemsPanelTemplate>
-                            </GridView.ItemsPanel>
-                        </GridView>
-                        <GridView Margin="0,24,0,0"
-                                  IsSwipeEnabled="False"
-                                  SelectionMode="None"
-                                  IsItemClickEnabled="True"
-                                  ItemsSource="{Binding CurrentArtist.OnlineRelatedArtists}"
-                                  ItemTemplate="{StaticResource SimilarArtistTemplate}"
-                                  Header="similar artists"
-                                  HeaderTemplate="{StaticResource PhoneHeaderTemplate}">
-                            <GridView.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <VariableSizedWrapGrid Orientation="Horizontal"
-                                                           Loaded="VariableSizedWrapGrid_Loaded" />
-                                </ItemsPanelTemplate>
-                            </GridView.ItemsPanel>
-                        </GridView>
-                    </StackPanel>
-                </ScrollViewer>
-            </FlipViewItem>
+        <FlipView Grid.Row="1">
             <FlipViewItem>
                 <Grid Margin="12">
                     <Grid.RowDefinitions>
@@ -232,6 +190,47 @@
                     </ListView>
                 </Grid>
             </FlipViewItem>
+            <FlipViewItem>
+                <ScrollViewer>
+                    <StackPanel Margin="24,0,0,0">
+                        <TextBlock Text="{Binding CurrentArtist.Biography}"
+                                   Style="{StaticResource BodyTextBlockStyle}" />
+                        <Button Content="see shows"
+                                Command="{Binding CurrentArtist.SeeArtistShowsCommand}"
+                                CommandParameter="{Binding CurrentArtist}" />
+                        <GridView Margin="0,24,0,0"
+                                  IsSwipeEnabled="False"
+                                  SelectionMode="None"
+                                  IsItemClickEnabled="True"
+                                  ItemsSource="{Binding CurrentArtist.OnlinePopularAlbumItems}"
+                                  ItemTemplate="{StaticResource PopularAlbumTemplate}"
+                                  Header="popular albums"
+                                  HeaderTemplate="{StaticResource PhoneHeaderTemplate}">
+                            <GridView.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <VariableSizedWrapGrid Orientation="Horizontal"
+                                                           Loaded="VariableSizedWrapGrid_Loaded" />
+                                </ItemsPanelTemplate>
+                            </GridView.ItemsPanel>
+                        </GridView>
+                        <GridView Margin="0,24,0,0"
+                                  IsSwipeEnabled="False"
+                                  SelectionMode="None"
+                                  IsItemClickEnabled="True"
+                                  ItemsSource="{Binding CurrentArtist.OnlineRelatedArtists}"
+                                  ItemTemplate="{StaticResource SimilarArtistTemplate}"
+                                  Header="similar artists"
+                                  HeaderTemplate="{StaticResource PhoneHeaderTemplate}">
+                            <GridView.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <VariableSizedWrapGrid Orientation="Horizontal"
+                                                           Loaded="VariableSizedWrapGrid_Loaded" />
+                                </ItemsPanelTemplate>
+                            </GridView.ItemsPanel>
+                        </GridView>
+                    </StackPanel>
+                </ScrollViewer>
+            </FlipViewItem>
         </FlipView>
 
         <userControls:HeaderControl Grid.Row="0"
@@ -240,6 +239,6 @@
                              HeaderBackground="#00ffffff"
                              RequestedTheme="Dark"
                              VerticalAlignment="Top"
-                             Height="80" />
+                             Height="100" />
     </Grid>
 </Page>
