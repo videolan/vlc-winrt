@@ -7,12 +7,12 @@
         <Grid>
             <StackPanel VerticalAlignment="Center"
                         Background="WhiteSmoke">
-                <TextBlock Text="Open a stream"
+                <TextBlock x:Uid="OpenStream" Text="Open a stream"
                            Style="{StaticResource SubheaderTextBlockStyle}"
                            Margin="12" />
                 <StackPanel Orientation="Horizontal"
                             Margin="12">
-                    <TextBox Name="UrlTextBox"
+                    <TextBox x:Uid="EnterAUrl" Name="UrlTextBox"
                              PlaceholderText="Enter a URL"
                              Width="350" />
                     <Button Style="{StaticResource TextBlockButtonStyle}"

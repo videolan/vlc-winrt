@@ -171,7 +171,7 @@ namespace VLC_WINRT_APP.ViewModels
             Panels.Add(new Panel(removableName, 3, 0.4, App.Current.Resources["RemovablesPath"].ToString()));
 #else
             //removableName = resourceLoader.GetString("SdCard");
-            Panels.Add(new Panel("more", 3, 0.4, App.Current.Resources["HamburgerPath"].ToString()));
+            Panels.Add(new Panel(resourceLoader.GetString("More"), 3, 0.4, App.Current.Resources["HamburgerPath"].ToString()));
 #endif
 #if WINDOWS_APP
             Panels.Add(new Panel(resourceLoader.GetString("MediaServers"), 4, 0.4, App.Current.Resources["ServerPath"].ToString()));
@@ -191,12 +191,12 @@ namespace VLC_WINRT_APP.ViewModels
             if (SecondaryAppBarElements == null || SecondaryAppBarElements.Count != 0) return;
             SecondaryAppBarElements.Add(new AppBarButton()
             {
-                Label = "special thanks",
+                Label = ResourceLoader.GetForCurrentView("Resources").GetString("SpecialThanks"),
                 Command = GoToThanksPageCommand,
             });
             SecondaryAppBarElements.Add(new AppBarButton()
             {
-                Label = "settings",
+                Label = ResourceLoader.GetForCurrentView("Resources").GetString("Settings"),
                 Command = GoToSettingsPageCommand
             });
         }
@@ -210,19 +210,19 @@ namespace VLC_WINRT_APP.ViewModels
                 case 0:
                     AppBarElements.Add(new AppBarButton()
                     {
-                        Label = "search",
+                        Label = ResourceLoader.GetForCurrentView("Resources").GetString("Search1"),
                         Icon = new SymbolIcon(Symbol.Find),
                         Command = GoToSearchPage
                     });
                     AppBarElements.Add(new AppBarButton()
                     {
-                        Label = "open file",
+                        Label = ResourceLoader.GetForCurrentView("Resources").GetString("FileOpen"),
                         Icon = new SymbolIcon(Symbol.OpenFile),
                         Command = Locator.VideoLibraryVM.PickVideo
                     });
                     AppBarElements.Add(new AppBarButton()
                     {
-                        Label = "open stream",
+                        Label = ResourceLoader.GetForCurrentView("Resources").GetString("StreamOpen"),
                         Icon = new SymbolIcon(Symbol.World),
                         Flyout = App.Current.Resources["PhoneOpenStreamFlyout"] as Flyout,
                     });
@@ -230,7 +230,7 @@ namespace VLC_WINRT_APP.ViewModels
                 case 1:
                     AppBarElements.Add(new AppBarButton()
                     {
-                        Label = "view all",
+                        Label = ResourceLoader.GetForCurrentView("Resources").GetString("ViewAll"),
                         Icon = new SymbolIcon(Symbol.ViewAll),
                         Flyout = App.Current.Resources["PhoneChangeVideoViewFlyout"] as MenuFlyout,
                     });
@@ -238,13 +238,13 @@ namespace VLC_WINRT_APP.ViewModels
                 case 2:
                     AppBarElements.Add(new AppBarButton()
                     {
-                        Label = "view all",
+                        Label = ResourceLoader.GetForCurrentView("Resources").GetString("ViewAll"),
                         Icon = new SymbolIcon(Symbol.ViewAll),
                         Flyout = App.Current.Resources["PhoneChangeMusicViewFlyout"] as MenuFlyout,
                     });
                     AppBarElements.Add(new AppBarButton()
                     {
-                        Label = "random",
+                        Label = ResourceLoader.GetForCurrentView("Resources").GetString("ViewAll"),
                         Icon = new SymbolIcon(Symbol.Shuffle),
                         Command = Locator.MusicLibraryVM.PlayAllRandomCommand
                     });

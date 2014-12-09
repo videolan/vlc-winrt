@@ -74,13 +74,13 @@
                         <StackPanel Grid.Row="1"
                                     Margin="12,0,0,0"
                                     VerticalAlignment="Center">
-                            <AppBarButton Label="play track"
+                            <AppBarButton x:Uid="PlayTrack" Label="play track"
                                           Icon="Play"
                                           Style="{StaticResource AppBarButtonStyleHorizontal}"
                                           Foreground="{StaticResource MainColor}" 
                                           Command="{Binding TrackClicked}"
                                           CommandParameter="{Binding}"/>
-                            <AppBarButton Label="view album"
+                            <AppBarButton x:Uid="ViewAlbum" Label="view album"
                                           Icon="SlideShow"
                                           Style="{StaticResource AppBarButtonStyleHorizontal}" 
                                           Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.AlbumClickedCommand}"
@@ -93,9 +93,10 @@
                                 <ColumnDefinition />
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
-                            <TextBlock Text="Add to playlist"
+                            <TextBlock x:Uid="AddToPlaylist" Text="Add to playlist"
                                        Style="{StaticResource SubheaderTextBlockStyle}" />
                             <AppBarButton Grid.Column="1"
+                                          x:Uid="NewPlaylist"
                                           Label="new playlist"
                                           Icon="Add"
                                           Style="{StaticResource AppBarButtonStyleHorizontal}"

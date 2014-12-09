@@ -29,7 +29,7 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <TextBlock Text="SEARCH"
+            <TextBlock x:Uid="Search" Text="SEARCH"
                        VerticalAlignment="Center"
                        Style="{StaticResource TitleTextBlockStyle}" />
             <ScrollViewer Grid.Column="1"
@@ -53,7 +53,7 @@
                 </StackPanel>
             </ScrollViewer>
         </Grid>
-        <TextBox Grid.Row="1"
+        <TextBox x:Uid="SearchField" Grid.Row="1"
                  PlaceholderText="Search"
                  Margin="0,12,12,0"
                  x:Name="SearchBox"

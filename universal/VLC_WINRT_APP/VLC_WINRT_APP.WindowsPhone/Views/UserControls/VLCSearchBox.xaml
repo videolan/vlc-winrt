@@ -13,6 +13,7 @@
 
     <Grid DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}">
         <AutoSuggestBox IsTabStop="False"
+                        x:Uid="SearchField"
                         PlaceholderText="Search"
                         Text="{Binding SearchTag, Mode=TwoWay}"
                         Margin="0,0,20,0"

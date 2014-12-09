@@ -20,9 +20,9 @@
                    VerticalAlignment="Center" />
         <TextBlock Style="{StaticResource SubheaderTextBlockStyle}"
                    TextAlignment="Center">
-            <Run Text="It's empty here" />
+            <Run x:Uid="EmptyText" Text="It's empty here" />
             <LineBreak />
-            <Run Text="You don't have playlists ... yet"
+            <Run x:Uid="NoPlaylists" Text="You don't have playlists ... yet"
                  FontSize="20" />
         </TextBlock>
     </Grid>

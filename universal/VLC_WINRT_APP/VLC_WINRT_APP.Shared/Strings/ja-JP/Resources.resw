@@ -235,7 +235,7 @@
     <value>(･ω･)＞何もないなぁ。</value>
   </data>
   <data name="OpenFile.Text" xml:space="preserve">
-    <value>Open a file</value>
+    <value>ファイルを開く</value>
   </data>
   <data name="OpenFromNetwork" xml:space="preserve">
     <value>Open a file from network</value>
@@ -465,13 +465,103 @@
   <data name="TopVideos.Content" xml:space="preserve">
     <value>ベストビデオ</value>
   </data>
+  <data name="FileOpen" xml:space="preserve">
+    <value>ファイルを開く</value>
+  </data>
   <data name="HomeHeader.Header" xml:space="preserve">
     <value>ホーム</value>
+  </data>
+  <data name="More" xml:space="preserve">
+    <value>もっと</value>
   </data>
   <data name="MusicHubHeader.Header" xml:space="preserve">
     <value>ミュージック</value>
   </data>
-  <data name="SACardHeader.Header" xml:space="preserve">
+  <data name="SDCardHeader" xml:space="preserve">
     <value>SDカード</value>
+  </data>
+  <data name="StreamOpen" xml:space="preserve">
+    <value>ストリームを開く</value>
+  </data>
+  <data name="ViewAll" xml:space="preserve">
+    <value>再生</value>
+  </data>
+  <data name="AddToPlaylist.Text" xml:space="preserve">
+    <value>プレイリスト</value>
+  </data>
+  <data name="AllVideos.Text" xml:space="preserve">
+    <value>すべてのビデオ</value>
+  </data>
+  <data name="CameraRoll.Text" xml:space="preserve">
+    <value>カメラロール</value>
+  </data>
+  <data name="EmptyText.Text" xml:space="preserve">
+    <value>(･ω･)＞何もないなぁ。</value>
+  </data>
+  <data name="EnterAUrl.PlaceholderText" xml:space="preserve">
+    <value>URLを入力してください</value>
+  </data>
+  <data name="FavoriteLabel.Label" xml:space="preserve">
+    <value>イイネ！</value>
+  </data>
+  <data name="FavoriteText.Text" xml:space="preserve">
+    <value>「イイネ！」する</value>
+  </data>
+  <data name="NewPlaylist.Label" xml:space="preserve">
+    <value>プレイリスト作成</value>
+  </data>
+  <data name="NoCameraVideos.Text" xml:space="preserve">
+    <value>カメラビデオがありません。</value>
+  </data>
+  <data name="NoPlaylists.Text" xml:space="preserve">
+    <value>プレイリストがありません。</value>
+  </data>
+  <data name="NoShows.Text" xml:space="preserve">
+    <value>テレビ番組がありません。</value>
+  </data>
+  <data name="OrderAscending" xml:space="preserve">
+    <value>昇順</value>
+  </data>
+  <data name="OrderByArtist" xml:space="preserve">
+    <value>アーティスト</value>
+  </data>
+  <data name="OrderByDate" xml:space="preserve">
+    <value>追加日</value>
+  </data>
+  <data name="OrderDescending" xml:space="preserve">
+    <value>降順</value>
+  </data>
+  <data name="PinAlbum.Text" xml:space="preserve">
+    <value>アルバムをピン留め</value>
+  </data>
+  <data name="PlaylistText.Text" xml:space="preserve">
+    <value>プレイリスト</value>
+  </data>
+  <data name="PlayTrack.Label" xml:space="preserve">
+    <value>この楽曲を再生する</value>
+  </data>
+  <data name="PlayVideo.Label" xml:space="preserve">
+    <value>ビデオを再生する</value>
+  </data>
+  <data name="PlayWholeAlbum.Label" xml:space="preserve">
+    <value>アルバムを再生</value>
+  </data>
+  <data name="SeeShows.Content" xml:space="preserve">
+    <value>ライブイベント</value>
+  </data>
+  <data name="SeeUpcomingShows.Text" xml:space="preserve">
+    <value>ライブイベント</value>
+  </data>
+  <data name="SongsText.Text" xml:space="preserve">
+    <value>楽曲</value>
+  </data>
+  <data name="TvShows.Text" xml:space="preserve">
+    <value>テレビ番組</value>
+  </data>
+  <data name="ViewAlbum.Label" xml:space="preserve">
+    <value>アルバムを表示する</value>
+  </data>
+  <data name="ViewArtist.Text" xml:space="preserve">
+    <value>アーティスト</value>
   </data>
 </root>

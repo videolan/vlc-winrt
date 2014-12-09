@@ -17,7 +17,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <TextBlock Text="albums"
+        <TextBlock x:Uid="AlbumText" Text="albums"
                    Style="{StaticResource SubheaderTextBlockStyle}"
                    Foreground="{StaticResource MainColor}"/>
         <Grid Grid.Row="1" DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}">

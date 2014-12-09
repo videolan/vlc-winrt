@@ -64,19 +64,19 @@
                             Margin="0,0,3,0">
                         <Button.Flyout>
                             <MenuFlyout>
-                                <MenuFlyoutItem Text="play all" 
+                                <MenuFlyoutItem x:Uid="PlayAlbum" Text="play all" 
                                                 Command="{Binding PlayAlbum}"
                                                 CommandParameter="{Binding}"/>
-                                <MenuFlyoutItem Text="favorite"
+                                <MenuFlyoutItem x:Uid="FavoriteText" Text="favorite"
                                                 Command="{Binding FavoriteAlbum}"
                                                 CommandParameter="{Binding}" />
-                                <MenuFlyoutItem Text="view artist"
+                                <MenuFlyoutItem x:Uid="ViewArtist" Text="view artist"
                                                 Command="{Binding ViewArtist}"
                                                 CommandParameter="{Binding ArtistId}"/>
-                                <MenuFlyoutItem Text="pin album"
+                                <MenuFlyoutItem x:Uid="PinAlbum" Text="pin album"
                                                 Command="{Binding PinAlbumCommand}"
                                                 CommandParameter="{Binding}"/>
-                                <MenuFlyoutItem Text="see upcoming shows"
+                                <MenuFlyoutItem x:Uid="SeeUpcomingShows" Text="see upcoming shows"
                                                 Command="{Binding SeeArtistShowsCommand}"
                                                 CommandParameter="{Binding ArtistId}"/>
                             </MenuFlyout>

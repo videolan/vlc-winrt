@@ -14,7 +14,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <TextBlock Text="all videos"
+        <TextBlock x:Uid="AllVideos" Text="all videos"
                    Style="{StaticResource SubheaderTextBlockStyle}"
                    Foreground="{StaticResource MainColor}" />
         <GridView Grid.Row="1"

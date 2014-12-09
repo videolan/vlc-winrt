@@ -218,6 +218,7 @@
                             </GridView.ItemsPanel>
                         </GridView>
                         <GridView Margin="0,24,0,0"
+                                  x:Uid="SimilarArtists"
                                   IsSwipeEnabled="False"
                                   SelectionMode="None"
                                   IsItemClickEnabled="True"

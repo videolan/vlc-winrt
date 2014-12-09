@@ -163,7 +163,7 @@
                                 <StackPanel Grid.Row="1"
                                             Margin="12,0,0,0"
                                             VerticalAlignment="Center">
-                                    <AppBarButton Label="play video"
+                                    <AppBarButton x:Uid="PlayVideo" Label="play video"
                                                   Icon="Play"
                                                   Style="{StaticResource AppBarButtonStyleHorizontal}"
                                                   Foreground="{StaticResource MainColor}"
