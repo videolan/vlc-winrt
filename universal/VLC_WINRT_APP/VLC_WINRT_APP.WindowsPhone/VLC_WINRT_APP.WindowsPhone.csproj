@@ -111,9 +111,6 @@
     <Compile Include="Views\MusicPages\AlbumPageControls\MainAlbumHeader.xaml.cs">
       <DependentUpon>MainAlbumHeader.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MusicPages\AlbumPageControls\SecondAlbumHeader.xaml.cs">
-      <DependentUpon>SecondAlbumHeader.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\MusicPages\ArtistPages\ArtistShowsPage.xaml.cs">
       <DependentUpon>ArtistShowsPage.xaml</DependentUpon>
     </Compile>
@@ -920,10 +917,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MusicPages\AlbumPageControls\MainAlbumHeader.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\MusicPages\AlbumPageControls\SecondAlbumHeader.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
