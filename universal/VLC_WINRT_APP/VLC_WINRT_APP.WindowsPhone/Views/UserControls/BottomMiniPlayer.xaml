@@ -31,8 +31,8 @@
                     Tapped="RootMiniPlayer_Tapped">
             <TextBlock Text="{Binding CurrentArtist.Name}"
                        Foreground="Black"
-                       Style="{StaticResource SubheaderTextBlockStyle}" 
-                       FontSize="22"/>
+                       Style="{StaticResource SubheaderTextBlockStyle}"
+                       FontSize="22" />
             <TextBlock Text="{Binding CurrentTrack.Name}"
                        Foreground="Black"
                        Style="{StaticResource SubheaderTextBlockStyle}"
