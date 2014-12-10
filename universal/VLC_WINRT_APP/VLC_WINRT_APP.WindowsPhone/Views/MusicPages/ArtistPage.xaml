@@ -62,61 +62,11 @@
                 <GridView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <ItemsWrapGrid Orientation="Horizontal"
-                                       Margin="12,0,0,0"
+                                       Margin="12,0,0,60"
                                        Loaded="ItemsWrapGrid_Loaded" />
                     </ItemsPanelTemplate>
                 </GridView.ItemsPanel>
             </GridView>
-            <Button Style="{StaticResource TextBlockButtonStyle}"
-                    VerticalAlignment="Bottom"
-                    HorizontalAlignment="Right"
-                    Margin="0,0,24,24"
-                    RequestedTheme="Dark">
-                <Button.Content>
-                    <Grid>
-                        <Image Source="ms-appx:///Assets/Icons/circleShadow.png"
-                               Stretch="UniformToFill"
-                               Height="84"
-                               Width="84"
-                               Margin="0,0,0,-2"
-                               Opacity="0.6" />
-                        <Ellipse Fill="{StaticResource MainColor}"
-                                 Height="70"
-                                 Width="70" />
-                        <TextBlock Text=""
-                                   FontSize="28"
-                                   FontFamily="Segoe UI Symbol"
-                                   VerticalAlignment="Center"
-                                   HorizontalAlignment="Center" />
-                    </Grid>
-                </Button.Content>
-                <Button.Flyout>
-                    <MenuFlyout>
-                        <MenuFlyoutItem Text="play all albums" />
-                        <MenuFlyoutItem Text="upcoming shows"
-                                        Command="{Binding CurrentArtist.SeeArtistShowsCommand}"
-                                        CommandParameter="{Binding CurrentArtist}" />
-                        <MenuFlyoutItem Text="pin"
-                                        Command="{Binding CurrentArtist.PinArtistCommand}"
-                                        CommandParameter="{Binding CurrentArtist}" />
-                    </MenuFlyout>
-                </Button.Flyout>
-            </Button>
         </Grid>
     </Grid>
-
-    <!--<Page.BottomAppBar>
-        <CommandBar Style="{StaticResource VLCCommandBarStyle}">
-            <CommandBar.PrimaryCommands>
-                <AppBarButton Icon="Play"
-                              Label="play all"
-                              Command="{Binding CurrentArtist.PlayArtist CurrentAlbum.PlayAlbum}"
-                              CommandParameter="{Binding CurrentAlbum}" />
-                <AppBarButton Icon="Favorite"
-                              Label="favorite"
-                              Command="{Binding CurrentArtist.IsFavorite}"
-                              CommandParameter="{Binding CurrentAlbum}" />
-            </CommandBar.PrimaryCommands>
-        </CommandBar>
-    </Page.BottomAppBar>-->
 </Page>

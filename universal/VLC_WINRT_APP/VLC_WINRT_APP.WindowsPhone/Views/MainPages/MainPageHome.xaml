@@ -20,14 +20,18 @@
               DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}"
               Height="70"
               VerticalAlignment="Top" />
-        <Grid Margin="0,70,0,0" Height="7"
+        <Grid Margin="0,70,0,0"
+              Height="7"
               VerticalAlignment="Top">
-           <Grid.Background>
-               <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
-                   <GradientStop Color="#23000000" Offset="0"/>
-                   <GradientStop Color="#00000000" Offset="1"/>
-               </LinearGradientBrush>
-           </Grid.Background>
+            <Grid.Background>
+                <LinearGradientBrush StartPoint="0.5,0"
+                                     EndPoint="0.5,1">
+                    <GradientStop Color="#23000000"
+                                  Offset="0" />
+                    <GradientStop Color="#00000000"
+                                  Offset="1" />
+                </LinearGradientBrush>
+            </Grid.Background>
         </Grid>
         <Image Source="/Assets/backgroundTop.png"
                Stretch="Uniform"
@@ -40,7 +44,8 @@
                Style="{StaticResource PivotStyle1}"
                HeaderTemplate="{StaticResource PivotTitleTemplate}"
                SelectionChanged="MainPivot_OnSelectionChanged">
-            <PivotItem x:Uid="HomeHeader" Header="home">
+            <PivotItem x:Uid="HomeHeader"
+                       Header="home">
                 <Grid>
                     <ScrollViewer>
                         <StackPanel>
@@ -52,8 +57,8 @@
                                         Foreground="{StaticResource MainColor}"
                                         Style="{StaticResource TextBlockButtonStyle}"
                                         Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToPanelCommand}"
-                                        CommandParameter="2" 
-                                        FontWeight="SemiLight"/>
+                                        CommandParameter="2"
+                                        FontWeight="SemiLight" />
                                 <GridView ItemsSource="{Binding RandomAlbums}"
                                           ItemTemplate="{StaticResource PhoneSemanticZoomInViewAlbumTemplateLittleSize}"
                                           IsItemClickEnabled="True"
@@ -71,7 +76,7 @@
                                     </triggers:Interactions.Triggers>
                                     <GridView.ItemContainerTransitions>
                                         <TransitionCollection>
-                                            <AddDeleteThemeTransition/>
+                                            <AddDeleteThemeTransition />
                                             <EntranceThemeTransition />
                                         </TransitionCollection>
                                     </GridView.ItemContainerTransitions>
@@ -94,7 +99,7 @@
                                         Style="{StaticResource TextBlockButtonStyle}"
                                         Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToPanelCommand}"
                                         CommandParameter="1"
-                                        FontWeight="SemiLight"/>
+                                        FontWeight="SemiLight" />
                                 <GridView ItemsSource="{Binding ViewedVideos}"
                                           ItemTemplate="{StaticResource PhoneCompactVideoTemplate}"
                                           Margin="0,6,-26,0"
@@ -124,22 +129,20 @@
                     </ScrollViewer>
                 </Grid>
             </PivotItem>
-            <PivotItem x:Uid="VideoHubHeader" Header="videos">
+            <PivotItem x:Uid="VideoHubHeader"
+                       Header="videos">
                 <local:MainPageVideos x:Name="MainPageVideoPivotItem"
-                                      x:FieldModifier="public"/>
+                                      x:FieldModifier="public" />
             </PivotItem>
-            <PivotItem x:Uid="MusicHubHeader" Header="music">
+            <PivotItem x:Uid="MusicHubHeader"
+                       Header="music">
                 <local:MainPageMusic x:Name="MainPageMusicPivotItem"
                                      x:FieldModifier="public" />
             </PivotItem>
-            <PivotItem x:Uid="SACardHeader" Header="sd card">
+            <PivotItem x:Uid="SACardHeader"
+                       Header="sd card">
                 <local:MainPageSDCard />
             </PivotItem>
         </Pivot>
     </Grid>
-    <Page.BottomAppBar>
-        <CommandBar Style="{StaticResource VLCCommandBarStyle}"
-                    x:Name="CommandBar">
-        </CommandBar>
-    </Page.BottomAppBar>
 </Page>
