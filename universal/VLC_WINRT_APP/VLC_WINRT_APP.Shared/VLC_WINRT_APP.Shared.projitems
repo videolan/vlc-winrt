@@ -116,6 +116,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)DataRepository\TracklistItemRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataTemplateSelectors\MediaItemDataTemplateSelector.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataTemplateSelectors\StorageItemDataTemplateSelector.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\AppBar.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\ApplicationSettingsHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\AsyncLock.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\CapabilitiesHelper.cs" />
