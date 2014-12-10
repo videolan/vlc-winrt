@@ -111,45 +111,6 @@
                         </Grid>
                     </Button.Content>
                 </Button>
-                <Button Style="{StaticResource TextBlockButtonStyle}"
-                        VerticalAlignment="Bottom"
-                        Margin="12,0,5,-30">
-                    <Button.Content>
-                        <Grid>
-                            <Image Source="ms-appx:///Assets/Icons/circleShadow.png"
-                                   Stretch="UniformToFill"
-                                   Height="62"
-                                   Width="62"
-                                   Margin="0,0,0,-2"
-                                   Opacity="0.6" />
-                            <Ellipse Fill="White"
-                                     Height="50"
-                                     Width="50" />
-                            <TextBlock Text=""
-                                       Foreground="DimGray"
-                                       FontSize="22"
-                                       FontFamily="Segoe UI Symbol"
-                                       VerticalAlignment="Center"
-                                       HorizontalAlignment="Center" />
-                        </Grid>
-                    </Button.Content>
-                    <Button.Flyout>
-                        <MenuFlyout>
-                            <MenuFlyoutItem Text="add to playlist"
-                                            Command="{Binding OpenAddAlbumToPlaylistDialogCommand}"/>
-                            <MenuFlyoutItem Text="pin album"
-                                            Command="{Binding CurrentAlbum.PinAlbumCommand}"
-                                            CommandParameter="{Binding CurrentAlbum}"/>
-                            <MenuFlyoutItem Text="artist upcoming shows"
-                                            Command="{Binding CurrentArtist.SeeArtistShowsCommand}"
-                                            CommandParameter="{Binding CurrentArtist}" />
-                            <MenuFlyoutItem Text="pin artist"
-                                            Command="{Binding CurrentArtist.PinArtistCommand}"
-                                            CommandParameter="{Binding CurrentArtist}" />
-                            
-                        </MenuFlyout>
-                    </Button.Flyout>
-                </Button>
             </StackPanel>
         </Grid>
     </Grid>

@@ -51,26 +51,34 @@ namespace VLC_WINRT_APP.ViewModels
         #endregion
         #region public fields
 #if WINDOWS_PHONE_APP
-        public IObservableVector<ICommandBarElement> AppBarElements
+        public List<ICommandBarElement> AppBarElements
         {
             get
             {
-                if (App.ApplicationFrame != null && App.ApplicationFrame.CurrentSourcePageType == typeof(MainPageHome))
+                if (App.RootPage != null && App.RootPage.CommandBar != null)
                 {
-                    return ((App.ApplicationFrame.Content as MainPageHome).BottomAppBar as CommandBar).PrimaryCommands;
+                    return App.RootPage.CommandBar.PrimaryCommands as List<ICommandBarElement>;
                 }
                 return null;
             }
+            set
+            {
+                App.RootPage.CommandBar.PrimaryCommands = value;
+            }
         }
-        public IObservableVector<ICommandBarElement> SecondaryAppBarElements
+        public IList<AppBarButton> SecondaryAppBarElements
         {
             get
             {
-                if ((App.ApplicationFrame.Content as Page).BottomAppBar != null)
+                if (App.RootPage != null && App.RootPage.CommandBar != null)
                 {
-                    return ((App.ApplicationFrame.Content as Page).BottomAppBar as CommandBar).SecondaryCommands;
+                    return App.RootPage.CommandBar.SecondaryCommands as List<AppBarButton>;
                 }
                 return null;
+            }
+            set
+            {
+                App.RootPage.CommandBar.SecondaryCommands = value;
             }
         }
 
@@ -186,73 +194,6 @@ namespace VLC_WINRT_APP.ViewModels
         }
 
 #if WINDOWS_PHONE_APP
-        public void UpdateSecondaryAppBarButtons()
-        {
-            if (SecondaryAppBarElements == null || SecondaryAppBarElements.Count != 0) return;
-            SecondaryAppBarElements.Add(new AppBarButton()
-            {
-                Label = ResourceLoader.GetForCurrentView("Resources").GetString("SpecialThanks"),
-                Command = GoToThanksPageCommand,
-            });
-            SecondaryAppBarElements.Add(new AppBarButton()
-            {
-                Label = ResourceLoader.GetForCurrentView("Resources").GetString("Settings"),
-                Command = GoToSettingsPageCommand
-            });
-        }
-
-        public void UpdateAppBar(int index)
-        {
-            if (AppBarElements == null) return;
-            AppBarElements.Clear();
-            switch (index)
-            {
-                case 0:
-                    AppBarElements.Add(new AppBarButton()
-                    {
-                        Label = ResourceLoader.GetForCurrentView("Resources").GetString("Search1"),
-                        Icon = new SymbolIcon(Symbol.Find),
-                        Command = GoToSearchPage
-                    });
-                    AppBarElements.Add(new AppBarButton()
-                    {
-                        Label = ResourceLoader.GetForCurrentView("Resources").GetString("FileOpen"),
-                        Icon = new SymbolIcon(Symbol.OpenFile),
-                        Command = Locator.VideoLibraryVM.PickVideo
-                    });
-                    AppBarElements.Add(new AppBarButton()
-                    {
-                        Label = ResourceLoader.GetForCurrentView("Resources").GetString("StreamOpen"),
-                        Icon = new SymbolIcon(Symbol.World),
-                        Flyout = App.Current.Resources["PhoneOpenStreamFlyout"] as Flyout,
-                    });
-                    break;
-                case 1:
-                    AppBarElements.Add(new AppBarButton()
-                    {
-                        Label = ResourceLoader.GetForCurrentView("Resources").GetString("ViewAll"),
-                        Icon = new SymbolIcon(Symbol.ViewAll),
-                        Flyout = App.Current.Resources["PhoneChangeVideoViewFlyout"] as MenuFlyout,
-                    });
-                    break;
-                case 2:
-                    AppBarElements.Add(new AppBarButton()
-                    {
-                        Label = ResourceLoader.GetForCurrentView("Resources").GetString("ViewAll"),
-                        Icon = new SymbolIcon(Symbol.ViewAll),
-                        Flyout = App.Current.Resources["PhoneChangeMusicViewFlyout"] as MenuFlyout,
-                    });
-                    AppBarElements.Add(new AppBarButton()
-                    {
-                        Label = ResourceLoader.GetForCurrentView("Resources").GetString("ViewAll"),
-                        Icon = new SymbolIcon(Symbol.Shuffle),
-                        Command = Locator.MusicLibraryVM.PlayAllRandomCommand
-                    });
-                    break;
-            }
-        }
-#endif
-
         public void CloseStreamFlyout()
         {
             var streamFLyout = App.Current.Resources["PhoneOpenStreamFlyout"] as Flyout;
@@ -261,7 +202,7 @@ namespace VLC_WINRT_APP.ViewModels
                 streamFLyout.Hide();
             }
         }
-
+#endif
         public ObservableCollection<Panel> Panels
         {
             get { return _panels; }

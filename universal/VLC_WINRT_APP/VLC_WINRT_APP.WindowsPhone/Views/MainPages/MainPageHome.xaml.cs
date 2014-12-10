@@ -24,10 +24,10 @@ namespace VLC_WINRT_APP.Views.MainPages
         }
 
 
-        protected override void OnNavigatedTo(Windows.UI.Xaml.Navigation.NavigationEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            Locator.MainVM.UpdateSecondaryAppBarButtons();
+            AppBarHelper.UpdateAppBar(typeof(MainPageHome), MainPivot.SelectedIndex);
             if (Locator.VideoLibraryVM.LoadingState == LoadingState.NotLoaded)
             {
                 Locator.VideoLibraryVM.Initialize();
@@ -52,12 +52,12 @@ namespace VLC_WINRT_APP.Views.MainPages
         {
             if (DisplayHelper.IsPortrait())
             {
-                CommandBar.Visibility = Visibility.Visible;
+                //CommandBar.Visibility = Visibility.Visible;
                 MainPivot.Margin = new Thickness(-7, 15, -15, 0);
             }
             else
             {
-                CommandBar.Visibility = Visibility.Collapsed;
+                //CommandBar.Visibility = Visibility.Collapsed;
                 MainPivot.Margin = new Thickness(-7, -15, -25, 0);
             }
         }
@@ -80,7 +80,7 @@ namespace VLC_WINRT_APP.Views.MainPages
 
         private void MainPivot_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Locator.MainVM.UpdateAppBar(MainPivot.SelectedIndex);
+            AppBarHelper.UpdateAppBar(typeof(MainPageHome), MainPivot.SelectedIndex);
         }
     }
 }
