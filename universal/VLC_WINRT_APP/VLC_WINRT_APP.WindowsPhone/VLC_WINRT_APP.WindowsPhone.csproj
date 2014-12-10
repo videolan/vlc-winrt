@@ -883,6 +883,10 @@
     <Reference Include="WinRTXamlToolkit">
       <HintPath>..\..\..\app\packages\winrtxamltoolkit.1.6.1.3\lib\netcore451\WinRTXamlToolkit.dll</HintPath>
     </Reference>
+    <Reference Include="Yolo, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Yolo\AppBar\CustomAppBar\bin\Release\Yolo.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Page Include="Resources\PlatformStyles.xaml">
