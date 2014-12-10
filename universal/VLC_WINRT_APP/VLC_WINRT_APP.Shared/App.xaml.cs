@@ -94,6 +94,9 @@ namespace VLC_WINRT_APP
             if (Window.Current.Content == null)
             {
                 await LaunchTheApp();
+#if WINDOWS_PHONE_APP
+                ApplicationFrame.Navigated += this.RootFrame_FirstNavigated;
+#endif
                 ApplicationFrame.Navigate(typeof(MainPageHome));
                 var rootFrame = Window.Current.Content as Frame;
                 if (rootFrame != null && rootFrame.Content == null)
@@ -112,9 +115,6 @@ namespace VLC_WINRT_APP
                     rootFrame.ContentTransitions = null;
 #endif
                 }
-#if WINDOWS_PHONE_APP
-                ApplicationFrame.Navigated += this.RootFrame_FirstNavigated;
-#endif
                 // Ensure the current window is active
                 Window.Current.Activate();
 
