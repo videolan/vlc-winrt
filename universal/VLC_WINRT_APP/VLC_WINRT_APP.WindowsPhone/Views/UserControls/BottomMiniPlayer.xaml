@@ -7,10 +7,13 @@
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400"
-             DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}"
-             Visibility="{Binding TrackCollection.IsRunning, Converter={StaticResource BooleanToVisibilityConverter}}">
-    <Grid Height="80"
-          Background="WhiteSmoke">
+             DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}"
+             Visibility="{Binding CurrentPage, Converter={StaticResource BottomMiniPlayerVisibilityConverter}}">
+    <Grid x:Name="RootGrid"
+          Height="80"
+          Background="WhiteSmoke"
+          DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}"
+          Visibility="{Binding TrackCollection.IsRunning, Converter={StaticResource BooleanToVisibilityConverter}}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
