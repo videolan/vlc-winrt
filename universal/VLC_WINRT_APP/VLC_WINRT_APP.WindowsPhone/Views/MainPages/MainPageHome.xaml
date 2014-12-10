@@ -11,6 +11,7 @@
       xmlns:mainVideoControls="using:VLC_WINRT_APP.Views.MainPages.MainVideoControls"
       xmlns:mainMusicControls="using:VLC_WINRT_APP.Views.MainPages.MainMusicControls"
       xmlns:extensions="using:WinRTXamlToolkit.Controls.Extensions"
+      xmlns:yolo="using:Yolo"
       mc:Ignorable="d"
       DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}">
 
@@ -20,7 +21,8 @@
               DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}"
               Height="70"
               VerticalAlignment="Top" />
-        <Grid Margin="0,70,0,0"
+        <Grid Grid.Row="0"
+              Margin="0,70,0,0"
               Height="7"
               VerticalAlignment="Top">
             <Grid.Background>
@@ -33,13 +35,15 @@
                 </LinearGradientBrush>
             </Grid.Background>
         </Grid>
-        <Image Source="/Assets/backgroundTop.png"
+        <Image Grid.Row="0"
+               Source="/Assets/backgroundTop.png"
                Stretch="Uniform"
                VerticalAlignment="Top"
                Margin="0,70,0,0"
                extensions:ImageExtensions.FadeInOnLoaded="True" />
         <Pivot x:Name="MainPivot"
                x:FieldModifier="public"
+               Grid.Row="0"
                Margin="-7,15,-15,0"
                Style="{StaticResource PivotStyle1}"
                HeaderTemplate="{StaticResource PivotTitleTemplate}"
