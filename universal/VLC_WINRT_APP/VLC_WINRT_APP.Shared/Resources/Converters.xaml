@@ -27,5 +27,6 @@
     <converters:OpacityDecreaserConverter  x:Key="OpacityDecreaserConverter" />
     <converters:OrderTypeStringifyConverter x:Key="OrderTypeStringifyConverter"/>
     <converters:DateTimeToDayOfMonthConverter  x:Key="DateTimeToDayOfMonthConverter"/>
-    <converters:DateTimeToShortMonthConverter x:Key="DateTimeToShortMonthConverter"/>
+    <converters:DateTimeToShortMonthConverter x:Key="DateTimeToShortMonthConverter" />
+    <converters:BottomMiniPlayerVisibilityConverter x:Key="BottomMiniPlayerVisibilityConverter"/>
 </ResourceDictionary>

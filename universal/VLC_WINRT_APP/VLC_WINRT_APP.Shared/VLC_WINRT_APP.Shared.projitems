@@ -87,6 +87,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\BackgroundVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\BooleanNegationConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\BooleanToVisibilityConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\BottomMiniPlayerVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\CountToVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\CurrentTrackForegroundConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\DateTimeToShortDescriptionConverter.cs" />
