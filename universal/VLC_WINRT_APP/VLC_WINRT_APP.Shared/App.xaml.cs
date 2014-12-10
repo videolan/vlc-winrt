@@ -192,6 +192,7 @@ namespace VLC_WINRT_APP
             StatusBarHelper.SetDefaultForPage(args.SourcePageType);
             AppBarHelper.UpdateAppBar(args.SourcePageType);
             AppBarHelper.UpdateSecondaryAppBarButtons();
+            Locator.MainVM.CurrentPage = args.SourcePageType;
         }
 
         protected async override void OnActivated(IActivatedEventArgs args)

@@ -7,6 +7,7 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -37,6 +38,7 @@ namespace VLC_WINRT_APP.ViewModels
 #endif
         #endregion
         #region private props
+        private Type _currentPage;
         private GoToPanelCommand _goToPanelCommand;
         private GoToSettingsPageCommand _goToSettingsPageCommand;
         private GoToThanksPageCommand _goToThanksPageCommand;
@@ -90,6 +92,13 @@ namespace VLC_WINRT_APP.ViewModels
 #endif
         #endregion
         #region public props
+
+        public Type CurrentPage
+        {
+            get { return _currentPage; }
+            set { SetProperty(ref _currentPage, value); }
+        }
+
         public GoToPanelCommand GoToPanelCommand
         {
             get { return _goToPanelCommand; }
