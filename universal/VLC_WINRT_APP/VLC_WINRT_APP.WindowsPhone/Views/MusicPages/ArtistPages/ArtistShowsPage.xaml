@@ -112,6 +112,15 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            <Grid Visibility="{Binding IsUpcomingShowsLoading, Converter={StaticResource BooleanToVisibilityConverter}}"
+                  Background="WhiteSmoke">
+                <ProgressRing IsActive="True"
+                              Background="Transparent"
+                              Foreground="{StaticResource MainColor}"
+                              VerticalAlignment="Center"
+                              HorizontalAlignment="Center"/>
+
+            </Grid>
         </Grid>
     </Grid>
 </Page>

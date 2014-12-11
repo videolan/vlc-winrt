@@ -154,14 +154,18 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                 await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                 {
                     artist.UpcomingShows = showItems;
+                    artist.IsUpcomingShowsLoading = false;
                 });
                 return true;
             }
             catch (Exception exception)
             {
                 LogHelper.Log("Error when trying to map from Events collection to Artist object for artist : " + artist.Name + " exceptio log " + exception.ToString());
-                return false;
             }
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                artist.IsUpcomingShowsLoading = false;
+            });
             return false;
         }
 
