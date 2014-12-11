@@ -98,25 +98,6 @@ namespace VLC_WINRT_APP
                 ApplicationFrame.Navigated += this.RootFrame_FirstNavigated;
 #endif
                 ApplicationFrame.Navigate(typeof(MainPageHome));
-                var rootFrame = Window.Current.Content as Frame;
-                if (rootFrame != null && rootFrame.Content == null)
-                {
-#if WINDOWS_PHONE_APP
-                    // Removes the turnstile navigation for startup.
-                    if (rootFrame.ContentTransitions != null)
-                    {
-                        this.transitions = new TransitionCollection();
-                        foreach (var c in rootFrame.ContentTransitions)
-                        {
-                            this.transitions.Add(c);
-                        }
-                    }
-
-                    rootFrame.ContentTransitions = null;
-#endif
-                }
-                // Ensure the current window is active
-                Window.Current.Activate();
 
                 try
                 {
