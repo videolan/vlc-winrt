@@ -32,7 +32,17 @@
            extensions:ImageExtensions.FadeInOnLoaded="True" />
     <Frame x:Name="MainFrame"
            x:FieldModifier="public"
-           Background="Transparent" />
+           Background="Transparent">
+        <Frame.ContentTransitions>
+            <TransitionCollection>
+                <NavigationThemeTransition>
+                    <NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                        <ContinuumNavigationTransitionInfo />
+                    </NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                </NavigationThemeTransition>
+            </TransitionCollection>
+        </Frame.ContentTransitions>
+    </Frame>
     <yolo:AppBar Grid.Row="0"
                  x:Name="CommandBar"
                  x:FieldModifier="public"
