@@ -33,7 +33,6 @@
 #include <d2d1_1helper.h>
 #include <d2d1helper.h>
 #include <objbase.h>
-#include "../../wrapper/libVLCX/Helpers.h"
 
 #include "I420Effect.h"
 
@@ -128,6 +127,15 @@ struct vout_display_sys_t {
     ComPtr<ID2D1Bitmap1>         targetBitmap;
 };
 
+static void Debug(const wchar_t *fmt, ...)
+{
+    wchar_t buf[255];
+    va_list args;
+    va_start(args, fmt);
+    vswprintf_s(buf, fmt, args);
+    va_end(args);
+    OutputDebugStringW(buf);
+}
 
 /**
 * Renders video to a SwapChainPanel in WinRT Environments

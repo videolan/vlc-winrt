@@ -58,8 +58,6 @@ static ssize_t                Read(access_t *access, uint8_t *buffer, size_t siz
 static int                    Seek(access_t *access, uint64_t position);
 static int                    Control(access_t *access, int query, va_list args);
 
-#include "../../wrapper/libVLCX/Helpers.h"
-
 /*****************************************************************************
 * Module descriptor
 *****************************************************************************/
@@ -79,6 +77,26 @@ struct access_sys_t
     IRandomAccessStream^   readStream;
     DataReader^            dataReader;
 };
+
+
+void Debug(const wchar_t *fmt, ...)
+{
+    wchar_t buf[255];
+    va_list args;
+    va_start(args, fmt);
+    vswprintf_s(buf, fmt, args);
+    va_end(args);
+    OutputDebugStringW(buf);
+}
+
+Platform::String^
+GetString(char* in)
+{
+    std::string s_str = std::string(in);
+    std::wstring wid_str = std::wstring(s_str.begin(), s_str.end());
+    const wchar_t* w_char = wid_str.c_str();
+    return ref new Platform::String(w_char);
+}
 
 /*****************************************************************************
 * Local prototypes
