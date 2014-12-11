@@ -9,7 +9,7 @@
       d:DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM.CurrentArtist}"
       Background="WhiteSmoke">
 
-    <Grid Margin="12,0,0,0">
+    <Grid Margin="12,24,0,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -23,7 +23,8 @@
                    Text="UPCOMING SHOWS"
                    Style="{StaticResource TitleTextBlockStyle}"
                    Margin="3,0,0,0" />
-        <Grid Grid.Row="2">
+        <Grid Grid.Row="2"
+              Margin="0,12,0,0">
             <placeholder:NoMusicShowsPlaceholder Visibility="{Binding UpcomingShows.Count, Converter={StaticResource CountToVisibilityConverter}}"
                                                  Margin="0,50,0,0" />
             <ListView ItemsSource="{Binding UpcomingShows}"

@@ -9,7 +9,7 @@
       mc:Ignorable="d">
     <Grid DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="50" />
+            <RowDefinition Height="75" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
@@ -17,7 +17,7 @@
         <Grid Grid.Row="0"
               Background="{StaticResource MainColor}">
             <TextBlock Text="Connect to Last.fm"
-                       Margin="20,0,0,0"
+                       Margin="20,24,0,0"
                        VerticalAlignment="Center"
                        Style="{StaticResource SubheaderTextBlockStyle}"
                        Foreground="White" />
