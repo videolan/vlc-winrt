@@ -29,7 +29,9 @@ namespace VLC_WINRT_APP.Services.RunTime
         private readonly object _controlLock = new object();
 
         public VlcState CurrentState { get; private set; }
-        private Player _vlcPlayer;
+        //private Player _vlcPlayer;
+        private Instance _vlcInstance;
+        private MediaPlayer _vlcMP;
 
         public VlcService()
         {
@@ -53,16 +55,18 @@ namespace VLC_WINRT_APP.Services.RunTime
 
         public void Stop()
         {
+            if (_vlcMP == null)
+                return;
             DoVLCSafeAction(() =>
             {
-                _vlcPlayer.Stop();
+                _vlcMP.stop();
                 UpdateStatus(VlcState.Stopped);
             });
         }
 
         private void DoVLCSafeAction(Action a)
         {
-            if (_vlcPlayer == null)
+            if (_vlcInstance == null)
                 return;
 
             a();
@@ -70,14 +74,14 @@ namespace VLC_WINRT_APP.Services.RunTime
 
         public void Seek(float position)
         {
-            DoVLCSafeAction(() => _vlcPlayer.Seek(position));
+            DoVLCSafeAction(() => _vlcMP.setPosition(position));
         }
 
         public void Play()
         {
             DoVLCSafeAction(() =>
             {
-                _vlcPlayer.Play();
+                _vlcMP.play();
                 UpdateStatus(VlcState.Playing);
             });
         }
@@ -86,17 +90,26 @@ namespace VLC_WINRT_APP.Services.RunTime
         {
             DoVLCSafeAction(() =>
             {
-                _vlcPlayer.Pause();
+                _vlcMP.pause();
                 UpdateStatus(VlcState.Paused);
             });
         }
 
         public async Task Initialize(SwapChainPanel panel)
         {
-            _vlcPlayer = new Player();
-            IAsyncAction init = _vlcPlayer.Initialize(panel);
-            _vlcPlayer.MediaEnded += _vlcPlayer_MediaEnded;
-            await init.AsTask();
+            var param = new List<String>() 
+            {
+                "-I",
+                "dummy",
+                "--no-osd",
+                "--verbose=3",
+                "--no-stats",
+                "--avcodec-fast",
+                "--no-avcodec-dr",
+                String.Format("--freetype-font={0}\\segoeui.ttf", Windows.ApplicationModel.Package.Current.InstalledLocation.Path)
+            };
+
+            _vlcInstance = new Instance(param, panel);
         }
 
         private void _vlcPlayer_MediaEnded()
@@ -111,12 +124,18 @@ namespace VLC_WINRT_APP.Services.RunTime
 
         public void Open(string mrl)
         {
-            DoVLCSafeAction(() => { _vlcPlayer.Open(mrl); });
+            DoVLCSafeAction(() => 
+            {
+                var media = new Media(_vlcInstance, mrl);
+                _vlcMP = new MediaPlayer(media);
+                var em = _vlcMP.eventManager();
+                em.OnEndReached += _vlcPlayer_MediaEnded;
+            });
         }
 
         public void OpenSubtitle(string mrl)
         {
-            DoVLCSafeAction(() => { _vlcPlayer.OpenSubtitle(mrl); });
+            DoVLCSafeAction(() => { _vlcMP.setSubtitleFile(mrl); });
         }
 
         public void SkipAhead()
@@ -150,7 +169,7 @@ namespace VLC_WINRT_APP.Services.RunTime
 
         public void Close()
         {
-            if (_vlcPlayer != null)
+            if (_vlcInstance != null)
             {
                 if (CurrentState != VlcState.Stopped)
                 {
@@ -161,8 +180,8 @@ namespace VLC_WINRT_APP.Services.RunTime
                 {
                     try
                     {
-                        _vlcPlayer.Dispose();
-                        _vlcPlayer = null;
+                        _vlcMP = null;
+                        _vlcInstance = null;
                     }
                     catch (Exception ex)
                     {
@@ -179,79 +198,79 @@ namespace VLC_WINRT_APP.Services.RunTime
                 return 0.0f;
             float position = 0.0f;
 
-            DoVLCSafeAction(() => position = _vlcPlayer.GetPosition());
+            DoVLCSafeAction(() => position = _vlcMP.position());
             return position;
         }
 
         public long GetLength()
         {
             long length = 0;
-            DoVLCSafeAction(() => length = _vlcPlayer.GetLength());
+            DoVLCSafeAction(() => length = _vlcMP.length());
             return length;
         }
 
         public void SetSizeVideoPlayer(uint x, uint y)
         {
-            DoVLCSafeAction(() => _vlcPlayer.UpdateSize(x, y));
+            DoVLCSafeAction(() => _vlcInstance.UpdateSize(x, y));
         }
 
         public int GetSubtitleCount()
         {
             int subtitleCount = 0;
-            DoVLCSafeAction(() => subtitleCount = _vlcPlayer.GetSubtitleCount());
+            DoVLCSafeAction(() => subtitleCount = _vlcMP.spuCount());
             return subtitleCount;
         }
 
         public int GetAudioTrackCount()
         {
             int audioTracksCount = 0;
-            DoVLCSafeAction(() => audioTracksCount = _vlcPlayer.GetAudioTracksCount());
+            DoVLCSafeAction(() => audioTracksCount = _vlcMP.audioTrackCount());
             return audioTracksCount;
         }
 
         public int GetSubtitleDescription(IDictionary<int, string> subtitles)
         {
             int subtitleDescription = 0;
-            DoVLCSafeAction(() => subtitleDescription = _vlcPlayer.GetSubtitleDescription(subtitles));
+            //DoVLCSafeAction(() => subtitleDescription = _vlcMP.spuDescription());
             return subtitleDescription;
         }
         public int GetAudioTrackDescription(IDictionary<int, string> audioTracks)
         {
             int audioTrackDescription = 0;
-            DoVLCSafeAction(()=> audioTrackDescription = _vlcPlayer.GetAudioTracksDescription(audioTracks));
+            //DoVLCSafeAction(()=> audioTrackDescription = _vlcPlayer.GetAudioTracksDescription(audioTracks));
             return audioTrackDescription;
         }
 
         public void SetSubtitleTrack(int track)
         {
-            DoVLCSafeAction(() => _vlcPlayer.SetSubtitleTrack(track));
+            DoVLCSafeAction(() => _vlcMP.setSpu(track));
         }
 
         public void SetAudioTrack(int track)
         {
-            DoVLCSafeAction(() => _vlcPlayer.SetAudioTrack(track));
+            DoVLCSafeAction(() => _vlcMP.setAudioTrack(track));
         }
 
         public void SetRate(float rate)
         {
-            DoVLCSafeAction(() => _vlcPlayer.SetRate(rate));
+            DoVLCSafeAction(() => _vlcMP.setRate(rate));
         }
 
         public void SetVolume(int volume)
         {
-            DoVLCSafeAction(() => _vlcPlayer.SetVolume(volume));
+            DoVLCSafeAction(() => _vlcMP.setVolume(volume));
         }
 
         public int GetVolume()
         {
             int vol = 0;
-            DoVLCSafeAction(() => vol = _vlcPlayer.GetVolume());
+            DoVLCSafeAction(() => vol = _vlcMP.volume());
             return vol;
         }
 
         public void Trim()
         {
-            DoVLCSafeAction(() => _vlcPlayer.Trim());
+            DoVLCSafeAction(() => _vlcInstance.Trim());
         }
     }
 }

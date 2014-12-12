@@ -2,6 +2,7 @@
 * Copyright © 2014 VideoLAN
 *
 * Authors: Jean-Baptiste Kempf
+*          Hugo Beauzée-Luyssen <hugo@beauzee.fr>
 *
 * This program is free software; you can redistribute it and/or modify it
 * under the terms of the GNU Lesser General Public License as published by
@@ -18,56 +19,52 @@
 * Inc., 51 Franklin Street, Fifth Floor, Boston MA 02110-1301, USA.
 *****************************************************************************/
 
+#pragma once
+
 #include <Windows.h>
 
-using namespace Platform;
+#include <collection.h>
+#include <string>
+#include <vector>
 
-char *
-FromPlatformString(Platform::String^ str) {
-    size_t len = WideCharToMultiByte(CP_UTF8, 0, str->Data(), -1, NULL, 0, NULL, NULL);
-    if(len == 0)
-        return NULL;
-    char* psz_str = new char[len];
-    WideCharToMultiByte(CP_UTF8, 0, str->Data(), -1, psz_str, len, NULL, NULL);
-    return psz_str;
-}
+char *FromPlatformString(Platform::String^ str);
 
-Platform::String^
-ToPlatformString(const char *str) {
-    size_t len = MultiByteToWideChar(CP_UTF8, 0, str, -1, NULL, 0);
-    if(len == 0)
-        return nullptr;
-    wchar_t* w_str = reinterpret_cast<wchar_t*>(alloca(len * sizeof(*w_str)));
-    MultiByteToWideChar(CP_UTF8, 0, str, -1, w_str, len);
-    return ref new Platform::String(w_str);
-}
+Platform::String^ ToPlatformString(const char *str);
+Platform::String^ ToPlatformString(const std::string& str);
 
 /**
  * Helper to return a WinRT string from a char*
  */
-Platform::String^
-GetString(char* in)
+Platform::String^ GetString(char* in);
+
+size_t ToCharArray(Platform::String^ str, char *arr, size_t maxSize);
+
+void Debug(const wchar_t *fmt, ...);
+
+template <typename MANAGED, typename NATIVE>
+Platform::Collections::Vector<MANAGED^>^ MarshallVector(const std::vector<NATIVE>& input)
 {
-    std::string s_str = std::string(in);
-    std::wstring wid_str = std::wstring(s_str.begin(), s_str.end());
-    const wchar_t* w_char = wid_str.c_str();
-    return ref new String(w_char);
+    auto res = ref new Platform::Collections::Vector<MANAGED^>();
+    for (auto& d : input)
+        res->Append(ref new MANAGED(d));
+    return res;
 }
 
-size_t
-ToCharArray(Platform::String^ str, char *arr, size_t maxSize)
+struct VLCString
 {
-    size_t nbConverted = 0;
-    wcstombs_s(&nbConverted, arr, 128, str->Data(), maxSize);
-    return nbConverted;
-}
+    VLCString(Platform::String^ string)
+        : m_pszstring(FromPlatformString(string))
+        , m_string(m_pszstring)
+    {
+    }
+    ~VLCString()
+    {
+        delete[] m_pszstring;
+    }
+    operator const char*() const { return m_pszstring; }
+    operator const std::string&() const { return m_string; }
 
-void
-Debug( const wchar_t *fmt, ...) {
-    wchar_t buf[255];
-    va_list args;
-    va_start(args, fmt);
-    vswprintf_s(buf, fmt, args);
-    va_end(args);
-    OutputDebugStringW(buf);
-}
+private:
+    const char* m_pszstring;
+    const std::string m_string;
+};

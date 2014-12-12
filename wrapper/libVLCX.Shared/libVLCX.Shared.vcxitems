@@ -14,40 +14,40 @@
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\libvlcpp\cppcx\EventManagerCX.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\libvlcpp\cppcx\InstanceCX.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\libvlcpp\cppcx\MediaCX.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\libvlcpp\cppcx\MediaPlayerCX.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\libvlcpp\cppcx\PlatformHelpers.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\libvlcpp\cppcx\StructuresCX.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)..\libvlcpp\src\EventManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)..\libvlcpp\src\Instance.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)..\libvlcpp\src\Media.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)..\libvlcpp\src\MediaDiscoverer.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)..\libvlcpp\src\MediaLibrary.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)..\libvlcpp\src\MediaList.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)..\libvlcpp\src\MediaListPlayer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)..\libvlcpp\src\MediaPlayer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)..\libvlcpp\src\structures.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)..\libVLCX\DirectXManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)..\libVLCX\MMDeviceLocator.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)..\libVLCX\Player.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)..\libVLCX\Thumbnailer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectCapability Include="SourceItemsFromImports" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\libvlcpp\cppcx\EventManagerCX.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\libvlcpp\cppcx\InstanceCX.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\libvlcpp\cppcx\MediaCX.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\libvlcpp\cppcx\MediaPlayerCX.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\libvlcpp\cppcx\PlatformHelpers.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\libvlcpp\cppcx\StructuresCX.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\libvlcpp\src\common.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\libvlcpp\src\EventManager.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\libvlcpp\src\Instance.hpp" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\libvlcpp\src\Internal.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\libvlcpp\src\Media.hpp" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\libvlcpp\src\MediaDiscoverer.hpp" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\libvlcpp\src\MediaLibrary.hpp" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\libvlcpp\src\MediaList.hpp" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\libvlcpp\src\MediaListPlayer.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\libvlcpp\src\MediaPlayer.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\libvlcpp\src\structures.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\libvlcpp\src\vlc.hpp" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\libVLCX\DirectXManager.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\libVLCX\Helpers.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\libVLCX\MMDeviceLocator.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\libVLCX\Player.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\libVLCX\Thumbnailer.h" />
   </ItemGroup>
 </Project>

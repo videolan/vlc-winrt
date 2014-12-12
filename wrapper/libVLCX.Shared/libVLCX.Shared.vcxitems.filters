@@ -3,24 +3,11 @@
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)..\libVLCX\DirectXManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)..\libVLCX\MMDeviceLocator.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)..\libVLCX\Player.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)..\libVLCX\Thumbnailer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)..\libvlcpp\src\Instance.cpp">
       <Filter>libvlcpp</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)..\libvlcpp\src\Media.cpp">
-      <Filter>libvlcpp</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)..\libvlcpp\src\MediaDiscoverer.cpp">
-      <Filter>libvlcpp</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)..\libvlcpp\src\MediaLibrary.cpp">
-      <Filter>libvlcpp</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)..\libvlcpp\src\MediaList.cpp">
-      <Filter>libvlcpp</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)..\libvlcpp\src\MediaListPlayer.cpp">
       <Filter>libvlcpp</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)..\libvlcpp\src\MediaPlayer.cpp">
@@ -32,12 +19,28 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)..\libvlcpp\src\EventManager.cpp">
       <Filter>libvlcpp</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\libvlcpp\cppcx\EventManagerCX.cpp">
+      <Filter>libvlcpp\cppcx</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\libvlcpp\cppcx\InstanceCX.cpp">
+      <Filter>libvlcpp\cppcx</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\libvlcpp\cppcx\MediaCX.cpp">
+      <Filter>libvlcpp\cppcx</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\libvlcpp\cppcx\MediaPlayerCX.cpp">
+      <Filter>libvlcpp\cppcx</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\libvlcpp\cppcx\PlatformHelpers.cpp">
+      <Filter>libvlcpp\cppcx</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\libvlcpp\cppcx\StructuresCX.cpp">
+      <Filter>libvlcpp\cppcx</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)..\libVLCX\DirectXManager.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\libVLCX\Helpers.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\libVLCX\MMDeviceLocator.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\libVLCX\Player.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\libVLCX\Thumbnailer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\libvlcpp\src\EventManager.hpp">
       <Filter>libvlcpp</Filter>
@@ -45,22 +48,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)..\libvlcpp\src\Instance.hpp">
       <Filter>libvlcpp</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\libvlcpp\src\Internal.hpp">
-      <Filter>libvlcpp</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)..\libvlcpp\src\Media.hpp">
-      <Filter>libvlcpp</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\libvlcpp\src\MediaDiscoverer.hpp">
-      <Filter>libvlcpp</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\libvlcpp\src\MediaLibrary.hpp">
-      <Filter>libvlcpp</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\libvlcpp\src\MediaList.hpp">
-      <Filter>libvlcpp</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\libvlcpp\src\MediaListPlayer.hpp">
       <Filter>libvlcpp</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)..\libvlcpp\src\MediaPlayer.hpp">
@@ -75,10 +63,31 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)..\libvlcpp\src\common.hpp">
       <Filter>libvlcpp</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\libvlcpp\cppcx\EventManagerCX.hpp">
+      <Filter>libvlcpp\cppcx</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\libvlcpp\cppcx\InstanceCX.hpp">
+      <Filter>libvlcpp\cppcx</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\libvlcpp\cppcx\MediaCX.hpp">
+      <Filter>libvlcpp\cppcx</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\libvlcpp\cppcx\MediaPlayerCX.hpp">
+      <Filter>libvlcpp\cppcx</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\libvlcpp\cppcx\PlatformHelpers.hpp">
+      <Filter>libvlcpp\cppcx</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\libvlcpp\cppcx\StructuresCX.hpp">
+      <Filter>libvlcpp\cppcx</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="libvlcpp">
       <UniqueIdentifier>{0986211e-6fbd-4b5d-94ff-e5fbb2d0b047}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libvlcpp\cppcx">
+      <UniqueIdentifier>{52b4ae9d-a51a-4514-83b4-6afd1aaa6f0b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
