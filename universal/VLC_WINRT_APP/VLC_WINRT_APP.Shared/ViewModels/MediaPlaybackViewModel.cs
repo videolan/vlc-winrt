@@ -192,9 +192,7 @@ namespace VLC_WINRT_APP.ViewModels
             _mediaService.StatusChanged += PlayerStateChanged;
 
             _vlcPlayerService = mediaPlayerService;
-#if WINDOWS_APP
             _displayAlwaysOnRequest = new DisplayRequest();
-#endif
             _sliderPositionTimer = new DispatcherTimer();
             _sliderPositionTimer.Tick += FirePositionUpdate;
             _sliderPositionTimer.Interval = TimeSpan.FromMilliseconds(200);
@@ -232,7 +230,6 @@ namespace VLC_WINRT_APP.ViewModels
 
         private void ProtectedDisplayCall(bool shouldActivate)
         {
-#if WINDOWS_APP
             if (_displayAlwaysOnRequest == null) return;
             if (shouldActivate)
             {
@@ -242,7 +239,6 @@ namespace VLC_WINRT_APP.ViewModels
             {
                 _displayAlwaysOnRequest.RequestRelease();
             }
-#endif
         }
 
         private async Task UpdatePosition()
