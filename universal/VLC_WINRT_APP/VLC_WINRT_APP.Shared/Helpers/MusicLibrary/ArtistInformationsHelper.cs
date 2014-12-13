@@ -73,6 +73,30 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                 return false;
             }
         }
+
+        private static async Task<bool> DownloadArtistPictureFromLastFm(ArtistItem artist)
+        {
+            var lastFmClient = new LastFmClient();
+            var lastFmArtist = await lastFmClient.GetArtistInfo(artist.Name);
+            if (lastFmArtist == null) return false;
+            try
+            {
+                var clientPic = new HttpClient();
+                var imageElement = lastFmArtist.Images.LastOrDefault(node => !string.IsNullOrEmpty(node.Url));
+                if (imageElement == null) return false;
+                HttpResponseMessage responsePic = await clientPic.GetAsync(imageElement.Url);
+                byte[] img = await responsePic.Content.ReadAsByteArrayAsync();
+                var result = await SaveArtistImageAsync(artist, img);
+                return result;
+            }
+            catch (Exception)
+            {
+                Debug.WriteLine("Error getting or saving art from LastFm.");
+                return false;
+            }
+        }
+
+
         private static async Task<bool> DownloadAlbumPictureFromDeezer(AlbumItem album)
         {
             var deezerClient = new DeezerClient();
