@@ -108,7 +108,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                 }
                 foreach (var storageFolder in folders)
                 {
-                    await CreateDatabaseFromMusicFolder(files, storageFolder);
+                    await CreateDatabaseFromMusicFolder(files, storageFolder, routineCheck);
                 }
             }
             IReadOnlyList<StorageFile> folderFiles = await musicFolder.GetFilesAsync();
