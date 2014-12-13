@@ -32,7 +32,7 @@ namespace VLC_WINRT_APP.Model.Music
         private bool _isOnlineMusicVideosLoaded = false;
         private string _biography;
         private List<ShowItem> _upcomingShowItems;
-        private bool _isUpcomingShowsLoading=false;
+        private bool _isUpcomingShowsLoading = false;
         private bool _isUpcomingShowsItemsLoaded = false;
         private PinArtistCommand pinArtistCommand;
 #if WINDOWS_PHONE_APP
@@ -216,7 +216,7 @@ namespace VLC_WINRT_APP.Model.Music
             {
                 return _isUpcomingShowsLoading;
             }
-            set{ SetProperty(ref _isUpcomingShowsLoading, value);}
+            set { SetProperty(ref _isUpcomingShowsLoading, value); }
         }
 
         public bool IsFavorite
