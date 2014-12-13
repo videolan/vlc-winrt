@@ -35,7 +35,6 @@ namespace VLC_WINRT_APP.Views.MainPages
             }
             else
             {
-                App.ApplicationFrame.Navigate(typeof(MainPageHome));
             }
         }
     }

@@ -1,4 +1,5 @@
 ﻿using Windows.Graphics.Display;
+using Windows.Phone.UI.Input;
 using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -22,8 +23,7 @@ namespace VLC_WINRT_APP.Views.MainPages
             this.SizeChanged += OnSizeChanged;
             Loaded += OnLoaded;
         }
-
-
+        
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
@@ -46,7 +46,23 @@ namespace VLC_WINRT_APP.Views.MainPages
         private void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
         {
             Responsive();
+            this.Unloaded += OnUnloaded;
+            HardwareButtons.BackPressed += HardwareButtonsOnBackPressed;
         }
+
+        private void OnUnloaded(object sender, RoutedEventArgs routedEventArgs)
+        {
+            HardwareButtons.BackPressed -= HardwareButtonsOnBackPressed;
+        }
+
+        private void HardwareButtonsOnBackPressed(object sender, BackPressedEventArgs backPressedEventArgs)
+        {
+            if (MainPivot.SelectedIndex != 3)
+            {
+                backPressedEventArgs.Handled = false;
+            }
+        }
+
 
         private void Responsive()
         {
