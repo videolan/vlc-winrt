@@ -82,8 +82,9 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             try
             {
                 var clientPic = new HttpClient();
-                HttpResponseMessage responsePic = await clientPic.GetAsync(deezerAlbum.Images.LastOrDefault().Url);
-                string uri = responsePic.RequestMessage.RequestUri.AbsoluteUri;
+                string url = deezerAlbum.Images.Count == 1 ? deezerAlbum.Images[0].Url : deezerAlbum.Images[deezerAlbum.Images.Count - 2].Url;
+                HttpResponseMessage responsePic = await clientPic.GetAsync(url);
+                var uri = responsePic.RequestMessage.RequestUri.AbsoluteUri;
                 // A cheap hack to avoid using Deezers default image for bands.
                 if (uri.Equals("http://cdn-images.deezer.com/images/album//400x400-000000-80-0-0.jpg"))
                 {
@@ -110,7 +111,8 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             {
                 if (string.IsNullOrEmpty(lastFmAlbum.Images.LastOrDefault().Url)) return false;
                 var clientPic = new HttpClient();
-                HttpResponseMessage responsePic = await clientPic.GetAsync(lastFmAlbum.Images.LastOrDefault().Url);
+                var url = lastFmAlbum.Images.Count == 1 ? lastFmAlbum.Images[0].Url : lastFmAlbum.Images[lastFmAlbum.Images.Count - 2].Url;
+                HttpResponseMessage responsePic = await clientPic.GetAsync(url);
                 byte[] img = await responsePic.Content.ReadAsByteArrayAsync();
                 var result = await SaveAlbumImageAsync(album, img);
                 return result;
