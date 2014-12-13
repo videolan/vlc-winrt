@@ -73,6 +73,9 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             }
 #else
             StorageFolder musicLibrary = KnownFolders.MusicLibrary;
+            LogHelper.Log("Searching for music from Phone MusicLibrary ...");
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                StatusBarHelper.UpdateTitle("Searching for music"));
             var files = new List<StorageFile>();
             files = await CreateDatabaseFromMusicFolder(files, musicLibrary);
             foreach (var storageFile in files)
@@ -89,7 +92,6 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                     }
                 }
             }
-            LogHelper.Log("Searching for music from Phone MusicLibrary ...");
 #endif
 
         }
@@ -99,13 +101,15 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             IReadOnlyList<StorageFolder> folders = await musicFolder.GetFoldersAsync();
             if (folders.Any())
             {
+                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                    StatusBarHelper.UpdateTitle("Found " + files.Count + " files"));
                 foreach (var storageFolder in folders)
                 {
                     await CreateDatabaseFromMusicFolder(files, storageFolder);
                 }
             }
             IReadOnlyList<StorageFile> folderFiles = await musicFolder.GetFilesAsync();
-            if (folderFiles != null && folderFiles.Any()) 
+            if (folderFiles != null && folderFiles.Any())
                 files.AddRange(folderFiles);
             return files;
         }
