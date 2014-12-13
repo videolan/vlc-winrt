@@ -19,10 +19,10 @@ namespace VLC_WINRT_APP.Model.Music
     {
         private string _name;
         private string _artist;
-        private string _picture = "/Assets/NoCover.jpg";
+        private string _picture = "";
         private uint _year;
         private bool _favorite;
-        private bool _isPictureLoaded;
+        private bool _isPictureLoaded = false;
         private bool _isTracksLoaded = false;
         private ObservableCollection<TrackItem> _trackItems;
         private PlayAlbumCommand _playAlbumCommand = new PlayAlbumCommand();
@@ -77,6 +77,7 @@ namespace VLC_WINRT_APP.Model.Music
             set { SetProperty(ref _trackItems, value); }
         }
 
+        [Ignore]
         public string Picture
         {
             get
@@ -84,7 +85,12 @@ namespace VLC_WINRT_APP.Model.Music
                 if (!_isPictureLoaded)
                 {
                     _isPictureLoaded = true;
+                    _picture = "ms-appx:///Assets/NoCover.jpg";
                     Task.Run(() => LoadPicture());
+                }
+                else
+                {
+                    _picture = "ms-appdata:///local/albumPic/" + Id + ".jpg";
                 }
                 return _picture;
             }
@@ -93,6 +99,12 @@ namespace VLC_WINRT_APP.Model.Music
                 SetProperty(ref _picture, value);
                 OnPropertyChanged();
             }
+        }
+
+        public bool IsPictureLoaded
+        {
+            get { return _isPictureLoaded; }
+            set { SetProperty(ref _isPictureLoaded, value); }
         }
 
         public uint Year

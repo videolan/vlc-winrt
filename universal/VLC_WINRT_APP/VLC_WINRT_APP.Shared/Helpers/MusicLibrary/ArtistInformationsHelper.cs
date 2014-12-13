@@ -247,52 +247,16 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
 
         public static async Task GetAlbumPicture(AlbumItem album)
         {
-            StorageFolder appDataFolder = ApplicationData.Current.LocalFolder;
-            StorageFolder picFolder = null;
-            bool picFolderExist = await appDataFolder.ContainsFolderAsync("albumPic");
-            bool picExist = false;
-            if (picFolderExist)
-            {
-                picFolder = await StorageFolder.GetFolderFromPathAsync(appDataFolder.Path + "\\albumPic\\");
-                picExist = await picFolder.ContainsFileAsync(album.Id + ".jpg");
-            }
-
-            if (picFolderExist && picExist)
-            {
-                await DispatchHelper.InvokeAsync(() =>
-                {
-                    album.Picture = picFolder.Path + "\\" + album.Id + ".jpg";
-                });
-            }
-            else
-            {
-                if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable()) return;
-                await GetAlbumPictureFromInternet(album);
-            }
+            if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable()) return;
+            await GetAlbumPictureFromInternet(album);
         }
 
         public static async Task GetAlbumPicture(TrackItem track)
         {
-            StorageFolder appDataFolder = ApplicationData.Current.LocalFolder;
-            StorageFolder picFolder = null;
-            bool picFolderExist = await appDataFolder.ContainsFolderAsync("albumPic");
-            bool picExist = false;
-            if (picFolderExist)
+            await DispatchHelper.InvokeAsync(() =>
             {
-                picFolder = await StorageFolder.GetFolderFromPathAsync(appDataFolder.Path + "\\albumPic\\");
-                picExist = await picFolder.ContainsFileAsync(track.AlbumId + ".jpg");
-            }
-
-            if (picFolderExist && picExist)
-            {
-                await DispatchHelper.InvokeAsync(() =>
-                {
-                    track.Thumbnail = picFolder.Path + "\\" + track.AlbumId + ".jpg";
-                });
-            }
-            else
-            {
-            }
+                track.Thumbnail = "ms-appdata:///local/albumPic/" + track.AlbumId + ".jpg";
+            });
         }
 
         public static async Task GetAlbumPictureFromInternet(AlbumItem album)
@@ -312,6 +276,12 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                 var bytes = await ConvertImage.ConvertImagetoByte(file);
                 await SaveAlbumImageAsync(album, bytes);
             }
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                album.IsPictureLoaded = true;
+                album.Picture = "ms-appdata:///local/albumPic/" + album.Id + ".jpg";
+            });
+            await MusicLibraryVM._albumDataRepository.Update(album);
         }
 
         public static async Task GetArtistTopAlbums(ArtistItem artist)
@@ -400,7 +370,6 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                         await RandomAccessStream.CopyAsync(thumbnailStream, stream);
                     }
                 }
-                await GetAlbumPicture(album);
                 return true;
             }
             catch (Exception)
