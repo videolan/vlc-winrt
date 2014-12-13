@@ -119,7 +119,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             if (!VLCFileExtensions.AudioExtensions.Contains(item.FileType.ToLower())) return;
             LogHelper.Log("Music indexation: found music file " + item.Path);
             MusicProperties properties = await item.Properties.GetMusicPropertiesAsync();
-            if (properties != null && !string.IsNullOrEmpty(properties.Album) && !string.IsNullOrEmpty(properties.Artist) && !string.IsNullOrEmpty(properties.Title))
+            if (properties != null)
             {
                 ArtistItem artist = await MusicLibraryVM._artistDataRepository.LoadViaArtistName(properties.Artist);
                 if (artist == null)
