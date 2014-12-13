@@ -73,36 +73,41 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             }
 #else
             StorageFolder musicLibrary = KnownFolders.MusicLibrary;
-            await CreateDatabaseFromMusicFolder(musicLibrary, routineCheck);
+            var files = new List<StorageFile>();
+            files = await CreateDatabaseFromMusicFolder(files, musicLibrary);
+            foreach (var storageFile in files)
+            {
+                if (!routineCheck)
+                {
+                    await CreateDatabaseFromMusicFile(storageFile);
+                }
+                else
+                {
+                    if (!await MusicLibraryVM._trackDataRepository.DoesTrackExist(storageFile.Path))
+                    {
+                        await CreateDatabaseFromMusicFile(storageFile);
+                    }
+                }
+            }
             LogHelper.Log("Searching for music from Phone MusicLibrary ...");
 #endif
 
         }
 
-        private static async Task CreateDatabaseFromMusicFolder(StorageFolder musicFolder, bool checkIfAlreadyInDB = false)
+        private static async Task<List<StorageFile>> CreateDatabaseFromMusicFolder(List<StorageFile> files, StorageFolder musicFolder)
         {
-            IReadOnlyList<IStorageItem> items = await musicFolder.GetItemsAsync();
-            foreach (IStorageItem storageItem in items)
+            IReadOnlyList<StorageFolder> folders = await musicFolder.GetFoldersAsync();
+            if (folders.Any())
             {
-                if (storageItem.IsOfType(StorageItemTypes.File))
+                foreach (var storageFolder in folders)
                 {
-                    if (!checkIfAlreadyInDB)
-                    {
-                        await CreateDatabaseFromMusicFile((StorageFile)storageItem);
-                    }
-                    else
-                    {
-                        if (!await MusicLibraryVM._trackDataRepository.DoesTrackExist((storageItem as StorageFile).Path))
-                        {
-                            await CreateDatabaseFromMusicFile((StorageFile)storageItem);
-                        }
-                    }
-                }
-                else
-                {
-                    await CreateDatabaseFromMusicFolder((StorageFolder)storageItem);
+                    await CreateDatabaseFromMusicFolder(files, storageFolder);
                 }
             }
+            IReadOnlyList<StorageFile> folderFiles = await musicFolder.GetFilesAsync();
+            if (folderFiles != null && folderFiles.Any()) 
+                files.AddRange(folderFiles);
+            return files;
         }
 
         private static async Task CreateDatabaseFromMusicFile(StorageFile item)
