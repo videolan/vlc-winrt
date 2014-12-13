@@ -69,6 +69,7 @@ namespace VLC_WINRT_APP.Model.Music
             set { SetProperty(ref _name, value); }
         }
 
+        [Ignore]
         public string Picture
         {
             get
@@ -76,6 +77,7 @@ namespace VLC_WINRT_APP.Model.Music
                 if (!_isPictureLoaded)
                 {
                     _isPictureLoaded = true;
+                    _picture = "ms-appx:///Assets/NoCover.jpg";
                     Task.Run(() => LoadPicture());
                 }
                 return _picture;
@@ -87,9 +89,22 @@ namespace VLC_WINRT_APP.Model.Music
             }
         }
 
+        public bool IsPictureLoaded
+        {
+            get { return _isPictureLoaded; }
+            set
+            {
+                SetProperty(ref _isPictureLoaded, value);
+                if (value)
+                {
+                    Picture = "ms-appdata:///local/artistPic/" + Id + ".jpg";
+                }
+            }
+        }
+
+
         private async Task LoadPicture()
         {
-            if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable()) return;
             try
             {
                 await ArtistInformationsHelper.GetArtistPicture(this);
@@ -98,10 +113,6 @@ namespace VLC_WINRT_APP.Model.Music
             {
                 Debug.WriteLine("Error getting artist picture : " + _name);
             }
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-            {
-                OnPropertyChanged("Picture");
-            });
         }
 
         [Ignore]

@@ -45,27 +45,8 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                     return false;
                 }
                 byte[] img = await responsePic.Content.ReadAsByteArrayAsync();
-                InMemoryRandomAccessStream streamWeb = new InMemoryRandomAccessStream();
-                DataWriter writer = new DataWriter(streamWeb.GetOutputStreamAt(0));
-                writer.WriteBytes(img);
-                await writer.StoreAsync();
-                StorageFolder artistPic = await ApplicationData.Current.LocalFolder.CreateFolderAsync("artistPic",
-                    CreationCollisionOption.OpenIfExists);
-                string fileName = artist.Id.ToString();
-                var file = await artistPic.CreateFileAsync(fileName + ".jpg", CreationCollisionOption.OpenIfExists);
-                var raStream = await file.OpenAsync(FileAccessMode.ReadWrite);
-
-                using (var thumbnailStream = streamWeb.GetInputStreamAt(0))
-                {
-                    using (var stream = raStream.GetOutputStreamAt(0))
-                    {
-                        await RandomAccessStream.CopyAsync(thumbnailStream, stream);
-                    }
-                }
-                StorageFolder appDataFolder = ApplicationData.Current.LocalFolder;
-                string supposedPictureUriLocal = appDataFolder.Path + "\\artistPic\\" + artist.Id + ".jpg";
-                await DispatchHelper.InvokeAsync(() => artist.Picture = supposedPictureUriLocal);
-                return true;
+                var result = await SaveArtistImageAsync(artist, img);
+                return result;
             }
             catch (Exception)
             {
@@ -195,78 +176,26 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             return false;
         }
 
-        private static async Task<bool> DownloadArtistPictureFromLastFm(ArtistItem artist)
-        {
-            var lastFmClient = new LastFmClient();
-            var lastFmArtist = await lastFmClient.GetArtistInfo(artist.Name);
-            if (lastFmArtist == null) return false;
-            try
-            {
-                var clientPic = new HttpClient();
-                var imageElement = lastFmArtist.Images.LastOrDefault(node => !string.IsNullOrEmpty(node.Url));
-                if (imageElement == null) return false;
-                HttpResponseMessage responsePic = await clientPic.GetAsync(imageElement.Url);
-                byte[] img = await responsePic.Content.ReadAsByteArrayAsync();
-                InMemoryRandomAccessStream streamWeb = new InMemoryRandomAccessStream();
-
-                DataWriter writer = new DataWriter(streamWeb.GetOutputStreamAt(0));
-                writer.WriteBytes(img);
-
-                await writer.StoreAsync();
-
-                StorageFolder artistPic = await ApplicationData.Current.LocalFolder.CreateFolderAsync("artistPic",
-                    CreationCollisionOption.OpenIfExists);
-                string fileName = artist.Id.ToString();
-
-                var file = await artistPic.CreateFileAsync(fileName + ".jpg", CreationCollisionOption.OpenIfExists);
-                var raStream = await file.OpenAsync(FileAccessMode.ReadWrite);
-
-                using (var thumbnailStream = streamWeb.GetInputStreamAt(0))
-                {
-                    using (var stream = raStream.GetOutputStreamAt(0))
-                    {
-                        await RandomAccessStream.CopyAsync(thumbnailStream, stream);
-                    }
-                }
-                StorageFolder appDataFolder = ApplicationData.Current.LocalFolder;
-                string supposedPictureUriLocal = appDataFolder.Path + "\\artistPic\\" + artist.Id + ".jpg";
-                await DispatchHelper.InvokeAsync(() => artist.Picture = supposedPictureUriLocal);
-                return true;
-            }
-            catch (Exception)
-            {
-                Debug.WriteLine("Error getting or saving art from LastFm.");
-                return false;
-            }
-        }
-
         public static async Task GetArtistPicture(ArtistItem artist)
         {
-            StorageFolder appDataFolder = ApplicationData.Current.LocalFolder;
-            bool picFolderExist = await appDataFolder.ContainsFolderAsync("artistPic");
-            StorageFolder picFolder = null;
-            bool picExist = false;
-            if (picFolderExist)
+            if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable()) return;
+            var gotArt = await DownloadArtistPictureFromDeezer(artist);
+            if (!gotArt)
             {
-                picFolder = await StorageFolder.GetFolderFromPathAsync(appDataFolder.Path + "\\artistPic\\");
-                picExist = await picFolder.ContainsFileAsync(artist.Id + ".jpg");
+                gotArt = await DownloadArtistPictureFromLastFm(artist);
             }
-
-            if (picFolderExist && picExist)
+            if (!gotArt)
             {
-                await DispatchHelper.InvokeAsync(() =>
-                {
-                    artist.Picture = picFolder.Path + "\\" + artist.Id + ".jpg";
-                });
+                StorageFolder install = Windows.ApplicationModel.Package.Current.InstalledLocation;
+                StorageFile file = await install.GetFileAsync("Assets\\NoCover.jpg");
+                var bytes = await ConvertImage.ConvertImagetoByte(file);
+                await SaveArtistImageAsync(artist, bytes);
             }
-            else
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                var gotArt = await DownloadArtistPictureFromDeezer(artist);
-                if (!gotArt)
-                {
-                    await DownloadArtistPictureFromLastFm(artist);
-                }
-            }
+                artist.IsPictureLoaded = true;
+            });
+            await MusicLibraryVM._artistDataRepository.Update(artist);
         }
 
         public static async Task GetAlbumPicture(AlbumItem album)
@@ -303,7 +232,6 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 album.IsPictureLoaded = true;
-                album.Picture = "ms-appdata:///local/albumPic/" + album.Id + ".jpg";
             });
             await MusicLibraryVM._albumDataRepository.Update(album);
         }
@@ -401,6 +329,38 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                 Debug.WriteLine("Error saving album art");
                 return false;
             }
+        }
+
+        public static async Task<bool> SaveArtistImageAsync(ArtistItem artist, byte[] img)
+        {
+            try
+            {
+                var streamWeb = new InMemoryRandomAccessStream();
+                var writer = new DataWriter(streamWeb.GetOutputStreamAt(0));
+                writer.WriteBytes(img);
+                await writer.StoreAsync();
+
+                StorageFolder artistPic = await ApplicationData.Current.LocalFolder.CreateFolderAsync("artistPic",
+                    CreationCollisionOption.OpenIfExists);
+                string fileName = artist.Id.ToString();
+
+                var file = await artistPic.CreateFileAsync(fileName + ".jpg", CreationCollisionOption.OpenIfExists);
+                var raStream = await file.OpenAsync(FileAccessMode.ReadWrite);
+
+                using (var thumbnailStream = streamWeb.GetInputStreamAt(0))
+                {
+                    using (var stream = raStream.GetOutputStreamAt(0))
+                    {
+                        await RandomAccessStream.CopyAsync(thumbnailStream, stream);
+                    }
+                }
+                return true;
+            }
+            catch(Exception exception)
+            {
+                Debug.WriteLine("Error saving artist art");
+            }
+            return false;
         }
     }
 }

@@ -88,10 +88,6 @@ namespace VLC_WINRT_APP.Model.Music
                     _picture = "ms-appx:///Assets/NoCover.jpg";
                     Task.Run(() => LoadPicture());
                 }
-                else
-                {
-                    _picture = "ms-appdata:///local/albumPic/" + Id + ".jpg";
-                }
                 return _picture;
             }
             set
@@ -104,7 +100,14 @@ namespace VLC_WINRT_APP.Model.Music
         public bool IsPictureLoaded
         {
             get { return _isPictureLoaded; }
-            set { SetProperty(ref _isPictureLoaded, value); }
+            set
+            {
+                SetProperty(ref _isPictureLoaded, value);
+                if (value)
+                {
+                    Picture = "ms-appdata:///local/albumPic/" + Id + ".jpg";
+                }
+            }
         }
 
         public uint Year
@@ -124,10 +127,6 @@ namespace VLC_WINRT_APP.Model.Music
                 // TODO: Tell user we could not get their album art.
                 Debug.WriteLine("Error getting album art...");
             }
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-            {
-                OnPropertyChanged("Picture");
-            });
         }
 
         [Ignore]
