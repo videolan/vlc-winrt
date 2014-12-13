@@ -14,11 +14,6 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Image Grid.Row="0"
-                       Source="/Assets/NoCover.jpg"
-                       Stretch="UniformToFill"
-                       Width="Auto"
-                       Height="Auto" />
-                <Image Grid.Row="0"
                        Source="{Binding Picture}"
                        Stretch="UniformToFill"
                        Width="Auto"
