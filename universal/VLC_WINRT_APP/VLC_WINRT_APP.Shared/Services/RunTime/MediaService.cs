@@ -74,16 +74,10 @@ namespace VLC_WINRT_APP.Services.RunTime
 
                 // Set the album art thumbnail.
                 // RandomAccessStreamReference is defined in Windows.Storage.Streams
-                if (albumUri == "/Assets/NoCover.jpg")
+
+                if (albumUri != null && !string.IsNullOrEmpty(albumUri))
                 {
-                }
-                else
-                {
-                    if (albumUri != null && !string.IsNullOrEmpty(albumUri))
-                    {
-                        StorageFile albumCover = await StorageFile.GetFileFromPathAsync(albumUri);
-                        updater.Thumbnail = RandomAccessStreamReference.CreateFromFile(albumCover);
-                    }
+                    updater.Thumbnail = RandomAccessStreamReference.CreateFromUri(new Uri(albumUri));
                 }
 
                 // Update the system media transport controls.
