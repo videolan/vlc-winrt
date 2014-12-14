@@ -23,7 +23,7 @@ namespace VLC_WINRT_APP.Views.MainPages
             this.SizeChanged += OnSizeChanged;
             Loaded += OnLoaded;
         }
-        
+
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
@@ -70,11 +70,19 @@ namespace VLC_WINRT_APP.Views.MainPages
             {
                 //CommandBar.Visibility = Visibility.Visible;
                 MainPivot.Margin = new Thickness(-7, 0, -15, 0);
+                PivotTitle.Visibility = Visibility.Visible;
+                HeaderBackgroundGrid.Height = 110;
+                HeaderGradientGrid.Margin = new Thickness(0, 110, 0, 0);
+                HeaderBackgroundImage.Margin = new Thickness(0, 110, 0, 0);
             }
             else
             {
                 //CommandBar.Visibility = Visibility.Collapsed;
                 MainPivot.Margin = new Thickness(-7, -15, -25, 0);
+                PivotTitle.Visibility = Visibility.Collapsed;
+                HeaderBackgroundGrid.Height = 50;
+                HeaderGradientGrid.Margin = new Thickness(0, 50, 0, 0);
+                HeaderBackgroundImage.Margin = new Thickness(0, 50, 0, 0);
             }
         }
 

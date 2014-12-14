@@ -17,11 +17,12 @@
 
     <Grid Margin="0"
           DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
-        <Grid Background="{StaticResource MainColor}"
+        <Grid x:Name="HeaderBackgroundGrid"
+              Background="{StaticResource MainColor}"
               DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}"
               Height="110"
               VerticalAlignment="Top" />
-        <Grid Grid.Row="0"
+        <Grid x:Name="HeaderGradientGrid"
               Margin="0,110,0,0"
               Height="7"
               VerticalAlignment="Top">
@@ -35,7 +36,7 @@
                 </LinearGradientBrush>
             </Grid.Background>
         </Grid>
-        <Image Grid.Row="0"
+        <Image x:Name="HeaderBackgroundImage"
                Source="/Assets/backgroundTop.png"
                Stretch="Uniform"
                VerticalAlignment="Top"
@@ -43,34 +44,32 @@
                extensions:ImageExtensions.FadeInOnLoaded="True" />
         <Pivot x:Name="MainPivot"
                x:FieldModifier="public"
-               Grid.Row="0"
                Style="{StaticResource PivotStyle1}"
                HeaderTemplate="{StaticResource PivotTitleTemplate}"
                SelectionChanged="MainPivot_OnSelectionChanged">
-            <Pivot.TitleTemplate>
-                <DataTemplate>
-                    <Grid Margin="0,16,0,0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <Path Data="{StaticResource VLCFlatPath}"
-                              Fill="WhiteSmoke"
-                              VerticalAlignment="Center"
-                              Margin="0,6,0,0"
-                              Height="26"
-                              Stretch="UniformToFill" />
-                        <TextBlock Margin="12,-3,0,0"
-                                   TextTrimming="CharacterEllipsis"
-                                   TextWrapping="NoWrap"
-                                   VerticalAlignment="Center"
-                                   Grid.Column="1"
-                                   Text="VLC"
-                                   Foreground="WhiteSmoke"
-                                   Style="{StaticResource SubheaderTextBlockStyle}" />
-                    </Grid>
-                </DataTemplate>
-            </Pivot.TitleTemplate>
+            <Pivot.Title>
+                <Grid x:Name="PivotTitle"
+                      Margin="0,16,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Path Data="{StaticResource VLCFlatPath}"
+                          Fill="WhiteSmoke"
+                          VerticalAlignment="Center"
+                          Margin="0,6,0,0"
+                          Height="26"
+                          Stretch="UniformToFill" />
+                    <TextBlock Margin="12,-3,0,0"
+                               TextTrimming="CharacterEllipsis"
+                               TextWrapping="NoWrap"
+                               VerticalAlignment="Center"
+                               Grid.Column="1"
+                               Text="VLC"
+                               Foreground="WhiteSmoke"
+                               Style="{StaticResource SubheaderTextBlockStyle}" />
+                </Grid>
+            </Pivot.Title>
             <PivotItem x:Uid="HomeHeader"
                        Header="home">
                 <Grid>
