@@ -171,6 +171,7 @@ namespace VLC_WINRT_APP
         private void RootFrame_FirstNavigated(object sender, NavigationEventArgs args)
         {
             StatusBarHelper.SetDefaultForPage(args.SourcePageType);
+            AppBarHelper.SetHomeButtonVisibleOrNot();
             AppBarHelper.UpdateAppBar(args.SourcePageType);
             AppBarHelper.UpdateSecondaryAppBarButtons();
             Locator.MainVM.CurrentPage = args.SourcePageType;

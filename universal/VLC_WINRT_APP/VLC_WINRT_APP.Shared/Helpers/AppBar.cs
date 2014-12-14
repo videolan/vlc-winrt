@@ -10,6 +10,18 @@ namespace VLC_WINRT_APP.Helpers
 {
     public static class AppBarHelper
     {
+        public static void SetHomeButtonVisibleOrNot()
+        {
+            if (App.ApplicationFrame.CurrentSourcePageType == typeof(MainPageHome))
+            {
+                App.RootPage.CommandBar.HomeButtonVisible = false;
+            }
+            else
+            {
+                App.RootPage.CommandBar.HomeButtonVisible = true;
+            }
+        }
+
         public static void UpdateSecondaryAppBarButtons()
         {
             if (Locator.MainVM.SecondaryAppBarElements == null || Locator.MainVM.SecondaryAppBarElements.Count != 0) return;
@@ -103,7 +115,7 @@ namespace VLC_WINRT_APP.Helpers
                     CommandParameter = Locator.MusicLibraryVM.CurrentArtist
                 });
             }
-            else if (page == typeof (AlbumPage))
+            else if (page == typeof(AlbumPage))
             {
                 Locator.MainVM.AppBarElements.Clear();
                 appbarEl.Add(new AppBarButton()

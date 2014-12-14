@@ -47,6 +47,7 @@
                  x:Name="CommandBar"
                  x:FieldModifier="public"
                  Background="{StaticResource MainColor}"
-                 RequestedTheme="Dark" />
+                 RequestedTheme="Dark" 
+                 HomeButtonClicked="CommandBar_OnHomeButtonClicked"/>
     <userControls:BottomMiniPlayer Grid.Row="1" />
 </SwapChainPanel>

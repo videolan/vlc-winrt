@@ -40,7 +40,7 @@ namespace VLC_WINRT_APP.Views.MainPages
             StatusBar sb = StatusBar.GetForCurrentView();
 
             var appView = ApplicationView.GetForCurrentView();
-            
+
             if (DisplayHelper.IsPortrait())
             {
                 await sb.ShowAsync();
@@ -56,6 +56,12 @@ namespace VLC_WINRT_APP.Views.MainPages
         private async void SwapPanelLoaded(object sender, RoutedEventArgs e)
         {
             await _vlcService.Initialize(SwapChainPanel);
+        }
+
+        private void CommandBar_OnHomeButtonClicked(Button button, EventArgs e)
+        {
+            if (App.ApplicationFrame.CurrentSourcePageType != typeof(MainPageHome))
+                App.ApplicationFrame.Navigate(typeof(MainPageHome));
         }
     }
 }
