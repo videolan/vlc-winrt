@@ -26,8 +26,8 @@
                x:Name="HeaderArtistImage"
                Source="{Binding CurrentAlbum.Picture}"
                Stretch="UniformToFill"
-               Opacity="1" 
-               ext:ImageExtensions.FadeInOnLoaded="True"/>
+               Opacity="1"
+               ext:ImageExtensions.FadeInOnLoaded="True" />
         <Grid>
             <Grid.Background>
                 <LinearGradientBrush StartPoint="0.5,0"
@@ -41,7 +41,7 @@
                 </LinearGradientBrush>
             </Grid.Background>
             <userControls:HeaderControl HeaderTextBlock="{Binding CurrentAlbum.Name}"
-                                        HeaderBackground="#00ffffff"/>
+                                        HeaderBackground="#00ffffff" />
         </Grid>
         <Grid Grid.Row="2"
               RequestedTheme="Dark">
