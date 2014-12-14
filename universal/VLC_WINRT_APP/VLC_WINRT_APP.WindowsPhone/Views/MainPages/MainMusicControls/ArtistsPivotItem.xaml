@@ -38,7 +38,8 @@
             <GridView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <ItemsWrapGrid Orientation="Horizontal"
-                                   SizeChanged="ArtistsWrapGrid_SizeChanged" />
+                                   SizeChanged="ArtistsWrapGrid_SizeChanged"
+                                   Margin="0,0,0,60" />
                 </ItemsPanelTemplate>
             </GridView.ItemsPanel>
             <triggers:Interactions.Triggers>

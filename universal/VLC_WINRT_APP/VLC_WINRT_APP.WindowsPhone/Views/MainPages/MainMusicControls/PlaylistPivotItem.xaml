@@ -27,7 +27,8 @@
             <triggers:Interactions.Triggers>
                 <triggers:EventTrigger EventName="ItemClick">
                     <triggers:InvokeCommandAction Command="{Binding TrackCollectionClickedCommand}"
-                                                  PassEventArgsToCommand="True" />
+                                                  PassEventArgsToCommand="True" 
+                                                  Margin="0,0,0,60"/>
                 </triggers:EventTrigger>
             </triggers:Interactions.Triggers>
         </ListView>

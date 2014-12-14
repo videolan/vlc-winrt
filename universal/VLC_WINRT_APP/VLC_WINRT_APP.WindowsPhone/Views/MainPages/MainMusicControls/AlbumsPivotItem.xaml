@@ -73,7 +73,8 @@
             <scrollWatchedSelector:ScrollWatchedGridView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <ItemsWrapGrid SizeChanged="AlbumsWrapGrid_SizeChanged"
-                                   Orientation="Horizontal" />
+                                   Orientation="Horizontal"
+                                   Margin="0,0,0,60"/>
                 </ItemsPanelTemplate>
             </scrollWatchedSelector:ScrollWatchedGridView.ItemsPanel>
         </scrollWatchedSelector:ScrollWatchedGridView>
