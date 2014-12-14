@@ -11,11 +11,18 @@
     <Grid DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}">
         <Grid.RowDefinitions>
             <RowDefinition Height="80" />
+            <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
         <userControls:HeaderControl Grid.Row="0"
                                     HeaderTextBlock="Settings" />
-        <Pivot Grid.Row="1"
+        <Grid Grid.Row="1">
+            <TextBlock HorizontalAlignment="Left"
+                       Style="{StaticResource TitleTextBlockStyle}"
+                       Margin="16,0,0,0"
+                       x:Name="AppVersion" />
+        </Grid>
+        <Pivot Grid.Row="2"
                HeaderTemplate="{StaticResource PivotTitleTemplate}">
             <Pivot.TitleTemplate>
                 <DataTemplate>
@@ -25,9 +32,9 @@
                 <ScrollViewer>
                     <StackPanel>
                         <TextBlock Text="WARNING This is not working yet"
-                                   Foreground="Red"/>
+                                   Foreground="Red" />
                         <StackPanel x:Name="LastFmGrid"
-                              Margin="0,20,0,0">
+                                    Margin="0,20,0,0">
                             <StackPanel Orientation="Horizontal"
                                         HorizontalAlignment="Center">
                                 <userControls:VLCLogoWithGradient Height="50"
