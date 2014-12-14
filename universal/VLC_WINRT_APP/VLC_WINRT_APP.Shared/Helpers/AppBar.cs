@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Windows.UI.Core;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Data;
 using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.Views.MainPages;
 using VLC_WINRT_APP.Views.MusicPages;
@@ -44,111 +47,128 @@ namespace VLC_WINRT_APP.Helpers
         {
             var appbarEl = new List<ICommandBarElement>();
             if (Locator.MainVM.AppBarElements == null) return;
-            if (page == typeof(MainPageHome) && index > -1)
+            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                Locator.MainVM.AppBarElements.Clear();
-                switch (index)
+                if (page == typeof (MainPageHome) && index > -1)
                 {
-                    case 0:
-                        appbarEl.Add(new AppBarButton()
-                        {
-                            Label = "search",
-                            Icon = new SymbolIcon(Symbol.Find),
-                            Command = Locator.MainVM.GoToSearchPage
-                        });
-                        appbarEl.Add(new AppBarButton()
-                        {
-                            Label = "open file",
-                            Icon = new SymbolIcon(Symbol.OpenFile),
-                            Command = Locator.VideoLibraryVM.PickVideo
-                        });
-                        appbarEl.Add(new AppBarButton()
-                        {
-                            Label = "open stream",
-                            Icon = new SymbolIcon(Symbol.World),
-                            Flyout = App.Current.Resources["PhoneOpenStreamFlyout"] as Flyout,
-                        });
-                        break;
-                    case 1:
-                        appbarEl.Add(new AppBarButton()
-                        {
-                            Label = "view all",
-                            Icon = new SymbolIcon(Symbol.ViewAll),
-                            Flyout = App.Current.Resources["PhoneChangeVideoViewFlyout"] as MenuFlyout,
-                        });
-                        break;
-                    case 2:
-                        appbarEl.Add(new AppBarButton()
-                        {
-                            Label = "view all",
-                            Icon = new SymbolIcon(Symbol.ViewAll),
-                            Flyout = App.Current.Resources["PhoneChangeMusicViewFlyout"] as MenuFlyout,
-                        });
-                        appbarEl.Add(new AppBarButton()
-                        {
-                            Label = "random",
-                            Icon = new SymbolIcon(Symbol.Shuffle),
-                            Command = Locator.MusicLibraryVM.PlayAllRandomCommand
-                        });
-                        break;
+                    Locator.MainVM.AppBarElements.Clear();
+                    switch (index)
+                    {
+                        case 0:
+                            appbarEl.Add(new AppBarButton()
+                            {
+                                Label = "search",
+                                Icon = new SymbolIcon(Symbol.Find),
+                                Command = Locator.MainVM.GoToSearchPage
+                            });
+                            appbarEl.Add(new AppBarButton()
+                            {
+                                Label = "open file",
+                                Icon = new SymbolIcon(Symbol.OpenFile),
+                                Command = Locator.VideoLibraryVM.PickVideo
+                            });
+                            appbarEl.Add(new AppBarButton()
+                            {
+                                Label = "open stream",
+                                Icon = new SymbolIcon(Symbol.World),
+                                Flyout = App.Current.Resources["PhoneOpenStreamFlyout"] as Flyout,
+                            });
+                            break;
+                        case 1:
+                            appbarEl.Add(new AppBarButton()
+                            {
+                                Label = "view all",
+                                Icon = new SymbolIcon(Symbol.ViewAll),
+                                Flyout = App.Current.Resources["PhoneChangeVideoViewFlyout"] as MenuFlyout,
+                            });
+                            break;
+                        case 2:
+                            appbarEl.Add(new AppBarButton()
+                            {
+                                Label = "view all",
+                                Icon = new SymbolIcon(Symbol.ViewAll),
+                                Flyout = App.Current.Resources["PhoneChangeMusicViewFlyout"] as MenuFlyout,
+                            });
+                            appbarEl.Add(new AppBarButton()
+                            {
+                                Label = "random",
+                                Icon = new SymbolIcon(Symbol.Shuffle),
+                                Command = Locator.MusicLibraryVM.PlayAllRandomCommand
+                            });
+                            break;
+                    }
                 }
-            }
-            else if (page == typeof(ArtistPage))
-            {
-                Locator.MainVM.AppBarElements.Clear();
-                appbarEl.Add(new AppBarButton()
+                else if (page == typeof (ArtistPage))
                 {
-                    Label = "play all",
-                    Icon = new SymbolIcon(Symbol.Play),
-                });
-                appbarEl.Add(new AppBarButton()
+                    Locator.MainVM.AppBarElements.Clear();
+                    appbarEl.Add(new AppBarButton()
+                    {
+                        Label = "play all",
+                        Icon = new SymbolIcon(Symbol.Play),
+                    });
+                    appbarEl.Add(new AppBarButton()
+                    {
+                        Label = "pin",
+                        Icon = new SymbolIcon(Symbol.Pin),
+                        Command = Locator.MusicLibraryVM.CurrentArtist.PinArtistCommand,
+                        CommandParameter = Locator.MusicLibraryVM.CurrentArtist
+                    });
+                    appbarEl.Add(new AppBarButton()
+                    {
+                        Label = "shows",
+                        Icon = new SymbolIcon(Symbol.Calendar),
+                        Command = Locator.MusicLibraryVM.CurrentArtist.SeeArtistShowsCommand,
+                        CommandParameter = Locator.MusicLibraryVM.CurrentArtist
+                    });
+                }
+                else if (page == typeof (AlbumPage))
                 {
-                    Label = "pin",
-                    Icon = new SymbolIcon(Symbol.Pin),
-                    Command = Locator.MusicLibraryVM.CurrentArtist.PinArtistCommand,
-                    CommandParameter = Locator.MusicLibraryVM.CurrentArtist
-                });
-                appbarEl.Add(new AppBarButton()
-                {
-                    Label = "shows",
-                    Icon = new SymbolIcon(Symbol.Calendar),
-                    Command = Locator.MusicLibraryVM.CurrentArtist.SeeArtistShowsCommand,
-                    CommandParameter = Locator.MusicLibraryVM.CurrentArtist
-                });
-            }
-            else if (page == typeof(AlbumPage))
-            {
-                Locator.MainVM.AppBarElements.Clear();
-                appbarEl.Add(new AppBarButton()
-                {
-                    Label = "add to playlist",
-                    Icon = new SymbolIcon(Symbol.Add),
-                    Command = Locator.MusicLibraryVM.OpenAddAlbumToPlaylistDialogCommand
-                });
-                appbarEl.Add(new AppBarButton()
-                {
-                    Label = "pin album",
-                    Icon = new SymbolIcon(Symbol.Pin),
-                    Command = Locator.MusicLibraryVM.CurrentAlbum.PinAlbumCommand,
-                    CommandParameter = Locator.MusicLibraryVM.CurrentAlbum
-                });
-                appbarEl.Add(new AppBarToggleButton()
-                {
-                    Name = "favoritebutton",
-                    Label = "favorite",
-                    Icon = new SymbolIcon(Symbol.Favorite),
-                    Command = Locator.MusicLibraryVM.CurrentAlbum.FavoriteAlbum,
-                    CommandParameter = Locator.MusicLibraryVM.CurrentAlbum
-                });
-                appbarEl.Add(new AppBarButton()
-                {
-                    Label = "shows",
-                    Icon = new SymbolIcon(Symbol.Calendar),
-                    Command = Locator.MusicLibraryVM.CurrentArtist.SeeArtistShowsCommand,
-                    CommandParameter = Locator.MusicLibraryVM.CurrentArtist
-                });
-            }
-            Locator.MainVM.AppBarElements = appbarEl;
+                    Locator.MainVM.AppBarElements.Clear();
+                    appbarEl.Add(new AppBarButton()
+                    {
+                        Label = "add to playlist",
+                        Icon = new SymbolIcon(Symbol.Add),
+                        Command = Locator.MusicLibraryVM.OpenAddAlbumToPlaylistDialogCommand
+                    });
+                    appbarEl.Add(new AppBarButton()
+                    {
+                        Label = "pin album",
+                        Icon = new SymbolIcon(Symbol.Pin),
+                        Command = Locator.MusicLibraryVM.CurrentAlbum.PinAlbumCommand,
+                        CommandParameter = Locator.MusicLibraryVM.CurrentAlbum
+                    });
+                    var favBut = new AppBarButton()
+                    {
+                        Command = Locator.MusicLibraryVM.CurrentAlbum.FavoriteAlbum,
+                        CommandParameter = Locator.MusicLibraryVM.CurrentAlbum
+                    };
+                    var favLabelBind = new Binding
+                    {
+                        Source = Locator.MusicLibraryVM.CurrentAlbum,
+                        Converter = App.Current.Resources["FavoriteLabelConverter"] as IValueConverter,
+                        UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged,
+                        Path = new PropertyPath("Favorite")
+                    };
+                    var favSymbolBind = new Binding()
+                    {
+                        Source = Locator.MusicLibraryVM.CurrentAlbum,
+                        Converter = App.Current.Resources["FavoriteSymbolConverter"] as IValueConverter,
+                        UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged,
+                        Path = new PropertyPath("Favorite")
+                    };
+                    favBut.SetBinding(AppBarButton.LabelProperty, favLabelBind);
+                    favBut.SetBinding(AppBarButton.IconProperty, favSymbolBind);
+                    appbarEl.Add(favBut);
+                    appbarEl.Add(new AppBarButton()
+                    {
+                        Label = "shows",
+                        Icon = new SymbolIcon(Symbol.Calendar),
+                        Command = Locator.MusicLibraryVM.CurrentArtist.SeeArtistShowsCommand,
+                        CommandParameter = Locator.MusicLibraryVM.CurrentArtist
+                    });
+                }
+                Locator.MainVM.AppBarElements = appbarEl;
+            });
         }
     }
 }
