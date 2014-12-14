@@ -10,7 +10,7 @@
     <!-- WINDOWS PHONE -->
     <DataTemplate x:Key="PhoneSemanticZoomInViewAlbumTemplateLittleSize">
         <Border Background="White"
-                Margin="0,0,6,0">
+                Margin="0,0,12,12">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="3*" />

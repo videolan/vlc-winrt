@@ -106,7 +106,7 @@
                                         FontWeight="SemiLight" />
                                 <GridView ItemsSource="{Binding ViewedVideos}"
                                           ItemTemplate="{StaticResource PhoneCompactVideoTemplate}"
-                                          Margin="0,6,-26,0"
+                                          Margin="0,0,-26,0"
                                           IsItemClickEnabled="True">
                                     <triggers:Interactions.Triggers>
                                         <triggers:EventTrigger EventName="ItemClick">
