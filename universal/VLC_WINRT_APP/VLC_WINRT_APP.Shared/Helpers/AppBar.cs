@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Windows.UI.Xaml.Controls;
 using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.Views.MainPages;
@@ -129,6 +130,14 @@ namespace VLC_WINRT_APP.Helpers
                     Label = "pin album",
                     Icon = new SymbolIcon(Symbol.Pin),
                     Command = Locator.MusicLibraryVM.CurrentAlbum.PinAlbumCommand,
+                    CommandParameter = Locator.MusicLibraryVM.CurrentAlbum
+                });
+                appbarEl.Add(new AppBarToggleButton()
+                {
+                    Name = "favoritebutton",
+                    Label = "favorite",
+                    Icon = new SymbolIcon(Symbol.Favorite),
+                    Command = Locator.MusicLibraryVM.CurrentAlbum.FavoriteAlbum,
                     CommandParameter = Locator.MusicLibraryVM.CurrentAlbum
                 });
                 appbarEl.Add(new AppBarButton()
