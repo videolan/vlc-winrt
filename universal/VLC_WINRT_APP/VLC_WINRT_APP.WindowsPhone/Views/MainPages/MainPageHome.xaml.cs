@@ -69,7 +69,7 @@ namespace VLC_WINRT_APP.Views.MainPages
             if (DisplayHelper.IsPortrait())
             {
                 //CommandBar.Visibility = Visibility.Visible;
-                MainPivot.Margin = new Thickness(-7, 15, -15, 0);
+                MainPivot.Margin = new Thickness(-7, 0, -15, 0);
             }
             else
             {

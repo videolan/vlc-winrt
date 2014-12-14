@@ -19,10 +19,10 @@
           DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
         <Grid Background="{StaticResource MainColor}"
               DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}"
-              Height="70"
+              Height="110"
               VerticalAlignment="Top" />
         <Grid Grid.Row="0"
-              Margin="0,70,0,0"
+              Margin="0,110,0,0"
               Height="7"
               VerticalAlignment="Top">
             <Grid.Background>
@@ -39,15 +39,38 @@
                Source="/Assets/backgroundTop.png"
                Stretch="Uniform"
                VerticalAlignment="Top"
-               Margin="0,70,0,0"
+               Margin="0,110,0,0"
                extensions:ImageExtensions.FadeInOnLoaded="True" />
         <Pivot x:Name="MainPivot"
                x:FieldModifier="public"
                Grid.Row="0"
-               Margin="-7,15,-15,0"
                Style="{StaticResource PivotStyle1}"
                HeaderTemplate="{StaticResource PivotTitleTemplate}"
                SelectionChanged="MainPivot_OnSelectionChanged">
+            <Pivot.TitleTemplate>
+                <DataTemplate>
+                    <Grid Margin="0,16,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Path Data="{StaticResource VLCFlatPath}"
+                              Fill="WhiteSmoke"
+                              VerticalAlignment="Center"
+                              Margin="0,6,0,0"
+                              Height="26"
+                              Stretch="UniformToFill" />
+                        <TextBlock Margin="12,-3,0,0"
+                                   TextTrimming="CharacterEllipsis"
+                                   TextWrapping="NoWrap"
+                                   VerticalAlignment="Center"
+                                   Grid.Column="1"
+                                   Text="VLC"
+                                   Foreground="WhiteSmoke"
+                                   Style="{StaticResource SubheaderTextBlockStyle}" />
+                    </Grid>
+                </DataTemplate>
+            </Pivot.TitleTemplate>
             <PivotItem x:Uid="HomeHeader"
                        Header="home">
                 <Grid>
