@@ -56,8 +56,8 @@
             </Grid.Background>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="24" />
-                <ColumnDefinition Width="Auto" />
                 <ColumnDefinition />
+                <ColumnDefinition Width="90"/>
             </Grid.ColumnDefinitions>
             <Button Grid.Column="1"
                     Style="{StaticResource TextBlockButtonStyle}"
@@ -66,52 +66,50 @@
                     Margin="18,0,0,-55">
                 <Button.Content>
                     <TextBlock TextWrapping="NoWrap">
-                        <Run Text="{Binding CurrentArtist.Name}" 
+                        <Run Text="{Binding CurrentArtist.Name}"
                              FontWeight="Light"
-                             FontSize="24"/>
+                             FontSize="24" />
                         <Run Text=""
                              FontFamily="Segoe UI Symbol"
                              FontSize="24" />
                         <LineBreak />
-                        <Run Text="{Binding CurrentAlbum.Tracks.Count}" 
+                        <Run Text="{Binding CurrentAlbum.Tracks.Count}"
                              FontSize="18"
-                             Foreground="DimGray"/>
-                        <Run Text="tracks" 
+                             Foreground="DimGray" />
+                        <Run Text="tracks"
                              FontSize="18"
-                             Foreground="DimGray"/>
+                             Foreground="DimGray" />
                     </TextBlock>
                 </Button.Content>
             </Button>
 
-            <StackPanel Grid.Column="2"
-                        Orientation="Horizontal"
-                        HorizontalAlignment="Right">
-                <Button Style="{StaticResource TextBlockButtonStyle}"
-                        VerticalAlignment="Bottom"
-                        Margin="0,0,0,-40"
-                        RequestedTheme="Dark"
-                        Command="{Binding CurrentAlbum.PlayAlbum}"
-                        CommandParameter="{Binding CurrentAlbum}">
-                    <Button.Content>
-                        <Grid>
-                            <Image Source="ms-appx:///Assets/Icons/circleShadow.png"
-                                   Stretch="UniformToFill"
-                                   Height="84"
-                                   Width="84"
-                                   Margin="0,0,0,-2"
-                                   Opacity="0.6" />
-                            <Ellipse Fill="{StaticResource MainColor}"
-                                     Height="70"
-                                     Width="70" />
-                            <TextBlock Text=""
-                                       FontSize="28"
-                                       FontFamily="Segoe UI Symbol"
-                                       VerticalAlignment="Center"
-                                       HorizontalAlignment="Center" />
-                        </Grid>
-                    </Button.Content>
-                </Button>
-            </StackPanel>
+            <Button Style="{StaticResource TextBlockButtonStyle}"
+                    HorizontalAlignment="Right"
+                    Grid.Column="2"
+                    VerticalAlignment="Bottom"
+                    Margin="0,0,0,-40"
+                    RequestedTheme="Dark"
+                    Command="{Binding CurrentAlbum.PlayAlbum}"
+                    CommandParameter="{Binding CurrentAlbum}">
+                <Button.Content>
+                    <Grid>
+                        <Image Source="ms-appx:///Assets/Icons/circleShadow.png"
+                               Stretch="UniformToFill"
+                               Height="84"
+                               Width="84"
+                               Margin="0,0,0,-2"
+                               Opacity="0.6" />
+                        <Ellipse Fill="{StaticResource MainColor}"
+                                 Height="70"
+                                 Width="70" />
+                        <TextBlock Text=""
+                                   FontSize="28"
+                                   FontFamily="Segoe UI Symbol"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center" />
+                    </Grid>
+                </Button.Content>
+            </Button>
         </Grid>
     </Grid>
 </UserControl>
