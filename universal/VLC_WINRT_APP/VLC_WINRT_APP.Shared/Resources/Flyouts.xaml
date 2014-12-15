@@ -28,22 +28,6 @@
         </Grid>
     </Flyout>
 
-    <MenuFlyout x:Key="PhoneChangeMusicViewFlyout"
-                Placement="Top">
-        <MenuFlyoutItem Text="albums"
-                        Command="{Binding Source={StaticResource Locator}, Path=MainVM.ChangeMainPageMusicViewCommand}"
-                        CommandParameter="0" />
-        <MenuFlyoutItem Text="artists"
-                        Command="{Binding Source={StaticResource Locator}, Path=MainVM.ChangeMainPageMusicViewCommand}"
-                        CommandParameter="1" />
-        <MenuFlyoutItem Text="songs"
-                        Command="{Binding Source={StaticResource Locator}, Path=MainVM.ChangeMainPageMusicViewCommand}"
-                        CommandParameter="2" />
-        <MenuFlyoutItem Text="playlists"
-                        Command="{Binding Source={StaticResource Locator}, Path=MainVM.ChangeMainPageMusicViewCommand}"
-                        CommandParameter="3" />
-    </MenuFlyout>
-
     <MenuFlyout x:Key="PhoneChangeVideoViewFlyout"
                 Placement="Top">
         <MenuFlyoutItem Text="all videos"

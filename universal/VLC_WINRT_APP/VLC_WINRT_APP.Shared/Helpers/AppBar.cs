@@ -85,9 +85,9 @@ namespace VLC_WINRT_APP.Helpers
                         case 2:
                             appbarEl.Add(new AppBarButton()
                             {
-                                Label = "view all",
-                                Icon = new SymbolIcon(Symbol.ViewAll),
-                                Flyout = App.Current.Resources["PhoneChangeMusicViewFlyout"] as MenuFlyout,
+                                Label = "search",
+                                Icon = new SymbolIcon(Symbol.Find),
+                                Command = Locator.MainVM.GoToSearchPage
                             });
                             appbarEl.Add(new AppBarButton()
                             {
