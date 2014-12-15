@@ -218,7 +218,6 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             _mediaService.Play();
 
             await Task.Delay(1000);
-            PositionInSeconds = 0;
             double timeInMilliseconds = _mediaService.GetLength();
             TimeTotal = TimeSpan.FromMilliseconds(timeInMilliseconds);
             VideoItem media = await _lastVideosRepository.LoadViaToken(_fileToken);
@@ -231,9 +230,9 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             }
             else
             {
-                PositionInSeconds = media.TimeWatched.TotalSeconds;
+                Time = (Int64)media.TimeWatched.TotalMilliseconds;
             }
-            OnPropertyChanged("PositionInSeconds");
+            OnPropertyChanged("Time");
             OnPropertyChanged("TimeTotal");
             SubtitlesCount = _mediaService.MediaPlayer.spuCount();
             AudioTracksCount = _mediaService.MediaPlayer.audioTrackCount();
@@ -292,11 +291,9 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
 
         public void UpdatePosition()
         {
-            if (double.IsNaN(PositionInSeconds))
-                return;
             if (CurrentVideo != null)
             {
-                CurrentVideo.TimeWatched = TimeSpan.FromSeconds(PositionInSeconds);
+                CurrentVideo.TimeWatched = TimeSpan.FromMilliseconds(Time);
                 CurrentVideo.Duration = TimeTotal;
                 _lastVideosRepository.Update(CurrentVideo);
             }

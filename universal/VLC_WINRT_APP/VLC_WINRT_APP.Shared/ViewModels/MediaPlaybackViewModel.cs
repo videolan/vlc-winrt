@@ -143,15 +143,20 @@ namespace VLC_WINRT_APP.ViewModels
             set { SetProperty(ref _elapsedTime, value); }
         }
 
-        public double PositionInSeconds
+        /**
+         * Elasped time in milliseconds
+         */
+        public Int64 Time
         {
             get
             {
-                return _mediaService.GetPosition() * TimeTotal.TotalSeconds;
+                if (_mediaService.MediaPlayer == null)
+                    return 0;
+                return _mediaService.MediaPlayer.time();
             }
             set
             {
-                _mediaService.SetPosition((float)(value / TimeTotal.TotalSeconds));
+                _mediaService.MediaPlayer.setTime(value);
             }
         }
 
@@ -228,8 +233,8 @@ namespace VLC_WINRT_APP.ViewModels
                 double timeInMilliseconds = _mediaService.GetLength();
                 TimeTotal = TimeSpan.FromMilliseconds(timeInMilliseconds);
             }
-            ElapsedTime = TimeSpan.FromSeconds(double.IsNaN(PositionInSeconds) ? 0 : PositionInSeconds);
-            OnPropertyChanged("PositionInSeconds");
+            ElapsedTime = TimeSpan.FromMilliseconds(Time);
+            OnPropertyChanged("Time");
             OnPropertyChanged("Position");
         }
 

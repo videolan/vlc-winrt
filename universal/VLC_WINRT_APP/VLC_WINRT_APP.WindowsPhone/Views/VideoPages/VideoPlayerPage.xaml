@@ -72,14 +72,14 @@
                            HorizontalAlignment="Left"
                            VerticalAlignment="Center"
                            Style="{StaticResource BodyTextBlockStyle}"
-                           Text="{Binding PositionInSeconds, Converter={StaticResource SecondsStringConverter}}" />
+                           Text="{Binding Time, Converter={StaticResource MillisecondsStringConverter}}" />
                 <Slider Grid.Column="1"
-                        Value="{Binding PositionInSeconds, Mode=TwoWay}"
-                        Maximum="{Binding TimeTotal.TotalSeconds}"
+                        Value="{Binding Time, Mode=TwoWay}"
+                        Maximum="{Binding TimeTotal.TotalMilliseconds}"
                         Margin="12,4,12,0"
                         Style="{StaticResource VLCSlider}"
                         VerticalAlignment="Center"
-                        ThumbToolTipValueConverter="{StaticResource SecondsStringConverter}" />
+                        ThumbToolTipValueConverter="{StaticResource MillisecondsStringConverter}" />
                 <TextBlock Grid.Column="2"
                            HorizontalAlignment="Right"
                            VerticalAlignment="Center"

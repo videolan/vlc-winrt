@@ -63,17 +63,17 @@
                         </Grid.ColumnDefinitions>
                         <TextBlock Margin="6,9,0,0"
                                    Grid.Column="0"
-                                   Text="{Binding PositionInSeconds, Converter={StaticResource SecondsStringConverter}}"
+                                   Text="{Binding Time, Converter={StaticResource MillisecondsStringConverter}}"
                                    HorizontalAlignment="Left"
                                    FontWeight="Light"
                                    FontSize="18"
                                    Foreground="White" />
                         <Slider Grid.Column="1"
                                 Margin="6,0"
-                                Value="{Binding PositionInSeconds, Mode=TwoWay}"
-                                Maximum="{Binding TimeTotal.TotalSeconds}"
+                                Value="{Binding Time, Mode=TwoWay}"
+                                Maximum="{Binding TimeTotal.Milliseconds}"
                                 Style="{StaticResource VLCSlider}"
-                                ThumbToolTipValueConverter="{StaticResource SecondsStringConverter}" />
+                                ThumbToolTipValueConverter="{StaticResource MillisecondsStringConverter}" />
                         <TextBlock Grid.Column="2"
                                    Margin="0,9,0,0"
                                    Text="{Binding TimeTotal.TotalSeconds, Converter={StaticResource SecondsStringConverter}}"

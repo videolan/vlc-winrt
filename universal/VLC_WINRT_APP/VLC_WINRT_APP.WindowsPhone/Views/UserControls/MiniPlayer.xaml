@@ -34,16 +34,16 @@
                        Margin="12,0,0,0"
                        TextWrapping="Wrap" />
         </Grid>
-        <Slider Value="{Binding PositionInSeconds, Mode=TwoWay}"
-                Maximum="{Binding TimeTotal.TotalSeconds}"
+        <Slider Value="{Binding Time, Mode=TwoWay}"
+                Maximum="{Binding TimeTotal.TotalMilliseconds}"
                 Style="{StaticResource VLCSlider}"
-                ThumbToolTipValueConverter="{StaticResource SecondsStringConverter}" />
+                ThumbToolTipValueConverter="{StaticResource MillisecondsStringConverter}" />
         <Grid Margin="0,-38,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <TextBlock Text="{Binding PositionInSeconds, Converter={StaticResource SecondsStringConverter}}"
+            <TextBlock Text="{Binding Time, Converter={StaticResource MillisecondsStringConverter}}"
                        HorizontalAlignment="Left"
                        Grid.Column="0"
                        Style="{StaticResource TitleTextBlockStyle}"
