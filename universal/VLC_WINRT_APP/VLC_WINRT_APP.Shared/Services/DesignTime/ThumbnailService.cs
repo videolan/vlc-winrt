@@ -27,11 +27,10 @@ namespace VLC_WINRT_APP.Services.DesignTime
             return thumb;
         }
 
-        public async Task<WriteableBitmap> GetScreenshot(StorageFile file)
+        public Task<WriteableBitmap> GetScreenshot(StorageFile file)
         {
             WriteableBitmap bmp = new WriteableBitmap(400,300);
-            await Task.Delay(5);
-            return bmp;
+            return Task.FromResult(bmp);
         }
     }
 }

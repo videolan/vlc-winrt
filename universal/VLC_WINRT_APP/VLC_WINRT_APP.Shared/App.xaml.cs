@@ -93,7 +93,7 @@ namespace VLC_WINRT_APP
 #endif
             if (Window.Current.Content == null)
             {
-                await LaunchTheApp();
+                LaunchTheApp();
 #if WINDOWS_PHONE_APP
                 ApplicationFrame.Navigated += this.RootFrame_FirstNavigated;
 #endif
@@ -232,9 +232,8 @@ namespace VLC_WINRT_APP
             if (file == null) return;
             if (Window.Current.Content == null)
             {
-                await LaunchTheApp();
+                LaunchTheApp();
             }
-            await Task.Delay(1000);
             if (VLCFileExtensions.FileTypeHelper(file.FileType) ==
                 VLCFileExtensions.VLCFileType.Video)
             {
@@ -246,7 +245,7 @@ namespace VLC_WINRT_APP
             }
         }
 
-        private async Task LaunchTheApp()
+        private void LaunchTheApp()
         {
             Window.Current.Content = Container.Resolve<MainPage>();
             Dispatcher = Window.Current.Content.Dispatcher;
