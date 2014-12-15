@@ -8,11 +8,20 @@
  **********************************************************************/
 
 using System;
+using System.Diagnostics;
+using System.IO;
+using System.Threading.Tasks;
 using Windows.Storage;
+using Windows.Storage.Streams;
+using Windows.UI.Core;
 using Windows.UI.Notifications;
 using Windows.UI.StartScreen;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media.Imaging;
 using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.ViewModels;
+using WinRTXamlToolkit.Imaging;
 
 namespace VLC_WINRT_APP.Helpers
 {
@@ -70,6 +79,44 @@ namespace VLC_WINRT_APP.Helpers
 #endif
             }
 
+            var tileNotification = new TileNotification(tileXml);
+            TileUpdateManager.CreateTileUpdaterForApplication().Update(tileNotification);
+        }
+
+        public static void UpdateMediumTileWithVideoInfo()
+        {
+            const TileTemplateType template = TileTemplateType.TileSquare150x150PeekImageAndText02;
+            var tileXml = TileUpdateManager.GetTemplateContent(template);
+            var tileTextAttributes = tileXml.GetElementsByTagName("text");
+            tileTextAttributes[0].InnerText = "playing";
+            if (Locator.VideoVm.CurrentVideo != null)
+            {
+                tileTextAttributes[1].InnerText = Locator.VideoVm.CurrentVideo.Title;
+
+                var tileImgAttribues = tileXml.GetElementsByTagName("image");
+                if (Locator.VideoVm.CurrentVideo != null)
+                    tileImgAttribues[0].Attributes[1].NodeValue = "ms-appdata:///local/videoPic/" + Locator.VideoVm.CurrentVideo.Title + ".jpg";
+            }
+            var tileNotification = new TileNotification(tileXml);
+            TileUpdateManager.CreateTileUpdaterForApplication().Update(tileNotification);
+            UpdateBigTileWithVideoInfo();
+        }
+
+        public static void UpdateBigTileWithVideoInfo()
+        {
+            const TileTemplateType template = TileTemplateType.TileWide310x150PeekImage05;
+            var tileXml = TileUpdateManager.GetTemplateContent(template);
+            var tileTextAttributes = tileXml.GetElementsByTagName("text");
+#if WINDOWS_APP
+            tileTextAttributes[0].InnerText = "Now playing";
+#endif
+            if (Locator.VideoVm.CurrentVideo != null)
+            {
+                tileTextAttributes[0].InnerText = Locator.VideoVm.CurrentVideo.Title;
+                var tileImgAttribues = tileXml.GetElementsByTagName("image");
+                if (Locator.VideoVm.CurrentVideo != null)
+                    tileImgAttribues[0].Attributes[1].NodeValue = "ms-appdata:///local/videoPic/" + Locator.VideoVm.CurrentVideo.Title + ".jpg";
+            }
             var tileNotification = new TileNotification(tileXml);
             TileUpdateManager.CreateTileUpdaterForApplication().Update(tileNotification);
         }

@@ -291,6 +291,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
                 CurrentSubtitle = _subtitlesTracks[0];
             _mediaService.MediaEnded += VlcPlayerServiceOnMediaEnded;
             await _mediaService.SetMediaTransportControlsInfo(CurrentVideo != null ? CurrentVideo.Title : "Video");
+            UpdateTileHelper.UpdateMediumTileWithVideoInfo();
         }
 
         private async void OnLengthChanged(Int64 length)
