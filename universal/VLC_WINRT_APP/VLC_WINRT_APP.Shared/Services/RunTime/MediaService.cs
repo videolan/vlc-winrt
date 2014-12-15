@@ -35,6 +35,7 @@ namespace VLC_WINRT_APP.Services.RunTime
         private MediaElement _mediaElement;
         public event EventHandler MediaEnded;
         public event EventHandler<MediaState> StatusChanged;
+        public event TimeChanged TimeChanged;
 
         private SystemMediaTransportControls _systemMediaTransportControls;
         public Instance Instance { get; private set; }
@@ -188,6 +189,7 @@ namespace VLC_WINRT_APP.Services.RunTime
             em.OnStopped += OnStopped;
             em.OnPlaying += OnPlaying;
             em.OnPaused += OnPaused;
+            em.OnTimeChanged += TimeChanged;
             em.OnEndReached += OnEndReached;
             _isAudioMedia = isAudioMedia;
         }

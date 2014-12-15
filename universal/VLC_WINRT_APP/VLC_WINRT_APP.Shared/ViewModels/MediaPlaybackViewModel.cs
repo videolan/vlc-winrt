@@ -40,7 +40,6 @@ namespace VLC_WINRT_APP.ViewModels
         protected PlayPauseCommand _playOrPause;
 
         protected readonly DisplayRequest _displayAlwaysOnRequest;
-        protected DispatcherTimer _sliderPositionTimer;
 
         protected int _volume = 100;
         #endregion
@@ -182,11 +181,9 @@ namespace VLC_WINRT_APP.ViewModels
         {
             _mediaService = mediaService;
             _mediaService.StatusChanged += PlayerStateChanged;
+            _mediaService.TimeChanged += UpdateTime;
 
             _displayAlwaysOnRequest = new DisplayRequest();
-            _sliderPositionTimer = new DispatcherTimer();
-            _sliderPositionTimer.Tick += FirePositionUpdate;
-            _sliderPositionTimer.Interval = TimeSpan.FromMilliseconds(200);
 
             _skipAhead = new ActionCommand(() =>
             {
@@ -226,16 +223,13 @@ namespace VLC_WINRT_APP.ViewModels
             }
         }
 
-        private async Task UpdatePosition()
+        private async void UpdateTime(Int64 time)
         {
-            if (TimeTotal == null || TimeTotal == TimeSpan.Zero)
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
             {
-                double timeInMilliseconds = _mediaService.GetLength();
-                TimeTotal = TimeSpan.FromMilliseconds(timeInMilliseconds);
-            }
-            ElapsedTime = TimeSpan.FromMilliseconds(Time);
-            OnPropertyChanged("Time");
-            OnPropertyChanged("Position");
+                ElapsedTime = TimeSpan.FromMilliseconds(time);
+                OnPropertyChanged("Time");
+            });
         }
 
         virtual public void CleanViewModel()
@@ -248,13 +242,11 @@ namespace VLC_WINRT_APP.ViewModels
 
         protected virtual void OnPlaybackStarting()
         {
-            _sliderPositionTimer.Start();
             ProtectedDisplayCall(true);
         }
 
         protected virtual void OnPlaybackStopped()
         {
-            _sliderPositionTimer.Stop();
             ProtectedDisplayCall(false);
         }
         #endregion
@@ -268,12 +260,6 @@ namespace VLC_WINRT_APP.ViewModels
                 IsPlaying = e == MediaState.Playing;
                 OnPropertyChanged("IsPlaying");
             });
-        }
-
-        private async void FirePositionUpdate(object sender, object e)
-        {
-            if (!_mediaService.IsBackground)
-                await UpdatePosition();
         }
 
         #endregion
