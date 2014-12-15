@@ -11,7 +11,6 @@ using Windows.UI.Core;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 using Autofac;
 using Autofac.Core;
@@ -40,10 +39,6 @@ namespace VLC_WINRT_APP
     /// </summary>
     public sealed partial class App : Application
     {
-#if WINDOWS_PHONE_APP
-        private TransitionCollection transitions;
-#endif
-
         public static CoreDispatcher Dispatcher;
         public static IPropertySet LocalSettings = ApplicationData.Current.LocalSettings.Values;
         public static string ApiKeyLastFm = "a8eba7d40559e6f3d15e7cca1bfeaa1c";
