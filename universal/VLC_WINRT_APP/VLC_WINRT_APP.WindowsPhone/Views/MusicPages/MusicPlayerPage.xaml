@@ -71,7 +71,7 @@
                         <Slider Grid.Column="1"
                                 Margin="6,0"
                                 Value="{Binding Time, Mode=TwoWay}"
-                                Maximum="{Binding TimeTotal.Milliseconds}"
+                                Maximum="{Binding TimeTotal.TotalMilliseconds}"
                                 Style="{StaticResource VLCSlider}"
                                 ThumbToolTipValueConverter="{StaticResource MillisecondsStringConverter}" />
                         <TextBlock Grid.Column="2"
