@@ -1,7 +1,6 @@
 ﻿<Page x:Class="VLC_WINRT_APP.Views.MusicPages.MusicPlayerPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:local="using:VLC_WINRT_APP.Views.MusicPages"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:triggers="using:WinRT.Triggers"
@@ -11,7 +10,8 @@
       DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}">
 
     <Grid RequestedTheme="Dark"
-          Background="Black">
+          Background="Black"
+          Margin="0,0,0,16">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition />
@@ -93,8 +93,8 @@
                         <AppBarButton Grid.Column="0"
                                       Icon="Shuffle"
                                       IsCompact="True"
-                                      VerticalAlignment="Center" 
-                                      Command="{Binding Shuffle}"/>
+                                      VerticalAlignment="Center"
+                                      Command="{Binding Shuffle}" />
                         <AppBarButton Grid.Column="1"
                                       HorizontalAlignment="Center"
                                       IsCompact="True"
@@ -152,10 +152,10 @@
                         <AppBarToggleButton Grid.Column="4"
                                             Icon="Favorite"
                                             IsCompact="True"
-                                            VerticalAlignment="Center" 
+                                            VerticalAlignment="Center"
                                             IsChecked="{Binding CurrentAlbum.Favorite}"
                                             Command="{Binding CurrentAlbum.FavoriteAlbum}"
-                                            CommandParameter="{Binding CurrentAlbum}"/>
+                                            CommandParameter="{Binding CurrentAlbum}" />
                     </Grid>
                 </Grid>
             </FlipViewItem>
