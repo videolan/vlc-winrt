@@ -165,10 +165,6 @@
                 <local:MainPageMusic x:Name="MainPageMusicPivotItem"
                                      x:FieldModifier="public" />
             </PivotItem>
-            <PivotItem x:Uid="SACardHeader"
-                       Header="sd card">
-                <local:MainPageSDCard />
-            </PivotItem>
         </Pivot>
     </Grid>
 </Page>

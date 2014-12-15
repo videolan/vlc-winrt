@@ -1,5 +1,10 @@
-﻿using Windows.Graphics.Display;
+﻿using System;
+using System.Linq;
+using System.Threading.Tasks;
+using Windows.ApplicationModel.Resources;
+using Windows.Graphics.Display;
 using Windows.Phone.UI.Input;
+using Windows.Storage;
 using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -35,6 +40,25 @@ namespace VLC_WINRT_APP.Views.MainPages
             if (Locator.MusicLibraryVM.LoadingState == LoadingState.NotLoaded)
             {
                 Locator.MusicLibraryVM.Initialize();
+            }
+            SdCardTest();
+        }
+
+        private async Task SdCardTest()
+        {
+            var extDev = KnownFolders.RemovableDevices;
+            var sdCard = (await extDev.GetFoldersAsync()).FirstOrDefault();
+            if (sdCard != null)
+            {
+                var sdCardPivot = new PivotItem()
+                {
+                    Header = ResourceLoader.GetForCurrentView("Resources").GetString("SDCardHeader"),
+                    Content = new MainPageSDCard(),
+                };
+                if (MainPivot != null && MainPivot.Items != null)
+                {
+                    MainPivot.Items.Add(sdCardPivot);
+                }
             }
         }
 
