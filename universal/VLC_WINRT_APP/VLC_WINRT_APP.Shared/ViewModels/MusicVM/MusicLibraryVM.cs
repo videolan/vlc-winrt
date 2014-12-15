@@ -354,7 +354,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
             {
                 Albums = await _albumDataRepository.LoadAlbums(x => x.ArtistId != 0);
-                AlphaGroupedTracks = _trackses.OrderBy(x => x.Name != null ? x.Name.ElementAt(0) : '\0').GroupBy(x => x.Name != null ? x.Name.ElementAt(0) : '\0');
+                AlphaGroupedTracks = _trackses.OrderBy(x => x.Name != null ? x.Name.ElementAt(0) : '\0').GroupBy(x => x.Name != null ? x.Name.ToLower().ElementAt(0): '\0');
             });
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => IsMusicLibraryEmpty = false);
             if (!Artists.Any())
