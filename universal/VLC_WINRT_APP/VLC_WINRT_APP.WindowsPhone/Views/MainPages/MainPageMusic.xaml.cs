@@ -70,7 +70,10 @@ namespace VLC_WINRT_APP.Views.MainPages
 
         private void MainPageMusicContentPresenter_OnLoaded(object sender, RoutedEventArgs e)
         {
-            MainPageMusicContentPresenter.Navigate(typeof (AlbumsPivotItem));
+            if (MainPageMusicContentPresenter.CurrentSourcePageType == null)
+            {
+                Locator.MainVM.ChangeMainPageMusicViewCommand.Execute((int) Locator.SettingsVM.MusicView);
+            }
         }
     }
 }

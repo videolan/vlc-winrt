@@ -18,6 +18,7 @@ using VLC_WINRT_APP.Commands.Settings;
 using VLC_WINRT_APP.Common;
 using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.Helpers.MusicLibrary;
+using VLC_WINRT_APP.Model.Music;
 using XboxMusicLibrary.Models;
 using VLC_WINRT_APP.Model;
 
@@ -35,6 +36,7 @@ namespace VLC_WINRT_APP.ViewModels.Settings
 #endif
         private OrderType _albumsOrderType;
         private OrderListing _albumsOrderListing;
+        private MusicView _musicView;
 #if WINDOWS_PHONE_APP
         private bool _searchArtist;
         private bool _searchAlbum;
@@ -70,6 +72,7 @@ namespace VLC_WINRT_APP.ViewModels.Settings
 #endif
         public ObservableCollection<OrderType> AlbumsOrderTypeCollection { get; set; }
         public ObservableCollection<OrderListing> AlbumsListingTypeCollection { get; set; }
+        public ObservableCollection<MusicView> MusicViewCollection { get; set; }
 #if WINDOWS_APP
         public List<StorageFolder> MusicFolders
         {
@@ -265,7 +268,32 @@ namespace VLC_WINRT_APP.ViewModels.Settings
             }
         }
 
-        
+        public MusicView MusicView
+        {
+            get
+            {
+                var musicView = ApplicationSettingsHelper.ReadSettingsValue("MusicView");
+                if (musicView == null)
+                {
+                    _musicView = MusicView.Albums;
+                }
+                else
+                {
+                    _musicView = (MusicView)musicView;
+                }
+                return _musicView;
+            }
+            set
+            {
+                ApplicationSettingsHelper.SaveSettingsValue("MusicView", (int)value);
+                if (value != _musicView)
+                {
+                    Locator.MainVM.ChangeMainPageMusicViewCommand.Execute((int)value);
+                }
+                SetProperty(ref _musicView, value);
+            }
+        }
+
         public string LastFmUserName
         {
             get
@@ -318,8 +346,9 @@ namespace VLC_WINRT_APP.ViewModels.Settings
 
         public NavToLastFmPage NavToLastFmPage
         {
-            get { return new NavToLastFmPage();}
+            get { return new NavToLastFmPage(); }
         }
+
         public SettingsViewModel()
         {
             AlbumsOrderTypeCollection = new ObservableCollection<OrderType>();
@@ -329,6 +358,12 @@ namespace VLC_WINRT_APP.ViewModels.Settings
             AlbumsListingTypeCollection = new ObservableCollection<OrderListing>();
             AlbumsListingTypeCollection.Add(OrderListing.Ascending);
             AlbumsListingTypeCollection.Add(OrderListing.Descending);
+
+            MusicViewCollection = new ObservableCollection<MusicView>();
+            MusicViewCollection.Add(MusicView.Albums);
+            MusicViewCollection.Add(MusicView.Artists);
+            MusicViewCollection.Add(MusicView.Songs);
+            MusicViewCollection.Add(MusicView.Playlists);
         }
 
 
