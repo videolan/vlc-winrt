@@ -99,6 +99,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\FavoriteSymbolConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\IsVisibleDependingOnSidebarState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\MiniPlayerVisibilityFromPlayingTypeConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\MusicViewStringifyConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\NegatedBooleanToVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\NegatedCountToVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\NullToVisibilityConverter.cs" />
@@ -176,6 +177,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Model\LoadingState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Music\AlbumItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Music\ArtistItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Music\MusicView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Music\ShowItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Music\TrackItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Music\TracklistItem.cs" />
