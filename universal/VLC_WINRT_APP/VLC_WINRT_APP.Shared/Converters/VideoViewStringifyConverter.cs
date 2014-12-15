@@ -14,13 +14,10 @@ namespace VLC_WINRT_APP.Converters
                 {
                     case VideoView.Videos:
                         return "videos";
-                        break;
                     case VideoView.Shows:
                         return "shows";
-                        break;
                     case VideoView.CameraRoll:
                         return "camera roll";
-                        break;
                 }
             }
             return "";

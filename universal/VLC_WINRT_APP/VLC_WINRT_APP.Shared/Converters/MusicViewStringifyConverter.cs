@@ -18,15 +18,12 @@ namespace VLC_WINRT_APP.Converters
                 {
                     case MusicView.Albums:
                         return "albums";
-                        break;
                     case MusicView.Artists:
                         return "artists";
-                        break;
                     case MusicView.Playlists:
                         return "playlists";
-                        break;
                     case MusicView.Songs:
-                        return "songs"; break;
+                        return "songs";
                 }
             }
             return "";
