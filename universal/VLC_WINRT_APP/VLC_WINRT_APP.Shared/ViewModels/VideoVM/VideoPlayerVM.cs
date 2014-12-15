@@ -163,8 +163,8 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
         #endregion
 
         #region constructors
-        public VideoPlayerVM(IMediaService mediaService, IVlcService mediaPlayerService)
-            : base(mediaService, mediaPlayerService)
+        public VideoPlayerVM(IMediaService mediaService)
+            : base(mediaService)
         {
             _subtitlesTracks = new List<DictionaryKeyValue>();
             _audioTracks = new List<DictionaryKeyValue>();
@@ -219,7 +219,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
 
             await Task.Delay(1000);
             PositionInSeconds = 0;
-            double timeInMilliseconds = _vlcPlayerService.GetLength();
+            double timeInMilliseconds = _mediaService.GetLength();
             TimeTotal = TimeSpan.FromMilliseconds(timeInMilliseconds);
             VideoItem media = await _lastVideosRepository.LoadViaToken(_fileToken);
             if (media == null)
@@ -235,31 +235,29 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             }
             OnPropertyChanged("PositionInSeconds");
             OnPropertyChanged("TimeTotal");
-            SubtitlesCount = _vlcPlayerService.GetSubtitleCount();
-            AudioTracksCount = _vlcPlayerService.GetAudioTrackCount();
+            SubtitlesCount = _mediaService.MediaPlayer.spuCount();
+            AudioTracksCount = _mediaService.MediaPlayer.audioTrackCount();
 
 
-            IDictionary<int, string> subtitles = new Dictionary<int, string>();
-            _vlcPlayerService.GetSubtitleDescription(subtitles);
+            var subtitles = _mediaService.MediaPlayer.spuDescription();
             _subtitlesTracks.Clear();
-            foreach (KeyValuePair<int, string> subtitle in subtitles)
+            foreach (var sub in subtitles)
             {
                 _subtitlesTracks.Add(new DictionaryKeyValue()
                 {
-                    Id = subtitle.Key,
-                    Name = subtitle.Value,
+                    Id = sub.id(),
+                    Name = sub.name(),
                 });
             }
 
-            IDictionary<int, string> tracks = new Dictionary<int, string>();
-            _vlcPlayerService.GetAudioTrackDescription(tracks);
+            var audioTracks = _mediaService.MediaPlayer.audioTrackDescription();
             _audioTracks.Clear();
-            foreach (KeyValuePair<int, string> track in tracks)
+            foreach (var track in audioTracks)
             {
                 _audioTracks.Add(new DictionaryKeyValue()
                 {
-                    Id = track.Key,
-                    Name = track.Value,
+                    Id = track.id(),
+                    Name = track.name(),
                 });
             }
 
@@ -268,13 +266,13 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
                 CurrentAudioTrack = _audioTracks[1];
             if (_subtitlesTracks.Count > 1)
                 CurrentSubtitle = _subtitlesTracks[0];
-            _vlcPlayerService.MediaEnded += VlcPlayerServiceOnMediaEnded;
+            _mediaService.MediaEnded += VlcPlayerServiceOnMediaEnded;
             await _mediaService.SetMediaTransportControlsInfo(CurrentVideo != null ? CurrentVideo.Title : "Video");
         }
 
         private async void VlcPlayerServiceOnMediaEnded(object sender, object e)
         {
-            _vlcPlayerService.MediaEnded -= VlcPlayerServiceOnMediaEnded;
+            _mediaService.MediaEnded -= VlcPlayerServiceOnMediaEnded;
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
             {
                 if (App.ApplicationFrame.CanGoBack)
@@ -303,27 +301,27 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
 
         public void SetSizeVideoPlayer(uint x, uint y)
         {
-            _vlcPlayerService.SetSizeVideoPlayer(x, y);
+            _mediaService.SetSizeVideoPlayer(x, y);
         }
 
         public void SetSubtitleTrack(int i)
         {
-            _vlcPlayerService.SetSubtitleTrack(i);
+            _mediaService.MediaPlayer.setSpu(i);
         }
 
         public void SetAudioTrack(int i)
         {
-            _vlcPlayerService.SetAudioTrack(i);
+            _mediaService.MediaPlayer.setAudioTrack(i);
         }
 
         public void OpenSubtitle(string mrl)
         {
-            _vlcPlayerService.OpenSubtitle(mrl);
+            _mediaService.MediaPlayer.setSubtitleFile(mrl);
         }
 
         public void SetRate(float rate)
         {
-            _vlcPlayerService.SetRate(rate);
+            _mediaService.MediaPlayer.setRate(rate);
         }
         #endregion
     }

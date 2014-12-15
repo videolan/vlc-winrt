@@ -17,22 +17,21 @@ namespace VLC_WINRT_APP.Views.MainPages
     /// </summary>
     public sealed partial class MainPage : SwapChainPanel
     {
-        private readonly IVlcService _vlcService;
-        public MainPage(IVlcService vlcService, IMediaService mediaService)
+        private readonly IMediaService _mediaService;
+        public MainPage(IMediaService mediaService)
         {
             this.InitializeComponent();
-            _vlcService = vlcService;
+            _mediaService = mediaService;
             (mediaService as MediaService).SetMediaElement(MediaElement);
             (mediaService as MediaService).SetMediaTransportControls(SystemMediaTransportControls.GetForCurrentView());
             Loaded += SwapPanelLoaded;
             ApplicationView.GetForCurrentView().SetDesiredBoundsMode(ApplicationViewBoundsMode.UseCoreWindow);
             DisplayInformation.GetForCurrentView().OrientationChanged += DisplayPropertiesOnOrientationChanged;
-            this.SizeChanged += OnSizeChanged;
         }
 
         private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
         {
-            _vlcService.SetSizeVideoPlayer((uint)sizeChangedEventArgs.NewSize.Width, (uint)sizeChangedEventArgs.NewSize.Height);
+            _mediaService.SetSizeVideoPlayer((uint)sizeChangedEventArgs.NewSize.Width, (uint)sizeChangedEventArgs.NewSize.Height);
         }
 
         private async void DisplayPropertiesOnOrientationChanged(DisplayInformation info, object sender)
@@ -53,9 +52,16 @@ namespace VLC_WINRT_APP.Views.MainPages
             }
         }
 
-        private async void SwapPanelLoaded(object sender, RoutedEventArgs e)
+        private void SwapPanelLoaded(object sender, RoutedEventArgs e)
         {
-            await _vlcService.Initialize(SwapChainPanel);
+            _mediaService.Initialize(SwapChainPanel);
+            SizeChanged += OnSizeChanged;
+            Unloaded += MainPage_Unloaded;
+        }
+
+        private void MainPage_Unloaded(object sender, RoutedEventArgs e)
+        {
+            SizeChanged -= OnSizeChanged;
         }
 
         private void CommandBar_OnHomeButtonClicked(Button button, EventArgs e)

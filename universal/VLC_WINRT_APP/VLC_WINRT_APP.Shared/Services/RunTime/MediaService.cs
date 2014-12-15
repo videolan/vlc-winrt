@@ -25,29 +25,42 @@ using Windows.UI.Xaml.Controls;
 using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.Views.MusicPages;
 using VLC_WINRT_APP.Views.VideoPages;
-
-#if WINDOWS_APP
 using libVLCX;
-#endif
+using System.Collections.Generic;
 
 namespace VLC_WINRT_APP.Services.RunTime
 {
     public class MediaService : IMediaService
     {
-        private readonly IVlcService _vlcService;
-
         private MediaElement _mediaElement;
+        public event EventHandler MediaEnded;
+        public event EventHandler<MediaState> StatusChanged;
 
         private SystemMediaTransportControls _systemMediaTransportControls;
-        public MediaService(IVlcService vlcService)
+        public Instance Instance { get; private set; }
+        public MediaPlayer MediaPlayer { get; private set; }
+        public MediaService()
         {
-            _vlcService = vlcService;
-
-            _vlcService.MediaEnded += VlcPlayerService_MediaEnded;
-            _vlcService.StatusChanged += VlcPlayerService_StatusChanged;
-
             CoreWindow.GetForCurrentThread().Activated += ApplicationState_Activated;
         }
+
+        public void Initialize(SwapChainPanel panel)
+        {
+            var param = new List<String>()
+            {
+                "-I",
+                "dummy",
+                "--no-osd",
+                "--verbose=3",
+                "--no-stats",
+                "--avcodec-fast",
+                "--no-avcodec-dr",
+                String.Format("--freetype-font={0}\\segoeui.ttf", Windows.ApplicationModel.Package.Current.InstalledLocation.Path)
+            };
+            // So far, this NEEDS to be called from the main thread
+            Instance = new Instance(param, panel);
+        }
+
 
         public void SetMediaElement(MediaElement mediaElement)
         {
@@ -165,25 +178,25 @@ namespace VLC_WINRT_APP.Services.RunTime
             await Locator.VideoVm.SetActiveVideoInfo(videoVm.Token);
         }
 
-        private string _lastMrl;
         private bool _isAudioMedia;
 
         public void SetMediaFile(string filePath, bool isAudioMedia = true)
         {
-            _vlcService.Open(filePath);
+            var media = new Media(Instance, filePath);
+            MediaPlayer = new MediaPlayer(media);
+            var em = MediaPlayer.eventManager();
+            em.OnStopped += OnStopped;
+            em.OnPlaying += OnPlaying;
+            em.OnPaused += OnPaused;
+            em.OnEndReached += OnEndReached;
             _isAudioMedia = isAudioMedia;
-            _lastMrl = filePath;
         }
 
         public void Play()
         {
-            var position = GetPosition();
-            if (_vlcService.CurrentState == VlcState.NotPlaying && !string.IsNullOrWhiteSpace(_lastMrl))
-            {
-                SetPosition(0);
-                SetMediaFile(_lastMrl, _isAudioMedia);
-            }
-            _vlcService.Play();
+            if (MediaPlayer == null)
+                return; // Should we just assert/crash here?
+            MediaPlayer.play();
             _systemMediaTransportControls.IsEnabled = true;
             _systemMediaTransportControls.IsPauseEnabled = true;
             _systemMediaTransportControls.IsPlayEnabled = true;
@@ -193,12 +206,13 @@ namespace VLC_WINRT_APP.Services.RunTime
 
         public void Pause()
         {
-            _vlcService.Pause();
+            MediaPlayer.pause();
         }
 
         public void Stop()
         {
-            _vlcService.Stop();
+            if (MediaPlayer != null)
+                MediaPlayer.stop();
         }
 
         public void FastForward()
@@ -213,91 +227,78 @@ namespace VLC_WINRT_APP.Services.RunTime
 
         public void SkipAhead()
         {
-            _vlcService.SkipAhead();
+            MediaPlayer.setTime(MediaPlayer.time() + 10000);
         }
 
         public void SkipBack()
         {
-            _vlcService.SkipBack();
+            MediaPlayer.setTime(MediaPlayer.time() - 10000);
         }
 
         public float GetPosition()
         {
-            return _vlcService.GetPosition();
+            if (MediaPlayer != null)
+                return MediaPlayer.position();
+            return 0.0f;
         }
 
         public float GetLength()
         {
-            return _vlcService.GetLength();
+            return MediaPlayer.length();
         }
 
         public void SetPosition(float position)
         {
-            _vlcService.Seek(position);
+            MediaPlayer.setPosition(position);
         }
 
         public void SetVolume(int volume)
         {
-            _vlcService.SetVolume(volume);
+            MediaPlayer.setVolume(volume);
         }
 
         public void Trim()
         {
-            _vlcService.Trim();
+            Instance.Trim();
         }
 
         public int GetVolume()
         {
-            return _vlcService.GetVolume();
+            return MediaPlayer.volume();
         }
 
-        async void VlcPlayerService_MediaEnded(object sender, object e)
+        private void OnEndReached()
         {
-            await DispatchHelper.InvokeAsync(() =>
-            {
-                _systemMediaTransportControls.PlaybackStatus = MediaPlaybackStatus.Stopped;
-                var mediaEnded = MediaEnded;
-                if (mediaEnded != null)
-                {
-                    mediaEnded(this, new EventArgs());
-                }
-            });
+            _systemMediaTransportControls.PlaybackStatus = MediaPlaybackStatus.Stopped;
+            MediaEnded(this, null);
         }
 
-        private void VlcPlayerService_StatusChanged(object sender, VlcState state)
+        private void OnPaused()
         {
-            try
-            {
-                switch (state)
-                {
-                    case VlcState.NotPlaying:
-                        _systemMediaTransportControls.PlaybackStatus = MediaPlaybackStatus.Closed;
-                        break;
-                    case VlcState.Paused:
-                        _systemMediaTransportControls.PlaybackStatus = MediaPlaybackStatus.Paused;
-                        break;
-                    case VlcState.Playing:
-                        _systemMediaTransportControls.PlaybackStatus = MediaPlaybackStatus.Playing;
-                        break;
-                    case VlcState.Stopped:
-                        _systemMediaTransportControls.PlaybackStatus = MediaPlaybackStatus.Stopped;
-                        break;
-                }
-                var statusChanged = StatusChanged;
-                if (statusChanged != null)
-                {
-                    statusChanged(this, state);
-                }
-            }
-            catch { }
+            _systemMediaTransportControls.PlaybackStatus = MediaPlaybackStatus.Paused;
+            StatusChanged(this, MediaState.Paused);
+        }
+
+        private void OnPlaying()
+        {
+            _systemMediaTransportControls.PlaybackStatus = MediaPlaybackStatus.Playing;
+            StatusChanged(this, MediaState.Playing);
+        }
+
+        private void OnStopped()
+        {
+            _systemMediaTransportControls.PlaybackStatus = MediaPlaybackStatus.Stopped;
+            StatusChanged(this, MediaState.Stopped);
         }
 
         private async void ApplicationState_Activated(object sender, WindowActivatedEventArgs e)
         {
+            if (MediaPlayer == null)
+                return;
             if (e.WindowActivationState == CoreWindowActivationState.Deactivated)
             {
                 IsBackground = true;
-                if (!IsPlaying)
+                if (!MediaPlayer.isPlaying())
                     return;
 
                 // If we're playing a video, just pause.
@@ -305,7 +306,7 @@ namespace VLC_WINRT_APP.Services.RunTime
                 {
                     // TODO: Route Video Player calls through Media Service
                     if (!(bool)ApplicationSettingsHelper.ReadSettingsValue("ContinueVideoPlaybackInBackground"))
-                        _vlcService.Pause();
+                        MediaPlayer.pause();
 
                     await Locator.VideoVm._lastVideosRepository.Update(Locator.VideoVm.CurrentVideo);
                 }
@@ -327,14 +328,14 @@ namespace VLC_WINRT_APP.Services.RunTime
             {
                 IsBackground = false;
 
-                if (!IsPlaying && _isAudioMedia)
+                if (!MediaPlayer.isPlaying() && _isAudioMedia)
                     return;
 
                 // If we're playing a video, start playing again.
-                if (!_isAudioMedia && IsPlayingOrPaused)
+                if (!_isAudioMedia && MediaPlayer.isPlaying())
                 {
                     // TODO: Route Video Player calls through Media Service
-                    _vlcService.Play();
+                    MediaPlayer.play();
                     return;
                 }
 
@@ -343,23 +344,11 @@ namespace VLC_WINRT_APP.Services.RunTime
             }
         }
 
-        public bool IsPlaying
+        public void SetSizeVideoPlayer(uint x, uint y)
         {
-            get { return _vlcService.CurrentState == VlcState.Playing; }
+            Instance.UpdateSize(x, y);
         }
 
-        public bool IsPlayingOrPaused
-        {
-            get
-            {
-                return _vlcService.CurrentState == VlcState.Playing ||
-                       _vlcService.CurrentState == VlcState.Paused;
-            }
-        }
         public bool IsBackground { get; private set; }
-
-        public event EventHandler MediaEnded;
-        public event EventHandler<VlcState> StatusChanged;
-
     }
 }

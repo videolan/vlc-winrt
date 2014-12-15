@@ -25,12 +25,12 @@ namespace VLC_WINRT_APP.Views.MainPages
 {
     public sealed partial class MainPage : Page
     {
-        private readonly IVlcService _vlcService;
-        public MainPage(IVlcService vlcService, IMediaService mediaService)
+        private readonly IMediaService _mediaService;
+        public MainPage(IMediaService mediaService)
         {
             InitializeComponent();
             this.SizeChanged += OnSizeChanged;
-            _vlcService = vlcService;
+            _mediaService = mediaService;
             (mediaService as MediaService).SetMediaElement(FoudationMediaElement);
             (mediaService as MediaService).SetMediaTransportControls(SystemMediaTransportControls.GetForCurrentView());
             Loaded += SwapPanelLoaded;
@@ -39,7 +39,7 @@ namespace VLC_WINRT_APP.Views.MainPages
         private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
         {
             Responsive();
-            _vlcService.SetSizeVideoPlayer((uint)sizeChangedEventArgs.NewSize.Width, (uint)sizeChangedEventArgs.NewSize.Height);
+            _mediaService.SetSizeVideoPlayer((uint)sizeChangedEventArgs.NewSize.Width, (uint)sizeChangedEventArgs.NewSize.Height);
         }
 
         void Responsive()
@@ -50,7 +50,7 @@ namespace VLC_WINRT_APP.Views.MainPages
 
         private async void SwapPanelLoaded(object sender, RoutedEventArgs e)
         {
-            await _vlcService.Initialize(SwapChainPanel);
+            await _mediaService.Initialize(SwapChainPanel);
         }
 
         private void MainFrame_OnNavigated(object sender, NavigationEventArgs e)

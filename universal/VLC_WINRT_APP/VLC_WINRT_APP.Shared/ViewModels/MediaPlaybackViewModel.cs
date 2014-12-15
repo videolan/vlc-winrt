@@ -19,6 +19,7 @@ using Windows.System.Display;
 using Windows.UI.Xaml;
 using VLC_WINRT_APP.Commands.MediaPlayback;
 using System.Threading.Tasks;
+using libVLCX;
 
 namespace VLC_WINRT_APP.ViewModels
 {
@@ -26,7 +27,6 @@ namespace VLC_WINRT_APP.ViewModels
     {
         #region private props
         protected readonly IMediaService _mediaService;
-        protected IVlcService _vlcPlayerService;
 
         protected bool _isPlaying;
         protected TimeSpan _timeTotal;
@@ -147,14 +147,7 @@ namespace VLC_WINRT_APP.ViewModels
         {
             get
             {
-                //#if WINDOWS_APP
-                if (_vlcPlayerService != null
-                    && _vlcPlayerService.CurrentState == VlcState.Playing
-                    && TimeTotal != TimeSpan.Zero)
-                {
-                    return _mediaService.GetPosition() * TimeTotal.TotalSeconds;
-                }
-                return 0.0d;
+                return _mediaService.GetPosition() * TimeTotal.TotalSeconds;
             }
             set
             {
@@ -166,13 +159,7 @@ namespace VLC_WINRT_APP.ViewModels
         {
             get
             {
-                //#if WINDOWS_APP
-                if (_vlcPlayerService != null && _vlcPlayerService.CurrentState == VlcState.Playing)
-                //#endif
-                {
-                    return _mediaService.GetPosition() * 1000;
-                }
-                return 0.0d;
+                return _mediaService.GetPosition() * 1000;
             }
             set
             {
@@ -186,12 +173,11 @@ namespace VLC_WINRT_APP.ViewModels
         #endregion
         #region constructors
 
-        protected MediaPlaybackViewModel(IMediaService mediaService, IVlcService mediaPlayerService)
+        protected MediaPlaybackViewModel(IMediaService mediaService)
         {
             _mediaService = mediaService;
             _mediaService.StatusChanged += PlayerStateChanged;
 
-            _vlcPlayerService = mediaPlayerService;
             _displayAlwaysOnRequest = new DisplayRequest();
             _sliderPositionTimer = new DispatcherTimer();
             _sliderPositionTimer.Tick += FirePositionUpdate;
@@ -217,13 +203,7 @@ namespace VLC_WINRT_APP.ViewModels
         #region methods
         public void Dispose()
         {
-            if (_vlcPlayerService != null)
-            {
-                _vlcPlayerService.StatusChanged -= PlayerStateChanged;
-                _vlcPlayerService.Stop();
-                _vlcPlayerService.Close();
-                _vlcPlayerService = null;
-            }
+            _mediaService.Stop();
             _skipAhead = null;
             _skipBack = null;
         }
@@ -245,7 +225,7 @@ namespace VLC_WINRT_APP.ViewModels
         {
             if (TimeTotal == null || TimeTotal == TimeSpan.Zero)
             {
-                double timeInMilliseconds = _vlcPlayerService.GetLength();
+                double timeInMilliseconds = _mediaService.GetLength();
                 TimeTotal = TimeSpan.FromMilliseconds(timeInMilliseconds);
             }
             ElapsedTime = TimeSpan.FromSeconds(double.IsNaN(PositionInSeconds) ? 0 : PositionInSeconds);
@@ -276,11 +256,11 @@ namespace VLC_WINRT_APP.ViewModels
 
         #region Events
 
-        protected async void PlayerStateChanged(object sender, VlcState e)
+        protected async void PlayerStateChanged(object sender, MediaState e)
         {
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
             {
-                IsPlaying = e == VlcState.Playing;
+                IsPlaying = e == MediaState.Playing;
                 OnPropertyChanged("IsPlaying");
             });
         }

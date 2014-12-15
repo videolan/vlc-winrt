@@ -9,7 +9,6 @@
 
 using Autofac;
 using VLC_WINRT_APP.Services.Interface;
-using VLC_WINRT_APP.Services.Mocks;
 using VLC_WINRT_APP.Services.RunTime;
 using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.ViewModels.MusicVM;
@@ -48,11 +47,7 @@ namespace VLC_WINRT_APP.Common
 
             // Register Services
             builder.RegisterType<MediaService>().As<IMediaService>().SingleInstance();
-#if WINDOWS_PHONE_APP && USE_DUMMY_PLAYER
-            builder.RegisterType<VlcServiceMock>().As<IVlcService>().SingleInstance();
-#else
-            builder.RegisterType<VlcService>().As<IVlcService>().SingleInstance();
-#endif
+
             #if WINDOWS_APP
             builder.RegisterType<MouseService>().SingleInstance();
             #endif

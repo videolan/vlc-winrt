@@ -113,8 +113,8 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 
         #endregion
 
-        public MusicPlayerVM(IMediaService mediaService, IVlcService mediaPlayerService)
-            : base(mediaService, mediaPlayerService)
+        public MusicPlayerVM(IMediaService mediaService)
+            : base(mediaService)
         {
             _mediaService.MediaEnded += MediaService_MediaEnded;
             GoToMusicPlayerPage = new GoToMusicPlayerPage();

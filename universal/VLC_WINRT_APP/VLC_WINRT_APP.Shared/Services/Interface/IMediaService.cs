@@ -7,16 +7,19 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
+using libVLCX;
 using System;
 using System.Threading.Tasks;
 using VLC_WINRT_APP.Services.RunTime;
+using Windows.UI.Xaml.Controls;
 
 namespace VLC_WINRT_APP.Services.Interface
 {
     public interface IMediaService
     {
-        bool IsPlaying { get; }
         bool IsBackground { get; }
+
+        void Initialize(SwapChainPanel panel);
 
         Task SetMediaTransportControlsInfo(string artistName, string albumName, string trackName, string albumUri);
 
@@ -29,6 +32,7 @@ namespace VLC_WINRT_APP.Services.Interface
 
         void Play();
         void Pause();
+
         void Stop();
         void FastForward();
         void Rewind();
@@ -44,8 +48,11 @@ namespace VLC_WINRT_APP.Services.Interface
         void SetVolume(int volume);
 
         void Trim();
+        void SetSizeVideoPlayer(uint x, uint y);
 
         event EventHandler MediaEnded;
-        event EventHandler<VlcState> StatusChanged;
+        event EventHandler<libVLCX.MediaState> StatusChanged;
+
+        MediaPlayer MediaPlayer { get; }
     }
 }
