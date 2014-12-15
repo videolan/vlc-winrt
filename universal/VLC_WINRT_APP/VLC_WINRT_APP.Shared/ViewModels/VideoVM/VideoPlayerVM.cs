@@ -37,8 +37,6 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
         private DictionaryKeyValue _currentSubtitle;
         private DictionaryKeyValue _currentAudioTrack;
 
-        private int _subtitlesCount = 0;
-        private int _audioTracksCount = 0;
         private SetSubtitleTrackCommand _setSubTitlesCommand;
         private OpenSubtitleCommand _openSubtitleCommand;
         private SetAudioTrackCommand _setAudioTrackCommand;
