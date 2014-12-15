@@ -25,7 +25,7 @@ namespace VLC_WINRT_APP.Views.MusicPages.AlbumPageControls
             this.Unloaded += OnUnloaded;
         }
 
-        private async void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
+        private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
         {
         }
 

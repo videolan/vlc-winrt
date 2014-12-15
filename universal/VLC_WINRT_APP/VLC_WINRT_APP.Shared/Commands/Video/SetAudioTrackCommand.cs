@@ -14,7 +14,7 @@ namespace VLC_WINRT_APP.Commands.Video
 {
     public class SetAudioTrackCommand : AlwaysExecutableCommand
     {
-        public override async void Execute(object parameter)
+        public override void Execute(object parameter)
         {
             Locator.VideoVm.SetAudioTrack((int)parameter);
         }

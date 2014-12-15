@@ -104,11 +104,11 @@ namespace VLC_WINRT_APP
             }
             if (args.Arguments.Contains("SecondaryTile"))
             {
-                RedirectFromSecondaryTile(args.Arguments);
+                await RedirectFromSecondaryTile(args.Arguments);
             }
         }
 
-        private void RedirectFromSecondaryTile(string args)
+        private async Task RedirectFromSecondaryTile(string args)
         {
             try
             {
@@ -120,14 +120,14 @@ namespace VLC_WINRT_APP
                     id = int.Parse(query);
                     if (Locator.MusicLibraryVM.LoadingState == LoadingState.Loaded)
                     {
-                        App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                        await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                     Locator.MusicLibraryVM.AlbumClickedCommand.Execute(id));
                     }
                     else
                     {
-                        MusicLibraryVM.MusicCollectionLoaded += (sender, eventArgs) =>
+                        MusicLibraryVM.MusicCollectionLoaded += async (sender, eventArgs) =>
                         {
-                            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                             Locator.MusicLibraryVM.AlbumClickedCommand.Execute(id));
                         };
                     }
@@ -138,14 +138,14 @@ namespace VLC_WINRT_APP
                     id = int.Parse(query);
                     if (Locator.MusicLibraryVM.LoadingState == LoadingState.Loaded)
                     {
-                        App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
+                        await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
                             () => Locator.MusicLibraryVM.ArtistClickedCommand.Execute(id));
                     }
                     else
                     {
-                        MusicLibraryVM.MusicCollectionLoaded += (sender, value) =>
+                        MusicLibraryVM.MusicCollectionLoaded += async (sender, value) =>
                         {
-                            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                                 Locator.MusicLibraryVM.ArtistClickedCommand.Execute(id));
                         };
                     }

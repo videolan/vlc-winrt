@@ -389,7 +389,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                 _albumDataRepository.Drop();
             }
 
-            await DispatchHelper.InvokeAsync(async () =>
+            await DispatchHelper.InvokeAsync(() =>
             {
                 CurrentIndexingStatus = "Searching for music";
                 IsBusy = true;

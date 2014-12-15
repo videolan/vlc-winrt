@@ -248,7 +248,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             UpdateTileHelper.UpdateMediumTileWithMusicInfo();
 //#endif
 
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.High, async () =>
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.High, () =>
             {
                 TrackCollection.IsRunning = true;
                 OnPropertyChanged("TrackCollection");

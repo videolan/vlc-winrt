@@ -215,7 +215,7 @@ namespace VLC_WINRT_APP.Helpers.VideoLibrary
                 StatusBarHelper.UpdateTitle("Getting video thumbnails ...");
             });
 #endif
-            ThreadPool.RunAsync(async (work) =>
+            await ThreadPool.RunAsync(async (work) =>
             {
                 foreach (var videoItem in Locator.VideoLibraryVM.Videos)
                 {

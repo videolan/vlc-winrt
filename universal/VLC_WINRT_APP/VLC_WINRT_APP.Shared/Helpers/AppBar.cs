@@ -8,6 +8,7 @@ using Windows.UI.Xaml.Data;
 using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.Views.MainPages;
 using VLC_WINRT_APP.Views.MusicPages;
+using System.Threading.Tasks;
 
 #if WINDOWS_PHONE_APP
 namespace VLC_WINRT_APP.Helpers
@@ -43,11 +44,11 @@ namespace VLC_WINRT_APP.Helpers
             Locator.MainVM.SecondaryAppBarElements = appbarel;
         }
 
-        public static void UpdateAppBar(Type page, int index = -1)
+        public static async Task UpdateAppBar(Type page, int index = -1)
         {
             var appbarEl = new List<ICommandBarElement>();
             if (Locator.MainVM.AppBarElements == null) return;
-            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 if (page == typeof (MainPageHome) && index > -1)
                 {

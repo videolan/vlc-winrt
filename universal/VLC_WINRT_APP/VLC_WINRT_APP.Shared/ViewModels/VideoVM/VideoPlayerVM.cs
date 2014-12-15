@@ -192,7 +192,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
                 CurrentAudioTrack = null;
                 CurrentSubtitle = null;
             });
-            base.OnPlaybackStopped();
+            await base.OnPlaybackStopped();
         }
 
         private async void OnTrackAdded(TrackType type, int trackId)

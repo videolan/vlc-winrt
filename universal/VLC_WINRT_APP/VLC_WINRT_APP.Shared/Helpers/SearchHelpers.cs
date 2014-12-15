@@ -51,7 +51,7 @@ namespace VLC_WINRT_APP.Helpers
         }
         #if WINDOWS_PHONE_APP
 
-        public static async Task Search()
+        public static void Search()
         {
             if (string.IsNullOrEmpty(Locator.MainVM.SearchTag)) return;
             Locator.MainVM.SearchResults.Clear();
