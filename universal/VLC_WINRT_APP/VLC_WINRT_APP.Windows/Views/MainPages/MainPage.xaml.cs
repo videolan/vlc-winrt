@@ -48,9 +48,9 @@ namespace VLC_WINRT_APP.Views.MainPages
             LeftSidebarColumnDefinition.Width = Window.Current.Bounds.Width < 400 ? new GridLength(0) : new GridLength(1, GridUnitType.Auto);
         }
 
-        private async void SwapPanelLoaded(object sender, RoutedEventArgs e)
+        private void SwapPanelLoaded(object sender, RoutedEventArgs e)
         {
-            await _mediaService.Initialize(SwapChainPanel);
+            _mediaService.Initialize(SwapChainPanel);
         }
 
         private void MainFrame_OnNavigated(object sender, NavigationEventArgs e)

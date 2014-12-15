@@ -245,9 +245,10 @@ namespace VLC_WINRT_APP.ViewModels
             ProtectedDisplayCall(true);
         }
 
-        protected virtual void OnPlaybackStopped()
+        protected virtual Task OnPlaybackStopped()
         {
             ProtectedDisplayCall(false);
+            return Task.FromResult(0);
         }
         #endregion
 
