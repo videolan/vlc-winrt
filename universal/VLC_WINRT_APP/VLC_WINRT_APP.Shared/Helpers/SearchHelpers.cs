@@ -47,6 +47,14 @@ namespace VLC_WINRT_APP.Helpers
                     VideoItem vm = Locator.VideoLibraryVM.Videos.FirstOrDefault(x => x.Title == query);
                     await vm.Play();
                     break;
+                case VLCItemType.VideoShow:
+                    VideoItem show = Locator.VideoLibraryVM.Shows.SelectMany(x => x.Episodes).FirstOrDefault(x => x.Title == query);
+                    await show.Play();
+                    break;
+                case VLCItemType.VideoCamera:
+                    VideoItem camera = Locator.VideoLibraryVM.CameraRoll.FirstOrDefault(x => x.Title == query);
+                    await camera.Play();
+                    break;
             }
         }
 #if WINDOWS_PHONE_APP
@@ -79,17 +87,17 @@ namespace VLC_WINRT_APP.Helpers
                         VLCItemType.Video));
                 }
 
-                IEnumerable<VideoItem> showsVms = Locator.VideoLibraryVM.Shows.SelectMany(show => show.Episodes).Where(x=>x.Title.Contains(Locator.MainVM.SearchTag));
+                IEnumerable<VideoItem> showsVms = Locator.VideoLibraryVM.Shows.SelectMany(show => show.Episodes).Where(x => x.Title.Contains(Locator.MainVM.SearchTag));
                 foreach (var showsVm in showsVms)
                 {
-                    Locator.MainVM.SearchResults.Add(new SearchResult(showsVm.Title, ApplicationData.Current.LocalFolder.Path + "\\videoPic\\" + showsVm.Title + ".jpg", VLCItemType.Video));
+                    Locator.MainVM.SearchResults.Add(new SearchResult(showsVm.Title, ApplicationData.Current.LocalFolder.Path + "\\videoPic\\" + showsVm.Title + ".jpg", VLCItemType.VideoShow));
                 }
 
                 IEnumerable<VideoItem> cameraVms =
                     Locator.VideoLibraryVM.CameraRoll.Where(x => x.Title.ToLower().Contains(Locator.MainVM.SearchTag));
                 foreach (var cameraVm in cameraVms)
                 {
-                    Locator.MainVM.SearchResults.Add(new SearchResult(cameraVm.Title, ApplicationData.Current.LocalFolder.Path + "\\videoPic\\" + cameraVm.Title + ".jpg", VLCItemType.Video));
+                    Locator.MainVM.SearchResults.Add(new SearchResult(cameraVm.Title, ApplicationData.Current.LocalFolder.Path + "\\videoPic\\" + cameraVm.Title + ".jpg", VLCItemType.VideoCamera));
                 }
             }
 
@@ -132,7 +140,7 @@ namespace VLC_WINRT_APP.Helpers
 
             tag = tag.ToLower();
             SearchSuggestionsRequestDeferral deferral = args.Request.GetDeferral();
-            
+
             // We don't need null checks here, because even if nothing was found, the Enumerable items will be loaded with zero items in them.
             // So the foreach loops will skip past them.
             IEnumerable<TrackItem> trackItems = Locator.MusicLibraryVM.Tracks.Where(x => x.Name.ToLower().Contains(tag));
