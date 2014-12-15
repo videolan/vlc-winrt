@@ -16,27 +16,33 @@
             <RowDefinition Height="60" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <Grid>
+        <Grid DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <TextBlock x:Uid="AlbumText"
-                       Text="albums"
-                       Style="{StaticResource SubheaderTextBlockStyle}"
-                       Foreground="{StaticResource MainColor}"
-                       VerticalAlignment="Center" />
+            <ComboBox Grid.Column="0"
+                      ItemsSource="{Binding MusicViewCollection}"
+                      SelectedItem="{Binding MusicView, Mode=TwoWay}"
+                      BorderThickness="1"
+                      BorderBrush="{StaticResource MainColor}"
+                      Style="{StaticResource HeaderComboBoxStyle}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Margin="0,0,6,0"
+                                   Text="{Binding Converter={StaticResource MusicViewStringifyConverter}}" />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
             <ComboBox Grid.Column="1"
-                      DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}"
                       HorizontalAlignment="Left"
                       Height="40"
                       ItemsSource="{Binding AlbumsOrderTypeCollection}"
                       SelectedItem="{Binding AlbumsOrderType, Mode=TwoWay}"
                       BorderThickness="1"
                       BorderBrush="{StaticResource MainColor}"
-                      Background="#81FFFFFF"
-                      Style="{StaticResource ComboBoxStyle1}">
+                      Style="{StaticResource NormalComboBoxStyle}">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Margin="0,0,6,0"
@@ -48,13 +54,11 @@
                       Margin="12,0,0,0"
                       HorizontalAlignment="Left"
                       Height="40"
-                      DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}"
                       ItemsSource="{Binding AlbumsListingTypeCollection}"
                       SelectedItem="{Binding AlbumsOrderListing, Mode=TwoWay}"
                       BorderThickness="1"
                       BorderBrush="{StaticResource MainColor}"
-                      Style="{StaticResource ComboBoxStyle1}"
-                      Background="#81FFFFFF">
+                      Style="{StaticResource NormalComboBoxStyle}">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding Converter={StaticResource OrderTypeStringifyConverter}}" />

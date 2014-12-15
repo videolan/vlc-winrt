@@ -13,12 +13,23 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="60" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <TextBlock Text="playlists"
-                   Style="{StaticResource SubheaderTextBlockStyle}"
-                   Foreground="{StaticResource MainColor}" />
+        <Grid DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}">
+            <ComboBox ItemsSource="{Binding MusicViewCollection}"
+                      SelectedItem="{Binding MusicView, Mode=TwoWay}"
+                      BorderThickness="1"
+                      BorderBrush="{StaticResource MainColor}"
+                      Style="{StaticResource HeaderComboBoxStyle}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Margin="0,0,6,0"
+                                   Text="{Binding Converter={StaticResource MusicViewStringifyConverter}}" />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        </Grid>
         <ListView Grid.Row="1"
                   ItemsSource="{Binding TrackCollections}"
                   IsItemClickEnabled="True"
