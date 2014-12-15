@@ -14,7 +14,11 @@
            Loaded="MainPageMusicContentPresenter_OnLoaded">
         <Frame.ContentTransitions>
             <TransitionCollection>
-                <NavigationThemeTransition/>
+                <NavigationThemeTransition>
+                    <NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                        <CommonNavigationTransitionInfo />
+                    </NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                </NavigationThemeTransition>
             </TransitionCollection>
         </Frame.ContentTransitions>
     </Frame>

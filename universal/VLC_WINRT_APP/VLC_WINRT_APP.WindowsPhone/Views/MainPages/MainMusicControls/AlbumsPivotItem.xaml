@@ -73,12 +73,6 @@
                                                      ItemTemplate="{StaticResource PhoneSemanticZoomInViewAlbumTemplateLittleSize}"
                                                      Margin="0,0,-20,0"
                                                      IsItemClickEnabled="True">
-            <scrollWatchedSelector:ScrollWatchedGridView.ItemContainerTransitions>
-                <TransitionCollection>
-                    <AddDeleteThemeTransition />
-                    <EntranceThemeTransition />
-                </TransitionCollection>
-            </scrollWatchedSelector:ScrollWatchedGridView.ItemContainerTransitions>
             <triggers:Interactions.Triggers>
                 <triggers:EventTrigger EventName="ItemClick">
                     <triggers:InvokeCommandAction Command="{Binding AlbumClickedCommand}"
