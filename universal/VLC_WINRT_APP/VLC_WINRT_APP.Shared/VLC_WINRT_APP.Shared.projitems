@@ -110,6 +110,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\StringToUpperConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\TimeSpanSecondsDoubleConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\TimespanShortStringConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\VideoViewStringifyConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\VLCSearchBoxConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataRepository\AlbumDataRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataRepository\ArtistDataRepository.cs" />
@@ -189,6 +190,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Model\SidebarState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Subtitle.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Video\TVShow.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Video\VideoView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Video\VideoVM.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Video\VideTemplateSizer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\VLCFileExtensions.cs" />

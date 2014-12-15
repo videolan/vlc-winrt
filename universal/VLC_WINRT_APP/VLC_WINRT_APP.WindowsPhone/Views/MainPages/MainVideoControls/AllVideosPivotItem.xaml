@@ -12,12 +12,23 @@
       DataContext="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM}">
     <Grid Margin="0,-12,0,0">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="60" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <TextBlock x:Uid="AllVideos" Text="all videos"
-                   Style="{StaticResource SubheaderTextBlockStyle}"
-                   Foreground="{StaticResource MainColor}" />
+        <Grid DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}">
+            <ComboBox ItemsSource="{Binding VideoViewCollection}"
+                      SelectedItem="{Binding VideoView, Mode=TwoWay}"
+                      BorderThickness="1"
+                      BorderBrush="{StaticResource MainColor}"
+                      Style="{StaticResource HeaderComboBoxStyle}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Margin="0,0,6,0"
+                                   Text="{Binding Converter={StaticResource VideoViewStringifyConverter}}" />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        </Grid>
         <GridView Grid.Row="1"
                   ItemsSource="{Binding Videos}"
                   ItemTemplate="{StaticResource PhoneCompactVideoTemplate}"

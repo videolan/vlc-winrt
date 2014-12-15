@@ -2,6 +2,7 @@
 using Windows.Phone.UI.Input;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.Views.MainPages.MainMusicControls;
 using VLC_WINRT_APP.Views.MainPages.MainVideoControls;
 
@@ -37,7 +38,10 @@ namespace VLC_WINRT_APP.Views.MainPages
 
         private void MainPageVideoContentPresenter_OnLoaded(object sender, RoutedEventArgs e)
         {
-            MainPageVideoContentPresenter.Navigate(typeof(AllVideosPivotItem));
+            if (MainPageVideoContentPresenter.CurrentSourcePageType == null)
+            {
+                Locator.MainVM.ChangeMainPageVideoViewCommand.Execute((int)Locator.SettingsVM.VideoView);
+            }
         }
     }
 }

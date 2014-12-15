@@ -19,6 +19,7 @@ using VLC_WINRT_APP.Common;
 using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.Helpers.MusicLibrary;
 using VLC_WINRT_APP.Model.Music;
+using VLC_WINRT_APP.Model.Video;
 using XboxMusicLibrary.Models;
 using VLC_WINRT_APP.Model;
 
@@ -37,6 +38,7 @@ namespace VLC_WINRT_APP.ViewModels.Settings
         private OrderType _albumsOrderType;
         private OrderListing _albumsOrderListing;
         private MusicView _musicView;
+        private VideoView _videoView;
 #if WINDOWS_PHONE_APP
         private bool _searchArtist;
         private bool _searchAlbum;
@@ -73,6 +75,7 @@ namespace VLC_WINRT_APP.ViewModels.Settings
         public ObservableCollection<OrderType> AlbumsOrderTypeCollection { get; set; }
         public ObservableCollection<OrderListing> AlbumsListingTypeCollection { get; set; }
         public ObservableCollection<MusicView> MusicViewCollection { get; set; }
+        public ObservableCollection<VideoView> VideoViewCollection { get; set; } 
 #if WINDOWS_APP
         public List<StorageFolder> MusicFolders
         {
@@ -294,6 +297,32 @@ namespace VLC_WINRT_APP.ViewModels.Settings
             }
         }
 
+        public VideoView VideoView
+        {
+            get
+            {
+                var videoView = ApplicationSettingsHelper.ReadSettingsValue("VideoView");
+                if (videoView == null)
+                {
+                    _videoView = VideoView.Videos;
+                }
+                else
+                {
+                    _videoView = (VideoView)videoView;
+                }
+                return _videoView;
+            }
+            set
+            {
+                ApplicationSettingsHelper.SaveSettingsValue("VideoView", (int)value);
+                if (value != _videoView)
+                {
+                    Locator.MainVM.ChangeMainPageVideoViewCommand.Execute((int)value);
+                }
+                SetProperty(ref _videoView, value);
+            }
+        }
+
         public string LastFmUserName
         {
             get
@@ -364,6 +393,11 @@ namespace VLC_WINRT_APP.ViewModels.Settings
             MusicViewCollection.Add(MusicView.Artists);
             MusicViewCollection.Add(MusicView.Songs);
             MusicViewCollection.Add(MusicView.Playlists);
+
+            VideoViewCollection = new ObservableCollection<VideoView>();
+            VideoViewCollection.Add(VideoView.Videos);
+            VideoViewCollection.Add(VideoView.Shows);
+            VideoViewCollection.Add(VideoView.CameraRoll);
         }
 
 
