@@ -5,26 +5,36 @@
     <Flyout x:Key="PhoneOpenStreamFlyout"
             Placement="Full">
         <Grid>
-            <StackPanel VerticalAlignment="Center"
-                        Background="WhiteSmoke">
-                <TextBlock x:Uid="OpenStream" Text="Open a stream"
+            <Grid VerticalAlignment="Center"
+                  Background="WhiteSmoke">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <TextBlock x:Uid="OpenStream"
+                           Text="Open a stream"
                            Style="{StaticResource SubheaderTextBlockStyle}"
                            Margin="12" />
-                <StackPanel Orientation="Horizontal"
-                            Margin="12">
-                    <TextBox x:Uid="EnterAUrl" Name="UrlTextBox"
-                             PlaceholderText="Enter a URL"
-                             Width="300" />
-                    <Button Style="{StaticResource TextBlockButtonStyle}"
-                            Margin="12,0,0,0"
+                <Grid Grid.Row="1"
+                      Margin="12,0,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="50" />
+                    </Grid.ColumnDefinitions>
+                    <TextBox x:Uid="EnterAUrl"
+                             Name="UrlTextBox"
+                             PlaceholderText="Enter a URL" />
+                    <Button Grid.Column="1"
+                            Style="{StaticResource TextBlockButtonStyle}"
+                            HorizontalAlignment="Center"
                             Command="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM.PlayNetworkMRL}"
                             CommandParameter="{Binding ElementName=UrlTextBox, Path=Text}">
                         <Button.Content>
                             <SymbolIcon Symbol="Accept" />
                         </Button.Content>
                     </Button>
-                </StackPanel>
-            </StackPanel>
+                </Grid>
+            </Grid>
         </Grid>
     </Flyout>
 
