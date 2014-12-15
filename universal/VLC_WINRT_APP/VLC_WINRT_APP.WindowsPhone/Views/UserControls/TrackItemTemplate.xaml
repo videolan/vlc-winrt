@@ -125,7 +125,7 @@
                    Grid.Row="0"
                    FontWeight="Light"
                    Foreground="DimGray"
-                   Text="{Binding Duration.TotalSeconds, Converter={StaticResource SecondsStringConverter}}" 
+                   Text="{Binding Duration.TotalSeconds, Converter={StaticResource SecondsStringConverter}}"
                    VerticalAlignment="Center"
                    HorizontalAlignment="Center"/>
     </Grid>
