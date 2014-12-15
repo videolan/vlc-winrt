@@ -156,7 +156,6 @@ namespace VLC_WINRT_APP.Services.RunTime
             trackItem.ArtistName = "Artist";
             Locator.MusicPlayerVM.TrackCollection.Playlist.Clear();
             Locator.MusicPlayerVM.TrackCollection.Playlist.Add(trackItem);
-            await Task.Delay(1000);
             await PlayMusicHelper.PlayTrack(0);
         }
 
@@ -175,7 +174,6 @@ namespace VLC_WINRT_APP.Services.RunTime
                 videoVm.Token = token;
             }
             Locator.VideoVm.CurrentVideo = videoVm;
-            await Task.Delay(1000);
             await Locator.VideoVm.SetActiveVideoInfo(videoVm.Token);
         }
 

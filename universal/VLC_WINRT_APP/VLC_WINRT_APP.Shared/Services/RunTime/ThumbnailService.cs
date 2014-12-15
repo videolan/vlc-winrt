@@ -37,7 +37,6 @@ namespace VLC_WINRT_APP.Services.RunTime
                 Debug.WriteLine("Error getting thumbnail: ");
                 Debug.WriteLine(ex);
             }
-
             return thumb;
         }
 

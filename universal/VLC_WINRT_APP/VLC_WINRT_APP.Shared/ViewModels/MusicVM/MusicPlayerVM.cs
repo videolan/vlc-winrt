@@ -233,7 +233,6 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                     ToastHelper.ToastImageAndText04(trackName, albumName, artistName, Locator.MusicPlayerVM.CurrentAlbum.Picture ?? null);
                 }
             }
-            await Task.Delay(250);
         }
 
         public async Task SetActiveMusicInfo(string token, TrackItem track)
@@ -241,6 +240,8 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             _fileToken = token;
             _mrl = "file://" + token;
             _mediaService.SetMediaFile(_mrl, isAudioMedia: true);
+            var em = _mediaService.MediaPlayer.eventManager();
+            em.OnLengthChanged += OnLengthChanged;
             _mediaService.Play();
 
 //#if WINDOWS_APP
@@ -256,9 +257,16 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                 OnPropertyChanged("CurrentTrack");
                 OnPropertyChanged("CurrentAlbum");
                 OnPropertyChanged("CurrentArtist");
-                await Task.Delay(500);
-                TimeTotal = TimeSpan.FromMilliseconds(_mediaService.GetLength());
             });
+        }
+
+        private async void OnLengthChanged(Int64 length)
+        {
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                TimeTotal = TimeSpan.FromMilliseconds(length);
+            });
+
         }
 
         public override void CleanViewModel()
