@@ -205,7 +205,7 @@
                             <Border x:Name="PopupBorder"
                                     BorderBrush="{StaticResource MainColor}"
                                     BorderThickness="1"
-                                    Background="#ccffffff"
+                                    Background="#F2FFFFFF"
                                     HorizontalAlignment="Stretch">
                                 <ScrollViewer x:Name="ScrollViewer"
                                               AutomationProperties.AccessibilityView="Raw"
