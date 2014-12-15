@@ -49,7 +49,7 @@ namespace VLC_WINRT_APP.Helpers
                     break;
             }
         }
-        #if WINDOWS_PHONE_APP
+#if WINDOWS_PHONE_APP
 
         public static void Search()
         {
@@ -65,7 +65,6 @@ namespace VLC_WINRT_APP.Helpers
                 {
                     Locator.MainVM.SearchResults.Add(new SearchResult(item.Name, item.Thumbnail,
                         VLCItemType.Track, item.Id));
-                    //args.Request.SearchSuggestionCollection.AppendResultSuggestion(item.Name, "track", "track://" + item.Id, RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/Icons/music.png")), "music");
                 }
             }
 
@@ -78,8 +77,19 @@ namespace VLC_WINRT_APP.Helpers
                     Locator.MainVM.SearchResults.Add(new SearchResult(vm.Title,
                         ApplicationData.Current.LocalFolder.Path + "\\videoPic\\" + vm.Title + ".jpg",
                         VLCItemType.Video));
-                    //args.Request.SearchSuggestionCollection.AppendResultSuggestion(vm.Title, "video", "video://" + vm.Title,
-                    //    RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/Icons/Video.png")), "video");
+                }
+
+                IEnumerable<VideoItem> showsVms = Locator.VideoLibraryVM.Shows.SelectMany(show => show.Episodes).Where(x=>x.Title.Contains(Locator.MainVM.SearchTag));
+                foreach (var showsVm in showsVms)
+                {
+                    Locator.MainVM.SearchResults.Add(new SearchResult(showsVm.Title, ApplicationData.Current.LocalFolder.Path + "\\videoPic\\" + showsVm.Title + ".jpg", VLCItemType.Video));
+                }
+
+                IEnumerable<VideoItem> cameraVms =
+                    Locator.VideoLibraryVM.CameraRoll.Where(x => x.Title.ToLower().Contains(Locator.MainVM.SearchTag));
+                foreach (var cameraVm in cameraVms)
+                {
+                    Locator.MainVM.SearchResults.Add(new SearchResult(cameraVm.Title, ApplicationData.Current.LocalFolder.Path + "\\videoPic\\" + cameraVm.Title + ".jpg", VLCItemType.Video));
                 }
             }
 
@@ -93,7 +103,6 @@ namespace VLC_WINRT_APP.Helpers
                     Locator.MainVM.SearchResults.Add(new SearchResult(artistItem.Name,
                         ApplicationData.Current.LocalFolder.Path + "\\artistPic\\" + artistItem.Id + ".jpg",
                         VLCItemType.Artist, artistItem.Id));
-                    //args.Request.SearchSuggestionCollection.AppendResultSuggestion(artistItem.Name, "artist", "artist://" + artistItem.Id, RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/Icons/music.png")), "music");
                 }
             }
 
@@ -109,7 +118,6 @@ namespace VLC_WINRT_APP.Helpers
                         ApplicationData.Current.LocalFolder.Path + "\\albumPic\\" + albumItem.Id + ".jpg",
                         VLCItemType.Album,
                         albumItem.Id));
-                    //args.Request.SearchSuggestionCollection.AppendResultSuggestion(albumItem.Name, "album", "album://" + albumItem.Id, RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/Icons/music.png")), "music");
                 }
             }
         }
