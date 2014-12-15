@@ -294,9 +294,12 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
         {
             if (double.IsNaN(PositionInSeconds))
                 return;
-            CurrentVideo.TimeWatched = TimeSpan.FromSeconds(PositionInSeconds);
-            CurrentVideo.Duration = TimeTotal;
-            _lastVideosRepository.Update(CurrentVideo);
+            if (CurrentVideo != null)
+            {
+                CurrentVideo.TimeWatched = TimeSpan.FromSeconds(PositionInSeconds);
+                CurrentVideo.Duration = TimeTotal;
+                _lastVideosRepository.Update(CurrentVideo);
+            }
         }
 
         public void SetSizeVideoPlayer(uint x, uint y)
