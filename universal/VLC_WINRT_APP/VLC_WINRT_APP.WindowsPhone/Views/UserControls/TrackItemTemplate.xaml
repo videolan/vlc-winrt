@@ -13,7 +13,7 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
-            <ColumnDefinition Width="30" />
+            <ColumnDefinition Width="40" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition />
@@ -35,12 +35,16 @@
                    Foreground="DimGray" 
                    FontWeight="Light"/>
         <Button Grid.Column="1"
-                Grid.Row="1"
+                Grid.Row="0"
+                Grid.RowSpan="2"
+                VerticalAlignment="Stretch"
+                VerticalContentAlignment="Bottom"
                 Style="{StaticResource TextBlockButtonStyle}"
                 Content=""
                 Foreground="DimGray"
                 FontFamily="Segoe UI Symbol"
-                HorizontalAlignment="Center">
+                HorizontalAlignment="Stretch"
+                HorizontalContentAlignment="Center">
             <Button.Flyout>
                 <Flyout Placement="Full">
                     <Grid Background="WhiteSmoke"

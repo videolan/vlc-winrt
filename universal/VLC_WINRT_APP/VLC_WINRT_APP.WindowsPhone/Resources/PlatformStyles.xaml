@@ -951,7 +951,9 @@
                 <ControlTemplate TargetType="ButtonBase">
                     <Grid Background="Transparent">
                         <ContentPresenter x:Name="Text"
-                                          Content="{TemplateBinding Content}" />
+                                          Content="{TemplateBinding Content}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"/>
                         <Rectangle x:Name="FocusVisualWhite"
                                    IsHitTestVisible="False"
                                    Stroke="{ThemeResource FocusVisualWhiteStrokeThemeBrush}"

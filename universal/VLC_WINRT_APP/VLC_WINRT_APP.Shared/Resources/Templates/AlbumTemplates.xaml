@@ -49,13 +49,16 @@
                                Foreground="DimGray"
                                Margin="7,0,7,0" />
                     <Button Grid.Column="1"
-                            Grid.Row="1"
+                            Grid.Row="0"
+                            Grid.RowSpan="2"
                             Style="{StaticResource TextBlockButtonStyle}"
                             Content=""
-                            VerticalAlignment="Bottom"
+                            VerticalAlignment="Stretch"
+                            VerticalContentAlignment="Bottom"
                             Foreground="#ACACAC"
                             FontFamily="Segoe UI Symbol"
-                            Margin="0,0,3,0">
+                            Margin="0,0,0,0"
+                            Padding="0,0,3,0">
                         <Button.Flyout>
                             <MenuFlyout>
                                 <MenuFlyoutItem x:Uid="PlayAlbum" Text="play all" 
