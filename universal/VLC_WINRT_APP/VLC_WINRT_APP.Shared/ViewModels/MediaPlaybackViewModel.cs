@@ -156,11 +156,15 @@ namespace VLC_WINRT_APP.ViewModels
         {
             get
             {
-                return _mediaService.GetPosition();
+                // XAML might ask for the position while no playback is running, hence the check.
+                if (_mediaService.MediaPlayer == null)
+                    return 0.0f;
+                return _mediaService.MediaPlayer.position();
             }
             set
             {
-                _mediaService.SetPosition(value);
+                // We shouldn't be able to set the position without a running playback.
+                _mediaService.MediaPlayer.setPosition(value);
             }
         }
         #endregion

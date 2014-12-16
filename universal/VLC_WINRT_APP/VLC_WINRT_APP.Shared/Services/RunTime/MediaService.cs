@@ -232,21 +232,9 @@ namespace VLC_WINRT_APP.Services.RunTime
             MediaPlayer.setTime(MediaPlayer.time() - 10000);
         }
 
-        public float GetPosition()
-        {
-            if (MediaPlayer != null)
-                return MediaPlayer.position();
-            return 0.0f;
-        }
-
         public float GetLength()
         {
             return MediaPlayer.length();
-        }
-
-        public void SetPosition(float position)
-        {
-            MediaPlayer.setPosition(position);
         }
 
         public void SetVolume(int volume)

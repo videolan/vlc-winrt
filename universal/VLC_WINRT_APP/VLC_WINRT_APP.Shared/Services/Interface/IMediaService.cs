@@ -39,9 +39,7 @@ namespace VLC_WINRT_APP.Services.Interface
         void SkipAhead();
         void SkipBack();
 
-        float GetPosition();
         float GetLength();
-        void SetPosition(float position);
 
         int GetVolume();
 
