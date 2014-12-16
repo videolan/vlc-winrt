@@ -843,17 +843,30 @@
         <Setter Property="BorderBrush"
                 Value="#ff8800" />
     </Style>
+    
+    <Style x:Key="PivotTitleStyle"
+           TargetType="TextBlock">
+        <Setter Property="Height"
+                Value="50"/>
+        <Setter Property="TextWrapping"
+                Value="NoWrap"/>
+        <Setter Property="TextTrimming"
+                Value="None"/>
+        <Setter Property="FontSize"
+                Value="28"/>
+        <Setter Property="FontWeight"
+                Value="Light"/>
+        <Setter Property="LineHeight"
+                Value="30"/>
+        <Setter Property="Margin"
+                Value="0,0,5,0"/>
+    </Style>
 
     <DataTemplate x:Key="PivotTitleTemplate">
         <TextBlock Text="{Binding}"
-                   Height="50"
-                   TextWrapping="NoWrap"
-                   TextTrimming="None"
-                   FontSize="28"
-                   FontWeight="Light"
-                   LineHeight="30"
-                   Margin="0,0,5,0" />
+                   Style="{StaticResource PivotTitleStyle}" />
     </DataTemplate>
+
     <Thickness x:Key="PivotPortraitThemePadding">19,12,0,12</Thickness>
     <Thickness x:Key="PivotLandscapeThemePadding">19,25,0,0</Thickness>
     <Thickness x:Key="PivotItemMargin">18,0,19,0</Thickness>
