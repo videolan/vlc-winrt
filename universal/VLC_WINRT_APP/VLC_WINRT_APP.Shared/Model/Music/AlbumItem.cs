@@ -105,7 +105,8 @@ namespace VLC_WINRT_APP.Model.Music
                 SetProperty(ref _isPictureLoaded, value);
                 if (value)
                 {
-                    Picture = "ms-appdata:///local/albumPic/" + Id + ".jpg";
+                    _picture = "ms-appdata:///local/albumPic/" + Id + ".jpg";
+                    OnPropertyChanged("Picture");
                 }
             }
         }
