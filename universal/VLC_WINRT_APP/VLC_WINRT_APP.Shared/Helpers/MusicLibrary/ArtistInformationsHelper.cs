@@ -328,9 +328,9 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                 }
                 return true;
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                Debug.WriteLine("Error saving album art");
+                Debug.WriteLine("Error saving album art: " + e);
                 return false;
             }
         }
