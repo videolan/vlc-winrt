@@ -19,6 +19,8 @@ namespace VLC_WINRT_APP.Views.MusicPages
         {
             Locator.MusicPlayerVM.PlayOrPauseCommand.Execute(null);
             Locator.MusicPlayerVM.CleanViewModel();
+            if(App.ApplicationFrame.CanGoBack)
+                App.ApplicationFrame.GoBack();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
