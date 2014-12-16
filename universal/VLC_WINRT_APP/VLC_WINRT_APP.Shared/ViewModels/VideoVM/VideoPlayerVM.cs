@@ -261,7 +261,6 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             _mrl = (isStream) ? mrl : "file://" + mrl;
 
             _timeTotal = TimeSpan.Zero;
-            _elapsedTime = TimeSpan.Zero;
 
             _mediaService.SetMediaFile(_mrl, isAudioMedia: false);
             var em = _mediaService.MediaPlayer.eventManager();

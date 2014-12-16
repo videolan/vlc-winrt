@@ -30,7 +30,6 @@ namespace VLC_WINRT_APP.ViewModels
 
         protected bool _isPlaying;
         protected TimeSpan _timeTotal;
-        protected TimeSpan _elapsedTime;
         protected string _fileToken;
         protected string _mrl;
         protected ActionCommand _skipAhead;
@@ -136,12 +135,6 @@ namespace VLC_WINRT_APP.ViewModels
             set { SetProperty(ref _timeTotal, value); }
         }
 
-        public TimeSpan ElapsedTime
-        {
-            get { return _elapsedTime; }
-            set { SetProperty(ref _elapsedTime, value); }
-        }
-
         /**
          * Elasped time in milliseconds
          */
@@ -227,7 +220,6 @@ namespace VLC_WINRT_APP.ViewModels
         {
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
             {
-                ElapsedTime = TimeSpan.FromMilliseconds(time);
                 OnPropertyChanged("Time");
             });
         }
@@ -236,7 +228,6 @@ namespace VLC_WINRT_APP.ViewModels
         {
             _mediaService.Stop();
             IsPlaying = false;
-            _elapsedTime = TimeSpan.Zero;
             TimeTotal = TimeSpan.Zero;
         }
 
