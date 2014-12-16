@@ -64,6 +64,7 @@ namespace VLC_WINRT_APP.Helpers
             if (unhandledExceptionEventArgs.Exception.InnerException != null)
                 stringExceptionBuilder.AppendLine(unhandledExceptionEventArgs.Exception.InnerException.ToString());
             stringExceptionBuilder.AppendLine(unhandledExceptionEventArgs.Handled.ToString());
+            stringExceptionBuilder.Replace("\r\n", "<br/>");
             ApplicationSettingsHelper.SaveSettingsValue("ExceptionLog", stringExceptionBuilder.ToString());
         }
     }
