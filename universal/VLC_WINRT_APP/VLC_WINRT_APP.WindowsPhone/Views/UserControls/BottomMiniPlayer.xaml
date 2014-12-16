@@ -47,13 +47,15 @@
             <Button Style="{StaticResource TextBlockButtonStyle}"
                     HorizontalAlignment="Left"
                     Command="{Binding PlayOrPauseCommand}"
-                    Visibility="{Binding IsPlaying, Converter={StaticResource NegatedBooleanToVisibilityConverter}}">
+                    Visibility="{Binding IsPlaying, Converter={StaticResource NegatedBooleanToVisibilityConverter}}"
+                    Holding="PlayPauseHold">
                 <SymbolIcon Symbol="Play" />
             </Button>
             <Button Style="{StaticResource TextBlockButtonStyle}"
                     HorizontalAlignment="Left"
                     Command="{Binding PlayOrPauseCommand}"
-                    Visibility="{Binding IsPlaying, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    Visibility="{Binding IsPlaying, Converter={StaticResource BooleanToVisibilityConverter}}"
+                    Holding="PlayPauseHold">
                 <SymbolIcon Symbol="Pause" />
             </Button>
         </Grid>

@@ -2,7 +2,9 @@
 using Windows.Phone.UI.Input;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
+using VLC_WINRT_APP.ViewModels;
 
 namespace VLC_WINRT_APP.Views.MusicPages
 {
@@ -11,6 +13,12 @@ namespace VLC_WINRT_APP.Views.MusicPages
         public MusicPlayerPage()
         {
             this.InitializeComponent();
+        }
+
+        private void PlayPauseHold(object sender, HoldingRoutedEventArgs e)
+        {
+            Locator.MusicPlayerVM.PlayOrPauseCommand.Execute(null);
+            Locator.MusicPlayerVM.CleanViewModel();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)

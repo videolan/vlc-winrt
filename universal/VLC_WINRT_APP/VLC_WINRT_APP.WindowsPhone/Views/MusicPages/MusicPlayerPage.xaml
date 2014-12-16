@@ -122,7 +122,8 @@
                                       Width="80"
                                       Style="{StaticResource AppBarButtonStyleHuge}"
                                       VerticalAlignment="Center"
-                                      Command="{Binding PlayOrPauseCommand}">
+                                      Command="{Binding PlayOrPauseCommand}"
+                                      Holding="PlayPauseHold">
                             <AppBarButton.Icon>
                                 <FontIcon Glyph="&#xE102;"
                                           FontSize="42" />
@@ -135,7 +136,8 @@
                                       Width="80"
                                       Style="{StaticResource AppBarButtonStyleHuge}"
                                       VerticalAlignment="Center"
-                                      Command="{Binding PlayOrPauseCommand}">
+                                      Command="{Binding PlayOrPauseCommand}"
+                                      Holding="PlayPauseHold">
                             <AppBarButton.Icon>
                                 <FontIcon Glyph="&#xE103;"
                                           FontSize="42" />
