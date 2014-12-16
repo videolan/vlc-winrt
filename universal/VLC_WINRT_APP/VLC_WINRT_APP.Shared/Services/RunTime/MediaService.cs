@@ -77,7 +77,7 @@ namespace VLC_WINRT_APP.Services.RunTime
 
         public async Task SetMediaTransportControlsInfo(string artistName, string albumName, string trackName, string albumUri)
         {
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 SystemMediaTransportControlsDisplayUpdater updater = _systemMediaTransportControls.DisplayUpdater;
                 updater.Type = MediaPlaybackType.Music;
