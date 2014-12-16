@@ -17,7 +17,9 @@
             <TextBlock Grid.Column="0"
                        Text="{Binding Index}"
                        FontSize="30"
-                       FontWeight="ExtraLight" />
+                       FontWeight="ExtraLight"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center" />
             <userControls:TrackItemTemplate Margin="12,0,0,0"
                                             Grid.Column="1" />
         </Grid>
@@ -26,13 +28,17 @@
     <DataTemplate x:Key="WPLightTrackTemplateWNumber">
         <Grid RequestedTheme="Light">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="30" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0"
-                       Text="{Binding Index}"
-                       FontSize="30"
-                       FontWeight="ExtraLight" />
+            <Grid>
+                <TextBlock Grid.Column="0"
+                           Text="{Binding Index}"
+                           FontSize="30"
+                           FontWeight="ExtraLight"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Right" />
+            </Grid>
             <userControls:TrackItemTemplate Margin="12,0,0,0"
                                             Grid.Column="1" />
         </Grid>
