@@ -192,7 +192,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                     {
                         file = await StorageFile.GetFileFromPathAsync(trackItem.Path);
                     }
-                    catch(FileNotFoundException exception)
+                    catch (FileNotFoundException exception)
                     {
                         App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                         {
@@ -240,9 +240,9 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             base.InitializePlayback(_mrl, true);
             _mediaService.Play();
 
-//#if WINDOWS_APP
+            //#if WINDOWS_APP
             UpdateTileHelper.UpdateMediumTileWithMusicInfo();
-//#endif
+            //#endif
 
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.High, () =>
             {
