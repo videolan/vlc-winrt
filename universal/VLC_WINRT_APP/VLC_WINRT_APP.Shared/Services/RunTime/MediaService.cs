@@ -256,7 +256,8 @@ namespace VLC_WINRT_APP.Services.RunTime
 
         public void Trim()
         {
-            Instance.Trim();
+            if (Instance != null)
+                Instance.Trim();    
         }
 
         public int GetVolume()
