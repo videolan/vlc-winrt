@@ -19,7 +19,7 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0"
-                       Text="{Binding Index}"
+                       Text="{Binding Index, Converter={StaticResource NullIntConverter}}"
                        FontSize="30"
                        FontWeight="ExtraLight"
                        VerticalAlignment="Center"
@@ -37,7 +37,7 @@
             </Grid.ColumnDefinitions>
             <Grid>
                 <TextBlock Grid.Column="0"
-                           Text="{Binding Index}"
+                           Text="{Binding Index, Converter={StaticResource NullIntConverter}}"
                            FontSize="30"
                            FontWeight="ExtraLight"
                            VerticalAlignment="Center"

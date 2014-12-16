@@ -35,4 +35,5 @@
     <converters:MusicViewStringifyConverter x:Key="MusicViewStringifyConverter" />
     <converters:PositionToFixedPointConverter x:Key="PositionToFixedPointConverter" />
     <converters:CurrentTrackEnhancifierConverter x:Key="CurrentTrackEnhancifierConverter"/>
+    <converters:NullIntConverter x:Key="NullIntConverter"/>
 </ResourceDictionary>
