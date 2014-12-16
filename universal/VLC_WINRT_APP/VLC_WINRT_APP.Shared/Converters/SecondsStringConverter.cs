@@ -23,7 +23,6 @@ namespace VLC_WINRT_APP.Converters
             TimeSpan time = TimeSpan.FromSeconds((double)value);
             if (time.Hours > 0)
             {
-
                 return String.Format("{0:hh\\:mm\\:ss}", time);
             }
             else

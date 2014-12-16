@@ -16,16 +16,20 @@ namespace VLC_WINRT_APP.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            TimeSpan time = TimeSpan.FromMilliseconds((Int64)value);
-            if (time.Hours > 0)
+            if (value is Int64)
             {
+                TimeSpan time = TimeSpan.FromMilliseconds((Int64) value);
+                if (time.Hours > 0)
+                {
 
-                return String.Format("{0:hh\\:mm\\:ss}", time);
+                    return String.Format("{0:hh\\:mm\\:ss}", time);
+                }
+                else
+                {
+                    return String.Format("{0:mm\\:ss}", time);
+                }
             }
-            else
-            {
-                return String.Format("{0:mm\\:ss}", time);
-            }
+            return null;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
