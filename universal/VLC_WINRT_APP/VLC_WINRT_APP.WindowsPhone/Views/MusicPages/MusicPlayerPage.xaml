@@ -25,10 +25,10 @@
                               Fill="WhiteSmoke"
                               VerticalAlignment="Center"
                               Height="26"
-                              Stretch="UniformToFill" 
-                              Margin="0,0,6,0"/>
+                              Stretch="UniformToFill"
+                              Margin="0,0,6,0" />
                         <TextBlock Text="now playing"
-                                   Style="{StaticResource PivotTitleStyle}"/>
+                                   Style="{StaticResource PivotTitleStyle}" />
                     </StackPanel>
                 </PivotItem.Header>
                 <Grid Margin="0,0,0,12">
@@ -96,11 +96,12 @@
                             <ColumnDefinition />
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        <AppBarButton Grid.Column="0"
-                                      Icon="Shuffle"
-                                      IsCompact="True"
-                                      VerticalAlignment="Center"
-                                      Command="{Binding Shuffle}" />
+                        <AppBarToggleButton Grid.Column="0"
+                                            Icon="Shuffle"
+                                            IsCompact="True"
+                                            IsChecked="{Binding TrackCollection.IsShuffled}"
+                                            VerticalAlignment="Center"
+                                            Command="{Binding Shuffle}" />
                         <AppBarButton Grid.Column="1"
                                       HorizontalAlignment="Center"
                                       IsCompact="True"

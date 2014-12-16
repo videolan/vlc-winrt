@@ -21,9 +21,11 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
     public class TrackCollection : BindableBase
     {
         private ObservableCollection<TrackItem> _tracksCollection;
+        private ObservableCollection<TrackItem> _nonShuffledPlaylist;
         private int _currentTrack;
         private bool _isRunning;
         private PlayTrackCollCommand _playTrackCollCommand;
+        private bool _isShuffled;
 
         [PrimaryKey, AutoIncrement, Column("_id")]
         public int Id { get; set; }
@@ -70,9 +72,17 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             }
         }
 
+        [Ignore]
         public PlayTrackCollCommand PlayTrackCollCommand
         {
             get { return _playTrackCollCommand ?? (_playTrackCollCommand = new PlayTrackCollCommand()); }
+        }
+
+        [Ignore]
+        public bool IsShuffled
+        {
+            get { return _isShuffled; }
+            set { SetProperty(ref _isShuffled, value); }
         }
 
         #region public fields
@@ -85,6 +95,14 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                 SetProperty(ref _tracksCollection, value);
             }
         }
+
+        [Ignore]
+        public ObservableCollection<TrackItem> NonShuffledPlaylist
+        {
+            get { return _nonShuffledPlaylist; }
+            set { SetProperty(ref _nonShuffledPlaylist, value); }
+        }
+
         #endregion
 
         #region ctors
