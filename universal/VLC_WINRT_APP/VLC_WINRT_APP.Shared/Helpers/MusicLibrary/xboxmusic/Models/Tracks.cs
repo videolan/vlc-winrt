@@ -101,7 +101,7 @@ namespace XboxMusicLibrary.Models
             }
             else
             {
-                return this.ImageUrl + string.Format("&w={0}&h={1}&mode={2}", settings.Width.ToString(), settings.Height.ToString(), settings.Mode.ToString().ToLower(), settings.Background);
+                return this.ImageUrl + string.Format("&w={0}&h={1}&mode={2}", settings.Width.ToString(), settings.Height.ToString(), settings.Mode.ToString().ToLower());
             }
         }
 
