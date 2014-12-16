@@ -49,13 +49,41 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
 
                 foreach (TrackCollection trackCollection in Locator.MusicLibraryVM.TrackCollections)
                 {
-                    ObservableCollection<TracklistItem> observableCollection = await MusicLibraryVM.TracklistItemRepository.LoadTracks(trackCollection);
+                    ObservableCollection<TracklistItem> observableCollection =
+                        await MusicLibraryVM.TracklistItemRepository.LoadTracks(trackCollection);
                     foreach (TracklistItem tracklistItem in observableCollection)
                     {
                         TrackItem item = await MusicLibraryVM._trackDataRepository.LoadTrack(tracklistItem.TrackId);
                         trackCollection.Playlist.Add(item);
                     }
                 }
+                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                {
+                    Locator.MusicLibraryVM.AlphaGroupedTracks =
+                        Locator.MusicLibraryVM.Tracks.OrderBy(
+                            x =>
+                                x.Name != null
+                                    ? x.Name
+                                        .ElementAt(0)
+                                    : '\0')
+                            .GroupBy(
+                                x =>
+                                    x.Name != null
+                                        ? (char
+                                            .IsLetter
+                                            (x.Name
+                                                .ToLower
+                                                ()
+                                                .ElementAt
+                                                (0))
+                                            ? x.Name
+                                                .ToLower
+                                                ()
+                                                .ElementAt
+                                                (0)
+                                            : '#')
+                                        : '\0');
+                });
             }
             catch (Exception)
             {
