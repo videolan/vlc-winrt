@@ -139,16 +139,6 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             }
         }
 
-        public void Pause()
-        {
-            _mediaService.Pause();
-        }
-
-        public void Resume()
-        {
-            _mediaService.Play();
-        }
-
         public void Stop()
         {
             _mediaService.Stop();
