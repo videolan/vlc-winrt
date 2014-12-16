@@ -152,15 +152,15 @@ namespace VLC_WINRT_APP.ViewModels
             }
         }
 
-        public double Position
+        public float Position
         {
             get
             {
-                return _mediaService.GetPosition() * 1000;
+                return _mediaService.GetPosition();
             }
             set
             {
-                _mediaService.SetPosition((float)value / 1000);
+                _mediaService.SetPosition(value);
             }
         }
         #endregion
@@ -221,6 +221,10 @@ namespace VLC_WINRT_APP.ViewModels
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
             {
                 OnPropertyChanged("Time");
+                // Assume position also changes when time does.
+                // We could/should also watch OnPositionChanged event, but let's save us
+                // the cost of another dispatched call.
+                OnPropertyChanged("Position");
             });
         }
 

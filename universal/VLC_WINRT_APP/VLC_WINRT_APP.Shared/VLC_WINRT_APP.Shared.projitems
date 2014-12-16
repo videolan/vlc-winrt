@@ -106,6 +106,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\NullToVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\OpacityDecreaserConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\OrderTypeStringifyConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\PositionToFixedPointConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\SecondsStringConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\StorageTypeToIconConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\StringToUpperConverter.cs" />

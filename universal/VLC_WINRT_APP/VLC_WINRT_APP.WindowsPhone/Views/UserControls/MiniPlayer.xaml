@@ -34,8 +34,8 @@
                        Margin="12,0,0,0"
                        TextWrapping="Wrap" />
         </Grid>
-        <Slider Value="{Binding Time, Mode=TwoWay}"
-                Maximum="{Binding TimeTotal.TotalMilliseconds}"
+        <Slider 
+                Value="{Binding Position, Mode=TwoWay, Converter={StaticResource PositionToFixedPointConverter}}"
                 Style="{StaticResource VLCSlider}"
                 ThumbToolTipValueConverter="{StaticResource MillisecondsStringConverter}" />
         <Grid Margin="0,-38,0,0">

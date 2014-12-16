@@ -70,8 +70,7 @@
                                    Foreground="White" />
                         <Slider Grid.Column="1"
                                 Margin="6,0"
-                                Value="{Binding Time, Mode=TwoWay}"
-                                Maximum="{Binding TimeTotal.TotalMilliseconds}"
+                                Value="{Binding Position, Mode=TwoWay, Converter={StaticResource PositionToFixedPointConverter}}"
                                 Style="{StaticResource VLCSlider}"
                                 ThumbToolTipValueConverter="{StaticResource MillisecondsStringConverter}" />
                         <TextBlock Grid.Column="2"

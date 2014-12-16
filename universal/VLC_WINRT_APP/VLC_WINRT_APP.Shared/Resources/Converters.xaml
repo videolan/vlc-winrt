@@ -33,4 +33,5 @@
     <converters:FavoriteLabelConverter x:Key="FavoriteLabelConverter" />
     <converters:VideoViewStringifyConverter x:Key="VideoViewStringifyConverter" />
     <converters:MusicViewStringifyConverter x:Key="MusicViewStringifyConverter" />
+    <converters:PositionToFixedPointConverter x:Key="PositionToFixedPointConverter" />
 </ResourceDictionary>
