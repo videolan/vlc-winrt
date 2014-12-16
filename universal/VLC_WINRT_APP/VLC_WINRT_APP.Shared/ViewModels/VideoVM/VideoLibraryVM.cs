@@ -49,6 +49,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
         private ObservableCollection<VideoItem> _videos;
         private ObservableCollection<VideoItem> _viewedVideos;
         private ObservableCollection<VideoItem> _cameraRoll; 
+        private ObservableCollection<TvShow> _shows = new ObservableCollection<TvShow>();
         #endregion
 
         #region private props
@@ -57,8 +58,8 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
         private PickVideoCommand _pickCommand = new PickVideoCommand();
         private PlayNetworkMRLCommand _playNetworkMRL = new PlayNetworkMRLCommand();
         private bool _hasNoMedia = true;
-        private ObservableCollection<TvShow> _shows = new ObservableCollection<TvShow>();
         private TvShow _currentShow;
+        private CloseFlyoutAndPlayVideoCommand _closeFlyoutAndPlayVideoCommand;
 
         #endregion
 
@@ -122,6 +123,12 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
         {
             get { return _openVideo; }
             set { SetProperty(ref _openVideo, value); }
+        }
+
+        [Ignore]
+        public CloseFlyoutAndPlayVideoCommand CloseFlyoutAndPlayVideoCommand
+        {
+            get { return _closeFlyoutAndPlayVideoCommand ?? (_closeFlyoutAndPlayVideoCommand = new CloseFlyoutAndPlayVideoCommand()); }
         }
 
         public PickVideoCommand PickVideo

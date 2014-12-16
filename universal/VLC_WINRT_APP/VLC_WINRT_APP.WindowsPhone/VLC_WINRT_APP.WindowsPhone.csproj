@@ -895,6 +895,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Resources\PlatformFlyouts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
     <Page Include="Resources\PlatformStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -884,6 +884,11 @@
     <Content Include="Assets\Wide310x150Logo.scale-140.png" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Resources\PlatformFlyouts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
     <Page Include="Resources\PlatformStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
