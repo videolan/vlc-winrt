@@ -32,6 +32,7 @@ namespace VLC_WINRT_APP.Views.MainPages
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
+            HardwareButtons.BackPressed += HardwareButtonsOnBackPressed;
             AppBarHelper.UpdateAppBar(typeof(MainPageHome), MainPivot.SelectedIndex);
             if (Locator.VideoLibraryVM.LoadingState == LoadingState.NotLoaded)
             {
@@ -42,6 +43,12 @@ namespace VLC_WINRT_APP.Views.MainPages
                 Locator.MusicLibraryVM.Initialize();
             }
             SdCardTest();
+        }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            base.OnNavigatedFrom(e);
+            HardwareButtons.BackPressed -= HardwareButtonsOnBackPressed;
         }
 
         private async Task SdCardTest()
@@ -71,14 +78,8 @@ namespace VLC_WINRT_APP.Views.MainPages
         private void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
         {
             Responsive();
-            this.Unloaded += OnUnloaded;
-            HardwareButtons.BackPressed += HardwareButtonsOnBackPressed;
         }
 
-        private void OnUnloaded(object sender, RoutedEventArgs routedEventArgs)
-        {
-            HardwareButtons.BackPressed -= HardwareButtonsOnBackPressed;
-        }
 
         private void HardwareButtonsOnBackPressed(object sender, BackPressedEventArgs backPressedEventArgs)
         {
