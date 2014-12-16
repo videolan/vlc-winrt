@@ -80,7 +80,6 @@ namespace VLC_WINRT_APP.Views.MainPages
             Responsive();
         }
 
-
         private void HardwareButtonsOnBackPressed(object sender, BackPressedEventArgs backPressedEventArgs)
         {
             if (MainPivot.SelectedIndex != 3 || (MainPivot.SelectedIndex == 3 && !Locator.ExternalStorageVM.CurrentStorageVM.CanGoBack))
@@ -88,7 +87,6 @@ namespace VLC_WINRT_APP.Views.MainPages
                 backPressedEventArgs.Handled = false;
             }
         }
-
 
         private void Responsive()
         {
@@ -111,7 +109,6 @@ namespace VLC_WINRT_APP.Views.MainPages
                 HeaderBackgroundImage.Margin = new Thickness(0, 50, 0, 0);
             }
         }
-
 
         private void VideoWrapGrid_SizeChanged(object sender, SizeChangedEventArgs e)
         {
