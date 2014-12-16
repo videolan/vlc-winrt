@@ -169,7 +169,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                     CurrentPosition = 0,
                     Duration = properties.Duration,
                     Favorite = false,
-                    Name = string.IsNullOrEmpty(properties.Title) ? "Unknown track" : properties.Title,
+                    Name = string.IsNullOrEmpty(properties.Title) ? item.DisplayName : properties.Title,
                     Path = item.Path,
                     Index = (int)properties.TrackNumber,
                 };
