@@ -281,7 +281,6 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             {
                 Time = (Int64)media.TimeWatched.TotalMilliseconds;
             }
-            OnPropertyChanged("Time");
 
             SpeedRate = 100;
             if (_audioTracks.Count > 1)
