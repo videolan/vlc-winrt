@@ -12,19 +12,26 @@
     <Grid RequestedTheme="Dark"
           Background="Black"
           Margin="0,0,0,16">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition />
-        </Grid.RowDefinitions>
-        <Image Grid.Row="0"
-               Grid.RowSpan="2"
-               Source="{Binding CurrentArtist.Picture}"
+        <Image Source="{Binding CurrentArtist.Picture}"
                Stretch="UniformToFill"
                Opacity="0.3"
                winrtext:ImageExtensions.FadeInOnLoaded="True" />
-        <FlipView Grid.Row="1">
-            <FlipViewItem>
-                <Grid Margin="12">
+        <Pivot Style="{StaticResource PivotStyle1}"
+               Margin="0,20,0,0">
+            <PivotItem>
+                <PivotItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Path Data="{StaticResource VLCFlatPath}"
+                              Fill="WhiteSmoke"
+                              VerticalAlignment="Center"
+                              Height="26"
+                              Stretch="UniformToFill" 
+                              Margin="0,0,6,0"/>
+                        <TextBlock Text="now playing"
+                                   Style="{StaticResource PivotTitleStyle}"/>
+                    </StackPanel>
+                </PivotItem.Header>
+                <Grid Margin="0,0,0,12">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition />
@@ -157,21 +164,17 @@
                                             CommandParameter="{Binding CurrentAlbum}" />
                     </Grid>
                 </Grid>
-            </FlipViewItem>
-            <FlipViewItem>
-                <Grid Margin="12,0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition />
-                    </Grid.RowDefinitions>
+            </PivotItem>
+            <PivotItem>
+                <PivotItem.Header>
                     <TextBlock Text="playlist"
-                               Margin="6,0,0,0"
-                               Style="{StaticResource SubheaderTextBlockStyle}" />
-                    <ListView Grid.Row="1"
-                              ItemsSource="{Binding TrackCollection.Playlist}"
+                               Style="{StaticResource PivotTitleStyle}" />
+                </PivotItem.Header>
+                <Grid>
+                    <ListView ItemsSource="{Binding TrackCollection.Playlist}"
                               IsItemClickEnabled="True"
                               SelectionMode="None"
-                              ItemTemplate="{StaticResource WPDarkTrackTemplateWNumber}"
+                              ItemTemplate="{StaticResource WPDarkTrackTemplateWONumber}"
                               ItemContainerStyle="{StaticResource ListViewItemStyle}">
                         <ListView.ItemContainerTransitions>
                             <TransitionCollection>
@@ -192,10 +195,14 @@
                         </triggers:Interactions.Triggers>
                     </ListView>
                 </Grid>
-            </FlipViewItem>
-            <FlipViewItem>
+            </PivotItem>
+            <PivotItem>
+                <PivotItem.Header>
+                    <TextBlock Text="more"
+                               Style="{StaticResource PivotTitleStyle}" />
+                </PivotItem.Header>
                 <ScrollViewer>
-                    <StackPanel Margin="24,0,0,0">
+                    <StackPanel>
                         <TextBlock Text="{Binding CurrentArtist.Biography}"
                                    Style="{StaticResource BodyTextBlockStyle}" />
                         <Button Content="see shows"
@@ -234,15 +241,7 @@
                         </GridView>
                     </StackPanel>
                 </ScrollViewer>
-            </FlipViewItem>
-        </FlipView>
-
-        <userControls:HeaderControl Grid.Row="0"
-                                    x:Name="HeaderGrid"
-                                    HeaderTextBlock="Now playing"
-                                    HeaderBackground="#00ffffff"
-                                    RequestedTheme="Dark"
-                                    VerticalAlignment="Top"
-                                    Height="100" />
+            </PivotItem>
+        </Pivot>
     </Grid>
 </Page>
