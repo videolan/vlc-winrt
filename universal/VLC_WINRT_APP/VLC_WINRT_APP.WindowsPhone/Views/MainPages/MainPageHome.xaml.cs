@@ -46,6 +46,7 @@ namespace VLC_WINRT_APP.Views.MainPages
 
         private async Task SdCardTest()
         {
+            if (MainPivot.Items != null && MainPivot != null && MainPivot.Items.Count == 4) return;
             var extDev = KnownFolders.RemovableDevices;
             var sdCard = (await extDev.GetFoldersAsync()).FirstOrDefault();
             if (sdCard != null)
