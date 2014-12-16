@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel.Background;
 using Windows.ApplicationModel.Resources;
 using Windows.Foundation.Collections;
+using Windows.UI.Core;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using VLC_WINRT.Common;
@@ -38,6 +39,7 @@ namespace VLC_WINRT_APP.ViewModels
 #endif
         #endregion
         #region private props
+        private bool _isInternet;
         private Type _currentPage;
         private GoToPanelCommand _goToPanelCommand;
         private GoToSettingsPageCommand _goToSettingsPageCommand;
@@ -92,6 +94,12 @@ namespace VLC_WINRT_APP.ViewModels
 #endif
         #endregion
         #region public props
+
+        public bool IsInternet
+        {
+            get { return _isInternet; }
+            set { SetProperty(ref _isInternet, value); }
+        }
 
         public Type CurrentPage
         {
@@ -196,10 +204,11 @@ namespace VLC_WINRT_APP.ViewModels
             Initialize();
         }
 
-        void Initialize()
+        async Task Initialize()
         {
             if (ApplicationSettingsHelper.ReadSettingsValue("ContinueVideoPlaybackInBackground") == null)
                 ApplicationSettingsHelper.SaveSettingsValue("ContinueVideoPlaybackInBackground", true);
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, ()=> Locator.MainVM.IsInternet = System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable());
         }
 
 #if WINDOWS_PHONE_APP

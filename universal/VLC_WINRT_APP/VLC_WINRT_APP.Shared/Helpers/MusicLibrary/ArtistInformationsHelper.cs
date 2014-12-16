@@ -21,6 +21,7 @@ using Windows.Storage;
 using Windows.Storage.Streams;
 using VLC_WINRT_APP.Common;
 using VLC_WINRT_APP.Model.Music;
+using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.ViewModels.MusicVM;
 using WinRTXamlToolkit.IO.Extensions;
 
@@ -189,7 +190,12 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
 
         public static async Task GetArtistPicture(ArtistItem artist)
         {
-            if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable()) return;
+            if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
+            {
+                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Locator.MainVM.IsInternet = false);
+                return;
+            }
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Locator.MainVM.IsInternet = true);
             var gotArt = await DownloadArtistPictureFromDeezer(artist);
             if (!gotArt)
             {
@@ -211,7 +217,12 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
 
         public static async Task GetAlbumPicture(AlbumItem album)
         {
-            if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable()) return;
+            if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
+            {
+                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Locator.MainVM.IsInternet = false);
+                return;
+            }
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Locator.MainVM.IsInternet = true);
             await GetAlbumPictureFromInternet(album);
         }
 
@@ -371,7 +382,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                 }
                 return true;
             }
-            catch(Exception exception)
+            catch (Exception exception)
             {
                 Debug.WriteLine("Error saving artist art");
             }
