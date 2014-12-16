@@ -252,6 +252,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.High, () =>
             {
                 TrackCollection.IsRunning = true;
+                TrackCollection.SetActiveTrackProperty();
                 OnPropertyChanged("TrackCollection");
                 OnPropertyChanged("PlayingType");
                 OnPropertyChanged("CurrentTrack");

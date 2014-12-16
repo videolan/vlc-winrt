@@ -34,4 +34,5 @@
     <converters:VideoViewStringifyConverter x:Key="VideoViewStringifyConverter" />
     <converters:MusicViewStringifyConverter x:Key="MusicViewStringifyConverter" />
     <converters:PositionToFixedPointConverter x:Key="PositionToFixedPointConverter" />
+    <converters:CurrentTrackEnhancifierConverter x:Key="CurrentTrackEnhancifierConverter"/>
 </ResourceDictionary>

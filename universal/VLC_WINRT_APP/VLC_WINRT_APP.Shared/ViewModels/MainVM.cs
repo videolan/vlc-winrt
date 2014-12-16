@@ -208,7 +208,6 @@ namespace VLC_WINRT_APP.ViewModels
         {
             if (ApplicationSettingsHelper.ReadSettingsValue("ContinueVideoPlaybackInBackground") == null)
                 ApplicationSettingsHelper.SaveSettingsValue("ContinueVideoPlaybackInBackground", true);
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, ()=> Locator.MainVM.IsInternet = System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable());
         }
 
 #if WINDOWS_PHONE_APP

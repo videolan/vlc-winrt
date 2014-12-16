@@ -105,7 +105,12 @@ namespace VLC_WINRT_APP
             if (args.Arguments.Contains("SecondaryTile"))
             {
                 await RedirectFromSecondaryTile(args.Arguments);
-            }
+            } 
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                bool isinternet = System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable();
+                Locator.MainVM.IsInternet = isinternet;
+            });
         }
 
         private async Task RedirectFromSecondaryTile(string args)

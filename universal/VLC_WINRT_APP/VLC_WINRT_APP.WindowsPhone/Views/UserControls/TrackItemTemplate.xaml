@@ -18,22 +18,23 @@
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition />
+            <RowDefinition Height="4" />
         </Grid.RowDefinitions>
         <TextBlock Grid.Column="0"
                    Grid.Row="0"
                    Text="{Binding Name}"
                    TextWrapping="NoWrap"
                    TextTrimming="CharacterEllipsis"
-                   Style="{StaticResource TitleTextBlockStyle}" 
-                   FontWeight="Normal"
+                   Style="{StaticResource TitleTextBlockStyle}"
                    FontSize="20"
-                   Margin="0,0,6,0"/>
+                   Margin="0,0,6,0"
+                   FontWeight="{Binding IsCurrentPlaying, Converter={StaticResource CurrentTrackEnhancifierConverter}, ConverterParameter='fontweight'}" />
         <TextBlock Grid.Column="0"
                    Grid.Row="1"
                    Text="{Binding ArtistName}"
                    Style="{StaticResource BaseTextBlockStyle}"
-                   Foreground="DimGray" 
-                   FontWeight="Light"/>
+                   Foreground="DimGray"
+                   FontWeight="Light" />
         <Button Grid.Column="1"
                 Grid.Row="0"
                 Grid.RowSpan="2"
@@ -78,17 +79,19 @@
                         <StackPanel Grid.Row="1"
                                     Margin="12,0,0,0"
                                     VerticalAlignment="Center">
-                            <AppBarButton x:Uid="PlayTrack" Label="play track"
+                            <AppBarButton x:Uid="PlayTrack"
+                                          Label="play track"
                                           Icon="Play"
                                           Style="{StaticResource AppBarButtonStyleHorizontal}"
-                                          Foreground="{StaticResource MainColor}" 
+                                          Foreground="{StaticResource MainColor}"
                                           Command="{Binding TrackClicked}"
-                                          CommandParameter="{Binding}"/>
-                            <AppBarButton x:Uid="ViewAlbum" Label="view album"
+                                          CommandParameter="{Binding}" />
+                            <AppBarButton x:Uid="ViewAlbum"
+                                          Label="view album"
                                           Icon="SlideShow"
-                                          Style="{StaticResource AppBarButtonStyleHorizontal}" 
+                                          Style="{StaticResource AppBarButtonStyleHorizontal}"
                                           Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.AlbumClickedCommand}"
-                                          CommandParameter="{Binding AlbumId}"/>
+                                          CommandParameter="{Binding AlbumId}" />
                         </StackPanel>
                         <Grid Grid.Row="2"
                               Margin="12,12,12,0"
@@ -97,15 +100,16 @@
                                 <ColumnDefinition />
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
-                            <TextBlock x:Uid="AddToPlaylist" Text="Add to playlist"
+                            <TextBlock x:Uid="AddToPlaylist"
+                                       Text="Add to playlist"
                                        Style="{StaticResource SubheaderTextBlockStyle}" />
                             <AppBarButton Grid.Column="1"
                                           x:Uid="NewPlaylist"
                                           Label="new playlist"
                                           Icon="Add"
                                           Style="{StaticResource AppBarButtonStyleHorizontal}"
-                                          Command="{Binding ShowCreateNewPlaylistPaneCommand}" 
-                                          Margin="0,-5,0,0"/>
+                                          Command="{Binding ShowCreateNewPlaylistPaneCommand}"
+                                          Margin="0,-5,0,0" />
                         </Grid>
                         <Grid Grid.Row="3"
                               DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
@@ -113,9 +117,9 @@
                                       Margin="24,0,0,0"
                                       ItemTemplate="{StaticResource PhoneTrackCollectionTemplate}"
                                       ItemContainerStyle="{StaticResource HorizontalListViewItemStyle}"
-                                      SelectionChanged="Selector_OnSelectionChanged"/>
+                                      SelectionChanged="Selector_OnSelectionChanged" />
                             <placeholder:NoPlaylistPlaceholder Visibility="{Binding TrackCollections.Count, Converter={StaticResource CountToVisibilityConverter}}"
-                                                               Margin="12,50,0,0"/>
+                                                               Margin="12,50,0,0" />
                         </Grid>
                     </Grid>
                 </Flyout>
@@ -127,6 +131,16 @@
                    Foreground="DimGray"
                    Text="{Binding Duration.TotalSeconds, Converter={StaticResource SecondsStringConverter}}"
                    VerticalAlignment="Center"
-                   HorizontalAlignment="Center"/>
+                   HorizontalAlignment="Center" />
+        <Grid Grid.Row="2"
+              Grid.Column="0"
+              Grid.ColumnSpan="2"
+              Visibility="{Binding IsCurrentPlaying, Converter={StaticResource CurrentTrackEnhancifierConverter}, ConverterParameter='visibility'}">
+            <ProgressBar Style="{StaticResource ThinProgressBar}"
+                         VerticalAlignment="Bottom"
+                         DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}"
+                         Value="{Binding Time, Mode=OneWay}"
+                         Maximum="{Binding TimeTotal.TotalMilliseconds}"/>
+        </Grid>
     </Grid>
 </UserControl>

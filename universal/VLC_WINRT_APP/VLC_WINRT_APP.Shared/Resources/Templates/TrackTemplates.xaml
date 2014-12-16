@@ -24,7 +24,7 @@
                                             Grid.Column="1" />
         </Grid>
     </DataTemplate>
-
+    
     <DataTemplate x:Key="WPLightTrackTemplateWNumber">
         <Grid RequestedTheme="Light">
             <Grid.ColumnDefinitions>

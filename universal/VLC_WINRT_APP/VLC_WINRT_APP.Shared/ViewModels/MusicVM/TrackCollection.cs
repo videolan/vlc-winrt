@@ -8,10 +8,12 @@
  **********************************************************************/
 
 using System.Collections.ObjectModel;
+using System.Linq;
 using SQLite;
 using VLC_WINRT_APP.Commands.Music;
 using VLC_WINRT_APP.Common;
 using VLC_WINRT_APP.Helpers.MusicLibrary;
+using VLC_WINRT_APP.Helpers.MusicLibrary.Deezer;
 using VLC_WINRT_APP.Model.Music;
 
 namespace VLC_WINRT_APP.ViewModels.MusicVM
@@ -30,8 +32,14 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 
         public int CurrentTrack
         {
-            get { return _currentTrack; }
-            set { SetProperty(ref _currentTrack, value); }
+            get
+            {
+                return _currentTrack;
+            }
+            set
+            {
+                SetProperty(ref _currentTrack, value);
+            }
         }
 
         [Ignore]
@@ -93,6 +101,21 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         {
             Playlist.Clear();
             CurrentTrack = -1;
+        }
+
+        public void SetActiveTrackProperty()
+        {
+            foreach (var trackItem in Playlist)
+            {
+                if (Playlist[_currentTrack].Id == trackItem.Id)
+                {
+                    trackItem.IsCurrentPlaying = true;
+                }
+                else
+                {
+                    trackItem.IsCurrentPlaying = false;
+                }
+            }
         }
 
         #endregion

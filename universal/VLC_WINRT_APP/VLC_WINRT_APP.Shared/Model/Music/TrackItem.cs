@@ -22,6 +22,7 @@ namespace VLC_WINRT_APP.Model.Music
         private TimeSpan _duration;
         private bool _favorite;
         private int _currentPosition;
+        private bool _isCurrentPlaying;
         private string _thumbnail;
         private TrackClickedCommand _trackClickedCommand = new TrackClickedCommand();
         private FavoriteTrackCommand _favoriteTrackCommand = new FavoriteTrackCommand();
@@ -72,7 +73,7 @@ namespace VLC_WINRT_APP.Model.Music
         {
             get
             {
-                Task.Run(()=>ArtistInformationsHelper.GetAlbumPicture(this));
+                Task.Run(() => ArtistInformationsHelper.GetAlbumPicture(this));
                 return _thumbnail;
             }
             set { SetProperty(ref _thumbnail, value); }
@@ -83,6 +84,16 @@ namespace VLC_WINRT_APP.Model.Music
         {
             get { return _currentPosition; }
             set { SetProperty(ref _currentPosition, value); }
+        }
+
+        [Ignore]
+        public bool IsCurrentPlaying
+        {
+            get
+            {
+                return _isCurrentPlaying;
+            }
+            set { SetProperty(ref _isCurrentPlaying, value); }
         }
 
         [Ignore]
