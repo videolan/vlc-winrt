@@ -283,14 +283,12 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             }
 
             SpeedRate = 100;
-            _mediaService.MediaEnded += VlcPlayerServiceOnMediaEnded;
             await _mediaService.SetMediaTransportControlsInfo(CurrentVideo != null ? CurrentVideo.Title : "Video");
             UpdateTileHelper.UpdateMediumTileWithVideoInfo();
         }
 
-        private async void VlcPlayerServiceOnMediaEnded(object sender, object e)
+        protected override async void OnEndReached()
         {
-            _mediaService.MediaEnded -= VlcPlayerServiceOnMediaEnded;
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
             {
                 if (App.ApplicationFrame.CanGoBack)

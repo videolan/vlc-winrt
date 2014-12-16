@@ -50,7 +50,6 @@ namespace VLC_WINRT_APP.Services.Interface
         void Trim();
         void SetSizeVideoPlayer(uint x, uint y);
 
-        event EventHandler MediaEnded;
         event EventHandler<libVLCX.MediaState> StatusChanged;
         event TimeChanged TimeChanged;
 

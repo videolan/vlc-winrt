@@ -23,7 +23,7 @@ using libVLCX;
 
 namespace VLC_WINRT_APP.ViewModels
 {
-    public class MediaPlaybackViewModel : BindableBase, IDisposable
+    public abstract class MediaPlaybackViewModel : BindableBase, IDisposable
     {
         #region private props
         protected readonly IMediaService _mediaService;
@@ -255,7 +255,10 @@ namespace VLC_WINRT_APP.ViewModels
             var em = _mediaService.MediaPlayer.eventManager();
             em.OnLengthChanged -= OnLengthChanged;
             em.OnStopped -= OnStopped;
+            em.OnEndReached -= OnEndReached;
         }
+
+        protected abstract void OnEndReached();
 
         protected void InitializePlayback(String mrl, Boolean isAudio)
         {
@@ -263,6 +266,7 @@ namespace VLC_WINRT_APP.ViewModels
             var em = _mediaService.MediaPlayer.eventManager();
             em.OnLengthChanged += OnLengthChanged;
             em.OnStopped += OnStopped;
+            em.OnEndReached += OnEndReached;
         }
 
         #endregion

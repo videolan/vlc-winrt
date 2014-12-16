@@ -116,12 +116,11 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         public MusicPlayerVM(IMediaService mediaService)
             : base(mediaService)
         {
-            _mediaService.MediaEnded += MediaService_MediaEnded;
             GoToMusicPlayerPage = new GoToMusicPlayerPage();
         }
 
 
-        protected async void MediaService_MediaEnded(object sender, EventArgs e)
+        protected override async void OnEndReached()
         {
             if (TrackCollection.Playlist.Count == 0 ||
                 !TrackCollection.CanGoNext)

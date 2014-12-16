@@ -33,7 +33,6 @@ namespace VLC_WINRT_APP.Services.RunTime
     public class MediaService : IMediaService
     {
         private MediaElement _mediaElement;
-        public event EventHandler MediaEnded;
         public event EventHandler<MediaState> StatusChanged;
         public event TimeChanged TimeChanged;
 
@@ -270,7 +269,6 @@ namespace VLC_WINRT_APP.Services.RunTime
         private void OnEndReached()
         {
             _systemMediaTransportControls.PlaybackStatus = MediaPlaybackStatus.Stopped;
-            MediaEnded(this, null);
         }
 
         private void OnPaused()
