@@ -191,7 +191,8 @@ static void ClearBuffers(vout_display_sys_t* p_sys)
     DXGI_PRESENT_PARAMETERS parameters = { 0 };
     DXGI_SWAP_CHAIN_DESC1 desc;
 
-    p_sys->swapChain->GetDesc1(&desc);
+    if (p_sys->swapChain->GetDesc1(&desc) != S_OK)
+        return;
     for (unsigned int i = 0; i < desc.BufferCount; ++i)
     {
         p_sys->d2dContext->BeginDraw();
