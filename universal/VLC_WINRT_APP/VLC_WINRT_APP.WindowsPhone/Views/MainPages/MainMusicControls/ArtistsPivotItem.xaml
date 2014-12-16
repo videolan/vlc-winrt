@@ -39,6 +39,7 @@
                   IsItemClickEnabled="True"
                   SelectionMode="None"
                   ItemTemplate="{StaticResource PhoneArtistSquareTemplate}"
+                  ItemContainerStyle="{StaticResource TileGridViewItemStyle}"
                   HorizontalAlignment="Left"
                   Margin="0,0,-20,0">
             <GridView.ItemsPanel>

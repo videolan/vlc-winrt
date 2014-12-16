@@ -87,6 +87,7 @@
                                         FontWeight="SemiLight" />
                                 <GridView ItemsSource="{Binding RandomAlbums}"
                                           ItemTemplate="{StaticResource PhoneSemanticZoomInViewAlbumTemplateLittleSize}"
+                                          ItemContainerStyle="{StaticResource TileGridViewItemStyle}"
                                           IsItemClickEnabled="True"
                                           SelectionMode="None"
                                           ScrollViewer.HorizontalScrollBarVisibility="Disabled"
@@ -109,7 +110,8 @@
                                     <GridView.ItemsPanel>
                                         <ItemsPanelTemplate>
                                             <ItemsWrapGrid Orientation="Horizontal"
-                                                           SizeChanged="AlbumsWrapGrid_SizeChanged" />
+                                                           SizeChanged="AlbumsWrapGrid_SizeChanged" 
+                                                           Margin="0,0,-12,0"/>
                                         </ItemsPanelTemplate>
                                     </GridView.ItemsPanel>
                                 </GridView>

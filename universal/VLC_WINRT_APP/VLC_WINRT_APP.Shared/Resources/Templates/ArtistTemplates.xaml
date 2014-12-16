@@ -7,7 +7,7 @@
     <!-- WINDOWS PHONE -->
     <DataTemplate x:Key="PhoneArtistSquareTemplate">
         <Border Background="White"
-                Margin="0,0,6,0">
+                Margin="0,0,12,12">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="3*" />
@@ -21,8 +21,8 @@
                 <Grid Grid.Row="1"
                       Width="Auto">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
+                        <RowDefinition />
+                        <RowDefinition />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
@@ -34,6 +34,7 @@
                                TextTrimming="CharacterEllipsis"
                                FontSize="16"
                                FontWeight="Normal"
+                               VerticalAlignment="Center"
                                Margin="7,0" />
                     <TextBlock Grid.Row="1"
                                Grid.Column="0"
@@ -42,7 +43,8 @@
                                FontSize="14"
                                FontWeight="Light"
                                Foreground="DimGray"
-                               Margin="7,0,7,0">
+                               VerticalAlignment="Center"
+                               Margin="7,0">
                         <Run Text="{Binding Albums.Count}" />
                         <Run Text="albums" />
                     </TextBlock>
@@ -126,7 +128,6 @@
             </Grid>
         </Border>
     </DataTemplate>
-
 
     <DataTemplate x:Key="SimilarArtistTemplate">
         <Grid RequestedTheme="Dark">

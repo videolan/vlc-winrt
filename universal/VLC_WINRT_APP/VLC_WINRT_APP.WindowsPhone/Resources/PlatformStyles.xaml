@@ -2,6 +2,11 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:VLC_WINRT_APP.Resources">
 
+    <Style x:Name="TileGridViewItemStyle" TargetType="GridViewItem">
+        <Setter Property="VerticalContentAlignment"
+                Value="Stretch" />
+    </Style>
+    
     <Style x:Key="ComboBoxStyle1"
            TargetType="ComboBox">
         <Setter Property="Padding"

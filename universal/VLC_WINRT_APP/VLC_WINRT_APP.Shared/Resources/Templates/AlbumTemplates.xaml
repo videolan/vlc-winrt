@@ -9,79 +9,81 @@
 
     <!-- WINDOWS PHONE -->
     <DataTemplate x:Key="PhoneSemanticZoomInViewAlbumTemplateLittleSize">
-        <Border Background="White"
-                Margin="0,0,12,12">
-            <Grid>
+        <Grid Background="White"
+              Margin="0,0,12,12">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Image Grid.Row="0"
+                   Source="{Binding Picture}"
+                   Stretch="UniformToFill"/>
+            <Grid Grid.Row="1">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="3*" />
-                    <RowDefinition Height="*"/>
+                    <RowDefinition />
+                    <RowDefinition />
                 </Grid.RowDefinitions>
-                <Image Grid.Row="0"
-                       Source="{Binding Picture}"
-                       Stretch="UniformToFill"
-                       Width="Auto"
-                       Height="Auto"/>
-                <Grid Grid.Row="1"
-                      Width="Auto">
-                    <Grid.RowDefinitions>
-                        <RowDefinition />
-                        <RowDefinition />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0"
-                               Grid.ColumnSpan="2"
-                               Text="{Binding Name}"
-                               TextWrapping="NoWrap"
-                               TextTrimming="CharacterEllipsis"
-                               FontSize="15"
-                               FontWeight="Normal"
-                               Margin="7,2,7,0" />
-                    <TextBlock Grid.Row="1"
-                               Grid.Column="0"
-                               Text="{Binding Artist}"
-                               TextWrapping="NoWrap"
-                               TextTrimming="CharacterEllipsis"
-                               FontSize="14"
-                               FontWeight="Light"
-                               Foreground="DimGray"
-                               Margin="7,0,7,0" />
-                    <Button Grid.Column="1"
-                            Grid.Row="0"
-                            Grid.RowSpan="2"
-                            Style="{StaticResource TextBlockButtonStyle}"
-                            Content=""
-                            VerticalAlignment="Stretch"
-                            VerticalContentAlignment="Bottom"
-                            Foreground="#ACACAC"
-                            FontFamily="Segoe UI Symbol"
-                            Margin="0,0,0,0"
-                            Padding="0,0,3,0">
-                        <Button.Flyout>
-                            <MenuFlyout>
-                                <MenuFlyoutItem x:Uid="PlayAlbum" Text="play all" 
-                                                Command="{Binding PlayAlbum}"
-                                                CommandParameter="{Binding}"/>
-                                <MenuFlyoutItem x:Uid="FavoriteText" Text="favorite"
-                                                Command="{Binding FavoriteAlbum}"
-                                                CommandParameter="{Binding}" />
-                                <MenuFlyoutItem x:Uid="ViewArtist" Text="view artist"
-                                                Command="{Binding ViewArtist}"
-                                                CommandParameter="{Binding ArtistId}"/>
-                                <MenuFlyoutItem x:Uid="PinAlbum" Text="pin album"
-                                                Command="{Binding PinAlbumCommand}"
-                                                CommandParameter="{Binding}"/>
-                                <MenuFlyoutItem x:Uid="SeeUpcomingShows" Text="see upcoming shows"
-                                                Command="{Binding SeeArtistShowsCommand}"
-                                                CommandParameter="{Binding ArtistId}"/>
-                            </MenuFlyout>
-                        </Button.Flyout>
-                    </Button>
-                </Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0"
+                           Grid.ColumnSpan="2"
+                           Text="{Binding Name}"
+                           TextWrapping="NoWrap"
+                           TextTrimming="CharacterEllipsis"
+                           FontSize="15"
+                           FontWeight="Normal"
+                           VerticalAlignment="Center"
+                           Margin="7,0,7,0" />
+                <TextBlock Grid.Row="1"
+                           Grid.Column="0"
+                           Text="{Binding Artist}"
+                           TextWrapping="NoWrap"
+                           TextTrimming="CharacterEllipsis"
+                           FontSize="14"
+                           FontWeight="Light"
+                           Foreground="DimGray"
+                           VerticalAlignment="Center"
+                           Margin="7,0,7,0" />
+                <Button Grid.Column="1"
+                        Grid.Row="0"
+                        Grid.RowSpan="2"
+                        Style="{StaticResource TextBlockButtonStyle}"
+                        Content=""
+                        VerticalAlignment="Stretch"
+                        VerticalContentAlignment="Bottom"
+                        Foreground="#ACACAC"
+                        FontFamily="Segoe UI Symbol"
+                        Margin="0,0,0,0"
+                        Padding="0,0,3,0">
+                    <Button.Flyout>
+                        <MenuFlyout>
+                            <MenuFlyoutItem x:Uid="PlayAlbum"
+                                            Text="play all"
+                                            Command="{Binding PlayAlbum}"
+                                            CommandParameter="{Binding}" />
+                            <MenuFlyoutItem x:Uid="FavoriteText"
+                                            Text="favorite"
+                                            Command="{Binding FavoriteAlbum}"
+                                            CommandParameter="{Binding}" />
+                            <MenuFlyoutItem x:Uid="ViewArtist"
+                                            Text="view artist"
+                                            Command="{Binding ViewArtist}"
+                                            CommandParameter="{Binding ArtistId}" />
+                            <MenuFlyoutItem x:Uid="PinAlbum"
+                                            Text="pin album"
+                                            Command="{Binding PinAlbumCommand}"
+                                            CommandParameter="{Binding}" />
+                            <MenuFlyoutItem x:Uid="SeeUpcomingShows"
+                                            Text="see upcoming shows"
+                                            Command="{Binding SeeArtistShowsCommand}"
+                                            CommandParameter="{Binding ArtistId}" />
+                        </MenuFlyout>
+                    </Button.Flyout>
+                </Button>
             </Grid>
-        </Border>
+        </Grid>
     </DataTemplate>
 
     <DataTemplate x:Key="SemanticZoomInViewAlbumTemplate">
@@ -116,7 +118,7 @@
                                TextTrimming="CharacterEllipsis"
                                FontSize="14"
                                Foreground="DimGray"
-                               FontWeight="Light"/>
+                               FontWeight="Light" />
                 </StackPanel>
             </Grid>
             <interactivity:Interaction.Behaviors>

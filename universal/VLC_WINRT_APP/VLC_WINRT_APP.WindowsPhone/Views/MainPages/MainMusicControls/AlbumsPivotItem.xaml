@@ -72,7 +72,8 @@
                   ItemsSource="{Binding Albums}"
                   ItemTemplate="{StaticResource PhoneSemanticZoomInViewAlbumTemplateLittleSize}"
                   Margin="0,0,-20,0"
-                  IsItemClickEnabled="True">
+                  IsItemClickEnabled="True"
+                  ItemContainerStyle="{StaticResource TileGridViewItemStyle}">
             <triggers:Interactions.Triggers>
                 <triggers:EventTrigger EventName="ItemClick">
                     <triggers:InvokeCommandAction Command="{Binding AlbumClickedCommand}"

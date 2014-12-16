@@ -16,6 +16,7 @@
         <Grid RequestedTheme="Light">
             <GridView ItemsSource="{Binding CurrentArtist.Albums}"
                       ItemTemplate="{StaticResource PhoneSemanticZoomInViewAlbumTemplateLittleSize}"
+                      ItemContainerStyle="{StaticResource TileGridViewItemStyle}"
                       Margin="0,0,-20,0"
                       IsItemClickEnabled="True">
                 <triggers:Interactions.Triggers>
@@ -62,7 +63,7 @@
                 <GridView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <ItemsWrapGrid Orientation="Horizontal"
-                                       Margin="12,0,0,60"
+                                       Margin="12,12,0,60"
                                        Loaded="ItemsWrapGrid_Loaded" />
                     </ItemsPanelTemplate>
                 </GridView.ItemsPanel>
