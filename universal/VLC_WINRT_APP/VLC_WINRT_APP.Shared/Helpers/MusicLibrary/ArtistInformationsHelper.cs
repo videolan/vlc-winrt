@@ -214,10 +214,14 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
 
         public static async Task GetAlbumPictureFromInternet(AlbumItem album)
         {
-            var gotArt = await DownloadAlbumPictureFromLastFm(album);
-            if (!gotArt)
+            var gotArt = false;
+            if (album.Artist != null && album.Name != null && album.Name != "Unknown album" && album.Artist != "Unknown artist")
             {
-                gotArt = await DownloadAlbumPictureFromDeezer(album);
+                gotArt = await DownloadAlbumPictureFromLastFm(album);
+                if (!gotArt)
+                {
+                    gotArt = await DownloadAlbumPictureFromDeezer(album);
+                }
             }
 
             // If we still could not find album art, set it to the default cover.
