@@ -131,7 +131,6 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             }
             else
             {
-                base.Time = 0;
                 await PlayNext();
             }
         }
