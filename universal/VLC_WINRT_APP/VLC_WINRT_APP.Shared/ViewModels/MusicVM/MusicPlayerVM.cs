@@ -251,7 +251,6 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             {
                 TrackCollection.IsRunning = true;
                 OnPropertyChanged("TrackCollection");
-                OnPropertyChanged("TimeTotal");
                 OnPropertyChanged("PlayingType");
                 OnPropertyChanged("CurrentTrack");
                 OnPropertyChanged("CurrentAlbum");
