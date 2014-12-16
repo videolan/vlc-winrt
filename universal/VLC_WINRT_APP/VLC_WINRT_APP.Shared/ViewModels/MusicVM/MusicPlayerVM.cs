@@ -30,6 +30,7 @@ using VLC_WINRT_APP.Model.Music;
 using VLC_WINRT_APP.Services.Interface;
 using VLC_WINRT_APP.Services.RunTime;
 using System.Collections.Generic;
+using VLC_WINRT_APP.Views.MainPages;
 using WinRTXamlToolkit.Controls.Extensions;
 
 namespace VLC_WINRT_APP.ViewModels.MusicVM
@@ -126,7 +127,11 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                 !TrackCollection.CanGoNext)
             {
                 // Playlist is finished
-                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => TrackCollection.IsRunning = false);
+                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+                {
+                    TrackCollection.IsRunning = false;
+                    App.ApplicationFrame.Navigate(typeof (MainPageHome));
+                });
             }
             else
             {
