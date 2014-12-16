@@ -61,7 +61,7 @@
                      Grid.ColumnSpan="3"
                      Margin="0,-3,0,0"
                      VerticalAlignment="Top"
-                     Value="{Binding Time, Mode=TwoWay}"
+                     Value="{Binding Time, Mode=OneWay}"
                      Maximum="{Binding TimeTotal.TotalMilliseconds}" />
     </Grid>
 </UserControl>
