@@ -27,7 +27,8 @@
                     Grid.Column="1"
                     Margin="12,0,0,0"
                     VerticalAlignment="Center"
-                    Tapped="RootMiniPlayer_Tapped">
+                    Tapped="RootMiniPlayer_Tapped"
+                    Background="Transparent">
             <TextBlock Text="{Binding CurrentArtist.Name}"
                        Foreground="Black"
                        Style="{StaticResource SubheaderTextBlockStyle}"
