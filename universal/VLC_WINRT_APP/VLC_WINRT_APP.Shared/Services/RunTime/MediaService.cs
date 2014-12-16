@@ -179,7 +179,7 @@ namespace VLC_WINRT_APP.Services.RunTime
 
         private bool _isAudioMedia;
 
-        public void SetMediaFile(string filePath, bool isAudioMedia = true)
+        public void SetMediaFile(string filePath, bool isAudioMedia)
         {
             var media = new Media(Instance, filePath);
             MediaPlayer = new MediaPlayer(media);

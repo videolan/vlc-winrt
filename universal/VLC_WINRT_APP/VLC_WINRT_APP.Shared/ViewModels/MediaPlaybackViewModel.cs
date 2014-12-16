@@ -241,6 +241,30 @@ namespace VLC_WINRT_APP.ViewModels
             ProtectedDisplayCall(false);
             return Task.FromResult(0);
         }
+
+        private async void OnLengthChanged(Int64 length)
+        {
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                TimeTotal = TimeSpan.FromMilliseconds(length);
+            });
+        }
+
+        protected virtual void OnStopped()
+        {
+            var em = _mediaService.MediaPlayer.eventManager();
+            em.OnLengthChanged -= OnLengthChanged;
+            em.OnStopped -= OnStopped;
+        }
+
+        protected void InitializePlayback(String mrl, Boolean isAudio)
+        {
+            _mediaService.SetMediaFile(_mrl, isAudio);
+            var em = _mediaService.MediaPlayer.eventManager();
+            em.OnLengthChanged += OnLengthChanged;
+            em.OnStopped += OnStopped;
+        }
+
         #endregion
 
         #region Events

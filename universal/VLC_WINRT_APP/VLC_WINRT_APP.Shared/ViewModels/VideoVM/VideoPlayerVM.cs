@@ -262,12 +262,12 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
 
             _timeTotal = TimeSpan.Zero;
 
-            _mediaService.SetMediaFile(_mrl, isAudioMedia: false);
+            InitializePlayback(_mrl, false);
             var em = _mediaService.MediaPlayer.eventManager();
-            em.OnLengthChanged += OnLengthChanged;
             em.OnTrackAdded += OnTrackAdded;
             em.OnTrackDeleted += OnTrackDeleted;
             _mediaService.Play();
+
 
             VideoItem media = await _lastVideosRepository.LoadViaToken(_fileToken);
             if (media == null)
@@ -293,14 +293,6 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             UpdateTileHelper.UpdateMediumTileWithVideoInfo();
         }
 
-        private async void OnLengthChanged(Int64 length)
-        {
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                {
-                    TimeTotal = TimeSpan.FromMilliseconds(length);
-                });
-        }
-
         private async void VlcPlayerServiceOnMediaEnded(object sender, object e)
         {
             _mediaService.MediaEnded -= VlcPlayerServiceOnMediaEnded;
@@ -319,6 +311,14 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
                 Locator.VideoVm.IsRunning = false;
                 OnPropertyChanged("PlayingType");
             });
+        }
+
+        protected override void OnStopped()
+        {
+            var em = _mediaService.MediaPlayer.eventManager();
+            em.OnTrackAdded -= OnTrackAdded;
+            em.OnTrackDeleted -= OnTrackDeleted;
+            base.OnStopped();
         }
 
         public void UpdatePosition()

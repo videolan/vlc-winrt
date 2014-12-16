@@ -238,9 +238,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         {
             _fileToken = token;
             _mrl = "file://" + token;
-            _mediaService.SetMediaFile(_mrl, isAudioMedia: true);
-            var em = _mediaService.MediaPlayer.eventManager();
-            em.OnLengthChanged += OnLengthChanged;
+            base.InitializePlayback(_mrl, true);
             _mediaService.Play();
 
 //#if WINDOWS_APP
@@ -256,15 +254,6 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                 OnPropertyChanged("CurrentAlbum");
                 OnPropertyChanged("CurrentArtist");
             });
-        }
-
-        private async void OnLengthChanged(Int64 length)
-        {
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-            {
-                TimeTotal = TimeSpan.FromMilliseconds(length);
-            });
-
         }
 
         public override void CleanViewModel()

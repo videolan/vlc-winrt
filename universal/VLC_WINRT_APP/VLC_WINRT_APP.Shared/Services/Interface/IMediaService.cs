@@ -28,7 +28,7 @@ namespace VLC_WINRT_APP.Services.Interface
         /// Sets the path of the file to played.
         /// </summary>
         /// <param name="fileUri">The path of the file to be played.</param>
-        void SetMediaFile(string filePath, bool isAudioMedia = true);
+        void SetMediaFile(string filePath, bool isAudioMedia);
 
         void Play();
         void Pause();
