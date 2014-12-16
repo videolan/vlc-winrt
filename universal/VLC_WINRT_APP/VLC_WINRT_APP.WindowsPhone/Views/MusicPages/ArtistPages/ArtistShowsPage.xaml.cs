@@ -1,7 +1,9 @@
 ﻿using System;
 using Windows.Phone.UI.Input;
+using Windows.System;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using VLC_WINRT_APP.Model.Music;
 
 namespace VLC_WINRT_APP.Views.MusicPages.ArtistPages
 {

@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:placeholder="using:VLC_WINRT_APP.Views.UserControls.Placeholder"
+      xmlns:triggers="using:WinRT.Triggers"
       mc:Ignorable="d"
       d:DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM.CurrentArtist}"
       Background="WhiteSmoke">
@@ -28,7 +29,15 @@
             <placeholder:NoMusicShowsPlaceholder Visibility="{Binding UpcomingShows.Count, Converter={StaticResource CountToVisibilityConverter}}"
                                                  Margin="0,50,0,0" />
             <ListView ItemsSource="{Binding UpcomingShows}"
-                      ItemContainerStyle="{StaticResource HorizontalListViewItemStyle}">
+                      ItemContainerStyle="{StaticResource HorizontalListViewItemStyle}"
+                      SelectionMode="None"
+                      IsItemClickEnabled="True">
+                <triggers:Interactions.Triggers>
+                    <triggers:EventTrigger EventName="ItemClick">
+                        <triggers:InvokeCommandAction Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.BingLocationShowCommand}"
+                                                      PassEventArgsToCommand="True" />
+                    </triggers:EventTrigger>
+                </triggers:Interactions.Triggers>
                 <ListView.ItemContainerTransitions>
                     <TransitionCollection>
                         <EntranceThemeTransition />
@@ -73,21 +82,21 @@
                                 <Run Text="{Binding Date, Converter={StaticResource DateTimeToShortMonthConverter}}"
                                      FontSize="23" />
                             </TextBlock>
-                            <ItemsControl Grid.Row="1"
+                            <ListView Grid.Row="1"
                                           Grid.Column="1"
                                           ItemsSource="{Binding Artists}">
-                                <ItemsControl.ItemsPanel>
+                                <ListView.ItemsPanel>
                                     <ItemsPanelTemplate>
                                         <ItemsStackPanel Orientation="Horizontal" />
                                     </ItemsPanelTemplate>
-                                </ItemsControl.ItemsPanel>
+                                </ListView.ItemsPanel>
                                 <ItemsControl.ItemContainerTransitions>
                                     <TransitionCollection>
                                         <EntranceThemeTransition />
                                         <AddDeleteThemeTransition />
                                     </TransitionCollection>
                                 </ItemsControl.ItemContainerTransitions>
-                                <ItemsControl.ItemTemplate>
+                                <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <TextBlock Text="{Binding}"
                                                    Foreground="DimGray"
@@ -95,8 +104,8 @@
                                                    TextWrapping="NoWrap"
                                                    TextTrimming="CharacterEllipsis" />
                                     </DataTemplate>
-                                </ItemsControl.ItemTemplate>
-                            </ItemsControl>
+                                </ListView.ItemTemplate>
+                            </ListView>
                             <TextBlock Grid.Row="2"
                                        Grid.Column="1"
                                        Grid.ColumnSpan="2"

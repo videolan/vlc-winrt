@@ -6,13 +6,15 @@ namespace VLC_WINRT_APP.Model.Music
 {
     public class ShowItem : BindableBase
     {
-        public ShowItem(string title, DateTime date, string city, string country)
+        public ShowItem(string title, DateTime date, string city, string country, string lat = null, string _long = null)
         {
             Title = title;
             Date = date;
             City = city;
             Country = country;
             Artists = new List<string>();
+            if (lat != null) Latitude = lat;
+            if (_long != null) Longitude = _long;
         }
 
         public string Title { get; set; }
@@ -20,5 +22,8 @@ namespace VLC_WINRT_APP.Model.Music
         public string City { get; set; }
         public string Country { get; set; }
         public List<string> Artists { get; set; }
+
+        public string Latitude { get; set; }
+        public string Longitude { get; set; }
     }
 }

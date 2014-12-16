@@ -120,6 +120,9 @@
     <Compile Include="Views\MusicPages\PlaylistPage.xaml.cs">
       <DependentUpon>PlaylistPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\MusicPages\ShowsAroundMe.xaml.cs">
+      <DependentUpon>ShowsAroundMe.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserControls\BottomMiniPlayer.xaml.cs">
       <DependentUpon>BottomMiniPlayer.xaml</DependentUpon>
     </Compile>
@@ -939,6 +942,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MusicPages\PlaylistPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MusicPages\ShowsAroundMe.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

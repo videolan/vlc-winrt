@@ -30,6 +30,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Music\AlbumTrackClickedCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Music\ArtistAlbumsSemanticZoomInvertZoomCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Music\ArtistClickedCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\Music\BingLocationShowCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Music\ChangeAlbumArtCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Music\ChangeAlbumOrderCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Music\DownloadAlbumArtCommand.cs" />

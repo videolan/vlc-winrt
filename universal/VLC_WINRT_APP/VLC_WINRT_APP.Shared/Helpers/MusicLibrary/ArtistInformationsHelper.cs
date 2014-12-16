@@ -148,7 +148,18 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                     ShowItem showItem = null;
                     bool tryParse = DateTime.TryParse(show.StartDate, out date);
                     if (tryParse)
-                        showItem = new ShowItem(show.Title, date, show.Venue.Location.City, show.Venue.Location.Country);
+                    {
+                        if (show.Venue.Location.GeoPoint != null && show.Venue.Location.GeoPoint.Latitude != null &&
+                            show.Venue.Location.GeoPoint.Longitute != null)
+                        {
+                            showItem = new ShowItem(show.Title, date, show.Venue.Location.City, show.Venue.Location.Country, show.Venue.Location.GeoPoint.Latitude, show.Venue.Location.GeoPoint.Longitute);
+                        }
+                        else
+                        {
+                            showItem = new ShowItem(show.Title, date, show.Venue.Location.City,
+                                show.Venue.Location.Country);
+                        }
+                    }
                     else continue;
                     foreach (var artistShow in show.Artists.Artists)
                     {

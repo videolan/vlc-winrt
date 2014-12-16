@@ -67,6 +67,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         private TrackClickedCommand _trackClickedCommand;
         private PlayAllRandomCommand _playAllRandomCommand;
         private OpenAddAlbumToPlaylistDialog _openAddAlbumToPlaylistDialogCommand;
+        private BingLocationShowCommand _bingLocationShowCommand;
         private AlbumItem _currentAlbum;
         private ArtistItem _currentArtist;
         private TrackCollection _currentTrackCollection;
@@ -274,6 +275,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             set { SetProperty(ref _openAddAlbumToPlaylistDialogCommand, value); }
         }
 
+        public BingLocationShowCommand BingLocationShowCommand { get { return _bingLocationShowCommand ?? (_bingLocationShowCommand = new BingLocationShowCommand()); } }
         public ArtistItem CurrentArtist
         {
             get
