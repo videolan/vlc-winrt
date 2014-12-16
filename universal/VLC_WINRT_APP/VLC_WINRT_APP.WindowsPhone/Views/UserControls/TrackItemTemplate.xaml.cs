@@ -14,8 +14,9 @@ namespace VLC_WINRT_APP.Views.UserControls
 
         private void Selector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (e.AddedItems.Count == 0) return;
             Locator.MusicLibraryVM.CurrentTrackCollection = e.AddedItems[0] as TrackCollection;
-            Locator.MusicLibraryVM.AddToPlaylistCommand.Execute((this.DataContext as TrackItem).Id);
+            Locator.MusicLibraryVM.AddToPlaylistCommand.Execute(this.DataContext as TrackItem);
         }
     }
 }
