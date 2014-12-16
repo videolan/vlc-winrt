@@ -112,8 +112,6 @@ namespace VLC_WINRT_APP.Views.VideoPages
             this.SizeChanged -= OnSizeChanged;
 #if WINDOWS_PHONE_APP
             HardwareButtons.BackPressed -= HardwareButtonsOnBackPressed;
-            StatusBar sB = StatusBar.GetForCurrentView();
-            await sB.ShowAsync();
 #endif
         }
 
