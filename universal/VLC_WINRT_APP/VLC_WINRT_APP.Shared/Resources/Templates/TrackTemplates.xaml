@@ -8,6 +8,10 @@
         <userControls:TrackItemTemplate />
     </DataTemplate>
 
+    <DataTemplate x:Key="WPDarkTrackTemplateWONumber">
+        <userControls:TrackItemTemplate RequestedTheme="Dark"/>
+    </DataTemplate>
+    
     <DataTemplate x:Key="WPDarkTrackTemplateWNumber">
         <Grid RequestedTheme="Dark">
             <Grid.ColumnDefinitions>
