@@ -14,6 +14,7 @@ using Windows.Storage.AccessCache;
 using Windows.Storage.Streams;
 using VLC_WINRT.Common;
 using VLC_WINRT_APP.Helpers;
+using VLC_WINRT_APP.Helpers.MusicLibrary;
 using VLC_WINRT_APP.Helpers.MusicPlayer;
 using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.Model.Music;
@@ -149,10 +150,7 @@ namespace VLC_WINRT_APP.Services.RunTime
         {
             if (App.ApplicationFrame.CurrentSourcePageType != typeof(MusicPlayerPage))
                 App.ApplicationFrame.Navigate(typeof(MusicPlayerPage));
-            var trackItem = new TrackItem();
-            trackItem.Path = file.Path;
-            trackItem.AlbumName = "Album";
-            trackItem.ArtistName = "Artist";
+            var trackItem = await GetInformationsFromMusicFile.GetTrackItemFromFile(file);
             Locator.MusicPlayerVM.TrackCollection.Playlist.Clear();
             Locator.MusicPlayerVM.TrackCollection.Playlist.Add(trackItem);
             await PlayMusicHelper.PlayTrack(0);

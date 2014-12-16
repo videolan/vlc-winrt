@@ -10,7 +10,10 @@ using Windows.Storage.Search;
 using Windows.UI.Core;
 using VLC_WINRT_APP.Commands.RemovableDevices;
 using VLC_WINRT_APP.Common;
+using VLC_WINRT_APP.Helpers.MusicLibrary;
 using VLC_WINRT_APP.Model;
+using VLC_WINRT_APP.Model.Music;
+using VLC_WINRT_APP.Services.RunTime;
 using VLC_WINRT_APP.Views.VideoPages;
 
 namespace VLC_WINRT_APP.ViewModels.Others.VlcExplorer
@@ -133,16 +136,14 @@ namespace VLC_WINRT_APP.ViewModels.Others.VlcExplorer
             else
             {
                 StorageFile file = storageItem as StorageFile;
-                Model.Video.VideoItem videoVm = new Model.Video.VideoItem();
-                await videoVm.Initialize(file);
-                if (string.IsNullOrEmpty(videoVm.Token))
+                if (VLCFileExtensions.AudioExtensions.Contains(file.FileType))
                 {
-                    string token = StorageApplicationPermissions.FutureAccessList.Add(videoVm.File);
-                    videoVm.Token = token;
+                    await MediaService.PlayAudioFile(file);
                 }
-                Locator.VideoVm.CurrentVideo = videoVm;
-                await Locator.VideoVm.SetActiveVideoInfo(videoVm.Token);
-                App.ApplicationFrame.Navigate(typeof(VideoPlayerPage));
+                else if (VLCFileExtensions.VideoExtensions.Contains(file.FileType))
+                {
+                    await MediaService.PlayVideoFile(file);
+                }
             }
             OnPropertyChanged("CurrentFolderName");
         }

@@ -24,7 +24,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             {
                 ArtistName = string.IsNullOrEmpty(trackInfos.Artist) ? "Unknown artist" : trackInfos.Artist,
                 AlbumName = trackInfos.Album,
-                Name = trackInfos.Title,
+                Name = string.IsNullOrEmpty(trackInfos.Title) ? track.DisplayName : trackInfos.Title,
                 Path = track.Path,
                 Duration = trackInfos.Duration,
                 Index = 0
