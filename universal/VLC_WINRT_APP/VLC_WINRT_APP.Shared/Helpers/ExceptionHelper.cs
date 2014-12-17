@@ -79,7 +79,7 @@ namespace VLC_WINRT_APP.Helpers
             AppMemoryUsageLimitUlong /= 1024 * 1024;
             stringExceptionBuilder.AppendLine("CurrentRAM:" + AppMemoryUsageUlong + " -- ");
             stringExceptionBuilder.AppendLine("MaxRAM:" + AppMemoryUsageLimitUlong + " -- ");
-            stringExceptionBuilder.AppendLine("CommentonRAM:" + MemoryManager.AppMemoryUsageLevel.ToString();
+            stringExceptionBuilder.AppendLine("CommentOnRAM:" + MemoryManager.AppMemoryUsageLevel.ToString());
 
             ApplicationSettingsHelper.SaveSettingsValue("ExceptionLog", stringExceptionBuilder.ToString());
         }
