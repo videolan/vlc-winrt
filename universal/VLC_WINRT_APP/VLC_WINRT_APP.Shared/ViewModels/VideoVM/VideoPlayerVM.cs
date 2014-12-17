@@ -289,6 +289,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
 
         protected override async void OnEndReached()
         {
+            await _lastVideosRepository.Remove(CurrentVideo);
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
             {
                 if (App.ApplicationFrame.CanGoBack)

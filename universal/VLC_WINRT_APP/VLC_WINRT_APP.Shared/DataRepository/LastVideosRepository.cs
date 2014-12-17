@@ -63,5 +63,11 @@ namespace VLC_WINRT_APP.DataRepository
             var connection = new SQLiteAsyncConnection(_dbPath);
             return connection.InsertAsync(video);
         }
+
+        public Task Remove(VideoItem video)
+        {
+            var connection = new SQLiteAsyncConnection(_dbPath);
+            return connection.DeleteAsync(video);
+        }
     }
 }
