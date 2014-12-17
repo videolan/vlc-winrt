@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
@@ -59,11 +60,16 @@ namespace VLC_WINRT_APP.Helpers
             stringExceptionBuilder.AppendLine(unhandledExceptionEventArgs.Exception.Source);
             stringExceptionBuilder.AppendLine(unhandledExceptionEventArgs.Exception.StackTrace);
             if (unhandledExceptionEventArgs.Exception.Data != null)
-                stringExceptionBuilder.AppendLine(unhandledExceptionEventArgs.Exception.Data.ToString());
+            {
+                foreach (DictionaryEntry entry in unhandledExceptionEventArgs.Exception.Data)
+                {
+                    stringExceptionBuilder.AppendLine(entry.Key + ";" + entry.Value);
+                }
+            }
             stringExceptionBuilder.AppendLine(unhandledExceptionEventArgs.Exception.HResult.ToString());
             if (unhandledExceptionEventArgs.Exception.InnerException != null)
                 stringExceptionBuilder.AppendLine(unhandledExceptionEventArgs.Exception.InnerException.ToString());
-            stringExceptionBuilder.AppendLine(unhandledExceptionEventArgs.Handled.ToString());
+            stringExceptionBuilder.AppendLine("IsHandled: " + unhandledExceptionEventArgs.Handled.ToString());
             stringExceptionBuilder.Replace("\r\n", "<br/>");
             ApplicationSettingsHelper.SaveSettingsValue("ExceptionLog", stringExceptionBuilder.ToString());
         }
