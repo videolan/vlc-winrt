@@ -63,10 +63,6 @@
                                             Text="play all"
                                             Command="{Binding PlayAlbum}"
                                             CommandParameter="{Binding}" />
-                            <MenuFlyoutItem x:Uid="FavoriteText"
-                                            Text="favorite"
-                                            Command="{Binding FavoriteAlbum}"
-                                            CommandParameter="{Binding}" />
                             <MenuFlyoutItem x:Uid="ViewArtist"
                                             Text="view artist"
                                             Command="{Binding ViewArtist}"
