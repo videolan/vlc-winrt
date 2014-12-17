@@ -185,20 +185,16 @@ namespace VLC_WINRT_APP.ViewModels
             SearchClickedCommand = new SearchClickedCommand();
 #endif
             // TODO: For Windows 8.1 build, use ResourceLoader.GetForCurrentView(); 
-
+#if WINDOWS_APP
             var resourceLoader = new ResourceLoader();
             Panels.Add(new Panel(resourceLoader.GetString("Home"), 0, 1, App.Current.Resources["HomePath"].ToString(), true));
             Panels.Add(new Panel(resourceLoader.GetString("Videos"), 1, 0.4, App.Current.Resources["VideoPath"].ToString()));
             Panels.Add(new Panel(resourceLoader.GetString("Music"), 2, 0.4, App.Current.Resources["MusicPath"].ToString()));
             string removableName = "";
-#if WINDOWS_APP
             removableName = resourceLoader.GetString("RemovableStorage");
             Panels.Add(new Panel(removableName, 3, 0.4, App.Current.Resources["RemovablesPath"].ToString()));
-#else
             //removableName = resourceLoader.GetString("SdCard");
             Panels.Add(new Panel(resourceLoader.GetString("More"), 3, 0.4, App.Current.Resources["HamburgerPath"].ToString()));
-#endif
-#if WINDOWS_APP
             Panels.Add(new Panel(resourceLoader.GetString("MediaServers"), 4, 0.4, App.Current.Resources["ServerPath"].ToString()));
 #endif
             Initialize();

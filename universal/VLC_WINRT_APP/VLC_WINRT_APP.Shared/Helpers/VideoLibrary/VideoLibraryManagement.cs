@@ -169,7 +169,7 @@ namespace VLC_WINRT_APP.Helpers.VideoLibrary
             }
             catch (FileNotFoundException fileNotFoundException)
             {
-                LogHelper.Log("Failed to get videos from Camera Roll. Aborting.");
+                LogHelper.Log("Failed to get videos from Camera Roll. Aborting. " + fileNotFoundException.ToString());
             }
         }
 

@@ -384,7 +384,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             }
             catch (Exception exception)
             {
-                Debug.WriteLine("Error saving artist art");
+                Debug.WriteLine("Error saving artist art: " + exception.ToString());
             }
             return false;
         }

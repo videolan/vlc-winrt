@@ -46,7 +46,6 @@ namespace VLC_WINRT_APP.Model.Video
         private int _season = -1;
         private int _episode;
 
-        private bool _isImgLoaded = false;
         #endregion
 
         #region private fields

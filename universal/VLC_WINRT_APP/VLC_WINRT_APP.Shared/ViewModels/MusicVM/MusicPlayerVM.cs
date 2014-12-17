@@ -189,6 +189,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                     }
                     catch (FileNotFoundException exception)
                     {
+                        Debug.WriteLine(exception);
                         App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                         {
 #if WINDOWS_PHONE_APP
