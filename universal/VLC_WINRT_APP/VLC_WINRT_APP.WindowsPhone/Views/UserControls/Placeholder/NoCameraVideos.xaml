@@ -23,7 +23,7 @@
                    TextAlignment="Center">
             <Run x:Uid="EmptyText"  Text="It's empty here" />
             <LineBreak />
-            <Run x:Uid="NoCameraVideos" Text="We did not found videos in your camera roll"
+            <Run x:Uid="NoCameraVideos" Text="We did not find videos in your camera roll"
                  FontSize="20" />
         </TextBlock>
     </Grid>

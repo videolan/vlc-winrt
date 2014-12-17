@@ -23,7 +23,7 @@
                    TextAlignment="Center">
             <Run x:Uid="EmptyText" Text="It's empty here" />
             <LineBreak />
-            <Run x:Uid="NoShows" Text="We did not found shows in your phone storage"
+            <Run x:Uid="NoShows" Text="We did not find shows in your phone storage"
                  FontSize="20" />
         </TextBlock>
     </Grid>

@@ -550,13 +550,13 @@
     <value>new playlist</value>
   </data>
   <data name="NoCameraVideos.Text" xml:space="preserve">
-    <value>We did not found videos in your camera roll</value>
+    <value>We did not find videos in your camera roll</value>
   </data>
   <data name="NoPlaylists.Text" xml:space="preserve">
     <value>You don't have playlists ... yet</value>
   </data>
   <data name="NoShows.Text" xml:space="preserve">
-    <value>We did not found shows in your phone storage</value>
+    <value>We did not find shows in your phone storage</value>
   </data>
   <data name="PlayTrack.Label" xml:space="preserve">
     <value>play track</value>

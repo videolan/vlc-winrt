@@ -21,7 +21,7 @@
         <StackPanel>
             <TextBlock Style="{StaticResource SubheaderTextBlockStyle}"
                        TextAlignment="Center">
-            <Run Text="We did not found videos in your Videos folder"
+            <Run Text="We did not find videos in your Videos folder"
                  FontSize="20" />
             <LineBreak />
             <Run Text="... however you may find what you want here"
