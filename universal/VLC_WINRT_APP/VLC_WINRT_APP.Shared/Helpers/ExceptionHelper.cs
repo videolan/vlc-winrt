@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Resources;
 using Windows.System;
-using Windows.UI.Notifications;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 
@@ -71,6 +69,18 @@ namespace VLC_WINRT_APP.Helpers
                 stringExceptionBuilder.AppendLine(unhandledExceptionEventArgs.Exception.InnerException.ToString());
             stringExceptionBuilder.AppendLine("IsHandled: " + unhandledExceptionEventArgs.Handled.ToString());
             stringExceptionBuilder.Replace("\r\n", "<br/>");
+
+            // Gets the app's current memory usage    
+            ulong AppMemoryUsageUlong = MemoryManager.AppMemoryUsage;    
+            // Gets the app's memory usage limit    
+            ulong AppMemoryUsageLimitUlong = MemoryManager.AppMemoryUsageLimit;    
+   
+            AppMemoryUsageUlong /= 1024 * 1024;    
+            AppMemoryUsageLimitUlong /= 1024 * 1024;
+            stringExceptionBuilder.AppendLine("CurrentRAM:" + AppMemoryUsageUlong + " -- ");
+            stringExceptionBuilder.AppendLine("MaxRAM:" + AppMemoryUsageLimitUlong + " -- ");
+            stringExceptionBuilder.AppendLine("CommentonRAM:" + MemoryManager.AppMemoryUsageLevel.ToString();
+
             ApplicationSettingsHelper.SaveSettingsValue("ExceptionLog", stringExceptionBuilder.ToString());
         }
     }
