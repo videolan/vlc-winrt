@@ -15,9 +15,9 @@ namespace VLC_WINRT_APP.Commands.Video
 {
     public class StopVideoCommand : AlwaysExecutableCommand
     {
-        public override void Execute(object parameter)
+        public override async void Execute(object parameter)
         {
-            Locator.VideoVm.UpdatePosition();
+            await Locator.VideoVm.UpdatePosition();
             if(App.ApplicationFrame.CanGoBack)
                 App.ApplicationFrame.GoBack();
             else

@@ -29,7 +29,7 @@ namespace VLC_WINRT_APP.Commands
             Locator.MainVM.CloseStreamFlyout();
 
             //TODO: pass MRL to vlc
-            await Locator.VideoVm.SetActiveVideoInfo(mrl, true);
+            await Locator.VideoVm.SetActiveVideoInfo(null, mrl);
         }
     }
 }

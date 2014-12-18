@@ -171,7 +171,7 @@ namespace VLC_WINRT_APP.Services.RunTime
                 videoVm.Token = token;
             }
             Locator.VideoVm.CurrentVideo = videoVm;
-            await Locator.VideoVm.SetActiveVideoInfo(videoVm.Token);
+            await Locator.VideoVm.SetActiveVideoInfo(videoVm);
         }
 
         private bool _isAudioMedia;
@@ -292,8 +292,6 @@ namespace VLC_WINRT_APP.Services.RunTime
                     // TODO: Route Video Player calls through Media Service
                     if (!(bool)ApplicationSettingsHelper.ReadSettingsValue("ContinueVideoPlaybackInBackground"))
                         MediaPlayer.pause();
-
-                    await Locator.VideoVm._lastVideosRepository.Update(Locator.VideoVm.CurrentVideo);
                 }
 
                 // Otherwise, set the MediaElement's source to the Audio File in question,

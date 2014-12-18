@@ -41,7 +41,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
 {
     public class VideoLibraryVM : BindableBase
     {
-        public static LastVideosRepository _lastVideosRepository = new LastVideosRepository();
+        public VideoRepository VideoRepository = new VideoRepository();
         #region private fields
 #if WINDOWS_APP
         private ObservableCollection<Panel> _panels = new ObservableCollection<Panel>();
@@ -160,7 +160,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
         {
             LoadingState = LoadingState.Loading;
             await VideoLibraryManagement.GetViewedVideos();
-            await VideoLibraryManagement.GetVideos();
+            await VideoLibraryManagement.GetVideos(VideoRepository);
             await VideoLibraryManagement.GetVideosFromCameraRoll();
             await VideoLibraryManagement.GenerateAllThumbnails();
         }

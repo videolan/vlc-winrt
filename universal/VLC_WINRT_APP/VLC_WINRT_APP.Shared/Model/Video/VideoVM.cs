@@ -42,6 +42,7 @@ namespace VLC_WINRT_APP.Model.Video
         private StorageFile _file;
         private FavoriteVideoCommand _favoriteVideo;
         private readonly IThumbnailService _thumbsService;
+        private DateTime _lastWatched;
         // TVShows related
         private int _season = -1;
         private int _episode;
@@ -67,6 +68,9 @@ namespace VLC_WINRT_APP.Model.Video
         }
         #endregion
 
+        [PrimaryKey, AutoIncrement, Column("_id")]
+        public int Id { get; set; }
+
         [Ignore]
         public ImageSource Image
         {
@@ -87,13 +91,14 @@ namespace VLC_WINRT_APP.Model.Video
             }
         }
 
-        [PrimaryKey, Column("_id")]
+        [Ignore]
         public String Token
         {
             get { return _token; }
             set { SetProperty(ref _token, value); }
         }
 
+        [Unique]
         public string FilePath
         {
             get { return _filePath; }
@@ -155,6 +160,13 @@ namespace VLC_WINRT_APP.Model.Video
         }
 
         public VideoProperties VideoProperties;
+
+        public DateTime LastWatched
+        {
+            get { return _lastWatched; }
+            set { SetProperty(ref _lastWatched, value); }
+        }
+
         private string _filePath;
 
         public bool IsTvShow
@@ -236,15 +248,15 @@ namespace VLC_WINRT_APP.Model.Video
                 StorageFile videoPicFile = null;
                 bool doesFileExist = false;
 #if WINDOWS_APP
-                videoPicFile = await videoPic.TryGetItemAsync(Title + ".jpg") as StorageFile;
+                videoPicFile = await videoPic.TryGetItemAsync(Id + ".jpg") as StorageFile;
                 if(videoPicFile != null) doesFileExist = true;
 #else
-                doesFileExist = await videoPic.ContainsFileAsync(Title + ".jpg");
+                doesFileExist = await videoPic.ContainsFileAsync(Id + ".jpg");
                 if (doesFileExist)
                 {
                     try
                     {
-                        videoPicFile = await videoPic.GetFileAsync(Title + ".jpg");
+                        videoPicFile = await videoPic.GetFileAsync(Id + ".jpg");
                     }
                     catch
                     {
@@ -270,7 +282,7 @@ namespace VLC_WINRT_APP.Model.Video
                         await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
                         {
                             Image = screenshot;
-                            screenshot.SaveToFile(videoPic, Title + ".jpg");
+                            screenshot.SaveToFile(videoPic, Id + ".jpg");
                         });
                     }
                 }

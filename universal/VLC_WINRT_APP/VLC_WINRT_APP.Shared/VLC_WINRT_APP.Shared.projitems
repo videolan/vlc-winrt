@@ -121,10 +121,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)DataRepository\AlbumDataRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataRepository\ArtistDataRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataRepository\IDataRepository.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DataRepository\LastVideosRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataRepository\TrackCollectionRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataRepository\TrackDataRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataRepository\TracklistItemRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataRepository\VideoRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataTemplateSelectors\MediaItemDataTemplateSelector.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataTemplateSelectors\StorageItemDataTemplateSelector.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\AppBar.cs" />

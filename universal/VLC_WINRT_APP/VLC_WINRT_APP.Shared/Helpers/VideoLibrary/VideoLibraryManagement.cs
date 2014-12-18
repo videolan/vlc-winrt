@@ -14,6 +14,7 @@ using VLC_WINRT_APP.Model.Video;
 using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.ViewModels.VideoVM;
 using WinRTXamlToolkit.IO.Extensions;
+using VLC_WINRT_APP.DataRepository;
 
 namespace VLC_WINRT_APP.Helpers.VideoLibrary
 {
@@ -21,7 +22,7 @@ namespace VLC_WINRT_APP.Helpers.VideoLibrary
     {
         public static async Task GetViewedVideos()
         {
-            var result = await VideoLibraryVM._lastVideosRepository.Load();
+            var result = await Locator.VideoLibraryVM.VideoRepository.GetLastViewed(6).ConfigureAwait(false);
 
             foreach (VideoItem videoVm in result)
             {
@@ -47,7 +48,7 @@ namespace VLC_WINRT_APP.Helpers.VideoLibrary
             }
         }
 
-        public static async Task GetVideos()
+        public static async Task GetVideos(VideoRepository videoRepo)
         {
             var resourceLoader = new ResourceLoader();
 #if WINDOWS_APP
@@ -63,47 +64,39 @@ namespace VLC_WINRT_APP.Helpers.VideoLibrary
 
                     foreach (StorageFile storageFile in files)
                     {
-                        // Analyse to see if it's a tv show
-                        // if the file is from a tv show, we push it to this tvshow item
                         Dictionary<string, string> showInfoDictionary = TitleDecrapifier.tvShowEpisodeInfoFromString(storageFile.DisplayName);
                         bool isTvShow = showInfoDictionary != null && showInfoDictionary.Count > 0;
 
-                        VideoItem mediaVM = !isTvShow ? new VideoItem() : new VideoItem(showInfoDictionary["season"], showInfoDictionary["episode"]);
-                        await mediaVM.Initialize(storageFile);
-                        if (string.IsNullOrEmpty(mediaVM.Title))
-                            continue;
-                        VideoItem searchVideo = Locator.VideoLibraryVM.ViewedVideos.FirstOrDefault(x => x.Title == mediaVM.Title);
-                        if (searchVideo != null)
+                        // Check if we know the file:
+                        //FIXME: We need to check if the files in DB still exist on disk
+                        var mediaVM = await videoRepo.GetFromPath(storageFile.Path).ConfigureAwait(false);
+                        if (mediaVM != null)
                         {
-                            mediaVM.TimeWatched = searchVideo.TimeWatched;
+                            Debug.Assert(isTvShow == mediaVM.IsTvShow);
+                            mediaVM.File = storageFile;
+                            if (isTvShow)
+                                await AddTvShow(showInfoDictionary["tvShowName"], mediaVM);
                         }
-
-                        if (isTvShow)
+                        else
                         {
-#if WINDOWS_APP
-                            if (Locator.VideoLibraryVM.Panels.Count == 1)
+                            // Analyse to see if it's a tv show
+                            // if the file is from a tv show, we push it to this tvshow item
+
+                            mediaVM = !isTvShow ? new VideoItem() : new VideoItem(showInfoDictionary["season"], showInfoDictionary["episode"]);
+                            await mediaVM.Initialize(storageFile);
+                            if (string.IsNullOrEmpty(mediaVM.Title))
+                                continue;
+                            VideoItem searchVideo = Locator.VideoLibraryVM.ViewedVideos.FirstOrDefault(x => x.Title == mediaVM.Title);
+                            if (searchVideo != null)
                             {
-                                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                                    Locator.VideoLibraryVM.Panels.Add(new Panel(resourceLoader.GetString("Shows"), 1, 0.4, null)));
+                                mediaVM.TimeWatched = searchVideo.TimeWatched;
                             }
-#endif
-                            TvShow show = Locator.VideoLibraryVM.Shows.FirstOrDefault(x => x.ShowTitle == showInfoDictionary["tvShowName"]);
-                            if (show == null)
+
+                            if (isTvShow)
                             {
-                                show = new TvShow(showInfoDictionary["tvShowName"]);
-                                await DispatchHelper.InvokeAsync(() =>
-                                {
-                                    show.Episodes.Add(mediaVM as VideoItem);
-                                    Locator.VideoLibraryVM.Shows.Add(show);
-                                    if (Locator.VideoLibraryVM.Shows.Count == 1)
-                                        Locator.VideoLibraryVM.CurrentShow = Locator.VideoLibraryVM.Shows[0];
-                                });
+                                await AddTvShow(showInfoDictionary["tvShowName"], mediaVM);
                             }
-                            else
-                            {
-                                await DispatchHelper.InvokeAsync(() =>
-                                show.Episodes.Add(mediaVM as VideoItem));
-                            }
+                            await videoRepo.Insert(mediaVM);
                         }
                         // Get back to UI thread
                         await DispatchHelper.InvokeAsync(() =>
@@ -240,6 +233,34 @@ namespace VLC_WINRT_APP.Helpers.VideoLibrary
                     StatusBarHelper.SetDefaultForPage(App.ApplicationFrame.SourcePageType);
             });
 #endif
+        }
+
+        public static async Task AddTvShow(String name, VideoItem episode)
+        {
+#if WINDOWS_APP
+            if (Locator.VideoLibraryVM.Panels.Count == 1)
+            {
+                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                    Locator.VideoLibraryVM.Panels.Add(new Panel(resourceLoader.GetString("Shows"), 1, 0.4, null)));
+            }
+#endif
+            TvShow show = Locator.VideoLibraryVM.Shows.FirstOrDefault(x => x.ShowTitle == name);
+            if (show == null)
+            {
+                show = new TvShow(name);
+                await DispatchHelper.InvokeAsync(() =>
+                {
+                    show.Episodes.Add(episode);
+                    Locator.VideoLibraryVM.Shows.Add(show);
+                    if (Locator.VideoLibraryVM.Shows.Count == 1)
+                        Locator.VideoLibraryVM.CurrentShow = Locator.VideoLibraryVM.Shows[0];
+                });
+            }
+            else
+            {
+                await DispatchHelper.InvokeAsync(() =>
+                show.Episodes.Add(episode));
+            }
         }
     }
 }

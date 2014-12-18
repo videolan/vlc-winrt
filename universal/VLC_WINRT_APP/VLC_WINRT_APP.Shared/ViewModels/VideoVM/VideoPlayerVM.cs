@@ -21,6 +21,7 @@ using VLC_WINRT_APP.Services.RunTime;
 using VLC_WINRT_APP.Views.MainPages;
 using VLC_WINRT_APP.Helpers;
 using libVLCX;
+using System.Diagnostics;
 #if WINDOWS_APP
 using libVLCX;
 #endif
@@ -135,8 +136,6 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
         #endregion
 
         #region public fields
-        public LastVideosRepository _lastVideosRepository = new LastVideosRepository();
-
 
         public List<DictionaryKeyValue> AudioTracks
         {
@@ -164,9 +163,6 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             _setAudioTrackCommand = new SetAudioTrackCommand();
             _openSubtitleCommand = new OpenSubtitleCommand();
             _goBackCommand = new StopVideoCommand();
-            _lastVideosRepository.Load().ContinueWith((t) => {
-                LogHelper.Log(t);
-            }, TaskContinuationOptions.OnlyOnFaulted);
         }
         #endregion
 
@@ -248,7 +244,13 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
                 await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => CurrentAudioTrack = null);
         }
 
-        public async Task SetActiveVideoInfo(string mrl, bool isStream = false)
+        public Task SetActiveVideoInfo(VideoItem media)
+        {
+            Debug.Assert(media != null);
+            return SetActiveVideoInfo(media, media.Token);
+        }
+
+        public async Task SetActiveVideoInfo(VideoItem media, String mrl)
         {
             // Pause the music viewmodel
             Locator.MusicPlayerVM.CleanViewModel();
@@ -257,8 +259,11 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             OnPropertyChanged("IsRunning");
             IsPlaying = true;
             OnPropertyChanged("IsPlaying");
-            _fileToken = mrl;
-            _mrl = (isStream) ? mrl : "file://" + mrl;
+
+            if (media != null)
+                _mrl = "file://" + media.Token;
+            else
+                 _mrl = mrl;
 
             _timeTotal = TimeSpan.Zero;
 
@@ -268,19 +273,8 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             em.OnTrackDeleted += OnTrackDeleted;
             _mediaService.Play();
 
-
-            VideoItem media = await _lastVideosRepository.LoadViaToken(_fileToken);
-            if (media == null)
-            {
-                if (CurrentVideo != null && CurrentVideo.Duration > TimeSpan.FromMinutes(1))
-                {
-                    await _lastVideosRepository.Add(CurrentVideo);
-                }
-            }
-            else
-            {
+            if (media != null && media.TimeWatched != null)
                 Time = (Int64)media.TimeWatched.TotalMilliseconds;
-            }
 
             SpeedRate = 100;
             await _mediaService.SetMediaTransportControlsInfo(CurrentVideo != null ? CurrentVideo.Title : "Video");
@@ -289,7 +283,8 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
 
         protected override async void OnEndReached()
         {
-            await _lastVideosRepository.Remove(CurrentVideo);
+            CurrentVideo.TimeWatched = TimeSpan.Zero;
+            await Locator.VideoLibraryVM.VideoRepository.Update(CurrentVideo).ConfigureAwait(false);
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
             {
                 if (App.ApplicationFrame.CanGoBack)
@@ -301,7 +296,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
 #else
                     Locator.MainVM.GoToPanelCommand.Execute(0);
 #endif
-                    }
+                }
                 Locator.VideoVm.IsRunning = false;
                 OnPropertyChanged("PlayingType");
             });
@@ -315,13 +310,12 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             base.OnStopped();
         }
 
-        public void UpdatePosition()
+        public async Task UpdatePosition()
         {
             if (CurrentVideo != null)
             {
                 CurrentVideo.TimeWatched = TimeSpan.FromMilliseconds(Time);
-                CurrentVideo.Duration = TimeTotal;
-                _lastVideosRepository.Update(CurrentVideo);
+                await Locator.VideoLibraryVM.VideoRepository.Update(CurrentVideo).ConfigureAwait(false);
             }
         }
 
