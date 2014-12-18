@@ -280,16 +280,6 @@ static void Stop(audio_output_t * p_aout){
 static void Play(audio_output_t * p_aout, block_t * block){
     aout_sys_t *asys = p_aout->sys;
 
-    XAUDIO2_VOICE_STATE state;
-    asys->sourceVoice->GetState(&state, XAUDIO2_VOICE_NOSAMPLESPLAYED);
-
-    while (state.BuffersQueued > MaximumBufferSize)
-    {
-        //Todo: wait for event from callback manager
-        std::this_thread::sleep_for(std::chrono::milliseconds(2));
-        asys->sourceVoice->GetState(&state, XAUDIO2_VOICE_NOSAMPLESPLAYED);
-    }
-
     XAUDIO2_BUFFER playBuffer = { 0 };
     playBuffer.AudioBytes = block->i_buffer;
     playBuffer.pAudioData = block->p_buffer;
