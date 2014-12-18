@@ -33,6 +33,7 @@ using namespace concurrency;
 using namespace Windows::ApplicationModel::Core;
 
 namespace libVLCX {
+    [Windows::Foundation::Metadata::WebHostHidden]
     public ref class Thumbnailer sealed
     {
     public:
