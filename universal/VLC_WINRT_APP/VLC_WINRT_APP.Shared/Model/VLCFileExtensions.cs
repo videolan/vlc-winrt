@@ -82,6 +82,7 @@ namespace VLC_WINRT_APP.Model
             ".wma",
             ".wav",
             ".flac",
+            ".mlp"
         };
 
         public enum VLCFileType
