@@ -34,8 +34,8 @@ enum thumbnail_state{
 
 typedef struct
 {
-    thumbnail_state                       state;
-    task_completion_event<WriteableBitmap^> screenshotCompleteEvent;
+    thumbnail_state                         state;
+    task_completion_event<PreparseResult^>  screenshotCompleteEvent;
     char                                    *thumbData;
     unsigned                                thumbHeight;
     unsigned                                thumbWidth;
@@ -129,14 +129,15 @@ static void Unlock(void *opaque, void *picture, void *const *pixels){
     auto priority = CoreDispatcherPriority::Low;
     dispatcher->RunAsync(priority, ref new DispatchedHandler([=]()
     {
-        WriteableBitmap^ bitmap = CopyToBitmap(sys);
-        sys->screenshotCompleteEvent.set(bitmap);
+        auto res = ref new PreparseResult;
+        res->bitmap = CopyToBitmap(sys);
+        sys->screenshotCompleteEvent.set(res);
         sys->state = THUMB_RENDERED;
         SetEvent(sys->hLock);
     }));
 }
 
-IAsyncOperation<WriteableBitmap^>^ Thumbnailer::TakeScreenshot(Platform::String^ mrl, int width, int height)
+IAsyncOperation<PreparseResult^>^ Thumbnailer::TakeScreenshot(Platform::String^ mrl, int width, int height)
 {
     return concurrency::create_async([&] (concurrency::cancellation_token ct) {
 
@@ -184,7 +185,9 @@ IAsyncOperation<WriteableBitmap^>^ Thumbnailer::TakeScreenshot(Platform::String^
                 libvlc_media_player_set_position(mp, SEEK_POSITION);
             }
 
-            completionTask.then([mp, sys](WriteableBitmap^ bmp){
+            completionTask.then([mp, sys](PreparseResult^ res){
+                if ( res != nullptr )
+                    res->length = libvlc_media_player_get_length(mp);
                 // We rendered at least one frame, no need to check for EOF anymore
                 libvlc_event_detach(sys->eventMgr, libvlc_MediaPlayerEndReached, &onError, sys);
                 libvlc_media_player_stop(mp);

@@ -7,6 +7,7 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
+using libVLCX;
 using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.FileProperties;
@@ -17,6 +18,6 @@ namespace VLC_WINRT_APP.Services.Interface
     public interface IThumbnailService
     {
         Task<StorageItemThumbnail> GetThumbnail(StorageFile file);
-        Task<WriteableBitmap> GetScreenshot(StorageFile file);
+        Task<PreparseResult> GetScreenshot(StorageFile file);
     }
 }

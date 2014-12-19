@@ -225,6 +225,7 @@ namespace VLC_WINRT_APP.Model.Video
         #endregion
 
         #region methods
+        // Returns false is no snapshot generation was required, true otherwise
         public async Task<Boolean> GenerateThumbnail()
         {
             if (HasThumbnail)
@@ -241,7 +242,11 @@ namespace VLC_WINRT_APP.Model.Video
                 // If MF thumbnail generation failed or wasn't supported:
                 if (thumb == null)
                 { 
-                    image = await _thumbsService.GetScreenshot(File).ConfigureAwait(false);
+                    var res = await _thumbsService.GetScreenshot(File).ConfigureAwait(false);
+                    if (res == null)
+                        return true;
+                    image = res.Bitmap();
+                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Duration = TimeSpan.FromMilliseconds(res.Length()));
                 }
                 if (thumb != null || image != null)
                 {

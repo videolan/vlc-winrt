@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Media.Imaging;
 using VLC_WINRT_APP.Services.Interface;
 using Windows.Storage;
 using Windows.Storage.FileProperties;
+using libVLCX;
 
 namespace VLC_WINRT_APP.Services.DesignTime
 {
@@ -27,10 +28,10 @@ namespace VLC_WINRT_APP.Services.DesignTime
             return thumb;
         }
 
-        public Task<WriteableBitmap> GetScreenshot(StorageFile file)
+        public Task<PreparseResult> GetScreenshot(StorageFile file)
         {
-            WriteableBitmap bmp = new WriteableBitmap(400,300);
-            return Task.FromResult(bmp);
+            var res = new PreparseResult();
+            return Task.FromResult(res);
         }
     }
 }

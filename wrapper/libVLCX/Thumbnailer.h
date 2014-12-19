@@ -34,11 +34,23 @@ using namespace Windows::ApplicationModel::Core;
 
 namespace libVLCX {
     [Windows::Foundation::Metadata::WebHostHidden]
+    public ref class PreparseResult sealed
+    {
+    public:
+        PreparseResult() : length(0){}
+        WriteableBitmap^ Bitmap() { return bitmap; }
+        uint64 Length() { return length; }
+    internal:
+        WriteableBitmap^ bitmap;
+        uint64 length;
+    };
+
+    [Windows::Foundation::Metadata::WebHostHidden]
     public ref class Thumbnailer sealed
     {
     public:
                                            Thumbnailer();
-        IAsyncOperation<WriteableBitmap^>^ TakeScreenshot(Platform::String^ mrl, int width, int height);
+        IAsyncOperation<PreparseResult^>^  TakeScreenshot(Platform::String^ mrl, int width, int height);
         virtual                            ~Thumbnailer();
 
     private:
