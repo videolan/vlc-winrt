@@ -283,10 +283,9 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
 
         protected override async void OnEndReached()
         {
-            CurrentVideo.TimeWatched = TimeSpan.Zero;
-            await Locator.VideoLibraryVM.VideoRepository.Update(CurrentVideo).ConfigureAwait(false);
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
             {
+                CurrentVideo.TimeWatched = TimeSpan.Zero;
                 if (App.ApplicationFrame.CanGoBack)
                     App.ApplicationFrame.GoBack();
                 else
@@ -300,6 +299,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
                 Locator.VideoVm.IsRunning = false;
                 OnPropertyChanged("PlayingType");
             });
+            await Locator.VideoLibraryVM.VideoRepository.Update(CurrentVideo).ConfigureAwait(false);
         }
 
         protected override void OnStopped()
