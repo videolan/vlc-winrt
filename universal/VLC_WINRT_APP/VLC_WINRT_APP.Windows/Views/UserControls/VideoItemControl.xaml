@@ -14,7 +14,7 @@
           RequestedTheme="Dark"
           FlyoutBase.AttachedFlyout="{StaticResource VideoInfoFlyout}"
           RightTapped="Grid_RightTapped">
-        <Image Source="{Binding Image}"
+        <Image Source="{Binding ThumbnailPath}"
                Stretch="UniformToFill" />
         <Grid>
             <Grid.Background>

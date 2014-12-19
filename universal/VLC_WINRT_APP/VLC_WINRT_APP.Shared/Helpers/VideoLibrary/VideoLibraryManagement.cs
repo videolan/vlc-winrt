@@ -210,20 +210,24 @@ namespace VLC_WINRT_APP.Helpers.VideoLibrary
 #endif
             await ThreadPool.RunAsync(async (work) =>
             {
+                //FIXME: Group update requests
                 foreach (var videoItem in Locator.VideoLibraryVM.Videos)
                 {
-                    await videoItem.GenerateThumbnail();
+                    if (await videoItem.GenerateThumbnail())
+                        await Locator.VideoLibraryVM.VideoRepository.Update(videoItem);
                 }
                 foreach (var tvShow in Locator.VideoLibraryVM.Shows)
                 {
                     foreach (var videoItem in tvShow.Episodes)
                     {
-                        await videoItem.GenerateThumbnail();
+                        if (await videoItem.GenerateThumbnail())
+                            await Locator.VideoLibraryVM.VideoRepository.Update(videoItem);
                     }
                 }
                 foreach (var videoItem in Locator.VideoLibraryVM.CameraRoll)
                 {
-                    await videoItem.GenerateThumbnail();
+                    if (await videoItem.GenerateThumbnail())
+                        await Locator.VideoLibraryVM.VideoRepository.Update(videoItem);
                 }
             });
 #if WINDOWS_PHONE_APP

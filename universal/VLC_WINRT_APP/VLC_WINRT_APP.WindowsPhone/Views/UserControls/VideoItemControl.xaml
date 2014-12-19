@@ -29,7 +29,7 @@
                    Height="230" />
             <Image Grid.Row="0"
                    x:Name="VideoImage"
-                   Source="{Binding Image}"
+                   Source="{Binding ThumbnailPath}"
                    Stretch="UniformToFill"
                    Height="230"
                    Loaded="ImageVideo_Loaded" />

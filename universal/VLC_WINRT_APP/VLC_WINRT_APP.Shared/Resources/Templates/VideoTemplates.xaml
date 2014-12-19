@@ -28,7 +28,7 @@
             </Grid.ColumnDefinitions>
             <Image Width="190"
                    Height="105"
-                   Source="{Binding Image}"
+                   Source="{Binding ThumbnailPath}"
                    Stretch="UniformToFill"
                    Margin="-6,0,0,0" />
             <TextBlock Grid.Column="2"

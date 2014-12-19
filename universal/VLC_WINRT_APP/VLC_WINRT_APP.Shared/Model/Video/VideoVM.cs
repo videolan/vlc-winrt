@@ -38,7 +38,7 @@ namespace VLC_WINRT_APP.Model.Video
         private bool _favorite;
         private TimeSpan _duration;
         private TimeSpan _timeWatched;
-        private ImageSource _imageBrush;
+        private String _thumbnailPath = "ms-appx:///Assets/NoCover.jpg";
         private StorageFile _file;
         private FavoriteVideoCommand _favoriteVideo;
         private readonly IThumbnailService _thumbsService;
@@ -71,14 +71,13 @@ namespace VLC_WINRT_APP.Model.Video
         [PrimaryKey, AutoIncrement, Column("_id")]
         public int Id { get; set; }
 
-        [Ignore]
-        public ImageSource Image
+        public String ThumbnailPath
         {
             get
             {
-                return _imageBrush;
+                return _thumbnailPath;
             }
-            set { SetProperty(ref _imageBrush, value); }
+            set { SetProperty(ref _thumbnailPath, value); }
         }
 
         [Ignore]
@@ -167,6 +166,8 @@ namespace VLC_WINRT_APP.Model.Video
             set { SetProperty(ref _lastWatched, value); }
         }
 
+        public Boolean HasThumbnail { get; set; }
+
         private string _filePath;
 
         public bool IsTvShow
@@ -224,73 +225,50 @@ namespace VLC_WINRT_APP.Model.Video
         #endregion
 
         #region methods
-        public async Task GenerateThumbnail()
+        public async Task<Boolean> GenerateThumbnail()
         {
+            if (HasThumbnail)
+                return false;
             try
             {
+                WriteableBitmap image = null;
+                StorageItemThumbnail thumb = null;
                 // If file is a mkv, we save the thumbnail in a VideoPic folder so we don't consume CPU and resources each launch
-                StorageFolder videoPic = await ApplicationData.Current.LocalFolder.CreateFolderAsync("videoPic", CreationCollisionOption.OpenIfExists);
                 if (VLCFileExtensions.MFSupported.Contains(File.FileType.ToLower()))
                 {
-                    StorageItemThumbnail thumb = await _thumbsService.GetThumbnail(File);
-                    if (thumb != null)
+                    thumb = await _thumbsService.GetThumbnail(File).ConfigureAwait(false);
+                }
+                // If MF thumbnail generation failed or wasn't supported:
+                if (thumb == null)
+                { 
+                    image = await _thumbsService.GetScreenshot(File).ConfigureAwait(false);
+                }
+                if (thumb != null || image != null)
+                {
+                    // RunAsync won't await on the lambda it receives, so we need to do it ourselves
+                    var tcs = new TaskCompletionSource<bool>();
+                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, new Windows.UI.Core.DispatchedHandler(async () =>
                     {
-                        await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, async () =>
+                        if (thumb != null)
                         {
-                            var image = new BitmapImage();
+                            image = new WriteableBitmap((int)thumb.OriginalWidth, (int)thumb.OriginalHeight);
                             await image.SetSourceAsync(thumb);
-                            Image = image;
-                        });
-                        return;
-                    }
+                        }
+                        StorageFolder videoPic = await ApplicationData.Current.LocalFolder.CreateFolderAsync("videoPic", CreationCollisionOption.OpenIfExists);
+                        var thumbnailFile = await image.SaveToFile(videoPic, Id + ".jpg");
+                        ThumbnailPath = String.Format("ms-appdata:///local/videoPic/{0}.jpg", Id);
+                        tcs.SetResult(true);
+                    }));
+                    await tcs.Task;
                 }
-                // Fall through if MF failed to generate the screenshot, or if the format isn't supported
-                StorageFile videoPicFile = null;
-                bool doesFileExist = false;
-#if WINDOWS_APP
-                videoPicFile = await videoPic.TryGetItemAsync(Id + ".jpg") as StorageFile;
-                if(videoPicFile != null) doesFileExist = true;
-#else
-                doesFileExist = await videoPic.ContainsFileAsync(Id + ".jpg");
-                if (doesFileExist)
-                {
-                    try
-                    {
-                        videoPicFile = await videoPic.GetFileAsync(Id + ".jpg");
-                    }
-                    catch
-                    {
-
-                    }
-                }
-#endif
-                if (doesFileExist)
-                {
-                    IRandomAccessStream stream = await videoPicFile.OpenReadAsync();
-                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
-                    {
-                        var img = new BitmapImage();
-                        img.SetSource(stream);
-                        Image = img;
-                    });
-                }
-                else
-                {
-                    WriteableBitmap screenshot = await _thumbsService.GetScreenshot(File);
-                    if (screenshot != null)
-                    {
-                        await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
-                        {
-                            Image = screenshot;
-                            screenshot.SaveToFile(videoPic, Id + ".jpg");
-                        });
-                    }
-                }
+                HasThumbnail = true;
+                return true;
             }
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.ToString());
             }
+            return false;
         }
 
         private async Task GetTimeInformation()

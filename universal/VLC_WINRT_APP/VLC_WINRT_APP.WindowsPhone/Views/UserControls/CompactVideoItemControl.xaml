@@ -14,7 +14,7 @@
                Stretch="UniformToFill"
                Width="Auto"
                Height="Auto" />
-        <Image Source="{Binding Image}"
+        <Image Source="{Binding ThumbnailPath}"
                Stretch="UniformToFill"
                Width="Auto"
                Height="Auto"
@@ -65,12 +65,7 @@
                 <RowDefinition Height="2" />
             </Grid.RowDefinitions>
             <Image Grid.Row="0"
-                   Source="/Assets/NoCover.jpg"
-                   Stretch="UniformToFill"
-                   Width="Auto"
-                   Height="Auto" />
-            <Image Grid.Row="0"
-                   Source="{Binding Image}"
+                   Source="{Binding ThumbnailPath}"
                    Stretch="UniformToFill"
                    Width="Auto"
                    Height="Auto"
