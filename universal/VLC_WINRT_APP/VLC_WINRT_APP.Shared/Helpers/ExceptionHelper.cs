@@ -12,7 +12,7 @@ namespace VLC_WINRT_APP.Helpers
 {
     public static class ExceptionHelper
     {
-        public static async Task ExceptionLogCheckup() 
+        public static async Task ExceptionLogCheckup()
         {
             if (ApplicationSettingsHelper.Contains("ExceptionLog"))
             {
@@ -49,7 +49,14 @@ namespace VLC_WINRT_APP.Helpers
             stringExceptionBuilder.AppendLine(DateTime.Now.TimeOfDay.ToString());
             stringExceptionBuilder.AppendLine();
             stringExceptionBuilder.AppendLine("Current Page:");
-            stringExceptionBuilder.AppendLine(App.ApplicationFrame.CurrentSourcePageType.FullName);
+            if (App.ApplicationFrame != null && App.ApplicationFrame.CurrentSourcePageType != null)
+            {
+                stringExceptionBuilder.AppendLine(App.ApplicationFrame.CurrentSourcePageType.FullName);
+            }
+            else
+            {
+                stringExceptionBuilder.AppendLine("Null");
+            }
             stringExceptionBuilder.AppendLine();
             stringExceptionBuilder.AppendLine("Exception:");
             stringExceptionBuilder.AppendLine(unhandledExceptionEventArgs.Message.ToString());
