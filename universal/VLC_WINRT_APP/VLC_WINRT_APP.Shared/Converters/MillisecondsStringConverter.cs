@@ -8,6 +8,7 @@
  **********************************************************************/
 
 using System;
+using System.Diagnostics;
 using Windows.UI.Xaml.Data;
 
 namespace VLC_WINRT_APP.Converters
@@ -18,10 +19,21 @@ namespace VLC_WINRT_APP.Converters
         {
             if (value is Int64)
             {
-                TimeSpan time = TimeSpan.FromMilliseconds((Int64) value);
+                var milliseconds = (Int64)value;
+                if (milliseconds >= TimeSpan.MaxValue.TotalMilliseconds)
+                {
+                    //TODO: figure out what could cause this value to exceed MaxValue and cause
+                    //an OverflowException in TimeSpan.FromMilliseconds
+                    if (Debugger.IsAttached)
+                    {
+                        Debugger.Break();
+                    }
+                    return null;
+                }
+
+                TimeSpan time = TimeSpan.FromMilliseconds(milliseconds);
                 if (time.Hours > 0)
                 {
-
                     return String.Format("{0:hh\\:mm\\:ss}", time);
                 }
                 else
