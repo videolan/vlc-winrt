@@ -142,7 +142,7 @@
     <value>Löschen</value>
   </data>
   <data name="CrashReport" xml:space="preserve">
-    <value>"VLC has crashed and made an automatic bug report. Do you allow us to sent it?"</value>
+    <value>VLC ist beim letzten mal abgestürzt und hat einen Fehlerbericht erstellt. Dürfen wir ihn versenden?</value>
   </data>
   <data name="CurrentFeatures.Text" xml:space="preserve">
     <value>Aktuelle Features:</value>
@@ -319,7 +319,7 @@
     <value>DER DANK DES TEAMS GEHT AN</value>
   </data>
   <data name="WeNeedYourHelp" xml:space="preserve">
-    <value>We need your help</value>
+    <value>Wir brauchen deine Hilfe</value>
   </data>
   <data name="Yes" xml:space="preserve">
     <value>Ja</value>

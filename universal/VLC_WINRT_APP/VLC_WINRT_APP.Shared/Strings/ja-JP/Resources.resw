@@ -448,7 +448,7 @@
     <value>検索</value>
   </data>
   <data name="CrashReport" xml:space="preserve">
-    <value>"VLC has crashed and made an automatic bug report. Do you allow us to sent it?"</value>
+    <value>VLC has crashed and made an automatic bug report. Do you allow us to sent it?</value>
   </data>
   <data name="No" xml:space="preserve">
     <value>ノー</value>
