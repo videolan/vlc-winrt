@@ -8,22 +8,19 @@
  **********************************************************************/
 
 using System;
-using System.Runtime.InteropServices;
+using System.Threading.Tasks;
+using VLC_WINRT_APP.ViewModels;
 using Windows.Devices.Input;
 using Windows.Graphics.Display;
+using Windows.Phone.UI.Input;
 using Windows.System;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
-using VLC_WINRT_APP.Helpers;
-using VLC_WINRT_APP.ViewModels;
+using Windows.UI.Xaml.Navigation;
 using WinRTXamlToolkit.Controls.Extensions;
-#if WINDOWS_PHONE_APP
-using Windows.Phone.UI.Input;
-using System.Threading.Tasks;
-#endif
+
 namespace VLC_WINRT_APP.Views.VideoPages
 {
     public sealed partial class VideoPlayerPage : Page
@@ -38,41 +35,7 @@ namespace VLC_WINRT_APP.Views.VideoPages
             InitializeComponent();
         }
 
-        private void Responsive()
-        {
-            var width = Window.Current.Bounds.Width;
-#if WINDOWS_APP
-            if (width < 550)
-            {
-                LeftButtons.Visibility = Visibility.Collapsed;
-                RightButtons.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                LeftButtons.Visibility = Visibility.Visible;
-                RightButtons.Visibility = Visibility.Visible;
-            }
-#else
-            VolumeSlider.Visibility = Visibility.Collapsed;
-            if (width <= 400 && DisplayHelper.IsPortrait())
-            {
-                LockToggleButton.Margin = new Thickness(12, 0, 0, 0);
-                MenuButton.Margin = new Thickness(12, 0, 0, 0);
-            }
-            else
-            {
-                LockToggleButton.Margin = new Thickness(42, 0, 0, 0);
-                MenuButton.Margin = new Thickness(42, 0, 0, 0);
-            }
-#endif
-        }
-
-        private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
-        {
-            Responsive();
-        }
-
-        protected override async void OnNavigatedTo(Windows.UI.Xaml.Navigation.NavigationEventArgs e)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
 
@@ -80,17 +43,11 @@ namespace VLC_WINRT_APP.Views.VideoPages
             timer.Interval = TimeSpan.FromSeconds(5);
             timer.Tick += TimerOnTick;
             timer.Start();
-            this.SizeChanged += OnSizeChanged;
-            Window.Current.Content.AddHandler(KeyDownEvent, new KeyEventHandler(KeyPressedDown), true);
-            Responsive();
-#if WINDOWS_PHONE_APP
             HardwareButtons.BackPressed += HardwareButtonsOnBackPressed;
             StatusBar sB = StatusBar.GetForCurrentView();
             await sB.HideAsync();
-#endif
         }
 
-#if WINDOWS_PHONE_APP
         private async void HardwareButtonsOnBackPressed(object sender, BackPressedEventArgs backPressedEventArgs)
         {
             backPressedEventArgs.Handled = true;
@@ -104,27 +61,12 @@ namespace VLC_WINRT_APP.Views.VideoPages
                 DisplayInformation.AutoRotationPreferences = DisplayOrientations.None;
             }
         }
-#endif
-        protected override async void OnNavigatingFrom(Windows.UI.Xaml.Navigation.NavigatingCancelEventArgs e)
+
+        protected override async void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
             base.OnNavigatingFrom(e);
-            Window.Current.Content.RemoveHandler(KeyDownEvent, new KeyEventHandler(KeyPressedDown));
-            this.SizeChanged -= OnSizeChanged;
-#if WINDOWS_PHONE_APP
             HardwareButtons.BackPressed -= HardwareButtonsOnBackPressed;
-#endif
         }
-
-
-        private void KeyPressedDown(object sender, KeyRoutedEventArgs e)
-        {
-            if (e.Key == VirtualKey.Space)
-            {
-                Locator.VideoVm.PlayOrPauseCommand.Execute("");
-            }
-        }
-
-
 
         private async void VideoGrid_Tapped(object sender, TappedRoutedEventArgs e)
         {
@@ -166,35 +108,10 @@ namespace VLC_WINRT_APP.Views.VideoPages
             isVisible = !isVisible;
         }
 
-        private void ControlsGrid_PointerMoved(object sender, PointerRoutedEventArgs e)
-        {
-#if WINDOWS_APP
-            if (timer == null)
-                timer = new DispatcherTimer();
-
-            if (timer.IsEnabled)
-            {
-                timer.Stop();
-                timer.Start();
-            }
-            else
-            {
-                DisplayOrHide();
-            }   
-#endif
-        }
-
         private void EnableDoubleTapToShowCommands_Click(object sender, RoutedEventArgs e)
         {
             needDoubleTapToAct = !needDoubleTapToAct;
             timer.Start();
-        }
-
-        private void Flyout_Opening(object sender, object e)
-        {
-#if WINDOWS_PHONE_APP
-            (sender as Flyout).Placement = FlyoutPlacementMode.Full;
-#endif
         }
 
         private void ControlsGrid_ManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
@@ -210,19 +127,6 @@ namespace VLC_WINRT_APP.Views.VideoPages
             {
                 Locator.VideoVm.SkipBack.Execute(null);
                 e.Handled = true;
-            }
-        }
-
-        private void ControlsGrid_ManipulationStarted(object sender, ManipulationStartedRoutedEventArgs e)
-        {
-
-        }
-
-        private void LockToggleButton_OnLoaded(object sender, RoutedEventArgs e)
-        {
-            if (!CapabilitiesHelper.IsTouchCapable)
-            {
-                LockToggleButton.Visibility = Visibility.Collapsed;
             }
         }
     }
