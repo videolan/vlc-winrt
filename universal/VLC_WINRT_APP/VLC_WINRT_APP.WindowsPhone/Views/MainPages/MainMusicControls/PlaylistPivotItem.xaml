@@ -13,11 +13,16 @@
 
     <Grid Margin="0,-12,0,0">
         <Grid.RowDefinitions>
-            <RowDefinition Height="60" />
+            <RowDefinition Height="64" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <Grid DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}">
-            <ComboBox ItemsSource="{Binding MusicViewCollection}"
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <ComboBox DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}"
+                      ItemsSource="{Binding MusicViewCollection}"
                       SelectedItem="{Binding MusicView, Mode=TwoWay}"
                       BorderThickness="1"
                       BorderBrush="{StaticResource MainColor}"
@@ -29,6 +34,14 @@
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
+
+            <AppBarButton Grid.Column="1"
+                          x:Uid="NewPlaylist"
+                          Label="new playlist"
+                          Icon="Add"
+                          Style="{StaticResource AppBarButtonStyleHorizontal}"
+                          Command="{Binding ShowCreateNewPlaylistPaneCommand}"
+                          Margin="0,0,12,0" />
         </Grid>
         <ListView Grid.Row="1"
                   ItemsSource="{Binding TrackCollections}"
