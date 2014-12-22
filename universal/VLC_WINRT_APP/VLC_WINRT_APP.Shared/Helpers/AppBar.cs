@@ -168,6 +168,45 @@ namespace VLC_WINRT_APP.Helpers
                         CommandParameter = Locator.MusicLibraryVM.CurrentArtist
                     });
                 }
+                else if (page == typeof (PlaylistPage))
+                {
+                    //primarycommands
+                    var deleteBut = new AppBarButton()
+                    {
+                        Icon = new SymbolIcon(Symbol.Delete),
+                        Label = "remove track",
+                        Name = "deletebutton",
+                        Command = Locator.MusicLibraryVM.DeleteSelectedTracksInPlaylistCommand
+                    };
+
+                    var deleteButBind = new Binding()
+                    {
+                        Source = Locator.MusicLibraryVM.CurrentTrackCollection,
+                        Converter = App.Current.Resources["NegatedCountToVisibilityConverter"] as IValueConverter,
+                        UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged,
+                        Path = new PropertyPath("SelectedTracks.Count")
+                    };
+                    deleteBut.SetBinding(AppBarButton.VisibilityProperty, deleteButBind);
+
+                    var playBut = new AppBarButton()
+                    {
+                        Name = "playbutton",
+                        Icon = new SymbolIcon(Symbol.Play),
+                        Label = "play",
+                        Command = Locator.MusicLibraryVM.CurrentTrackCollection.PlayTrackCollCommand,
+                        CommandParameter = Locator.MusicLibraryVM.CurrentTrackCollection
+                    };
+                    // secondary commands
+                    var deleteplaylistbutton = new AppBarButton()
+                    {
+                        Icon = new SymbolIcon(Symbol.Remove),
+                        Label = "delete playlist",
+                        Command = Locator.MusicLibraryVM.DeletePlaylistCommand
+                    };
+                    appbarEl.Add(playBut);
+                    appbarEl.Add(deleteBut);
+                    appbarEl.Add(deleteplaylistbutton);
+                }
                 Locator.MainVM.AppBarElements = appbarEl;
             });
         }

@@ -42,49 +42,20 @@ namespace VLC_WINRT_APP.Views.MusicPages
 
         private void PlayListView_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var selectedItems = (sender as ListView).SelectedItems;
-            if (selectedItems != null && selectedItems.Count > 0)
+            if (e.AddedItems != null && e.AddedItems.Any())
             {
-                DeleteButton.Visibility = Visibility.Visible;
-                PlayButton.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                PlayButton.Visibility = Visibility.Visible;
-                DeleteButton.Visibility = Visibility.Collapsed;
-            }
-        }
-
-        private async void DeleteButton_OnClick(object sender, RoutedEventArgs e)
-        {
-            foreach (var selectedItem in PlayListView.SelectedItems)
-            {
-                var trackItem = selectedItem as TrackItem;
-                if (trackItem == null) continue;
-                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+                foreach (var addedItem in e.AddedItems)
                 {
-                    try
-                    {
-                        await
-                            MusicLibraryVM.TracklistItemRepository.Remove(trackItem.Id,
-                                Locator.MusicLibraryVM.CurrentTrackCollection.Id);
-
-                        Locator.MusicLibraryVM.CurrentTrackCollection.Playlist.Remove(trackItem);
-                    }
-                    catch (Exception exception)
-                    {
-                        LogHelper.Log(exception);
-                    }
-                });
+                    Locator.MusicLibraryVM.CurrentTrackCollection.SelectedTracks.Add(addedItem as TrackItem);
+                }
             }
-            DeleteButton.Visibility = Visibility.Collapsed;
-            PlayButton.Visibility = Visibility.Visible;
-        }
-
-        private async void DeletePlaylistButton_Click(object sender, RoutedEventArgs e)
-        {
-            await MusicLibraryManagement.DeletePlaylist(Locator.MusicLibraryVM.CurrentTrackCollection);
-            App.ApplicationFrame.GoBack();
+            if (e.RemovedItems != null && e.RemovedItems.Any())
+            {
+                foreach (var removedItem in e.RemovedItems)
+                {
+                    Locator.MusicLibraryVM.CurrentTrackCollection.SelectedTracks.Remove(removedItem as TrackItem);
+                }
+            }
         }
     }
 }

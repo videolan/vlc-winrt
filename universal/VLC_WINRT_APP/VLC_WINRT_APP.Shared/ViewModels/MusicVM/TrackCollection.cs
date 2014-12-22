@@ -27,6 +27,9 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         private PlayTrackCollCommand _playTrackCollCommand;
         private bool _isShuffled;
 
+        // ui related management
+        private ObservableCollection<TrackItem> _selectedTracks;
+
         [PrimaryKey, AutoIncrement, Column("_id")]
         public int Id { get; set; }
 
@@ -101,6 +104,13 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         {
             get { return _nonShuffledPlaylist; }
             set { SetProperty(ref _nonShuffledPlaylist, value); }
+        }
+
+        [Ignore]
+        public ObservableCollection<TrackItem> SelectedTracks
+        {
+            get { return _selectedTracks ?? (_selectedTracks = new ObservableCollection<TrackItem>()); }
+            set { SetProperty(ref _selectedTracks, value); }
         }
 
         #endregion

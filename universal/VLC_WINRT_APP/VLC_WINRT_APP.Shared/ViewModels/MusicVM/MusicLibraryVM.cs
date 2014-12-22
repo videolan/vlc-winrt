@@ -68,6 +68,9 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         private PlayAllRandomCommand _playAllRandomCommand;
         private OpenAddAlbumToPlaylistDialog _openAddAlbumToPlaylistDialogCommand;
         private BingLocationShowCommand _bingLocationShowCommand;
+        private DeletePlaylistCommand _deletePlaylistCommand;
+        private DeleteSelectedTracksInPlaylistCommand _deleteSelectedTracksInPlaylistCommand;
+
         private AlbumItem _currentAlbum;
         private ArtistItem _currentArtist;
         private TrackCollection _currentTrackCollection;
@@ -276,6 +279,17 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         }
 
         public BingLocationShowCommand BingLocationShowCommand { get { return _bingLocationShowCommand ?? (_bingLocationShowCommand = new BingLocationShowCommand()); } }
+
+        public DeletePlaylistCommand DeletePlaylistCommand
+        {
+            get { return _deletePlaylistCommand ?? (_deletePlaylistCommand = new DeletePlaylistCommand()); }
+        }
+
+        public DeleteSelectedTracksInPlaylistCommand DeleteSelectedTracksInPlaylistCommand
+        {
+            get { return _deleteSelectedTracksInPlaylistCommand ?? (_deleteSelectedTracksInPlaylistCommand = new DeleteSelectedTracksInPlaylistCommand());}
+        }
+
         public ArtistItem CurrentArtist
         {
             get

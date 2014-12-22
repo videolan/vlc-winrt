@@ -34,25 +34,4 @@
             </ListView.ItemsPanel>
         </ListView>
     </Grid>
-
-    <Page.BottomAppBar>
-        <CommandBar Style="{StaticResource VLCCommandBarStyle}">
-            <CommandBar.PrimaryCommands>
-            <AppBarButton Icon="Delete"
-                          Label="remove track"
-                          x:Name="DeleteButton"
-                          Click="DeleteButton_OnClick"
-                          Visibility="Collapsed" />
-                <AppBarButton x:Name="PlayButton"
-                              Icon="Play"
-                              Label="play"
-                              Command="{Binding CurrentTrackCollection.PlayTrackCollCommand}"
-                              CommandParameter="{Binding CurrentTrackCollection}" />
-            </CommandBar.PrimaryCommands>
-            <CommandBar.SecondaryCommands>
-                <AppBarButton Label="delete playlist"
-                              Click="DeletePlaylistButton_Click"/>
-            </CommandBar.SecondaryCommands>
-        </CommandBar>
-    </Page.BottomAppBar>
 </Page>

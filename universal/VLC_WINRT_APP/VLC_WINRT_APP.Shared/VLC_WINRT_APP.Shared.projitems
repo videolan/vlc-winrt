@@ -33,6 +33,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Music\BingLocationShowCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Music\ChangeAlbumArtCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Music\ChangeAlbumOrderCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\Music\DeletePlaylistCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\Music\DeleteSelectedTracksInPlaylistCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Music\DownloadAlbumArtCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Music\FavoriteAlbumCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Music\FavoriteTrackCommand.cs" />
