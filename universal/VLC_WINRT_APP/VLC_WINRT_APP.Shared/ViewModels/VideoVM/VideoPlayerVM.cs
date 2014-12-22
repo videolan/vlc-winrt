@@ -208,21 +208,20 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
                 source = _mediaService.MediaPlayer.spuDescription();
             }
 
+            target.Clear();
             foreach (var t in source)
             {
-                if (t.id() == trackId)
+                target.Add(new DictionaryKeyValue()
                 {
-                    target.Add(new DictionaryKeyValue()
-                    {
-                        Id = t.id(),
-                        Name = t.name(),
-                    });
-                }
+                    Id = t.id(),
+                    Name = t.name(),
+                });
             }
-            if (type == TrackType.Subtitle && CurrentSubtitle == null && _subtitlesTracks.Count != 0)
-                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => CurrentSubtitle = _subtitlesTracks[0]);
-            else if (type == TrackType.Audio && CurrentAudioTrack == null && _audioTracks.Count != 0)
-                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => CurrentAudioTrack = _audioTracks[0]);
+            // This assumes we have a "Disable" track for both subtitles & audio
+            if (type == TrackType.Subtitle && CurrentSubtitle == null && _subtitlesTracks.Count > 1)
+                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => CurrentSubtitle = _subtitlesTracks[1]);
+            else if (type == TrackType.Audio && CurrentAudioTrack == null && _audioTracks.Count > 1)
+                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => CurrentAudioTrack = _audioTracks[1]);
         }
 
         private async void OnTrackDeleted(TrackType type, int trackId)
