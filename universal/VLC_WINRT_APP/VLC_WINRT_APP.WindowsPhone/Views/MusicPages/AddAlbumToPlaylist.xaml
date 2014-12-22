@@ -8,7 +8,7 @@
                xmlns:placeholder="using:VLC_WINRT_APP.Views.UserControls.Placeholder"
                mc:Ignorable="d"
                Title="ADD TO PLAYLIST"
-               PrimaryButtonText="ok"
+               PrimaryButtonText="add to playlist"
                SecondaryButtonText="cancel"
                PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
                SecondaryButtonClick="ContentDialog_SecondaryButtonClick"
@@ -38,12 +38,6 @@
                   Margin="24,0,0,0"
                   ItemTemplate="{StaticResource PhoneTrackCollectionTemplate}"
                   ItemContainerStyle="{StaticResource HorizontalListViewItemStyle}">
-            <triggers:Interactions.Triggers>
-                <triggers:EventTrigger EventName="SelectionChanged">
-                    <triggers:InvokeCommandAction Command="{Binding AddToPlaylistCommand}"
-                                                  CommandParameter="{Binding CurrentAlbum}" />
-                </triggers:EventTrigger>
-            </triggers:Interactions.Triggers>
         </ListView>
         <placeholder:NoPlaylistPlaceholder Grid.Row="1"
                                            Visibility="{Binding TrackCollections.Count, Converter={StaticResource CountToVisibilityConverter}}"

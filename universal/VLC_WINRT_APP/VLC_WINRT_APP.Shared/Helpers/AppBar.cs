@@ -178,7 +178,6 @@ namespace VLC_WINRT_APP.Helpers
                         Name = "deletebutton",
                         Command = Locator.MusicLibraryVM.DeleteSelectedTracksInPlaylistCommand
                     };
-
                     var deleteButBind = new Binding()
                     {
                         Source = Locator.MusicLibraryVM.CurrentTrackCollection,

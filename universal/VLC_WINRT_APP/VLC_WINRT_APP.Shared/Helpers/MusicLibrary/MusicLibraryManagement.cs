@@ -352,9 +352,15 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
 
         public static async Task AddToPlaylist(AlbumItem albumItem)
         {
+            var playlistId = Locator.MusicLibraryVM.CurrentTrackCollection.Id;
             foreach (TrackItem trackItem in albumItem.Tracks)
             {
-                await AddToPlaylist(trackItem, false);
+                Locator.MusicLibraryVM.CurrentTrackCollection.Playlist.Add(trackItem);
+                await MusicLibraryVM.TracklistItemRepository.Add(new TracklistItem()
+                {
+                    TrackId = trackItem.Id,
+                    TrackCollectionId = playlistId,
+                });
             }
             ToastHelper.Basic(albumItem.Name + " added to your playlist");
         }

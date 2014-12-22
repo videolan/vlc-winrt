@@ -1,6 +1,7 @@
 ﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using VLC_WINRT_APP.Helpers.MusicLibrary;
+using VLC_WINRT_APP.ViewModels;
 
 namespace VLC_WINRT_APP.Views.MusicPages
 {
@@ -13,6 +14,7 @@ namespace VLC_WINRT_APP.Views.MusicPages
 
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
+            Locator.MusicLibraryVM.AddToPlaylistCommand.Execute(Locator.MusicLibraryVM.CurrentAlbum);
         }
 
         private void ContentDialog_SecondaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
