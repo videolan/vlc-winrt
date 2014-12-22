@@ -49,12 +49,12 @@ Thumbnailer::Thumbnailer()
 {
     const char *argv [] = {
         "-I", "dummy",            // Only use options needed for snapshots
-        "--vout", "dummy",
         "--no-osd",
         "--verbose=5",
         "--no-video-title-show",
         "--no-stats",
-        "--no-audio"
+        "--no-audio",
+        "--no-spu"
     };
     p_instance = libvlc_new(sizeof(argv) / sizeof(*argv), argv);
     if (!p_instance) {
