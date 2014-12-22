@@ -161,7 +161,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             LoadingState = LoadingState.Loading;
             await VideoLibraryManagement.GetViewedVideos();
             await VideoLibraryManagement.GetVideos(VideoRepository);
-            await VideoLibraryManagement.GetVideosFromCameraRoll();
+            await VideoLibraryManagement.GetVideosFromCameraRoll(VideoRepository);
             await VideoLibraryManagement.GenerateAllThumbnails();
         }
         #endregion

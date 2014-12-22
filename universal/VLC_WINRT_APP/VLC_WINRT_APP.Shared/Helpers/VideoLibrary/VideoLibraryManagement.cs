@@ -48,6 +48,62 @@ namespace VLC_WINRT_APP.Helpers.VideoLibrary
             }
         }
 
+        private static async Task AddVideo(VideoRepository videoRepo, IReadOnlyList<StorageFile> files, bool isCameraRoll)
+        {
+            foreach (StorageFile storageFile in files)
+            {
+                Dictionary<string, string> showInfoDictionary = isCameraRoll ? null : TitleDecrapifier.tvShowEpisodeInfoFromString(storageFile.DisplayName);
+                bool isTvShow = showInfoDictionary != null && showInfoDictionary.Count > 0;
+
+                // Check if we know the file:
+                //FIXME: We need to check if the files in DB still exist on disk
+                var mediaVM = await videoRepo.GetFromPath(storageFile.Path).ConfigureAwait(false);
+                if (mediaVM != null)
+                {
+                    Debug.Assert(isTvShow == mediaVM.IsTvShow);
+                    mediaVM.File = storageFile;
+                    if (isTvShow)
+                        await AddTvShow(showInfoDictionary["tvShowName"], mediaVM);
+                }
+                else
+                {
+                    // Analyse to see if it's a tv show
+                    // if the file is from a tv show, we push it to this tvshow item
+
+                    mediaVM = !isTvShow ? new VideoItem() : new VideoItem(showInfoDictionary["season"], showInfoDictionary["episode"]);
+                    await mediaVM.Initialize(storageFile);
+                    mediaVM.IsCameraRoll = isCameraRoll;
+                    if (string.IsNullOrEmpty(mediaVM.Title))
+                        continue;
+                    VideoItem searchVideo = Locator.VideoLibraryVM.ViewedVideos.FirstOrDefault(x => x.Title == mediaVM.Title);
+                    if (searchVideo != null)
+                    {
+                        mediaVM.TimeWatched = searchVideo.TimeWatched;
+                    }
+
+                    if (isTvShow)
+                        await AddTvShow(showInfoDictionary["tvShowName"], mediaVM);
+                    await videoRepo.Insert(mediaVM);
+                }
+                // Get back to UI thread
+                await DispatchHelper.InvokeAsync(() =>
+                {
+                    if (mediaVM.IsCameraRoll)
+                    {
+                        Locator.VideoLibraryVM.CameraRoll.Add(mediaVM);
+                    }
+                    else if (!mediaVM.IsTvShow)
+                    {
+                        Locator.VideoLibraryVM.Videos.Add(mediaVM);
+                    }
+                    //#if WINDOWS_APP
+                    if (Locator.VideoLibraryVM.ViewedVideos.Count < 6 && Locator.VideoLibraryVM.ViewedVideos.FirstOrDefault(x => x.FilePath == mediaVM.FilePath && x.TimeWatched == TimeSpan.Zero) == null)
+                        Locator.VideoLibraryVM.ViewedVideos.Add(mediaVM);
+                    //#endif
+                });
+            }
+        }
+
         public static async Task GetVideos(VideoRepository videoRepo)
         {
             var resourceLoader = new ResourceLoader();
@@ -61,56 +117,7 @@ namespace VLC_WINRT_APP.Helpers.VideoLibrary
                 try
                 {
                     IReadOnlyList<StorageFile> files = await GetMediaFromFolder(storageFolder);
-
-                    foreach (StorageFile storageFile in files)
-                    {
-                        Dictionary<string, string> showInfoDictionary = TitleDecrapifier.tvShowEpisodeInfoFromString(storageFile.DisplayName);
-                        bool isTvShow = showInfoDictionary != null && showInfoDictionary.Count > 0;
-
-                        // Check if we know the file:
-                        //FIXME: We need to check if the files in DB still exist on disk
-                        var mediaVM = await videoRepo.GetFromPath(storageFile.Path).ConfigureAwait(false);
-                        if (mediaVM != null)
-                        {
-                            Debug.Assert(isTvShow == mediaVM.IsTvShow);
-                            mediaVM.File = storageFile;
-                            if (isTvShow)
-                                await AddTvShow(showInfoDictionary["tvShowName"], mediaVM);
-                        }
-                        else
-                        {
-                            // Analyse to see if it's a tv show
-                            // if the file is from a tv show, we push it to this tvshow item
-
-                            mediaVM = !isTvShow ? new VideoItem() : new VideoItem(showInfoDictionary["season"], showInfoDictionary["episode"]);
-                            await mediaVM.Initialize(storageFile);
-                            if (string.IsNullOrEmpty(mediaVM.Title))
-                                continue;
-                            VideoItem searchVideo = Locator.VideoLibraryVM.ViewedVideos.FirstOrDefault(x => x.Title == mediaVM.Title);
-                            if (searchVideo != null)
-                            {
-                                mediaVM.TimeWatched = searchVideo.TimeWatched;
-                            }
-
-                            if (isTvShow)
-                            {
-                                await AddTvShow(showInfoDictionary["tvShowName"], mediaVM);
-                            }
-                            await videoRepo.Insert(mediaVM);
-                        }
-                        // Get back to UI thread
-                        await DispatchHelper.InvokeAsync(() =>
-                        {
-                            if (!isTvShow)
-                            {
-                                Locator.VideoLibraryVM.Videos.Add(mediaVM);
-                            }
-                            //#if WINDOWS_APP
-                            if (Locator.VideoLibraryVM.ViewedVideos.Count < 6 && Locator.VideoLibraryVM.ViewedVideos.FirstOrDefault(x => x.FilePath == mediaVM.FilePath && x.TimeWatched == TimeSpan.Zero) == null)
-                                Locator.VideoLibraryVM.ViewedVideos.Add(mediaVM);
-                            //#endif
-                        });
-                    }
+                    await AddVideo(videoRepo, files, false);
                 }
                 catch
                 {
@@ -127,19 +134,12 @@ namespace VLC_WINRT_APP.Helpers.VideoLibrary
             }
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
             {
-
-                //if (NewVideos.Any())
-                //{
-#if WINDOWS_APP
-                //Panels.Add(new Panel("new", 1, 0.4, App.Current.Resources["HomePath"].ToString()));
-#endif
-                //}
                 Locator.VideoLibraryVM.LoadingState = LoadingState.Loaded;
             });
 
         }
 
-        public static async Task GetVideosFromCameraRoll()
+        public static async Task GetVideosFromCameraRoll(VideoRepository videoRepo)
         {
             try
             {
@@ -147,17 +147,7 @@ namespace VLC_WINRT_APP.Helpers.VideoLibrary
                 {
                     var cameraRoll = await KnownFolders.PicturesLibrary.GetFolderAsync("Camera Roll");
                     var videos = await GetMediaFromFolder(cameraRoll);
-                    foreach (var storageFile in videos)
-                    {
-                        var mediaVM = new VideoItem();
-                        await mediaVM.Initialize(storageFile);
-                        if (string.IsNullOrEmpty(mediaVM.Title))
-                            continue;
-                        await DispatchHelper.InvokeAsync(() =>
-                        {
-                            Locator.VideoLibraryVM.CameraRoll.Add(mediaVM);
-                        });
-                    }
+                    await AddVideo(videoRepo, videos, true);
                 }
             }
             catch (FileNotFoundException fileNotFoundException)

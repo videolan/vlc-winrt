@@ -168,6 +168,8 @@ namespace VLC_WINRT_APP.Model.Video
 
         public Boolean HasThumbnail { get; set; }
 
+        public Boolean IsCameraRoll { get; set; }
+
         private string _filePath;
 
         public bool IsTvShow
