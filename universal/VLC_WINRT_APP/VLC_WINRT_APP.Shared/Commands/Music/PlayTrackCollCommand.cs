@@ -1,4 +1,5 @@
-﻿using VLC_WINRT.Common;
+﻿using System.Linq;
+using VLC_WINRT.Common;
 using VLC_WINRT_APP.Helpers.MusicPlayer;
 using VLC_WINRT_APP.ViewModels.MusicVM;
 using VLC_WINRT_APP.Views.MusicPages;
@@ -14,6 +15,7 @@ namespace VLC_WINRT_APP.Commands.Music
             {
                 trackCollection = parameter as TrackCollection;
             }
+            if (trackCollection == null || trackCollection.Playlist == null || !trackCollection.Playlist.Any()) return;
             await PlayMusicHelper.AddTrackCollectionToPlaylist(trackCollection);
             if (App.ApplicationFrame.CurrentSourcePageType != typeof (MusicPlayerPage))
                 App.ApplicationFrame.Navigate(typeof (MusicPlayerPage));
