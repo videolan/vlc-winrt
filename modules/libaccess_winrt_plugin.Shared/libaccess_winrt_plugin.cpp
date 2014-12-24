@@ -182,7 +182,7 @@ ssize_t Read(access_t *access, uint8_t *buffer, size_t size)
 
     unsigned int totalRead = 0;
 
-    auto readTask = create_task(p_sys->dataReader->LoadAsync(size)).then([&totalRead, &buffer, p_sys](unsigned int numBytesLoaded)
+    auto readTask = create_task(p_sys->dataReader->LoadAsync(size)).then([&totalRead, buffer, p_sys](unsigned int numBytesLoaded)
     {
         WriteOnlyArray<unsigned char, 1U>^ bufferArray = ref new Array<unsigned char, 1U>(numBytesLoaded);
         p_sys->dataReader->ReadBytes(bufferArray);
