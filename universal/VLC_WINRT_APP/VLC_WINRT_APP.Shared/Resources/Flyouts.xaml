@@ -22,7 +22,8 @@
                     </Grid.ColumnDefinitions>
                     <TextBox x:Uid="EnterAUrl"
                              Name="UrlTextBox"
-                             PlaceholderText="Enter a URL" />
+                             PlaceholderText="Enter a URL"
+                             InputScope="Url" />
                     <Button Grid.Column="1"
                             Style="{StaticResource TextBlockButtonStyle}"
                             HorizontalAlignment="Center"
