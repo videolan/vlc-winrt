@@ -24,6 +24,9 @@
 
 #include "pch.h"
 #include <ppltasks.h>
+#include <wrl.h>
+#include <robuffer.h>
+#include <windows.storage.streams.h>
 
 #ifndef WIN32_LEAN_AND_MEAN
 # define WIN32_LEAN_AND_MEAN /* Exclude rarely-used stuff from Windows headers */
@@ -45,6 +48,7 @@ using namespace Windows::Storage;
 using namespace Windows::Storage::AccessCache;
 using namespace Windows::Storage::Streams;
 using namespace Windows::Foundation;
+using namespace Microsoft::WRL;
 
 #include <vlc_common.h>
 #include <vlc_plugin.h>
@@ -72,12 +76,69 @@ add_shortcut("winrt", "file")
 set_callbacks(&Open, &Close)
 vlc_module_end()
 
+// https://stackoverflow.com/a/12125386
+class RawBuffer : public RuntimeClass<RuntimeClassFlags<RuntimeClassType::WinRtClassicComMix>,
+    ABI::Windows::Storage::Streams::IBuffer,
+    Windows::Storage::Streams::IBufferByteAccess>
+{
+public:
+    virtual ~RawBuffer() = default;
+
+    STDMETHODIMP RuntimeClassInitialize(byte *buffer, UINT totalSize)
+    {
+        m_length = totalSize;
+        m_buffer = buffer;
+
+        return S_OK;
+    }
+
+    STDMETHODIMP SetBuffer(byte* buffer, UINT32 size)
+    {
+        m_length = size;
+        m_buffer = buffer;
+
+        return S_OK;
+    }
+
+    STDMETHODIMP Buffer(byte **value)
+    {
+        *value = m_buffer;
+
+        return S_OK;
+    }
+
+    STDMETHODIMP get_Capacity(UINT32 *value)
+    {
+        *value = m_length;
+
+        return S_OK;
+    }
+
+    STDMETHODIMP get_Length(UINT32 *value)
+    {
+        *value = m_length;
+
+        return S_OK;
+    }
+
+    STDMETHODIMP put_Length(UINT32 value)
+    {
+        m_length = value;
+
+        return S_OK;
+    }
+
+private:
+    byte* m_buffer;
+    UINT32 m_length;
+};
+
 struct access_sys_t
 {
     IRandomAccessStream^   readStream;
-    DataReader^            dataReader;
+    ComPtr<RawBuffer>      rawBuffer;
+    IBuffer^               ibuffer;
 };
-
 
 void Debug(const wchar_t *fmt, ...)
 {
@@ -112,7 +173,6 @@ static int OpenFileAsync(access_sys_t *p_sys, String^ token)
         create_task(newFile->OpenReadAsync())
             .then([p_sys](task<IRandomAccessStreamWithContentType^> task){
             p_sys->readStream = task.get();
-            p_sys->dataReader = ref new DataReader(p_sys->readStream);
         }).wait();
     });
 
@@ -152,6 +212,10 @@ int Open(vlc_object_t *object)
         return VLC_EGENERIC;
     }
 
+    p_sys->rawBuffer = Make<RawBuffer>();
+    auto iinspectable = (IInspectable *)reinterpret_cast<IInspectable *>(p_sys->rawBuffer.Get());
+    p_sys->ibuffer = reinterpret_cast<Streams::IBuffer ^>(iinspectable);
+    
     access->pf_read = &Read;
     access->pf_seek = &Seek;
     access->pf_control = &Control;
@@ -164,30 +228,28 @@ void Close(vlc_object_t *object)
 {
     access_t     *access = (access_t *) object;
     access_sys_t *p_sys = access->p_sys;
-    if( p_sys->dataReader != nullptr ){
-        delete p_sys->dataReader;
-        p_sys->dataReader = nullptr;
-    }
-    if( p_sys->readStream != nullptr ){
-        delete p_sys->readStream;
-        p_sys->readStream = nullptr;
-    }
+    p_sys->readStream = nullptr;
+    p_sys->ibuffer = nullptr;
+    p_sys->rawBuffer = nullptr;
     delete p_sys;
 }
 
 /* */
-ssize_t Read(access_t *access, uint8_t *buffer, size_t size)
+ssize_t Read(access_t *access, uint8_t *nativeBuffer, size_t size)
 {
     access_sys_t *p_sys = access->p_sys;
 
     unsigned int totalRead = 0;
+    p_sys->rawBuffer->SetBuffer(nativeBuffer, size);
 
-    auto readTask = create_task(p_sys->dataReader->LoadAsync(size)).then([&totalRead, buffer, p_sys](unsigned int numBytesLoaded)
+    auto readTask = create_task(p_sys->readStream->ReadAsync(p_sys->ibuffer, size, InputStreamOptions::None)).then([&totalRead, p_sys, nativeBuffer, size](IBuffer ^resultBuff)
     {
-        WriteOnlyArray<unsigned char, 1U>^ bufferArray = ref new Array<unsigned char, 1U>(numBytesLoaded);
-        p_sys->dataReader->ReadBytes(bufferArray);
-        memcpy(buffer, bufferArray->begin(), bufferArray->end() - bufferArray->begin());
-        totalRead = numBytesLoaded;
+        if (resultBuff != p_sys->ibuffer)
+        {
+            auto reader = ::Windows::Storage::Streams::DataReader::FromBuffer(resultBuff);
+            reader->ReadBytes(Platform::ArrayReference<uint8_t>(nativeBuffer, size));
+        }
+        totalRead = resultBuff->Length;
     });
 
     try
@@ -200,7 +262,7 @@ ssize_t Read(access_t *access, uint8_t *buffer, size_t size)
         if( ex->HResult == HRESULT_FROM_WIN32(ERROR_OPLOCK_HANDLE_CLOSED) ){
             if( OpenFileAsync(p_sys, GetString(access->psz_location)) == VLC_SUCCESS ){
                 p_sys->readStream->Seek(access->info.i_pos);
-                return Read(access, buffer, size);
+                return Read(access, nativeBuffer, size);
             }
             OutputDebugString(L"Failed to reopen file");
         }
