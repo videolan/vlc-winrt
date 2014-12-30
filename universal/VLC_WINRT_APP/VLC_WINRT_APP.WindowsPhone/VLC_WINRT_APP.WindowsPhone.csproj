@@ -83,6 +83,9 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="BackgroundHelpers\BackgroundAudioConstants.cs" />
+    <Compile Include="BackgroundHelpers\BackgroundAudioHelper.cs" />
+    <Compile Include="BackgroundHelpers\BackgroundAudioInterface.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\MainPages\MainMusicControls\AlbumsPivotItem.xaml.cs">
       <DependentUpon>AlbumsPivotItem.xaml</DependentUpon>
@@ -1115,7 +1118,12 @@
       <Project>{5d78f68e-c377-449e-a508-5b8e706d0039}</Project>
       <Name>libVLCX.WindowsPhone</Name>
     </ProjectReference>
+    <ProjectReference Include="..\VLC_WINRT_APP.BackgroundAudioPlayer\VLC_WINRT_APP.BackgroundAudioPlayer.csproj">
+      <Project>{6bdaba8a-b559-4007-a17f-42125d3aa7a3}</Project>
+      <Name>VLC_WINRT_APP.BackgroundAudioPlayer</Name>
+    </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>
   </PropertyGroup>
