@@ -38,6 +38,7 @@ namespace VLC_WINRT_APP.Commands.MainPageCommands
 
         public override async void Execute(object parameter)
         {
+#if WINDOWS_APP
             Model.Panel panel = null;
             if (parameter is ItemClickEventArgs)
             {
@@ -56,7 +57,6 @@ namespace VLC_WINRT_APP.Commands.MainPageCommands
             if (panel != null)
             {
                 panel.Color = SelectedColorBrush;
-#if WINDOWS_APP
                 switch (panel.Index)
                 {
                     case 0:
@@ -81,7 +81,6 @@ namespace VLC_WINRT_APP.Commands.MainPageCommands
                         break;
                 }
             }
-#else
 
                 if (App.ApplicationFrame.CurrentSourcePageType != typeof(MainPageHome))
                     App.ApplicationFrame.Navigate(typeof(MainPageHome));
@@ -89,6 +88,22 @@ namespace VLC_WINRT_APP.Commands.MainPageCommands
                     (App.ApplicationFrame.Content as MainPageHome).MainPivot.SelectedIndex = panel.Index);
             }
 
+#else
+            if (App.ApplicationFrame.Content is MainPageHome)
+            {
+                if (App.ApplicationFrame.CurrentSourcePageType != typeof(MainPageHome))
+                    App.ApplicationFrame.Navigate(typeof(MainPageHome));
+                if (parameter is int)
+                {
+                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                        (App.ApplicationFrame.Content as MainPageHome).MainPivot.SelectedIndex = (int)parameter);
+                }
+                else if (parameter is string)
+                {
+                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                        (App.ApplicationFrame.Content as MainPageHome).MainPivot.SelectedIndex = int.Parse(parameter.ToString()));
+                }
+            }
 #endif
 
         }
