@@ -46,6 +46,11 @@
             </SupportedFileTypes>
           </FileOpenPicker>
         </Extension>
+        <Extension Category="windows.backgroundTasks" EntryPoint="VLC_WINRT_APP.BackgroundAudioPlayer.BackgroundPlayer">
+          <BackgroundTasks>
+            <Task Type="audio" />
+          </BackgroundTasks>
+        </Extension>
       </Extensions>
     </Application>
   </Applications>
