@@ -5,7 +5,6 @@ using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using ScrollWatchedSelector;
 
 namespace VLC_WINRT_APP.Views.MusicPages
 {

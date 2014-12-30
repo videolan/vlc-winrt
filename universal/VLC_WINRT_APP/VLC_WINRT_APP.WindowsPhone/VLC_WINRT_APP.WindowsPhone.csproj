@@ -880,9 +880,6 @@
       <HintPath>..\..\..\app\packages\Newtonsoft.Json.6.0.5\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ScrollWatchedSelector">
-      <HintPath>..\..\..\..\..\..\..\Documents\Visual Studio 2013\Projects\ScrollWatchedListView\ScrollWatchedListView\bin\Debug\ScrollWatchedSelector.dll</HintPath>
-    </Reference>
     <Reference Include="WinRT.Triggers">
       <HintPath>..\..\..\app\packages\WinRTTriggers.1.6.0\lib\winrt45\WinRT.Triggers.dll</HintPath>
     </Reference>

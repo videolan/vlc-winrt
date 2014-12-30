@@ -17,29 +17,6 @@
                               x:Name="GroupTracks"
                               IsSourceGrouped="True"
                               Source="{Binding AlphaGroupedTracks}" />
-        <!--<Storyboard x:Name="FadeOutHeader">
-            <DoubleAnimation EnableDependentAnimation="True"
-                             Storyboard.TargetName="HeaderGrid"
-                             Storyboard.TargetProperty="(FrameworkElement.Height)"
-                             To="0">
-                <DoubleAnimation.EasingFunction>
-                    <ExponentialEase EasingMode="EaseOut"
-                                     Exponent="3" />
-                </DoubleAnimation.EasingFunction>
-            </DoubleAnimation>
-        </Storyboard>
-        <Storyboard x:Name="FadeInHeader">
-            <DoubleAnimation EnableDependentAnimation="True"
-                             Storyboard.TargetName="HeaderGrid"
-                             Storyboard.TargetProperty="(FrameworkElement.Height)"
-                             To="60"
-                             SpeedRatio="2">
-                <DoubleAnimation.EasingFunction>
-                    <ExponentialEase EasingMode="EaseOut"
-                                     Exponent="3" />
-                </DoubleAnimation.EasingFunction>
-            </DoubleAnimation>
-        </Storyboard>-->
     </Page.Resources>
     <Grid Margin="0,-12,0,0">
         <Grid.RowDefinitions>
@@ -66,31 +43,30 @@
         <SemanticZoom Grid.Row="1"
                       ViewChangeCompleted="SemanticZoom_OnViewChangeCompleted">
             <SemanticZoom.ZoomedInView>
-                <scrollWatchedSelector:ScrollWatchedListView x:Name="TracksZoomedInView"
-                                                             ItemsSource="{Binding Source={StaticResource GroupTracks}}"
-                                                             SelectionMode="None"
-                                                             IsItemClickEnabled="True"
-                                                             ItemContainerStyle="{StaticResource HorizontalListViewItemStyle}"
-                                                             ItemTemplate="{StaticResource WPLightTrackTemplateWONumber}"
-                                                             GoingTopOrBottom="RadDataGrid_OnGoingTopOrBottom">
+                <ListView x:Name="TracksZoomedInView"
+                          ItemsSource="{Binding Source={StaticResource GroupTracks}}"
+                          SelectionMode="None"
+                          IsItemClickEnabled="True"
+                          ItemContainerStyle="{StaticResource HorizontalListViewItemStyle}"
+                          ItemTemplate="{StaticResource WPLightTrackTemplateWONumber}">
                     <triggers:Interactions.Triggers>
                         <triggers:EventTrigger EventName="ItemClick">
                             <triggers:InvokeCommandAction Command="{Binding TrackClickedCommand}"
                                                           PassEventArgsToCommand="True" />
                         </triggers:EventTrigger>
                     </triggers:Interactions.Triggers>
-                    <scrollWatchedSelector:ScrollWatchedListView.ItemContainerTransitions>
+                    <ListView.ItemContainerTransitions>
                         <TransitionCollection>
                             <AddDeleteThemeTransition />
                             <EntranceThemeTransition />
                         </TransitionCollection>
-                    </scrollWatchedSelector:ScrollWatchedListView.ItemContainerTransitions>
-                    <scrollWatchedSelector:ScrollWatchedListView.ItemsPanel>
+                    </ListView.ItemContainerTransitions>
+                    <ListView.ItemsPanel>
                         <ItemsPanelTemplate>
                             <ItemsStackPanel Margin="0,0,0,60" />
                         </ItemsPanelTemplate>
-                    </scrollWatchedSelector:ScrollWatchedListView.ItemsPanel>
-                    <scrollWatchedSelector:ScrollWatchedListView.GroupStyle>
+                    </ListView.ItemsPanel>
+                    <ListView.GroupStyle>
                         <GroupStyle>
                             <GroupStyle.HeaderTemplate>
                                 <DataTemplate>
@@ -111,8 +87,8 @@
                                 </DataTemplate>
                             </GroupStyle.HeaderTemplate>
                         </GroupStyle>
-                    </scrollWatchedSelector:ScrollWatchedListView.GroupStyle>
-                </scrollWatchedSelector:ScrollWatchedListView>
+                    </ListView.GroupStyle>
+                </ListView>
             </SemanticZoom.ZoomedInView>
             <SemanticZoom.ZoomedOutView>
                 <GridView x:Name="TracksZoomedOutView"
