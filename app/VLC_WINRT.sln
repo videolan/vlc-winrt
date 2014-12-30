@@ -53,6 +53,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libxaudio2_winrt_plugin.Sha
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libxaudio2_winrt_plugin.WindowsPhone", "..\modules\libxaudio2_winrt_plugin.WindowsPhone\libxaudio2_winrt_plugin.WindowsPhone.vcxproj", "{CAD463F6-BE44-4F9E-9A1E-6872B668019A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VLC_WINRT_APP.BackgroundAudioPlayer", "..\universal\VLC_WINRT_APP\VLC_WINRT_APP.BackgroundAudioPlayer\VLC_WINRT_APP.BackgroundAudioPlayer.csproj", "{6BDABA8A-B559-4007-A17F-42125D3AA7A3}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		..\universal\VLC_WINRT_APP\VLC_WINRT_APP.Shared\VLC_WINRT_APP.Shared.projitems*{db1dea15-00b8-4707-8c70-53431c4fa754}*SharedItemsImports = 13
@@ -308,6 +310,28 @@ Global
 		{CAD463F6-BE44-4F9E-9A1E-6872B668019A}.Release|x64.ActiveCfg = Release|Win32
 		{CAD463F6-BE44-4F9E-9A1E-6872B668019A}.Release|x86.ActiveCfg = Release|Win32
 		{CAD463F6-BE44-4F9E-9A1E-6872B668019A}.Release|x86.Build.0 = Release|Win32
+		{6BDABA8A-B559-4007-A17F-42125D3AA7A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BDABA8A-B559-4007-A17F-42125D3AA7A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BDABA8A-B559-4007-A17F-42125D3AA7A3}.Debug|ARM.ActiveCfg = Debug|ARM
+		{6BDABA8A-B559-4007-A17F-42125D3AA7A3}.Debug|ARM.Build.0 = Debug|ARM
+		{6BDABA8A-B559-4007-A17F-42125D3AA7A3}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{6BDABA8A-B559-4007-A17F-42125D3AA7A3}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{6BDABA8A-B559-4007-A17F-42125D3AA7A3}.Debug|Win32.ActiveCfg = Debug|x86
+		{6BDABA8A-B559-4007-A17F-42125D3AA7A3}.Debug|Win32.Build.0 = Debug|x86
+		{6BDABA8A-B559-4007-A17F-42125D3AA7A3}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{6BDABA8A-B559-4007-A17F-42125D3AA7A3}.Debug|x86.ActiveCfg = Debug|x86
+		{6BDABA8A-B559-4007-A17F-42125D3AA7A3}.Debug|x86.Build.0 = Debug|x86
+		{6BDABA8A-B559-4007-A17F-42125D3AA7A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BDABA8A-B559-4007-A17F-42125D3AA7A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BDABA8A-B559-4007-A17F-42125D3AA7A3}.Release|ARM.ActiveCfg = Release|ARM
+		{6BDABA8A-B559-4007-A17F-42125D3AA7A3}.Release|ARM.Build.0 = Release|ARM
+		{6BDABA8A-B559-4007-A17F-42125D3AA7A3}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{6BDABA8A-B559-4007-A17F-42125D3AA7A3}.Release|Mixed Platforms.Build.0 = Release|x86
+		{6BDABA8A-B559-4007-A17F-42125D3AA7A3}.Release|Win32.ActiveCfg = Release|x86
+		{6BDABA8A-B559-4007-A17F-42125D3AA7A3}.Release|Win32.Build.0 = Release|x86
+		{6BDABA8A-B559-4007-A17F-42125D3AA7A3}.Release|x64.ActiveCfg = Release|Any CPU
+		{6BDABA8A-B559-4007-A17F-42125D3AA7A3}.Release|x86.ActiveCfg = Release|x86
+		{6BDABA8A-B559-4007-A17F-42125D3AA7A3}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -328,5 +352,6 @@ Global
 		{5EBF73C4-9C76-4666-9B92-F75B8F7FA688} = {50F9DD1D-21A9-4C38-8E25-BAF182BAB951}
 		{3E3CD176-7C6E-494D-AC75-BDB58BFE3120} = {5F4A2158-F212-417B-B883-941BA6C4E1E9}
 		{CAD463F6-BE44-4F9E-9A1E-6872B668019A} = {5F4A2158-F212-417B-B883-941BA6C4E1E9}
+		{6BDABA8A-B559-4007-A17F-42125D3AA7A3} = {492C16E2-63FB-49B4-843A-095DB095F15D}
 	EndGlobalSection
 EndGlobal
