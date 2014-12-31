@@ -79,13 +79,23 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="BackgroundPlayer.cs" />
+    <Compile Include="Model\ApplicationSettingsHelper.cs" />
+    <Compile Include="Model\BackgroundAudioConstants.cs" />
+    <Compile Include="Model\BackgroundAudioInterface.cs" />
     <Compile Include="Model\BackgroundTrackCollection.cs" />
     <Compile Include="Model\BackgroundTrackItem.cs" />
+    <Compile Include="Model\PlayingType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\..\app\packages\Newtonsoft.Json.6.0.7\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>

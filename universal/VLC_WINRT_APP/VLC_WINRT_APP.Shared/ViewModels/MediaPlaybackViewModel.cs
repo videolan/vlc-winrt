@@ -19,7 +19,9 @@ using Windows.System.Display;
 using Windows.UI.Xaml;
 using VLC_WINRT_APP.Commands.MediaPlayback;
 using System.Threading.Tasks;
+using Windows.Media.Playback;
 using libVLCX;
+using VLC_WINRT_APP.BackgroundAudioPlayer.Model;
 
 namespace VLC_WINRT_APP.ViewModels
 {
@@ -142,9 +144,23 @@ namespace VLC_WINRT_APP.ViewModels
         {
             get
             {
+#if WINDOWS_APP
                 if (_mediaService.MediaPlayer == null)
                     return 0;
                 return _mediaService.MediaPlayer.time();
+#else
+                if (BackgroundMediaPlayer.Current != null &&
+                    BackgroundMediaPlayer.Current.CurrentState == MediaPlayerState.Playing)
+                {
+                    return (long) BackgroundMediaPlayer.Current.Position.TotalMilliseconds;
+                }
+                else
+                {
+                    if (_mediaService.MediaPlayer == null)
+                        return 0;
+                    return _mediaService.MediaPlayer.time();
+                }
+#endif
             }
             set
             {
@@ -156,15 +172,47 @@ namespace VLC_WINRT_APP.ViewModels
         {
             get
             {
+#if WINDOWS_APP
                 // XAML might ask for the position while no playback is running, hence the check.
                 if (_mediaService.MediaPlayer == null)
                     return 0.0f;
                 return _mediaService.MediaPlayer.position();
+#else
+                if (BackgroundMediaPlayer.Current != null &&
+                    BackgroundMediaPlayer.Current.CurrentState == MediaPlayerState.Playing)
+                {
+                    var pos = (BackgroundMediaPlayer.Current.Position.TotalMilliseconds /
+                                BackgroundMediaPlayer.Current.NaturalDuration.TotalMilliseconds);
+                    float posfloat = (float)pos;
+                    return posfloat;
+                }
+                else
+                {
+                    // XAML might ask for the position while no playback is running, hence the check.
+                    if (_mediaService.MediaPlayer == null)
+                        return 0.0f;
+                    return _mediaService.MediaPlayer.position();
+                }
+#endif
             }
             set
             {
                 // We shouldn't be able to set the position without a running playback.
+#if WINDOWS_APP
                 _mediaService.MediaPlayer.setPosition(value);
+#else
+                if (BackgroundMediaPlayer.Current != null && BackgroundMediaPlayer.Current.CurrentState == MediaPlayerState.Playing)
+                {
+                    if (BackgroundMediaPlayer.Current.NaturalDuration.TotalMilliseconds != 0)
+                    {
+                        BackgroundMediaPlayer.Current.Position = TimeSpan.FromMilliseconds(value * BackgroundMediaPlayer.Current.NaturalDuration.TotalMilliseconds);
+                    }
+                }
+                else
+                {
+                    _mediaService.MediaPlayer.setPosition(value);
+                }
+#endif
             }
         }
         #endregion
@@ -232,6 +280,19 @@ namespace VLC_WINRT_APP.ViewModels
             });
         }
 
+        public void UpdateTimeFromMF()
+        {
+            App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+            {
+                OnPropertyChanged("Time");
+                // Assume position also changes when time does.
+                // We could/should also watch OnPositionChanged event, but let's save us
+                // the cost of another dispatched call.
+                OnPropertyChanged("Position");
+            });
+        }
+
+
         virtual public void CleanViewModel()
         {
             _mediaService.Stop();
@@ -250,7 +311,7 @@ namespace VLC_WINRT_APP.ViewModels
             return Task.FromResult(0);
         }
 
-        private async void OnLengthChanged(Int64 length)
+        public async void OnLengthChanged(Int64 length)
         {
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {

@@ -16,6 +16,7 @@ namespace VLC_WINRT_APP.Commands.MediaPlayback
     {
         public override async void Execute(object parameter)
         {
+#if WINDOWS_APP
             if (Locator.MusicPlayerVM.IsPlaying)
             {
                 // Music Logic
@@ -25,6 +26,9 @@ namespace VLC_WINRT_APP.Commands.MediaPlayback
             {
                 // Video Logic
             }
+#else
+            await Locator.MusicPlayerVM.PlayPrevious();
+#endif
         }
     }
 }

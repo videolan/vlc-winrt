@@ -30,6 +30,8 @@ using VLC_WINRT_APP.Model.Music;
 using VLC_WINRT_APP.Services.Interface;
 using VLC_WINRT_APP.Services.RunTime;
 using System.Collections.Generic;
+using Windows.Media.Playback;
+using VLC_WINRT_APP.BackgroundAudioPlayer.Model;
 using VLC_WINRT_APP.Views.MainPages;
 using WinRTXamlToolkit.Controls.Extensions;
 
@@ -233,9 +235,12 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         {
             _fileToken = token;
             _mrl = "file://" + token;
+#if WINDOWS_APP
             base.InitializePlayback(_mrl, true);
             _mediaService.Play();
-
+#else
+            App.BackgroundAudioHelper.PlayAudio(track);
+#endif
             //#if WINDOWS_APP
             UpdateTileHelper.UpdateMediumTileWithMusicInfo();
             //#endif
@@ -255,9 +260,35 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         public override void CleanViewModel()
         {
             base.CleanViewModel();
+#if WINDOWS_PHONE_APP
+            if (BackgroundMediaPlayer.Current != null &&
+                BackgroundMediaPlayer.Current.CurrentState != MediaPlayerState.Stopped)
+            {
+                BackgroundMediaPlayer.Shutdown();
+            }
+#endif
             TrackCollection.ResetCollection();
             TrackCollection.IsRunning = false;
             GC.Collect();
         }
+
+#if WINDOWS_PHONE_APP
+        public void UpdateTrackFromMF()
+        {
+            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                Locator.MusicPlayerVM.OnLengthChanged(
+                    (long) BackgroundMediaPlayer.Current.NaturalDuration.TotalMilliseconds);
+                int index = (int) ApplicationSettingsHelper.ReadSettingsValue(BackgroundAudioConstants.CurrentTrack);
+                Locator.MusicPlayerVM.TrackCollection.CurrentTrack = index;
+                Locator.MusicPlayerVM.TrackCollection.SetActiveTrackProperty();
+                OnPropertyChanged("TrackCollection");
+                OnPropertyChanged("PlayingType");
+                OnPropertyChanged("CurrentTrack");
+                OnPropertyChanged("CurrentAlbum");
+                OnPropertyChanged("CurrentArtist");
+            });
+        }
+#endif
     }
 }

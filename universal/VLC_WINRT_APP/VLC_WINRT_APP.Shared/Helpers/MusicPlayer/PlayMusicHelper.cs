@@ -70,6 +70,7 @@ namespace VLC_WINRT_APP.Helpers.MusicPlayer
                 {
                     AddTrack(trackItem);
                 }
+                await App.BackgroundAudioHelper.PopulatePlaylist(Locator.MusicPlayerVM.TrackCollection.Playlist);
                 if (play)
                 {
                     if (track != null)

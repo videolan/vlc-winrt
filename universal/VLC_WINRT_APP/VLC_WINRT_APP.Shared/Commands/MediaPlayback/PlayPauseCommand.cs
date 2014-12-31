@@ -6,7 +6,9 @@
  * Licensed under GPLv2+ and MPLv2
  * Refer to COPYING file of the official project for license
  **********************************************************************/
-
+#if WINDOWS_PHONE_APP
+using Windows.Media.Playback;
+#endif
 using Autofac;
 using VLC_WINRT.Common;
 using VLC_WINRT_APP.Services.Interface;
@@ -17,8 +19,20 @@ namespace VLC_WINRT_APP.Commands.MediaPlayback
     {
         public override void Execute(object parameter)
         {
+#if WINDOWS_APP
             var playerService = App.Container.Resolve<IMediaService>();
             playerService.Pause();
+#else
+            switch (BackgroundMediaPlayer.Current.CurrentState)
+            {
+                case MediaPlayerState.Paused:
+                    BackgroundMediaPlayer.Current.Play();
+                    break;
+                case MediaPlayerState.Playing:
+                    BackgroundMediaPlayer.Current.Pause();
+                    break;
+            }
+#endif
         }
     }
 }

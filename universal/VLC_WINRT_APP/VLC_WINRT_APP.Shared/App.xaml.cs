@@ -1,4 +1,5 @@
-﻿using System;
+﻿using VLC_WINRT_APP.BackgroundHelpers;
+using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
@@ -46,7 +47,9 @@ namespace VLC_WINRT_APP
         public static OpenFilePickerReason OpenFilePickerReason = OpenFilePickerReason.Null;
 
         public static IContainer Container;
-
+#if WINDOWS_PHONE_APP
+        public static BackgroundAudioHelper BackgroundAudioHelper = new BackgroundAudioHelper();
+#endif
         /// <summary>
         ///     Initializes the singleton application object.  This is the first line of authored code
         ///     executed, and as such is the logical equivalent of main() or WinMain().
@@ -111,6 +114,10 @@ namespace VLC_WINRT_APP
                 bool isinternet = System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable();
                 Locator.MainVM.IsInternet = isinternet;
             });
+#if WINDOWS_PHONE_APP
+            BackgroundAudioHelper.StartBackgroundAudioTask();
+            BackgroundAudioHelper.InitBackgroundAudio();
+#endif
         }
 
         private async Task RedirectFromSecondaryTile(string args)
