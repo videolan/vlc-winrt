@@ -164,7 +164,21 @@ namespace VLC_WINRT_APP.ViewModels
             }
             set
             {
+#if WINDOWS_APP
                 _mediaService.MediaPlayer.setTime(value);
+#else
+                if (BackgroundMediaPlayer.Current != null &&
+                    BackgroundMediaPlayer.Current.CurrentState == MediaPlayerState.Playing)
+                {
+                    BackgroundMediaPlayer.Current.Position = TimeSpan.FromMilliseconds(value);
+                }
+                else
+                {
+                    if (_mediaService.MediaPlayer == null)
+                        return;
+                    _mediaService.MediaPlayer.setTime(value);
+                }
+#endif
             }
         }
 
