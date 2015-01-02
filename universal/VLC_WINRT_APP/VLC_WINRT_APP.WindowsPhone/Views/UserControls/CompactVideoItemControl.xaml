@@ -8,54 +8,6 @@
              d:DesignHeight="300"
              d:DesignWidth="400">
 
-    <!--<Grid Margin="0,0,6,6"
-          RequestedTheme="Dark">
-        <Image Source="/Assets/NoCover.jpg"
-               Stretch="UniformToFill"
-               Width="Auto"
-               Height="Auto" />
-        <Image Source="{Binding ThumbnailPath}"
-               Stretch="UniformToFill"
-               Width="Auto"
-               Height="Auto"
-               HorizontalAlignment="Center" />
-        <Grid MaxHeight="70"
-              Background="#81000000"
-              VerticalAlignment="Bottom">
-            <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition />
-            </Grid.RowDefinitions>
-            <TextBlock Text="{Binding Title}"
-                       TextWrapping="NoWrap"
-                       TextTrimming="CharacterEllipsis"
-                       FontSize="17"
-                       FontWeight="SemiBold"
-                       Margin="7,0,0,0" />
-            <TextBlock Grid.Row="1"
-                       Text="{Binding Type}"
-                       TextWrapping="NoWrap"
-                       TextTrimming="WordEllipsis"
-                       FontSize="15"
-                       Margin="7,0,7,4" />
-            <TextBlock Grid.Row="1"
-                       TextWrapping="NoWrap"
-                       TextTrimming="WordEllipsis"
-                       FontSize="15"
-                       Margin="0,0,7,4"
-                       Text="{Binding Duration, Converter={StaticResource TimeSpanShortStringConverter}}"
-                       HorizontalAlignment="Right"
-                       VerticalAlignment="Bottom" />
-        </Grid>
-        <ProgressBar VerticalAlignment="Bottom"
-                     Margin="0,0,0,-2"
-                     Style="{StaticResource ThinProgressBar}"
-                     Value="{Binding TimeWatched, Converter={StaticResource TimeSpanSecondsDoubleConverter}}"
-                     Maximum="{Binding Duration, Converter={StaticResource TimeSpanSecondsDoubleConverter}}"
-                     Visibility="{Binding TimeWatched.TotalSeconds, Converter={StaticResource NegatedCountToVisibilityConverter}}" />
-    </Grid>-->
-
-    <!-- /!\ DO NOT REMOVE THIS COMMENTED CODE !! /!\ -->
     <Border Margin="0,0,12,0"
             Background="White">
         <Grid>
