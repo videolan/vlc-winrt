@@ -42,4 +42,8 @@
             Placement="Full">
         <flyouts:TrackItemFlyout />
     </Flyout>
+    <Flyout x:Key="VideoInformationFlyout"
+            Placement="Full">
+        <flyouts:VideoInformationFlyout />
+    </Flyout>
 </ResourceDictionary>
