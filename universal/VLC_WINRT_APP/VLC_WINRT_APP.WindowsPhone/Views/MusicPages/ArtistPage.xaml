@@ -6,6 +6,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:userControls="using:VLC_WINRT_APP.Views.UserControls"
       xmlns:triggers="using:WinRT.Triggers"
+      xmlns:artistPageControls="using:VLC_WINRT_APP.Views.MusicPages.ArtistPageControls"
       mc:Ignorable="d"
       DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}"
       Background="WhiteSmoke">
@@ -27,31 +28,7 @@
                 </triggers:Interactions.Triggers>
                 <GridView.HeaderTemplate>
                     <DataTemplate>
-                        <Grid x:Name="HeaderGrid"
-                              Height="350"
-                              Background="Black"
-                              RequestedTheme="Dark">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition />
-                            </Grid.RowDefinitions>
-                            <Image Grid.RowSpan="2"
-                                   Source="{Binding CurrentArtist.Picture}"
-                                   Stretch="UniformToFill"
-                                   Opacity="0.5" />
-                            <userControls:HeaderControl Grid.Row="0"
-                                                        HeaderTextBlock="{Binding CurrentArtist.Name}"
-                                                        HeaderBackground="#00ffffff"
-                                                        VerticalAlignment="Top" />
-                            <Grid Grid.Row="1">
-                                <TextBlock Text="{Binding CurrentArtist.Biography}"
-                                           Style="{StaticResource BodyTextBlockStyle}"
-                                           TextTrimming="CharacterEllipsis"
-                                           Margin="24,0,24,12"
-                                           HorizontalAlignment="Left"
-                                           VerticalAlignment="Top" />
-                            </Grid>
-                        </Grid>
+                        <artistPageControls:MainArtistHeader />
                     </DataTemplate>
                 </GridView.HeaderTemplate>
                 <GridView.ItemContainerTransitions>

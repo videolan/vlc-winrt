@@ -1,0 +1,38 @@
+﻿<UserControl
+    x:Class="VLC_WINRT_APP.Views.MusicPages.ArtistPageControls.MainArtistHeader"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:VLC_WINRT_APP.Views.MusicPages.ArtistPageControls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:userControls="using:VLC_WINRT_APP.Views.UserControls"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <Grid x:Name="HeaderGrid"
+          Height="350"
+          Background="Black"
+          RequestedTheme="Dark">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Image Grid.RowSpan="2"
+               Source="{Binding CurrentArtist.Picture}"
+               Stretch="UniformToFill"
+               Opacity="0.5" />
+        <userControls:HeaderControl Grid.Row="0"
+                                    HeaderTextBlock="{Binding CurrentArtist.Name}"
+                                    HeaderBackground="#00ffffff"
+                                    VerticalAlignment="Top" />
+        <Grid Grid.Row="1">
+            <TextBlock Text="{Binding CurrentArtist.Biography}"
+                       Style="{StaticResource BodyTextBlockStyle}"
+                       TextTrimming="CharacterEllipsis"
+                       Margin="24,0,24,12"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Top" />
+        </Grid>
+    </Grid>
+</UserControl>
