@@ -9,7 +9,7 @@
       mc:Ignorable="d"
       DataContext="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM}">
 
-    <Grid>
+    <Grid Margin="0,-12,0,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="60" />
             <RowDefinition Height="Auto" />
