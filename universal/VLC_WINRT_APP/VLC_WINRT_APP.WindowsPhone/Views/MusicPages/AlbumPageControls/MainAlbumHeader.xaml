@@ -12,8 +12,7 @@
              d:DesignWidth="400"
              d:DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
 
-    <Grid Grid.Row="0"
-          x:Name="HeaderGrid"
+    <Grid x:Name="HeaderGrid"
           Margin="-12,0,0,0"
           Height="450">
         <Grid.RowDefinitions>
@@ -26,8 +25,7 @@
                x:Name="HeaderArtistImage"
                Source="{Binding CurrentAlbum.Picture}"
                Stretch="UniformToFill"
-               Opacity="1"
-               ext:ImageExtensions.FadeInOnLoaded="True" />
+               Opacity="1"/>
         <Grid Grid.Row="0"
               Grid.RowSpan="3">
             <Grid.Background>

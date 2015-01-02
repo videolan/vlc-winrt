@@ -5,53 +5,38 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:triggers="using:WinRT.Triggers"
-      xmlns:userControls="using:VLC_WINRT_APP.Views.UserControls"
-      xmlns:scrollWatchedSelector="using:ScrollWatchedSelector"
-      xmlns:albumPage="using:VLC_WINRT_APP.Views.MusicPages.AlbumPage"
       xmlns:albumPageControls="using:VLC_WINRT_APP.Views.MusicPages.AlbumPageControls"
       mc:Ignorable="d"
       DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
-    <Grid Margin="0,0,0,0"
-          RequestedTheme="Dark">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"
-                           x:Name="HeaderRowDefinition" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <Grid Grid.Row="1"
-              RequestedTheme="Light">
-            <Image Source="/Assets/backgroundTop.png"
-                   Stretch="Uniform"
-                   VerticalAlignment="Top" />
-            <ListView ItemsSource="{Binding CurrentAlbum.Tracks}"
-                      IsItemClickEnabled="True"
-                      SelectionMode="None"
-                      ItemTemplate="{StaticResource WPLightTrackTemplateWNumber}"
-                      ItemContainerStyle="{StaticResource ListViewItemStyle}"
-                      Margin="0,0,0,0">
-                <ListView.HeaderTemplate>
-                    <DataTemplate>
-                        <albumPageControls:MainAlbumHeader />
-                    </DataTemplate>
-                </ListView.HeaderTemplate>
-                <ListView.ItemContainerTransitions>
-                    <TransitionCollection>
-                        <AddDeleteThemeTransition />
-                        <EntranceThemeTransition />
-                    </TransitionCollection>
-                </ListView.ItemContainerTransitions>
-                <ListView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <ItemsStackPanel Margin="12,0,0,60"/>
-                    </ItemsPanelTemplate>
-                </ListView.ItemsPanel>
-                <triggers:Interactions.Triggers>
-                    <triggers:EventTrigger EventName="ItemClick">
-                        <triggers:InvokeCommandAction Command="{Binding CurrentAlbum.TrackClicked}"
-                                                      PassEventArgsToCommand="True" />
-                    </triggers:EventTrigger>
-                </triggers:Interactions.Triggers>
-            </ListView>
-        </Grid>
+    <Grid Margin="0,0,0,0">
+        <ListView ItemsSource="{Binding CurrentAlbum.Tracks}"
+                  IsItemClickEnabled="True"
+                  SelectionMode="None"
+                  ItemTemplate="{StaticResource WPLightTrackTemplateWNumber}"
+                  ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                  RequestedTheme="Light">
+            <ListView.HeaderTemplate>
+                <DataTemplate>
+                    <albumPageControls:MainAlbumHeader />
+                </DataTemplate>
+            </ListView.HeaderTemplate>
+            <ListView.ItemContainerTransitions>
+                <TransitionCollection>
+                    <AddDeleteThemeTransition />
+                    <EntranceThemeTransition />
+                </TransitionCollection>
+            </ListView.ItemContainerTransitions>
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <ItemsStackPanel Margin="12,0,0,60" />
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <triggers:Interactions.Triggers>
+                <triggers:EventTrigger EventName="ItemClick">
+                    <triggers:InvokeCommandAction Command="{Binding CurrentAlbum.TrackClicked}"
+                                                  PassEventArgsToCommand="True" />
+                </triggers:EventTrigger>
+            </triggers:Interactions.Triggers>
+        </ListView>
     </Grid>
 </Page>
