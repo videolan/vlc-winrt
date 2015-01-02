@@ -2,6 +2,10 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:VLC_WINRT_APP.Resources">
 
+    <SolidColorBrush x:Key="PivotHeaderForegroundSelectedBrush"
+                     Color="{StaticResource MainColorBase}" />
+    <SolidColorBrush x:Key="PivotHeaderForegroundUnselectedBrush"
+                     Color="DimGray" />
     <Style x:Name="TileGridViewItemStyle" TargetType="GridViewItem">
         <Setter Property="VerticalContentAlignment"
                 Value="Stretch" />

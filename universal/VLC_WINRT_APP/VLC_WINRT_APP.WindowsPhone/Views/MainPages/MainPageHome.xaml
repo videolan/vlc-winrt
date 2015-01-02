@@ -14,32 +14,16 @@
     <Grid Margin="0"
           DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
         <Grid x:Name="HeaderBackgroundGrid"
-              Background="{StaticResource MainColor}"
               DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}"
               Height="110"
               VerticalAlignment="Top">
             <placeholder:NoData HorizontalAlignment="Right"
                                 Margin="0,0,12,0" />
         </Grid>
-        <Grid x:Name="HeaderGradientGrid"
-              Margin="0,110,0,0"
-              Height="7"
-              VerticalAlignment="Top">
-            <Grid.Background>
-                <LinearGradientBrush StartPoint="0.5,0"
-                                     EndPoint="0.5,1">
-                    <GradientStop Color="#23000000"
-                                  Offset="0" />
-                    <GradientStop Color="#00000000"
-                                  Offset="1" />
-                </LinearGradientBrush>
-            </Grid.Background>
-        </Grid>
         <Image x:Name="HeaderBackgroundImage"
                Source="/Assets/backgroundTop.png"
                Stretch="Uniform"
                VerticalAlignment="Top"
-               Margin="0,110,0,0"
                extensions:ImageExtensions.FadeInOnLoaded="True"/>
         <Pivot x:Name="MainPivot"
                x:FieldModifier="public"
@@ -54,7 +38,7 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <Path Data="{StaticResource VLCFlatPath}"
-                          Fill="WhiteSmoke"
+                          Fill="{StaticResource MainColor}"
                           VerticalAlignment="Center"
                           Margin="0,6,0,0"
                           Height="26"
@@ -65,7 +49,7 @@
                                VerticalAlignment="Center"
                                Grid.Column="1"
                                Text="VLC"
-                               Foreground="WhiteSmoke"
+                               Foreground="{StaticResource MainColor}"
                                Style="{StaticResource SubheaderTextBlockStyle}" />
                 </Grid>
             </Pivot.Title>
