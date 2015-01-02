@@ -143,6 +143,7 @@ namespace VLC_WINRT_APP.BackgroundAudioPlayer
 
         public async void Play()
         {
+            IsRunning = true;
             CurrentTrackId = Playlist[CurrentTrack];
             var file = await StorageFile.GetFileFromPathAsync(Playlist[CurrentTrack].Path);
             mediaPlayer.SetFileSource(file);
