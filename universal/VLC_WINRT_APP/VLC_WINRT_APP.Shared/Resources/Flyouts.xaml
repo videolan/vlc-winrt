@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="using:VLC_WINRT_APP.Resources">
+                    xmlns:local="using:VLC_WINRT_APP.Resources"
+                    xmlns:flyouts="using:VLC_WINRT_APP.Views.UserControls.Flyouts">
     <Flyout x:Key="PhoneOpenStreamFlyout"
             Placement="Full">
         <Grid>
@@ -36,5 +37,9 @@
                 </Grid>
             </Grid>
         </Grid>
+    </Flyout>
+    <Flyout x:Key="TrackItemFlyout"
+            Placement="Full">
+        <flyouts:TrackItemFlyout />
     </Flyout>
 </ResourceDictionary>

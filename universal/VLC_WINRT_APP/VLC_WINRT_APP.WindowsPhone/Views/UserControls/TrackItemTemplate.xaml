@@ -45,85 +45,8 @@
                 Foreground="DimGray"
                 FontFamily="Segoe UI Symbol"
                 HorizontalAlignment="Stretch"
-                HorizontalContentAlignment="Center">
-            <Button.Flyout>
-                <Flyout Placement="Full">
-                    <Grid Background="WhiteSmoke"
-                          MaxHeight="500"
-                          Margin="24,0">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="120" />
-                            <RowDefinition Height="140" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition />
-                        </Grid.RowDefinitions>
-                        <StackPanel Orientation="Horizontal">
-                            <Image Source="{Binding Thumbnail}"
-                                   Height="120"
-                                   Width="120"
-                                   Stretch="UniformToFill" />
-                            <StackPanel VerticalAlignment="Center"
-                                        Margin="12,0,0,0">
-                                <TextBlock Text="{Binding Name}"
-                                           TextWrapping="Wrap"
-                                           Style="{StaticResource SubheaderTextBlockStyle}" />
-                                <TextBlock Text="{Binding AlbumName}"
-                                           TextWrapping="Wrap"
-                                           Style="{StaticResource BodyTextBlockStyle}" />
-                                <TextBlock Text="{Binding ArtistName}"
-                                           TextWrapping="Wrap"
-                                           Style="{StaticResource BodyTextBlockStyle}"
-                                           Foreground="DimGray" />
-                            </StackPanel>
-                        </StackPanel>
-                        <StackPanel Grid.Row="1"
-                                    Margin="12,0,0,0"
-                                    VerticalAlignment="Center">
-                            <AppBarButton x:Uid="PlayTrack"
-                                          Label="play track"
-                                          Icon="Play"
-                                          Style="{StaticResource AppBarButtonStyleHorizontal}"
-                                          Foreground="{StaticResource MainColor}"
-                                          Command="{Binding TrackClicked}"
-                                          CommandParameter="{Binding}" />
-                            <AppBarButton x:Uid="ViewAlbum"
-                                          Label="view album"
-                                          Icon="SlideShow"
-                                          Style="{StaticResource AppBarButtonStyleHorizontal}"
-                                          Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.AlbumClickedCommand}"
-                                          CommandParameter="{Binding AlbumId}" />
-                        </StackPanel>
-                        <Grid Grid.Row="2"
-                              Margin="12,12,12,0"
-                              DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-                            <TextBlock x:Uid="AddToPlaylist"
-                                       Text="Add to playlist"
-                                       Style="{StaticResource SubheaderTextBlockStyle}" />
-                            <AppBarButton Grid.Column="1"
-                                          x:Uid="NewPlaylist"
-                                          Label="new playlist"
-                                          Icon="Add"
-                                          Style="{StaticResource AppBarButtonStyleHorizontal}"
-                                          Command="{Binding ShowCreateNewPlaylistPaneCommand}"
-                                          Margin="0,-5,0,0" />
-                        </Grid>
-                        <Grid Grid.Row="3"
-                              DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
-                            <ListView ItemsSource="{Binding TrackCollections}"
-                                      Margin="24,0,0,0"
-                                      ItemTemplate="{StaticResource PhoneTrackCollectionTemplate}"
-                                      ItemContainerStyle="{StaticResource HorizontalListViewItemStyle}"
-                                      SelectionChanged="Selector_OnSelectionChanged" />
-                            <placeholder:NoPlaylistPlaceholder Visibility="{Binding TrackCollections.Count, Converter={StaticResource CountToVisibilityConverter}}"
-                                                               Margin="12,50,0,0" />
-                        </Grid>
-                    </Grid>
-                </Flyout>
-            </Button.Flyout>
+                HorizontalContentAlignment="Center"
+                Flyout="{StaticResource TrackItemFlyout}">
         </Button>
         <TextBlock Grid.Column="1"
                    Grid.Row="0"

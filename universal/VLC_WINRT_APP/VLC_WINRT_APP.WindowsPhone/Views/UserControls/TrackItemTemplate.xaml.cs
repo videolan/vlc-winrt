@@ -1,8 +1,4 @@
-﻿using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using VLC_WINRT_APP.Model.Music;
-using VLC_WINRT_APP.ViewModels;
-using VLC_WINRT_APP.ViewModels.MusicVM;
+﻿using Windows.UI.Xaml.Controls;
 
 namespace VLC_WINRT_APP.Views.UserControls
 {
@@ -11,13 +7,6 @@ namespace VLC_WINRT_APP.Views.UserControls
         public TrackItemTemplate()
         {
             this.InitializeComponent();
-        }
-
-        private void Selector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (e.AddedItems.Count == 0) return;
-            Locator.MusicLibraryVM.CurrentTrackCollection = e.AddedItems[0] as TrackCollection;
-            Locator.MusicLibraryVM.AddToPlaylistCommand.Execute(this.DataContext as TrackItem);
         }
     }
 }
