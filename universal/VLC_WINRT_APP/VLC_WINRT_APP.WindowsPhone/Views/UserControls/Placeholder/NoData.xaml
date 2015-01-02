@@ -19,11 +19,13 @@
         <TextBlock Grid.Column="0"
                    Text="No Internet"
                    VerticalAlignment="Center"
-                   Style="{StaticResource BodyTextBlockStyle}"/>
+                   Style="{StaticResource BodyTextBlockStyle}"
+                   Foreground="{StaticResource MainColor}"/>
         <TextBlock Grid.Column="2"
                    Text=""
                    FontFamily="Segoe UI Symbol"
                    FontSize="24"
-                   VerticalAlignment="Center"/>
+                   VerticalAlignment="Center"
+                   Foreground="{StaticResource MainColor}" />
     </Grid>
 </UserControl>
