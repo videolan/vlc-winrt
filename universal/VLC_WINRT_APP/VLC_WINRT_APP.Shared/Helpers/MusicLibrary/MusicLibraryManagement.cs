@@ -394,6 +394,10 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                     var artistalbum = artist.Albums.FirstOrDefault(x => x.Id == trackItem.AlbumId);
                     if (artistalbum != null) artistalbum.Tracks.Remove(artistalbum.Tracks.FirstOrDefault(x => x.Path == trackItem.Path));
                 }
+
+                var playingTrack =
+                    Locator.MusicPlayerVM.TrackCollection.Playlist.FirstOrDefault(x => x.Id == trackItem.Id);
+                if (playingTrack != null) Locator.MusicPlayerVM.TrackCollection.Playlist.Remove(playingTrack);
             });
         }
     }
