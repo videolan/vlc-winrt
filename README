@@ -114,10 +114,3 @@ git status -s | grep "^ M " | awk '{ print $2; }' | xargs chmod 644
 git status -s | grep "^ M " | awk '{ print $2; }' | xargs dos2unix
 
 
-6) For Windows Phone developers:
-------------------------------------
-You'll need PanelsView control. The project is available here.
-https://github.com/ThomasNigro/PanelsView
-You'll also need https://github.com/ThomasNigro/ScrollWatchedSelector. The project is available here.
-https://github.com/ThomasNigro/ScrollWatchedSelector
-Those two projects will in the future be available as Nuget packages.
