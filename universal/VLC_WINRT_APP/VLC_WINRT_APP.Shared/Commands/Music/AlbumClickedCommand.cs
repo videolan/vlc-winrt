@@ -1,10 +1,5 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-using Windows.UI.Core;
-using Windows.UI.Popups;
+﻿using System.Linq;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
 using VLC_WINRT.Common;
 using VLC_WINRT_APP.Model.Music;
 using VLC_WINRT_APP.ViewModels;
@@ -34,7 +29,6 @@ namespace VLC_WINRT_APP.Commands.Music
                 var id = (int)parameter;
                 album = Locator.MusicLibraryVM.Albums.FirstOrDefault(x => x.Id == id);
             }
-
             Locator.MusicLibraryVM.CurrentArtist =
                 Locator.MusicLibraryVM.Artists.FirstOrDefault(x => x.Id == album.ArtistId);
             Locator.MusicLibraryVM.CurrentAlbum = album;
