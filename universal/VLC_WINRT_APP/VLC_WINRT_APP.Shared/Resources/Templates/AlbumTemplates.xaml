@@ -9,15 +9,14 @@
 
     <!-- WINDOWS PHONE -->
     <DataTemplate x:Key="PhoneSemanticZoomInViewAlbumTemplateLittleSize">
-        <Grid Background="White"
-              Margin="0,0,12,12">
+        <Grid Margin="0,0,12,12">
             <Grid.RowDefinitions>
                 <RowDefinition Height="3*" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Image Grid.Row="0"
                    Source="{Binding Picture}"
-                   Stretch="UniformToFill"/>
+                   Stretch="UniformToFill" />
             <Grid Grid.Row="1">
                 <Grid.RowDefinitions>
                     <RowDefinition />
