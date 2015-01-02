@@ -28,7 +28,7 @@
                extensions:ImageExtensions.FadeInOnLoaded="True"/>
         <Pivot x:Name="MainPivot"
                x:FieldModifier="public"
-               Style="{StaticResource PivotStyle1}"
+               Style="{StaticResource HorizontalPivotStyle}"
                HeaderTemplate="{StaticResource PivotTitleTemplate}"
                SelectionChanged="MainPivot_OnSelectionChanged">
             <Pivot.Title>

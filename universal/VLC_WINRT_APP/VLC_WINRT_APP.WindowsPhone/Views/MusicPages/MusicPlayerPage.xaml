@@ -16,21 +16,10 @@
                Stretch="UniformToFill"
                Opacity="0.3"
                winrtext:ImageExtensions.FadeInOnLoaded="True" />
-        <Pivot Style="{StaticResource PivotStyle1}"
-               Margin="0,20,0,0">
-            <PivotItem>
-                <PivotItem.Header>
-                    <StackPanel Orientation="Horizontal">
-                        <Path Data="{StaticResource VLCFlatPath}"
-                              Fill="WhiteSmoke"
-                              VerticalAlignment="Center"
-                              Height="26"
-                              Stretch="UniformToFill"
-                              Margin="0,0,6,0" />
-                        <TextBlock Text="now playing"
-                                   Style="{StaticResource PivotTitleStyle}" />
-                    </StackPanel>
-                </PivotItem.Header>
+        <Pivot
+               Margin="0,20,0,0"
+               HeaderTemplate="{StaticResource PivotTitleTemplate}">
+            <PivotItem Header="now playing">
                 <Grid Margin="0,0,0,12">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -168,11 +157,7 @@
                     </Grid>
                 </Grid>
             </PivotItem>
-            <PivotItem>
-                <PivotItem.Header>
-                    <TextBlock Text="playlist"
-                               Style="{StaticResource PivotTitleStyle}" />
-                </PivotItem.Header>
+            <PivotItem Header="playlist">
                 <Grid>
                     <ListView ItemsSource="{Binding TrackCollection.Playlist}"
                               IsItemClickEnabled="True"
@@ -199,11 +184,7 @@
                     </ListView>
                 </Grid>
             </PivotItem>
-            <PivotItem>
-                <PivotItem.Header>
-                    <TextBlock Text="more"
-                               Style="{StaticResource PivotTitleStyle}" />
-                </PivotItem.Header>
+            <PivotItem Header="more">
                 <ScrollViewer>
                     <StackPanel>
                         <TextBlock Text="{Binding CurrentArtist.Biography}"

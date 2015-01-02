@@ -874,7 +874,7 @@
     <Thickness x:Key="PivotPortraitThemePadding">19,12,0,12</Thickness>
     <Thickness x:Key="PivotLandscapeThemePadding">19,25,0,0</Thickness>
     <Thickness x:Key="PivotItemMargin">18,0,19,0</Thickness>
-    <Style x:Key="PivotStyle1"
+    <Style x:Key="HorizontalPivotStyle"
            TargetType="Pivot">
         <Setter Property="Margin"
                 Value="0" />
