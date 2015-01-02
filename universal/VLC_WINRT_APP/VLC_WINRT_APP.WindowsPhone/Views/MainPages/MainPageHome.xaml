@@ -39,7 +39,7 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <userControls:VLCLogoWithGradient Height="32"/>
-                    <TextBlock Margin="12,-3,0,0"
+                    <TextBlock Margin="10,-3,0,0"
                                TextTrimming="CharacterEllipsis"
                                TextWrapping="NoWrap"
                                VerticalAlignment="Center"

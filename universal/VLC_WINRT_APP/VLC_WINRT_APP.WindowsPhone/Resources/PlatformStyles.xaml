@@ -898,10 +898,6 @@
                           Background="{TemplateBinding Background}"
                           HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
                           VerticalAlignment="{TemplateBinding VerticalAlignment}">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="Orientation">
                                 <VisualState x:Name="Portrait">
@@ -924,16 +920,11 @@
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <ContentControl x:Name="TitleContentControl"
-                                        ContentTemplate="{TemplateBinding TitleTemplate}"
-                                        Content="{TemplateBinding Title}"
-                                        Style="{StaticResource PivotTitleContentControlStyle}" />
                         <ScrollViewer x:Name="ScrollViewer"
                                       HorizontalSnapPointsAlignment="Center"
                                       HorizontalSnapPointsType="MandatorySingle"
                                       HorizontalScrollBarVisibility="Hidden"
                                       Margin="{TemplateBinding Padding}"
-                                      Grid.Row="1"
                                       Template="{StaticResource ScrollViewerScrollBarlessTemplate}"
                                       VerticalSnapPointsType="None"
                                       VerticalScrollBarVisibility="Disabled"
@@ -943,7 +934,8 @@
                             <PivotPanel x:Name="Panel"
                                         VerticalAlignment="Stretch">
                                 <PivotHeaderPanel x:Name="Header"
-                                                  RequestedTheme="Dark">
+                                                  RequestedTheme="Dark"
+                                                  Margin="108,33,0,0">
                                     <PivotHeaderPanel.RenderTransform>
                                         <CompositeTransform x:Name="HeaderTranslateTransform"
                                                             TranslateX="0" />
@@ -957,6 +949,15 @@
                                 </ItemsPresenter>
                             </PivotPanel>
                         </ScrollViewer>
+                        <Grid Background="WhiteSmoke"
+                              VerticalAlignment="Top"
+                              HorizontalAlignment="Left">
+                            <ContentControl x:Name="TitleContentControl"
+                                            ContentTemplate="{TemplateBinding TitleTemplate}"
+                                            Content="{TemplateBinding Title}"
+                                            Style="{StaticResource PivotTitleContentControlStyle}"
+                                            Padding="0,0,6,0"/>
+                        </Grid>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
