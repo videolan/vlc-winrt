@@ -9,10 +9,8 @@ using Windows.ApplicationModel;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Media.Playback;
-using Windows.Networking.Vpn;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
-using Microsoft.VisualBasic;
 using VLC_WINRT_APP.BackgroundAudioPlayer;
 using VLC_WINRT_APP.BackgroundAudioPlayer.Model;
 using VLC_WINRT_APP.Helpers;
@@ -30,14 +28,11 @@ namespace VLC_WINRT_APP.BackgroundHelpers
 
         public void InitBackgroundAudio()
         {
-            // flecoqui begin
             SererInitialized = new AutoResetEvent(false);
             PingEvent = new AutoResetEvent(false);
             App.Current.Suspending += ForegroundApp_Suspending;
             App.Current.Resuming += ForegroundApp_Resuming;
             ApplicationSettingsHelper.SaveSettingsValue(BackgroundAudioConstants.AppState, BackgroundAudioConstants.ForegroundAppActive);
-            //StartAudio();
-            // flecoqui end
             dispatchTimer.Interval = TimeSpan.FromMilliseconds(500);
             dispatchTimer.Tick += DispatchTimerOnTick;
         }
@@ -45,13 +40,13 @@ namespace VLC_WINRT_APP.BackgroundHelpers
         /// <summary>
         /// Gets the information about background task is running or not by reading the setting saved by background task
         /// </summary>
-        private bool IsMyBackgroundTaskRunning
+        public bool IsMyBackgroundTaskRunning
         {
             get
             {
                 if (isMyBackgroundTaskRunning)
                     return true;
-                object value = ApplicationSettingsHelper.ReadResetSettingsValue(BackgroundAudioConstants.BackgroundTaskState);
+                object value = ApplicationSettingsHelper.ReadSettingsValue(BackgroundAudioConstants.BackgroundTaskState);
                 if (value == null)
                 {
                     return false;
@@ -112,7 +107,7 @@ namespace VLC_WINRT_APP.BackgroundHelpers
         /// <summary>
         /// Subscribes to MediaPlayer events
         /// </summary>
-        private void AddMediaPlayerEventHandlers()
+        public void AddMediaPlayerEventHandlers()
         {
             BackgroundMediaPlayer.Current.CurrentStateChanged += this.MediaPlayer_CurrentStateChanged;
             BackgroundMediaPlayer.Current.MediaOpened += CurrentOnMediaOpened;

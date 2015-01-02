@@ -1,4 +1,5 @@
-﻿using VLC_WINRT_APP.BackgroundHelpers;
+﻿using Windows.Media.Playback;
+using VLC_WINRT_APP.BackgroundHelpers;
 using System;
 using System.Diagnostics;
 using System.Linq;
@@ -115,8 +116,17 @@ namespace VLC_WINRT_APP
                 Locator.MainVM.IsInternet = isinternet;
             });
 #if WINDOWS_PHONE_APP
-            BackgroundAudioHelper.StartBackgroundAudioTask();
-            BackgroundAudioHelper.InitBackgroundAudio();
+            if (!BackgroundAudioHelper.IsMyBackgroundTaskRunning ||
+                BackgroundMediaPlayer.Current == null ||
+                BackgroundMediaPlayer.Current.CurrentState == MediaPlayerState.Closed)
+            {
+                BackgroundAudioHelper.StartBackgroundAudioTask();
+                BackgroundAudioHelper.InitBackgroundAudio();
+            }
+            else
+            {
+                BackgroundAudioHelper.AddMediaPlayerEventHandlers();
+            }
 #endif
         }
 
