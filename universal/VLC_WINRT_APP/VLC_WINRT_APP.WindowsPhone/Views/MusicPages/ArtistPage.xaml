@@ -14,11 +14,11 @@
         <Image Source="/Assets/backgroundTop.png"
                Stretch="Uniform"
                VerticalAlignment="Top" />
-        <Grid RequestedTheme="Light">
+        <Grid RequestedTheme="Light"
+              Margin="0,0,-20,0">
             <GridView ItemsSource="{Binding CurrentArtist.Albums}"
                       ItemTemplate="{StaticResource PhoneSemanticZoomInViewAlbumTemplateLittleSize}"
                       ItemContainerStyle="{StaticResource TileGridViewItemStyle}"
-                      Margin="0,0,-20,0"
                       IsItemClickEnabled="True">
                 <triggers:Interactions.Triggers>
                     <triggers:EventTrigger EventName="ItemClick">
@@ -33,7 +33,6 @@
                 </GridView.HeaderTemplate>
                 <GridView.ItemContainerTransitions>
                     <TransitionCollection>
-                        <AddDeleteThemeTransition />
                         <EntranceThemeTransition />
                     </TransitionCollection>
                 </GridView.ItemContainerTransitions>
