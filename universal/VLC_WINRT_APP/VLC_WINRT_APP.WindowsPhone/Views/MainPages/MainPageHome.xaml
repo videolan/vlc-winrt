@@ -8,6 +8,7 @@
       xmlns:controls="using:VLC_WINRT_APP.Controls"
       xmlns:extensions="using:WinRTXamlToolkit.Controls.Extensions"
       xmlns:placeholder="using:VLC_WINRT_APP.Views.UserControls.Placeholder"
+      xmlns:userControls="using:VLC_WINRT_APP.Views.UserControls"
       mc:Ignorable="d"
       DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}">
 
@@ -37,12 +38,7 @@
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Path Data="{StaticResource VLCFlatPath}"
-                          Fill="{StaticResource MainColor}"
-                          VerticalAlignment="Center"
-                          Margin="0,6,0,0"
-                          Height="26"
-                          Stretch="UniformToFill" />
+                    <userControls:VLCLogoWithGradient Height="32"/>
                     <TextBlock Margin="12,-3,0,0"
                                TextTrimming="CharacterEllipsis"
                                TextWrapping="NoWrap"
