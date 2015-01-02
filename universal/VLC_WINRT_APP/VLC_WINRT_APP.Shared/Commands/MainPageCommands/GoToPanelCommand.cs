@@ -81,13 +81,6 @@ namespace VLC_WINRT_APP.Commands.MainPageCommands
                         break;
                 }
             }
-
-                if (App.ApplicationFrame.CurrentSourcePageType != typeof(MainPageHome))
-                    App.ApplicationFrame.Navigate(typeof(MainPageHome));
-                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                    (App.ApplicationFrame.Content as MainPageHome).MainPivot.SelectedIndex = panel.Index);
-            }
-
 #else
             if (App.ApplicationFrame.Content is MainPageHome)
             {
