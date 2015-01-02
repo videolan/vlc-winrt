@@ -139,8 +139,8 @@
             <ProgressBar Style="{StaticResource ThinProgressBar}"
                          VerticalAlignment="Bottom"
                          DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}"
-                         Value="{Binding Time, Mode=OneWay}"
-                         Maximum="{Binding TimeTotal.TotalMilliseconds}"/>
+                         Value="{Binding Position, Mode=OneWay}"
+                         Maximum="1"/>
         </Grid>
     </Grid>
 </UserControl>
