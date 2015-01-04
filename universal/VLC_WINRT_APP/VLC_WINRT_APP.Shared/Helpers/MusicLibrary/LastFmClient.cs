@@ -47,7 +47,8 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             catch (Exception e)
             {
                 LogHelper.Log("Error when trying to get Shows for artist : " + artistName + " exception log " + e.ToString());
-            } return null;
+            } 
+            return null;
         }
 
         public async Task<Artist> GetArtistInfo(string artistName)

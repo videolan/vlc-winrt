@@ -7,6 +7,7 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -23,76 +24,105 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
     {
         public async Task<Artist> GetArtistInfo(string artistName)
         {
-            var deezerClient = new HttpClient();
-            string json = await deezerClient.GetStringAsync(string.Format("http://api.deezer.com/search/artist?q={0}&appid={1}", System.Net.WebUtility.HtmlEncode(artistName), App.DeezerAppID));
-            // TODO: See if this is even needed. It should just map an empty object.
-            if (json == "{\"data\":[],\"total\":0}")
+            try
             {
-                return null;
+                var deezerClient = new HttpClient();
+                string json = await deezerClient.GetStringAsync(string.Format("http://api.deezer.com/search/artist?q={0}&appid={1}", System.Net.WebUtility.HtmlEncode(artistName), App.DeezerAppID));
+                // TODO: See if this is even needed. It should just map an empty object.
+                if (json == "{\"data\":[],\"total\":0}")
+                {
+                    return null;
+                }
+                var deezerArtists = JsonConvert.DeserializeObject<Artists>(json);
+                if (deezerArtists.Data != null && deezerArtists.Total > 0)
+                {
+                    var deezerArtist = deezerArtists.Data.FirstOrDefault();
+                    var artist = new Artist();
+                    artist.MapFrom(deezerArtist);
+                    return artist;
+                }
             }
-            var deezerArtists = JsonConvert.DeserializeObject<Artists>(json);
-            if (deezerArtists.Data != null && deezerArtists.Total > 0)
+            catch (Exception e)
             {
-                var deezerArtist = deezerArtists.Data.FirstOrDefault();
-                var artist = new Artist();
-                artist.MapFrom(deezerArtist);
-                return artist;
+                ExceptionHelper.CreateMemorizedException("DeezerClient.GetArtistInfo", e);
             }
             return null;
         }
 
         public async Task<List<Artist>> GetSimilarArtists(string artistId)
         {
-            var deezerClient = new HttpClient();
-            string json = await deezerClient.GetStringAsync(string.Format("http://api.deezer.com/artist/{0}/related?appid={1}", artistId, App.DeezerAppID));
-            var deezerArtists = JsonConvert.DeserializeObject<Artists>(json);
-            var artistList = new List<Artist>();
-            if (deezerArtists.Data != null)
+            try
             {
-                foreach (var deezerArtist in deezerArtists.Data)
+                var deezerClient = new HttpClient();
+                string json = await deezerClient.GetStringAsync(string.Format("http://api.deezer.com/artist/{0}/related?appid={1}", artistId, App.DeezerAppID));
+                var deezerArtists = JsonConvert.DeserializeObject<Artists>(json);
+                var artistList = new List<Artist>();
+                if (deezerArtists.Data != null)
                 {
-                    var artist = new Artist();
-                    artist.MapFrom(deezerArtist);
-                    artistList.Add(artist);
+                    foreach (var deezerArtist in deezerArtists.Data)
+                    {
+                        var artist = new Artist();
+                        artist.MapFrom(deezerArtist);
+                        artistList.Add(artist);
+                    }
                 }
+                return artistList;
             }
-            return artistList;
+            catch (Exception e)
+            {
+                ExceptionHelper.CreateMemorizedException("DeezerClient.GetSimilarArtists", e);
+            }
         }
 
         public async Task<Album> GetAlbumInfo(string albumTitle, string artistName)
         {
-            var deezerClient = new HttpClient();
-            string json = await deezerClient.GetStringAsync(string.Format("http://api.deezer.com/search/album?q={0} {1}&appid={2}", albumTitle, artistName, App.DeezerAppID));
-            if (json == "{\"data\":[],\"total\":0}")
+            try
             {
-                return null;
+                var deezerClient = new HttpClient();
+                string json = await deezerClient.GetStringAsync(string.Format("http://api.deezer.com/search/album?q={0} {1}&appid={2}", albumTitle, artistName, App.DeezerAppID));
+                if (json == "{\"data\":[],\"total\":0}")
+                {
+                    return null;
+                }
+                var deezerAlbums = JsonConvert.DeserializeObject<Albums>(json);
+                if (deezerAlbums.Data != null)
+                {
+                    var deezerAlbum = deezerAlbums.Data.FirstOrDefault();
+                    var album = new Album();
+                    album.MapFrom(deezerAlbum);
+                    return album;
+                }
             }
-            var deezerAlbums = JsonConvert.DeserializeObject<Albums>(json);
-            if (deezerAlbums.Data != null)
+            catch (Exception e)
             {
-                var deezerAlbum = deezerAlbums.Data.FirstOrDefault();
-                var album = new Album();
-                album.MapFrom(deezerAlbum);
-                return album;
+                ExceptionHelper.CreateMemorizedException("DeezerClient.GetAlbumInfo", e);
             }
             return null;
         }
 
         public async Task<List<Album>> GetArtistTopAlbums(string artistId)
         {
-            var deezerClient = new HttpClient();
-            string json = await deezerClient.GetStringAsync(string.Format("http://api.deezer.com/artist/{0}/albums?appid={1}", artistId, App.DeezerAppID));
-            var deezerAlbums = JsonConvert.DeserializeObject<Albums>(json);
-            if (deezerAlbums == null) return null;
-            if (deezerAlbums.Data == null) return null;
-            var albumList = new List<Album>();
-            foreach (var deezerAlbum in deezerAlbums.Data)
+            try
             {
-                var album = new Album();
-                album.MapFrom(deezerAlbum);
-                albumList.Add(album);
+                var deezerClient = new HttpClient();
+                string json = await deezerClient.GetStringAsync(string.Format("http://api.deezer.com/artist/{0}/albums?appid={1}", artistId, App.DeezerAppID));
+                var deezerAlbums = JsonConvert.DeserializeObject<Albums>(json);
+                if (deezerAlbums == null) return null;
+                if (deezerAlbums.Data == null) return null;
+                var albumList = new List<Album>();
+                foreach (var deezerAlbum in deezerAlbums.Data)
+                {
+                    var album = new Album();
+                    album.MapFrom(deezerAlbum);
+                    albumList.Add(album);
+                }
+                return albumList;
             }
-            return albumList;
+            catch (Exception e)
+            {
+                ExceptionHelper.CreateMemorizedException("DeezerClient.GetArtistTopAlbums", e);
+            } 
+            return null;
         }
     }
 }

@@ -50,57 +50,71 @@ namespace VLC_WINRT_APP.Helpers.VideoLibrary
 
         private static async Task AddVideo(VideoRepository videoRepo, IReadOnlyList<StorageFile> files, bool isCameraRoll)
         {
-            foreach (StorageFile storageFile in files)
+            try
             {
-                Dictionary<string, string> showInfoDictionary = isCameraRoll ? null : TitleDecrapifier.tvShowEpisodeInfoFromString(storageFile.DisplayName);
-                bool isTvShow = showInfoDictionary != null && showInfoDictionary.Count > 0;
-
-                // Check if we know the file:
-                //FIXME: We need to check if the files in DB still exist on disk
-                var mediaVM = await videoRepo.GetFromPath(storageFile.Path).ConfigureAwait(false);
-                if (mediaVM != null)
+                foreach (StorageFile storageFile in files)
                 {
-                    Debug.Assert(isTvShow == mediaVM.IsTvShow);
-                    mediaVM.File = storageFile;
-                    if (isTvShow)
-                        await AddTvShow(showInfoDictionary["tvShowName"], mediaVM);
+                    Dictionary<string, string> showInfoDictionary = isCameraRoll
+                        ? null
+                        : TitleDecrapifier.tvShowEpisodeInfoFromString(storageFile.DisplayName);
+                    bool isTvShow = showInfoDictionary != null && showInfoDictionary.Count > 0;
+
+                    // Check if we know the file:
+                    //FIXME: We need to check if the files in DB still exist on disk
+                    var mediaVM = await videoRepo.GetFromPath(storageFile.Path).ConfigureAwait(false);
+                    if (mediaVM != null)
+                    {
+                        Debug.Assert(isTvShow == mediaVM.IsTvShow);
+                        mediaVM.File = storageFile;
+                        if (isTvShow)
+                            await AddTvShow(showInfoDictionary["tvShowName"], mediaVM);
+                    }
+                    else
+                    {
+                        // Analyse to see if it's a tv show
+                        // if the file is from a tv show, we push it to this tvshow item
+
+                        mediaVM = !isTvShow
+                            ? new VideoItem()
+                            : new VideoItem(showInfoDictionary["season"], showInfoDictionary["episode"]);
+                        await mediaVM.Initialize(storageFile);
+                        mediaVM.IsCameraRoll = isCameraRoll;
+                        if (string.IsNullOrEmpty(mediaVM.Title))
+                            continue;
+                        VideoItem searchVideo =
+                            Locator.VideoLibraryVM.ViewedVideos.FirstOrDefault(x => x.Title == mediaVM.Title);
+                        if (searchVideo != null)
+                        {
+                            mediaVM.TimeWatched = searchVideo.TimeWatched;
+                        }
+
+                        if (isTvShow)
+                            await AddTvShow(showInfoDictionary["tvShowName"], mediaVM);
+                        await videoRepo.Insert(mediaVM);
+                    }
+                    // Get back to UI thread
+                    await DispatchHelper.InvokeAsync(() =>
+                    {
+                        if (mediaVM.IsCameraRoll)
+                        {
+                            Locator.VideoLibraryVM.CameraRoll.Add(mediaVM);
+                        }
+                        else if (!mediaVM.IsTvShow)
+                        {
+                            Locator.VideoLibraryVM.Videos.Add(mediaVM);
+                        }
+                        //#if WINDOWS_APP
+                        if (Locator.VideoLibraryVM.ViewedVideos.Count < 6 &&
+                            Locator.VideoLibraryVM.ViewedVideos.FirstOrDefault(
+                                x => x.FilePath == mediaVM.FilePath && x.TimeWatched == TimeSpan.Zero) == null)
+                            Locator.VideoLibraryVM.ViewedVideos.Add(mediaVM);
+                        //#endif
+                    });
                 }
-                else
-                {
-                    // Analyse to see if it's a tv show
-                    // if the file is from a tv show, we push it to this tvshow item
-
-                    mediaVM = !isTvShow ? new VideoItem() : new VideoItem(showInfoDictionary["season"], showInfoDictionary["episode"]);
-                    await mediaVM.Initialize(storageFile);
-                    mediaVM.IsCameraRoll = isCameraRoll;
-                    if (string.IsNullOrEmpty(mediaVM.Title))
-                        continue;
-                    VideoItem searchVideo = Locator.VideoLibraryVM.ViewedVideos.FirstOrDefault(x => x.Title == mediaVM.Title);
-                    if (searchVideo != null)
-                    {
-                        mediaVM.TimeWatched = searchVideo.TimeWatched;
-                    }
-
-                    if (isTvShow)
-                        await AddTvShow(showInfoDictionary["tvShowName"], mediaVM);
-                    await videoRepo.Insert(mediaVM);
-                }
-                // Get back to UI thread
-                await DispatchHelper.InvokeAsync(() =>
-                {
-                    if (mediaVM.IsCameraRoll)
-                    {
-                        Locator.VideoLibraryVM.CameraRoll.Add(mediaVM);
-                    }
-                    else if (!mediaVM.IsTvShow)
-                    {
-                        Locator.VideoLibraryVM.Videos.Add(mediaVM);
-                    }
-                    //#if WINDOWS_APP
-                    if (Locator.VideoLibraryVM.ViewedVideos.Count < 6 && Locator.VideoLibraryVM.ViewedVideos.FirstOrDefault(x => x.FilePath == mediaVM.FilePath && x.TimeWatched == TimeSpan.Zero) == null)
-                        Locator.VideoLibraryVM.ViewedVideos.Add(mediaVM);
-                    //#endif
-                });
+            }
+            catch (Exception e)
+            {
+                ExceptionHelper.CreateMemorizedException("VideoLibraryManagement.AddVideo", e);
             }
         }
 
@@ -156,19 +170,26 @@ namespace VLC_WINRT_APP.Helpers.VideoLibrary
 
         private static async Task GetFilesFromSubFolders(StorageFolder folder, List<StorageFile> files)
         {
-            var items = await folder.GetItemsAsync();
-            foreach (IStorageItem storageItem in items)
+            try
             {
-                if (storageItem.IsOfType(StorageItemTypes.Folder))
-                    await GetFilesFromSubFolders(storageItem as StorageFolder, files);
-                else if (storageItem.IsOfType(StorageItemTypes.File))
+                var items = await folder.GetItemsAsync();
+                foreach (IStorageItem storageItem in items)
                 {
-                    var file = storageItem as StorageFile;
-                    if (VLCFileExtensions.VideoExtensions.Contains(file.FileType.ToLower()))
+                    if (storageItem.IsOfType(StorageItemTypes.Folder))
+                        await GetFilesFromSubFolders(storageItem as StorageFolder, files);
+                    else if (storageItem.IsOfType(StorageItemTypes.File))
                     {
-                        files.Add(file);
+                        var file = storageItem as StorageFile;
+                        if (VLCFileExtensions.VideoExtensions.Contains(file.FileType.ToLower()))
+                        {
+                            files.Add(file);
+                        }
                     }
                 }
+            }
+            catch (Exception e)
+            {
+                ExceptionHelper.CreateMemorizedException("VideoLibraryManagement.GetFilesFromSubFolders", e);
             }
         }
 
@@ -190,34 +211,41 @@ namespace VLC_WINRT_APP.Helpers.VideoLibrary
 
         public static async Task GenerateAllThumbnails()
         {
+            try
+            {
 #if WINDOWS_PHONE_APP
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 StatusBarHelper.UpdateTitle("Getting video thumbnails ...");
             });
 #endif
-            await ThreadPool.RunAsync(async (work) =>
-            {
-                //FIXME: Group update requests
-                foreach (var videoItem in Locator.VideoLibraryVM.Videos)
+                await ThreadPool.RunAsync(async (work) =>
                 {
-                    if (await videoItem.GenerateThumbnail())
-                        await Locator.VideoLibraryVM.VideoRepository.Update(videoItem);
-                }
-                foreach (var tvShow in Locator.VideoLibraryVM.Shows)
-                {
-                    foreach (var videoItem in tvShow.Episodes)
+                    //FIXME: Group update requests
+                    foreach (var videoItem in Locator.VideoLibraryVM.Videos)
                     {
                         if (await videoItem.GenerateThumbnail())
                             await Locator.VideoLibraryVM.VideoRepository.Update(videoItem);
                     }
-                }
-                foreach (var videoItem in Locator.VideoLibraryVM.CameraRoll)
-                {
-                    if (await videoItem.GenerateThumbnail())
-                        await Locator.VideoLibraryVM.VideoRepository.Update(videoItem);
-                }
-            });
+                    foreach (var tvShow in Locator.VideoLibraryVM.Shows)
+                    {
+                        foreach (var videoItem in tvShow.Episodes)
+                        {
+                            if (await videoItem.GenerateThumbnail())
+                                await Locator.VideoLibraryVM.VideoRepository.Update(videoItem);
+                        }
+                    }
+                    foreach (var videoItem in Locator.VideoLibraryVM.CameraRoll)
+                    {
+                        if (await videoItem.GenerateThumbnail())
+                            await Locator.VideoLibraryVM.VideoRepository.Update(videoItem);
+                    }
+                });
+            }
+            catch (Exception e)
+            {
+                ExceptionHelper.CreateMemorizedException("VideoLibraryManagement.GenerateAllThumbnails", e);
+            }
 #if WINDOWS_PHONE_APP
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
@@ -229,6 +257,7 @@ namespace VLC_WINRT_APP.Helpers.VideoLibrary
 
         public static async Task AddTvShow(String name, VideoItem episode)
         {
+            try { 
 #if WINDOWS_APP
             if (Locator.VideoLibraryVM.Panels.Count == 1)
             {
@@ -252,6 +281,11 @@ namespace VLC_WINRT_APP.Helpers.VideoLibrary
             {
                 await DispatchHelper.InvokeAsync(() =>
                 show.Episodes.Add(episode));
+            }
+            }
+            catch (Exception e)
+            {
+                ExceptionHelper.CreateMemorizedException("VideoLibaryManagement.AddTvShow", e);
             }
         }
     }

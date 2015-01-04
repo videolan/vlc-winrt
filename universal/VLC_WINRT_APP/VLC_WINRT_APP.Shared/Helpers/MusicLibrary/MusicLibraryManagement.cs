@@ -93,6 +93,8 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
 
         public static async Task GetAllMusicFolders(bool routineCheck = false)
         {
+            try
+            {
 #if WINDOWS_APP
             StorageLibrary musicLibrary = await StorageLibrary.GetLibraryAsync(KnownLibraryId.Music);
             foreach (StorageFolder storageFolder in musicLibrary.Folders)
@@ -100,108 +102,129 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                 await CreateDatabaseFromMusicFolder(storageFolder, routineCheck);
             }
 #else
-            StorageFolder musicLibrary = KnownFolders.MusicLibrary;
-            LogHelper.Log("Searching for music from Phone MusicLibrary ...");
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                StatusBarHelper.UpdateTitle("Searching for music"));
-            var files = new List<StorageFile>();
-            files = await CreateDatabaseFromMusicFolder(files, musicLibrary, routineCheck);
-            foreach (var storageFile in files)
-            {
-                if (!routineCheck)
+                StorageFolder musicLibrary = KnownFolders.MusicLibrary;
+                LogHelper.Log("Searching for music from Phone MusicLibrary ...");
+                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                    StatusBarHelper.UpdateTitle("Searching for music"));
+                var files = new List<StorageFile>();
+                files = await CreateDatabaseFromMusicFolder(files, musicLibrary, routineCheck);
+                foreach (var storageFile in files)
                 {
-                    await CreateDatabaseFromMusicFile(storageFile);
-                }
-                else
-                {
-                    if (!await MusicLibraryVM._trackDataRepository.DoesTrackExist(storageFile.Path))
+                    if (!routineCheck)
                     {
                         await CreateDatabaseFromMusicFile(storageFile);
                     }
+                    else
+                    {
+                        if (!await MusicLibraryVM._trackDataRepository.DoesTrackExist(storageFile.Path))
+                        {
+                            await CreateDatabaseFromMusicFile(storageFile);
+                        }
+                    }
                 }
-            }
 #endif
-
+            }
+            catch (Exception e)
+            {
+                ExceptionHelper.CreateMemorizedException("MusicLibraryManagement.GetAllMusicFolders", e);
+            }
         }
 
         private static async Task<List<StorageFile>> CreateDatabaseFromMusicFolder(List<StorageFile> files, StorageFolder musicFolder, bool routineCheck = false)
         {
-            IReadOnlyList<StorageFolder> folders = await musicFolder.GetFoldersAsync();
-            if (folders.Any())
+            try
             {
-                if (!routineCheck)
+                IReadOnlyList<StorageFolder> folders = await musicFolder.GetFoldersAsync();
+                if (folders.Any())
                 {
-                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                        StatusBarHelper.UpdateTitle("Found " + files.Count + " files"));
+                    if (!routineCheck)
+                    {
+                        await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                            StatusBarHelper.UpdateTitle("Found " + files.Count + " files"));
+                    }
+                    foreach (var storageFolder in folders)
+                    {
+                        await CreateDatabaseFromMusicFolder(files, storageFolder, routineCheck);
+                    }
                 }
-                foreach (var storageFolder in folders)
-                {
-                    await CreateDatabaseFromMusicFolder(files, storageFolder, routineCheck);
-                }
+                IReadOnlyList<StorageFile> folderFiles = await musicFolder.GetFilesAsync();
+                if (folderFiles != null && folderFiles.Any())
+                    files.AddRange(folderFiles);
+                return files;
             }
-            IReadOnlyList<StorageFile> folderFiles = await musicFolder.GetFilesAsync();
-            if (folderFiles != null && folderFiles.Any())
-                files.AddRange(folderFiles);
-            return files;
+            catch (Exception e)
+            {
+                ExceptionHelper.CreateMemorizedException("MusicLibraryManagement.CreateDatabaseFromMusicFolder", e);
+            }
+            return null;
         }
 
         private static async Task CreateDatabaseFromMusicFile(StorageFile item)
         {
-            if (!VLCFileExtensions.AudioExtensions.Contains(item.FileType.ToLower())) return;
-            LogHelper.Log("Music indexation: found music file " + item.Path);
-            MusicProperties properties = await item.Properties.GetMusicPropertiesAsync();
-            if (properties != null)
+            try
             {
-                ArtistItem artist = await MusicLibraryVM._artistDataRepository.LoadViaArtistName(properties.Artist);
-                if (artist == null)
+                if (!VLCFileExtensions.AudioExtensions.Contains(item.FileType.ToLower())) return;
+                LogHelper.Log("Music indexation: found music file " + item.Path);
+                MusicProperties properties = await item.Properties.GetMusicPropertiesAsync();
+                if (properties != null)
                 {
-                    artist = new ArtistItem();
-                    artist.Name = string.IsNullOrEmpty(properties.Artist) ? "Unknown artist" : properties.Artist;
-                    await MusicLibraryVM._artistDataRepository.Add(artist);
-                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+                    ArtistItem artist = await MusicLibraryVM._artistDataRepository.LoadViaArtistName(properties.Artist);
+                    if (artist == null)
                     {
-                        Locator.MusicLibraryVM.Artists.Add(artist);
-                    });
-                }
+                        artist = new ArtistItem();
+                        artist.Name = string.IsNullOrEmpty(properties.Artist) ? "Unknown artist" : properties.Artist;
+                        await MusicLibraryVM._artistDataRepository.Add(artist);
+                        await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+                        {
+                            Locator.MusicLibraryVM.Artists.Add(artist);
+                        });
+                    }
 
-                AlbumItem album = await MusicLibraryVM._albumDataRepository.LoadAlbumViaName(artist.Id, properties.Album);
-                if (album == null)
-                {
-                    album = new AlbumItem
+                    AlbumItem album =
+                        await MusicLibraryVM._albumDataRepository.LoadAlbumViaName(artist.Id, properties.Album);
+                    if (album == null)
                     {
-                        Name = string.IsNullOrEmpty(properties.Album) ? "Unknown album" : properties.Album,
-                        Artist = string.IsNullOrEmpty(properties.Artist) ? "Unknown artist" : properties.Artist,
-                        ArtistId = artist.Id,
-                        Favorite = false,
-                        Year = properties.Year
-                    };
-                    await MusicLibraryVM._albumDataRepository.Add(album);
-                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
-                    {
-                        var artistFromCollection = Locator.MusicLibraryVM.Artists.FirstOrDefault(x => x.Id == album.ArtistId);
-                        if (artistFromCollection != null) artistFromCollection.Albums.Add(album);
-                        Locator.MusicLibraryVM.CurrentIndexingStatus = "Found album " + album.Name;
+                        album = new AlbumItem
+                        {
+                            Name = string.IsNullOrEmpty(properties.Album) ? "Unknown album" : properties.Album,
+                            Artist = string.IsNullOrEmpty(properties.Artist) ? "Unknown artist" : properties.Artist,
+                            ArtistId = artist.Id,
+                            Favorite = false,
+                            Year = properties.Year
+                        };
+                        await MusicLibraryVM._albumDataRepository.Add(album);
+                        await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+                        {
+                            var artistFromCollection =
+                                Locator.MusicLibraryVM.Artists.FirstOrDefault(x => x.Id == album.ArtistId);
+                            if (artistFromCollection != null) artistFromCollection.Albums.Add(album);
+                            Locator.MusicLibraryVM.CurrentIndexingStatus = "Found album " + album.Name;
 #if WINDOWS_PHONE_APP
-                        StatusBarHelper.UpdateTitle("Found " + album.Name);
+                            StatusBarHelper.UpdateTitle("Found " + album.Name);
 #endif
-                        Locator.MusicLibraryVM.Albums.Add(album);
-                    });
-                }
+                            Locator.MusicLibraryVM.Albums.Add(album);
+                        });
+                    }
 
-                TrackItem track = new TrackItem()
-                {
-                    AlbumId = album.Id,
-                    AlbumName = album.Name,
-                    ArtistId = artist.Id,
-                    ArtistName = artist.Name,
-                    CurrentPosition = 0,
-                    Duration = properties.Duration,
-                    Favorite = false,
-                    Name = string.IsNullOrEmpty(properties.Title) ? item.DisplayName : properties.Title,
-                    Path = item.Path,
-                    Index = (int)properties.TrackNumber,
-                };
-                await MusicLibraryVM._trackDataRepository.Add(track);
+                    TrackItem track = new TrackItem()
+                    {
+                        AlbumId = album.Id,
+                        AlbumName = album.Name,
+                        ArtistId = artist.Id,
+                        ArtistName = artist.Name,
+                        CurrentPosition = 0,
+                        Duration = properties.Duration,
+                        Favorite = false,
+                        Name = string.IsNullOrEmpty(properties.Title) ? item.DisplayName : properties.Title,
+                        Path = item.Path,
+                        Index = (int) properties.TrackNumber,
+                    };
+                    await MusicLibraryVM._trackDataRepository.Add(track);
+                }
+            }
+            catch (Exception e)
+            {
+                ExceptionHelper.CreateMemorizedException("MusicLibraryManagement.CreateDatabaseFromMusicFile", e);
             }
         }
 
