@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Linq;
 using VLC_WINRT.Common;
 using VLC_WINRT_APP.Helpers.MusicPlayer;
 using VLC_WINRT_APP.Model.Music;
@@ -13,6 +14,7 @@ namespace VLC_WINRT_APP.Commands.Music
     {
         public override async void Execute(object parameter)
         {
+            if (Locator.MusicLibraryVM.Tracks == null || !Locator.MusicLibraryVM.Tracks.Any()) return;
             var shuffledTracks = Locator.MusicLibraryVM.Tracks.Shuffle();
             TrackCollection trackCollection = new TrackCollection();
             trackCollection.Playlist = new ObservableCollection<TrackItem>(shuffledTracks);
