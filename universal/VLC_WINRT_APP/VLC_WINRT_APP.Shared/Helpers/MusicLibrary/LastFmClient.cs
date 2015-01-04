@@ -148,7 +148,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("Failed to get artist biography from LastFM. Returning nothing. {1}", ex);
+                Debug.WriteLine("Failed to get artist biography from LastFM. Returning nothing. {0}", ex);
             }
             return null;
         }
