@@ -197,24 +197,32 @@ namespace VLC_WINRT_APP
         protected async override void OnActivated(IActivatedEventArgs args)
         {
             base.OnActivated(args);
-            var continueArgs =
-              args as FileOpenPickerContinuationEventArgs;
-            if (continueArgs != null && continueArgs.Files.Any())
+            try
             {
-                switch (OpenFilePickerReason)
+                var continueArgs =
+                    args as FileOpenPickerContinuationEventArgs;
+                if (continueArgs != null && continueArgs.Files.Any())
                 {
-                    case OpenFilePickerReason.OnOpeningVideo:
-                        await OpenFile(continueArgs.Files[0]);
-                        break;
-                    case OpenFilePickerReason.OnOpeningSubtitle:
+                    switch (OpenFilePickerReason)
+                    {
+                        case OpenFilePickerReason.OnOpeningVideo:
+                            await OpenFile(continueArgs.Files[0]);
+                            break;
+                        case OpenFilePickerReason.OnOpeningSubtitle:
                         {
                             string mru = StorageApplicationPermissions.FutureAccessList.Add(continueArgs.Files[0]);
                             string mrl = "file://" + mru;
                             Locator.VideoVm.OpenSubtitle(mrl);
-                        } break;
+                        }
+                            break;
+                    }
                 }
+                OpenFilePickerReason = OpenFilePickerReason.Null;
             }
-            OpenFilePickerReason = OpenFilePickerReason.Null;
+            catch (Exception e)
+            {
+                ExceptionHelper.CreateMemorizedException("App.cs.OnActivated", e);
+            }
         }
 
 #endif
