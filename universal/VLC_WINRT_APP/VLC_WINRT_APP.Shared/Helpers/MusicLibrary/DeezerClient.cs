@@ -72,6 +72,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             {
                 ExceptionHelper.CreateMemorizedException("DeezerClient.GetSimilarArtists", e);
             }
+            return null;
         }
 
         public async Task<Album> GetAlbumInfo(string albumTitle, string artistName)
