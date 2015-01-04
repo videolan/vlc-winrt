@@ -106,7 +106,6 @@ namespace VLC_WINRT_APP.Helpers.VideoLibrary
 
         public static async Task GetVideos(VideoRepository videoRepo)
         {
-            var resourceLoader = new ResourceLoader();
 #if WINDOWS_APP
             StorageLibrary videoLibrary = await StorageLibrary.GetLibraryAsync(KnownLibraryId.Videos);
             foreach (StorageFolder storageFolder in videoLibrary.Folders)
@@ -136,7 +135,6 @@ namespace VLC_WINRT_APP.Helpers.VideoLibrary
             {
                 Locator.VideoLibraryVM.LoadingState = LoadingState.Loaded;
             });
-
         }
 
         public static async Task GetVideosFromCameraRoll(VideoRepository videoRepo)
