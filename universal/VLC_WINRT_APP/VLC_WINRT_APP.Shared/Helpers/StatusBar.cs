@@ -16,7 +16,7 @@ namespace VLC_WINRT_APP.Helpers
 
         public static void SetTransparent()
         {
-            Set(null, null, 0, "", ApplicationViewBoundsMode.UseCoreWindow);
+            Set(null, App.Current.Resources["MainColor"] as SolidColorBrush, 0, "", ApplicationViewBoundsMode.UseCoreWindow);
         }
 
         public static void UpdateTitle(string t)
