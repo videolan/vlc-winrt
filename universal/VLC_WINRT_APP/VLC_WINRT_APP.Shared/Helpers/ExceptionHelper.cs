@@ -90,5 +90,51 @@ namespace VLC_WINRT_APP.Helpers
 
             ApplicationSettingsHelper.SaveSettingsValue("ExceptionLog", stringExceptionBuilder.ToString());
         }
+
+        public static void CreateMemorizedException(string method, Exception exception)
+        {
+            StringBuilder stringExceptionBuilder = new StringBuilder("Exception Log VLC for Modern Windows");
+            stringExceptionBuilder.AppendLine("Exception at : " + method);
+            stringExceptionBuilder.AppendLine("Date");
+            stringExceptionBuilder.AppendLine(DateTime.Now.ToString());
+            stringExceptionBuilder.AppendLine(" ");
+            stringExceptionBuilder.AppendLine(DateTime.Now.TimeOfDay.ToString());
+            stringExceptionBuilder.AppendLine();
+            stringExceptionBuilder.AppendLine("Current Page:");
+            if (App.ApplicationFrame != null && App.ApplicationFrame.CurrentSourcePageType != null)
+            {
+                stringExceptionBuilder.AppendLine(App.ApplicationFrame.CurrentSourcePageType.FullName);
+            }
+            else
+            {
+                stringExceptionBuilder.AppendLine("Page Null");
+            }
+
+            stringExceptionBuilder.AppendLine(exception.Message.ToString());
+            stringExceptionBuilder.AppendLine(exception.HelpLink);
+            stringExceptionBuilder.AppendLine(exception.Message);
+            stringExceptionBuilder.AppendLine(exception.Source);
+            stringExceptionBuilder.AppendLine(exception.StackTrace);
+            if (exception.Data != null)
+            {
+                foreach (DictionaryEntry entry in exception.Data)
+                {
+                    stringExceptionBuilder.AppendLine(entry.Key + ";" + entry.Value);
+                }
+            }
+
+            // Gets the app's current memory usage    
+            ulong AppMemoryUsageUlong = MemoryManager.AppMemoryUsage;
+            // Gets the app's memory usage limit    
+            ulong AppMemoryUsageLimitUlong = MemoryManager.AppMemoryUsageLimit;
+
+            AppMemoryUsageUlong /= 1024 * 1024;
+            AppMemoryUsageLimitUlong /= 1024 * 1024;
+            stringExceptionBuilder.AppendLine("CurrentRAM:" + AppMemoryUsageUlong + " -- ");
+            stringExceptionBuilder.AppendLine("MaxRAM:" + AppMemoryUsageLimitUlong + " -- ");
+            stringExceptionBuilder.AppendLine("CommentOnRAM:" + MemoryManager.AppMemoryUsageLevel.ToString());
+
+            ApplicationSettingsHelper.SaveSettingsValue("ExceptionLog", stringExceptionBuilder.ToString());
+        }
     }
 }
