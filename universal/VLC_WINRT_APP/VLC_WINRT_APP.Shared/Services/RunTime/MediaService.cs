@@ -28,6 +28,8 @@ using VLC_WINRT_APP.Views.MusicPages;
 using VLC_WINRT_APP.Views.VideoPages;
 using libVLCX;
 using System.Collections.Generic;
+using Windows.Media.Playback;
+using MediaPlayer = libVLCX.MediaPlayer;
 
 namespace VLC_WINRT_APP.Services.RunTime
 {
@@ -169,7 +171,7 @@ namespace VLC_WINRT_APP.Services.RunTime
                 App.ApplicationFrame.Navigate(typeof(MusicPlayerPage));
             var trackItem = await GetInformationsFromMusicFile.GetTrackItemFromFile(file);
             Locator.MusicPlayerVM.TrackCollection.Playlist.Clear();
-            Locator.MusicPlayerVM.TrackCollection.Playlist.Add(trackItem);
+            Locator.MusicPlayerVM.TrackCollection.Add(trackItem, true);
             await PlayMusicHelper.PlayTrack(0);
         }
 

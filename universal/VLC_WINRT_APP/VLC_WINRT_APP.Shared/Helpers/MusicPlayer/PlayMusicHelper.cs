@@ -27,7 +27,7 @@ namespace VLC_WINRT_APP.Helpers.MusicPlayer
                 if (track != null)
                 {
                     SetCurrentTrackPosition(Locator.MusicPlayerVM.TrackCollection.Playlist.IndexOf(track));
-                    Task.Run(() => Locator.MusicPlayerVM.Play());
+                    Task.Run(() => Locator.MusicPlayerVM.Play(false));
                 }
             });
         }
@@ -70,7 +70,6 @@ namespace VLC_WINRT_APP.Helpers.MusicPlayer
                 {
                     AddTrack(trackItem);
                 }
-                await App.BackgroundAudioHelper.PopulatePlaylist(Locator.MusicPlayerVM.TrackCollection.Playlist);
                 if (play)
                 {
                     if (track != null)
@@ -110,7 +109,7 @@ namespace VLC_WINRT_APP.Helpers.MusicPlayer
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
             {
                 Locator.MusicPlayerVM.TrackCollection.ResetCollection();
-                Locator.MusicPlayerVM.TrackCollection.Playlist = trackCollection.Playlist;
+                Locator.MusicPlayerVM.TrackCollection.SetPlaylist(trackCollection.Playlist);
                 await PlayTrack(trackCollection.Playlist[0].Id);
             });
         }
@@ -126,8 +125,10 @@ namespace VLC_WINRT_APP.Helpers.MusicPlayer
 
         static void AddTrack(TrackItem track)
         {
-            if (Locator.MusicPlayerVM.TrackCollection.Playlist.FirstOrDefault(x=>x.Id == track.Id) == null)
-                Locator.MusicPlayerVM.TrackCollection.Playlist.Add(track);
+            if (Locator.MusicPlayerVM.TrackCollection.Playlist.FirstOrDefault(x => x.Id == track.Id) == null)
+            {
+                Locator.MusicPlayerVM.TrackCollection.Add(track, true);
+            }
         }
     }
 }

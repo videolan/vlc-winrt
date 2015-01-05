@@ -24,8 +24,7 @@ namespace VLC_WINRT_APP.Commands.Music
                         await
                             MusicLibraryVM.TracklistItemRepository.Remove(trackItem.Id,
                                 Locator.MusicLibraryVM.CurrentTrackCollection.Id);
-
-                        Locator.MusicLibraryVM.CurrentTrackCollection.Playlist.Remove(trackItem);
+                        Locator.MusicLibraryVM.CurrentTrackCollection.Remove(trackItem);
                     }
                     catch (Exception exception)
                     {

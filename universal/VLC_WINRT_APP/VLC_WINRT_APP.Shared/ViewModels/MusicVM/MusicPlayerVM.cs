@@ -32,6 +32,7 @@ using VLC_WINRT_APP.Services.RunTime;
 using System.Collections.Generic;
 using Windows.Media.Playback;
 using VLC_WINRT_APP.BackgroundAudioPlayer.Model;
+using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.Views.MainPages;
 using WinRTXamlToolkit.Controls.Extensions;
 
@@ -55,7 +56,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         {
             get
             {
-                _trackCollection = _trackCollection ?? new TrackCollection();
+                _trackCollection = _trackCollection ?? new TrackCollection(true);
                 return _trackCollection;
             }
         }
@@ -153,7 +154,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                 await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
                 {
                     TrackCollection.CurrentTrack++;
-                    await Play();
+                    await Play(false);
                 });
             }
             else
@@ -167,7 +168,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             if (TrackCollection.CanGoPrevious)
             {
                 await DispatchHelper.InvokeAsync(() => TrackCollection.CurrentTrack--);
-                await Play();
+                await Play(false);
             }
             else
             {
@@ -175,7 +176,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             }
         }
 
-        public async Task Play(StorageFile fileFromExplorer = null)
+        public async Task Play(bool forceVlcLib, StorageFile fileFromExplorer = null)
         {
             Stop();
             if (CurrentTrack == null) return;
@@ -208,7 +209,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                 }
                 string token = StorageApplicationPermissions.FutureAccessList.Add(file);
                 Debug.WriteLine("Opening file: " + file.Path);
-                await SetActiveMusicInfo(token, trackItem);
+                await SetActiveMusicInfo(token, trackItem, file, forceVlcLib);
             });
             if (trackItem == null) return;
             // Setting the info for windows 8 controls
@@ -231,30 +232,30 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             }
         }
 
-        public async Task SetActiveMusicInfo(string token, TrackItem track)
+        private async Task SetActiveMusicInfo(string token, TrackItem track, StorageFile file, bool forceVlcLib)
         {
-            _fileToken = token;
-            _mrl = "file://" + token;
+            bool playWithLibVlc = false;
 #if WINDOWS_APP
-            base.InitializePlayback(_mrl, true);
-            _mediaService.Play();
+            playWithLibVlc = true;
 #else
-            App.BackgroundAudioHelper.PlayAudio(track);
+            if (!VLCFileExtensions.MFSupported.Contains(file.FileType.ToLower()) || forceVlcLib)
+                playWithLibVlc = true;
 #endif
-            //#if WINDOWS_APP
-            UpdateTileHelper.UpdateMediumTileWithMusicInfo();
-            //#endif
-
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.High, () =>
+            if (playWithLibVlc)
             {
-                TrackCollection.IsRunning = true;
-                TrackCollection.SetActiveTrackProperty();
-                OnPropertyChanged("TrackCollection");
-                OnPropertyChanged("PlayingType");
-                OnPropertyChanged("CurrentTrack");
-                OnPropertyChanged("CurrentAlbum");
-                OnPropertyChanged("CurrentArtist");
-            });
+                _fileToken = token;
+                _mrl = "file://" + token;
+                base.InitializePlayback(_mrl, true);
+                _mediaService.Play();
+                await UpdatePlayingUI();
+#if WINDOWS_PHONE_APP
+                ToastHelper.Basic("Can't enable background audio");
+#endif
+            }
+            else
+            {
+                App.BackgroundAudioHelper.PlayAudio(track);
+            }
         }
 
         public override void CleanViewModel()
@@ -275,20 +276,30 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 #if WINDOWS_PHONE_APP
         public void UpdateTrackFromMF()
         {
-            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
             {
                 Locator.MusicPlayerVM.OnLengthChanged(
                     (long) BackgroundMediaPlayer.Current.NaturalDuration.TotalMilliseconds);
-                int index = (int) ApplicationSettingsHelper.ReadSettingsValue(BackgroundAudioConstants.CurrentTrack);
+                int index = (int)ApplicationSettingsHelper.ReadSettingsValue(BackgroundAudioConstants.CurrentTrack);
                 Locator.MusicPlayerVM.TrackCollection.CurrentTrack = index;
-                Locator.MusicPlayerVM.TrackCollection.SetActiveTrackProperty();
+                await UpdatePlayingUI();
+            });
+        }
+#endif
+
+        private async Task UpdatePlayingUI()
+        {
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                TrackCollection.IsRunning = true;
+                TrackCollection.SetActiveTrackProperty();
                 OnPropertyChanged("TrackCollection");
                 OnPropertyChanged("PlayingType");
                 OnPropertyChanged("CurrentTrack");
                 OnPropertyChanged("CurrentAlbum");
                 OnPropertyChanged("CurrentArtist");
+                UpdateTileHelper.UpdateMediumTileWithMusicInfo();
             });
         }
-#endif
     }
 }

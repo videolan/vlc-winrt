@@ -7,11 +7,16 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using SQLite;
+using VLC_WINRT_APP.BackgroundAudioPlayer.Model;
 using VLC_WINRT_APP.Commands.Music;
 using VLC_WINRT_APP.Common;
+using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.Helpers.MusicLibrary;
 using VLC_WINRT_APP.Helpers.MusicLibrary.Deezer;
 using VLC_WINRT_APP.Model.Music;
@@ -93,7 +98,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         public ObservableCollection<TrackItem> Playlist
         {
             get { return _tracksCollection; }
-            set
+            private set
             {
                 SetProperty(ref _tracksCollection, value);
             }
@@ -116,36 +121,113 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         #endregion
 
         #region ctors
+        public TrackCollection(bool isRuntimePlaylist)
+        {
+            if (isRuntimePlaylist && ApplicationSettingsHelper.Contains("SavedPlaylist"))
+            {
+                var ids = ApplicationSettingsHelper.ReadSettingsValue("SavedPlaylist").ToString();
+                string[] trackIds = ids.Split(';');
+                RestorePlaylist(trackIds);
+            }
+            _tracksCollection = new ObservableCollection<TrackItem>();
+            InitializePlaylist();
+        }
         public TrackCollection()
         {
             _tracksCollection = new ObservableCollection<TrackItem>();
-            ResetCollection();
+            InitializePlaylist();
         }
         #endregion
 
         #region methods
+        public void InitializePlaylist()
+        {
+            Playlist.Clear();
+            CurrentTrack = -1;
+        }
 
         public void ResetCollection()
         {
+            App.BackgroundAudioHelper.ResetCollection();
             Playlist.Clear();
             CurrentTrack = -1;
         }
 
         public void SetActiveTrackProperty()
         {
-            foreach (var trackItem in Playlist)
+            try
             {
-                if (Playlist[_currentTrack].Id == trackItem.Id)
+                foreach (var trackItem in Playlist)
                 {
-                    trackItem.IsCurrentPlaying = true;
+                    if (Playlist[_currentTrack].Id == trackItem.Id)
+                    {
+                        trackItem.IsCurrentPlaying = true;
+                    }
+                    else
+                    {
+                        trackItem.IsCurrentPlaying = false;
+                    }
                 }
-                else
-                {
-                    trackItem.IsCurrentPlaying = false;
-                }
+            }
+            catch (ArgumentOutOfRangeException exception)
+            {
+                _currentTrack = 0;
+                SetActiveTrackProperty();
             }
         }
 
+        public void SetPlaylist(ObservableCollection<TrackItem> playlist)
+        {
+            Playlist = playlist;
+            App.BackgroundAudioHelper.PopulatePlaylist(Locator.MusicPlayerVM.TrackCollection.Playlist);
+        }
+
+        public void Shuffle()
+        {
+            if (IsShuffled)
+            {
+                SetPlaylist(Locator.MusicPlayerVM.TrackCollection.NonShuffledPlaylist);
+            }
+            else
+            {
+                NonShuffledPlaylist = new ObservableCollection<TrackItem>(Playlist);
+                Random r = new Random();
+                for (int i = 0; i < Playlist.Count; i++)
+                {
+                    int index1 = r.Next(Playlist.Count);
+                    int index2 = r.Next(Playlist.Count);
+                    Playlist.Move(index1, index2);
+                }
+            }
+            IsShuffled = !IsShuffled;
+            CurrentTrack = Playlist.IndexOf(Playlist.FirstOrDefault(x => x.IsCurrentPlaying == true));
+        }
+
+        public void Remove(TrackItem trackItem)
+        {
+            Playlist.Remove(trackItem);
+        }
+
+        public void Add(TrackItem trackItem, bool isPlayingPlaylist)
+        {
+            Playlist.Add(trackItem);
+            App.BackgroundAudioHelper.AddPlaylist(trackItem);
+        }
+
+        public async Task RestorePlaylist(string[] trackIds)
+        {
+            Playlist = new ObservableCollection<TrackItem>();
+            foreach (string trackId in trackIds)
+            {
+                if (string.IsNullOrEmpty(trackId)) continue;
+                var trackItem = await MusicLibraryVM._trackDataRepository.LoadTrack(int.Parse(trackId));
+                Playlist.Add(trackItem);
+            }
+            IsRunning = true;
+            CurrentTrack = (int)ApplicationSettingsHelper.ReadSettingsValue(BackgroundAudioConstants.CurrentTrack);
+            Locator.MusicPlayerVM.UpdateTrackFromMF();
+            SetActiveTrackProperty();
+        }
         #endregion
     }
 }
