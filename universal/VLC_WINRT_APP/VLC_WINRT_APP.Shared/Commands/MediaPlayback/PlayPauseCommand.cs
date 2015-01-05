@@ -23,14 +23,24 @@ namespace VLC_WINRT_APP.Commands.MediaPlayback
             var playerService = App.Container.Resolve<IMediaService>();
             playerService.Pause();
 #else
-            switch (BackgroundMediaPlayer.Current.CurrentState)
+            if (BackgroundMediaPlayer.Current != null
+                || BackgroundMediaPlayer.Current.CurrentState == MediaPlayerState.Paused
+                || BackgroundMediaPlayer.Current.CurrentState == MediaPlayerState.Playing)
             {
-                case MediaPlayerState.Paused:
-                    BackgroundMediaPlayer.Current.Play();
-                    break;
-                case MediaPlayerState.Playing:
-                    BackgroundMediaPlayer.Current.Pause();
-                    break;
+                switch (BackgroundMediaPlayer.Current.CurrentState)
+                {
+                    case MediaPlayerState.Paused:
+                        BackgroundMediaPlayer.Current.Play();
+                        break;
+                    case MediaPlayerState.Playing:
+                        BackgroundMediaPlayer.Current.Pause();
+                        break;
+                }
+            }
+            else
+            {
+                var playerService = App.Container.Resolve<IMediaService>();
+                playerService.Pause();
             }
 #endif
         }
