@@ -4,7 +4,6 @@ using Windows.UI.Popups;
 using VLC_WINRT.Common;
 using VLC_WINRT_APP.Helpers.MusicLibrary;
 using VLC_WINRT_APP.ViewModels;
-using VLC_WINRT_APP.Views.UserControls.Placeholder;
 
 namespace VLC_WINRT_APP.Commands.Music
 {
