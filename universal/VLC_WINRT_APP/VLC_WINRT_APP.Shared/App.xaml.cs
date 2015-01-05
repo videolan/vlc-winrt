@@ -144,7 +144,7 @@ namespace VLC_WINRT_APP
                         };
                     }
                 }
-                else if(args.Contains("Artist"))
+                else if (args.Contains("Artist"))
                 {
                     query = args.Replace("SecondaryTile-Artist-", "");
                     id = int.Parse(query);
@@ -199,11 +199,11 @@ namespace VLC_WINRT_APP
                             await OpenFile(continueArgs.Files[0]);
                             break;
                         case OpenFilePickerReason.OnOpeningSubtitle:
-                        {
-                            string mru = StorageApplicationPermissions.FutureAccessList.Add(continueArgs.Files[0]);
-                            string mrl = "file://" + mru;
-                            Locator.VideoVm.OpenSubtitle(mrl);
-                        }
+                            {
+                                string mru = StorageApplicationPermissions.FutureAccessList.Add(continueArgs.Files[0]);
+                                string mrl = "file://" + mru;
+                                Locator.VideoVm.OpenSubtitle(mrl);
+                            }
                             break;
                     }
                 }
