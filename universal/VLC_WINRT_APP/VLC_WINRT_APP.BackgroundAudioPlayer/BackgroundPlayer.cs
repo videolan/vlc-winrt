@@ -316,6 +316,21 @@ namespace VLC_WINRT_APP.BackgroundAudioPlayer
                         Debug.WriteLine("Starting Playback");
                         StartPlayback();
                         break;
+
+                    case BackgroundAudioConstants.ResetPlaylist:
+                        Playlist.ResetCollection();
+                        break;
+                    case BackgroundAudioConstants.AddTrack:
+                        object track = new object();
+                        if (e.Data.TryGetValue(BackgroundAudioConstants.AddTrack, out track))
+                        {
+                            string xmlTrack = track.ToString();
+                            BackgroundTrackItem trackItem =
+                                AudioBackgroundInterface.DeserializeObjectAudioTrack(xmlTrack) as BackgroundTrackItem;
+                            if(trackItem != null)
+                                Playlist.AddTrack(trackItem);
+                        }
+                        break;
                     case BackgroundAudioConstants.PlayTrack: //Foreground App process has signalled that it is ready for playback
                         Debug.WriteLine("Starting Playback");
                         Object obj = new Object();
