@@ -271,5 +271,15 @@ namespace VLC_WINRT_APP.BackgroundHelpers
                 }
             }
         }
+
+        public void ResetCollection()
+        {
+            if (IsMyBackgroundTaskRunning)
+            {
+                ValueSet messageDictionary = new ValueSet();
+                messageDictionary.Add(BackgroundAudioConstants.ResetPlaylist, "");
+                BackgroundMediaPlayer.SendMessageToBackground(messageDictionary);
+            }
+        }
     }
 }
