@@ -109,24 +109,14 @@ namespace VLC_WINRT_APP
             if (args.Arguments.Contains("SecondaryTile"))
             {
                 await RedirectFromSecondaryTile(args.Arguments);
-            } 
+            }
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 bool isinternet = System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable();
                 Locator.MainVM.IsInternet = isinternet;
             });
 #if WINDOWS_PHONE_APP
-            if (!BackgroundAudioHelper.IsMyBackgroundTaskRunning ||
-                BackgroundMediaPlayer.Current == null ||
-                BackgroundMediaPlayer.Current.CurrentState == MediaPlayerState.Closed)
-            {
-                BackgroundAudioHelper.StartBackgroundAudioTask();
-                BackgroundAudioHelper.InitBackgroundAudio();
-            }
-            else
-            {
-                BackgroundAudioHelper.AddMediaPlayerEventHandlers();
-            }
+            BackgroundAudioHelper.InitBackgroundAudio();
 #endif
         }
 

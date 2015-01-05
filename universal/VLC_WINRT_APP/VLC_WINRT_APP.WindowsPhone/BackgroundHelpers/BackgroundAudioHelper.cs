@@ -21,20 +21,28 @@ namespace VLC_WINRT_APP.BackgroundHelpers
 {
     public class BackgroundAudioHelper
     {
-        private AutoResetEvent SererInitialized;
-        private AutoResetEvent PingEvent;
         private bool isMyBackgroundTaskRunning = false;
         DispatcherTimer dispatchTimer = new DispatcherTimer();
 
         public void InitBackgroundAudio()
         {
-            SererInitialized = new AutoResetEvent(false);
-            PingEvent = new AutoResetEvent(false);
             App.Current.Suspending += ForegroundApp_Suspending;
             App.Current.Resuming += ForegroundApp_Resuming;
             ApplicationSettingsHelper.SaveSettingsValue(BackgroundAudioConstants.AppState, BackgroundAudioConstants.ForegroundAppActive);
-            dispatchTimer.Interval = TimeSpan.FromMilliseconds(500);
+            dispatchTimer.Interval = TimeSpan.FromSeconds(1);
             dispatchTimer.Tick += DispatchTimerOnTick;
+            if (BackgroundMediaPlayer.Current.CurrentState == MediaPlayerState.Playing)
+            {
+                if (!dispatchTimer.IsEnabled)
+                {
+                    App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                    {
+                        Locator.MusicPlayerVM.IsPlaying = true;
+                        dispatchTimer.Start();
+                    });
+                }
+            }
+            AddMediaPlayerEventHandlers();
         }
 
         /// <summary>
@@ -58,43 +66,7 @@ namespace VLC_WINRT_APP.BackgroundHelpers
                 }
             }
         }
-
-        /// <summary>
-        /// Initialize Background Media Player Handlers and starts playback
-        /// </summary>
-        public void StartBackgroundAudioTask()
-        {
-            AddMediaPlayerEventHandlers();
-
-            var backgroundtaskinitializationresult = App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-            {
-                bool result = SererInitialized.WaitOne(3000);
-                //Send message to initiate playback
-                if (result == true)
-                {
-                }
-                else
-                {
-                    throw new Exception("Background Audio Task didn't start in expected time");
-                }
-            }
-            );
-            backgroundtaskinitializationresult.Completed = new AsyncActionCompletedHandler(BackgroundTaskInitializationCompleted);
-        }
-
-        private void BackgroundTaskInitializationCompleted(IAsyncAction action, AsyncStatus status)
-        {
-            if (status == AsyncStatus.Completed)
-            {
-                Debug.WriteLine("Background Audio Task initialized");
-            }
-            else if (status == AsyncStatus.Error)
-            {
-                Debug.WriteLine("Background Audio Task could not initialized due to an error ::" + action.ErrorCode.ToString());
-            }
-        }
-
-
+        
         /// <summary>
         /// Unsubscribes to MediaPlayer events. Should run only on suspend
         /// </summary>
@@ -123,7 +95,6 @@ namespace VLC_WINRT_APP.BackgroundHelpers
         {
             Locator.MusicPlayerVM.UpdateTimeFromMF();
         }
-
 
         /// <summary>
         /// MediaPlayer state changed event handlers. 
