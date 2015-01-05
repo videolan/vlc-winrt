@@ -69,16 +69,33 @@ namespace VLC_WINRT_APP.Services.RunTime
         }
         public void SetMediaTransportControls(SystemMediaTransportControls systemMediaTransportControls)
         {
+#if WINDOWS_APP
+            ForceMediaTransportControls(systemMediaTransportControls);
+#else
+            if (BackgroundMediaPlayer.Current != null &&
+                BackgroundMediaPlayer.Current.CurrentState == MediaPlayerState.Playing)
+            {
+
+            }
+            else
+            {
+                ForceMediaTransportControls(systemMediaTransportControls);
+            }
+#endif
+        }
+
+        void ForceMediaTransportControls(SystemMediaTransportControls systemMediaTransportControls)
+        {
             _systemMediaTransportControls = systemMediaTransportControls;
             _systemMediaTransportControls.PlaybackStatus = MediaPlaybackStatus.Closed;
             _systemMediaTransportControls.ButtonPressed += SystemMediaTransportControlsOnButtonPressed;
             _systemMediaTransportControls.IsEnabled = false;
         }
-
         public async Task SetMediaTransportControlsInfo(string artistName, string albumName, string trackName, string albumUri)
         {
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
+                if (_systemMediaTransportControls == null) return;
                 SystemMediaTransportControlsDisplayUpdater updater = _systemMediaTransportControls.DisplayUpdater;
                 updater.Type = MediaPlaybackType.Music;
                 // Music metadata.
@@ -194,11 +211,14 @@ namespace VLC_WINRT_APP.Services.RunTime
             if (MediaPlayer == null)
                 return; // Should we just assert/crash here?
             MediaPlayer.play();
-            _systemMediaTransportControls.IsEnabled = true;
-            _systemMediaTransportControls.IsPauseEnabled = true;
-            _systemMediaTransportControls.IsPlayEnabled = true;
-            _systemMediaTransportControls.IsNextEnabled = Locator.MusicPlayerVM.PlayingType != PlayingType.Music || Locator.MusicPlayerVM.TrackCollection.CanGoNext;
-            _systemMediaTransportControls.IsPreviousEnabled = Locator.MusicPlayerVM.PlayingType != PlayingType.Music || Locator.MusicPlayerVM.TrackCollection.CanGoPrevious;
+            if (_systemMediaTransportControls != null)
+            {
+                _systemMediaTransportControls.IsEnabled = true;
+                _systemMediaTransportControls.IsPauseEnabled = true;
+                _systemMediaTransportControls.IsPlayEnabled = true;
+                _systemMediaTransportControls.IsNextEnabled = Locator.MusicPlayerVM.PlayingType != PlayingType.Music || Locator.MusicPlayerVM.TrackCollection.CanGoNext;
+                _systemMediaTransportControls.IsPreviousEnabled = Locator.MusicPlayerVM.PlayingType != PlayingType.Music || Locator.MusicPlayerVM.TrackCollection.CanGoPrevious;
+            }
         }
 
         public void Pause()
