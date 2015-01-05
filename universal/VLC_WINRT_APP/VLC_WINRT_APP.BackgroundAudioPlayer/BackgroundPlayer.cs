@@ -306,7 +306,7 @@ namespace VLC_WINRT_APP.BackgroundAudioPlayer
                     case BackgroundAudioConstants.AppSuspended:
                         Debug.WriteLine("App suspending"); // App is suspended, you can save your task state at this point
                         foregroundAppState = ForegroundAppStatus.Suspended;
-                        ApplicationSettingsHelper.SaveSettingsValue(BackgroundAudioConstants.CurrentTrack, Playlist.CurrentTrackId.Id);
+                        ApplicationSettingsHelper.SaveSettingsValue(BackgroundAudioConstants.CurrentTrack, Playlist.CurrentTrack);
                         break;
                     case BackgroundAudioConstants.AppResumed:
                         Debug.WriteLine("App resuming"); // App is resumed, now subscribe to message channel
