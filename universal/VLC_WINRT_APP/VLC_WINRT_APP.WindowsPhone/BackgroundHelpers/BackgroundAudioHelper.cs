@@ -107,9 +107,6 @@ namespace VLC_WINRT_APP.BackgroundHelpers
             switch (sender.CurrentState)
             {
                 case MediaPlayerState.Playing:
-                    //playButton.Content = "| |";     // Change to pause button
-                    //prevButton.IsEnabled = true;
-                    //nextButton.IsEnabled = true;
                     Debug.WriteLine("Media State Changed: Playing");
                     await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                     {
@@ -118,7 +115,6 @@ namespace VLC_WINRT_APP.BackgroundHelpers
                     });
                     break;
                 case MediaPlayerState.Paused:
-                    //playButton.Content = ">";     // Change to play button
                     Debug.WriteLine("Media State Changed: Paused");
                     await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                     {
@@ -141,7 +137,6 @@ namespace VLC_WINRT_APP.BackgroundHelpers
                     case BackgroundAudioConstants.PingBackground:
                         //When foreground app is active change track based on background message
                         Debug.WriteLine("Ping from background received");
-                        PingEvent.Set();
                         break;
                     case BackgroundAudioConstants.Trackchanged:
                         //When foreground app is active change track based on background message
@@ -175,23 +170,13 @@ namespace VLC_WINRT_APP.BackgroundHelpers
                 messageDictionary.Add(BackgroundAudioConstants.AppResumed, DateTime.Now.ToString());
                 BackgroundMediaPlayer.SendMessageToBackground(messageDictionary);
 
-                if (BackgroundMediaPlayer.Current.CurrentState == MediaPlayerState.Playing)
-                {
-                    //  playButton.Content = "| |";     // Change to pause button
-                    Debug.WriteLine("Resuming Media State Playing");
-                }
-                else
-                {
-                    // playButton.Content = ">";     // Change to play button
-                    Debug.WriteLine("Resuming Media State Not Playing");
-                }
-                // txtCurrentTrack.Text = CurrentTrack;
+                Debug.WriteLine(BackgroundMediaPlayer.Current.CurrentState == MediaPlayerState.Playing
+                    ? "Resuming Media State Playing"
+                    : "Resuming Media State Not Playing");
             }
             else
             {
                 Debug.WriteLine("Resuming Media State Not Playing");
-                //playButton.Content = ">";     // Change to play button
-                //txtCurrentTrack.Text = "";
             }
 
         }
