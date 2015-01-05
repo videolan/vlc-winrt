@@ -92,16 +92,14 @@ namespace VLC_WINRT_APP.Views.MainPages
         {
             if (DisplayHelper.IsPortrait())
             {
-                //CommandBar.Visibility = Visibility.Visible;
+                PivotTitle.Margin = new Thickness(0, 16, 0, 0);
                 MainPivot.Margin = new Thickness(-7, 0, -15, 0);
-                PivotTitle.Visibility = Visibility.Visible;
                 HeaderBackgroundGrid.Height = 110;
             }
             else
             {
-                //CommandBar.Visibility = Visibility.Collapsed;
+                PivotTitle.Margin = new Thickness(0, 2, 0, 0);
                 MainPivot.Margin = new Thickness(-7, -15, -25, 0);
-                PivotTitle.Visibility = Visibility.Collapsed;
                 HeaderBackgroundGrid.Height = 50;
             }
         }
