@@ -40,7 +40,12 @@ namespace VLC_WINRT_APP.BackgroundAudioPlayer
         public bool IsShuffled { get; set; }
         #endregion
         #region public fields
-        static List<BackgroundTrackItem> Playlist { get; set; }
+
+        static List<BackgroundTrackItem> Playlist
+        {
+            get; 
+            set;
+        }
         #endregion
         #region events
         /// <summary>
@@ -49,7 +54,6 @@ namespace VLC_WINRT_APP.BackgroundAudioPlayer
         public event TypedEventHandler<object, object> TrackChanged;
         #endregion
         #region private objects
-
         private MediaPlayer mediaPlayer;
         #endregion
 
