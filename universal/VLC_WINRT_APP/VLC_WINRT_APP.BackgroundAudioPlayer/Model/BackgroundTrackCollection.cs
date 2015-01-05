@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.Foundation;
+using Windows.Foundation.Collections;
 using Windows.Media;
 using Windows.Media.Playback;
 using Windows.Storage;
@@ -71,7 +72,12 @@ namespace VLC_WINRT_APP.BackgroundAudioPlayer
 
         private void MediaPlayerOnMediaFailed(MediaPlayer sender, MediaPlayerFailedEventArgs args)
         {
-
+            Debug.WriteLine("Failed to open the file with Background Media Player");
+            if (CurrentTrackId != null)
+                BackgroundMediaPlayer.SendMessageToForeground(new ValueSet()
+                {
+                    new KeyValuePair<string, object>(BackgroundAudioConstants.MFFailed, CurrentTrackId.Id)
+                });
         }
 
         private void MediaPlayerOnCurrentStateChanged(MediaPlayer sender, object args)
