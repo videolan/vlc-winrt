@@ -37,15 +37,6 @@
             </SupportedFileTypes>
           </FileTypeAssociation>
         </Extension>
-        <Extension Category="windows.fileOpenPicker" EntryPoint="VLC_WINRT_APP.WindowsPhone.App">
-          <FileOpenPicker>
-            <SupportedFileTypes>
-              <FileType>.mp4</FileType>
-              <FileType>.mov</FileType>
-              <FileType>.mkv</FileType>
-            </SupportedFileTypes>
-          </FileOpenPicker>
-        </Extension>
         <Extension Category="windows.backgroundTasks" EntryPoint="VLC_WINRT_APP.BackgroundAudioPlayer.BackgroundPlayer">
           <BackgroundTasks>
             <Task Type="audio" />
