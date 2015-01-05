@@ -220,6 +220,28 @@ namespace VLC_WINRT_APP.BackgroundHelpers
             await Task.Delay(500);
         }
 
+        public async Task AddPlaylist(TrackItem trackItem)
+        {
+            var backgroundTrackItem = new BackgroundTrackItem()
+            {
+                AlbumName = trackItem.AlbumName,
+                Path = trackItem.Path,
+                ArtistName = trackItem.ArtistName,
+                Name = trackItem.Name,
+                Thumbnail = trackItem.Thumbnail,
+                Duration = trackItem.Duration,
+                Id = trackItem.Id
+            };
+            if (IsMyBackgroundTaskRunning)
+            {
+                ValueSet messageDictionary = new ValueSet();
+                string ls = AudioBackgroundInterface.SerializeObjectAudioTrack(backgroundTrackItem);
+                messageDictionary.Add(BackgroundAudioConstants.AddTrack, ls);
+                BackgroundMediaPlayer.SendMessageToBackground(messageDictionary);
+            }
+            await Task.Delay(500);
+        }
+
         public void PlayAudio(TrackItem track)
         {
             Debug.WriteLine("Play button pressed from App");
