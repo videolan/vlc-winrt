@@ -2,16 +2,12 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Resources;
-using Windows.Graphics.Display;
 using Windows.Phone.UI.Input;
 using Windows.Storage;
-using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using VLC_WINRT_APP.Helpers;
-using VLC_WINRT_APP.Helpers.MusicLibrary.EchoNest;
 using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.Model.Video;
 using VLC_WINRT_APP.ViewModels;
