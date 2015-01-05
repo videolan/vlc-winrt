@@ -110,6 +110,7 @@ namespace VLC_WINRT_APP.BackgroundAudioPlayer
         {
             Playlist.Clear();
             CurrentTrack = -1;
+            ApplicationSettingsHelper.ReadResetSettingsValue("SavedPlaylist");
         }
 
         public void SetActiveTrackProperty()
