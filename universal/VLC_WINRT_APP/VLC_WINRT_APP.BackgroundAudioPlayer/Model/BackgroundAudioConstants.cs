@@ -20,5 +20,10 @@
         public const string Trackchanged = "songchanged";
         public const string ForegroundAppActive = "Active";
         public const string ForegroundAppSuspended = "Suspended";
+
+
+        public const string AddTrack = "addtrack";
+        public const string ResetPlaylist = "resetplaylist";
+        public const string MFFailed = "mediafoundationopenfailed";
     }
 }
