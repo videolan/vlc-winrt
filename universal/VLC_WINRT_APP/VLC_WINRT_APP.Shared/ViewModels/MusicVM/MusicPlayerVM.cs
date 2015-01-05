@@ -234,14 +234,16 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 
         private async Task SetActiveMusicInfo(string token, TrackItem track, StorageFile file, bool forceVlcLib)
         {
+#if WINDOWS_PHONE__APP
             bool playWithLibVlc = false;
-#if WINDOWS_APP
-            playWithLibVlc = true;
-#else
             if (!VLCFileExtensions.MFSupported.Contains(file.FileType.ToLower()) || forceVlcLib)
                 playWithLibVlc = true;
+            if (!playWithLibVlc)
+            {
+                App.BackgroundAudioHelper.PlayAudio(track);
+            }
+            else
 #endif
-            if (playWithLibVlc)
             {
                 _fileToken = token;
                 _mrl = "file://" + token;
@@ -251,10 +253,6 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 #if WINDOWS_PHONE_APP
                 ToastHelper.Basic("Can't enable background audio");
 #endif
-            }
-            else
-            {
-                App.BackgroundAudioHelper.PlayAudio(track);
             }
         }
 
