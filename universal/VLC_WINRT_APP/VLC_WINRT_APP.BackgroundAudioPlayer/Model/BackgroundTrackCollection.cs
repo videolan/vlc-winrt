@@ -166,6 +166,16 @@ namespace VLC_WINRT_APP.BackgroundAudioPlayer
 
         public void AddTrack(BackgroundTrackItem trackItem)
         {
+            var trackId = trackItem.Id.ToString();
+            if (ApplicationSettingsHelper.Contains("SavedPlaylist"))
+            {
+                var playlist = ApplicationSettingsHelper.ReadSettingsValue("SavedPlaylist");
+                ApplicationSettingsHelper.SaveSettingsValue("SavedPlaylist", playlist + trackId + ";");
+            }
+            else
+            {
+                ApplicationSettingsHelper.SaveSettingsValue("SavedPlaylist", trackId + ";");
+            }
             Playlist.Add(trackItem);
         }
         #endregion
