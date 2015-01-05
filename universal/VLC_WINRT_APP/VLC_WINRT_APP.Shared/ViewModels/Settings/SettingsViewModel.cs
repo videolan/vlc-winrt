@@ -39,7 +39,6 @@ namespace VLC_WINRT_APP.ViewModels.Settings
         private OrderListing _albumsOrderListing;
         private MusicView _musicView;
         private VideoView _videoView;
-#if WINDOWS_PHONE_APP
         private bool _searchArtist;
         private bool _searchAlbum;
         private bool _searchTrack;
@@ -47,7 +46,7 @@ namespace VLC_WINRT_APP.ViewModels.Settings
         private string _lastFmUserName;
         private string _lastFmPassword;
         private bool _lastFmIsConnecting = false;
-#endif
+
 #if WINDOWS_APP
         public bool ContinueVideoPlaybackInBackground
         {
@@ -271,6 +270,7 @@ namespace VLC_WINRT_APP.ViewModels.Settings
             }
         }
 
+#if WINDOWS_PHONE_APP
         public MusicView MusicView
         {
             get
@@ -296,7 +296,9 @@ namespace VLC_WINRT_APP.ViewModels.Settings
                 SetProperty(ref _musicView, value);
             }
         }
+#endif
 
+#if WINDOWS_PHONE_APP
         public VideoView VideoView
         {
             get
@@ -322,6 +324,7 @@ namespace VLC_WINRT_APP.ViewModels.Settings
                 SetProperty(ref _videoView, value);
             }
         }
+#endif
 
         public string LastFmUserName
         {

@@ -88,6 +88,7 @@ namespace VLC_WINRT_APP.Helpers
             stringExceptionBuilder.AppendLine("IsHandled: " + unhandledExceptionEventArgs.Handled.ToString());
             stringExceptionBuilder.Replace("\r\n", "<br/>");
 
+#if WINDOWS_PHONE_APP
             // Gets the app's current memory usage    
             ulong AppMemoryUsageUlong = MemoryManager.AppMemoryUsage;
             // Gets the app's memory usage limit    
@@ -98,7 +99,7 @@ namespace VLC_WINRT_APP.Helpers
             stringExceptionBuilder.AppendLine("CurrentRAM:" + AppMemoryUsageUlong + " -- ");
             stringExceptionBuilder.AppendLine("MaxRAM:" + AppMemoryUsageLimitUlong + " -- ");
             stringExceptionBuilder.AppendLine("CommentOnRAM:" + MemoryManager.AppMemoryUsageLevel.ToString());
-
+#endif
             ApplicationSettingsHelper.SaveSettingsValue("ExceptionLog", stringExceptionBuilder.ToString());
         }
 
@@ -134,6 +135,7 @@ namespace VLC_WINRT_APP.Helpers
                 }
             }
 
+#if WINDOWS_PHONE_APP
             // Gets the app's current memory usage    
             ulong AppMemoryUsageUlong = MemoryManager.AppMemoryUsage;
             // Gets the app's memory usage limit    
@@ -144,7 +146,7 @@ namespace VLC_WINRT_APP.Helpers
             stringExceptionBuilder.AppendLine("CurrentRAM:" + AppMemoryUsageUlong + " -- ");
             stringExceptionBuilder.AppendLine("MaxRAM:" + AppMemoryUsageLimitUlong + " -- ");
             stringExceptionBuilder.AppendLine("CommentOnRAM:" + MemoryManager.AppMemoryUsageLevel.ToString());
-
+#endif
             ApplicationSettingsHelper.SaveSettingsValue("ExceptionLog", stringExceptionBuilder.ToString());
         }
     }

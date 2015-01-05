@@ -95,18 +95,18 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
         {
             try
             {
+                var files = new List<StorageFile>();
 #if WINDOWS_APP
-            StorageLibrary musicLibrary = await StorageLibrary.GetLibraryAsync(KnownLibraryId.Music);
-            foreach (StorageFolder storageFolder in musicLibrary.Folders)
-            {
-                await CreateDatabaseFromMusicFolder(storageFolder, routineCheck);
-            }
+                StorageLibrary musicLibrary = await StorageLibrary.GetLibraryAsync(KnownLibraryId.Music);
+                foreach (StorageFolder storageFolder in musicLibrary.Folders)
+                {
+                    await CreateDatabaseFromMusicFolder(files, storageFolder, routineCheck);
+                }
 #else
                 StorageFolder musicLibrary = KnownFolders.MusicLibrary;
                 LogHelper.Log("Searching for music from Phone MusicLibrary ...");
                 await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                     StatusBarHelper.UpdateTitle("Searching for music"));
-                var files = new List<StorageFile>();
                 files = await CreateDatabaseFromMusicFolder(files, musicLibrary, routineCheck);
                 foreach (var storageFile in files)
                 {
@@ -137,11 +137,13 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                 IReadOnlyList<StorageFolder> folders = await musicFolder.GetFoldersAsync();
                 if (folders.Any())
                 {
+#if WINDOWS_PHONE_APP
                     if (!routineCheck)
                     {
                         await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                             StatusBarHelper.UpdateTitle("Found " + files.Count + " files"));
                     }
+#endif
                     foreach (var storageFolder in folders)
                     {
                         await CreateDatabaseFromMusicFolder(files, storageFolder, routineCheck);

@@ -19,9 +19,12 @@ using Windows.System.Display;
 using Windows.UI.Xaml;
 using VLC_WINRT_APP.Commands.MediaPlayback;
 using System.Threading.Tasks;
-using Windows.Media.Playback;
 using libVLCX;
+
+#if WINDOWS_PHONE_APP
+using Windows.Media.Playback;
 using VLC_WINRT_APP.BackgroundAudioPlayer.Model;
+#endif
 
 namespace VLC_WINRT_APP.ViewModels
 {

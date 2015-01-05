@@ -28,7 +28,9 @@ using VLC_WINRT_APP.Views.MusicPages;
 using VLC_WINRT_APP.Views.VideoPages;
 using libVLCX;
 using System.Collections.Generic;
+#if WINDOWS_PHONE_APP
 using Windows.Media.Playback;
+#endif
 using MediaPlayer = libVLCX.MediaPlayer;
 
 namespace VLC_WINRT_APP.Services.RunTime

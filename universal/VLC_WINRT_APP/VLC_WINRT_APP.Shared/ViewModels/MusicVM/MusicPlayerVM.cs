@@ -30,11 +30,14 @@ using VLC_WINRT_APP.Model.Music;
 using VLC_WINRT_APP.Services.Interface;
 using VLC_WINRT_APP.Services.RunTime;
 using System.Collections.Generic;
-using Windows.Media.Playback;
-using VLC_WINRT_APP.BackgroundAudioPlayer.Model;
 using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.Views.MainPages;
 using WinRTXamlToolkit.Controls.Extensions;
+
+#if WINDOWS_PHONE_APP
+using Windows.Media.Playback;
+using VLC_WINRT_APP.BackgroundAudioPlayer.Model;
+#endif
 
 namespace VLC_WINRT_APP.ViewModels.MusicVM
 {

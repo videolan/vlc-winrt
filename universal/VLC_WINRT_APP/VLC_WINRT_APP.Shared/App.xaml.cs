@@ -1,6 +1,4 @@
-﻿using Windows.Media.Playback;
-using VLC_WINRT_APP.BackgroundHelpers;
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
@@ -32,6 +30,8 @@ using VLC_WINRT_APP.Views.VideoPages;
 using WinRTXamlToolkit.Controls.Extensions;
 #if WINDOWS_PHONE_APP
 using Windows.Phone.Management.Deployment;
+using Windows.Media.Playback;
+using VLC_WINRT_APP.BackgroundHelpers;
 #endif
 
 namespace VLC_WINRT_APP

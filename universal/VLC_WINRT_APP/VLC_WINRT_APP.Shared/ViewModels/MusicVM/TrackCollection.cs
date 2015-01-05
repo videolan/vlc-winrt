@@ -13,13 +13,16 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using SQLite;
-using VLC_WINRT_APP.BackgroundAudioPlayer.Model;
 using VLC_WINRT_APP.Commands.Music;
 using VLC_WINRT_APP.Common;
 using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.Helpers.MusicLibrary;
 using VLC_WINRT_APP.Helpers.MusicLibrary.Deezer;
 using VLC_WINRT_APP.Model.Music;
+
+#if WINDOWS_PHONE_APP
+using VLC_WINRT_APP.BackgroundAudioPlayer.Model;
+#endif
 
 namespace VLC_WINRT_APP.ViewModels.MusicVM
 {
@@ -148,7 +151,9 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 
         public void ResetCollection()
         {
+#if WINDOWS_PHONE_APP
             App.BackgroundAudioHelper.ResetCollection();
+#endif
             Playlist.Clear();
             CurrentTrack = -1;
         }
@@ -179,7 +184,9 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         public void SetPlaylist(ObservableCollection<TrackItem> playlist)
         {
             Playlist = playlist;
+#if WINDOWS_PHONE_APP
             App.BackgroundAudioHelper.PopulatePlaylist(Locator.MusicPlayerVM.TrackCollection.Playlist);
+#endif
         }
 
         public void Shuffle()
@@ -211,7 +218,9 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         public void Add(TrackItem trackItem, bool isPlayingPlaylist)
         {
             Playlist.Add(trackItem);
+#if WINDOWS_PHONE_APP
             App.BackgroundAudioHelper.AddPlaylist(trackItem);
+#endif
         }
 
         public async Task RestorePlaylist(string[] trackIds)
@@ -224,8 +233,10 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                 Playlist.Add(trackItem);
             }
             IsRunning = true;
+#if WINDOWS_PHONE_APP
             CurrentTrack = (int)ApplicationSettingsHelper.ReadSettingsValue(BackgroundAudioConstants.CurrentTrack);
             Locator.MusicPlayerVM.UpdateTrackFromMF();
+#endif
             SetActiveTrackProperty();
         }
         #endregion

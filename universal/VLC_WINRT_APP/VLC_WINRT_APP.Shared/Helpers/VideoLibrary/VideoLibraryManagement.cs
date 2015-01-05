@@ -262,7 +262,10 @@ namespace VLC_WINRT_APP.Helpers.VideoLibrary
             if (Locator.VideoLibraryVM.Panels.Count == 1)
             {
                 await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                    Locator.VideoLibraryVM.Panels.Add(new Panel(resourceLoader.GetString("Shows"), 1, 0.4, null)));
+                {
+                    var resourceLoader = new ResourceLoader();
+                    Locator.VideoLibraryVM.Panels.Add(new Panel(resourceLoader.GetString("Shows"), 1, 0.4, null));
+                });
             }
 #endif
             TvShow show = Locator.VideoLibraryVM.Shows.FirstOrDefault(x => x.ShowTitle == name);
