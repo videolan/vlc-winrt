@@ -199,7 +199,9 @@ int Open(vlc_object_t *object)
     access_t *access = (access_t *) object;
 
     String^ futureAccesToken = GetString(access->psz_location);
-    if( !(futureAccesToken->Begin()[0] == '{') && (futureAccesToken->Length() > 32) )
+    auto charBegin = futureAccesToken->Begin()[0];
+    auto charEnd = futureAccesToken->End()[0];
+    if ((charBegin != '{') && ((charEnd != '}') || futureAccesToken->Length() < 32) )
         return VLC_EGENERIC;
 
     access_sys_t *p_sys = access->p_sys = new(std::nothrow) access_sys_t();
