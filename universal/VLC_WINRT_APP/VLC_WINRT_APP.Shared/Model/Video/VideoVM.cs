@@ -288,7 +288,7 @@ namespace VLC_WINRT_APP.Model.Video
                     TimeSpan duration = VideoProperties != null ? VideoProperties.Duration : TimeSpan.FromSeconds(0);
 #if WINDOWS_PHONE_APP
                     // Absolutely totally bad workaround
-                    if(duration.Seconds < 1)
+                    if (duration.Seconds < 1)
                         duration = TimeSpan.FromTicks(duration.Ticks * 10000);
 #endif
                     Duration = duration;

@@ -38,7 +38,6 @@ namespace VLC_WINRT_APP.Views.VideoPages
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(5);
             timer.Tick += TimerOnTick;
