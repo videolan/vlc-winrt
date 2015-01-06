@@ -164,6 +164,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             {
                 foreach (var trackItem in Playlist)
                 {
+                    if (trackItem == null) continue;
                     if (Playlist[_currentTrack].Id == trackItem.Id)
                     {
                         trackItem.IsCurrentPlaying = true;
