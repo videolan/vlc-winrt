@@ -15,6 +15,7 @@ using Windows.Storage;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Graphics.Imaging;
 using Windows.Storage.Streams;
+using Windows.UI.Core;
 using Windows.UI.Xaml.Media.Imaging;
 
 namespace VLC_WINRT_APP.Helpers
@@ -37,50 +38,65 @@ namespace VLC_WINRT_APP.Helpers
             await download.StartAsync();
         }
 
-        public static async Task<StorageFile> WriteableBitmapToStorageFile(WriteableBitmap WB, FileFormat fileFormat, string fileName)
+        public static async Task WriteableBitmapToStorageFile(WriteableBitmap WB, FileFormat fileFormat, string fileName)
         {
-            Guid BitmapEncoderGuid = BitmapEncoder.JpegEncoderId;
-            fileName += ".";
-            switch (fileFormat)
+            try
             {
-                case FileFormat.Jpeg:
-                    fileName += "jpg";
-                    BitmapEncoderGuid = BitmapEncoder.JpegEncoderId;
-                    break;
-                case FileFormat.Png:
-                    fileName += "png";
-                    BitmapEncoderGuid = BitmapEncoder.PngEncoderId;
-                    break;
-                case FileFormat.Bmp:
-                    fileName += "bmp";
-                    BitmapEncoderGuid = BitmapEncoder.BmpEncoderId;
-                    break;
-                case FileFormat.Tiff:
-                    fileName += "tiff";
-                    BitmapEncoderGuid = BitmapEncoder.TiffEncoderId;
-                    break;
-                case FileFormat.Gif:
-                    fileName += "gif";
-                    BitmapEncoderGuid = BitmapEncoder.GifEncoderId;
-                    break;
+                LogHelper.Log("THUMBNAILER VIDEO: Start for videoid:" + fileName);
+                Guid BitmapEncoderGuid = BitmapEncoder.JpegEncoderId;
+                fileName += ".";
+                switch (fileFormat)
+                {
+                    case FileFormat.Jpeg:
+                        fileName += "jpg";
+                        BitmapEncoderGuid = BitmapEncoder.JpegEncoderId;
+                        break;
+                    case FileFormat.Png:
+                        fileName += "png";
+                        BitmapEncoderGuid = BitmapEncoder.PngEncoderId;
+                        break;
+                    case FileFormat.Bmp:
+                        fileName += "bmp";
+                        BitmapEncoderGuid = BitmapEncoder.BmpEncoderId;
+                        break;
+                    case FileFormat.Tiff:
+                        fileName += "tiff";
+                        BitmapEncoderGuid = BitmapEncoder.TiffEncoderId;
+                        break;
+                    case FileFormat.Gif:
+                        fileName += "gif";
+                        BitmapEncoderGuid = BitmapEncoder.GifEncoderId;
+                        break;
+                }
+                StorageFolder videoPic =
+                    await
+                        ApplicationData.Current.LocalFolder.CreateFolderAsync("videoPic",
+                            CreationCollisionOption.OpenIfExists);
+                var file = await videoPic.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
+                LogHelper.Log("THUMBNAILER VIDEO: opening file for videoid:" + fileName);
+                using (IRandomAccessStream stream = await file.OpenAsync(FileAccessMode.ReadWrite))
+                {
+                    BitmapEncoder encoder = await BitmapEncoder.CreateAsync(BitmapEncoderGuid, stream);
+                    Stream pixelStream = WB.PixelBuffer.AsStream();
+                    byte[] pixels = new byte[pixelStream.Length];
+                    await pixelStream.ReadAsync(pixels, 0, pixels.Length);
+                    encoder.SetPixelData(BitmapPixelFormat.Bgra8, BitmapAlphaMode.Ignore,
+                        (uint)WB.PixelWidth,
+                        (uint)WB.PixelHeight,
+                        96.0,
+                        96.0,
+                        pixels);
+                    await encoder.FlushAsync();
+                    stream.Dispose();
+                    pixelStream.Dispose();
+                    LogHelper.Log("THUMBNAILER VIDEO: Dispose streams for videoid:" + fileName);
+                }
             }
-            StorageFolder videoPic = await ApplicationData.Current.LocalFolder.CreateFolderAsync("videoPic", CreationCollisionOption.OpenIfExists);
-            var file = await videoPic.CreateFileAsync(fileName, CreationCollisionOption.OpenIfExists);
-            using (IRandomAccessStream stream = await file.OpenAsync(FileAccessMode.ReadWrite))
+            catch (Exception e)
             {
-                BitmapEncoder encoder = await BitmapEncoder.CreateAsync(BitmapEncoderGuid, stream);
-                Stream pixelStream = WB.PixelBuffer.AsStream();
-                byte[] pixels = new byte[pixelStream.Length];
-                await pixelStream.ReadAsync(pixels, 0, pixels.Length);
-                encoder.SetPixelData(BitmapPixelFormat.Bgra8, BitmapAlphaMode.Ignore,
-                          (uint)WB.PixelWidth,
-                          (uint)WB.PixelHeight,
-                          96.0,
-                          96.0,
-                          pixels);
-                await encoder.FlushAsync();
+                LogHelper.Log("Failed to save the video thunbnail for videoId:" + fileName);
+                ExceptionHelper.CreateMemorizedException("DownloadAndSaveHelper.WriteBitmapToStorageFile", e);
             }
-            return file;
         }
         public enum FileFormat
         {
