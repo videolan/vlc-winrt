@@ -99,7 +99,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                 StorageLibrary musicLibrary = await StorageLibrary.GetLibraryAsync(KnownLibraryId.Music);
                 foreach (StorageFolder storageFolder in musicLibrary.Folders)
                 {
-                    await CreateDatabaseFromMusicFolder(files, storageFolder, routineCheck);
+                    await CreateDatabaseFromMusicFolder(storageFolder, routineCheck);
                 }
 #else
                 StorageFolder musicLibrary = KnownFolders.MusicLibrary;
@@ -124,7 +124,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                 {
                     foreach (var storageFolder in folders)
                     {
-                        await CreateDatabaseFromMusicFolder( storageFolder, routineCheck);
+                        await CreateDatabaseFromMusicFolder(storageFolder, routineCheck);
                     }
                 }
                 var folderFiles = await musicFolder.GetFilesAsync();

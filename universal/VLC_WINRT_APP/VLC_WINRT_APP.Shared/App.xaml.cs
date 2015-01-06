@@ -252,11 +252,11 @@ namespace VLC_WINRT_APP
             if (VLCFileExtensions.FileTypeHelper(file.FileType) ==
                 VLCFileExtensions.VLCFileType.Video)
             {
-                await MediaService.PlayVideoFile(file as StorageFile);
+                await MediaService.PlayVideoFile(file as StorageFile, false);
             }
             else
             {
-                await MediaService.PlayAudioFile(file as StorageFile);
+                await MediaService.PlayAudioFile(file as StorageFile, false);
             }
         }
 

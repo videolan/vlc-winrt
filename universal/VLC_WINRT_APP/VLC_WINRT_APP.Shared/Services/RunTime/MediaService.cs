@@ -28,6 +28,7 @@ using VLC_WINRT_APP.Views.MusicPages;
 using VLC_WINRT_APP.Views.VideoPages;
 using libVLCX;
 using System.Collections.Generic;
+using System.Diagnostics;
 #if WINDOWS_PHONE_APP
 using Windows.Media.Playback;
 #endif
@@ -171,11 +172,12 @@ namespace VLC_WINRT_APP.Services.RunTime
         /// Navigates to the Audio Player screen with the requested file a parameter.
         /// </summary>
         /// <param name="file">The file to be played.</param>
-        public static async Task PlayAudioFile(StorageFile file)
+        public static async Task PlayAudioFile(StorageFile file, bool isFromSandbox)
         {
             if (App.ApplicationFrame.CurrentSourcePageType != typeof(MusicPlayerPage))
                 App.ApplicationFrame.Navigate(typeof(MusicPlayerPage));
             var trackItem = await GetInformationsFromMusicFile.GetTrackItemFromFile(file);
+            trackItem.IsFromSandbox = isFromSandbox;
             Locator.MusicPlayerVM.TrackCollection.Playlist.Clear();
             Locator.MusicPlayerVM.TrackCollection.Add(trackItem, true);
             await PlayMusicHelper.PlayTrack(0);
@@ -185,24 +187,24 @@ namespace VLC_WINRT_APP.Services.RunTime
         /// Navigates to the Video Player screen with the requested file a parameter.
         /// </summary>
         /// <param name="file">The file to be played.</param>
-        public static async Task PlayVideoFile(StorageFile file)
+        public static async Task PlayVideoFile(StorageFile file, bool isFromSandbox)
         {
             App.ApplicationFrame.Navigate(typeof(VideoPlayerPage));
             VideoItem videoVm = new VideoItem();
             await videoVm.Initialize(file);
-            if (string.IsNullOrEmpty(videoVm.Token))
-            {
-                string token = StorageApplicationPermissions.FutureAccessList.Add(videoVm.File);
-                videoVm.Token = token;
-            }
+            videoVm.IsFromSandbox = isFromSandbox;
             Locator.VideoVm.CurrentVideo = videoVm;
             await Locator.VideoVm.SetActiveVideoInfo(videoVm);
         }
 
         private bool _isAudioMedia;
 
-        public void SetMediaFile(string filePath, bool isAudioMedia)
+        public async Task SetMediaFile(string filePath, bool isAudioMedia, bool isFromSandbox)
         {
+            if (!isFromSandbox)
+                filePath = await GetToken(filePath);
+            else
+                filePath = "file:///" + filePath;
             var media = new Media(Instance, filePath);
             MediaPlayer = new MediaPlayer(media);
             LogHelper.Log("PLAYVIDEO: MediaPlayer instance created");
@@ -213,6 +215,12 @@ namespace VLC_WINRT_APP.Services.RunTime
             em.OnTimeChanged += TimeChanged;
             em.OnEndReached += OnEndReached;
             _isAudioMedia = isAudioMedia;
+        }
+
+        private static async Task<string> GetToken(string filePath)
+        {
+            var file = await StorageFile.GetFileFromPathAsync(filePath);
+            return "file://" + StorageApplicationPermissions.FutureAccessList.Add(file);
         }
 
         public void Play()

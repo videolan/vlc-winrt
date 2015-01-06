@@ -7,6 +7,7 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
+using Windows.Storage;
 using System;
 using Windows.UI.Core;
 using VLC_WINRT_APP.Commands;
@@ -35,8 +36,6 @@ namespace VLC_WINRT_APP.ViewModels
 
         protected bool _isPlaying;
         protected TimeSpan _timeTotal;
-        protected string _fileToken;
-        protected string _mrl;
         protected ActionCommand _skipAhead;
         protected ActionCommand _skipBack;
         protected PlayNextCommand _playNext;
@@ -346,9 +345,9 @@ namespace VLC_WINRT_APP.ViewModels
 
         protected abstract void OnEndReached();
 
-        protected void InitializePlayback(String mrl, Boolean isAudio)
+        protected void InitializePlayback(String mrl, Boolean isAudio,Boolean isFromSandbox)
         {
-            _mediaService.SetMediaFile(_mrl, isAudio);
+            _mediaService.SetMediaFile(mrl, isAudio, isFromSandbox);
             var em = _mediaService.MediaPlayer.eventManager();
             em.OnLengthChanged += OnLengthChanged;
             em.OnStopped += OnStopped;

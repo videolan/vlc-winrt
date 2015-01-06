@@ -256,20 +256,18 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
                 IsPlaying = true;
                 OnPropertyChanged("IsPlaying");
 
-                if (media != null)
-                    _mrl = "file://" + media.Token;
-                else
-                    _mrl = mrl;
-
                 _timeTotal = TimeSpan.Zero;
                 LogHelper.Log("PLAYVIDEO: Initializing playback");
-                InitializePlayback(_mrl, false);
+                if (media != null)
+                    InitializePlayback(media.FilePath, false, media.IsFromSandbox);
+                else InitializePlayback(streamMrl, false, true);
                 var em = _mediaService.MediaPlayer.eventManager();
                 em.OnTrackAdded += OnTrackAdded;
                 em.OnTrackDeleted += OnTrackDeleted;
                 _mediaService.Play();
                 LogHelper.Log("PLAYVIDEO: Play() method called");
-                if (media != null && media.TimeWatched != null)
+
+                if (media != null && media.TimeWatched != null && media.TimeWatched != TimeSpan.FromSeconds(0))
                     Time = (Int64)media.TimeWatched.TotalMilliseconds;
 
                 SpeedRate = 100;

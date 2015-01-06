@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Windows.ApplicationModel;
 using Windows.ApplicationModel.Resources;
 using Windows.Phone.UI.Input;
 using Windows.Storage;
@@ -11,6 +12,7 @@ using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.Model.Video;
 using VLC_WINRT_APP.ViewModels;
+using VLC_WINRT_APP.ViewModels.MusicVM;
 using VLC_WINRT_APP.Views.VariousPages.DEBUG;
 
 namespace VLC_WINRT_APP.Views.MainPages

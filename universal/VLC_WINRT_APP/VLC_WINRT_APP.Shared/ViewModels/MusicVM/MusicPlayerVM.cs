@@ -196,47 +196,18 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             }
         }
 
-        public async Task Play(bool forceVlcLib, StorageFile fileFromExplorer = null)
+        public async Task Play(bool forceVlcLib)
         {
             Stop();
             if (CurrentTrack == null) return;
-            var trackItem = CurrentTrack;
-            var _ = Task.Run(async () =>
-            {
-                StorageFile file = null;
-                if (fileFromExplorer == null)
-                {
-                    try
-                    {
-                        file = await StorageFile.GetFileFromPathAsync(trackItem.Path);
-                    }
-                    catch (FileNotFoundException exception)
-                    {
-                        LogHelper.Log(exception);
-                        App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                        {
-#if WINDOWS_PHONE_APP
-                            Locator.MainVM.GoToPanelCommand.Execute(2);
-#endif
-                            new MessageDialog("File not found. Can't play").ShowAsyncIfPossible();
-                            MusicLibraryManagement.RemoveTrackFromCollectionAndDatabase(trackItem);
-                        });
-                    }
-                }
-                else
-                {
-                    file = fileFromExplorer;
-                }
-                string token = StorageApplicationPermissions.FutureAccessList.Add(file);
-                LogHelper.Log("Opening file: " + file.Path);
-                await SetActiveMusicInfo(token, trackItem, file, forceVlcLib);
-            });
-            if (trackItem == null) return;
+            LogHelper.Log("Opening file: " + CurrentTrack.Path);
+            await SetActiveMusicInfo(CurrentTrack, forceVlcLib);
+
             // Setting the info for windows 8 controls
             var resourceLoader = new ResourceLoader();
-            string artistName = trackItem.ArtistName ?? resourceLoader.GetString("UnknownArtist");
-            string albumName = trackItem.AlbumName;
-            string trackName = trackItem.Name ?? resourceLoader.GetString("UnknownTrack");
+            string artistName = CurrentTrack.ArtistName ?? resourceLoader.GetString("UnknownArtist");
+            string albumName = CurrentTrack.AlbumName;
+            string trackName = CurrentTrack.Name ?? resourceLoader.GetString("UnknownTrack");
             var picture = Locator.MusicPlayerVM.CurrentAlbum != null ? Locator.MusicPlayerVM.CurrentAlbum.Picture : null;
 
             await base._mediaService.SetMediaTransportControlsInfo(artistName, albumName, trackName, picture);
@@ -252,10 +223,12 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             }
         }
 
-        private async Task SetActiveMusicInfo(string token, TrackItem track, StorageFile file, bool forceVlcLib)
+        private async Task SetActiveMusicInfo(TrackItem track, bool forceVlcLib)
         {
+            var currentTrackFile = await StorageFile.GetFileFromPathAsync(track.Path);
 #if WINDOWS_PHONE_APP
-            bool playWithLibVlc = !VLCFileExtensions.MFSupported.Contains(file.FileType.ToLower()) || forceVlcLib;
+            bool playWithLibVlc = !VLCFileExtensions.MFSupported.Contains(currentTrackFile.FileType.ToLower()) || forceVlcLib;
+            playWithLibVlc = true;
             if (!playWithLibVlc)
             {
                 App.BackgroundAudioHelper.PlayAudio(track);
@@ -271,9 +244,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                     BackgroundMediaPlayer.Shutdown();
                 }
 #endif
-                _fileToken = token;
-                _mrl = "file://" + token;
-                base.InitializePlayback(_mrl, true);
+                base.InitializePlayback(track.Path, true, track.IsFromSandbox);
                 _mediaService.Play();
                 await UpdatePlayingUI();
             }
