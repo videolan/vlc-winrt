@@ -48,7 +48,6 @@ namespace VLC_WINRT_APP.Views.MainPages
             base.OnNavigatedTo(e);
             if (NeedsToDrop())
             {
-                ToastHelper.Basic("D-D-D-D-D-DROP THE BASE");
                 MusicLibraryVM.TrackCollectionRepository.Drop();
                 MusicLibraryVM.TracklistItemRepository.Drop();
                 MusicLibraryVM._albumDataRepository.Drop();
