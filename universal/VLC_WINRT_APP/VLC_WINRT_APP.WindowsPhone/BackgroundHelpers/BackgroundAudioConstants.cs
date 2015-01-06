@@ -23,6 +23,7 @@
 
         public const string AddTrack = "addtrack";
         public const string ResetPlaylist = "resetplaylist";
+        public const string RestorePlaylist = "restoreplaylist";
         public const string MFFailed = "mediafoundationopenfailed";
     }
 }

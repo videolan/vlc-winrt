@@ -185,7 +185,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         {
             Playlist = playlist;
 #if WINDOWS_PHONE_APP
-            App.BackgroundAudioHelper.PopulatePlaylist(Locator.MusicPlayerVM.TrackCollection.Playlist);
+            App.BackgroundAudioHelper.PopulatePlaylist(Locator.MusicPlayerVM.TrackCollection.Playlist, false);
 #endif
         }
 
@@ -237,6 +237,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             if(currentTrack != null)
             CurrentTrack = (int)currentTrack;
             await Locator.MusicPlayerVM.UpdateTrackFromMF();
+            await App.BackgroundAudioHelper.PopulatePlaylist(Playlist, true);
 #endif
             SetActiveTrackProperty();
         }

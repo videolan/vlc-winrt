@@ -367,6 +367,26 @@ namespace VLC_WINRT_APP.BackgroundAudioPlayer
                             }
                         }
                         break;
+                    case BackgroundAudioConstants.RestorePlaylist: //Foreground App process updated List Track
+                        Debug.WriteLine("Restoring ListTrack");
+                        Object playlist = new Object();
+                        if (e.Data.TryGetValue(BackgroundAudioConstants.RestorePlaylist, out playlist))
+                        {
+                            string s = playlist as string;
+                            if (!string.IsNullOrEmpty(s))
+                            {
+                                var l = AudioBackgroundInterface.DeserializeObjectListTrack(s) as List<BackgroundTrackItem>;
+                                if (l != null)
+                                {
+                                    foreach (var t in l)
+                                    {
+                                        Playlist.AddTrack(t);
+                                    }
+                                }
+                                Playlist.CurrentTrack = (int)ApplicationSettingsHelper.ReadSettingsValue(BackgroundAudioConstants.CurrentTrack);
+                            }
+                        }
+                        break;
                     case BackgroundAudioConstants.SkipNext: // User has chosen to skip track from app context.
                         Debug.WriteLine("Skipping to next");
                         SkipToNext();

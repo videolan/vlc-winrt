@@ -66,7 +66,7 @@ namespace VLC_WINRT_APP.BackgroundHelpers
                 }
             }
         }
-        
+
         /// <summary>
         /// Unsubscribes to MediaPlayer events. Should run only on suspend
         /// </summary>
@@ -200,7 +200,7 @@ namespace VLC_WINRT_APP.BackgroundHelpers
             deferral.Complete();
         }
 
-        public async Task PopulatePlaylist(ObservableCollection<TrackItem> playlist)
+        public async Task PopulatePlaylist(ObservableCollection<TrackItem> playlist, bool restorePlaylist)
         {
             var List = new List<BackgroundTrackItem>();
             List.AddRange(playlist.Select(t => new BackgroundTrackItem
@@ -217,7 +217,7 @@ namespace VLC_WINRT_APP.BackgroundHelpers
             {
                 ValueSet messageDictionary = new ValueSet();
                 string ls = AudioBackgroundInterface.SerializeObjectListTrack(List);
-                messageDictionary.Add(BackgroundAudioConstants.ListTrack, ls);
+                messageDictionary.Add(!restorePlaylist ? BackgroundAudioConstants.ListTrack : BackgroundAudioConstants.RestorePlaylist, ls);
                 BackgroundMediaPlayer.SendMessageToBackground(messageDictionary);
             }
             await Task.Delay(500);
