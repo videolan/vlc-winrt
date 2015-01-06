@@ -72,8 +72,8 @@ namespace VLC_WINRT_APP.Helpers
                     await
                         ApplicationData.Current.LocalFolder.CreateFolderAsync("videoPic",
                             CreationCollisionOption.OpenIfExists);
-                var file = await videoPic.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
                 LogHelper.Log("THUMBNAILER VIDEO: opening file for videoid:" + fileName);
+                var file = await videoPic.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
                 using (IRandomAccessStream stream = await file.OpenAsync(FileAccessMode.ReadWrite))
                 {
                     BitmapEncoder encoder = await BitmapEncoder.CreateAsync(BitmapEncoderGuid, stream);
