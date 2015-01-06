@@ -15,6 +15,7 @@ using Windows.Storage.Pickers;
 using Windows.UI.Core;
 using Windows.UI.Popups;
 using VLC_WINRT.Common;
+using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.ViewModels;
 

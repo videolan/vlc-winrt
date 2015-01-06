@@ -15,6 +15,7 @@ using VLC_WINRT_APP.Model;
 using System.Diagnostics;
 using VLC_WINRT_APP.Services.RunTime;
 using System.Collections.Generic;
+using VLC_WINRT_APP.Helpers;
 
 namespace VLC_WINRT_APP.Commands
 {
