@@ -40,10 +40,11 @@ namespace VLC_WINRT_APP.Helpers
         public static async Task<StorageFile> WriteableBitmapToStorageFile(WriteableBitmap WB, FileFormat fileFormat, string fileName)
         {
             Guid BitmapEncoderGuid = BitmapEncoder.JpegEncoderId;
+            fileName += ".";
             switch (fileFormat)
             {
                 case FileFormat.Jpeg:
-                    fileName += "jpeg";
+                    fileName += "jpg";
                     BitmapEncoderGuid = BitmapEncoder.JpegEncoderId;
                     break;
                 case FileFormat.Png:
