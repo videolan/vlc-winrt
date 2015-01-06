@@ -21,7 +21,7 @@ namespace VLC_WINRT_APP.BackgroundAudioPlayer
         public string Name { get; set; }
 
         public int CurrentTrack { get; set; }
-        public BackgroundTrackItem CurrentTrackId { get; set; }
+        public BackgroundTrackItem CurrentTrackItem { get; set; }
 
         public bool CanGoPrevious
         {
@@ -73,10 +73,10 @@ namespace VLC_WINRT_APP.BackgroundAudioPlayer
         private void MediaPlayerOnMediaFailed(MediaPlayer sender, MediaPlayerFailedEventArgs args)
         {
             Debug.WriteLine("Failed to open the file with Background Media Player");
-            if (CurrentTrackId != null)
+            if (CurrentTrackItem != null)
                 BackgroundMediaPlayer.SendMessageToForeground(new ValueSet()
                 {
-                    new KeyValuePair<string, object>(BackgroundAudioConstants.MFFailed, CurrentTrackId.Id)
+                    new KeyValuePair<string, object>(BackgroundAudioConstants.MFFailed, CurrentTrackItem.Id)
                 });
         }
 
@@ -155,7 +155,7 @@ namespace VLC_WINRT_APP.BackgroundAudioPlayer
         public async void Play()
         {
             IsRunning = true;
-            CurrentTrackId = Playlist[CurrentTrack];
+            CurrentTrackItem = Playlist[CurrentTrack];
             var file = await StorageFile.GetFileFromPathAsync(Playlist[CurrentTrack].Path);
             mediaPlayer.SetFileSource(file);
 

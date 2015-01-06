@@ -113,7 +113,7 @@ namespace VLC_WINRT_APP.BackgroundAudioPlayer
             try
             {
                 //save state
-                ApplicationSettingsHelper.SaveSettingsValue(BackgroundAudioConstants.CurrentTrack, Playlist.CurrentTrackId);
+                ApplicationSettingsHelper.SaveSettingsValue(BackgroundAudioConstants.CurrentTrack, Playlist.CurrentTrack);
                 ApplicationSettingsHelper.SaveSettingsValue(BackgroundAudioConstants.Position, BackgroundMediaPlayer.Current.Position.ToString());
                 ApplicationSettingsHelper.SaveSettingsValue(BackgroundAudioConstants.BackgroundTaskState, BackgroundAudioConstants.BackgroundTaskCancelled);
                 ApplicationSettingsHelper.SaveSettingsValue(BackgroundAudioConstants.AppState, Enum.GetName(typeof(ForegroundAppStatus), foregroundAppState));
@@ -145,8 +145,8 @@ namespace VLC_WINRT_APP.BackgroundAudioPlayer
         {
             systemmediatransportcontrol.PlaybackStatus = MediaPlaybackStatus.Playing;
             systemmediatransportcontrol.DisplayUpdater.Type = MediaPlaybackType.Music;
-            systemmediatransportcontrol.DisplayUpdater.MusicProperties.Title = Playlist.CurrentTrackId.Name;
-            systemmediatransportcontrol.DisplayUpdater.MusicProperties.Artist = Playlist.CurrentTrackId.ArtistName;
+            systemmediatransportcontrol.DisplayUpdater.MusicProperties.Title = Playlist.CurrentTrackItem.Name;
+            systemmediatransportcontrol.DisplayUpdater.MusicProperties.Artist = Playlist.CurrentTrackItem.ArtistName;
             systemmediatransportcontrol.DisplayUpdater.Update();
         }
 
