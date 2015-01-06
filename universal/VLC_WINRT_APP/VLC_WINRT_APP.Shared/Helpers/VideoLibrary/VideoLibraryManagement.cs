@@ -92,6 +92,7 @@ namespace VLC_WINRT_APP.Helpers.VideoLibrary
                             await AddTvShow(showInfoDictionary["tvShowName"], mediaVM);
                         await videoRepo.Insert(mediaVM);
                     }
+                    mediaVM.IsFromSandbox = true;
                     // Get back to UI thread
                     await DispatchHelper.InvokeAsync(() =>
                     {

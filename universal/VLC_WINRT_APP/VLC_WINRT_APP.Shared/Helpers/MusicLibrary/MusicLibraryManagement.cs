@@ -219,6 +219,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                         Name = string.IsNullOrEmpty(properties.Title) ? item.DisplayName : properties.Title,
                         Path = item.Path,
                         Index = (int) properties.TrackNumber,
+                        IsFromSandbox = true
                     };
                     await MusicLibraryVM._trackDataRepository.Add(track);
                 }
