@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Email;
 using Windows.ApplicationModel.Resources;
+using Windows.Security.ExchangeActiveSyncProvisioning;
 using Windows.Storage;
 using Windows.System;
 using Windows.UI.Popups;
@@ -34,7 +35,11 @@ namespace VLC_WINRT_APP.Helpers
 #if WINDOWS_APP
                     os = "Windows 8.1 v" + appVersion;
 #else
-                    os = "Windows Phone 8.1 v" + appVersion;
+                    os = "WP8.1 v" + appVersion; 
+                    EasClientDeviceInformation deviceInfo = new EasClientDeviceInformation();
+                    os += " ON ";
+                    os += deviceInfo.SystemManufacturer;
+                    os += deviceInfo.SystemProductName;
 #endif
                     var objEmail = new EmailMessage();
                     objEmail.Subject = os;
