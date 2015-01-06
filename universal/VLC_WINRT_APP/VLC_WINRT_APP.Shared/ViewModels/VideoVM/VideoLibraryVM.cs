@@ -156,13 +156,14 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             //Panels.Add(new Panel("favorite", 2, 0.4));
 #endif
         }
+
         public async Task Initialize()
         {
-            LoadingState = LoadingState.Loading;
-            await VideoLibraryManagement.GetViewedVideos();
-            await VideoLibraryManagement.GetVideos(VideoRepository);
-            await VideoLibraryManagement.GetVideosFromCameraRoll(VideoRepository);
-            await VideoLibraryManagement.GenerateAllThumbnails();
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => LoadingState = LoadingState.Loading);
+            await VideoLibraryManagement.GetViewedVideos().ConfigureAwait(false);
+            await VideoLibraryManagement.GetVideos(VideoRepository).ConfigureAwait(false);
+            await VideoLibraryManagement.GetVideosFromCameraRoll(VideoRepository).ConfigureAwait(false);
+            await VideoLibraryManagement.GenerateAllThumbnails().ConfigureAwait(false);
         }
         #endregion
 

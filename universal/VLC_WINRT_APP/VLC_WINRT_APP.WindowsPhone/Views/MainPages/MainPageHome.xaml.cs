@@ -32,11 +32,11 @@ namespace VLC_WINRT_APP.Views.MainPages
             AppBarHelper.UpdateAppBar(typeof(MainPageHome), MainPivot.SelectedIndex);
             if (Locator.VideoLibraryVM.LoadingState == LoadingState.NotLoaded)
             {
-                Locator.VideoLibraryVM.Initialize();
+                Task.Run(async () => await Locator.VideoLibraryVM.Initialize());
             }
             if (Locator.MusicLibraryVM.LoadingState == LoadingState.NotLoaded)
             {
-                Locator.MusicLibraryVM.Initialize();
+                Task.Run(async () => await Locator.MusicLibraryVM.Initialize());
             }
             SdCardTest();
         }

@@ -8,6 +8,7 @@
  **********************************************************************/
 
 using System.Diagnostics;
+using System.Threading.Tasks;
 using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.ViewModels;
 using Windows.UI.Xaml;
@@ -30,13 +31,13 @@ namespace VLC_WINRT_APP.Views.MainPages
             base.OnNavigatedTo(e);
             if (Locator.VideoLibraryVM.LoadingState == LoadingState.NotLoaded)
             {
-                Locator.VideoLibraryVM.Initialize();
+                Task.Run(() => Locator.VideoLibraryVM.Initialize());
             }
             if (Locator.MusicLibraryVM.LoadingState == LoadingState.NotLoaded)
             {
                 // Do not initialize all musiclibrary
                 // We only need some favorite albums, and random albums. Check them from the SQL database
-                Locator.MusicLibraryVM.Initialize();
+                Task.Run(() => Locator.MusicLibraryVM.Initialize());
             }
         }
 

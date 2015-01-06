@@ -332,10 +332,6 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             //Panels.Add(new Panel(resourceLoader.GetString("Pinned").ToLower(), 2, 0.4, App.Current.Resources["HomePath"].ToString()));
             //Panels.Add(new Panel(resourceLoader.GetString("Playlists").ToLower(), 2, 0.4, App.Current.Resources["HomePath"].ToString()));
 #endif
-        }
-
-        public void Initialize()
-        {
             _albumClickedCommand = new AlbumClickedCommand();
             _artistClickedCommand = new ArtistClickedCommand();
             _trackClickedCommand = new TrackClickedCommand();
@@ -343,13 +339,17 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             _downloadAlbumArtCommand = new DownloadAlbumArtCommand();
             _artistAlbumsSemanticZoomInvertZoomCommand = new ArtistAlbumsSemanticZoomInvertZoomCommand();
             _playAllRandomCommand = new PlayAllRandomCommand();
-            CurrentIndexingStatus = "Loading music";
-            LoadingState = LoadingState.Loading;
-            Task.Run(async () =>
+        }
+
+        public async Task Initialize()
+        {
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                await GetFavoriteAndRandomAlbums();
-                await GetMusicFromLibrary();
+                CurrentIndexingStatus = "Loading music";
+                LoadingState = LoadingState.Loading;
             });
+            await GetFavoriteAndRandomAlbums();
+            await GetMusicFromLibrary();
         }
 
         #region methods
