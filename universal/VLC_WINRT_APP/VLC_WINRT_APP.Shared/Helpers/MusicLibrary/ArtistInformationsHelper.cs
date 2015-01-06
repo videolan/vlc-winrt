@@ -78,7 +78,6 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             }
         }
 
-
         private static async Task<bool> DownloadAlbumPictureFromDeezer(AlbumItem album)
         {
             var deezerClient = new DeezerClient();
@@ -246,19 +245,12 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                 }
             }
 
-            // If we still could not find album art, set it to the default cover.
+            // If we still could not find album art, flag the picture as loaded.
             // This way, we won't keep pinging the APIs for album art that may not exist.
             if (!gotArt)
             {
-                StorageFolder install = Windows.ApplicationModel.Package.Current.InstalledLocation;
-                StorageFile file = await install.GetFileAsync("Assets\\NoCover.jpg");
-                var bytes = await ConvertImage.ConvertImagetoByte(file);
-                await SaveAlbumImageAsync(album, bytes);
-            }
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-            {
                 album.IsPictureLoaded = true;
-            });
+            }
             await MusicLibraryVM._albumDataRepository.Update(album);
         }
 
@@ -337,8 +329,8 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                 var albumPic = await ApplicationData.Current.LocalFolder.CreateFolderAsync("albumPic",
                     CreationCollisionOption.OpenIfExists);
 
-                var fileName = album.Id;
-                var file = await albumPic.CreateFileAsync(fileName + ".jpg", CreationCollisionOption.OpenIfExists);
+                var fileName = album.Id + ".jpg";
+                var file = await albumPic.CreateFileAsync(fileName, CreationCollisionOption.OpenIfExists);
                 var raStream = await file.OpenAsync(FileAccessMode.ReadWrite);
 
                 using (var thumbnailStream = streamWeb.GetInputStreamAt(0))
@@ -348,6 +340,8 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                         await RandomAccessStream.CopyAsync(thumbnailStream, stream);
                     }
                 }
+                album.IsPictureLoaded = true;
+                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => album.Picture = String.Format("ms-appdata:///local/albumPic/{0}", fileName));
                 return true;
             }
             catch (Exception e)

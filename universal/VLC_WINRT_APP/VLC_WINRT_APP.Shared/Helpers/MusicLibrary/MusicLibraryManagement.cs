@@ -256,6 +256,8 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                     artist.Albums.Add(album);
                 }
             });
+            foreach (var album in orderedAlbums)
+                await album.LoadPicture();
         }
 
         public static async Task LoadFavoriteRandomAlbums()

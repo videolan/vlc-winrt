@@ -20,7 +20,7 @@ namespace VLC_WINRT_APP.Model.Music
     {
         private string _name;
         private string _artist;
-        private string _picture = "";
+        private string _picture = "ms-appx:///Assets/NoCover.jpg";
         private uint _year;
         private bool _favorite;
         private bool _isPictureLoaded = false;
@@ -78,39 +78,13 @@ namespace VLC_WINRT_APP.Model.Music
             set { SetProperty(ref _trackItems, value); }
         }
 
-        [Ignore]
         public string Picture
         {
-            get
-            {
-                if (!_isPictureLoaded)
-                {
-                    _isPictureLoaded = true;
-                    _picture = "ms-appx:///Assets/NoCover.jpg";
-                    Task.Run(() => LoadPicture());
-                }
-                return _picture;
-            }
-            set
-            {
-                SetProperty(ref _picture, value);
-                OnPropertyChanged();
-            }
+            get { return _picture; }
+            set { SetProperty(ref _picture, value); }
         }
 
-        public bool IsPictureLoaded
-        {
-            get { return _isPictureLoaded; }
-            set
-            {
-                SetProperty(ref _isPictureLoaded, value);
-                if (value)
-                {
-                    _picture = "ms-appdata:///local/albumPic/" + Id + ".jpg";
-                    OnPropertyChanged("Picture");
-                }
-            }
-        }
+        public bool IsPictureLoaded { get; set; }
 
         public uint Year
         {
@@ -122,6 +96,8 @@ namespace VLC_WINRT_APP.Model.Music
         {
             try
             {
+                if (IsPictureLoaded)
+                    return;
                 await ArtistInformationsHelper.GetAlbumPicture(this);
             }
             catch (Exception)
