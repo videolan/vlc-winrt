@@ -124,14 +124,17 @@ namespace VLC_WINRT_APP.Services.RunTime
         {
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                SystemMediaTransportControlsDisplayUpdater updater = _systemMediaTransportControls.DisplayUpdater;
-                updater.Type = MediaPlaybackType.Video;
+                if (_systemMediaTransportControls != null)
+                {
+                    SystemMediaTransportControlsDisplayUpdater updater = _systemMediaTransportControls.DisplayUpdater;
+                    updater.Type = MediaPlaybackType.Video;
 
-                //Video metadata
-                updater.VideoProperties.Title = title;
-                //TODO: add full thumbnail suport
-                updater.Thumbnail = null;
-                updater.Update();
+                    //Video metadata
+                    updater.VideoProperties.Title = title;
+                    //TODO: add full thumbnail suport
+                    updater.Thumbnail = null;
+                    updater.Update();
+                }
             });
         }
 
