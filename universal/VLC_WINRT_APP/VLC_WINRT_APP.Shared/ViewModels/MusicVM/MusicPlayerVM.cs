@@ -302,6 +302,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
              {
                  Locator.MusicPlayerVM.OnLengthChanged(
                      (long)BackgroundMediaPlayer.Current.NaturalDuration.TotalMilliseconds);
+                 if (!ApplicationSettingsHelper.Contains(BackgroundAudioConstants.CurrentTrack)) return;
                  int index = (int)ApplicationSettingsHelper.ReadSettingsValue(BackgroundAudioConstants.CurrentTrack);
                  Locator.MusicPlayerVM.TrackCollection.CurrentTrack = index;
                  await SetCurrentArtist();
