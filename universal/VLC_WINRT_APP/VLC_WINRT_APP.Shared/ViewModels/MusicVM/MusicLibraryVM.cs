@@ -398,12 +398,9 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 
         public async Task StartIndexing()
         {
-            if (await DoesMusicDatabaseExist())
-            {
-                _artistDataRepository.Drop();
-                _trackDataRepository.Drop();
-                _albumDataRepository.Drop();
-            }
+            _artistDataRepository.Drop();
+            _trackDataRepository.Drop();
+            _albumDataRepository.Drop();
 
             await DispatchHelper.InvokeAsync(() =>
             {
@@ -465,10 +462,6 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             (sZ.ZoomedOutView as ListViewBase).ItemsSource = cvs.View.CollectionGroups;
         }
 
-        private async Task<bool> DoesMusicDatabaseExist()
-        {
-            return await DoesFileExistHelper.DoesFileExistAsync("mediavlc.sqlite");
-        }
         #endregion
     }
 }
