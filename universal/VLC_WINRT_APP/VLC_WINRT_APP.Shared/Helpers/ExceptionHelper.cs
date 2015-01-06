@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
+#if WINDOWS_PHONE_APP
 using Windows.ApplicationModel.Email;
+#endif
 using Windows.ApplicationModel.Resources;
 using Windows.Security.ExchangeActiveSyncProvisioning;
 using Windows.Storage;
@@ -42,13 +44,19 @@ namespace VLC_WINRT_APP.Helpers
                     os += " ";
                     os += deviceInfo.SystemProductName;
 #endif
+#if WINDOWS_PHONE_APP
                     var objEmail = new EmailMessage();
                     objEmail.Subject = os;
                     objEmail.To.Add(new EmailRecipient("modernvlc@outlook.com"));
                     objEmail.Body = ApplicationSettingsHelper.ReadResetSettingsValue("ExceptionLog").ToString();
                     objEmail.Attachments.Add(new EmailAttachment(LogHelper.LogFile.Name, LogHelper.LogFile));
                     await EmailManager.ShowComposeNewEmailAsync(objEmail);
-                }));
+#else
+                    var uri = new Uri("mailto:vlcmetro-feedback@outlook.com?subject=VLC for Windows 8.1 bugreport&body=" + ApplicationSettingsHelper.ReadResetSettingsValue("ExceptionLog").ToString());
+                    await Launcher.LaunchUriAsync(uri);
+#endif
+                    
+                    }));
                 dialog.Commands.Add(new UICommand(resourcesLoader.GetString("No"), command =>
                 {
                     ApplicationSettingsHelper.ReadResetSettingsValue("ExceptionLog");
