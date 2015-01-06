@@ -116,5 +116,7 @@ namespace VLC_WINRT_APP.Model.Music
             get { return _favoriteTrackCommand; }
             set { SetProperty(ref _favoriteTrackCommand, value); }
         }
+
+        public bool IsFromSandbox { get; set; }
     }
 }
