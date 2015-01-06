@@ -251,33 +251,40 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
 
         public async Task SetActiveVideoInfo(VideoItem media, String mrl)
         {
-            // Pause the music viewmodel
-            Locator.MusicPlayerVM.CleanViewModel();
+            try
+            {
+                // Pause the music viewmodel
+                Locator.MusicPlayerVM.CleanViewModel();
 
-            IsRunning = true;
-            OnPropertyChanged("IsRunning");
-            IsPlaying = true;
-            OnPropertyChanged("IsPlaying");
+                IsRunning = true;
+                OnPropertyChanged("IsRunning");
+                IsPlaying = true;
+                OnPropertyChanged("IsPlaying");
 
-            if (media != null)
-                _mrl = "file://" + media.Token;
-            else
-                 _mrl = mrl;
+                if (media != null)
+                    _mrl = "file://" + media.Token;
+                else
+                    _mrl = mrl;
 
-            _timeTotal = TimeSpan.Zero;
+                _timeTotal = TimeSpan.Zero;
 
-            InitializePlayback(_mrl, false);
-            var em = _mediaService.MediaPlayer.eventManager();
-            em.OnTrackAdded += OnTrackAdded;
-            em.OnTrackDeleted += OnTrackDeleted;
-            _mediaService.Play();
+                InitializePlayback(_mrl, false);
+                var em = _mediaService.MediaPlayer.eventManager();
+                em.OnTrackAdded += OnTrackAdded;
+                em.OnTrackDeleted += OnTrackDeleted;
+                _mediaService.Play();
 
-            if (media != null && media.TimeWatched != null)
-                Time = (Int64)media.TimeWatched.TotalMilliseconds;
+                if (media != null && media.TimeWatched != null)
+                    Time = (Int64)media.TimeWatched.TotalMilliseconds;
 
-            SpeedRate = 100;
-            await _mediaService.SetMediaTransportControlsInfo(CurrentVideo != null ? CurrentVideo.Title : "Video");
-            UpdateTileHelper.UpdateMediumTileWithVideoInfo();
+                SpeedRate = 100;
+                await _mediaService.SetMediaTransportControlsInfo(CurrentVideo != null ? CurrentVideo.Title : "Video");
+                UpdateTileHelper.UpdateMediumTileWithVideoInfo();
+            }
+            catch (Exception e)
+            {
+                ExceptionHelper.CreateMemorizedException("VideoPlayerVM.SetActiveVideoInfo", e);
+            }
         }
 
         protected override async void OnEndReached()
