@@ -64,8 +64,10 @@ namespace VLC_WINRT_APP.DataRepository
 
         public void Drop()
         {
-            var connection = new SQLiteAsyncConnection(DbPath);
-            connection.DropTableAsync<TrackCollection>();
+            using (var db = new SQLite.SQLiteConnection(DbPath))
+            {
+                db.DropTable<TrackCollection>();
+            }
         }
     }
 }
