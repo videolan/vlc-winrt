@@ -95,7 +95,7 @@ namespace VLC_WINRT_APP.Helpers
 
                 var tileImgAttribues = tileXml.GetElementsByTagName("image");
                 if (Locator.VideoVm.CurrentVideo != null)
-                    tileImgAttribues[0].Attributes[1].NodeValue = "ms-appdata:///local/videoPic/" + Locator.VideoVm.CurrentVideo.Title + ".jpg";
+                    tileImgAttribues[0].Attributes[1].NodeValue = "ms-appdata:///local/videoPic/" + Locator.VideoVm.CurrentVideo.Id + ".jpg";
             }
             var tileNotification = new TileNotification(tileXml);
             TileUpdateManager.CreateTileUpdaterForApplication().Update(tileNotification);
@@ -115,7 +115,7 @@ namespace VLC_WINRT_APP.Helpers
                 tileTextAttributes[0].InnerText = Locator.VideoVm.CurrentVideo.Title;
                 var tileImgAttribues = tileXml.GetElementsByTagName("image");
                 if (Locator.VideoVm.CurrentVideo != null)
-                    tileImgAttribues[0].Attributes[1].NodeValue = "ms-appdata:///local/videoPic/" + Locator.VideoVm.CurrentVideo.Title + ".jpg";
+                    tileImgAttribues[0].Attributes[1].NodeValue = "ms-appdata:///local/videoPic/" + Locator.VideoVm.CurrentVideo.Id + ".jpg";
             }
             var tileNotification = new TileNotification(tileXml);
             TileUpdateManager.CreateTileUpdaterForApplication().Update(tileNotification);
