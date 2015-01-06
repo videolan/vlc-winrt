@@ -10,12 +10,16 @@ using Windows.Phone.ApplicationModel;
 #endif
 using Windows.Storage;
 using Windows.Storage.FileProperties;
+using Windows.System.Threading;
 using Windows.UI.Core;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
+using Autofac;
 using VLC_WINRT_APP.Helpers.MusicLibrary.Deezer;
 using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.Model.Music;
+using VLC_WINRT_APP.Services.Interface;
+using VLC_WINRT_APP.Services.RunTime;
 using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.ViewModels.MusicVM;
 
@@ -181,10 +185,12 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                         });
                     }
 
+                    bool albumIsNew = false;
                     AlbumItem album =
                         await MusicLibraryVM._albumDataRepository.LoadAlbumViaName(artist.Id, properties.Album);
                     if (album == null)
                     {
+                        albumIsNew = true;
                         album = new AlbumItem
                         {
                             Name = string.IsNullOrEmpty(properties.Album) ? "Unknown album" : properties.Album,
@@ -193,18 +199,6 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                             Favorite = false,
                             Year = properties.Year
                         };
-                        await MusicLibraryVM._albumDataRepository.Add(album);
-                        await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
-                        {
-                            var artistFromCollection =
-                                Locator.MusicLibraryVM.Artists.FirstOrDefault(x => x.Id == album.ArtistId);
-                            if (artistFromCollection != null) artistFromCollection.Albums.Add(album);
-                            Locator.MusicLibraryVM.CurrentIndexingStatus = "Found album " + album.Name;
-#if WINDOWS_PHONE_APP
-                            StatusBarHelper.UpdateTitle("Found " + album.Name);
-#endif
-                            Locator.MusicLibraryVM.Albums.Add(album);
-                        });
                     }
 
                     TrackItem track = new TrackItem()
@@ -221,6 +215,30 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                         Index = (int) properties.TrackNumber,
                         IsFromSandbox = true
                     };
+                    if (albumIsNew)
+                    {
+                        var mediaService = App.Container.Resolve<IMediaService>() as MediaService;
+                        var albumUrl = mediaService.GetAlbumUrl(track.Path);
+                        if (!string.IsNullOrEmpty(albumUrl))
+                        {
+                            album.Picture = String.Format(albumUrl.Replace("file:///", "").Replace("%20"," "));
+                            album.IsPictureLoaded = true;
+                            Debug.WriteLine("VLC found embedded cover " + albumUrl);
+                        }
+
+                        await MusicLibraryVM._albumDataRepository.Add(album);
+                        await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+                        {
+                            var artistFromCollection =
+                                Locator.MusicLibraryVM.Artists.FirstOrDefault(x => x.Id == album.ArtistId);
+                            if (artistFromCollection != null) artistFromCollection.Albums.Add(album);
+                            Locator.MusicLibraryVM.CurrentIndexingStatus = "Found album " + album.Name;
+#if WINDOWS_PHONE_APP
+                            StatusBarHelper.UpdateTitle("Found " + album.Name);
+#endif
+                            Locator.MusicLibraryVM.Albums.Add(album);
+                        });
+                    }
                     await MusicLibraryVM._trackDataRepository.Add(track);
                 }
             }

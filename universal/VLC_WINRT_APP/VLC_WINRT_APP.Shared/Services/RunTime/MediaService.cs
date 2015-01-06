@@ -223,6 +223,13 @@ namespace VLC_WINRT_APP.Services.RunTime
             return "file://" + StorageApplicationPermissions.FutureAccessList.Add(file);
         }
 
+        public string GetAlbumUrl(string filePath)
+        {
+            var media = new Media(Instance, "file:///" + filePath);
+            media.parse();
+            return media.isParsed() ? media.meta(MediaMeta.ArtworkURL) : null;
+        }
+
         public void Play()
         {
             if (MediaPlayer == null)
