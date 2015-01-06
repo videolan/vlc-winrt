@@ -263,14 +263,18 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             else
 #endif
             {
+#if WINDOWS_PHONE_APP
+                if (BackgroundMediaPlayer.Current != null &&
+                    BackgroundMediaPlayer.Current.CurrentState != MediaPlayerState.Stopped)
+                {
+                    BackgroundMediaPlayer.Shutdown();
+                }
+                ToastHelper.Basic("Can't enable background audio");
+#endif
                 _fileToken = token;
-                _mrl = "file://" + token;
                 base.InitializePlayback(_mrl, true);
                 _mediaService.Play();
                 await UpdatePlayingUI();
-#if WINDOWS_PHONE_APP
-                ToastHelper.Basic("Can't enable background audio");
-#endif
             }
         }
 
