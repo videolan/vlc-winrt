@@ -243,14 +243,9 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
                 await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => CurrentAudioTrack = null);
         }
 
-        public Task SetActiveVideoInfo(VideoItem media)
+        public async Task SetActiveVideoInfo(VideoItem media, string streamMrl = null)
         {
-            Debug.Assert(media != null);
-            return SetActiveVideoInfo(media, media.Token);
-        }
-
-        public async Task SetActiveVideoInfo(VideoItem media, String mrl)
-        {
+            if (media == null && string.IsNullOrEmpty(streamMrl)) return;
             try
             {
                 // Pause the music viewmodel
