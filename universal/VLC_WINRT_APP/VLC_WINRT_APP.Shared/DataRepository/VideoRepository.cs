@@ -30,7 +30,10 @@ namespace VLC_WINRT_APP.DataRepository
 
         public void Drop()
         {
-            throw new System.NotImplementedException();
+            using (var db = new SQLiteConnection(_dbPath))
+            {
+                db.DropTable<VideoItem>();
+            }
         }
 
         public async Task<VideoItem> GetFromPath(String path)

@@ -32,7 +32,8 @@ namespace VLC_WINRT_APP.DataRepository
 
         public void Drop()
         {
-            throw new NotImplementedException();
+            var connection = new SQLiteAsyncConnection(DbPath);
+            connection.DropTableAsync<TracklistItem>();
         }
 
         public async Task<ObservableCollection<TracklistItem>> LoadTracks(TrackCollection trackCollection)
