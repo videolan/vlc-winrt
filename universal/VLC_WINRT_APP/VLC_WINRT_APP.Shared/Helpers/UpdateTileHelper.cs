@@ -85,6 +85,7 @@ namespace VLC_WINRT_APP.Helpers
 
         public static void UpdateMediumTileWithVideoInfo()
         {
+            LogHelper.Log("PLAYVIDEO: Updating Live Tile");
             const TileTemplateType template = TileTemplateType.TileSquare150x150PeekImageAndText02;
             var tileXml = TileUpdateManager.GetTemplateContent(template);
             var tileTextAttributes = tileXml.GetElementsByTagName("text");

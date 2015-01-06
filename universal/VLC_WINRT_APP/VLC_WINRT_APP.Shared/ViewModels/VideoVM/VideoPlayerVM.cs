@@ -267,13 +267,13 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
                     _mrl = mrl;
 
                 _timeTotal = TimeSpan.Zero;
-
+                LogHelper.Log("PLAYVIDEO: Initializing playback");
                 InitializePlayback(_mrl, false);
                 var em = _mediaService.MediaPlayer.eventManager();
                 em.OnTrackAdded += OnTrackAdded;
                 em.OnTrackDeleted += OnTrackDeleted;
                 _mediaService.Play();
-
+                LogHelper.Log("PLAYVIDEO: Play() method called");
                 if (media != null && media.TimeWatched != null)
                     Time = (Int64)media.TimeWatched.TotalMilliseconds;
 

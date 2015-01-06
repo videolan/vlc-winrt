@@ -1,5 +1,6 @@
 ﻿using Windows.UI.Xaml.Controls;
 using VLC_WINRT.Common;
+using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.Model.Video;
 using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.Views.VideoPages;
@@ -17,8 +18,10 @@ namespace VLC_WINRT_APP.Commands.Video
             }
             try
             {
+                LogHelper.Log("PlayVideoCommand called");
                 if (App.ApplicationFrame.CurrentSourcePageType != typeof (VideoPlayerPage))
                     App.ApplicationFrame.Navigate(typeof (VideoPlayerPage));
+                LogHelper.Log("PLAYVIDEO: Navigating to VideoPlayerPage");
             }
             catch { }
             VideoItem videoVm = null;
@@ -31,7 +34,11 @@ namespace VLC_WINRT_APP.Commands.Video
             {
                 videoVm = parameter as VideoItem;
             }
-            await videoVm.Play();
+            if (videoVm != null)
+            {
+                LogHelper.Log("PLAYVIDEO: VideoVm is not null, continuing");
+                await videoVm.Play();
+            }
         }
     }
 }
