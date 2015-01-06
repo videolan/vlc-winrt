@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
+using Windows.ApplicationModel.Email;
 using Windows.ApplicationModel.Resources;
 using Windows.System;
 using Windows.UI.Popups;
@@ -32,10 +34,11 @@ namespace VLC_WINRT_APP.Helpers
 #else
                     os = "Windows Phone 8.1 v" + appVersion;
 #endif
-                    var uri =
-                        new Uri("mailto:modernvlc@outlook.com?subject=" + os + "&body=" +
-                                ApplicationSettingsHelper.ReadResetSettingsValue("ExceptionLog").ToString());
-                    await Launcher.LaunchUriAsync(uri);
+                    var objEmail = new EmailMessage();
+                    objEmail.Subject = os;
+                    objEmail.To.Add(new EmailRecipient("modernvlc@outlook.com"));
+                    objEmail.Body = ApplicationSettingsHelper.ReadResetSettingsValue("ExceptionLog").ToString();
+                    await EmailManager.ShowComposeNewEmailAsync(objEmail);
                 }));
                 dialog.Commands.Add(new UICommand(resourcesLoader.GetString("No"), command =>
                 {
