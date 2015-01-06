@@ -45,7 +45,7 @@ namespace VLC_WINRT_APP.Commands.Video
                 }
                 else
                 {
-                    Debug.WriteLine("Cancelled Opening subtitle");
+                    LogHelper.Log("Cancelled Opening subtitle");
                 }
 #else
                 App.OpenFilePickerReason = OpenFilePickerReason.OnOpeningSubtitle;

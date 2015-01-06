@@ -9,6 +9,7 @@ using SQLite;
 using VLC_WINRT_APP.Commands.Music;
 using VLC_WINRT_APP.Commands.MusicPlayer;
 using VLC_WINRT_APP.Common;
+using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.Helpers.MusicLibrary;
 using VLC_WINRT_APP.ViewModels.MusicVM;
 
@@ -126,7 +127,7 @@ namespace VLC_WINRT_APP.Model.Music
             catch (Exception)
             {
                 // TODO: Tell user we could not get their album art.
-                Debug.WriteLine("Error getting album art...");
+                LogHelper.Log("Error getting album art...");
             }
         }
 

@@ -35,7 +35,7 @@ namespace VLC_WINRT_APP.Commands.Music
             catch (FileNotFoundException exception)
             {
                 ToastHelper.Basic("The file doesn't exists anymore. Rebuilding the music database", true);
-                Debug.WriteLine("It seems that file doesn't exist anymore. Needs to rebuild Music Library: " + exception.ToString());
+                LogHelper.Log("It seems that file doesn't exist anymore. Needs to rebuild Music Library: " + exception.ToString());
                 return;
             }
         }

@@ -7,8 +7,8 @@ namespace VLC_WINRT_APP.Helpers
 {
     public static class LogHelper
     {
-        private static StorageFile LogFile;
-
+        public static StorageFile LogFile;
+        public static bool usedForRead = false;
         static LogHelper()
         {
             Initialize();
@@ -16,7 +16,11 @@ namespace VLC_WINRT_APP.Helpers
 
         static async Task Initialize()
         {
-            LogFile = await ApplicationData.Current.LocalFolder.CreateFileAsync("LogFile.txt", CreationCollisionOption.ReplaceExisting);
+            LogFile = await ApplicationData.Current.LocalFolder.CreateFileAsync("LogFile.txt", CreationCollisionOption.OpenIfExists);
+            Log("------------------------------------------");
+            Log("------------------------------------------");
+            Log("------------------------------------------");
+            Log("App launch " + DateTime.Now.ToString());
         }
         public static void Log(object o)
         {
@@ -26,7 +30,7 @@ namespace VLC_WINRT_APP.Helpers
 
         static void WriteInLog(string value)
         {
-            if (LogFile != null) FileIO.WriteTextAsync(LogFile, value);
+            if (LogFile != null && !usedForRead) FileIO.AppendTextAsync(LogFile, value);
         }
     }
 }

@@ -27,7 +27,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             var music = await GetMusicEntity(artistName, new[] { Filters.Artists });
             var xboxArtistItem = music.Artists.Items.FirstOrDefault(x => x.Name == artistName) ??
                                  music.Artists.Items.FirstOrDefault();
-            Debug.WriteLine("XBOX Music artist found : " + xboxArtistItem.Name);
+            LogHelper.Log("XBOX Music artist found : " + xboxArtistItem.Name);
             var artist = new Artist();
             artist.MapFrom(xboxArtistItem);
             return artist;
@@ -43,7 +43,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             var music = await GetMusicEntityViaArtistId(new[] { artistId }, new[] { Extras.RelatedArtists });
             var xboxArtistItem = music.Artists.Items.FirstOrDefault();
             if (xboxArtistItem == null) return null;
-            Debug.WriteLine("XBOX Music artist found : " + xboxArtistItem.Name);
+            LogHelper.Log("XBOX Music artist found : " + xboxArtistItem.Name);
             var artistList = new List<Artist>();
             foreach (var xboxArtist in xboxArtistItem.RelatedArtists.Items)
             {
@@ -64,7 +64,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             var music = await GetMusicEntityViaArtistId(new []{artistId}, new[] { Extras.Albums });
             var xboxArtistItem = music.Artists.Items.FirstOrDefault();
             if (xboxArtistItem == null) return null;
-            Debug.WriteLine("XBOX Music artist found : " + xboxArtistItem.Name);
+            LogHelper.Log("XBOX Music artist found : " + xboxArtistItem.Name);
 
             var albumList = new List<Album>();
             // TODO: Use token to continue request if needed.
@@ -95,18 +95,18 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                     Locator.MusicLibraryVM.XboxMusicAuthenication = await Locator.MusicLibraryVM.XboxMusicHelper.GetAccessToken("5bf9b614-1651-4b49-98ee-1831ae58fb99", "copuMsVkCAFLQlP38bV3y+Azysz/crELZ5NdQU7+ddg=", string.Empty);
                     Locator.MusicLibraryVM.XboxMusicAuthenication.StartTime = GetUnixTime(DateTime.Now);
                 }
-                Debug.WriteLine("Connecting to XBOX Music API for ");
-                Debug.WriteLine("XBOX Music token " + Locator.MusicLibraryVM.XboxMusicAuthenication);
+                LogHelper.Log("Connecting to XBOX Music API for ");
+                LogHelper.Log("XBOX Music token " + Locator.MusicLibraryVM.XboxMusicAuthenication);
                 var region = new Windows.Globalization.GeographicRegion();
                 Music xboxMusic = await Locator.MusicLibraryVM.XboxMusicHelper.LookupMediaCatalog(Locator.MusicLibraryVM.XboxMusicAuthenication.AccessToken, artistIds, extras, new Culture(region.Code.ToLower(), null));
 
-                Debug.WriteLine("XBOX Music artist found : " + xboxArtistItem.Name);
+                LogHelper.Log("XBOX Music artist found : " + xboxArtistItem.Name);
 
                 return xboxMusic;
             }
             catch (Exception e)
             {
-                Debug.WriteLine("XBOX Error\n" + e);
+                LogHelper.Log("XBOX Error\n" + e);
             }
             return null;
         }
@@ -129,18 +129,18 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                     Locator.MusicLibraryVM.XboxMusicAuthenication = await Locator.MusicLibraryVM.XboxMusicHelper.GetAccessToken("5bf9b614-1651-4b49-98ee-1831ae58fb99", "copuMsVkCAFLQlP38bV3y+Azysz/crELZ5NdQU7+ddg=", string.Empty);
                     Locator.MusicLibraryVM.XboxMusicAuthenication.StartTime = GetUnixTime(DateTime.Now);
                 }
-                Debug.WriteLine(string.Format("Connecting to XBOX Music API for {0}", artistName));
-                Debug.WriteLine("XBOX Music token " + Locator.MusicLibraryVM.XboxMusicAuthenication);
+                LogHelper.Log(string.Format("Connecting to XBOX Music API for {0}", artistName));
+                LogHelper.Log("XBOX Music token " + Locator.MusicLibraryVM.XboxMusicAuthenication);
                 var region = new Windows.Globalization.GeographicRegion();
                 Music xboxMusic = await Locator.MusicLibraryVM.XboxMusicHelper.SearchMediaCatalog(Locator.MusicLibraryVM.XboxMusicAuthenication.AccessToken, artistName, null, 3, filters, new Culture(region.Code.ToLower(), null));
 
-                Debug.WriteLine(string.Format("XBOX Music artist found : {0}", xboxArtistItem.Name));
+                LogHelper.Log(string.Format("XBOX Music artist found : {0}", xboxArtistItem.Name));
 
                 return xboxMusic;
             }
             catch (Exception e)
             {
-                Debug.WriteLine("XBOX Error\n" + e);
+                LogHelper.Log("XBOX Error\n" + e);
             }
             return null;
         }

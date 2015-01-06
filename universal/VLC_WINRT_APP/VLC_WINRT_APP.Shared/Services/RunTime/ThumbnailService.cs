@@ -16,6 +16,7 @@ using VLC_WINRT_APP.Services.Interface;
 using Windows.Storage;
 using Windows.Storage.FileProperties;
 using libVLCX;
+using VLC_WINRT_APP.Helpers;
 
 namespace VLC_WINRT_APP.Services.RunTime
 {
@@ -34,8 +35,8 @@ namespace VLC_WINRT_APP.Services.RunTime
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("Error getting thumbnail: ");
-                Debug.WriteLine(ex);
+                LogHelper.Log("Error getting thumbnail: ");
+                LogHelper.Log(ex);
             }
             return thumb;
         }

@@ -44,7 +44,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             }
             catch (Exception)
             {
-                Debug.WriteLine("Error parsing echonest data.");
+                LogHelper.Log("Error parsing echonest data.");
             }
             return null;
         }
@@ -69,7 +69,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             }
             catch (Exception)
             {
-                Debug.WriteLine("Error parsing echonest data.");
+                LogHelper.Log("Error parsing echonest data.");
             }
             return null;
         }
@@ -97,7 +97,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             }
             catch (Exception)
             {
-                Debug.WriteLine("Error parsing echonest data.");
+                LogHelper.Log("Error parsing echonest data.");
             }
             return null;
         }

@@ -86,7 +86,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             }
             catch (Exception exception)
             {
-                Debug.WriteLine("Failed to get artist biography from LastFM. Returning nothing." + exception.ToString());
+                LogHelper.Log("Failed to get artist biography from LastFM. Returning nothing." + exception.ToString());
             }
             return null;
         }
@@ -114,7 +114,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             }
             catch
             {
-                Debug.WriteLine("Error getting similar artists from this artist.");
+                LogHelper.Log("Error getting similar artists from this artist.");
             }
             return null;
         }
@@ -142,7 +142,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("Failed to get artist biography from LastFM. Returning nothing. {0}", ex);
+                LogHelper.Log(string.Format("Failed to get artist biography from LastFM. Returning nothing. {0}", ex));
             }
             return null;
         }
@@ -156,14 +156,14 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
         {
             try
             {
-                Debug.WriteLine("Getting TopAlbums from LastFM API");
+                LogHelper.Log("Getting TopAlbums from LastFM API");
                 var lastFmClient = new HttpClient();
                 var response =
                     await
                         lastFmClient.GetStringAsync(
                             string.Format("http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&limit=8&format=json&api_key={0}&artist={1}", App.ApiKeyLastFm, name));
                 var albums = JsonConvert.DeserializeObject<TopAlbumInformation>(response);
-                Debug.WriteLine("Receive TopAlbums from LastFM API");
+                LogHelper.Log("Receive TopAlbums from LastFM API");
                 if (albums == null) return null;
                 var albumList = albums.TopAlbums.Album;
                 if (albumList == null) return null;
@@ -178,7 +178,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             }
             catch
             {
-                Debug.WriteLine("Error getting top albums from artist.");
+                LogHelper.Log("Error getting top albums from artist.");
             }
             return null;
         }

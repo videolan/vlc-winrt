@@ -27,17 +27,17 @@ namespace VLC_WINRT_APP.Helpers
         /// </summary>
         public static object ReadResetSettingsValue(string key)
         {
-            Debug.WriteLine(key);
+            LogHelper.Log(key);
             if (!ApplicationData.Current.LocalSettings.Values.ContainsKey(key))
             {
-                Debug.WriteLine("null returned");
+                LogHelper.Log("null returned");
                 return null;
             }
             else
             {
                 var value = ApplicationData.Current.LocalSettings.Values[key];
                 ApplicationData.Current.LocalSettings.Values.Remove(key);
-                Debug.WriteLine("value found " + value.ToString());
+                LogHelper.Log("value found " + value.ToString());
                 return value;
             }
         }
@@ -47,16 +47,16 @@ namespace VLC_WINRT_APP.Helpers
         /// </summary>
         public static object ReadSettingsValue(string key)
         {
-            Debug.WriteLine(key);
+            LogHelper.Log(key);
             if (!ApplicationData.Current.LocalSettings.Values.ContainsKey(key))
             {
-                Debug.WriteLine("null returned");
+                LogHelper.Log("null returned");
                 return null;
             }
             else
             {
                 var value = ApplicationData.Current.LocalSettings.Values[key];
-                Debug.WriteLine("value found " + value.ToString());
+                LogHelper.Log("value found " + value.ToString());
                 return value;
             }
         }
@@ -66,7 +66,7 @@ namespace VLC_WINRT_APP.Helpers
         /// </summary>
         public static void SaveSettingsValue(string key, object value)
         {
-            Debug.WriteLine(key + ":" + value.ToString());
+            LogHelper.Log(key + ":" + value.ToString());
             if (!ApplicationData.Current.LocalSettings.Values.ContainsKey(key))
             {
                 ApplicationData.Current.LocalSettings.Values.Add(key, value);

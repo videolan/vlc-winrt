@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Email;
 using Windows.ApplicationModel.Resources;
+using Windows.Storage;
 using Windows.System;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
@@ -16,6 +17,7 @@ namespace VLC_WINRT_APP.Helpers
     {
         public static async Task ExceptionLogCheckup()
         {
+            LogHelper.usedForRead = true;
             if (ApplicationSettingsHelper.Contains("ExceptionLog"))
             {
                 Package thisPackage = Package.Current;
@@ -38,6 +40,7 @@ namespace VLC_WINRT_APP.Helpers
                     objEmail.Subject = os;
                     objEmail.To.Add(new EmailRecipient("modernvlc@outlook.com"));
                     objEmail.Body = ApplicationSettingsHelper.ReadResetSettingsValue("ExceptionLog").ToString();
+                    objEmail.Attachments.Add(new EmailAttachment(LogHelper.LogFile.Name, LogHelper.LogFile));
                     await EmailManager.ShowComposeNewEmailAsync(objEmail);
                 }));
                 dialog.Commands.Add(new UICommand(resourcesLoader.GetString("No"), command =>
@@ -46,6 +49,7 @@ namespace VLC_WINRT_APP.Helpers
                 }));
                 await dialog.ShowAsync();
             }
+            LogHelper.usedForRead = false;
         }
 
         public static void ExceptionStringBuilder(object sender, UnhandledExceptionEventArgs unhandledExceptionEventArgs)

@@ -10,6 +10,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Diagnostics;
+using VLC_WINRT_APP.Helpers;
 
 namespace XboxMusicLibrary.Models
 {
@@ -37,7 +38,7 @@ namespace XboxMusicLibrary.Models
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(string.Format("Exception triggered in Music::PopulateObject method: {0}", ex.Message));
+                LogHelper.Log(string.Format("Exception triggered in Music::PopulateObject method: {0}", ex.Message));
                 throw;
             }
 

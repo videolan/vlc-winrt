@@ -23,6 +23,7 @@
 #define USE_CSHARP_SQLITE
 #endif
 
+using VLC_WINRT_APP.Helpers;
 using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
@@ -612,7 +613,7 @@ namespace SQLite
 			if (TimeExecution) {
 				_sw.Stop ();
 				_elapsedMilliseconds += _sw.ElapsedMilliseconds;
-				Debug.WriteLine (string.Format ("Finished in {0} ms ({1:0.0} s total)", _sw.ElapsedMilliseconds, _elapsedMilliseconds / 1000.0));
+				LogHelper.Log (string.Format ("Finished in {0} ms ({1:0.0} s total)", _sw.ElapsedMilliseconds, _elapsedMilliseconds / 1000.0));
 			}
 			
 			return r;
@@ -635,7 +636,7 @@ namespace SQLite
 			if (TimeExecution) {
 				_sw.Stop ();
 				_elapsedMilliseconds += _sw.ElapsedMilliseconds;
-				Debug.WriteLine (string.Format ("Finished in {0} ms ({1:0.0} s total)", _sw.ElapsedMilliseconds, _elapsedMilliseconds / 1000.0));
+				LogHelper.Log (string.Format ("Finished in {0} ms ({1:0.0} s total)", _sw.ElapsedMilliseconds, _elapsedMilliseconds / 1000.0));
 			}
 			
 			return r;
@@ -1980,7 +1981,7 @@ namespace SQLite
 		public int ExecuteNonQuery ()
 		{
 			if (_conn.Trace) {
-				Debug.WriteLine ("Executing: " + this);
+				LogHelper.Log ("Executing: " + this);
 			}
 			
 			var r = SQLite3.Result.OK;
@@ -2038,7 +2039,7 @@ namespace SQLite
 		public IEnumerable<T> ExecuteDeferredQuery<T> (TableMapping map)
 		{
 			if (_conn.Trace) {
-				Debug.WriteLine ("Executing Query: " + this);
+				LogHelper.Log ("Executing Query: " + this);
 			}
 
 			var stmt = Prepare ();
@@ -2073,7 +2074,7 @@ namespace SQLite
 		public T ExecuteScalar<T> ()
 		{
 			if (_conn.Trace) {
-				Debug.WriteLine ("Executing Query: " + this);
+				LogHelper.Log ("Executing Query: " + this);
 			}
 			
 			T val = default(T);
@@ -2289,7 +2290,7 @@ namespace SQLite
 		public int ExecuteNonQuery (object[] source)
 		{
 			if (Connection.Trace) {
-				Debug.WriteLine ("Executing: " + CommandText);
+				LogHelper.Log ("Executing: " + CommandText);
 			}
 
 			var r = SQLite3.Result.OK;

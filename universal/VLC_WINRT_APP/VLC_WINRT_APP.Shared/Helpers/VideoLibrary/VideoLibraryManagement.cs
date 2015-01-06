@@ -43,7 +43,7 @@ namespace VLC_WINRT_APP.Helpers.VideoLibrary
                     // is now gone (and let them try and find it again, in case they moved it, so we can keep it in the DB)
                     // but that will require quite a bit of code work to make happen. So for now, we'll catch the error
                     // and not add it to the list.
-                    Debug.WriteLine("File not found");
+                    LogHelper.Log("File not found");
                 }
             }
         }
@@ -134,7 +134,7 @@ namespace VLC_WINRT_APP.Helpers.VideoLibrary
                 }
                 catch
                 {
-                    Debug.WriteLine("An error occured while indexing a video folder");
+                    LogHelper.Log("An error occured while indexing a video folder");
                 }
             }
             if (Locator.VideoLibraryVM.Videos.Count > 0)
@@ -203,8 +203,8 @@ namespace VLC_WINRT_APP.Helpers.VideoLibrary
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("exception listing files");
-                Debug.WriteLine(ex.ToString());
+                LogHelper.Log("exception listing files");
+                LogHelper.Log(ex.ToString());
             }
             return null;
         }

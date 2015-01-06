@@ -8,6 +8,7 @@ using Windows.UI.Core;
 using SQLite;
 using VLC_WINRT_APP.Commands.Music;
 using VLC_WINRT_APP.Common;
+using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.Helpers.MusicLibrary;
 using VLC_WINRT_APP.Helpers.MusicLibrary.MusicEntities;
 using VLC_WINRT_APP.ViewModels.MusicVM;
@@ -111,7 +112,7 @@ namespace VLC_WINRT_APP.Model.Music
             }
             catch (Exception)
             {
-                Debug.WriteLine("Error getting artist picture : " + _name);
+                LogHelper.Log("Error getting artist picture : " + _name);
             }
         }
 

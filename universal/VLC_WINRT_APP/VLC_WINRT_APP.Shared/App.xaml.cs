@@ -165,7 +165,7 @@ namespace VLC_WINRT_APP
             }
             catch (Exception e)
             {
-                Debug.WriteLine("Failed to open from secondary tile : " + e.ToString());
+                LogHelper.Log("Failed to open from secondary tile : " + e.ToString());
             }
         }
 

@@ -51,7 +51,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             }
             catch (Exception)
             {
-                Debug.WriteLine("Error getting or saving art from deezer.");
+                LogHelper.Log("Error getting or saving art from deezer.");
                 return false;
             }
         }
@@ -73,7 +73,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             }
             catch (Exception)
             {
-                Debug.WriteLine("Error getting or saving art from LastFm.");
+                LogHelper.Log("Error getting or saving art from LastFm.");
                 return false;
             }
         }
@@ -102,7 +102,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             }
             catch (Exception)
             {
-                Debug.WriteLine("Error getting or saving art from deezer.");
+                LogHelper.Log("Error getting or saving art from deezer.");
                 return false;
             }
         }
@@ -125,7 +125,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("Error getting or saving art from lastFm. {0}", ex);
+                LogHelper.Log(string.Format("Error getting or saving art from lastFm. {0}", ex));
             }
             return false;
         }
@@ -266,10 +266,10 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
         {
             try
             {
-                Debug.WriteLine("Getting TopAlbums from LastFM API");
+                LogHelper.Log("Getting TopAlbums from LastFM API");
                 var lastFmClient = new LastFmClient();
                 var albums = await lastFmClient.GetArtistTopAlbums(artist.Name);
-                Debug.WriteLine("Receive TopAlbums from LastFM API");
+                LogHelper.Log("Receive TopAlbums from LastFM API");
                 if (albums != null)
                 {
                     await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
@@ -281,7 +281,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             }
             catch
             {
-                Debug.WriteLine("Error getting top albums from artist.");
+                LogHelper.Log("Error getting top albums from artist.");
             }
         }
 
@@ -302,7 +302,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             }
             catch
             {
-                Debug.WriteLine("Error getting similar artists from this artist.");
+                LogHelper.Log("Error getting similar artists from this artist.");
             }
         }
 
@@ -317,7 +317,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             }
             catch
             {
-                Debug.WriteLine("Failed to get artist biography from LastFM. Returning nothing.");
+                LogHelper.Log("Failed to get artist biography from LastFM. Returning nothing.");
             }
             if (!string.IsNullOrEmpty(biography))
                 await
@@ -352,7 +352,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             }
             catch (Exception e)
             {
-                Debug.WriteLine("Error saving album art: " + e);
+                LogHelper.Log("Error saving album art: " + e);
                 return false;
             }
         }
@@ -384,7 +384,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             }
             catch (Exception exception)
             {
-                Debug.WriteLine("Error saving artist art: " + exception.ToString());
+                LogHelper.Log("Error saving artist art: " + exception.ToString());
             }
             return false;
         }

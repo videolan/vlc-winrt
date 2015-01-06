@@ -87,7 +87,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             }
             catch (Exception)
             {
-                Debug.WriteLine("Error getting database.");
+                LogHelper.Log("Error getting database.");
             }
         }
 
@@ -292,7 +292,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             }
             catch (Exception)
             {
-                Debug.WriteLine("Error selecting random albums.");
+                LogHelper.Log("Error selecting random albums.");
             }
         }
 

@@ -195,7 +195,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                     }
                     catch (FileNotFoundException exception)
                     {
-                        Debug.WriteLine(exception);
+                        LogHelper.Log(exception);
                         App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                         {
 #if WINDOWS_PHONE_APP
@@ -211,7 +211,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                     file = fileFromExplorer;
                 }
                 string token = StorageApplicationPermissions.FutureAccessList.Add(file);
-                Debug.WriteLine("Opening file: " + file.Path);
+                LogHelper.Log("Opening file: " + file.Path);
                 await SetActiveMusicInfo(token, trackItem, file, forceVlcLib);
             });
             if (trackItem == null) return;

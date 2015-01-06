@@ -66,12 +66,12 @@ namespace VLC_WINRT_APP.Commands
             file = await picker.PickSingleFileAsync();
             if (file != null)
             {
-                Debug.WriteLine("Opening file: " + file.Path);
+                LogHelper.Log("Opening file: " + file.Path);
                 await MediaService.PlayVideoFile(file);
             }
             else
             {
-                Debug.WriteLine("Cancelled");
+                LogHelper.Log("Cancelled");
             }
 #else
             App.OpenFilePickerReason = OpenFilePickerReason.OnOpeningVideo;
