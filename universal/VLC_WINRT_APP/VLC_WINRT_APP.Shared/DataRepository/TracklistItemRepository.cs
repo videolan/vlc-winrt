@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.IO;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 using SQLite;
 using VLC_WINRT_APP.Model.Music;
 using VLC_WINRT_APP.ViewModels.MusicVM;
@@ -41,7 +38,7 @@ namespace VLC_WINRT_APP.DataRepository
         public async Task<ObservableCollection<TracklistItem>> LoadTracks(TrackCollection trackCollection)
         {
             var connection = new SQLiteAsyncConnection(DbPath);
-            return new ObservableCollection<TracklistItem>(await connection.QueryAsync<TracklistItem>("select * from TracklistItem where TrackCollectionId = \'" + trackCollection.Id + "\'"));
+            return new ObservableCollection<TracklistItem>(await connection.Table<TracklistItem>().Where(x => x.TrackCollectionId == trackCollection.Id).ToListAsync());
         }
 
         public Task Add(TracklistItem track)
@@ -59,17 +56,13 @@ namespace VLC_WINRT_APP.DataRepository
         public Task Remove(int trackId, int trackCollectionId)
         {
             var connection = new SQLiteAsyncConnection(DbPath);
-            return
-                connection.QueryAsync<TracklistItem>("delete from TracklistItem where TrackCollectionId=\'" +
-                                                     trackCollectionId.ToString() + "\'" + " AND TrackId=\'" +
-                                                     trackId.ToString() + "\';");
+            return connection.ExecuteAsync("DELETE FROM TracklistItem WHERE TrackCollectionId=? AND TrackId=?;", trackCollectionId, trackId);
         }
 
         public async Task Clear()
         {
             var connection = new SQLiteAsyncConnection(DbPath);
-            await connection.QueryAsync<TracklistItem>(
-            "DELETE FROM TracklistItem");
+            await connection.ExecuteAsync("DELETE FROM TracklistItem");
         }
     }
 }
