@@ -7,6 +7,7 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
+using VLC_WINRT_APP.DataRepository;
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -46,6 +47,10 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         #region private props
         private TrackCollection _trackCollection;
         private GoToMusicPlayerPage _goToMusicPlayerPage;
+        private AlbumItem _currentAlbum;
+        private ArtistItem _currentArist;
+        private ArtistDataRepository _artistDataRepository = new ArtistDataRepository();
+        private AlbumDataRepository _albumDataRepository = new AlbumDataRepository();
         #endregion
 
         #region private fields
@@ -54,6 +59,26 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         #endregion
 
         #region public props
+
+        public AlbumItem CurrentAlbum
+        {
+            get { return _currentAlbum; }
+            set
+            {
+                SetProperty(ref _currentAlbum, value);
+                OnPropertyChanged();
+            }
+        }
+
+        public ArtistItem CurrentArtist
+        {
+            get { return _currentArist; }
+            set
+            {
+                SetProperty(ref _currentArist, value);
+                OnPropertyChanged();
+            }
+        }
 
         public TrackCollection TrackCollection
         {
@@ -64,30 +89,22 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             }
         }
 
-        public ArtistItem CurrentArtist
+        public async Task SetCurrentArtist()
         {
-            get
-            {
-                if (CurrentTrack == null) return null;
-                ArtistItem artist = Locator.MusicLibraryVM.Artists.FirstOrDefault(x => x.Id == CurrentTrack.ArtistId);
-                return artist;
-            }
+
+            if (CurrentTrack == null) return;
+            CurrentArtist = await _artistDataRepository.LoadArtist(CurrentTrack.ArtistId);
         }
 
-        public AlbumItem CurrentAlbum
+        public async Task SetCurrentAlbum()
         {
-            get
+            if (CurrentArtist == null) return;
+            if (CurrentArtist.Albums == null || !CurrentArtist.Albums.Any())
             {
-                if (CurrentArtist == null) return null;
-                if (CurrentArtist.Albums == null || !CurrentArtist.Albums.Any())
+                if (CurrentTrack != null)
                 {
-                    if (CurrentTrack != null)
-                    {
-                        return Locator.MusicLibraryVM.Albums.FirstOrDefault(x => x.Id == CurrentTrack.AlbumId);
-                    }
-                    return null;
+                    CurrentAlbum = await _albumDataRepository.LoadAlbum(CurrentTrack.AlbumId);
                 }
-                return CurrentArtist.Albums.FirstOrDefault(x => x.Id == CurrentTrack.AlbumId);
             }
         }
 
@@ -237,10 +254,8 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 
         private async Task SetActiveMusicInfo(string token, TrackItem track, StorageFile file, bool forceVlcLib)
         {
-#if WINDOWS_PHONE__APP
-            bool playWithLibVlc = false;
-            if (!VLCFileExtensions.MFSupported.Contains(file.FileType.ToLower()) || forceVlcLib)
-                playWithLibVlc = true;
+#if WINDOWS_PHONE_APP
+            bool playWithLibVlc = !VLCFileExtensions.MFSupported.Contains(file.FileType.ToLower()) || forceVlcLib;
             if (!playWithLibVlc)
             {
                 App.BackgroundAudioHelper.PlayAudio(track);
@@ -275,16 +290,18 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         }
 
 #if WINDOWS_PHONE_APP
-        public void UpdateTrackFromMF()
+        public async Task UpdateTrackFromMF()
         {
-            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
-            {
-                Locator.MusicPlayerVM.OnLengthChanged(
-                    (long) BackgroundMediaPlayer.Current.NaturalDuration.TotalMilliseconds);
-                int index = (int)ApplicationSettingsHelper.ReadSettingsValue(BackgroundAudioConstants.CurrentTrack);
-                Locator.MusicPlayerVM.TrackCollection.CurrentTrack = index;
-                await UpdatePlayingUI();
-            });
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+             {
+                 Locator.MusicPlayerVM.OnLengthChanged(
+                     (long)BackgroundMediaPlayer.Current.NaturalDuration.TotalMilliseconds);
+                 int index = (int)ApplicationSettingsHelper.ReadSettingsValue(BackgroundAudioConstants.CurrentTrack);
+                 Locator.MusicPlayerVM.TrackCollection.CurrentTrack = index;
+                 await SetCurrentArtist();
+                 await SetCurrentAlbum();
+                 await UpdatePlayingUI();
+             });
         }
 #endif
 
@@ -297,8 +314,6 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                 OnPropertyChanged("TrackCollection");
                 OnPropertyChanged("PlayingType");
                 OnPropertyChanged("CurrentTrack");
-                OnPropertyChanged("CurrentAlbum");
-                OnPropertyChanged("CurrentArtist");
                 UpdateTileHelper.UpdateMediumTileWithMusicInfo();
             });
         }

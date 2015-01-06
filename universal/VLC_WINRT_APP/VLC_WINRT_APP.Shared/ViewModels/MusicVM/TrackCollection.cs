@@ -226,16 +226,18 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         public async Task RestorePlaylist(string[] trackIds)
         {
             Playlist = new ObservableCollection<TrackItem>();
-            foreach (string trackId in trackIds)
+            foreach (string trackId in trackIds.Where(trackId => !string.IsNullOrEmpty(trackId)))
             {
-                if (string.IsNullOrEmpty(trackId)) continue;
                 var trackItem = await MusicLibraryVM._trackDataRepository.LoadTrack(int.Parse(trackId));
                 Playlist.Add(trackItem);
             }
             IsRunning = true;
 #if WINDOWS_PHONE_APP
-            CurrentTrack = (int)ApplicationSettingsHelper.ReadSettingsValue(BackgroundAudioConstants.CurrentTrack);
-            Locator.MusicPlayerVM.UpdateTrackFromMF();
+            var currentTrack = ApplicationSettingsHelper.ReadSettingsValue(BackgroundAudioConstants.CurrentTrack);
+            if(currentTrack != null)
+            CurrentTrack = (int)currentTrack;
+            await Locator.MusicPlayerVM.UpdateTrackFromMF();
+            await App.BackgroundAudioHelper.PopulatePlaylist(Playlist);
 #endif
             SetActiveTrackProperty();
         }
