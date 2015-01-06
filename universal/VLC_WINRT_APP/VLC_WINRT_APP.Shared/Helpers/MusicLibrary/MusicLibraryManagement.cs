@@ -95,7 +95,6 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
         {
             try
             {
-                var files = new List<StorageFile>();
 #if WINDOWS_APP
                 StorageLibrary musicLibrary = await StorageLibrary.GetLibraryAsync(KnownLibraryId.Music);
                 foreach (StorageFolder storageFolder in musicLibrary.Folders)
@@ -107,21 +106,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                 LogHelper.Log("Searching for music from Phone MusicLibrary ...");
                 await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                     StatusBarHelper.UpdateTitle("Searching for music"));
-                files = await CreateDatabaseFromMusicFolder(files, musicLibrary, routineCheck);
-                foreach (var storageFile in files)
-                {
-                    if (!routineCheck)
-                    {
-                        await CreateDatabaseFromMusicFile(storageFile);
-                    }
-                    else
-                    {
-                        if (!await MusicLibraryVM._trackDataRepository.DoesTrackExist(storageFile.Path))
-                        {
-                            await CreateDatabaseFromMusicFile(storageFile);
-                        }
-                    }
-                }
+                await CreateDatabaseFromMusicFolder(musicLibrary, routineCheck);
 #endif
             }
             catch (Exception e)
@@ -130,29 +115,43 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             }
         }
 
-        private static async Task<List<StorageFile>> CreateDatabaseFromMusicFolder(List<StorageFile> files, StorageFolder musicFolder, bool routineCheck = false)
+        private static async Task<List<StorageFile>> CreateDatabaseFromMusicFolder(StorageFolder musicFolder, bool routineCheck = false)
         {
             try
             {
-                IReadOnlyList<StorageFolder> folders = await musicFolder.GetFoldersAsync();
+                var folders = await musicFolder.GetFoldersAsync();
                 if (folders.Any())
+                {
+                    foreach (var storageFolder in folders)
+                    {
+                        await CreateDatabaseFromMusicFolder( storageFolder, routineCheck);
+                    }
+                }
+                var folderFiles = await musicFolder.GetFilesAsync();
+                if (folderFiles != null && folderFiles.Any())
                 {
 #if WINDOWS_PHONE_APP
                     if (!routineCheck)
                     {
                         await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                            StatusBarHelper.UpdateTitle("Found " + files.Count + " files"));
+                            StatusBarHelper.UpdateTitle("Found " + folderFiles.Count + " files"));
                     }
 #endif
-                    foreach (var storageFolder in folders)
+                    foreach (var storageFile in folderFiles)
                     {
-                        await CreateDatabaseFromMusicFolder(files, storageFolder, routineCheck);
+                        if (!routineCheck)
+                        {
+                            await CreateDatabaseFromMusicFile(storageFile);
+                        }
+                        else
+                        {
+                            if (!await MusicLibraryVM._trackDataRepository.DoesTrackExist(storageFile.Path))
+                            {
+                                await CreateDatabaseFromMusicFile(storageFile);
+                            }
+                        }
                     }
                 }
-                IReadOnlyList<StorageFile> folderFiles = await musicFolder.GetFilesAsync();
-                if (folderFiles != null && folderFiles.Any())
-                    files.AddRange(folderFiles);
-                return files;
             }
             catch (Exception e)
             {
