@@ -39,6 +39,7 @@ namespace VLC_WINRT_APP.Helpers
                     EasClientDeviceInformation deviceInfo = new EasClientDeviceInformation();
                     os += " ON ";
                     os += deviceInfo.SystemManufacturer;
+                    os += " ";
                     os += deviceInfo.SystemProductName;
 #endif
                     var objEmail = new EmailMessage();
