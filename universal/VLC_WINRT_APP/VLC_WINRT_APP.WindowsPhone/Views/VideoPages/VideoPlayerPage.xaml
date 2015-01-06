@@ -102,7 +102,7 @@
                               Height="50"
                               Width="50"
                               VerticalAlignment="Center"
-                              Command="{Binding PlayPreviousCommand}">
+                              Command="{Binding SkipBack}">
                     <AppBarButton.Icon>
                         <FontIcon Glyph="&#xE100;"
                                   FontSize="30" />
@@ -141,7 +141,7 @@
                               Width="50"
                               VerticalAlignment="Center"
                               HorizontalAlignment="Center"
-                              Command="{Binding PlayNextCommand}">
+                              Command="{Binding SkipAhead}">
                     <AppBarButton.Icon>
                         <FontIcon Glyph="&#xE101;"
                                   FontSize="30" />
