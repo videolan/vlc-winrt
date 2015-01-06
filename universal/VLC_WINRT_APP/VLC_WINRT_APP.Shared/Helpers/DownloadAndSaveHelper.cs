@@ -65,7 +65,7 @@ namespace VLC_WINRT_APP.Helpers
                     break;
             }
             StorageFolder videoPic = await ApplicationData.Current.LocalFolder.CreateFolderAsync("videoPic", CreationCollisionOption.OpenIfExists);
-            var file = await videoPic.CreateFileAsync(fileName, CreationCollisionOption.GenerateUniqueName);
+            var file = await videoPic.CreateFileAsync(fileName, CreationCollisionOption.OpenIfExists);
             using (IRandomAccessStream stream = await file.OpenAsync(FileAccessMode.ReadWrite))
             {
                 BitmapEncoder encoder = await BitmapEncoder.CreateAsync(BitmapEncoderGuid, stream);
