@@ -244,7 +244,7 @@ namespace VLC_WINRT_APP.Model.Video
                 }
                 // If MF thumbnail generation failed or wasn't supported:
                 if (thumb == null)
-                { 
+                {
                     var res = await _thumbsService.GetScreenshot(File).ConfigureAwait(false);
                     if (res == null)
                         return true;
@@ -262,8 +262,7 @@ namespace VLC_WINRT_APP.Model.Video
                             image = new WriteableBitmap((int)thumb.OriginalWidth, (int)thumb.OriginalHeight);
                             await image.SetSourceAsync(thumb);
                         }
-                        StorageFolder videoPic = await ApplicationData.Current.LocalFolder.CreateFolderAsync("videoPic", CreationCollisionOption.OpenIfExists);
-                        var thumbnailFile = await image.SaveToFile(videoPic, Id + ".jpg");
+                        await DownloadAndSaveHelper.WriteableBitmapToStorageFile(image, DownloadAndSaveHelper.FileFormat.Jpeg, Id.ToString());
                         ThumbnailPath = String.Format("ms-appdata:///local/videoPic/{0}.jpg", Id);
                         tcs.SetResult(true);
                     }));
