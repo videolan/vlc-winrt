@@ -422,7 +422,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 
             await LoadFromDatabase();
 
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 IsBusy = false;
                 IsLoaded = true;
