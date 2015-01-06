@@ -46,7 +46,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         private ObservableCollection<Model.Panel> _panels = new ObservableCollection<Model.Panel>();
 #endif
         private ObservableCollection<ArtistItem> _artistses = new ObservableCollection<ArtistItem>();
-        private ObservableCollection<TrackItem> _trackses = new ObservableCollection<TrackItem>();
+        private ObservableCollection<TrackItem> _tracks = new ObservableCollection<TrackItem>();
         private ObservableCollection<AlbumItem> _favoriteAlbums = new ObservableCollection<AlbumItem>();
         private ObservableCollection<AlbumItem> _randomAlbums = new ObservableCollection<AlbumItem>();
         private ObservableCollection<AlbumItem> _albums = new ObservableCollection<AlbumItem>();
@@ -121,10 +121,10 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 
         public ObservableCollection<TrackItem> Tracks
         {
-            get { return _trackses; }
+            get { return _tracks; }
             set
             {
-                SetProperty(ref _trackses, value);
+                SetProperty(ref _tracks, value);
             }
         }
 
@@ -370,7 +370,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
             {
                 Albums = await _albumDataRepository.LoadAlbums(x => x.ArtistId != 0);
-                AlphaGroupedTracks = _trackses.OrderBy(x => x.Name != null ? x.Name.ElementAt(0) : '\0').GroupBy(x => x.Name != null ? (char.IsLetter(x.Name.ToLower().ElementAt(0)) ? x.Name.ToLower().ElementAt(0) : '#') : '\0');
+                AlphaGroupedTracks = _tracks.OrderBy(x => x.Name != null ? x.Name.ElementAt(0) : '\0').GroupBy(x => x.Name != null ? (char.IsLetter(x.Name.ToLower().ElementAt(0)) ? x.Name.ToLower().ElementAt(0) : '#') : '\0');
             });
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => IsMusicLibraryEmpty = false);
             if (!Artists.Any())
