@@ -228,7 +228,6 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             var currentTrackFile = await StorageFile.GetFileFromPathAsync(track.Path);
 #if WINDOWS_PHONE_APP
             bool playWithLibVlc = !VLCFileExtensions.MFSupported.Contains(currentTrackFile.FileType.ToLower()) || forceVlcLib;
-            playWithLibVlc = true;
             if (!playWithLibVlc)
             {
                 App.BackgroundAudioHelper.PlayAudio(track);
