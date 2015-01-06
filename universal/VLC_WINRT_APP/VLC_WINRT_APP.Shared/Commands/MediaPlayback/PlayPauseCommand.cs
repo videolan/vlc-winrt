@@ -12,6 +12,7 @@ using Windows.Media.Playback;
 using Autofac;
 using VLC_WINRT.Common;
 using VLC_WINRT_APP.Helpers.MusicLibrary.LastFm;
+using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.Services.Interface;
 using VLC_WINRT_APP.ViewModels;
 
@@ -25,7 +26,7 @@ namespace VLC_WINRT_APP.Commands.MediaPlayback
             var playerService = App.Container.Resolve<IMediaService>();
             playerService.Pause();
 #else
-            if (BackgroundMediaPlayer.Current != null)
+            if (BackgroundMediaPlayer.Current != null && Locator.MusicPlayerVM.PlayingType == PlayingType.Music)
             {
                 switch (BackgroundMediaPlayer.Current.CurrentState)
                 {
