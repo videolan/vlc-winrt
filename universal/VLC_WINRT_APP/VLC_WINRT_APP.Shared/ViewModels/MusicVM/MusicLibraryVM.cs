@@ -439,6 +439,11 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 #endif
             });
             await GetFavoriteAndRandomAlbums();
+            foreach (var album in Albums)
+            {
+                await album.LoadPicture();
+                await _albumDataRepository.Update(album);
+            }
         }
 
 
