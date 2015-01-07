@@ -76,7 +76,8 @@
         </Grid>
         <Grid Grid.Row="3"
               DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
-            <ListView ItemsSource="{Binding TrackCollections}"
+            <ListView x:Name="PlaylistsListView"
+                      ItemsSource="{Binding TrackCollections}"
                       Margin="24,0,0,0"
                       ItemTemplate="{StaticResource PhoneTrackCollectionTemplate}"
                       ItemContainerStyle="{StaticResource HorizontalListViewItemStyle}"
