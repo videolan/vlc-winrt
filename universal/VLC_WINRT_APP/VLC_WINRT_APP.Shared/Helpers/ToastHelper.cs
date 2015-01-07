@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.Data.Xml.Dom;
@@ -10,7 +11,7 @@ namespace VLC_WINRT_APP.Helpers
 {
     public static class ToastHelper
     {
-        public static void Basic(string msg, bool playJingle = false)
+        public static void Basic(string msg, bool playJingle = false, string toastId = "")
         {
             ToastTemplateType toastTemplate = ToastTemplateType.ToastText01;
             XmlDocument toastXml = ToastNotificationManager.GetTemplateContent(toastTemplate);
@@ -25,6 +26,11 @@ namespace VLC_WINRT_APP.Helpers
             }
 
             ToastNotification toast = new ToastNotification(toastXml);
+            var nameProperty = toast.GetType().GetRuntimeProperties().FirstOrDefault(x => x.Name == "Tag");
+            if (nameProperty != null && !string.IsNullOrEmpty(toastId))
+            {
+               nameProperty.SetValue(toast, toastId);
+            }
             ToastNotificationManager.CreateToastNotifier().Show(toast);
         }
 
