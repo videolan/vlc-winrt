@@ -200,7 +200,7 @@ int Open(vlc_object_t *object)
 
     String^ futureAccesToken = GetString(access->psz_location);
     auto charBegin = futureAccesToken->Begin()[0];
-    auto charEnd = futureAccesToken->End()[0];
+    auto charEnd = (futureAccesToken->End() - 1)[0];
     if ((charBegin != '{') && ((charEnd != '}') || futureAccesToken->Length() < 32) )
         return VLC_EGENERIC;
 
