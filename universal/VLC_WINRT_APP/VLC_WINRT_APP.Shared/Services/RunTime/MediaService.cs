@@ -29,6 +29,8 @@ using VLC_WINRT_APP.Views.VideoPages;
 using libVLCX;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
+using Windows.Storage.FileProperties;
 #if WINDOWS_PHONE_APP
 using Windows.Media.Playback;
 #endif
@@ -96,6 +98,7 @@ namespace VLC_WINRT_APP.Services.RunTime
             _systemMediaTransportControls.ButtonPressed += SystemMediaTransportControlsOnButtonPressed;
             _systemMediaTransportControls.IsEnabled = false;
         }
+
         public async Task SetMediaTransportControlsInfo(string artistName, string albumName, string trackName, string albumUri)
         {
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
@@ -228,6 +231,39 @@ namespace VLC_WINRT_APP.Services.RunTime
             var media = new Media(Instance, "file:///" + filePath);
             media.parse();
             return media.isParsed() ? media.meta(MediaMeta.ArtworkURL) : null;
+        }
+
+        public Dictionary<string, object> GetMusicProperties(string filePath)
+        {
+            var media = new Media(Instance, "file:///" + filePath);
+            media.parse();
+            if (!media.isParsed()) return null;
+            var mP = new Dictionary<string, object>();
+            mP.Add("artist", media.meta(MediaMeta.Artist));
+            mP.Add("album", media.meta(MediaMeta.Album));
+            mP.Add("title", media.meta(MediaMeta.Title));
+            var dateTimeString = media.meta(MediaMeta.Date);
+            DateTime dateTime = new DateTime();
+            mP.Add("year", DateTime.TryParse(dateTimeString, out dateTime) ? dateTime.Year : 0);
+
+            var durationLong = media.duration();
+            TimeSpan duration = TimeSpan.FromMilliseconds(durationLong);
+            mP.Add("duration", duration);
+
+            var trackNbString = media.meta(MediaMeta.TrackNumber);
+            uint trackNbInt = 0;
+            uint.TryParse(trackNbString, out trackNbInt);
+            mP.Add("tracknumber", trackNbInt);
+            return mP;
+        }
+
+        public TimeSpan GetDuration(string filePath)
+        {
+            var media = new Media(Instance, "file:///" + filePath);
+            media.parse();
+            if (!media.isParsed()) return TimeSpan.Zero;
+            var durationLong = media.duration();
+            return TimeSpan.FromMilliseconds(durationLong);
         }
 
         public void Play()

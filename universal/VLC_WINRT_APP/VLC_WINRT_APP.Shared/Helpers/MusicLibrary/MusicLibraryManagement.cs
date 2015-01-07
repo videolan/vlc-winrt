@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Dynamic;
 using System.Linq;
 using System.Threading.Tasks;
 using XboxMusicLibrary.Models;
@@ -171,13 +172,34 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                 if (!VLCFileExtensions.AudioExtensions.Contains(item.FileType.ToLower())) return;
                 LogHelper.Log("Music indexation: found music file " + item.Path);
                 MusicProperties properties = await item.Properties.GetMusicPropertiesAsync();
+                Dictionary<string, object> propDictionary = null;
+                MediaService mediaService = App.Container.Resolve<IMediaService>() as MediaService;
                 if (properties != null)
                 {
-                    ArtistItem artist = await MusicLibraryVM._artistDataRepository.LoadViaArtistName(properties.Artist);
+                    propDictionary = new Dictionary<string, object>();
+                    propDictionary.Add("artist", properties.Artist);
+                    propDictionary.Add("album", properties.Album);
+                    propDictionary.Add("title", properties.Title);
+                    propDictionary.Add("year", properties.Year);
+                    propDictionary.Add("duration", properties.Duration);
+                    propDictionary.Add("tracknumber", properties.TrackNumber);
+                }
+                else
+                {
+                    propDictionary = mediaService.GetMusicProperties(item.Path);
+                }
+                if (propDictionary["duration"] == null || (TimeSpan)propDictionary["duration"] == TimeSpan.Zero)
+                {
+                    propDictionary["duration"] = mediaService.GetDuration(item.Path);
+                }
+                if (propDictionary != null)
+                {
+                    var artistName = propDictionary["artist"].ToString();
+                    ArtistItem artist = await MusicLibraryVM._artistDataRepository.LoadViaArtistName(artistName);
                     if (artist == null)
                     {
                         artist = new ArtistItem();
-                        artist.Name = string.IsNullOrEmpty(properties.Artist) ? "Unknown artist" : properties.Artist;
+                        artist.Name = string.IsNullOrEmpty(artistName) ? "Unknown artist" : artistName;
                         await MusicLibraryVM._artistDataRepository.Add(artist);
                         await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
                         {
@@ -185,22 +207,27 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                         });
                     }
 
+                    var albumName = propDictionary["album"].ToString();
+                    var albumYear = (uint)propDictionary["year"];
                     bool albumIsNew = false;
                     AlbumItem album =
-                        await MusicLibraryVM._albumDataRepository.LoadAlbumViaName(artist.Id, properties.Album);
+                        await MusicLibraryVM._albumDataRepository.LoadAlbumViaName(artist.Id, albumName);
                     if (album == null)
                     {
                         albumIsNew = true;
                         album = new AlbumItem
                         {
-                            Name = string.IsNullOrEmpty(properties.Album) ? "Unknown album" : properties.Album,
-                            Artist = string.IsNullOrEmpty(properties.Artist) ? "Unknown artist" : properties.Artist,
+                            Name = string.IsNullOrEmpty(albumName) ? "Unknown album" : albumName,
+                            Artist = string.IsNullOrEmpty(artistName) ? "Unknown artist" : artistName,
                             ArtistId = artist.Id,
                             Favorite = false,
-                            Year = properties.Year
+                            Year = albumYear
                         };
                     }
 
+                    var duration = (TimeSpan)propDictionary["duration"];
+                    var title = propDictionary["title"].ToString();
+                    var trackNb = (uint)propDictionary["tracknumber"];
                     TrackItem track = new TrackItem()
                     {
                         AlbumId = album.Id,
@@ -208,20 +235,21 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                         ArtistId = artist.Id,
                         ArtistName = artist.Name,
                         CurrentPosition = 0,
-                        Duration = properties.Duration,
+                        Duration = duration,
                         Favorite = false,
-                        Name = string.IsNullOrEmpty(properties.Title) ? item.DisplayName : properties.Title,
+                        Name = string.IsNullOrEmpty(title) ? item.DisplayName : title,
                         Path = item.Path,
-                        Index = (int) properties.TrackNumber,
+                        Index = trackNb,
                         IsFromSandbox = true
                     };
                     if (albumIsNew)
                     {
-                        var mediaService = App.Container.Resolve<IMediaService>() as MediaService;
+                        if(mediaService == null)
+                            mediaService = App.Container.Resolve<IMediaService>() as MediaService;
                         var albumUrl = mediaService.GetAlbumUrl(track.Path);
                         if (!string.IsNullOrEmpty(albumUrl))
                         {
-                            album.Picture = String.Format(albumUrl.Replace("file:///", "").Replace("%20"," "));
+                            album.Picture = System.Net.WebUtility.UrlDecode(albumUrl.Replace("file:///", ""));
                             album.IsPictureLoaded = true;
                             Debug.WriteLine("VLC found embedded cover " + albumUrl);
                         }

@@ -18,7 +18,7 @@ namespace VLC_WINRT_APP.Model.Music
         private string _albumName;
         private string _name;
         private string _path;
-        private int _index;
+        private uint _index;
         private TimeSpan _duration;
         private bool _favorite;
         private int _currentPosition;
@@ -55,7 +55,7 @@ namespace VLC_WINRT_APP.Model.Music
             set { SetProperty(ref _path, value); }
         }
 
-        public int Index
+        public uint Index
         {
             get { return _index; }
             set { SetProperty(ref _index, value); }
