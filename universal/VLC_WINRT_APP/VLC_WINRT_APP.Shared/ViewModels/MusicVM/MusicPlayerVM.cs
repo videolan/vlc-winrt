@@ -243,7 +243,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                     BackgroundMediaPlayer.Shutdown();
                 }
 #endif
-                base.InitializePlayback(track.Path, true, track.IsFromSandbox);
+                await base.InitializePlayback(track.Path, true, track.IsFromSandbox);
                 _mediaService.Play();
                 await UpdatePlayingUI();
             }

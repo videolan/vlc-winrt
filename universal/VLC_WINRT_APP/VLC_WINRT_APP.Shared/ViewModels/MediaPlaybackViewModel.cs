@@ -345,9 +345,9 @@ namespace VLC_WINRT_APP.ViewModels
 
         protected abstract void OnEndReached();
 
-        protected void InitializePlayback(String mrl, Boolean isAudio,Boolean isFromSandbox)
+        protected async Task InitializePlayback(String mrl, Boolean isAudio,Boolean isFromSandbox)
         {
-            _mediaService.SetMediaFile(mrl, isAudio, isFromSandbox);
+            await _mediaService.SetMediaFile(mrl, isAudio, isFromSandbox);
             var em = _mediaService.MediaPlayer.eventManager();
             em.OnLengthChanged += OnLengthChanged;
             em.OnStopped += OnStopped;

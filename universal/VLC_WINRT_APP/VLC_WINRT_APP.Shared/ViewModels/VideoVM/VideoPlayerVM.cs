@@ -259,8 +259,8 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
                 _timeTotal = TimeSpan.Zero;
                 LogHelper.Log("PLAYVIDEO: Initializing playback");
                 if (media != null)
-                    InitializePlayback(media.FilePath, false, media.IsFromSandbox);
-                else InitializePlayback(streamMrl, false, true);
+                    await InitializePlayback(media.FilePath, false, media.IsFromSandbox);
+                else await InitializePlayback(streamMrl, false, true);
                 var em = _mediaService.MediaPlayer.eventManager();
                 em.OnTrackAdded += OnTrackAdded;
                 em.OnTrackDeleted += OnTrackDeleted;
