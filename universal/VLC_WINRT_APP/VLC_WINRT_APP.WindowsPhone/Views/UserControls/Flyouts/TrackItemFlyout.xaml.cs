@@ -18,6 +18,7 @@ namespace VLC_WINRT_APP.Views.UserControls.Flyouts
             if (e.AddedItems.Count == 0) return;
             Locator.MusicLibraryVM.CurrentTrackCollection = e.AddedItems[0] as TrackCollection;
             Locator.MusicLibraryVM.AddToPlaylistCommand.Execute(this.DataContext as TrackItem);
+            PlaylistsListView.SelectedIndex = -1;
         }
 
         private void ActionButton_Click(object sender, RoutedEventArgs e)
