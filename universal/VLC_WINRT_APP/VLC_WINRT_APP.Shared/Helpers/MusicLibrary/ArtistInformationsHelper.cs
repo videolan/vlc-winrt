@@ -320,28 +320,46 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
 
         public static async Task<bool> SaveAlbumImageAsync(AlbumItem album, byte[] img)
         {
+            if (await SaveImage(album.Id, "albumPic", img))
+            {
+                album.IsPictureLoaded = true;
+                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => album.Picture = String.Format("ms-appdata:///local/albumPic/{0}.jpg", album.Id));
+                return true;
+            }
+            return false;
+        }
+
+        public static Task<bool> SaveArtistImageAsync(ArtistItem artist, byte[] img)
+        {
+            return SaveImage(artist.Id, "artistPic", img);
+        }
+
+        private static async Task<bool> SaveImage(int id, String folderName, byte[] img)
+        {
+            String fileName = String.Format("{0}.jpg", id);
             try
             {
-                var streamWeb = new InMemoryRandomAccessStream();
-                var writer = new DataWriter(streamWeb.GetOutputStreamAt(0));
-                writer.WriteBytes(img);
-                await writer.StoreAsync();
-                var albumPic = await ApplicationData.Current.LocalFolder.CreateFolderAsync("albumPic",
-                    CreationCollisionOption.OpenIfExists);
-
-                var fileName = album.Id + ".jpg";
-                var file = await albumPic.CreateFileAsync(fileName, CreationCollisionOption.OpenIfExists);
-                var raStream = await file.OpenAsync(FileAccessMode.ReadWrite);
-
-                using (var thumbnailStream = streamWeb.GetInputStreamAt(0))
+                using (var streamWeb = new InMemoryRandomAccessStream())
                 {
-                    using (var stream = raStream.GetOutputStreamAt(0))
+                    using (var writer = new DataWriter(streamWeb.GetOutputStreamAt(0)))
                     {
-                        await RandomAccessStream.CopyAsync(thumbnailStream, stream);
+                        writer.WriteBytes(img);
+                        await writer.StoreAsync();
+                        var albumPic = await ApplicationData.Current.LocalFolder.CreateFolderAsync(folderName,
+                            CreationCollisionOption.OpenIfExists);
+
+                        var file = await albumPic.CreateFileAsync(fileName, CreationCollisionOption.OpenIfExists);
+                        var raStream = await file.OpenAsync(FileAccessMode.ReadWrite);
+
+                        using (var thumbnailStream = streamWeb.GetInputStreamAt(0))
+                        {
+                            using (var stream = raStream.GetOutputStreamAt(0))
+                            {
+                                await RandomAccessStream.CopyAsync(thumbnailStream, stream);
+                            }
+                        }
                     }
                 }
-                album.IsPictureLoaded = true;
-                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => album.Picture = String.Format("ms-appdata:///local/albumPic/{0}", fileName));
                 return true;
             }
             catch (Exception e)
@@ -349,38 +367,6 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                 LogHelper.Log("Error saving album art: " + e);
                 return false;
             }
-        }
-
-        public static async Task<bool> SaveArtistImageAsync(ArtistItem artist, byte[] img)
-        {
-            try
-            {
-                var streamWeb = new InMemoryRandomAccessStream();
-                var writer = new DataWriter(streamWeb.GetOutputStreamAt(0));
-                writer.WriteBytes(img);
-                await writer.StoreAsync();
-
-                StorageFolder artistPic = await ApplicationData.Current.LocalFolder.CreateFolderAsync("artistPic",
-                    CreationCollisionOption.OpenIfExists);
-                string fileName = artist.Id.ToString();
-
-                var file = await artistPic.CreateFileAsync(fileName + ".jpg", CreationCollisionOption.OpenIfExists);
-                var raStream = await file.OpenAsync(FileAccessMode.ReadWrite);
-
-                using (var thumbnailStream = streamWeb.GetInputStreamAt(0))
-                {
-                    using (var stream = raStream.GetOutputStreamAt(0))
-                    {
-                        await RandomAccessStream.CopyAsync(thumbnailStream, stream);
-                    }
-                }
-                return true;
-            }
-            catch (Exception exception)
-            {
-                LogHelper.Log("Error saving artist art: " + exception.ToString());
-            }
-            return false;
         }
     }
 }
