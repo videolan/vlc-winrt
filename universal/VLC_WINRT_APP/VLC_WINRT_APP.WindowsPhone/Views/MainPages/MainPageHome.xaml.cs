@@ -46,20 +46,25 @@ namespace VLC_WINRT_APP.Views.MainPages
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            if (NeedsToDrop())
+            if (e.NavigationMode == NavigationMode.New)
             {
-                MusicLibraryVM.TrackCollectionRepository.Drop();
-                MusicLibraryVM.TracklistItemRepository.Drop();
-                MusicLibraryVM._albumDataRepository.Drop();
-                MusicLibraryVM._artistDataRepository.Drop();
-                MusicLibraryVM._trackDataRepository.Drop();
-                Locator.VideoLibraryVM.VideoRepository.Drop();
-                MusicLibraryVM.TrackCollectionRepository.Initialize();
-                MusicLibraryVM.TracklistItemRepository.Initialize();
-                MusicLibraryVM._albumDataRepository.Initialize();
-                MusicLibraryVM._artistDataRepository.Initialize();
-                MusicLibraryVM._trackDataRepository.Initialize();
-                Locator.VideoLibraryVM.VideoRepository.Initialize();
+
+                if (NeedsToDrop())
+                {
+                    MusicLibraryVM.TrackCollectionRepository.Drop();
+                    MusicLibraryVM.TracklistItemRepository.Drop();
+                    MusicLibraryVM._albumDataRepository.Drop();
+                    MusicLibraryVM._artistDataRepository.Drop();
+                    MusicLibraryVM._trackDataRepository.Drop();
+                    Locator.VideoLibraryVM.VideoRepository.Drop();
+                    MusicLibraryVM.TrackCollectionRepository.Initialize();
+                    MusicLibraryVM.TracklistItemRepository.Initialize();
+                    MusicLibraryVM._albumDataRepository.Initialize();
+                    MusicLibraryVM._artistDataRepository.Initialize();
+                    MusicLibraryVM._trackDataRepository.Initialize();
+                    Locator.VideoLibraryVM.VideoRepository.Initialize();
+                    LogHelper.SignalUpdate();
+                }
             }
             HardwareButtons.BackPressed += HardwareButtonsOnBackPressed;
             AppBarHelper.UpdateAppBar(typeof(MainPageHome), MainPivot.SelectedIndex);
