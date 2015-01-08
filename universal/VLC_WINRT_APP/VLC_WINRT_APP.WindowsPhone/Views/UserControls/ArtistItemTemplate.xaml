@@ -31,7 +31,7 @@
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Column="0"
-                           Text="{Binding Name}"
+                           Text="{Binding Name, Converter={StaticResource ArtistStringConverter}}"
                            TextWrapping="NoWrap"
                            TextTrimming="CharacterEllipsis"
                            FontSize="16"

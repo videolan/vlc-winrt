@@ -207,7 +207,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                     if (artist == null)
                     {
                         artist = new ArtistItem();
-                        artist.Name = string.IsNullOrEmpty(artistName) ? "Unknown artist" : artistName;
+                        artist.Name = string.IsNullOrEmpty(artistName) ? string.Empty : artistName;
                         await MusicLibraryVM._artistDataRepository.Add(artist);
                         await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
                         {
@@ -223,8 +223,8 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                     {
                         album = new AlbumItem
                         {
-                            Name = string.IsNullOrEmpty(albumName) ? "Unknown album" : albumName,
-                            Artist = string.IsNullOrEmpty(artistName) ? "Unknown artist" : artistName,
+                            Name = string.IsNullOrEmpty(albumName) ? string.Empty : albumName,
+                            Artist = string.IsNullOrEmpty(artistName) ? string.Empty : artistName,
                             ArtistId = artist.Id,
                             Favorite = false,
                             Year = albumYear

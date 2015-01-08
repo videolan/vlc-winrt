@@ -236,7 +236,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
         public static async Task GetAlbumPictureFromInternet(AlbumItem album)
         {
             var gotArt = false;
-            if (album.Artist != null && album.Name != null && album.Name != "Unknown album" && album.Artist != "Unknown artist")
+            if (!string.IsNullOrEmpty(album.Artist) && !string.IsNullOrEmpty(album.Name))
             {
                 gotArt = await DownloadAlbumPictureFromLastFm(album);
                 if (!gotArt)
