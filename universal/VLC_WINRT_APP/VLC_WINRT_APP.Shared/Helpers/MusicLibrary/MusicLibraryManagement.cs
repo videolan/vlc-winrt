@@ -208,7 +208,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                     }
 
                     var albumName = propDictionary["album"].ToString();
-                    var albumYear = (uint)propDictionary["year"];
+                    var albumYear = (int)propDictionary["year"];
                     bool albumIsNew = false;
                     AlbumItem album =
                         await MusicLibraryVM._albumDataRepository.LoadAlbumViaName(artist.Id, albumName);
@@ -221,7 +221,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                             Artist = string.IsNullOrEmpty(artistName) ? "Unknown artist" : artistName,
                             ArtistId = artist.Id,
                             Favorite = false,
-                            Year = albumYear
+                            Year = (uint)albumYear
                         };
                     }
 
