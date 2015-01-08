@@ -140,12 +140,6 @@
     <Compile Include="Views\UserControls\ConnectToLastFm.xaml.cs">
       <DependentUpon>ConnectToLastFm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControls\Flyouts\TrackItemFlyout.xaml.cs">
-      <DependentUpon>TrackItemFlyout.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UserControls\Flyouts\VideoInformationFlyout.xaml.cs">
-      <DependentUpon>VideoInformationFlyout.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\UserControls\LeftColumn.xaml.cs">
       <DependentUpon>LeftColumn.xaml</DependentUpon>
     </Compile>
@@ -985,14 +979,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControls\ConnectToLastFm.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\UserControls\Flyouts\TrackItemFlyout.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\UserControls\Flyouts\VideoInformationFlyout.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
