@@ -34,9 +34,9 @@
                                FontWeight="ExtraLight"
                                HorizontalAlignment="Left"
                                VerticalAlignment="Bottom">
-                        <Run Text="{Binding CurrentArtist.Name}" />
+                        <Run Text="{Binding CurrentArtist.Name, Converter={StaticResource ArtistStringConverter}}" />
                         <LineBreak />
-                        <Run Text="{Binding CurrentAlbum.Name}"
+                        <Run Text="{Binding CurrentAlbum.Name, Converter={StaticResource AlbumStringConverter}}"
                              FontSize="26" />
                     </TextBlock>
                     <Image Grid.Row="1"

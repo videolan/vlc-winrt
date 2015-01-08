@@ -11,7 +11,7 @@
             HorizontalContentAlignment="Stretch">
         <Button.Flyout>
             <ListPickerFlyout ItemsSource="{Binding TrackCollection}"
-                              Title="{Binding CurrentTrackItem.AlbumName}">
+                              Title="{Binding CurrentTrackItem.AlbumName, Converter={StaticResource AlbumStringConverter}}">
                 <ListPickerFlyout.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding Name}"
@@ -44,7 +44,7 @@
                 <TextBlock Text="{Binding CurrentTrackItem.Name}"
                            FontSize="26"
                            FontWeight="Normal" />
-                <TextBlock Text="{Binding CurrentPlayingArtist.Name}"
+                <TextBlock Text="{Binding CurrentPlayingArtist.Name, Converter={StaticResource ArtistStringConverter}}"
                            FontSize="18"
                            FontWeight="Normal"
                            Foreground="#FF838383"

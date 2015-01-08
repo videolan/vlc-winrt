@@ -61,7 +61,7 @@
                        Width="200"
                        Height="200" />
                 <StackPanel Grid.Row="2">
-                    <TextBlock Text="{Binding Name}"
+                    <TextBlock Text="{Binding Name, Converter={StaticResource ArtistStringConverter}}"
                                TextWrapping="NoWrap"
                                TextTrimming="WordEllipsis"
                                FontSize="16" />
@@ -88,7 +88,7 @@
                 <StackPanel VerticalAlignment="Bottom"
                             HorizontalAlignment="Left"
                             Margin="5">
-                    <TextBlock Text="{Binding Name}"
+                    <TextBlock Text="{Binding Name, Converter={StaticResource ArtistStringConverter}}"
                                TextWrapping="NoWrap"
                                TextTrimming="CharacterEllipsis"
                                FontSize="16" />

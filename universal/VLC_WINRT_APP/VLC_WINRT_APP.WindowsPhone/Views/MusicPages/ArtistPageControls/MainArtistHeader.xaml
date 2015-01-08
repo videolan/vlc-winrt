@@ -23,7 +23,7 @@
                Stretch="UniformToFill"
                Opacity="0.5" />
         <userControls:HeaderControl Grid.Row="0"
-                                    HeaderTextBlock="{Binding CurrentArtist.Name}"
+                                    HeaderTextBlock="{Binding CurrentArtist.Name, Converter={StaticResource ArtistStringConverter}}"
                                     HeaderBackground="#00ffffff"
                                     VerticalAlignment="Top" />
         <Grid Grid.Row="1">

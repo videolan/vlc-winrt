@@ -67,7 +67,7 @@
                            FontSize="23"
                            FontWeight="Normal"
                            Foreground="#FF2B2B2B" />
-                <TextBlock Text="{Binding ArtistName}"
+                <TextBlock Text="{Binding ArtistName, Converter={StaticResource ArtistStringConverter}}"
                            FontSize="17"
                            FontWeight="Normal"
                            Foreground="#FF838383" />
@@ -98,7 +98,7 @@
                            FontSize="19"
                            FontWeight="SemiLight"
                            Foreground="{Binding Converter={StaticResource CurrentTrackForegroundConverter}, ConverterParameter='Dark'}" />
-                <TextBlock Text="{Binding ArtistName}"
+                <TextBlock Text="{Binding ArtistName, Converter={StaticResource ArtistStringConverter}}"
                            FontSize="14"
                            FontWeight="Normal"
                            Foreground="#FF838383" />
@@ -122,7 +122,7 @@
                 <TextBlock Text="{Binding Name}"
                            FontSize="26"
                            FontWeight="Normal" />
-                <TextBlock Text="{Binding ArtistName}"
+                <TextBlock Text="{Binding ArtistName, Converter={StaticResource ArtistStringConverter}}"
                            FontSize="18"
                            FontWeight="Normal"
                            Foreground="#FF838383" />
@@ -148,7 +148,7 @@
                            FontSize="19"
                            FontWeight="SemiLight"
                            Foreground="{Binding Converter={StaticResource CurrentTrackForegroundConverter}}" />
-                <TextBlock Text="{Binding ArtistName}"
+                <TextBlock Text="{Binding ArtistName, Converter={StaticResource ArtistStringConverter}}"
                            FontSize="14"
                            FontWeight="Normal"
                            Foreground="#FF838383" />

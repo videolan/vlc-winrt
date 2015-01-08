@@ -573,4 +573,7 @@
   <data name="ViewAlbum.Label" xml:space="preserve">
     <value>view album</value>
   </data>
+  <data name="UnknownAlbum" xml:space="preserve">
+    <value>Unknown Album</value>
+  </data>
 </root>

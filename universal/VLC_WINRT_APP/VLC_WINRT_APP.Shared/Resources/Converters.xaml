@@ -4,6 +4,8 @@
                     xmlns:converters="using:VLC_WINRT_APP.Converters">
 
     <converters:AlbumImageConverter x:Key="AlbumImageConverter" />
+    <converters:AlbumStringConverter x:Key="AlbumStringConverter" />
+    <converters:ArtistStringConverter x:Key="ArtistStringConverter" />
     <converters:EmptyTimeSpanToVisibilityConverter x:Key="EmptyTimeSpanToVisibilityConverter" />
     <converters:NegatedCountToVisibilityConverter x:Key="NegatedCountToVisibilityConverter" />
     <converters:CountToVisibilityConverter x:Key="CountToVisibilityConverter" />

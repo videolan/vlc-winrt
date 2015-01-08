@@ -28,7 +28,7 @@
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Column="0"
                            Grid.ColumnSpan="2"
-                           Text="{Binding Name}"
+                           Text="{Binding Name, Converter={StaticResource AlbumStringConverter}}"
                            TextWrapping="NoWrap"
                            TextTrimming="CharacterEllipsis"
                            FontSize="15"
@@ -37,7 +37,7 @@
                            Margin="7,0,7,0" />
                 <TextBlock Grid.Row="1"
                            Grid.Column="0"
-                           Text="{Binding Artist}"
+                           Text="{Binding Artist, Converter={StaticResource ArtistStringConverter}}"
                            TextWrapping="NoWrap"
                            TextTrimming="CharacterEllipsis"
                            FontSize="14"
@@ -103,12 +103,12 @@
                        winrtext:ImageExtensions.FadeInOnLoaded="True" />
                 <StackPanel Grid.Row="2"
                             Width="170">
-                    <TextBlock Text="{Binding Artist}"
+                    <TextBlock Text="{Binding Artist, Converter={StaticResource ArtistStringConverter}}"
                                TextWrapping="NoWrap"
                                TextTrimming="CharacterEllipsis"
                                FontSize="15"
                                FontWeight="Normal" />
-                    <TextBlock Text="{Binding Name}"
+                    <TextBlock Text="{Binding Name, Converter={StaticResource AlbumStringConverter}}"
                                TextWrapping="NoWrap"
                                TextTrimming="CharacterEllipsis"
                                FontSize="14"
@@ -223,13 +223,13 @@
                        winrtext:ImageExtensions.FadeInOnLoaded="True" />
                 <StackPanel Grid.Row="2"
                             Width="144">
-                    <TextBlock Text="{Binding Name}"
+                    <TextBlock Text="{Binding Name, Converter={StaticResource AlbumStringConverter}}"
                                TextWrapping="NoWrap"
                                TextTrimming="CharacterEllipsis"
                                FontSize="15"
                                FontWeight="Normal"
                                Margin="7,0" />
-                    <TextBlock Text="{Binding ArtistName}"
+                    <TextBlock Text="{Binding ArtistName, Converter={StaticResource ArtistStringConverter}}"
                                TextWrapping="NoWrap"
                                TextTrimming="CharacterEllipsis"
                                FontSize="14"
@@ -346,12 +346,12 @@
                        winrtext:ImageExtensions.FadeInOnLoaded="True" />
                 <StackPanel Grid.Row="2"
                             Width="170">
-                    <TextBlock Text="{Binding Artist}"
+                    <TextBlock Text="{Binding Artist, Converter={StaticResource ArtistStringConverter}}"
                                TextWrapping="NoWrap"
                                TextTrimming="CharacterEllipsis"
                                FontSize="15"
                                FontWeight="Normal" />
-                    <TextBlock Text="{Binding Name}"
+                    <TextBlock Text="{Binding Name, Converter={StaticResource AlbumStringConverter}}"
                                TextWrapping="NoWrap"
                                TextTrimming="CharacterEllipsis"
                                FontSize="16" />
@@ -378,7 +378,7 @@
                 <StackPanel VerticalAlignment="Bottom"
                             HorizontalAlignment="Left"
                             Margin="5">
-                    <TextBlock Text="{Binding Name}"
+                    <TextBlock Text="{Binding Name, Converter={StaticResource AlbumStringConverter}}"
                                TextWrapping="NoWrap"
                                TextTrimming="CharacterEllipsis"
                                FontSize="16" />

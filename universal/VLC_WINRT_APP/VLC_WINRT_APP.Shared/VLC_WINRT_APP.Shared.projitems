@@ -88,6 +88,8 @@
       <DependentUpon>VideoItemInfoControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Converters\AlbumImageConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\AlbumStringConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\ArtistStringConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\BackgroundVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\BooleanNegationConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\BooleanToVisibilityConverter.cs" />
