@@ -254,7 +254,7 @@ namespace VLC_WINRT_APP.Services.RunTime
             mP.Add("title", media.meta(MediaMeta.Title));
             var dateTimeString = media.meta(MediaMeta.Date);
             DateTime dateTime = new DateTime();
-            mP.Add("year", DateTime.TryParse(dateTimeString, out dateTime) ? dateTime.Year : 0);
+            mP.Add("year", (uint)(DateTime.TryParse(dateTimeString, out dateTime) ? dateTime.Year : 0));
 
             var durationLong = media.duration();
             TimeSpan duration = TimeSpan.FromMilliseconds(durationLong);
