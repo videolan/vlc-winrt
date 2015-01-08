@@ -233,7 +233,14 @@ namespace VLC_WINRT_APP.Services.RunTime
         {
             var media = new Media(Instance, "file:///" + filePath);
             media.parse();
-            return media.isParsed() ? media.meta(MediaMeta.ArtworkURL) : null;
+            if (!media.isParsed()) return "";
+            var url = media.meta(MediaMeta.ArtworkURL);
+            if (!string.IsNullOrEmpty(url))
+            {
+                ExceptionHelper.CreateExceptionalMsg("GetAlbumUrl : AlbumURLWorkedViaVLC :" + url);
+                return url;
+            }
+            return "";
         }
 
         public Dictionary<string, object> GetMusicProperties(string filePath)

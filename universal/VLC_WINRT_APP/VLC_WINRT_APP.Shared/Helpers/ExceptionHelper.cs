@@ -43,6 +43,13 @@ namespace VLC_WINRT_APP.Helpers
                     os += deviceInfo.SystemManufacturer;
                     os += " ";
                     os += deviceInfo.SystemProductName;
+                    if (
+                        ApplicationSettingsHelper.ReadSettingsValue("ExceptionLog")
+                            .ToString()
+                            .Contains("GetAlbumUrl : AlbumURLWorkedViaVLC"))
+                    {
+                        os += " ARTCOVER";
+                    }
 #endif
 #if WINDOWS_PHONE_APP
                     var objEmail = new EmailMessage();
@@ -124,6 +131,10 @@ namespace VLC_WINRT_APP.Helpers
             ApplicationSettingsHelper.SaveSettingsValue("ExceptionLog", stringExceptionBuilder.ToString());
         }
 
+        public static void CreateExceptionalMsg(string value)
+        {
+            ApplicationSettingsHelper.SaveSettingsValue("ExceptionLog", value);
+        }
         public static void CreateMemorizedException(string method, Exception exception)
         {
             StringBuilder stringExceptionBuilder = new StringBuilder("Exception Log VLC for Modern Windows");
