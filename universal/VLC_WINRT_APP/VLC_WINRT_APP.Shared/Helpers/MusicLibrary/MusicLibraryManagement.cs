@@ -289,17 +289,25 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             }
             else
             {
-                var folderPath = Path.GetDirectoryName(filePath);
-                var folder = await StorageFolder.GetFolderFromPathAsync(folderPath + "\\");
-                bool thumbnail = await folder.ContainsFileAsync("Folder.jpg");
-                if (thumbnail)
+                try
                 {
-                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                    var folderPath = Path.GetDirectoryName(filePath);
+                    var folder = await StorageFolder.GetFolderFromPathAsync(folderPath + "\\");
+                    bool thumbnail = await folder.ContainsFileAsync("Folder.jpg");
+                    if (thumbnail)
                     {
-                        album.Picture = folder.Path + "\\Folder.jpg";
-                    });
-                    await MusicLibraryVM._albumDataRepository.Update(album);
-                    Debug.WriteLine("WinRT found embedded cover " + album.Picture);
+                        await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                        {
+                            album.IsPictureLoaded = true;
+                            album.Picture = folder.Path + "\\Folder.jpg";
+                        });
+                        await MusicLibraryVM._albumDataRepository.Update(album);
+                        Debug.WriteLine("WinRT found embedded cover " + album.Picture);
+                    }
+                }
+                catch(Exception exception)
+                {
+                    ExceptionHelper.CreateMemorizedException("MusicLibraryManagement.SetAlbumCover : get WinRT cover", exception);
                 }
             }
         }
