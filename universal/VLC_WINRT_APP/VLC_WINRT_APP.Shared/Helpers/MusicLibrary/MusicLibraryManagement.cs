@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Dynamic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using XboxMusicLibrary.Models;
@@ -23,6 +24,7 @@ using VLC_WINRT_APP.Services.Interface;
 using VLC_WINRT_APP.Services.RunTime;
 using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.ViewModels.MusicVM;
+using WinRTXamlToolkit.IO.Extensions;
 
 namespace VLC_WINRT_APP.Helpers.MusicLibrary
 {
@@ -256,18 +258,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                     if (!album.IsPictureLoaded)
                     {
                         album.IsPictureLoaded = true;
-                        if(mediaService == null)
-                            mediaService = App.Container.Resolve<IMediaService>() as MediaService;
-                        var albumUrl = mediaService.GetAlbumUrl(track.Path);
-                        if (!string.IsNullOrEmpty(albumUrl))
-                        {
-                            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                            {
-                                album.Picture = System.Net.WebUtility.UrlDecode(albumUrl.Replace("file:///",""));
-                            });
-                            await MusicLibraryVM._albumDataRepository.Update(album);
-                            Debug.WriteLine("VLC found embedded cover " + albumUrl);
-                        }
+                        await SetAlbumCover(album, track.Path, false, mediaService);
                     }
                     await MusicLibraryVM._trackDataRepository.Add(track);
                 }
@@ -275,6 +266,40 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             catch (Exception e)
             {
                 ExceptionHelper.CreateMemorizedException("MusicLibraryManagement.CreateDatabaseFromMusicFile", e);
+            }
+        }
+
+        public static async Task SetAlbumCover(AlbumItem album, string filePath, bool useLibVLc, MediaService mediaService = null)
+        {
+            if (useLibVLc)
+            {
+                if (mediaService == null)
+                    mediaService = App.Container.Resolve<IMediaService>() as MediaService;
+                var albumUrl = mediaService.GetAlbumUrl(filePath);
+                if (!string.IsNullOrEmpty(albumUrl))
+                {
+                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                    {
+                        album.Picture = System.Net.WebUtility.UrlDecode(albumUrl.Replace("file:///", ""));
+                    });
+                    await MusicLibraryVM._albumDataRepository.Update(album);
+                    Debug.WriteLine("VLC found embedded cover " + albumUrl);
+                }
+            }
+            else
+            {
+                var folderPath = Path.GetDirectoryName(filePath);
+                var folder = await StorageFolder.GetFolderFromPathAsync(folderPath);
+                bool thumbnail = await folder.ContainsFileAsync("Folder.jpg");
+                if (thumbnail)
+                {
+                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                    {
+                        album.Picture = folder.Path + "\\Folder.jpg";
+                    });
+                    await MusicLibraryVM._albumDataRepository.Update(album);
+                    Debug.WriteLine("WinRT found embedded cover " + album.Picture);
+                }
             }
         }
 
