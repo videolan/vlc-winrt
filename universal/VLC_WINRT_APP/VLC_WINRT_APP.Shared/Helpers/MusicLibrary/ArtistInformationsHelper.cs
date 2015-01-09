@@ -355,9 +355,13 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                             using (var stream = raStream.GetOutputStreamAt(0))
                             {
                                 await RandomAccessStream.CopyAsync(thumbnailStream, stream);
+                                await stream.FlushAsync();
                             }
                         }
+                        raStream.Dispose();
+                        await writer.FlushAsync();
                     }
+                    await streamWeb.FlushAsync();
                 }
                 return true;
             }
