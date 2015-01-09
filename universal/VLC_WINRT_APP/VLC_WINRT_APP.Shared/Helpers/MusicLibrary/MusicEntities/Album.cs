@@ -71,7 +71,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary.MusicEntities
         public void MapFrom(LastFm.Album lastFmAlbum)
         {
             Image img = new Image();
-            img.MapFrom(lastFmAlbum.Image.Last());
+            img.MapFrom(lastFmAlbum.Image.FirstOrDefault(x=>x.Size == "extralarge" || x.Size == "mega")));
             this.Images = new List<Image>() { img };
         }
     }
