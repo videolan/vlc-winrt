@@ -34,6 +34,8 @@ namespace VLC_WINRT_APP.Model.Music
 #if WINDOWS_PHONE_APP
         private SeeArtistShowsCommand seeArtistShowsCommand;
 #endif
+        private LoadingState _loadingState = LoadingState.NotLoaded;
+
         [PrimaryKey, AutoIncrement, Column("_id")]
         public int Id { get; set; }
 
@@ -85,6 +87,13 @@ namespace VLC_WINRT_APP.Model.Music
         }
 
         public bool IsPictureLoaded { get; set; }
+
+        [Ignore]
+        public LoadingState LoadingState
+        {
+            get { return _loadingState; }
+            set { _loadingState = value; }
+        }
 
         public uint Year
         {

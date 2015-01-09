@@ -255,9 +255,9 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                         IsFromSandbox = true
                     };
 
-                    if (!album.IsPictureLoaded)
+                    if (album.LoadingState == LoadingState.NotLoaded)
                     {
-                        album.IsPictureLoaded = true;
+                        album.LoadingState = LoadingState.Loading;
                         await SetAlbumCover(album, track.Path, false, mediaService);
                     }
                     await MusicLibraryVM._trackDataRepository.Add(track);
@@ -280,6 +280,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                 {
                     await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                     {
+                        album.IsPictureLoaded = true;
                         album.Picture = System.Net.WebUtility.UrlDecode(albumUrl.Replace("file:///", ""));
                     });
                     await MusicLibraryVM._albumDataRepository.Update(album);
