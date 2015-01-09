@@ -145,15 +145,7 @@ namespace VLC_WINRT_APP.Helpers
             stringExceptionBuilder.AppendLine(DateTime.Now.TimeOfDay.ToString());
             stringExceptionBuilder.AppendLine();
             stringExceptionBuilder.AppendLine("Current Page:");
-            if (App.ApplicationFrame != null && App.ApplicationFrame.CurrentSourcePageType != null)
-            {
-                stringExceptionBuilder.AppendLine(App.ApplicationFrame.CurrentSourcePageType.FullName);
-            }
-            else
-            {
-                stringExceptionBuilder.AppendLine("Page Null");
-            }
-
+            
             stringExceptionBuilder.AppendLine(exception.Message.ToString());
             stringExceptionBuilder.AppendLine(exception.HelpLink);
             stringExceptionBuilder.AppendLine(exception.Message);
