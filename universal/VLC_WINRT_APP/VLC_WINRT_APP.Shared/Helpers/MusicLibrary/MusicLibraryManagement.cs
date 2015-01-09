@@ -209,12 +209,10 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
 
                     var albumName = propDictionary["album"].ToString();
                     var albumYear = (uint)propDictionary["year"];
-                    bool albumIsNew = false;
                     AlbumItem album =
                         await MusicLibraryVM._albumDataRepository.LoadAlbumViaName(artist.Id, albumName);
                     if (album == null)
                     {
-                        albumIsNew = true;
                         album = new AlbumItem
                         {
                             Name = string.IsNullOrEmpty(albumName) ? "Unknown album" : albumName,
@@ -223,6 +221,18 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                             Favorite = false,
                             Year = albumYear
                         };
+                        await MusicLibraryVM._albumDataRepository.Add(album);
+                        await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+                        {
+                            var artistFromCollection =
+                                Locator.MusicLibraryVM.Artists.FirstOrDefault(x => x.Id == album.ArtistId);
+                            if (artistFromCollection != null) artistFromCollection.Albums.Add(album);
+                            Locator.MusicLibraryVM.CurrentIndexingStatus = "Found album " + album.Name;
+#if WINDOWS_PHONE_APP
+                            StatusBarHelper.UpdateTitle("Found " + album.Name);
+#endif
+                            Locator.MusicLibraryVM.Albums.Add(album);
+                        });
                     }
 
                     var duration = (TimeSpan)propDictionary["duration"];
@@ -242,30 +252,22 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                         Index = trackNb,
                         IsFromSandbox = true
                     };
-                    if (albumIsNew)
+
+                    if (!album.IsPictureLoaded)
                     {
+                        album.IsPictureLoaded = true;
                         if(mediaService == null)
                             mediaService = App.Container.Resolve<IMediaService>() as MediaService;
                         var albumUrl = mediaService.GetAlbumUrl(track.Path);
                         if (!string.IsNullOrEmpty(albumUrl))
                         {
-                            album.Picture = System.Net.WebUtility.UrlDecode(albumUrl.Replace("file:///", ""));
-                            album.IsPictureLoaded = true;
+                            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                            {
+                                album.Picture = System.Net.WebUtility.UrlDecode(albumUrl.Replace("file:///",""));
+                            });
+                            await MusicLibraryVM._albumDataRepository.Update(album);
                             Debug.WriteLine("VLC found embedded cover " + albumUrl);
                         }
-
-                        await MusicLibraryVM._albumDataRepository.Add(album);
-                        await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
-                        {
-                            var artistFromCollection =
-                                Locator.MusicLibraryVM.Artists.FirstOrDefault(x => x.Id == album.ArtistId);
-                            if (artistFromCollection != null) artistFromCollection.Albums.Add(album);
-                            Locator.MusicLibraryVM.CurrentIndexingStatus = "Found album " + album.Name;
-#if WINDOWS_PHONE_APP
-                            StatusBarHelper.UpdateTitle("Found " + album.Name);
-#endif
-                            Locator.MusicLibraryVM.Albums.Add(album);
-                        });
                     }
                     await MusicLibraryVM._trackDataRepository.Add(track);
                 }
