@@ -19,9 +19,7 @@
                    Source="{Binding Picture}"
                    Stretch="UniformToFill"
                    Width="Auto"
-                   Height="Auto" 
-                   ImageFailed="Image_OnImageFailed"
-                   ImageOpened="Image_OnImageOpened"/>
+                   Height="Auto" />
             <Grid Grid.Row="1"
                   Width="Auto">
                 <Grid.RowDefinitions>
