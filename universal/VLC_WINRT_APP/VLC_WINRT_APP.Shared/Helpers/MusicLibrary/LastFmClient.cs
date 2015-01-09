@@ -12,7 +12,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Net.Http;
+using Windows.Web.Http;
 using System.Threading.Tasks;
 using VLC_WINRT_APP.Helpers.MusicLibrary.LastFm;
 using VLC_WINRT_APP;
@@ -33,7 +33,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                     string.Format(
                         "http://ws.audioscrobbler.com/2.0/?method=artist.getevents&artist={1}&api_key={0}&format=json&pretty=true",
                         App.ApiKeyLastFm, artistName);
-                var reponse = await lastFmClient.GetStringAsync(url);
+                var reponse = await lastFmClient.GetStringAsync(new Uri(url));
                 var artistEventInfo = JsonConvert.DeserializeObject<ArtistEventInformation>(reponse);
                 if (artistEventInfo == null) return null;
                 if (artistEventInfo.Events == null) return null;
@@ -74,7 +74,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                     string.Format(
  "http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist={1}&api_key={0}&lang={2}&format=json",
                         App.ApiKeyLastFm, artistName, regionCode);
-                var reponse = await lastFmClient.GetStringAsync(url);
+                var reponse = await lastFmClient.GetStringAsync(new Uri(url));
                 {
                     var artistInfo = JsonConvert.DeserializeObject<ArtistInformation>(reponse);
                     if (artistInfo == null) return null;
@@ -98,8 +98,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                 var lastFmClient = new HttpClient();
                 var response =
                     await
-                        lastFmClient.GetStringAsync(
-                            string.Format("http://ws.audioscrobbler.com/2.0/?method=artist.getsimilar&format=json&limit=8&api_key={0}&artist={1}", App.ApiKeyLastFm, artistName));
+                        lastFmClient.GetStringAsync(new Uri(string.Format("http://ws.audioscrobbler.com/2.0/?method=artist.getsimilar&format=json&limit=8&api_key={0}&artist={1}", App.ApiKeyLastFm, artistName)));
                 var artists = JsonConvert.DeserializeObject<SimilarArtistInformation>(response);
                 if (artists == null || !artists.Similarartists.Artist.Any()) return null;
                 var similarArtists = artists.Similarartists.Artist;
@@ -130,7 +129,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                 string url = string.Format(
                     "http://ws.audioscrobbler.com/2.0/?method=album.getinfo&artist={1}&album={3}&api_key={0}&format=json&lang={2}",
                     App.ApiKeyLastFm, artistName, region.Code.ToLower(), albumTitle);
-                var reponse = await lastFmClient.GetStringAsync(url);
+                var reponse = await lastFmClient.GetStringAsync(new Uri(url));
                 {
                     var albumInfo = JsonConvert.DeserializeObject<AlbumInformation>(reponse);
                     if (albumInfo == null) return null;
@@ -160,8 +159,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                 var lastFmClient = new HttpClient();
                 var response =
                     await
-                        lastFmClient.GetStringAsync(
-                            string.Format("http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&limit=8&format=json&api_key={0}&artist={1}", App.ApiKeyLastFm, name));
+                        lastFmClient.GetStringAsync(new Uri(string.Format("http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&limit=8&format=json&api_key={0}&artist={1}", App.ApiKeyLastFm, name)));
                 var albums = JsonConvert.DeserializeObject<TopAlbumInformation>(response);
                 LogHelper.Log("Receive TopAlbums from LastFM API");
                 if (albums == null) return null;

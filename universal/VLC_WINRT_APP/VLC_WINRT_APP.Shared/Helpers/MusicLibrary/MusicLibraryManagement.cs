@@ -289,7 +289,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             else
             {
                 var folderPath = Path.GetDirectoryName(filePath);
-                var folder = await StorageFolder.GetFolderFromPathAsync(folderPath);
+                var folder = await StorageFolder.GetFolderFromPathAsync(folderPath + "\\");
                 bool thumbnail = await folder.ContainsFileAsync("Folder.jpg");
                 if (thumbnail)
                 {
