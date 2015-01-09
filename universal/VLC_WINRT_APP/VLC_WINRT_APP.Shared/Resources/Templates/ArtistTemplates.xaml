@@ -2,70 +2,12 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:VLC_WINRT_APP.Resources.Templates"
                     xmlns:triggers="using:WinRT.Triggers"
-                    xmlns:winrtext="using:WinRTXamlToolkit.Controls.Extensions">
+                    xmlns:winrtext="using:WinRTXamlToolkit.Controls.Extensions"
+                    xmlns:userControls="using:VLC_WINRT_APP.Views.UserControls">
 
     <!-- WINDOWS PHONE -->
     <DataTemplate x:Key="PhoneArtistSquareTemplate">
-        <Border Margin="0,0,12,12">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="3*" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-                <Image Grid.Row="0"
-                       Source="{Binding Picture}"
-                       Stretch="UniformToFill"
-                       Width="Auto"
-                       Height="Auto" />
-                <Grid Grid.Row="1"
-                      Width="Auto">
-                    <Grid.RowDefinitions>
-                        <RowDefinition />
-                        <RowDefinition />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0"
-                               Text="{Binding Name}"
-                               TextWrapping="NoWrap"
-                               TextTrimming="CharacterEllipsis"
-                               FontSize="16"
-                               FontWeight="Normal"
-                               VerticalAlignment="Center"
-                               Margin="7,0" />
-                    <TextBlock Grid.Row="1"
-                               Grid.Column="0"
-                               TextWrapping="NoWrap"
-                               TextTrimming="CharacterEllipsis"
-                               FontSize="14"
-                               FontWeight="Light"
-                               Foreground="DimGray"
-                               VerticalAlignment="Center"
-                               Margin="7,0">
-                        <Run Text="{Binding Albums.Count}" />
-                        <Run Text="albums" />
-                    </TextBlock>
-                    <Button Grid.Column="1"
-                            Grid.Row="1"
-                            Style="{StaticResource TextBlockButtonStyle}"
-                            Content=""
-                            VerticalAlignment="Bottom"
-                            Foreground="#ACACAC"
-                            FontFamily="Segoe UI Symbol"
-                            Margin="0,0,3,0">
-                        <Button.Flyout>
-                            <MenuFlyout>
-                                <MenuFlyoutItem Text="pin artist"
-                                                Command="{Binding PinArtistCommand}"
-                                                CommandParameter="{Binding}" />
-                            </MenuFlyout>
-                        </Button.Flyout>
-                    </Button>
-                </Grid>
-            </Grid>
-        </Border>
+        <userControls:ArtistItemTemplate />
     </DataTemplate>
 
     <!-- ALL // WINDOWS -->
