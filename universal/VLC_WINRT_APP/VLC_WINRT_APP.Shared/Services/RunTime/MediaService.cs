@@ -237,7 +237,6 @@ namespace VLC_WINRT_APP.Services.RunTime
             var url = media.meta(MediaMeta.ArtworkURL);
             if (!string.IsNullOrEmpty(url))
             {
-                ExceptionHelper.CreateExceptionalMsg("GetAlbumUrl : AlbumURLWorkedViaVLC :" + url);
                 return url;
             }
             return "";
