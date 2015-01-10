@@ -344,24 +344,28 @@ namespace VLC_WINRT_APP.Services.RunTime
 
         private void OnEndReached()
         {
-            _systemMediaTransportControls.PlaybackStatus = MediaPlaybackStatus.Stopped;
+            if (_systemMediaTransportControls != null)
+                _systemMediaTransportControls.PlaybackStatus = MediaPlaybackStatus.Stopped;
         }
 
         private void OnPaused()
         {
-            _systemMediaTransportControls.PlaybackStatus = MediaPlaybackStatus.Paused;
+            if (_systemMediaTransportControls != null)
+                _systemMediaTransportControls.PlaybackStatus = MediaPlaybackStatus.Paused;
             StatusChanged(this, MediaState.Paused);
         }
 
         private void OnPlaying()
         {
-            _systemMediaTransportControls.PlaybackStatus = MediaPlaybackStatus.Playing;
+            if (_systemMediaTransportControls != null)
+                _systemMediaTransportControls.PlaybackStatus = MediaPlaybackStatus.Playing;
             StatusChanged(this, MediaState.Playing);
         }
 
         private void OnStopped()
         {
-            _systemMediaTransportControls.PlaybackStatus = MediaPlaybackStatus.Stopped;
+            if (_systemMediaTransportControls != null)
+                _systemMediaTransportControls.PlaybackStatus = MediaPlaybackStatus.Stopped;
             StatusChanged(this, MediaState.Stopped);
         }
 
