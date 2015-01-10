@@ -41,6 +41,14 @@ Extract the libVLC contents from vlc.7z to vlc/vlc-<platform>/<configuration>
 <platform> is either ARM or x86
 <configuration>  is Debug or Release
 
+1a) Install Multilingual App Toolkit
+------------------------------------
+
+In order to open the solution, you must first install the Visual Studio Multilingual App Toolkit.
+If you don't, the solution will fail to load.
+
+You can download it at https://dev.windows.com/en-us/develop/multilingual-app-toolkit
+
 2) Build and package the front-end
 ----------------------------------
 Open the VLC_WinRT solution in app/VLC_WINRT.sln 
