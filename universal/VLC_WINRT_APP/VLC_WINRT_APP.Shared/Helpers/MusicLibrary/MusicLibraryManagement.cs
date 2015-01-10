@@ -126,7 +126,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
         {
             try
             {
-                if (Locator.VideoVm.IsPlaying || Locator.MusicPlayerVM.TrackCollection.IsRunning)
+                if (Locator.VideoVm.IsPlaying)
                 {
                     return;
                 }
