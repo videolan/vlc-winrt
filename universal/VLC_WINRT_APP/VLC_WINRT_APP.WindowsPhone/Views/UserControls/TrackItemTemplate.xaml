@@ -18,7 +18,6 @@
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition />
-            <RowDefinition Height="4" />
         </Grid.RowDefinitions>
         <TextBlock Grid.Column="0"
                    Grid.Row="0"
@@ -55,15 +54,5 @@
                    Text="{Binding Duration.TotalSeconds, Converter={StaticResource SecondsStringConverter}}"
                    VerticalAlignment="Center"
                    HorizontalAlignment="Center" />
-        <Grid Grid.Row="2"
-              Grid.Column="0"
-              Grid.ColumnSpan="2"
-              Visibility="{Binding IsCurrentPlaying, Converter={StaticResource CurrentTrackEnhancifierConverter}, ConverterParameter='visibility'}">
-            <ProgressBar Style="{StaticResource ThinProgressBar}"
-                         VerticalAlignment="Bottom"
-                         DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}"
-                         Value="{Binding Position, Mode=OneWay}"
-                         Maximum="1"/>
-        </Grid>
     </Grid>
 </UserControl>
