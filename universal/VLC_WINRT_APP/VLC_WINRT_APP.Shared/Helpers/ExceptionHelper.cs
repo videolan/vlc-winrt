@@ -1,69 +1,68 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
-#if WINDOWS_PHONE_APP
-using Windows.ApplicationModel.Email;
-#endif
 using Windows.ApplicationModel.Resources;
-using Windows.Security.ExchangeActiveSyncProvisioning;
-using Windows.Storage;
 using Windows.System;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
+#if WINDOWS_PHONE_APP
+using Windows.ApplicationModel.Email;
+using Windows.Security.ExchangeActiveSyncProvisioning;
+#endif
 
 namespace VLC_WINRT_APP.Helpers
 {
     public static class ExceptionHelper
     {
+        /// <summary>
+        /// Returns the current App Version
+        /// </summary>
+        public static string AppVersion
+        {
+            get
+            {
+                PackageVersion version = Package.Current.Id.Version;
+                return String.Format("{0}.{1}.{2}.{3}", version.Major, version.Minor, version.Build, version.Revision);
+            }
+        }
+
+        /// <summary>
+        /// Checks if any exception has been saved for reporting, prompts the user for sending it and deletes it
+        /// </summary>
         public static async Task ExceptionLogCheckup()
         {
             LogHelper.usedForRead = true;
             if (ApplicationSettingsHelper.Contains("ExceptionLog"))
             {
-                Package thisPackage = Package.Current;
-                PackageVersion version = thisPackage.Id.Version;
-                string appVersion = string.Format("{0}.{1}.{2}.{3}",
-                    version.Major, version.Minor, version.Build, version.Revision);
-
                 var resourcesLoader = ResourceLoader.GetForCurrentView("Resources");
-                var dialog =
-                    new MessageDialog(resourcesLoader.GetString("CrashReport"), resourcesLoader.GetString("WeNeedYourHelp"));
+                var dialog = new MessageDialog(resourcesLoader.GetString("CrashReport"), resourcesLoader.GetString("WeNeedYourHelp"));
                 dialog.Commands.Add(new UICommand(resourcesLoader.GetString("Yes"), async command =>
                 {
-                    string os = null;
-#if WINDOWS_APP
-                    os = "Windows 8.1 v" + appVersion;
-#else
-                    os = "WP8.1 v" + appVersion; 
-                    EasClientDeviceInformation deviceInfo = new EasClientDeviceInformation();
-                    os += " ON ";
-                    os += deviceInfo.SystemManufacturer;
-                    os += " ";
-                    os += deviceInfo.SystemProductName;
-                    if (
-                        ApplicationSettingsHelper.ReadSettingsValue("ExceptionLog")
-                            .ToString()
-                            .Contains("GetAlbumUrl : AlbumURLWorkedViaVLC"))
-                    {
-                        os += " ARTCOVER";
-                    }
-#endif
 #if WINDOWS_PHONE_APP
-                    var objEmail = new EmailMessage();
-                    objEmail.Subject = os;
-                    objEmail.To.Add(new EmailRecipient("modernvlc@outlook.com"));
-                    objEmail.Body = ApplicationSettingsHelper.ReadResetSettingsValue("ExceptionLog").ToString();
-                    objEmail.Attachments.Add(new EmailAttachment(LogHelper.LogFile.Name, LogHelper.LogFile));
-                    await EmailManager.ShowComposeNewEmailAsync(objEmail);
+                    EasClientDeviceInformation deviceInfo = new EasClientDeviceInformation();
+
+                    var email = new EmailMessage();
+                    email.To.Add(new EmailRecipient("modernvlc@outlook.com"));
+                    email.Subject = String.Format("WP8.1 v{0} {1} ON {2}", AppVersion, deviceInfo.SystemManufacturer, deviceInfo.SystemProductName);
+                    email.Body = ApplicationSettingsHelper.ReadResetSettingsValue("ExceptionLog").ToString();
+                    email.Attachments.Add(new EmailAttachment(LogHelper.LogFile.Name, LogHelper.LogFile));
+
+                    if (email.Body.Contains("GetAlbumUrl : AlbumURLWorkedViaVLC"))
+                    {
+                        email.Subject += " ARTCOVER";
+                    }
+
+                    await EmailManager.ShowComposeNewEmailAsync(email);
 #else
-                    var uri = new Uri("mailto:vlcmetro-feedback@outlook.com?subject=VLC for Windows 8.1 bugreport&body=" + ApplicationSettingsHelper.ReadResetSettingsValue("ExceptionLog").ToString());
+                    string subject = Uri.EscapeDataString("VLC for Windows 8.1 v" + AppVersion);
+                    string body = Uri.EscapeDataString(ApplicationSettingsHelper.ReadResetSettingsValue("ExceptionLog").ToString());
+
+                    var uri = new Uri(String.Format("mailto:vlcmetro-feedback@outlook.com?subject={0}&body={1}", subject, body));
                     await Launcher.LaunchUriAsync(uri);
 #endif
-                    
-                    }));
+                }));
                 dialog.Commands.Add(new UICommand(resourcesLoader.GetString("No"), command =>
                 {
                     ApplicationSettingsHelper.ReadResetSettingsValue("ExceptionLog");
@@ -73,21 +72,17 @@ namespace VLC_WINRT_APP.Helpers
             LogHelper.usedForRead = false;
         }
 
-        public static void ExceptionStringBuilder(object sender, UnhandledExceptionEventArgs unhandledExceptionEventArgs)
+        /// <summary>
+        /// Logs unhandled exceptions before the app goes down for report on next startup
+        /// </summary>
+        public static void UnhandledExceptionLogger(object sender, UnhandledExceptionEventArgs unhandledExceptionEventArgs)
         {
-            Package thisPackage = Package.Current;
-            PackageVersion version = thisPackage.Id.Version;
-            string appVersion = string.Format("{0}.{1}.{2}.{3}",
-                version.Major, version.Minor, version.Build, version.Revision);
-
-            StringBuilder stringExceptionBuilder = new StringBuilder("Exception Log VLC for Modern Windows");
-            stringExceptionBuilder.AppendLine(appVersion);
-            stringExceptionBuilder.AppendLine("Date");
-            stringExceptionBuilder.AppendLine(DateTime.Now.ToString());
-            stringExceptionBuilder.AppendLine(" ");
-            stringExceptionBuilder.AppendLine(DateTime.Now.TimeOfDay.ToString());
+            StringBuilder stringExceptionBuilder = new StringBuilder("Exception Log VLC for Modern Windows v");
+            stringExceptionBuilder.AppendLine(AppVersion);
+            stringExceptionBuilder.Append("Message: ").AppendLine(unhandledExceptionEventArgs.Message);
+            stringExceptionBuilder.Append("Date: ").AppendLine(DateTime.UtcNow.ToString("s"));
             stringExceptionBuilder.AppendLine();
-            stringExceptionBuilder.AppendLine("Current Page:");
+            stringExceptionBuilder.Append("Current Page: ");
             if (App.ApplicationFrame != null && App.ApplicationFrame.CurrentSourcePageType != null)
             {
                 stringExceptionBuilder.AppendLine(App.ApplicationFrame.CurrentSourcePageType.FullName);
@@ -97,68 +92,76 @@ namespace VLC_WINRT_APP.Helpers
                 stringExceptionBuilder.AppendLine("Null");
             }
             stringExceptionBuilder.AppendLine();
-            stringExceptionBuilder.AppendLine("Exception:");
-            stringExceptionBuilder.AppendLine(unhandledExceptionEventArgs.Message.ToString());
-            stringExceptionBuilder.AppendLine(unhandledExceptionEventArgs.Exception.HelpLink);
-            stringExceptionBuilder.AppendLine(unhandledExceptionEventArgs.Exception.Message);
-            stringExceptionBuilder.AppendLine(unhandledExceptionEventArgs.Exception.Source);
-            stringExceptionBuilder.AppendLine(unhandledExceptionEventArgs.Exception.StackTrace);
-            if (unhandledExceptionEventArgs.Exception.Data != null)
-            {
-                foreach (DictionaryEntry entry in unhandledExceptionEventArgs.Exception.Data)
-                {
-                    stringExceptionBuilder.AppendLine(entry.Key + ";" + entry.Value);
-                }
-            }
-            stringExceptionBuilder.AppendLine(unhandledExceptionEventArgs.Exception.HResult.ToString());
-            if (unhandledExceptionEventArgs.Exception.InnerException != null)
-                stringExceptionBuilder.AppendLine(unhandledExceptionEventArgs.Exception.InnerException.ToString());
-            stringExceptionBuilder.AppendLine("IsHandled: " + unhandledExceptionEventArgs.Handled.ToString());
-            stringExceptionBuilder.Replace("\r\n", "<br/>");
 
-#if WINDOWS_PHONE_APP
-            // Gets the app's current memory usage    
-            ulong AppMemoryUsageUlong = MemoryManager.AppMemoryUsage;
-            // Gets the app's memory usage limit    
-            ulong AppMemoryUsageLimitUlong = MemoryManager.AppMemoryUsageLimit;
+            AppendAllExceptions(stringExceptionBuilder, unhandledExceptionEventArgs.Exception);
+            stringExceptionBuilder.AppendLine();
+            AppendMemoryUsage(stringExceptionBuilder);
 
-            AppMemoryUsageUlong /= 1024 * 1024;
-            AppMemoryUsageLimitUlong /= 1024 * 1024;
-            stringExceptionBuilder.AppendLine("CurrentRAM:" + AppMemoryUsageUlong + " -- ");
-            stringExceptionBuilder.AppendLine("MaxRAM:" + AppMemoryUsageLimitUlong + " -- ");
-            stringExceptionBuilder.AppendLine("CommentOnRAM:" + MemoryManager.AppMemoryUsageLevel.ToString());
-#endif
-            ApplicationSettingsHelper.SaveSettingsValue("ExceptionLog", stringExceptionBuilder.ToString());
+            CreateExceptionalMsg(stringExceptionBuilder.ToString());
         }
 
+        /// <summary>
+        /// Saves the <paramref name="exception"/> for report on next startup
+        /// </summary>
+        public static void CreateMemorizedException(string method, Exception exception)
+        {
+            StringBuilder stringExceptionBuilder = new StringBuilder("Exception Log VLC for Modern Windows v");
+            stringExceptionBuilder.AppendLine(AppVersion);
+            stringExceptionBuilder.Append("Exception at: ").AppendLine(method);
+            stringExceptionBuilder.Append("Date: ").AppendLine(DateTime.UtcNow.ToString("s"));
+            stringExceptionBuilder.AppendLine();
+
+            AppendAllExceptions(stringExceptionBuilder, exception);
+            stringExceptionBuilder.AppendLine();
+            AppendMemoryUsage(stringExceptionBuilder);
+
+            CreateExceptionalMsg(stringExceptionBuilder.ToString());
+        }
+
+        /// <summary>
+        /// Saves the <paramref name="value"/> for report on next startup
+        /// </summary>
         public static void CreateExceptionalMsg(string value)
         {
             ApplicationSettingsHelper.SaveSettingsValue("ExceptionLog", value);
         }
-        public static void CreateMemorizedException(string method, Exception exception)
-        {
-            StringBuilder stringExceptionBuilder = new StringBuilder("Exception Log VLC for Modern Windows");
-            stringExceptionBuilder.AppendLine("Exception at : " + method);
-            stringExceptionBuilder.AppendLine("Date");
-            stringExceptionBuilder.AppendLine(DateTime.Now.ToString());
-            stringExceptionBuilder.AppendLine(" ");
-            stringExceptionBuilder.AppendLine(DateTime.Now.TimeOfDay.ToString());
-            stringExceptionBuilder.AppendLine();
-            stringExceptionBuilder.AppendLine("Current Page:");
-            
-            stringExceptionBuilder.AppendLine(exception.Message.ToString());
-            stringExceptionBuilder.AppendLine(exception.HelpLink);
-            stringExceptionBuilder.AppendLine(exception.Message);
-            stringExceptionBuilder.AppendLine(exception.Source);
-            stringExceptionBuilder.AppendLine(exception.StackTrace);
-            if (exception.Data != null)
-            {
-                foreach (DictionaryEntry entry in exception.Data)
-                {
-                    stringExceptionBuilder.AppendLine(entry.Key + ";" + entry.Value);
-                }
-            }
 
+        /// <summary>
+        /// Appends the <paramref name="exception"/> and all it InnerExceptions to the <paramref name="stringBuilder"/>
+        /// </summary>
+        private static void AppendAllExceptions(StringBuilder stringBuilder, Exception exception)
+        {
+            bool inner = false;
+            for (Exception ex = exception; ex != null; ex = ex.InnerException)
+            {
+                stringBuilder.AppendLine(inner ? "InnerException" : "Exception:");
+                stringBuilder.Append("Message: ").AppendLine(ex.Message);
+                stringBuilder.Append("HelpLink: ").AppendLine(ex.HelpLink);
+                stringBuilder.Append("HResult: ").AppendLine(ex.HResult.ToString());
+                stringBuilder.Append("Source: ").AppendLine(ex.Source);
+                stringBuilder.AppendLine("StackTrace: ");
+                stringBuilder.AppendLine(ex.StackTrace);
+                stringBuilder.AppendLine();
+
+                if (exception.Data != null && exception.Data.Count > 0)
+                {
+                    stringBuilder.AppendLine("Additional Data: ");
+                    foreach (DictionaryEntry entry in exception.Data)
+                    {
+                        stringBuilder.AppendLine(entry.Key + ";" + entry.Value);
+                    }
+                    stringBuilder.AppendLine();
+                }
+
+                inner = true;
+            }
+        }
+
+        /// <summary>
+        /// Appends the current memory usage and limits on Windows Phone to the <paramref name="stringBuilder"/>
+        /// </summary>
+        private static void AppendMemoryUsage(StringBuilder stringBuilder)
+        {
 #if WINDOWS_PHONE_APP
             // Gets the app's current memory usage    
             ulong AppMemoryUsageUlong = MemoryManager.AppMemoryUsage;
@@ -167,11 +170,10 @@ namespace VLC_WINRT_APP.Helpers
 
             AppMemoryUsageUlong /= 1024 * 1024;
             AppMemoryUsageLimitUlong /= 1024 * 1024;
-            stringExceptionBuilder.AppendLine("CurrentRAM:" + AppMemoryUsageUlong + " -- ");
-            stringExceptionBuilder.AppendLine("MaxRAM:" + AppMemoryUsageLimitUlong + " -- ");
-            stringExceptionBuilder.AppendLine("CommentOnRAM:" + MemoryManager.AppMemoryUsageLevel.ToString());
+            stringBuilder.Append("CurrentRAM: ").AppendLine(AppMemoryUsageUlong.ToString());
+            stringBuilder.Append("MaxRAM: ").AppendLine(AppMemoryUsageLimitUlong.ToString());
+            stringBuilder.Append("CommentOnRAM: ").AppendLine(MemoryManager.AppMemoryUsageLevel.ToString());
 #endif
-            ApplicationSettingsHelper.SaveSettingsValue("ExceptionLog", stringExceptionBuilder.ToString());
         }
     }
 }
