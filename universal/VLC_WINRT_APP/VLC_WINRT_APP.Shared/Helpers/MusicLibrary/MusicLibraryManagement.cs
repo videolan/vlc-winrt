@@ -127,7 +127,9 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
         {
             try
             {
-                if (Locator.VideoVm.IsPlaying || (BackgroundMediaPlayer.Current != null && BackgroundMediaPlayer.Current.CurrentState != MediaPlayerState.Stopped))
+                if (Locator.VideoVm.IsPlaying || (BackgroundMediaPlayer.Current != null 
+                    && BackgroundMediaPlayer.Current.CurrentState != MediaPlayerState.Stopped 
+                    && BackgroundMediaPlayer.Current.CurrentState != MediaPlayerState.Closed))
                 {
                     return;
                 }

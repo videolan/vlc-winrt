@@ -6,6 +6,7 @@ using Windows.ApplicationModel.Background;
 using Windows.Foundation.Collections;
 using Windows.Media;
 using Windows.Media.Playback;
+using Windows.UI.Xaml;
 using VLC_WINRT_APP.Database.DataRepository;
 
 namespace VLC_WINRT_APP.BackgroundAudioPlayer
@@ -89,6 +90,11 @@ namespace VLC_WINRT_APP.BackgroundAudioPlayer
             backgroundtaskrunning = true;
 
             Playlist.PopulatePlaylist();
+            var currentTrackIndex = ApplicationSettingsHelper.ReadSettingsValue(BackgroundAudioConstants.CurrentTrack);
+            if (currentTrackIndex != null)
+            {
+                Playlist.CurrentTrack = (int) currentTrackIndex;
+            }
             ApplicationSettingsHelper.SaveSettingsValue(BackgroundAudioConstants.BackgroundTaskState, BackgroundAudioConstants.BackgroundTaskRunning);
             deferral = taskInstance.GetDeferral();
         }

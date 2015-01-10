@@ -173,18 +173,18 @@ namespace VLC_WINRT_APP.BackgroundAudioPlayer
             Play();
         }
 
-        public void PlayTrack(int trackIndex)
+        public void PlayTrack(int trackId)
         {
-            var trackCol = Playlist.FirstOrDefault(node => node.Id == trackIndex);
+            var trackCol = Playlist.FirstOrDefault(node => node.Id == trackId);
             if (trackCol == null) return;
-            CurrentTrack = trackCol.Id;
+            CurrentTrack = Playlist.IndexOf(trackCol);
             Play();
         }
 
         public async void Play()
         {
             IsRunning = true;
-            CurrentTrackItem = Playlist.FirstOrDefault(node => node.Id == CurrentTrack);
+            CurrentTrackItem = Playlist[CurrentTrack];
             var file = await StorageFile.GetFileFromPathAsync(CurrentTrackItem.Path);
             mediaPlayer.SetFileSource(file);
 
