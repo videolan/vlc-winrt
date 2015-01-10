@@ -27,7 +27,7 @@ namespace VLC_WINRT_APP.Views.VideoPages
     {
         private bool isVisible = true;
         private bool needDoubleTapToAct = false;
-        private TimeSpan _fadeDuration = TimeSpan.FromMilliseconds(350);
+        private TimeSpan _fadeDuration = TimeSpan.FromMilliseconds(250);
         private DispatcherTimer timer;
 
         public VideoPlayerPage()
