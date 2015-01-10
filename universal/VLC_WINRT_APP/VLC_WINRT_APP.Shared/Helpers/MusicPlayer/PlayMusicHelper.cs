@@ -3,8 +3,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Windows.UI.Core;
 using VLC_WINRT.Common;
+using VLC_WINRT_APP.Common;
 using VLC_WINRT_APP.Helpers.MusicLibrary.Deezer;
 using VLC_WINRT_APP.Model.Music;
+using VLC_WINRT_APP.Tools;
 using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.ViewModels.MusicVM;
 
@@ -43,8 +45,13 @@ namespace VLC_WINRT_APP.Helpers.MusicPlayer
             await DispatchHelper.InvokeAsync(async () =>
             {
                 if (resetQueue)
+                {
+                    await Locator.MusicPlayerVM.BackgroundTrackRepository.Clear();
                     Locator.MusicPlayerVM.TrackCollection.ResetCollection();
+                }
                 var trackItem = await MusicLibraryVM._trackDataRepository.LoadTrack(trackId);
+                var backgroundTrack = BackgroundTaskTools.CreateBackgroundTrackItem(trackItem);
+                await Locator.MusicPlayerVM.BackgroundTrackRepository.Add(backgroundTrack);
 
                 AddTrack(trackItem);
 
@@ -64,8 +71,13 @@ namespace VLC_WINRT_APP.Helpers.MusicPlayer
             await DispatchHelper.InvokeAsync(async () =>
             {
                 if (resetQueue)
+                {
+                    await Locator.MusicPlayerVM.BackgroundTrackRepository.Clear();
                     Locator.MusicPlayerVM.TrackCollection.ResetCollection();
+                }
                 var trackItems = await MusicLibraryVM._trackDataRepository.LoadTracksByAlbumId(albumId);
+                var backgroundTracks = BackgroundTaskTools.CreateBackgroundTrackItemList(trackItems.ToList());
+                await Locator.MusicPlayerVM.BackgroundTrackRepository.AddPlaylist(backgroundTracks);
                 foreach (var trackItem in trackItems)
                 {
                     AddTrack(trackItem);
@@ -93,8 +105,14 @@ namespace VLC_WINRT_APP.Helpers.MusicPlayer
             await DispatchHelper.InvokeAsync(async () =>
             {
                 if (resetQueue)
+                {
+                    await Locator.MusicPlayerVM.BackgroundTrackRepository.Clear();
                     Locator.MusicPlayerVM.TrackCollection.ResetCollection();
+                }
                 var trackItems = await MusicLibraryVM._trackDataRepository.LoadTracksByArtistId(artistId);
+                var backgroundTracks = BackgroundTaskTools.CreateBackgroundTrackItemList(trackItems.ToList());
+                await Locator.MusicPlayerVM.BackgroundTrackRepository.AddPlaylist(backgroundTracks);
+
                 foreach (var trackItem in trackItems)
                 {
                     AddTrack(trackItem);
@@ -109,6 +127,7 @@ namespace VLC_WINRT_APP.Helpers.MusicPlayer
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
             {
                 Locator.MusicPlayerVM.TrackCollection.ResetCollection();
+                await Locator.MusicPlayerVM.BackgroundTrackRepository.Clear();
                 Locator.MusicPlayerVM.TrackCollection.SetPlaylist(trackCollection.Playlist);
                 await PlayTrack(trackCollection.Playlist[0].Id);
             });
