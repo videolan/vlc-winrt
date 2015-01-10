@@ -7,6 +7,9 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
+using VLC_WINRT_APP.Tools;
+using VLC_WINRT_APP.Database.DataRepository;
+using System.Collections.Generic;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -28,6 +31,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 {
     public class TrackCollection : BindableBase
     {
+        private BackgroundTrackRepository _backgroundTrackRepository = new BackgroundTrackRepository();
         private ObservableCollection<TrackItem> _tracksCollection;
         private ObservableCollection<TrackItem> _nonShuffledPlaylist;
         private int _currentTrack;
@@ -126,11 +130,9 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         #region ctors
         public TrackCollection(bool isRuntimePlaylist)
         {
-            if (isRuntimePlaylist && ApplicationSettingsHelper.Contains("SavedPlaylist"))
+            if (isRuntimePlaylist)
             {
-                var ids = ApplicationSettingsHelper.ReadSettingsValue("SavedPlaylist").ToString();
-                string[] trackIds = ids.Split(';');
-                RestorePlaylist(trackIds);
+                RestorePlaylist();
             }
             _tracksCollection = new ObservableCollection<TrackItem>();
             InitializePlaylist();
@@ -182,11 +184,13 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             }
         }
 
-        public void SetPlaylist(ObservableCollection<TrackItem> playlist)
+        public async Task SetPlaylist(ObservableCollection<TrackItem> playlist)
         {
             Playlist = playlist;
 #if WINDOWS_PHONE_APP
-            App.BackgroundAudioHelper.PopulatePlaylist(Locator.MusicPlayerVM.TrackCollection.Playlist, false);
+            var backgroundTracks = BackgroundTaskTools.CreateBackgroundTrackItemList(Locator.MusicPlayerVM.TrackCollection.Playlist.ToList());
+            await Locator.MusicPlayerVM.BackgroundTrackRepository.AddPlaylist(backgroundTracks);
+            await App.BackgroundAudioHelper.PopulatePlaylist(false);
 #endif
         }
 
@@ -224,12 +228,14 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 #endif
         }
 
-        public async Task RestorePlaylist(string[] trackIds)
+        public async Task RestorePlaylist()
         {
+            var playlist = await Locator.MusicPlayerVM.BackgroundTrackRepository.LoadPlaylist();
+            var trackIds = playlist.Select(node => node.Id);
             Playlist = new ObservableCollection<TrackItem>();
-            foreach (string trackId in trackIds.Where(trackId => !string.IsNullOrEmpty(trackId)))
+            foreach (int trackId in trackIds)
             {
-                var trackItem = await MusicLibraryVM._trackDataRepository.LoadTrack(int.Parse(trackId));
+                var trackItem = await MusicLibraryVM._trackDataRepository.LoadTrack(trackId);
                 Playlist.Add(trackItem);
             }
             IsRunning = true;
@@ -238,7 +244,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             if(currentTrack != null)
             CurrentTrack = (int)currentTrack;
             await Locator.MusicPlayerVM.UpdateTrackFromMF();
-            await App.BackgroundAudioHelper.PopulatePlaylist(Playlist, true);
+            await App.BackgroundAudioHelper.PopulatePlaylist(true);
 #endif
             SetActiveTrackProperty();
         }

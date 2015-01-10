@@ -7,6 +7,7 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
+using VLC_WINRT_APP.Database.DataRepository;
 using VLC_WINRT_APP.DataRepository;
 using System;
 using System.Diagnostics;
@@ -59,6 +60,8 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         #endregion
 
         #region public props
+
+        public BackgroundTrackRepository BackgroundTrackRepository { get; set; }
 
         public AlbumItem CurrentAlbum
         {
@@ -141,6 +144,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             : base(mediaService)
         {
             GoToMusicPlayerPage = new GoToMusicPlayerPage();
+            BackgroundTrackRepository = new BackgroundTrackRepository();
         }
 
 
@@ -230,7 +234,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             bool playWithLibVlc = !VLCFileExtensions.MFSupported.Contains(currentTrackFile.FileType.ToLower()) || forceVlcLib;
             if (!playWithLibVlc)
             {
-                App.BackgroundAudioHelper.PlayAudio(track);
+                App.BackgroundAudioHelper.PlayAudio(track.Id);
             }
             else
 #endif

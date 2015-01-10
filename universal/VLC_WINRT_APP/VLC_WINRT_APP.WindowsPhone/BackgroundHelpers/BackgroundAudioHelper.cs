@@ -146,6 +146,12 @@ namespace VLC_WINRT_APP.BackgroundHelpers
                         //Wait for Background Task to be initialized before starting playback
                         Debug.WriteLine("Background Task started");
                         break;
+                    case BackgroundAudioConstants.BackgroundTaskCancelled:
+                        await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+                        {
+                            Locator.MusicPlayerVM.IsPlaying = false;
+                        });
+                        break;
                     case BackgroundAudioConstants.MFFailed:
                         Debug.WriteLine("VLC process is aware MF Background Media Player failed to open the file : " + e.Data[key]);
                         Locator.MusicPlayerVM.Play(true);
@@ -200,24 +206,12 @@ namespace VLC_WINRT_APP.BackgroundHelpers
             deferral.Complete();
         }
 
-        public async Task PopulatePlaylist(ObservableCollection<TrackItem> playlist, bool restorePlaylist)
+        public async Task PopulatePlaylist(bool restorePlaylist)
         {
-            var List = new List<BackgroundTrackItem>();
-            List.AddRange(playlist.Select(t => new BackgroundTrackItem
-            {
-                AlbumName = t.AlbumName,
-                Path = t.Path,
-                ArtistName = t.ArtistName,
-                Name = t.Name,
-                Thumbnail = t.Thumbnail,
-                Duration = t.Duration,
-                Id = t.Id,
-            }));
             if (IsMyBackgroundTaskRunning)
             {
                 ValueSet messageDictionary = new ValueSet();
-                string ls = AudioBackgroundInterface.SerializeObjectListTrack(List);
-                messageDictionary.Add(!restorePlaylist ? BackgroundAudioConstants.ListTrack : BackgroundAudioConstants.RestorePlaylist, ls);
+                messageDictionary.Add(!restorePlaylist ? BackgroundAudioConstants.ListTrack : BackgroundAudioConstants.RestorePlaylist, "");
                 BackgroundMediaPlayer.SendMessageToBackground(messageDictionary);
             }
             await Task.Delay(500);
@@ -225,46 +219,26 @@ namespace VLC_WINRT_APP.BackgroundHelpers
 
         public async Task AddPlaylist(TrackItem trackItem)
         {
-            var backgroundTrackItem = new BackgroundTrackItem()
-            {
-                AlbumName = trackItem.AlbumName,
-                Path = trackItem.Path,
-                ArtistName = trackItem.ArtistName,
-                Name = trackItem.Name,
-                Thumbnail = trackItem.Thumbnail,
-                Duration = trackItem.Duration,
-                Id = trackItem.Id
-            };
             if (IsMyBackgroundTaskRunning)
             {
                 ValueSet messageDictionary = new ValueSet();
-                string ls = AudioBackgroundInterface.SerializeObjectAudioTrack(backgroundTrackItem);
+                //string ls = AudioBackgroundInterface.SerializeObjectAudioTrack(backgroundTrackItem);
+                string ls = "";
                 messageDictionary.Add(BackgroundAudioConstants.AddTrack, ls);
                 BackgroundMediaPlayer.SendMessageToBackground(messageDictionary);
             }
             await Task.Delay(500);
         }
 
-        public void PlayAudio(TrackItem track)
+        public void PlayAudio(int trackIndex)
         {
             Debug.WriteLine("Play button pressed from App");
-            BackgroundTrackItem audiotrack = new BackgroundTrackItem();
-            if (track != null)
-            {
-                audiotrack.AlbumName = track.AlbumName;
-                audiotrack.Path = track.Path;
-                audiotrack.ArtistName = track.ArtistName;
-                audiotrack.Name = track.Name;
-                audiotrack.Thumbnail = track.Thumbnail;
-                audiotrack.Duration = track.Duration;
-                audiotrack.Id = track.Id;
-            }
             if (IsMyBackgroundTaskRunning)
             {
                 try
                 {
                     ValueSet messageDictionary = new ValueSet();
-                    string ts = AudioBackgroundInterface.SerializeObjectAudioTrack(audiotrack);
+                    string ts = trackIndex.ToString();
                     messageDictionary.Add(BackgroundAudioConstants.PlayTrack, ts);
                     BackgroundMediaPlayer.SendMessageToBackground(messageDictionary);
                 }
@@ -275,8 +249,9 @@ namespace VLC_WINRT_APP.BackgroundHelpers
             }
         }
 
-        public void ResetCollection()
+        public async void ResetCollection()
         {
+            await Locator.MusicPlayerVM.BackgroundTrackRepository.Clear();
             if (IsMyBackgroundTaskRunning)
             {
                 ValueSet messageDictionary = new ValueSet();

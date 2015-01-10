@@ -86,6 +86,7 @@
     <Compile Include="BackgroundHelpers\BackgroundAudioConstants.cs" />
     <Compile Include="BackgroundHelpers\BackgroundAudioHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tools\BackgroundTaskTools.cs" />
     <Compile Include="Views\MainPages\MainMusicControls\AlbumsPivotItem.xaml.cs">
       <DependentUpon>AlbumsPivotItem.xaml</DependentUpon>
     </Compile>
@@ -1129,6 +1130,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\app\VLC_WINRT_APP.Database\VLC_WINRT_APP.Database.csproj">
+      <Project>{1E0BF0FC-E5CB-4BDF-918F-D2DE64F7A6C5}</Project>
+      <Name>VLC_WINRT_APP.Database</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\wrapper\libVLCX.WindowsPhone\libVLCX.WindowsPhone.vcxproj">
       <Project>{5d78f68e-c377-449e-a508-5b8e706d0039}</Project>
       <Name>libVLCX.WindowsPhone</Name>

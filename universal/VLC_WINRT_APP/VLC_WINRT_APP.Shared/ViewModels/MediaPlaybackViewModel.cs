@@ -7,6 +7,7 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
+using System.Diagnostics;
 using Windows.Storage;
 using System;
 using Windows.UI.Core;
@@ -142,7 +143,7 @@ namespace VLC_WINRT_APP.ViewModels
         /**
          * Elasped time in milliseconds
          */
-        public Int64 Time
+        public long Time
         {
             get
             {
@@ -151,10 +152,26 @@ namespace VLC_WINRT_APP.ViewModels
                     return 0;
                 return _mediaService.MediaPlayer.time();
 #else
-                if (BackgroundMediaPlayer.Current != null &&
-                    BackgroundMediaPlayer.Current.CurrentState == MediaPlayerState.Playing)
+                if (BackgroundMediaPlayer.Current != null)
                 {
-                    return (long) BackgroundMediaPlayer.Current.Position.TotalMilliseconds;
+                    // CurrentState keeps failing OnCanceled, even though it actually has a state.
+                    // The error is useless for now, so try catch and ignore.
+                    try
+                    {
+                        switch (BackgroundMediaPlayer.Current.CurrentState)
+                        {
+                            case MediaPlayerState.Playing:
+                                return (long)BackgroundMediaPlayer.Current.Position.TotalMilliseconds;
+                            case MediaPlayerState.Closed:
+                                // TODO: Use saved time value to populate time field.
+                                break;
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        return 0;
+                    }
+                    return 0;
                 }
                 else
                 {
@@ -169,16 +186,25 @@ namespace VLC_WINRT_APP.ViewModels
 #if WINDOWS_APP
                 _mediaService.MediaPlayer.setTime(value);
 #else
-                if (BackgroundMediaPlayer.Current != null &&
+                // Same as with "Time", BackgroundMediaPlayer.Current.CurrentState sometimes blows up on OnCancelled. So for now, throw it in a try catch.
+                // This really seems like an WinRT API bug to me...
+                try
+                {
+                    if (BackgroundMediaPlayer.Current != null &&
                     BackgroundMediaPlayer.Current.CurrentState == MediaPlayerState.Playing)
-                {
-                    BackgroundMediaPlayer.Current.Position = TimeSpan.FromMilliseconds(value);
+                    {
+                        BackgroundMediaPlayer.Current.Position = TimeSpan.FromMilliseconds(value);
+                    }
+                    else
+                    {
+                        if (_mediaService.MediaPlayer == null)
+                            return;
+                        _mediaService.MediaPlayer.setTime(value);
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    if (_mediaService.MediaPlayer == null)
-                        return;
-                    _mediaService.MediaPlayer.setTime(value);
+                    Debug.WriteLine("Error with position : " + ex.Message);
                 }
 #endif
             }
@@ -194,13 +220,19 @@ namespace VLC_WINRT_APP.ViewModels
                     return 0.0f;
                 return _mediaService.MediaPlayer.position();
 #else
-                if (BackgroundMediaPlayer.Current != null &&
-                    BackgroundMediaPlayer.Current.CurrentState == MediaPlayerState.Playing)
+                if (BackgroundMediaPlayer.Current != null)
                 {
-                    var pos = (BackgroundMediaPlayer.Current.Position.TotalMilliseconds /
+                    switch (BackgroundMediaPlayer.Current.CurrentState)
+                    {
+                        case MediaPlayerState.Playing:
+                            var pos = (BackgroundMediaPlayer.Current.Position.TotalMilliseconds /
                                 BackgroundMediaPlayer.Current.NaturalDuration.TotalMilliseconds);
-                    float posfloat = (float)pos;
-                    return posfloat;
+                            float posfloat = (float)pos;
+                            return posfloat;
+                        case MediaPlayerState.Closed:
+                            break;
+                    }
+                    return 0;
                 }
                 else
                 {
@@ -217,11 +249,17 @@ namespace VLC_WINRT_APP.ViewModels
 #if WINDOWS_APP
                 _mediaService.MediaPlayer.setPosition(value);
 #else
-                if (BackgroundMediaPlayer.Current != null && BackgroundMediaPlayer.Current.CurrentState == MediaPlayerState.Playing)
+                if (BackgroundMediaPlayer.Current != null)
                 {
-                    if (BackgroundMediaPlayer.Current.NaturalDuration.TotalMilliseconds != 0)
+                    switch (BackgroundMediaPlayer.Current.CurrentState)
                     {
-                        BackgroundMediaPlayer.Current.Position = TimeSpan.FromMilliseconds(value * BackgroundMediaPlayer.Current.NaturalDuration.TotalMilliseconds);
+                        case MediaPlayerState.Playing:
+                        case MediaPlayerState.Closed:
+                            if (BackgroundMediaPlayer.Current.NaturalDuration.TotalMilliseconds != 0)
+                            {
+                                BackgroundMediaPlayer.Current.Position = TimeSpan.FromMilliseconds(value * BackgroundMediaPlayer.Current.NaturalDuration.TotalMilliseconds);
+                            }
+                            break;
                     }
                 }
                 else
