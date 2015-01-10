@@ -6,6 +6,7 @@ using Windows.ApplicationModel.Background;
 using Windows.Foundation.Collections;
 using Windows.Media;
 using Windows.Media.Playback;
+using VLC_WINRT_APP.Database.DataRepository;
 
 namespace VLC_WINRT_APP.BackgroundAudioPlayer
 {
@@ -28,7 +29,7 @@ namespace VLC_WINRT_APP.BackgroundAudioPlayer
         private ForegroundAppStatus foregroundAppState = ForegroundAppStatus.Unknown;
         private AutoResetEvent BackgroundTaskStarted = new AutoResetEvent(false);
         private bool backgroundtaskrunning = false;
-
+        private BackgroundTrackRepository _backgroundTrackRepository = new BackgroundTrackRepository();
         /// <summary>
         /// Property to hold current playlist
         /// </summary>
@@ -87,6 +88,7 @@ namespace VLC_WINRT_APP.BackgroundAudioPlayer
             BackgroundTaskStarted.Set();
             backgroundtaskrunning = true;
 
+            Playlist.PopulatePlaylist();
             ApplicationSettingsHelper.SaveSettingsValue(BackgroundAudioConstants.BackgroundTaskState, BackgroundAudioConstants.BackgroundTaskRunning);
             deferral = taskInstance.GetDeferral();
         }
@@ -113,8 +115,9 @@ namespace VLC_WINRT_APP.BackgroundAudioPlayer
             try
             {
                 //save state
-                ApplicationSettingsHelper.SaveSettingsValue(BackgroundAudioConstants.CurrentTrack, Playlist.CurrentTrack);
+                ApplicationSettingsHelper.SaveSettingsValue(BackgroundAudioConstants.CurrentTrack, Playlist.CurrentTrackIndex);
                 ApplicationSettingsHelper.SaveSettingsValue(BackgroundAudioConstants.Position, BackgroundMediaPlayer.Current.Position.ToString());
+                ApplicationSettingsHelper.SaveSettingsValue(BackgroundAudioConstants.Time, BackgroundMediaPlayer.Current.NaturalDuration.ToString());
                 ApplicationSettingsHelper.SaveSettingsValue(BackgroundAudioConstants.BackgroundTaskState, BackgroundAudioConstants.BackgroundTaskCancelled);
                 ApplicationSettingsHelper.SaveSettingsValue(BackgroundAudioConstants.AppState, Enum.GetName(typeof(ForegroundAppStatus), foregroundAppState));
                 backgroundtaskrunning = false;
@@ -126,6 +129,11 @@ namespace VLC_WINRT_APP.BackgroundAudioPlayer
                 //clear objects task cancellation can happen uninterrupted
                 playlistManager.ResetCollection();
                 playlistManager = null;
+
+                // Send message to foreground task (if it's around) that this task was cancelled :(
+                ValueSet message = new ValueSet { { BackgroundAudioConstants.BackgroundTaskCancelled, "" } };
+                BackgroundMediaPlayer.SendMessageToForeground(message);
+
                 BackgroundMediaPlayer.Shutdown(); // shutdown media pipeline
             }
             catch (Exception ex)
@@ -241,7 +249,7 @@ namespace VLC_WINRT_APP.BackgroundAudioPlayer
         void playList_TrackChanged(object sender, object args)
         {
             UpdateUVCOnNewTrack();
-            ApplicationSettingsHelper.SaveSettingsValue(BackgroundAudioConstants.CurrentTrack, Playlist.CurrentTrack);
+            ApplicationSettingsHelper.SaveSettingsValue(BackgroundAudioConstants.CurrentTrack, Playlist.CurrentTrackIndex);
 
             if (foregroundAppState == ForegroundAppStatus.Active)
             {
@@ -306,7 +314,7 @@ namespace VLC_WINRT_APP.BackgroundAudioPlayer
                     case BackgroundAudioConstants.AppSuspended:
                         Debug.WriteLine("App suspending"); // App is suspended, you can save your task state at this point
                         foregroundAppState = ForegroundAppStatus.Suspended;
-                        ApplicationSettingsHelper.SaveSettingsValue(BackgroundAudioConstants.CurrentTrack, Playlist.CurrentTrack);
+                        ApplicationSettingsHelper.SaveSettingsValue(BackgroundAudioConstants.CurrentTrack, Playlist.CurrentTrackIndex);
                         break;
                     case BackgroundAudioConstants.AppResumed:
                         Debug.WriteLine("App resuming"); // App is resumed, now subscribe to message channel
@@ -324,11 +332,8 @@ namespace VLC_WINRT_APP.BackgroundAudioPlayer
                         object track = new object();
                         if (e.Data.TryGetValue(BackgroundAudioConstants.AddTrack, out track))
                         {
-                            string xmlTrack = track.ToString();
-                            BackgroundTrackItem trackItem =
-                                AudioBackgroundInterface.DeserializeObjectAudioTrack(xmlTrack) as BackgroundTrackItem;
-                            if(trackItem != null)
-                                Playlist.AddTrack(trackItem);
+                            // We should have the newest playlist with the new track already. If so, just repopulate the playlist.
+                            Playlist.PopulatePlaylist();
                         }
                         break;
                     case BackgroundAudioConstants.PlayTrack: //Foreground App process has signalled that it is ready for playback
@@ -339,11 +344,8 @@ namespace VLC_WINRT_APP.BackgroundAudioPlayer
                             string s = obj as string;
                             if (!string.IsNullOrEmpty(s))
                             {
-                                BackgroundTrackItem t = AudioBackgroundInterface.DeserializeObjectAudioTrack(s) as BackgroundTrackItem;
-                                if (t != null)
-                                {
-                                    Playlist.PlayTrack(t);
-                                }
+                                int t = Convert.ToInt32(s);
+                                Playlist.PlayTrack(t);
                             }
                         }
                         break;
@@ -352,40 +354,20 @@ namespace VLC_WINRT_APP.BackgroundAudioPlayer
                         Object nobj = new Object();
                         if (e.Data.TryGetValue(BackgroundAudioConstants.ListTrack, out nobj))
                         {
-                            string s = nobj as string;
-                            if (!string.IsNullOrEmpty(s))
-                            {
-                                var l = AudioBackgroundInterface.DeserializeObjectListTrack(s) as List<BackgroundTrackItem>;
-                                if (l != null)
-                                {
-                                    Playlist.ResetCollection();
-                                    foreach (var t in l)
-                                    {
-                                        Playlist.AddTrack(t);
-                                    }
-                                }
-                            }
+                            Playlist.ResetCollection();
+                            Playlist.PopulatePlaylist();
                         }
                         break;
                     case BackgroundAudioConstants.RestorePlaylist: //Foreground App process updated List Track
                         Debug.WriteLine("Restoring ListTrack");
-                        Object playlist = new Object();
-                        if (e.Data.TryGetValue(BackgroundAudioConstants.RestorePlaylist, out playlist))
+                        Playlist.PopulatePlaylist();
+                        var currentTrack =
+                            ApplicationSettingsHelper.ReadSettingsValue(BackgroundAudioConstants.CurrentTrack);
+                        if (currentTrack == null)
                         {
-                            string s = playlist as string;
-                            if (!string.IsNullOrEmpty(s))
-                            {
-                                var l = AudioBackgroundInterface.DeserializeObjectListTrack(s) as List<BackgroundTrackItem>;
-                                if (l != null)
-                                {
-                                    foreach (var t in l)
-                                    {
-                                        Playlist.AddTrack(t);
-                                    }
-                                }
-                                Playlist.CurrentTrack = (int)ApplicationSettingsHelper.ReadSettingsValue(BackgroundAudioConstants.CurrentTrack);
-                            }
+                            break;
                         }
+                        Playlist.CurrentTrack = (int)currentTrack;
                         break;
                     case BackgroundAudioConstants.SkipNext: // User has chosen to skip track from app context.
                         Debug.WriteLine("Skipping to next");

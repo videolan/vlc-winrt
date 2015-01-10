@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.22310.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libaccess_winrt_plugin", "..\modules\libaccess_winrt_plugin\libaccess_winrt_plugin.vcxproj", "{A3345ED6-A13A-487B-9EF3-412FED4916D1}"
 EndProject
@@ -57,10 +57,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VLC_WINRT_APP.BackgroundAud
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "VLC_WINRT_APP.SharedBackground", "..\universal\VLC_WINRT_APP\VLC_WINRT_APP.SharedBackground\VLC_WINRT_APP.SharedBackground.shproj", "{E53727A5-95F9-4DAC-A24F-18437811B5B0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VLC_WINRT_APP.Database", "VLC_WINRT_APP.Database\VLC_WINRT_APP.Database.csproj", "{1E0BF0FC-E5CB-4BDF-918F-D2DE64F7A6C5}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		..\universal\VLC_WINRT_APP\VLC_WINRT_APP.Shared\VLC_WINRT_APP.Shared.projitems*{db1dea15-00b8-4707-8c70-53431c4fa754}*SharedItemsImports = 13
-		..\universal\VLC_WINRT_APP\VLC_WINRT_APP.Shared\VLC_WINRT_APP.Shared.projitems*{b1a5a4dc-2c9f-4343-af3f-372944c4607d}*SharedItemsImports = 4
 		..\modules\libaccess_winrt_plugin.Shared\libaccess_winrt_plugin.Shared.vcxitems*{544ebd72-c9e2-4c3f-9038-36683f843241}*SharedItemsImports = 4
 		..\wrapper\libVLCX.Shared\libVLCX.Shared.vcxitems*{22532381-be8b-40e0-a881-22ce24342d5a}*SharedItemsImports = 4
 		..\wrapper\libVLCX.Shared\libVLCX.Shared.vcxitems*{5d78f68e-c377-449e-a508-5b8e706d0039}*SharedItemsImports = 4
@@ -331,6 +332,30 @@ Global
 		{6BDABA8A-B559-4007-A17F-42125D3AA7A3}.Release|x64.ActiveCfg = Release|Any CPU
 		{6BDABA8A-B559-4007-A17F-42125D3AA7A3}.Release|x86.ActiveCfg = Release|x86
 		{6BDABA8A-B559-4007-A17F-42125D3AA7A3}.Release|x86.Build.0 = Release|x86
+		{1E0BF0FC-E5CB-4BDF-918F-D2DE64F7A6C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E0BF0FC-E5CB-4BDF-918F-D2DE64F7A6C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E0BF0FC-E5CB-4BDF-918F-D2DE64F7A6C5}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{1E0BF0FC-E5CB-4BDF-918F-D2DE64F7A6C5}.Debug|ARM.Build.0 = Debug|Any CPU
+		{1E0BF0FC-E5CB-4BDF-918F-D2DE64F7A6C5}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{1E0BF0FC-E5CB-4BDF-918F-D2DE64F7A6C5}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{1E0BF0FC-E5CB-4BDF-918F-D2DE64F7A6C5}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{1E0BF0FC-E5CB-4BDF-918F-D2DE64F7A6C5}.Debug|Win32.Build.0 = Debug|Any CPU
+		{1E0BF0FC-E5CB-4BDF-918F-D2DE64F7A6C5}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{1E0BF0FC-E5CB-4BDF-918F-D2DE64F7A6C5}.Debug|x64.Build.0 = Debug|Any CPU
+		{1E0BF0FC-E5CB-4BDF-918F-D2DE64F7A6C5}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{1E0BF0FC-E5CB-4BDF-918F-D2DE64F7A6C5}.Debug|x86.Build.0 = Debug|Any CPU
+		{1E0BF0FC-E5CB-4BDF-918F-D2DE64F7A6C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E0BF0FC-E5CB-4BDF-918F-D2DE64F7A6C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E0BF0FC-E5CB-4BDF-918F-D2DE64F7A6C5}.Release|ARM.ActiveCfg = Release|Any CPU
+		{1E0BF0FC-E5CB-4BDF-918F-D2DE64F7A6C5}.Release|ARM.Build.0 = Release|Any CPU
+		{1E0BF0FC-E5CB-4BDF-918F-D2DE64F7A6C5}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{1E0BF0FC-E5CB-4BDF-918F-D2DE64F7A6C5}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{1E0BF0FC-E5CB-4BDF-918F-D2DE64F7A6C5}.Release|Win32.ActiveCfg = Release|Any CPU
+		{1E0BF0FC-E5CB-4BDF-918F-D2DE64F7A6C5}.Release|Win32.Build.0 = Release|Any CPU
+		{1E0BF0FC-E5CB-4BDF-918F-D2DE64F7A6C5}.Release|x64.ActiveCfg = Release|Any CPU
+		{1E0BF0FC-E5CB-4BDF-918F-D2DE64F7A6C5}.Release|x64.Build.0 = Release|Any CPU
+		{1E0BF0FC-E5CB-4BDF-918F-D2DE64F7A6C5}.Release|x86.ActiveCfg = Release|Any CPU
+		{1E0BF0FC-E5CB-4BDF-918F-D2DE64F7A6C5}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

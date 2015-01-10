@@ -9,12 +9,14 @@ using Windows.Foundation.Collections;
 using Windows.Media;
 using Windows.Media.Playback;
 using Windows.Storage;
+using VLC_WINRT_APP.Database.DataRepository;
 
 namespace VLC_WINRT_APP.BackgroundAudioPlayer
 {
     public sealed class BackgroundTrackCollection
     {
         private SystemMediaTransportControls systemmediatransportcontrol;
+        private BackgroundTrackRepository _backgroundTrackRepository = new BackgroundTrackRepository();
         #region public properties
         public int Id { get; set; }
 
@@ -22,6 +24,11 @@ namespace VLC_WINRT_APP.BackgroundAudioPlayer
 
         public int CurrentTrack { get; set; }
         public BackgroundTrackItem CurrentTrackItem { get; set; }
+
+        public int CurrentTrackIndex
+        {
+            get { return Playlist.IndexOf(CurrentTrackItem); }
+        }
 
         public bool CanGoPrevious
         {
@@ -113,6 +120,30 @@ namespace VLC_WINRT_APP.BackgroundAudioPlayer
             ApplicationSettingsHelper.ReadResetSettingsValue("SavedPlaylist");
         }
 
+        public async void PopulatePlaylist()
+        {
+            var playlist = await _backgroundTrackRepository.LoadPlaylist();
+            foreach (var item in playlist)
+            {
+                Playlist.Add(new BackgroundTrackItem()
+                {
+                    AlbumId = item.AlbumId,
+                    AlbumName = item.AlbumName,
+                    ArtistId = item.ArtistId,
+                    ArtistName = item.ArtistName,
+                    CurrentPosition = item.CurrentPosition,
+                    Duration = item.Duration,
+                    Favorite = item.Favorite,
+                    Id = item.Id,
+                    Index = item.Index,
+                    IsCurrentPlaying = item.IsCurrentPlaying,
+                    Thumbnail = item.Thumbnail,
+                    Name = item.Name,
+                    Path = item.Path
+                });
+            }
+        }
+
         public void SetActiveTrackProperty()
         {
             foreach (var BackgroundTrackItem in Playlist)
@@ -142,21 +173,19 @@ namespace VLC_WINRT_APP.BackgroundAudioPlayer
             Play();
         }
 
-        public async void PlayTrack(BackgroundTrackItem track)
+        public void PlayTrack(int trackIndex)
         {
-            var trackCol = Playlist.FirstOrDefault(x => x.Id == track.Id);
-            if (trackCol != null)
-            {
-                CurrentTrack = Playlist.IndexOf(trackCol);
-                Play();
-            }
+            var trackCol = Playlist.FirstOrDefault(node => node.Id == trackIndex);
+            if (trackCol == null) return;
+            CurrentTrack = trackCol.Id;
+            Play();
         }
 
         public async void Play()
         {
             IsRunning = true;
-            CurrentTrackItem = Playlist[CurrentTrack];
-            var file = await StorageFile.GetFileFromPathAsync(Playlist[CurrentTrack].Path);
+            CurrentTrackItem = Playlist.FirstOrDefault(node => node.Id == CurrentTrack);
+            var file = await StorageFile.GetFileFromPathAsync(CurrentTrackItem.Path);
             mediaPlayer.SetFileSource(file);
 
             systemmediatransportcontrol = SystemMediaTransportControls.GetForCurrentView();

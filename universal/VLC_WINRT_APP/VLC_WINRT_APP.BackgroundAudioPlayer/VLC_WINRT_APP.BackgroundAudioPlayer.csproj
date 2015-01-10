@@ -97,6 +97,12 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\app\VLC_WINRT_APP.Database\VLC_WINRT_APP.Database.csproj">
+      <Project>{1e0bf0fc-e5cb-4bdf-918f-d2de64f7a6c5}</Project>
+      <Name>VLC_WINRT_APP.Database</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>
   </PropertyGroup>
