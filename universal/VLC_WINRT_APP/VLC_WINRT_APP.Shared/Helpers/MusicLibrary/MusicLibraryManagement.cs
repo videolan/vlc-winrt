@@ -122,10 +122,14 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             }
         }
 
-        private static async Task<List<StorageFile>> CreateDatabaseFromMusicFolder(StorageFolder musicFolder, bool routineCheck = false)
+        private static async Task CreateDatabaseFromMusicFolder(StorageFolder musicFolder, bool routineCheck = false)
         {
             try
             {
+                if (Locator.VideoVm.IsPlaying || Locator.MusicPlayerVM.TrackCollection.IsRunning)
+                {
+                    return;
+                }
                 var folders = await musicFolder.GetFoldersAsync();
                 if (folders.Any())
                 {
@@ -164,7 +168,6 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             {
                 ExceptionHelper.CreateMemorizedException("MusicLibraryManagement.CreateDatabaseFromMusicFolder", e);
             }
-            return null;
         }
 
         private static async Task CreateDatabaseFromMusicFile(StorageFile item)
