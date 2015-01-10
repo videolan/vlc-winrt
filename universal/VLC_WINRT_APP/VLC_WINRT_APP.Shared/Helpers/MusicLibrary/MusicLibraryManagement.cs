@@ -6,6 +6,7 @@ using System.Dynamic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Windows.Media.Playback;
 using XboxMusicLibrary.Models;
 #if WINDOWS_PHONE_APP
 using Windows.Phone.ApplicationModel;
@@ -126,7 +127,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
         {
             try
             {
-                if (Locator.VideoVm.IsPlaying)
+                if (Locator.VideoVm.IsPlaying || (BackgroundMediaPlayer.Current != null && BackgroundMediaPlayer.Current.CurrentState != MediaPlayerState.Stopped))
                 {
                     return;
                 }
