@@ -258,7 +258,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                         IsFromSandbox = true
                     };
 
-                    if (album.LoadingState == LoadingState.NotLoaded)
+                    if (album.LoadingState == LoadingState.NotLoaded && !album.IsPictureLoaded)
                     {
                         album.LoadingState = LoadingState.Loading;
                         await SetAlbumCover(album, track.Path, false, mediaService);
