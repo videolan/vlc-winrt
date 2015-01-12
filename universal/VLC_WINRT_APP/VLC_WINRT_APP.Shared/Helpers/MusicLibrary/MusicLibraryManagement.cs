@@ -131,7 +131,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                     && BackgroundMediaPlayer.Current.CurrentState != MediaPlayerState.Stopped 
                     && BackgroundMediaPlayer.Current.CurrentState != MediaPlayerState.Closed))
                 {
-                    return;
+                    await Locator.MusicLibraryVM.ContinueIndexing.Task;
                 }
                 var folders = await musicFolder.GetFoldersAsync();
                 if (folders.Any())

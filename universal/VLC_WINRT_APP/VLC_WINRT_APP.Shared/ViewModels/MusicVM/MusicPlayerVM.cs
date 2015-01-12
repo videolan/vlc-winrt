@@ -234,6 +234,8 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             bool playWithLibVlc = !VLCFileExtensions.MFSupported.Contains(currentTrackFile.FileType.ToLower()) || forceVlcLib;
             if (!playWithLibVlc)
             {
+                if (Locator.MusicLibraryVM.ContinueIndexing == null)
+                    Locator.MusicLibraryVM.ContinueIndexing = new TaskCompletionSource<bool>();
                 App.BackgroundAudioHelper.PlayAudio(track.Id);
             }
             else

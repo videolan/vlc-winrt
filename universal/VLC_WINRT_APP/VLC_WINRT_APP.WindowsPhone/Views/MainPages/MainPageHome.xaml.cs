@@ -77,6 +77,10 @@ namespace VLC_WINRT_APP.Views.MainPages
                 Task.Run(async () => await Locator.MusicLibraryVM.Initialize());
             }
             SdCardTest();
+            if (Locator.MusicLibraryVM.ContinueIndexing != null)
+            {
+                Locator.MusicLibraryVM.ContinueIndexing.SetResult(true);
+            }
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
