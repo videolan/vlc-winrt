@@ -122,6 +122,7 @@ namespace VLC_WINRT_APP.BackgroundAudioPlayer
 
         public async void PopulatePlaylist()
         {
+            Debug.WriteLine("Background audio : Populating playlist");
             var playlist = await _backgroundTrackRepository.LoadPlaylist();
             foreach (var item in playlist)
             {
@@ -142,6 +143,7 @@ namespace VLC_WINRT_APP.BackgroundAudioPlayer
                     Path = item.Path
                 });
             }
+            Debug.WriteLine("Background audio : playlist tracks count : " + Playlist.Count);
         }
 
         public void SetActiveTrackProperty()
