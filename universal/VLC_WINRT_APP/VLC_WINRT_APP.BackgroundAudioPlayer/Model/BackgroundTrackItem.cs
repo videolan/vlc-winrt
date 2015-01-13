@@ -19,12 +19,20 @@ namespace VLC_WINRT_APP.BackgroundAudioPlayer
         public int Index { get; set; }
 
         public TimeSpan Duration { get; set; }
-        public bool Favorite { get; set; }
 
-        public string Thumbnail { get; set; }
-
-        public int CurrentPosition { get; set; }
-    
         public bool IsCurrentPlaying { get; set; }
+
+        public BackgroundTrackItem(int id, int albumId, int artistId, string artistName, string albumName, string name,
+            string path)
+        {
+            Id = id;
+            AlbumId = albumId;
+            ArtistId = artistId;
+            ArtistName = artistName;
+            AlbumName = albumName;
+            Name = name;
+            Path = path;
+        }
+        public BackgroundTrackItem() { }
     }
 }
