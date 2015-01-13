@@ -222,9 +222,6 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         public void Add(TrackItem trackItem, bool isPlayingPlaylist)
         {
             Playlist.Add(trackItem);
-#if WINDOWS_PHONE_APP
-            App.BackgroundAudioHelper.AddPlaylist(trackItem);
-#endif
         }
 
         public async Task RestorePlaylist()
