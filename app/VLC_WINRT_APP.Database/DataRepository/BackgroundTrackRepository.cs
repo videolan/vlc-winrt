@@ -14,7 +14,7 @@ namespace VLC_WINRT_APP.Database.DataRepository
         private static readonly string DbPath =
 Path.Combine(
 Windows.Storage.ApplicationData.Current.LocalFolder.Path,
-"mediavlc.sqlite");
+"background.sqlite");
 
         public BackgroundTrackRepository()
         {
