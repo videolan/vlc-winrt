@@ -37,16 +37,10 @@ Windows.Storage.ApplicationData.Current.LocalFolder.Path,
             }
         }
 
-        public Task Add(BackgroundTrackItem track)
+        public void Add(BackgroundTrackItem track)
         {
-            var connection = new SQLiteAsyncConnection(DbPath);
-            return connection.InsertAsync(track);
-        }
-
-        public Task AddPlaylist(List<BackgroundTrackItem> tracks)
-        {
-            var connection = new SQLiteAsyncConnection(DbPath);
-            return connection.InsertAllAsync(tracks);
+            var connection = new SQLiteConnection(DbPath);
+            connection.Insert(track);
         }
 
         public async Task<List<BackgroundTrackItem>> LoadPlaylist()
