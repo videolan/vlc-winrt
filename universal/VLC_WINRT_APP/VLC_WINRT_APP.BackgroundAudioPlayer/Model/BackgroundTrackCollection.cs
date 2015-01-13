@@ -126,22 +126,8 @@ namespace VLC_WINRT_APP.BackgroundAudioPlayer
             var playlist = await _backgroundTrackRepository.LoadPlaylist();
             foreach (var item in playlist)
             {
-                Playlist.Add(new BackgroundTrackItem()
-                {
-                    AlbumId = item.AlbumId,
-                    AlbumName = item.AlbumName,
-                    ArtistId = item.ArtistId,
-                    ArtistName = item.ArtistName,
-                    CurrentPosition = item.CurrentPosition,
-                    Duration = item.Duration,
-                    Favorite = item.Favorite,
-                    Id = item.Id,
-                    Index = item.Index,
-                    IsCurrentPlaying = item.IsCurrentPlaying,
-                    Thumbnail = item.Thumbnail,
-                    Name = item.Name,
-                    Path = item.Path
-                });
+                Playlist.Add(new BackgroundTrackItem(item.Id, item.AlbumId, item.ArtistId, item.ArtistName,
+                    item.AlbumName, item.Name, item.Path));
             }
             Debug.WriteLine("Background audio : playlist tracks count : " + Playlist.Count);
         }
