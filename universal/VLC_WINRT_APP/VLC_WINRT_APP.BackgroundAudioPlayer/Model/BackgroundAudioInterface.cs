@@ -1,9 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using System.Runtime.Serialization.Json;
 using System.Xml.Serialization;
-using Windows.Data.Json;
-using Newtonsoft.Json;
 
 namespace VLC_WINRT_APP.BackgroundAudioPlayer
 {
