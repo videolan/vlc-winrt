@@ -31,7 +31,6 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 {
     public class TrackCollection : BindableBase
     {
-        private BackgroundTrackRepository _backgroundTrackRepository = new BackgroundTrackRepository();
         private ObservableCollection<TrackItem> _tracksCollection;
         private ObservableCollection<TrackItem> _nonShuffledPlaylist;
         private int _currentTrack;
