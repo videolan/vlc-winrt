@@ -29,10 +29,12 @@ namespace VLC_WINRT_APP.Commands.Music
             if (album.Favorite)
             {
                 Locator.MusicLibraryVM.FavoriteAlbums.Add(album);
+                Locator.MusicLibraryVM.RandomAlbums.Add(album);
             }
             else if (Locator.MusicLibraryVM.FavoriteAlbums.Contains(album))
             {
                 Locator.MusicLibraryVM.FavoriteAlbums.Remove(album);
+                Locator.MusicLibraryVM.RandomAlbums.Remove(album);
             }
             // Update database;
             await albumDataRepository.Update(album);
