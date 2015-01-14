@@ -68,28 +68,27 @@ namespace VLC_WINRT_APP.Helpers
                         BitmapEncoderGuid = BitmapEncoder.GifEncoderId;
                         break;
                 }
-                StorageFolder videoPic =
-                    await
-                        ApplicationData.Current.LocalFolder.CreateFolderAsync("videoPic",
-                            CreationCollisionOption.OpenIfExists);
+                StorageFolder videoPic = await ApplicationData.Current.LocalFolder.CreateFolderAsync("videoPic", CreationCollisionOption.OpenIfExists);
                 LogHelper.Log("THUMBNAILER VIDEO: opening file for videoid:" + fileName);
                 var file = await videoPic.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
                 using (IRandomAccessStream stream = await file.OpenAsync(FileAccessMode.ReadWrite))
                 {
                     BitmapEncoder encoder = await BitmapEncoder.CreateAsync(BitmapEncoderGuid, stream);
-                    Stream pixelStream = WB.PixelBuffer.AsStream();
-                    byte[] pixels = new byte[pixelStream.Length];
-                    await pixelStream.ReadAsync(pixels, 0, pixels.Length);
-                    encoder.SetPixelData(BitmapPixelFormat.Bgra8, BitmapAlphaMode.Ignore,
-                        (uint)WB.PixelWidth,
-                        (uint)WB.PixelHeight,
-                        96.0,
-                        96.0,
-                        pixels);
-                    await encoder.FlushAsync();
-                    stream.Dispose();
-                    pixelStream.Dispose();
+                    using (Stream pixelStream = WB.PixelBuffer.AsStream())
+                    {
+                        byte[] pixels = new byte[pixelStream.Length];
+                        await pixelStream.ReadAsync(pixels, 0, pixels.Length);
+                        encoder.SetPixelData(BitmapPixelFormat.Bgra8, BitmapAlphaMode.Ignore,
+                            (uint) WB.PixelWidth,
+                            (uint) WB.PixelHeight,
+                            96.0,
+                            96.0,
+                            pixels);
+                        await pixelStream.FlushAsync();
+                    }
                     LogHelper.Log("THUMBNAILER VIDEO: Dispose streams for videoid:" + fileName);
+                    await encoder.FlushAsync();
+                    await stream.FlushAsync();
                 }
             }
             catch (Exception e)
