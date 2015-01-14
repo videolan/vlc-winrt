@@ -144,21 +144,6 @@ namespace VLC_WINRT_APP.BackgroundAudioPlayer
             Debug.WriteLine("Background audio : playlist tracks count : " + Playlist.Count);
         }
 
-        public void SetActiveTrackProperty()
-        {
-            foreach (var BackgroundTrackItem in Playlist)
-            {
-                if (Playlist[CurrentTrack].Id == BackgroundTrackItem.Id)
-                {
-                    BackgroundTrackItem.IsCurrentPlaying = true;
-                }
-                else
-                {
-                    BackgroundTrackItem.IsCurrentPlaying = false;
-                }
-            }
-        }
-
         public void SkipToPrevious()
         {
             if (!CanGoPrevious) return;
