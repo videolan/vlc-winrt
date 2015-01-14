@@ -305,7 +305,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             {
                 var lastFmClient = new LastFmClient();
                 var artistInformation = await lastFmClient.GetArtistInfo(artist.Name);
-                biography = artistInformation.Biography;
+                biography = artistInformation != null ? artistInformation.Biography : String.Empty;
             }
             catch
             {
