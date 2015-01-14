@@ -213,7 +213,6 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                 }
             }
             IsShuffled = !IsShuffled;
-            CurrentTrack = Playlist.IndexOf(Playlist.FirstOrDefault(x => x.IsCurrentPlaying == true));
             await App.BackgroundAudioHelper.ResetCollection(ResetType.ShuffleReset);
             var backgorundTracks = BackgroundTaskTools.CreateBackgroundTrackItemList(Playlist.ToList());
             await App.BackgroundAudioHelper.AddToPlaylist(backgorundTracks);
