@@ -223,6 +223,7 @@ namespace VLC_WINRT_APP.Services.RunTime
             _isAudioMedia = isAudioMedia;
         }
 
+
         private static async Task<string> GetToken(string filePath)
         {
             var file = await StorageFile.GetFileFromPathAsync(filePath);
