@@ -20,7 +20,7 @@ namespace VLC_WINRT_APP.Helpers
             LogFile = await ApplicationData.Current.LocalFolder.CreateFileAsync("LogFile.txt", CreationCollisionOption.OpenIfExists);
             if (signalUpdate)
             {
-                FileIO.WriteTextAsync(LogFile, "App updated on " + DateTime.Now.ToString());
+                await FileIO.WriteTextAsync(LogFile, "App updated on " + DateTime.Now.ToString());
                 signalUpdate = false;
             }
             Log("------------------------------------------");

@@ -43,7 +43,7 @@ namespace VLC_WINRT_APP.Views.MainPages
             }
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
             if (e.NavigationMode == NavigationMode.New)
@@ -67,16 +67,16 @@ namespace VLC_WINRT_APP.Views.MainPages
                 }
             }
             HardwareButtons.BackPressed += HardwareButtonsOnBackPressed;
-            AppBarHelper.UpdateAppBar(typeof(MainPageHome), MainPivot.SelectedIndex);
+            await AppBarHelper.UpdateAppBar(typeof(MainPageHome), MainPivot.SelectedIndex);
             if (Locator.VideoLibraryVM.LoadingState == LoadingState.NotLoaded)
             {
-                Task.Run(async () => await Locator.VideoLibraryVM.Initialize());
+                var _ = Task.Run(async () => await Locator.VideoLibraryVM.Initialize());
             }
             if (Locator.MusicLibraryVM.LoadingState == LoadingState.NotLoaded)
             {
-                Task.Run(async () => await Locator.MusicLibraryVM.Initialize());
+                var _ = Task.Run(async () => await Locator.MusicLibraryVM.Initialize());
             }
-            SdCardTest();
+            await SdCardTest();
             if (Locator.MusicLibraryVM.ContinueIndexing != null)
             {
                 Locator.MusicLibraryVM.ContinueIndexing.SetResult(true);
@@ -157,9 +157,9 @@ namespace VLC_WINRT_APP.Views.MainPages
             App.ApplicationFrame.Navigate(typeof(historyvideo));
         }
 
-        private void MainPivot_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        private async void MainPivot_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            AppBarHelper.UpdateAppBar(typeof(MainPageHome), MainPivot.SelectedIndex);
+            await AppBarHelper.UpdateAppBar(typeof(MainPageHome), MainPivot.SelectedIndex);
         }
     }
 }

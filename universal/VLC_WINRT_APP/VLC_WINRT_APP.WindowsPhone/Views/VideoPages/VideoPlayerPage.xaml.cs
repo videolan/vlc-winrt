@@ -61,7 +61,7 @@ namespace VLC_WINRT_APP.Views.VideoPages
             }
         }
 
-        protected override async void OnNavigatingFrom(NavigatingCancelEventArgs e)
+        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
             base.OnNavigatingFrom(e);
             HardwareButtons.BackPressed -= HardwareButtonsOnBackPressed;

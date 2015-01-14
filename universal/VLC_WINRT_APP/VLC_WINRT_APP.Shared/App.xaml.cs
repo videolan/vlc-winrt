@@ -116,7 +116,7 @@ namespace VLC_WINRT_APP
                 Locator.MainVM.IsInternet = isinternet;
             });
 #if WINDOWS_PHONE_APP
-            BackgroundAudioHelper.InitBackgroundAudio();
+            await BackgroundAudioHelper.InitBackgroundAudio();
 #endif
         }
 

@@ -24,7 +24,7 @@ namespace VLC_WINRT_APP.BackgroundHelpers
         private bool isMyBackgroundTaskRunning = false;
         DispatcherTimer dispatchTimer = new DispatcherTimer();
 
-        public void InitBackgroundAudio()
+        public async Task InitBackgroundAudio()
         {
             App.Current.Suspending += ForegroundApp_Suspending;
             App.Current.Resuming += ForegroundApp_Resuming;
@@ -35,7 +35,7 @@ namespace VLC_WINRT_APP.BackgroundHelpers
             {
                 if (!dispatchTimer.IsEnabled)
                 {
-                    App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                     {
                         Locator.MusicPlayerVM.IsPlaying = true;
                         dispatchTimer.Start();
@@ -91,9 +91,9 @@ namespace VLC_WINRT_APP.BackgroundHelpers
             BackgroundMediaPlayer.MessageReceivedFromBackground += this.BackgroundMediaPlayer_MessageReceivedFromBackground;
         }
 
-        private void CurrentOnMediaOpened(MediaPlayer sender, object args)
+        private async void CurrentOnMediaOpened(MediaPlayer sender, object args)
         {
-            Locator.MusicPlayerVM.UpdateTrackFromMF();
+            await Locator.MusicPlayerVM.UpdateTrackFromMF();
         }
 
         private void DispatchTimerOnTick(object sender, object o)
@@ -159,7 +159,7 @@ namespace VLC_WINRT_APP.BackgroundHelpers
                         break;
                     case BackgroundAudioConstants.MFFailed:
                         Debug.WriteLine("VLC process is aware MF Background Media Player failed to open the file : " + e.Data[key]);
-                        Locator.MusicPlayerVM.Play(true);
+                        await Locator.MusicPlayerVM.Play(true);
                         break;
                 }
             }

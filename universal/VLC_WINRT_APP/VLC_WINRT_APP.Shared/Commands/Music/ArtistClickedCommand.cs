@@ -10,7 +10,7 @@ namespace VLC_WINRT_APP.Commands.Music
 {
     public class ArtistClickedCommand : AlwaysExecutableCommand
     {
-        public override async void Execute(object parameter)
+        public override void Execute(object parameter)
         {
             ArtistItem artist = null;
             // artist is clicked from a list

@@ -18,7 +18,7 @@ namespace VLC_WINRT_APP.Commands.Music
                 App.ApplicationFrame.GoBack();
             }));
             md.Commands.Add(new UICommand("no"));
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => md.ShowAsync());
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () => await md.ShowAsync());
         }
     }
 }

@@ -196,7 +196,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         {
             if (IsShuffled)
             {
-                SetPlaylist(Locator.MusicPlayerVM.TrackCollection.NonShuffledPlaylist);
+                await SetPlaylist(Locator.MusicPlayerVM.TrackCollection.NonShuffledPlaylist);
             }
             else
             {
