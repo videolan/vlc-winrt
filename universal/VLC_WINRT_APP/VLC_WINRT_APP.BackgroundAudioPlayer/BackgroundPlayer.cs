@@ -133,7 +133,7 @@ namespace VLC_WINRT_APP.BackgroundAudioPlayer
                 Playlist.TrackChanged -= playList_TrackChanged;
 
                 //clear objects task cancellation can happen uninterrupted
-                playlistManager.ResetCollection();
+                playlistManager.ResetCollection(null);
                 playlistManager = null;
 
                 // Send message to foreground task (if it's around) that this task was cancelled :(
@@ -332,7 +332,11 @@ namespace VLC_WINRT_APP.BackgroundAudioPlayer
                         break;
 
                     case BackgroundAudioConstants.ResetPlaylist:
-                        Playlist.ResetCollection();
+                        var args = new object();
+                        if (e.Data.TryGetValue(BackgroundAudioConstants.ResetPlaylist, out args))
+                        {
+                            Playlist.ResetCollection(args.ToString());
+                        }
                         break;
                     case BackgroundAudioConstants.AddTrack:
                         object track = new object();

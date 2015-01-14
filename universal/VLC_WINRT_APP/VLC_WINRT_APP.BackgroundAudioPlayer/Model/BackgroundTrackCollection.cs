@@ -74,7 +74,7 @@ namespace VLC_WINRT_APP.BackgroundAudioPlayer
             mediaPlayer.MediaEnded += MediaPlayerOnMediaEnded;
             mediaPlayer.CurrentStateChanged += MediaPlayerOnCurrentStateChanged;
             mediaPlayer.MediaFailed += MediaPlayerOnMediaFailed;
-            ResetCollection();
+            ResetCollection(null);
         }
 
         private void MediaPlayerOnMediaFailed(MediaPlayer sender, MediaPlayerFailedEventArgs args)
@@ -113,15 +113,20 @@ namespace VLC_WINRT_APP.BackgroundAudioPlayer
 
         #region methods
 
-        public void ResetCollection()
+        public void ResetCollection(string args)
+        {
+            if (string.IsNullOrEmpty(args))
+                CurrentTrack = -1;
+            ClearPlaylist();
+        }
+
+        private void ClearPlaylist()
         {
             Playlist.Clear();
-            CurrentTrack = -1;
             ApplicationSettingsHelper.ReadResetSettingsValue("SavedPlaylist");
             Debug.WriteLine("Background audio : reset playlist");
             _backgroundTrackRepository.Clear();
         }
-
         public async void PopulatePlaylist()
         {
             Debug.WriteLine("Background audio : Populating playlist");

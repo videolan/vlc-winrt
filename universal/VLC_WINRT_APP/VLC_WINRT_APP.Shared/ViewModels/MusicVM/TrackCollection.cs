@@ -192,7 +192,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 #endif
         }
 
-        public void Shuffle()
+        public async Task Shuffle()
         {
             if (IsShuffled)
             {
@@ -204,13 +204,19 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                 Random r = new Random();
                 for (int i = 0; i < Playlist.Count; i++)
                 {
-                    int index1 = r.Next(Playlist.Count);
-                    int index2 = r.Next(Playlist.Count);
-                    Playlist.Move(index1, index2);
+                    if (i > CurrentTrack)
+                    {
+                        int index1 = r.Next(i, Playlist.Count);
+                        int index2 = r.Next(i, Playlist.Count);
+                        Playlist.Move(index1, index2);
+                    }
                 }
             }
             IsShuffled = !IsShuffled;
             CurrentTrack = Playlist.IndexOf(Playlist.FirstOrDefault(x => x.IsCurrentPlaying == true));
+            await App.BackgroundAudioHelper.ResetCollection(BackgroundAudioConstants.ShuffleReset);
+            var backgorundTracks = BackgroundTaskTools.CreateBackgroundTrackItemList(Playlist.ToList());
+            await App.BackgroundAudioHelper.AddToPlaylist(backgorundTracks);
         }
 
         public void Remove(TrackItem trackItem)

@@ -10,12 +10,12 @@ namespace VLC_WINRT_APP.Commands.MediaPlayback
 {
     public class ShuffleCommand : AlwaysExecutableCommand
     {
-        public override void Execute(object parameter)
+        public override async void Execute(object parameter)
         {
             if (Locator.MusicPlayerVM.TrackCollection == null
                 || Locator.MusicPlayerVM.TrackCollection.Playlist == null
                 || !Locator.MusicPlayerVM.TrackCollection.Playlist.Any()) return;
-            Locator.MusicPlayerVM.TrackCollection.Shuffle();
+            await Locator.MusicPlayerVM.TrackCollection.Shuffle();
         }
     }
 }

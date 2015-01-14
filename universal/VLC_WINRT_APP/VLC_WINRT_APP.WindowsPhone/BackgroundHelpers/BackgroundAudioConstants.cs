@@ -26,5 +26,6 @@
         public const string RestorePlaylist = "restoreplaylist";
         public const string MFFailed = "mediafoundationopenfailed";
         public const string Time = "time";
+        public const string ShuffleReset = "shufflereset";
     }
 }
