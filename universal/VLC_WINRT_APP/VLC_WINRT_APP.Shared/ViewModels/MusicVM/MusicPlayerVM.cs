@@ -157,7 +157,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                 await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
                 {
                     TrackCollection.IsRunning = false;
-                    App.ApplicationFrame.Navigate(typeof (MainPageHome));
+                    App.ApplicationFrame.Navigate(typeof(MainPageHome));
                 });
             }
             else
