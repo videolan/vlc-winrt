@@ -51,7 +51,7 @@ namespace VLC_WINRT_APP.BackgroundAudioPlayer
 
         static List<BackgroundTrackItem> Playlist
         {
-            get; 
+            get;
             set;
         }
         #endregion
