@@ -101,14 +101,10 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 
         public async Task SetCurrentAlbum()
         {
+            if (CurrentTrack == null) return;
             if (CurrentArtist == null) return;
-            if (CurrentArtist.Albums == null || !CurrentArtist.Albums.Any())
-            {
-                if (CurrentTrack != null)
-                {
-                    CurrentAlbum = await _albumDataRepository.LoadAlbum(CurrentTrack.AlbumId);
-                }
-            }
+            if (CurrentAlbum != null && CurrentAlbum.Id == CurrentTrack.AlbumId) return;
+            CurrentAlbum = await _albumDataRepository.LoadAlbum(CurrentTrack.AlbumId);
         }
 
         public TrackItem CurrentTrack
