@@ -150,10 +150,10 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             CurrentTrack = -1;
         }
 
-        public void ResetCollection()
+        public async Task ResetCollection()
         {
 #if WINDOWS_PHONE_APP
-            App.BackgroundAudioHelper.ResetCollection();
+            await App.BackgroundAudioHelper.ResetCollection();
 #endif
             Playlist.Clear();
             CurrentTrack = -1;
@@ -188,8 +188,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             Playlist = playlist;
 #if WINDOWS_PHONE_APP
             var backgroundTracks = BackgroundTaskTools.CreateBackgroundTrackItemList(Locator.MusicPlayerVM.TrackCollection.Playlist.ToList());
-            await Locator.MusicPlayerVM.BackgroundTrackRepository.AddPlaylist(backgroundTracks);
-            await App.BackgroundAudioHelper.PopulatePlaylist(false);
+            await App.BackgroundAudioHelper.AddToPlaylist(backgroundTracks);
 #endif
         }
 
@@ -244,7 +243,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             if(currentTrack != null)
             CurrentTrack = (int)currentTrack;
             await Locator.MusicPlayerVM.UpdateTrackFromMF();
-            await App.BackgroundAudioHelper.PopulatePlaylist(true);
+            await App.BackgroundAudioHelper.RestorePlaylist();
 #endif
             SetActiveTrackProperty();
         }

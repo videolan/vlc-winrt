@@ -118,6 +118,8 @@ namespace VLC_WINRT_APP.BackgroundAudioPlayer
             Playlist.Clear();
             CurrentTrack = -1;
             ApplicationSettingsHelper.ReadResetSettingsValue("SavedPlaylist");
+            Debug.WriteLine("Background audio : reset playlist");
+            _backgroundTrackRepository.Clear();
         }
 
         public async void PopulatePlaylist()
@@ -181,19 +183,16 @@ namespace VLC_WINRT_APP.BackgroundAudioPlayer
             systemmediatransportcontrol.IsPreviousEnabled = CanGoPrevious;
         }
 
-        public void AddTrack(BackgroundTrackItem trackItem)
+        public void AddTracks(object trackItems)
         {
-            var trackId = trackItem.Id.ToString();
-            if (ApplicationSettingsHelper.Contains("SavedPlaylist"))
+            if (!(trackItems is List<BackgroundTrackItem>)) return;
+            var trackItemsList = trackItems as List<BackgroundTrackItem>;
+            Debug.WriteLine("Background audio : adding " + trackItemsList.Count + " tracks to the playlist");
+            foreach (var backgroundTrackItem in trackItemsList)
             {
-                var playlist = ApplicationSettingsHelper.ReadSettingsValue("SavedPlaylist");
-                ApplicationSettingsHelper.SaveSettingsValue("SavedPlaylist", playlist + trackId + ";");
+                _backgroundTrackRepository.Add(new Database.Model.BackgroundTrackItem(backgroundTrackItem.Id, backgroundTrackItem.AlbumId, backgroundTrackItem.ArtistId, backgroundTrackItem.ArtistName, backgroundTrackItem.AlbumName, backgroundTrackItem.Name, backgroundTrackItem.Path, backgroundTrackItem.Index));
+                Playlist.Add(backgroundTrackItem);
             }
-            else
-            {
-                ApplicationSettingsHelper.SaveSettingsValue("SavedPlaylist", trackId + ";");
-            }
-            Playlist.Add(trackItem);
         }
         #endregion
     }

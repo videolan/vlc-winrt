@@ -211,28 +211,32 @@ namespace VLC_WINRT_APP.BackgroundHelpers
             deferral.Complete();
         }
 
-        public async Task PopulatePlaylist(bool restorePlaylist)
+        public async Task RestorePlaylist()
         {
             if (IsMyBackgroundTaskRunning)
             {
-                ValueSet messageDictionary = new ValueSet();
-                messageDictionary.Add(!restorePlaylist ? BackgroundAudioConstants.ListTrack : BackgroundAudioConstants.RestorePlaylist, "");
-                BackgroundMediaPlayer.SendMessageToBackground(messageDictionary);
+                var msgDictionanary = new ValueSet();
+                msgDictionanary.Add(BackgroundAudioConstants.RestorePlaylist, "");
+                BackgroundMediaPlayer.SendMessageToBackground(msgDictionanary);
+            }
+        }
+
+        public async Task AddToPlaylist(List<BackgroundTrackItem> trackItems)
+        {
+            if (IsMyBackgroundTaskRunning)
+            {
+                var msgDictionary = new ValueSet();
+                string tracksString = AudioBackgroundInterface.SerializeAudioTracks(trackItems);
+                msgDictionary.Add(BackgroundAudioConstants.AddTrack, tracksString);
+                BackgroundMediaPlayer.SendMessageToBackground(msgDictionary);
             }
             await Task.Delay(500);
         }
 
-        public async Task AddPlaylist(TrackItem trackItem)
+        public async Task AddToPlaylist(BackgroundTrackItem trackItem)
         {
-            if (IsMyBackgroundTaskRunning)
-            {
-                ValueSet messageDictionary = new ValueSet();
-                //string ls = AudioBackgroundInterface.SerializeObjectAudioTrack(backgroundTrackItem);
-                string ls = "";
-                messageDictionary.Add(BackgroundAudioConstants.AddTrack, ls);
-                BackgroundMediaPlayer.SendMessageToBackground(messageDictionary);
-            }
-            await Task.Delay(500);
+            var list = new List<BackgroundTrackItem> {trackItem};
+            await AddToPlaylist(list);
         }
 
         public void PlayAudio(int trackIndex)

@@ -339,7 +339,7 @@ namespace VLC_WINRT_APP.BackgroundAudioPlayer
                         if (e.Data.TryGetValue(BackgroundAudioConstants.AddTrack, out track))
                         {
                             // We should have the newest playlist with the new track already. If so, just repopulate the playlist.
-                            Playlist.PopulatePlaylist();
+                            Playlist.AddTracks(AudioBackgroundInterface.DeserializeAudioTracks(track.ToString()) as List<BackgroundTrackItem>);
                         }
                         break;
                     case BackgroundAudioConstants.PlayTrack: //Foreground App process has signalled that it is ready for playback
@@ -353,15 +353,6 @@ namespace VLC_WINRT_APP.BackgroundAudioPlayer
                                 int t = Convert.ToInt32(s);
                                 Playlist.PlayTrack(t);
                             }
-                        }
-                        break;
-                    case BackgroundAudioConstants.ListTrack: //Foreground App process updated List Track
-                        Debug.WriteLine("Starting ListTrack");
-                        Object nobj = new Object();
-                        if (e.Data.TryGetValue(BackgroundAudioConstants.ListTrack, out nobj))
-                        {
-                            Playlist.ResetCollection();
-                            Playlist.PopulatePlaylist();
                         }
                         break;
                     case BackgroundAudioConstants.RestorePlaylist: //Foreground App process updated List Track
