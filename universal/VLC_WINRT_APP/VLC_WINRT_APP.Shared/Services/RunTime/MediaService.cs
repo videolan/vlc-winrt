@@ -181,9 +181,7 @@ namespace VLC_WINRT_APP.Services.RunTime
                 App.ApplicationFrame.Navigate(typeof(MusicPlayerPage));
             var trackItem = await GetInformationsFromMusicFile.GetTrackItemFromFile(file);
             trackItem.IsFromSandbox = isFromSandbox;
-            Locator.MusicPlayerVM.TrackCollection.Playlist.Clear();
-            Locator.MusicPlayerVM.TrackCollection.Add(trackItem, true);
-            await PlayMusicHelper.PlayTrack(0);
+            await PlayMusicHelper.AddTrackToPlaylist(trackItem, true, true);
         }
 
         /// <summary>

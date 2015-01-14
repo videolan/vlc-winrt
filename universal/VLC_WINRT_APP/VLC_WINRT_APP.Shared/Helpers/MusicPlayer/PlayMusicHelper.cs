@@ -41,26 +41,23 @@ namespace VLC_WINRT_APP.Helpers.MusicPlayer
         /// <param name="album"></param>
         /// <param name="resetQueue"></param>
         /// <returns></returns>
-        public static async Task AddTrackToPlaylist(int trackId, bool resetQueue = true, bool play = true)
+        public static async Task AddTrackToPlaylist(TrackItem trackItem = null, bool resetQueue = true, bool play = true)
         {
             await DispatchHelper.InvokeAsync(async () =>
             {
+                if (trackItem == null) return;
                 if (resetQueue)
                 {
                     await Locator.MusicPlayerVM.TrackCollection.ResetCollection();
                 }
-                var trackItem = await MusicLibraryVM._trackDataRepository.LoadTrack(trackId);
-                if (trackItem != null)
+                if (Locator.MusicPlayerVM.TrackCollection.Playlist.FirstOrDefault(x => x.Id == trackItem.Id) == null)
                 {
-                    if (Locator.MusicPlayerVM.TrackCollection.Playlist.FirstOrDefault(x => x.Id == trackItem.Id) == null)
-                    {
-                        var backgroundTrack = BackgroundTaskTools.CreateBackgroundTrackItem(trackItem);
-                        await App.BackgroundAudioHelper.AddToPlaylist(backgroundTrack);
-                    }
-                    AddTrack(trackItem);
+                    var backgroundTrack = BackgroundTaskTools.CreateBackgroundTrackItem(trackItem);
+                    await App.BackgroundAudioHelper.AddToPlaylist(backgroundTrack);
                 }
+                AddTrack(trackItem);
                 if (play)
-                    await PlayTrack(trackId);
+                    await PlayTrack(trackItem.Id);
             });
         }
 
@@ -81,7 +78,7 @@ namespace VLC_WINRT_APP.Helpers.MusicPlayer
                 var trackItems = await MusicLibraryVM._trackDataRepository.LoadTracksByAlbumId(albumId);
                 var backgroundTracks = BackgroundTaskTools.CreateBackgroundTrackItemList(trackItems.ToList());
                 await App.BackgroundAudioHelper.AddToPlaylist(backgroundTracks);
-                
+
                 foreach (var trackItem in trackItems)
                 {
                     AddTrack(trackItem);
@@ -90,7 +87,7 @@ namespace VLC_WINRT_APP.Helpers.MusicPlayer
                 {
                     if (track != null)
                     {
-                        index = trackItems.IndexOf(trackItems.FirstOrDefault(x=>x.Id == track.Id));
+                        index = trackItems.IndexOf(trackItems.FirstOrDefault(x => x.Id == track.Id));
                     }
                     if (index != -1)
                         await PlayTrack(trackItems[index].Id);
