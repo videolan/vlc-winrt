@@ -452,6 +452,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
 
         public static async Task AddToPlaylist(TrackItem trackItem, bool displayToastNotif = true)
         {
+            if (Locator.MusicLibraryVM.CurrentTrackCollection == null) return;
             Locator.MusicLibraryVM.CurrentTrackCollection.Playlist.Add(trackItem);
             await MusicLibraryVM.TracklistItemRepository.Add(new TracklistItem()
             {
@@ -464,6 +465,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
 
         public static async Task AddToPlaylist(AlbumItem albumItem)
         {
+            if (Locator.MusicLibraryVM.CurrentTrackCollection == null) return;
             var playlistId = Locator.MusicLibraryVM.CurrentTrackCollection.Id;
             foreach (TrackItem trackItem in albumItem.Tracks)
             {
