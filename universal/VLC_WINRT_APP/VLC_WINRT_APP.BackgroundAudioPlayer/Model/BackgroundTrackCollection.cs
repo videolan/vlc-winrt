@@ -132,6 +132,7 @@ namespace VLC_WINRT_APP.BackgroundAudioPlayer
             Debug.WriteLine("Background audio : reset playlist");
             _backgroundTrackRepository.Clear();
         }
+
         public async void PopulatePlaylist()
         {
             Debug.WriteLine("Background audio : Populating playlist");
