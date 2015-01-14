@@ -32,6 +32,8 @@
             <TextBlock Text="{Binding CurrentArtist.Name}"
                        Foreground="Black"
                        Style="{StaticResource SubheaderTextBlockStyle}"
+                       TextWrapping="NoWrap"
+                       TextTrimming="CharacterEllipsis"
                        FontSize="22" />
             <TextBlock Text="{Binding CurrentTrack.Name}"
                        Foreground="Black"
