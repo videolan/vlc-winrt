@@ -94,8 +94,8 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 
         public async Task SetCurrentArtist()
         {
-
             if (CurrentTrack == null) return;
+            if (CurrentArtist != null && CurrentArtist.Id == CurrentTrack.ArtistId) return;
             CurrentArtist = await _artistDataRepository.LoadArtist(CurrentTrack.ArtistId);
         }
 
