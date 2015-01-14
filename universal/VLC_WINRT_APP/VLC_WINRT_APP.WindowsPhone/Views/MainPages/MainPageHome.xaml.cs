@@ -77,6 +77,7 @@ namespace VLC_WINRT_APP.Views.MainPages
                 var _ = Task.Run(async () => await Locator.MusicLibraryVM.Initialize());
             }
             await SdCardTest();
+            // If no playback was ever started, ContinueIndexing can be null
             if (Locator.MusicLibraryVM.ContinueIndexing != null)
             {
                 Locator.MusicLibraryVM.ContinueIndexing.SetResult(true);

@@ -204,8 +204,8 @@ namespace VLC_WINRT_APP.Services.RunTime
 
         public async Task SetMediaFile(string filePath, bool isAudioMedia, bool isFromSandbox)
         {
-            if (Locator.MusicLibraryVM.ContinueIndexing == null || Locator.MusicLibraryVM.ContinueIndexing.Task.Result)
-                Locator.MusicLibraryVM.ContinueIndexing = new TaskCompletionSource<bool>();
+            Debug.Assert(Locator.MusicLibraryVM.ContinueIndexing == null);
+            Locator.MusicLibraryVM.ContinueIndexing = new TaskCompletionSource<bool>();
             isFromSandbox = false;
             if (!isFromSandbox)
                 filePath = await GetToken(filePath);
