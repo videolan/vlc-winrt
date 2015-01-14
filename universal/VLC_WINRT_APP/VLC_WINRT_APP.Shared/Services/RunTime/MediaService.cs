@@ -292,6 +292,8 @@ namespace VLC_WINRT_APP.Services.RunTime
 
         public void Pause()
         {
+            if (MediaPlayer == null)
+                return; // Should we just assert/crash here?
             MediaPlayer.pause();
         }
 
@@ -313,11 +315,15 @@ namespace VLC_WINRT_APP.Services.RunTime
 
         public void SkipAhead()
         {
+            if (MediaPlayer == null)
+                return; // Should we just assert/crash here?
             MediaPlayer.setTime(MediaPlayer.time() + 10000);
         }
 
         public void SkipBack()
         {
+            if (MediaPlayer == null)
+                return; // Should we just assert/crash here?
             MediaPlayer.setTime(MediaPlayer.time() - 10000);
         }
 
