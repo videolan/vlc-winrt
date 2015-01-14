@@ -153,7 +153,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         public async Task ResetCollection()
         {
 #if WINDOWS_PHONE_APP
-            await App.BackgroundAudioHelper.ResetCollection();
+            await App.BackgroundAudioHelper.ResetCollection(ResetType.NormalReset);
 #endif
             Playlist.Clear();
             CurrentTrack = -1;
@@ -214,7 +214,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             }
             IsShuffled = !IsShuffled;
             CurrentTrack = Playlist.IndexOf(Playlist.FirstOrDefault(x => x.IsCurrentPlaying == true));
-            await App.BackgroundAudioHelper.ResetCollection(BackgroundAudioConstants.ShuffleReset);
+            await App.BackgroundAudioHelper.ResetCollection(ResetType.ShuffleReset);
             var backgorundTracks = BackgroundTaskTools.CreateBackgroundTrackItemList(Playlist.ToList());
             await App.BackgroundAudioHelper.AddToPlaylist(backgorundTracks);
         }

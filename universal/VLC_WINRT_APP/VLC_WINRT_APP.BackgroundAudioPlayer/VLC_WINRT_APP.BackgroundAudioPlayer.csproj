@@ -86,6 +86,7 @@
     <Compile Include="Model\BackgroundTrackCollection.cs" />
     <Compile Include="Model\BackgroundTrackItem.cs" />
     <Compile Include="Model\PlayingType.cs" />
+    <Compile Include="Model\ResetType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -10,6 +10,7 @@ using Windows.Media;
 using Windows.Media.Playback;
 using Windows.Storage;
 using VLC_WINRT_APP.Database.DataRepository;
+using VLC_WINRT_APP.BackgroundAudioPlayer.Model;
 
 namespace VLC_WINRT_APP.BackgroundAudioPlayer
 {
@@ -74,7 +75,7 @@ namespace VLC_WINRT_APP.BackgroundAudioPlayer
             mediaPlayer.MediaEnded += MediaPlayerOnMediaEnded;
             mediaPlayer.CurrentStateChanged += MediaPlayerOnCurrentStateChanged;
             mediaPlayer.MediaFailed += MediaPlayerOnMediaFailed;
-            ResetCollection(null);
+            ResetCollection(ResetType.NormalReset);
         }
 
         private void MediaPlayerOnMediaFailed(MediaPlayer sender, MediaPlayerFailedEventArgs args)
@@ -113,10 +114,14 @@ namespace VLC_WINRT_APP.BackgroundAudioPlayer
 
         #region methods
 
-        public void ResetCollection(string args)
+        public void ResetCollection(ResetType resetType)
         {
-            if (string.IsNullOrEmpty(args))
-                CurrentTrack = -1;
+            switch (resetType)
+            {
+                case ResetType.ShuffleReset:
+                    CurrentTrack = -1;
+                    break;
+            }
             ClearPlaylist();
         }
 

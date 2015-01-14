@@ -258,12 +258,12 @@ namespace VLC_WINRT_APP.BackgroundHelpers
             }
         }
 
-        public async Task ResetCollection(string args = null)
+        public async Task ResetCollection(ResetType resetType)
         {
             if (IsMyBackgroundTaskRunning)
             {
                 ValueSet messageDictionary = new ValueSet();
-                messageDictionary.Add(BackgroundAudioConstants.ResetPlaylist, string.IsNullOrEmpty(args) ? "" : BackgroundAudioConstants.ShuffleReset);
+                messageDictionary.Add(BackgroundAudioConstants.ResetPlaylist, (int)resetType);
                 BackgroundMediaPlayer.SendMessageToBackground(messageDictionary);
                 await Task.Delay(500);
             }
