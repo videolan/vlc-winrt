@@ -36,7 +36,6 @@ namespace VLC_WINRT_APP.Commands.MediaPlayback
                 switch (BackgroundMediaPlayer.Current.CurrentState)
                 {
                     case MediaPlayerState.Closed:
-                        Locator.MusicPlayerVM.Play(false);
                         await Locator.MusicPlayerVM.Play(false);
                         App.BackgroundAudioHelper.AddMediaPlayerEventHandlers();
                         break;
