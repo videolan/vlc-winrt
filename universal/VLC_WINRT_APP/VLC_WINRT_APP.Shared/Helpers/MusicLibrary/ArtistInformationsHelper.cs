@@ -348,17 +348,18 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                         var albumPic = await ApplicationData.Current.LocalFolder.CreateFolderAsync(folderName, CreationCollisionOption.OpenIfExists);
 
                         var file = await albumPic.CreateFileAsync(fileName, CreationCollisionOption.OpenIfExists);
-                        var raStream = await file.OpenAsync(FileAccessMode.ReadWrite);
-
-                        using (var thumbnailStream = streamWeb.GetInputStreamAt(0))
+                        using (var raStream = await file.OpenAsync(FileAccessMode.ReadWrite))
                         {
-                            using (var stream = raStream.GetOutputStreamAt(0))
+                            using (var thumbnailStream = streamWeb.GetInputStreamAt(0))
                             {
-                                await RandomAccessStream.CopyAsync(thumbnailStream, stream);
-                                await stream.FlushAsync();
+                                using (var stream = raStream.GetOutputStreamAt(0))
+                                {
+                                    await RandomAccessStream.CopyAsync(thumbnailStream, stream);
+                                    await stream.FlushAsync();
+                                }
                             }
+                            await raStream.FlushAsync();
                         }
-                        raStream.Dispose();
                         await writer.FlushAsync();
                     }
                     await streamWeb.FlushAsync();
