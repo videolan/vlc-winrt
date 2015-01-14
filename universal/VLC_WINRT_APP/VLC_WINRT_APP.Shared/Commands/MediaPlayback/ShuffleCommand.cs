@@ -14,7 +14,8 @@ namespace VLC_WINRT_APP.Commands.MediaPlayback
         {
             if (Locator.MusicPlayerVM.TrackCollection == null
                 || Locator.MusicPlayerVM.TrackCollection.Playlist == null
-                || !Locator.MusicPlayerVM.TrackCollection.Playlist.Any()) return;
+                || !Locator.MusicPlayerVM.TrackCollection.Playlist.Any()
+                || Locator.MusicPlayerVM.TrackCollection.Playlist.Count < 3) return;
             await Locator.MusicPlayerVM.TrackCollection.Shuffle();
         }
     }
