@@ -86,7 +86,7 @@
     <Compile Include="BackgroundHelpers\BackgroundAudioConstants.cs" />
     <Compile Include="BackgroundHelpers\BackgroundAudioHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tools\BackgroundTaskTools.cs" />
+    <Compile Include="BackgroundHelpers\BackgroundTaskTools.cs" />
     <Compile Include="Views\MainPages\MainMusicControls\AlbumsPivotItem.xaml.cs">
       <DependentUpon>AlbumsPivotItem.xaml</DependentUpon>
     </Compile>

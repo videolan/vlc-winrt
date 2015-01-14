@@ -3,10 +3,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Windows.UI.Core;
 using VLC_WINRT.Common;
+using VLC_WINRT_APP.BackgroundHelpers;
 using VLC_WINRT_APP.Common;
 using VLC_WINRT_APP.Helpers.MusicLibrary.Deezer;
 using VLC_WINRT_APP.Model.Music;
-using VLC_WINRT_APP.Tools;
+using VLC_WINRT_APP.BackgroundHelpers;
 using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.ViewModels.MusicVM;
 

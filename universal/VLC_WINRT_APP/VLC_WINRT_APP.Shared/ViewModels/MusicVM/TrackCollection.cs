@@ -7,7 +7,7 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
-using VLC_WINRT_APP.Tools;
+using VLC_WINRT_APP.BackgroundHelpers;
 using VLC_WINRT_APP.Database.DataRepository;
 using System.Collections.Generic;
 using System;
