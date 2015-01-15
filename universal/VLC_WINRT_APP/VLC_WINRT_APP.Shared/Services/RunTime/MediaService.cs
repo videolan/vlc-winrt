@@ -214,7 +214,7 @@ namespace VLC_WINRT_APP.Services.RunTime
             }
             var media = new Media(Instance, filePath);
             MediaPlayer = new MediaPlayer(media);
-            LogHelper.Log("PLAYVIDEO: MediaPlayer instance created");
+            LogHelper.Log("PLAYWITHVLC: MediaPlayer instance created");
             var em = MediaPlayer.eventManager();
             em.OnStopped += OnStopped;
             em.OnPlaying += OnPlaying;
