@@ -12,18 +12,19 @@ namespace VLC_WINRT_APP.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
+            var resourceLoader = new ResourceLoader();
             if (value is MusicView)
             {
                 switch ((MusicView)value)
                 {
                     case MusicView.Albums:
-                        return "albums";
+                        return resourceLoader.GetString("Albums").ToLower();
                     case MusicView.Artists:
-                        return "artists";
+                        return resourceLoader.GetString("Artists").ToLower();
                     case MusicView.Playlists:
-                        return "playlists";
+                        return resourceLoader.GetString("Playlists").ToLower();
                     case MusicView.Songs:
-                        return "songs";
+                        return resourceLoader.GetString("Songs").ToLower();
                 }
             }
             return "";
