@@ -29,8 +29,7 @@
         <trans-unit id="Resources\HoweverSearch\Text" translate="yes" xml:space="preserve">
           <source>... however you may find what you want here</source>
           <target state="translated"></target>
-        </trans-unit>
-        <trans-unit id="Resources\UnknownAlbum" translate="yes" xml:space="preserve">
+        </trans-unit><trans-unit id="Resources\UnknownAlbum" translate="yes" xml:space="preserve">
           <source>Unknown Album</source>
           <target state="translated">不明なアルバム</target>
         </trans-unit>
@@ -128,11 +127,11 @@
         </trans-unit>
         <trans-unit id="Resources\TopVideos\Content" translate="yes" xml:space="preserve">
           <source>top videos</source>
-          <target state="translated">ベストビデ</target>
+          <target state="translated">お気に入りビデオ</target>
         </trans-unit>
         <trans-unit id="Resources\TopAlbums\Content" translate="yes" xml:space="preserve">
           <source>top albums</source>
-          <target state="translated">ベストアルバム</target>
+          <target state="translated">お気に入りアルバム</target>
         </trans-unit>
         <trans-unit id="Resources\StreamOpen" translate="yes" xml:space="preserve">
           <source>open stream</source>
@@ -572,7 +571,7 @@
         </trans-unit>
         <trans-unit id="Resources\FavoriteAlbums" translate="yes" xml:space="preserve">
           <source>Favorite Albums</source>
-          <target state="translated">ベストアルバム</target>
+          <target state="translated">お気に入りアルバム</target>
         </trans-unit>
         <trans-unit id="Resources\Favorite\[using:Windows.UI.Xaml.Automation]AutomationProperties\Name" translate="yes" xml:space="preserve">
           <source>Favorite</source>
