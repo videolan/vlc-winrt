@@ -6,6 +6,14 @@
     </header>
     <body>
       <group id="Resources">
+        <trans-unit id="Resources\NowPlaying\Header" translate="yes" xml:space="preserve">
+          <source>now playing</source>
+          <target state="new">now playing</target>
+        </trans-unit>
+        <trans-unit id="Resources\MoreHeader\Header" translate="yes" xml:space="preserve">
+          <source>more</source>
+          <target state="new">more</target>
+        </trans-unit>
         <trans-unit id="Resources\UnknownAlbum" translate="yes" xml:space="preserve">
           <source>Unknown Album</source>
           <target state="new">Unknown Album</target>

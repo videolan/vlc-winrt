@@ -19,7 +19,7 @@
         <Pivot
                Margin="0,20,0,0"
                HeaderTemplate="{StaticResource PivotTitleTemplate}">
-            <PivotItem Header="now playing">
+            <PivotItem x:Uid="NowPlaying" Header="now playing">
                 <Grid Margin="0,0,0,12">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -157,7 +157,7 @@
                     </Grid>
                 </Grid>
             </PivotItem>
-            <PivotItem Header="playlist">
+            <PivotItem x:Uid="Playlist" Header="playlist">
                 <Grid>
                     <ListView ItemsSource="{Binding TrackCollection.Playlist}"
                               IsItemClickEnabled="True"
@@ -184,7 +184,7 @@
                     </ListView>
                 </Grid>
             </PivotItem>
-            <PivotItem Header="more">
+            <PivotItem x:Uid="MoreHeader" Header="more">
                 <ScrollViewer>
                     <StackPanel>
                         <TextBlock Text="{Binding CurrentArtist.Biography}"

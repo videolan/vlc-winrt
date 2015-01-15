@@ -6,9 +6,17 @@
     </header>
     <body>
       <group id="Resources">
+        <trans-unit id="Resources\NowPlaying\Header" translate="yes" xml:space="preserve">
+          <source>now playing</source>
+          <target state="translated">再生中</target>
+        </trans-unit>
+        <trans-unit id="Resources\MoreHeader\Header" translate="yes" xml:space="preserve">
+          <source>more</source>
+          <target state="translated">もっと</target>
+        </trans-unit>
         <trans-unit id="Resources\UnknownAlbum" translate="yes" xml:space="preserve">
           <source>Unknown Album</source>
-          <target state="new">Unknown Album</target>
+          <target state="translated">不明なアルバム</target>
         </trans-unit>
         <trans-unit id="Resources\ViewAlbum\Label" translate="yes" xml:space="preserve">
           <source>view album</source>

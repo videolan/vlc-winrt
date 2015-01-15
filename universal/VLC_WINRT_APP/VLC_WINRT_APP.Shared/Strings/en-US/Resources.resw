@@ -576,4 +576,10 @@
   <data name="UnknownAlbum" xml:space="preserve">
     <value>Unknown Album</value>
   </data>
+  <data name="MoreHeader.Header" xml:space="preserve">
+    <value>more</value>
+  </data>
+  <data name="NowPlaying.Header" xml:space="preserve">
+    <value>now playing</value>
+  </data>
 </root>
