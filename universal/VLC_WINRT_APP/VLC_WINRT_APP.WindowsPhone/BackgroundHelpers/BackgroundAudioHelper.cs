@@ -158,7 +158,7 @@ namespace VLC_WINRT_APP.BackgroundHelpers
                         });
                         break;
                     case BackgroundAudioConstants.MFFailed:
-                        Debug.WriteLine("VLC process is aware MF Background Media Player failed to open the file : " + e.Data[key]);
+                        LogHelper.Log("VLC process is aware MF Background Media Player failed to open the file : " + e.Data[key]);
                         await Locator.MusicPlayerVM.Play(true);
                         break;
                 }
