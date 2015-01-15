@@ -21,13 +21,14 @@
         <StackPanel>
             <TextBlock Style="{StaticResource SubheaderTextBlockStyle}"
                        TextAlignment="Center">
-            <Run Text="We did not find videos in your Videos folder"
+            <Run x:Uid="WeDidNotFindVideos" Text="We did not find videos in your Videos folder"
                  FontSize="20" />
             <LineBreak />
-            <Run Text="... however you may find what you want here"
+            <Run x:Uid="HoweverSearch" Text="... however you may find what you want here"
                  FontSize="18" />
             </TextBlock>
             <Button Margin="0,24,0,0"
+                    x:Uid="ShowsButton"
                     Content="shows"
                     Click="ShowsClick"
                     HorizontalAlignment="Center"
@@ -35,7 +36,8 @@
                     BorderThickness="0"
                     Width="150"
                     Foreground="WhiteSmoke" />
-            <Button Content="camera roll"
+            <Button x:Uid="CameraRollButton"
+                    Content="camera roll"
                     Click="CameraRollClick"
                     HorizontalAlignment="Center"
                     Background="{StaticResource MainColor}"

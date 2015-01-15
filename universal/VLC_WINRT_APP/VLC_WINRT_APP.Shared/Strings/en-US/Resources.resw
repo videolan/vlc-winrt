@@ -576,10 +576,22 @@
   <data name="UnknownAlbum" xml:space="preserve">
     <value>Unknown Album</value>
   </data>
+  <data name="CameraRollButton.Content" xml:space="preserve">
+    <value>camera roll</value>
+  </data>
+  <data name="HoweverSearch.Text" xml:space="preserve">
+    <value>... however you may find what you want here</value>
+  </data>
   <data name="MoreHeader.Header" xml:space="preserve">
     <value>more</value>
   </data>
   <data name="NowPlaying.Header" xml:space="preserve">
     <value>now playing</value>
+  </data>
+  <data name="ShowsButton.Content" xml:space="preserve">
+    <value>shows</value>
+  </data>
+  <data name="WeDidNotFindVideos.Text" xml:space="preserve">
+    <value>We did not find videos in your Videos folder</value>
   </data>
 </root>

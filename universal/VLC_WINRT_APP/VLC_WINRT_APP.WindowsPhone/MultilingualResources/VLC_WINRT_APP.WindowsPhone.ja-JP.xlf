@@ -6,6 +6,14 @@
     </header>
     <body>
       <group id="Resources">
+        <trans-unit id="Resources\WeDidNotFindVideos\Text" translate="yes" xml:space="preserve">
+          <source>We did not find videos in your Videos folder</source>
+          <target state="translated">ビデオフォルダにありません。</target>
+        </trans-unit>
+        <trans-unit id="Resources\ShowsButton\Content" translate="yes" xml:space="preserve">
+          <source>shows</source>
+          <target state="translated">テレビ番組</target>
+        </trans-unit>
         <trans-unit id="Resources\NowPlaying\Header" translate="yes" xml:space="preserve">
           <source>now playing</source>
           <target state="translated">再生中</target>
@@ -13,6 +21,14 @@
         <trans-unit id="Resources\MoreHeader\Header" translate="yes" xml:space="preserve">
           <source>more</source>
           <target state="translated">もっと</target>
+        </trans-unit>
+        <trans-unit id="Resources\CameraRollButton\Content" translate="yes" xml:space="preserve">
+          <source>camera roll</source>
+          <target state="translated">カメラロール</target>
+        </trans-unit>
+        <trans-unit id="Resources\HoweverSearch\Text" translate="yes" xml:space="preserve">
+          <source>... however you may find what you want here</source>
+          <target state="translated"></target>
         </trans-unit>
         <trans-unit id="Resources\UnknownAlbum" translate="yes" xml:space="preserve">
           <source>Unknown Album</source>
