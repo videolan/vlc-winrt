@@ -55,10 +55,10 @@ Windows.Storage.ApplicationData.Current.LocalFolder.Path,
             return connection.DeleteAsync(track);
         }
 
-        public async Task Clear()
+        public void Clear()
         {
-            var connection = new SQLiteAsyncConnection(DbPath);
-            await connection.ExecuteAsync("DELETE FROM BackgroundTrackItem");
+            var connection = new SQLiteConnection(DbPath);
+            connection.Execute("DELETE FROM BackgroundTrackItem");
         }
     }
 }
