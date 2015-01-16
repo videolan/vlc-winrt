@@ -28,7 +28,7 @@
         </trans-unit>
         <trans-unit id="Resources\HoweverSearch\Text" translate="yes" xml:space="preserve">
           <source>... however you may find what you want here</source>
-          <target state="translated"></target>
+          <target state="translated" />
         </trans-unit><trans-unit id="Resources\UnknownAlbum" translate="yes" xml:space="preserve">
           <source>Unknown Album</source>
           <target state="translated">不明なアルバム</target>
