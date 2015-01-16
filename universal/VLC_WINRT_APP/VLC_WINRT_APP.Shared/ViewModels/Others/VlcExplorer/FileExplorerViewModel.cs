@@ -139,11 +139,11 @@ namespace VLC_WINRT_APP.ViewModels.Others.VlcExplorer
                 StorageFile file = storageItem as StorageFile;
                 if (VLCFileExtensions.AudioExtensions.Contains(file.FileType))
                 {
-                    await MediaService.PlayAudioFile(file, true);
+                    await MediaService.PlayAudioFile(file);
                 }
                 else if (VLCFileExtensions.VideoExtensions.Contains(file.FileType))
                 {
-                    await MediaService.PlayVideoFile(file, true);
+                    await MediaService.PlayVideoFile(file);
                 }
             }
             OnPropertyChanged("CurrentFolderName");

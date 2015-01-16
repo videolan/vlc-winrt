@@ -178,7 +178,6 @@ namespace VLC_WINRT_APP.Model.Video
             get { return _season != -1; }
         }
         
-        public bool IsFromSandbox { get; set; }
         #endregion
 
         #region public fields

@@ -257,7 +257,6 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                         Name = string.IsNullOrEmpty(title) ? item.DisplayName : title,
                         Path = item.Path,
                         Index = trackNb,
-                        IsFromSandbox = true
                     };
 
                     if (album.LoadingState == LoadingState.NotLoaded && !album.IsPictureLoaded)

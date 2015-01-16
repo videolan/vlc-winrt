@@ -251,39 +251,37 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
 
         public async Task SetActiveVideoInfo(VideoItem media, string streamMrl = null)
         {
-            if (media == null && string.IsNullOrEmpty(streamMrl)) return;
-            try
+            if (media == null && string.IsNullOrEmpty(streamMrl))
+                return;
+            // Pause the music viewmodel
+            Locator.MusicPlayerVM.CleanViewModel();
+
+            IsRunning = true;
+            OnPropertyChanged("IsRunning");
+            IsPlaying = true;
+            OnPropertyChanged("IsPlaying");
+
+            _timeTotal = TimeSpan.Zero;
+            LogHelper.Log("PLAYVIDEO: Initializing playback");
+            if (media != null)
             {
-                // Pause the music viewmodel
-                Locator.MusicPlayerVM.CleanViewModel();
-
-                IsRunning = true;
-                OnPropertyChanged("IsRunning");
-                IsPlaying = true;
-                OnPropertyChanged("IsPlaying");
-
-                _timeTotal = TimeSpan.Zero;
-                LogHelper.Log("PLAYVIDEO: Initializing playback");
-                if (media != null)
-                    await InitializePlayback(media.FilePath, false, media.IsFromSandbox);
-                else await InitializePlayback(streamMrl, false, true);
-                var em = _mediaService.MediaPlayer.eventManager();
-                em.OnTrackAdded += OnTrackAdded;
-                em.OnTrackDeleted += OnTrackDeleted;
-                _mediaService.Play();
-                LogHelper.Log("PLAYVIDEO: Play() method called");
-
-                if (media != null && media.TimeWatched != null && media.TimeWatched != TimeSpan.FromSeconds(0))
-                    Time = (Int64)media.TimeWatched.TotalMilliseconds;
-
-                SpeedRate = 100;
-                await _mediaService.SetMediaTransportControlsInfo(CurrentVideo != null ? CurrentVideo.Title : "Video");
-                UpdateTileHelper.UpdateMediumTileWithVideoInfo();
+                var path = media.Token != null ? "file://" + media.Token : media.FilePath;
+                InitializePlayback(path, false);
             }
-            catch (Exception e)
-            {
-                ExceptionHelper.CreateMemorizedException("VideoPlayerVM.SetActiveVideoInfo", e);
-            }
+            else
+                InitializePlayback(streamMrl, false);
+            var em = _mediaService.MediaPlayer.eventManager();
+            em.OnTrackAdded += OnTrackAdded;
+            em.OnTrackDeleted += OnTrackDeleted;
+            _mediaService.Play();
+            LogHelper.Log("PLAYVIDEO: Play() method called");
+
+            if (media != null && media.TimeWatched != null && media.TimeWatched != TimeSpan.FromSeconds(0))
+                Time = (Int64)media.TimeWatched.TotalMilliseconds;
+
+            SpeedRate = 100;
+            await _mediaService.SetMediaTransportControlsInfo(CurrentVideo != null ? CurrentVideo.Title : "Video");
+            UpdateTileHelper.UpdateMediumTileWithVideoInfo();
         }
 
         protected override async void OnEndReached()

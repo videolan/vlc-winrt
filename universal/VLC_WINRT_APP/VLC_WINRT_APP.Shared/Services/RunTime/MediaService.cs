@@ -175,12 +175,11 @@ namespace VLC_WINRT_APP.Services.RunTime
         /// Navigates to the Audio Player screen with the requested file a parameter.
         /// </summary>
         /// <param name="file">The file to be played.</param>
-        public static async Task PlayAudioFile(StorageFile file, bool isFromSandbox)
+        public static async Task PlayAudioFile(StorageFile file)
         {
             if (App.ApplicationFrame.CurrentSourcePageType != typeof(MusicPlayerPage))
                 App.ApplicationFrame.Navigate(typeof(MusicPlayerPage));
             var trackItem = await GetInformationsFromMusicFile.GetTrackItemFromFile(file);
-            trackItem.IsFromSandbox = isFromSandbox;
             await PlayMusicHelper.AddTrackToPlaylist(trackItem, true, true);
         }
 
@@ -188,31 +187,23 @@ namespace VLC_WINRT_APP.Services.RunTime
         /// Navigates to the Video Player screen with the requested file a parameter.
         /// </summary>
         /// <param name="file">The file to be played.</param>
-        public static async Task PlayVideoFile(StorageFile file, bool isFromSandbox)
+        public static async Task PlayVideoFile(StorageFile file)
         {
             App.ApplicationFrame.Navigate(typeof(VideoPlayerPage));
             VideoItem videoVm = new VideoItem();
             await videoVm.Initialize(file);
-            videoVm.IsFromSandbox = isFromSandbox;
             Locator.VideoVm.CurrentVideo = videoVm;
             await Locator.VideoVm.SetActiveVideoInfo(videoVm);
         }
 
         private bool _isAudioMedia;
 
-        public async Task SetMediaFile(string filePath, bool isAudioMedia, bool isFromSandbox)
+        public void SetMediaFile(string filePath, bool isAudioMedia)
         {
             LogHelper.Log("SetMediaFile: " + filePath);
             // If indexation is done, the task will stay in completed state. If it's continuing, the TCS has been reset by the indexation thread
             Debug.Assert(Locator.MusicLibraryVM.ContinueIndexing == null || Locator.MusicLibraryVM.ContinueIndexing.Task.IsCompleted);
             Locator.MusicLibraryVM.ContinueIndexing = new TaskCompletionSource<bool>();
-            isFromSandbox = false;
-            if (!isFromSandbox)
-                filePath = await GetToken(filePath);
-            else
-            {
-                filePath = "file:///" + filePath;
-            }
             var media = new Media(Instance, filePath);
             MediaPlayer = new MediaPlayer(media);
             LogHelper.Log("PLAYWITHVLC: MediaPlayer instance created");
@@ -223,13 +214,6 @@ namespace VLC_WINRT_APP.Services.RunTime
             em.OnTimeChanged += TimeChanged;
             em.OnEndReached += OnEndReached;
             _isAudioMedia = isAudioMedia;
-        }
-
-
-        private static async Task<string> GetToken(string filePath)
-        {
-            var file = await StorageFile.GetFileFromPathAsync(filePath);
-            return "file://" + StorageApplicationPermissions.FutureAccessList.Add(file);
         }
 
         public string GetAlbumUrl(string filePath)
