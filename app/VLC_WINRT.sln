@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.22310.1
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libaccess_winrt_plugin", "..\modules\libaccess_winrt_plugin\libaccess_winrt_plugin.vcxproj", "{A3345ED6-A13A-487B-9EF3-412FED4916D1}"
 EndProject
@@ -62,6 +62,7 @@ EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		..\universal\VLC_WINRT_APP\VLC_WINRT_APP.Shared\VLC_WINRT_APP.Shared.projitems*{db1dea15-00b8-4707-8c70-53431c4fa754}*SharedItemsImports = 13
+		..\universal\VLC_WINRT_APP\VLC_WINRT_APP.Shared\VLC_WINRT_APP.Shared.projitems*{b1a5a4dc-2c9f-4343-af3f-372944c4607d}*SharedItemsImports = 4
 		..\modules\libaccess_winrt_plugin.Shared\libaccess_winrt_plugin.Shared.vcxitems*{544ebd72-c9e2-4c3f-9038-36683f843241}*SharedItemsImports = 4
 		..\wrapper\libVLCX.Shared\libVLCX.Shared.vcxitems*{22532381-be8b-40e0-a881-22ce24342d5a}*SharedItemsImports = 4
 		..\wrapper\libVLCX.Shared\libVLCX.Shared.vcxitems*{5d78f68e-c377-449e-a508-5b8e706d0039}*SharedItemsImports = 4
