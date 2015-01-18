@@ -2,20 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Windows.Storage;
-using Windows.Storage.Streams;
-using Windows.UI.Xaml.Controls;
-using VLC_WINRT_APP.Helpers.MusicLibrary;
 using VLC_WINRT_APP.Helpers.VideoPlayer;
 using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.Model.Music;
-using VLC_WINRT_APP.Model.Search;
 using VLC_WINRT_APP.Model.Video;
 using VLC_WINRT_APP.ViewModels;
+using VLC_WINRT_APP.Views.MusicPages;
 #if WINDOWS_APP
 using Windows.ApplicationModel.Search;
+using Windows.UI.Xaml.Controls;
+using Windows.Storage.Streams;
 #endif
-using VLC_WINRT_APP.Views.MusicPages;
+#if WINDOWS_PHONE_APP
+using VLC_WINRT_APP.Model.Search;
+using Windows.Storage;
+#endif
 
 namespace VLC_WINRT_APP.Helpers
 {
@@ -68,7 +69,7 @@ namespace VLC_WINRT_APP.Helpers
             if (Locator.SettingsVM.SearchTracks)
             {
                 IEnumerable<TrackItem> trackItems =
-                    Locator.MusicLibraryVM.Tracks.Where(x => x.Name.ToLower().Contains(Locator.MainVM.SearchTag));
+                    Locator.MusicLibraryVM.Tracks.Where(x => x.Name.Contains(Locator.MainVM.SearchTag, StringComparison.CurrentCultureIgnoreCase));
                 foreach (TrackItem item in trackItems)
                 {
                     Locator.MainVM.SearchResults.Add(new SearchResult(item.Name, item.Thumbnail,
@@ -79,7 +80,7 @@ namespace VLC_WINRT_APP.Helpers
             if (Locator.SettingsVM.SearchVideos)
             {
                 IEnumerable<VideoItem> videoVms =
-                    Locator.VideoLibraryVM.Videos.Where(x => x.Title.ToLower().Contains(Locator.MainVM.SearchTag));
+                    Locator.VideoLibraryVM.Videos.Where(x => x.Title.Contains(Locator.MainVM.SearchTag, StringComparison.CurrentCultureIgnoreCase));
                 foreach (VideoItem vm in videoVms)
                 {
                     Locator.MainVM.SearchResults.Add(new SearchResult(vm.Title,
@@ -87,14 +88,14 @@ namespace VLC_WINRT_APP.Helpers
                         VLCItemType.Video));
                 }
 
-                IEnumerable<VideoItem> showsVms = Locator.VideoLibraryVM.Shows.SelectMany(show => show.Episodes).Where(x => x.Title.Contains(Locator.MainVM.SearchTag));
+                IEnumerable<VideoItem> showsVms = Locator.VideoLibraryVM.Shows.SelectMany(show => show.Episodes).Where(x => x.Title.Contains(Locator.MainVM.SearchTag, StringComparison.CurrentCultureIgnoreCase));
                 foreach (var showsVm in showsVms)
                 {
                     Locator.MainVM.SearchResults.Add(new SearchResult(showsVm.Title, ApplicationData.Current.LocalFolder.Path + "\\videoPic\\" + showsVm.Title + ".jpg", VLCItemType.VideoShow));
                 }
 
                 IEnumerable<VideoItem> cameraVms =
-                    Locator.VideoLibraryVM.CameraRoll.Where(x => x.Title.ToLower().Contains(Locator.MainVM.SearchTag));
+                    Locator.VideoLibraryVM.CameraRoll.Where(x => x.Title.Contains(Locator.MainVM.SearchTag, StringComparison.CurrentCultureIgnoreCase));
                 foreach (var cameraVm in cameraVms)
                 {
                     Locator.MainVM.SearchResults.Add(new SearchResult(cameraVm.Title, ApplicationData.Current.LocalFolder.Path + "\\videoPic\\" + cameraVm.Title + ".jpg", VLCItemType.VideoCamera));
@@ -104,7 +105,7 @@ namespace VLC_WINRT_APP.Helpers
             if (Locator.SettingsVM.SearchArtists)
             {
                 IEnumerable<ArtistItem> artistItems =
-                    Locator.MusicLibraryVM.Artists.Where(x => x.Name.ToLower().Contains(Locator.MainVM.SearchTag));
+                    Locator.MusicLibraryVM.Artists.Where(x => x.Name.Contains(Locator.MainVM.SearchTag, StringComparison.CurrentCultureIgnoreCase));
 
                 foreach (var artistItem in artistItems)
                 {
@@ -118,7 +119,7 @@ namespace VLC_WINRT_APP.Helpers
             {
                 IEnumerable<AlbumItem> albumItems =
                     Locator.MusicLibraryVM.Artists.SelectMany(node => node.Albums)
-                        .Where(x => x.Name.ToLower().Contains(Locator.MainVM.SearchTag));
+                        .Where(x => x.Name.Contains(Locator.MainVM.SearchTag, StringComparison.CurrentCultureIgnoreCase));
 
                 foreach (AlbumItem albumItem in albumItems)
                 {
@@ -138,18 +139,17 @@ namespace VLC_WINRT_APP.Helpers
             if (string.IsNullOrEmpty(tag))
                 return;
 
-            tag = tag.ToLower();
             SearchSuggestionsRequestDeferral deferral = args.Request.GetDeferral();
 
             // We don't need null checks here, because even if nothing was found, the Enumerable items will be loaded with zero items in them.
             // So the foreach loops will skip past them.
-            IEnumerable<TrackItem> trackItems = Locator.MusicLibraryVM.Tracks.Where(x => x.Name.ToLower().Contains(tag));
+            IEnumerable<TrackItem> trackItems = Locator.MusicLibraryVM.Tracks.Where(x => x.Name.Contains(tag, StringComparison.CurrentCultureIgnoreCase));
             foreach (TrackItem item in trackItems)
             {
                 args.Request.SearchSuggestionCollection.AppendResultSuggestion(item.Name, "3", "track://" + item.Id, RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/Icons/music.png")), "music");
             }
 
-            IEnumerable<VideoItem> videoVms = Locator.VideoLibraryVM.Videos.Where(x => x.Title.ToLower().Contains(tag));
+            IEnumerable<VideoItem> videoVms = Locator.VideoLibraryVM.Videos.Where(x => x.Title.Contains(tag, StringComparison.CurrentCultureIgnoreCase));
             foreach (VideoItem vm in videoVms)
             {
                 args.Request.SearchSuggestionCollection.AppendResultSuggestion(vm.Title, "0", "video://" + vm.Title,
@@ -157,7 +157,7 @@ namespace VLC_WINRT_APP.Helpers
             }
 
             IEnumerable<ArtistItem> artistItems =
-                Locator.MusicLibraryVM.Artists.Where(x => x.Name.ToLower().Contains(tag));
+                Locator.MusicLibraryVM.Artists.Where(x => x.Name.Contains(tag, StringComparison.CurrentCultureIgnoreCase));
 
             foreach (var artistItem in artistItems)
             {
@@ -166,7 +166,7 @@ namespace VLC_WINRT_APP.Helpers
 
             IEnumerable<AlbumItem> albumItems =
                 Locator.MusicLibraryVM.Artists.SelectMany(node => node.Albums)
-                    .Where(x => x.Name.ToLower().Contains(tag));
+                    .Where(x => x.Name.Contains(tag, StringComparison.CurrentCultureIgnoreCase));
 
             foreach (AlbumItem albumItem in albumItems)
             {

@@ -72,6 +72,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Common\BindableBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\ConvertImage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\DispatchHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\Extensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\OpenMenuFlyoutAction.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\FadeTextBlock.xaml.cs">
       <DependentUpon>FadeTextBlock.xaml</DependentUpon>

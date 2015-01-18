@@ -148,7 +148,7 @@ namespace VLC_WINRT_APP.ViewModels
             get { return _searchTag; }
             set
             {
-                SetProperty(ref _searchTag, value.ToLower());
+                SetProperty(ref _searchTag, value);
                 if (!string.IsNullOrEmpty(value))
                     SearchHelpers.Search();
                 else if (SearchResults != null) SearchResults.Clear();
