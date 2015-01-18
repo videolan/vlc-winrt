@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 using SQLite;
 using VLC_WINRT_APP.Model.Music;
@@ -32,17 +30,13 @@ namespace VLC_WINRT_APP.DataRepository
         public async Task<TrackCollection> LoadFromName(string name)
         {
             var connection = new SQLiteAsyncConnection(DbPath);
-            return (await connection.QueryAsync<TrackCollection>(
-                "select * from TrackCollection WHERE TrackCollection.Name = \'" + name + "\'")).FirstOrDefault();
+            return await connection.Table<TrackCollection>().Where(x => x.Name == name).FirstOrDefaultAsync();
         }
 
         public async Task<ObservableCollection<TrackCollection>> LoadTrackCollections()
         {
             var connection = new SQLiteAsyncConnection(DbPath);
-
-            return new ObservableCollection<TrackCollection>(
-               await connection.QueryAsync<TrackCollection>(
-                     "select * from TrackCollection"));
+            return new ObservableCollection<TrackCollection>(await connection.Table<TrackCollection>().ToListAsync());
         }
 
         public Task Add(TrackCollection trackCollection)

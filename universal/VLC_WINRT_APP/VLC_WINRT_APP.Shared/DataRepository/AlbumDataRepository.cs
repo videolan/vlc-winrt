@@ -6,7 +6,6 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using SQLite;
 using VLC_WINRT_APP.Model.Music;
-using VLC_WINRT_APP.ViewModels.MusicVM;
 
 namespace VLC_WINRT_APP.DataRepository
 {
@@ -42,9 +41,7 @@ namespace VLC_WINRT_APP.DataRepository
         {
             var connection = new SQLiteAsyncConnection(_dbPath);
 
-            return new ObservableCollection<AlbumItem>(
-               await connection.QueryAsync<AlbumItem>(
-                     string.Format("select * from AlbumItem where ArtistId = {0}", artistId)));
+            return new ObservableCollection<AlbumItem>(await connection.Table<AlbumItem>().Where(x => x.ArtistId == artistId).ToListAsync());
 
         }
 
@@ -64,7 +61,7 @@ namespace VLC_WINRT_APP.DataRepository
             return result.FirstOrDefault();
         }
 
-        public async Task<ObservableCollection<AlbumItem>> LoadAlbums(Expression<Func<AlbumItem,bool>> compare)
+        public async Task<ObservableCollection<AlbumItem>> LoadAlbums(Expression<Func<AlbumItem, bool>> compare)
         {
             var connection = new SQLiteAsyncConnection(_dbPath);
             var query = connection.Table<AlbumItem>().Where(compare);
