@@ -73,7 +73,7 @@ namespace VLC_WINRT_APP.Model.Music
                 if (!_isTracksLoaded)
                 {
                     _isTracksLoaded = true;
-                    Task.Run(async () => await this.GetTracks());
+                    Task.Run(async () => await this.PopulateTracks());
                 }
                 return _trackItems ?? (_trackItems = new ObservableCollection<TrackItem>());
             }

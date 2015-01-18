@@ -309,14 +309,14 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                         Debug.WriteLine("WinRT found embedded cover " + album.Picture);
                     }
                 }
-                catch(Exception exception)
+                catch (Exception exception)
                 {
                     ExceptionHelper.CreateMemorizedException("MusicLibraryManagement.SetAlbumCover : get WinRT cover", exception);
                 }
             }
         }
 
-        public static async Task GetTracks(this AlbumItem album)
+        public static async Task PopulateTracks(this AlbumItem album)
         {
             var tracks = await MusicLibraryVM._trackDataRepository.LoadTracksByAlbumId(album.Id);
             var orderedTracks = tracks.OrderBy(x => x.Index);
@@ -330,7 +330,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             });
         }
 
-        public static async Task GetAlbums(this ArtistItem artist)
+        public static async Task PopulateAlbums(this ArtistItem artist)
         {
             var albums = await MusicLibraryVM._albumDataRepository.LoadAlbumsFromId(artist.Id);
             var orderedAlbums = albums.OrderBy(x => x.Name);

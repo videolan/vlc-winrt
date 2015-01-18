@@ -124,7 +124,7 @@ namespace VLC_WINRT_APP.Model.Music
                 if (!_isAlbumsLoaded)
                 {
                     _isAlbumsLoaded = true;
-                    Task.Run(async () => await this.GetAlbums());
+                    Task.Run(async () => await this.PopulateAlbums());
                 }
                 return _albumItems ?? (_albumItems = new ObservableCollection<AlbumItem>());
             }
