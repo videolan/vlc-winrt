@@ -16,80 +16,80 @@
                Opacity="0.3"
                winrtext:ImageExtensions.FadeInOnLoaded="True" />
         <Pivot Margin="0,20,0,18"
-               HeaderTemplate="{StaticResource PivotTitleTemplate}"> 
-            <PivotItem x:Uid="NowPlaying" Header="now playing">
+               HeaderTemplate="{StaticResource PivotTitleTemplate}">
+            <PivotItem x:Uid="NowPlaying"
+                       Header="now playing">
                 <Grid Margin="0,0,0,12">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
                         <RowDefinition />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="12" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0"
-                               FontSize="36"
-                               FontWeight="ExtraLight"
-                               HorizontalAlignment="Left"
-                               VerticalAlignment="Bottom">
-                        <Run Text="{Binding CurrentArtist.Name, Converter={StaticResource ArtistStringConverter}}" />
-                        <LineBreak />
-                        <Run Text="{Binding CurrentAlbum.Name, Converter={StaticResource AlbumStringConverter}}"
-                             FontSize="26" />
-                    </TextBlock>
-                    <Image Grid.Row="1"
+                    <Image Grid.Row="0"
+                           Grid.Column="0"
+                           Grid.ColumnSpan="3"
                            Source="{Binding CurrentAlbum.Picture}"
                            Stretch="Uniform"
                            Margin="0,12"
                            winrtext:ImageExtensions.FadeInOnLoaded="True" />
-                    <TextBlock Grid.Row="2"
-                               Text="{Binding CurrentTrack.Name}"
-                               FontWeight="ExtraLight"
-                               FontSize="22"
+                    <TextBlock Grid.Row="1"
+                               Grid.Column="1"
                                HorizontalAlignment="Center"
                                TextWrapping="NoWrap"
-                               TextTrimming="CharacterEllipsis" />
-                    <Grid Grid.Row="4">
+                               TextTrimming="CharacterEllipsis"
+                               TextAlignment="Center">
+                        <Run Text="{Binding CurrentTrack.Name}"
+                             FontSize="24" />
+                        <LineBreak />
+                        <Run Text="{Binding CurrentArtist.Name}"
+                             FontSize="19"
+                             Foreground="#B3F5F5F5" />
+                    </TextBlock>
+                    <TextBlock Grid.Row="3"
+                               Grid.Column="0"
+                               Text="{Binding Time, Converter={StaticResource MillisecondsStringConverter}}"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Center"
+                               FontWeight="Light"
+                               FontSize="18"
+                               Foreground="White" />
+                    <Slider Grid.Row="3"
+                            Grid.Column="1"
+                            Margin="6,6,6,-5"
+                            VerticalAlignment="Center"
+                            Value="{Binding Position, Mode=TwoWay, Converter={StaticResource PositionToFixedPointConverter}}"
+                            Style="{StaticResource VLCSlider}"
+                            ThumbToolTipValueConverter="{StaticResource MillisecondsStringConverter}" />
+                    <TextBlock Grid.Row="3"
+                               Grid.Column="2"
+                               Text="{Binding TimeTotal.TotalSeconds, Converter={StaticResource SecondsStringConverter}}"
+                               HorizontalAlignment="Right"
+                               VerticalAlignment="Center"
+                               FontWeight="Light"
+                               FontSize="18"
+                               Foreground="White" />
+                    <AppBarToggleButton Grid.Row="4"
+                                        Grid.Column="0"
+                                        Icon="Shuffle"
+                                        IsCompact="True"
+                                        IsChecked="{Binding TrackCollection.IsShuffled}"
+                                        VerticalAlignment="Center"
+                                        Command="{Binding Shuffle}" />
+                    <Grid Grid.Row="4"
+                          Grid.Column="1">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
                             <ColumnDefinition />
                             <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
                         </Grid.ColumnDefinitions>
-                        <TextBlock Margin="6,9,0,0"
-                                   Grid.Column="0"
-                                   Text="{Binding Time, Converter={StaticResource MillisecondsStringConverter}}"
-                                   HorizontalAlignment="Left"
-                                   FontWeight="Light"
-                                   FontSize="18"
-                                   Foreground="White" />
-                        <Slider Grid.Column="1"
-                                Margin="6,0"
-                                Value="{Binding Position, Mode=TwoWay, Converter={StaticResource PositionToFixedPointConverter}}"
-                                Style="{StaticResource VLCSlider}"
-                                ThumbToolTipValueConverter="{StaticResource MillisecondsStringConverter}" />
-                        <TextBlock Grid.Column="2"
-                                   Margin="0,9,0,0"
-                                   Text="{Binding TimeTotal.TotalSeconds, Converter={StaticResource SecondsStringConverter}}"
-                                   HorizontalAlignment="Right"
-                                   FontWeight="Light"
-                                   FontSize="18"
-                                   Foreground="White" />
-                    </Grid>
-                    <Grid Grid.Row="5">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-                        <AppBarToggleButton Grid.Column="0"
-                                            Icon="Shuffle"
-                                            IsCompact="True"
-                                            IsChecked="{Binding TrackCollection.IsShuffled}"
-                                            VerticalAlignment="Center"
-                                            Command="{Binding Shuffle}" />
-                        <AppBarButton Grid.Column="1"
+                        <AppBarButton Grid.Column="0"
                                       HorizontalAlignment="Center"
                                       IsCompact="True"
                                       Style="{StaticResource AppBarButtonStyleHuge}"
@@ -103,7 +103,7 @@
                                           FontSize="30" />
                             </AppBarButton.Icon>
                         </AppBarButton>
-                        <AppBarButton Grid.Column="2"
+                        <AppBarButton Grid.Column="1"
                                       IsCompact="True"
                                       Visibility="{Binding IsPlaying, Converter={StaticResource NegatedBooleanToVisibilityConverter}}"
                                       Height="80"
@@ -117,7 +117,7 @@
                                           FontSize="42" />
                             </AppBarButton.Icon>
                         </AppBarButton>
-                        <AppBarButton Grid.Column="2"
+                        <AppBarButton Grid.Column="1"
                                       IsCompact="True"
                                       Visibility="{Binding IsPlaying, Converter={StaticResource BooleanToVisibilityConverter}}"
                                       Height="80"
@@ -131,7 +131,7 @@
                                           FontSize="42" />
                             </AppBarButton.Icon>
                         </AppBarButton>
-                        <AppBarButton Grid.Column="3"
+                        <AppBarButton Grid.Column="2"
                                       IsCompact="True"
                                       Style="{StaticResource AppBarButtonStyleHuge}"
                                       Height="50"
@@ -145,17 +145,19 @@
                                           FontSize="30" />
                             </AppBarButton.Icon>
                         </AppBarButton>
-                        <AppBarToggleButton Grid.Column="4"
-                                            Icon="Favorite"
-                                            IsCompact="True"
-                                            VerticalAlignment="Center"
-                                            IsChecked="{Binding CurrentAlbum.Favorite}"
-                                            Command="{Binding CurrentAlbum.FavoriteAlbum}"
-                                            CommandParameter="{Binding CurrentAlbum}" />
                     </Grid>
+                    <AppBarToggleButton Grid.Row="4"
+                                        Grid.Column="2"
+                                        Icon="Favorite"
+                                        IsCompact="True"
+                                        VerticalAlignment="Center"
+                                        IsChecked="{Binding CurrentAlbum.Favorite}"
+                                        Command="{Binding CurrentAlbum.FavoriteAlbum}"
+                                        CommandParameter="{Binding CurrentAlbum}" />
                 </Grid>
             </PivotItem>
-            <PivotItem x:Uid="Playlist" Header="playlist">
+            <PivotItem x:Uid="Playlist"
+                       Header="playlist">
                 <Grid>
                     <ListView ItemsSource="{Binding TrackCollection.Playlist}"
                               IsItemClickEnabled="True"
@@ -182,7 +184,8 @@
                     </ListView>
                 </Grid>
             </PivotItem>
-            <PivotItem x:Uid="MoreHeader" Header="more">
+            <PivotItem x:Uid="MoreHeader"
+                       Header="more">
                 <ScrollViewer>
                     <StackPanel>
                         <TextBlock Text="{Binding CurrentArtist.Biography}"
