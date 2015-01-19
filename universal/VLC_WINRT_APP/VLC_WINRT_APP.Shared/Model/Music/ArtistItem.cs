@@ -15,7 +15,6 @@ using VLC_WINRT_APP.ViewModels.MusicVM;
 
 namespace VLC_WINRT_APP.Model.Music
 {
-
     public class ArtistItem : BindableBase
     {
         private string _name;

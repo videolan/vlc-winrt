@@ -51,7 +51,7 @@ namespace VLC_WINRT_APP.Helpers
             if (Locator.MainVM.AppBarElements == null) return;
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                if (page == typeof (MainPageHome) && index > -1)
+                if (page == typeof(MainPageHome) && index > -1)
                 {
                     Locator.MainVM.AppBarElements.Clear();
                     switch (index)
@@ -100,7 +100,7 @@ namespace VLC_WINRT_APP.Helpers
                             break;
                     }
                 }
-                else if (page == typeof (ArtistPage))
+                else if (page == typeof(ArtistPage))
                 {
                     Locator.MainVM.AppBarElements.Clear();
                     appbarEl.Add(new AppBarButton()
@@ -143,7 +143,7 @@ namespace VLC_WINRT_APP.Helpers
                         CommandParameter = Locator.MusicLibraryVM.CurrentArtist
                     });
                 }
-                else if (page == typeof (AlbumPage))
+                else if (page == typeof(AlbumPage))
                 {
                     Locator.MainVM.AppBarElements.Clear();
                     appbarEl.Add(new AppBarButton()
@@ -189,7 +189,7 @@ namespace VLC_WINRT_APP.Helpers
                         CommandParameter = Locator.MusicLibraryVM.CurrentArtist
                     });
                 }
-                else if (page == typeof (PlaylistPage))
+                else if (page == typeof(PlaylistPage))
                 {
                     //primarycommands
                     var deleteBut = new AppBarButton()
