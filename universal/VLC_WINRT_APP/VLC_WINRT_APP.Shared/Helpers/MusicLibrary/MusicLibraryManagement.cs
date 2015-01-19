@@ -322,11 +322,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             var orderedTracks = tracks.OrderBy(x => x.Index);
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                album.Tracks = new ObservableCollection<TrackItem>();
-                foreach (var track in orderedTracks)
-                {
-                    album.Tracks.Add(track);
-                }
+                album.Tracks = new ObservableCollection<TrackItem>(orderedTracks);
             });
         }
 
@@ -336,11 +332,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             var orderedAlbums = albums.OrderBy(x => x.Name);
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                artist.Albums = new ObservableCollection<AlbumItem>();
-                foreach (AlbumItem album in orderedAlbums)
-                {
-                    artist.Albums.Add(album);
-                }
+                artist.Albums = new ObservableCollection<AlbumItem>(orderedAlbums);
             });
         }
 
