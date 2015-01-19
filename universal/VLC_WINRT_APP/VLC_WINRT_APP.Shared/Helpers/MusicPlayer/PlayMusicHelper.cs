@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.UI.Core;
@@ -121,13 +122,13 @@ namespace VLC_WINRT_APP.Helpers.MusicPlayer
             });
         }
 
-        public static async Task AddTrackCollectionToPlaylist(TrackCollection trackCollection)
+        public static async Task AddTrackCollectionToPlaylistAndPlay(ObservableCollection<TrackItem> trackCollection)
         {
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
             {
                 await Locator.MusicPlayerVM.TrackCollection.ResetCollection();
-                await Locator.MusicPlayerVM.TrackCollection.SetPlaylist(trackCollection.Playlist);
-                await PlayTrack(trackCollection.Playlist[0].Id);
+                await Locator.MusicPlayerVM.TrackCollection.SetPlaylist(trackCollection);
+                await PlayTrack(trackCollection[0].Id);
             });
         }
 

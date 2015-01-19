@@ -16,7 +16,7 @@ namespace VLC_WINRT_APP.Commands.Music
                 trackCollection = parameter as TrackCollection;
             }
             if (trackCollection == null || trackCollection.Playlist == null || !trackCollection.Playlist.Any()) return;
-            await PlayMusicHelper.AddTrackCollectionToPlaylist(trackCollection);
+            await PlayMusicHelper.AddTrackCollectionToPlaylistAndPlay(trackCollection.Playlist);
             if (App.ApplicationFrame.CurrentSourcePageType != typeof (MusicPlayerPage))
                 App.ApplicationFrame.Navigate(typeof (MusicPlayerPage));
         }
