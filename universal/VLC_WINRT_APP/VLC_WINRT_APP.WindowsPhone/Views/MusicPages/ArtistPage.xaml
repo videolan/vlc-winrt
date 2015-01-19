@@ -33,7 +33,7 @@
                 </GridView.HeaderTemplate>
                 <GridView.ItemContainerTransitions>
                     <TransitionCollection>
-                        <EntranceThemeTransition />
+                        <AddDeleteThemeTransition />
                     </TransitionCollection>
                 </GridView.ItemContainerTransitions>
                 <GridView.ItemsPanel>
