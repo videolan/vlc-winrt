@@ -9,6 +9,7 @@ using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.Views.MainPages;
 using VLC_WINRT_APP.Views.MusicPages;
 using System.Threading.Tasks;
+using VLC_WINRT_APP.Model;
 
 #if WINDOWS_PHONE_APP
 namespace VLC_WINRT_APP.Helpers
@@ -107,13 +108,33 @@ namespace VLC_WINRT_APP.Helpers
                         Label = "play all",
                         Icon = new SymbolIcon(Symbol.Play),
                     });
-                    appbarEl.Add(new AppBarButton()
+
+                    // pin artist
+                    var pinLabelBind = new Binding
                     {
-                        Label = "pin",
-                        Icon = new SymbolIcon(Symbol.Pin),
+                        Source = Locator.MusicLibraryVM.CurrentArtist,
+                        UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged,
+                        Converter = App.Current.Resources["PinConverter"] as IValueConverter,
+                        ConverterParameter = "text",
+                        Path = new PropertyPath("IsPinned")
+                    };
+                    var pinIconBind = new Binding
+                    {
+                        Source = Locator.MusicLibraryVM.CurrentArtist,
+                        UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged,
+                        Converter = App.Current.Resources["PinConverter"] as IValueConverter,
+                        ConverterParameter = "icon",
+                        Path = new PropertyPath("IsPinned")
+                    };
+                    var pinButton = new AppBarButton()
+                    {
                         Command = Locator.MusicLibraryVM.CurrentArtist.PinArtistCommand,
                         CommandParameter = Locator.MusicLibraryVM.CurrentArtist
-                    });
+                    };
+                    pinButton.SetBinding(AppBarButton.LabelProperty, pinLabelBind);
+                    pinButton.SetBinding(AppBarButton.IconProperty, pinIconBind);
+                    appbarEl.Add(pinButton);
+
                     appbarEl.Add(new AppBarButton()
                     {
                         Label = "shows",

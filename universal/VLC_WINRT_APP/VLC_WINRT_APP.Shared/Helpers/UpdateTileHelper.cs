@@ -15,6 +15,7 @@ using Windows.Storage;
 using Windows.Storage.Streams;
 using Windows.UI.Core;
 using Windows.UI.Notifications;
+using Windows.UI.Popups;
 using Windows.UI.StartScreen;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -149,6 +150,18 @@ namespace VLC_WINRT_APP.Helpers
                     new Uri("ms-appdata:///local/" + subfolder + "/" + id + ".jpg");
                 await tileData.RequestCreateAsync();
             }
+            else
+            {
+                SecondaryTile secondaryTile = new SecondaryTile(tileId);
+                await secondaryTile.RequestDeleteForSelectionAsync(Window.Current.Bounds, Placement.Default);
+                ToastHelper.Basic("Tile removed !");
+            }
+        }
+
+        public static bool SecondaryTileExists(VLCItemType type, int id, string title)
+        {
+            string tileId = "SecondaryTile-" + type.ToString() + "-" + id;
+            return SecondaryTile.Exists(tileId);
         }
     }
 }

@@ -36,6 +36,7 @@ namespace VLC_WINRT_APP.Model.Music
         private bool _isUpcomingShowsLoading = false;
         private bool _isUpcomingShowsItemsLoaded = false;
         private PinArtistCommand pinArtistCommand;
+        private bool _isPinned;
 #if WINDOWS_PHONE_APP
         private SeeArtistShowsCommand seeArtistShowsCommand;
 #endif
@@ -182,6 +183,11 @@ namespace VLC_WINRT_APP.Model.Music
             get { return pinArtistCommand ?? (pinArtistCommand = new PinArtistCommand()); }
         }
 
+        public bool IsPinned
+        {
+            get { return _isPinned; }
+            set { SetProperty(ref _isPinned, value); }
+        }
 
 #if WINDOWS_PHONE_APP
         [Ignore]
