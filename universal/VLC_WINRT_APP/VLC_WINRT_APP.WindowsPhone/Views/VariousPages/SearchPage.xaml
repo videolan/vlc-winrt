@@ -80,7 +80,7 @@
             </triggers:Interactions.Triggers>
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <ItemsStackPanel Margin="12,0,0,0"/>
+                    <ItemsStackPanel Margin="12,0,0,0" />
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
             <ListView.ItemContainerTransitions>
