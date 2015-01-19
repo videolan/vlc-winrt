@@ -7,6 +7,7 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
@@ -16,6 +17,7 @@ using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.Helpers.MusicPlayer;
 using VLC_WINRT_APP.Model.Music;
 using VLC_WINRT_APP.ViewModels;
+using VLC_WINRT_APP.ViewModels.MusicVM;
 using VLC_WINRT_APP.Views.MusicPages;
 
 namespace VLC_WINRT_APP.Commands.Music
@@ -29,8 +31,11 @@ namespace VLC_WINRT_APP.Commands.Music
             Locator.MusicLibraryVM.IsAlbumPageShown = false;
             try
             {
-                var album = parameter as AlbumItem;
-                await PlayMusicHelper.AddAlbumToPlaylist(album.Id, true, true, null, 0);
+                if (parameter is AlbumItem)
+                {
+                    var album = parameter as AlbumItem;
+                    await PlayMusicHelper.AddAlbumToPlaylist(album.Id, true, true, null, 0);
+                }
             }
             catch (FileNotFoundException exception)
             {
