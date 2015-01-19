@@ -32,64 +32,9 @@
           <FileTypeAssociation Name="vlc">
             <DisplayName>VLC Media Player</DisplayName>
             <SupportedFileTypes>
-              <FileType>.3g2</FileType>
-              <FileType>.3gp</FileType> 
-              <FileType>.3gp2</FileType>
-              <FileType>.3gpp</FileType>
-              <FileType>.amv</FileType> 
-              <FileType>.asf</FileType> 
-              <FileType>.avi</FileType> 
-              <FileType>.divx</FileType>
-              <FileType>.drc</FileType> 
-              <FileType>.dv</FileType>
-              <FileType>.f4v</FileType> 
-              <FileType>.flv</FileType> 
-              <FileType>.gvi</FileType>
-              <FileType>.gxf</FileType> 
-              <FileType>.ismv</FileType>
-              <FileType>.iso</FileType>
-              <FileType>.m1v</FileType>
-              <FileType>.m2v</FileType> 
-              <FileType>.m2t</FileType> 
-              <FileType>.m2ts</FileType>
-              <FileType>.m4v</FileType>
-              <FileType>.mkv</FileType> 
-              <FileType>.mov</FileType> 
-              <FileType>.mp2</FileType> 
-              <FileType>.mp2v</FileType> 
-              <FileType>.mp4</FileType> 
-              <FileType>.mp4v</FileType> 
-              <FileType>.mpe</FileType> 
-              <FileType>.mpeg</FileType>
-              <FileType>.mpeg1</FileType>
-              <FileType>.mpeg2</FileType>
-              <FileType>.mpeg4</FileType> 
-              <FileType>.mpg</FileType> 
-              <FileType>.mpv2</FileType> 
-              <FileType>.mts</FileType> 
-              <FileType>.mtv</FileType> 
-              <FileType>.mxf</FileType> 
-              <FileType>.mxg</FileType>
-              <FileType>.nsv</FileType> 
-              <FileType>.nut</FileType> 
-              <FileType>.nuv</FileType> 
-              <FileType>.ogm</FileType> 
-              <FileType>.ogv</FileType> 
-              <FileType>.ogx</FileType> 
-              <FileType>.ps</FileType> 
-              <FileType>.rec</FileType> 
-              <FileType>.rm</FileType> 
-              <FileType>.rmvb</FileType>
-              <FileType>.tod</FileType> 
-              <FileType>.ts</FileType> 
-              <FileType>.tts</FileType> 
-              <FileType>.vob</FileType> 
-              <FileType>.vro</FileType> 
-              <FileType>.webm</FileType> 
-              <FileType>.wm</FileType> 
-              <FileType>.wmv</FileType> 
-              <FileType>.wtv</FileType> 
-              <FileType>.xesc</FileType>
+              <FileType>.mp4</FileType>
+              <FileType>.mkv</FileType>
+              <FileType>.mp3</FileType>
             </SupportedFileTypes>
           </FileTypeAssociation>
         </Extension>
