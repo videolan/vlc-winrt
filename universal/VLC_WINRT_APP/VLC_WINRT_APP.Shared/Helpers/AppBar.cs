@@ -152,13 +152,34 @@ namespace VLC_WINRT_APP.Helpers
                         Icon = new SymbolIcon(Symbol.Add),
                         Command = Locator.MusicLibraryVM.OpenAddAlbumToPlaylistDialogCommand
                     });
-                    appbarEl.Add(new AppBarButton()
+
+
+                    // pin artist
+                    var pinLabelBind = new Binding
                     {
-                        Label = "pin album",
-                        Icon = new SymbolIcon(Symbol.Pin),
+                        Source = Locator.MusicLibraryVM.CurrentAlbum,
+                        UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged,
+                        Converter = App.Current.Resources["PinConverter"] as IValueConverter,
+                        ConverterParameter = "text",
+                        Path = new PropertyPath("IsPinned")
+                    };
+                    var pinIconBind = new Binding
+                    {
+                        Source = Locator.MusicLibraryVM.CurrentAlbum,
+                        UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged,
+                        Converter = App.Current.Resources["PinConverter"] as IValueConverter,
+                        ConverterParameter = "icon",
+                        Path = new PropertyPath("IsPinned")
+                    };
+                    var pinButton = new AppBarButton()
+                    {
                         Command = Locator.MusicLibraryVM.CurrentAlbum.PinAlbumCommand,
                         CommandParameter = Locator.MusicLibraryVM.CurrentAlbum
-                    });
+                    };
+                    pinButton.SetBinding(AppBarButton.LabelProperty, pinLabelBind);
+                    pinButton.SetBinding(AppBarButton.IconProperty, pinIconBind);
+                    appbarEl.Add(pinButton);
+
                     var favBut = new AppBarButton()
                     {
                         Command = Locator.MusicLibraryVM.CurrentAlbum.FavoriteAlbum,
