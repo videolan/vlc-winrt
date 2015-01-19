@@ -17,39 +17,44 @@
             <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <Grid Background="{StaticResource MainColor}"
-              RequestedTheme="Dark">
-            <userControls:HeaderControl HeaderTextBlock="Search"
-                                        HeaderBackground="#00ffffff"
-                                        VerticalAlignment="Top" />
-        </Grid>
-        <Image Grid.Row="1"
+        <TextBlock Grid.Row="0"
+                   Margin="12,20,0,0"
+                   Text="Search"
+                   Style="{StaticResource SubheaderTextBlockStyle}"
+                   Foreground="{StaticResource MainColor}"/>
+        <Image Grid.Row="0"
                Grid.RowSpan="3"
                Source="/Assets/backgroundTop.png"
                Stretch="Uniform"
                VerticalAlignment="Top"
                extensions:ImageExtensions.FadeInOnLoaded="True" />
-        <Grid Grid.Row="1">
-            <ScrollViewer Style="{StaticResource HorizontalScrollViewerStyle}"
-                          Margin="0,12,0,0"
-                          DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}">
-                <StackPanel Orientation="Horizontal"
-                            VerticalAlignment="Center"
-                            Margin="12,-16,0,-16">
-                    <CheckBox IsChecked="{Binding SearchVideos, Mode=TwoWay}"
-                              Content="Videos" />
-
-                    <CheckBox IsChecked="{Binding SearchAlbums, Mode=TwoWay}"
-                              Content="Albums">
-                    </CheckBox>
-
-                    <CheckBox IsChecked="{Binding SearchTracks, Mode=TwoWay}"
-                              Content="Tracks" />
-
-                    <CheckBox IsChecked="{Binding SearchArtists, Mode=TwoWay}"
-                              Content="Artists" />
-                </StackPanel>
-            </ScrollViewer>
+        <Grid Grid.Row="1"
+              DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}"
+              Margin="12,0,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <CheckBox Grid.Column="0"
+                      Grid.Row="0"
+                      IsChecked="{Binding SearchVideos, Mode=TwoWay}"
+                      Content="Videos" />
+            <CheckBox Grid.Row="1"
+                      Grid.Column="0"
+                      IsChecked="{Binding SearchAlbums, Mode=TwoWay}"
+                      Content="Albums" />
+            <CheckBox Grid.Row="1"
+                      Grid.Column="1"
+                      IsChecked="{Binding SearchTracks, Mode=TwoWay}"
+                      Content="Tracks" />
+            <CheckBox Grid.Row="1"
+                      Grid.Column="2" IsChecked="{Binding SearchArtists, Mode=TwoWay}"
+                      Content="Artists" />
         </Grid>
         <TextBox x:Uid="SearchField"
                  Grid.Row="2"
