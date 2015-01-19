@@ -1254,13 +1254,13 @@
     <Style x:Key="VLCSlider"
            TargetType="Slider">
         <Setter Property="Background"
-                Value="{ThemeResource SliderTrackBackgroundThemeBrush}" />
+                Value="#50FFFFFF" />
         <Setter Property="BorderBrush"
                 Value="{ThemeResource SliderBorderThemeBrush}" />
         <Setter Property="BorderThickness"
                 Value="{ThemeResource SliderBorderThemeThickness}" />
         <Setter Property="Foreground"
-                Value="#606060" />
+                Value="#50FFFFFF" />
         <Setter Property="FontFamily"
                 Value="{ThemeResource ContentControlThemeFontFamily}" />
         <Setter Property="FontSize"
@@ -1283,9 +1283,9 @@
                                 <Setter Property="Template">
                                     <Setter.Value>
                                         <ControlTemplate TargetType="Thumb">
-                                            <Ellipse Fill="#252525"
-                                                     Stroke="White"
-                                                     StrokeThickness="3" />
+                                            <Ellipse Fill="WhiteSmoke"
+                                                     Height="16"
+                                                     Width="16"/>
                                         </ControlTemplate>
                                     </Setter.Value>
                                 </Setter>
@@ -1328,16 +1328,6 @@
                                                                        Storyboard.TargetName="VerticalTrackRect">
                                             <DiscreteObjectKeyFrame KeyTime="0"
                                                                     Value="{ThemeResource SliderTrackPressedBackgroundThemeBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background"
-                                                                       Storyboard.TargetName="HorizontalThumb">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SliderThumbPressedBackgroundThemeBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush"
-                                                                       Storyboard.TargetName="HorizontalThumb">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SliderThumbPressedBorderThemeBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background"
                                                                        Storyboard.TargetName="VerticalThumb">
@@ -1526,12 +1516,12 @@
                                 </Grid.RowDefinitions>
                                 <Rectangle x:Name="HorizontalTrackRect"
                                            Grid.ColumnSpan="3"
-                                           Height="5"
                                            Fill="{TemplateBinding Background}"
+                                           Height="2"
                                            Grid.Row="1" />
                                 <Rectangle x:Name="HorizontalDecreaseRect"
                                            Fill="White"
-                                           Height="5"
+                                           Height="2"
                                            Grid.Row="1" />
                                 <TickBar x:Name="TopTickBar"
                                          Grid.ColumnSpan="3"
@@ -1559,9 +1549,9 @@
                                        AutomationProperties.AccessibilityView="Raw"
                                        Grid.Column="1"
                                        DataContext="{TemplateBinding Value}"
-                                       Height="{ThemeResource SliderTrackThemeHeight}"
+                                       Height="18"
                                        Grid.Row="1"
-                                       Width="{ThemeResource SliderTrackThemeHeight}" />
+                                       Width="18" />
                                 <Rectangle x:Name="HorizontalBorder"
                                            Grid.ColumnSpan="3"
                                            Grid.Row="1"
