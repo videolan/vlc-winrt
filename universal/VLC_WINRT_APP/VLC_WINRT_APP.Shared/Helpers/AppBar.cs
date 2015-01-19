@@ -107,6 +107,8 @@ namespace VLC_WINRT_APP.Helpers
                     {
                         Label = "play all",
                         Icon = new SymbolIcon(Symbol.Play),
+                        Command = Locator.MusicLibraryVM.PlayArtistAlbumsCommand,
+                        CommandParameter = Locator.MusicLibraryVM.CurrentArtist
                     });
 
                     // pin artist

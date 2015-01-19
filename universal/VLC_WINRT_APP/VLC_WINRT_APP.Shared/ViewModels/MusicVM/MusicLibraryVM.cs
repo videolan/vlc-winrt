@@ -65,6 +65,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         private AlbumClickedCommand _albumClickedCommand;
         private ArtistClickedCommand _artistClickedCommand;
         private TrackClickedCommand _trackClickedCommand;
+        private PlayArtistAlbumsCommand _playArtistAlbumsCommand;
         private PlayAllRandomCommand _playAllRandomCommand;
         private OpenAddAlbumToPlaylistDialog _openAddAlbumToPlaylistDialogCommand;
         private BingLocationShowCommand _bingLocationShowCommand;
@@ -254,6 +255,11 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                 return _artistClickedCommand;
             }
             set { SetProperty(ref _artistClickedCommand, value); }
+        }
+
+        public PlayArtistAlbumsCommand PlayArtistAlbumsCommand
+        {
+            get { return _playArtistAlbumsCommand ?? (_playArtistAlbumsCommand = new PlayArtistAlbumsCommand()); }
         }
 
         public TrackClickedCommand TrackClickedCommand
