@@ -26,6 +26,7 @@ using VLC_WINRT_APP.Commands;
 using VLC_WINRT_APP.Model.Search;
 using VLC_WINRT_APP.Views.MainPages;
 using VLC_WINRT_APP.Views.VariousPages;
+using AppBar = Yolo.AppBar;
 using Panel = VLC_WINRT_APP.Model.Panel;
 
 namespace VLC_WINRT_APP.ViewModels
@@ -55,35 +56,24 @@ namespace VLC_WINRT_APP.ViewModels
         #endregion
         #region public fields
 #if WINDOWS_PHONE_APP
-        public List<ICommandBarElement> AppBarElements
+        public AppBar CommandBar
         {
             get
             {
                 if (App.RootPage != null && App.RootPage.CommandBar != null)
-                {
-                    return App.RootPage.CommandBar.PrimaryCommands as List<ICommandBarElement>;
-                }
+                    return App.RootPage.CommandBar;
                 return null;
             }
-            set
-            {
-                App.RootPage.CommandBar.PrimaryCommands = value;
-            }
+        }
+        public List<ICommandBarElement> AppBarElements
+        {
+            get { if (CommandBar != null) return CommandBar.PrimaryCommands as List<ICommandBarElement>; return null; }
+            set { if (CommandBar != null) CommandBar.PrimaryCommands = value; }
         }
         public IList<AppBarButton> SecondaryAppBarElements
         {
-            get
-            {
-                if (App.RootPage != null && App.RootPage.CommandBar != null)
-                {
-                    return App.RootPage.CommandBar.SecondaryCommands as List<AppBarButton>;
-                }
-                return null;
-            }
-            set
-            {
-                App.RootPage.CommandBar.SecondaryCommands = value;
-            }
+            get { if (CommandBar != null) return CommandBar.SecondaryCommands as List<AppBarButton>; return null; }
+            set { if (CommandBar != null) CommandBar.SecondaryCommands = value; }
         }
 
         public ObservableCollection<SearchResult> SearchResults
