@@ -1,8 +1,10 @@
 ﻿using Windows.Graphics.Display;
 using Windows.Phone.UI.Input;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using VLC_WINRT_APP.ViewModels;
 
@@ -26,11 +28,14 @@ namespace VLC_WINRT_APP.Views.MusicPages
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             HardwareButtons.BackPressed += HardwareButtonsOnBackPressed;
+            Locator.MainVM.CommandBar.Background = new SolidColorBrush(Color.FromArgb(200, 50,50,50));
         }
+
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             base.OnNavigatedFrom(e);
             HardwareButtons.BackPressed -= HardwareButtonsOnBackPressed;
+            Locator.MainVM.CommandBar.Background = (SolidColorBrush)App.Current.Resources["MainColor"];
         }
 
         private void HardwareButtonsOnBackPressed(object sender, BackPressedEventArgs backPressedEventArgs)

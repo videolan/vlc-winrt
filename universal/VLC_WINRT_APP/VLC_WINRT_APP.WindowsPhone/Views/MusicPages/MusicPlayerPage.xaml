@@ -10,15 +10,13 @@
       DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}">
 
     <Grid RequestedTheme="Dark"
-          Background="Black"
-          Margin="0,0,0,16">
+          Background="Black">
         <Image Source="{Binding CurrentArtist.Picture}"
                Stretch="UniformToFill"
                Opacity="0.3"
                winrtext:ImageExtensions.FadeInOnLoaded="True" />
-        <Pivot
-               Margin="0,20,0,0"
-               HeaderTemplate="{StaticResource PivotTitleTemplate}">
+        <Pivot Margin="0,20,0,18"
+               HeaderTemplate="{StaticResource PivotTitleTemplate}"> 
             <PivotItem x:Uid="NowPlaying" Header="now playing">
                 <Grid Margin="0,0,0,12">
                     <Grid.RowDefinitions>
