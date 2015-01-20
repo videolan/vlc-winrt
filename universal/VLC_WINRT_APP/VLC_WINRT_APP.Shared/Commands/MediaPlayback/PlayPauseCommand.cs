@@ -27,11 +27,11 @@ namespace VLC_WINRT_APP.Commands.MediaPlayback
     {
         public override async void Execute(object parameter)
         {
-#if WINDOWS_APP
             var playerService = App.Container.Resolve<IMediaService>();
+#if WINDOWS_APP
             playerService.Pause();
 #else
-            if (BackgroundMediaPlayer.Current != null && Locator.MusicPlayerVM.PlayingType == PlayingType.Music)
+            if (BackgroundMediaPlayer.Current != null && Locator.MusicPlayerVM.PlayingType == PlayingType.Music && !playerService.UseVlcLib)
             {
                 switch (BackgroundMediaPlayer.Current.CurrentState)
                 {
@@ -51,7 +51,6 @@ namespace VLC_WINRT_APP.Commands.MediaPlayback
             {
                 await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                 {
-                    var playerService = App.Container.Resolve<IMediaService>() as MediaService;
                     if (playerService != null) playerService.Pause();
                 });
             }

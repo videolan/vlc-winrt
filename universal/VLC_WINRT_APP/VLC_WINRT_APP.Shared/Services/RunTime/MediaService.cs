@@ -29,8 +29,6 @@ using VLC_WINRT_APP.Views.VideoPages;
 using libVLCX;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Globalization;
-using Windows.Storage.FileProperties;
 #if WINDOWS_PHONE_APP
 using Windows.Media.Playback;
 #endif
@@ -47,6 +45,7 @@ namespace VLC_WINRT_APP.Services.RunTime
         private SystemMediaTransportControls _systemMediaTransportControls;
         public Instance Instance { get; private set; }
         public MediaPlayer MediaPlayer { get; private set; }
+        public bool UseVlcLib { get; set; }
         public MediaService()
         {
             CoreWindow.GetForCurrentThread().Activated += ApplicationState_Activated;
@@ -198,13 +197,26 @@ namespace VLC_WINRT_APP.Services.RunTime
 
         private bool _isAudioMedia;
 
-        public void SetMediaFile(string filePath, bool isAudioMedia)
+        public async Task SetMediaFile(string filePath, bool isAudioMedia, bool isStream, StorageFile file = null)
         {
             LogHelper.Log("SetMediaFile: " + filePath);
+            string mrl = null;
+            if (file != null)
+            {
+                mrl = "file://" + GetToken(file);
+            }
+            else if(!isStream)
+            {
+                mrl = "file://" + await GetToken(filePath);
+            }
+            else
+            {
+                mrl = filePath;
+            }
             // If indexation is done, the task will stay in completed state. If it's continuing, the TCS has been reset by the indexation thread
             Debug.Assert(Locator.MusicLibraryVM.ContinueIndexing == null || Locator.MusicLibraryVM.ContinueIndexing.Task.IsCompleted);
             Locator.MusicLibraryVM.ContinueIndexing = new TaskCompletionSource<bool>();
-            var media = new Media(Instance, filePath);
+            var media = new Media(Instance, mrl);
             MediaPlayer = new MediaPlayer(media);
             LogHelper.Log("PLAYWITHVLC: MediaPlayer instance created");
             var em = MediaPlayer.eventManager();
@@ -214,6 +226,16 @@ namespace VLC_WINRT_APP.Services.RunTime
             em.OnTimeChanged += TimeChanged;
             em.OnEndReached += OnEndReached;
             _isAudioMedia = isAudioMedia;
+        }
+
+        public async Task<string> GetToken(string filePath)
+        {
+            var file = await StorageFile.GetFileFromPathAsync(filePath);
+            return StorageApplicationPermissions.FutureAccessList.Add(file);
+        }
+        public string GetToken(StorageFile file)
+        {
+            return StorageApplicationPermissions.FutureAccessList.Add(file);
         }
 
         public string GetAlbumUrl(string filePath)

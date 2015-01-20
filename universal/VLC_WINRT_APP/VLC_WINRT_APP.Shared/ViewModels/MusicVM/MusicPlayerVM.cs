@@ -198,10 +198,11 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 
         public async Task Play(bool forceVlcLib)
         {
+            _mediaService.UseVlcLib = forceVlcLib;
             Stop();
             if (CurrentTrack == null) return;
             LogHelper.Log("Opening file: " + CurrentTrack.Path);
-            await SetActiveMusicInfo(CurrentTrack, forceVlcLib);
+            await SetActiveMusicInfo(CurrentTrack);
 
             // Setting the info for windows 8 controls
             var resourceLoader = new ResourceLoader();
@@ -223,11 +224,11 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             }
         }
 
-        private async Task SetActiveMusicInfo(TrackItem track, bool forceVlcLib)
+        private async Task SetActiveMusicInfo(TrackItem track)
         {
             var currentTrackFile = await StorageFile.GetFileFromPathAsync(track.Path);
 #if WINDOWS_PHONE_APP
-            bool playWithLibVlc = !VLCFileExtensions.MFSupported.Contains(currentTrackFile.FileType.ToLower()) || forceVlcLib;
+            bool playWithLibVlc = !VLCFileExtensions.MFSupported.Contains(currentTrackFile.FileType.ToLower()) || _mediaService.UseVlcLib;
             if (!playWithLibVlc)
             {
                 Debug.Assert(Locator.MusicLibraryVM.ContinueIndexing == null || Locator.MusicLibraryVM.ContinueIndexing.Task.IsCompleted);
@@ -238,6 +239,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 #endif
             {
 #if WINDOWS_PHONE_APP
+                _mediaService.UseVlcLib = true;
                 ToastHelper.Basic("Can't enable background audio", false, "background");
                 if (BackgroundMediaPlayer.Current != null &&
                     BackgroundMediaPlayer.Current.CurrentState != MediaPlayerState.Stopped)
@@ -245,7 +247,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                     BackgroundMediaPlayer.Shutdown();
                 }
 #endif
-                base.InitializePlayback(track.Path, true);
+                await base.InitializePlayback(track.Path, true, false, currentTrackFile);
                 _mediaService.Play();
                 await UpdatePlayingUI();
             }
