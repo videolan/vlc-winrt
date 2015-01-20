@@ -244,7 +244,8 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                 if (BackgroundMediaPlayer.Current != null &&
                     BackgroundMediaPlayer.Current.CurrentState != MediaPlayerState.Stopped)
                 {
-                    BackgroundMediaPlayer.Shutdown();
+                    BackgroundMediaPlayer.Current.Pause();
+                    await App.BackgroundAudioHelper.ResetCollection(ResetType.NormalReset);
                 }
 #endif
                 await base.InitializePlayback(track.Path, true, false, currentTrackFile);
@@ -260,7 +261,8 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             if (BackgroundMediaPlayer.Current != null &&
                 BackgroundMediaPlayer.Current.CurrentState != MediaPlayerState.Stopped)
             {
-                BackgroundMediaPlayer.Shutdown();
+                BackgroundMediaPlayer.Current.Pause();
+                await App.BackgroundAudioHelper.ResetCollection(ResetType.NormalReset);
             }
 #endif
             TrackCollection.ResetCollection();
