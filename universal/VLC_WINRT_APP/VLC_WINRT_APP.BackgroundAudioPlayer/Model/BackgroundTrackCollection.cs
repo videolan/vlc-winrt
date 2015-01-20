@@ -127,7 +127,7 @@ namespace VLC_WINRT_APP.BackgroundAudioPlayer
 
         private void ClearPlaylist()
         {
-            Playlist.Clear();
+            if (Playlist != null) Playlist.Clear();
             ApplicationSettingsHelper.ReadResetSettingsValue("SavedPlaylist");
             Debug.WriteLine("Background audio : reset playlist");
             _backgroundTrackRepository.Clear();
