@@ -208,7 +208,6 @@ namespace VLC_WINRT_APP.Model.Video
                 AlphaKey = Title.ToUpper()[0];
                 Subtitle = storageFile.FileType.ToUpper() + " File";
                 Type = storageFile.FileType.Replace(".", "").ToLower();
-                Token = StorageApplicationPermissions.FutureAccessList.Add(File);
                 FilePath = storageFile.Path;
                 await GetTimeInformation();
             }
