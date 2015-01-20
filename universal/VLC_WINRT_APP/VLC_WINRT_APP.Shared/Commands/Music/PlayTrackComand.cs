@@ -46,7 +46,7 @@ namespace VLC_WINRT_APP.Commands.Music
                 // if the track is still null (for some reason), we need to break early.
                 return;
             }
-            await PlayMusicHelper.AddTrackToPlaylist(track, false);
+            await PlayMusicHelper.AddTrackToPlaylist(track, true);
         }
     }
 }
