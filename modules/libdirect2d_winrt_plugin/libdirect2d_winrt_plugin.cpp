@@ -109,10 +109,10 @@ struct vout_display_sys_t {
     float                        lastDisplayWidth;
     float                        lastDisplayHeight;
 
-    float                        scale;
     D2D1_POINT_2F                offset;
     D2D1_SIZE_U                  size;
     D2D1_SIZE_U                  halfSize;
+    D2D1_SIZE_U                  renderSize;
 
     //TODO: check to see if these are all needed
     picture_pool_t               *pool;
@@ -325,11 +325,20 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
 
     if (*sys->displayWidth != sys->lastDisplayWidth || *sys->displayHeight != sys->lastDisplayHeight)
     {
+        vout_display_place_t place;
+        vout_display_cfg_t cfg = *vd->cfg;
+        cfg.display.width = *sys->displayWidth;
+        cfg.display.height = *sys->displayHeight;
+        vout_display_PlacePicture(&place, &vd->source, &cfg, true);
+        sys->renderSize.width = place.width;
+        sys->renderSize.height = place.height;
+        sys->offset.x = place.x;
+        sys->offset.y = place.y;
+
         // Get the size from the current picture
         sys->size.width = picture->format.i_visible_width;
         sys->size.height = picture->format.i_visible_height;
 
-        sys->halfSize = sys->size;
         sys->halfSize.width = sys->size.width / 2;
         sys->halfSize.height = sys->size.height / 2;
 
@@ -339,31 +348,19 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
         sys->lastDisplayWidth = *sys->displayWidth;
         sys->lastDisplayHeight = *sys->displayHeight;
 
-        float scaleW = ceilf(*sys->displayWidth) / (float)picture->format.i_visible_width;
-        float scaleH = ceilf(*sys->displayHeight) / (float)picture->format.i_visible_height;
-
-        // Compute offset and scale factor
-        if (scaleH <= scaleW) {
-            sys->scale = scaleH;
-            sys->offset.x = (*sys->displayWidth - ((float)picture->format.i_visible_width * sys->scale)) / 2.0f;
-            sys->offset.y = 0.0f;
-        }
-        else {
-            sys->scale = scaleW;
-            sys->offset.x = 0.0f;
-            sys->offset.y = (*sys->displayHeight - ((float)picture->format.i_visible_height * sys->scale)) / 2.0f;
-        }
         UpdateResourcesFromWindowSizeChanged(vd);
 
         ResizeBuffers(sys, dpiX, dpiY);
 
         HRESULT hrx = sys->d2dContext->CreateEffect(CLSID_CustomI420Effect, &sys->yuvEffect);
 
-        sys->yuvEffect->SetInputCount(3);
+        sys->yuvEffect->SetInputCount(2);
 
-        sys->yuvEffect->SetValue(I420_PROP_DISPLAYEDFRAME_WIDTH, (float) (picture->format.i_visible_width * sys->scale));
-        sys->yuvEffect->SetValue(I420_PROP_DISPLAYEDFRAME_HEIGHT, (float) (picture->format.i_visible_height * sys->scale));
-        sys->yuvEffect->SetValue(I420_PROP_SCALE, sys->scale);
+        if (sys->yuvEffect->SetValue(I420_PROP_DISPLAYEDFRAME_WIDTH, (float) sys->renderSize.width) != S_OK)
+            Debug(TEXT("Failed to set effect width parameter"));
+        if (sys->yuvEffect->SetValue(I420_PROP_DISPLAYEDFRAME_HEIGHT, (float)sys->renderSize.height) != S_OK)
+            Debug(TEXT("Failed to set effect heigth parameter"));
+
 
         // Init bitmap properties in which will store the y (lumi) plane
         D2D1_BITMAP_PROPERTIES1 props;
@@ -394,7 +391,7 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
     // Init and clear d2dContext render target
     sys->d2dContext->BeginDraw();
 
-    D2D1_RECT_F pushRect = D2D1::RectF(1, 1, sys->size.width * sys->scale, sys->size.height * sys->scale);
+    D2D1_RECT_F pushRect = D2D1::RectF(0, 0, sys->renderSize.width, sys->renderSize.height);
     sys->d2dContext->PushAxisAlignedClip(&pushRect, D2D1_ANTIALIAS_MODE_ALIASED);
     sys->d2dContext->Clear(D2D1::ColorF(D2D1::ColorF::Black));
 
