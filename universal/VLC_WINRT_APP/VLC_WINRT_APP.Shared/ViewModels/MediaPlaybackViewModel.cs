@@ -347,7 +347,7 @@ namespace VLC_WINRT_APP.ViewModels
         }
 
 
-        virtual public void CleanViewModel()
+        virtual public async Task CleanViewModel()
         {
             _mediaService.Stop();
             IsPlaying = false;
@@ -385,7 +385,7 @@ namespace VLC_WINRT_APP.ViewModels
 
         protected async Task InitializePlayback(String mrl, Boolean isAudio, Boolean isStream, StorageFile file = null)
         {
-            _mediaService.SetMediaFile(mrl, isAudio, isStream, file);
+            await _mediaService.SetMediaFile(mrl, isAudio, isStream, file);
             var em = _mediaService.MediaPlayer.eventManager();
             em.OnLengthChanged += OnLengthChanged;
             em.OnStopped += OnStopped;

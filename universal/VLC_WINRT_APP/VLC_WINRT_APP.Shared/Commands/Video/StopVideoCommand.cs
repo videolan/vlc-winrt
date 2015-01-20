@@ -22,7 +22,7 @@ namespace VLC_WINRT_APP.Commands.Video
                 App.ApplicationFrame.GoBack();
             else
                 App.ApplicationFrame.Navigate(typeof (MainPageHome));
-            Locator.VideoVm.CleanViewModel();
+            await Locator.VideoVm.CleanViewModel();
             Locator.VideoVm.IsRunning = false;
         }
     }

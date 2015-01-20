@@ -254,7 +254,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             }
         }
 
-        public override void CleanViewModel()
+        public override async Task CleanViewModel()
         {
             base.CleanViewModel();
 #if WINDOWS_PHONE_APP

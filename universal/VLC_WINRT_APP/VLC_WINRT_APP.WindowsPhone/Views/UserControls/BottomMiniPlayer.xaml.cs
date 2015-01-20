@@ -42,10 +42,10 @@ namespace VLC_WINRT_APP.Views.UserControls
             Locator.MusicPlayerVM.GoToMusicPlayerPage.Execute(null);
         }
 
-        private void PlayPauseHold(object sender, HoldingRoutedEventArgs e)
+        private async void PlayPauseHold(object sender, HoldingRoutedEventArgs e)
         {
             Locator.MusicPlayerVM.Stop();
-            Locator.MusicPlayerVM.CleanViewModel();
+            await Locator.MusicPlayerVM.CleanViewModel();
         }
     }
 }

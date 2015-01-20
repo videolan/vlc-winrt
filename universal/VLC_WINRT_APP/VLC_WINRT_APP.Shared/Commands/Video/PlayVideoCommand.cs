@@ -14,7 +14,7 @@ namespace VLC_WINRT_APP.Commands.Video
         {
             if (Locator.MusicPlayerVM.TrackCollection.IsRunning)
             {
-                Locator.MusicPlayerVM.CleanViewModel();
+                await Locator.MusicPlayerVM.CleanViewModel();
             }
             try
             {

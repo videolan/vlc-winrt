@@ -254,7 +254,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             if (media == null && string.IsNullOrEmpty(streamMrl))
                 return;
             // Pause the music viewmodel
-            Locator.MusicPlayerVM.CleanViewModel();
+            await Locator.MusicPlayerVM.CleanViewModel();
 
             IsRunning = true;
             OnPropertyChanged("IsRunning");
