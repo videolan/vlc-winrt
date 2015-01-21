@@ -273,7 +273,15 @@ namespace VLC_WINRT_APP.BackgroundAudioPlayer
         private void SkipToPrevious()
         {
             systemmediatransportcontrol.PlaybackStatus = MediaPlaybackStatus.Changing;
-            Playlist.SkipToPrevious();
+            
+            if (BackgroundMediaPlayer.Current.Position.TotalSeconds > 30)
+            {
+                Playlist.Play();
+            }
+            else
+            {
+                Playlist.SkipToPrevious();
+            }
         }
 
         /// <summary>
