@@ -60,8 +60,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
 
                 foreach (TrackCollection trackCollection in Locator.MusicLibraryVM.TrackCollections)
                 {
-                    ObservableCollection<TracklistItem> observableCollection =
-                        await MusicLibraryVM.TracklistItemRepository.LoadTracks(trackCollection);
+                    var observableCollection = await MusicLibraryVM.TracklistItemRepository.LoadTracks(trackCollection);
                     foreach (TracklistItem tracklistItem in observableCollection)
                     {
                         TrackItem item = await MusicLibraryVM._trackDataRepository.LoadTrack(tracklistItem.TrackId);
