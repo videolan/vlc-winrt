@@ -16,6 +16,7 @@ namespace VLC_WINRT_APP.DataRepository
     Windows.Storage.ApplicationData.Current.LocalFolder.Path,
     "mediavlc.sqlite");
 
+        private SQLiteConnection connection;
         public TrackDataRepository()
         {
             Initialize();
@@ -23,10 +24,9 @@ namespace VLC_WINRT_APP.DataRepository
 
         public void Initialize()
         {
-            using (var db = new SQLite.SQLiteConnection(_dbPath))
-            {
-                db.CreateTable<TrackItem>();
-            }
+            var db = new SQLite.SQLiteConnection(_dbPath);
+            connection = db;
+            connection.CreateTable<TrackItem>();
         }
 
         public void Drop()
@@ -37,11 +37,10 @@ namespace VLC_WINRT_APP.DataRepository
             }
         }
 
-        public async Task<bool> DoesTrackExist(string path)
+        public bool DoesTrackExist(string path)
         {
-            var connection = new SQLiteAsyncConnection(_dbPath);
             var query = connection.Table<TrackItem>().Where(x => x.Path == path);
-            return await query.CountAsync() != 0;
+            return query.Count() != 0;
         }
 
         public async Task<TrackItem> LoadTrack(int trackId)

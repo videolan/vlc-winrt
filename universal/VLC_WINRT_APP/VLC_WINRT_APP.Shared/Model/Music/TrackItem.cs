@@ -49,6 +49,7 @@ namespace VLC_WINRT_APP.Model.Music
             set { SetProperty(ref _name, value); }
         }
 
+        [Indexed]
         public string Path
         {
             get { return _path; }
