@@ -176,7 +176,6 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             try
             {
                 if (!VLCFileExtensions.AudioExtensions.Contains(item.FileType.ToLower())) return;
-                LogHelper.Log("Music indexation: found music file " + item.Path);
                 MusicProperties properties = await item.Properties.GetMusicPropertiesAsync();
                 Dictionary<string, object> propDictionary = null;
                 MediaService mediaService = App.Container.Resolve<IMediaService>() as MediaService;
@@ -418,10 +417,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             {
                 await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
                 {
-                    await
-                        new MessageDialog(
-                            "A playlist with this name already exists", "Sorry ...")
-                            .ShowAsync();
+                    await new MessageDialog("A playlist with this name already exists", "Sorry ...").ShowAsync();
                 });
             }
             else

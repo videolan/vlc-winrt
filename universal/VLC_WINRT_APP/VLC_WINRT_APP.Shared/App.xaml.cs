@@ -132,8 +132,7 @@ namespace VLC_WINRT_APP
                     id = int.Parse(query);
                     if (Locator.MusicLibraryVM.LoadingState == LoadingState.Loaded)
                     {
-                        await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                    Locator.MusicLibraryVM.AlbumClickedCommand.Execute(id));
+                        await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Locator.MusicLibraryVM.AlbumClickedCommand.Execute(id));
                     }
                     else
                     {
@@ -189,8 +188,7 @@ namespace VLC_WINRT_APP
             base.OnActivated(args);
             try
             {
-                var continueArgs =
-                    args as FileOpenPickerContinuationEventArgs;
+                var continueArgs = args as FileOpenPickerContinuationEventArgs;
                 if (continueArgs != null && continueArgs.Files.Any())
                 {
                     switch (OpenFilePickerReason)

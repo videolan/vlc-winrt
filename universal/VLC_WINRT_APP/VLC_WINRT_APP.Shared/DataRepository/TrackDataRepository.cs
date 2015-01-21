@@ -95,7 +95,7 @@ namespace VLC_WINRT_APP.DataRepository
             var connection = new SQLiteAsyncConnection(_dbPath);
             var query = connection.Table<TrackItem>().Where(x => x.Path == track.Path);
             var result = await query.ToListAsync();
-            if(result.Count == 0)
+            if (result.Count == 0)
                 await connection.InsertAsync(track);
         }
 
@@ -117,14 +117,14 @@ namespace VLC_WINRT_APP.DataRepository
             var result = await query.ToListAsync();
             foreach (TrackItem trackItem in result)
             {
-               await connection.DeleteAsync(trackItem);
+                await connection.DeleteAsync(trackItem);
             }
 
             // If all tracks for an album are deleted, then remove the album itself
             foreach (TrackItem trackItem in result)
             {
                 AlbumItem album = await MusicLibraryVM._albumDataRepository.LoadAlbum(trackItem.AlbumId);
-                if(album != null)
+                if (album != null)
                     MusicLibraryVM._albumDataRepository.Remove(album);
             }
 
