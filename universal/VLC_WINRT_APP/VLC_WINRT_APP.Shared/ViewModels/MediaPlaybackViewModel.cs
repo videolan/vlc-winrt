@@ -152,7 +152,7 @@ namespace VLC_WINRT_APP.ViewModels
                     return 0;
                 return _mediaService.MediaPlayer.time();
 #else
-                if (BackgroundMediaPlayer.Current != null && BackgroundMediaPlayer.Current.CurrentState != MediaPlayerState.Closed && BackgroundMediaPlayer.Current.CurrentState != MediaPlayerState.Stopped)
+                if (BackgroundMediaPlayer.Current != null && BackgroundMediaPlayer.Current.CurrentState != MediaPlayerState.Closed && BackgroundMediaPlayer.Current.CurrentState != MediaPlayerState.Stopped && !_mediaService.UseVlcLib)
                 {
                     // CurrentState keeps failing OnCanceled, even though it actually has a state.
                     // The error is useless for now, so try catch and ignore.
@@ -220,7 +220,7 @@ namespace VLC_WINRT_APP.ViewModels
                     return 0.0f;
                 return _mediaService.MediaPlayer.position();
 #else
-                if (BackgroundMediaPlayer.Current != null && BackgroundMediaPlayer.Current.CurrentState != MediaPlayerState.Closed && BackgroundMediaPlayer.Current.CurrentState != MediaPlayerState.Stopped)
+                if (BackgroundMediaPlayer.Current != null && BackgroundMediaPlayer.Current.CurrentState != MediaPlayerState.Closed && BackgroundMediaPlayer.Current.CurrentState != MediaPlayerState.Stopped && !_mediaService.UseVlcLib)
                 {
                     switch (BackgroundMediaPlayer.Current.CurrentState)
                     {
