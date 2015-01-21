@@ -13,6 +13,8 @@ namespace VLC_WINRT_APP.DataRepository
     Path.Combine(
     Windows.Storage.ApplicationData.Current.LocalFolder.Path,
     "mediavlc.sqlite");
+
+        private SQLiteConnection connection;
         public ArtistDataRepository()
         {
             Initialize();
@@ -20,11 +22,11 @@ namespace VLC_WINRT_APP.DataRepository
 
         public void Initialize()
         {
-            using (var db = new SQLiteConnection(_dbPath))
-            {
-                db.CreateTable<ArtistItem>();
-            }
+            var db = new SQLiteConnection(_dbPath);
+            connection = db;
+            connection.CreateTable<ArtistItem>();
         }
+
         public void Drop()
         {
             using (var db = new SQLite.SQLiteConnection(_dbPath))
@@ -36,15 +38,13 @@ namespace VLC_WINRT_APP.DataRepository
         public async Task<ObservableCollection<ArtistItem>> Load()
         {
             var connection = new SQLiteAsyncConnection(_dbPath);
-
             return new ObservableCollection<ArtistItem>(await connection.Table<ArtistItem>().ToListAsync());
         }
-        public async Task<ArtistItem> LoadViaArtistName(string artistName)
+
+        public ArtistItem LoadViaArtistName(string artistName)
         {
-            var connection = new SQLiteAsyncConnection(_dbPath);
             var query = connection.Table<ArtistItem>().Where(x => x.Name.Equals(artistName));
-            var result = await query.ToListAsync();
-            return result.FirstOrDefault();
+            return query.FirstOrDefault();
         }
 
         public Task Update(ArtistItem artist)

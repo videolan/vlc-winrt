@@ -64,6 +64,7 @@ namespace VLC_WINRT_APP.Model.Music
             set { SetProperty(ref _isOnlineMusicVideosLoaded, value); }
         }
 
+        [Indexed]
         public string Name
         {
             get { return _name; }

@@ -12,6 +12,7 @@ using XboxMusicLibrary.Models;
 using Windows.Phone.ApplicationModel;
 #endif
 using Windows.Storage;
+using Windows.Storage.AccessCache;
 using Windows.Storage.FileProperties;
 using Windows.System.Threading;
 using Windows.UI.Core;
@@ -200,7 +201,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                 if (propDictionary != null)
                 {
                     var artistName = propDictionary["artist"].ToString();
-                    ArtistItem artist = await MusicLibraryVM._artistDataRepository.LoadViaArtistName(artistName);
+                    ArtistItem artist = MusicLibraryVM._artistDataRepository.LoadViaArtistName(artistName);
                     if (artist == null)
                     {
                         artist = new ArtistItem();
