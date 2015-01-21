@@ -40,6 +40,8 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                 LogHelper.Log("Found " + artists.Count + " artists from MusicDB");
                 var orderedArtists = artists.OrderBy(x => x.Name);
                 var tracks = await MusicLibraryVM._trackDataRepository.LoadTracks();
+                var albums = await MusicLibraryVM._albumDataRepository.LoadAlbums(x => x.ArtistId != 0);
+
                 await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                 {
                     foreach (var artist in orderedArtists)
@@ -47,6 +49,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                         Locator.MusicLibraryVM.Artists.Add(artist);
                     }
                     Locator.MusicLibraryVM.Tracks = tracks;
+                    Locator.MusicLibraryVM.Albums = albums;
                 });
 
                 var trackColl = await MusicLibraryVM.TrackCollectionRepository.LoadTrackCollections();
