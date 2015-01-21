@@ -51,7 +51,7 @@
                           ItemTemplate="{StaticResource WPLightTrackTemplateWONumber}">
                     <triggers:Interactions.Triggers>
                         <triggers:EventTrigger EventName="ItemClick">
-                            <triggers:InvokeCommandAction Command="{Binding TrackClickedCommand}"
+                            <triggers:InvokeCommandAction Command="{Binding PlayAllSongsCommand}"
                                                           PassEventArgsToCommand="True" />
                         </triggers:EventTrigger>
                     </triggers:Interactions.Triggers>
