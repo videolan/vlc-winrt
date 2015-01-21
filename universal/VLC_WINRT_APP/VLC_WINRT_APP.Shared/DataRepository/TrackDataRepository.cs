@@ -79,7 +79,7 @@ namespace VLC_WINRT_APP.DataRepository
         public async Task<ObservableCollection<TrackItem>> LoadTracks()
         {
             var connection = new SQLiteAsyncConnection(_dbPath);
-            var query = connection.Table<TrackItem>();
+            var query = connection.Table<TrackItem>().OrderBy(x=>x.Name);
             var result = await query.ToListAsync();
             return new ObservableCollection<TrackItem>(result);
         }

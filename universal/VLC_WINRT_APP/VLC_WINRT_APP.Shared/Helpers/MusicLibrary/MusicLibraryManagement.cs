@@ -71,8 +71,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                 await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                 {
                     Locator.MusicLibraryVM.AlphaGroupedTracks =
-                        Locator.MusicLibraryVM.Tracks.OrderBy(
-                            x => (x.Name ?? ""))
+                        Locator.MusicLibraryVM.Tracks
                             .GroupBy(
                                 x =>
                                     x.Name != null
