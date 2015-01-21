@@ -225,12 +225,12 @@ namespace VLC_WINRT_APP.BackgroundHelpers
         {
             if (IsMyBackgroundTaskRunning)
             {
+                var bgTracks = trackItems.Select(backgroundTrackItem => new Database.Model.BackgroundTrackItem(backgroundTrackItem.Id, backgroundTrackItem.AlbumId, backgroundTrackItem.ArtistId, backgroundTrackItem.ArtistName, backgroundTrackItem.AlbumName, backgroundTrackItem.Name, backgroundTrackItem.Path, backgroundTrackItem.Index)).ToList();
+                await Locator.MusicPlayerVM.BackgroundTrackRepository.AddBunchTracks(bgTracks);
                 var msgDictionary = new ValueSet();
-                string tracksString = AudioBackgroundInterface.SerializeAudioTracks(trackItems);
-                msgDictionary.Add(BackgroundAudioConstants.AddTrack, tracksString);
+                msgDictionary.Add(BackgroundAudioConstants.UpdatePlaylist, "");
                 BackgroundMediaPlayer.SendMessageToBackground(msgDictionary);
             }
-            await Task.Delay(500);
         }
 
         public async Task AddToPlaylist(BackgroundTrackItem trackItem)
@@ -262,6 +262,7 @@ namespace VLC_WINRT_APP.BackgroundHelpers
         {
             if (IsMyBackgroundTaskRunning)
             {
+                Locator.MusicPlayerVM.BackgroundTrackRepository.Clear();
                 ValueSet messageDictionary = new ValueSet();
                 messageDictionary.Add(BackgroundAudioConstants.ResetPlaylist, (int)resetType);
                 BackgroundMediaPlayer.SendMessageToBackground(messageDictionary);

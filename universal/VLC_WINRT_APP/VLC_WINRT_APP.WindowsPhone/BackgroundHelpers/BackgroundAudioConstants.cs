@@ -27,5 +27,6 @@
         public const string MFFailed = "mediafoundationopenfailed";
         public const string Time = "time";
         public const string ShuffleReset = "shufflereset";
+        public const string UpdatePlaylist = "updateplaylist";
     }
 }

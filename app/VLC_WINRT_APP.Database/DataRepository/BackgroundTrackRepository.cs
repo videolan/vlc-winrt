@@ -37,17 +37,25 @@ Windows.Storage.ApplicationData.Current.LocalFolder.Path,
             }
         }
 
-        public void Add(BackgroundTrackItem track)
-        {
-            var connection = new SQLiteConnection(DbPath);
-            connection.Insert(track);
-        }
-
-        public async Task<List<BackgroundTrackItem>> LoadPlaylist()
+        public  Task Add(BackgroundTrackItem track)
         {
             var connection = new SQLiteAsyncConnection(DbPath);
-            return new List<BackgroundTrackItem>(await connection.Table<BackgroundTrackItem>().ToListAsync());
+            return connection.InsertAsync(track);
         }
+
+        public Task AddBunchTracks(List<BackgroundTrackItem> tracks)
+        {
+            var connection = new SQLiteAsyncConnection(DbPath);
+            return connection.InsertAllAsync(tracks);
+        }
+
+        public List<BackgroundTrackItem> LoadPlaylist()
+        {
+            var connection = new SQLiteConnection(DbPath);
+            var list =  new List<BackgroundTrackItem>(connection.Table<BackgroundTrackItem>().ToList());
+            return list;
+        }
+  
 
         public Task Remove(BackgroundTrackItem track)
         {

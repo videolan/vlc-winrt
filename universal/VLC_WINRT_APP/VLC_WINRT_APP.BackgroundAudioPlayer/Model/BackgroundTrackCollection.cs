@@ -130,13 +130,12 @@ namespace VLC_WINRT_APP.BackgroundAudioPlayer
             if (Playlist != null) Playlist.Clear();
             ApplicationSettingsHelper.ReadResetSettingsValue("SavedPlaylist");
             Debug.WriteLine("Background audio : reset playlist");
-            _backgroundTrackRepository.Clear();
         }
 
         public async void PopulatePlaylist()
         {
             Debug.WriteLine("Background audio : Populating playlist");
-            var playlist = await _backgroundTrackRepository.LoadPlaylist();
+            var playlist = _backgroundTrackRepository.LoadPlaylist();
             foreach (var item in playlist)
             {
                 Playlist.Add(new BackgroundTrackItem(item.Id, item.AlbumId, item.ArtistId, item.ArtistName,
@@ -186,10 +185,15 @@ namespace VLC_WINRT_APP.BackgroundAudioPlayer
             Debug.WriteLine("Background audio : adding " + trackItemsList.Count + " tracks to the playlist");
             foreach (var backgroundTrackItem in trackItemsList)
             {
-                _backgroundTrackRepository.Add(new Database.Model.BackgroundTrackItem(backgroundTrackItem.Id, backgroundTrackItem.AlbumId, backgroundTrackItem.ArtistId, backgroundTrackItem.ArtistName, backgroundTrackItem.AlbumName, backgroundTrackItem.Name, backgroundTrackItem.Path, backgroundTrackItem.Index));
                 Playlist.Add(backgroundTrackItem);
             }
         }
+
+        public void UpdatePlaylist()
+        {
+            PopulatePlaylist();
+        }
+
         #endregion
     }
 }

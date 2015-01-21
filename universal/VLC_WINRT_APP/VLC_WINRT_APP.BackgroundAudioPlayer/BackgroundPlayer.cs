@@ -94,7 +94,7 @@ namespace VLC_WINRT_APP.BackgroundAudioPlayer
             var currentTrackIndex = ApplicationSettingsHelper.ReadSettingsValue(BackgroundAudioConstants.CurrentTrack);
             if (currentTrackIndex != null)
             {
-                Playlist.CurrentTrack = (int) currentTrackIndex;
+                Playlist.CurrentTrack = (int)currentTrackIndex;
             }
             ApplicationSettingsHelper.SaveSettingsValue(BackgroundAudioConstants.BackgroundTaskState, BackgroundAudioConstants.BackgroundTaskRunning);
             deferral = taskInstance.GetDeferral();
@@ -332,6 +332,10 @@ namespace VLC_WINRT_APP.BackgroundAudioPlayer
                         StartPlayback();
                         break;
 
+                    case BackgroundAudioConstants.UpdatePlaylist:
+                        Debug.WriteLine("Updating playlist...");
+                        Playlist.UpdatePlaylist();
+                        break;
                     case BackgroundAudioConstants.ResetPlaylist:
                         var arg = new object();
                         if (e.Data.TryGetValue(BackgroundAudioConstants.ResetPlaylist, out arg))

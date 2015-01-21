@@ -122,13 +122,15 @@ namespace VLC_WINRT_APP.Helpers.MusicPlayer
             });
         }
 
-        public static async Task AddTrackCollectionToPlaylistAndPlay(ObservableCollection<TrackItem> trackCollection)
+        public static async Task AddTrackCollectionToPlaylistAndPlay(ObservableCollection<TrackItem> trackCollection, bool play = true, int? index = null)
         {
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
             {
                 await Locator.MusicPlayerVM.TrackCollection.ResetCollection();
                 await Locator.MusicPlayerVM.TrackCollection.SetPlaylist(trackCollection);
-                await PlayTrack(trackCollection[0].Id);
+                
+                if(play)
+                    await PlayTrack(trackCollection[index ?? 0].Id);
             });
         }
 
