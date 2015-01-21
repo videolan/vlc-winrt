@@ -71,11 +71,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                 {
                     Locator.MusicLibraryVM.AlphaGroupedTracks =
                         Locator.MusicLibraryVM.Tracks.OrderBy(
-                            x =>
-                                x.Name != null
-                                    ? x.Name
-                                        .ElementAt(0)
-                                    : '\0')
+                            x => (x.Name ?? ""))
                             .GroupBy(
                                 x =>
                                     x.Name != null
