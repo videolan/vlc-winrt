@@ -256,7 +256,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 
         public override async Task CleanViewModel()
         {
-            base.CleanViewModel();
+            await base.CleanViewModel();
 #if WINDOWS_PHONE_APP
             if (BackgroundMediaPlayer.Current != null &&
                 BackgroundMediaPlayer.Current.CurrentState != MediaPlayerState.Stopped)
@@ -265,7 +265,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                 await App.BackgroundAudioHelper.ResetCollection(ResetType.NormalReset);
             }
 #endif
-            TrackCollection.ResetCollection();
+            await TrackCollection.ResetCollection();
             TrackCollection.IsRunning = false;
             GC.Collect();
         }
