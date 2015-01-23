@@ -48,7 +48,7 @@
                           SelectionMode="None"
                           IsItemClickEnabled="True"
                           ItemContainerStyle="{StaticResource HorizontalListViewItemStyle}"
-                          ItemTemplate="{StaticResource WPLightTrackTemplateWONumber}">
+                          ItemTemplate="{StaticResource WPTrackTemplateWONumber}">
                     <triggers:Interactions.Triggers>
                         <triggers:EventTrigger EventName="ItemClick">
                             <triggers:InvokeCommandAction Command="{Binding PlayAllSongsCommand}"

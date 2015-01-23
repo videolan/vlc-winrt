@@ -12,7 +12,7 @@
         <ListView ItemsSource="{Binding CurrentAlbum.Tracks}"
                   IsItemClickEnabled="True"
                   SelectionMode="None"
-                  ItemTemplate="{StaticResource WPLightTrackTemplateWNumber}"
+                  ItemTemplate="{StaticResource WPTrackTemplateWNumber}"
                   ItemContainerStyle="{StaticResource ListViewItemStyle}"
                   RequestedTheme="Light">
             <ListView.HeaderTemplate>

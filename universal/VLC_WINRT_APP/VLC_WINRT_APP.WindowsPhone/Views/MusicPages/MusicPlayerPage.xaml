@@ -162,7 +162,7 @@
                     <ListView ItemsSource="{Binding TrackCollection.Playlist}"
                               IsItemClickEnabled="True"
                               SelectionMode="None"
-                              ItemTemplate="{StaticResource WPDarkTrackTemplateWONumber}"
+                              ItemTemplate="{StaticResource WPTrackTemplateWONumber}"
                               ItemContainerStyle="{StaticResource ListViewItemStyle}">
                         <ListView.ItemContainerTransitions>
                             <TransitionCollection>

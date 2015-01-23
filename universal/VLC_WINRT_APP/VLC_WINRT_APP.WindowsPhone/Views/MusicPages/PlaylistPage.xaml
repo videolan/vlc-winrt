@@ -23,7 +23,7 @@
                   Grid.Row="1"
                   SelectionMode="Multiple"
                   ItemsSource="{Binding CurrentTrackCollection.Playlist}"
-                  ItemTemplate="{StaticResource WPLightTrackTemplateWONumber}"
+                  ItemTemplate="{StaticResource WPTrackTemplateWONumber}"
                   ItemContainerStyle="{StaticResource HorizontalListViewItemStyle}"
                   Margin="24,24,0,0"
                   SelectionChanged="PlayListView_OnSelectionChanged">

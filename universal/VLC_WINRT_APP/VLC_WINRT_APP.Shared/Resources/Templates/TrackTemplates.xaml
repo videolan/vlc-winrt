@@ -4,16 +4,12 @@
                     xmlns:userControls="using:VLC_WINRT_APP.Views.UserControls">
 
     <!-- WINDOWS PHONE -->
-    <DataTemplate x:Key="WPLightTrackTemplateWONumber">
+    <DataTemplate x:Key="WPTrackTemplateWONumber">
         <userControls:TrackItemTemplate />
     </DataTemplate>
 
-    <DataTemplate x:Key="WPDarkTrackTemplateWONumber">
-        <userControls:TrackItemTemplate RequestedTheme="Dark"/>
-    </DataTemplate>
-    
-    <DataTemplate x:Key="WPDarkTrackTemplateWNumber">
-        <Grid RequestedTheme="Dark">
+    <DataTemplate x:Key="WPTrackTemplateWNumber">
+        <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition />
@@ -29,25 +25,6 @@
         </Grid>
     </DataTemplate>
     
-    <DataTemplate x:Key="WPLightTrackTemplateWNumber">
-        <Grid RequestedTheme="Dark">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="30" />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <Grid>
-                <TextBlock Grid.Column="0"
-                           Text="{Binding Index, Converter={StaticResource NullIntConverter}}"
-                           FontSize="30"
-                           FontWeight="ExtraLight"
-                           VerticalAlignment="Center"
-                           HorizontalAlignment="Right" />
-            </Grid>
-            <userControls:TrackItemTemplate Margin="12,0,0,0"
-                                            Grid.Column="1" />
-        </Grid>
-    </DataTemplate>
-
     <!-- WINDOWS -->
     <DataTemplate x:Key="LightTrackTemplate">
         <Grid>
