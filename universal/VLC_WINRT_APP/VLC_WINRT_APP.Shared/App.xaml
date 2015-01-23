@@ -26,6 +26,10 @@
                                      Color="#252525"/>
                     <SolidColorBrush x:Key="ApplicationBarForegroundThemeBrush"
                                      Color="#252525"/>
+                    <SolidColorBrush x:Key="ApplicationOverlayTranslucentThemeBrush"
+                                     Color="#cc000000" />
+                    <SolidColorBrush x:Key="ApplicationBackgroundSemiTranslucentThemeBrush"
+                                     Color="#81252525" />
                 </ResourceDictionary>
                 <ResourceDictionary x:Key="Light">
                     <SolidColorBrush x:Key="ApplicationPageBackgroundThemeBrush"
@@ -38,6 +42,10 @@
                                      Color="WhiteSmoke" />
                     <SolidColorBrush x:Key="ApplicationBarForegroundThemeBrush"
                                      Color="{StaticResource MainColorBase}" />
+                    <SolidColorBrush x:Key="ApplicationOverlayTranslucentThemeBrush"
+                                     Color="#ccffffff"/>
+                    <SolidColorBrush x:Key="ApplicationBackgroundSemiTranslucentThemeBrush"
+                                     Color="#81FFFFFF"/>
                 </ResourceDictionary>
             </ResourceDictionary.ThemeDictionaries>
             <viewModels:Locator x:Key="Locator" />
