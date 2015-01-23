@@ -17,7 +17,7 @@
             <ResourceDictionary.ThemeDictionaries>
                 <ResourceDictionary x:Key="Dark">
                     <SolidColorBrush x:Key="ApplicationPageBackgroundThemeBrush"
-                                     Color="#101010" />
+                                     Color="Black" />
                     <SolidColorBrush x:Key="PivotHeaderForegroundUnselectedBrush"
                                      Color="#424242" />
                     <SolidColorBrush x:Key="ApplicationSecondaryForegroundThemeBrush"
