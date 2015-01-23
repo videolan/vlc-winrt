@@ -24,6 +24,8 @@
                                      Color="LightGray" />
                     <SolidColorBrush x:Key="ApplicationThirdForegroundThemeBrush"
                                      Color="#252525"/>
+                    <SolidColorBrush x:Key="ApplicationBarForegroundThemeBrush"
+                                     Color="#252525"/>
                 </ResourceDictionary>
                 <ResourceDictionary x:Key="Light">
                     <SolidColorBrush x:Key="ApplicationPageBackgroundThemeBrush"
@@ -34,6 +36,8 @@
                                      Color="DimGray" />
                     <SolidColorBrush x:Key="ApplicationThirdForegroundThemeBrush"
                                      Color="WhiteSmoke" />
+                    <SolidColorBrush x:Key="ApplicationBarForegroundThemeBrush"
+                                     Color="{StaticResource MainColorBase}" />
                 </ResourceDictionary>
             </ResourceDictionary.ThemeDictionaries>
             <viewModels:Locator x:Key="Locator" />

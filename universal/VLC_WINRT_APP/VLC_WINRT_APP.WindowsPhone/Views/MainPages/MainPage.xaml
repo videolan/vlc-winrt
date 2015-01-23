@@ -46,7 +46,7 @@
     <yolo:AppBar Grid.Row="0"
                  x:Name="CommandBar"
                  x:FieldModifier="public"
-                 Background="{StaticResource MainColor}"
+                 Background="{ThemeResource ApplicationBarForegroundThemeBrush}"
                  RequestedTheme="Dark"
                  HomeButtonClicked="CommandBar_OnHomeButtonClicked"
                  Visibility="{Binding Source={StaticResource Locator}, Path=VideoVm.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}" />
