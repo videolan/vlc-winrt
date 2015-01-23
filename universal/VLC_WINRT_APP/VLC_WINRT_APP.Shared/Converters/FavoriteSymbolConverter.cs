@@ -1,6 +1,7 @@
 ﻿using System;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
+using VLC_WINRT_APP.Helpers;
 
 namespace VLC_WINRT_APP.Converters
 {
@@ -12,7 +13,7 @@ namespace VLC_WINRT_APP.Converters
             {
                 return new SymbolIcon(Symbol.UnFavorite);
             }
-            return new SymbolIcon(Symbol.Favorite);
+            return PathHelper.Create(App.Current.Resources["StarPath"].ToString());
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

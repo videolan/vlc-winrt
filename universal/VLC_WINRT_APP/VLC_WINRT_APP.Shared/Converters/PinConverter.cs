@@ -1,6 +1,7 @@
 ﻿using System;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
+using VLC_WINRT_APP.Helpers;
 
 namespace VLC_WINRT_APP.Converters
 {
@@ -28,7 +29,7 @@ namespace VLC_WINRT_APP.Converters
                 }
                 else
                 {
-                    return new SymbolIcon(Symbol.Pin);
+                    return PathHelper.Create(App.Current.Resources["PinPath"].ToString());
                 }
             }
             return null;

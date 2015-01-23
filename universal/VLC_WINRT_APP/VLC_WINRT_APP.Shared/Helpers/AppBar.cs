@@ -82,7 +82,7 @@ namespace VLC_WINRT_APP.Helpers
                             appbarEl.Add(new AppBarButton()
                             {
                                 Label = "search",
-                                Icon = new SymbolIcon(Symbol.Find),
+                                Icon = PathHelper.Create(App.Current.Resources["SearchPath"].ToString()),
                                 Command = Locator.MainVM.GoToSearchPage
                             });
                             break;
@@ -90,13 +90,13 @@ namespace VLC_WINRT_APP.Helpers
                             appbarEl.Add(new AppBarButton()
                             {
                                 Label = "search",
-                                Icon = new SymbolIcon(Symbol.Find),
+                                Icon = PathHelper.Create(App.Current.Resources["SearchPath"].ToString()),
                                 Command = Locator.MainVM.GoToSearchPage
                             });
                             appbarEl.Add(new AppBarButton()
                             {
                                 Label = "random",
-                                Icon = new SymbolIcon(Symbol.Shuffle),
+                                Icon = PathHelper.Create(App.Current.Resources["ShufflePath"].ToString()),
                                 Command = Locator.MusicLibraryVM.PlayAllRandomCommand
                             });
                             break;
@@ -108,7 +108,7 @@ namespace VLC_WINRT_APP.Helpers
                     appbarEl.Add(new AppBarButton()
                     {
                         Label = "play all",
-                        Icon = new SymbolIcon(Symbol.Play),
+                        Icon = PathHelper.Create(App.Current.Resources["PlayPath"].ToString()),
                         Command = Locator.MusicLibraryVM.PlayArtistAlbumsCommand,
                         CommandParameter = Locator.MusicLibraryVM.CurrentArtist
                     });
@@ -153,7 +153,7 @@ namespace VLC_WINRT_APP.Helpers
                     appbarEl.Add(new AppBarButton()
                     {
                         Label = "add to playlist",
-                        Icon = new SymbolIcon(Symbol.Add),
+                        Icon = PathHelper.Create(App.Current.Resources["AddPath"].ToString()),
                         Command = Locator.MusicLibraryVM.OpenAddAlbumToPlaylistDialogCommand
                     });
 
@@ -219,7 +219,7 @@ namespace VLC_WINRT_APP.Helpers
                     //primarycommands
                     var deleteBut = new AppBarButton()
                     {
-                        Icon = new SymbolIcon(Symbol.Delete),
+                        Icon = PathHelper.Create(App.Current.Resources["MinusPath"].ToString()),
                         Label = "remove track",
                         Name = "deletebutton",
                         Command = Locator.MusicLibraryVM.DeleteSelectedTracksInPlaylistCommand
@@ -236,7 +236,7 @@ namespace VLC_WINRT_APP.Helpers
                     var playBut = new AppBarButton()
                     {
                         Name = "playbutton",
-                        Icon = new SymbolIcon(Symbol.Play),
+                        Icon = PathHelper.Create(App.Current.Resources["PlayPath"].ToString()),
                         Label = "play",
                         Command = Locator.MusicLibraryVM.CurrentTrackCollection.PlayTrackCollCommand,
                         CommandParameter = Locator.MusicLibraryVM.CurrentTrackCollection
