@@ -8,14 +8,12 @@
       xmlns:triggers="using:WinRT.Triggers"
       xmlns:artistPageControls="using:VLC_WINRT_APP.Views.MusicPages.ArtistPageControls"
       mc:Ignorable="d"
-      DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}"
-      Background="WhiteSmoke">
-    <Grid RequestedTheme="Dark">
+      DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
+    <Grid>
         <Image Source="/Assets/backgroundTop.png"
                Stretch="Uniform"
                VerticalAlignment="Top" />
-        <Grid RequestedTheme="Light"
-              Margin="0,0,-20,0">
+        <Grid Margin="0,0,-20,0">
             <GridView ItemsSource="{Binding CurrentArtist.Albums}"
                       ItemTemplate="{StaticResource PhoneSemanticZoomInViewAlbumTemplateLittleSize}"
                       ItemContainerStyle="{StaticResource TileGridViewItemStyle}"

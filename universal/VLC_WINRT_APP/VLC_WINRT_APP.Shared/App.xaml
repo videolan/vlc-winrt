@@ -14,6 +14,24 @@
                 <ResourceDictionary Source="Resources/Flyouts.xaml" />
                 <ResourceDictionary Source="Resources/PlatformFlyouts.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Dark">
+                    <SolidColorBrush x:Key="ApplicationPageBackgroundThemeBrush"
+                                     Color="#101010" />
+                    <SolidColorBrush x:Key="PivotHeaderForegroundUnselectedBrush"
+                                     Color="#424242" />
+                    <SolidColorBrush x:Key="ApplicationSecondaryForegroundThemeBrush"
+                                     Color="LightGray" />
+                </ResourceDictionary>
+                <ResourceDictionary x:Key="Light">
+                    <SolidColorBrush x:Key="ApplicationPageBackgroundThemeBrush"
+                                     Color="WhiteSmoke" />
+                    <SolidColorBrush x:Key="PivotHeaderForegroundUnselectedBrush"
+                                     Color="DimGray" />
+                    <SolidColorBrush x:Key="ApplicationSecondaryForegroundThemeBrush"
+                                     Color="DimGray"/>
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
             <viewModels:Locator x:Key="Locator" />
             <x:String x:Key="AppTitle">VLC Media Player</x:String>
         </ResourceDictionary>

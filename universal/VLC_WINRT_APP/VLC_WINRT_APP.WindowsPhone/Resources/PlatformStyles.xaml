@@ -4,8 +4,6 @@
 
     <SolidColorBrush x:Key="PivotHeaderForegroundSelectedBrush"
                      Color="{StaticResource MainColorBase}" />
-    <SolidColorBrush x:Key="PivotHeaderForegroundUnselectedBrush"
-                     Color="DimGray" />
     <Style x:Name="TileGridViewItemStyle" TargetType="GridViewItem">
         <Setter Property="VerticalContentAlignment"
                 Value="Stretch" />
@@ -949,7 +947,7 @@
                                 </ItemsPresenter>
                             </PivotPanel>
                         </ScrollViewer>
-                        <Grid Background="WhiteSmoke"
+                        <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
                               VerticalAlignment="Top"
                               HorizontalAlignment="Left">
                             <ContentControl x:Name="TitleContentControl"

@@ -30,7 +30,7 @@
     </DataTemplate>
     
     <DataTemplate x:Key="WPLightTrackTemplateWNumber">
-        <Grid RequestedTheme="Light">
+        <Grid RequestedTheme="Dark">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="30" />
                 <ColumnDefinition />

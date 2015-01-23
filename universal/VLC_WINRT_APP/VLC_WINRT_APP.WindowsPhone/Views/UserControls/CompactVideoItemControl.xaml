@@ -43,7 +43,7 @@
                 <TextBlock Grid.Row="1"
                            Grid.Column="0"
                            Text="{Binding Duration, Converter={StaticResource TimeSpanShortStringConverter}}"
-                           Foreground="DimGray"
+                           Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
                            TextWrapping="NoWrap"
                            TextTrimming="CharacterEllipsis"
                            FontSize="16"

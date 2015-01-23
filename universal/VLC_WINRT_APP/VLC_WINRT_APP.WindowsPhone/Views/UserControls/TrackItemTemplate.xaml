@@ -32,7 +32,7 @@
                    Grid.Row="1"
                    Text="{Binding ArtistName}"
                    Style="{StaticResource BaseTextBlockStyle}"
-                   Foreground="DimGray"
+                   Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
                    FontWeight="Light" />
         <Button Grid.Column="1"
                 Grid.Row="0"
@@ -41,7 +41,7 @@
                 VerticalContentAlignment="Bottom"
                 Style="{StaticResource TextBlockButtonStyle}"
                 Content=""
-                Foreground="DimGray"
+                Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
                 FontFamily="Segoe UI Symbol"
                 HorizontalAlignment="Stretch"
                 HorizontalContentAlignment="Center"
@@ -50,7 +50,7 @@
         <TextBlock Grid.Column="1"
                    Grid.Row="0"
                    FontWeight="Light"
-                   Foreground="DimGray"
+                   Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
                    Text="{Binding Duration.TotalSeconds, Converter={StaticResource SecondsStringConverter}}"
                    VerticalAlignment="Center"
                    HorizontalAlignment="Center" />

@@ -42,7 +42,7 @@
                            TextTrimming="CharacterEllipsis"
                            FontSize="14"
                            FontWeight="Light"
-                           Foreground="DimGray"
+                           Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
                            VerticalAlignment="Center"
                            Margin="7,0,7,0" />
                 <Button Grid.Column="1"

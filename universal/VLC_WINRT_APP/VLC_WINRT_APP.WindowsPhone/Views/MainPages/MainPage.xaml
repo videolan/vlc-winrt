@@ -10,7 +10,7 @@
                 xmlns:yolo="using:Yolo"
                 mc:Ignorable="d"
                 x:Name="SwapChainPanel"
-                RequestedTheme="Light">
+                RequestedTheme="Dark">
     <Grid.RowDefinitions>
         <RowDefinition />
         <RowDefinition Height="Auto" />
@@ -21,7 +21,7 @@
                   x:Name="MediaElement"
                   x:FieldModifier="public" />
     <Grid Grid.RowSpan="2"
-          Background="WhiteSmoke"
+          Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
           Visibility="{Binding Source={StaticResource Locator}, Path=VideoVm.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}" />
     <Image Source="/Assets/backgroundBot.png"
            Stretch="Uniform"
