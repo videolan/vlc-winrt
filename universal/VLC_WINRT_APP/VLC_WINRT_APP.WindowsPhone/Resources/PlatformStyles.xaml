@@ -325,12 +325,11 @@
                             <Border x:Name="PopupBorder"
                                     BorderBrush="{StaticResource MainColor}"
                                     BorderThickness="1"
-                                    Background="#F2FFFFFF"
+                                    Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}"
                                     HorizontalAlignment="Stretch">
                                 <ScrollViewer x:Name="ScrollViewer"
                                               AutomationProperties.AccessibilityView="Raw"
                                               BringIntoViewOnFocusChange="{TemplateBinding ScrollViewer.BringIntoViewOnFocusChange}"
-                                              Foreground="{ThemeResource ComboBoxPopupForegroundThemeBrush}"
                                               HorizontalScrollMode="{TemplateBinding ScrollViewer.HorizontalScrollMode}"
                                               HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
                                               IsHorizontalRailEnabled="{TemplateBinding ScrollViewer.IsHorizontalRailEnabled}"
@@ -527,12 +526,11 @@
                             <Border x:Name="PopupBorder"
                                     BorderBrush="{StaticResource MainColor}"
                                     BorderThickness="1"
-                                    Background="#ccffffff"
+                                    Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}"
                                     HorizontalAlignment="Stretch">
                                 <ScrollViewer x:Name="ScrollViewer"
                                               AutomationProperties.AccessibilityView="Raw"
                                               BringIntoViewOnFocusChange="{TemplateBinding ScrollViewer.BringIntoViewOnFocusChange}"
-                                              Foreground="{ThemeResource ComboBoxPopupForegroundThemeBrush}"
                                               HorizontalScrollMode="{TemplateBinding ScrollViewer.HorizontalScrollMode}"
                                               HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
                                               IsHorizontalRailEnabled="{TemplateBinding ScrollViewer.IsHorizontalRailEnabled}"
@@ -559,7 +557,7 @@
         <Setter Property="FontSize"
                 Value="18" />
         <Setter Property="Background"
-                Value="#81FFFFFF"/>
+                Value="{ThemeResource ApplicationBackgroundSemiTranslucentThemeBrush}"/>
     </Style>
     <Thickness x:Key="HorizontalListViewItemMargin">0,0,18,0</Thickness>
     <Style x:Key="AppBarButtonStyleHuge"
