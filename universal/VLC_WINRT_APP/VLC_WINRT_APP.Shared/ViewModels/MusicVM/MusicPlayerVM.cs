@@ -114,6 +114,11 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                 if (TrackCollection.CurrentTrack == -1
                     || TrackCollection.CurrentTrack == TrackCollection.Playlist.Count)
                     return null;
+                if (TrackCollection.CurrentTrack > TrackCollection.Playlist.Count)
+                {
+                    TrackCollection.CurrentTrack = 0;
+                    return null;
+                }
                 return TrackCollection.Playlist[TrackCollection.CurrentTrack];
             }
         }
