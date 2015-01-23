@@ -9,6 +9,8 @@ using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.Views.MainPages;
 using VLC_WINRT_APP.Views.MusicPages;
 using System.Threading.Tasks;
+using Windows.UI;
+using Windows.UI.Xaml.Media;
 using VLC_WINRT_APP.Model;
 
 #if WINDOWS_PHONE_APP
@@ -60,19 +62,19 @@ namespace VLC_WINRT_APP.Helpers
                             appbarEl.Add(new AppBarButton()
                             {
                                 Label = "search",
-                                Icon = new SymbolIcon(Symbol.Find),
+                                Icon = PathHelper.Create(App.Current.Resources["SearchPath"].ToString()),
                                 Command = Locator.MainVM.GoToSearchPage
                             });
                             appbarEl.Add(new AppBarButton()
                             {
                                 Label = "open file",
-                                Icon = new SymbolIcon(Symbol.OpenFile),
+                                Icon = PathHelper.Create(App.Current.Resources["OpenFilePath"].ToString()),
                                 Command = Locator.VideoLibraryVM.PickVideo
                             });
                             appbarEl.Add(new AppBarButton()
                             {
                                 Label = "open stream",
-                                Icon = new SymbolIcon(Symbol.World),
+                                Icon = PathHelper.Create(App.Current.Resources["OnlinePath"].ToString()),
                                 Flyout = App.Current.Resources["PhoneOpenStreamFlyout"] as Flyout,
                             });
                             break;
