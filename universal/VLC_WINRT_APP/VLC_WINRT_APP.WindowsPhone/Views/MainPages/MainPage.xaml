@@ -47,7 +47,6 @@
                  x:Name="CommandBar"
                  x:FieldModifier="public"
                  Background="{ThemeResource ApplicationBarForegroundThemeBrush}"
-                 RequestedTheme="Dark"
                  HomeButtonClicked="CommandBar_OnHomeButtonClicked"
                  Visibility="{Binding Source={StaticResource Locator}, Path=VideoVm.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}" />
     <userControls:BottomMiniPlayer Grid.Row="1" />
