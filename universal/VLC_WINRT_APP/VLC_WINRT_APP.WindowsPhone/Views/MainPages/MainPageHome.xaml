@@ -25,7 +25,7 @@
                Source="/Assets/backgroundTop.png"
                Stretch="Uniform"
                VerticalAlignment="Top"
-               extensions:ImageExtensions.FadeInOnLoaded="True"/>
+               Opacity="0.7"/>
         <Pivot x:Name="MainPivot"
                x:FieldModifier="public"
                Style="{StaticResource HorizontalPivotStyle}"
