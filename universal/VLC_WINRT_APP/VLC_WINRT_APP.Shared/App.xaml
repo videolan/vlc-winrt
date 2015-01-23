@@ -22,6 +22,8 @@
                                      Color="#424242" />
                     <SolidColorBrush x:Key="ApplicationSecondaryForegroundThemeBrush"
                                      Color="LightGray" />
+                    <SolidColorBrush x:Key="ApplicationThirdForegroundThemeBrush"
+                                     Color="#252525"/>
                 </ResourceDictionary>
                 <ResourceDictionary x:Key="Light">
                     <SolidColorBrush x:Key="ApplicationPageBackgroundThemeBrush"
@@ -29,7 +31,9 @@
                     <SolidColorBrush x:Key="PivotHeaderForegroundUnselectedBrush"
                                      Color="DimGray" />
                     <SolidColorBrush x:Key="ApplicationSecondaryForegroundThemeBrush"
-                                     Color="DimGray"/>
+                                     Color="DimGray" />
+                    <SolidColorBrush x:Key="ApplicationThirdForegroundThemeBrush"
+                                     Color="WhiteSmoke" />
                 </ResourceDictionary>
             </ResourceDictionary.ThemeDictionaries>
             <viewModels:Locator x:Key="Locator" />

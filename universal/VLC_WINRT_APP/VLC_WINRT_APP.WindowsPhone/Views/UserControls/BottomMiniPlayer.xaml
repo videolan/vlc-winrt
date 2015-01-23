@@ -10,7 +10,7 @@
              DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}"
              Visibility="{Binding CurrentPage, Converter={StaticResource BottomMiniPlayerVisibilityConverter}}">
     <Grid x:Name="RootGrid"
-          Background="WhiteSmoke"
+          Background="{ThemeResource ApplicationThirdForegroundThemeBrush}"
           DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}"
           Visibility="{Binding TrackCollection.IsRunning, Converter={StaticResource BooleanToVisibilityConverter}}">
         <Grid.ColumnDefinitions>
@@ -30,13 +30,11 @@
                     Tapped="RootMiniPlayer_Tapped"
                     Background="Transparent">
             <TextBlock Text="{Binding CurrentArtist.Name}"
-                       Foreground="Black"
                        Style="{StaticResource SubheaderTextBlockStyle}"
                        TextWrapping="NoWrap"
                        TextTrimming="CharacterEllipsis"
                        FontSize="22" />
             <TextBlock Text="{Binding CurrentTrack.Name}"
-                       Foreground="Black"
                        Style="{StaticResource SubheaderTextBlockStyle}"
                        TextWrapping="NoWrap"
                        TextTrimming="CharacterEllipsis"
