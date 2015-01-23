@@ -28,7 +28,7 @@ namespace VLC_WINRT_APP.Views.UserControls
         {
             if (DisplayHelper.IsPortrait())
             {
-                RootGrid.Height = 80;
+                RootGrid.Height = 70;
             }
             else
             {

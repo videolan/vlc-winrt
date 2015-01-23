@@ -20,9 +20,15 @@
         </Grid.ColumnDefinitions>
         <Image Grid.Row="0"
                Source="{Binding CurrentAlbum.Picture}"
-               Width="80"
+               Width="70"
                Stretch="UniformToFill"
                Tapped="RootMiniPlayer_Tapped" />
+        <ProgressBar Grid.Row="0"
+                     Grid.Column="1"
+                     Grid.ColumnSpan="2"
+                     Style="{StaticResource BackgroundProgressBar}"
+                     Value="{Binding Time, Mode=OneWay}"
+                     Maximum="{Binding TimeTotal.TotalMilliseconds}" />
         <StackPanel Grid.Row="0"
                     Grid.Column="1"
                     Margin="12,0,0,0"
@@ -33,12 +39,12 @@
                        Style="{StaticResource SubheaderTextBlockStyle}"
                        TextWrapping="NoWrap"
                        TextTrimming="CharacterEllipsis"
-                       FontSize="22" />
+                       FontSize="21 " />
             <TextBlock Text="{Binding CurrentTrack.Name}"
                        Style="{StaticResource SubheaderTextBlockStyle}"
                        TextWrapping="NoWrap"
                        TextTrimming="CharacterEllipsis"
-                       FontSize="18" />
+                       FontSize="17" />
         </StackPanel>
         <Grid Grid.Row="0"
               Grid.Column="2"
@@ -59,12 +65,5 @@
                 <SymbolIcon Symbol="Pause" />
             </Button>
         </Grid>
-        <ProgressBar Style="{StaticResource ThinProgressBar}"
-                     Grid.Row="0"
-                     Grid.ColumnSpan="3"
-                     Margin="0,-3,0,0"
-                     VerticalAlignment="Top"
-                     Value="{Binding Time, Mode=OneWay}"
-                     Maximum="{Binding TimeTotal.TotalMilliseconds}" />
     </Grid>
 </UserControl>
