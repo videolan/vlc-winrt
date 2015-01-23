@@ -5,15 +5,6 @@
     xmlns:viewModels="using:VLC_WINRT_APP.ViewModels">
     <Application.Resources>
         <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Resources/Colors.xaml" />
-                <ResourceDictionary Source="Resources/Converters.xaml" />
-                <ResourceDictionary Source="Resources/Styles.xaml" />
-                <ResourceDictionary Source="Resources/DataTemplateSelectors.xaml" />
-                <ResourceDictionary Source="Resources/Templates.xaml" />
-                <ResourceDictionary Source="Resources/Flyouts.xaml" />
-                <ResourceDictionary Source="Resources/PlatformFlyouts.xaml" />
-            </ResourceDictionary.MergedDictionaries>
             <ResourceDictionary.ThemeDictionaries>
                 <ResourceDictionary x:Key="Dark">
                     <SolidColorBrush x:Key="ApplicationPageBackgroundThemeBrush"
@@ -23,9 +14,9 @@
                     <SolidColorBrush x:Key="ApplicationSecondaryForegroundThemeBrush"
                                      Color="LightGray" />
                     <SolidColorBrush x:Key="ApplicationThirdForegroundThemeBrush"
-                                     Color="#252525"/>
+                                     Color="#252525" />
                     <SolidColorBrush x:Key="ApplicationBarForegroundThemeBrush"
-                                     Color="#252525"/>
+                                     Color="#252525" />
                     <SolidColorBrush x:Key="ApplicationOverlayTranslucentThemeBrush"
                                      Color="#cc000000" />
                     <SolidColorBrush x:Key="ApplicationBackgroundSemiTranslucentThemeBrush"
@@ -43,11 +34,20 @@
                     <SolidColorBrush x:Key="ApplicationBarForegroundThemeBrush"
                                      Color="{StaticResource MainColorBase}" />
                     <SolidColorBrush x:Key="ApplicationOverlayTranslucentThemeBrush"
-                                     Color="#ccffffff"/>
+                                     Color="#ccffffff" />
                     <SolidColorBrush x:Key="ApplicationBackgroundSemiTranslucentThemeBrush"
-                                     Color="#81FFFFFF"/>
+                                     Color="#81FFFFFF" />
                 </ResourceDictionary>
             </ResourceDictionary.ThemeDictionaries>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/Colors.xaml" />
+                <ResourceDictionary Source="Resources/Converters.xaml" />
+                <ResourceDictionary Source="Resources/Styles.xaml" />
+                <ResourceDictionary Source="Resources/DataTemplateSelectors.xaml" />
+                <ResourceDictionary Source="Resources/Templates.xaml" />
+                <ResourceDictionary Source="Resources/Flyouts.xaml" />
+                <ResourceDictionary Source="Resources/PlatformFlyouts.xaml" />
+            </ResourceDictionary.MergedDictionaries>
             <viewModels:Locator x:Key="Locator" />
             <x:String x:Key="AppTitle">VLC Media Player</x:String>
         </ResourceDictionary>
