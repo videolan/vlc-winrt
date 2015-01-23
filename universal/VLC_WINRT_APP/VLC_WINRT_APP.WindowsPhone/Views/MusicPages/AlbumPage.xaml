@@ -13,8 +13,7 @@
                   IsItemClickEnabled="True"
                   SelectionMode="None"
                   ItemTemplate="{StaticResource WPTrackTemplateWNumber}"
-                  ItemContainerStyle="{StaticResource ListViewItemStyle}"
-                  RequestedTheme="Light">
+                  ItemContainerStyle="{StaticResource ListViewItemStyle}">
             <ListView.HeaderTemplate>
                 <DataTemplate>
                     <albumPageControls:MainAlbumHeader />
