@@ -47,4 +47,27 @@
             Placement="Full">
         <flyouts:VideoInformationFlyout />
     </Flyout>
+    <MenuFlyout x:Key="AlbumMenuFlyout">
+        <MenuFlyoutItem x:Uid="PlayAlbum"
+                        Text="play all"
+                        Command="{Binding PlayAlbum}"
+                        CommandParameter="{Binding}" />
+        <MenuFlyoutItem x:Uid="ViewArtist"
+                        Text="view artist"
+                        Command="{Binding ViewArtist}"
+                        CommandParameter="{Binding ArtistId}" />
+        <MenuFlyoutItem x:Uid="PinAlbum"
+                        Text="pin album"
+                        Command="{Binding PinAlbumCommand}"
+                        CommandParameter="{Binding}" />
+        <MenuFlyoutItem x:Uid="SeeUpcomingShows"
+                        Text="see upcoming shows"
+                        Command="{Binding SeeArtistShowsCommand}"
+                        CommandParameter="{Binding ArtistId}" />
+    </MenuFlyout>
+    <MenuFlyout x:Key="ArtistMenuFlyout">
+        <MenuFlyoutItem Text="pin artist"
+                        Command="{Binding PinArtistCommand}"
+                        CommandParameter="{Binding}" />
+    </MenuFlyout>
 </ResourceDictionary>

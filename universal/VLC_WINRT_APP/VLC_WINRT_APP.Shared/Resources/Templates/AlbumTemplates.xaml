@@ -9,7 +9,13 @@
 
     <!-- WINDOWS PHONE -->
     <DataTemplate x:Key="PhoneSemanticZoomInViewAlbumTemplateLittleSize">
-        <Grid Margin="0,0,12,12">
+        <Grid Margin="0,0,12,12"
+              FlyoutBase.AttachedFlyout="{StaticResource AlbumMenuFlyout}">
+            <interactivity:Interaction.Behaviors>
+                <core:EventTriggerBehavior EventName="Holding">
+                    <common:OpenMenuFlyoutAction />
+                </core:EventTriggerBehavior>
+            </interactivity:Interaction.Behaviors>
             <Grid.RowDefinitions>
                 <RowDefinition Height="3*" />
                 <RowDefinition Height="*" />
@@ -55,27 +61,8 @@
                         Foreground="#ACACAC"
                         FontFamily="Segoe UI Symbol"
                         Margin="0,0,0,0"
-                        Padding="0,0,3,0">
-                    <Button.Flyout>
-                        <MenuFlyout>
-                            <MenuFlyoutItem x:Uid="PlayAlbum"
-                                            Text="play all"
-                                            Command="{Binding PlayAlbum}"
-                                            CommandParameter="{Binding}" />
-                            <MenuFlyoutItem x:Uid="ViewArtist"
-                                            Text="view artist"
-                                            Command="{Binding ViewArtist}"
-                                            CommandParameter="{Binding ArtistId}" />
-                            <MenuFlyoutItem x:Uid="PinAlbum"
-                                            Text="pin album"
-                                            Command="{Binding PinAlbumCommand}"
-                                            CommandParameter="{Binding}" />
-                            <MenuFlyoutItem x:Uid="SeeUpcomingShows"
-                                            Text="see upcoming shows"
-                                            Command="{Binding SeeArtistShowsCommand}"
-                                            CommandParameter="{Binding ArtistId}" />
-                        </MenuFlyout>
-                    </Button.Flyout>
+                        Padding="0,0,3,0"
+                        Flyout="{StaticResource AlbumMenuFlyout}">
                 </Button>
             </Grid>
         </Grid>
