@@ -152,6 +152,8 @@ namespace VLC_WINRT_APP.ViewModels
                     return 0;
                 return _mediaService.MediaPlayer.time();
 #else
+                if (_mediaService.MediaPlayer != null)
+                    return _mediaService.MediaPlayer.time();
                 if (BackgroundMediaPlayer.Current != null && BackgroundMediaPlayer.Current.CurrentState != MediaPlayerState.Closed && BackgroundMediaPlayer.Current.CurrentState != MediaPlayerState.Stopped && !_mediaService.UseVlcLib)
                 {
                     // CurrentState keeps failing OnCanceled, even though it actually has a state.
@@ -167,18 +169,11 @@ namespace VLC_WINRT_APP.ViewModels
                                 break;
                         }
                     }
-                    catch (Exception)
+                    catch
                     {
-                        return 0;
                     }
-                    return 0;
                 }
-                else
-                {
-                    if (_mediaService.MediaPlayer == null)
-                        return 0;
-                    return _mediaService.MediaPlayer.time();
-                }
+                return 0;
 #endif
             }
             set
@@ -220,6 +215,8 @@ namespace VLC_WINRT_APP.ViewModels
                     return 0.0f;
                 return _mediaService.MediaPlayer.position();
 #else
+                if (_mediaService.MediaPlayer != null)
+                    return _mediaService.MediaPlayer.position();
                 if (BackgroundMediaPlayer.Current != null && BackgroundMediaPlayer.Current.CurrentState != MediaPlayerState.Closed && BackgroundMediaPlayer.Current.CurrentState != MediaPlayerState.Stopped && !_mediaService.UseVlcLib)
                 {
                     switch (BackgroundMediaPlayer.Current.CurrentState)
@@ -232,15 +229,8 @@ namespace VLC_WINRT_APP.ViewModels
                         case MediaPlayerState.Closed:
                             break;
                     }
-                    return 0;
                 }
-                else
-                {
-                    // XAML might ask for the position while no playback is running, hence the check.
-                    if (_mediaService.MediaPlayer == null)
-                        return 0.0f;
-                    return _mediaService.MediaPlayer.position();
-                }
+                return 0;
 #endif
             }
             set
