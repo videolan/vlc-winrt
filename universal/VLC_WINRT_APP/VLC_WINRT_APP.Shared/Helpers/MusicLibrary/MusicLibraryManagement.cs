@@ -255,12 +255,6 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                         Path = item.Path,
                         Index = trackNb,
                     };
-
-                    if (album.LoadingState == LoadingState.NotLoaded && !album.IsPictureLoaded)
-                    {
-                        album.LoadingState = LoadingState.Loading;
-                        await SetAlbumCover(album, track.Path, false, mediaService);
-                    }
                     await MusicLibraryVM._trackDataRepository.Add(track);
                 }
             }
