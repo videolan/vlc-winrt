@@ -26,7 +26,7 @@ using VLC_WINRT_APP.Commands;
 using VLC_WINRT_APP.Model.Search;
 using VLC_WINRT_APP.Views.MainPages;
 using VLC_WINRT_APP.Views.VariousPages;
-using AppBar = Yolo.AppBar;
+using AppBar = CustomAppBar.AppBar;
 using Panel = VLC_WINRT_APP.Model.Panel;
 
 namespace VLC_WINRT_APP.ViewModels
