@@ -6,6 +6,7 @@ using System.Xml.Linq;
 using SQLite;
 using VLC_WINRT_APP.Model.Music;
 using VLC_WINRT_APP.ViewModels.MusicVM;
+using WinRTXamlToolkit.IO.Serialization;
 
 namespace VLC_WINRT_APP.DataRepository
 {
@@ -59,14 +60,22 @@ namespace VLC_WINRT_APP.DataRepository
             return result.FirstOrDefault();
         }
 
-        public
-            async Task<ObservableCollection<TrackItem>> LoadTracksByAlbumId(int albumId)
+        public async Task<ObservableCollection<TrackItem>> LoadTracksByAlbumId(int albumId)
         {
             var connection = new SQLiteAsyncConnection(_dbPath);
             var query = connection.Table<TrackItem>().Where(x => x.AlbumId == albumId);
             var result = await query.ToListAsync();
             return new ObservableCollection<TrackItem>(result);
         }
+
+        public async Task<string> GetFirstTrackPathByAlbumId(int albumId)
+        {
+            var connection = new SQLiteAsyncConnection(_dbPath);
+            var query = connection.Table<TrackItem>().Where(x => x.AlbumId == albumId);
+            var result = await query.FirstOrDefaultAsync();
+            return result.Path;
+        }
+
         public
             async Task<ObservableCollection<TrackItem>> LoadTracksByArtistId(int artistId)
         {
