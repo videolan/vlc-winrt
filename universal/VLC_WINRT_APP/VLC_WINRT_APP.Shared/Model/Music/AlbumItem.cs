@@ -5,12 +5,16 @@ using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Core;
+using Windows.UI.Xaml.Documents;
+using Autofac;
 using SQLite;
 using VLC_WINRT_APP.Commands.Music;
 using VLC_WINRT_APP.Commands.MusicPlayer;
 using VLC_WINRT_APP.Common;
 using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.Helpers.MusicLibrary;
+using VLC_WINRT_APP.Services.Interface;
+using VLC_WINRT_APP.Services.RunTime;
 using VLC_WINRT_APP.ViewModels.MusicVM;
 
 namespace VLC_WINRT_APP.Model.Music
@@ -35,7 +39,6 @@ namespace VLC_WINRT_APP.Model.Music
 #if WINDOWS_PHONE_APP
         private SeeArtistShowsCommand seeArtistShowsCommand;
 #endif
-        private LoadingState _loadingState = LoadingState.NotLoaded;
 
         [PrimaryKey, AutoIncrement, Column("_id")]
         public int Id { get; set; }
@@ -89,12 +92,7 @@ namespace VLC_WINRT_APP.Model.Music
 
         public bool IsPictureLoaded { get; set; }
 
-        [Ignore]
-        public LoadingState LoadingState
-        {
-            get { return _loadingState; }
-            set { _loadingState = value; }
-        }
+        public bool IsLocalPictureIndexed { get; set; }
 
         public uint Year
         {
@@ -106,8 +104,18 @@ namespace VLC_WINRT_APP.Model.Music
         {
             try
             {
+                if (!IsLocalPictureIndexed && !IsPictureLoaded)
+                {
+                    Debug.WriteLine("Searching local cover for " + Name);
+                    IsLocalPictureIndexed = true;
+                    await MusicLibraryVM._albumDataRepository.Update(this);
+                    var mediaService = App.Container.Resolve<IMediaService>() as MediaService;
+                    var trackPath = await MusicLibraryVM._trackDataRepository.GetFirstTrackPathByAlbumId(Id);
+                    await MusicLibraryManagement.SetAlbumCover(this, trackPath, false, mediaService);
+                }
                 if (IsPictureLoaded)
                     return;
+                Debug.WriteLine("Searching online cover for " + Name);
                 await ArtistInformationsHelper.GetAlbumPicture(this);
             }
             catch (Exception)
