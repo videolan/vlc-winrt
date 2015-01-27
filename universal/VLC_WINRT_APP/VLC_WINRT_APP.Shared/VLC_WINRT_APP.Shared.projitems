@@ -61,6 +61,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Settings\AddFolderToLibrary.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Settings\RemoveFolderFromMusicLibrary.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Settings\RemoveFolderFromVideoLibrary.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\Social\ShareNowPlayingMusicCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Video\CloseFlyoutAndPlayVideoCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Video\FavoriteVideoCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Video\OpenSubtitleCommand.cs" />

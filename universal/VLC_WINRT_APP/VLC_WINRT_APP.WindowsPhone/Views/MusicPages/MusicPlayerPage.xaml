@@ -39,6 +39,21 @@
                            Stretch="Uniform"
                            Margin="0,12"
                            winrtext:ImageExtensions.FadeInOnLoaded="True" />
+                    <Button Grid.Row="1"
+                            Grid.Column="2"
+                            Style="{StaticResource TextBlockButtonStyle}"
+                            HorizontalAlignment="Center"
+                            Command="{Binding ShareNowPlayingMusicCommand}">
+                        <Button.Content>
+                            <Grid>
+                                <Path Data="{StaticResource SharePath}"
+                                      Fill="White"
+                                      Width="32"
+                                      Height="32"
+                                      Stretch="Uniform" />
+                            </Grid>
+                        </Button.Content>
+                    </Button>
                     <TextBlock Grid.Row="1"
                                Grid.Column="1"
                                HorizontalAlignment="Center"

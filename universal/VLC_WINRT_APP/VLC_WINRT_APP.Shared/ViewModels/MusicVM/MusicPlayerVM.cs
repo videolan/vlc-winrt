@@ -7,6 +7,7 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
+using VLC_WINRT_APP.Commands.Social;
 using VLC_WINRT_APP.Database.DataRepository;
 using VLC_WINRT_APP.DataRepository;
 using System;
@@ -48,6 +49,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         #region private props
         private TrackCollection _trackCollection;
         private GoToMusicPlayerPage _goToMusicPlayerPage;
+        private ShareNowPlayingMusicCommand _shareNowPlayingMusicCommand;
         private AlbumItem _currentAlbum;
         private ArtistItem _currentArist;
         private ArtistDataRepository _artistDataRepository = new ArtistDataRepository();
@@ -139,6 +141,10 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             set { SetProperty(ref _shuffle, value); }
         }
 
+        public ShareNowPlayingMusicCommand ShareNowPlayingMusicCommand { get
+        {
+            return _shareNowPlayingMusicCommand ?? (_shareNowPlayingMusicCommand = new ShareNowPlayingMusicCommand());
+        } }
         #endregion
 
         public MusicPlayerVM(IMediaService mediaService)
