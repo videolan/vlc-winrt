@@ -7,8 +7,7 @@
       xmlns:placeholder="using:VLC_WINRT_APP.Views.UserControls.Placeholder"
       xmlns:triggers="using:WinRT.Triggers"
       mc:Ignorable="d"
-      d:DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM.CurrentArtist}"
-      Background="WhiteSmoke">
+      d:DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM.CurrentArtist}">
 
     <Grid Margin="12,24,0,0">
         <Grid.RowDefinitions>
@@ -51,7 +50,7 @@
                 </ListView.ItemsPanel>
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Grid Background="White">
+                        <Grid Background="{ThemeResource ApplicationThirdForegroundThemeBrush}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="12" />
                                 <ColumnDefinition />
@@ -123,7 +122,7 @@
                 </ListView.ItemTemplate>
             </ListView>
             <Grid Visibility="{Binding IsUpcomingShowsLoading, Converter={StaticResource BooleanToVisibilityConverter}}"
-                  Background="WhiteSmoke">
+                  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
                 <ProgressRing IsActive="True"
                               Background="Transparent"
                               Foreground="{StaticResource MainColor}"
