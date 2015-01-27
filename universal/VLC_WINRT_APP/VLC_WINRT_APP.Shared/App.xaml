@@ -10,7 +10,7 @@
                     <SolidColorBrush x:Key="ApplicationPageBackgroundThemeBrush"
                                      Color="Black" />
                     <SolidColorBrush x:Key="PivotHeaderForegroundUnselectedBrush"
-                                     Color="#424242" />
+                                     Color="#7FFFFFFF" />
                     <SolidColorBrush x:Key="ApplicationSecondaryForegroundThemeBrush"
                                      Color="LightGray" />
                     <SolidColorBrush x:Key="ApplicationThirdForegroundThemeBrush"
