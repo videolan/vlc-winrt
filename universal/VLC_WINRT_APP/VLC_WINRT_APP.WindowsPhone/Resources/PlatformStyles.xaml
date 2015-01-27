@@ -930,7 +930,6 @@
                             <PivotPanel x:Name="Panel"
                                         VerticalAlignment="Stretch">
                                 <PivotHeaderPanel x:Name="Header"
-                                                  RequestedTheme="Dark"
                                                   Margin="108,33,0,0">
                                     <PivotHeaderPanel.RenderTransform>
                                         <CompositeTransform x:Name="HeaderTranslateTransform"
