@@ -156,7 +156,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                         }
                         else
                         {
-                            if (!MusicLibraryVM._trackDataRepository.DoesTrackExist(storageFile.Path))
+                            if (!await MusicLibraryVM._trackDataRepository.DoesTrackExist(storageFile.Path))
                             {
                                 await CreateDatabaseFromMusicFile(storageFile);
                             }
