@@ -340,6 +340,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
         {
             try
             {
+                int howManyAlbumsToFill = HowManyAlbumsToDisplayWithTwoRows();
                 if (Locator.MusicLibraryVM.RandomAlbums != null && Locator.MusicLibraryVM.RandomAlbums.Any()) return;
                 ObservableCollection<AlbumItem> favAlbums = await MusicLibraryVM._albumDataRepository.LoadAlbums(x => x.Favorite);
                 if (favAlbums != null && favAlbums.Any())
@@ -347,23 +348,20 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                     await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                     {
                         Locator.MusicLibraryVM.FavoriteAlbums = favAlbums;
-                        Locator.MusicLibraryVM.RandomAlbums = new ObservableCollection<AlbumItem>(favAlbums.Take(3));
+                        Locator.MusicLibraryVM.RandomAlbums = favAlbums.Count > howManyAlbumsToFill ? new ObservableCollection<AlbumItem>(favAlbums.Take(howManyAlbumsToFill)) : favAlbums;
+                        howManyAlbumsToFill -= Locator.MusicLibraryVM.RandomAlbums.Count;
                     });
                 }
+                if (howManyAlbumsToFill == 0) return;
                 ObservableCollection<AlbumItem> nonfavAlbums = await MusicLibraryVM._albumDataRepository.LoadAlbums(x => x.Favorite == false);
                 if (nonfavAlbums != null && nonfavAlbums.Any())
                 {
-                    if (Locator.MusicLibraryVM.RandomAlbums != null && Locator.MusicLibraryVM.RandomAlbums.Count > 6)
-                        return;
                     await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                     {
-                        int howManyAlbums = HowManyAlbumsToDisplayWithTwoRows();
-                        int total = ((howManyAlbums < nonfavAlbums.Count) ? howManyAlbums : nonfavAlbums.Count - 1);
+                        int total = (nonfavAlbums.Count > howManyAlbumsToFill) ? howManyAlbumsToFill : nonfavAlbums.Count - 1;
                         for (int i = 0; i < total; i++)
                         {
-                            Locator.MusicLibraryVM
-                                .RandomAlbums.Add(
-                                    nonfavAlbums[i]);
+                            Locator.MusicLibraryVM.RandomAlbums.Add(nonfavAlbums[i]);
                         }
                     });
                 }
@@ -376,11 +374,15 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
 
         public static int HowManyAlbumsToDisplayWithTwoRows()
         {
+#if WINDOWS_APP
             var width = Window.Current.Bounds.Width;
             // an album is 220 pixels wide
             width -= (int)Locator.MusicLibraryVM.SidebarState;
             var nbAlbumsPerRow = width / 220;
             return (int)nbAlbumsPerRow * 2;
+#else
+            return 6;
+#endif
         }
 
         public static void OrderAlbums()
