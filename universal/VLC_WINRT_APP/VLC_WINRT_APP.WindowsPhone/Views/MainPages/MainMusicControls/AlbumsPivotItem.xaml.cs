@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using VLC_WINRT_APP.Model.Music;
@@ -13,7 +14,7 @@ namespace VLC_WINRT_APP.Views.MainPages.MainMusicControls
         {
             this.InitializeComponent();
         }
-        
+
         private void AlbumsWrapGrid_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             TemplateSizer.ComputeAlbums(sender as ItemsWrapGrid);
@@ -25,8 +26,11 @@ namespace VLC_WINRT_APP.Views.MainPages.MainMusicControls
             var albumItem = args.Item as AlbumItem;
             if (albumItem != null && !albumItem.IsPictureLoaded)
             {
-                await albumItem.LoadPicture();
-                await MusicLibraryVM._albumDataRepository.Update(albumItem);
+                await Task.Run(async () =>
+                {
+                    await albumItem.LoadPicture();
+                    await MusicLibraryVM._albumDataRepository.Update(albumItem);
+                });
             }
         }
     }
