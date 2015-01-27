@@ -312,6 +312,11 @@ namespace VLC_WINRT_APP.Services.RunTime
                 MediaPlayer.stop();
         }
 
+        public void SetNullMediaPlayer()
+        {
+            MediaPlayer = null;
+        }
+
         public void FastForward()
         {
             throw new NotImplementedException();

@@ -35,6 +35,7 @@ namespace VLC_WINRT_APP.Services.Interface
         void Pause();
 
         void Stop();
+        void SetNullMediaPlayer();
         void FastForward();
         void Rewind();
         void SkipAhead();

@@ -369,6 +369,7 @@ namespace VLC_WINRT_APP.ViewModels
             em.OnLengthChanged -= OnLengthChanged;
             em.OnStopped -= OnStopped;
             em.OnEndReached -= OnEndReached;
+            _mediaService.SetNullMediaPlayer();
         }
 
         protected abstract void OnEndReached();
