@@ -9,8 +9,7 @@
                 xmlns:extensions="using:WinRTXamlToolkit.Controls.Extensions"
                 xmlns:customappbar="using:CustomAppBar"
                 mc:Ignorable="d"
-                x:Name="SwapChainPanel"
-                RequestedTheme="Dark">
+                x:Name="SwapChainPanel">
     <Grid.RowDefinitions>
         <RowDefinition />
         <RowDefinition Height="Auto" />
