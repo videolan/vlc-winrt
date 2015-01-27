@@ -299,7 +299,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                     {
                         var folderPicFile = await folder.GetFileAsync(coverName);
                         var destinationFolder = await ApplicationData.Current.LocalFolder.CreateFolderAsync("albumPic", CreationCollisionOption.OpenIfExists);
-                        await folderPicFile.CopyAsync(destinationFolder, String.Format("{0}.jpg", album.Id));
+                        await folderPicFile.CopyAsync(destinationFolder, String.Format("{0}.jpg", album.Id), NameCollisionOption.FailIfExists);
                         await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                         {
                             album.IsPictureLoaded = true;
