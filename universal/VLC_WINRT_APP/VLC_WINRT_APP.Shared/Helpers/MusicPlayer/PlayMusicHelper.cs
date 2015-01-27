@@ -128,9 +128,14 @@ namespace VLC_WINRT_APP.Helpers.MusicPlayer
             {
                 await Locator.MusicPlayerVM.TrackCollection.ResetCollection();
                 await Locator.MusicPlayerVM.TrackCollection.SetPlaylist(trackCollection);
-                
-                if(play)
-                    await PlayTrack(trackCollection[index ?? 0].Id);
+
+                if (play)
+                {
+                    if (!trackCollection.Any()) return;
+                    if (index >= trackCollection.Count) return;
+                    var finalindex = trackCollection[index ?? 0];
+                    await PlayTrack(finalindex.Id);
+                }
             });
         }
 
