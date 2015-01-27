@@ -25,15 +25,12 @@ namespace VLC_WINRT_APP.Helpers.MusicPlayer
         /// <returns></returns>
         public static async Task PlayTrack(int trackId)
         {
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            var track = Locator.MusicPlayerVM.TrackCollection.Playlist.FirstOrDefault(x => x.Id == trackId);
+            if (track != null)
             {
-                var track = Locator.MusicPlayerVM.TrackCollection.Playlist.FirstOrDefault(x => x.Id == trackId);
-                if (track != null)
-                {
-                    SetCurrentTrackPosition(Locator.MusicPlayerVM.TrackCollection.Playlist.IndexOf(track));
-                    Task.Run(() => Locator.MusicPlayerVM.Play(false));
-                }
-            });
+                await SetCurrentTrackPosition(Locator.MusicPlayerVM.TrackCollection.Playlist.IndexOf(track));
+                await Task.Run(() => Locator.MusicPlayerVM.Play(false));
+            }
         }
 
         /// <summary>
@@ -44,22 +41,19 @@ namespace VLC_WINRT_APP.Helpers.MusicPlayer
         /// <returns></returns>
         public static async Task AddTrackToPlaylist(TrackItem trackItem = null, bool resetQueue = true, bool play = true)
         {
-            await DispatchHelper.InvokeAsync(async () =>
+            if (trackItem == null) return;
+            if (resetQueue)
             {
-                if (trackItem == null) return;
-                if (resetQueue)
-                {
-                    await Locator.MusicPlayerVM.TrackCollection.ResetCollection();
-                }
-                if (Locator.MusicPlayerVM.TrackCollection.Playlist.FirstOrDefault(x => x.Id == trackItem.Id) == null)
-                {
-                    var backgroundTrack = BackgroundTaskTools.CreateBackgroundTrackItem(trackItem);
-                    await App.BackgroundAudioHelper.AddToPlaylist(backgroundTrack);
-                }
-                AddTrack(trackItem);
-                if (play)
-                    await PlayTrack(trackItem.Id);
-            });
+                await Locator.MusicPlayerVM.TrackCollection.ResetCollection();
+            }
+            if (Locator.MusicPlayerVM.TrackCollection.Playlist.FirstOrDefault(x => x.Id == trackItem.Id) == null)
+            {
+                var backgroundTrack = BackgroundTaskTools.CreateBackgroundTrackItem(trackItem);
+                await App.BackgroundAudioHelper.AddToPlaylist(backgroundTrack);
+            }
+            await AddTrack(trackItem);
+            if (play)
+                await PlayTrack(trackItem.Id);
         }
 
         /// <summary>
@@ -70,30 +64,27 @@ namespace VLC_WINRT_APP.Helpers.MusicPlayer
         /// <returns></returns>
         public static async Task AddAlbumToPlaylist(int albumId, bool resetQueue = true, bool play = true, TrackItem track = null, int index = 0)
         {
-            await DispatchHelper.InvokeAsync(async () =>
+            if (resetQueue)
             {
-                if (resetQueue)
-                {
-                    await Locator.MusicPlayerVM.TrackCollection.ResetCollection();
-                }
-                var trackItems = await MusicLibraryVM._trackDataRepository.LoadTracksByAlbumId(albumId);
-                var backgroundTracks = BackgroundTaskTools.CreateBackgroundTrackItemList(trackItems.ToList());
-                await App.BackgroundAudioHelper.AddToPlaylist(backgroundTracks);
+                await Locator.MusicPlayerVM.TrackCollection.ResetCollection();
+            }
+            var trackItems = await MusicLibraryVM._trackDataRepository.LoadTracksByAlbumId(albumId);
+            var backgroundTracks = BackgroundTaskTools.CreateBackgroundTrackItemList(trackItems.ToList());
+            await App.BackgroundAudioHelper.AddToPlaylist(backgroundTracks);
 
-                foreach (var trackItem in trackItems)
+            foreach (var trackItem in trackItems)
+            {
+                await AddTrack(trackItem);
+            }
+            if (play)
+            {
+                if (track != null)
                 {
-                    AddTrack(trackItem);
+                    index = trackItems.IndexOf(trackItems.FirstOrDefault(x => x.Id == track.Id));
                 }
-                if (play)
-                {
-                    if (track != null)
-                    {
-                        index = trackItems.IndexOf(trackItems.FirstOrDefault(x => x.Id == track.Id));
-                    }
-                    if (index != -1)
-                        await PlayTrack(trackItems[index].Id);
-                }
-            });
+                if (index != -1)
+                    await PlayTrack(trackItems[index].Id);
+            }
         }
 
         /// <summary>
@@ -104,56 +95,53 @@ namespace VLC_WINRT_APP.Helpers.MusicPlayer
         /// <returns></returns>
         public static async Task AddArtistToPlaylist(int artistId, bool resetQueue = true, bool play = true)
         {
-            await DispatchHelper.InvokeAsync(async () =>
+            if (resetQueue)
             {
-                if (resetQueue)
-                {
-                    await Locator.MusicPlayerVM.TrackCollection.ResetCollection();
-                }
-                var trackItems = await MusicLibraryVM._trackDataRepository.LoadTracksByArtistId(artistId);
-                var backgroundTracks = BackgroundTaskTools.CreateBackgroundTrackItemList(trackItems.ToList());
-                await App.BackgroundAudioHelper.AddToPlaylist(backgroundTracks);
-                foreach (var trackItem in trackItems)
-                {
-                    AddTrack(trackItem);
-                }
-                if (play)
-                    await PlayTrack(trackItems[0].Id);
-            });
+                await Locator.MusicPlayerVM.TrackCollection.ResetCollection();
+            }
+            var trackItems = await MusicLibraryVM._trackDataRepository.LoadTracksByArtistId(artistId);
+            var backgroundTracks = BackgroundTaskTools.CreateBackgroundTrackItemList(trackItems.ToList());
+            await App.BackgroundAudioHelper.AddToPlaylist(backgroundTracks);
+            foreach (var trackItem in trackItems)
+            {
+                await AddTrack(trackItem);
+            }
+            if (play)
+                await PlayTrack(trackItems[0].Id);
         }
 
         public static async Task AddTrackCollectionToPlaylistAndPlay(ObservableCollection<TrackItem> trackCollection, bool play = true, int? index = null)
         {
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
-            {
-                await Locator.MusicPlayerVM.TrackCollection.ResetCollection();
-                await Locator.MusicPlayerVM.TrackCollection.SetPlaylist(trackCollection);
+            await Locator.MusicPlayerVM.TrackCollection.ResetCollection();
+            await Locator.MusicPlayerVM.TrackCollection.SetPlaylist(trackCollection);
 
-                if (play)
-                {
-                    if (!trackCollection.Any()) return;
-                    if (index >= trackCollection.Count) return;
-                    var finalindex = trackCollection[index ?? 0];
-                    await PlayTrack(finalindex.Id);
-                }
-            });
+            if (play)
+            {
+                if (!trackCollection.Any()) return;
+                if (index >= trackCollection.Count) return;
+                var finalindex = trackCollection[index ?? 0];
+                await PlayTrack(finalindex.Id);
+            }
         }
 
         /// <summary>
         /// Only this method should set the CurrentTrack property of TrackCollection.
         /// </summary>
         /// <param name="index"></param>
-        static void SetCurrentTrackPosition(int index)
+        static async Task SetCurrentTrackPosition(int index)
         {
-            Locator.MusicPlayerVM.TrackCollection.CurrentTrack = index;
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Locator.MusicPlayerVM.TrackCollection.CurrentTrack = index);
         }
 
-        static void AddTrack(TrackItem track)
+        static async Task AddTrack(TrackItem track)
         {
-            if (Locator.MusicPlayerVM.TrackCollection.Playlist.FirstOrDefault(x => x.Id == track.Id) == null)
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                Locator.MusicPlayerVM.TrackCollection.Add(track, true);
-            }
+                if (Locator.MusicPlayerVM.TrackCollection.Playlist.FirstOrDefault(x => x.Id == track.Id) == null)
+                {
+                    Locator.MusicPlayerVM.TrackCollection.Add(track, true);
+                }
+            });
         }
     }
 }

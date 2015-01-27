@@ -7,6 +7,7 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
+using Windows.UI.Core;
 using VLC_WINRT_APP.BackgroundHelpers;
 using VLC_WINRT_APP.Database.DataRepository;
 using System.Collections.Generic;
@@ -155,8 +156,11 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 #if WINDOWS_PHONE_APP
             await App.BackgroundAudioHelper.ResetCollection(ResetType.NormalReset);
 #endif
-            Playlist.Clear();
-            CurrentTrack = -1;
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                Playlist.Clear();
+                CurrentTrack = -1;
+            });
         }
 
         public void SetActiveTrackProperty()
@@ -185,7 +189,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 
         public async Task SetPlaylist(ObservableCollection<TrackItem> playlist)
         {
-            Playlist = playlist;
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Playlist = playlist);
 #if WINDOWS_PHONE_APP
             var backgroundTracks = BackgroundTaskTools.CreateBackgroundTrackItemList(Locator.MusicPlayerVM.TrackCollection.Playlist.ToList());
             await App.BackgroundAudioHelper.AddToPlaylist(backgroundTracks);
@@ -245,8 +249,8 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             IsRunning = true;
 #if WINDOWS_PHONE_APP
             var currentTrack = ApplicationSettingsHelper.ReadSettingsValue(BackgroundAudioConstants.CurrentTrack);
-            if(currentTrack != null)
-            CurrentTrack = (int)currentTrack;
+            if (currentTrack != null)
+                CurrentTrack = (int)currentTrack;
             await Locator.MusicPlayerVM.UpdateTrackFromMF();
             await App.BackgroundAudioHelper.RestorePlaylist();
 #endif
