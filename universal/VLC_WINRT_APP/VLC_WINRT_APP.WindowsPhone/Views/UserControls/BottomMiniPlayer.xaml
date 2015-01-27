@@ -84,7 +84,7 @@
                 Command="{Binding PlayNextCommand}"
                 Visibility="{Binding TrackCollection.CanGoNext, Converter={StaticResource BooleanToVisibilityConverter}}">
             <Path Data="{StaticResource NextPath}"
-                  Fill="White"
+                  Fill="{StaticResource BasicForeground}"
                   Width="29"
                   Height="29"
                   Stretch="Uniform" />
