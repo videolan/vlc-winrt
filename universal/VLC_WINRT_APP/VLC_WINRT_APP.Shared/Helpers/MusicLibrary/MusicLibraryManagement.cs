@@ -295,7 +295,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                         coverName = "cover.jpg";
                         thumbnail = await folder.ContainsFileAsync(coverName);
                     }
-                    if(thumbnail)
+                    if (thumbnail)
                     {
                         var folderPicFile = await folder.GetFileAsync(coverName);
                         var destinationFolder = await ApplicationData.Current.LocalFolder.CreateFolderAsync("albumPic", CreationCollisionOption.OpenIfExists);
