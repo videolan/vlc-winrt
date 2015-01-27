@@ -35,7 +35,7 @@ namespace VLC_WINRT_APP.Views.MusicPages
         {
             base.OnNavigatedFrom(e);
             HardwareButtons.BackPressed -= HardwareButtonsOnBackPressed;
-            Locator.MainVM.CommandBar.Background = (SolidColorBrush)App.Current.Resources["MainColor"];
+            Locator.MainVM.CommandBar.Background = (SolidColorBrush)App.Current.Resources["ApplicationBarForegroundThemeBrush"];
         }
 
         private void HardwareButtonsOnBackPressed(object sender, BackPressedEventArgs backPressedEventArgs)
