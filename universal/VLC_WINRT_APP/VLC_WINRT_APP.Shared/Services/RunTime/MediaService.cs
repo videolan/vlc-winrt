@@ -179,18 +179,20 @@ namespace VLC_WINRT_APP.Services.RunTime
             if (App.ApplicationFrame.CurrentSourcePageType != typeof(MusicPlayerPage))
                 App.ApplicationFrame.Navigate(typeof(MusicPlayerPage));
             var trackItem = await GetInformationsFromMusicFile.GetTrackItemFromFile(file);
-            await PlayMusicHelper.AddTrackToPlaylist(trackItem, true, true);
+            await PlayMusicHelper.PlayTrackFromFilePicker(file, trackItem);
         }
 
         /// <summary>
         /// Navigates to the Video Player screen with the requested file a parameter.
         /// </summary>
         /// <param name="file">The file to be played.</param>
-        public static async Task PlayVideoFile(StorageFile file)
+        /// <param name="token">Token is for files that are NOT in the sandbox, such as files taken from the filepicker from a sd card but not in the Video/Music folder.</param>
+        public static async Task PlayVideoFile(StorageFile file, string token = null)
         {
             App.ApplicationFrame.Navigate(typeof(VideoPlayerPage));
             VideoItem videoVm = new VideoItem();
             await videoVm.Initialize(file);
+            if (token != null) videoVm.Token = token;
             Locator.VideoVm.CurrentVideo = videoVm;
             await Locator.VideoVm.SetActiveVideoInfo(videoVm);
         }
@@ -230,6 +232,7 @@ namespace VLC_WINRT_APP.Services.RunTime
 
         public async Task<string> GetToken(string filePath)
         {
+            if (filePath[0] == '{' && filePath[filePath.Length - 1] == '}') return filePath;
             var file = await StorageFile.GetFileFromPathAsync(filePath);
             return StorageApplicationPermissions.FutureAccessList.Add(file);
         }

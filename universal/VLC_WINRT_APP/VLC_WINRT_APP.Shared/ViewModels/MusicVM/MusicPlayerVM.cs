@@ -207,13 +207,13 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             }
         }
 
-        public async Task Play(bool forceVlcLib)
+        public async Task Play(bool forceVlcLib, StorageFile file = null)
         {
             _mediaService.UseVlcLib = forceVlcLib;
             Stop();
             if (CurrentTrack == null) return;
             LogHelper.Log("Opening file: " + CurrentTrack.Path);
-            await SetActiveMusicInfo(CurrentTrack);
+            await SetActiveMusicInfo(CurrentTrack, file);
 
             // Setting the info for windows 8 controls
             var resourceLoader = new ResourceLoader();
@@ -235,9 +235,9 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             }
         }
 
-        private async Task SetActiveMusicInfo(TrackItem track)
+        private async Task SetActiveMusicInfo(TrackItem track, StorageFile file = null)
         {
-            var currentTrackFile = await StorageFile.GetFileFromPathAsync(track.Path);
+            var currentTrackFile = file ?? await StorageFile.GetFileFromPathAsync(track.Path);
 #if WINDOWS_PHONE_APP
             bool playWithLibVlc = !VLCFileExtensions.MFSupported.Contains(currentTrackFile.FileType.ToLower()) || _mediaService.UseVlcLib;
             if (!playWithLibVlc)

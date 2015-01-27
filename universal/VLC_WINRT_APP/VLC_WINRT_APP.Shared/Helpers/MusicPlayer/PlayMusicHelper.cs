@@ -2,7 +2,9 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using Windows.Storage;
 using Windows.UI.Core;
+using libVLCX;
 using VLC_WINRT.Common;
 using VLC_WINRT_APP.BackgroundHelpers;
 using VLC_WINRT_APP.Common;
@@ -31,6 +33,19 @@ namespace VLC_WINRT_APP.Helpers.MusicPlayer
                 await SetCurrentTrackPosition(Locator.MusicPlayerVM.TrackCollection.Playlist.IndexOf(track));
                 await Task.Run(() => Locator.MusicPlayerVM.Play(false));
             }
+        }
+
+        ///
+        /// Play a track from FilePicker
+        public static async Task PlayTrackFromFilePicker(StorageFile file, TrackItem trackItem)
+        {
+            if (trackItem == null) return;
+            await Locator.MusicPlayerVM.TrackCollection.ResetCollection();
+            var backgroundTrack = BackgroundTaskTools.CreateBackgroundTrackItem(trackItem);
+            await App.BackgroundAudioHelper.AddToPlaylist(backgroundTrack);
+            await AddTrack(trackItem);
+            await SetCurrentTrackPosition(0);
+            await Task.Run(() => Locator.MusicPlayerVM.Play(false, file));
         }
 
         /// <summary>

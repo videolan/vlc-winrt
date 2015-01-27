@@ -250,7 +250,8 @@ namespace VLC_WINRT_APP
             if (VLCFileExtensions.FileTypeHelper(file.FileType) ==
                 VLCFileExtensions.VLCFileType.Video)
             {
-                await MediaService.PlayVideoFile(file);
+                var token = StorageApplicationPermissions.FutureAccessList.Add(file);
+                await MediaService.PlayVideoFile(file, token);
             }
             else
             {

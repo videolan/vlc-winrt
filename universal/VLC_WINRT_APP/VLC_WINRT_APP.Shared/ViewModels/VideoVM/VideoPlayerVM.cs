@@ -265,7 +265,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             LogHelper.Log("PLAYVIDEO: Initializing playback");
             if (media != null)
             {
-                var path = media.FilePath;
+                var path = media.Token ?? media.FilePath;
                 await InitializePlayback(path, false, false);
             }
             else
