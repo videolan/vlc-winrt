@@ -21,6 +21,8 @@
                                      Color="#cc000000" />
                     <SolidColorBrush x:Key="ApplicationBackgroundSemiTranslucentThemeBrush"
                                      Color="#81252525" />
+                    <SolidColorBrush x:Key="BasicForeground"
+                                     Color="White"/>
                 </ResourceDictionary>
                 <ResourceDictionary x:Key="Light">
                     <SolidColorBrush x:Key="ApplicationPageBackgroundThemeBrush"
@@ -37,6 +39,8 @@
                                      Color="#ccffffff" />
                     <SolidColorBrush x:Key="ApplicationBackgroundSemiTranslucentThemeBrush"
                                      Color="#81FFFFFF" />
+                    <SolidColorBrush x:Key="BasicForeground"
+                                     Color="Black" />
                 </ResourceDictionary>
             </ResourceDictionary.ThemeDictionaries>
             <ResourceDictionary.MergedDictionaries>

@@ -70,9 +70,9 @@
                 <Viewbox Height="29">
                     <Grid>
                         <Path Data="M 11 0 v 20 h 7 V 0 H 11 Z M 16 18 h -3 V 2 h 3 V 18 Z"
-                              Fill="White" />
+                              Fill="{StaticResource BasicForeground}" />
                         <Path Data="M 0 20 h 7 V 0 H 0 V 20 Z M 2 2 h 3 v 16 H 2 V 2 Z"
-                              Fill="White" />
+                              Fill="{StaticResource BasicForeground}" />
                     </Grid>
                 </Viewbox>
             </Button>
