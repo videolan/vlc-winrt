@@ -30,12 +30,26 @@ namespace VLC_WINRT_APP.Commands.Social
         private async void ShareLinkHandler(DataTransferManager sender, DataRequestedEventArgs e)
         {
             DataRequest request = e.Request;
-            string title = "#NowPlaying " + Locator.MusicPlayerVM.CurrentTrack.Name + " - " + Locator.MusicPlayerVM.CurrentArtist.Name;
+            var uri = string.Format("http://www.last.fm/music/{0}/{1}", Locator.MusicPlayerVM.CurrentArtist.Name, Locator.MusicPlayerVM.CurrentAlbum.Name);
+
+            string title = string.Format("#NowPlaying {0} - {1}", Locator.MusicPlayerVM.CurrentTrack.Name, Locator.MusicPlayerVM.CurrentArtist.Name);
 
             request.Data.Properties.Title = title;
             request.Data.Properties.Description = title;
-            var uri = string.Format("http://www.last.fm/music/{0}/{1}", Locator.MusicPlayerVM.CurrentArtist.Name, Locator.MusicPlayerVM.CurrentAlbum.Name);
             request.Data.SetWebLink(new Uri(uri, UriKind.Absolute));
+            DataRequestDeferral deferral = request.GetDeferral();
+
+            try
+            {
+                string fileName = string.Format("{0}.jpg", Locator.MusicPlayerVM.CurrentAlbum.Id);
+                var albumPic = await ApplicationData.Current.LocalFolder.GetFolderAsync("albumPic");
+                var file = await albumPic.GetFileAsync(fileName);
+                request.Data.SetStorageItems(new List<StorageFile> { file });
+            }
+            finally
+            {
+                deferral.Complete();
+            }
         }
 
     }
