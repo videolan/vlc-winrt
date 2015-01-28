@@ -13,6 +13,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.Storage;
+using Windows.UI.Xaml;
 using VLC_WINRT_APP.Commands.Music;
 using VLC_WINRT_APP.Commands.Settings;
 using VLC_WINRT_APP.Common;
@@ -46,7 +47,8 @@ namespace VLC_WINRT_APP.ViewModels.Settings
         private string _lastFmUserName;
         private string _lastFmPassword;
         private bool _lastFmIsConnecting = false;
-
+        private ApplicationTheme _applicationTheme;
+        private bool _forceAppTheme;
 #if WINDOWS_APP
         public bool ContinueVideoPlaybackInBackground
         {
@@ -74,7 +76,7 @@ namespace VLC_WINRT_APP.ViewModels.Settings
         public ObservableCollection<OrderType> AlbumsOrderTypeCollection { get; set; }
         public ObservableCollection<OrderListing> AlbumsListingTypeCollection { get; set; }
         public ObservableCollection<MusicView> MusicViewCollection { get; set; }
-        public ObservableCollection<VideoView> VideoViewCollection { get; set; } 
+        public ObservableCollection<VideoView> VideoViewCollection { get; set; }
 #if WINDOWS_APP
         public List<StorageFolder> MusicFolders
         {
@@ -379,6 +381,58 @@ namespace VLC_WINRT_APP.ViewModels.Settings
         public NavToLastFmPage NavToLastFmPage
         {
             get { return new NavToLastFmPage(); }
+        }
+
+        public bool ForceAppTheme
+        {
+            get
+            {
+                var manualTheme = ApplicationSettingsHelper.ReadSettingsValue("ForceAppTheme");
+                if (manualTheme == null)
+                {
+                    _forceAppTheme = false;
+                }
+                else
+                {
+                    _forceAppTheme = (bool)manualTheme;
+                }
+                return _forceAppTheme;
+            }
+            set
+            {
+                ApplicationSettingsHelper.SaveSettingsValue("ForceAppTheme", value);
+                SetProperty(ref _forceAppTheme, value);
+                if (value) ApplicationTheme = App.Current.RequestedTheme;
+                OnPropertyChanged("ApplicationTheme");
+            }
+        }
+        public ApplicationTheme ApplicationTheme
+        {
+            get
+            {
+                if (ForceAppTheme)
+                {
+                    var appTheme = ApplicationSettingsHelper.ReadSettingsValue("ApplicationTheme");
+                    if (appTheme == null)
+                    {
+                        _applicationTheme = App.Current.RequestedTheme;
+                    }
+                    else
+                    {
+                        _applicationTheme = (ApplicationTheme) appTheme;
+                    }
+                }
+                else
+                {
+                    _applicationTheme = App.Current.RequestedTheme;
+                }
+                return _applicationTheme;
+            }
+            set
+            {
+                ApplicationSettingsHelper.SaveSettingsValue("ApplicationTheme", (int)value);
+                SetProperty(ref _applicationTheme, value);
+            }
         }
 
         public SettingsViewModel()

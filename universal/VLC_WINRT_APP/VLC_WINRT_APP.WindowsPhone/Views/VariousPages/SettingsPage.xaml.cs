@@ -19,7 +19,7 @@ namespace VLC_WINRT_APP.Views.VariousPages
             PackageVersion version = thisPackage.Id.Version;
             string appVersion = string.Format("{0}.{1}.{2}.{3}",
                 version.Major, version.Minor, version.Build, version.Revision);
-            AppVersion.Text = "VLC for WP8.1 v" + appVersion;
+            AppVersion.Text = "v" + appVersion;
         }
 
         private void HardwareButtonsOnBackPressed(object sender, BackPressedEventArgs backPressedEventArgs)

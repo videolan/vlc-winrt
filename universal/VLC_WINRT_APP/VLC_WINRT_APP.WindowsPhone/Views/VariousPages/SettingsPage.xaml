@@ -9,25 +9,47 @@
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="80" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition />
-        </Grid.RowDefinitions>
-        <userControls:HeaderControl Grid.Row="0"
-                                    HeaderTextBlock="Settings" />
-        <Grid Grid.Row="1">
-            <TextBlock HorizontalAlignment="Left"
-                       Style="{StaticResource TitleTextBlockStyle}"
-                       Margin="16,0,0,0"
-                       x:Name="AppVersion" />
-        </Grid>
-        <Pivot Grid.Row="2"
-               HeaderTemplate="{StaticResource PivotTitleTemplate}">
-            <Pivot.TitleTemplate>
-                <DataTemplate>
-                </DataTemplate>
-            </Pivot.TitleTemplate>
+        <Image x:Name="HeaderBackgroundImage"
+               Source="/Assets/backgroundTop.png"
+               Stretch="Uniform"
+               VerticalAlignment="Top"
+               Opacity="0.7" />
+        <Pivot HeaderTemplate="{StaticResource PivotTitleTemplate}">
+            <Pivot.Title>
+                <Grid x:Name="PivotTitle"
+                      Margin="0,16,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <userControls:VLCLogoWithGradient Height="32" />
+                    <TextBlock Margin="10,-3,0,0"
+                               TextTrimming="CharacterEllipsis"
+                               TextWrapping="NoWrap"
+                               VerticalAlignment="Center"
+                               Grid.Column="1"
+                               Text="VLC"
+                               Foreground="{StaticResource MainColor}"
+                               Style="{StaticResource SubheaderTextBlockStyle}" />
+                    <TextBlock x:Name="AppVersion"
+                               VerticalAlignment="Bottom"
+                               Grid.Column="2"
+                               FontWeight="Light"
+                               Margin="16,0,0,0" />
+                </Grid>
+            </Pivot.Title>
+            <PivotItem Header="general">
+                <StackPanel>
+                    <CheckBox Content="Manually set the application theme" 
+                              IsChecked="{Binding ForceAppTheme, Mode=TwoWay}"/>
+                    <ToggleSwitch IsEnabled="{Binding ForceAppTheme}"
+                                  Header="Application theme"
+                                  OffContent="Light"
+                                  OnContent="Dark"
+                                  IsOn="{Binding ApplicationTheme, Converter={StaticResource ApplicationThemeBooleanConverter}, Mode=TwoWay}" />
+                </StackPanel>
+            </PivotItem>
             <PivotItem Header="music settings">
                 <ScrollViewer>
                     <StackPanel>

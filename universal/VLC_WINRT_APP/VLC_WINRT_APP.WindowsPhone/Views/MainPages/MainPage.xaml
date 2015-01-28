@@ -9,7 +9,9 @@
                 xmlns:extensions="using:WinRTXamlToolkit.Controls.Extensions"
                 xmlns:customappbar="using:CustomAppBar"
                 mc:Ignorable="d"
-                x:Name="SwapChainPanel">
+                x:Name="SwapChainPanel"
+                DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}"
+                RequestedTheme="{Binding ApplicationTheme, Converter={StaticResource AppThemeElementThemeConverter}}">
     <Grid.RowDefinitions>
         <RowDefinition />
         <RowDefinition Height="Auto" />
