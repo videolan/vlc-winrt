@@ -1,4 +1,5 @@
-﻿using System;
+﻿using System.Collections.Generic;
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -94,10 +95,7 @@ namespace VLC_WINRT_APP.Helpers.MusicPlayer
             var backgroundTracks = BackgroundTaskTools.CreateBackgroundTrackItemList(trackItems.ToList());
             await App.BackgroundAudioHelper.AddToPlaylist(backgroundTracks);
 #endif
-            foreach (var trackItem in trackItems)
-            {
-                await AddTrack(trackItem);
-            }
+            AddTracks(trackItems);
             if (play)
             {
                 if (track != null)
@@ -126,10 +124,7 @@ namespace VLC_WINRT_APP.Helpers.MusicPlayer
             var backgroundTracks = BackgroundTaskTools.CreateBackgroundTrackItemList(trackItems.ToList());
             await App.BackgroundAudioHelper.AddToPlaylist(backgroundTracks);
 #endif
-            foreach (var trackItem in trackItems)
-            {
-                await AddTrack(trackItem);
-            }
+            AddTracks(trackItems);
             if (play)
                 await PlayTrack(trackItems[0].Id);
         }
@@ -159,13 +154,18 @@ namespace VLC_WINRT_APP.Helpers.MusicPlayer
 
         static async Task AddTrack(TrackItem track)
         {
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            if (Locator.MusicPlayerVM.TrackCollection.Playlist.FirstOrDefault(x => x.Id == track.Id) == null)
             {
-                if (Locator.MusicPlayerVM.TrackCollection.Playlist.FirstOrDefault(x => x.Id == track.Id) == null)
-                {
-                    Locator.MusicPlayerVM.TrackCollection.Add(track, true);
-                }
-            });
+                Locator.MusicPlayerVM.TrackCollection.Add(track, true);
+            }
+        }
+
+        static void AddTracks(IEnumerable<TrackItem> tracks)
+        {
+            foreach (var track in tracks.Where(track => Locator.MusicPlayerVM.TrackCollection.Playlist.FirstOrDefault(x => x.Id == track.Id) == null))
+            {
+                Locator.MusicPlayerVM.TrackCollection.Add(track, true);
+            }
         }
     }
 }
