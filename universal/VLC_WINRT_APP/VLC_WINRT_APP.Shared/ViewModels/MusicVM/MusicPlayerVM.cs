@@ -265,12 +265,16 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                     BackgroundMediaPlayer.Current.CurrentState != MediaPlayerState.Stopped)
                 {
                     BackgroundMediaPlayer.Current.Pause();
-                    await App.BackgroundAudioHelper.ResetCollection(ResetType.NormalReset);
                 }
 #endif
                 await base.InitializePlayback(track.Path, true, false, currentTrackFile);
                 _mediaService.Play();
-                await UpdatePlayingUI();
+                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+                {
+                    await SetCurrentArtist();
+                    await SetCurrentAlbum();
+                    await UpdatePlayingUI();
+                });
             }
         }
 
