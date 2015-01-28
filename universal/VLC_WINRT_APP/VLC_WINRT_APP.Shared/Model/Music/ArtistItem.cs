@@ -109,6 +109,7 @@ namespace VLC_WINRT_APP.Model.Music
         {
             try
             {
+                if (MemoryUsageHelper.PercentMemoryUsed() > MemoryUsageHelper.MaxRamForResourceIntensiveTasks) return;
                 await ArtistInformationsHelper.GetArtistPicture(this);
             }
             catch (Exception)

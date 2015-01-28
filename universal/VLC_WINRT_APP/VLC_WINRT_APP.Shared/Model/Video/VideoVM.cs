@@ -240,6 +240,10 @@ namespace VLC_WINRT_APP.Model.Video
                     await App.IMediaService.ContinueIndexing.Task;
                     App.IMediaService.ContinueIndexing = null;
                 }
+#if WINDOWS_PHONE_APP
+                if (MemoryUsageHelper.PercentMemoryUsed() > MemoryUsageHelper.MaxRamForResourceIntensiveTasks)
+                    return false;
+#endif
                 WriteableBitmap image = null;
                 StorageItemThumbnail thumb = null;
                 // If file is a mkv, we save the thumbnail in a VideoPic folder so we don't consume CPU and resources each launch
