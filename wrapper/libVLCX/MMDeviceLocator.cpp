@@ -31,7 +31,6 @@
 
 #include "MMDeviceLocator.h"
 
-
 HRESULT MMDeviceLocator::RegisterForWASAPI(){
     HRESULT hr = S_OK;
     IActivateAudioInterfaceAsyncOperation *asyncOp;
@@ -64,7 +63,7 @@ HRESULT MMDeviceLocator::ActivateCompleted(IActivateAudioInterfaceAsyncOperation
                 sizeof(props),
                 FALSE,
                 AudioCategory_BackgroundCapableMedia,
-                AUDCLNT_STREAMOPTIONS_RAW
+                AUDCLNT_STREAMOPTIONS_NONE
             };
             auto res = m_AudioClient->SetClientProperties(&props);
             if (res != S_OK) {
