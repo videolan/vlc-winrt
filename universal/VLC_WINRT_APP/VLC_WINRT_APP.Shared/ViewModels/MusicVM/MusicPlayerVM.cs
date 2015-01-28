@@ -146,10 +146,13 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         }
 
 #if WINDOWS_PHONE_APP
-        public ShareNowPlayingMusicCommand ShareNowPlayingMusicCommand { get
+        public ShareNowPlayingMusicCommand ShareNowPlayingMusicCommand
         {
-            return _shareNowPlayingMusicCommand ?? (_shareNowPlayingMusicCommand = new ShareNowPlayingMusicCommand());
-        } }
+            get
+            {
+                return _shareNowPlayingMusicCommand ?? (_shareNowPlayingMusicCommand = new ShareNowPlayingMusicCommand());
+            }
+        }
 #endif
         #endregion
 
