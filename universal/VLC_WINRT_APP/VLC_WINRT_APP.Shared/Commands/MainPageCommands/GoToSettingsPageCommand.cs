@@ -16,7 +16,8 @@ namespace VLC_WINRT_APP.Commands.MainPageCommands
     {
         public override void Execute(object parameter)
         {
-            App.ApplicationFrame.Navigate(typeof (SettingsPage));
+            if (App.ApplicationFrame.CurrentSourcePageType != typeof(SettingsPage))
+                App.ApplicationFrame.Navigate(typeof(SettingsPage));
         }
     }
 }
