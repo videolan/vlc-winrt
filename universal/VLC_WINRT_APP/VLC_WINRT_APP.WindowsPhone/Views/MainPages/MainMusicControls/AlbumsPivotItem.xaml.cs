@@ -24,6 +24,8 @@ namespace VLC_WINRT_APP.Views.MainPages.MainMusicControls
         private async void ListViewBase_OnContainerContentChanging(ListViewBase sender,
             ContainerContentChangingEventArgs args)
         {
+            if (MemoryUsageHelper.PercentMemoryUsed() > MemoryUsageHelper.MaxRamForResourceIntensiveTasks)
+                return;
             var albumItem = args.Item as AlbumItem;
             if (albumItem != null && !albumItem.IsPictureLoaded)
             {

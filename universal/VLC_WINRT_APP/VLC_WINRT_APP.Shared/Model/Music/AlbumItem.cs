@@ -104,8 +104,6 @@ namespace VLC_WINRT_APP.Model.Music
         {
             try
             {
-                if (MemoryUsageHelper.PercentMemoryUsed() > MemoryUsageHelper.MaxRamForResourceIntensiveTasks)
-                    return;
                 if (!IsLocalPictureIndexed && !IsPictureLoaded)
                 {
                     Debug.WriteLine("Searching local cover for " + Name);
