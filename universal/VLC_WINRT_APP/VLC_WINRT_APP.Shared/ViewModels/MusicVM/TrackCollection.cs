@@ -8,8 +8,6 @@
  **********************************************************************/
 
 using Windows.UI.Core;
-using VLC_WINRT_APP.BackgroundHelpers;
-using VLC_WINRT_APP.Database.DataRepository;
 using System.Collections.Generic;
 using System;
 using System.Collections.ObjectModel;
@@ -25,6 +23,8 @@ using VLC_WINRT_APP.Helpers.MusicLibrary.Deezer;
 using VLC_WINRT_APP.Model.Music;
 
 #if WINDOWS_PHONE_APP
+using VLC_WINRT_APP.BackgroundHelpers;
+using VLC_WINRT_APP.Database.DataRepository;
 using VLC_WINRT_APP.BackgroundAudioPlayer.Model;
 #endif
 
@@ -217,9 +217,12 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                 }
             }
             IsShuffled = !IsShuffled;
+
+#if WINDOWS_PHONE_APP
             await App.BackgroundAudioHelper.ResetCollection(ResetType.ShuffleReset);
             var backgorundTracks = BackgroundTaskTools.CreateBackgroundTrackItemList(Playlist.ToList());
             await App.BackgroundAudioHelper.AddToPlaylist(backgorundTracks);
+#endif
         }
 
         public void Remove(TrackItem trackItem)
@@ -234,6 +237,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 
         public async Task RestorePlaylist()
         {
+#if WINDOWS_PHONE_APP
             var playlist = Locator.MusicPlayerVM.BackgroundTrackRepository.LoadPlaylist();
             if (!playlist.Any())
             {
@@ -247,7 +251,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                 Playlist.Add(trackItem);
             }
             IsRunning = true;
-#if WINDOWS_PHONE_APP
+
             var currentTrack = ApplicationSettingsHelper.ReadSettingsValue(BackgroundAudioConstants.CurrentTrack);
             if (currentTrack != null)
                 CurrentTrack = (int)currentTrack;

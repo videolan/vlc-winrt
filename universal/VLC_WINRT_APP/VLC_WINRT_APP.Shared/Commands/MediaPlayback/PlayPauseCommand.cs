@@ -8,7 +8,6 @@
  **********************************************************************/
 
 using System;
-using Windows.Media.Playback;
 using Windows.UI.Core;
 #if WINDOWS_PHONE_APP
 using Windows.Media.Playback;

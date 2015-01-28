@@ -7,8 +7,6 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
-using VLC_WINRT_APP.Commands.Social;
-using VLC_WINRT_APP.Database.DataRepository;
 using VLC_WINRT_APP.DataRepository;
 using System;
 using System.Diagnostics;
@@ -40,6 +38,8 @@ using WinRTXamlToolkit.Controls.Extensions;
 #if WINDOWS_PHONE_APP
 using Windows.Media.Playback;
 using VLC_WINRT_APP.BackgroundAudioPlayer.Model;
+using VLC_WINRT_APP.Database.DataRepository;
+using VLC_WINRT_APP.Commands.Social;
 #endif
 
 namespace VLC_WINRT_APP.ViewModels.MusicVM
@@ -49,7 +49,9 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         #region private props
         private TrackCollection _trackCollection;
         private GoToMusicPlayerPage _goToMusicPlayerPage;
+#if WINDOWS_PHONE_APP
         private ShareNowPlayingMusicCommand _shareNowPlayingMusicCommand;
+#endif
         private AlbumItem _currentAlbum;
         private ArtistItem _currentArist;
         private ArtistDataRepository _artistDataRepository = new ArtistDataRepository();
@@ -63,7 +65,9 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 
         #region public props
 
+#if WINDOWS_PHONE_APP
         public BackgroundTrackRepository BackgroundTrackRepository { get; set; }
+#endif
 
         public AlbumItem CurrentAlbum
         {
@@ -141,17 +145,21 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             set { SetProperty(ref _shuffle, value); }
         }
 
+#if WINDOWS_PHONE_APP
         public ShareNowPlayingMusicCommand ShareNowPlayingMusicCommand { get
         {
             return _shareNowPlayingMusicCommand ?? (_shareNowPlayingMusicCommand = new ShareNowPlayingMusicCommand());
         } }
+#endif
         #endregion
 
         public MusicPlayerVM(IMediaService mediaService)
             : base(mediaService)
         {
             GoToMusicPlayerPage = new GoToMusicPlayerPage();
+#if WINDOWS_PHONE_APP
             BackgroundTrackRepository = new BackgroundTrackRepository();
+#endif
         }
 
 

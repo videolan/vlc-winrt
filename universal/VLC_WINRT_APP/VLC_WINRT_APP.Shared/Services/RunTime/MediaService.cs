@@ -15,7 +15,6 @@ using Windows.Storage.Streams;
 using VLC_WINRT.Common;
 using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.Helpers.MusicLibrary;
-using VLC_WINRT_APP.Helpers.MusicPlayer;
 using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.Model.Music;
 using VLC_WINRT_APP.Model.Video;
@@ -29,6 +28,7 @@ using VLC_WINRT_APP.Views.VideoPages;
 using libVLCX;
 using System.Collections.Generic;
 using System.Diagnostics;
+using VLC_WINRT_APP.Helpers.MusicPlayer;
 #if WINDOWS_PHONE_APP
 using Windows.Media.Playback;
 #endif

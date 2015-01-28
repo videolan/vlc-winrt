@@ -6,9 +6,8 @@ using System.Dynamic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Windows.Media.Playback;
-using XboxMusicLibrary.Models;
 #if WINDOWS_PHONE_APP
+using Windows.Media.Playback;
 using Windows.Phone.ApplicationModel;
 #endif
 using Windows.Storage;
