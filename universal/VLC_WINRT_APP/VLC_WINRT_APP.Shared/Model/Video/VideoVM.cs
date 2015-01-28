@@ -235,6 +235,11 @@ namespace VLC_WINRT_APP.Model.Video
                 return false;
             try
             {
+                if (App.IMediaService.ContinueIndexing != null)
+                {
+                    await App.IMediaService.ContinueIndexing.Task;
+                    App.IMediaService.ContinueIndexing = null;
+                }
                 WriteableBitmap image = null;
                 StorageItemThumbnail thumb = null;
                 // If file is a mkv, we save the thumbnail in a VideoPic folder so we don't consume CPU and resources each launch

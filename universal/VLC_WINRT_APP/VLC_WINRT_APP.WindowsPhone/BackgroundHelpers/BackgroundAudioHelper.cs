@@ -42,11 +42,6 @@ namespace VLC_WINRT_APP.BackgroundHelpers
                     });
                 }
             }
-            if (BackgroundMediaPlayer.Current.CurrentState == MediaPlayerState.Playing ||
-                BackgroundMediaPlayer.Current.CurrentState == MediaPlayerState.Paused)
-            {
-                Locator.MusicLibraryVM.ContinueIndexing = new TaskCompletionSource<bool>();
-            }
             AddMediaPlayerEventHandlers();
         }
 

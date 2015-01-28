@@ -37,7 +37,11 @@ namespace VLC_WINRT_APP.Views.VideoPages
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
-            base.OnNavigatedTo(e);
+            base.OnNavigatedTo(e);            
+            // If no playback was ever started, ContinueIndexing can be null
+            // If we navigate back and forth to the main page, we also don't want to 
+            // re-mark the task as completed.
+            App.IMediaService.ContinueIndexing = new TaskCompletionSource<bool>();
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(5);
             timer.Tick += TimerOnTick;
@@ -64,6 +68,10 @@ namespace VLC_WINRT_APP.Views.VideoPages
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
             base.OnNavigatingFrom(e);
+            if (App.IMediaService.ContinueIndexing != null && !App.IMediaService.ContinueIndexing.Task.IsCompleted)
+            {
+                App.IMediaService.ContinueIndexing.SetResult(true);
+            }
             HardwareButtons.BackPressed -= HardwareButtonsOnBackPressed;
         }
 

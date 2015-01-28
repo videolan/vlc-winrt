@@ -16,7 +16,6 @@ using VLC_WINRT.Common;
 using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.Helpers.MusicLibrary;
 using VLC_WINRT_APP.Model;
-using VLC_WINRT_APP.Model.Music;
 using VLC_WINRT_APP.Model.Video;
 using VLC_WINRT_APP.Services.Interface;
 using Windows.Storage;
@@ -42,6 +41,8 @@ namespace VLC_WINRT_APP.Services.RunTime
         public event TimeChanged TimeChanged;
 
         private SystemMediaTransportControls _systemMediaTransportControls;
+        public TaskCompletionSource<bool> ContinueIndexing { get; set; }
+
         public Instance Instance { get; private set; }
         public MediaPlayer MediaPlayer { get; private set; }
         public bool UseVlcLib { get; set; }
@@ -210,9 +211,6 @@ namespace VLC_WINRT_APP.Services.RunTime
             {
                 mrl = filePath;
             }
-            // If indexation is done, the task will stay in completed state. If it's continuing, the TCS has been reset by the indexation thread
-            Debug.Assert(Locator.MusicLibraryVM.ContinueIndexing == null || Locator.MusicLibraryVM.ContinueIndexing.Task.IsCompleted);
-            Locator.MusicLibraryVM.ContinueIndexing = new TaskCompletionSource<bool>();
             var media = new Media(Instance, mrl);
             MediaPlayer = new MediaPlayer(media);
             LogHelper.Log("PLAYWITHVLC: MediaPlayer instance created");

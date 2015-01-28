@@ -40,7 +40,6 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         public static TrackCollectionRepository TrackCollectionRepository = new TrackCollectionRepository();
         public delegate void LoadingEnded(object sender, string myValue);
         public static LoadingEnded MusicCollectionLoaded = delegate { };
-        public TaskCompletionSource<bool> ContinueIndexing; 
         #region private fields
 #if WINDOWS_APP
         private ObservableCollection<Model.Panel> _panels = new ObservableCollection<Model.Panel>();

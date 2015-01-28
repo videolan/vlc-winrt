@@ -77,13 +77,6 @@ namespace VLC_WINRT_APP.Views.MainPages
                 var _ = Task.Run(async () => await Locator.MusicLibraryVM.Initialize());
             }
             await SdCardTest();
-            // If no playback was ever started, ContinueIndexing can be null
-            // If we navigate back and forth to the main page, we also don't want to 
-            // re-mark the task as completed.
-            if (Locator.MusicLibraryVM.ContinueIndexing != null && !Locator.MusicLibraryVM.ContinueIndexing.Task.IsCompleted)
-            {
-                Locator.MusicLibraryVM.ContinueIndexing.SetResult(true);
-            }
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
