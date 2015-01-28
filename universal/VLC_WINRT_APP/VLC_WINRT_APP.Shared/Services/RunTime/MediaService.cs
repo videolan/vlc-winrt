@@ -38,7 +38,6 @@ namespace VLC_WINRT_APP.Services.RunTime
 {
     public class MediaService : IMediaService
     {
-        private MediaElement _mediaElement;
         public event EventHandler<MediaState> StatusChanged;
         public event TimeChanged TimeChanged;
 
@@ -69,10 +68,6 @@ namespace VLC_WINRT_APP.Services.RunTime
         }
 
 
-        public void SetMediaElement(MediaElement mediaElement)
-        {
-            _mediaElement = mediaElement;
-        }
         public void SetMediaTransportControls(SystemMediaTransportControls systemMediaTransportControls)
         {
 #if WINDOWS_APP
@@ -392,7 +387,7 @@ namespace VLC_WINRT_APP.Services.RunTime
             StatusChanged(this, MediaState.Stopped);
         }
 
-        private async void ApplicationState_Activated(object sender, WindowActivatedEventArgs e)
+        private void ApplicationState_Activated(object sender, WindowActivatedEventArgs e)
         {
             if (MediaPlayer == null)
                 return;
@@ -409,21 +404,6 @@ namespace VLC_WINRT_APP.Services.RunTime
                     if (!(bool)ApplicationSettingsHelper.ReadSettingsValue("ContinueVideoPlaybackInBackground"))
                         MediaPlayer.pause();
                 }
-
-                // Otherwise, set the MediaElement's source to the Audio File in question,
-                // and play it with a volume of zero. This allows _vlcService's audio to continue
-                // to play in the background. SetSource should have it's source set to a programmatically
-                // generated stream of blank noise, just incase the audio file in question isn't support by
-                // Windows.
-                // TODO: generate blank wave file
-#if WINDOWS_APP
-                StorageFile file = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///audio.wav"));
-                var stream = await file.OpenAsync(FileAccessMode.Read);
-                _mediaElement.SetSource(stream, file.ContentType);
-                _mediaElement.Play();
-                _mediaElement.IsLooping = true;
-                _mediaElement.Volume = 0;
-#endif
             }
             else
             {
@@ -439,9 +419,6 @@ namespace VLC_WINRT_APP.Services.RunTime
                     MediaPlayer.play();
                     return;
                 }
-
-                // Stop the MediaElement with fake audio sound
-                _mediaElement.Stop();
             }
         }
 

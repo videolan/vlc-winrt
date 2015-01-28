@@ -31,7 +31,6 @@ namespace VLC_WINRT_APP.Views.MainPages
             InitializeComponent();
             Loaded += SwapPanelLoaded;
             _mediaService = mediaService;
-            (mediaService as MediaService).SetMediaElement(FoudationMediaElement);
             (mediaService as MediaService).SetMediaTransportControls(SystemMediaTransportControls.GetForCurrentView());
         }
 

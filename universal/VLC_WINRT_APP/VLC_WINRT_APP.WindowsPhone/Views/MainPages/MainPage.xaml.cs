@@ -22,7 +22,6 @@ namespace VLC_WINRT_APP.Views.MainPages
         {
             this.InitializeComponent();
             _mediaService = mediaService;
-            (mediaService as MediaService).SetMediaElement(MediaElement);
             Loaded += SwapPanelLoaded;
             ApplicationView.GetForCurrentView().SetDesiredBoundsMode(ApplicationViewBoundsMode.UseCoreWindow);
             DisplayInformation.GetForCurrentView().OrientationChanged += DisplayPropertiesOnOrientationChanged;

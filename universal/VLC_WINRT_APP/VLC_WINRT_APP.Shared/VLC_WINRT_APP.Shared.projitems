@@ -271,9 +271,6 @@
     <Content Include="$(MSBuildThisFileDirectory)Assets\NoCoverWide.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="$(MSBuildThisFileDirectory)audio.wav">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="$(MSBuildThisFileDirectory)backers.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

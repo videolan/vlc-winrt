@@ -16,11 +16,6 @@
         <RowDefinition />
         <RowDefinition Height="Auto" />
     </Grid.RowDefinitions>
-    <MediaElement Grid.RowSpan="2"
-                  AudioCategory="BackgroundCapableMedia"
-                  AudioDeviceType="Multimedia"
-                  x:Name="MediaElement"
-                  x:FieldModifier="public" />
     <Grid Grid.RowSpan="2"
           Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
           Visibility="{Binding Source={StaticResource Locator}, Path=VideoVm.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}" />
