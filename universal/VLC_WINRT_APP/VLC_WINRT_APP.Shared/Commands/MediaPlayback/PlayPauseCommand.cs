@@ -26,7 +26,7 @@ namespace VLC_WINRT_APP.Commands.MediaPlayback
     {
         public override async void Execute(object parameter)
         {
-            var playerService = App.Container.Resolve<IMediaService>();
+            var playerService = App.IMediaService;
 #if WINDOWS_APP
             playerService.Pause();
 #else

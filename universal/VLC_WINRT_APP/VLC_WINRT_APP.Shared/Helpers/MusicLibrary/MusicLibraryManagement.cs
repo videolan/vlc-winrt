@@ -176,7 +176,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                 if (!VLCFileExtensions.AudioExtensions.Contains(item.FileType.ToLower())) return;
                 MusicProperties properties = await item.Properties.GetMusicPropertiesAsync();
                 Dictionary<string, object> propDictionary = null;
-                MediaService mediaService = App.Container.Resolve<IMediaService>() as MediaService;
+                MediaService mediaService = App.IMediaService as MediaService;
                 if (properties != null)
                 {
                     propDictionary = new Dictionary<string, object>();
@@ -268,7 +268,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             if (useLibVLc)
             {
                 if (mediaService == null)
-                    mediaService = App.Container.Resolve<IMediaService>() as MediaService;
+                    mediaService = App.IMediaService as MediaService;
                 var albumUrl = mediaService.GetAlbumUrl(filePath);
                 if (!string.IsNullOrEmpty(albumUrl))
                 {
