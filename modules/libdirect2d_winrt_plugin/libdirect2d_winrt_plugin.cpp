@@ -109,7 +109,7 @@ struct vout_display_sys_t {
     float                        lastDisplayWidth;
     float                        lastDisplayHeight;
 
-    D2D1_POINT_2F                offset;
+    D2D1_POINT_2U                offset;
     D2D1_SIZE_U                  size;
     D2D1_SIZE_U                  halfSize;
     D2D1_SIZE_U                  renderSize;
@@ -386,7 +386,7 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
             return;
     }
 
-    sys->d2dContext->SetTransform(D2D1::Matrix3x2F::Translation(floor(sys->offset.x), floor(sys->offset.y)));
+    sys->d2dContext->SetTransform(D2D1::Matrix3x2F::Translation(sys->offset.x, sys->offset.y));
 
     // Init and clear d2dContext render target
     sys->d2dContext->BeginDraw();
