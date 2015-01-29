@@ -34,6 +34,13 @@ namespace VLC_WINRT_APP.Helpers
             LogHelper.Log(string.Format("UsedRAM:{0}-{2}%", AppMemoryUsageUlong, AppMemoryUsageLimitUlong, level));
             return level;
         }
+#else
+        // Just mock it on WindowsRT
+        public static ulong MaxRamForResourceIntensiveTasks { get { return 100; } }
+        public static ulong PercentMemoryUsed()
+        {
+            return 0;
+        }
 #endif
     }
 }
