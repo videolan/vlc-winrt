@@ -28,6 +28,7 @@ using libVLCX;
 using System.Collections.Generic;
 using System.Diagnostics;
 using VLC_WINRT_APP.Helpers.MusicPlayer;
+using VLC_WINRT_APP.Model.Music;
 #if WINDOWS_PHONE_APP
 using Windows.Media.Playback;
 #endif
@@ -247,27 +248,27 @@ namespace VLC_WINRT_APP.Services.RunTime
             return "";
         }
 
-        public Dictionary<string, object> GetMusicProperties(string filePath)
+        public MediaProperties GetMusicProperties(string filePath)
         {
             var media = new Media(Instance, "file:///" + filePath);
             media.parse();
             if (!media.isParsed()) return null;
-            var mP = new Dictionary<string, object>();
-            mP.Add("artist", media.meta(MediaMeta.Artist));
-            mP.Add("album", media.meta(MediaMeta.Album));
-            mP.Add("title", media.meta(MediaMeta.Title));
+            var mP = new MediaProperties();
+            mP.Artist = media.meta(MediaMeta.Artist);
+            mP.Album = media.meta(MediaMeta.Album);
+            mP.Title = media.meta(MediaMeta.Title);
             var dateTimeString = media.meta(MediaMeta.Date);
             DateTime dateTime = new DateTime();
-            mP.Add("year", (uint)(DateTime.TryParse(dateTimeString, out dateTime) ? dateTime.Year : 0));
+            mP.Year = (uint)(DateTime.TryParse(dateTimeString, out dateTime) ? dateTime.Year : 0);
 
             var durationLong = media.duration();
             TimeSpan duration = TimeSpan.FromMilliseconds(durationLong);
-            mP.Add("duration", duration);
+            mP.Duration = duration;
 
             var trackNbString = media.meta(MediaMeta.TrackNumber);
             uint trackNbInt = 0;
             uint.TryParse(trackNbString, out trackNbInt);
-            mP.Add("tracknumber", trackNbInt);
+            mP.Tracknumber = trackNbInt;
             return mP;
         }
 

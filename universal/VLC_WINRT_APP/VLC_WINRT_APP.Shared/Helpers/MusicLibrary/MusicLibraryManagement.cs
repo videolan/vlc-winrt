@@ -175,29 +175,29 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             {
                 if (!VLCFileExtensions.AudioExtensions.Contains(item.FileType.ToLower())) return;
                 MusicProperties properties = await item.Properties.GetMusicPropertiesAsync();
-                Dictionary<string, object> propDictionary = null;
+                MediaProperties mP = null;
                 MediaService mediaService = App.IMediaService as MediaService;
                 if (properties != null)
                 {
-                    propDictionary = new Dictionary<string, object>();
-                    propDictionary.Add("artist", properties.Artist);
-                    propDictionary.Add("album", properties.Album);
-                    propDictionary.Add("title", properties.Title);
-                    propDictionary.Add("year", properties.Year);
-                    propDictionary.Add("duration", properties.Duration);
-                    propDictionary.Add("tracknumber", properties.TrackNumber);
+                    mP = new MediaProperties();
+                    mP.Artist = properties.Artist;
+                    mP.Album = properties.Album;
+                    mP.Title = properties.Title;
+                    mP.Year = properties.Year;
+                    mP.Duration = properties.Duration;
+                    mP.Tracknumber = properties.TrackNumber;
                 }
                 else
                 {
-                    propDictionary = mediaService.GetMusicProperties(item.Path);
+                    mP = mediaService.GetMusicProperties(item.Path);
                 }
-                if (propDictionary["duration"] == null || (TimeSpan)propDictionary["duration"] == TimeSpan.Zero)
+                if (mP.Duration == TimeSpan.Zero)
                 {
-                    propDictionary["duration"] = mediaService.GetDuration(item.Path);
+                    mP.Duration = mediaService.GetDuration(item.Path);
                 }
-                if (propDictionary != null)
+                if (mP != null)
                 {
-                    var artistName = propDictionary["artist"].ToString();
+                    var artistName = mP.Artist;
                     ArtistItem artist = MusicLibraryVM._artistDataRepository.LoadViaArtistName(artistName);
                     if (artist == null)
                     {
@@ -210,8 +210,8 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                         });
                     }
 
-                    var albumName = propDictionary["album"].ToString();
-                    var albumYear = (uint)propDictionary["year"];
+                    var albumName = mP.Album;
+                    var albumYear = mP.Year;
                     AlbumItem album =
                         await MusicLibraryVM._albumDataRepository.LoadAlbumViaName(artist.Id, albumName);
                     if (album == null)
@@ -238,21 +238,18 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                         });
                     }
 
-                    var duration = (TimeSpan)propDictionary["duration"];
-                    var title = propDictionary["title"].ToString();
-                    var trackNb = (uint)propDictionary["tracknumber"];
-                    TrackItem track = new TrackItem()
+                    TrackItem track = new TrackItem
                     {
                         AlbumId = album.Id,
                         AlbumName = album.Name,
                         ArtistId = artist.Id,
                         ArtistName = artist.Name,
                         CurrentPosition = 0,
-                        Duration = duration,
+                        Duration = mP.Duration,
                         Favorite = false,
-                        Name = string.IsNullOrEmpty(title) ? item.DisplayName : title,
+                        Name = string.IsNullOrEmpty(mP.Title) ? item.DisplayName : mP.Title,
                         Path = item.Path,
-                        Index = trackNb,
+                        Index = mP.Tracknumber,
                     };
                     await MusicLibraryVM._trackDataRepository.Add(track);
                 }
