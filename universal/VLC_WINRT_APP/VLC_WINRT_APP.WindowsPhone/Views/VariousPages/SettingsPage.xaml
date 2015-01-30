@@ -41,8 +41,8 @@
             </Pivot.Title>
             <PivotItem Header="general">
                 <StackPanel>
-                    <CheckBox Content="Manually set the application theme" 
-                              IsChecked="{Binding ForceAppTheme, Mode=TwoWay}"/>
+                    <CheckBox Content="Manually set the application theme"
+                              IsChecked="{Binding ForceAppTheme, Mode=TwoWay}" />
                     <ToggleSwitch IsEnabled="{Binding ForceAppTheme}"
                                   Header="Application theme"
                                   OffContent="Light"
