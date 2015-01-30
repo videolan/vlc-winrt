@@ -39,11 +39,20 @@ namespace VLC_WINRT_APP.Helpers
                 Label = "special thanks",
                 Command = Locator.MainVM.GoToThanksPageCommand,
             });
-            appbarel.Add(new AppBarButton()
+            var settingsVisibility = new Binding()
+            {
+                Source = Locator.MainVM,
+                Path = new PropertyPath("CurrentPage"),
+                UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged,
+                Converter = App.Current.Resources["PageToVisibilityConverter"] as IValueConverter,
+                ConverterParameter = "SettingsPage"
+            };
+            var settingsButton = new AppBarButton()
             {
                 Label = "settings",
-                Command = Locator.MainVM.GoToSettingsPageCommand
-            });
+                Command = Locator.MainVM.GoToSettingsPageCommand,
+            };
+            settingsButton.SetBinding(AppBarButton.VisibilityProperty, settingsVisibility);
             Locator.MainVM.SecondaryAppBarElements = appbarel;
         }
 

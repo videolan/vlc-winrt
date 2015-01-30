@@ -120,6 +120,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\NullToVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\OpacityDecreaserConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\OrderTypeStringifyConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\PageToVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\PinConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\PositionToFixedPointConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\SecondsStringConverter.cs" />

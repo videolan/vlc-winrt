@@ -41,4 +41,5 @@
     <converters:PinConverter x:Key="PinConverter" />
     <converters:ApplicationThemeBooleanConverter x:Key="ApplicationThemeBooleanConverter"/>
     <converters:AppThemeElementThemeConverter x:Key="AppThemeElementThemeConverter"/>
+    <converters:PageToVisibilityConverter x:Key="PageToVisibilityConverter"/>
 </ResourceDictionary>
