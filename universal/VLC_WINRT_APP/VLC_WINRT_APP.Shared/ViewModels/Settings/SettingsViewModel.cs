@@ -66,10 +66,6 @@ namespace VLC_WINRT_APP.ViewModels.Settings
             {
                 SetProperty(ref _isSidebarAlwaysMinimized, value);
                 ApplicationSettingsHelper.SaveSettingsValue("IsSidebarAlwaysMinimized", value);
-                if(value)
-                    App.RootPage.ColumnGrid.MinimizeSidebar();
-                else
-                    App.RootPage.ColumnGrid.RestoreSidebar();
             }
         }
 #endif
