@@ -1,0 +1,66 @@
+﻿<UserControl x:Class="VLC_WINRT_APP.Views.UserControls.TrackItemTemplate"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="using:VLC_WINRT_APP.Views.UserControls"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:triggers="using:WinRT.Triggers"
+             xmlns:placeholder="using:VLC_WINRT_APP.Views.UserControls.Placeholder"
+             xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+             xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+             xmlns:common="using:VLC_WINRT_APP.Common"
+             mc:Ignorable="d"
+             d:DesignHeight="300"
+             d:DesignWidth="400">
+
+    <Grid FlyoutBase.AttachedFlyout="{StaticResource TrackItemFlyout}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="40" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <interactivity:Interaction.Behaviors>
+            <core:EventTriggerBehavior EventName="Holding">
+                <common:OpenMenuFlyoutAction />
+            </core:EventTriggerBehavior>
+        </interactivity:Interaction.Behaviors>
+        <TextBlock Grid.Column="0"
+                   Grid.Row="0"
+                   Text="{Binding Name}"
+                   TextWrapping="NoWrap"
+                   TextTrimming="CharacterEllipsis"
+                   Style="{StaticResource TitleTextBlockStyle}"
+                   FontSize="20"
+                   Margin="0,0,6,0"
+                   FontWeight="{Binding IsCurrentPlaying, Converter={StaticResource CurrentTrackEnhancifierConverter}, ConverterParameter='fontweight'}" />
+        <TextBlock Grid.Column="0"
+                   Grid.Row="1"
+                   Text="{Binding ArtistName}"
+                   Style="{StaticResource BaseTextBlockStyle}"
+                   Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
+                   FontWeight="Light" />
+        <Button Grid.Column="1"
+                Grid.Row="0"
+                Grid.RowSpan="2"
+                VerticalAlignment="Stretch"
+                VerticalContentAlignment="Bottom"
+                Style="{StaticResource TextBlockButtonStyle}"
+                Content=""
+                Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
+                FontFamily="Segoe UI Symbol"
+                HorizontalAlignment="Stretch"
+                HorizontalContentAlignment="Center"
+                Flyout="{StaticResource TrackItemFlyout}">
+        </Button>
+        <TextBlock Grid.Column="1"
+                   Grid.Row="0"
+                   FontWeight="Light"
+                   Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
+                   Text="{Binding Duration.TotalSeconds, Converter={StaticResource SecondsStringConverter}}"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center" />
+    </Grid>
+</UserControl>
