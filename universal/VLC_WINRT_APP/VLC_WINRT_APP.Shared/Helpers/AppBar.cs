@@ -53,6 +53,7 @@ namespace VLC_WINRT_APP.Helpers
                 Command = Locator.MainVM.GoToSettingsPageCommand,
             };
             settingsButton.SetBinding(AppBarButton.VisibilityProperty, settingsVisibility);
+            appbarel.Add(settingsButton);
             Locator.MainVM.SecondaryAppBarElements = appbarel;
         }
 
