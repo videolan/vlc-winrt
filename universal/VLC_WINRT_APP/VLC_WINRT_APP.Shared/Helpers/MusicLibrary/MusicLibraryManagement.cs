@@ -339,7 +339,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
         {
             try
             {
-                int howManyAlbumsToFill = HowManyAlbumsToDisplayWithTwoRows();
+                int howManyAlbumsToFill = await HowManyAlbumsToDisplayWithTwoRows();
                 if (Locator.MusicLibraryVM.RandomAlbums != null && Locator.MusicLibraryVM.RandomAlbums.Any()) return;
                 ObservableCollection<AlbumItem> favAlbums = await MusicLibraryVM._albumDataRepository.LoadAlbums(x => x.Favorite);
                 if (favAlbums != null && favAlbums.Any())
@@ -371,10 +371,14 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             }
         }
 
-        public static int HowManyAlbumsToDisplayWithTwoRows()
+        public static async Task<int> HowManyAlbumsToDisplayWithTwoRows()
         {
 #if WINDOWS_APP
-            var width = Window.Current.Bounds.Width;
+            var width = 0.0;
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                width = Window.Current.Bounds.Width;
+            });
             // an album is 220 pixels wide
             width -= (int)Locator.MusicLibraryVM.SidebarState;
             var nbAlbumsPerRow = width / 220;
