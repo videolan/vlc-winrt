@@ -11,7 +11,6 @@ namespace VLC_WINRT_APP.Model.Video
     }
     public static class TemplateSizer
     {
-#if WINDOWS_PHONE_APP
         public static void ComputeCompactVideo(ItemsWrapGrid wrapGrid)
         {
             var width = Window.Current.Bounds.Width;
@@ -27,6 +26,7 @@ namespace VLC_WINRT_APP.Model.Video
 
         public static void ComputeAlbums(ItemsWrapGrid wrapGrid, TemplateSize size = TemplateSize.Compact)
         {
+#if WINDOWS_PHONE_APP
             var width = Window.Current.Bounds.Width;
             if(width == 400)
                 size = TemplateSize.Normal;
@@ -37,7 +37,10 @@ namespace VLC_WINRT_APP.Model.Video
             var itemHeight = itemWidth*1.33;
             wrapGrid.ItemWidth = itemWidth -7;
             wrapGrid.ItemHeight = itemHeight;
-        }
+#else
+            wrapGrid.ItemWidth = 200;
+            wrapGrid.ItemHeight = 266;
 #endif
+        }
     }
 }
