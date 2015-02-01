@@ -23,7 +23,7 @@ using VLC_WINRT_APP.Views.VariousPages;
 
 namespace VLC_WINRT_APP.Views.MainPages
 {
-    public sealed partial class MainPage : Page
+    public sealed partial class MainPage : SwapChainPanel
     {
         private readonly IMediaService _mediaService;
         public MainPage(IMediaService mediaService)
@@ -42,8 +42,6 @@ namespace VLC_WINRT_APP.Views.MainPages
 
         void Responsive()
         {
-            TopBarRowDefinition.Height = Window.Current.Bounds.Width < 400 ? new GridLength(150) : new GridLength(0);
-            LeftSidebarColumnDefinition.Width = Window.Current.Bounds.Width < 400 ? new GridLength(0) : new GridLength(1, GridUnitType.Auto);
         }
 
         private void SwapPanelLoaded(object sender, RoutedEventArgs e)
