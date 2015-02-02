@@ -18,8 +18,7 @@
     <Frame x:Name="MainPageVideoContentPresenter"
            x:FieldModifier="public"
            Background="Transparent"
-           Loaded="MainPageVideoContentPresenter_OnLoaded"
-           Margin="24,0">
+           Loaded="MainPageVideoContentPresenter_OnLoaded">
         <Frame.ContentTransitions>
             <TransitionCollection>
                 <NavigationThemeTransition>
