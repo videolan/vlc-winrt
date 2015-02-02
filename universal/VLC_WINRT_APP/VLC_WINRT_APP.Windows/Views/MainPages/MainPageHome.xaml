@@ -12,7 +12,6 @@
     <Grid Margin="0"
           x:Name="MainGrid">
         <Hub x:Name="MainHub"
-             Orientation="Vertical"
              HorizontalContentAlignment="Stretch">
             <Hub.Header>
                 <Grid>
@@ -168,13 +167,11 @@
             <Hub.Sections>
                 <HubSection x:Uid="VideoHubHeader"
                             Header="videos"
-                            HeaderTemplate="{StaticResource ColoredHeader}"
-                            HorizontalContentAlignment="Stretch"
-                            HorizontalAlignment="Stretch">
+                            HeaderTemplate="{StaticResource ColoredHeader}">
                     <HubSection.ContentTemplate>
                         <DataTemplate>
                             <GridView ItemsSource="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM.ViewedVideos}"
-                                      ItemTemplate="{StaticResource SemanticZoomInViewMovieTemplate}"
+                                      ItemTemplate="{StaticResource PhoneCompactVideoTemplate}"
                                       IsItemClickEnabled="True"
                                       SelectionMode="None"
                                       IsSwipeEnabled="False"
@@ -187,7 +184,7 @@
                                 </triggers:Interactions.Triggers>
                                 <GridView.ItemsPanel>
                                     <ItemsPanelTemplate>
-                                        <ItemsWrapGrid Orientation="Horizontal"
+                                        <ItemsWrapGrid Orientation="Vertical"
                                                        ItemWidth="310"
                                                        ItemHeight="174"
                                                        Loaded="VideoItemWrapGrid_Loaded"
@@ -208,17 +205,16 @@
                             <Grid x:Name="MusicLibrary"
                                   DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
                                 <GridView ItemsSource="{Binding RandomAlbums}"
-                                          ItemTemplate="{StaticResource SemanticZoomInViewAlbumTemplate}"
+                                          ItemTemplate="{StaticResource PhoneSemanticZoomInViewAlbumTemplateLittleSize}"
                                           ItemContainerStyle="{StaticResource GridViewItemStyle}"
                                           IsItemClickEnabled="True"
                                           SelectionMode="None"
                                           IsSwipeEnabled="False">
                                     <GridView.ItemsPanel>
                                         <ItemsPanelTemplate>
-                                            <ItemsWrapGrid Orientation="Horizontal"
+                                            <ItemsWrapGrid Orientation="Vertical"
                                                            ItemHeight="270"
-                                                           ItemWidth="220"
-                                                           Margin="-14,0,0,0" />
+                                                           ItemWidth="220"/>
                                         </ItemsPanelTemplate>
                                     </GridView.ItemsPanel>
                                 </GridView>
