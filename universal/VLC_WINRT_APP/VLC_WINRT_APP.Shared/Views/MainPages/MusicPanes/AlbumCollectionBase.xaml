@@ -7,6 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:triggers="using:WinRT.Triggers"
     xmlns:controls="using:VLC_WINRT_APP.Views.UserControls.Placeholder"
+    xmlns:controls1="using:VLC_WINRT.Views.Controls"
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
@@ -67,11 +68,12 @@
                 </ComboBox.ItemTemplate>
             </ComboBox>
         </Grid>
-        <controls:NothingToSeeHere Grid.Row="1"
+        <controls1:NothingToSeeHere Grid.Row="1"
                                       Visibility="{Binding Albums.Count, Converter={StaticResource CountToVisibilityConverter}}" />
         <GridView Grid.Row="1"
                   ItemsSource="{Binding Albums}"
                   ItemTemplate="{StaticResource PhoneSemanticZoomInViewAlbumTemplateLittleSize}"
+                  ItemContainerStyle="{StaticResource GridViewItemStyle}"
                   Margin="0,0,-20,0"
                   IsItemClickEnabled="True"
                   ContainerContentChanging="ListViewBase_OnContainerContentChanging">
