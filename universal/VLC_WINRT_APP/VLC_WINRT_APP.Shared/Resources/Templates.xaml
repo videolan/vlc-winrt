@@ -13,7 +13,7 @@
         <ResourceDictionary Source="Templates/ArtistTemplates.xaml" />
         <ResourceDictionary Source="Templates/AlbumTemplates.xaml" />
         <ResourceDictionary Source="Templates/TrackTemplates.xaml" />
-        <ResourceDictionary Source="Templates/TrackCollectionTemplates.xaml"/>
+        <ResourceDictionary Source="Templates/TrackCollectionTemplates.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <DataTemplate x:Key="ListViewHeaderTemplate">
@@ -61,11 +61,12 @@
                          FontFamily="Segoe UI Symbol" />
         </TextBlock>
     </DataTemplate>
-    
+
     <DataTemplate x:Key="PhoneHeaderTemplate">
-        <TextBlock Text="{Binding}" Style="{StaticResource SubheaderTextBlockStyle}"/>
+        <TextBlock Text="{Binding}"
+                   Style="{StaticResource SubheaderTextBlockStyle}" />
     </DataTemplate>
-    
+
     <!-- WINDOWS PHONE -->
     <DataTemplate x:Key="WPSidebarItemTemplate">
         <Grid Height="60"
@@ -89,10 +90,10 @@
                        Margin="12,-9,0,0"
                        VerticalAlignment="Center"
                        Style="{StaticResource SubheaderTextBlockStyle}"
-                       FontSize="28"/>
+                       FontSize="28" />
         </Grid>
     </DataTemplate>
-    
+
     <!-- WINDOWS -->
     <DataTemplate x:Key="SidebarItemTemplate">
         <Grid Height="60"
@@ -119,7 +120,7 @@
                        FontSize="28" />
         </Grid>
     </DataTemplate>
-    
+
     <DataTemplate x:Key="SidebarIconItemTemplate">
         <Grid Height="60"
               Width="100">
@@ -132,7 +133,7 @@
                   Margin="-9,0,0,0" />
         </Grid>
     </DataTemplate>
-    
+
     <DataTemplate x:Key="SidebarMiniIconItemTemplate">
         <Grid Height="60"
               Width="36">
