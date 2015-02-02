@@ -39,6 +39,21 @@
                 </DataTemplate>
             </Hub.HeaderTemplate>
             <Hub.Sections>
+                <HubSection Header="user interface">
+                    <HubSection.ContentTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <CheckBox Content="Manually set the application theme"
+                                          IsChecked="{Binding ForceAppTheme, Mode=TwoWay}" />
+                                <ToggleSwitch IsEnabled="{Binding ForceAppTheme}"
+                                              Header="Application theme"
+                                              OffContent="Light"
+                                              OnContent="Dark"
+                                              IsOn="{Binding ApplicationTheme, Converter={StaticResource ApplicationThemeBooleanConverter}, Mode=TwoWay}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </HubSection.ContentTemplate>
+                </HubSection>
                 <HubSection x:Uid="VideoSettingsHeader"
                             Header="video settings">
                     <HubSection.ContentTemplate>
@@ -146,17 +161,6 @@
                                               Header="Even if the app is not in background"
                                               IsOn="{Binding NotificationOnNewSongForeground, Mode=TwoWay}"
                                               Visibility="{Binding NotificationOnNewSong, Converter={StaticResource BooleanToVisibilityConverter}}" />
-                            </StackPanel>
-                        </DataTemplate>
-                    </HubSection.ContentTemplate>
-                </HubSection>
-
-                <HubSection Header="user interface">
-                    <HubSection.ContentTemplate>
-                        <DataTemplate>
-                            <StackPanel>
-                                <ToggleSwitch Header="Sidebar is always in minimized mode"
-                                              IsOn="{Binding IsSidebarAlwaysMinimized, Mode=TwoWay}" />
                             </StackPanel>
                         </DataTemplate>
                     </HubSection.ContentTemplate>
