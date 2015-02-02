@@ -6,9 +6,9 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:triggers="using:WinRT.Triggers"
       xmlns:winRTEx="using:WinRTXamlToolkit.Controls.Extensions"
+      xmlns:albumPageControls="using:VLC_WINRT_APP.Views.MusicPages.AlbumPageControls"
       mc:Ignorable="d"
       DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
-
     <Grid DataContext="{Binding CurrentArtist}"
           RequestedTheme="Dark">
         <Grid.RowDefinitions>

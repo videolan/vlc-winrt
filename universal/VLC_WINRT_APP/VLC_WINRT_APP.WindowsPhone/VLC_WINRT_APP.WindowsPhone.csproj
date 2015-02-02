@@ -92,9 +92,6 @@
     <Compile Include="BackgroundHelpers\BackgroundAudioHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BackgroundHelpers\BackgroundTaskTools.cs" />
-    <Compile Include="Views\MainPages\MainMusicControls\AlbumsPivotItem.xaml.cs">
-      <DependentUpon>AlbumsPivotItem.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\MainPages\MainMusicControls\PlaylistPivotItem.xaml.cs">
       <DependentUpon>PlaylistPivotItem.xaml</DependentUpon>
     </Compile>
@@ -116,8 +113,8 @@
     <Compile Include="Views\MusicPages\AddAlbumToPlaylist.xaml.cs">
       <DependentUpon>AddAlbumToPlaylist.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MusicPages\AlbumPageControls\MainAlbumHeader.xaml.cs">
-      <DependentUpon>MainAlbumHeader.xaml</DependentUpon>
+    <Compile Include="Views\MusicPages\AlbumPage.xaml.cs">
+      <DependentUpon>AlbumPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MusicPages\ArtistPageControls\MainArtistHeader.xaml.cs">
       <DependentUpon>MainArtistHeader.xaml</DependentUpon>
@@ -143,6 +140,9 @@
     <Compile Include="Views\UserControls\ConnectToLastFm.xaml.cs">
       <DependentUpon>ConnectToLastFm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserControls\Flyouts\AlbumMenuFlyout.xaml.cs">
+      <DependentUpon>AlbumMenuFlyout.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserControls\LeftColumn.xaml.cs">
       <DependentUpon>LeftColumn.xaml</DependentUpon>
     </Compile>
@@ -158,9 +158,6 @@
     <Compile Include="Views\MainPages\MainPageVideos.xaml.cs">
       <DependentUpon>MainPageVideos.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MusicPages\AlbumPage.xaml.cs">
-      <DependentUpon>AlbumPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\MusicPages\ArtistPage.xaml.cs">
       <DependentUpon>ArtistPage.xaml</DependentUpon>
     </Compile>
@@ -175,9 +172,6 @@
     </Compile>
     <Compile Include="Views\UserControls\MiniPlayer.xaml.cs">
       <DependentUpon>MiniPlayer.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UserControls\HeaderControl.xaml.cs">
-      <DependentUpon>HeaderControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\Placeholder\NoCameraVideos.xaml.cs">
       <DependentUpon>NoCameraVideos.xaml</DependentUpon>
@@ -208,9 +202,6 @@
     </Compile>
     <Compile Include="Views\UserControls\TopBar.xaml.cs">
       <DependentUpon>TopBar.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UserControls\TrackItemTemplate.xaml.cs">
-      <DependentUpon>TrackItemTemplate.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\VideoItemControl.xaml.cs">
       <DependentUpon>VideoItemControl.xaml</DependentUpon>
@@ -910,10 +901,6 @@
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
-    <Page Include="Views\MainPages\MainMusicControls\AlbumsPivotItem.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\MainPages\MainMusicControls\PlaylistPivotItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -942,9 +929,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\MusicPages\AlbumPageControls\MainAlbumHeader.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="Views\MusicPages\AlbumPage.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\MusicPages\ArtistPageControls\MainArtistHeader.xaml">
       <SubType>Designer</SubType>
@@ -978,6 +965,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\UserControls\Flyouts\AlbumMenuFlyout.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\UserControls\LeftColumn.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -998,10 +989,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\MusicPages\AlbumPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\MusicPages\ArtistPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1019,10 +1006,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControls\MiniPlayer.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\UserControls\HeaderControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1063,10 +1046,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControls\TopBar.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\UserControls\TrackItemTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

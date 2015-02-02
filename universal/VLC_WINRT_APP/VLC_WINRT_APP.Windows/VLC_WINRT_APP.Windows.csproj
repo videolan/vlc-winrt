@@ -123,9 +123,6 @@
     <Compile Include="Views\MainPages\MusicPanes\ArtistAlbumsTwoPanes.xaml.cs">
       <DependentUpon>ArtistAlbumsTwoPanes.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MainPages\MusicPanes\ArtistsSemanticZoom.xaml.cs">
-      <DependentUpon>ArtistsSemanticZoom.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\MainPages\MusicPanes\SongsListView.xaml.cs">
       <DependentUpon>SongsListView.xaml</DependentUpon>
     </Compile>
@@ -135,8 +132,8 @@
     <Compile Include="Views\MainPages\VideoPanes\VideosPage.xaml.cs">
       <DependentUpon>VideosPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControls\CompactVideoItemControl.xaml.cs">
-      <DependentUpon>CompactVideoItemControl.xaml</DependentUpon>
+    <Compile Include="Views\UserControls\Flyouts\AlbumMenuFlyout.xaml.cs">
+      <DependentUpon>AlbumMenuFlyout.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\HorizontalMiniPlayer.xaml.cs">
       <DependentUpon>HorizontalMiniPlayer.xaml</DependentUpon>
@@ -231,9 +228,6 @@
     </Compile>
     <Compile Include="Views\UserControls\TopBar.xaml.cs">
       <DependentUpon>TopBar.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UserControls\TrackItemTemplate.xaml.cs">
-      <DependentUpon>TrackItemTemplate.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\VideoPages\VideoPlayerPage.xaml.cs">
       <DependentUpon>VideoPlayerPage.xaml</DependentUpon>
@@ -905,10 +899,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\MainPages\MusicPanes\ArtistsSemanticZoom.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\MainPages\MusicPanes\SongsListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -921,7 +911,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\UserControls\CompactVideoItemControl.xaml">
+    <Page Include="Views\UserControls\Flyouts\AlbumMenuFlyout.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1046,10 +1036,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\UserControls\TopBar.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\UserControls\TrackItemTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
