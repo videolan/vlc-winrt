@@ -11,6 +11,7 @@ using System;
 using System.Linq;
 using Windows.UI;
 using Windows.UI.Core;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Media;
@@ -25,10 +26,8 @@ namespace VLC_WINRT_APP.Commands.MainPageCommands
     public class GoToPanelCommand : AlwaysExecutableCommand
     {
 #if WINDOWS_APP
-        public static readonly SolidColorBrush SelectedColorBrush =
-            App.Current.Resources["MainColor"] as SolidColorBrush;
-
-        public static readonly SolidColorBrush DefaultColorBrush = (SolidColorBrush) App.Current.Resources["PivotHeaderForegroundUnselectedBrush"];
+        public static readonly SolidColorBrush SelectedColorBrush = App.Current.Resources["MainColor"] as SolidColorBrush;
+        public static readonly SolidColorBrush DefaultColorBrush = (Locator.SettingsVM.ApplicationTheme == ApplicationTheme.Dark) ? (SolidColorBrush) App.Current.Resources["PivotHeaderForegroundUnselectedBrush"] : new SolidColorBrush(Colors.DimGray);
 #else
         //public static readonly SolidColorBrush SelectedColorBrush = new SolidColorBrush(Colors.WhiteSmoke);
         //public static readonly SolidColorBrush DefaultColorBrush = new SolidColorBrush(Color.FromArgb(70, 0, 0, 0));
