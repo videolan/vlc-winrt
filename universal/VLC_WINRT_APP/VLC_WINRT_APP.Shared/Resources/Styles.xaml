@@ -3593,7 +3593,8 @@
                                               VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}"
                                               VerticalScrollMode="{TemplateBinding ScrollViewer.VerticalScrollMode}"
                                               VerticalSnapPointsAlignment="Near"
-                                              ZoomMode="Disabled">
+                                              ZoomMode="Disabled"
+                                              Foreground="{ThemeResource BasicForeground}">
                                     <ItemsPresenter />
                                 </ScrollViewer>
                             </Border>
