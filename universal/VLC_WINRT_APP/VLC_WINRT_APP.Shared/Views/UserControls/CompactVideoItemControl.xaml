@@ -8,7 +8,7 @@
              d:DesignHeight="300"
              d:DesignWidth="400">
 
-    <Border Margin="0,0,12,0">
+    <Border>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="5*" />
