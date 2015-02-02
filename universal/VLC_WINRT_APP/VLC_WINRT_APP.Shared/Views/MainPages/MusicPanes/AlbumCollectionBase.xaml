@@ -70,10 +70,10 @@
         </Grid>
         <controls:NothingToSeeHere Grid.Row="1"
                                       Visibility="{Binding Albums.Count, Converter={StaticResource CountToVisibilityConverter}}" />
-        <GridView Grid.Row="1"
+        <ListView Grid.Row="1"
                   ItemsSource="{Binding Albums}"
                   ItemTemplate="{StaticResource PhoneSemanticZoomInViewAlbumTemplateLittleSize}"
-                  ItemContainerStyle="{StaticResource GridViewItemStyle}"
+                  ItemContainerStyle="{StaticResource ListViewItemStyle}"
                   Margin="0,0,-20,0"
                   IsItemClickEnabled="True"
                   ContainerContentChanging="ListViewBase_OnContainerContentChanging">
@@ -83,13 +83,13 @@
                                                   PassEventArgsToCommand="True" />
                 </triggers:EventTrigger>
             </triggers:Interactions.Triggers>
-            <GridView.ItemsPanel>
+            <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <ItemsWrapGrid SizeChanged="AlbumsWrapGrid_SizeChanged"
                                    Orientation="Horizontal"
                                    Margin="0,0,0,60" />
                 </ItemsPanelTemplate>
-            </GridView.ItemsPanel>
-        </GridView>
+            </ListView.ItemsPanel>
+        </ListView>
     </Grid>
 </UserControl>

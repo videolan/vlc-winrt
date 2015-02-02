@@ -30,7 +30,7 @@
                 </ComboBox.ItemTemplate>
             </ComboBox>
         </Grid>
-        <GridView Grid.Row="1"
+        <ListView Grid.Row="1"
                   ItemsSource="{Binding Videos}"
                   ItemTemplate="{StaticResource PhoneCompactVideoTemplate}"
                   Margin="0,0,-25,0"
@@ -42,20 +42,20 @@
                                                   PassEventArgsToCommand="True" />
                 </triggers:EventTrigger>
             </triggers:Interactions.Triggers>
-            <GridView.ItemContainerTransitions>
+            <ListView.ItemContainerTransitions>
                 <TransitionCollection>
                     <AddDeleteThemeTransition />
                     <EntranceThemeTransition />
                 </TransitionCollection>
-            </GridView.ItemContainerTransitions>
-            <GridView.ItemsPanel>
+            </ListView.ItemContainerTransitions>
+            <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <ItemsWrapGrid Orientation="Horizontal"
                                    SizeChanged="VideosWrapGrid_SizeChanged"
                                    Margin="0,0,0,60" />
                 </ItemsPanelTemplate>
-            </GridView.ItemsPanel>
-        </GridView>
+            </ListView.ItemsPanel>
+        </ListView>
         <placeholder:NoVideosPlaceholder Grid.Row="1"
                                          Margin="0,50,0,0"
                                          Visibility="{Binding Videos.Count, Converter={StaticResource CountToVisibilityConverter}}" />

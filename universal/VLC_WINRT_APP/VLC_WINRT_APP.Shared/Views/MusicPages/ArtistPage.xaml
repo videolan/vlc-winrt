@@ -14,9 +14,9 @@
                Stretch="Uniform"
                VerticalAlignment="Top" />
         <Grid Margin="0,0,-20,0">
-            <GridView ItemsSource="{Binding CurrentArtist.Albums}"
+            <ListView ItemsSource="{Binding CurrentArtist.Albums}"
                       ItemTemplate="{StaticResource PhoneSemanticZoomInViewAlbumTemplateLittleSize}"
-                      ItemContainerStyle="{StaticResource GridViewItemStyle}"
+                      ItemContainerStyle="{StaticResource ListViewItemStyle}"
                       IsItemClickEnabled="True">
                 <triggers:Interactions.Triggers>
                     <triggers:EventTrigger EventName="ItemClick">
@@ -24,24 +24,24 @@
                                                       PassEventArgsToCommand="True" />
                     </triggers:EventTrigger>
                 </triggers:Interactions.Triggers>
-                <GridView.HeaderTemplate>
+                <ListView.HeaderTemplate>
                     <DataTemplate>
                         <artistPageControls:MainArtistHeader />
                     </DataTemplate>
-                </GridView.HeaderTemplate>
-                <GridView.ItemContainerTransitions>
+                </ListView.HeaderTemplate>
+                <ListView.ItemContainerTransitions>
                     <TransitionCollection>
                         <AddDeleteThemeTransition />
                     </TransitionCollection>
-                </GridView.ItemContainerTransitions>
-                <GridView.ItemsPanel>
+                </ListView.ItemContainerTransitions>
+                <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <ItemsWrapGrid Orientation="Horizontal"
                                        Margin="12,12,0,60"
                                        Loaded="ItemsWrapGrid_Loaded" />
                     </ItemsPanelTemplate>
-                </GridView.ItemsPanel>
-            </GridView>
+                </ListView.ItemsPanel>
+            </ListView>
         </Grid>
     </Grid>
 </Page>

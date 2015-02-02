@@ -28,7 +28,7 @@
                 </ComboBox.ItemTemplate>
             </ComboBox>
         </Grid>
-        <GridView Grid.Row="1"
+        <ListView Grid.Row="1"
                   ItemsSource="{Binding CameraRoll}"
                   ItemTemplate="{StaticResource PhoneCompactVideoTemplate}"
                   Margin="0,0,-20,0"
@@ -39,14 +39,14 @@
                                                   PassEventArgsToCommand="True" />
                 </triggers:EventTrigger>
             </triggers:Interactions.Triggers>
-            <GridView.ItemsPanel>
+            <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <ItemsWrapGrid Orientation="Horizontal"
                                    SizeChanged="VideosWrapGrid_SizeChanged" 
                                    Margin="0,0,0,60"/>
                 </ItemsPanelTemplate>
-            </GridView.ItemsPanel>
-        </GridView>
+            </ListView.ItemsPanel>
+        </ListView>
         <placeholder:NoCameraVideos Grid.Row="1"
                                     Margin="0,50,0,0"
                                     Visibility="{Binding CameraRoll.Count, Converter={StaticResource CountToVisibilityConverter}}" />
