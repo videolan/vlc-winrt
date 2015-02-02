@@ -3,58 +3,26 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:dataTemplateSelectors="using:VLC_WINRT_APP.Utility.DataTemplateSelectors"
-      xmlns:controls="using:VLC_WINRT.Views.Controls"
-      xmlns:wrapPanelControl="using:VLC_WINRT.Views.Controls.WrapPanelControl"
-      xmlns:triggers="using:WinRT.Triggers"
-      xmlns:userControls="using:VLC_WINRT_APP.Views.UserControls"
       mc:Ignorable="d"
       d:DesignHeight="768"
       d:DesignWidth="400"
       DataContext="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM}">
-    <Grid x:Name="RootGrid"
-          Margin="44,0,0,0">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="42"
-                           x:Name="FirstRowDefinition" />
-            <RowDefinition Height="45" />
-            <RowDefinition Height="24" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <ListView ItemsSource="{Binding Panels}"
-                  IsItemClickEnabled="True"
-                  SelectionMode="None"
-                  Grid.Row="1"
-                  ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                  ScrollViewer.HorizontalScrollMode="Disabled"
-                  ItemContainerStyle="{StaticResource ListViewItemContainerStyle}"
-                  ItemClick="Panels_OnItemClick">
-            <ListView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <StackPanel Orientation="Horizontal"
-                                Height="50" />
-                </ItemsPanelTemplate>
-            </ListView.ItemsPanel>
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Grid Height="50">
-                        <TextBlock Text="{Binding Title}"
-                                   Foreground="{Binding Color}"
-                                   TextWrapping="NoWrap"
-                                   TextTrimming="None"
-                                   Style="{StaticResource SubheaderTextBlockStyle}" />
-                    </Grid>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-        <Frame Grid.Row="3"
-               x:Name="VideoPanesFrame"
-               Loaded="VideoPanesFrame_OnLoadedcPanesFrame_OnLoaded">
-            <Frame.ContentTransitions>
-                <TransitionCollection>
-                    <EdgeUIThemeTransition Edge="Right" />
-                </TransitionCollection>
-            </Frame.ContentTransitions>
-        </Frame>
-    </Grid>
+    <UserControl.Resources>
+        <CollectionViewSource x:Name="ShowsGroupedByName"
+                              Source="{Binding Shows}"
+                              IsSourceGrouped="True"
+                              ItemsPath="Episodes" />
+    </UserControl.Resources>
+
+    <Frame x:Name="MainPageVideoContentPresenter"
+           x:FieldModifier="public"
+           Background="Transparent"
+           Loaded="MainPageVideoContentPresenter_OnLoaded"
+           Margin="24,0">
+        <Frame.ContentTransitions>
+            <TransitionCollection>
+                <EdgeUIThemeTransition Edge="Right" />
+            </TransitionCollection>
+        </Frame.ContentTransitions>
+    </Frame>
 </Page>

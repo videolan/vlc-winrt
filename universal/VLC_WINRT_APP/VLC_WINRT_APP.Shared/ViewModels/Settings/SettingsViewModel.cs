@@ -294,7 +294,6 @@ namespace VLC_WINRT_APP.ViewModels.Settings
             }
         }
 
-#if WINDOWS_PHONE_APP
         public VideoView VideoView
         {
             get
@@ -320,7 +319,6 @@ namespace VLC_WINRT_APP.ViewModels.Settings
                 SetProperty(ref _videoView, value);
             }
         }
-#endif
 
         public string LastFmUserName
         {

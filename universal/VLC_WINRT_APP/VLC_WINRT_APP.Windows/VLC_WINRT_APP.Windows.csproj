@@ -120,9 +120,6 @@
     </SDKReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Views\MainPages\MusicPanes\ArtistAlbumsTwoPanes.xaml.cs">
-      <DependentUpon>ArtistAlbumsTwoPanes.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\MainPages\MusicPanes\SongsListView.xaml.cs">
       <DependentUpon>SongsListView.xaml</DependentUpon>
     </Compile>
@@ -891,10 +888,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Page>
-    <Page Include="Views\MainPages\MusicPanes\ArtistAlbumsTwoPanes.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainPages\MusicPanes\SongsListView.xaml">
       <SubType>Designer</SubType>

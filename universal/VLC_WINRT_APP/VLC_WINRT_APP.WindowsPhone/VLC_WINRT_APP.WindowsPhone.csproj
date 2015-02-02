@@ -98,15 +98,6 @@
     <Compile Include="Views\MainPages\MainPageSDCard.xaml.cs">
       <DependentUpon>MainPageSDCard.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MainPages\MainVideoControls\AllVideosPivotItem.xaml.cs">
-      <DependentUpon>AllVideosPivotItem.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\MainPages\MainVideoControls\CameraRollPivotItem.xaml.cs">
-      <DependentUpon>CameraRollPivotItem.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\MainPages\MainVideoControls\ShowsPivotItem.xaml.cs">
-      <DependentUpon>ShowsPivotItem.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\MusicPages\AddAlbumToPlaylist.xaml.cs">
       <DependentUpon>AddAlbumToPlaylist.xaml</DependentUpon>
     </Compile>
@@ -155,9 +146,6 @@
     <Compile Include="Views\UserControls\MiniPlayer.xaml.cs">
       <DependentUpon>MiniPlayer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControls\Placeholder\NoCameraVideos.xaml.cs">
-      <DependentUpon>NoCameraVideos.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\UserControls\Placeholder\NoData.xaml.cs">
       <DependentUpon>NoData.xaml</DependentUpon>
     </Compile>
@@ -167,14 +155,8 @@
     <Compile Include="Views\UserControls\Placeholder\NoResults.xaml.cs">
       <DependentUpon>NoResults.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControls\Placeholder\NoShowPlaceholder.xaml.cs">
-      <DependentUpon>NoShowPlaceholder.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\UserControls\Placeholder\NothingToSeeHere.xaml.cs">
       <DependentUpon>NothingToSeeHere.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UserControls\Placeholder\NoVideosPlaceholder.xaml.cs">
-      <DependentUpon>NoVideosPlaceholder.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\Placeholder\StartSearchingSomething.xaml.cs">
       <DependentUpon>StartSearchingSomething.xaml</DependentUpon>
@@ -888,18 +870,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\MainPages\MainVideoControls\AllVideosPivotItem.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\MainPages\MainVideoControls\CameraRollPivotItem.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\MainPages\MainVideoControls\ShowsPivotItem.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\MusicPages\AddAlbumToPlaylist.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -964,10 +934,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\UserControls\Placeholder\NoCameraVideos.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\UserControls\Placeholder\NoData.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -980,15 +946,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\UserControls\Placeholder\NoShowPlaceholder.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\UserControls\Placeholder\NothingToSeeHere.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\UserControls\Placeholder\NoVideosPlaceholder.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

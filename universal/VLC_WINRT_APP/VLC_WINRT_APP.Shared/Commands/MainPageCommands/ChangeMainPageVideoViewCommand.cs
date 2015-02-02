@@ -1,5 +1,4 @@
-﻿#if WINDOWS_PHONE_APP
-using VLC_WINRT.Common;
+﻿using VLC_WINRT.Common;
 using VLC_WINRT_APP.Views.MainPages;
 using VLC_WINRT_APP.Views.MainPages.MainMusicControls;
 using VLC_WINRT_APP.Views.MainPages.MainVideoControls;
@@ -11,24 +10,28 @@ namespace VLC_WINRT_APP.Commands.MainPageCommands
         public override void Execute(object parameter)
         {
             var index = int.Parse(parameter.ToString());
+#if WINDOWS_PHONE_APP
             if (App.ApplicationFrame.CurrentSourcePageType != typeof(MainPageHome)) return;
             if ((App.ApplicationFrame.Content as MainPageHome).MainPivot.SelectedIndex != 1) return;
+#endif
+#if WINDOWS_PHONE_APP
+            var frame = (App.ApplicationFrame.Content as MainPageHome).MainPageMusicPivotItem.MainPageMusicContentPresenter;
+#else
+            var frame = (App.ApplicationFrame.Content as MainPageVideos).MainPageVideoContentPresenter;
+#endif
             switch (index)
             {
                 case 0:
-                    if ((App.ApplicationFrame.Content as MainPageHome).MainPageVideoPivotItem.MainPageVideoContentPresenter.CurrentSourcePageType != typeof(AllVideosPivotItem))
-                    (App.ApplicationFrame.Content as MainPageHome).MainPageVideoPivotItem.MainPageVideoContentPresenter
-                        .Navigate(typeof(AllVideosPivotItem));
+                    if (frame.CurrentSourcePageType != typeof(AllVideosPivotItem))
+                        frame.Navigate(typeof(AllVideosPivotItem));
                     break;
                 case 1:
-                    if ((App.ApplicationFrame.Content as MainPageHome).MainPageVideoPivotItem.MainPageVideoContentPresenter.CurrentSourcePageType != typeof(ShowsPivotItem))
-                    (App.ApplicationFrame.Content as MainPageHome).MainPageVideoPivotItem.MainPageVideoContentPresenter
-                        .Navigate(typeof(ShowsPivotItem));
+                    if (frame.CurrentSourcePageType != typeof(ShowsPivotItem))
+                        frame.Navigate(typeof(ShowsPivotItem));
                     break;
                 case 2:
-                    if ((App.ApplicationFrame.Content as MainPageHome).MainPageVideoPivotItem.MainPageVideoContentPresenter.CurrentSourcePageType != typeof(CameraRollPivotItem))
-                    (App.ApplicationFrame.Content as MainPageHome).MainPageVideoPivotItem.MainPageVideoContentPresenter
-                        .Navigate(typeof(CameraRollPivotItem));
+                    if (frame.CurrentSourcePageType != typeof(CameraRollPivotItem))
+                        frame.Navigate(typeof(CameraRollPivotItem));
                     break;
                 //case 3:
                 //    (App.ApplicationFrame.Content as MainPageHome).MainPageMusicContentPresenter
@@ -39,4 +42,3 @@ namespace VLC_WINRT_APP.Commands.MainPageCommands
     }
 }
 
-#endif

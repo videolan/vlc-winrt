@@ -1,4 +1,4 @@
-﻿<Page x:Class="VLC_WINRT_APP.Views.MainPages.MainVideoControls.ShowsPivotItem"
+﻿<Page x:Class="VLC_WINRT_APP.Views.MainPages.MainVideoControls.CameraRollPivotItem"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:local="using:VLC_WINRT_APP.Views.MainPages.MainVideoControls"
@@ -6,13 +6,11 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:triggers="using:WinRT.Triggers"
       xmlns:placeholder="using:VLC_WINRT_APP.Views.UserControls.Placeholder"
-      mc:Ignorable="d"
-      DataContext="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM}">
+      mc:Ignorable="d">
 
     <Grid Margin="0,-12,0,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="60" />
-            <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
         <Grid DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}">
@@ -20,7 +18,8 @@
                       SelectedItem="{Binding VideoView, Mode=TwoWay}"
                       BorderThickness="1"
                       BorderBrush="{StaticResource MainColor}"
-                      Style="{StaticResource HeaderComboBoxStyle}">
+                      Style="{StaticResource HeaderComboBoxStyle}"
+                      Background="Transparent">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Margin="0,0,6,0"
@@ -29,19 +28,10 @@
                 </ComboBox.ItemTemplate>
             </ComboBox>
         </Grid>
-        <ComboBox Grid.Row="1"
-                  ItemsSource="{Binding Shows}"
-                  SelectedItem="{Binding CurrentShow, Mode=TwoWay}"
-                  Visibility="{Binding Shows.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}">
-            <ComboBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding ShowTitle}" />
-                </DataTemplate>
-            </ComboBox.ItemTemplate>
-        </ComboBox>
-        <ListView Grid.Row="2"
-                  ItemsSource="{Binding CurrentShow.Episodes}"
-                  ItemTemplate="{StaticResource PhoneShowTemplate}"
+        <GridView Grid.Row="1"
+                  ItemsSource="{Binding CameraRoll}"
+                  ItemTemplate="{StaticResource PhoneCompactVideoTemplate}"
+                  Margin="0,0,-20,0"
                   IsItemClickEnabled="True">
             <triggers:Interactions.Triggers>
                 <triggers:EventTrigger EventName="ItemClick">
@@ -49,15 +39,16 @@
                                                   PassEventArgsToCommand="True" />
                 </triggers:EventTrigger>
             </triggers:Interactions.Triggers>
-            <ListView.ItemsPanel>
+            <GridView.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <ItemsStackPanel Margin="0,0,0,60" />
+                    <ItemsWrapGrid Orientation="Horizontal"
+                                   SizeChanged="VideosWrapGrid_SizeChanged" 
+                                   Margin="0,0,0,60"/>
                 </ItemsPanelTemplate>
-            </ListView.ItemsPanel>
-        </ListView>
-        <placeholder:NoShowPlaceholder Grid.Row="1"
-                                       Grid.RowSpan="2"
-                                       Margin="0,50,0,0"
-                                       Visibility="{Binding Shows.Count, Converter={StaticResource CountToVisibilityConverter}}" />
+            </GridView.ItemsPanel>
+        </GridView>
+        <placeholder:NoCameraVideos Grid.Row="1"
+                                    Margin="0,50,0,0"
+                                    Visibility="{Binding CameraRoll.Count, Converter={StaticResource CountToVisibilityConverter}}" />
     </Grid>
 </Page>

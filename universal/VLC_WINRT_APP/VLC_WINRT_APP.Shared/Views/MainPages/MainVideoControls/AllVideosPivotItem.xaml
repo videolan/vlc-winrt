@@ -20,7 +20,8 @@
                       SelectedItem="{Binding VideoView, Mode=TwoWay}"
                       BorderThickness="1"
                       BorderBrush="{StaticResource MainColor}"
-                      Style="{StaticResource HeaderComboBoxStyle}">
+                      Style="{StaticResource HeaderComboBoxStyle}"
+                      Background="Transparent">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Margin="0,0,6,0"
@@ -33,7 +34,8 @@
                   ItemsSource="{Binding Videos}"
                   ItemTemplate="{StaticResource PhoneCompactVideoTemplate}"
                   Margin="0,0,-25,0"
-                  IsItemClickEnabled="True">
+                  IsItemClickEnabled="True"
+                  SelectionMode="None">
             <triggers:Interactions.Triggers>
                 <triggers:EventTrigger EventName="ItemClick">
                     <triggers:InvokeCommandAction Command="{Binding OpenVideo}"
@@ -50,7 +52,7 @@
                 <ItemsPanelTemplate>
                     <ItemsWrapGrid Orientation="Horizontal"
                                    SizeChanged="VideosWrapGrid_SizeChanged"
-                                   Margin="0,0,0,60"/>
+                                   Margin="0,0,0,60" />
                 </ItemsPanelTemplate>
             </GridView.ItemsPanel>
         </GridView>

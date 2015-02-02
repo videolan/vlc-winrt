@@ -50,8 +50,8 @@ namespace VLC_WINRT_APP.ViewModels
         private GoToAboutPageCommand _goToAboutPageCommand;
         private ChangeMainPageMusicViewCommand _changeMainPageMusicViewCommand;
         private AlwaysExecutableCommand _goToSearchPage;
-#if WINDOWS_PHONE_APP
         private ChangeMainPageVideoViewCommand _changeMainPageVideoViewCommand;
+#if WINDOWS_PHONE_APP
         private SearchClickedCommand _searchClickedCommand;
         private string _searchTag;
 #endif
@@ -130,12 +130,12 @@ namespace VLC_WINRT_APP.ViewModels
             get { return _goToSearchPage; }
             set { _goToSearchPage = value; }
         }
-#if WINDOWS_PHONE_APP
         public ChangeMainPageVideoViewCommand ChangeMainPageVideoViewCommand
         {
             get { return _changeMainPageVideoViewCommand; }
             set { SetProperty(ref _changeMainPageVideoViewCommand, value); }
         }
+#if WINDOWS_PHONE_APP
 
 
         public SearchClickedCommand SearchClickedCommand
@@ -165,12 +165,12 @@ namespace VLC_WINRT_APP.ViewModels
             GoToThanksPageCommand = new GoToThanksPageCommand();
             GoToAboutPageCommand = new GoToAboutPageCommand();
             ChangeMainPageMusicViewCommand = new ChangeMainPageMusicViewCommand();
+            ChangeMainPageVideoViewCommand = new ChangeMainPageVideoViewCommand();
 #if WINDOWS_PHONE_APP
             GoToSearchPage = new ActionCommand(() =>
             {
                 App.ApplicationFrame.Navigate(typeof(SearchPage));
             });
-            ChangeMainPageVideoViewCommand = new ChangeMainPageVideoViewCommand();
             SearchResults = new ObservableCollection<SearchResult>();
             SearchClickedCommand = new SearchClickedCommand();
 #endif
