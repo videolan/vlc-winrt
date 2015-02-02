@@ -341,4 +341,256 @@
             </Setter.Value>
         </Setter>
     </Style>
+    <Style TargetType="Hub">
+        <Setter Property="HorizontalContentAlignment"
+                Value="Left" />
+        <Setter Property="Padding"
+                Value="40,0,40,0" />
+        <Setter Property="IsTabStop"
+                Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Hub">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="OrientationStates">
+                                <VisualState x:Name="Horizontal" />
+                                <VisualState x:Name="Vertical">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ScrollViewer"
+                                                                       Storyboard.TargetProperty="HorizontalScrollMode">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                                    Value="Disabled" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ScrollViewer"
+                                                                       Storyboard.TargetProperty="HorizontalScrollBarVisibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                                    Value="Disabled" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ScrollViewer"
+                                                                       Storyboard.TargetProperty="VerticalScrollMode">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                                    Value="Auto" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ScrollViewer"
+                                                                       Storyboard.TargetProperty="VerticalScrollBarVisibility">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                                    Value="Auto" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ScrollViewer"
+                                                                       Storyboard.TargetProperty="(Grid.Row)">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                                    Value="1" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ScrollViewer"
+                                                                       Storyboard.TargetProperty="(Grid.RowSpan)">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                                    Value="1" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ScrollViewer"
+                                                                       Storyboard.TargetProperty="Margin">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                                    Value="0,20,0,0" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Grid>
+                            <ScrollViewer x:Name="ScrollViewer"
+                                          HorizontalScrollMode="Auto"
+                                          HorizontalScrollBarVisibility="Auto"
+                                          VerticalScrollMode="Disabled"
+                                          VerticalScrollBarVisibility="Disabled"
+                                          HorizontalSnapPointsAlignment="Near"
+                                          HorizontalSnapPointsType="Optional"
+                                          VerticalSnapPointsAlignment="Near"
+                                          VerticalSnapPointsType="Optional"
+                                          ZoomMode="Disabled">
+                                <ItemsStackPanel x:Name="Panel"
+                                                 Orientation="{TemplateBinding Orientation}"
+                                                 CacheLength="20" />
+                            </ScrollViewer>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Default style for HubSection -->
+    <Style TargetType="HubSection">
+        <Setter Property="HorizontalAlignment"
+                Value="Left" />
+        <Setter Property="VerticalAlignment"
+                Value="Stretch" />
+        <Setter Property="HorizontalContentAlignment"
+                Value="Left" />
+        <Setter Property="VerticalContentAlignment"
+                Value="Top" />
+        <Setter Property="Padding"
+                Value="24" />
+        <Setter Property="IsTabStop"
+                Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="HubSection">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <Border.Resources>
+                            <ControlTemplate x:Key="HeaderButtonTemplate"
+                                             TargetType="Button">
+                                <Grid Background="Transparent">
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup x:Name="CommonStates">
+                                            <VisualState x:Name="Normal" />
+                                            <VisualState x:Name="PointerOver">
+                                                <Storyboard>
+                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
+                                                                                   Storyboard.TargetProperty="Foreground">
+                                                        <DiscreteObjectKeyFrame KeyTime="0"
+                                                                                Value="{ThemeResource HubSectionHeaderPointerOverForegroundThemeBrush}" />
+                                                    </ObjectAnimationUsingKeyFrames>
+                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="IsHeaderInteractiveMarker"
+                                                                                   Storyboard.TargetProperty="Foreground">
+                                                        <DiscreteObjectKeyFrame KeyTime="0"
+                                                                                Value="{ThemeResource HubSectionHeaderPointerOverForegroundThemeBrush}" />
+                                                    </ObjectAnimationUsingKeyFrames>
+                                                </Storyboard>
+                                            </VisualState>
+                                            <VisualState x:Name="Pressed">
+                                                <Storyboard>
+                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
+                                                                                   Storyboard.TargetProperty="Foreground">
+                                                        <DiscreteObjectKeyFrame KeyTime="0"
+                                                                                Value="{ThemeResource HubSectionHeaderPressedForegroundThemeBrush}" />
+                                                    </ObjectAnimationUsingKeyFrames>
+                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="IsHeaderInteractiveMarker"
+                                                                                   Storyboard.TargetProperty="Foreground">
+                                                        <DiscreteObjectKeyFrame KeyTime="0"
+                                                                                Value="{ThemeResource HubSectionHeaderPressedForegroundThemeBrush}" />
+                                                    </ObjectAnimationUsingKeyFrames>
+                                                </Storyboard>
+                                            </VisualState>
+                                            <VisualState x:Name="Disabled">
+                                                <Storyboard>
+                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter"
+                                                                                   Storyboard.TargetProperty="Foreground">
+                                                        <DiscreteObjectKeyFrame KeyTime="0"
+                                                                                Value="{ThemeResource ButtonDisabledForegroundThemeBrush}" />
+                                                    </ObjectAnimationUsingKeyFrames>
+                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="IsHeaderInteractiveMarker"
+                                                                                   Storyboard.TargetProperty="Foreground">
+                                                        <DiscreteObjectKeyFrame KeyTime="0"
+                                                                                Value="{ThemeResource ButtonDisabledForegroundThemeBrush}" />
+                                                    </ObjectAnimationUsingKeyFrames>
+                                                </Storyboard>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                        <VisualStateGroup x:Name="FocusStates">
+                                            <VisualState x:Name="Focused">
+                                                <Storyboard>
+                                                    <DoubleAnimation Storyboard.TargetName="FocusVisualWhite"
+                                                                     Storyboard.TargetProperty="Opacity"
+                                                                     To="1"
+                                                                     Duration="0" />
+                                                    <DoubleAnimation Storyboard.TargetName="FocusVisualBlack"
+                                                                     Storyboard.TargetProperty="Opacity"
+                                                                     To="1"
+                                                                     Duration="0" />
+                                                </Storyboard>
+                                            </VisualState>
+                                            <VisualState x:Name="Unfocused" />
+                                            <VisualState x:Name="PointerFocused" />
+                                        </VisualStateGroup>
+                                        <VisualStateGroup x:Name="IsHeaderInteractiveStates">
+                                            <VisualState x:Name="HeaderInteractive">
+                                                <Storyboard>
+                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="IsHeaderInteractiveMarker"
+                                                                                   Storyboard.TargetProperty="Visibility">
+                                                        <DiscreteObjectKeyFrame KeyTime="0"
+                                                                                Value="Visible" />
+                                                    </ObjectAnimationUsingKeyFrames>
+                                                </Storyboard>
+                                            </VisualState>
+                                            <VisualState x:Name="HeaderNonInteractive" />
+                                        </VisualStateGroup>
+                                        <VisualStateGroup x:Name="FlowDirectionStates">
+                                            <VisualState x:Name="LeftToRight" />
+                                            <VisualState x:Name="RightToLeft">
+                                                <Storyboard>
+                                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="IsHeaderInteractiveMarker"
+                                                                                   Storyboard.TargetProperty="Text">
+                                                        <DiscreteObjectKeyFrame KeyTime="0"
+                                                                                Value="&#x00A0;&#x00A0;&#xE26C;" />
+                                                    </ObjectAnimationUsingKeyFrames>
+                                                </Storyboard>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                    <StackPanel Orientation="Horizontal">
+                                        <ContentPresenter x:Name="ContentPresenter"
+                                                          Content="{TemplateBinding Content}"
+                                                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                          VerticalAlignment="Center"
+                                                          OpticalMarginAlignment="TrimSideBearings"
+                                                          TextLineBounds="Tight" />
+                                        <TextBlock x:Name="IsHeaderInteractiveMarker"
+                                                   VerticalAlignment="Center"
+                                                   Visibility="Collapsed"
+                                                   Text="&#x00A0;&#xE26B;"
+                                                   FontFamily="{ThemeResource SymbolThemeFontFamily}"
+                                                   AutomationProperties.AccessibilityView="Raw"
+                                                   OpticalMarginAlignment="TrimSideBearings"
+                                                   TextLineBounds="Tight" />
+                                    </StackPanel>
+                                    <Rectangle x:Name="FocusVisualWhite"
+                                               Margin="-5"
+                                               IsHitTestVisible="False"
+                                               Stroke="{ThemeResource FocusVisualWhiteStrokeThemeBrush}"
+                                               StrokeEndLineCap="Square"
+                                               StrokeDashArray="1,1"
+                                               Opacity="0"
+                                               StrokeDashOffset="1.5" />
+                                    <Rectangle x:Name="FocusVisualBlack"
+                                               Margin="-5"
+                                               IsHitTestVisible="False"
+                                               Stroke="{ThemeResource FocusVisualBlackStrokeThemeBrush}"
+                                               StrokeEndLineCap="Square"
+                                               StrokeDashArray="1,1"
+                                               Opacity="0"
+                                               StrokeDashOffset="0.5" />
+                                </Grid>
+                            </ControlTemplate>
+                        </Border.Resources>
+                        <Grid Margin="{TemplateBinding Padding}"
+                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Rectangle x:Name="HubHeaderPlaceholder"
+                                       Grid.Row="0" />
+                            <Button x:Name="HeaderButton"
+                                    Content="{TemplateBinding Header}"
+                                    ContentTemplate="{TemplateBinding HeaderTemplate}"
+                                    Template="{StaticResource HeaderButtonTemplate}"
+                                    Grid.Row="1"
+                                    Margin="{ThemeResource HubSectionHeaderThemeMargin}"
+                                    FontSize="{ThemeResource HubSectionHeaderThemeFontSize}"
+                                    FontWeight="{ThemeResource HubSectionHeaderThemeFontWeight}" />
+                            <ContentPresenter x:Name="ContentPresenter"
+                                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                                              Grid.Row="2" />
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>
