@@ -33,7 +33,7 @@
                   SelectionMode="None"
                   VerticalAlignment="Center"
                   ItemContainerStyle="{StaticResource ListViewItemContainerStyle}"
-                  ItemTemplate="{StaticResource SidebarMiniIconItemTemplate}"
+                  ItemTemplate="{StaticResource PivotHeaderDataTemplate}"
                   ScrollViewer.VerticalScrollBarVisibility="Disabled">
             <triggers:Interactions.Triggers>
                 <triggers:EventTrigger EventName="ItemClick">
