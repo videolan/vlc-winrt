@@ -47,7 +47,6 @@
                 <HubSection x:Uid="AudioHubHeader"
                             Header="audio"
                             HeaderTemplate="{StaticResource ColoredHeader}"
-                            Margin="0,-10,0,0"
                             ScrollViewer.HorizontalScrollMode="Disabled">
                     <HubSection.ContentTemplate>
                         <DataTemplate>
