@@ -56,7 +56,7 @@
                     <HubSection.ContentTemplate>
                         <DataTemplate>
                             <GridView ItemsSource="{Binding CurrentArtist.Albums}"
-                                      ItemTemplate="{StaticResource SemanticZoomInViewAlbumTemplate}"
+                                      ItemTemplate="{StaticResource PhoneSemanticZoomInViewAlbumTemplateLittleSize}"
                                       IsItemClickEnabled="True"
                                       SelectionMode="None"
                                       ItemContainerStyle="{StaticResource GridViewItemStyle}">

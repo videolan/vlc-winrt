@@ -47,7 +47,7 @@
                   ItemsSource="{Binding TrackCollections}"
                   IsItemClickEnabled="True"
                   ItemTemplate="{StaticResource PhoneTrackCollectionTemplate}"
-                  ItemContainerStyle="{StaticResource HorizontalListViewItemStyle}">
+                  ItemContainerStyle="{StaticResource ListViewItemStyle}">
             <triggers:Interactions.Triggers>
                 <triggers:EventTrigger EventName="ItemClick">
                     <triggers:InvokeCommandAction Command="{Binding TrackCollectionClickedCommand}"

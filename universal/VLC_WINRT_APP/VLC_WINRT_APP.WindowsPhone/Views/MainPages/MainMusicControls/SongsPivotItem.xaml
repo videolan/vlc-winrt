@@ -47,7 +47,7 @@
                           ItemsSource="{Binding Source={StaticResource GroupTracks}}"
                           SelectionMode="None"
                           IsItemClickEnabled="True"
-                          ItemContainerStyle="{StaticResource HorizontalListViewItemStyle}"
+                          ItemContainerStyle="{StaticResource ListViewItemStyle}"
                           ItemTemplate="{StaticResource WPTrackTemplateWONumber}">
                     <triggers:Interactions.Triggers>
                         <triggers:EventTrigger EventName="ItemClick">

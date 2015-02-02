@@ -37,7 +37,7 @@
                   SelectedItem="{Binding CurrentTrackCollection, Mode=TwoWay}"
                   Margin="24,0,0,0"
                   ItemTemplate="{StaticResource PhoneTrackCollectionTemplate}"
-                  ItemContainerStyle="{StaticResource HorizontalListViewItemStyle}">
+                  ItemContainerStyle="{StaticResource ListViewItemStyle}">
         </ListView>
         <placeholder:NoPlaylistPlaceholder Grid.Row="1"
                                            Visibility="{Binding TrackCollections.Count, Converter={StaticResource CountToVisibilityConverter}}"

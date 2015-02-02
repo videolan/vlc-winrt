@@ -24,7 +24,7 @@
                   SelectionMode="Multiple"
                   ItemsSource="{Binding CurrentTrackCollection.Playlist}"
                   ItemTemplate="{StaticResource WPTrackTemplateWONumber}"
-                  ItemContainerStyle="{StaticResource HorizontalListViewItemStyle}"
+                  ItemContainerStyle="{StaticResource ListViewItemStyle}"
                   Margin="24,24,0,0"
                   SelectionChanged="PlayListView_OnSelectionChanged">
             <ListView.ItemsPanel>

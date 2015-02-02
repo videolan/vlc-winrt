@@ -13,7 +13,7 @@
               ItemsSource="{Binding Tracks}"
               SelectionMode="None"
               IsItemClickEnabled="True"
-              ItemContainerStyle="{StaticResource HorizontalListViewItemStyle}">
+              ItemContainerStyle="{StaticResource ListViewItemStyle}">
         <triggers:Interactions.Triggers>
             <triggers:EventTrigger EventName="ItemClick">
                 <triggers:InvokeCommandAction Command="{Binding TrackClickedCommand}"
