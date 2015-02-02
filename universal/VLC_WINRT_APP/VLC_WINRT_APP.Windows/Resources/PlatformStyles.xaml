@@ -345,7 +345,7 @@
         <Setter Property="HorizontalContentAlignment"
                 Value="Left" />
         <Setter Property="Padding"
-                Value="40,0,40,0" />
+                Value="40,0,0,0" />
         <Setter Property="IsTabStop"
                 Value="False" />
         <Setter Property="Template">
@@ -431,7 +431,7 @@
         <Setter Property="VerticalContentAlignment"
                 Value="Top" />
         <Setter Property="Padding"
-                Value="24" />
+                Value="24,0" />
         <Setter Property="IsTabStop"
                 Value="False" />
         <Setter Property="Template">
