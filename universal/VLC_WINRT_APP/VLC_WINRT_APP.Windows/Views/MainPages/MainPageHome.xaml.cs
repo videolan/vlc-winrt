@@ -14,6 +14,7 @@ using VLC_WINRT_APP.ViewModels;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using VLC_WINRT_APP.Helpers;
+using VLC_WINRT_APP.Model.Video;
 
 namespace VLC_WINRT_APP.Views.MainPages
 {
@@ -23,7 +24,6 @@ namespace VLC_WINRT_APP.Views.MainPages
         {
             InitializeComponent();
             this.SizeChanged += OnSizeChanged;
-            Loaded += OnLoaded;
         }
 
 
@@ -48,28 +48,41 @@ namespace VLC_WINRT_APP.Views.MainPages
             Responsive();
         }
 
-        private void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
-        {
-            Responsive();
-        }
-
         private void Responsive()
         {
+            if (Window.Current.Bounds.Width < 600)
+            {
+                MainHub.Orientation = Orientation.Vertical;
+            }
+            else
+            {
+                MainHub.Orientation = Orientation.Horizontal;
+            }
         }
-
-        private void VideoItemWrapGrid_Loaded(object sender, RoutedEventArgs e)
-        {
-            Responsive(sender as ItemsWrapGrid);
-        }
-
 
         private void VideoItemWrapGrid_OnSizeChanged(object sender, SizeChangedEventArgs e)
         {
             Responsive(sender as ItemsWrapGrid);
+            var wrapGrid = sender as ItemsWrapGrid;
+            TemplateSizer.ComputeCompactVideo(wrapGrid);
         }
 
         private void Responsive(ItemsWrapGrid itemsWrap)
         {
+            if (Window.Current.Bounds.Width < 600)
+            {
+                itemsWrap.Orientation = Orientation.Horizontal;
+            }
+            else
+            {
+                itemsWrap.Orientation = Orientation.Vertical;
+            }
+        }
+
+        private void AlbumsWrapGrid_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            Responsive(sender as ItemsWrapGrid);
+            TemplateSizer.ComputeAlbums(sender as ItemsWrapGrid);
         }
     }
 }

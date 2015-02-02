@@ -33,11 +33,7 @@
                                 </triggers:Interactions.Triggers>
                                 <GridView.ItemsPanel>
                                     <ItemsPanelTemplate>
-                                        <ItemsWrapGrid Orientation="Vertical"
-                                                       ItemWidth="300"
-                                                       ItemHeight="247"
-                                                       Loaded="VideoItemWrapGrid_Loaded"
-                                                       SizeChanged="VideoItemWrapGrid_OnSizeChanged" />
+                                        <ItemsWrapGrid SizeChanged="VideoItemWrapGrid_OnSizeChanged" />
                                     </ItemsPanelTemplate>
                                 </GridView.ItemsPanel>
                             </GridView>
@@ -59,11 +55,15 @@
                                           SelectionMode="None"
                                           IsSwipeEnabled="False"
                                           Style="{StaticResource NoScrollViewerStyle}">
+                                    <triggers:Interactions.Triggers>
+                                        <triggers:EventTrigger EventName="ItemClick">
+                                            <triggers:InvokeCommandAction Command="{Binding AlbumClickedCommand}"
+                                                                          PassEventArgsToCommand="True" />
+                                        </triggers:EventTrigger>
+                                    </triggers:Interactions.Triggers>
                                     <GridView.ItemsPanel>
                                         <ItemsPanelTemplate>
-                                            <ItemsWrapGrid Orientation="Vertical"
-                                                           ItemHeight="200"
-                                                           ItemWidth="150" />
+                                            <ItemsWrapGrid SizeChanged="AlbumsWrapGrid_SizeChanged" />
                                         </ItemsPanelTemplate>
                                     </GridView.ItemsPanel>
                                 </GridView>
