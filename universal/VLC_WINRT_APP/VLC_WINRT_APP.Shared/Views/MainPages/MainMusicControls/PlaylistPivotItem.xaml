@@ -26,7 +26,8 @@
                       SelectedItem="{Binding MusicView, Mode=TwoWay}"
                       BorderThickness="1"
                       BorderBrush="{StaticResource MainColor}"
-                      Style="{StaticResource HeaderComboBoxStyle}">
+                      Style="{StaticResource HeaderComboBoxStyle}"
+                      Background="Transparent">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Margin="0,0,6,0"
