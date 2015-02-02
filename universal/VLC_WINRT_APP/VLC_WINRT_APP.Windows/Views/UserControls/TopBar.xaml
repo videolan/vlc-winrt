@@ -24,7 +24,7 @@
             <TextBlock Text="VLC"
                        Foreground="{StaticResource MainColor}"
                        Style="{StaticResource SubheaderTextBlockStyle}"
-                       VerticalAlignment="Center"/>
+                       VerticalAlignment="Center" />
         </StackPanel>
         <ListView Grid.Column="1"
                   x:Name="PanelsListView"
@@ -43,8 +43,8 @@
             </triggers:Interactions.Triggers>
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <StackPanel Orientation="Horizontal" 
-                                Margin="12,0,0,0"/>
+                    <ItemsStackPanel Orientation="Horizontal"
+                                     Margin="12,0,0,-2" />
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
         </ListView>
