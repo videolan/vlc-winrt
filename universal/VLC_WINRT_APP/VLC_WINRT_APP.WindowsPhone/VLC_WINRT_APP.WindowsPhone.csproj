@@ -119,14 +119,8 @@
     <Compile Include="Views\MusicPages\ArtistPageControls\MainArtistHeader.xaml.cs">
       <DependentUpon>MainArtistHeader.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MusicPages\ArtistPages\ArtistShowsPage.xaml.cs">
-      <DependentUpon>ArtistShowsPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\MusicPages\CreateNewPlaylist.xaml.cs">
       <DependentUpon>CreateNewPlaylist.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\MusicPages\PlaylistPage.xaml.cs">
-      <DependentUpon>PlaylistPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MusicPages\ShowsAroundMe.xaml.cs">
       <DependentUpon>ShowsAroundMe.xaml</DependentUpon>
@@ -187,9 +181,6 @@
     </Compile>
     <Compile Include="Views\UserControls\Placeholder\NoShowPlaceholder.xaml.cs">
       <DependentUpon>NoShowPlaceholder.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UserControls\Placeholder\NoMusicShowsPlaceholder.xaml.cs">
-      <DependentUpon>NoMusicShowsPlaceholder.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\Placeholder\NothingToSeeHere.xaml.cs">
       <DependentUpon>NothingToSeeHere.xaml</DependentUpon>
@@ -937,15 +928,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\MusicPages\ArtistPages\ArtistShowsPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\MusicPages\CreateNewPlaylist.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\MusicPages\PlaylistPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1026,10 +1009,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControls\Placeholder\NoShowPlaceholder.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\UserControls\Placeholder\NoMusicShowsPlaceholder.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
