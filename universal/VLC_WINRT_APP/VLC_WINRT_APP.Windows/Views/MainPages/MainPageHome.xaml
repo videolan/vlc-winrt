@@ -57,12 +57,13 @@
                                           ItemContainerStyle="{StaticResource GridViewItemStyle}"
                                           IsItemClickEnabled="True"
                                           SelectionMode="None"
-                                          IsSwipeEnabled="False">
+                                          IsSwipeEnabled="False"
+                                          Style="{StaticResource NoScrollViewerStyle}">
                                     <GridView.ItemsPanel>
                                         <ItemsPanelTemplate>
                                             <ItemsWrapGrid Orientation="Vertical"
-                                                           ItemHeight="270"
-                                                           ItemWidth="220"/>
+                                                           ItemHeight="200"
+                                                           ItemWidth="150" />
                                         </ItemsPanelTemplate>
                                     </GridView.ItemsPanel>
                                 </GridView>
