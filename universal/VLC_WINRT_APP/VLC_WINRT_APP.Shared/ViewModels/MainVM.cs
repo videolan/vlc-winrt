@@ -26,9 +26,7 @@ using VLC_WINRT_APP.Commands;
 using VLC_WINRT_APP.Model.Search;
 using VLC_WINRT_APP.Views.MainPages;
 using VLC_WINRT_APP.Views.VariousPages;
-#if WINDOWS_PHONE_APP
 using AppBar = CustomAppBar.AppBar;
-#endif
 using Panel = VLC_WINRT_APP.Model.Panel;
 
 namespace VLC_WINRT_APP.ViewModels
@@ -49,15 +47,14 @@ namespace VLC_WINRT_APP.ViewModels
         private GoToThanksPageCommand _goToThanksPageCommand;
         private GoToAboutPageCommand _goToAboutPageCommand;
         private ChangeMainPageMusicViewCommand _changeMainPageMusicViewCommand;
+        private AlwaysExecutableCommand _goToSearchPage;
 #if WINDOWS_PHONE_APP
         private ChangeMainPageVideoViewCommand _changeMainPageVideoViewCommand;
-        private AlwaysExecutableCommand _goToSearchPage;
         private SearchClickedCommand _searchClickedCommand;
         private string _searchTag;
 #endif
         #endregion
         #region public fields
-#if WINDOWS_PHONE_APP
         public AppBar CommandBar
         {
             get
@@ -83,7 +80,6 @@ namespace VLC_WINRT_APP.ViewModels
             get { return _searchResults; }
             set { SetProperty(ref _searchResults, value); }
         }
-#endif
         #endregion
         #region public props
 

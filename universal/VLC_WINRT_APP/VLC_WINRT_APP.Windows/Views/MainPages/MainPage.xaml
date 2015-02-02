@@ -5,6 +5,7 @@
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:userControls="using:VLC_WINRT_APP.Views.UserControls"
                 xmlns:extensions="using:WinRTXamlToolkit.Controls.Extensions"
+                xmlns:customAppBar="using:CustomAppBar"
                 mc:Ignorable="d"
                 DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}"
                 RequestedTheme="{Binding ApplicationTheme, Converter={StaticResource AppThemeElementThemeConverter}}"
@@ -45,5 +46,10 @@
     <userControls:LoadingMusicLibrary Grid.Row="1"
                                       VerticalAlignment="Top"
                                       HorizontalAlignment="Right" />
-    <userControls:HorizontalMiniPlayer Grid.Row="2" />
+    <customAppBar:AppBar Grid.Row="2"
+                         x:Name="CommandBar"
+                         x:FieldModifier="public"
+                         Background="{ThemeResource ApplicationBarForegroundThemeBrush}"
+                         HomeButtonClicked="CommandBar_OnHomeButtonClicked"
+                         Visibility="{Binding Source={StaticResource Locator}, Path=VideoVm.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}" />
 </SwapChainPanel>

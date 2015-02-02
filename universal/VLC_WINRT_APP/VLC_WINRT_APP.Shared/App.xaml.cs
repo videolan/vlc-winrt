@@ -101,9 +101,7 @@ namespace VLC_WINRT_APP
             if (Window.Current.Content == null)
             {
                 LaunchTheApp();
-#if WINDOWS_PHONE_APP
                 ApplicationFrame.Navigated += this.RootFrame_FirstNavigated;
-#endif
                 ApplicationFrame.Navigate(typeof(MainPageHome));
 
                 try
@@ -176,7 +174,6 @@ namespace VLC_WINRT_APP
             }
         }
 
-#if WINDOWS_PHONE_APP
         /// <summary>
         /// Restores the content transitions after the app has launched.
         /// </summary>
@@ -184,13 +181,14 @@ namespace VLC_WINRT_APP
         /// <param name="args">Details about the navigation event.</param>
         private void RootFrame_FirstNavigated(object sender, NavigationEventArgs args)
         {
+#if WINDOWS_PHONE_APP
             StatusBarHelper.SetDefaultForPage(args.SourcePageType);
+#endif
             AppBarHelper.SetHomeButtonVisibleOrNot();
-            AppBarHelper.UpdateAppBar(args.SourcePageType);
             AppBarHelper.UpdateSecondaryAppBarButtons();
             Locator.MainVM.CurrentPage = args.SourcePageType;
         }
-
+#if WINDOWS_PHONE_APP
         protected async override void OnActivated(IActivatedEventArgs args)
         {
             base.OnActivated(args);

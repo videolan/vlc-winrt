@@ -95,36 +95,10 @@ namespace VLC_WINRT_APP.Views.MainPages
             args.Request.ApplicationCommands.Add(settings);
             args.Request.ApplicationCommands.Add(about);
         }
-        //public async void CreateVLCMenu()
-        //{
-        //    var resourceLoader = new ResourceLoader();
-        //    var popupMenu = new PopupMenu();
-        //    popupMenu.Commands.Add(new UICommand(resourceLoader.GetString("ExternalStorage"), async h => await ExternalStorage()));
-
-        //    popupMenu.Commands.Add(new UICommand("Media servers", async h => await MediaServers()));
-
-
-        //    var transform = RootGrid.TransformToVisual(this);
-        //    var point = transform.TransformPoint(new Point(270, 110));
-        //    await popupMenu.ShowAsync(point);
-        //}
-
-        //private void OpenSearchPane(object sender, RoutedEventArgs e)
-        //{
-        //    App.RootPage.SearchPane.Show();
-        //}
-
-        //private async void OpenFile(object sender, RoutedEventArgs e)
-        //{
-        //    var resourceLoader = new ResourceLoader();
-        //    var popupMenu = new PopupMenu();
-        //    popupMenu.Commands.Add(new UICommand(resourceLoader.GetString("OpenVideo"), h => OpenVideo()));
-
-
-
-        //    var transform = RootGrid.TransformToVisual(this);
-        //    var point = transform.TransformPoint(new Point(Window.Current.Bounds.Width - 110, 200));
-        //    await popupMenu.ShowAsync(point);
-        //}
+        private void CommandBar_OnHomeButtonClicked(Button button, EventArgs e)
+        {
+            if (App.ApplicationFrame.CurrentSourcePageType != typeof(MainPageHome))
+                App.ApplicationFrame.Navigate(typeof(MainPageHome));
+        }
     }
 }

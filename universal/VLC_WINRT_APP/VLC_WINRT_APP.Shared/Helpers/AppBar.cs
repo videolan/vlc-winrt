@@ -13,7 +13,6 @@ using Windows.UI;
 using Windows.UI.Xaml.Media;
 using VLC_WINRT_APP.Model;
 
-#if WINDOWS_PHONE_APP
 namespace VLC_WINRT_APP.Helpers
 {
     public static class AppBarHelper
@@ -267,5 +266,3 @@ namespace VLC_WINRT_APP.Helpers
         }
     }
 }
-
-#endif
