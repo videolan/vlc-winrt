@@ -9,12 +9,11 @@
              xmlns:ext="using:WinRTXamlToolkit.Controls.Extensions"
              mc:Ignorable="d"
              d:DesignHeight="300"
-             d:DesignWidth="400"
-             d:DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
+             d:DesignWidth="400">
 
     <Grid x:Name="HeaderGrid"
           Margin="-12,0,0,0"
-          Height="450">
+          Loaded="HeaderGrid_OnLoaded">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition />
@@ -23,7 +22,7 @@
         </Grid.RowDefinitions>
         <Image Grid.RowSpan="3"
                x:Name="HeaderArtistImage"
-               Source="{Binding CurrentAlbum.Picture}"
+               Source="{Binding Picture}"
                Stretch="UniformToFill"
                Opacity="1"/>
         <Grid Grid.Row="0"
@@ -45,7 +44,7 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <userControls:HeaderControl HeaderTextBlock="{Binding CurrentAlbum.Name, Converter={StaticResource AlbumStringConverter}}"
+            <userControls:HeaderControl HeaderTextBlock="{Binding Name, Converter={StaticResource AlbumStringConverter}}"
                                         HeaderBackground="#00ffffff" />
             <Button Grid.Row="1"
                     Style="{StaticResource TextBlockButtonStyle}"
@@ -72,8 +71,8 @@
                     VerticalAlignment="Bottom"
                     Margin="0,0,12,12"
                     RequestedTheme="Dark"
-                    Command="{Binding CurrentAlbum.PlayAlbum}"
-                    CommandParameter="{Binding CurrentAlbum}">
+                    Command="{Binding PlayAlbum}"
+                    CommandParameter="{Binding}">
                 <Button.Content>
                     <Grid>
                         <Ellipse Fill="{StaticResource MainColor}"
@@ -92,7 +91,7 @@
               Margin="0,12,12,0">
             <TextBlock VerticalAlignment="Center"
                        HorizontalAlignment="Right">
-            <Run Text="{Binding CurrentAlbum.Tracks.Count}"
+            <Run Text="{Binding Tracks.Count}"
                  FontSize="18"
                  Foreground="DimGray" />
             <Run Text="tracks"

@@ -9,33 +9,6 @@
       mc:Ignorable="d"
       DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
     <Grid Margin="0,0,0,0">
-        <ListView ItemsSource="{Binding CurrentAlbum.Tracks}"
-                  IsItemClickEnabled="True"
-                  SelectionMode="None"
-                  ItemTemplate="{StaticResource WPTrackTemplateWNumber}"
-                  ItemContainerStyle="{StaticResource ListViewItemStyle}">
-            <ListView.HeaderTemplate>
-                <DataTemplate>
-                    <albumPageControls:MainAlbumHeader />
-                </DataTemplate>
-            </ListView.HeaderTemplate>
-            <ListView.ItemContainerTransitions>
-                <TransitionCollection>
-                    <AddDeleteThemeTransition />
-                    <EntranceThemeTransition />
-                </TransitionCollection>
-            </ListView.ItemContainerTransitions>
-            <ListView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <ItemsStackPanel Margin="12,0,0,60" />
-                </ItemsPanelTemplate>
-            </ListView.ItemsPanel>
-            <triggers:Interactions.Triggers>
-                <triggers:EventTrigger EventName="ItemClick">
-                    <triggers:InvokeCommandAction Command="{Binding CurrentAlbum.TrackClicked}"
-                                                  PassEventArgsToCommand="True" />
-                </triggers:EventTrigger>
-            </triggers:Interactions.Triggers>
-        </ListView>
+        <albumPageControls:AlbumPageBase/>
     </Grid>
 </Page>
