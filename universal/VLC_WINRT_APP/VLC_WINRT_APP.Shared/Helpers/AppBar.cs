@@ -62,55 +62,38 @@ namespace VLC_WINRT_APP.Helpers
             if (Locator.MainVM.AppBarElements == null) return;
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
+#if WINDOWS_APP
+                if (page == typeof (MainPageHome))
+                {
+                    appbarEl = SetHomePageButtons(appbarEl);
+                }
+                else if (page == typeof (MainPageVideos))
+                {
+                    appbarEl = SetVideoCollectionPageButtons(appbarEl);
+                }
+                else if (page == typeof (MainPageMusic))
+                {
+                    appbarEl = SetMusicCollectionPageButtons(appbarEl);
+                }
+#else
                 if (page == typeof(MainPageHome) && index > -1)
                 {
                     Locator.MainVM.AppBarElements.Clear();
+
                     switch (index)
                     {
                         case 0:
-                            appbarEl.Add(new AppBarButton()
-                            {
-                                Label = "search",
-                                Icon = PathHelper.Create(App.Current.Resources["SearchPath"].ToString()),
-                                Command = Locator.MainVM.GoToSearchPage
-                            });
-                            appbarEl.Add(new AppBarButton()
-                            {
-                                Label = "open file",
-                                Icon = PathHelper.Create(App.Current.Resources["OpenFilePath"].ToString()),
-                                Command = Locator.VideoLibraryVM.PickVideo
-                            });
-                            appbarEl.Add(new AppBarButton()
-                            {
-                                Label = "open stream",
-                                Icon = PathHelper.Create(App.Current.Resources["OnlinePath"].ToString()),
-                                Flyout = App.Current.Resources["PhoneOpenStreamFlyout"] as Flyout,
-                            });
+                            SetHomePageButtons(appbarEl);
                             break;
                         case 1:
-                            appbarEl.Add(new AppBarButton()
-                            {
-                                Label = "search",
-                                Icon = PathHelper.Create(App.Current.Resources["SearchPath"].ToString()),
-                                Command = Locator.MainVM.GoToSearchPage
-                            });
+                            SetVideoCollectionPageButtons(appbarEl);
                             break;
                         case 2:
-                            appbarEl.Add(new AppBarButton()
-                            {
-                                Label = "search",
-                                Icon = PathHelper.Create(App.Current.Resources["SearchPath"].ToString()),
-                                Command = Locator.MainVM.GoToSearchPage
-                            });
-                            appbarEl.Add(new AppBarButton()
-                            {
-                                Label = "random",
-                                Icon = PathHelper.Create(App.Current.Resources["ShufflePath"].ToString()),
-                                Command = Locator.MusicLibraryVM.PlayAllRandomCommand
-                            });
+                            SetMusicCollectionPageButtons(appbarEl);
                             break;
                     }
                 }
+#endif
                 else if (page == typeof(ArtistPage))
                 {
                     Locator.MainVM.AppBarElements.Clear();
@@ -263,6 +246,57 @@ namespace VLC_WINRT_APP.Helpers
                 }
                 Locator.MainVM.AppBarElements = appbarEl;
             });
+        }
+
+        static List<ICommandBarElement> SetHomePageButtons(List<ICommandBarElement> appbarEl)
+        {
+            appbarEl.Add(new AppBarButton()
+            {
+                Label = "search",
+                Icon = PathHelper.Create(App.Current.Resources["SearchPath"].ToString()),
+                Command = Locator.MainVM.GoToSearchPage
+            });
+            appbarEl.Add(new AppBarButton()
+            {
+                Label = "open file",
+                Icon = PathHelper.Create(App.Current.Resources["OpenFilePath"].ToString()),
+                Command = Locator.VideoLibraryVM.PickVideo
+            });
+            appbarEl.Add(new AppBarButton()
+            {
+                Label = "open stream",
+                Icon = PathHelper.Create(App.Current.Resources["OnlinePath"].ToString()),
+                Flyout = App.Current.Resources["PhoneOpenStreamFlyout"] as Flyout,
+            });
+            return appbarEl;
+        }
+
+        static List<ICommandBarElement> SetVideoCollectionPageButtons(List<ICommandBarElement> appbarEl)
+        {
+            appbarEl.Add(new AppBarButton()
+            {
+                Label = "search",
+                Icon = PathHelper.Create(App.Current.Resources["SearchPath"].ToString()),
+                Command = Locator.MainVM.GoToSearchPage
+            });
+            return appbarEl;
+        }
+
+        static List<ICommandBarElement> SetMusicCollectionPageButtons(List<ICommandBarElement> appbarEl)
+        {
+            appbarEl.Add(new AppBarButton()
+            {
+                Label = "search",
+                Icon = PathHelper.Create(App.Current.Resources["SearchPath"].ToString()),
+                Command = Locator.MainVM.GoToSearchPage
+            });
+            appbarEl.Add(new AppBarButton()
+            {
+                Label = "random",
+                Icon = PathHelper.Create(App.Current.Resources["ShufflePath"].ToString()),
+                Command = Locator.MusicLibraryVM.PlayAllRandomCommand
+            });
+            return appbarEl;
         }
     }
 }
