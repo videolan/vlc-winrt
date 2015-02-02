@@ -11,8 +11,7 @@
              Visibility="{Binding TrackCollection.IsRunning, Converter={StaticResource BooleanToVisibilityConverter}}">
 
     <Grid Height="80"
-          Background="WhiteSmoke"
-          Visibility="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.SidebarState, Converter={StaticResource IsVisibleDependingOnSidebarState}}">
+          Background="WhiteSmoke">
         <Grid.RowDefinitions>
             <RowDefinition Height="1" />
             <RowDefinition Height="79" />
