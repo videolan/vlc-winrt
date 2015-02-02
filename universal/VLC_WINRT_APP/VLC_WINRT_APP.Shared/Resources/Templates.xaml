@@ -146,5 +146,28 @@
         </Grid>
     </DataTemplate>
 
+    <DataTemplate x:Key="PivotHeaderDataTemplate">
+        <Grid Height="36"
+              VerticalAlignment="Bottom">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="6" />
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Path Data="{Binding PathData}"
+                  Height="18"
+                  Width="18"
+                  HorizontalAlignment="Center"
+                  VerticalAlignment="Bottom"
+                  Stretch="Uniform"
+                  Fill="{Binding Color}" />
+            <TextBlock Grid.Column="2"
+                       Text="{Binding Title}"
+                       Foreground="{Binding Color}"
+                       Style="{StaticResource SubheaderTextBlockStyle}" 
+                       VerticalAlignment="Bottom"/>
+        </Grid>
+    </DataTemplate>
+
 
 </ResourceDictionary>
