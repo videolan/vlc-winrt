@@ -1,9 +1,11 @@
 ﻿using System;
-using Windows.Phone.UI.Input;
 using Windows.System;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using VLC_WINRT_APP.Model.Music;
+#if WINDOWS_PHONE_APP
+using Windows.Phone.UI.Input;
+#endif
 
 namespace VLC_WINRT_APP.Views.MusicPages.ArtistPages
 {
@@ -13,6 +15,7 @@ namespace VLC_WINRT_APP.Views.MusicPages.ArtistPages
         {
             this.InitializeComponent();
         }
+#if WINDOWS_PHONE_APP
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -33,5 +36,6 @@ namespace VLC_WINRT_APP.Views.MusicPages.ArtistPages
             base.OnNavigatedFrom(e);
             HardwareButtons.BackPressed -= HardwareButtonsOnBackPressed;
         }
+#endif
     }
 }
