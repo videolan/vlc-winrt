@@ -2,7 +2,6 @@
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
-using Windows.Phone.UI.Input;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -12,6 +11,10 @@ using VLC_WINRT_APP.Helpers.MusicLibrary;
 using VLC_WINRT_APP.Model.Music;
 using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.ViewModels.MusicVM;
+#if WINDOWS_PHONE_APP
+using Windows.Phone.UI.Input;
+#endif
+
 
 namespace VLC_WINRT_APP.Views.MusicPages
 {
@@ -22,6 +25,7 @@ namespace VLC_WINRT_APP.Views.MusicPages
             this.InitializeComponent();
         }
 
+#if WINDOWS_PHONE_APP
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             HardwareButtons.BackPressed += HardwareButtonsOnBackPressed;
@@ -39,7 +43,7 @@ namespace VLC_WINRT_APP.Views.MusicPages
             base.OnNavigatingFrom(e);
             HardwareButtons.BackPressed -= HardwareButtonsOnBackPressed;
         }
-
+#endif
         private void PlayListView_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (e.AddedItems != null && e.AddedItems.Any())
