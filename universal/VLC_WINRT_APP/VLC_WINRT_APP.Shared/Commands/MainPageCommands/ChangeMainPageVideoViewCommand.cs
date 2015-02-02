@@ -15,7 +15,7 @@ namespace VLC_WINRT_APP.Commands.MainPageCommands
             if ((App.ApplicationFrame.Content as MainPageHome).MainPivot.SelectedIndex != 1) return;
 #endif
 #if WINDOWS_PHONE_APP
-            var frame = (App.ApplicationFrame.Content as MainPageHome).MainPageMusicPivotItem.MainPageMusicContentPresenter;
+            var frame = (App.ApplicationFrame.Content as MainPageHome).MainPageVideoPivotItem.MainPageVideoContentPresenter;
 #else
             var frame = (App.ApplicationFrame.Content as MainPageVideos).MainPageVideoContentPresenter;
 #endif
