@@ -1,5 +1,4 @@
 ﻿using System;
-using Windows.Phone.UI.Input;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -7,7 +6,9 @@ using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 using VLC_WINRT_APP.Model.Video;
 using WinRTXamlToolkit.Controls.Extensions;
-
+#if WINDOWS_PHONE_APP
+using Windows.Phone.UI.Input;
+#endif
 namespace VLC_WINRT_APP.Views.MusicPages
 {
     public sealed partial class ArtistPage : Page
@@ -16,7 +17,7 @@ namespace VLC_WINRT_APP.Views.MusicPages
         {
             this.InitializeComponent();
         }
-
+#if WINDOWS_PHONE_APP
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             base.OnNavigatedFrom(e);
@@ -38,6 +39,7 @@ namespace VLC_WINRT_APP.Views.MusicPages
         {
             HardwareButtons.BackPressed += HardwareButtonsOnBackPressed;
         }
+#endif
 
         private void ItemsWrapGrid_Loaded(object sender, RoutedEventArgs e)
         {

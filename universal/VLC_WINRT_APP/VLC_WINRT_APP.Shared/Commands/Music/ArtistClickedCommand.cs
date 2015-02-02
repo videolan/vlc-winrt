@@ -34,16 +34,7 @@ namespace VLC_WINRT_APP.Commands.Music
             }
             if (artist == null) return;
             Locator.MusicLibraryVM.CurrentArtist = artist;
-#if WINDOWS_APP
-            if (Window.Current.Bounds.Width < 800)
-            {
-                App.ApplicationFrame.Navigate(typeof(ArtistPage));
-            }
-#endif
-
-#if WINDOWS_PHONE_APP
             App.ApplicationFrame.Navigate(typeof(ArtistPage));
-#endif
         }
     }
 }

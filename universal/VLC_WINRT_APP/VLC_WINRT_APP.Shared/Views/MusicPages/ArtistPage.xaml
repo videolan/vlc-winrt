@@ -16,7 +16,7 @@
         <Grid Margin="0,0,-20,0">
             <GridView ItemsSource="{Binding CurrentArtist.Albums}"
                       ItemTemplate="{StaticResource PhoneSemanticZoomInViewAlbumTemplateLittleSize}"
-                      ItemContainerStyle="{StaticResource TileGridViewItemStyle}"
+                      ItemContainerStyle="{StaticResource GridViewItemStyle}"
                       IsItemClickEnabled="True">
                 <triggers:Interactions.Triggers>
                     <triggers:EventTrigger EventName="ItemClick">

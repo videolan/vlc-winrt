@@ -207,9 +207,6 @@
     <Compile Include="Controls\RemovableStorage\PlugARemovableStorage.xaml.cs">
       <DependentUpon>PlugARemovableStorage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MusicPages\ArtistPage.xaml.cs">
-      <DependentUpon>ArtistPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\UserControls\MiniVideoPlayer.xaml.cs">
       <DependentUpon>MiniVideoPlayer.xaml</DependentUpon>
     </Compile>
@@ -1008,10 +1005,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\RemovableStorage\PlugARemovableStorage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\MusicPages\ArtistPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
