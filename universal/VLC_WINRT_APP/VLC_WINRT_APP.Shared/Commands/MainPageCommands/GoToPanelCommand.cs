@@ -28,7 +28,7 @@ namespace VLC_WINRT_APP.Commands.MainPageCommands
         public static readonly SolidColorBrush SelectedColorBrush =
             App.Current.Resources["MainColor"] as SolidColorBrush;
 
-        public static readonly SolidColorBrush DefaultColorBrush = new SolidColorBrush(Colors.DimGray);
+        public static readonly SolidColorBrush DefaultColorBrush = (SolidColorBrush) App.Current.Resources["PivotHeaderForegroundUnselectedBrush"];
 #else
         //public static readonly SolidColorBrush SelectedColorBrush = new SolidColorBrush(Colors.WhiteSmoke);
         //public static readonly SolidColorBrush DefaultColorBrush = new SolidColorBrush(Color.FromArgb(70, 0, 0, 0));
