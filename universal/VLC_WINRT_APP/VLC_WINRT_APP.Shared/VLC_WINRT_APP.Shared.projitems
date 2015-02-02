@@ -312,6 +312,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\Placeholders\NoShowPlaceholder.xaml.cs">
       <DependentUpon>NoShowPlaceholder.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\Placeholders\NothingToSeeHere.xaml.cs">
+      <DependentUpon>NothingToSeeHere.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\Placeholders\NoVideosPlaceholder.xaml.cs">
       <DependentUpon>NoVideosPlaceholder.xaml</DependentUpon>
     </Compile>
@@ -519,6 +522,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\Placeholders\NoShowPlaceholder.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\Placeholders\NothingToSeeHere.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

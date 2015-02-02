@@ -6,6 +6,7 @@
       xmlns:triggers="using:WinRT.Triggers"
       xmlns:removableStorage="using:VLC_WINRT_APP.Controls.RemovableStorage"
       xmlns:controls="using:VLC_WINRT.Views.Controls"
+      xmlns:placeholder="using:VLC_WINRT_APP.Views.UserControls.Placeholder"
       mc:Ignorable="d"
       DataContext="{Binding Source={StaticResource Locator}, Path=ExternalStorageVM}">
 
@@ -57,7 +58,7 @@
             </Button>
         </Grid>
         <Grid Grid.Row="3">
-            <controls:NothingToSeeHere Margin="6,0,0,0"
+            <placeholder:NothingToSeeHere Margin="6,0,0,0"
                                        Visibility="{Binding CurrentStorageVM.IsFolderEmpty, Converter={StaticResource BooleanToVisibilityConverter}}" />
             <ListView ItemsSource="{Binding CurrentStorageVM.StorageItems}"
                       Margin="6,0,0,0"

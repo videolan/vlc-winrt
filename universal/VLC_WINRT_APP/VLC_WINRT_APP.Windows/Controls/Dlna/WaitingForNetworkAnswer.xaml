@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:controls="using:VLC_WINRT.Views.Controls"
+             xmlns:placeholder="using:VLC_WINRT_APP.Views.UserControls.Placeholder"
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400">
@@ -38,7 +39,7 @@
                        VerticalAlignment="Top" />
             <StackPanel Grid.Row="2"
                         Margin="0,30,0,0">
-                <controls:NothingToSeeHere Foreground="Black" />
+                <placeholder:NothingToSeeHere Foreground="Black" />
                 <TextBlock TextWrapping="Wrap"
                            x:Uid="SearchingDLNA"
                            Text="We are searching for DLNA Servers."
