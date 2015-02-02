@@ -35,9 +35,7 @@ namespace VLC_WINRT_APP.ViewModels
     {
         #region private fields
         private ObservableCollection<Panel> _panels = new ObservableCollection<Panel>();
-#if WINDOWS_PHONE_APP
         private ObservableCollection<SearchResult> _searchResults;
-#endif
         #endregion
         #region private props
         private bool _isInternet;
@@ -123,6 +121,11 @@ namespace VLC_WINRT_APP.ViewModels
             get { return _changeMainPageMusicViewCommand; }
             set { SetProperty(ref _changeMainPageMusicViewCommand, value); }
         }
+        public AlwaysExecutableCommand GoToSearchPage
+        {
+            get { return _goToSearchPage; }
+            set { _goToSearchPage = value; }
+        }
 #if WINDOWS_PHONE_APP
         public ChangeMainPageVideoViewCommand ChangeMainPageVideoViewCommand
         {
@@ -130,11 +133,6 @@ namespace VLC_WINRT_APP.ViewModels
             set { SetProperty(ref _changeMainPageVideoViewCommand, value); }
         }
 
-        public AlwaysExecutableCommand GoToSearchPage
-        {
-            get { return _goToSearchPage; }
-            set { _goToSearchPage = value; }
-        }
 
         public SearchClickedCommand SearchClickedCommand
         {
