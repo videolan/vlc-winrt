@@ -249,6 +249,16 @@
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Padding" Value="0"/>
         <Setter Property="MaxWidth" Value="350"/>
+        <Setter Property="Background"
+                Value="{ThemeResource ApplicationPageBackgroundThemeBrush}"/>
+        <Setter Property="VerticalContentAlignment"
+                Value="Top"/>
+        <Setter Property="VerticalAlignment"
+                Value="Top" />
+        <Setter Property="ScrollViewer.HorizontalScrollMode"
+                Value="Disabled" />
+        <Setter Property="ScrollViewer.VerticalScrollMode"
+                Value="Disabled" />
     </Style>
     <Style x:Key="TextBlockButtonStyle"
            TargetType="ButtonBase">
