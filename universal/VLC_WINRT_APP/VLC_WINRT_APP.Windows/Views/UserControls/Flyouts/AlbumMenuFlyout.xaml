@@ -7,9 +7,21 @@
         xmlns:triggers="using:WinRT.Triggers"
         xmlns:musicPages="using:VLC_WINRT_APP.Views.MusicPages"
         xmlns:albumPageControls="using:VLC_WINRT_APP.Views.MusicPages.AlbumPageControls"
+        xmlns:custom="using:CustomAppBarDesktop"
         mc:Ignorable="d"
         d:DesignHeight="300"
         d:DesignWidth="400"
-        FlyoutPresenterStyle="{StaticResource BigFlyoutPresenter}">
-    <albumPageControls:AlbumPageBase/>
+        FlyoutPresenterStyle="{StaticResource BigFlyoutPresenter}"
+        ScrollViewer.VerticalScrollMode="Disabled">
+    <Grid DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="600" />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+        <albumPageControls:AlbumPageBase />
+        <custom:AppBar Grid.Row="1"
+                       Loaded="AppBar_Loaded"
+                       Background="Orange"
+                       Width="350" />
+    </Grid>
 </Flyout>
