@@ -34,8 +34,8 @@
                                 <GridView.ItemsPanel>
                                     <ItemsPanelTemplate>
                                         <ItemsWrapGrid Orientation="Vertical"
-                                                       ItemWidth="310"
-                                                       ItemHeight="174"
+                                                       ItemWidth="300"
+                                                       ItemHeight="247"
                                                        Loaded="VideoItemWrapGrid_Loaded"
                                                        SizeChanged="VideoItemWrapGrid_OnSizeChanged" />
                                     </ItemsPanelTemplate>
