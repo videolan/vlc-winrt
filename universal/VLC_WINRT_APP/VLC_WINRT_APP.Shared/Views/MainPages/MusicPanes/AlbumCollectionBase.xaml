@@ -76,6 +76,7 @@
                   ItemContainerStyle="{StaticResource ListViewItemStyle}"
                   Margin="0,0,-20,0"
                   IsItemClickEnabled="True"
+                  SelectionMode="None"
                   ContainerContentChanging="ListViewBase_OnContainerContentChanging">
             <triggers:Interactions.Triggers>
                 <triggers:EventTrigger EventName="ItemClick">
