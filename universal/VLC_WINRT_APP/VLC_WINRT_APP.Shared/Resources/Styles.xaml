@@ -60,6 +60,20 @@
                 Value="Disabled" />
     </Style>
     
+    <Style x:Key="NoScrollViewerStyle"
+           TargetType="ListViewBase">
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility"
+                Value="Disabled" />
+        <Setter Property="ScrollViewer.HorizontalScrollMode"
+                Value="Disabled" />
+        <Setter Property="ScrollViewer.ZoomMode"
+                Value="Disabled" />
+        <Setter Property="ScrollViewer.VerticalScrollMode"
+                Value="Disabled" />
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility"
+                Value="Disabled" />
+    </Style>
+    
     <Style x:Key="HugeTextBoxStyle"
            TargetType="TextBox">
         <Setter Property="MinWidth"
