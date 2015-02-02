@@ -1,11 +1,39 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
-  <file datatype="xml" source-language="en-US" target-language="en" original="VLC_WINRT_APP.WindowsPhone_Multilingual.prilog.xml" tool-id="MultilingualAppToolkit" product-name="VLC_WINRT_APP.WindowsPhone" product-version="1.0.0.0" build-num="0">
+  <file datatype="xml" source-language="en-US" target-language="en" original="VLC_WINRT_APP.Windows_Multilingual.prilog.xml" tool-id="MultilingualAppToolkit" product-name="VLC_WINRT_APP.Windows" product-version="1.0.0.0" build-num="0">
     <header>
       <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="3.1.1250.0" tool-company="Microsoft" />
     </header>
     <body>
       <group id="Resources">
+        <trans-unit id="Resources\WeDidNotFindVideos\Text" translate="yes" xml:space="preserve">
+          <source>We did not find videos in your Videos folder</source>
+          <target state="new">We did not find videos in your Videos folder</target>
+        </trans-unit>
+        <trans-unit id="Resources\UnknownAlbum" translate="yes" xml:space="preserve">
+          <source>Unknown Album</source>
+          <target state="new">Unknown Album</target>
+        </trans-unit>
+        <trans-unit id="Resources\CameraRollButton\Content" translate="yes" xml:space="preserve">
+          <source>camera roll</source>
+          <target state="new">camera roll</target>
+        </trans-unit>
+        <trans-unit id="Resources\HoweverSearch\Text" translate="yes" xml:space="preserve">
+          <source>... however you may find what you want here</source>
+          <target state="new">... however you may find what you want here</target>
+        </trans-unit>
+        <trans-unit id="Resources\MoreHeader\Header" translate="yes" xml:space="preserve">
+          <source>more</source>
+          <target state="new">more</target>
+        </trans-unit>
+        <trans-unit id="Resources\NowPlaying\Header" translate="yes" xml:space="preserve">
+          <source>now playing</source>
+          <target state="new">now playing</target>
+        </trans-unit>
+        <trans-unit id="Resources\ShowsButton\Content" translate="yes" xml:space="preserve">
+          <source>shows</source>
+          <target state="new">shows</target>
+        </trans-unit>
         <trans-unit id="Resources\ViewAlbum\Label" translate="yes" xml:space="preserve">
           <source>view album</source>
           <target state="new">view album</target>
