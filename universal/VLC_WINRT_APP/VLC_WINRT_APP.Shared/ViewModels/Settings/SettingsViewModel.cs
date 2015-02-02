@@ -268,7 +268,6 @@ namespace VLC_WINRT_APP.ViewModels.Settings
             }
         }
 
-#if WINDOWS_PHONE_APP
         public MusicView MusicView
         {
             get
@@ -294,7 +293,6 @@ namespace VLC_WINRT_APP.ViewModels.Settings
                 SetProperty(ref _musicView, value);
             }
         }
-#endif
 
 #if WINDOWS_PHONE_APP
         public VideoView VideoView

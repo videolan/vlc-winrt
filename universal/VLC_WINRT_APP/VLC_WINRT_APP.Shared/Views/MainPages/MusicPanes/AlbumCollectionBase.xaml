@@ -1,17 +1,17 @@
-﻿<Page x:Class="VLC_WINRT_APP.Views.MainPages.MainMusicControls.AlbumsPivotItem"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:local="using:VLC_WINRT_APP.Views.MainPages.MainMusicControls"
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:scrollWatchedSelector="using:ScrollWatchedSelector"
-      xmlns:triggers="using:WinRT.Triggers"
-      xmlns:placeholder="using:VLC_WINRT_APP.Views.UserControls.Placeholder"
-      mc:Ignorable="d"
-      d:DesignHeight="300"
-      d:DesignWidth="400">
+﻿<UserControl
+    x:Class="VLC_WINRT_APP.Views.MainPages.MusicPanes.AlbumCollectionBase"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:VLC_WINRT_APP.Views.MainPages.MusicPanes"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:triggers="using:WinRT.Triggers"
+    xmlns:controls="using:VLC_WINRT.Views.Controls"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
 
-    <Grid Margin="0,-12,0,0">
+    <Grid Margin="24,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="60" />
             <RowDefinition />
@@ -66,14 +66,13 @@
                 </ComboBox.ItemTemplate>
             </ComboBox>
         </Grid>
-        <placeholder:NothingToSeeHere Grid.Row="1"
+        <controls:NothingToSeeHere Grid.Row="1"
                                       Visibility="{Binding Albums.Count, Converter={StaticResource CountToVisibilityConverter}}" />
         <GridView Grid.Row="1"
                   ItemsSource="{Binding Albums}"
                   ItemTemplate="{StaticResource PhoneSemanticZoomInViewAlbumTemplateLittleSize}"
                   Margin="0,0,-20,0"
                   IsItemClickEnabled="True"
-                  ItemContainerStyle="{StaticResource TileGridViewItemStyle}"
                   ContainerContentChanging="ListViewBase_OnContainerContentChanging">
             <triggers:Interactions.Triggers>
                 <triggers:EventTrigger EventName="ItemClick">
@@ -90,4 +89,4 @@
             </GridView.ItemsPanel>
         </GridView>
     </Grid>
-</Page>
+</UserControl>
