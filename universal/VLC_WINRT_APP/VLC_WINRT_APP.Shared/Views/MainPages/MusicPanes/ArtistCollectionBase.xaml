@@ -7,6 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:VLC_WINRT.Views.Controls"
     xmlns:triggers="using:WinRT.Triggers"
+    xmlns:placeholder="using:VLC_WINRT_APP.Views.UserControls.Placeholder"
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
@@ -32,7 +33,7 @@
                 </ComboBox.ItemTemplate>
             </ComboBox>
         </Grid>
-        <controls:NothingToSeeHere Grid.Row="1"
+        <placeholder:NothingToSeeHere Grid.Row="1"
                                    Visibility="{Binding Artists.Count, Converter={StaticResource CountToVisibilityConverter}}" />
         <GridView x:Name="ArtistListView"
                   Grid.Row="1"
