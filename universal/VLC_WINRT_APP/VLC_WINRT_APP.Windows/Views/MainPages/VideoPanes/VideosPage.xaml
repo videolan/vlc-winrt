@@ -13,7 +13,7 @@
           x:Name="AllVideosGrid">
         <userControls:NoVideos Visibility="{Binding Videos.Count, Converter={StaticResource CountToVisibilityConverter}}" />
         <GridView ItemsSource="{Binding Videos}"
-                  ItemTemplate="{StaticResource SemanticZoomInViewMovieTemplate}"
+                  ItemTemplate="{StaticResource PhoneCompactVideoTemplate}"
                   SelectionMode="None"
                   IsItemClickEnabled="True"
                   ScrollViewer.VerticalScrollBarVisibility="Auto"
