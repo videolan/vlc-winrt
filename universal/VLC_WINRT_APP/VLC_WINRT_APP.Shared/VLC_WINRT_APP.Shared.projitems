@@ -243,14 +243,29 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\MainPages\MainMusicControls\AlbumsPivotItem.xaml.cs">
       <DependentUpon>AlbumsPivotItem.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\MainPages\MainMusicControls\ArtistsPivotItem.xaml.cs">
+      <DependentUpon>ArtistsPivotItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\MainPages\MainMusicControls\PlaylistPivotItem.xaml.cs">
+      <DependentUpon>PlaylistPivotItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\MainPages\MusicPanes\AlbumCollectionBase.xaml.cs">
       <DependentUpon>AlbumCollectionBase.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\MainPages\MusicPanes\ArtistCollectionBase.xaml.cs">
+      <DependentUpon>ArtistCollectionBase.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\MusicPages\AlbumPageControls\AlbumPageBase.xaml.cs">
       <DependentUpon>AlbumPageBase.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\MusicPages\AlbumPageControls\MainAlbumHeader.xaml.cs">
       <DependentUpon>MainAlbumHeader.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\MusicPages\ArtistPage.xaml.cs">
+      <DependentUpon>ArtistPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\MusicPages\ArtistPageControls\MainArtistHeader.xaml.cs">
+      <DependentUpon>MainArtistHeader.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\MusicPages\ArtistPages\ArtistShowsPage.xaml.cs">
       <DependentUpon>ArtistShowsPage.xaml</DependentUpon>
@@ -397,7 +412,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\MainPages\MainMusicControls\ArtistsPivotItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\MainPages\MainMusicControls\PlaylistPivotItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\MainPages\MusicPanes\AlbumCollectionBase.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\MainPages\MusicPanes\ArtistCollectionBase.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -406,6 +433,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\MusicPages\AlbumPageControls\MainAlbumHeader.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\MusicPages\ArtistPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\MusicPages\ArtistPageControls\MainArtistHeader.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
