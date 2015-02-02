@@ -30,7 +30,7 @@ namespace VLC_WINRT_APP.Views.MainPages
         protected override void OnNavigatedTo(Windows.UI.Xaml.Navigation.NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            AppBarHelper.UpdateAppBar(typeof (MainPageHome), 0);
+            AppBarHelper.UpdateAppBar(typeof (MainPageHome));
             if (Locator.VideoLibraryVM.LoadingState == LoadingState.NotLoaded)
             {
                 Task.Run(() => Locator.VideoLibraryVM.Initialize());

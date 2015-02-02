@@ -31,6 +31,12 @@ namespace VLC_WINRT_APP.Views.MainPages
             this.NavigationCacheMode = NavigationCacheMode.Enabled;
         }
 
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            AppBarHelper.UpdateAppBar(typeof(MainPageMusic));
+        }
+
         private void MusicPanesFrame_OnLoaded(object sender, RoutedEventArgs e)
         {
             if (MainPageMusicContentPresenter.CurrentSourcePageType == null)
