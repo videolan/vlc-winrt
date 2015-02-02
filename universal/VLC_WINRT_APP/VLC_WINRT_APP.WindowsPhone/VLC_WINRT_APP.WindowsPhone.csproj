@@ -149,12 +149,6 @@
     <Compile Include="Views\MainPages\MainPageVideos.xaml.cs">
       <DependentUpon>MainPageVideos.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MusicPages\ArtistPage.xaml.cs">
-      <DependentUpon>ArtistPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\MainPages\MainMusicControls\ArtistsPivotItem.xaml.cs">
-      <DependentUpon>ArtistsPivotItem.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\MusicPages\MiniPlayer.xaml.cs">
       <DependentUpon>MiniPlayer.xaml</DependentUpon>
     </Compile>
