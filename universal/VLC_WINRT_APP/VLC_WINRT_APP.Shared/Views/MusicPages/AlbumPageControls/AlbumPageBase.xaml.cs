@@ -11,9 +11,6 @@ namespace VLC_WINRT_APP.Views.MusicPages.AlbumPageControls
 
         private void AlbumPageBase_OnLoaded(object sender, RoutedEventArgs e)
         {
-#if WINDOWS_APP
-            this.Width = 350;
-#endif
         }
     }
 }
