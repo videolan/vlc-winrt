@@ -3,102 +3,19 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:triggers="using:WinRT.Triggers"
-      xmlns:userControls="using:VLC_WINRT_APP.Views.UserControls"
-      xmlns:artistPageControls="using:VLC_WINRT_APP.Views.MusicPages.ArtistPageControls"
       mc:Ignorable="d"
       d:DesignHeight="300"
       d:DesignWidth="600"
       x:Name="MusicLibrary"
       DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
 
-    <Grid Margin="24,0,0,0"
-          x:Name="RootGrid">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="42"
-                           x:Name="FirstRowDefinition" />
-            <RowDefinition Height="45" />
-            <RowDefinition Height="24" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <ListView ItemsSource="{Binding Panels}"
-                  IsItemClickEnabled="True"
-                  SelectionMode="None"
-                  Grid.Row="1"
-                  ItemClick="Panels_OnItemClick"
-                  ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                  ItemContainerStyle="{StaticResource ListViewItemContainerStyle}">
-            <ListView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <StackPanel Orientation="Horizontal"
-                                Height="50" />
-                </ItemsPanelTemplate>
-            </ListView.ItemsPanel>
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Grid Height="50"
-                          Margin="0,0,5,0">
-                        <TextBlock Text="{Binding Title}"
-                                   Foreground="{Binding Color}"
-                                   TextWrapping="NoWrap"
-                                   TextTrimming="None"
-                                   Style="{StaticResource SubheaderTextBlockStyle}"
-                                   Margin="0,0,5,0" />
-                    </Grid>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-        
-        <Frame Grid.Row="3"
-               x:Name="MusicPanesFrame"
-               Loaded="MusicPanesFrame_OnLoaded">
-            <Frame.ContentTransitions>
-                <TransitionCollection>
-                    <EdgeUIThemeTransition Edge="Right"/>
-                </TransitionCollection>
-            </Frame.ContentTransitions>
-        </Frame>
-        <!--<grid:RadDataGrid x:Name="RadDataGrid"
-                          ItemsSource="{Binding Track}"
-                          Grid.Row="3"
-                          AutoGenerateColumns="False"
-                          UserGroupMode="Disabled"
-                          UserEditMode="None"
-                          Visibility="Collapsed"
-                          GridLinesBrush="#15FFFFFF"
-                          BorderBrush="#15FFFFFF"
-                          SelectionMode="Single"
-                          SelectionChanged="RadDataGrid_OnSelectionChanged">
-            <grid:RadDataGrid.Columns>
-                <grid:DataGridTextColumn PropertyName="Name"
-                                         Header="NAME" />
-                <grid:DataGridTextColumn PropertyName="ArtistName"
-                                         Header="ARTIST" />
-                <grid:DataGridTextColumn PropertyName="AlbumName"
-                                         Header="ALBUM" />
-            </grid:RadDataGrid.Columns>
-        </grid:RadDataGrid>-->
-        <GridView Grid.Row="3"
-                  x:Name="FavoriteAlbumsGridView"
-                  Visibility="Collapsed"
-                  ItemsSource="{Binding FavoriteAlbums}"
-                  ItemTemplate="{StaticResource SemanticZoomInViewAlbumTemplate}"
-                  SelectionMode="None"
-                  IsItemClickEnabled="True"
-                  Grid.RowSpan="2">
-            <triggers:Interactions.Triggers>
-                <triggers:EventTrigger EventName="ItemClick">
-                    <triggers:InvokeCommandAction Command="{Binding AlbumClickedCommand}"
-                                                  PassEventArgsToCommand="True" />
-                </triggers:EventTrigger>
-            </triggers:Interactions.Triggers>
-            <GridView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <VariableSizedWrapGrid Orientation="Horizontal"
-                                           ItemHeight="200"
-                                           ItemWidth="200" />
-                </ItemsPanelTemplate>
-            </GridView.ItemsPanel>
-        </GridView>
-    </Grid>
+    <Frame x:Name="MainPageMusicContentPresenter"
+           x:FieldModifier="public"
+           Loaded="MusicPanesFrame_OnLoaded">
+        <Frame.ContentTransitions>
+            <TransitionCollection>
+                <EdgeUIThemeTransition Edge="Right" />
+            </TransitionCollection>
+        </Frame.ContentTransitions>
+    </Frame>
 </Page>
