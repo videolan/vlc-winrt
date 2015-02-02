@@ -25,8 +25,8 @@
               Grid.RowSpan="4">
             <Image Source="{Binding Picture}"
                    Stretch="UniformToFill"
-                   Opacity="0.5" 
-                   winRTEx:ImageExtensions.FadeInOnLoaded="True"/>
+                   Opacity="0.5"
+                   winRTEx:ImageExtensions.FadeInOnLoaded="True" />
         </Grid>
         <StackPanel Orientation="Horizontal"
                     Grid.Row="1">
