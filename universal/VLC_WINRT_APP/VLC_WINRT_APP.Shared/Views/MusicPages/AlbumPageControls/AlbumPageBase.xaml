@@ -10,9 +10,10 @@
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400"
-    Loaded="AlbumPageBase_OnLoaded">
+    Loaded="AlbumPageBase_OnLoaded"
+    DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
 
-    <ListView ItemsSource="{Binding Tracks}"
+    <ListView ItemsSource="{Binding CurrentAlbum.Tracks}"
               IsItemClickEnabled="True"
               SelectionMode="None"
               ItemTemplate="{StaticResource WPTrackTemplateWNumber}"
@@ -35,7 +36,7 @@
         </ListView.ItemsPanel>
         <triggers:Interactions.Triggers>
             <triggers:EventTrigger EventName="ItemClick">
-                <triggers:InvokeCommandAction Command="{Binding TrackClicked}"
+                <triggers:InvokeCommandAction Command="{Binding CurrentAlbum.TrackClicked}"
                                               PassEventArgsToCommand="True" />
             </triggers:EventTrigger>
         </triggers:Interactions.Triggers>

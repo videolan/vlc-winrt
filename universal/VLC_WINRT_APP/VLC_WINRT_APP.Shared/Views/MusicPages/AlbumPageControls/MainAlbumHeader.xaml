@@ -22,7 +22,7 @@
         </Grid.RowDefinitions>
         <Image Grid.RowSpan="3"
                x:Name="HeaderArtistImage"
-               Source="{Binding Picture}"
+               Source="{Binding CurrentAlbum.Picture}"
                Stretch="UniformToFill"
                Opacity="1"/>
         <Grid Grid.Row="0"
@@ -44,7 +44,7 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <userControls:HeaderControl HeaderTextBlock="{Binding Name, Converter={StaticResource AlbumStringConverter}}"
+            <userControls:HeaderControl HeaderTextBlock="{Binding CurrentAlbum.Name, Converter={StaticResource AlbumStringConverter}}"
                                         HeaderBackground="#00ffffff" />
             <Button Grid.Row="1"
                     Style="{StaticResource TextBlockButtonStyle}"
@@ -71,8 +71,8 @@
                     VerticalAlignment="Bottom"
                     Margin="0,0,12,12"
                     RequestedTheme="Dark"
-                    Command="{Binding PlayAlbum}"
-                    CommandParameter="{Binding}">
+                    Command="{Binding CurrentAlbum.PlayAlbum}"
+                    CommandParameter="{Binding CurrentAlbum}">
                 <Button.Content>
                     <Grid>
                         <Ellipse Fill="{StaticResource MainColor}"
@@ -91,7 +91,7 @@
               Margin="0,12,12,0">
             <TextBlock VerticalAlignment="Center"
                        HorizontalAlignment="Right">
-            <Run Text="{Binding Tracks.Count}"
+            <Run Text="{Binding CurrentAlbum.Tracks.Count}"
                  FontSize="18"
                  Foreground="DimGray" />
             <Run Text="tracks"
