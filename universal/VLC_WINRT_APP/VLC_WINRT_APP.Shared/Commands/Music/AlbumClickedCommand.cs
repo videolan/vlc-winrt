@@ -11,7 +11,6 @@ namespace VLC_WINRT_APP.Commands.Music
     {
         public override async void Execute(object parameter)
         {
-#if WINDOWS_PHONE_APP
             Locator.MusicLibraryVM.IsAlbumPageShown = true;
             AlbumItem album = null;
             if (parameter is AlbumItem)
@@ -36,7 +35,6 @@ namespace VLC_WINRT_APP.Commands.Music
             {
                 App.ApplicationFrame.Navigate(typeof(AlbumPage));
             }
-#endif
         }
     }
 }

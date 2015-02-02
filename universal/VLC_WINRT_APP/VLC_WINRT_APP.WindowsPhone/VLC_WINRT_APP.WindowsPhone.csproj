@@ -101,9 +101,6 @@
     <Compile Include="Views\MusicPages\AddAlbumToPlaylist.xaml.cs">
       <DependentUpon>AddAlbumToPlaylist.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MusicPages\AlbumPage.xaml.cs">
-      <DependentUpon>AlbumPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\MusicPages\CreateNewPlaylist.xaml.cs">
       <DependentUpon>CreateNewPlaylist.xaml</DependentUpon>
     </Compile>
@@ -867,10 +864,6 @@
     <Page Include="Views\MusicPages\AddAlbumToPlaylist.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\MusicPages\AlbumPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\MusicPages\CreateNewPlaylist.xaml">
       <SubType>Designer</SubType>

@@ -1,11 +1,12 @@
 ﻿using System;
-using Windows.Phone.UI.Input;
 using Windows.UI.Core;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-
+#if WINDOWS_PHONE_APP
+using Windows.Phone.UI.Input;
+#endif
 namespace VLC_WINRT_APP.Views.MusicPages
 {
     public sealed partial class AlbumPage : Page
@@ -15,6 +16,7 @@ namespace VLC_WINRT_APP.Views.MusicPages
             this.InitializeComponent();
         }
 
+#if WINDOWS_PHONE_APP
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             ApplicationView.GetForCurrentView().SetDesiredBoundsMode(ApplicationViewBoundsMode.UseCoreWindow);
@@ -32,5 +34,6 @@ namespace VLC_WINRT_APP.Views.MusicPages
             App.ApplicationFrame.GoBack();
             backPressedEventArgs.Handled = true;
         }
+#endif
     }
 }

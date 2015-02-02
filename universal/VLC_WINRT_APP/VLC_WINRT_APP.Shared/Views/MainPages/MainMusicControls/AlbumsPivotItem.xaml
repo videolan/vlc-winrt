@@ -8,6 +8,7 @@
       xmlns:triggers="using:WinRT.Triggers"
       xmlns:placeholder="using:VLC_WINRT_APP.Views.UserControls.Placeholder"
       xmlns:musicPanes="using:VLC_WINRT_APP.Views.MainPages.MusicPanes"
+      xmlns:albumPageControls="using:VLC_WINRT_APP.Views.MusicPages.AlbumPageControls"
       mc:Ignorable="d"
       d:DesignHeight="300"
       d:DesignWidth="400">

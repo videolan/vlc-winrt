@@ -162,9 +162,6 @@
     <Compile Include="Views\MainPages\MainPageVideos.xaml.cs">
       <DependentUpon>MainPageVideos.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MusicPages\AlbumPage.xaml.cs">
-      <DependentUpon>AlbumPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\MusicPages\ArtistPageControls\ArtistCoverBiographyControl.xaml.cs">
       <DependentUpon>ArtistCoverBiographyControl.xaml</DependentUpon>
     </Compile>
@@ -941,10 +938,6 @@
     <Page Include="Views\MainPages\MainPageVideos.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\MusicPages\AlbumPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MusicPages\ArtistPageControls\ArtistCoverBiographyControl.xaml">
       <SubType>Designer</SubType>
