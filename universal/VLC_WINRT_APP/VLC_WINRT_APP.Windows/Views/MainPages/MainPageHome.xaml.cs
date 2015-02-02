@@ -13,6 +13,7 @@ using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.ViewModels;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using VLC_WINRT_APP.Helpers;
 
 namespace VLC_WINRT_APP.Views.MainPages
 {
@@ -29,6 +30,7 @@ namespace VLC_WINRT_APP.Views.MainPages
         protected override void OnNavigatedTo(Windows.UI.Xaml.Navigation.NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
+            AppBarHelper.UpdateAppBar(typeof (MainPageHome), 0);
             if (Locator.VideoLibraryVM.LoadingState == LoadingState.NotLoaded)
             {
                 Task.Run(() => Locator.VideoLibraryVM.Initialize());
