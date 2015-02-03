@@ -465,9 +465,10 @@ namespace VLC_WINRT_APP.ViewModels.Settings
 
             var notificationOnNewSongForeground = ApplicationSettingsHelper.ReadSettingsValue("NotificationOnNewSongForeground");
             NotificationOnNewSongForeground = notificationOnNewSongForeground != null && (bool)notificationOnNewSongForeground;
-            IsSidebarAlwaysMinimized = (bool)ApplicationSettingsHelper.ReadSettingsValue("IsSidebarAlwaysMinimized");
+            var sidebar = ApplicationSettingsHelper.ReadSettingsValue("IsSidebarAlwaysMinimized");
+            if (sidebar != null) IsSidebarAlwaysMinimized = (bool)sidebar;
             ContinueVideoPlaybackInBackground =
-                (bool) ApplicationSettingsHelper.ReadSettingsValue("ContinueVideoPlaybackInBackground");
+                (bool)ApplicationSettingsHelper.ReadSettingsValue("ContinueVideoPlaybackInBackground");
 
             await GetLibrariesFolders();
 #else
