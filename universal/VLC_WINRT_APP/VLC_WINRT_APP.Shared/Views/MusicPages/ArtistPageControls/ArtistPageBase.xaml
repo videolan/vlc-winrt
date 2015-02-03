@@ -9,39 +9,33 @@
              d:DesignHeight="300"
              d:DesignWidth="400"
              DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
-    <Grid>
-        <Image Source="/Assets/backgroundTop.png"
-               Stretch="Uniform"
-               VerticalAlignment="Top" />
-        <Grid Margin="0,0,-20,0">
-            <ListView ItemsSource="{Binding CurrentArtist.Albums}"
-                      ItemTemplate="{StaticResource PhoneSemanticZoomInViewAlbumTemplateLittleSize}"
-                      ItemContainerStyle="{StaticResource ListViewItemStyle}"
-                      IsItemClickEnabled="True">
-                <triggers:Interactions.Triggers>
-                    <triggers:EventTrigger EventName="ItemClick">
-                        <triggers:InvokeCommandAction Command="{Binding AlbumClickedCommand}"
-                                                      PassEventArgsToCommand="True" />
-                    </triggers:EventTrigger>
-                </triggers:Interactions.Triggers>
-                <ListView.HeaderTemplate>
-                    <DataTemplate>
-                        <local:MainArtistHeader />
-                    </DataTemplate>
-                </ListView.HeaderTemplate>
-                <ListView.ItemContainerTransitions>
-                    <TransitionCollection>
-                        <AddDeleteThemeTransition />
-                    </TransitionCollection>
-                </ListView.ItemContainerTransitions>
-                <ListView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <ItemsWrapGrid Orientation="Horizontal"
-                                       Margin="12,12,0,60"
-                                       Loaded="ItemsWrapGrid_Loaded" />
-                    </ItemsPanelTemplate>
-                </ListView.ItemsPanel>
-            </ListView>
-        </Grid>
-    </Grid>
+    <ListView ItemsSource="{Binding CurrentArtist.Albums}"
+              ItemTemplate="{StaticResource PhoneSemanticZoomInViewAlbumTemplateLittleSize}"
+              ItemContainerStyle="{StaticResource ListViewItemStyle}"
+              IsItemClickEnabled="True"
+              Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <triggers:Interactions.Triggers>
+            <triggers:EventTrigger EventName="ItemClick">
+                <triggers:InvokeCommandAction Command="{Binding AlbumClickedCommand}"
+                                              PassEventArgsToCommand="True" />
+            </triggers:EventTrigger>
+        </triggers:Interactions.Triggers>
+        <ListView.HeaderTemplate>
+            <DataTemplate>
+                <local:MainArtistHeader />
+            </DataTemplate>
+        </ListView.HeaderTemplate>
+        <ListView.ItemContainerTransitions>
+            <TransitionCollection>
+                <AddDeleteThemeTransition />
+            </TransitionCollection>
+        </ListView.ItemContainerTransitions>
+        <ListView.ItemsPanel>
+            <ItemsPanelTemplate>
+                <ItemsWrapGrid Orientation="Horizontal"
+                               Margin="12,12,0,60"
+                               Loaded="ItemsWrapGrid_Loaded" />
+            </ItemsPanelTemplate>
+        </ListView.ItemsPanel>
+    </ListView>
 </UserControl>
