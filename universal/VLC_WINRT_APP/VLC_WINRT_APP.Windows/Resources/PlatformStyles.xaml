@@ -612,7 +612,7 @@
         <Setter Property="HeaderForeground"
                 Value="{ThemeResource SettingsFlyoutHeaderForegroundThemeBrush}" />
         <Setter Property="Background"
-                Value="{ThemeResource SettingsFlyoutBackgroundThemeBrush}" />
+                Value="Transparent" />
         <Setter Property="BorderThickness"
                 Value="1,0,0,0" />
         <Setter Property="Padding"
