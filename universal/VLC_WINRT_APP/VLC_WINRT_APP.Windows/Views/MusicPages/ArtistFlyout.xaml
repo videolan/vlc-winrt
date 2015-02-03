@@ -11,7 +11,7 @@
                 d:DesignWidth="346"
                 Width="500">
 
-    <Grid>
+    <Grid Tapped="RootGrid_OnTapped">
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition Height="50" />

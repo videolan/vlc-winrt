@@ -19,5 +19,10 @@ namespace VLC_WINRT_APP.Views.MusicPages
             var buttons = AppBarHelper.SetAlbumPageButtons(new List<ICommandBarElement>());
             customAppBar.PrimaryCommands = buttons;
         }
+
+        private void RootGrid_OnTapped(object sender, TappedRoutedEventArgs e)
+        {
+            this.Hide();
+        }
     }
 }

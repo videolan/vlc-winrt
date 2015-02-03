@@ -9,7 +9,7 @@
                 mc:Ignorable="d"
                 d:DesignWidth="346"
                 Style="{StaticResource SettingsFlyoutStyle}">
-    <Grid>
+    <Grid Tapped="RootGrid_OnTapped">
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition Height="50" />
