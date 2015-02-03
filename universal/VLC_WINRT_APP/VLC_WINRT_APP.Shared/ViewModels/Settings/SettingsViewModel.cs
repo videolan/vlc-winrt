@@ -97,7 +97,7 @@ namespace VLC_WINRT_APP.ViewModels.Settings
             get { return _notificationOnNewSong; }
             set
             {
-                SetProperty(ref _notificationOnNewSong, value); 
+                SetProperty(ref _notificationOnNewSong, value);
                 ApplicationSettingsHelper.SaveSettingsValue("NotificationOnNewSong", value);
             }
         }
@@ -411,7 +411,7 @@ namespace VLC_WINRT_APP.ViewModels.Settings
                     }
                     else
                     {
-                        _applicationTheme = (ApplicationTheme) appTheme;
+                        _applicationTheme = (ApplicationTheme)appTheme;
                     }
                 }
                 else
@@ -503,7 +503,7 @@ namespace VLC_WINRT_APP.ViewModels.Settings
             MusicFolders = musicLib.Folders.ToList();
 
             var videosLib = await StorageLibrary.GetLibraryAsync(KnownLibraryId.Videos);
-            VideoFolders = videosLib.Folders.ToList();   
+            VideoFolders = videosLib.Folders.ToList();
         }
 #endif
     }
