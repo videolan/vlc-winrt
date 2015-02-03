@@ -21,6 +21,8 @@
                                      Color="#cc000000" />
                     <SolidColorBrush x:Key="ApplicationBackgroundSemiTranslucentThemeBrush"
                                      Color="#81252525" />
+                    <SolidColorBrush x:Key="ApplicationBackgroundQuarterTranslucentThemeBrush"
+                                     Color="#B3F5F5F5" />
                     <SolidColorBrush x:Key="BasicForeground"
                                      Color="White"/>
                 </ResourceDictionary>
@@ -39,6 +41,8 @@
                                      Color="#ccffffff" />
                     <SolidColorBrush x:Key="ApplicationBackgroundSemiTranslucentThemeBrush"
                                      Color="#81FFFFFF" />
+                    <SolidColorBrush x:Key="ApplicationBackgroundQuarterTranslucentThemeBrush"
+                                     Color="#B3000000"/>
                     <SolidColorBrush x:Key="BasicForeground"
                                      Color="Black" />
                 </ResourceDictionary>
