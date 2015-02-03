@@ -113,9 +113,6 @@
     <Compile Include="Views\UserControls\ConnectToLastFm.xaml.cs">
       <DependentUpon>ConnectToLastFm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControls\Flyouts\AlbumMenuFlyout.xaml.cs">
-      <DependentUpon>AlbumMenuFlyout.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\UserControls\LeftColumn.xaml.cs">
       <DependentUpon>LeftColumn.xaml</DependentUpon>
     </Compile>
@@ -881,10 +878,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\UserControls\Flyouts\AlbumMenuFlyout.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\UserControls\LeftColumn.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1012,6 +1005,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="MultilingualResources\VLC_WINRT_APP.WindowsPhone.ja-JP.xlf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\UserControls\Flyouts\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>

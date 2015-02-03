@@ -300,6 +300,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\CompactVideoItemControl.xaml.cs">
       <DependentUpon>CompactVideoItemControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\Flyouts\AlbumMenuFlyout.xaml.cs">
+      <DependentUpon>AlbumMenuFlyout.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\Flyouts\TrackItemFlyout.xaml.cs">
       <DependentUpon>TrackItemFlyout.xaml</DependentUpon>
     </Compile>
@@ -515,6 +518,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\CompactVideoItemControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\Flyouts\AlbumMenuFlyout.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

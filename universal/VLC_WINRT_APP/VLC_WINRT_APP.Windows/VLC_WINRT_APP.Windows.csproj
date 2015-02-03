@@ -135,9 +135,6 @@
     <Compile Include="Views\MusicPages\ArtistFlyout.xaml.cs">
       <DependentUpon>ArtistFlyout.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControls\Flyouts\AlbumMenuFlyout.xaml.cs">
-      <DependentUpon>AlbumMenuFlyout.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\UserControls\HorizontalMiniPlayer.xaml.cs">
       <DependentUpon>HorizontalMiniPlayer.xaml</DependentUpon>
     </Compile>
@@ -909,10 +906,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\UserControls\Flyouts\AlbumMenuFlyout.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\UserControls\HorizontalMiniPlayer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1061,6 +1054,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="MultilingualResources\VLC_WINRT_APP.Windows.ja-JP.xlf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\UserControls\Flyouts\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>
