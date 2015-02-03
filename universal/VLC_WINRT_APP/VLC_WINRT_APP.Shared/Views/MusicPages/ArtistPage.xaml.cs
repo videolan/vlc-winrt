@@ -1,6 +1,7 @@
 ﻿using Windows.UI.Xaml.Controls;
 #if WINDOWS_PHONE_APP
 using Windows.Phone.UI.Input;
+using Windows.UI.Xaml.Navigation;
 #endif
 namespace VLC_WINRT_APP.Views.MusicPages
 {
