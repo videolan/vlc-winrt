@@ -607,6 +607,8 @@
 
     <Style x:Key="SettingsFlyoutStyle"
            TargetType="SettingsFlyout">
+        <Setter Property="RequestedTheme"
+                Value="Light"/>
         <Setter Property="HeaderBackground"
                 Value="{ThemeResource SettingsFlyoutHeaderBackgroundThemeBrush}" />
         <Setter Property="HeaderForeground"
