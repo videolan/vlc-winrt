@@ -258,6 +258,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
         {
             try
             {
+                if (string.IsNullOrEmpty(artist.Name)) return;
                 LogHelper.Log("Getting TopAlbums from LastFM API");
                 var lastFmClient = new LastFmClient();
                 var albums = await lastFmClient.GetArtistTopAlbums(artist.Name);
@@ -281,6 +282,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
         {
             try
             {
+                if (string.IsNullOrEmpty(artist.Name)) return;
                 var lastFmClient = new LastFmClient();
                 var similarArtists = await lastFmClient.GetSimilarArtists(artist.Name);
                 if (similarArtists != null)
@@ -300,6 +302,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
 
         public static async Task GetArtistBiography(ArtistItem artist)
         {
+            if (string.IsNullOrEmpty(artist.Name)) return;
             string biography = string.Empty;
             try
             {
