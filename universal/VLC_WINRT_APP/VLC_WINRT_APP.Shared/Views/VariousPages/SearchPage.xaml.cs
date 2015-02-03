@@ -1,10 +1,11 @@
 ﻿using System;
-using Windows.Phone.UI.Input;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.ViewModels;
-
+#if WINDOWS_PHONE_APP
+using Windows.Phone.UI.Input;
+#endif
 
 namespace VLC_WINRT_APP.Views.VariousPages
 {
@@ -14,7 +15,7 @@ namespace VLC_WINRT_APP.Views.VariousPages
         {
             this.InitializeComponent();
         }
-
+#if WINDOWS_PHONE_APP
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             HardwareButtons.BackPressed += HardwareButtonsOnBackPressed;
@@ -32,7 +33,7 @@ namespace VLC_WINRT_APP.Views.VariousPages
             if (App.ApplicationFrame.CanGoBack)
                 App.ApplicationFrame.GoBack();
         }
-
+#endif
         private void SearchBox_OnTextChanged(object sender, TextChangedEventArgs e)
         {
             Locator.MainVM.SearchTag = SearchBox.Text;

@@ -51,10 +51,8 @@ namespace VLC_WINRT_APP.ViewModels
         private ChangeMainPageMusicViewCommand _changeMainPageMusicViewCommand;
         private AlwaysExecutableCommand _goToSearchPage;
         private ChangeMainPageVideoViewCommand _changeMainPageVideoViewCommand;
-#if WINDOWS_PHONE_APP
         private SearchClickedCommand _searchClickedCommand;
         private string _searchTag;
-#endif
         #endregion
         #region public fields
         public AppBar CommandBar
@@ -135,7 +133,6 @@ namespace VLC_WINRT_APP.ViewModels
             get { return _changeMainPageVideoViewCommand; }
             set { SetProperty(ref _changeMainPageVideoViewCommand, value); }
         }
-#if WINDOWS_PHONE_APP
 
 
         public SearchClickedCommand SearchClickedCommand
@@ -154,7 +151,6 @@ namespace VLC_WINRT_APP.ViewModels
                 else if (SearchResults != null) SearchResults.Clear();
             }
         }
-#endif
         #endregion
 
 
@@ -166,14 +162,12 @@ namespace VLC_WINRT_APP.ViewModels
             GoToAboutPageCommand = new GoToAboutPageCommand();
             ChangeMainPageMusicViewCommand = new ChangeMainPageMusicViewCommand();
             ChangeMainPageVideoViewCommand = new ChangeMainPageVideoViewCommand();
-#if WINDOWS_PHONE_APP
             GoToSearchPage = new ActionCommand(() =>
             {
                 App.ApplicationFrame.Navigate(typeof(SearchPage));
             });
             SearchResults = new ObservableCollection<SearchResult>();
             SearchClickedCommand = new SearchClickedCommand();
-#endif
             // TODO: For Windows 8.1 build, use ResourceLoader.GetForCurrentView(); 
 #if WINDOWS_APP
             var resourceLoader = new ResourceLoader();

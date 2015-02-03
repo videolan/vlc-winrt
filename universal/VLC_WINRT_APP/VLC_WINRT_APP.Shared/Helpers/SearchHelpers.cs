@@ -8,15 +8,8 @@ using VLC_WINRT_APP.Model.Music;
 using VLC_WINRT_APP.Model.Video;
 using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.Views.MusicPages;
-#if WINDOWS_APP
-using Windows.ApplicationModel.Search;
-using Windows.UI.Xaml.Controls;
-using Windows.Storage.Streams;
-#endif
-#if WINDOWS_PHONE_APP
 using VLC_WINRT_APP.Model.Search;
 using Windows.Storage;
-#endif
 
 namespace VLC_WINRT_APP.Helpers
 {
@@ -53,7 +46,6 @@ namespace VLC_WINRT_APP.Helpers
                     break;
             }
         }
-#if WINDOWS_PHONE_APP
 
         public static void Search()
         {
@@ -127,49 +119,5 @@ namespace VLC_WINRT_APP.Helpers
         }
 
         //}
-#endif
-#if WINDOWS_APP
-        public static void Search(string tag, SearchBoxSuggestionsRequestedEventArgs args)
-        {
-            if (string.IsNullOrEmpty(tag))
-                return;
-
-            SearchSuggestionsRequestDeferral deferral = args.Request.GetDeferral();
-
-            // We don't need null checks here, because even if nothing was found, the Enumerable items will be loaded with zero items in them.
-            // So the foreach loops will skip past them.
-            IEnumerable<TrackItem> trackItems = Locator.MusicLibraryVM.Tracks.Where(x => x.Name.Contains(tag, StringComparison.CurrentCultureIgnoreCase));
-            foreach (TrackItem item in trackItems)
-            {
-                args.Request.SearchSuggestionCollection.AppendResultSuggestion(item.Name, "3", "track://" + item.Id, RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/Icons/music.png")), "music");
-            }
-
-            IEnumerable<VideoItem> videoVms = Locator.VideoLibraryVM.Videos.Where(x => x.Title.Contains(tag, StringComparison.CurrentCultureIgnoreCase));
-            foreach (VideoItem vm in videoVms)
-            {
-                args.Request.SearchSuggestionCollection.AppendResultSuggestion(vm.Title, "0", "video://" + vm.Title,
-                    RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/Icons/Video.png")), "video");
-            }
-
-            IEnumerable<ArtistItem> artistItems =
-                Locator.MusicLibraryVM.Artists.Where(x => x.Name.Contains(tag, StringComparison.CurrentCultureIgnoreCase));
-
-            foreach (var artistItem in artistItems)
-            {
-                args.Request.SearchSuggestionCollection.AppendResultSuggestion(artistItem.Name, "2", "artist://" + artistItem.Id, RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/Icons/music.png")), "music");
-            }
-
-            IEnumerable<AlbumItem> albumItems =
-                Locator.MusicLibraryVM.Artists.SelectMany(node => node.Albums)
-                    .Where(x => x.Name.Contains(tag, StringComparison.CurrentCultureIgnoreCase));
-
-            foreach (AlbumItem albumItem in albumItems)
-            {
-                args.Request.SearchSuggestionCollection.AppendResultSuggestion(albumItem.Name, "1", "album://" + albumItem.Id, RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/Icons/music.png")), "music");
-            }
-
-            deferral.Complete();
-        }
-#endif
     }
 }

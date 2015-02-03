@@ -938,10 +938,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\MainPages\MainPageSearch.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\MainPages\MainPageVideos.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

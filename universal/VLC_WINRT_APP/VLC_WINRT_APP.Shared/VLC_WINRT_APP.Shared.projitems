@@ -324,6 +324,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\Placeholders\NoPlaylistPlaceholder.xaml.cs">
       <DependentUpon>NoPlaylistPlaceholder.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\Placeholders\NoResults.xaml.cs">
+      <DependentUpon>NoResults.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\Placeholders\NoShowPlaceholder.xaml.cs">
       <DependentUpon>NoShowPlaceholder.xaml</DependentUpon>
     </Compile>
@@ -333,11 +336,17 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\Placeholders\NoVideosPlaceholder.xaml.cs">
       <DependentUpon>NoVideosPlaceholder.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\Placeholders\StartSearchingSomething.xaml.cs">
+      <DependentUpon>StartSearchingSomething.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\TrackItemTemplate.xaml.cs">
       <DependentUpon>TrackItemTemplate.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\VLCLogoWithGradient.xaml.cs">
       <DependentUpon>VLCLogoWithGradient.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\VariousPages\SearchPage.xaml.cs">
+      <DependentUpon>SearchPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -556,6 +565,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\Placeholders\NoResults.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\Placeholders\NoShowPlaceholder.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -568,11 +581,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\Placeholders\StartSearchingSomething.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\TrackItemTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\VLCLogoWithGradient.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\VariousPages\SearchPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

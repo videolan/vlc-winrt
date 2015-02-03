@@ -143,12 +143,6 @@
     <Compile Include="Views\UserControls\Placeholder\NoFavoriteAlbumsControl.xaml.cs">
       <DependentUpon>NoFavoriteAlbumsControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControls\Placeholder\NoResults.xaml.cs">
-      <DependentUpon>NoResults.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UserControls\Placeholder\StartSearchingSomething.xaml.cs">
-      <DependentUpon>StartSearchingSomething.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\UserControls\TopBar.xaml.cs">
       <DependentUpon>TopBar.xaml</DependentUpon>
     </Compile>
@@ -166,9 +160,6 @@
     </Compile>
     <Compile Include="Views\VariousPages\DEBUG\historyvideo.xaml.cs">
       <DependentUpon>historyvideo.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\VariousPages\SearchPage.xaml.cs">
-      <DependentUpon>SearchPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\VariousPages\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
@@ -918,14 +909,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\UserControls\Placeholder\NoResults.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\UserControls\Placeholder\StartSearchingSomething.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\UserControls\TopBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -947,10 +930,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\VariousPages\DEBUG\historyvideo.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\VariousPages\SearchPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

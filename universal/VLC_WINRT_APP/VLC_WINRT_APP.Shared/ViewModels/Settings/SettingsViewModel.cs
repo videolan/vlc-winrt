@@ -113,7 +113,6 @@ namespace VLC_WINRT_APP.ViewModels.Settings
         }
 #endif
 
-#if WINDOWS_PHONE_APP
         public bool SearchArtists
         {
             get
@@ -219,7 +218,6 @@ namespace VLC_WINRT_APP.ViewModels.Settings
                 }
             }
         }
-#endif
         public OrderType AlbumsOrderType
         {
             get

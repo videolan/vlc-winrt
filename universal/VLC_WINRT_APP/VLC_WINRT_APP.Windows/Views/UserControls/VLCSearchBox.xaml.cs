@@ -21,7 +21,7 @@ namespace VLC_WINRT_APP.Views.UserControls
         }
         private void LargeSearchBox_SuggestionsRequested(SearchBox sender, SearchBoxSuggestionsRequestedEventArgs args)
         {
-            SearchHelpers.Search(args.QueryText, args);
+            //SearchHelpers.Search(args.QueryText, args);
         }
 
         private void LargeSearchBox_QuerySubmitted(SearchBox sender, SearchBoxQuerySubmittedEventArgs args)
