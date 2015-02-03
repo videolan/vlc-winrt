@@ -165,7 +165,8 @@
                        Text="{Binding Title}"
                        Foreground="{Binding Color}"
                        Style="{StaticResource SubheaderTextBlockStyle}" 
-                       VerticalAlignment="Bottom"/>
+                       VerticalAlignment="Bottom"
+                       FontSize="22"/>
         </Grid>
     </DataTemplate>
 
