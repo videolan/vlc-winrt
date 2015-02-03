@@ -13,7 +13,8 @@
 
     <Grid x:Name="HeaderGrid"
           Margin="-12,0,0,0"
-          Loaded="HeaderGrid_OnLoaded">
+          Loaded="HeaderGrid_OnLoaded"
+          RequestedTheme="Dark">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition />
