@@ -85,8 +85,13 @@ Finish
 Clone libvlcpp from git://git.videolan.org/vlc-bindings/libvlcpp.git
 into the wrapper/ directory
 
+5) Get external WinRT dependencies
+The AppBar control is already available as a Nuget package for the Windows Phone project.
+The AppBar control for Windows is still under early stages of development. 
+You have to clone >> http://github.com/ThomasNigro/CustomAppBar << 
+and build the Windows-only CustomAppBar project.
 
-5) Build
+6) Build
 --------
 Click on Build Solution. 
 
@@ -112,7 +117,7 @@ Enable debug mode for the app:
 Enable-AppxDebug  9519ba58-7ad6-4c4e-97ed-bfc2135a0d19_1.0.0.0_x86__2c7ztm58ext6g
 # Debugging has been enabled for 9519ba58-7ad6-4c4e-97ed-bfc2135a0d19_1.0.0.0_x86__2c7ztm58ext6g.
  
-5) Extra: Helpful snippets and tools
+7) Extra: Helpful snippets and tools
 ------------------------------------
 Use http://technet.microsoft.com/en-us/sysinternals/bb896647 DebugView to view the debug logs
 And Procmon ( http://technet.microsoft.com/en-ca/sysinternals/bb896645.aspx ) helps to see and debug events (like loading DLLs/modules/etc)
