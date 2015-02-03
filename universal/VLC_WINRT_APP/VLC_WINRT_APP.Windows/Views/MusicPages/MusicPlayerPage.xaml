@@ -5,81 +5,79 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:triggers="using:WinRT.Triggers"
       xmlns:musicPlayerPageControls="using:VLC_WINRT_APP.Views.MusicPages.MusicPlayerPageControls"
+      xmlns:musicNowPlayingControls="using:VLC_WINRT_APP.Views.MusicPages.MusicNowPlayingControls"
+      xmlns:extensions="using:WinRTXamlToolkit.Controls.Extensions"
       mc:Ignorable="d"
       DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}">
 
-    <Grid>
+    <Grid Background="Black"
+          RequestedTheme="Dark">
+        <Image Source="{Binding CurrentArtist.Picture}"
+               Stretch="UniformToFill"
+               Opacity="0.3"
+               extensions:ImageExtensions.FadeInOnLoaded="True" />
         <Hub x:Name="MainHub">
-            <Hub.Header>
-                <StackPanel Orientation="Horizontal"
-                            Margin="-40,-14,0,-18"
-                            Height="45">
-                    <AppBarButton Icon="Back"
-                                  IsCompact="True"
-                                  Click="GoBack"
-                                  Style="{StaticResource MiniAppBarButtonStyle}" />
-                    <TextBlock Text="{Binding CurrentAlbum.Name}"
-                               Style="{StaticResource TitleTextBlockStyle}"
-                               Typography.Capitals="SmallCaps"
-                               FontSize="23"
-                               Margin="0,-6,0,0"
-                               VerticalAlignment="Center" />
-                </StackPanel>
-            </Hub.Header>
             <Hub.Sections>
-                <HubSection Margin="-24,0,0,0"
-                            IsHeaderInteractive="True">
-                    <HubSection.Header>
-                        <musicPlayerPageControls:AlbumInfoHeaderControl />
-                    </HubSection.Header>
+                <HubSection Header="now playing"
+                            Width="450">
                     <HubSection.ContentTemplate>
                         <DataTemplate>
-                            <Grid>
-                                <ListView ItemsSource="{Binding TrackCollection.Playlist}"
-                                          IsItemClickEnabled="True"
-                                          SelectionMode="None"
-                                          ItemTemplate="{StaticResource LittleDarkTrackTemplate}"
-                                          ItemContainerStyle="{StaticResource ListViewItemContainerStyle}">
-                                    <triggers:Interactions.Triggers>
-                                        <triggers:EventTrigger EventName="ItemClick">
-                                            <triggers:InvokeCommandAction Command="{Binding CurrentPlayingArtist.CurrentAlbumItem.TrackClicked}"
-                                                                          PassEventArgsToCommand="True" />
-                                        </triggers:EventTrigger>
-                                    </triggers:Interactions.Triggers>
-                                    <ListView.ItemsPanel>
-                                        <ItemsPanelTemplate>
-                                            <ItemsWrapGrid ItemWidth="300"
-                                                           Orientation="Vertical" />
-                                        </ItemsPanelTemplate>
-                                    </ListView.ItemsPanel>
-                                    <ListView.ItemContainerTransitions>
-                                        <TransitionCollection>
-                                            <EntranceThemeTransition FromHorizontalOffset="150"/>
-                                        </TransitionCollection>
-                                    </ListView.ItemContainerTransitions>
-                                </ListView>
-                            </Grid>
+                            <musicNowPlayingControls:MusicNowPlaying />
                         </DataTemplate>
                     </HubSection.ContentTemplate>
                 </HubSection>
-                <HubSection x:Uid="Biography" Header="biography">
+                <HubSection Header="playlist"
+                            Width="450">
                     <HubSection.ContentTemplate>
                         <DataTemplate>
-                            <musicPlayerPageControls:BiographyInfoControl/>
+                            <ListView ItemsSource="{Binding TrackCollection.Playlist}"
+                                      IsItemClickEnabled="True"
+                                      SelectionMode="None"
+                                      ItemTemplate="{StaticResource WPTrackTemplateWONumber}"
+                                      ItemContainerStyle="{StaticResource ListViewItemStyle}">
+                                <ListView.ItemContainerTransitions>
+                                    <TransitionCollection>
+                                        <AddDeleteThemeTransition />
+                                        <EntranceThemeTransition />
+                                    </TransitionCollection>
+                                </ListView.ItemContainerTransitions>
+                                <ListView.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <ItemsStackPanel />
+                                    </ItemsPanelTemplate>
+                                </ListView.ItemsPanel>
+                                <triggers:Interactions.Triggers>
+                                    <triggers:EventTrigger EventName="ItemClick">
+                                        <triggers:InvokeCommandAction Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.TrackClickedCommand}"
+                                                                      PassEventArgsToCommand="True" />
+                                    </triggers:EventTrigger>
+                                </triggers:Interactions.Triggers>
+                            </ListView>
                         </DataTemplate>
                     </HubSection.ContentTemplate>
                 </HubSection>
-                <HubSection x:Uid="PopularAlbums" Header="popular albums">
+                <HubSection x:Uid="Biography"
+                            Header="biography"
+                            MaxWidth="450">
                     <HubSection.ContentTemplate>
                         <DataTemplate>
-                            <musicPlayerPageControls:PopularAlbumsInfoControl/> 
+                            <musicPlayerPageControls:BiographyInfoControl />
                         </DataTemplate>
                     </HubSection.ContentTemplate>
                 </HubSection>
-                <HubSection x:Uid="SimilarArtists" Header="similar artists">
+                <HubSection x:Uid="PopularAlbums"
+                            Header="popular albums">
                     <HubSection.ContentTemplate>
                         <DataTemplate>
-                            <musicPlayerPageControls:SimilarArtistsInfoControl/>
+                            <musicPlayerPageControls:PopularAlbumsInfoControl />
+                        </DataTemplate>
+                    </HubSection.ContentTemplate>
+                </HubSection>
+                <HubSection x:Uid="SimilarArtists"
+                            Header="similar artists">
+                    <HubSection.ContentTemplate>
+                        <DataTemplate>
+                            <musicPlayerPageControls:SimilarArtistsInfoControl />
                         </DataTemplate>
                     </HubSection.ContentTemplate>
                 </HubSection>

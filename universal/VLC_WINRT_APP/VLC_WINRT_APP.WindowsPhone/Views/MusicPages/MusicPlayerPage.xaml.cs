@@ -17,14 +17,6 @@ namespace VLC_WINRT_APP.Views.MusicPages
             this.InitializeComponent();
         }
 
-        private async void PlayPauseHold(object sender, HoldingRoutedEventArgs e)
-        {
-            Locator.MusicPlayerVM.PlayOrPauseCommand.Execute(null);
-            await Locator.MusicPlayerVM.CleanViewModel();
-            if(App.ApplicationFrame.CanGoBack)
-                App.ApplicationFrame.GoBack();
-        }
-
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             HardwareButtons.BackPressed += HardwareButtonsOnBackPressed;
