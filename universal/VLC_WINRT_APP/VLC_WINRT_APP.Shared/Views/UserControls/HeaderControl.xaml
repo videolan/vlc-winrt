@@ -25,7 +25,7 @@
             <Path Grid.Row="1"
                   Data="{StaticResource VLCFlatPath}"
                   Loaded="BackButton_Loaded"
-                  Fill="WhiteSmoke"
+                  Fill="{ThemeResource BasicForeground}"
                   VerticalAlignment="Center"
                   Margin="24,6,0,0"
                   Height="26"
@@ -37,7 +37,6 @@
                        VerticalAlignment="Center"
                        Grid.Column="1"
                        Text="{Binding HeaderTextBlock}"
-                       Foreground="WhiteSmoke"
                        Style="{StaticResource SubheaderTextBlockStyle}" />
         </Grid>
     </Button>
