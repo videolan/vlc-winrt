@@ -13,34 +13,7 @@
                PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
                SecondaryButtonClick="ContentDialog_SecondaryButtonClick"
                RequestedTheme="Light"
+               FullSizeDesired="True"
                DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
-
-    <Grid VerticalAlignment="Stretch"
-          HorizontalAlignment="Stretch">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition />
-        </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-            <TextBox Name="playlistName"
-                     PlaceholderText="Playlist name" />
-            <Button Grid.Column="1"
-                    Content="Add"
-                    Click="NewPlaylistButton_Click" />
-        </Grid>
-        <ListView Grid.Row="1"
-                  ItemsSource="{Binding TrackCollections}"
-                  SelectedItem="{Binding CurrentTrackCollection, Mode=TwoWay}"
-                  Margin="24,0,0,0"
-                  ItemTemplate="{StaticResource PhoneTrackCollectionTemplate}"
-                  ItemContainerStyle="{StaticResource ListViewItemStyle}">
-        </ListView>
-        <placeholder:NoPlaylistPlaceholder Grid.Row="1"
-                                           Visibility="{Binding TrackCollections.Count, Converter={StaticResource CountToVisibilityConverter}}"
-                                           Margin="24,40,0,0" />
-    </Grid>
+    <local:AddAlbumToPlaylist />
 </ContentDialog>

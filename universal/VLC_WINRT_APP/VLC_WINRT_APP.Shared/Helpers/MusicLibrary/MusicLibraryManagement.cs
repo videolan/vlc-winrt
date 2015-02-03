@@ -25,6 +25,8 @@ using VLC_WINRT_APP.Services.Interface;
 using VLC_WINRT_APP.Services.RunTime;
 using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.ViewModels.MusicVM;
+using VLC_WINRT_APP.Views.MusicPages.PlaylistControls;
+using WinRTXamlToolkit.Controls.Extensions;
 using WinRTXamlToolkit.IO.Extensions;
 
 namespace VLC_WINRT_APP.Helpers.MusicLibrary
@@ -503,6 +505,23 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                     Locator.MusicPlayerVM.TrackCollection.Playlist.FirstOrDefault(x => x.Id == trackItem.Id);
                 if (playingTrack != null) Locator.MusicPlayerVM.TrackCollection.Playlist.Remove(playingTrack);
             });
+        }
+
+        public static void AddAlbumToPlaylist(object args)
+        {
+            if (Locator.MusicLibraryVM.CurrentTrackCollection == null)
+            {
+#if WINDOWS_PHONE_APP
+                ((ContentDialogButtonClickEventArgs) args).Cancel = true;
+#endif
+                ToastHelper.Basic("You have to select a playlist", false, "selectplaylist");
+                return;
+            }
+#if WINDOWS_APP
+            var flyout = ((AddAlbumToPlaylistBase)args).GetFirstDescendantOfType<SettingsFlyout>();
+            if (flyout != null) flyout.Hide();
+#endif
+            Locator.MusicLibraryVM.AddToPlaylistCommand.Execute(Locator.MusicLibraryVM.CurrentAlbum);
         }
     }
 }

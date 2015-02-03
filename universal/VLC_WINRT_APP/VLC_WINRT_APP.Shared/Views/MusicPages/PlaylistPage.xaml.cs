@@ -25,12 +25,14 @@ namespace VLC_WINRT_APP.Views.MusicPages
             this.InitializeComponent();
         }
 
-#if WINDOWS_PHONE_APP
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
+#if WINDOWS_PHONE_APP
             HardwareButtons.BackPressed += HardwareButtonsOnBackPressed;
+#endif
+            await AppBarHelper.UpdateAppBar(typeof(PlaylistPage));
         }
-
+#if WINDOWS_PHONE_APP
         private void HardwareButtonsOnBackPressed(object sender, BackPressedEventArgs backPressedEventArgs)
         {
             if (App.ApplicationFrame.CanGoBack)

@@ -10,9 +10,5 @@ namespace VLC_WINRT_APP.Views.MusicPages
         {
             this.InitializeComponent();
         }
-        private async void NewPlaylistButton_Click(object sender, RoutedEventArgs e)
-        {
-            await MusicLibraryManagement.AddNewPlaylist(playlistName.Text);
-        }
     }
 }
