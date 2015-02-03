@@ -21,6 +21,7 @@
                         <DataTemplate>
                             <GridView ItemsSource="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM.ViewedVideos}"
                                       ItemTemplate="{StaticResource PhoneCompactVideoTemplate}"
+                                      ItemContainerStyle="{StaticResource GridViewItemStyle}"
                                       IsItemClickEnabled="True"
                                       SelectionMode="None"
                                       IsSwipeEnabled="False"

@@ -33,6 +33,7 @@
         <ListView Grid.Row="1"
                   ItemsSource="{Binding Videos}"
                   ItemTemplate="{StaticResource PhoneCompactVideoTemplate}"
+                  ItemContainerStyle="{StaticResource ListViewItemStyle}"
                   Margin="0,0,-25,0"
                   IsItemClickEnabled="True"
                   SelectionMode="None">

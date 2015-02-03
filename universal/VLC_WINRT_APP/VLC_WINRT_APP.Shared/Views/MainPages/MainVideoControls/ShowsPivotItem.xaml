@@ -43,6 +43,7 @@
         <ListView Grid.Row="2"
                   ItemsSource="{Binding CurrentShow.Episodes}"
                   ItemTemplate="{StaticResource PhoneShowTemplate}"
+                  ItemContainerStyle="{StaticResource ListViewItemStyle}"
                   IsItemClickEnabled="True">
             <triggers:Interactions.Triggers>
                 <triggers:EventTrigger EventName="ItemClick">
