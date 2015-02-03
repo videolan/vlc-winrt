@@ -6,6 +6,9 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Shapes;
+using VLC_WINRT_APP.Helpers;
+using WinRTXamlToolkit.Controls.Extensions;
 
 namespace VLC_WINRT_APP.Views.UserControls
 {
@@ -27,7 +30,7 @@ namespace VLC_WINRT_APP.Views.UserControls
 
         public String HeaderTextBlock
         {
-            get { return (String) GetValue(HeaderTextBlockProperty); }
+            get { return (String)GetValue(HeaderTextBlockProperty); }
             set
             {
                 SetValue(HeaderTextBlockProperty, value);
@@ -48,8 +51,22 @@ namespace VLC_WINRT_APP.Views.UserControls
             set
             {
                 SetValue(HeaderBackgroundProperty, value);
-                
+
             }
+        }
+
+        private void BackButton_Loaded(object sender, RoutedEventArgs e)
+        {
+#if WINDOWS_PHONE_APP
+#else
+            sender = PathHelper.CreateGeometry((sender as Path), App.Current.Resources["BackPath"].ToString());
+#endif
+        }
+
+        private void GoBack_Click(object sender, RoutedEventArgs e)
+        {
+            var flyout = this.GetFirstAncestorOfType<SettingsFlyout>();
+            if (flyout != null) flyout.Hide();
         }
     }
 }
