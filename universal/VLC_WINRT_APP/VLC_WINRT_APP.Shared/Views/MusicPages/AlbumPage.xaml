@@ -8,7 +8,5 @@
       xmlns:albumPageControls="using:VLC_WINRT_APP.Views.MusicPages.AlbumPageControls"
       mc:Ignorable="d"
       DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
-    <Grid Margin="0,0,0,0">
-        <albumPageControls:AlbumPageBase/>
-    </Grid>
+    <albumPageControls:AlbumPageBase />
 </Page>
