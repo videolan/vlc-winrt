@@ -96,48 +96,7 @@ namespace VLC_WINRT_APP.Helpers
 #endif
                 else if (page == typeof(ArtistPage))
                 {
-                    Locator.MainVM.AppBarElements.Clear();
-                    appbarEl.Add(new AppBarButton()
-                    {
-                        Label = "play all",
-                        Icon = PathHelper.Create(App.Current.Resources["PlayPath"].ToString()),
-                        Command = Locator.MusicLibraryVM.PlayArtistAlbumsCommand,
-                        CommandParameter = Locator.MusicLibraryVM.CurrentArtist
-                    });
-
-                    // pin artist
-                    var pinLabelBind = new Binding
-                    {
-                        Source = Locator.MusicLibraryVM.CurrentArtist,
-                        UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged,
-                        Converter = App.Current.Resources["PinConverter"] as IValueConverter,
-                        ConverterParameter = "text",
-                        Path = new PropertyPath("IsPinned")
-                    };
-                    var pinIconBind = new Binding
-                    {
-                        Source = Locator.MusicLibraryVM.CurrentArtist,
-                        UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged,
-                        Converter = App.Current.Resources["PinConverter"] as IValueConverter,
-                        ConverterParameter = "icon",
-                        Path = new PropertyPath("IsPinned")
-                    };
-                    var pinButton = new AppBarButton()
-                    {
-                        Command = Locator.MusicLibraryVM.CurrentArtist.PinArtistCommand,
-                        CommandParameter = Locator.MusicLibraryVM.CurrentArtist
-                    };
-                    pinButton.SetBinding(AppBarButton.LabelProperty, pinLabelBind);
-                    pinButton.SetBinding(AppBarButton.IconProperty, pinIconBind);
-                    appbarEl.Add(pinButton);
-
-                    appbarEl.Add(new AppBarButton()
-                    {
-                        Label = "shows",
-                        Icon = new SymbolIcon(Symbol.Calendar),
-                        Command = Locator.MusicLibraryVM.CurrentArtist.SeeArtistShowsCommand,
-                        CommandParameter = Locator.MusicLibraryVM.CurrentArtist
-                    });
+                    SetArtistPageButtons(appbarEl);
                 }
                 else if (page == typeof(AlbumPage))
                 {
@@ -295,6 +254,53 @@ namespace VLC_WINRT_APP.Helpers
             favBut.SetBinding(AppBarButton.LabelProperty, favLabelBind);
             favBut.SetBinding(AppBarButton.IconProperty, favSymbolBind);
             appbarEl.Add(favBut);
+            appbarEl.Add(new AppBarButton()
+            {
+                Label = "shows",
+                Icon = new SymbolIcon(Symbol.Calendar),
+                Command = Locator.MusicLibraryVM.CurrentArtist.SeeArtistShowsCommand,
+                CommandParameter = Locator.MusicLibraryVM.CurrentArtist
+            });
+            return appbarEl;
+        }
+
+        public static List<ICommandBarElement> SetArtistPageButtons(List<ICommandBarElement> appbarEl)
+        {
+            Locator.MainVM.AppBarElements.Clear();
+            appbarEl.Add(new AppBarButton()
+            {
+                Label = "play all",
+                Icon = PathHelper.Create(App.Current.Resources["PlayPath"].ToString()),
+                Command = Locator.MusicLibraryVM.PlayArtistAlbumsCommand,
+                CommandParameter = Locator.MusicLibraryVM.CurrentArtist
+            });
+
+            // pin artist
+            var pinLabelBind = new Binding
+            {
+                Source = Locator.MusicLibraryVM.CurrentArtist,
+                UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged,
+                Converter = App.Current.Resources["PinConverter"] as IValueConverter,
+                ConverterParameter = "text",
+                Path = new PropertyPath("IsPinned")
+            };
+            var pinIconBind = new Binding
+            {
+                Source = Locator.MusicLibraryVM.CurrentArtist,
+                UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged,
+                Converter = App.Current.Resources["PinConverter"] as IValueConverter,
+                ConverterParameter = "icon",
+                Path = new PropertyPath("IsPinned")
+            };
+            var pinButton = new AppBarButton()
+            {
+                Command = Locator.MusicLibraryVM.CurrentArtist.PinArtistCommand,
+                CommandParameter = Locator.MusicLibraryVM.CurrentArtist
+            };
+            pinButton.SetBinding(AppBarButton.LabelProperty, pinLabelBind);
+            pinButton.SetBinding(AppBarButton.IconProperty, pinIconBind);
+            appbarEl.Add(pinButton);
+
             appbarEl.Add(new AppBarButton()
             {
                 Label = "shows",

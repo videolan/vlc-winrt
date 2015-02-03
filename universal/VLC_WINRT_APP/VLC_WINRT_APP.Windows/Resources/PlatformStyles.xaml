@@ -603,4 +603,58 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+
+    <Style x:Key="SettingsFlyoutStyle"
+           TargetType="SettingsFlyout">
+        <Setter Property="HeaderBackground"
+                Value="{ThemeResource SettingsFlyoutHeaderBackgroundThemeBrush}" />
+        <Setter Property="HeaderForeground"
+                Value="{ThemeResource SettingsFlyoutHeaderForegroundThemeBrush}" />
+        <Setter Property="Background"
+                Value="{ThemeResource SettingsFlyoutBackgroundThemeBrush}" />
+        <Setter Property="BorderThickness"
+                Value="1,0,0,0" />
+        <Setter Property="Padding"
+                Value="0" />
+        <Setter Property="HorizontalContentAlignment"
+                Value="Stretch" />
+        <Setter Property="VerticalContentAlignment"
+                Value="Stretch" />
+        <Setter Property="IsTabStop"
+                Value="False" />
+        <Setter Property="ScrollViewer.HorizontalScrollMode"
+                Value="Disabled" />
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility"
+                Value="Disabled" />
+        <Setter Property="ScrollViewer.VerticalScrollMode"
+                Value="Auto" />
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility"
+                Value="Auto" />
+        <Setter Property="ScrollViewer.ZoomMode"
+                Value="Disabled" />
+        <Setter Property="Width"
+                Value="346" />
+        <Setter Property="MinWidth"
+                Value="320" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="SettingsFlyout">
+                    <Border BorderBrush="{Binding TemplateSettings.BorderBrush, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                            BorderThickness="{Binding TemplateSettings.BorderThickness, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                            Background="{TemplateBinding Background}">
+                        <Grid>
+                            <ContentPresenter x:Name="ContentPresenter"
+                                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                                              ContentTransitions="{Binding TemplateSettings.ContentTransitions, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                              Content="{TemplateBinding Content}"
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              Margin="{TemplateBinding Padding}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>

@@ -129,6 +129,12 @@
     <Compile Include="Views\MainPages\VideoPanes\VideosPage.xaml.cs">
       <DependentUpon>VideosPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\MusicPages\AlbumFlyout.xaml.cs">
+      <DependentUpon>AlbumFlyout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MusicPages\ArtistFlyout.xaml.cs">
+      <DependentUpon>ArtistFlyout.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserControls\Flyouts\AlbumMenuFlyout.xaml.cs">
       <DependentUpon>AlbumMenuFlyout.xaml</DependentUpon>
     </Compile>
@@ -892,6 +898,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainPages\VideoPanes\VideosPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MusicPages\AlbumFlyout.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MusicPages\ArtistFlyout.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

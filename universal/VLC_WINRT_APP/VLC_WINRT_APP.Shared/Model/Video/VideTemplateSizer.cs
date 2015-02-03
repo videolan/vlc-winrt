@@ -27,13 +27,13 @@ namespace VLC_WINRT_APP.Model.Video
             wrapGrid.ItemHeight = itemHeight;
         }
 
-        public static void ComputeAlbums(ItemsWrapGrid wrapGrid, TemplateSize size = TemplateSize.Compact)
+        public static void ComputeAlbums(ItemsWrapGrid wrapGrid, TemplateSize size = TemplateSize.Compact, double? width = null)
         {
-            var width = Window.Current.Bounds.Width;
+            if (width == null) width = Window.Current.Bounds.Width;
+            var splitScreen = (size == TemplateSize.Compact) ? 3 : 2;
 #if WINDOWS_PHONE_APP
             if(width == 400)
                 size = TemplateSize.Normal;
-            var splitScreen = (size == TemplateSize.Compact) ? 3 : 2;
             if (!DisplayHelper.IsPortrait())
                 splitScreen = 5;
             var itemWidth = (width / splitScreen);
@@ -48,7 +48,7 @@ namespace VLC_WINRT_APP.Model.Video
             }
             else
             {
-                wrapGrid.ItemWidth = (width / 3) - 20;
+                wrapGrid.ItemWidth = (width.Value / splitScreen) - 20;
                 wrapGrid.ItemHeight = wrapGrid.ItemWidth * 1.33;
             }
 #endif

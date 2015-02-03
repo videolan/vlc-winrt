@@ -6,6 +6,8 @@
                 xmlns:userControls="using:VLC_WINRT_APP.Views.UserControls"
                 xmlns:extensions="using:WinRTXamlToolkit.Controls.Extensions"
                 xmlns:customAppBar="using:CustomAppBarDesktop"
+                xmlns:albumPageControls="using:VLC_WINRT_APP.Views.MusicPages.AlbumPageControls"
+                xmlns:musicPages="using:VLC_WINRT_APP.Views.MusicPages"
                 mc:Ignorable="d"
                 DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}"
                 RequestedTheme="{Binding ApplicationTheme, Converter={StaticResource AppThemeElementThemeConverter}}"

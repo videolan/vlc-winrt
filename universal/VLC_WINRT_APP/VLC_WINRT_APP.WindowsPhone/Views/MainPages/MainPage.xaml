@@ -8,6 +8,7 @@
                 xmlns:panelsView="using:PanelsView"
                 xmlns:extensions="using:WinRTXamlToolkit.Controls.Extensions"
                 xmlns:customappbar="using:CustomAppBar"
+                xmlns:musicPages="using:VLC_WINRT_APP.Views.MusicPages"
                 mc:Ignorable="d"
                 x:Name="SwapChainPanel"
                 DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}"
