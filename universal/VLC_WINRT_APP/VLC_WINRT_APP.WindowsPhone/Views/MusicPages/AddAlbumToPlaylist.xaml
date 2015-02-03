@@ -4,8 +4,6 @@
                xmlns:local="using:VLC_WINRT_APP.Views.MusicPages"
                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-               xmlns:triggers="using:WinRT.Triggers"
-               xmlns:placeholder="using:VLC_WINRT_APP.Views.UserControls.Placeholder"
                mc:Ignorable="d"
                Title="ADD TO PLAYLIST"
                PrimaryButtonText="add to playlist"
