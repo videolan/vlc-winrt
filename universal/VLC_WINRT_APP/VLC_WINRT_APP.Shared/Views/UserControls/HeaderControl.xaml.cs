@@ -69,5 +69,12 @@ namespace VLC_WINRT_APP.Views.UserControls
             if (flyout != null) flyout.Hide();
             else if (App.ApplicationFrame.CanGoBack) App.ApplicationFrame.GoBack();
         }
+
+        private void RootGrid_loaded(object sender, RoutedEventArgs e)
+        {
+#if WINDOWS_PHONE_APP
+            (sender as Button).HorizontalContentAlignment=HorizontalAlignment.Left;
+#endif
+        }
     }
 }

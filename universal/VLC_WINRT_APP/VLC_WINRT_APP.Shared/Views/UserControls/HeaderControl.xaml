@@ -10,7 +10,8 @@
 
     <Button Style="{StaticResource TextBlockButtonStyle}"
             Click="GoBack_Click"
-            HorizontalAlignment="Stretch">
+            HorizontalAlignment="Stretch"
+            Loaded="RootGrid_loaded">
         <Grid Name="HeaderGrid"
               Height="100"
               Background="{Binding HeaderBackground, Mode=TwoWay}">
