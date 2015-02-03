@@ -8,9 +8,11 @@ namespace VLC_WINRT_APP.Commands.Music
     {
         public override async void Execute(object parameter)
         {
-#if WINDOWS_PHONE_APP
             var addToPlaylist = new AddAlbumToPlaylist();
+#if WINDOWS_PHONE_APP
             var _ = await addToPlaylist.ShowAsync();
+#else
+            addToPlaylist.ShowIndependent();
 #endif
         }
     }

@@ -9,13 +9,15 @@ namespace VLC_WINRT_APP.Commands.Music
     {
         public override async void Execute(object parameter)
         {
-#if WINDOWS_PHONE_APP
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
             {
                 var createPlaylist = new CreateNewPlaylist();
+#if WINDOWS_PHONE_APP
                 await createPlaylist.ShowAsync();
-            });
+#else
+                createPlaylist.ShowIndependent();
 #endif
+            });
         }
     }
 }

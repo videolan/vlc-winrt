@@ -13,12 +13,14 @@
             <RowDefinition Height="80" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <userControls:HeaderControl Grid.Row="0"
-                             HeaderTextBlock="{Binding CurrentTrackCollection.Name}" />
-        <Image Grid.Row="1"
+        <Image Grid.Row="0"
                Source="/Assets/backgroundTop.png"
                Stretch="Uniform"
-               VerticalAlignment="Top" />
+               VerticalAlignment="Top"
+               HorizontalAlignment="Right" />
+        <userControls:HeaderControl Grid.Row="0"
+                                    HeaderTextBlock="{Binding CurrentTrackCollection.Name}"
+                                    HeaderBackground="Transparent" />
         <ListView x:Name="PlayListView"
                   Grid.Row="1"
                   SelectionMode="Multiple"

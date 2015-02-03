@@ -9,7 +9,8 @@
              d:DesignWidth="400">
 
     <Button Style="{StaticResource TextBlockButtonStyle}"
-            Click="GoBack_Click">
+            Click="GoBack_Click"
+            HorizontalAlignment="Stretch">
         <Grid Name="HeaderGrid"
               Height="100"
               Background="{Binding HeaderBackground, Mode=TwoWay}">

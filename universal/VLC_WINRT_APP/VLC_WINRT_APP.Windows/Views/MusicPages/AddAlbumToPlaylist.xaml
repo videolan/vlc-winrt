@@ -1,0 +1,41 @@
+﻿<SettingsFlyout x:Class="VLC_WINRT_APP.Views.MusicPages.AddAlbumToPlaylist"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:local="using:VLC_WINRT_APP.Views.MusicPages"
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                xmlns:placeholder="using:VLC_WINRT_APP.Views.UserControls.Placeholder"
+                xmlns:userControls="using:VLC_WINRT_APP.Views.UserControls"
+                mc:Ignorable="d"
+                IconSource="Assets/SmallLogo.png"
+                Title="AddAlbumToPlaylist"
+                d:DesignWidth="346"
+                Style="{StaticResource SettingsFlyoutStyle}">
+    <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+                DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
+        <userControls:HeaderControl HeaderTextBlock="add to playlist" />
+        <StackPanel Margin="24">
+            <TextBlock Text="Add a playlist"
+                       Style="{StaticResource SubheaderTextBlockStyle}" />
+            <Grid Margin="0,12">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <TextBox Name="playlistName"
+                         PlaceholderText="Playlist name" />
+                <Button Grid.Column="1"
+                        Content="Add"
+                        Click="NewPlaylistButton_Click" />
+            </Grid>
+            <ListView ItemsSource="{Binding TrackCollections}"
+                      SelectedItem="{Binding CurrentTrackCollection, Mode=TwoWay}"
+                      ItemTemplate="{StaticResource PhoneTrackCollectionTemplate}"
+                      ItemContainerStyle="{StaticResource ListViewItemStyle}">
+            </ListView>
+            <placeholder:NoPlaylistPlaceholder Grid.Row="2"
+                                               Visibility="{Binding TrackCollections.Count, Converter={StaticResource CountToVisibilityConverter}}"
+                                               Margin="0,40,0,0" />
+        </StackPanel>
+    </StackPanel>
+</SettingsFlyout>
