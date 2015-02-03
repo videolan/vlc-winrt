@@ -34,15 +34,10 @@ namespace VLC_WINRT_APP.Helpers
                     }
                     break;
                 case VLCItemType.Album:
-                    AlbumItem albumItem = Locator.MusicLibraryVM.Albums.FirstOrDefault(x => x.Id == idquery);
-                    if (albumItem != null)
-                        albumItem.PlayAlbum.Execute(albumItem);
+                    Locator.MusicLibraryVM.AlbumClickedCommand.Execute(idquery);
                     break;
                 case VLCItemType.Artist:
-                    ArtistItem artistItem =
-                        Locator.MusicLibraryVM.Artists.FirstOrDefault(node => node.Id == idquery);
-                    if (artistItem != null) Locator.MusicLibraryVM.CurrentArtist = artistItem;
-                    App.ApplicationFrame.Navigate(typeof(ArtistPage));
+                    Locator.MusicLibraryVM.ArtistClickedCommand.Execute(idquery);
                     break;
                 case VLCItemType.Video:
                     VideoItem vm = Locator.VideoLibraryVM.Videos.FirstOrDefault(x => x.Title == query);
