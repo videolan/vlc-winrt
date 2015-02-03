@@ -67,6 +67,7 @@ namespace VLC_WINRT_APP.Views.UserControls
         {
             var flyout = this.GetFirstAncestorOfType<SettingsFlyout>();
             if (flyout != null) flyout.Hide();
+            else if (App.ApplicationFrame.CanGoBack) App.ApplicationFrame.GoBack();
         }
     }
 }
