@@ -34,6 +34,7 @@ using System.Collections.Generic;
 using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.Views.MainPages;
 using WinRTXamlToolkit.Controls.Extensions;
+using VLC_WINRT_APP.Commands.Social;
 
 #if WINDOWS_PHONE_APP
 using Windows.Media.Playback;
@@ -49,9 +50,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         #region private props
         private TrackCollection _trackCollection;
         private GoToMusicPlayerPage _goToMusicPlayerPage;
-#if WINDOWS_PHONE_APP
         private ShareNowPlayingMusicCommand _shareNowPlayingMusicCommand;
-#endif
         private AlbumItem _currentAlbum;
         private ArtistItem _currentArist;
         private ArtistDataRepository _artistDataRepository = new ArtistDataRepository();
@@ -145,7 +144,6 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             set { SetProperty(ref _shuffle, value); }
         }
 
-#if WINDOWS_PHONE_APP
         public ShareNowPlayingMusicCommand ShareNowPlayingMusicCommand
         {
             get
@@ -153,7 +151,6 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                 return _shareNowPlayingMusicCommand ?? (_shareNowPlayingMusicCommand = new ShareNowPlayingMusicCommand());
             }
         }
-#endif
         #endregion
 
         public MusicPlayerVM(IMediaService mediaService)
