@@ -17,7 +17,7 @@ namespace VLC_WINRT_APP.Converters
         public object ConvertBack(object value, Type targetType, object parameter, string language)
         {
             var fixedPoint = (double)value;
-            return (float)(fixedPoint / 100.0f);
+            return (float)(fixedPoint / 500.0f);
         }
     }
 }
