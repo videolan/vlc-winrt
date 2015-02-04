@@ -45,11 +45,11 @@ namespace VLC_WINRT_APP.Model.Video
             if (width > 600)
             {
                 wrapGrid.ItemWidth = 200;
-                wrapGrid.ItemHeight = 200 + contentGrid;
+                wrapGrid.ItemHeight = 200 + 40;
             }
             else
             {
-                wrapGrid.ItemWidth = (width.Value / splitScreen) - 20;
+                wrapGrid.ItemWidth = (width.Value / splitScreen);
                 wrapGrid.ItemHeight = wrapGrid.ItemWidth + 40;
             }
 #endif

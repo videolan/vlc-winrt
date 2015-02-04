@@ -4706,7 +4706,7 @@
                                                               ContentTransitions="{TemplateBinding ContentTransitions}"
                                                               ContentTemplate="{TemplateBinding ContentTemplate}"
                                                               Content="{TemplateBinding Content}"
-                                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                              HorizontalAlignment="Stretch"
                                                               VerticalAlignment="Stretch"
                                                               Margin="{TemplateBinding Padding}">
                                                 <ContentPresenter.Projection>

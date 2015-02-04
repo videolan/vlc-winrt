@@ -15,8 +15,8 @@
           Loaded="RootAlbumItem_Loaded"
           Holding="RootAlbumItem_Holding">
         <Grid.RowDefinitions>
-            <RowDefinition Height="3*" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="40" />
         </Grid.RowDefinitions>
         <Image Grid.Row="0"
                Source="{Binding Picture}"
