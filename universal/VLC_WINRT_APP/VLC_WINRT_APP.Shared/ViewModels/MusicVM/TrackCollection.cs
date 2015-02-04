@@ -167,19 +167,12 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         {
             try
             {
-                if (Playlist != null)
-                    foreach (var trackItem in Playlist)
-                    {
-                        if (trackItem == null) continue;
-                        if (Playlist[_currentTrack].Id == trackItem.Id)
-                        {
-                            trackItem.IsCurrentPlaying = true;
-                        }
-                        else
-                        {
-                            trackItem.IsCurrentPlaying = false;
-                        }
-                    }
+                if (Playlist == null || _currentTrack == -1) return;
+                foreach (var trackItem in Playlist)
+                {
+                    if (trackItem == null) continue;
+                    trackItem.IsCurrentPlaying = Playlist[_currentTrack].Id == trackItem.Id;
+                }
             }
             catch (ArgumentOutOfRangeException exception)
             {
