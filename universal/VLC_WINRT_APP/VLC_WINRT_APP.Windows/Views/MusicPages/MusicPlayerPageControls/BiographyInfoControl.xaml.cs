@@ -34,18 +34,6 @@ namespace VLC_WINRT_APP.Views.MusicPages.MusicPlayerPageControls
 
         void Responsive()
         {
-            if (Window.Current.Bounds.Width < 400)
-            {
-                this.Width = Window.Current.Bounds.Width - 80;
-            }
-            else if (Window.Current.Bounds.Width < 600)
-            {
-                this.Width = Window.Current.Bounds.Width - 200;
-            }
-            else
-            {
-                this.Width = 480;
-            }
         }
     }
 }
