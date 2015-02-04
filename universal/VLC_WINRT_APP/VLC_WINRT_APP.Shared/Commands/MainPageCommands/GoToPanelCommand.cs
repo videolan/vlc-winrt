@@ -9,6 +9,7 @@
 
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using Windows.UI;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
@@ -27,7 +28,7 @@ namespace VLC_WINRT_APP.Commands.MainPageCommands
     {
 #if WINDOWS_APP
         public static readonly SolidColorBrush SelectedColorBrush = App.Current.Resources["MainColor"] as SolidColorBrush;
-        public static readonly SolidColorBrush DefaultColorBrush = (Locator.SettingsVM.ApplicationTheme == ApplicationTheme.Dark) ? (SolidColorBrush) App.Current.Resources["PivotHeaderForegroundUnselectedBrush"] : new SolidColorBrush(Colors.DimGray);
+        public static readonly SolidColorBrush DefaultColorBrush = (Locator.SettingsVM.ApplicationTheme == ApplicationTheme.Dark) ? (SolidColorBrush)App.Current.Resources["PivotHeaderForegroundUnselectedBrush"] : new SolidColorBrush(Colors.DimGray);
 #else
         //public static readonly SolidColorBrush SelectedColorBrush = new SolidColorBrush(Colors.WhiteSmoke);
         //public static readonly SolidColorBrush DefaultColorBrush = new SolidColorBrush(Color.FromArgb(70, 0, 0, 0));
@@ -51,32 +52,42 @@ namespace VLC_WINRT_APP.Commands.MainPageCommands
             {
                 panel = Locator.MainVM.Panels.First(x => x.Index == int.Parse(parameter.ToString()));
             }
+
             foreach (Model.Panel panel1 in Locator.MainVM.Panels)
+            {
                 panel1.Color = DefaultColorBrush;
+            }
+
             if (panel != null)
             {
                 panel.Color = SelectedColorBrush;
+                while (Locator.MainVM.Panels[0].Color != SelectedColorBrush)
+                {
+                    var pane = Locator.MainVM.Panels[0];
+                    Locator.MainVM.Panels.RemoveAt(0);
+                    Locator.MainVM.Panels.Add(pane);
+                }
                 switch (panel.Index)
                 {
                     case 0:
-                        if (App.ApplicationFrame.CurrentSourcePageType != typeof (MainPageHome))
-                            App.ApplicationFrame.Navigate(typeof (MainPageHome));
+                        if (App.ApplicationFrame.CurrentSourcePageType != typeof(MainPageHome))
+                            App.ApplicationFrame.Navigate(typeof(MainPageHome));
                         break;
                     case 1:
-                        if (App.ApplicationFrame.CurrentSourcePageType != typeof (MainPageVideos))
-                            App.ApplicationFrame.Navigate(typeof (MainPageVideos));
+                        if (App.ApplicationFrame.CurrentSourcePageType != typeof(MainPageVideos))
+                            App.ApplicationFrame.Navigate(typeof(MainPageVideos));
                         break;
                     case 2:
-                        if (App.ApplicationFrame.CurrentSourcePageType != typeof (MainPageMusic))
-                            App.ApplicationFrame.Navigate(typeof (MainPageMusic));
+                        if (App.ApplicationFrame.CurrentSourcePageType != typeof(MainPageMusic))
+                            App.ApplicationFrame.Navigate(typeof(MainPageMusic));
                         break;
                     case 3:
-                        if (App.ApplicationFrame.CurrentSourcePageType != typeof (MainPageRemovables))
-                            App.ApplicationFrame.Navigate(typeof (MainPageRemovables));
+                        if (App.ApplicationFrame.CurrentSourcePageType != typeof(MainPageRemovables))
+                            App.ApplicationFrame.Navigate(typeof(MainPageRemovables));
                         break;
                     case 4:
-                        if (App.ApplicationFrame.CurrentSourcePageType != typeof (MainPageMediaServers))
-                            App.ApplicationFrame.Navigate(typeof (MainPageMediaServers));
+                        if (App.ApplicationFrame.CurrentSourcePageType != typeof(MainPageMediaServers))
+                            App.ApplicationFrame.Navigate(typeof(MainPageMediaServers));
                         break;
                 }
             }
