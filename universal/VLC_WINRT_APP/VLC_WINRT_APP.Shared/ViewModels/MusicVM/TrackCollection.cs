@@ -41,7 +41,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 
         // ui related management
         private ObservableCollection<TrackItem> _selectedTracks;
-
+        
         [PrimaryKey, AutoIncrement, Column("_id")]
         public int Id { get; set; }
 

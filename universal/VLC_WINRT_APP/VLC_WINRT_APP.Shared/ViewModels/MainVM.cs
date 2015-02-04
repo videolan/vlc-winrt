@@ -52,7 +52,7 @@ namespace VLC_WINRT_APP.ViewModels
         private AlwaysExecutableCommand _goToSearchPage;
         private ChangeMainPageVideoViewCommand _changeMainPageVideoViewCommand;
         private SearchClickedCommand _searchClickedCommand;
-        private string _searchTag;
+        private string _searchTag = "";
         #endregion
         #region public fields
         public AppBar CommandBar

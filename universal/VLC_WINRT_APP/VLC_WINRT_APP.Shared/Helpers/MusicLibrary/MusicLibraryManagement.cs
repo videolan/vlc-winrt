@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Windows.UI.Xaml.Controls;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -6,10 +7,6 @@ using System.Dynamic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-#if WINDOWS_PHONE_APP
-using Windows.Media.Playback;
-using Windows.Phone.ApplicationModel;
-#endif
 using Windows.Storage;
 using Windows.Storage.AccessCache;
 using Windows.Storage.FileProperties;
@@ -28,7 +25,11 @@ using VLC_WINRT_APP.ViewModels.MusicVM;
 using VLC_WINRT_APP.Views.MusicPages.PlaylistControls;
 using WinRTXamlToolkit.Controls.Extensions;
 using WinRTXamlToolkit.IO.Extensions;
-
+#if WINDOWS_PHONE_APP
+using Windows.Media.Playback;
+using Windows.Phone.ApplicationModel;
+#else
+#endif
 namespace VLC_WINRT_APP.Helpers.MusicLibrary
 {
     public static class MusicLibraryManagement

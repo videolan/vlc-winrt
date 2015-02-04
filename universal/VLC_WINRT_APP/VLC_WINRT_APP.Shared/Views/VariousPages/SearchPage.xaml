@@ -8,67 +8,223 @@
       xmlns:placeholder="using:VLC_WINRT_APP.Views.UserControls.Placeholder"
       xmlns:extensions="using:WinRTXamlToolkit.Controls.Extensions"
       xmlns:triggers="using:WinRT.Triggers"
+      xmlns:controls="using:WinRTXamlToolkit.Controls"
       mc:Ignorable="d">
-
-    <Grid DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}">
+    <Page.Resources>
+        <Style x:Name="CheckBoxStyleCentered"
+               TargetType="CheckBox">
+            <Setter Property="Background"
+                    Value="{ThemeResource CheckBoxBackgroundThemeBrush}" />
+            <Setter Property="BorderBrush"
+                    Value="{ThemeResource CheckBoxBorderThemeBrush}" />
+            <Setter Property="HorizontalContentAlignment"
+                    Value="Center" />
+            <Setter Property="VerticalContentAlignment"
+                    Value="Top" />
+            <Setter Property="HorizontalAlignment"
+                    Value="Left" />
+            <Setter Property="VerticalAlignment"
+                    Value="Top" />
+            <Setter Property="Padding"
+                    Value="0,10,0,0" />
+            <Setter Property="MinWidth"
+                    Value="50" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="CheckBox">
+                        <Grid Background="Transparent">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualStateGroup.Transitions>
+                                        <VisualTransition From="Pressed"
+                                                          To="PointerOver">
+                                            <Storyboard>
+                                                <PointerUpThemeAnimation Storyboard.TargetName="Grid" />
+                                            </Storyboard>
+                                        </VisualTransition>
+                                        <VisualTransition From="PointerOver"
+                                                          To="Normal">
+                                            <Storyboard>
+                                                <PointerUpThemeAnimation Storyboard.TargetName="Grid" />
+                                            </Storyboard>
+                                        </VisualTransition>
+                                        <VisualTransition From="Pressed"
+                                                          To="Normal">
+                                            <Storyboard>
+                                                <PointerUpThemeAnimation Storyboard.TargetName="Grid" />
+                                            </Storyboard>
+                                        </VisualTransition>
+                                    </VisualStateGroup.Transitions>
+                                    <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="MouseOver" />
+                                    <VisualState x:Name="PointerOver" />
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <PointerDownThemeAnimation Storyboard.TargetName="Grid" />
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background"
+                                                                           Storyboard.TargetName="CheckBackground">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="{ThemeResource CheckBoxPressedBackgroundThemeBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill"
+                                                                           Storyboard.TargetName="CheckGlyph">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="{ThemeResource CheckBoxPressedForegroundThemeBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill"
+                                                                           Storyboard.TargetName="NormalRectangle">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="{ThemeResource CheckBoxPressedBackgroundThemeBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush"
+                                                                           Storyboard.TargetName="CheckBackground">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="{ThemeResource CheckBoxDisabledBorderThemeBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill"
+                                                                           Storyboard.TargetName="CheckGlyph">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="{ThemeResource CheckBoxDisabledForegroundThemeBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill"
+                                                                           Storyboard.TargetName="NormalRectangle">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="{ThemeResource CheckBoxDisabledBackgroundThemeBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
+                                                                           Storyboard.TargetName="ContentPresenter">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="{ThemeResource CheckBoxDisabledForegroundThemeBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="CheckStates">
+                                    <VisualState x:Name="Checked">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility"
+                                                                           Storyboard.TargetName="CheckGlyph">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="Visible" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Unchecked" />
+                                    <VisualState x:Name="Indeterminate">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility"
+                                                                           Storyboard.TargetName="NormalRectangle">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="Visible" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Grid x:Name="Grid">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Column="0"
+                                      VerticalAlignment="Top"
+                                      HorizontalAlignment="Center">
+                                    <Border x:Name="CheckBackground"
+                                            BorderBrush="{TemplateBinding BorderBrush}"
+                                            BorderThickness="{TemplateBinding BorderThickness}"
+                                            Background="{TemplateBinding Background}"
+                                            HorizontalAlignment="Left"
+                                            Height="25.5"
+                                            IsHitTestVisible="False"
+                                            VerticalAlignment="Center"
+                                            Width="25.5" />
+                                    <Rectangle x:Name="NormalRectangle"
+                                               Fill="{ThemeResource CheckBoxBackgroundThemeBrush}"
+                                               HorizontalAlignment="Center"
+                                               Height="13"
+                                               IsHitTestVisible="False"
+                                               Visibility="Collapsed"
+                                               VerticalAlignment="Center"
+                                               Width="13" />
+                                    <Path x:Name="CheckGlyph"
+                                          Data="M0,123 L39,93 L124,164 L256,18 L295,49 L124,240 z"
+                                          Fill="{ThemeResource CheckBoxForegroundThemeBrush}"
+                                          FlowDirection="LeftToRight"
+                                          HorizontalAlignment="Center"
+                                          Height="17"
+                                          IsHitTestVisible="False"
+                                          Stretch="Fill"
+                                          StrokeThickness="2.5"
+                                          StrokeLineJoin="Round"
+                                          Visibility="Collapsed"
+                                          VerticalAlignment="Center"
+                                          Width="18.5" />
+                                </Grid>
+                                <ContentPresenter x:Name="ContentPresenter"
+                                                  AutomationProperties.AccessibilityView="Raw"
+                                                  ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                  Content="{TemplateBinding Content}"
+                                                  Grid.Row="1"
+                                                  Foreground="{TemplateBinding Foreground}"
+                                                  FontWeight="Normal"
+                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                  Margin="{TemplateBinding Padding}"
+                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                            </Grid>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+    <Grid DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}"
+          Loaded="RootGrid_Loaded">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0"
-                   Margin="12,20,0,0"
-                   Text="Search"
-                   Style="{StaticResource SubheaderTextBlockStyle}"
-                   Foreground="{StaticResource MainColor}"/>
-        <Image Grid.Row="0"
-               Grid.RowSpan="3"
-               Source="/Assets/backgroundTop.png"
-               Stretch="Uniform"
-               VerticalAlignment="Top"
-               extensions:ImageExtensions.FadeInOnLoaded="True" />
-        <Grid Grid.Row="1"
-              DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}"
-              Margin="12,0,0,0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <CheckBox Grid.Column="0"
-                      Grid.Row="0"
-                      IsChecked="{Binding SearchVideos, Mode=TwoWay}"
-                      Content="Videos" />
-            <CheckBox Grid.Row="1"
-                      Grid.Column="0"
-                      IsChecked="{Binding SearchAlbums, Mode=TwoWay}"
-                      Content="Albums" />
-            <CheckBox Grid.Row="1"
-                      Grid.Column="1"
-                      IsChecked="{Binding SearchTracks, Mode=TwoWay}"
-                      Content="Tracks" />
-            <CheckBox Grid.Row="1"
-                      Grid.Column="2" IsChecked="{Binding SearchArtists, Mode=TwoWay}"
-                      Content="Artists" />
-        </Grid>
+        <controls:WrapPanel Orientation="Horizontal"
+                    DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}">
+            <TextBlock Text="Search"
+                       Style="{StaticResource SubheaderTextBlockStyle}"
+                       Foreground="{StaticResource MainColor}"
+                       Margin="0,0,12,0" />
+            <CheckBox IsChecked="{Binding SearchVideos, Mode=TwoWay}"
+                      Content="Videos"
+                      Loaded="CheckBox_Loaded" 
+                      MinWidth="0"/>
+            <CheckBox IsChecked="{Binding SearchAlbums, Mode=TwoWay}"
+                      Content="Albums"
+                      Loaded="CheckBox_Loaded"
+                      MinWidth="0" />
+            <CheckBox IsChecked="{Binding SearchTracks, Mode=TwoWay}"
+                      Content="Tracks"
+                      Loaded="CheckBox_Loaded"
+                      MinWidth="0" />
+            <CheckBox IsChecked="{Binding SearchArtists, Mode=TwoWay}"
+                      Content="Artists"
+                      Loaded="CheckBox_Loaded"
+                      MinWidth="0" />
+        </controls:WrapPanel>
         <TextBox x:Uid="SearchField"
-                 Grid.Row="2"
+                 Grid.Row="1"
                  PlaceholderText="Search"
-                 Margin="12,12,12,0"
+                 Margin="0,12"
                  x:Name="SearchBox"
-                 TextChanged="SearchBox_OnTextChanged">
-        </TextBox>
-        <StackPanel Grid.Row="3">
+                 TextChanged="SearchBox_OnTextChanged" />
+        <StackPanel Grid.Row="2">
             <placeholder:StartSearchingSomething Visibility="{Binding SearchTag.Length, Converter={StaticResource CountToVisibilityConverter}}" />
-            <placeholder:NoResults Visibility="{Binding SearchResults.Count, Converter={StaticResource CountToVisibilityConverter}}" />
+            <Grid Visibility="{Binding SearchTag.Length, Converter={StaticResource NegatedCountToVisibilityConverter}}">
+                <placeholder:NoResults Visibility="{Binding SearchResults.Count, Converter={StaticResource CountToVisibilityConverter}}" />
+            </Grid>
         </StackPanel>
         <ListView x:Name="ListviewResults"
-                  Grid.Row="3"
+                  Grid.Row="2"
                   Visibility="{Binding SearchResults.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}"
                   ItemsSource="{Binding SearchResults}"
                   IsItemClickEnabled="True">
@@ -80,15 +236,9 @@
             </triggers:Interactions.Triggers>
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <ItemsStackPanel Margin="12,0,0,0" />
+                    <ItemsStackPanel/>
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
-            <ListView.ItemContainerTransitions>
-                <TransitionCollection>
-                    <AddDeleteThemeTransition />
-                    <EntranceThemeTransition />
-                </TransitionCollection>
-            </ListView.ItemContainerTransitions>
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid Margin="0,0,0,12">
