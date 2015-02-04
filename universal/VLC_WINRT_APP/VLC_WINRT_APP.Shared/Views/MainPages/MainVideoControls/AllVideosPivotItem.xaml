@@ -36,7 +36,8 @@
                   ItemContainerStyle="{StaticResource ListViewItemStyle}"
                   Margin="0,0,-25,0"
                   IsItemClickEnabled="True"
-                  SelectionMode="None">
+                  SelectionMode="None"
+                  IsSwipeEnabled="False">
             <triggers:Interactions.Triggers>
                 <triggers:EventTrigger EventName="ItemClick">
                     <triggers:InvokeCommandAction Command="{Binding OpenVideo}"
