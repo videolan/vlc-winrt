@@ -16,9 +16,6 @@ namespace VLC_WINRT_APP.Views.MusicPages
         #region layout
         private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
         {
-            MainHub.Orientation = (Window.Current.Bounds.Width < 1080)
-                ? Orientation.Vertical
-                : Orientation.Horizontal;
         }
         private void GridView_OnSizeChanged(object sender, SizeChangedEventArgs e)
         {

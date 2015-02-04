@@ -34,9 +34,6 @@ namespace VLC_WINRT_APP.Views.MusicPages.MusicPlayerPageControls
 
         void Responsive()
         {
-            (PopularItemGridView.ItemsPanelRoot as WrapGrid).Orientation = (Window.Current.Bounds.Width < 1080)
-                ? Orientation.Horizontal
-                : Orientation.Vertical;
             if (Window.Current.Bounds.Width < 400)
             {
                 (PopularItemGridView.ItemsPanelRoot as WrapGrid).ItemHeight = 120;
