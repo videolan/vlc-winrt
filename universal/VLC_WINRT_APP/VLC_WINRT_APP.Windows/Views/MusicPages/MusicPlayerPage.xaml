@@ -22,15 +22,15 @@
                         </DataTemplate>
                     </HubSection.ContentTemplate>
                 </HubSection>
-                <HubSection Header="playlist"
-                            Width="450">
+                <HubSection Header="playlist">
                     <HubSection.ContentTemplate>
                         <DataTemplate>
                             <ListView ItemsSource="{Binding TrackCollection.Playlist}"
                                       IsItemClickEnabled="True"
                                       SelectionMode="None"
                                       ItemTemplate="{StaticResource WPTrackTemplateWONumber}"
-                                      ItemContainerStyle="{StaticResource ListViewItemStyle}">
+                                      ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                                      Width="450">
                                 <ListView.ItemContainerTransitions>
                                     <TransitionCollection>
                                         <AddDeleteThemeTransition />
