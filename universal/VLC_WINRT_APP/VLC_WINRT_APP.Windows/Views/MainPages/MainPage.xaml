@@ -13,7 +13,7 @@
                 RequestedTheme="{Binding ApplicationTheme, Converter={StaticResource AppThemeElementThemeConverter}}"
                 x:Name="SwapChainPanel">
     <Grid.RowDefinitions>
-        <RowDefinition Height="Auto"
+        <RowDefinition Height="60"
                        x:Name="TopBarRowDefinition" />
         <RowDefinition Height="*" />
         <RowDefinition Height="Auto" />
