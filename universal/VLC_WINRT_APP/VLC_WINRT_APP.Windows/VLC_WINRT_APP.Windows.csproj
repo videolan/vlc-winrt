@@ -159,9 +159,6 @@
     <Compile Include="Views\MainPages\MainPageRemovables.xaml.cs">
       <DependentUpon>MainPageRemovables.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MainPages\MainPageSearch.xaml.cs">
-      <DependentUpon>MainPageSearch.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\MainPages\MainPageVideos.xaml.cs">
       <DependentUpon>MainPageVideos.xaml</DependentUpon>
     </Compile>
