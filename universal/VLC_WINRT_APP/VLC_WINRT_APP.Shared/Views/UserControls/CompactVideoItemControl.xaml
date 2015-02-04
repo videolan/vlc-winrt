@@ -46,7 +46,7 @@
                            Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
                            TextWrapping="NoWrap"
                            TextTrimming="CharacterEllipsis"
-                           FontSize="16"
+                           FontSize="14"
                            Margin="7,0,7,0"
                            FontWeight="Light" />
                 <Button Grid.Column="1"
