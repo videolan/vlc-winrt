@@ -12,7 +12,6 @@ using System.Threading.Tasks;
 using VLC_WINRT_APP.ViewModels;
 using Windows.Devices.Input;
 using Windows.Graphics.Display;
-using Windows.Phone.UI.Input;
 using Windows.System;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
@@ -20,7 +19,9 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
 using WinRTXamlToolkit.Controls.Extensions;
-
+#if WINDOWS_PHONE_APP
+using Windows.Phone.UI.Input;
+#endif
 namespace VLC_WINRT_APP.Views.VideoPages
 {
     public sealed partial class VideoPlayerPage : Page
@@ -37,7 +38,7 @@ namespace VLC_WINRT_APP.Views.VideoPages
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
-            base.OnNavigatedTo(e);            
+            base.OnNavigatedTo(e);
             // If no playback was ever started, ContinueIndexing can be null
             // If we navigate back and forth to the main page, we also don't want to 
             // re-mark the task as completed.
@@ -46,25 +47,21 @@ namespace VLC_WINRT_APP.Views.VideoPages
             timer.Interval = TimeSpan.FromSeconds(5);
             timer.Tick += TimerOnTick;
             timer.Start();
+#if WINDOWS_PHONE_APP
             HardwareButtons.BackPressed += HardwareButtonsOnBackPressed;
             StatusBar sB = StatusBar.GetForCurrentView();
             await sB.HideAsync();
+#endif
         }
 
+#if WINDOWS_PHONE_APP
         private async void HardwareButtonsOnBackPressed(object sender, BackPressedEventArgs backPressedEventArgs)
         {
             backPressedEventArgs.Handled = true;
-            if (isVisible)
-            {
-                await DisplayOrHide();
-            }
-            else
-            {
-                Locator.VideoVm.GoBack.Execute("");
-                DisplayInformation.AutoRotationPreferences = DisplayOrientations.None;
-            }
+            Locator.VideoVm.GoBack.Execute("");
+            DisplayInformation.AutoRotationPreferences = DisplayOrientations.None;
         }
-
+#endif
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
             base.OnNavigatingFrom(e);
@@ -72,7 +69,9 @@ namespace VLC_WINRT_APP.Views.VideoPages
             {
                 App.IMediaService.ContinueIndexing.SetResult(true);
             }
+#if WINDOWS_PHONE_APP
             HardwareButtons.BackPressed -= HardwareButtonsOnBackPressed;
+#endif
         }
 
         private async void VideoGrid_Tapped(object sender, TappedRoutedEventArgs e)

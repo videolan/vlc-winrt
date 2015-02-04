@@ -49,6 +49,16 @@
                            HorizontalAlignment="Center" />
             </controls:FadeTextBlock>
         </Grid>
+        <Button Style="{StaticResource TextBlockButtonStyle}"
+                Command="{Binding GoBack}"
+                HorizontalAlignment="Left"
+                Margin="24,12,0,0">
+            <Viewbox Height="36"
+                     Width="36">
+                <Path Data="{StaticResource BackPath}"
+                      Fill="White" />
+            </Viewbox>
+        </Button>
         <Grid Grid.Row="2"
               x:Name="FooterGrid"
               VerticalAlignment="Bottom"
@@ -58,29 +68,7 @@
                 <RowDefinition Height="50" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <Grid Grid.Row="0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0"
-                           HorizontalAlignment="Left"
-                           VerticalAlignment="Center"
-                           Style="{StaticResource BodyTextBlockStyle}"
-                           Text="{Binding Time, Converter={StaticResource MillisecondsStringConverter}}" />
-                <Slider Grid.Column="1"
-                        Value="{Binding Position, Mode=TwoWay, Converter={StaticResource PositionToFixedPointConverter}}"
-                        Margin="12,4,12,0"
-                        Style="{StaticResource VLCSlider}"
-                        VerticalAlignment="Center"
-                        ThumbToolTipValueConverter="{StaticResource MillisecondsStringConverter}" />
-                <TextBlock Grid.Column="2"
-                           HorizontalAlignment="Right"
-                           VerticalAlignment="Center"
-                           Style="{StaticResource BodyTextBlockStyle}"
-                           Text="{Binding TimeTotal.TotalSeconds, Converter={StaticResource SecondsStringConverter}}" />
-            </Grid>
+            <userControls:SliderControl />
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />

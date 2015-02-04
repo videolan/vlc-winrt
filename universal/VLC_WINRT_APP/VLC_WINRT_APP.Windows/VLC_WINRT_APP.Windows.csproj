@@ -214,9 +214,6 @@
     <Compile Include="Views\UserControls\TopBar.xaml.cs">
       <DependentUpon>TopBar.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\VideoPages\VideoPlayerPage.xaml.cs">
-      <DependentUpon>VideoPlayerPage.xaml</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -1047,6 +1044,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\UserControls\Flyouts\" />
+    <Folder Include="Views\VideoPages\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>

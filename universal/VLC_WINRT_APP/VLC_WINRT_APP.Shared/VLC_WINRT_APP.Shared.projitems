@@ -351,11 +351,17 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\TrackItemTemplate.xaml.cs">
       <DependentUpon>TrackItemTemplate.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\VideoPlayerSettings.xaml.cs">
+      <DependentUpon>VideoPlayerSettings.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\VLCLogoWithGradient.xaml.cs">
       <DependentUpon>VLCLogoWithGradient.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\VariousPages\SearchPage.xaml.cs">
       <DependentUpon>SearchPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\VideoPages\VideoPlayerPage.xaml.cs">
+      <DependentUpon>VideoPlayerPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -610,6 +616,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\VideoPlayerSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\VLCLogoWithGradient.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -618,11 +628,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\VideoPages\VideoPlayerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Commands\VLCFileExplorer\" />
     <Folder Include="$(MSBuildThisFileDirectory)Services\Mocks\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Views\VideoPages\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)Assets\flatbackground1.psd" />
