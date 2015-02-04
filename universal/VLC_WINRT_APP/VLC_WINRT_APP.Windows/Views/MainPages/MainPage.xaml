@@ -22,6 +22,12 @@
           Grid.RowSpan="3"
           Visibility="{Binding Source={StaticResource Locator}, Path=VideoVm.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}" />
 
+    <Image Grid.Row="0"
+           Grid.RowSpan="2"
+           Source="/Assets/backgroundTop.png"
+           Stretch="Uniform"
+           VerticalAlignment="Top"
+           extensions:ImageExtensions.FadeInOnLoaded="True" />
     <Image Stretch="Uniform"
            HorizontalAlignment="Right"
            VerticalAlignment="Bottom"
