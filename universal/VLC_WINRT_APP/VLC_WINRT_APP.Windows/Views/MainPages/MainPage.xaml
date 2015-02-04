@@ -59,5 +59,9 @@
                          x:FieldModifier="public"
                          Background="{ThemeResource ApplicationBarForegroundThemeBrush}"
                          HomeButtonClicked="CommandBar_OnHomeButtonClicked"
-                         Visibility="{Binding Source={StaticResource Locator}, Path=VideoVm.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}" />
+                         Visibility="{Binding Source={StaticResource Locator}, Path=VideoVm.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}">
+        <customAppBar:AppBar.ExtraLeftContent>
+            <userControls:BottomMiniPlayer />
+        </customAppBar:AppBar.ExtraLeftContent>
+    </customAppBar:AppBar>
 </SwapChainPanel>
