@@ -315,6 +315,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\HeaderControl.xaml.cs">
       <DependentUpon>HeaderControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\PivotHeaderControl.xaml.cs">
+      <DependentUpon>PivotHeaderControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\Placeholders\NoCameraVideos.xaml.cs">
       <DependentUpon>NoCameraVideos.xaml</DependentUpon>
     </Compile>
@@ -550,6 +553,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\HeaderControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\PivotHeaderControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
