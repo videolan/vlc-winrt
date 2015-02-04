@@ -10,7 +10,8 @@ namespace VLC_WINRT_APP.Converters
             var floatingPoint = (Single)value;
             if (float.IsNaN(floatingPoint))
                 return 0;
-            return (int)(floatingPoint * 100.0f);
+            var point = floatingPoint * 500;
+            return (int)point;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
