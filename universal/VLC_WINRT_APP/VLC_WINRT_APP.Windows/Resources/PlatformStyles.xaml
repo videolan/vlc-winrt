@@ -238,10 +238,8 @@
     <Style TargetType="FlyoutPresenter">
         <Setter Property="BorderThickness"
                 Value="0" />
-        <Setter Property="RequestedTheme"
-                Value="Dark" />
         <Setter Property="Background"
-                Value="#da000000" />
+                Value="Transparent"/>
     </Style>
     
     <Style TargetType="FlyoutPresenter"
