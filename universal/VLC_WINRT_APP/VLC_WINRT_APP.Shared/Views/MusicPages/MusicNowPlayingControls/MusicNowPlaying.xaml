@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:extensions="using:WinRTXamlToolkit.Controls.Extensions"
+             xmlns:userControls="using:VLC_WINRT_APP.Views.UserControls"
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400"
@@ -59,27 +60,8 @@
                              FontSize="19"
                              Foreground="{ThemeResource ApplicationBackgroundQuarterTranslucentThemeBrush}" />
         </TextBlock>
-        <TextBlock Grid.Row="3"
-                   Grid.Column="0"
-                   Text="{Binding Time, Converter={StaticResource MillisecondsStringConverter}}"
-                   HorizontalAlignment="Left"
-                   VerticalAlignment="Center"
-                   FontWeight="Light"
-                   FontSize="18" />
-        <Slider Grid.Row="3"
-                Grid.Column="1"
-                Margin="6,6,6,-5"
-                VerticalAlignment="Center"
-                Value="{Binding Position, Mode=TwoWay, Converter={StaticResource PositionToFixedPointConverter}}"
-                Style="{StaticResource VLCSlider}"
-                ThumbToolTipValueConverter="{StaticResource MillisecondsStringConverter}" />
-        <TextBlock Grid.Row="3"
-                   Grid.Column="2"
-                   Text="{Binding TimeTotal.TotalSeconds, Converter={StaticResource SecondsStringConverter}}"
-                   HorizontalAlignment="Right"
-                   VerticalAlignment="Center"
-                   FontWeight="Light"
-                   FontSize="18" />
+        <userControls:SliderControl Grid.Row="3"
+                                    Grid.ColumnSpan="3"/>
         <AppBarToggleButton Grid.Row="4"
                             Grid.Column="0"
                             Icon="Shuffle"

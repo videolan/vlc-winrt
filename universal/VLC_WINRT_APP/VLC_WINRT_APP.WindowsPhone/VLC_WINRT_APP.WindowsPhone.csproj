@@ -107,9 +107,6 @@
     <Compile Include="Views\MusicPages\ShowsAroundMe.xaml.cs">
       <DependentUpon>ShowsAroundMe.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControls\BottomMiniPlayer.xaml.cs">
-      <DependentUpon>BottomMiniPlayer.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\UserControls\ConnectToLastFm.xaml.cs">
       <DependentUpon>ConnectToLastFm.xaml</DependentUpon>
     </Compile>
@@ -858,10 +855,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MusicPages\ShowsAroundMe.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\UserControls\BottomMiniPlayer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
