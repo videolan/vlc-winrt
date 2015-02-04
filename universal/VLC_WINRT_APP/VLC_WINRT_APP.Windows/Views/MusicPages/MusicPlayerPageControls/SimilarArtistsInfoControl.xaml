@@ -20,7 +20,7 @@
             <ItemsPanelTemplate>
                 <WrapGrid ItemHeight="185"
                           ItemWidth="185"
-                          Orientation="Horizontal" />
+                          Orientation="Vertical" />
             </ItemsPanelTemplate>
         </GridView.ItemsPanel>
     </GridView>
