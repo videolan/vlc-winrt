@@ -4707,7 +4707,7 @@
                                                               ContentTemplate="{TemplateBinding ContentTemplate}"
                                                               Content="{TemplateBinding Content}"
                                                               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                              VerticalAlignment="Stretch"
                                                               Margin="{TemplateBinding Padding}">
                                                 <ContentPresenter.Projection>
                                                     <PlaneProjection x:Name="ContentPresenterProjection"

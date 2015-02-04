@@ -11,6 +11,7 @@ namespace VLC_WINRT_APP.Model.Video
     }
     public static class TemplateSizer
     {
+        const double contentGrid = 26;
         public static void ComputeCompactVideo(ItemsWrapGrid wrapGrid)
         {
             var width = Window.Current.Bounds.Width;
@@ -22,7 +23,7 @@ namespace VLC_WINRT_APP.Model.Video
             if (width == 470) splitScreen = 2;
 #endif
             var itemWidth = (width / splitScreen);
-            var itemHeight = (itemWidth * 9 / 16) + 78;
+            var itemHeight = (itemWidth * 9 / 16) + contentGrid;
             wrapGrid.ItemWidth = itemWidth - 10;
             wrapGrid.ItemHeight = itemHeight;
         }
@@ -37,19 +38,19 @@ namespace VLC_WINRT_APP.Model.Video
             if (!DisplayHelper.IsPortrait())
                 splitScreen = 5;
             var itemWidth = (width.Value / splitScreen);
-            var itemHeight = itemWidth*1.33;
-            wrapGrid.ItemWidth = itemWidth -7;
+            var itemHeight = itemWidth + 40;
+            wrapGrid.ItemWidth = itemWidth;
             wrapGrid.ItemHeight = itemHeight;
 #else
             if (width > 600)
             {
                 wrapGrid.ItemWidth = 200;
-                wrapGrid.ItemHeight = 266;
+                wrapGrid.ItemHeight = 200 + contentGrid;
             }
             else
             {
                 wrapGrid.ItemWidth = (width.Value / splitScreen) - 20;
-                wrapGrid.ItemHeight = wrapGrid.ItemWidth * 1.33;
+                wrapGrid.ItemHeight = wrapGrid.ItemWidth + 40;
             }
 #endif
         }
