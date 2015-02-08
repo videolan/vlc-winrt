@@ -51,7 +51,6 @@
             </Pivot.Title>
             <PivotItem x:Uid="HomeHeader"
                        Header="home">
-                <Grid>
                     <ScrollViewer>
                         <StackPanel>
                             <StackPanel x:Name="MusicLibrary"
@@ -127,7 +126,6 @@
                             </StackPanel>
                         </StackPanel>
                     </ScrollViewer>
-                </Grid>
             </PivotItem>
             <PivotItem x:Uid="VideoHubHeader"
                        Header="videos">
