@@ -7,6 +7,7 @@ using SQLite;
 using VLC_WINRT_APP.Model.Music;
 using VLC_WINRT_APP.ViewModels.MusicVM;
 using WinRTXamlToolkit.IO.Serialization;
+using System.Collections.Generic;
 
 namespace VLC_WINRT_APP.DataRepository
 {
@@ -72,12 +73,11 @@ namespace VLC_WINRT_APP.DataRepository
             return result.FirstOrDefault();
         }
 
-        public async Task<ObservableCollection<TrackItem>> LoadTracksByAlbumId(int albumId)
+        public async Task<List<TrackItem>> LoadTracksByAlbumId(int albumId)
         {
             var connection = new SQLiteAsyncConnection(_dbPath);
             var query = connection.Table<TrackItem>().Where(x => x.AlbumId == albumId);
-            var result = await query.ToListAsync();
-            return new ObservableCollection<TrackItem>(result);
+            return await query.ToListAsync();
         }
 
         public async Task<string> GetFirstTrackPathByAlbumId(int albumId)
@@ -88,20 +88,18 @@ namespace VLC_WINRT_APP.DataRepository
             return result != null ? result.Path : null;
         }
 
-        public async Task<ObservableCollection<TrackItem>> LoadTracksByArtistId(int artistId)
+        public async Task<List<TrackItem>> LoadTracksByArtistId(int artistId)
         {
             var connection = new SQLiteAsyncConnection(_dbPath);
             var query = connection.Table<TrackItem>().Where(x => x.ArtistId == artistId);
-            var result = await query.ToListAsync();
-            return new ObservableCollection<TrackItem>(result);
+            return await query.ToListAsync();
         }
 
-        public async Task<ObservableCollection<TrackItem>> LoadTracks()
+        public async Task<List<TrackItem>> LoadTracks()
         {
             var connection = new SQLiteAsyncConnection(_dbPath);
             var query = connection.Table<TrackItem>().OrderBy(x => x.Name);
-            var result = await query.ToListAsync();
-            return new ObservableCollection<TrackItem>(result);
+            return await query.ToListAsync();
         }
 
         public Task Update(TrackItem track)

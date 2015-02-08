@@ -75,8 +75,8 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                 var artists = await MusicLibraryVM._artistDataRepository.Load();
                 LogHelper.Log("Found " + artists.Count + " artists from MusicDB");
                 var orderedArtists = artists.OrderBy(x => x.Name);
-                var tracks = await MusicLibraryVM._trackDataRepository.LoadTracks();
-                var albums = await MusicLibraryVM._albumDataRepository.LoadAlbums(x => x.ArtistId != 0);
+                var tracks = await MusicLibraryVM._trackDataRepository.LoadTracks().ToObservableAsync();
+                var albums = await MusicLibraryVM._albumDataRepository.LoadAlbums(x => x.ArtistId != 0).ToObservableAsync();
 
                 await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                 {
@@ -88,7 +88,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                     Locator.MusicLibraryVM.Albums = albums;
                 });
 
-                var trackColl = await MusicLibraryVM.TrackCollectionRepository.LoadTrackCollections();
+                var trackColl = await MusicLibraryVM.TrackCollectionRepository.LoadTrackCollections().ToObservableAsync();
                 await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                 {
                     Locator.MusicLibraryVM.TrackCollections = trackColl;
@@ -394,7 +394,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             {
                 int howManyAlbumsToFill = await HowManyAlbumsToDisplayWithTwoRows();
                 if (Locator.MusicLibraryVM.RandomAlbums != null && Locator.MusicLibraryVM.RandomAlbums.Any()) return;
-                ObservableCollection<AlbumItem> favAlbums = await MusicLibraryVM._albumDataRepository.LoadAlbums(x => x.Favorite);
+                ObservableCollection<AlbumItem> favAlbums = await MusicLibraryVM._albumDataRepository.LoadAlbums(x => x.Favorite).ToObservableAsync();
                 if (favAlbums != null && favAlbums.Any())
                 {
                     await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
@@ -405,7 +405,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                     });
                 }
                 if (howManyAlbumsToFill == 0) return;
-                ObservableCollection<AlbumItem> nonfavAlbums = await MusicLibraryVM._albumDataRepository.LoadAlbums(x => x.Favorite == false);
+                ObservableCollection<AlbumItem> nonfavAlbums = await MusicLibraryVM._albumDataRepository.LoadAlbums(x => x.Favorite == false).ToObservableAsync();
                 if (nonfavAlbums != null && nonfavAlbums.Any())
                 {
                     await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>

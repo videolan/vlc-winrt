@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using SQLite;
 using VLC_WINRT_APP.Model.Music;
+using System.Collections.Generic;
 
 namespace VLC_WINRT_APP.DataRepository
 {
@@ -37,11 +37,11 @@ namespace VLC_WINRT_APP.DataRepository
             }
         }
 
-        public async Task<ObservableCollection<AlbumItem>> LoadAlbumsFromId(int artistId)
+        public async Task<List<AlbumItem>> LoadAlbumsFromId(int artistId)
         {
             var connection = new SQLiteAsyncConnection(_dbPath);
 
-            return new ObservableCollection<AlbumItem>(await connection.Table<AlbumItem>().Where(x => x.ArtistId == artistId).ToListAsync());
+            return await connection.Table<AlbumItem>().Where(x => x.ArtistId == artistId).ToListAsync();
 
         }
 
@@ -61,12 +61,11 @@ namespace VLC_WINRT_APP.DataRepository
             return result.FirstOrDefault();
         }
 
-        public async Task<ObservableCollection<AlbumItem>> LoadAlbums(Expression<Func<AlbumItem, bool>> compare)
+        public async Task<List<AlbumItem>> LoadAlbums(Expression<Func<AlbumItem, bool>> compare)
         {
             var connection = new SQLiteAsyncConnection(_dbPath);
             var query = connection.Table<AlbumItem>().Where(compare);
-            var result = await query.ToListAsync();
-            return new ObservableCollection<AlbumItem>(result);
+            return await query.ToListAsync();
         }
         public Task Update(AlbumItem album)
         {

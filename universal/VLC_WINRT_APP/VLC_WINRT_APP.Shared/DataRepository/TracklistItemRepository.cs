@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using SQLite;
 using VLC_WINRT_APP.Model.Music;
 using VLC_WINRT_APP.ViewModels.MusicVM;
+using System.Collections.Generic;
 
 namespace VLC_WINRT_APP.DataRepository
 {
@@ -35,10 +36,10 @@ namespace VLC_WINRT_APP.DataRepository
             }
         }
 
-        public async Task<ObservableCollection<TracklistItem>> LoadTracks(TrackCollection trackCollection)
+        public async Task<List<TracklistItem>> LoadTracks(TrackCollection trackCollection)
         {
             var connection = new SQLiteAsyncConnection(DbPath);
-            return new ObservableCollection<TracklistItem>(await connection.Table<TracklistItem>().Where(x => x.TrackCollectionId == trackCollection.Id).ToListAsync());
+            return await connection.Table<TracklistItem>().Where(x => x.TrackCollectionId == trackCollection.Id).ToListAsync();
         }
 
         public Task Add(TracklistItem track)
