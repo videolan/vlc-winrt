@@ -371,20 +371,20 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
         public static async Task PopulateTracks(this AlbumItem album)
         {
             var tracks = await MusicLibraryVM._trackDataRepository.LoadTracksByAlbumId(album.Id);
-            var orderedTracks = tracks.OrderBy(x => x.Index);
+            var orderedTracks = tracks.OrderBy(x => x.Index).ToObservable();
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                album.Tracks = new ObservableCollection<TrackItem>(orderedTracks);
+                album.Tracks = orderedTracks;
             });
         }
 
         public static async Task PopulateAlbums(this ArtistItem artist)
         {
             var albums = await MusicLibraryVM._albumDataRepository.LoadAlbumsFromId(artist.Id);
-            var orderedAlbums = albums.OrderBy(x => x.Name);
+            var orderedAlbums = albums.OrderBy(x => x.Name).ToObservable();
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                artist.Albums = new ObservableCollection<AlbumItem>(orderedAlbums);
+                artist.Albums = orderedAlbums;
             });
         }
 
@@ -400,7 +400,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                     await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                     {
                         Locator.MusicLibraryVM.FavoriteAlbums = favAlbums;
-                        Locator.MusicLibraryVM.RandomAlbums = favAlbums.Count > howManyAlbumsToFill ? new ObservableCollection<AlbumItem>(favAlbums.Take(howManyAlbumsToFill)) : favAlbums;
+                        Locator.MusicLibraryVM.RandomAlbums = favAlbums.Count > howManyAlbumsToFill ? favAlbums.Take(howManyAlbumsToFill).ToObservable() : favAlbums;
                         howManyAlbumsToFill -= Locator.MusicLibraryVM.RandomAlbums.Count;
                     });
                 }
@@ -447,24 +447,22 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             {
                 if (Locator.SettingsVM.AlbumsOrderListing == OrderListing.Ascending)
                 {
-                    Locator.MusicLibraryVM.Albums =
-                        new ObservableCollection<AlbumItem>(Locator.MusicLibraryVM.Albums.OrderBy(x => x.Artist));
+                    Locator.MusicLibraryVM.Albums = Locator.MusicLibraryVM.Albums.OrderBy(x => x.Artist).ToObservable();
                 }
                 else if (Locator.SettingsVM.AlbumsOrderListing == OrderListing.Descending)
                 {
-                    Locator.MusicLibraryVM.Albums = new ObservableCollection<AlbumItem>(Locator.MusicLibraryVM.Albums.OrderByDescending(x => x.Artist));
+                    Locator.MusicLibraryVM.Albums = Locator.MusicLibraryVM.Albums.OrderByDescending(x => x.Artist).ToObservable();
                 }
             }
             else if (Locator.SettingsVM.AlbumsOrderType == OrderType.ByDate)
             {
                 if (Locator.SettingsVM.AlbumsOrderListing == OrderListing.Ascending)
                 {
-                    Locator.MusicLibraryVM.Albums =
-                        new ObservableCollection<AlbumItem>(Locator.MusicLibraryVM.Albums.OrderBy(x => x.Year));
+                    Locator.MusicLibraryVM.Albums = Locator.MusicLibraryVM.Albums.OrderBy(x => x.Year).ToObservable();
                 }
                 else if (Locator.SettingsVM.AlbumsOrderListing == OrderListing.Descending)
                 {
-                    Locator.MusicLibraryVM.Albums = new ObservableCollection<AlbumItem>(Locator.MusicLibraryVM.Albums.OrderByDescending(x => x.Year));
+                    Locator.MusicLibraryVM.Albums = Locator.MusicLibraryVM.Albums.OrderByDescending(x => x.Year).ToObservable();
                 }
             }
         }
