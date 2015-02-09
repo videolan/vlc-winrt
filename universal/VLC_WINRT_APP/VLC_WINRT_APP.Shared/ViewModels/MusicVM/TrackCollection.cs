@@ -250,7 +250,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             if (currentTrack != null)
                 CurrentTrack = (int)currentTrack;
             await Locator.MusicPlayerVM.UpdateTrackFromMF();
-            await App.BackgroundAudioHelper.RestorePlaylist();
+            App.BackgroundAudioHelper.RestorePlaylist();
 #endif
             SetActiveTrackProperty();
         }

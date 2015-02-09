@@ -206,7 +206,7 @@ namespace VLC_WINRT_APP.BackgroundHelpers
             deferral.Complete();
         }
 
-        public async Task RestorePlaylist()
+        public void RestorePlaylist()
         {
             if (IsMyBackgroundTaskRunning)
             {

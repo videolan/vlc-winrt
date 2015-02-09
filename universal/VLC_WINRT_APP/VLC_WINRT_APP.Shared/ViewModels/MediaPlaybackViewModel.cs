@@ -337,11 +337,12 @@ namespace VLC_WINRT_APP.ViewModels
         }
 
 
-        virtual public async Task CleanViewModel()
+        virtual public Task CleanViewModel()
         {
             _mediaService.Stop();
             IsPlaying = false;
             TimeTotal = TimeSpan.Zero;
+            return Task.FromResult(0);
         }
 
         protected virtual void OnPlaybackStarting()
