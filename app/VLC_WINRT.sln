@@ -9,12 +9,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libdirect2d_winrt_plugin", 
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libVLCX", "..\wrapper\libVLCX\libVLCX.vcxproj", "{22532381-BE8B-40E0-A881-22CE24342D5A}"
 	ProjectSection(ProjectDependencies) = postProject
-		{542C7405-778D-4AC6-A43D-D2A6BAF70B09} = {542C7405-778D-4AC6-A43D-D2A6BAF70B09}
 		{231DFAAB-C462-49BF-8611-1FA6EE39983D} = {231DFAAB-C462-49BF-8611-1FA6EE39983D}
 		{A3345ED6-A13A-487B-9EF3-412FED4916D1} = {A3345ED6-A13A-487B-9EF3-412FED4916D1}
 	EndProjectSection
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libxaudio2_winrt_plugin", "..\modules\libxaudio2_winrt_plugin\libxaudio2_winrt_plugin.vcxproj", "{542C7405-778D-4AC6-A43D-D2A6BAF70B09}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VLC_WINRT_APP", "VLC_WINRT_APP", "{492C16E2-63FB-49B4-843A-095DB095F15D}"
 EndProject
@@ -32,7 +29,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libVLCX.WindowsPhone", "..\
 	ProjectSection(ProjectDependencies) = postProject
 		{544EBD72-C9E2-4C3F-9038-36683F843241} = {544EBD72-C9E2-4C3F-9038-36683F843241}
 		{5EBF73C4-9C76-4666-9B92-F75B8F7FA688} = {5EBF73C4-9C76-4666-9B92-F75B8F7FA688}
-		{CAD463F6-BE44-4F9E-9A1E-6872B668019A} = {CAD463F6-BE44-4F9E-9A1E-6872B668019A}
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "libaccess_winrt_plugin", "libaccess_winrt_plugin", "{3E3BE90F-16D8-4D61-BA9D-E760D34492B5}"
@@ -46,12 +42,6 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libdirect2d_winrt_plugin.Shared", "..\modules\libdirect2d_winrt_plugin.Shared\libdirect2d_winrt_plugin.Shared.vcxitems", "{3B1F161D-E9A0-458D-B009-EDA6F19A1654}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libdirect2d_winrt_plugin.WindowsPhone", "..\modules\libdirect2d_winrt_plugin.WindowsPhone\libdirect2d_winrt_plugin.WindowsPhone.vcxproj", "{5EBF73C4-9C76-4666-9B92-F75B8F7FA688}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "libxaudio2_winrt_plugin", "libxaudio2_winrt_plugin", "{5F4A2158-F212-417B-B883-941BA6C4E1E9}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libxaudio2_winrt_plugin.Shared", "..\modules\libxaudio2_winrt_plugin.Shared\libxaudio2_winrt_plugin.Shared.vcxitems", "{3E3CD176-7C6E-494D-AC75-BDB58BFE3120}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libxaudio2_winrt_plugin.WindowsPhone", "..\modules\libxaudio2_winrt_plugin.WindowsPhone\libxaudio2_winrt_plugin.WindowsPhone.vcxproj", "{CAD463F6-BE44-4F9E-9A1E-6872B668019A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VLC_WINRT_APP.BackgroundAudioPlayer", "..\universal\VLC_WINRT_APP\VLC_WINRT_APP.BackgroundAudioPlayer\VLC_WINRT_APP.BackgroundAudioPlayer.csproj", "{6BDABA8A-B559-4007-A17F-42125D3AA7A3}"
 EndProject
@@ -68,10 +58,7 @@ Global
 		..\wrapper\libVLCX.Shared\libVLCX.Shared.vcxitems*{5d78f68e-c377-449e-a508-5b8e706d0039}*SharedItemsImports = 4
 		..\universal\VLC_WINRT_APP\VLC_WINRT_APP.Shared\VLC_WINRT_APP.Shared.projitems*{c8711a23-f511-4fa1-a3f5-f2578f820a5a}*SharedItemsImports = 4
 		..\modules\libaccess_winrt_plugin.Shared\libaccess_winrt_plugin.Shared.vcxitems*{90a8a6a5-091d-4d4e-a8cd-4ec09ddb1047}*SharedItemsImports = 9
-		..\modules\libxaudio2_winrt_plugin.Shared\libxaudio2_winrt_plugin.Shared.vcxitems*{542c7405-778d-4ac6-a43d-d2a6baf70b09}*SharedItemsImports = 4
 		..\modules\libdirect2d_winrt_plugin.Shared\libdirect2d_winrt_plugin.Shared.vcxitems*{231dfaab-c462-49bf-8611-1fa6ee39983d}*SharedItemsImports = 4
-		..\modules\libxaudio2_winrt_plugin.Shared\libxaudio2_winrt_plugin.Shared.vcxitems*{3e3cd176-7c6e-494d-ac75-bdb58bfe3120}*SharedItemsImports = 9
-		..\modules\libxaudio2_winrt_plugin.Shared\libxaudio2_winrt_plugin.Shared.vcxitems*{cad463f6-be44-4f9e-9a1e-6872b668019a}*SharedItemsImports = 4
 		..\modules\libdirect2d_winrt_plugin.Shared\libdirect2d_winrt_plugin.Shared.vcxitems*{5ebf73c4-9c76-4666-9b92-f75b8f7fa688}*SharedItemsImports = 4
 		..\modules\libdirect2d_winrt_plugin.Shared\libdirect2d_winrt_plugin.Shared.vcxitems*{3b1f161d-e9a0-458d-b009-eda6f19a1654}*SharedItemsImports = 9
 		..\modules\libaccess_winrt_plugin.Shared\libaccess_winrt_plugin.Shared.vcxitems*{a3345ed6-a13a-487b-9ef3-412fed4916d1}*SharedItemsImports = 4
@@ -159,28 +146,6 @@ Global
 		{22532381-BE8B-40E0-A881-22CE24342D5A}.Release|x64.Build.0 = Release|x64
 		{22532381-BE8B-40E0-A881-22CE24342D5A}.Release|x86.ActiveCfg = Release|Win32
 		{22532381-BE8B-40E0-A881-22CE24342D5A}.Release|x86.Build.0 = Release|Win32
-		{542C7405-778D-4AC6-A43D-D2A6BAF70B09}.Debug|Any CPU.ActiveCfg = Debug|Win32
-		{542C7405-778D-4AC6-A43D-D2A6BAF70B09}.Debug|ARM.ActiveCfg = Debug|ARM
-		{542C7405-778D-4AC6-A43D-D2A6BAF70B09}.Debug|ARM.Build.0 = Debug|ARM
-		{542C7405-778D-4AC6-A43D-D2A6BAF70B09}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
-		{542C7405-778D-4AC6-A43D-D2A6BAF70B09}.Debug|Mixed Platforms.Build.0 = Debug|Win32
-		{542C7405-778D-4AC6-A43D-D2A6BAF70B09}.Debug|Win32.ActiveCfg = Debug|Win32
-		{542C7405-778D-4AC6-A43D-D2A6BAF70B09}.Debug|Win32.Build.0 = Debug|Win32
-		{542C7405-778D-4AC6-A43D-D2A6BAF70B09}.Debug|x64.ActiveCfg = Debug|x64
-		{542C7405-778D-4AC6-A43D-D2A6BAF70B09}.Debug|x64.Build.0 = Debug|x64
-		{542C7405-778D-4AC6-A43D-D2A6BAF70B09}.Debug|x86.ActiveCfg = Debug|Win32
-		{542C7405-778D-4AC6-A43D-D2A6BAF70B09}.Debug|x86.Build.0 = Debug|Win32
-		{542C7405-778D-4AC6-A43D-D2A6BAF70B09}.Release|Any CPU.ActiveCfg = Release|Win32
-		{542C7405-778D-4AC6-A43D-D2A6BAF70B09}.Release|ARM.ActiveCfg = Release|ARM
-		{542C7405-778D-4AC6-A43D-D2A6BAF70B09}.Release|ARM.Build.0 = Release|ARM
-		{542C7405-778D-4AC6-A43D-D2A6BAF70B09}.Release|Mixed Platforms.ActiveCfg = Release|Win32
-		{542C7405-778D-4AC6-A43D-D2A6BAF70B09}.Release|Mixed Platforms.Build.0 = Release|Win32
-		{542C7405-778D-4AC6-A43D-D2A6BAF70B09}.Release|Win32.ActiveCfg = Release|Win32
-		{542C7405-778D-4AC6-A43D-D2A6BAF70B09}.Release|Win32.Build.0 = Release|Win32
-		{542C7405-778D-4AC6-A43D-D2A6BAF70B09}.Release|x64.ActiveCfg = Release|x64
-		{542C7405-778D-4AC6-A43D-D2A6BAF70B09}.Release|x64.Build.0 = Release|x64
-		{542C7405-778D-4AC6-A43D-D2A6BAF70B09}.Release|x86.ActiveCfg = Release|Win32
-		{542C7405-778D-4AC6-A43D-D2A6BAF70B09}.Release|x86.Build.0 = Release|Win32
 		{B1A5A4DC-2C9F-4343-AF3F-372944C4607D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B1A5A4DC-2C9F-4343-AF3F-372944C4607D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B1A5A4DC-2C9F-4343-AF3F-372944C4607D}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
@@ -294,23 +259,6 @@ Global
 		{5EBF73C4-9C76-4666-9B92-F75B8F7FA688}.Release|x64.ActiveCfg = Release|Win32
 		{5EBF73C4-9C76-4666-9B92-F75B8F7FA688}.Release|x86.ActiveCfg = Release|Win32
 		{5EBF73C4-9C76-4666-9B92-F75B8F7FA688}.Release|x86.Build.0 = Release|Win32
-		{CAD463F6-BE44-4F9E-9A1E-6872B668019A}.Debug|Any CPU.ActiveCfg = Debug|Win32
-		{CAD463F6-BE44-4F9E-9A1E-6872B668019A}.Debug|ARM.ActiveCfg = Debug|ARM
-		{CAD463F6-BE44-4F9E-9A1E-6872B668019A}.Debug|ARM.Build.0 = Debug|ARM
-		{CAD463F6-BE44-4F9E-9A1E-6872B668019A}.Debug|Mixed Platforms.ActiveCfg = Debug|ARM
-		{CAD463F6-BE44-4F9E-9A1E-6872B668019A}.Debug|Mixed Platforms.Build.0 = Debug|ARM
-		{CAD463F6-BE44-4F9E-9A1E-6872B668019A}.Debug|Win32.ActiveCfg = Debug|Win32
-		{CAD463F6-BE44-4F9E-9A1E-6872B668019A}.Debug|x64.ActiveCfg = Debug|Win32
-		{CAD463F6-BE44-4F9E-9A1E-6872B668019A}.Debug|x86.ActiveCfg = Debug|Win32
-		{CAD463F6-BE44-4F9E-9A1E-6872B668019A}.Release|Any CPU.ActiveCfg = Release|Win32
-		{CAD463F6-BE44-4F9E-9A1E-6872B668019A}.Release|ARM.ActiveCfg = Release|ARM
-		{CAD463F6-BE44-4F9E-9A1E-6872B668019A}.Release|ARM.Build.0 = Release|ARM
-		{CAD463F6-BE44-4F9E-9A1E-6872B668019A}.Release|Mixed Platforms.ActiveCfg = Release|Win32
-		{CAD463F6-BE44-4F9E-9A1E-6872B668019A}.Release|Mixed Platforms.Build.0 = Release|Win32
-		{CAD463F6-BE44-4F9E-9A1E-6872B668019A}.Release|Win32.ActiveCfg = Release|Win32
-		{CAD463F6-BE44-4F9E-9A1E-6872B668019A}.Release|x64.ActiveCfg = Release|Win32
-		{CAD463F6-BE44-4F9E-9A1E-6872B668019A}.Release|x86.ActiveCfg = Release|Win32
-		{CAD463F6-BE44-4F9E-9A1E-6872B668019A}.Release|x86.Build.0 = Release|Win32
 		{6BDABA8A-B559-4007-A17F-42125D3AA7A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6BDABA8A-B559-4007-A17F-42125D3AA7A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6BDABA8A-B559-4007-A17F-42125D3AA7A3}.Debug|ARM.ActiveCfg = Debug|ARM
@@ -365,7 +313,6 @@ Global
 		{A3345ED6-A13A-487B-9EF3-412FED4916D1} = {3E3BE90F-16D8-4D61-BA9D-E760D34492B5}
 		{231DFAAB-C462-49BF-8611-1FA6EE39983D} = {50F9DD1D-21A9-4C38-8E25-BAF182BAB951}
 		{22532381-BE8B-40E0-A881-22CE24342D5A} = {8B17BE9D-3E88-497F-8BA3-BA2E6905069E}
-		{542C7405-778D-4AC6-A43D-D2A6BAF70B09} = {5F4A2158-F212-417B-B883-941BA6C4E1E9}
 		{DB1DEA15-00B8-4707-8C70-53431C4FA754} = {492C16E2-63FB-49B4-843A-095DB095F15D}
 		{B1A5A4DC-2C9F-4343-AF3F-372944C4607D} = {492C16E2-63FB-49B4-843A-095DB095F15D}
 		{C8711A23-F511-4FA1-A3F5-F2578F820A5A} = {492C16E2-63FB-49B4-843A-095DB095F15D}
@@ -375,8 +322,6 @@ Global
 		{544EBD72-C9E2-4C3F-9038-36683F843241} = {3E3BE90F-16D8-4D61-BA9D-E760D34492B5}
 		{3B1F161D-E9A0-458D-B009-EDA6F19A1654} = {50F9DD1D-21A9-4C38-8E25-BAF182BAB951}
 		{5EBF73C4-9C76-4666-9B92-F75B8F7FA688} = {50F9DD1D-21A9-4C38-8E25-BAF182BAB951}
-		{3E3CD176-7C6E-494D-AC75-BDB58BFE3120} = {5F4A2158-F212-417B-B883-941BA6C4E1E9}
-		{CAD463F6-BE44-4F9E-9A1E-6872B668019A} = {5F4A2158-F212-417B-B883-941BA6C4E1E9}
 		{6BDABA8A-B559-4007-A17F-42125D3AA7A3} = {492C16E2-63FB-49B4-843A-095DB095F15D}
 		{E53727A5-95F9-4DAC-A24F-18437811B5B0} = {492C16E2-63FB-49B4-843A-095DB095F15D}
 	EndGlobalSection
