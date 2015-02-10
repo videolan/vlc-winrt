@@ -12,12 +12,11 @@
 
     <Grid x:Name="RootGrid">
         <Grid.RowDefinitions>
-            <RowDefinition Height="42" />
             <RowDefinition Height="45" />
             <RowDefinition Height="60" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <ComboBox Grid.Row="1"
+        <ComboBox Grid.Row="0"
                   Width="280"
                   ItemsSource="{Binding RemovableStorageVMs}"
                   SelectedItem="{Binding CurrentStorageVM}"
@@ -40,7 +39,7 @@
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-        <Grid Grid.Row="2"
+        <Grid Grid.Row="1"
               Margin="6,0,0,0">
             <Button Style="{StaticResource TextBlockButtonStyle}"
                     Command="{Binding CurrentStorageVM.GoBackCommand}"
@@ -57,7 +56,7 @@
                 </Button.Content>
             </Button>
         </Grid>
-        <Grid Grid.Row="3">
+        <Grid Grid.Row="2">
             <placeholder:NothingToSeeHere Margin="6,0,0,0"
                                        Visibility="{Binding CurrentStorageVM.IsFolderEmpty, Converter={StaticResource BooleanToVisibilityConverter}}" />
             <ListView ItemsSource="{Binding CurrentStorageVM.StorageItems}"
@@ -96,7 +95,7 @@
                 </ListView.ItemTemplate>
             </ListView>
         </Grid>
-        <removableStorage:PlugARemovableStorage Grid.Row="2"
+        <removableStorage:PlugARemovableStorage Grid.Row="1"
                                                 Grid.RowSpan="2"
                                                 Margin="-40,0,0,0"
                                                 d:IsHidden="True"

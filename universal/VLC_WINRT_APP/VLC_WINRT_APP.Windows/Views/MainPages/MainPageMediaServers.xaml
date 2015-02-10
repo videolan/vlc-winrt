@@ -14,12 +14,11 @@
 
     <Grid x:Name="RootGrid">
         <Grid.RowDefinitions>
-            <RowDefinition Height="42" />
             <RowDefinition Height="45" />
             <RowDefinition Height="60" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <ComboBox Grid.Row="1"
+        <ComboBox Grid.Row="0"
                   Width="280"
                   ItemsSource="{Binding DLNAVMs}"
                   SelectedItem="{Binding CurrentDlnaVm}"
@@ -42,7 +41,7 @@
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-        <Grid Grid.Row="2"
+        <Grid Grid.Row="1"
               Margin="6,0,0,0">
             <Button Style="{StaticResource TextBlockButtonStyle}"
                     Command="{Binding CurrentDlnaVm.GoBackCommand}"
@@ -59,7 +58,7 @@
                 </Button.Content>
             </Button>
         </Grid>
-        <Grid Grid.Row="3">
+        <Grid Grid.Row="2">
             <placeholder:NothingToSeeHere Margin="6,0,0,0"
                                        Visibility="{Binding CurrentDlnaVm.IsFolderEmpty, Converter={StaticResource BooleanToVisibilityConverter}}" />
             <ListView ItemsSource="{Binding CurrentDlnaVm.StorageItems}"
@@ -98,7 +97,7 @@
                 </ListView.ItemTemplate>
             </ListView>
         </Grid>
-        <dlna:WaitingForNetworkAnswer Grid.Row="2"
+        <dlna:WaitingForNetworkAnswer Grid.Row="1"
                                       Grid.RowSpan="2"
                                       Margin="-40,0,0,0"
                                       d:IsHidden="True"
