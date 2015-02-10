@@ -27,14 +27,6 @@ namespace VLC_WINRT_APP.Views.MainPages
 
         void Responsive()
         {
-            if (Window.Current.Bounds.Width < 400)
-            {
-                RootGrid.Margin = new Thickness(9, 0, 0, 0);
-            }
-            else
-            {
-                RootGrid.Margin = new Thickness(40, 0, 0, 0);
-            }
         }
     }
 }
