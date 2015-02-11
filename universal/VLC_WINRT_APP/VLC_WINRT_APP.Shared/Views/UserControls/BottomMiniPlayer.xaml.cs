@@ -29,14 +29,9 @@ namespace VLC_WINRT_APP.Views.UserControls
         void BottomMiniPlayer_SizeChanged(object sender, Windows.UI.Xaml.SizeChangedEventArgs e)
         {
 #if WINDOWS_PHONE_APP
-            if (DisplayHelper.IsPortrait())
-            {
-                RootGrid.Height = 70;
-            }
-            else
-            {
-                RootGrid.Height = 0;
-            }
+            
+            RootGrid.Height = 60;
+            
 #else
             RootGrid.Height = 50;
 #endif
