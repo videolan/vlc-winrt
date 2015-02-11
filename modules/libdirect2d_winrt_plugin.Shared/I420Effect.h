@@ -26,7 +26,8 @@ typedef enum I420_PROP
 {
 	I420_PROP_DISPLAYEDFRAME_WIDTH = 0,
 	I420_PROP_DISPLAYEDFRAME_HEIGHT = 1,
-	I420_PROP_SCALE = 2
+	I420_PROP_VISIBLE_WIDTH = 2,
+    I420_PROP_VISIBLE_HEIGHT = 3,
 };
 
 struct Vertex{
@@ -41,14 +42,17 @@ public:
 	static HRESULT Register(_In_ ID2D1Factory1* pFactory);
 	static HRESULT __stdcall CreateRippleImpl(_Outptr_ IUnknown** ppEffectImpl);
 
-	float GetDisplayedFrameWidth() const;
-	HRESULT SetDisplayedFrameWidth(float width);
+	uint32 GetDisplayedFrameWidth() const;
+	HRESULT SetDisplayedFrameWidth(uint32 width);
 
-	float GetDisplayedFrameHeight() const;
-	HRESULT SetDisplayedFrameHeight(float height);
+	uint32 GetDisplayedFrameHeight() const;
+	HRESULT SetDisplayedFrameHeight(uint32 height);
 
-	float GetScale() const;
-	HRESULT SetScale(float scale);
+    uint32 GetVisibleWidth() const;
+    HRESULT SetVisibleWidth(uint32 width);
+
+    uint32 GetVisibleHeight() const;
+    HRESULT SetVisibleHeight(uint32 height);
 
 	// Declare ID2D1EffectImpl implementation methods.
 	IFACEMETHODIMP Initialize(_In_ ID2D1EffectContext* pContextInternal,_In_ ID2D1TransformGraph* pTransformGraph);
@@ -96,18 +100,17 @@ private:
 	Microsoft::WRL::ComPtr<ID2D1DrawInfo>       m_drawInfo;
 
 	LONG                                        m_refCount;
-	D2D1_RECT_L                                 m_inputRect;
 	D2D1_SIZE_U									m_displayedFrame;
-	D2D1_SIZE_U									m_originalFrame;
+	D2D1_SIZE_U									m_visibleSize;
+    D2D1_RECT_L                                 m_inputRects[3];
 
 	float										m_dpi;
-	float										m_scale;
 
 	struct
 	{
-		float displayedFrameWidth;
-		float displayedFrameHeight;
-		float originalFrameWidth;
-		float originalFrameHeight;
+		uint32 displayedFrameWidth;
+		uint32 displayedFrameHeight;
+		uint32 visibleFrameWidth;
+		uint32 visibleFrameHeight;
 	} m_constants;
 };

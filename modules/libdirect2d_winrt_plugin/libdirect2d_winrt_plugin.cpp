@@ -103,11 +103,11 @@ static const vlc_fourcc_t d2d_subpicture_chromas[] = {
 /* */
 struct vout_display_sys_t {
     /* */
-    float*                       displayWidth;
-    float*                       displayHeight;
+    uint32_t*                    displayWidth;
+    uint32_t*                    displayHeight;
 
-    float                        lastDisplayWidth;
-    float                        lastDisplayHeight;
+    uint32_t                     lastDisplayWidth;
+    uint32_t                     lastDisplayHeight;
 
     D2D1_POINT_2U                offset;
     D2D1_SIZE_U                  size;
@@ -167,8 +167,8 @@ static int Open(vlc_object_t *object)
     vd->manage       = Manage;
     vd->control      = Control;
 
-   sys->displayWidth = (float*)var_CreateGetInteger(vd, "winrt-width");
-   sys->displayHeight = (float*)var_CreateGetInteger(vd, "winrt-height");
+   sys->displayWidth = (uint32_t*)var_CreateGetInteger(vd, "winrt-width");
+   sys->displayHeight = (uint32_t*)var_CreateGetInteger(vd, "winrt-height");
 
     uintptr_t panelInt = (uintptr_t)var_CreateGetInteger(vd, "winrt-d2dcontext");
     reinterpret_cast<IUnknown*>(panelInt)->QueryInterface(IID_PPV_ARGS(&sys->d2dContext));
@@ -290,7 +290,7 @@ static picture_pool_t *Pool(vout_display_t *vd, unsigned count)
     return sys->pool;
 }
 
-static void ResizeBuffers(vout_display_sys_t* p_sys, float dpiX, float dpiY)
+static bool ResizeBuffers(vout_display_sys_t* p_sys, float dpiX, float dpiY)
 {
     p_sys->d2dContext->SetTarget(nullptr);
     p_sys->backBuffer = nullptr;
@@ -310,12 +310,15 @@ static void ResizeBuffers(vout_display_sys_t* p_sys, float dpiX, float dpiY)
 
     p_sys->swapChain->ResizeBuffers(0, *p_sys->displayWidth, *p_sys->displayHeight, DXGI_FORMAT_UNKNOWN, 0);
 
-    p_sys->swapChain->GetBuffer(0, IID_PPV_ARGS(&p_sys->backBuffer));
+    if (p_sys->swapChain->GetBuffer(0, IID_PPV_ARGS(&p_sys->backBuffer)) != S_OK)
+        return false;
 
     //set d2d target
-    p_sys->d2dContext->CreateBitmapFromDxgiSurface(p_sys->backBuffer.Get(), &bitmapProperties, &p_sys->targetBitmap);
+    if (p_sys->d2dContext->CreateBitmapFromDxgiSurface(p_sys->backBuffer.Get(), &bitmapProperties, &p_sys->targetBitmap) != S_OK)
+        return false;
 
     p_sys->d2dContext->SetTarget(p_sys->targetBitmap.Get());
+    return true;
 }
 
 static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpicture)
@@ -339,8 +342,8 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
         sys->size.width = picture->format.i_visible_width;
         sys->size.height = picture->format.i_visible_height;
 
-        sys->halfSize.width = sys->size.width / 2;
-        sys->halfSize.height = sys->size.height / 2;
+        sys->halfSize.width = picture->p[1].i_visible_pitch / picture->p[1].i_pixel_pitch;
+        sys->halfSize.height = picture->p[1].i_visible_lines;
 
         float dpiX;
         float dpiY;
@@ -350,15 +353,16 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
 
         UpdateResourcesFromWindowSizeChanged(vd);
 
-        ResizeBuffers(sys, dpiX, dpiY);
+        if (ResizeBuffers(sys, dpiX, dpiY) == false)
+            return;
 
         HRESULT hrx = sys->d2dContext->CreateEffect(CLSID_CustomI420Effect, &sys->yuvEffect);
 
         sys->yuvEffect->SetInputCount(2);
 
-        if (sys->yuvEffect->SetValue(I420_PROP_DISPLAYEDFRAME_WIDTH, (float) sys->renderSize.width) != S_OK)
+        if (sys->yuvEffect->SetValue(I420_PROP_DISPLAYEDFRAME_WIDTH, sys->renderSize.width) != S_OK)
             Debug(TEXT("Failed to set effect width parameter"));
-        if (sys->yuvEffect->SetValue(I420_PROP_DISPLAYEDFRAME_HEIGHT, (float)sys->renderSize.height) != S_OK)
+        if (sys->yuvEffect->SetValue(I420_PROP_DISPLAYEDFRAME_HEIGHT, sys->renderSize.height) != S_OK)
             Debug(TEXT("Failed to set effect heigth parameter"));
 
 
@@ -374,19 +378,25 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
         props.bitmapOptions = D2D1_BITMAP_OPTIONS_NONE;
         props.colorContext = nullptr;
 
-        if (S_OK != sys->d2dContext->CreateBitmap(sys->size, picture->p[0].p_pixels, picture->p[0].i_pitch, props, &sys->yBitmap))
+        if (S_OK != sys->d2dContext->CreateBitmap(sys->size, NULL, 0, props, &sys->yBitmap))
             return;
 
         // Create or copy uv (chroma) plane
-        if (S_OK != sys->d2dContext->CreateBitmap(sys->halfSize, picture->p[1].p_pixels, picture->p[1].i_pitch ,props, &sys->uBitmap))
+        if (S_OK != sys->d2dContext->CreateBitmap(sys->halfSize, NULL, 0, props, &sys->uBitmap))
             return;
 
         // Create or copy uv (chroma) plane
-        if (S_OK != sys->d2dContext->CreateBitmap(sys->halfSize, picture->p[2].p_pixels, picture->p[2].i_pitch, props, &sys->vBitmap))
+        if (S_OK != sys->d2dContext->CreateBitmap(sys->halfSize, NULL, 0, props, &sys->vBitmap))
             return;
     }
 
-    sys->d2dContext->SetTransform(D2D1::Matrix3x2F::Translation(sys->offset.x, sys->offset.y));
+
+    if (sys->yuvEffect->SetValue(I420_PROP_VISIBLE_WIDTH, picture->format.i_visible_width) != S_OK)
+        Debug(TEXT("Failed to set effect visible width parameter"));
+    if (sys->yuvEffect->SetValue(I420_PROP_VISIBLE_HEIGHT, picture->format.i_visible_height) != S_OK)
+        Debug(TEXT("Failed to set effect visible heigth parameter"));
+
+    sys->d2dContext->SetTransform(D2D1::Matrix3x2F::Translation((float)sys->offset.x, (float)sys->offset.y));
 
     // Init and clear d2dContext render target
     sys->d2dContext->BeginDraw();
@@ -395,21 +405,18 @@ static void Prepare(vout_display_t *vd, picture_t *picture, subpicture_t *subpic
     sys->d2dContext->PushAxisAlignedClip(&pushRect, D2D1_ANTIALIAS_MODE_ALIASED);
     sys->d2dContext->Clear(D2D1::ColorF(D2D1::ColorF::Black));
 
-
-
-
-    D2D1_RECT_U destRect = D2D1::RectU(0, 0, sys->size.width, sys->size.height);
-    sys->yBitmap->CopyFromMemory(&destRect, picture->p[0].p_pixels, picture->p[0].i_pitch);
+    //D2D1_RECT_U destRect = D2D1::RectU(0, 0, sys->size.width, sys->size.height);
+    sys->yBitmap->CopyFromMemory(NULL, picture->p[0].p_pixels, picture->p[0].i_pitch);
     sys->yuvEffect->SetInput(0, sys->yBitmap);
 
 
-    destRect = D2D1::RectU(0, 0, sys->halfSize.width, sys->halfSize.height);
-    sys->uBitmap->CopyFromMemory(&destRect, picture->p[1].p_pixels, picture->p[1].i_pitch);
+    //destRect = D2D1::RectU(0, 0, sys->halfSize.width, sys->halfSize.height);
+    sys->uBitmap->CopyFromMemory(NULL, picture->p[1].p_pixels, picture->p[1].i_pitch);
 
     sys->yuvEffect->SetInput(1, sys->uBitmap);
 
-    destRect = D2D1::RectU(0, 0, sys->halfSize.width, sys->halfSize.height);
-    sys->vBitmap->CopyFromMemory(&destRect, picture->p[2].p_pixels, picture->p[2].i_pitch);
+    //destRect = D2D1::RectU(0, 0, sys->halfSize.width, sys->halfSize.height);
+    sys->vBitmap->CopyFromMemory(NULL, picture->p[2].p_pixels, picture->p[2].i_pitch);
 
     sys->yuvEffect->SetInput(2, sys->vBitmap);
 

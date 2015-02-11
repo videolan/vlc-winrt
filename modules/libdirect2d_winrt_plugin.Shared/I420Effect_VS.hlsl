@@ -9,10 +9,10 @@ cbuffer Direct2DTransforms : register(b0)
 cbuffer constants : register(b1)
 {
 	// size in pixel of the frame to draw to the screen
-	float2 displayedFrameSize;
+	uint2 displayedFrameSize;
 
 	// size in pixel of the original frame (native video source resolution)
-	float2 originalFrameSize;
+	uint2 originalFrameSize;
 };
 
 struct VSOut
@@ -39,15 +39,15 @@ VSOut main(VSIn input)
 	output.sceneSpaceOutput.w = 1.0f;
 
 	// Generate standard Clip-space output coordinates.
-	output.clipSpaceOutput.x =  (output.sceneSpaceOutput.x * sceneToOutputX[0] + sceneToOutputX[1]);
-	output.clipSpaceOutput.y = (output.sceneSpaceOutput.y *sceneToOutputY[0] + sceneToOutputY[1]);
+	output.clipSpaceOutput.x = (output.sceneSpaceOutput.x * sceneToOutputX[0] + sceneToOutputX[1]);
+	output.clipSpaceOutput.y = (output.sceneSpaceOutput.y * sceneToOutputY[0] + sceneToOutputY[1]);
 
 	output.clipSpaceOutput.z = output.sceneSpaceOutput.z;
 	output.clipSpaceOutput.w = output.sceneSpaceOutput.w;
 
 	// Generate standard Texel-space input coordinates.
-	output.texelSpaceInput0.x = (originalFrameSize.x * input.position.x * sceneToInput0X[0]) + sceneToInput0X[1];
-	output.texelSpaceInput0.y = (originalFrameSize.y * input.position.y * sceneToInput0Y[0]) + sceneToInput0Y[1];
+    output.texelSpaceInput0.x = (originalFrameSize.x * input.position.x * sceneToInput0X[0]) + sceneToInput0X[1];
+    output.texelSpaceInput0.y = (originalFrameSize.y * input.position.y * sceneToInput0Y[0]) + sceneToInput0Y[1];
 	output.texelSpaceInput0.z = 1 - input.position.y;
 	output.texelSpaceInput0.w = 1;
 

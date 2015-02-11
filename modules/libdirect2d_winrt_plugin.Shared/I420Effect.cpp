@@ -9,7 +9,7 @@ I420Effect::I420Effect() :
 m_refCount(1)
 {
     m_displayedFrame = D2D1::SizeU(0, 0);
-    m_originalFrame = D2D1::SizeU(0, 0);
+    m_visibleSize = D2D1::SizeU(0, 0);
 }
 
 HRESULT I420Effect::UpdateConstants()
@@ -17,23 +17,37 @@ HRESULT I420Effect::UpdateConstants()
     m_constants.displayedFrameWidth = m_displayedFrame.width;
     m_constants.displayedFrameHeight = m_displayedFrame.height;
 
-    m_constants.originalFrameWidth = m_originalFrame.width;
-    m_constants.originalFrameHeight = m_originalFrame.height;
+    m_constants.visibleFrameWidth = m_visibleSize.width /*- 1*/;
+    m_constants.visibleFrameHeight = m_visibleSize.height /*- 1*/;
 
     return  m_drawInfo->SetVertexShaderConstantBuffer(reinterpret_cast<BYTE*>(&m_constants), sizeof(m_constants));
 }
 
-float I420Effect::GetDisplayedFrameWidth() const		{ return m_displayedFrame.width; }
-HRESULT I420Effect::SetDisplayedFrameWidth(float width)	
+uint32 I420Effect::GetDisplayedFrameWidth() const		{ return m_displayedFrame.width; }
+HRESULT I420Effect::SetDisplayedFrameWidth(uint32 width)	
 {
     m_displayedFrame.width = width;
     return S_OK;
 }
 
-float I420Effect::GetDisplayedFrameHeight() const		{ return m_displayedFrame.height; }
-HRESULT I420Effect::SetDisplayedFrameHeight(float height)	
+uint32 I420Effect::GetDisplayedFrameHeight() const		{ return m_displayedFrame.height; }
+HRESULT I420Effect::SetDisplayedFrameHeight(uint32 height)	
 {
     m_displayedFrame.height = height; 
+    return S_OK;
+}
+
+uint32 I420Effect::GetVisibleWidth() const		{ return m_visibleSize.width; }
+HRESULT I420Effect::SetVisibleWidth(uint32 width)
+{
+    m_visibleSize.width = width;
+    return S_OK;
+}
+
+uint32 I420Effect::GetVisibleHeight() const		{ return m_visibleSize.height; }
+HRESULT I420Effect::SetVisibleHeight(uint32 height)
+{
+    m_visibleSize.height = height;
     return S_OK;
 }
 
@@ -54,13 +68,21 @@ HRESULT I420Effect::Register(_In_ ID2D1Factory1* pFactory)
             <Input name='uSource' />
             <Input name='vSource' />
         </Inputs>
-        <Property name='DisplayedFrameWidth' type='float' value='0'>
+        <Property name='DisplayedFrameWidth' type='uint32' value='0'>
             <Property name='DisplayName' type='string' value='RenderTarget Size X' />
-            <Property name='Default' type='float' value='0.0' />
+            <Property name='Default' type='uint32' value='0' />
         </Property>
-        <Property name='DisplayedFrameHeight' type='float' value='0'>
+        <Property name='DisplayedFrameHeight' type='uint32' value='0'>
             <Property name='DisplayName' type='string' value='RenderTarget Size Y' />
-            <Property name='Default' type='float' value='0.0' />
+            <Property name='Default' type='uint32' value='0' />
+        </Property>
+        <Property name='VisibleFrameWidth' type='uint32' value='0'>
+            <Property name='DisplayName' type = 'string' value = 'Visible Width' />
+            <Property name='Default' type='uint32' value='0' />
+        </Property>
+        <Property name='VisibleFrameHeight' type='uint32' value='0'>
+            <Property name='DisplayName' type='string' value='Visible Height' />
+            <Property name='Default' type='uint32' value='0' />
         </Property>
         </Effect>
         );
@@ -70,6 +92,8 @@ HRESULT I420Effect::Register(_In_ ID2D1Factory1* pFactory)
     {
         D2D1_VALUE_TYPE_BINDING(L"DisplayedFrameWidth", &SetDisplayedFrameWidth, &GetDisplayedFrameWidth),
         D2D1_VALUE_TYPE_BINDING(L"DisplayedFrameHeight", &SetDisplayedFrameHeight, &GetDisplayedFrameHeight),
+        D2D1_VALUE_TYPE_BINDING(L"VisibleFrameWidth", &SetVisibleWidth, &GetVisibleWidth),
+        D2D1_VALUE_TYPE_BINDING(L"VisibleFrameHeight", &SetVisibleHeight, &GetVisibleHeight),
     };
 
     // Register the effect in the factory
@@ -179,7 +203,7 @@ IFACEMETHODIMP I420Effect::PrepareForRender(D2D1_CHANGE_TYPE changeType)
 // as a single input effect.
 IFACEMETHODIMP I420Effect::SetGraph(_In_ ID2D1TransformGraph* pGraph)
 {
-return E_NOTIMPL;
+    return E_NOTIMPL;
 }
 
 // Called to assign a new render info class, which is used to inform D2D on
@@ -217,10 +241,12 @@ IFACEMETHODIMP I420Effect::MapOutputRectToInputRects(
     ) const
 {
     if (inputRectCount != 3)
-        return E_NOTIMPL;
+        return E_INVALIDARG;
 
-    pInputRects[0] = pInputRects[1] = pInputRects[2] = pOutputRect[0];
-
+    pInputRects[0] = m_inputRects[0];
+    pInputRects[1] = m_inputRects[1];
+    pInputRects[2] = m_inputRects[2];
+    
     return S_OK;
 }
 
@@ -232,23 +258,10 @@ IFACEMETHODIMP I420Effect::MapInputRectsToOutputRect(
     _Out_ D2D1_RECT_L* pOutputOpaqueSubRect
     )
 {
-    D2D1_RECT_L rects[3];
-    rects[0] = D2D1::RectL(pInputRects[0].left, pInputRects[0].top, pInputRects[0].right, pInputRects[0].bottom);
-    rects[1] = D2D1::RectL(pInputRects[1].left, pInputRects[1].top, pInputRects[1].right, pInputRects[1].bottom);
-    rects[2] = D2D1::RectL(pInputRects[2].left, pInputRects[2].top, pInputRects[2].right, pInputRects[2].bottom);
+    if (inputRectCount != 3)
+        return E_INVALIDARG;
     *pOutputRect = D2D1::RectL(0, 0, m_displayedFrame.width, m_displayedFrame.height);
-
-    if (m_inputRect.bottom != pInputRects[0].bottom
-        || m_inputRect.top != pInputRects[0].top
-        || m_inputRect.right != pInputRects[0].right
-        || m_inputRect.left != pInputRects[0].left)
-    {
-        m_inputRect = pInputRects[0];
-        m_originalFrame.width= m_inputRect.right;
-        m_originalFrame.height = m_inputRect.bottom;
-        UpdateConstants();
-    }
-
+    memcpy(m_inputRects, pInputRects, sizeof(m_inputRects));
     // Indicate that entire output might contain transparency.
     ZeroMemory(pOutputOpaqueSubRect, sizeof(*pOutputOpaqueSubRect));
 
@@ -261,12 +274,10 @@ IFACEMETHODIMP I420Effect::MapInvalidRect(
     _Out_ D2D1_RECT_L* pInvalidOutputRect
     ) const
 {
-    HRESULT hr = S_OK;
-
     // Indicate that the entire output may be invalid.
-    *pInvalidOutputRect = m_inputRect;
+    *pInvalidOutputRect = D2D1::RectL(0, 0, m_displayedFrame.width, m_displayedFrame.height);
 
-    return hr;
+    return S_OK;
 }
 
 IFACEMETHODIMP_(UINT32) I420Effect::GetInputCount() const
