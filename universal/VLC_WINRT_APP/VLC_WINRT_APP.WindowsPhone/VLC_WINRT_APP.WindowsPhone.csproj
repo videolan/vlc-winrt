@@ -527,9 +527,6 @@
     <Content Include="..\..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\meta_engine\libfolder_plugin.dll">
       <Link>plugins\meta_engine\libfolder_plugin.dll</Link>
     </Content>
-    <Content Include="..\..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\meta_engine\libtaglib_plugin.dll">
-      <Link>plugins\meta_engine\libtaglib_plugin.dll</Link>
-    </Content>
     <Content Include="..\..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\misc\libaddonsfsstorage_plugin.dll">
       <Link>plugins\misc\libaddonsfsstorage_plugin.dll</Link>
     </Content>
@@ -586,9 +583,6 @@
     </Content>
     <Content Include="..\..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\services_discovery\libpodcast_plugin.dll">
       <Link>plugins\services_discovery\libpodcast_plugin.dll</Link>
-    </Content>
-    <Content Include="..\..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\services_discovery\libsap_plugin.dll">
-      <Link>plugins\services_discovery\libsap_plugin.dll</Link>
     </Content>
     <Content Include="..\..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\stream_filter\libhds_plugin.dll">
       <Link>plugins\stream_filter\libhds_plugin.dll</Link>
