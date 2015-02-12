@@ -384,9 +384,6 @@
     <Content Include="..\..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\codec\libddummy_plugin.dll">
       <Link>plugins\codec\libddummy_plugin.dll</Link>
     </Content>
-    <Content Include="..\..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\codec\libdmo_plugin.dll">
-      <Link>plugins\codec\libdmo_plugin.dll</Link>
-    </Content>
     <Content Include="..\..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\codec\libdts_plugin.dll">
       <Link>plugins\codec\libdts_plugin.dll</Link>
     </Content>
@@ -401,9 +398,6 @@
     </Content>
     <Content Include="..\..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\codec\liblpcm_plugin.dll">
       <Link>plugins\codec\liblpcm_plugin.dll</Link>
-    </Content>
-    <Content Include="..\..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\codec\libmft_plugin.dll">
-      <Link>plugins\codec\libmft_plugin.dll</Link>
     </Content>
     <Content Include="..\..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\codec\libmpeg_audio_plugin.dll">
       <Link>plugins\codec\libmpeg_audio_plugin.dll</Link>
@@ -840,14 +834,6 @@
     <Content Include="..\..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\visualization\libvisual_plugin.dll">
       <Link>plugins\visualization\libvisual_plugin.dll</Link>
     </Content>
-    <Content Include="..\..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\vlc.dll">
-      <Link>vlc.dll</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\vlccore.dll">
-      <Link>vlccore.dll</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="..\..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\access\libaccess_winrt_plugin.dll">
       <Link>plugins\access\libaccess_winrt_plugin.dll</Link>
     </Content>
@@ -859,6 +845,12 @@
     </Content>
     <Content Include="..\..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\video_output\libdirect2d_winrt_plugin.dll">
       <Link>plugins\video_output\libdirect2d_winrt_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\libvlc.dll">
+      <Link>libvlc.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\libvlccore.dll">
+      <Link>libvlccore.dll</Link>
     </Content>
     <Content Include="Assets\BadgeLogo.scale-100.png" />
     <Content Include="Assets\BadgeLogo.scale-140.png" />

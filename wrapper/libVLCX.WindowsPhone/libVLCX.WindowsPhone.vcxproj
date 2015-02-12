@@ -88,7 +88,7 @@
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <AdditionalLibraryDirectories>$(SolutionDir)..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>runtimeobject.lib;d3d11.lib;d2d1.lib;vlc.lib;MMDevAPI.lib;runtimeobject.lib;vlc.lib;d3d11.lib;d2d1.lib;dxgi.lib;MMDevAPI.lib;MFuuid.lib;MFReadWrite.lib;MFplat.lib;uuid.lib;WindowsCodecs.lib;WindowsPhoneCore.lib;PhoneAppModelHost.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>runtimeobject.lib;d3d11.lib;d2d1.lib;libvlc.lib;MMDevAPI.lib;runtimeobject.lib;libvlc.lib;d3d11.lib;d2d1.lib;dxgi.lib;MMDevAPI.lib;MFuuid.lib;MFReadWrite.lib;MFplat.lib;uuid.lib;WindowsCodecs.lib;WindowsPhoneCore.lib;PhoneAppModelHost.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -106,7 +106,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <AdditionalDependencies>runtimeobject.lib;d3d11.lib;d2d1.lib;vlc.lib;MMDevAPI.lib;WindowsPhoneCore.lib;RuntimeObject.lib;PhoneAppModelHost.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>runtimeobject.lib;d3d11.lib;d2d1.lib;libvlc.lib;MMDevAPI.lib;WindowsPhoneCore.lib;RuntimeObject.lib;PhoneAppModelHost.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -124,7 +124,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <AdditionalDependencies>runtimeobject.lib;d3d11.lib;d2d1.lib;vlc.lib;MMDevAPI.lib;WindowsPhoneCore.lib;RuntimeObject.lib;PhoneAppModelHost.lib;vlc.lib;d3d11.lib;d2d1.lib;MMDevAPI.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3d11.lib;d2d1.lib;libvlc.lib;MMDevAPI.lib;WindowsPhoneCore.lib;RuntimeObject.lib;PhoneAppModelHost.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -144,7 +144,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <AdditionalDependencies>runtimeobject.lib;d3d11.lib;d2d1.lib;vlc.lib;MMDevAPI.lib;WindowsPhoneCore.lib;RuntimeObject.lib;PhoneAppModelHost.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>runtimeobject.lib;d3d11.lib;d2d1.lib;libvlc.lib;MMDevAPI.lib;WindowsPhoneCore.lib;RuntimeObject.lib;PhoneAppModelHost.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>false</GenerateDebugInformation>
     </Link>

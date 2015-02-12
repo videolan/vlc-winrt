@@ -168,12 +168,12 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\vlc.dll">
-      <Link>vlc.dll</Link>
+    <Content Include="..\..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\libvlc.dll">
+      <Link>libvlc.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\vlccore.dll">
-      <Link>vlccore.dll</Link>
+    <Content Include="..\..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\libvlccore.dll">
+      <Link>libvlccore.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="..\..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\access\libaccess_bd_plugin.dll">
