@@ -123,7 +123,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <AdditionalDependencies>runtimeobject.lib;d3d11.lib;d2d1.lib;libvlc.lib;MMDevAPI.lib;synchronization.lib;dxgi.lib;MMDevAPI.lib;MFuuid.lib;MFReadWrite.lib;MFplat.lib;uuid.lib;WindowsCodecs.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>runtimeobject.lib;d3d11.lib;d2d1.lib;vlc.lib;MMDevAPI.lib;synchronization.lib;dxgi.lib;MFuuid.lib;MFReadWrite.lib;MFplat.lib;uuid.lib;WindowsCodecs.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <AdditionalLibraryDirectories>$(SolutionDir)..\vlc\Windows\vlc-$(Platform)\$(Configuration)</AdditionalLibraryDirectories>
     </Link>
