@@ -18,6 +18,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
+using VLC_WINRT_APP.Helpers;
 using WinRTXamlToolkit.Controls.Extensions;
 #if WINDOWS_PHONE_APP
 using Windows.Phone.UI.Input;
@@ -39,6 +40,9 @@ namespace VLC_WINRT_APP.Views.VideoPages
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
+#if WINDOWS_APP
+            AppViewHelper.SetFullscren(true);
+#endif
             // If no playback was ever started, ContinueIndexing can be null
             // If we navigate back and forth to the main page, we also don't want to 
             // re-mark the task as completed.
@@ -65,6 +69,9 @@ namespace VLC_WINRT_APP.Views.VideoPages
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
             base.OnNavigatingFrom(e);
+#if WINDOWS_APP
+            AppViewHelper.SetFullscren(false);
+#endif
             if (App.IMediaService.ContinueIndexing != null && !App.IMediaService.ContinueIndexing.Task.IsCompleted)
             {
                 App.IMediaService.ContinueIndexing.SetResult(true);

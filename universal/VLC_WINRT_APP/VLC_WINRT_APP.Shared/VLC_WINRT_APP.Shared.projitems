@@ -141,6 +141,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)DataTemplateSelectors\StorageItemDataTemplateSelector.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\AppBar.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\ApplicationSettingsHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\AppViewHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\CapabilitiesHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\DisplayHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\DoesFileExistHelper.cs" />

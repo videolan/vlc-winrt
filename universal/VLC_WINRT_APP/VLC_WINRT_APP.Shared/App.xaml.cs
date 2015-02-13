@@ -123,6 +123,9 @@ namespace VLC_WINRT_APP
             });
 #if WINDOWS_PHONE_APP
             await BackgroundAudioHelper.InitBackgroundAudio();
+#else
+            AppViewHelper.SetAppView();
+            AppViewHelper.SetBackgroundButtonColor();
 #endif
         }
 
