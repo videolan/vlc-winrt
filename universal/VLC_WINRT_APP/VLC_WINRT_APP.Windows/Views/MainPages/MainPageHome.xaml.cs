@@ -23,14 +23,13 @@ namespace VLC_WINRT_APP.Views.MainPages
         public MainPageHome()
         {
             InitializeComponent();
-            this.SizeChanged += OnSizeChanged;
+            Window.Current.SizeChanged += Current_SizeChanged;
         }
-
 
         protected override void OnNavigatedTo(Windows.UI.Xaml.Navigation.NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            AppBarHelper.UpdateAppBar(typeof (MainPageHome));
+            AppBarHelper.UpdateAppBar(typeof(MainPageHome));
             if (Locator.VideoLibraryVM.LoadingState == LoadingState.NotLoaded)
             {
                 Task.Run(() => Locator.VideoLibraryVM.Initialize());
@@ -43,14 +42,15 @@ namespace VLC_WINRT_APP.Views.MainPages
             }
         }
 
-        private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
+        void Current_SizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)
         {
             Responsive();
         }
 
+
         private void Responsive()
         {
-            if (Window.Current.Bounds.Width < 600)
+            if (Window.Current.Bounds.Width < 700)
             {
                 MainHub.Orientation = Orientation.Vertical;
             }
@@ -69,7 +69,7 @@ namespace VLC_WINRT_APP.Views.MainPages
 
         private void Responsive(ItemsWrapGrid itemsWrap)
         {
-            if (Window.Current.Bounds.Width < 600)
+            if (Window.Current.Bounds.Width < 650)
             {
                 itemsWrap.Orientation = Orientation.Horizontal;
             }
