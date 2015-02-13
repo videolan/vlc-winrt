@@ -14,7 +14,7 @@ namespace VLC_WINRT_APP.Model
             ".mp3",
             ".wma",
             ".aac",
-            ".m4a"
+            ".m4a",
         };
 
         public static List<string> Supported = new List<string>()
