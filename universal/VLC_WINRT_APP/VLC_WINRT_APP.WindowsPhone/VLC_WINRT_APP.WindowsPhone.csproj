@@ -119,12 +119,6 @@
     <Compile Include="Views\MainPages\MainPageHome.xaml.cs">
       <DependentUpon>MainPageHome.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MainPages\MainPageMusic.xaml.cs">
-      <DependentUpon>MainPageMusic.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\MainPages\MainPageVideos.xaml.cs">
-      <DependentUpon>MainPageVideos.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\MusicPages\MiniPlayer.xaml.cs">
       <DependentUpon>MiniPlayer.xaml</DependentUpon>
     </Compile>
@@ -868,14 +862,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainPages\MainPageHome.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\MainPages\MainPageMusic.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\MainPages\MainPageVideos.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

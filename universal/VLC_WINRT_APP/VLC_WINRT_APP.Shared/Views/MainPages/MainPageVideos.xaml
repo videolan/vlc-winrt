@@ -7,22 +7,9 @@
       d:DesignHeight="768"
       d:DesignWidth="400"
       DataContext="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM}">
-    <UserControl.Resources>
-        <CollectionViewSource x:Name="ShowsGroupedByName"
-                              Source="{Binding Shows}"
-                              IsSourceGrouped="True"
-                              ItemsPath="Episodes" />
-    </UserControl.Resources>
 
     <Frame x:Name="MainPageVideoContentPresenter"
            x:FieldModifier="public"
            Background="Transparent"
-           Loaded="MainPageVideoContentPresenter_OnLoaded"
-           Margin="24,0">
-        <Frame.ContentTransitions>
-            <TransitionCollection>
-                <EdgeUIThemeTransition Edge="Right" />
-            </TransitionCollection>
-        </Frame.ContentTransitions>
-    </Frame>
+           Loaded="MainPageVideoContentPresenter_OnLoaded"/>
 </Page>

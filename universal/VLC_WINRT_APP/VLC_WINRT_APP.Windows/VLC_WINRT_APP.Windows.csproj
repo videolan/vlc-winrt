@@ -155,14 +155,8 @@
     <Compile Include="Views\MainPages\MainPageMediaServers.xaml.cs">
       <DependentUpon>MainPageMediaServers.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MainPages\MainPageMusic.xaml.cs">
-      <DependentUpon>MainPageMusic.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\MainPages\MainPageRemovables.xaml.cs">
       <DependentUpon>MainPageRemovables.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\MainPages\MainPageVideos.xaml.cs">
-      <DependentUpon>MainPageVideos.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MusicPages\ArtistPageControls\ArtistCoverBiographyControl.xaml.cs">
       <DependentUpon>ArtistCoverBiographyControl.xaml</DependentUpon>
@@ -921,17 +915,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\MainPages\MainPageMusic.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Views\MainPages\MainPageRemovables.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\MainPages\MainPageVideos.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\MusicPages\ArtistPageControls\ArtistCoverBiographyControl.xaml">
       <SubType>Designer</SubType>

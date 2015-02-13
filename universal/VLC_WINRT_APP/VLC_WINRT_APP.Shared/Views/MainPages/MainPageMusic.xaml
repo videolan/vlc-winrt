@@ -11,12 +11,5 @@
 
     <Frame x:Name="MainPageMusicContentPresenter"
            x:FieldModifier="public"
-           Loaded="MusicPanesFrame_OnLoaded"
-           Margin="24,0">
-        <Frame.ContentTransitions>
-            <TransitionCollection>
-                <EdgeUIThemeTransition Edge="Right" />
-            </TransitionCollection>
-        </Frame.ContentTransitions>
-    </Frame>
+           Loaded="MusicPanesFrame_OnLoaded" />
 </Page>

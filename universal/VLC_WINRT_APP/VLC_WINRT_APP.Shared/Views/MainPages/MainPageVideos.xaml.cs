@@ -10,7 +10,9 @@
 using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.Model;
@@ -23,7 +25,6 @@ namespace VLC_WINRT_APP.Views.MainPages
         public MainPageVideos()
         {
             InitializeComponent();
-            this.SizeChanged += OnSizeChanged;
             this.NavigationCacheMode = NavigationCacheMode.Enabled;
         }
 
@@ -37,15 +38,27 @@ namespace VLC_WINRT_APP.Views.MainPages
             }
         }
 
-        private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
-        {
-        }
         private void MainPageVideoContentPresenter_OnLoaded(object sender, RoutedEventArgs e)
         {
             if (MainPageVideoContentPresenter.CurrentSourcePageType == null)
             {
-                Locator.MainVM.ChangeMainPageVideoViewCommand.Execute((int)Locator.SettingsVM.VideoView);
+                Locator.MainVM.ChangeMainPageVideoViewCommand.Execute((int) Locator.SettingsVM.VideoView);
             }
+#if WINDOWS_APP
+            MainPageVideoContentPresenter.Margin = new Thickness(24, 0, 24, 0);
+            MainPageVideoContentPresenter.ContentTransitions = new TransitionCollection()
+            {
+                new EdgeUIThemeTransition() {Edge = EdgeTransitionLocation.Right},
+            };
+#else
+            MainPageVideoContentPresenter.ContentTransitions = new TransitionCollection()
+            {
+                new NavigationThemeTransition()
+                {
+                    DefaultNavigationTransitionInfo = new CommonNavigationTransitionInfo(),
+                }
+            };
+#endif
         }
     }
 }
