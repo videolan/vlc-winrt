@@ -13,7 +13,7 @@ namespace VLC_WINRT_APP.Views.MainPages.MainVideoControls
 
         private void VideosWrapGrid_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            TemplateSizer.ComputeCompactVideo(sender as ItemsWrapGrid);
+            TemplateSizer.ComputeCompactVideo(sender as ItemsWrapGrid, this.ActualWidth);
         }
     }
 }

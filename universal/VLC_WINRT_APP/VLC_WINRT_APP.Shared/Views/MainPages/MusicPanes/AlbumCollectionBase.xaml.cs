@@ -17,7 +17,7 @@ namespace VLC_WINRT_APP.Views.MainPages.MusicPanes
 
         private void AlbumsWrapGrid_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            TemplateSizer.ComputeAlbums(sender as ItemsWrapGrid);
+            TemplateSizer.ComputeAlbums(sender as ItemsWrapGrid, TemplateSize.Compact, this.ActualWidth);
         }
 
         private async void ListViewBase_OnContainerContentChanging(ListViewBase sender,
