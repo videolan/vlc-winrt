@@ -27,6 +27,7 @@ using VLC_WINRT_APP.Views.VideoPages;
 using libVLCX;
 using System.Collections.Generic;
 using System.Diagnostics;
+using Windows.UI.Xaml;
 using VLC_WINRT_APP.Helpers.MusicPlayer;
 using VLC_WINRT_APP.Model.Music;
 #if WINDOWS_PHONE_APP
@@ -164,6 +165,21 @@ namespace VLC_WINRT_APP.Services.RunTime
                     else
                         Locator.VideoVm.SkipAhead.Execute("");
                     break;
+            }
+        }
+
+        public static async Task OpenFile(StorageFile file)
+        {
+            if (file == null) return;
+            if (VLCFileExtensions.FileTypeHelper(file.FileType) ==
+                VLCFileExtensions.VLCFileType.Video)
+            {
+                var token = StorageApplicationPermissions.FutureAccessList.Add(file);
+                await MediaService.PlayVideoFile(file, token);
+            }
+            else
+            {
+                await MediaService.PlayAudioFile(file);
             }
         }
 

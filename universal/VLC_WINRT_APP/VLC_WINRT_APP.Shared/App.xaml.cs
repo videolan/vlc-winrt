@@ -199,8 +199,10 @@ namespace VLC_WINRT_APP
                 {
                     switch (OpenFilePickerReason)
                     {
-                        case OpenFilePickerReason.OnOpeningVideo:
-                            await OpenFile(continueArgs.Files[0]);
+                        case OpenFilePickerReason.OnOpeningVideo: 
+                            if (Window.Current.Content == null)
+                                LaunchTheApp();
+                            await MediaService.OpenFile(continueArgs.Files[0]);
                             break;
                         case OpenFilePickerReason.OnOpeningSubtitle:
                             {
@@ -243,27 +245,11 @@ namespace VLC_WINRT_APP
 
         private Task ManageOpeningFiles(FileActivatedEventArgs args)
         {
-            return OpenFile(args.Files[0] as StorageFile);
+            if (Window.Current.Content == null)
+                LaunchTheApp();
+            return MediaService.OpenFile(args.Files[0] as StorageFile);
         }
 
-        private async Task OpenFile(StorageFile file)
-        {
-            if (file == null) return;
-            if (Window.Current.Content == null)
-            {
-                LaunchTheApp();
-            }
-            if (VLCFileExtensions.FileTypeHelper(file.FileType) ==
-                VLCFileExtensions.VLCFileType.Video)
-            {
-                var token = StorageApplicationPermissions.FutureAccessList.Add(file);
-                await MediaService.PlayVideoFile(file, token);
-            }
-            else
-            {
-                await MediaService.PlayAudioFile(file);
-            }
-        }
 
         private void LaunchTheApp()
         {
