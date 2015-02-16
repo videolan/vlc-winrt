@@ -13,6 +13,7 @@
               ItemTemplate="{StaticResource PhoneSemanticZoomInViewAlbumTemplateLittleSize}"
               ItemContainerStyle="{StaticResource ListViewItemStyle}"
               IsItemClickEnabled="True"
+              SelectionMode="None"
               Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <triggers:Interactions.Triggers>
             <triggers:EventTrigger EventName="ItemClick">
