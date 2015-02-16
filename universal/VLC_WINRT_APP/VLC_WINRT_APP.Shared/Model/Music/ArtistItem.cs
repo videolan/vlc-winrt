@@ -37,6 +37,7 @@ namespace VLC_WINRT_APP.Model.Music
         private PinArtistCommand pinArtistCommand;
         private bool _isPinned;
         private SeeArtistShowsCommand seeArtistShowsCommand;
+        private string _genre;
 
         [PrimaryKey, AutoIncrement, Column("_id")]
         public int Id { get; set; }
@@ -213,6 +214,11 @@ namespace VLC_WINRT_APP.Model.Music
             set { SetProperty(ref _upcomingShowItems, value); }
         }
 
+        public string Genre
+        {
+            get { return _genre; }
+            set { SetProperty(ref _genre, value); }
+        }
         [Ignore]
         public bool IsUpcomingShowsLoading
         {
