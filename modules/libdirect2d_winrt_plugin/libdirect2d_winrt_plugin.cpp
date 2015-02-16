@@ -125,6 +125,8 @@ struct vout_display_sys_t {
     ComPtr<IDXGISwapChain1>      swapChain;
     ComPtr<IDXGISurface>         backBuffer;
     ComPtr<ID2D1Bitmap1>         targetBitmap;
+
+    bool                         ready;
 };
 
 static void Debug(const wchar_t *fmt, ...)
@@ -188,6 +190,9 @@ static int Open(vlc_object_t *object)
 
 static void ClearBuffers(vout_display_sys_t* p_sys)
 {
+    if (!p_sys->ready)
+        return;
+
     DXGI_PRESENT_PARAMETERS parameters = { 0 };
     DXGI_SWAP_CHAIN_DESC1 desc;
 
@@ -318,6 +323,10 @@ static bool ResizeBuffers(vout_display_sys_t* p_sys, float dpiX, float dpiY)
         return false;
 
     p_sys->d2dContext->SetTarget(p_sys->targetBitmap.Get());
+    // Work around a crash in case of early tear down.
+    // If ResizeBuffers hasn't been called, there's no buffers to clean,
+    // though BufferCount is already set to a non 0 value
+    p_sys->ready = true;
     return true;
 }
 
