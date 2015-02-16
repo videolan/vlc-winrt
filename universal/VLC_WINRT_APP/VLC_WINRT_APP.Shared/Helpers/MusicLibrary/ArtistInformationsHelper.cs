@@ -20,6 +20,7 @@ using VLC_WINRT.Common;
 using Windows.Storage;
 using Windows.Storage.Streams;
 using VLC_WINRT_APP.Common;
+using VLC_WINRT_APP.Helpers.MusicLibrary.LastFm;
 using VLC_WINRT_APP.Model.Music;
 using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.ViewModels.MusicVM;
@@ -298,6 +299,22 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             {
                 LogHelper.Log("Error getting similar artists from this artist.");
             }
+        }
+
+        public static async Task<List<MusicEntities.Artist>>  GetTopArtistGenre(string genre)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(genre)) return null;
+                var lastFmClient = new LastFmClient();
+                var artists = await lastFmClient.GetTopArtistsGenre(genre);
+                return artists;
+            }
+            catch
+            {
+                
+            }
+            return null;
         }
 
         public static async Task GetArtistBiography(ArtistItem artist)

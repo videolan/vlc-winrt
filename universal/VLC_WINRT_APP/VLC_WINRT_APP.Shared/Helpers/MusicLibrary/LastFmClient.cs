@@ -118,6 +118,27 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             return null;
         }
 
+        public async Task<List<Artist>> GetTopArtistsGenre(string genre)
+        {
+            var lastFmClient = new HttpClient();
+            var response =
+                await
+                    lastFmClient.GetStringAsync(
+                        new Uri(
+                            string.Format(
+                                "http://ws.audioscrobbler.com/2.0/?method=tag.gettopartists&tag={1}&api_key={0}&format=json",
+                                App.ApiKeyLastFm, genre)));
+            var topartists = JsonConvert.DeserializeObject<TopArtistInformation>(response);
+            var artistList = new List<Artist>();
+            foreach (var topArtistArtist in topartists.topartists.artist)
+            {
+                var artist = new Artist();
+                artist.Name = topArtistArtist.name;
+                artistList.Add(artist);
+            }
+            return artistList;
+        }
+
         public async Task<Album> GetAlbumInfo(string albumTitle, string artistName)
         {
             try

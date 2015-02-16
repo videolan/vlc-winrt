@@ -77,6 +77,11 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             return albumList;
         }
 
+        public Task<List<Artist>> GetTopArtistsGenre(string genre)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<Music> GetMusicEntityViaArtistId(string[] artistIds, Extras[] extras)
         {
             var xboxArtistItem = new XboxMusicLibrary.Models.Artist();

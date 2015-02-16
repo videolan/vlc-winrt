@@ -125,5 +125,10 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             } 
             return null;
         }
+
+        public Task<List<Artist>> GetTopArtistsGenre(string genre)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

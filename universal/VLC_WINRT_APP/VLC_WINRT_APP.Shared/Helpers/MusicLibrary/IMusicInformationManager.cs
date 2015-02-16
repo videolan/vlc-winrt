@@ -22,5 +22,6 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
         Task<Album> GetAlbumInfo(string albumTitle, string artistName);
 
         Task<List<Album>> GetArtistTopAlbums(string artistName);
+        Task<List<Artist>> GetTopArtistsGenre(string genre);
     }
 }
