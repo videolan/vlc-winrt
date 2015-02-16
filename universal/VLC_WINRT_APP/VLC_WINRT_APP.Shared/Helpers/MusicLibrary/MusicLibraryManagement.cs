@@ -189,6 +189,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                     mP.Year = properties.Year;
                     mP.Duration = properties.Duration;
                     mP.Tracknumber = properties.TrackNumber;
+                    mP.Genre = (properties.Genre.Any()) ? properties.Genre[0] : null;
                 }
                 else
                 {
