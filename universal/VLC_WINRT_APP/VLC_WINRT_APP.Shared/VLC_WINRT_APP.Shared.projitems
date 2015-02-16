@@ -167,9 +167,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\MusicLibrary\LastFm\ArtistInformation.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\MusicLibrary\LastFm\SimilarArtistInformation.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\MusicLibrary\LastFm\TopAlbumInformation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\MusicLibrary\LastFm\TopArtistInformation.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\MusicLibrary\MusicEntities\Album.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\MusicLibrary\MusicEntities\Artist.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\MusicLibrary\MusicEntities\Image.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\MusicLibrary\MusicFlow.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\MusicLibrary\MusicLibraryManagement.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\MusicLibrary\XboxMusicClient.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\MusicLibrary\xboxmusic\Models\Albums.cs" />
