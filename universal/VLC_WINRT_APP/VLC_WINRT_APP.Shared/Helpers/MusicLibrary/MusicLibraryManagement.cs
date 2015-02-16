@@ -285,6 +285,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             {
                 try
                 {
+                    if (filePath == null) return;
                     var folderPath = Path.GetDirectoryName(filePath);
                     var folder = await StorageFolder.GetFolderFromPathAsync(folderPath + "\\");
                     var coverName = "Folder.jpg";
