@@ -13,7 +13,8 @@
 
     <Grid FlyoutBase.AttachedFlyout="{StaticResource AlbumMenuFlyout}"
           Loaded="RootAlbumItem_Loaded"
-          Holding="RootAlbumItem_Holding">
+          Holding="RootAlbumItem_Holding"
+          RightTapped="Grid_RightTapped">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="40" />

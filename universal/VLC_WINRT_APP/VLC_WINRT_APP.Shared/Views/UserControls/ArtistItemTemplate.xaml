@@ -16,6 +16,9 @@
             <core:EventTriggerBehavior EventName="Holding">
                 <common:OpenMenuFlyoutAction />
             </core:EventTriggerBehavior>
+            <core:EventTriggerBehavior EventName="RightTapped">
+                <common:OpenMenuFlyoutAction />
+            </core:EventTriggerBehavior>
         </interactivity:Interaction.Behaviors>
         <Grid>
             <Grid.RowDefinitions>

@@ -24,5 +24,12 @@ namespace VLC_WINRT_APP.Views.UserControls
             Flyout.ShowAttachedFlyout((Grid)sender);
 #endif
         }
+
+        private void Grid_RightTapped(object sender, RightTappedRoutedEventArgs e)
+        {
+#if WINDOWS_APP
+            Flyout.ShowAttachedFlyout((Grid)sender);
+#endif
+        }
     }
 }
