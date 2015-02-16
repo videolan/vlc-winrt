@@ -100,7 +100,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                     await
                         lastFmClient.GetStringAsync(new Uri(string.Format("http://ws.audioscrobbler.com/2.0/?method=artist.getsimilar&format=json&limit=8&api_key={0}&artist={1}", App.ApiKeyLastFm, artistName)));
                 var artists = JsonConvert.DeserializeObject<SimilarArtistInformation>(response);
-                if (artists == null || !artists.Similarartists.Artist.Any()) return null;
+                if (artists == null || artists.Similarartists == null || !artists.Similarartists.Artist.Any()) return null;
                 var similarArtists = artists.Similarartists.Artist;
                 var artistList = new List<Artist>();
                 foreach (var similarArtist in similarArtists)
