@@ -13,46 +13,38 @@
 
     <Grid x:Name="HeaderGrid"
           Margin="-12,0,0,0"
-          Loaded="HeaderGrid_OnLoaded"
-          RequestedTheme="Dark">
+          Loaded="HeaderGrid_OnLoaded">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="30" />
         </Grid.RowDefinitions>
-        <Image Grid.RowSpan="3"
-               x:Name="HeaderArtistImage"
-               Source="{Binding CurrentAlbum.Picture}"
-               Stretch="UniformToFill"
-               Opacity="1"/>
-        <Grid Grid.Row="0"
-              Grid.RowSpan="3">
-            <Grid.Background>
-                <LinearGradientBrush StartPoint="0.5,0"
-                                     EndPoint="0.5,1">
-                    <GradientStop Color="#B1000000"
-                                  Offset="0" />
-                    <GradientStop Color="#5C000000"
-                                  Offset="0.5" />
-                    <GradientStop Color="#00000000"
-                                  Offset="1" />
-                </LinearGradientBrush>
-            </Grid.Background>
-        </Grid>
-        <Grid Grid.Row="0">
+        <userControls:HeaderControl HeaderTextBlock="{Binding CurrentAlbum.Name, Converter={StaticResource AlbumStringConverter}}"
+                                    HeaderBackground="#00ffffff" />
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="24" />
+                <ColumnDefinition />
+                <ColumnDefinition Width="12" />
+                <ColumnDefinition />
+                <ColumnDefinition Width="12" />
+            </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
             </Grid.RowDefinitions>
-            <userControls:HeaderControl HeaderTextBlock="{Binding CurrentAlbum.Name, Converter={StaticResource AlbumStringConverter}}"
-                                        HeaderBackground="#00ffffff" />
-            <Button Grid.Row="1"
+            <Image Grid.Column="1"
+                   Grid.RowSpan="4"
+                   x:Name="HeaderArtistImage"
+                   Source="{Binding CurrentAlbum.Picture}"
+                   Stretch="Uniform"
+                   Opacity="1" />
+            <Button Grid.Row="0"
+                    Grid.Column="3"
                     Style="{StaticResource TextBlockButtonStyle}"
                     Command="{Binding CurrentAlbum.ViewArtist}"
-                    CommandParameter="{Binding CurrentAlbum.ArtistId}"
-                    Margin="56,-18,0,0"
-                    RequestedTheme="Dark">
+                    CommandParameter="{Binding CurrentAlbum.ArtistId}">
                 <Button.Content>
                     <TextBlock TextWrapping="NoWrap">
                         <Run Text="{Binding CurrentArtist.Name, Converter={StaticResource ArtistStringConverter}}"
@@ -64,23 +56,8 @@
                     </TextBlock>
                 </Button.Content>
             </Button>
-        </Grid>
-        <Grid Grid.Row="2"
-              RequestedTheme="Dark">
-            <AppBarButton Style="{StaticResource AppBarButtonStyleHorizontal}"
-                          Margin="12,0,0,0"
-                          Label="Play all"
-                          Command="{Binding CurrentAlbum.PlayAlbum}"
-                          CommandParameter="{Binding CurrentAlbum}">
-                <AppBarButton.Icon>
-                    <PathIcon Data="{StaticResource PlayPath}"/>
-                </AppBarButton.Icon>
-            </AppBarButton>
-        </Grid>
-        <Grid Grid.Row="3"
-              Margin="0,12,12,0">
-            <TextBlock VerticalAlignment="Center"
-                       HorizontalAlignment="Right">
+            <TextBlock Grid.Row="1"
+                       Grid.Column="3">
             <Run Text="{Binding CurrentAlbum.Tracks.Count}"
                  FontSize="18"
                  Foreground="DimGray" />
@@ -88,6 +65,18 @@
                  FontSize="18"
                  Foreground="DimGray" />
             </TextBlock>
+            <AppBarButton Grid.Row="2"
+                          Grid.Column="3"
+                          Style="{StaticResource AppBarButtonStyleHorizontal}"
+                          Label="Play all"
+                          Margin="0,0,0,12"
+                          VerticalAlignment="Bottom"
+                          Command="{Binding CurrentAlbum.PlayAlbum}"
+                          CommandParameter="{Binding CurrentAlbum}">
+                <AppBarButton.Icon>
+                    <PathIcon Data="{StaticResource PlayPathNarrow}" />
+                </AppBarButton.Icon>
+            </AppBarButton>
         </Grid>
     </Grid>
 </UserControl>
