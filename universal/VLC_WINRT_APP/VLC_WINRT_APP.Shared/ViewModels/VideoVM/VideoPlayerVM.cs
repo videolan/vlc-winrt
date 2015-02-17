@@ -220,11 +220,13 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             // This assumes we have a "Disable" track for both subtitles & audio
             if (type == TrackType.Subtitle && CurrentSubtitle == null && _subtitlesTracks.Count > 1)
             {
+                if (_subtitlesTracks.Count < 2) return;
                 var activeTrack = _subtitlesTracks[1];
                 await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => CurrentSubtitle = activeTrack);
             }
             else if (type == TrackType.Audio && CurrentAudioTrack == null && _audioTracks.Count > 1)
             {
+                if (_audioTracks.Count < 2) return;
                 var activeTrack = _audioTracks[1];
                 await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => CurrentAudioTrack = activeTrack);
             }
