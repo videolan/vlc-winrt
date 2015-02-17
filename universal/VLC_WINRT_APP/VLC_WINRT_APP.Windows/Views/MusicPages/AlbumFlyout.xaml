@@ -8,7 +8,8 @@
                 xmlns:custom="using:CustomAppBarDesktop"
                 mc:Ignorable="d"
                 d:DesignWidth="346"
-                Style="{StaticResource SettingsFlyoutStyle}">
+                Style="{StaticResource SettingsFlyoutStyle}"
+                Width="450">
     <Grid Tapped="RootGrid_OnTapped">
         <Grid.RowDefinitions>
             <RowDefinition />
