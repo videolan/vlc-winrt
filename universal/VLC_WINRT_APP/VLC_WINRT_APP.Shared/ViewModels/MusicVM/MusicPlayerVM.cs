@@ -252,7 +252,9 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                     await SetCurrentArtist();
                     await SetCurrentAlbum();
                     await UpdatePlayingUI();
+#if WINDOWS_APP
                     await UpdateWindows8UI();
+#endif
                 });
             }
         }
