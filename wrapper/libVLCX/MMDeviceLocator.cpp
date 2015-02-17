@@ -26,6 +26,8 @@
 #include <dxgi1_3.h>
 #include <d3d11_1.h>
 #include <d2d1_2.h>
+#include <ppltasks.h>
+
 
 #include "windows.ui.xaml.media.dxinterop.h"
 
@@ -76,3 +78,25 @@ HRESULT MMDeviceLocator::ActivateCompleted(IActivateAudioInterfaceAsyncOperation
     return hr;
 }
 
+namespace libVLCX
+{
+    Windows::Foundation::IAsyncOperation<uint32>^ MMDeviceLoader::GetAudioClient()
+    {
+        return concurrency::create_async([]()
+        {
+            MMDeviceLocator locator;
+            locator.m_audioClientReady = CreateEventEx(NULL, TEXT("AudioClientReady"), 0, EVENT_ALL_ACCESS);
+            locator.RegisterForWASAPI();
+            DWORD res;
+            while ((res = WaitForSingleObjectEx(locator.m_audioClientReady, 1000, TRUE)) == WAIT_TIMEOUT) {
+                OutputDebugStringW(L"Waiting for audio\n");
+            }
+            CloseHandle(locator.m_audioClientReady);
+            if (res != WAIT_OBJECT_0) {
+                OutputDebugString(TEXT("Failure while waiting for audio client"));
+                return 0u;
+            }
+            return (uint32)locator.m_AudioClient;
+        });
+    }
+}

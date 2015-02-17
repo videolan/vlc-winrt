@@ -48,13 +48,23 @@ namespace VLC_WINRT_APP.Services.RunTime
         public Instance Instance { get; private set; }
         public MediaPlayer MediaPlayer { get; private set; }
         public bool UseVlcLib { get; set; }
+        private MMDeviceLoader _mmDeviceLoader;
         public MediaService()
         {
             CoreWindow.GetForCurrentThread().Activated += ApplicationState_Activated;
+            _mmDeviceLoader = new MMDeviceLoader();
         }
 
-        public void Initialize(SwapChainPanel panel)
+        public async Task Initialize(SwapChainPanel panel)
         {
+            var tcs = new TaskCompletionSource<uint>();
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+            {
+                var res = await _mmDeviceLoader.GetAudioClient();
+                tcs.SetResult(res);
+            });
+            var mmDevice = await tcs.Task;
+
             var param = new List<String>()
             {
                 "-I",
@@ -64,7 +74,8 @@ namespace VLC_WINRT_APP.Services.RunTime
                 "--no-stats",
                 "--avcodec-fast",
                 "--no-avcodec-dr",
-                String.Format("--freetype-font={0}\\segoeui.ttf", Windows.ApplicationModel.Package.Current.InstalledLocation.Path)
+                String.Format("--freetype-font={0}\\segoeui.ttf", Windows.ApplicationModel.Package.Current.InstalledLocation.Path),
+                String.Format("--winstore-audioclient={0}", mmDevice)
             };
             // So far, this NEEDS to be called from the main thread
             Instance = new Instance(param, panel);
