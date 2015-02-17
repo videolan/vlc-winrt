@@ -47,7 +47,8 @@
             </Grid>
             <TextBlock Text="My playlists"
                        Style="{StaticResource TitleTextBlockStyle}" />
-            <ListView ItemsSource="{Binding TrackCollections}"
+            <ListView Margin="0,12,0,0"
+                      ItemsSource="{Binding TrackCollections}"
                       SelectedItem="{Binding CurrentTrackCollection, Mode=TwoWay}"
                       ItemTemplate="{StaticResource PhoneTrackCollectionTemplate}"
                       ItemContainerStyle="{StaticResource ListViewItemStyle}">
