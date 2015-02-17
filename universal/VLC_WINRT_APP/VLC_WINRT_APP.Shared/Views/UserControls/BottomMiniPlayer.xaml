@@ -23,11 +23,6 @@
             <VisualStateGroup>
                 <VisualState x:Name="FullWindows">
                     <Storyboard>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ProgressBar"
-                                                       Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Collapsed" />
-                        </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SliderControl"
                                                        Storyboard.TargetProperty="Visibility">
                             <DiscreteObjectKeyFrame KeyTime="0"
@@ -52,11 +47,6 @@
                 </VisualState>
                 <VisualState x:Name="Narrow">
                     <Storyboard>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ProgressBar"
-                                                       Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Visible" />
-                        </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SliderControl"
                                                        Storyboard.TargetProperty="Visibility">
                             <DiscreteObjectKeyFrame KeyTime="0"
@@ -81,11 +71,6 @@
                 </VisualState>
                 <VisualState x:Name="Minimum">
                     <Storyboard>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ProgressBar"
-                                                       Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Collapsed" />
-                        </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SliderControl"
                                                        Storyboard.TargetProperty="Visibility">
                             <DiscreteObjectKeyFrame KeyTime="0"
@@ -115,13 +100,6 @@
                Source="{Binding CurrentAlbum.Picture}"
                Stretch="UniformToFill"
                Tapped="RootMiniPlayer_Tapped" />
-        <ProgressBar x:Name="ProgressBar"
-                     Grid.Row="0"
-                     Grid.Column="1"
-                     Grid.ColumnSpan="3"
-                     Style="{StaticResource BackgroundProgressBar}"
-                     Value="{Binding Time, Mode=OneWay}"
-                     Maximum="{Binding TimeTotal.TotalMilliseconds}" />
         <Grid x:Name="NowPlayingArtistGrid"
               Grid.Row="0"
               Grid.Column="1"
