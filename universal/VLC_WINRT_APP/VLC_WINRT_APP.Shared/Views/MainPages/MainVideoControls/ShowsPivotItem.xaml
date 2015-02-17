@@ -14,8 +14,18 @@
                               Source="{Binding Shows}"
                               IsSourceGrouped="True"
                               ItemsPath="Episodes" />
+
+        <ItemsPanelTemplate x:Key="WindowsPhonePanelTemplate"
+                            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+            <ItemsStackPanel Margin="0,0,0,60" />
+        </ItemsPanelTemplate>
+        <ItemsPanelTemplate x:Key="WindowsPanelTemplate">
+            <ItemsWrapGrid Margin="0,0,0,60" 
+                           ItemWidth="400"/>
+        </ItemsPanelTemplate>
     </Page.Resources>
-    
+
     <Grid Margin="0,-12,0,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="60" />
@@ -51,18 +61,14 @@
                   ItemsSource="{Binding CurrentShow.Episodes}"
                   ItemTemplate="{StaticResource PhoneShowTemplate}"
                   ItemContainerStyle="{StaticResource ListViewItemStyle}"
-                  IsItemClickEnabled="True">
+                  IsItemClickEnabled="True"
+                  Loaded="ListView_Loaded">
             <triggers:Interactions.Triggers>
                 <triggers:EventTrigger EventName="ItemClick">
                     <triggers:InvokeCommandAction Command="{Binding OpenVideo}"
                                                   PassEventArgsToCommand="True" />
                 </triggers:EventTrigger>
             </triggers:Interactions.Triggers>
-            <ListView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <ItemsStackPanel Margin="0,0,0,60" />
-                </ItemsPanelTemplate>
-            </ListView.ItemsPanel>
         </ListView>
         <placeholder:NoShowPlaceholder Grid.Row="1"
                                        Grid.RowSpan="2"

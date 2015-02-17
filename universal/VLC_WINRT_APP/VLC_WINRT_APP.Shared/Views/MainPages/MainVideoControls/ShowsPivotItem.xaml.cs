@@ -10,30 +10,32 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Markup;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// Pour en savoir plus sur le modèle d’élément Page vierge, consultez la page http://go.microsoft.com/fwlink/?LinkID=390556
-
 namespace VLC_WINRT_APP.Views.MainPages.MainVideoControls
 {
-    /// <summary>
-    /// Une page vide peut être utilisée seule ou constituer une page de destination au sein d'un frame.
-    /// </summary>
     public sealed partial class ShowsPivotItem : Page
     {
         public ShowsPivotItem()
         {
             this.InitializeComponent();
         }
-
-        /// <summary>
-        /// Invoqué lorsque cette page est sur le point d'être affichée dans un frame.
-        /// </summary>
-        /// <param name="e">Données d'événement décrivant la manière dont l'utilisateur a accédé à cette page.
-        /// Ce paramètre est généralement utilisé pour configurer la page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+        }
+
+        private void ListView_Loaded(object sender, RoutedEventArgs e)
+        {
+            var lv = sender as ListView;
+#if WINDOWS_PHONE_APP
+            var xaml = this.Resources["WindowsPhonePanelTemplate"];
+            lv.ItemsPanel = xaml as ItemsPanelTemplate;
+#else
+            var xaml = this.Resources["WindowsPanelTemplate"];
+            lv.ItemsPanel = xaml as ItemsPanelTemplate;
+#endif
         }
     }
 }
