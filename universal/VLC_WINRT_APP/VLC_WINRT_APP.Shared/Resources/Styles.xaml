@@ -3688,10 +3688,9 @@ M 15.937 9.056 c 0.629 -1.69 1.208 -2.349 2.063 -2.349 h 5.586 L 20.293 10 l 1.4
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <Grid HorizontalAlignment="Center"
+                        <Grid HorizontalAlignment="Left"
                               Height="38.5"
-                              Margin="0,12,0,11"
-                              Width="38.5">
+                              Width="28.5">
                             <Grid x:Name="ContentRoot"
                                   Background="Transparent">
                                 <ContentPresenter x:Name="Content"
@@ -3699,7 +3698,7 @@ M 15.937 9.056 c 0.629 -1.69 1.208 -2.349 2.063 -2.349 h 5.586 L 20.293 10 l 1.4
                                                   Content="{TemplateBinding Icon}"
                                                   Foreground="{TemplateBinding Foreground}"
                                                   HorizontalAlignment="Stretch"
-                                                  VerticalAlignment="Stretch" />
+                                                  VerticalAlignment="Center" />
                             </Grid>
                         </Grid>
                         <TextBlock x:Name="TextLabel"
