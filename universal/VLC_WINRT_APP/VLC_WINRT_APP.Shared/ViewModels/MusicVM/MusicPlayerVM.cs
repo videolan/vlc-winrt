@@ -222,25 +222,6 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             if (CurrentTrack == null) return;
             LogHelper.Log("Opening file: " + CurrentTrack.Path);
             await SetActiveMusicInfo(CurrentTrack, file);
-
-            // Setting the info for windows 8 controls
-            var resourceLoader = new ResourceLoader();
-            string artistName = CurrentTrack.ArtistName ?? resourceLoader.GetString("UnknownArtist");
-            string albumName = CurrentTrack.AlbumName;
-            string trackName = CurrentTrack.Name ?? resourceLoader.GetString("UnknownTrack");
-            var picture = Locator.MusicPlayerVM.CurrentAlbum != null ? Locator.MusicPlayerVM.CurrentAlbum.Picture : null;
-
-            await base._mediaService.SetMediaTransportControlsInfo(artistName, albumName, trackName, picture);
-
-            var notificationOnNewSong = ApplicationSettingsHelper.ReadSettingsValue("NotificationOnNewSong");
-            if (notificationOnNewSong != null && (bool)notificationOnNewSong)
-            {
-                var notificationOnNewSongForeground = ApplicationSettingsHelper.ReadSettingsValue("NotificationOnNewSongForeground");
-                if (base._mediaService.IsBackground || (notificationOnNewSongForeground != null && (bool)notificationOnNewSongForeground))
-                {
-                    ToastHelper.ToastImageAndText04(trackName, albumName, artistName, Locator.MusicPlayerVM.CurrentAlbum.Picture ?? null);
-                }
-            }
         }
 
         private async Task SetActiveMusicInfo(TrackItem track, StorageFile file = null)
@@ -271,7 +252,30 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                     await SetCurrentArtist();
                     await SetCurrentAlbum();
                     await UpdatePlayingUI();
+                    await UpdateWindows8UI();
                 });
+            }
+        }
+
+        async Task UpdateWindows8UI()
+        {
+            // Setting the info for windows 8 controls
+            var resourceLoader = new ResourceLoader();
+            string artistName = CurrentTrack.ArtistName ?? resourceLoader.GetString("UnknownArtist");
+            string albumName = CurrentTrack.AlbumName;
+            string trackName = CurrentTrack.Name ?? resourceLoader.GetString("UnknownTrack");
+            var picture = Locator.MusicPlayerVM.CurrentAlbum != null ? Locator.MusicPlayerVM.CurrentAlbum.Picture : null;
+
+            await base._mediaService.SetMediaTransportControlsInfo(artistName, albumName, trackName, picture);
+
+            var notificationOnNewSong = ApplicationSettingsHelper.ReadSettingsValue("NotificationOnNewSong");
+            if (notificationOnNewSong != null && (bool)notificationOnNewSong)
+            {
+                var notificationOnNewSongForeground = ApplicationSettingsHelper.ReadSettingsValue("NotificationOnNewSongForeground");
+                if (base._mediaService.IsBackground || (notificationOnNewSongForeground != null && (bool)notificationOnNewSongForeground))
+                {
+                    ToastHelper.ToastImageAndText04(trackName, albumName, artistName, (Locator.MusicPlayerVM.CurrentAlbum == null) ? null : Locator.MusicPlayerVM.CurrentAlbum.Picture ?? null);
+                }
             }
         }
 
