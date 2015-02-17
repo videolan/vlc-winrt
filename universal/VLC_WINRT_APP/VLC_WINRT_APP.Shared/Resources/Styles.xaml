@@ -4287,7 +4287,7 @@
                                         <DoubleAnimation Storyboard.TargetName="ContentPresenterProjection"
                                                          Storyboard.TargetProperty="LocalOffsetZ"
                                                          SpeedRatio="6"
-                                                         To="35">
+                                                         To="25">
                                             <DoubleAnimation.EasingFunction>
                                                 <ExponentialEase EasingMode="EaseOut" Exponent="4"/>
                                             </DoubleAnimation.EasingFunction>
