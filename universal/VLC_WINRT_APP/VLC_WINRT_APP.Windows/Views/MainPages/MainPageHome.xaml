@@ -5,10 +5,11 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:triggers="using:WinRT.Triggers"
       xmlns:controls="using:VLC_WINRT_APP.Controls"
+      xmlns:mainPanes="using:VLC_WINRT_APP.Views.MainPages.MainPanes"
       mc:Ignorable="d"
       d:DesignHeight="768"
       d:DesignWidth="550">
-    
+
     <Grid Margin="0"
           x:Name="MainGrid">
         <Hub x:Name="MainHub"
