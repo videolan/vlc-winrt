@@ -49,8 +49,10 @@
                     Visibility="{Binding CurrentDlnaVm.CanGoBack, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Button.Content>
                     <StackPanel Orientation="Horizontal">
-                        <SymbolIcon Symbol="Back"
-                                    Foreground="DimGray" />
+                        <Path Data="{StaticResource BackPath}"
+                              Height="30"
+                              Stretch="Uniform"
+                              Fill="DimGray" />
                         <TextBlock Text="Back"
                                    Foreground="DimGray"
                                    VerticalAlignment="Center"
