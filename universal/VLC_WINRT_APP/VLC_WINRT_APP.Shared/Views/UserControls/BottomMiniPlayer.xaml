@@ -137,13 +137,13 @@
                        TextWrapping="NoWrap"
                        TextTrimming="CharacterEllipsis"
                        FontSize="19"
-                       Foreground="{StaticResource BasicForeground}" />
+                       Foreground="{ThemeResource BasicForeground}" />
             <TextBlock Grid.Row="1"
                        Text="{Binding CurrentArtist.Name}"
                        TextWrapping="NoWrap"
                        TextTrimming="CharacterEllipsis"
                        FontSize="15"
-                       Foreground="{StaticResource BasicForeground}" />
+                       Foreground="{ThemeResource BasicForeground}" />
         </Grid>
         <local:SliderControl x:Name="SliderControl"
                              Grid.Column="2"
