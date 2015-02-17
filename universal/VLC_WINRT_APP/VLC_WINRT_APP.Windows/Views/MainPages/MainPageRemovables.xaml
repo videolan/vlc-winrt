@@ -96,6 +96,11 @@
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <ItemsWrapGrid Orientation="Vertical" />
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
             </ListView>
         </Grid>
         <removableStorage:PlugARemovableStorage Grid.Row="1"

@@ -98,6 +98,11 @@
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <ItemsWrapGrid Orientation="Vertical" />
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
             </ListView>
         </Grid>
         <dlna:WaitingForNetworkAnswer Grid.Row="1"
