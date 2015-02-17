@@ -12,7 +12,8 @@
 
     <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
                 DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
-        <userControls:HeaderControl HeaderTextBlock="add to playlist" />
+        <userControls:HeaderControl HeaderTextBlock="add to playlist" 
+                                    RequestedTheme="Dark"/>
         <StackPanel Margin="24">
             <Grid>
                 <Grid.ColumnDefinitions>
