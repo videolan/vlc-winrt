@@ -35,8 +35,8 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
         private MouseService _mouseService;
 #endif
         private Model.Video.VideoItem _currentVideo;
-        private DictionaryKeyValue _currentSubtitle;
-        private DictionaryKeyValue _currentAudioTrack;
+        private int _currentSubtitle;
+        private int _currentAudioTrack;
 
         private SetSubtitleTrackCommand _setSubTitlesCommand;
         private OpenSubtitleCommand _openSubtitleCommand;
@@ -78,10 +78,15 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
 
         public DictionaryKeyValue CurrentSubtitle
         {
-            get { return _currentSubtitle; }
+            get
+            {
+                if (_currentSubtitle < 0 || _currentSubtitle >= Subtitles.Count)
+                    return null;
+                return AudioTracks[_currentSubtitle];
+            }
             set
             {
-                SetProperty(ref _currentSubtitle, value);
+                _currentSubtitle = Subtitles.IndexOf(value);
                 if (value != null)
                     SetSubtitleTrackCommand.Execute(value.Id);
             }
@@ -89,10 +94,15 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
 
         public DictionaryKeyValue CurrentAudioTrack
         {
-            get { return _currentAudioTrack; }
+            get 
+            {
+                if (_currentAudioTrack == -1 || _currentAudioTrack >= AudioTracks.Count) 
+                    return null;
+                return AudioTracks[_currentAudioTrack];
+            }
             set
             {
-                _currentAudioTrack = value;
+                _currentAudioTrack = AudioTracks.IndexOf(value);
                 if (value != null)
                     SetAudioTrackCommand.Execute(value.Id);
             }
@@ -220,13 +230,13 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             // This assumes we have a "Disable" track for both subtitles & audio
             if (type == TrackType.Subtitle && CurrentSubtitle == null && _subtitlesTracks.Count > 1)
             {
-                var activeTrack = _subtitlesTracks[1];
-                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => CurrentSubtitle = activeTrack);
+                _currentSubtitle = 1;
+                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => OnPropertyChanged("CurrentSubtitle"));
             }
             else if (type == TrackType.Audio && CurrentAudioTrack == null && _audioTracks.Count > 1)
             {
-                var activeTrack = _audioTracks[1];
-                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => CurrentAudioTrack = activeTrack);
+                _currentAudioTrack = 1;
+                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => OnPropertyChanged("CurrentAudioTrack"));
             }
         }
 
@@ -244,9 +254,15 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             if (target.Count > 0)
                 return;
             if (type == TrackType.Subtitle)
-                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => CurrentSubtitle = null);
+            {
+                _currentSubtitle = -1;
+                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => OnPropertyChanged("CurrentSubtitle"));
+            }
             else
-                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => CurrentAudioTrack = null);
+            {
+                _currentAudioTrack = -1;
+                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => OnPropertyChanged("CurrentAudioTrack"));
+            }
         }
 
         public async Task SetActiveVideoInfo(VideoItem media, string streamMrl = null)
