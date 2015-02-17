@@ -69,7 +69,7 @@
                           Grid.Column="3"
                           Style="{StaticResource AppBarButtonStyleHorizontal}"
                           Label="Play all"
-                          Margin="0,0,0,12"
+                          Margin="0,0,0,14"
                           VerticalAlignment="Bottom"
                           Command="{Binding CurrentAlbum.PlayAlbum}"
                           CommandParameter="{Binding CurrentAlbum}">
