@@ -72,8 +72,8 @@ namespace VLC_WINRT_APP.Helpers.MusicPlayer
                 var backgroundTrack = BackgroundTaskTools.CreateBackgroundTrackItem(trackItem);
                 await App.BackgroundAudioHelper.AddToPlaylist(backgroundTrack);
             }
-            await AddTrack(trackItem);
 #endif
+            await AddTrack(trackItem);
             if (play)
                 await PlayTrack(trackItem.Id);
         }
