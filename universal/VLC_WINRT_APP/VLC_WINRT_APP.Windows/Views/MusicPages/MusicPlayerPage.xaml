@@ -18,7 +18,7 @@
                             Width="450">
                     <HubSection.ContentTemplate>
                         <DataTemplate>
-                            <musicNowPlayingControls:MusicNowPlaying />
+                            <musicNowPlayingControls:MusicNowPlaying RequestedTheme="Light"/>
                         </DataTemplate>
                     </HubSection.ContentTemplate>
                 </HubSection>
