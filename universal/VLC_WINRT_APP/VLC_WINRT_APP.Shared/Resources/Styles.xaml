@@ -1752,7 +1752,7 @@
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill"
                                                                        Storyboard.TargetName="HorizontalDecreaseRect">
                                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{StaticResource MainColor}" />
+                                                                    Value="{ThemeResource SliderForegroundProgressTheneBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -1880,7 +1880,7 @@
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill"
                                                                        Storyboard.TargetName="HorizontalDecreaseRect">
                                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{StaticResource MainColor}" />
+                                                                    Value="White" />
                                         </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill"
                                                                        Storyboard.TargetName="HorizontalTrackRect">
