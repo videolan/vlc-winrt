@@ -37,13 +37,10 @@ namespace VLC_WINRT_APP.Commands.MainPageCommands
                     if (frame.CurrentSourcePageType != typeof(ArtistsPivotItem))
                         frame.Navigate(typeof(ArtistsPivotItem));
                     break;
-#if WINDOWS_PHONE_APP
                 case 2:
-                    if ((App.ApplicationFrame.Content as MainPageHome).MainPageMusicPivotItem.MainPageMusicContentPresenter.CurrentSourcePageType != typeof(SongsPivotItem))
-                        (App.ApplicationFrame.Content as MainPageHome).MainPageMusicPivotItem.MainPageMusicContentPresenter
-                            .Navigate(typeof(SongsPivotItem));
+                    if (frame.CurrentSourcePageType != typeof(SongsPivotItem))
+                        frame.Navigate(typeof(SongsPivotItem));
                     break;
-#endif
                 case 3:
                     if (frame.CurrentSourcePageType != typeof (PlaylistPivotItem))
                         frame.Navigate(typeof (PlaylistPivotItem));

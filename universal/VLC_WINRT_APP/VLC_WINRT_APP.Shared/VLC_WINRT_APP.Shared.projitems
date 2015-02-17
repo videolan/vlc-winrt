@@ -252,6 +252,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\MainPages\MainMusicControls\PlaylistPivotItem.xaml.cs">
       <DependentUpon>PlaylistPivotItem.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\MainPages\MainMusicControls\SongsPivotItem.xaml.cs">
+      <DependentUpon>SongsPivotItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\MainPages\MainPageMusic.xaml.cs">
       <DependentUpon>MainPageMusic.xaml</DependentUpon>
     </Compile>
@@ -486,6 +489,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\MainPages\MainMusicControls\PlaylistPivotItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\MainPages\MainMusicControls\SongsPivotItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
