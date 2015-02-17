@@ -1,4 +1,5 @@
-﻿using Windows.UI.Xaml;
+﻿using VLC_WINRT_APP.Helpers;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 namespace VLC_WINRT_APP.Views.MusicPages
 {
@@ -14,6 +15,12 @@ namespace VLC_WINRT_APP.Views.MusicPages
         }
 
         #region layout
+        protected override async void OnNavigatedTo(Windows.UI.Xaml.Navigation.NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            await AppBarHelper.UpdateAppBar(typeof(MusicPlayerPage));
+        }
+
         private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
         {
         }
