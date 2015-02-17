@@ -10,7 +10,6 @@
              DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}"
              Visibility="{Binding CurrentPage, Converter={StaticResource BottomMiniPlayerVisibilityConverter}}">
     <Grid x:Name="RootGrid"
-          Background="{ThemeResource ApplicationBarForegroundThemeBrush}"
           DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}"
           Visibility="{Binding TrackCollection.IsRunning, Converter={StaticResource BooleanToVisibilityConverter}}">
         <Grid.ColumnDefinitions>
