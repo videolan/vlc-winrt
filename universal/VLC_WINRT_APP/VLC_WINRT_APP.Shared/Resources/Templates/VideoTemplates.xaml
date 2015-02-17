@@ -4,11 +4,6 @@
     xmlns:local="using:VLC_WINRT_APP.Resources.Templates"
     xmlns:controls="using:VLC_WINRT_APP.Controls"
     xmlns:userControls="using:VLC_WINRT_APP.Views.UserControls">
-
-    <!-- WINDOWS PHONE -->
-    <DataTemplate x:Key="VideoTemplateWP">
-        <userControls:VideoItemControl />
-    </DataTemplate>
     
     <DataTemplate x:Key="PhoneCompactVideoTemplate">
         <userControls:CompactVideoItemControl />
