@@ -48,11 +48,7 @@ namespace VLC_WINRT_APP.Helpers
             if (!string.IsNullOrEmpty(imgsrc))
             {
                 XmlNodeList toastImgElement = toastXml.GetElementsByTagName("image");
-                int lastIndex = imgsrc.LastIndexOf("\\LocalState\\", StringComparison.Ordinal) + "\\LocalState\\".Length;
-                string msappdataImgSrc = imgsrc.Remove(0, lastIndex);
-                msappdataImgSrc = msappdataImgSrc.Insert(0, "ms-appdata:///local/");
-                msappdataImgSrc = msappdataImgSrc.Replace("\\", "/");
-                ((XmlElement)toastImgElement[0]).SetAttribute("src", msappdataImgSrc);
+                ((XmlElement)toastImgElement[0]).SetAttribute("src", imgsrc);
                 ((XmlElement)toastImgElement[0]).SetAttribute("alt", imgalt);
             }
             IXmlNode toastNode = toastXml.SelectSingleNode("/toast");
