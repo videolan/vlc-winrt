@@ -42,6 +42,13 @@
                    Style="{StaticResource BaseTextBlockStyle}"
                    Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
                    FontWeight="Light" />
+        <TextBlock Grid.Column="1"
+                   Grid.Row="0"
+                   FontWeight="Light"
+                   Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
+                   Text="{Binding Duration.TotalSeconds, Converter={StaticResource SecondsStringConverter}}"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center" />
         <Button Grid.Column="1"
                 Grid.Row="0"
                 Grid.RowSpan="2"
@@ -55,12 +62,5 @@
                 HorizontalContentAlignment="Center"
                 Flyout="{StaticResource TrackItemFlyout}">
         </Button>
-        <TextBlock Grid.Column="1"
-                   Grid.Row="0"
-                   FontWeight="Light"
-                   Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
-                   Text="{Binding Duration.TotalSeconds, Converter={StaticResource SecondsStringConverter}}"
-                   VerticalAlignment="Center"
-                   HorizontalAlignment="Center" />
     </Grid>
 </UserControl>
