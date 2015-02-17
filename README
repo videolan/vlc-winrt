@@ -84,6 +84,7 @@ Finish
 -------------------
 Clone libvlcpp from git://git.videolan.org/vlc-bindings/libvlcpp.git
 into the wrapper/ directory
+Please use the "cppcx" branch
 
 5) Get external WinRT dependencies
 The AppBar control is already available as a Nuget package for the Windows Phone project.
