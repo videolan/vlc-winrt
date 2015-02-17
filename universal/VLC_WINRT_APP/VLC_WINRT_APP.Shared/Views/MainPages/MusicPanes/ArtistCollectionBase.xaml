@@ -41,9 +41,7 @@
                   IsItemClickEnabled="True"
                   SelectionMode="None"
                   ItemTemplate="{StaticResource PhoneArtistSquareTemplate}"
-                  ItemContainerStyle="{StaticResource ListViewItemStyle}"
-                  HorizontalAlignment="Left"
-                  Margin="0,0,-20,0">
+                  ItemContainerStyle="{StaticResource ListViewItemStyle}">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <ItemsWrapGrid Orientation="Horizontal"
