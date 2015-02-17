@@ -36,9 +36,9 @@ namespace VLC_WINRT_APP.Views.UserControls
             RootGrid.Height = 50;
 #endif
 
-            if (Window.Current.Bounds.Width > 700)
+            if (this.ActualWidth > 700)
                 VisualStateUtilities.GoToState(this, "FullWindows", false);
-            else if (Window.Current.Bounds.Width > 500)
+            else if (this.ActualWidth > 400)
                 VisualStateUtilities.GoToState(this, "Narrow", false);
             else
                 VisualStateUtilities.GoToState(this, "Minimum", false);
