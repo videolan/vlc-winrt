@@ -50,39 +50,7 @@ namespace VLC_WINRT_APP.Views.MainPages
 
         private void Responsive()
         {
-            if (Window.Current.Bounds.Width < 700)
-            {
-                MainHub.Orientation = Orientation.Vertical;
-            }
-            else
-            {
-                MainHub.Orientation = Orientation.Horizontal;
-            }
-        }
-
-        private void VideoItemWrapGrid_OnSizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            Responsive(sender as ItemsWrapGrid);
-            var wrapGrid = sender as ItemsWrapGrid;
-            TemplateSizer.ComputeCompactVideo(wrapGrid);
-        }
-
-        private void Responsive(ItemsWrapGrid itemsWrap)
-        {
-            if (Window.Current.Bounds.Width < 650)
-            {
-                itemsWrap.Orientation = Orientation.Horizontal;
-            }
-            else
-            {
-                itemsWrap.Orientation = Orientation.Vertical;
-            }
-        }
-
-        private void AlbumsWrapGrid_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            Responsive(sender as ItemsWrapGrid);
-            TemplateSizer.ComputeAlbums(sender as ItemsWrapGrid);
+            MainHub.Orientation = Window.Current.Bounds.Width < 700 ? Orientation.Vertical : Orientation.Horizontal;
         }
     }
 }

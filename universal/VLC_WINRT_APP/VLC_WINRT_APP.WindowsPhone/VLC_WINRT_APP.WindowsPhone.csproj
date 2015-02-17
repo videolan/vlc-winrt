@@ -954,6 +954,7 @@
     <None Include="MultilingualResources\VLC_WINRT_APP.WindowsPhone.ja-JP.xlf" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Views\MainPages\MainMusicControls\" />
     <Folder Include="Views\UserControls\Flyouts\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">

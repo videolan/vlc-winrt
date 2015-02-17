@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="VLC_WINRT_APP.Views.MainPages.MainPanes.TopAlbumsControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="using:VLC_WINRT_APP.Views.MainPages.MainPanes"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:triggers="using:WinRT.Triggers"
+             xmlns:controls="using:VLC_WINRT_APP.Controls"
+             mc:Ignorable="d">
+
+    <Grid x:Name="MusicLibrary"
+          DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
+        <GridView x:Name="AlbumsGridView"
+                  ItemsSource="{Binding RandomAlbums}"
+                  ItemTemplate="{StaticResource PhoneSemanticZoomInViewAlbumTemplateLittleSize}"
+                  ItemContainerStyle="{StaticResource GridViewItemStyle}"
+                  IsItemClickEnabled="True"
+                  SelectionMode="None"
+                  IsSwipeEnabled="False"
+                  Style="{StaticResource NoScrollViewerStyle}">
+            <triggers:Interactions.Triggers>
+                <triggers:EventTrigger EventName="ItemClick">
+                    <triggers:InvokeCommandAction Command="{Binding AlbumClickedCommand}"
+                                                  PassEventArgsToCommand="True" />
+                </triggers:EventTrigger>
+            </triggers:Interactions.Triggers>
+            <GridView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <ItemsWrapGrid x:Name="TopAlbumsItemsWrapGrid" 
+                                   Loaded="TopAlbumsControl_Loaded"/>
+                </ItemsPanelTemplate>
+            </GridView.ItemsPanel>
+        </GridView>
+        <controls:NoFavoriteAlbumsControl HorizontalAlignment="Left" />
+    </Grid>
+</UserControl>

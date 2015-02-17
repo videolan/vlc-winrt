@@ -19,25 +19,7 @@
                             HeaderTemplate="{StaticResource ColoredHeader}">
                     <HubSection.ContentTemplate>
                         <DataTemplate>
-                            <GridView ItemsSource="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM.ViewedVideos}"
-                                      ItemTemplate="{StaticResource PhoneCompactVideoTemplate}"
-                                      ItemContainerStyle="{StaticResource GridViewItemStyle}"
-                                      IsItemClickEnabled="True"
-                                      SelectionMode="None"
-                                      IsSwipeEnabled="False"
-                                      ScrollViewer.HorizontalScrollMode="Disabled">
-                                <triggers:Interactions.Triggers>
-                                    <triggers:EventTrigger EventName="ItemClick">
-                                        <triggers:InvokeCommandAction Command="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM.OpenVideo}"
-                                                                      PassEventArgsToCommand="True" />
-                                    </triggers:EventTrigger>
-                                </triggers:Interactions.Triggers>
-                                <GridView.ItemsPanel>
-                                    <ItemsPanelTemplate>
-                                        <ItemsWrapGrid SizeChanged="VideoItemWrapGrid_OnSizeChanged" />
-                                    </ItemsPanelTemplate>
-                                </GridView.ItemsPanel>
-                            </GridView>
+                            <mainPanes:TopVideosControl Background="Red"/>
                         </DataTemplate>
                     </HubSection.ContentTemplate>
                 </HubSection>
@@ -47,29 +29,7 @@
                             ScrollViewer.HorizontalScrollMode="Disabled">
                     <HubSection.ContentTemplate>
                         <DataTemplate>
-                            <Grid x:Name="MusicLibrary"
-                                  DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
-                                <GridView ItemsSource="{Binding RandomAlbums}"
-                                          ItemTemplate="{StaticResource PhoneSemanticZoomInViewAlbumTemplateLittleSize}"
-                                          ItemContainerStyle="{StaticResource GridViewItemStyle}"
-                                          IsItemClickEnabled="True"
-                                          SelectionMode="None"
-                                          IsSwipeEnabled="False"
-                                          Style="{StaticResource NoScrollViewerStyle}">
-                                    <triggers:Interactions.Triggers>
-                                        <triggers:EventTrigger EventName="ItemClick">
-                                            <triggers:InvokeCommandAction Command="{Binding AlbumClickedCommand}"
-                                                                          PassEventArgsToCommand="True" />
-                                        </triggers:EventTrigger>
-                                    </triggers:Interactions.Triggers>
-                                    <GridView.ItemsPanel>
-                                        <ItemsPanelTemplate>
-                                            <ItemsWrapGrid SizeChanged="AlbumsWrapGrid_SizeChanged" />
-                                        </ItemsPanelTemplate>
-                                    </GridView.ItemsPanel>
-                                </GridView>
-                                <controls:NoFavoriteAlbumsControl HorizontalAlignment="Left" />
-                            </Grid>
+                            <mainPanes:TopAlbumsControl/>
                         </DataTemplate>
                     </HubSection.ContentTemplate>
                 </HubSection>

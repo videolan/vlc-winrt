@@ -122,6 +122,12 @@
     </SDKReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Views\MainPages\MainPanes\TopAlbumsControl.xaml.cs">
+      <DependentUpon>TopAlbumsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainPages\MainPanes\TopVideosControl.xaml.cs">
+      <DependentUpon>TopVideosControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainPages\MusicPanes\SongsListView.xaml.cs">
       <DependentUpon>SongsListView.xaml</DependentUpon>
     </Compile>
@@ -870,6 +876,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="Views\MainPages\MainPanes\TopAlbumsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainPages\MainPanes\TopVideosControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainPages\MusicPanes\SongsListView.xaml">
       <SubType>Designer</SubType>
