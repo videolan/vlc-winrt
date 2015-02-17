@@ -19,7 +19,7 @@
                             HeaderTemplate="{StaticResource ColoredHeader}">
                     <HubSection.ContentTemplate>
                         <DataTemplate>
-                            <mainPanes:TopVideosControl Background="Red"/>
+                            <mainPanes:TopVideosControl />
                         </DataTemplate>
                     </HubSection.ContentTemplate>
                 </HubSection>
@@ -29,7 +29,7 @@
                             ScrollViewer.HorizontalScrollMode="Disabled">
                     <HubSection.ContentTemplate>
                         <DataTemplate>
-                            <mainPanes:TopAlbumsControl/>
+                            <mainPanes:TopAlbumsControl />
                         </DataTemplate>
                     </HubSection.ContentTemplate>
                 </HubSection>
