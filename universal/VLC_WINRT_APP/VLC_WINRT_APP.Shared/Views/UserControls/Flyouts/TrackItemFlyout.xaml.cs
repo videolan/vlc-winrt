@@ -31,5 +31,16 @@ namespace VLC_WINRT_APP.Views.UserControls.Flyouts
             var trackFlyout = App.Current.Resources["TrackItemFlyout"] as Flyout;
             trackFlyout.Hide();
         }
+
+        private void Grid_Loaded(object sender, RoutedEventArgs e)
+        {
+#if WINDOWS_PHONE_APP
+            this.MaxHeight = 500;
+            this.Margin = new Thickness(24,0,0,0);
+#else
+            this.MaxHeight = 500;
+            this.MaxWidth = 400;
+#endif
+        }
     }
 }

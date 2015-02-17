@@ -8,8 +8,7 @@
     mc:Ignorable="d">
     
     <Grid Background="WhiteSmoke"
-          MaxHeight="400"
-          Margin="40,0">
+          Loaded="Grid_Loaded">
         <Grid.RowDefinitions>
             <RowDefinition Height="200" />
             <RowDefinition />

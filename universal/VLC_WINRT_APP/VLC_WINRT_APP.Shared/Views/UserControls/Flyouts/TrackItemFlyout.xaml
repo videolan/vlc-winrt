@@ -10,8 +10,7 @@
              d:DesignWidth="400">
 
     <Grid Background="WhiteSmoke"
-          MaxHeight="500"
-          Margin="24,0">
+          Loaded="Grid_Loaded">
         <Grid.RowDefinitions>
             <RowDefinition Height="120" />
             <RowDefinition Height="140" />
