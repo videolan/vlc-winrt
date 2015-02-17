@@ -19,9 +19,10 @@
                    HorizontalAlignment="Left"
                    VerticalAlignment="Center"
                    FontWeight="Light"
-                   FontSize="18" />
+                   FontSize="18"
+                   Foreground="{ThemeResource BasicForeground}" />
         <Slider Grid.Column="1"
-                Margin="6,6,6,-5"
+                Margin="6,0"
                 VerticalAlignment="Center"
                 Value="{Binding Position, Mode=TwoWay, Converter={StaticResource PositionToFixedPointConverter}}"
                 Style="{StaticResource VLCSlider}"
@@ -32,6 +33,7 @@
                    HorizontalAlignment="Right"
                    VerticalAlignment="Center"
                    FontWeight="Light"
-                   FontSize="18" />
+                   FontSize="18"
+                   Foreground="{ThemeResource BasicForeground}" />
     </Grid>
 </UserControl>
