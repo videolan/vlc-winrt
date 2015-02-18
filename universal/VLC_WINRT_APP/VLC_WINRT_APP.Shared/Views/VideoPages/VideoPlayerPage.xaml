@@ -142,7 +142,7 @@
                               IsTabStop="False"
                               VerticalAlignment="Center">
                     <AppBarButton.Flyout>
-                        <Flyout Placement="Full">
+                        <Flyout>
                             <userControls:VideoPlayerSettings />
                         </Flyout>
                     </AppBarButton.Flyout>
