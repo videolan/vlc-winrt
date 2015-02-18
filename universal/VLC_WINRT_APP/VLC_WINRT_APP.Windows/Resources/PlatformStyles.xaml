@@ -239,18 +239,21 @@
         <Setter Property="BorderThickness"
                 Value="0" />
         <Setter Property="Background"
-                Value="Transparent"/>
+                Value="Transparent" />
     </Style>
-    
+
     <Style TargetType="FlyoutPresenter"
            x:Key="BigFlyoutPresenter">
-        <Setter Property="BorderThickness" Value="1"/>
-        <Setter Property="Padding" Value="0"/>
-        <Setter Property="MaxWidth" Value="350"/>
+        <Setter Property="BorderThickness"
+                Value="1" />
+        <Setter Property="Padding"
+                Value="0" />
+        <Setter Property="MaxWidth"
+                Value="350" />
         <Setter Property="Background"
-                Value="{ThemeResource ApplicationPageBackgroundThemeBrush}"/>
+                Value="{ThemeResource ApplicationPageBackgroundThemeBrush}" />
         <Setter Property="VerticalContentAlignment"
-                Value="Top"/>
+                Value="Top" />
         <Setter Property="VerticalAlignment"
                 Value="Top" />
         <Setter Property="ScrollViewer.HorizontalScrollMode"
@@ -269,7 +272,7 @@
                 <ControlTemplate TargetType="ButtonBase">
                     <Grid Background="Transparent">
                         <ContentPresenter x:Name="Text"
-                                          Content="{TemplateBinding Content}"/>
+                                          Content="{TemplateBinding Content}" />
                         <Rectangle x:Name="FocusVisualWhite"
                                    IsHitTestVisible="False"
                                    Stroke="{StaticResource FocusVisualWhiteStrokeThemeBrush}"
@@ -606,7 +609,7 @@
     <Style x:Key="SettingsFlyoutStyle"
            TargetType="SettingsFlyout">
         <Setter Property="RequestedTheme"
-                Value="Light"/>
+                Value="Light" />
         <Setter Property="HeaderBackground"
                 Value="{ThemeResource SettingsFlyoutHeaderBackgroundThemeBrush}" />
         <Setter Property="HeaderForeground"
