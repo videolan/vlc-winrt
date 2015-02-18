@@ -10,10 +10,10 @@
              DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
 
     <StackPanel Visibility="{Binding IsLoaded, Converter={StaticResource NegatedBooleanToVisibilityConverter}}"
-                Orientation="Horizontal"
-                Margin="12">
+                Margin="12"
+                Background="WhiteSmoke">
         <TextBlock Text="{Binding CurrentIndexingStatus}"
-                   Style="{StaticResource TitleTextBlockStyle}"
+                   FontWeight="Light"
                    VerticalAlignment="Center" />
     </StackPanel>
 </UserControl>

@@ -45,8 +45,8 @@
             </TransitionCollection>
         </Frame.ContentTransitions>
     </Frame>
-    <userControls:LoadingMusicLibrary Grid.Row="1"
-                                      VerticalAlignment="Top"
+    <userControls:LoadingMusicLibrary Grid.Row="0"
+                                      VerticalAlignment="Bottom"
                                       HorizontalAlignment="Right" />
     <customAppBar:AppBar Grid.Row="2"
                          x:Name="CommandBar"
