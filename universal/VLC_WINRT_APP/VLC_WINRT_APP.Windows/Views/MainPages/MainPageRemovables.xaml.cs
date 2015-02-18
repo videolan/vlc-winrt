@@ -1,6 +1,7 @@
 ﻿using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Microsoft.Xaml.Interactivity;
 
 namespace VLC_WINRT_APP.Views.MainPages
 {
@@ -25,6 +26,14 @@ namespace VLC_WINRT_APP.Views.MainPages
 
         void Responsive()
         {
+            if (Window.Current.Bounds.Width > 700)
+            {
+                VisualStateUtilities.GoToState(this, "Horizontal", false);
+            }
+            else
+            {
+                VisualStateUtilities.GoToState(this, "Vertical", false);
+            }
         }
     }
 }

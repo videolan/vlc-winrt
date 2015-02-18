@@ -14,6 +14,38 @@
 
     <Grid x:Name="RootGrid"
           Margin="24,0,0,0">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="Standard">
+                <VisualState x:Name="Vertical">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="StorageItemsListView"
+                                                       Storyboard.TargetProperty="Style">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="{StaticResource AdaptativeListViewScrollVerticalStyle}" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="StorageItemsListView"
+                                                       Storyboard.TargetProperty="ItemsPanel">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="{StaticResource AdaptativeVerticalPanelTemplate}" />
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Horizontal">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="StorageItemsListView"
+                                                       Storyboard.TargetProperty="Style">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="{StaticResource AdaptativeListViewScrollHorizontalStyle}" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="StorageItemsListView"
+                                                       Storyboard.TargetProperty="ItemsPanel">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="{StaticResource AdaptativeHorizontalPanelTemplate}" />
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
         <Grid.RowDefinitions>
             <RowDefinition Height="45" />
             <RowDefinition Height="60" />
@@ -63,15 +95,15 @@
         </Grid>
         <Grid Grid.Row="2">
             <placeholder:NothingToSeeHere Margin="6,0,0,0"
-                                       Visibility="{Binding CurrentDlnaVm.IsFolderEmpty, Converter={StaticResource BooleanToVisibilityConverter}}" />
-            <ListView ItemsSource="{Binding CurrentDlnaVm.StorageItems}"
+                                          Visibility="{Binding CurrentDlnaVm.IsFolderEmpty, Converter={StaticResource BooleanToVisibilityConverter}}" />
+            <ListView x:Name="StorageItemsListView"
+                      ItemsSource="{Binding CurrentDlnaVm.StorageItems}"
                       Margin="6,0,0,0"
                       IsItemClickEnabled="True"
                       SelectionMode="None"
                       IsSwipeEnabled="False"
                       ItemContainerStyle="{StaticResource ListViewItemStyle}"
-                      Visibility="{Binding DLNAVMs.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}"
-                      ItemsPanel="{StaticResource AdaptativePanelTemplate}">
+                      Visibility="{Binding DLNAVMs.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}">
                 <triggers:Interactions.Triggers>
                     <triggers:EventTrigger EventName="ItemClick">
                         <triggers:InvokeCommandAction Command="{Binding CurrentDlnaVm.NavigateToCommand}"
