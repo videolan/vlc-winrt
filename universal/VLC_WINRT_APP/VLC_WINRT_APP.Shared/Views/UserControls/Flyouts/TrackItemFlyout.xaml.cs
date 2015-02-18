@@ -36,7 +36,7 @@ namespace VLC_WINRT_APP.Views.UserControls.Flyouts
         {
 #if WINDOWS_PHONE_APP
             this.MaxHeight = 500;
-            this.Margin = new Thickness(24,0,0,0);
+            this.Margin = new Thickness(24,0,24,0);
 #else
             this.MaxHeight = 500;
             this.MaxWidth = 400;
