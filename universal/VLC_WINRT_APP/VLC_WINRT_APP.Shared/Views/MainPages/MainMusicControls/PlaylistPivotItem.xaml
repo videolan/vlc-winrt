@@ -42,9 +42,11 @@
                           Icon="Add"
                           Style="{StaticResource AppBarButtonStyleHorizontal}"
                           Command="{Binding ShowCreateNewPlaylistPaneCommand}"
-                          Margin="0,0,12,0" />
+                          Margin="0,0,12,0"
+                          VerticalAlignment="Center" />
         </Grid>
-        <ListView Grid.Row="1"
+        <ListView x:Name="PlaylistListView"
+                  Grid.Row="1"
                   ItemsSource="{Binding TrackCollections}"
                   IsItemClickEnabled="True"
                   ItemTemplate="{StaticResource PhoneTrackCollectionTemplate}"
