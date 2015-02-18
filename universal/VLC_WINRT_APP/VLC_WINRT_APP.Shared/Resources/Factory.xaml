@@ -1,0 +1,7 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="using:VLC_WINRT_APP.Resources"
+                    xmlns:viewModels="using:VLC_WINRT_APP.ViewModels">
+    <viewModels:Locator x:Key="Locator" />
+    <x:String x:Key="AppTitle">VLC Media Player</x:String>
+</ResourceDictionary>
