@@ -8,7 +8,9 @@
              d:DesignHeight="300"
              d:DesignWidth="400">
 
-    <Border>
+    <Border FlyoutBase.AttachedFlyout="{StaticResource VideoInformationFlyout}"
+            Holding="RootAlbumItem_Holding"
+            RightTapped="Grid_RightTapped">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition  />

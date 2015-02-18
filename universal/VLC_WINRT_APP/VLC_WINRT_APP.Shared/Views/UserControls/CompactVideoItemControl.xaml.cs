@@ -23,5 +23,18 @@ namespace VLC_WINRT_APP.Views.UserControls
         {
             this.InitializeComponent();
         }
+        private void RootAlbumItem_Holding(object sender, HoldingRoutedEventArgs e)
+        {
+#if WINDOWS_PHONE_APP
+            Flyout.ShowAttachedFlyout((Border)sender);
+#endif
+        }
+
+        private void Grid_RightTapped(object sender, RightTappedRoutedEventArgs e)
+        {
+#if WINDOWS_APP
+            Flyout.ShowAttachedFlyout((Border)sender);
+#endif
+        }
     }
 }
