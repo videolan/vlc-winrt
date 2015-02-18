@@ -42,7 +42,7 @@
                     <SolidColorBrush x:Key="ApplicationBackgroundSemiTranslucentThemeBrush"
                                      Color="#81FFFFFF" />
                     <SolidColorBrush x:Key="ApplicationBackgroundQuarterTranslucentThemeBrush"
-                                     Color="#B3000000"/>
+                                     Color="#B3000000" />
                     <SolidColorBrush x:Key="BasicForeground"
                                      Color="Black" />
                     <SolidColorBrush x:Key="SliderForegroundProgressTheneBrush"
