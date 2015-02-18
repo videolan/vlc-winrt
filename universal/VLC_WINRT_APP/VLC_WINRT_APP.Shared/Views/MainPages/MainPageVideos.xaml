@@ -10,6 +10,5 @@
 
     <Frame x:Name="MainPageVideoContentPresenter"
            x:FieldModifier="public"
-           Background="Transparent"
            Loaded="MainPageVideoContentPresenter_OnLoaded"/>
 </Page>

@@ -59,6 +59,7 @@ namespace VLC_WINRT_APP.Views.MainPages
                     DefaultNavigationTransitionInfo = new CommonNavigationTransitionInfo(),
                 }
             };
+            MainPageMusicContentPresenter.Background = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0));
 #endif
         }
     }
