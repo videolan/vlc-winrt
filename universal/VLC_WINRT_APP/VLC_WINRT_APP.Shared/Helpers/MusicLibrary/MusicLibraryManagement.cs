@@ -231,10 +231,9 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                         await MusicLibraryVM._albumDataRepository.Add(album);
                         await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
                         {
-                            var artistFromCollection =
-                                Locator.MusicLibraryVM.Artists.FirstOrDefault(x => x.Id == album.ArtistId);
+                            var artistFromCollection = Locator.MusicLibraryVM.Artists.FirstOrDefault(x => x.Id == album.ArtistId);
                             if (artistFromCollection != null) artistFromCollection.Albums.Add(album);
-                            Locator.MusicLibraryVM.CurrentIndexingStatus = "Found album " + album.Name;
+                            Locator.MusicLibraryVM.CurrentIndexingStatus = "Found " + Locator.MusicLibraryVM.Albums.Count + " albums";
 #if WINDOWS_PHONE_APP
                             StatusBarHelper.UpdateTitle("Found " + album.Name);
 #endif
