@@ -46,7 +46,6 @@ namespace VLC_WINRT_APP.Views.MainPages
                 Locator.MainVM.ChangeMainPageMusicViewCommand.Execute((int)Locator.SettingsVM.MusicView);
             }
 #if WINDOWS_APP
-            MainPageMusicContentPresenter.Margin = new Thickness(24, 0, 24, 0);
             MainPageMusicContentPresenter.ContentTransitions = new TransitionCollection()
             {
                 new EdgeUIThemeTransition() {Edge = EdgeTransitionLocation.Right},

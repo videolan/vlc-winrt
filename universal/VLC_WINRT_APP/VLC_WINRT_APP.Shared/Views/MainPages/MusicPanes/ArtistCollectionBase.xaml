@@ -12,8 +12,7 @@
     d:DesignHeight="300"
     d:DesignWidth="400">
 
-    <Grid x:Name="ArtistsGrid"
-          Margin="0,-12,0,0">
+    <Grid x:Name="ArtistsGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="60" />
             <RowDefinition />
