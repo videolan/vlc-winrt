@@ -56,12 +56,14 @@
                   ItemTemplate="{StaticResource WPTrackTemplateWONumber}"
                   ItemContainerStyle="{StaticResource ListViewItemStyle}"
                   Margin="24,24,0,0"
-                  SelectionChanged="PlayListView_OnSelectionChanged">
-            <ListView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <StackPanel Margin="0,0,0,60" />
-                </ItemsPanelTemplate>
-            </ListView.ItemsPanel>
+                  SelectionChanged="PlayListView_OnSelectionChanged"
+                  IsItemClickEnabled="True">
+            <triggers:Interactions.Triggers>
+                <triggers:EventTrigger EventName="ItemClick">
+                    <triggers:InvokeCommandAction Command="{Binding CurrentTrackCollection.PlayTrackCollCommand}"
+                                                  PassEventArgsToCommand="True" />
+                </triggers:EventTrigger>
+            </triggers:Interactions.Triggers>
         </ListView>
     </Grid>
 </Page>
