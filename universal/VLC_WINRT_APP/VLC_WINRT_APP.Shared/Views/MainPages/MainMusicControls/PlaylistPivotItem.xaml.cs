@@ -30,7 +30,7 @@ namespace VLC_WINRT_APP.Views.MainPages.MainMusicControls
 
         void Responsive()
         {
-            if (this.ActualWidth > 700)
+            if (Window.Current.Bounds.Width > 700)
             {
                 VisualStateUtilities.GoToState(this, "Horizontal", false);
             }
