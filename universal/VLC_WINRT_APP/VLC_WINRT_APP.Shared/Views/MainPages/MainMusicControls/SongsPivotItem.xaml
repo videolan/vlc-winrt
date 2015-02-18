@@ -55,17 +55,6 @@
                                                           PassEventArgsToCommand="True" />
                         </triggers:EventTrigger>
                     </triggers:Interactions.Triggers>
-                    <ListView.ItemContainerTransitions>
-                        <TransitionCollection>
-                            <AddDeleteThemeTransition />
-                            <EntranceThemeTransition />
-                        </TransitionCollection>
-                    </ListView.ItemContainerTransitions>
-                    <ListView.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <ItemsStackPanel Margin="0,0,0,60" />
-                        </ItemsPanelTemplate>
-                    </ListView.ItemsPanel>
                     <ListView.GroupStyle>
                         <GroupStyle>
                             <GroupStyle.HeaderTemplate>
