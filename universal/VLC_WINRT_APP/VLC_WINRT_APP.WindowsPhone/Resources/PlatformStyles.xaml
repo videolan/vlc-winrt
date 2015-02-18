@@ -428,16 +428,6 @@
                 Value="#C6000000" />
     </Style>
 
-    <Style TargetType="MenuFlyoutPresenter">
-        <Setter Property="BorderThickness"
-                Value="1" />
-        <Setter Property="RequestedTheme"
-                Value="Light" />
-        <Setter Property="Background"
-                Value="WhiteSmoke" />
-        <Setter Property="BorderBrush"
-                Value="#ff8800" />
-    </Style>
     
     <Style x:Key="PivotTitleStyle"
            TargetType="TextBlock">
