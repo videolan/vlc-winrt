@@ -132,7 +132,7 @@ namespace VLC_WINRT_APP.Helpers
                     // secondary commands
                     var deleteplaylistbutton = new AppBarButton()
                     {
-                        Icon = new SymbolIcon(Symbol.Remove),
+                        Icon = PathHelper.Create(App.Current.Resources["RecyclePath"].ToString()),
                         Label = "delete playlist",
                         Command = Locator.MusicLibraryVM.DeletePlaylistCommand
                     };
