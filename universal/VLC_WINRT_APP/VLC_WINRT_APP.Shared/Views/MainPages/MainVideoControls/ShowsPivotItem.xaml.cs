@@ -1,18 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Markup;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Microsoft.Xaml.Interactivity;
 
 namespace VLC_WINRT_APP.Views.MainPages.MainVideoControls
 {
@@ -22,20 +13,34 @@ namespace VLC_WINRT_APP.Views.MainPages.MainVideoControls
         {
             this.InitializeComponent();
         }
+
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            Responsive();
+            Window.Current.SizeChanged += CurrentOnSizeChanged;
         }
 
-        private void ListView_Loaded(object sender, RoutedEventArgs e)
+        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
-            var lv = sender as ListView;
-#if WINDOWS_PHONE_APP
-            var xaml = this.Resources["WindowsPhonePanelTemplate"];
-            lv.ItemsPanel = xaml as ItemsPanelTemplate;
-#else
-            var xaml = this.Resources["WindowsPanelTemplate"];
-            lv.ItemsPanel = xaml as ItemsPanelTemplate;
-#endif
+            base.OnNavigatingFrom(e);
+            Window.Current.SizeChanged -= CurrentOnSizeChanged;
+        }
+
+        private void CurrentOnSizeChanged(object sender, WindowSizeChangedEventArgs windowSizeChangedEventArgs)
+        {
+            Responsive();
+        }
+
+        void Responsive()
+        {
+            if (Window.Current.Bounds.Width > 700)
+            {
+                VisualStateUtilities.GoToState(this, "Horizontal", false);
+            }
+            else
+            {
+                VisualStateUtilities.GoToState(this, "Vertical", false);
+            }
         }
     }
 }
