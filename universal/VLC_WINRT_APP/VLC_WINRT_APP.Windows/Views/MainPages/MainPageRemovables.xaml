@@ -68,7 +68,8 @@
                       SelectionMode="None"
                       IsSwipeEnabled="False"
                       ItemContainerStyle="{StaticResource ListViewItemStyle}"
-                      Visibility="{Binding RemovableStorageVMs.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}">
+                      Visibility="{Binding RemovableStorageVMs.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}"
+                      ItemsPanel="{StaticResource AdaptativePanelTemplate}">
                 <triggers:Interactions.Triggers>
                     <triggers:EventTrigger EventName="ItemClick">
                         <triggers:InvokeCommandAction Command="{Binding CurrentStorageVM.NavigateToCommand}"
@@ -96,11 +97,6 @@
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
-                <ListView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <ItemsWrapGrid Orientation="Vertical" />
-                    </ItemsPanelTemplate>
-                </ListView.ItemsPanel>
             </ListView>
         </Grid>
         <removableStorage:PlugARemovableStorage Grid.Row="1"
