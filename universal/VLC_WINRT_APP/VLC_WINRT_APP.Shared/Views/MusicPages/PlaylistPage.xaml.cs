@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.Linq;
-using Windows.UI.Core;
+﻿using System.Linq;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using Microsoft.Xaml.Interactivity;
 using VLC_WINRT_APP.Helpers;
-using VLC_WINRT_APP.Helpers.MusicLibrary;
 using VLC_WINRT_APP.Model.Music;
 using VLC_WINRT_APP.ViewModels;
-using VLC_WINRT_APP.ViewModels.MusicVM;
 #if WINDOWS_PHONE_APP
 using Windows.Phone.UI.Input;
 #endif
@@ -31,7 +26,33 @@ namespace VLC_WINRT_APP.Views.MusicPages
             HardwareButtons.BackPressed += HardwareButtonsOnBackPressed;
 #endif
             await AppBarHelper.UpdateAppBar(typeof(PlaylistPage));
+            Responsive();
+            Window.Current.SizeChanged += CurrentOnSizeChanged;
+            this.Unloaded += OnUnloaded;
         }
+
+        private void CurrentOnSizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)
+        {
+            Responsive();
+        }
+
+        private void OnUnloaded(object sender, RoutedEventArgs e)
+        {
+            Window.Current.SizeChanged -= CurrentOnSizeChanged;
+        }
+
+        void Responsive()
+        {
+            if (Window.Current.Bounds.Width > 700)
+            {
+                VisualStateUtilities.GoToState(this, "Horizontal", false);
+            }
+            else
+            {
+                VisualStateUtilities.GoToState(this, "Vertical", false);
+            }
+        }
+
 #if WINDOWS_PHONE_APP
         private void HardwareButtonsOnBackPressed(object sender, BackPressedEventArgs backPressedEventArgs)
         {

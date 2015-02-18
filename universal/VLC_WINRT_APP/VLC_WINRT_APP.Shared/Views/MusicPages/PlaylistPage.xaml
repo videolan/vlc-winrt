@@ -5,19 +5,47 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:userControls="using:VLC_WINRT_APP.Views.UserControls"
+      xmlns:triggers="using:WinRT.Triggers"
       mc:Ignorable="d"
       DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
 
     <Grid>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="Standard">
+                <VisualState x:Name="Vertical">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlayListView"
+                                                       Storyboard.TargetProperty="Style">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="{StaticResource AdaptativeListViewScrollVerticalStyle}" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlayListView"
+                                                       Storyboard.TargetProperty="ItemsPanel">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="{StaticResource AdaptativeVerticalPanelTemplate}" />
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Horizontal">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlayListView"
+                                                       Storyboard.TargetProperty="Style">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="{StaticResource AdaptativeListViewScrollHorizontalStyle}" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlayListView"
+                                                       Storyboard.TargetProperty="ItemsPanel">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="{StaticResource AdaptativeHorizontalPanelTemplate}" />
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
         <Grid.RowDefinitions>
             <RowDefinition Height="80" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <Image Grid.Row="0"
-               Source="/Assets/backgroundTop.png"
-               Stretch="Uniform"
-               VerticalAlignment="Top"
-               HorizontalAlignment="Right" />
         <userControls:HeaderControl Grid.Row="0"
                                     HeaderTextBlock="{Binding CurrentTrackCollection.Name}"
                                     HeaderBackground="Transparent" />
