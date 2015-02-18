@@ -31,7 +31,7 @@
         </ListView.ItemContainerTransitions>
         <ListView.ItemsPanel>
             <ItemsPanelTemplate>
-                <ItemsStackPanel Margin="12,0,0,60" />
+                <ItemsStackPanel Margin="12,12,0,60" />
             </ItemsPanelTemplate>
         </ListView.ItemsPanel>
         <triggers:Interactions.Triggers>

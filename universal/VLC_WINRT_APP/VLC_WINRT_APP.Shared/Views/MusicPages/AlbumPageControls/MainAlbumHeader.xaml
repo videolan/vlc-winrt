@@ -30,7 +30,7 @@
                 <ColumnDefinition Width="12" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition />
+                <RowDefinition Height="Auto" />
                 <RowDefinition />
                 <RowDefinition />
             </Grid.RowDefinitions>
@@ -39,14 +39,18 @@
                    x:Name="HeaderArtistImage"
                    Source="{Binding CurrentAlbum.Picture}"
                    Stretch="Uniform"
-                   Opacity="1" />
+                   Opacity="1"
+                   VerticalAlignment="Top" 
+                   Height="200"/>
             <Button Grid.Row="0"
                     Grid.Column="3"
+                    VerticalAlignment="Top"
                     Style="{StaticResource TextBlockButtonStyle}"
                     Command="{Binding CurrentAlbum.ViewArtist}"
                     CommandParameter="{Binding CurrentAlbum.ArtistId}">
                 <Button.Content>
-                    <TextBlock TextWrapping="NoWrap">
+                    <TextBlock TextWrapping="Wrap"
+                               TextTrimming="WordEllipsis">
                         <Run Text="{Binding CurrentArtist.Name, Converter={StaticResource ArtistStringConverter}}"
                              FontWeight="Light"
                              FontSize="24" />
@@ -69,7 +73,6 @@
                           Grid.Column="3"
                           Style="{StaticResource AppBarButtonStyleHorizontal}"
                           Label="Play all"
-                          Margin="0,0,0,14"
                           VerticalAlignment="Bottom"
                           Command="{Binding CurrentAlbum.PlayAlbum}"
                           CommandParameter="{Binding CurrentAlbum}">
