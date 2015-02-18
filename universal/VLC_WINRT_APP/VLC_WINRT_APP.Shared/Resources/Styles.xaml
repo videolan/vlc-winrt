@@ -3653,6 +3653,10 @@ M 15.937 9.056 c 0.629 -1.69 1.208 -2.349 2.063 -2.349 h 5.586 L 20.293 10 l 1.4
                     <StackPanel x:Name="LayoutRoot"
                                 Orientation="Horizontal"
                                 Background="Transparent">
+                        <StackPanel.Projection>
+                            <PlaneProjection x:Name="AppBarButtonPlaneProjection"
+                                             LocalOffsetZ="0" />
+                        </StackPanel.Projection>
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="ApplicationViewStates">
                                 <VisualState x:Name="FullSize" />
@@ -3673,6 +3677,20 @@ M 15.937 9.056 c 0.629 -1.69 1.208 -2.349 2.063 -2.349 h 5.586 L 20.293 10 l 1.4
                             </VisualStateGroup>
                             <VisualStateGroup x:Name="CommonStates">
                                 <VisualState x:Name="Normal" />
+                                <VisualState x:Name="PointerOver">
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="AppBarButtonPlaneProjection"
+                                                                       Storyboard.TargetProperty="GlobalOffsetZ">
+                                            <EasingDoubleKeyFrame KeyTime="0:0:0.3"
+                                                                  Value="25">
+                                                <EasingDoubleKeyFrame.EasingFunction>
+                                                    <ExponentialEase Exponent="3"
+                                                                     EasingMode="EaseOut" />
+                                                </EasingDoubleKeyFrame.EasingFunction>
+                                            </EasingDoubleKeyFrame>
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
                                 <VisualState x:Name="Pressed">
                                     <Storyboard>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
