@@ -7,9 +7,11 @@ using System.Dynamic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Windows.Foundation;
 using Windows.Storage;
 using Windows.Storage.AccessCache;
 using Windows.Storage.FileProperties;
+using Windows.Storage.Streams;
 using Windows.System.Threading;
 using Windows.UI.Core;
 using Windows.UI.Popups;
@@ -286,10 +288,13 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                 try
                 {
                     if (filePath == null) return;
+                    var destinationFolder = await ApplicationData.Current.LocalFolder.CreateFolderAsync("albumPic", CreationCollisionOption.OpenIfExists);
+                    var thumbnail = false;
+#if WINDOWS_PHONE_APP
                     var folderPath = Path.GetDirectoryName(filePath);
                     var folder = await StorageFolder.GetFolderFromPathAsync(folderPath + "\\");
                     var coverName = "Folder.jpg";
-                    var thumbnail = await folder.ContainsFileAsync(coverName);
+                    thumbnail = await folder.ContainsFileAsync(coverName);
                     if (!thumbnail)
                     {
                         coverName = "cover.jpg";
@@ -298,16 +303,30 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                     if (thumbnail)
                     {
                         var folderPicFile = await folder.GetFileAsync(coverName);
-                        var destinationFolder = await ApplicationData.Current.LocalFolder.CreateFolderAsync("albumPic", CreationCollisionOption.OpenIfExists);
                         await folderPicFile.CopyAsync(destinationFolder, String.Format("{0}.jpg", album.Id), NameCollisionOption.FailIfExists);
-                        await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                        {
-                            album.IsPictureLoaded = true;
-                            album.Picture = String.Format("ms-appdata:///local/albumPic/{0}.jpg", album.Id);
-                        });
+
                         await MusicLibraryVM._albumDataRepository.Update(album);
-                        Debug.WriteLine("WinRT found embedded cover " + album.Picture);
                     }
+                    else return;
+#else
+                    var file = await StorageFile.GetFileFromPathAsync(filePath);
+                    var destFile = await destinationFolder.CreateFileAsync(album.Id + ".jpg", CreationCollisionOption.ReplaceExisting);
+                    var mP = await file.GetThumbnailAsync(ThumbnailMode.MusicView, 200);
+                    if (mP == null) return;
+                    thumbnail = true;
+                    var buffer = new Windows.Storage.Streams.Buffer(Convert.ToUInt32(mP.Size));
+                    var iBuf = await mP.ReadAsync(buffer, buffer.Capacity, InputStreamOptions.None);
+                    using (var strm = await destFile.OpenAsync(FileAccessMode.ReadWrite))
+                    {
+                        await strm.WriteAsync(iBuf);
+                    }
+#endif
+                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                    {
+                        album.IsPictureLoaded = true;
+                        album.Picture = String.Format("ms-appdata:///local/albumPic/{0}.jpg", album.Id);
+                        Debug.WriteLine("WinRT found embedded cover " + album.Picture);
+                    });
                 }
                 catch (Exception exception)
                 {
