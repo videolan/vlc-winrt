@@ -414,7 +414,11 @@ namespace VLC_WINRT_APP.ViewModels.Settings
                 }
                 else
                 {
+#if WINDOWS_APP
+                    _applicationTheme = ApplicationTheme.Light;
+#else
                     _applicationTheme = App.Current.RequestedTheme;
+#endif
                 }
                 return _applicationTheme;
             }
