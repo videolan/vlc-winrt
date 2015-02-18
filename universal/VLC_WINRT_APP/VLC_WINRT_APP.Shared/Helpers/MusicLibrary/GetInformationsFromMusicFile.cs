@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using VLC_WINRT_APP.Model.Music;
 using VLC_WINRT_APP.ViewModels.MusicVM;
 using Windows.Storage;
+using Windows.Storage.FileProperties;
 
 namespace VLC_WINRT_APP.Helpers.MusicLibrary
 {
@@ -19,14 +20,22 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
     {
         public async static Task<TrackItem> GetTrackItemFromFile(StorageFile track)
         {
-            var trackInfos = await track.Properties.GetMusicPropertiesAsync();
+            MusicProperties trackInfos = null;
+            try
+            {
+                trackInfos = await track.Properties.GetMusicPropertiesAsync();
+            }
+            catch
+            {
+
+            }
             var trackItem = new TrackItem
             {
-                ArtistName = string.IsNullOrEmpty(trackInfos.Artist) ? "Unknown artist" : trackInfos.Artist,
-                AlbumName = trackInfos.Album,
-                Name = string.IsNullOrEmpty(trackInfos.Title) ? track.DisplayName : trackInfos.Title,
+                ArtistName = (trackInfos == null || string.IsNullOrEmpty(trackInfos.Artist)) ? "Unknown artist" : trackInfos.Artist,
+                AlbumName = (trackInfos == null) ? "Uknown album" : trackInfos.Album,
+                Name = (trackInfos == null || string.IsNullOrEmpty(trackInfos.Title)) ? track.DisplayName : trackInfos.Title,
                 Path = track.Path,
-                Duration = trackInfos.Duration,
+                Duration = (trackInfos == null) ? TimeSpan.Zero : trackInfos.Duration,
                 Index = 0
             };
             return trackItem;
