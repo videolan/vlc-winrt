@@ -448,6 +448,11 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
         public static async Task AddToPlaylist(TrackItem trackItem, bool displayToastNotif = true)
         {
             if (Locator.MusicLibraryVM.CurrentTrackCollection == null) return;
+            if (Locator.MusicLibraryVM.CurrentTrackCollection.Playlist.Contains(trackItem))
+            {
+                ToastHelper.Basic("This track is already in your playlist!");
+                return;
+            }
             Locator.MusicLibraryVM.CurrentTrackCollection.Playlist.Add(trackItem);
             await MusicLibraryVM.TracklistItemRepository.Add(new TracklistItem()
             {
