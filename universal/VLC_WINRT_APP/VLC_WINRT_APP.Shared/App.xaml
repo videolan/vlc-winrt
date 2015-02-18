@@ -1,8 +1,6 @@
-﻿<Application
-    x:Class="VLC_WINRT_APP.App"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:viewModels="using:VLC_WINRT_APP.ViewModels">
+﻿<Application x:Class="VLC_WINRT_APP.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.ThemeDictionaries>
