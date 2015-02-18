@@ -2,55 +2,19 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:VLC_WINRT_APP.Resources"
                     xmlns:flyouts="using:VLC_WINRT_APP.Views.UserControls.Flyouts">
-    <Flyout x:Key="PhoneOpenStreamFlyout"
-            Placement="Full">
-        <Grid>
-            <Grid VerticalAlignment="Center"
-                  Background="WhiteSmoke">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <TextBlock x:Uid="OpenStream"
-                           Text="Open a stream"
-                           Style="{StaticResource SubheaderTextBlockStyle}"
-                           Margin="12" />
-                <Grid Grid.Row="1"
-                      Margin="12,0,0,0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition Width="50" />
-                    </Grid.ColumnDefinitions>
-                    <TextBox x:Uid="EnterAUrl"
-                             Name="UrlTextBox"
-                             PlaceholderText="Enter a URL"
-                             InputScope="Url" />
-                    <Button Grid.Column="1"
-                            Style="{StaticResource TextBlockButtonStyle}"
-                            HorizontalAlignment="Stretch"
-                            VerticalAlignment="Stretch"
-                            Command="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM.PlayNetworkMRL}"
-                            CommandParameter="{Binding ElementName=UrlTextBox, Path=Text}">
-                        <Button.Content>
-                            <SymbolIcon Symbol="Accept" />
-                        </Button.Content>
-                    </Button>
-                </Grid>
-            </Grid>
-        </Grid>
-    </Flyout>
-    <Flyout x:Key="TrackItemFlyout"
-            Placement="Full">
-        <flyouts:TrackItemFlyout />
-    </Flyout>
-    <Flyout x:Key="VideoInformationFlyout"
-            Placement="Full">
-        <flyouts:VideoInformationFlyout />
-    </Flyout>
     <MenuFlyout x:Key="ArtistMenuFlyout">
         <MenuFlyoutItem Text="pin artist"
                         Command="{Binding PinArtistCommand}"
                         CommandParameter="{Binding}" />
     </MenuFlyout>
-    <flyouts:AlbumMenuFlyout x:Key="AlbumMenuFlyout"/>
+    <flyouts:AlbumMenuFlyout x:Key="AlbumMenuFlyout" />
+    <Flyout x:Key="PhoneOpenStreamFlyout">
+        <flyouts:OpenStreamFlyout />
+    </Flyout>
+    <Flyout x:Key="TrackItemFlyout">
+        <flyouts:TrackItemFlyout />
+    </Flyout>
+    <Flyout x:Key="VideoInformationFlyout">
+        <flyouts:VideoInformationFlyout />
+    </Flyout>
 </ResourceDictionary>
