@@ -28,11 +28,7 @@ namespace VLC_WINRT_APP.Views.MusicPages.AlbumPageControls
 
         private void HeaderGrid_OnLoaded(object sender, RoutedEventArgs e)
         {
-#if WINDOWS_APP
             this.Height = 300;
-#else
-            this.Height = 450;
-#endif
         }
     }
 }
