@@ -39,7 +39,7 @@
                 </DataTemplate>
             </Hub.HeaderTemplate>
             <Hub.Sections>
-                <HubSection Header="user interface">
+                <!--<HubSection Header="user interface">
                     <HubSection.ContentTemplate>
                         <DataTemplate>
                             <StackPanel>
@@ -53,7 +53,7 @@
                             </StackPanel>
                         </DataTemplate>
                     </HubSection.ContentTemplate>
-                </HubSection>
+                </HubSection>-->
                 <HubSection x:Uid="VideoSettingsHeader"
                             Header="video settings">
                     <HubSection.ContentTemplate>
