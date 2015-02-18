@@ -594,4 +594,7 @@
   <data name="WeDidNotFindVideos.Text" xml:space="preserve">
     <value>We did not find videos in your Videos folder</value>
   </data>
+  <data name="ViewArtistLabel.Label" xml:space="preserve">
+    <value>view artist</value>
+  </data>
 </root>
