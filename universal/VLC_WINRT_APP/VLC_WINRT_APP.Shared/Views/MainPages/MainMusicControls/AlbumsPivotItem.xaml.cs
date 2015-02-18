@@ -16,5 +16,11 @@ namespace VLC_WINRT_APP.Views.MainPages.MainMusicControls
             this.InitializeComponent();
         }
 
+        private void Collection_Loaded(object sender, RoutedEventArgs e)
+        {
+#if WINDOWS_APP
+            AlbumCollectionBase.Margin = new Thickness(24,0,0,0);
+#endif
+        }
     }
 }

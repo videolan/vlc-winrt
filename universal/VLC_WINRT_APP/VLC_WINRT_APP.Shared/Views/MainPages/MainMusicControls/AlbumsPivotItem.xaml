@@ -12,5 +12,6 @@
       mc:Ignorable="d"
       d:DesignHeight="300"
       d:DesignWidth="400">
-    <musicPanes:AlbumCollectionBase />
+    <musicPanes:AlbumCollectionBase x:Name="AlbumCollectionBase"
+                                    Loaded="Collection_Loaded" />
 </Page>

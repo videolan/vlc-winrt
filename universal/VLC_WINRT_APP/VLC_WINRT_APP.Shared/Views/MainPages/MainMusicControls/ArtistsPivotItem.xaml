@@ -12,5 +12,6 @@
       d:DesignHeight="300"
       d:DesignWidth="400"
       DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
-    <musicPanes:ArtistCollectionBase />
+    <musicPanes:ArtistCollectionBase x:Name="ArtistCollectionBase"
+                                     Loaded="Collection_Loaded"/>
 </Page>
