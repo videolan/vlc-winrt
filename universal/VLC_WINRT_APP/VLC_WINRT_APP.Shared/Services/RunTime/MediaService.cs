@@ -257,6 +257,7 @@ namespace VLC_WINRT_APP.Services.RunTime
             var file = await StorageFile.GetFileFromPathAsync(filePath);
             return StorageApplicationPermissions.FutureAccessList.Add(file);
         }
+
         public string GetToken(StorageFile file)
         {
             return StorageApplicationPermissions.FutureAccessList.Add(file);
