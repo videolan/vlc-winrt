@@ -217,7 +217,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>runtimeobject.lib;d3d11.lib;d2d1.lib;vlc.lib;MMDevAPI.lib;synchronization.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>runtimeobject.lib;d3d11.lib;d2d1.lib;libvlc.lib;MMDevAPI.lib;synchronization.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <AdditionalLibraryDirectories>$(SolutionDir)..\vlc\Windows\vlc-$(Platform)\$(Configuration)</AdditionalLibraryDirectories>
     </Link>
