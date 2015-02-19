@@ -20,7 +20,7 @@ namespace VLC_WINRT_APP.Services.Interface
     {
         bool IsBackground { get; }
 
-        Task Initialize(SwapChainPanel panel);
+        void Initialize(SwapChainPanel panel);
 
         Task SetMediaTransportControlsInfo(string artistName, string albumName, string trackName, string albumUri);
 

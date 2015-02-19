@@ -45,14 +45,3 @@ public:
     HANDLE                 m_audioClientReady;
 };
 
-namespace libVLCX
-{
-    [Windows::Foundation::Metadata::WebHostHidden]
-    public ref class MMDeviceLoader sealed
-    {
-    public:
-        Windows::Foundation::IAsyncOperation<uint32>^ GetAudioClient();
-    private:
-    };
-}
-

@@ -43,9 +43,9 @@ namespace VLC_WINRT_APP.Views.MainPages
         {
         }
 
-        private async void SwapPanelLoaded(object sender, RoutedEventArgs e)
+        private void SwapPanelLoaded(object sender, RoutedEventArgs e)
         {
-            await _mediaService.Initialize(SwapChainPanel);
+            _mediaService.Initialize(SwapChainPanel);
             SizeChanged += OnSizeChanged;
             Unloaded += MainPage_Unloaded;
         }
