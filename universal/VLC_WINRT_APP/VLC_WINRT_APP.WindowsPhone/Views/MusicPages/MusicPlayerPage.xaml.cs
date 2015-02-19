@@ -6,6 +6,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.ViewModels;
 
 namespace VLC_WINRT_APP.Views.MusicPages
@@ -17,8 +18,9 @@ namespace VLC_WINRT_APP.Views.MusicPages
             this.InitializeComponent();
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
+            await AppBarHelper.UpdateAppBar(typeof (MusicPlayerPage));
             HardwareButtons.BackPressed += HardwareButtonsOnBackPressed;
             Locator.MainVM.CommandBar.Background = new SolidColorBrush(Color.FromArgb(200, 50,50,50));
         }
