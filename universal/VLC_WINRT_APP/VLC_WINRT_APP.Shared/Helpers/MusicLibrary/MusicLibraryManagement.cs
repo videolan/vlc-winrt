@@ -181,7 +181,6 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                 if (!VLCFileExtensions.AudioExtensions.Contains(item.FileType.ToLower())) return;
                 MusicProperties properties = await item.Properties.GetMusicPropertiesAsync();
                 MediaProperties mP = null;
-                MediaService mediaService = App.IMediaService as MediaService;
                 if (properties != null)
                 {
                     mP = new MediaProperties();
@@ -192,14 +191,6 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                     mP.Duration = properties.Duration;
                     mP.Tracknumber = properties.TrackNumber;
                     mP.Genre = (properties.Genre.Any()) ? properties.Genre[0] : null;
-                }
-                else
-                {
-                    mP = mediaService.GetMusicProperties(item.Path);
-                }
-                if (mP.Duration == TimeSpan.Zero)
-                {
-                    mP.Duration = mediaService.GetDuration(item.Path);
                 }
                 if (mP != null)
                 {
