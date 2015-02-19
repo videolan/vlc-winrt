@@ -11,5 +11,5 @@
 
     <Frame x:Name="MainPageMusicContentPresenter"
            x:FieldModifier="public"
-           Loaded="MusicPanesFrame_OnLoaded" />
+           Loaded="MusicPanesFrame_OnLoaded"/>
 </Page>

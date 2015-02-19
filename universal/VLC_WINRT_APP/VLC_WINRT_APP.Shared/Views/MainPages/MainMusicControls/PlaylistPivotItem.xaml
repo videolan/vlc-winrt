@@ -46,7 +46,7 @@
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
         <Grid.RowDefinitions>
-            <RowDefinition Height="64" />
+            <RowDefinition Height="50" />
             <RowDefinition />
         </Grid.RowDefinitions>
         <Grid>

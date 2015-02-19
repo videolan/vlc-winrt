@@ -53,7 +53,7 @@
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
         <Grid.RowDefinitions>
-            <RowDefinition Height="60" />
+            <RowDefinition Height="50" />
             <RowDefinition />
         </Grid.RowDefinitions>
         <Grid DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}">
