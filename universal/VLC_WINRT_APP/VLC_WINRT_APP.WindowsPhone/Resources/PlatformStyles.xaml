@@ -414,10 +414,7 @@
             </Setter.Value>
         </Setter>
     </Style>
-    <Style TargetType="Flyout">
-        <Setter Property="Placement"
-                Value="Full"/>
-    </Style>
+    
     
     <Style TargetType="FlyoutPresenter">
         <Setter Property="BorderThickness"
