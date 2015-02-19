@@ -25,7 +25,7 @@
                Source="/Assets/backgroundTop.png"
                Stretch="Uniform"
                VerticalAlignment="Top"
-               Opacity="0.7"/>
+               Opacity="0.7" />
         <Pivot x:Name="MainPivot"
                x:FieldModifier="public"
                Style="{StaticResource HorizontalPivotStyle}"
@@ -38,7 +38,7 @@
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <userControls:VLCLogoWithGradient Height="32"/>
+                    <userControls:VLCLogoWithGradient Height="32" />
                     <TextBlock Margin="10,-3,0,0"
                                TextTrimming="CharacterEllipsis"
                                TextWrapping="NoWrap"
@@ -64,36 +64,26 @@
                                         Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToPanelCommand}"
                                         CommandParameter="2"
                                         FontWeight="SemiLight" />
-                                <GridView ItemsSource="{Binding RandomAlbums}"
+                                <ListView ItemsSource="{Binding RandomAlbums}"
                                           ItemTemplate="{StaticResource PhoneSemanticZoomInViewAlbumTemplateLittleSize}"
-                                          ItemContainerStyle="{StaticResource TileGridViewItemStyle}"
+                                          ItemContainerStyle="{StaticResource ListViewItemStyle}"
                                           IsItemClickEnabled="True"
                                           SelectionMode="None"
-                                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                                          ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                                          ScrollViewer.HorizontalScrollMode="Disabled"
-                                          ScrollViewer.VerticalScrollMode="Disabled"
-                                          Margin="0,6,0,0">
+                                          IsSwipeEnabled="False">
                                     <triggers:Interactions.Triggers>
                                         <triggers:EventTrigger EventName="ItemClick">
                                             <triggers:InvokeCommandAction Command="{Binding AlbumClickedCommand}"
                                                                           PassEventArgsToCommand="True" />
                                         </triggers:EventTrigger>
                                     </triggers:Interactions.Triggers>
-                                    <GridView.ItemContainerTransitions>
-                                        <TransitionCollection>
-                                            <AddDeleteThemeTransition />
-                                            <EntranceThemeTransition />
-                                        </TransitionCollection>
-                                    </GridView.ItemContainerTransitions>
-                                    <GridView.ItemsPanel>
+                                    <ListView.ItemsPanel>
                                         <ItemsPanelTemplate>
-                                            <ItemsWrapGrid Orientation="Horizontal"
-                                                           SizeChanged="AlbumsWrapGrid_SizeChanged" 
-                                                           Margin="0,0,-12,0"/>
+                                            <ItemsWrapGrid SizeChanged="AlbumsWrapGrid_SizeChanged"
+                                                           Orientation="Horizontal"
+                                                           Margin="0,0,0,0" />
                                         </ItemsPanelTemplate>
-                                    </GridView.ItemsPanel>
-                                </GridView>
+                                    </ListView.ItemsPanel>
+                                </ListView>
                                 <controls:NoFavoriteAlbumsControl HorizontalAlignment="Left" />
                             </StackPanel>
                             <StackPanel x:Name="VideoLibrary"
@@ -107,30 +97,33 @@
                                         Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToPanelCommand}"
                                         CommandParameter="1"
                                         FontWeight="SemiLight" />
-                                <GridView ItemsSource="{Binding ViewedVideos}"
+                                <ListView ItemsSource="{Binding ViewedVideos}"
                                           ItemTemplate="{StaticResource PhoneCompactVideoTemplate}"
-                                          Margin="0,0,-26,0"
-                                          IsItemClickEnabled="True">
+                                          ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                                          Margin="0,0,-25,0"
+                                          IsItemClickEnabled="True"
+                                          SelectionMode="None"
+                                          IsSwipeEnabled="False">
                                     <triggers:Interactions.Triggers>
                                         <triggers:EventTrigger EventName="ItemClick">
                                             <triggers:InvokeCommandAction Command="{Binding OpenVideo}"
                                                                           PassEventArgsToCommand="True" />
                                         </triggers:EventTrigger>
                                     </triggers:Interactions.Triggers>
-                                    <GridView.ItemContainerTransitions>
+                                    <ListView.ItemContainerTransitions>
                                         <TransitionCollection>
                                             <AddDeleteThemeTransition />
                                             <EntranceThemeTransition />
                                         </TransitionCollection>
-                                    </GridView.ItemContainerTransitions>
-                                    <GridView.ItemsPanel>
+                                    </ListView.ItemContainerTransitions>
+                                    <ListView.ItemsPanel>
                                         <ItemsPanelTemplate>
                                             <ItemsWrapGrid Orientation="Horizontal"
                                                            SizeChanged="VideoWrapGrid_SizeChanged"
                                                            Margin="0,0,0,60" />
                                         </ItemsPanelTemplate>
-                                    </GridView.ItemsPanel>
-                                </GridView>
+                                    </ListView.ItemsPanel>
+                                </ListView>
                             </StackPanel>
                         </StackPanel>
                     </ScrollViewer>
@@ -143,7 +136,8 @@
             </PivotItem>
             <PivotItem x:Uid="MusicHubHeader"
                        Header="music">
-                <local:MainPageMusic x:Name="MainPageMusicPivotItem"
+                <local:MainPageMusic 
+                                     x:Name="MainPageMusicPivotItem"
                                      x:FieldModifier="public" />
             </PivotItem>
         </Pivot>
