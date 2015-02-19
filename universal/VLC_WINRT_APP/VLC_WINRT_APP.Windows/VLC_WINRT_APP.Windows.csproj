@@ -19,8 +19,6 @@
     <AppxBundlePlatforms>arm</AppxBundlePlatforms>
     <AppxBundle>Always</AppxBundle>
     <NuGetPackageImportStamp>cada7af3</NuGetPackageImportStamp>
-    <PackageCertificateThumbprint>B0F77B599D9DBB7D6600A2CC03A0A8D75E8140F6</PackageCertificateThumbprint>
-    <PackageCertificateKeyFile>VLC_WINRT_APP.Windows_TemporaryKey.pfx</PackageCertificateKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -221,7 +219,6 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="VLC_WINRT_APP.Windows_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\access\libaccess_bd_plugin.dll">
