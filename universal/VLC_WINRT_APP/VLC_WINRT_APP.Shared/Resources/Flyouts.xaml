@@ -2,19 +2,14 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="using:VLC_WINRT_APP.Resources"
                     xmlns:flyouts="using:VLC_WINRT_APP.Views.UserControls.Flyouts">
+
     <MenuFlyout x:Key="ArtistMenuFlyout">
         <MenuFlyoutItem Text="pin artist"
                         Command="{Binding PinArtistCommand}"
                         CommandParameter="{Binding}" />
     </MenuFlyout>
     <flyouts:AlbumMenuFlyout x:Key="AlbumMenuFlyout" />
-    <Flyout x:Key="PhoneOpenStreamFlyout">
-        <flyouts:OpenStreamFlyout />
-    </Flyout>
-    <Flyout x:Key="TrackItemFlyout">
-        <flyouts:TrackItemFlyout />
-    </Flyout>
-    <Flyout x:Key="VideoInformationFlyout">
-        <flyouts:VideoInformationFlyout />
-    </Flyout>
+    <flyouts:OpenStreamFlyout x:Key="PhoneOpenStreamFlyout"/>
+    <flyouts:TrackItemFlyout x:Key="TrackItemFlyout"/>
+    <flyouts:VideoInformationFlyout x:Key="VideoInformationFlyout" />
 </ResourceDictionary>
