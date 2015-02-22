@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest">
-  <Identity Name="VideoLAN.VLCforWindows8" Publisher="CN=716F2E5E-A03A-486B-BC67-9B18474B9D51" Version="0.1.0.0" />
+  <Identity Name="VideoLAN.VLCforWindows8" Publisher="CN=716F2E5E-A03A-486B-BC67-9B18474B9D51" Version="1.1.0.0" />
   <Properties>
     <DisplayName>VLC for Windows 8</DisplayName>
     <PublisherDisplayName>VideoLAN</PublisherDisplayName>
