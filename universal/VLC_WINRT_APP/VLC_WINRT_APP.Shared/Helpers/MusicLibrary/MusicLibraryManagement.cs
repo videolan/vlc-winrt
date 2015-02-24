@@ -429,6 +429,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
 
         public static async Task AddNewPlaylist(string trackCollectionName)
         {
+            if (string.IsNullOrEmpty(trackCollectionName)) return;
             TrackCollection trackCollection = null;
             trackCollection = await MusicLibraryVM.TrackCollectionRepository.LoadFromName(trackCollectionName);
             if (trackCollection != null)
