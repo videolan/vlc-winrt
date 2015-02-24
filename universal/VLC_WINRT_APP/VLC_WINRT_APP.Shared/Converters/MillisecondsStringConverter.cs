@@ -19,7 +19,7 @@ namespace VLC_WINRT_APP.Converters
         {
             if (value is Int64)
             {
-                var milliseconds = (Int64)value;
+                var milliseconds = (Int64) value;
                 if (milliseconds >= TimeSpan.MaxValue.TotalMilliseconds)
                 {
                     //TODO: figure out what could cause this value to exceed MaxValue and cause
