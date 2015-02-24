@@ -378,6 +378,7 @@ namespace VLC_WINRT_APP.ViewModels
         protected async Task InitializePlayback(String mrl, Boolean isAudio, Boolean isStream, StorageFile file = null)
         {
             await _mediaService.SetMediaFile(mrl, isAudio, isStream, file);
+            if (_mediaService.MediaPlayer == null) return;
             var em = _mediaService.MediaPlayer.eventManager();
             em.OnLengthChanged += OnLengthChanged;
             em.OnStopped += OnStopped;
