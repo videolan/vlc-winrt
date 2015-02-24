@@ -210,7 +210,7 @@ namespace VLC_WINRT_APP.Services.RunTime
             await videoVm.Initialize(file);
             if (token != null) videoVm.Token = token;
             Locator.VideoVm.CurrentVideo = videoVm;
-            await Locator.VideoVm.SetActiveVideoInfo(videoVm);
+            await Locator.VideoVm.SetActiveVideoInfo(videoVm, null, file);
         }
 
         private bool _isAudioMedia;

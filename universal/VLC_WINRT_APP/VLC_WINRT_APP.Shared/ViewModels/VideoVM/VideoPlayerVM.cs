@@ -7,6 +7,7 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
+using Windows.Storage;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -265,7 +266,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             }
         }
 
-        public async Task SetActiveVideoInfo(VideoItem media, string streamMrl = null)
+        public async Task SetActiveVideoInfo(VideoItem media, string streamMrl = null, StorageFile file = null)
         {
             if (media == null && string.IsNullOrEmpty(streamMrl))
                 return;
@@ -282,7 +283,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             if (media != null)
             {
                 var path = media.Token ?? media.FilePath;
-                await InitializePlayback(path, false, false);
+                await InitializePlayback(path, false, false, file);
             }
             else
                 await InitializePlayback(streamMrl, false, true);
