@@ -38,7 +38,7 @@ namespace VLC_WINRT_APP.Views.UserControls
         }
 
         public static readonly DependencyProperty HeaderBackgroundProperty = DependencyProperty.Register(
-            "HeaderBackground", typeof(SolidColorBrush), typeof(HeaderControl), new PropertyMetadata(App.Current.Resources["MainColor"], HeaderBackgroundPropertyChangedCallback));
+            "HeaderBackground", typeof(SolidColorBrush), typeof(HeaderControl), new PropertyMetadata(new SolidColorBrush(Colors.Transparent), HeaderBackgroundPropertyChangedCallback));
 
         private static void HeaderBackgroundPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
