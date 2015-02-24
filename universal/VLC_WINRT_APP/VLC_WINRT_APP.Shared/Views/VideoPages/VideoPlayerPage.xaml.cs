@@ -41,7 +41,10 @@ namespace VLC_WINRT_APP.Views.VideoPages
         {
             base.OnNavigatedTo(e);
 #if WINDOWS_APP
+#if DEBUG
+#else
             AppViewHelper.SetFullscren(true);
+#endif
 #endif
             // If no playback was ever started, ContinueIndexing can be null
             // If we navigate back and forth to the main page, we also don't want to 
