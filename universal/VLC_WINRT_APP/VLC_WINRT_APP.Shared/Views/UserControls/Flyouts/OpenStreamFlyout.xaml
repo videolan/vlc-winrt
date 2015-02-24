@@ -12,24 +12,25 @@
             BorderBrush="DimGray"
             BorderThickness="1">
         <Grid VerticalAlignment="Center"
-              Background="WhiteSmoke">
+              Background="WhiteSmoke"
+              Margin="12">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="12"/>
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <TextBlock x:Uid="OpenStream"
                        Text="Open a stream"
-                       Style="{StaticResource SubheaderTextBlockStyle}"
-                       Margin="12" />
-            <Grid Grid.Row="1"
-                  Margin="12,0,0,0">
+                       Style="{StaticResource SubheaderTextBlockStyle}" />
+            <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
                     <ColumnDefinition Width="50" />
                 </Grid.ColumnDefinitions>
                 <TextBox x:Uid="EnterAUrl"
                          PlaceholderText="Enter a URL"
-                         InputScope="Url" />
+                         InputScope="Url" 
+                         MinWidth="250"/>
                 <Button Grid.Column="1"
                         Command="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM.PlayNetworkMRL}"
                         CommandParameter="{Binding ElementName=UrlTextBox, Path=Text}"
