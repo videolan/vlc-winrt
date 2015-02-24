@@ -85,7 +85,8 @@
                   ItemsSource="{Binding CurrentShow.Episodes}"
                   ItemTemplate="{StaticResource PhoneShowTemplate}"
                   ItemContainerStyle="{StaticResource ListViewItemStyle}"
-                  IsItemClickEnabled="True">
+                  IsItemClickEnabled="True"
+                  SelectionMode="None">
             <triggers:Interactions.Triggers>
                 <triggers:EventTrigger EventName="ItemClick">
                     <triggers:InvokeCommandAction Command="{Binding OpenVideo}"
