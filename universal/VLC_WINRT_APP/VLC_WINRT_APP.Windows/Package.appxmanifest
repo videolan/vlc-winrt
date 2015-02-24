@@ -51,7 +51,6 @@
               <FileType>.m2v</FileType>
               <FileType>.m2t</FileType>
               <FileType>.m2ts</FileType>
-              <FileType>.m3u8</FileType>
               <FileType>.mkv</FileType>
               <FileType>.mov</FileType>
               <FileType>.mp2</FileType>
@@ -97,7 +96,6 @@
               <FileType>.wav</FileType>
               <FileType>.flac</FileType>
               <FileType>.mlp</FileType>
-              <FileType>.mp3</FileType>
             </SupportedFileTypes>
           </FileTypeAssociation>
         </Extension>
