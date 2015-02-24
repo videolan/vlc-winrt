@@ -16,9 +16,8 @@
              SectionHeaderClick="MainHub_OnSectionHeaderClick"
              VerticalAlignment="Stretch">
             <Hub.Sections>
-                <HubSection x:Uid="VideoHubHeader"
-                            Header="videos"
-                            IsHeaderInteractive="True"
+                <HubSection IsHeaderInteractive="True"
+                            x:Uid="VideoHubHeader"
                             HeaderTemplate="{StaticResource ColoredHeader}">
                     <HubSection.ContentTemplate>
                         <DataTemplate>

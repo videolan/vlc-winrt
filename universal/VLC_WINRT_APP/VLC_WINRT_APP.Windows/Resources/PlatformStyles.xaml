@@ -551,8 +551,11 @@
                                                           TextLineBounds="Tight" />
                                         <TextBlock x:Name="IsHeaderInteractiveMarker"
                                                    VerticalAlignment="Center"
+                                                   Margin="0,12,0,0"
                                                    Visibility="Collapsed"
                                                    Text="&#x00A0;&#xE26B;"
+                                                   FontSize="42"
+                                                   Foreground="{StaticResource MainColor}"
                                                    FontFamily="{ThemeResource SymbolThemeFontFamily}"
                                                    AutomationProperties.AccessibilityView="Raw"
                                                    OpticalMarginAlignment="TrimSideBearings"
