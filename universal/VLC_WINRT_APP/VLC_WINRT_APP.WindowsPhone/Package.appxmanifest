@@ -52,12 +52,13 @@
               <FileType>.m2v</FileType>
               <FileType>.m2t</FileType>
               <FileType>.m2ts</FileType>
-              <FileType>.m4v</FileType>
+              <FileType>.m3u8</FileType>
               <FileType>.mkv</FileType>
               <FileType>.mov</FileType>
               <FileType>.mp2</FileType>
               <FileType>.mp2v</FileType>
               <FileType>.mp4</FileType>
+              <FileType>.m4v</FileType>
               <FileType>.mp4v</FileType>
               <FileType>.mpe</FileType>
               <FileType>.mpeg</FileType>
@@ -80,7 +81,7 @@
               <FileType>.rec</FileType>
               <FileType>.rm</FileType>
               <FileType>.rmvb</FileType>
-              <FileType>.tod</FileType>
+              <FileType>.tob</FileType>
               <FileType>.ts</FileType>
               <FileType>.tts</FileType>
               <FileType>.vob</FileType>
@@ -90,6 +91,14 @@
               <FileType>.wmv</FileType>
               <FileType>.wtv</FileType>
               <FileType>.xesc</FileType>
+              <FileType>.mp3</FileType>
+              <FileType>.ogg</FileType>
+              <FileType>.aac</FileType>
+              <FileType>.wma</FileType>
+              <FileType>.wav</FileType>
+              <FileType>.flac</FileType>
+              <FileType>.mlp</FileType>
+              <FileType>.mp3</FileType>
             </SupportedFileTypes>
           </FileTypeAssociation>
         </Extension>
