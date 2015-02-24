@@ -68,14 +68,6 @@ namespace VLC_WINRT_APP.Views.MainPages
             }
             HardwareButtons.BackPressed += HardwareButtonsOnBackPressed;
             await AppBarHelper.UpdateAppBar(typeof(MainPageHome), MainPivot.SelectedIndex);
-            if (Locator.VideoLibraryVM.LoadingState == LoadingState.NotLoaded)
-            {
-                var _ = Task.Run(async () => await Locator.VideoLibraryVM.Initialize());
-            }
-            if (Locator.MusicLibraryVM.LoadingState == LoadingState.NotLoaded)
-            {
-                var _ = Task.Run(async () => await Locator.MusicLibraryVM.Initialize());
-            }
             await SdCardTest();
         }
 

@@ -261,6 +261,14 @@ namespace VLC_WINRT_APP
             AppViewHelper.SetAppView(); 
             AppViewHelper.SetBackgroundButtonColor();
 #endif
+            if (Locator.VideoLibraryVM.LoadingState == LoadingState.NotLoaded)
+            {
+                var _ = Task.Run(async () => await Locator.VideoLibraryVM.Initialize());
+            }
+            if (Locator.MusicLibraryVM.LoadingState == LoadingState.NotLoaded)
+            {
+                var _ = Task.Run(async () => await Locator.MusicLibraryVM.Initialize());
+            }
         }
     }
 }

@@ -30,16 +30,6 @@ namespace VLC_WINRT_APP.Views.MainPages
         {
             base.OnNavigatedTo(e);
             AppBarHelper.UpdateAppBar(typeof(MainPageHome));
-            if (Locator.VideoLibraryVM.LoadingState == LoadingState.NotLoaded)
-            {
-                Task.Run(() => Locator.VideoLibraryVM.Initialize());
-            }
-            if (Locator.MusicLibraryVM.LoadingState == LoadingState.NotLoaded)
-            {
-                // Do not initialize all musiclibrary
-                // We only need some favorite albums, and random albums. Check them from the SQL database
-                Task.Run(() => Locator.MusicLibraryVM.Initialize());
-            }
         }
 
         void Current_SizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)
