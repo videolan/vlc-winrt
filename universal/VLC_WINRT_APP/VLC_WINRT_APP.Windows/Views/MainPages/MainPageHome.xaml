@@ -13,10 +13,12 @@
     <Grid Margin="0"
           x:Name="MainGrid">
         <Hub x:Name="MainHub"
+             SectionHeaderClick="MainHub_OnSectionHeaderClick"
              VerticalAlignment="Stretch">
             <Hub.Sections>
                 <HubSection x:Uid="VideoHubHeader"
                             Header="videos"
+                            IsHeaderInteractive="True"
                             HeaderTemplate="{StaticResource ColoredHeader}">
                     <HubSection.ContentTemplate>
                         <DataTemplate>
@@ -25,7 +27,8 @@
                     </HubSection.ContentTemplate>
                 </HubSection>
                 <HubSection x:Uid="AudioHubHeader"
-                            Header="audio"
+                            Header="music"
+                            IsHeaderInteractive="True"
                             HeaderTemplate="{StaticResource ColoredHeader}"
                             ScrollViewer.HorizontalScrollMode="Disabled">
                     <HubSection.ContentTemplate>

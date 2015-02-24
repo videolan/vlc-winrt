@@ -42,5 +42,17 @@ namespace VLC_WINRT_APP.Views.MainPages
         {
             MainHub.Orientation = Window.Current.Bounds.Width < 700 ? Orientation.Vertical : Orientation.Horizontal;
         }
+
+        private void MainHub_OnSectionHeaderClick(object sender, HubSectionHeaderClickEventArgs e)
+        {
+            if (e.Section == MainHub.Sections[0])
+            {
+                Locator.MainVM.GoToPanelCommand.Execute(1);
+            }
+            else if (e.Section == MainHub.Sections[1])
+            {
+                Locator.MainVM.GoToPanelCommand.Execute(2);
+            }
+        }
     }
 }
