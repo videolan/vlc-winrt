@@ -42,9 +42,7 @@ namespace VLC_WINRT_APP.Commands
                 App.ApplicationFrame.Navigate(typeof(VideoPlayerPage));
             }
 
-#if WINDOWS_PHONE_APP
             Locator.MainVM.CloseStreamFlyout();
-#endif
         }
     }
 }

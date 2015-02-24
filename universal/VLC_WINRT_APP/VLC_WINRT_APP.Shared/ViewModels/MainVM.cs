@@ -189,7 +189,6 @@ namespace VLC_WINRT_APP.ViewModels
                 ApplicationSettingsHelper.SaveSettingsValue("ContinueVideoPlaybackInBackground", true);
         }
 
-#if WINDOWS_PHONE_APP
         public void CloseStreamFlyout()
         {
             var streamFLyout = App.Current.Resources["PhoneOpenStreamFlyout"] as Flyout;
@@ -198,7 +197,7 @@ namespace VLC_WINRT_APP.ViewModels
                 streamFLyout.Hide();
             }
         }
-#endif
+
         public ObservableCollection<Panel> Panels
         {
             get { return _panels; }
