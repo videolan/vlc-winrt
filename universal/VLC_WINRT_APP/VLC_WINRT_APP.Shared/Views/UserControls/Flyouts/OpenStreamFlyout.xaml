@@ -30,7 +30,7 @@
                 <TextBox x:Uid="EnterAUrl"
                          PlaceholderText="Enter a URL"
                          InputScope="Url" 
-                         MinWidth="250"/>
+                         MinWidth="350"/>
                 <Button Grid.Column="1"
                         Style="{StaticResource TextBlockButtonStyle}"
                         HorizontalAlignment="Stretch"
