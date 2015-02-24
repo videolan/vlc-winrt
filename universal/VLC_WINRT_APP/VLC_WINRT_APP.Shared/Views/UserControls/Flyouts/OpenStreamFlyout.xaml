@@ -32,11 +32,10 @@
                          InputScope="Url" 
                          MinWidth="250"/>
                 <Button Grid.Column="1"
-                        Command="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM.PlayNetworkMRL}"
-                        CommandParameter="{Binding ElementName=UrlTextBox, Path=Text}"
                         Style="{StaticResource TextBlockButtonStyle}"
                         HorizontalAlignment="Stretch"
-                        VerticalAlignment="Stretch">
+                        VerticalAlignment="Stretch"
+                        Click="ButtonBase_OnClick">
                     <Button.Content>
                         <SymbolIcon Symbol="Accept" />
                     </Button.Content>
