@@ -42,4 +42,5 @@
     <converters:ApplicationThemeBooleanConverter x:Key="ApplicationThemeBooleanConverter"/>
     <converters:AppThemeElementThemeConverter x:Key="AppThemeElementThemeConverter"/>
     <converters:PageToVisibilityConverter x:Key="PageToVisibilityConverter"/>
+    <converters:PositionToTimeStampStringConverter x:Key="PositionToTimeStampStringConverter"/>
 </ResourceDictionary>

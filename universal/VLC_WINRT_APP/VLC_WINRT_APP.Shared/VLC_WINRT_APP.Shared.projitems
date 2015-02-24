@@ -123,6 +123,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\PageToVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\PinConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\PositionToFixedPointConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\PositionToTimeStampStringConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\SecondsStringConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\StorageTypeToIconConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\StringToUpperConverter.cs" />

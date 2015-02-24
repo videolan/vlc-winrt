@@ -27,7 +27,7 @@
                 Value="{Binding Position, Mode=TwoWay, Converter={StaticResource PositionToFixedPointConverter}}"
                 Style="{StaticResource VLCSlider}"
                 Maximum="500"
-                ThumbToolTipValueConverter="{StaticResource MillisecondsStringConverter}" />
+                ThumbToolTipValueConverter="{StaticResource PositionToTimeStampStringConverter}" />
         <TextBlock Grid.Column="2"
                    Text="{Binding TimeTotal.TotalSeconds, Converter={StaticResource SecondsStringConverter}}"
                    HorizontalAlignment="Right"
