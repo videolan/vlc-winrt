@@ -47,12 +47,7 @@ namespace VLC_WINRT_APP.Commands
 
         public async void Execute(object parameter)
         {
-            //lock (Locker)
-            //{
-            //    _canExecute = false;
-            //    CanExecuteChanged(this, new EventArgs());
-            //}
-
+            App.OpenFilePickerReason = OpenFilePickerReason.OnOpeningVideo;
             var picker = new FileOpenPicker
             {
                 ViewMode = PickerViewMode.List,
@@ -74,15 +69,10 @@ namespace VLC_WINRT_APP.Commands
             {
                 LogHelper.Log("Cancelled");
             }
+            App.OpenFilePickerReason = OpenFilePickerReason.Null;
 #else
-            App.OpenFilePickerReason = OpenFilePickerReason.OnOpeningVideo;
             picker.PickSingleFileAndContinue();
 #endif
-            //lock (Locker)
-            //{
-            //    _canExecute = true;
-            //    CanExecuteChanged(this, new EventArgs());
-            //}
         }
         public event EventHandler CanExecuteChanged;
     }

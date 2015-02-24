@@ -11,6 +11,7 @@ using System;
 using Windows.Devices.Input;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
+using VLC_WINRT_APP.Model;
 
 namespace VLC_WINRT_APP.Services.RunTime
 {
@@ -46,6 +47,7 @@ namespace VLC_WINRT_APP.Services.RunTime
 
         private void HideCursor(object sender, object e)
         {
+            if (App.OpenFilePickerReason != OpenFilePickerReason.Null) return;
             Window.Current.CoreWindow.PointerCursor = null;
             _cursorTimer.Stop();
         }

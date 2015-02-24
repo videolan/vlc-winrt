@@ -28,6 +28,7 @@ namespace VLC_WINRT_APP.Commands.Video
             String error;
             try
             {
+                App.OpenFilePickerReason = OpenFilePickerReason.OnOpeningSubtitle;
                 var picker = new FileOpenPicker
                 {
                     ViewMode = PickerViewMode.List,
@@ -48,8 +49,8 @@ namespace VLC_WINRT_APP.Commands.Video
                 {
                     LogHelper.Log("Cancelled Opening subtitle");
                 }
+                App.OpenFilePickerReason = OpenFilePickerReason.Null;
 #else
-                App.OpenFilePickerReason = OpenFilePickerReason.OnOpeningSubtitle;
                 picker.PickSingleFileAndContinue();
 #endif
                 return;
