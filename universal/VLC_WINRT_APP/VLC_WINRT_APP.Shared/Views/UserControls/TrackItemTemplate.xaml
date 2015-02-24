@@ -13,7 +13,8 @@
              d:DesignHeight="300"
              d:DesignWidth="400">
 
-    <Grid FlyoutBase.AttachedFlyout="{StaticResource TrackItemFlyout}">
+    <Grid FlyoutBase.AttachedFlyout="{StaticResource TrackItemFlyout}"
+          RightTapped="Grid_RightTapped">
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
             <ColumnDefinition Width="40" />
