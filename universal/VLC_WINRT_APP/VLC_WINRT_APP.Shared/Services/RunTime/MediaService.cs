@@ -45,11 +45,14 @@ namespace VLC_WINRT_APP.Services.RunTime
         private SystemMediaTransportControls _systemMediaTransportControls;
         public TaskCompletionSource<bool> ContinueIndexing { get; set; }
 
+        public TaskCompletionSource<bool> VLCInstanceReady { get; set; }
+
         public Instance Instance { get; private set; }
         public MediaPlayer MediaPlayer { get; private set; }
         public bool UseVlcLib { get; set; }
         public MediaService()
         {
+            VLCInstanceReady = new TaskCompletionSource<bool>();
             CoreWindow.GetForCurrentThread().Activated += ApplicationState_Activated;
         }
 
@@ -68,6 +71,7 @@ namespace VLC_WINRT_APP.Services.RunTime
             };
             // So far, this NEEDS to be called from the main thread
             Instance = new Instance(param, panel);
+            VLCInstanceReady.SetResult(true);
         }
 
 

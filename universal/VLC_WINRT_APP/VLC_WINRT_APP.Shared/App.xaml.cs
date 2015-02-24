@@ -246,11 +246,12 @@ namespace VLC_WINRT_APP
             await ManageOpeningFiles(args);
         }
 
-        private Task ManageOpeningFiles(FileActivatedEventArgs args)
+        private async Task ManageOpeningFiles(FileActivatedEventArgs args)
         {
             if (Window.Current.Content == null)
                 LaunchTheApp();
-            return MediaService.OpenFile(args.Files[0] as StorageFile);
+            await IMediaService.VLCInstanceReady.Task;
+            await MediaService.OpenFile(args.Files[0] as StorageFile);
         }
 
 
