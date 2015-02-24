@@ -21,7 +21,10 @@ namespace VLC_WINRT_APP.Commands
         {
             var mrl = parameter as string;
             if (string.IsNullOrEmpty(mrl))
+            {
+                ToastHelper.Basic("Please enter a valid URL.");
                 return;
+            }
 
             //TODO: pass MRL to vlc
             try
