@@ -246,6 +246,7 @@ namespace VLC_WINRT_APP.Services.RunTime
 
         public async Task<string> GetToken(string filePath)
         {
+            if (string.IsNullOrEmpty(filePath)) return null;
             if (filePath[0] == '{' && filePath[filePath.Length - 1] == '}') return filePath;
             var file = await StorageFile.GetFileFromPathAsync(filePath);
             return StorageApplicationPermissions.FutureAccessList.Add(file);
