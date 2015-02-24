@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using Windows.ApplicationModel;
 using Windows.ApplicationModel.Background;
 using Windows.ApplicationModel.Resources;
 using Windows.Foundation.Collections;
@@ -24,6 +25,7 @@ using VLC_WINRT_APP.Common;
 using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.Commands;
 using VLC_WINRT_APP.Model.Search;
+using VLC_WINRT_APP.ViewModels.MusicVM;
 using VLC_WINRT_APP.Views.MainPages;
 using VLC_WINRT_APP.Views.VariousPages;
 #if WINDOWS_PHONE_APP
@@ -205,6 +207,40 @@ namespace VLC_WINRT_APP.ViewModels
             {
                 SetProperty(ref _panels, value);
             }
+        }
+        private bool NeedsToDrop()
+        {
+            Package thisPackage = Package.Current;
+            PackageVersion version = thisPackage.Id.Version;
+            string appVersion = string.Format("{0}.{1}.{2}.{3}",
+                version.Major, version.Minor, version.Build, version.Revision);
+            if (ApplicationSettingsHelper.Contains("CurrentVersion") && ApplicationSettingsHelper.ReadSettingsValue("CurrentVersion").ToString() == appVersion)
+            {
+                return false;
+            }
+            else
+            {
+                ApplicationSettingsHelper.SaveSettingsValue("CurrentVersion", appVersion);
+                return true;
+            }
+        }
+
+        public void DropTablesIfNeeded()
+        {
+            if (!NeedsToDrop()) return;
+            MusicLibraryVM.TrackCollectionRepository.Drop();
+            MusicLibraryVM.TracklistItemRepository.Drop();
+            MusicLibraryVM._albumDataRepository.Drop();
+            MusicLibraryVM._artistDataRepository.Drop();
+            MusicLibraryVM._trackDataRepository.Drop();
+            Locator.VideoLibraryVM.VideoRepository.Drop();
+            MusicLibraryVM.TrackCollectionRepository.Initialize();
+            MusicLibraryVM.TracklistItemRepository.Initialize();
+            MusicLibraryVM._albumDataRepository.Initialize();
+            MusicLibraryVM._artistDataRepository.Initialize();
+            MusicLibraryVM._trackDataRepository.Initialize();
+            Locator.VideoLibraryVM.VideoRepository.Initialize();
+            LogHelper.SignalUpdate();
         }
     }
 }

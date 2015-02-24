@@ -261,6 +261,7 @@ namespace VLC_WINRT_APP
             AppViewHelper.SetAppView(); 
             AppViewHelper.SetBackgroundButtonColor();
 #endif
+            Locator.MainVM.DropTablesIfNeeded();
             if (Locator.VideoLibraryVM.LoadingState == LoadingState.NotLoaded)
             {
                 var _ = Task.Run(async () => await Locator.VideoLibraryVM.Initialize());
