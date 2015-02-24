@@ -175,8 +175,7 @@ namespace VLC_WINRT_APP.Services.RunTime
         public static async Task OpenFile(StorageFile file)
         {
             if (file == null) return;
-            if (VLCFileExtensions.FileTypeHelper(file.FileType) ==
-                VLCFileExtensions.VLCFileType.Video)
+            if (VLCFileExtensions.FileTypeHelper(file.FileType) == VLCFileExtensions.VLCFileType.Video)
             {
                 var token = StorageApplicationPermissions.FutureAccessList.Add(file);
                 await MediaService.PlayVideoFile(file, token);
