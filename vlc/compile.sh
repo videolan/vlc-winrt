@@ -87,7 +87,6 @@ cd contrib/winrt
     --disable-SDL_image \
     --disable-fontconfig \
     --disable-zvbi \
-    --disable-kate \
     --disable-caca \
     --disable-gettext \
     --disable-mpcdec \
@@ -159,7 +158,6 @@ cp -r _win32/lib/vlc/plugins tmp/
 find tmp -name "*.la" -exec rm -v {} \;
 find tmp -name "*.a" -exec rm -v {} \;
 blacklist="
-audioscrobbler
 audiobargraph_a
 wingdi
 waveout
@@ -175,7 +173,6 @@ vcd
 cdda
 quicktime
 atmo
-logger
 oldrc
 dmo
 sap
@@ -185,6 +182,8 @@ screen
 direct3d
 win_msg
 win_hotkeys
+crystalhd
+smb
 "
 regexp=
 for i in ${blacklist}
