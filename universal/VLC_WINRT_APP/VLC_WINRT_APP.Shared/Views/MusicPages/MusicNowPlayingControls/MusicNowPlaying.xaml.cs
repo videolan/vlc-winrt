@@ -10,6 +10,10 @@ namespace VLC_WINRT_APP.Views.MusicPages.MusicNowPlayingControls
         public MusicNowPlaying()
         {
             this.InitializeComponent();
+#if WINDOWS_APP
+            CoverRowDefinition.MinHeight = 300;
+            CoverRowDefinition.MaxHeight = 400;
+#endif
         }
         private async void PlayPauseHold(object sender, HoldingRoutedEventArgs e)
         {

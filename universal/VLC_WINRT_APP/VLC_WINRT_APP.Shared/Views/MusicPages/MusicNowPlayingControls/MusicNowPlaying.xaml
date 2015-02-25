@@ -11,15 +11,14 @@
              d:DesignWidth="400"
              DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}">
 
-    <Grid Margin="0,0,0,12">
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition />
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition MinHeight="300"
-                           MaxHeight="400" />
+            <RowDefinition x:Name="CoverRowDefinition" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="12" />
             <RowDefinition Height="Auto" />
