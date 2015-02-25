@@ -1,4 +1,5 @@
-﻿using Windows.UI.Xaml.Controls;
+﻿using VLC_WINRT_APP.Helpers;
+using Windows.UI.Xaml.Controls;
 #if WINDOWS_PHONE_APP
 using Windows.Phone.UI.Input;
 using Windows.UI.Xaml.Navigation;
@@ -32,6 +33,7 @@ namespace VLC_WINRT_APP.Views.MusicPages
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             HardwareButtons.BackPressed += HardwareButtonsOnBackPressed;
+            AppBarHelper.UpdateAppBar(typeof(ArtistPage));
         }
 #endif
 
