@@ -26,46 +26,10 @@ namespace VLC_WINRT_APP.Views.MainPages
             this.SizeChanged += OnSizeChanged;
             Loaded += OnLoaded;
         }
-        private bool NeedsToDrop()
-        {
-            Package thisPackage = Package.Current;
-            PackageVersion version = thisPackage.Id.Version;
-            string appVersion = string.Format("{0}.{1}.{2}.{3}",
-                version.Major, version.Minor, version.Build, version.Revision);
-            if (ApplicationSettingsHelper.Contains("CurrentVersion") && ApplicationSettingsHelper.ReadSettingsValue("CurrentVersion").ToString() == appVersion)
-            {
-                return false;
-            }
-            else
-            {
-                ApplicationSettingsHelper.SaveSettingsValue("CurrentVersion", appVersion);
-                return true;
-            }
-        }
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            if (e.NavigationMode == NavigationMode.New)
-            {
-
-                if (NeedsToDrop())
-                {
-                    MusicLibraryVM.TrackCollectionRepository.Drop();
-                    MusicLibraryVM.TracklistItemRepository.Drop();
-                    MusicLibraryVM._albumDataRepository.Drop();
-                    MusicLibraryVM._artistDataRepository.Drop();
-                    MusicLibraryVM._trackDataRepository.Drop();
-                    Locator.VideoLibraryVM.VideoRepository.Drop();
-                    MusicLibraryVM.TrackCollectionRepository.Initialize();
-                    MusicLibraryVM.TracklistItemRepository.Initialize();
-                    MusicLibraryVM._albumDataRepository.Initialize();
-                    MusicLibraryVM._artistDataRepository.Initialize();
-                    MusicLibraryVM._trackDataRepository.Initialize();
-                    Locator.VideoLibraryVM.VideoRepository.Initialize();
-                    LogHelper.SignalUpdate();
-                }
-            }
             HardwareButtons.BackPressed += HardwareButtonsOnBackPressed;
             await AppBarHelper.UpdateAppBar(typeof(MainPageHome), MainPivot.SelectedIndex);
             await SdCardTest();
