@@ -1,4 +1,5 @@
-﻿using System;
+﻿using VLC_WINRT_APP.Helpers;
+using System;
 using Windows.UI.Core;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
@@ -19,6 +20,7 @@ namespace VLC_WINRT_APP.Views.MusicPages
 #if WINDOWS_PHONE_APP
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            AppBarHelper.UpdateAppBar(typeof(AlbumPage));
             ApplicationView.GetForCurrentView().SetDesiredBoundsMode(ApplicationViewBoundsMode.UseCoreWindow);
             HardwareButtons.BackPressed += HardwareButtonsOnBackPressed;
         }

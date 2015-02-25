@@ -34,7 +34,6 @@ namespace VLC_WINRT_APP.Commands.Music
                 Locator.MusicLibraryVM.Artists.FirstOrDefault(x => x.Id == album.ArtistId);
             Locator.MusicLibraryVM.CurrentAlbum = album;
 #if WINDOWS_PHONE_APP
-            AppBarHelper.UpdateAppBar(typeof (AlbumPage));
             if (App.ApplicationFrame.CurrentSourcePageType != typeof(AlbumPage))
             {
                     App.ApplicationFrame.Navigate(typeof(AlbumPage));
