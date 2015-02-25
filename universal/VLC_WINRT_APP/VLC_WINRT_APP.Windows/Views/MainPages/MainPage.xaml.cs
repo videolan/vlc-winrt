@@ -61,8 +61,6 @@ namespace VLC_WINRT_APP.Views.MainPages
             Responsive();
             SettingsPane pane = SettingsPane.GetForCurrentView();
             pane.CommandsRequested += SettingsCommandRequested;
-
-            //AnimatedBackground.Visibility = e.SourcePageType == typeof (PlayVideo) ? Visibility.Collapsed : Visibility.Visible;
         }
 
         private void SettingsCommandRequested(SettingsPane sender, SettingsPaneCommandsRequestedEventArgs args)
