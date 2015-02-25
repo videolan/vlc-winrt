@@ -4,6 +4,7 @@
                xmlns:local="using:VLC_WINRT_APP.Views.MusicPages"
                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+               xmlns:playlistControls="using:VLC_WINRT_APP.Views.MusicPages.PlaylistControls"
                mc:Ignorable="d"
                Title="ADD TO PLAYLIST"
                PrimaryButtonText="add to playlist"
@@ -13,5 +14,5 @@
                RequestedTheme="Light"
                FullSizeDesired="True"
                DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
-    <local:AddAlbumToPlaylist />
+    <playlistControls:AddAlbumToPlaylistBase />
 </ContentDialog>
