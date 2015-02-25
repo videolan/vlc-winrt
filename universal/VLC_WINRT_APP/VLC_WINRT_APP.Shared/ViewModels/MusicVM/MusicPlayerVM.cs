@@ -106,10 +106,24 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 
         public async Task SetCurrentAlbum()
         {
-            if (CurrentTrack == null) return;
-            if (CurrentArtist == null) return;
+            if (CurrentTrack == null)
+            {
+#if DEBUG
+                ToastHelper.Basic("currentrack null");
+#endif
+                return;
+            }
+            if (CurrentArtist == null)
+            {
+                #if DEBUG
+                ToastHelper.Basic("currentartist null");
+#endif
+                return;
+            }
             if (CurrentAlbum != null && CurrentAlbum.Id == CurrentTrack.AlbumId) return;
             CurrentAlbum = await _albumDataRepository.LoadAlbum(CurrentTrack.AlbumId);
+            OnPropertyChanged("CurrentArtist");
+            OnPropertyChanged("CurrentAlbum");
         }
 
         public TrackItem CurrentTrack
