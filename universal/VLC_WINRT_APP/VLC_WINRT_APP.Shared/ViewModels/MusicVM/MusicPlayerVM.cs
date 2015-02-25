@@ -111,7 +111,13 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 #if DEBUG
                 ToastHelper.Basic("currentrack null");
 #endif
-                return;
+#if WINDOWS_PHONE_APP
+                try
+                {
+                    await UpdateTrackFromMF();
+                }
+                catch { }
+#endif
             }
             if (CurrentArtist == null)
             {
