@@ -60,7 +60,7 @@
                              Foreground="{ThemeResource ApplicationBackgroundQuarterTranslucentThemeBrush}" />
         </TextBlock>
         <userControls:SliderControl Grid.Row="3"
-                                    Grid.ColumnSpan="3"/>
+                                    Grid.ColumnSpan="3" />
         <AppBarToggleButton Grid.Row="4"
                             Grid.Column="0"
                             Icon="Shuffle"
