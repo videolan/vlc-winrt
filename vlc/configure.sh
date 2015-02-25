@@ -33,12 +33,4 @@ OPTIONS="
       --disable-taglib
       --disable-dirac"
 
-if gcc -v 2>/dev/null -a echo | gcc -mno-cygwin -E -2>/dev/null 2>&1
-then
-    echo Cygwin detected, adjusting options
-    export CC="gcc -mno-cygwin"
-    export CXX="g++ -mno-cygwin"
-    OPTIONS="${OPTIONS} --disable-mkv"
-fi
-
 sh ../configure ${OPTIONS} $*
