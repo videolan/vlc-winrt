@@ -151,15 +151,6 @@ rm -rf tmp && mkdir tmp
 # The shared DLLs may not necessarily be in the first LIBRARY_PATH, we
 # should check them all.
 library_path_list=`${TARGET_TUPLE}-g++ -v /dev/null 2>&1 | grep ^LIBRARY_PATH|cut -d= -f2` ;
-OLD_IFS="$IFS"
-IFS=':';
-for x in $library_path_list
-do for f in stdc++-6 gcc_s_sjlj-1
-    do
-        [ -f "$x/lib$f.dll" ] && cp "$x/lib$f.dll" "tmp/"
-    done
-done
-IFS="$OLD_IFS"
 
 find _win32/bin -name "*.dll" -exec cp -v {} tmp \;
 cp -r _win32/include tmp/
