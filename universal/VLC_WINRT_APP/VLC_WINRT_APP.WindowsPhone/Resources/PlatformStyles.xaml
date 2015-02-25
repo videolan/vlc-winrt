@@ -450,7 +450,9 @@
     </DataTemplate>
 
     <Thickness x:Key="PivotPortraitThemePadding">19,12,0,12</Thickness>
-    <Thickness x:Key="PivotLandscapeThemePadding">19,25,0,0</Thickness>
+    <Thickness x:Key="PivotLandscapeThemePadding">19,12,0,12</Thickness>
+    <Thickness x:Key="PivotPortraitThemeHeaderMargin">108,33,0,0</Thickness>
+    <Thickness x:Key="PivotLandscapeThemeHeaderMargin">108,20,0,0</Thickness>
     <Thickness x:Key="PivotItemMargin">18,-12,19,0</Thickness>
     <Style x:Key="HorizontalPivotStyle"
            TargetType="Pivot">
@@ -485,6 +487,11 @@
                                             <DiscreteObjectKeyFrame KeyTime="0"
                                                                     Value="{ThemeResource PivotPortraitThemePadding}" />
                                         </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Margin"
+                                                                       Storyboard.TargetName="Header">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                                    Value="{ThemeResource PivotPortraitThemeHeaderMargin}" />
+                                        </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="Landscape">
@@ -493,6 +500,11 @@
                                                                        Storyboard.TargetName="TitleContentControl">
                                             <DiscreteObjectKeyFrame KeyTime="0"
                                                                     Value="{ThemeResource PivotLandscapeThemePadding}" />
+                                        </ObjectAnimationUsingKeyFrames>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Margin"
+                                                                       Storyboard.TargetName="Header">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                                    Value="{ThemeResource PivotLandscapeThemeHeaderMargin}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -512,7 +524,7 @@
                             <PivotPanel x:Name="Panel"
                                         VerticalAlignment="Stretch">
                                 <PivotHeaderPanel x:Name="Header"
-                                                  Margin="108,33,0,0">
+                                                  Margin="{ThemeResource PivotPortraitThemeHeaderMargin}">
                                     <PivotHeaderPanel.RenderTransform>
                                         <CompositeTransform x:Name="HeaderTranslateTransform"
                                                             TranslateX="0" />

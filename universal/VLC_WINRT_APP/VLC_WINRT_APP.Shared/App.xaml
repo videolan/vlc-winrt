@@ -5,8 +5,9 @@
         <ResourceDictionary>
             <ResourceDictionary.ThemeDictionaries>
                 <ResourceDictionary x:Key="Dark">
+                    <Color x:Key="ApplicationPageBackgroundThemeColor">Black</Color>
                     <SolidColorBrush x:Key="ApplicationPageBackgroundThemeBrush"
-                                     Color="Black" />
+                                     Color="{StaticResource ApplicationPageBackgroundThemeColor}" />
                     <SolidColorBrush x:Key="PivotHeaderForegroundUnselectedBrush"
                                      Color="#7FFFFFFF" />
                     <SolidColorBrush x:Key="ApplicationSecondaryForegroundThemeBrush"
@@ -27,8 +28,9 @@
                                      Color="WhiteSmoke" />
                 </ResourceDictionary>
                 <ResourceDictionary x:Key="Light">
+                    <Color x:Key="ApplicationPageBackgroundThemeColor">WhiteSmoke</Color>
                     <SolidColorBrush x:Key="ApplicationPageBackgroundThemeBrush"
-                                     Color="WhiteSmoke" />
+                                     Color="{StaticResource ApplicationPageBackgroundThemeColor}" />
                     <SolidColorBrush x:Key="PivotHeaderForegroundUnselectedBrush"
                                      Color="DimGray" />
                     <SolidColorBrush x:Key="ApplicationSecondaryForegroundThemeBrush"
