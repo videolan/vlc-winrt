@@ -50,6 +50,14 @@
                                   IsOn="{Binding ApplicationTheme, Converter={StaticResource ApplicationThemeBooleanConverter}, Mode=TwoWay}" />
                 </StackPanel>
             </PivotItem>
+            <PivotItem>
+                <StackPanel>
+                    <TextBlock Style="{StaticResource TitleTextBlockStyle}"
+                               Text="VLC for Windows Phone 8.1 is licensed under the GNU General Public License, version 2 (herein referred to as GPL)." />
+                    <TextBlock Text="If you want to manually deploy the package by yourself, without having to pay for a Dev License, follow the steps in this link:"/>
+                    <HyperlinkButton NavigateUri="https://msdn.microsoft.com/en-us/library/windows/apps/dn614128.aspx" Content="Msdn library"/>
+                </StackPanel>
+            </PivotItem>
         </Pivot>
     </Grid>
 </Page>
