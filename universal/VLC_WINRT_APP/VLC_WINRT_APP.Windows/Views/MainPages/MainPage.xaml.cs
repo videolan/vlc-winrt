@@ -18,6 +18,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using VLC_WINRT_APP.Services.RunTime;
 using VLC_WINRT_APP.Services.Interface;
+using VLC_WINRT_APP.Views.UserControls;
 using VLC_WINRT_APP.Views.VariousPages;
 
 namespace VLC_WINRT_APP.Views.MainPages
@@ -87,12 +88,17 @@ namespace VLC_WINRT_APP.Views.MainPages
                 {
                     App.ApplicationFrame.Navigate(typeof(AboutPage));
                 });
-
+            var license = new SettingsCommand("license", "License", command =>
+            {
+                var licenseFlyout = new LicenseFlyout();
+                licenseFlyout.Show();
+            });
             args.Request.ApplicationCommands.Clear();
             args.Request.ApplicationCommands.Add(privacyCommand);
             args.Request.ApplicationCommands.Add(specialThanks);
             args.Request.ApplicationCommands.Add(settings);
             args.Request.ApplicationCommands.Add(about);
+            args.Request.ApplicationCommands.Add(license);
         }
         private void CommandBar_OnHomeButtonClicked(Button button, EventArgs e)
         {
