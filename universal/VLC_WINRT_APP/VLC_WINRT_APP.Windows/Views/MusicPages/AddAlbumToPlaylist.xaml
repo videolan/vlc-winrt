@@ -12,5 +12,17 @@
                 Title="AddAlbumToPlaylist"
                 d:DesignWidth="346"
                 Style="{StaticResource SettingsFlyoutStyle}">
-    <playlistControls:AddAlbumToPlaylistBase />
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <userControls:HeaderControl HeaderTextBlock="add to playlist"
+                                    RequestedTheme="Dark" />
+        <playlistControls:AddAlbumToPlaylistBase Grid.Row="1" />
+        <Button Grid.Row="2"
+                Content="Add to playlist"
+                Click="AddToPlaylistButton_Click" />
+    </Grid>
 </SettingsFlyout>

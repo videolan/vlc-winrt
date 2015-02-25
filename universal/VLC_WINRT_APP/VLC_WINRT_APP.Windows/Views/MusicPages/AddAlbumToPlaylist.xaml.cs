@@ -10,5 +10,9 @@ namespace VLC_WINRT_APP.Views.MusicPages
         {
             this.InitializeComponent();
         }
+        private void AddToPlaylistButton_Click(object sender, RoutedEventArgs e)
+        {
+            MusicLibraryManagement.AddAlbumToPlaylist(null);
+        }
     }
 }
