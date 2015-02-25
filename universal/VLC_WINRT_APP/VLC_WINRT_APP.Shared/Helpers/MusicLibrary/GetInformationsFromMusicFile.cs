@@ -13,6 +13,7 @@ using VLC_WINRT_APP.Model.Music;
 using VLC_WINRT_APP.ViewModels.MusicVM;
 using Windows.Storage;
 using Windows.Storage.FileProperties;
+using VLC_WINRT_APP.ViewModels;
 
 namespace VLC_WINRT_APP.Helpers.MusicLibrary
 {
@@ -20,6 +21,13 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
     {
         public async static Task<TrackItem> GetTrackItemFromFile(StorageFile track)
         {
+            //TODO: Warning, is it safe to consider this a good idea?
+            var trackItem = await MusicLibraryVM._trackDataRepository.LoadTrackByPath(track.Path);
+            if (trackItem != null)
+            {
+                return trackItem;
+            }
+
             MusicProperties trackInfos = null;
             try
             {
@@ -29,7 +37,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             {
 
             }
-            var trackItem = new TrackItem
+            trackItem = new TrackItem
             {
                 ArtistName = (trackInfos == null || string.IsNullOrEmpty(trackInfos.Artist)) ? "Unknown artist" : trackInfos.Artist,
                 AlbumName = (trackInfos == null) ? "Uknown album" : trackInfos.Album,
