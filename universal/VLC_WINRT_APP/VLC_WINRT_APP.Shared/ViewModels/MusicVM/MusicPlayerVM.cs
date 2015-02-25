@@ -322,8 +322,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         {
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
              {
-                 Locator.MusicPlayerVM.OnLengthChanged(
-                     (long)BackgroundMediaPlayer.Current.NaturalDuration.TotalMilliseconds);
+                 Locator.MusicPlayerVM.OnLengthChanged((long)BackgroundMediaPlayer.Current.NaturalDuration.TotalMilliseconds);
                  if (!ApplicationSettingsHelper.Contains(BackgroundAudioConstants.CurrentTrack)) return;
                  int index = (int)ApplicationSettingsHelper.ReadSettingsValue(BackgroundAudioConstants.CurrentTrack);
                  Locator.MusicPlayerVM.TrackCollection.CurrentTrack = index;
