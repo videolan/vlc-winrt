@@ -51,8 +51,8 @@
                     Command="{Binding CurrentAlbum.ViewArtist}"
                     CommandParameter="{Binding CurrentAlbum.ArtistId}">
                 <Button.Content>
-                    <TextBlock TextWrapping="Wrap"
-                               TextTrimming="WordEllipsis">
+                    <TextBlock TextWrapping="NoWrap"
+                               TextTrimming="CharacterEllipsis">
                         <Run Text="{Binding CurrentArtist.Name, Converter={StaticResource ArtistStringConverter}}"
                              FontWeight="Light"
                              FontSize="24" />
