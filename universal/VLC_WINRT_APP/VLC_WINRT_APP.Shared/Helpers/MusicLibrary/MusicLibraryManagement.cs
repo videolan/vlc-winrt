@@ -436,7 +436,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             {
                 await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
                 {
-                    await new MessageDialog("A playlist with this name already exists", "Sorry ...").ShowAsync();
+                    ToastHelper.Basic("A playlist with this name already exists");
                 });
             }
             else
