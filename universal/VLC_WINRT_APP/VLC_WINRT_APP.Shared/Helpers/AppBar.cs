@@ -36,6 +36,7 @@ namespace VLC_WINRT_APP.Helpers
             appbarel.Add(new AppBarButton()
             {
                 Label = "special thanks",
+                Icon = new SymbolIcon(Symbol.Like),
                 Command = Locator.MainVM.GoToThanksPageCommand,
             });
             var settingsVisibility = new Binding()
@@ -49,6 +50,7 @@ namespace VLC_WINRT_APP.Helpers
             var settingsButton = new AppBarButton()
             {
                 Label = "settings",
+                Icon = PathHelper.Create(App.Current.Resources["SettingsPath"].ToString()),
                 Command = Locator.MainVM.GoToSettingsPageCommand,
             };
             settingsButton.SetBinding(AppBarButton.VisibilityProperty, settingsVisibility);
