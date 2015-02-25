@@ -179,8 +179,6 @@ namespace VLC_WINRT_APP.ViewModels
             string removableName = "";
             removableName = resourceLoader.GetString("RemovableStorage");
             Panels.Add(new Panel(removableName, 3, 0.4, App.Current.Resources["RemovablesPath"].ToString()));
-            //removableName = resourceLoader.GetString("SdCard");
-            Panels.Add(new Panel(resourceLoader.GetString("MediaServers"), 4, 0.4, App.Current.Resources["ServerPath"].ToString()));
 #endif
             Initialize();
         }
