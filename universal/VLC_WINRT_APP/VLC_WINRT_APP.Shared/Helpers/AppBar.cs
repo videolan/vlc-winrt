@@ -200,69 +200,6 @@ namespace VLC_WINRT_APP.Helpers
         public static List<ICommandBarElement> SetAlbumPageButtons(List<ICommandBarElement> appbarEl)
         {
             Locator.MainVM.AppBarElements.Clear();
-            appbarEl.Add(new AppBarButton()
-            {
-                Label = "add to playlist",
-                Icon = PathHelper.Create(App.Current.Resources["AddPath"].ToString()),
-                Command = Locator.MusicLibraryVM.OpenAddAlbumToPlaylistDialogCommand
-            });
-
-
-            // pin artist
-            var pinLabelBind = new Binding
-            {
-                Source = Locator.MusicLibraryVM.CurrentAlbum,
-                UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged,
-                Converter = App.Current.Resources["PinConverter"] as IValueConverter,
-                ConverterParameter = "text",
-                Path = new PropertyPath("IsPinned")
-            };
-            var pinIconBind = new Binding
-            {
-                Source = Locator.MusicLibraryVM.CurrentAlbum,
-                UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged,
-                Converter = App.Current.Resources["PinConverter"] as IValueConverter,
-                ConverterParameter = "icon",
-                Path = new PropertyPath("IsPinned")
-            };
-            var pinButton = new AppBarButton()
-            {
-                Command = Locator.MusicLibraryVM.CurrentAlbum.PinAlbumCommand,
-                CommandParameter = Locator.MusicLibraryVM.CurrentAlbum
-            };
-            pinButton.SetBinding(AppBarButton.LabelProperty, pinLabelBind);
-            pinButton.SetBinding(AppBarButton.IconProperty, pinIconBind);
-            appbarEl.Add(pinButton);
-
-            var favBut = new AppBarButton()
-            {
-                Command = Locator.MusicLibraryVM.CurrentAlbum.FavoriteAlbum,
-                CommandParameter = Locator.MusicLibraryVM.CurrentAlbum
-            };
-            var favLabelBind = new Binding
-            {
-                Source = Locator.MusicLibraryVM.CurrentAlbum,
-                Converter = App.Current.Resources["FavoriteLabelConverter"] as IValueConverter,
-                UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged,
-                Path = new PropertyPath("Favorite")
-            };
-            var favSymbolBind = new Binding()
-            {
-                Source = Locator.MusicLibraryVM.CurrentAlbum,
-                Converter = App.Current.Resources["FavoriteSymbolConverter"] as IValueConverter,
-                UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged,
-                Path = new PropertyPath("Favorite")
-            };
-            favBut.SetBinding(AppBarButton.LabelProperty, favLabelBind);
-            favBut.SetBinding(AppBarButton.IconProperty, favSymbolBind);
-            appbarEl.Add(favBut);
-            appbarEl.Add(new AppBarButton()
-            {
-                Label = "shows",
-                Icon = new SymbolIcon(Symbol.Calendar),
-                Command = Locator.MusicLibraryVM.CurrentArtist.SeeArtistShowsCommand,
-                CommandParameter = Locator.MusicLibraryVM.CurrentArtist
-            });
             return appbarEl;
         }
 
