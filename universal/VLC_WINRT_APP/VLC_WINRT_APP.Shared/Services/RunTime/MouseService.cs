@@ -12,6 +12,7 @@ using Windows.Devices.Input;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using VLC_WINRT_APP.Model;
+using VLC_WINRT_APP.ViewModels;
 
 namespace VLC_WINRT_APP.Services.RunTime
 {
@@ -37,16 +38,15 @@ namespace VLC_WINRT_APP.Services.RunTime
 
         private void MouseMoved(MouseDevice sender, MouseEventArgs args)
         {
-            if (_shouldMouseBeHidden)
-            {
-                Window.Current.CoreWindow.PointerCursor = _oldCursor;
-                _cursorTimer.Stop();
-                _cursorTimer.Start();
-            }
+            if (!_shouldMouseBeHidden) return;
+            Window.Current.CoreWindow.PointerCursor = _oldCursor;
+            _cursorTimer.Stop();
+            _cursorTimer.Start();
         }
 
         private void HideCursor(object sender, object e)
         {
+            if (Locator.MusicPlayerVM.PlayingType != PlayingType.Video) return;
             if (App.OpenFilePickerReason != OpenFilePickerReason.Null) return;
             Window.Current.CoreWindow.PointerCursor = null;
             _cursorTimer.Stop();
