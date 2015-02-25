@@ -29,7 +29,7 @@ using VLC_WINRT_APP.ViewModels.MusicVM;
 using VLC_WINRT_APP.Views.MainPages;
 using VLC_WINRT_APP.Views.VariousPages;
 #if WINDOWS_PHONE_APP
-using AppBar = CustomAppBar.AppBar;
+using AppBar = CustomAppBarDesktop.AppBar;
 #else
 using AppBar = CustomAppBarDesktop.AppBar;
 #endif

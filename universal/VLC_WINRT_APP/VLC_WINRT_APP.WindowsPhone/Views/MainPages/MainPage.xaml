@@ -7,7 +7,7 @@
                 xmlns:userControls="using:VLC_WINRT_APP.Views.UserControls"
                 xmlns:panelsView="using:PanelsView"
                 xmlns:extensions="using:WinRTXamlToolkit.Controls.Extensions"
-                xmlns:customappbar="using:CustomAppBar"
+                xmlns:customappbar="using:CustomAppBarDesktop"
                 xmlns:musicPages="using:VLC_WINRT_APP.Views.MusicPages"
                 mc:Ignorable="d"
                 x:Name="SwapChainPanel"
@@ -34,11 +34,14 @@
             </TransitionCollection>
         </Frame.ContentTransitions>
     </Frame>
-    <customappbar:AppBar Grid.Row="0"
-                 x:Name="CommandBar"
-                 x:FieldModifier="public"
-                 Background="{ThemeResource ApplicationBarForegroundThemeBrush}"
-                 HomeButtonClicked="CommandBar_OnHomeButtonClicked"
-                 Visibility="{Binding Source={StaticResource Locator}, Path=VideoVm.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}" />
-    <userControls:BottomMiniPlayer Grid.Row="1" />
+    <customappbar:AppBar Grid.Row="1"
+                         x:Name="CommandBar"
+                         x:FieldModifier="public"
+                         Background="{ThemeResource ApplicationBarForegroundThemeBrush}"
+                         HomeButtonClicked="CommandBar_OnHomeButtonClicked"
+                         Visibility="{Binding Source={StaticResource Locator}, Path=VideoVm.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}">
+        <customappbar:AppBar.ExtraLeftContent>
+            <userControls:BottomMiniPlayer />
+        </customappbar:AppBar.ExtraLeftContent>
+    </customappbar:AppBar>
 </SwapChainPanel>
