@@ -386,9 +386,6 @@
     <Content Include="..\..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\control\libhotkeys_plugin.dll">
       <Link>plugins\control\libhotkeys_plugin.dll</Link>
     </Content>
-    <Content Include="..\..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\control\libnetsync_plugin.dll">
-      <Link>plugins\control\libnetsync_plugin.dll</Link>
-    </Content>
     <Content Include="..\..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\demux\libaiff_plugin.dll">
       <Link>plugins\demux\libaiff_plugin.dll</Link>
     </Content>
