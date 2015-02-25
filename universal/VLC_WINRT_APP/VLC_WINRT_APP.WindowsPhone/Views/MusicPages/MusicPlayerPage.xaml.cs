@@ -38,7 +38,6 @@ namespace VLC_WINRT_APP.Views.MusicPages
             DisplayInformation displayInformation = DisplayInformation.GetForCurrentView();
             ((VariableSizedWrapGrid)sender).ItemHeight = (displayInformation.LogicalDpi < 200) ? 150 : 200;
             ((VariableSizedWrapGrid)sender).ItemWidth = (displayInformation.LogicalDpi < 200) ? 150 : 200;
-            //Debug.WriteLine(displayInformation.LogicalDpi);
         }
     }
 }
