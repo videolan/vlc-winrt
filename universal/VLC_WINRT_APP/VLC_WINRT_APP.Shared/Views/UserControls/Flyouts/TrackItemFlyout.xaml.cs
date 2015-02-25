@@ -7,7 +7,7 @@ using VLC_WINRT_APP.ViewModels.MusicVM;
 
 namespace VLC_WINRT_APP.Views.UserControls.Flyouts
 {
-    public sealed partial class TrackItemFlyout : Flyout
+    public partial class TrackItemFlyout
     {
         public TrackItemFlyout()
         {

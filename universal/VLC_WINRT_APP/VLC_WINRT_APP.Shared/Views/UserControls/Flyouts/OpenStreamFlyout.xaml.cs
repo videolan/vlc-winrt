@@ -6,7 +6,7 @@ using WinRTXamlToolkit.Controls.Extensions;
 
 namespace VLC_WINRT_APP.Views.UserControls.Flyouts
 {
-    public sealed partial class OpenStreamFlyout : Flyout
+    public sealed partial class OpenStreamFlyout
     {
         public OpenStreamFlyout()
         {
