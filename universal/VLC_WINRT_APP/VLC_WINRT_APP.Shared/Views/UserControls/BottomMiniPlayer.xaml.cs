@@ -17,6 +17,7 @@ namespace VLC_WINRT_APP.Views.UserControls
 
         void BottomMiniPlayer_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
+            Responsive();
             this.SizeChanged += BottomMiniPlayer_SizeChanged;
             this.Unloaded += BottomMiniPlayer_Unloaded;
         }
@@ -28,20 +29,7 @@ namespace VLC_WINRT_APP.Views.UserControls
 
         void BottomMiniPlayer_SizeChanged(object sender, Windows.UI.Xaml.SizeChangedEventArgs e)
         {
-#if WINDOWS_PHONE_APP
-            
-            RootGrid.Height = 60;
-            
-#else
-            RootGrid.Height = 50;
-#endif
-
-            if (this.ActualWidth > 700)
-                VisualStateUtilities.GoToState(this, "FullWindows", false);
-            else if (this.ActualWidth > 400)
-                VisualStateUtilities.GoToState(this, "Narrow", false);
-            else
-                VisualStateUtilities.GoToState(this, "Minimum", false);
+            Responsive();
         }
 
 
@@ -54,6 +42,25 @@ namespace VLC_WINRT_APP.Views.UserControls
         {
             Locator.MusicPlayerVM.Stop();
             await Locator.MusicPlayerVM.CleanViewModel();
+        }
+
+        void Responsive()
+        {
+#if WINDOWS_PHONE_APP
+
+            RootGrid.Height = 60;
+
+#else
+            RootGrid.Height = 50;
+#endif
+            if (this.ActualWidth > 700)
+                VisualStateUtilities.GoToState(this, "FullWindows", false);
+            else if (this.ActualWidth > 400)
+                VisualStateUtilities.GoToState(this, "Narrow", false);
+            else if (this.ActualWidth > 200)
+                VisualStateUtilities.GoToState(this, "ExtraNarrow", false);
+            else
+                VisualStateUtilities.GoToState(this, "Minimum", false);
         }
     }
 }
