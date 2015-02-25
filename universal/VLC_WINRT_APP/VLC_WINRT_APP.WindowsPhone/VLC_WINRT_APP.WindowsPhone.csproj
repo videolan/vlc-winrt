@@ -221,9 +221,6 @@
     <Content Include="..\..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\audio_filter\liba52tospdif_plugin.dll">
       <Link>plugins\audio_filter\liba52tospdif_plugin.dll</Link>
     </Content>
-    <Content Include="..\..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\audio_filter\libaudiobargraph_a_plugin.dll">
-      <Link>plugins\audio_filter\libaudiobargraph_a_plugin.dll</Link>
-    </Content>
     <Content Include="..\..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\audio_filter\libaudio_format_plugin.dll">
       <Link>plugins\audio_filter\libaudio_format_plugin.dll</Link>
     </Content>
@@ -628,9 +625,6 @@
     </Content>
     <Content Include="..\..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\video_filter\libantiflicker_plugin.dll">
       <Link>plugins\video_filter\libantiflicker_plugin.dll</Link>
-    </Content>
-    <Content Include="..\..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\video_filter\libaudiobargraph_v_plugin.dll">
-      <Link>plugins\video_filter\libaudiobargraph_v_plugin.dll</Link>
     </Content>
     <Content Include="..\..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\video_filter\libball_plugin.dll">
       <Link>plugins\video_filter\libball_plugin.dll</Link>
