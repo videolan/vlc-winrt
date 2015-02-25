@@ -45,6 +45,17 @@ namespace VLC_WINRT_APP.DataRepository
             return b;
         }
 
+        public async Task<TrackItem> LoadTrackByPath(string path)
+        {
+            var connection = new SQLiteAsyncConnection(_dbPath);
+            var query = connection.Table<TrackItem>().Where(x => x.Path == path);
+            if (await query.CountAsync() > 0)
+            {
+                return await query.FirstOrDefaultAsync();
+            }
+            return null;
+        }
+
         public async Task<TrackItem> LoadTrack(int trackId)
         {
             var connection = new SQLiteAsyncConnection(_dbPath);
