@@ -15,9 +15,11 @@ namespace VLC_WINRT_APP.Views.MusicPages.PlaylistControls
             await MusicLibraryManagement.AddNewPlaylist(playlistName.Text);
         }
 
-        private void AddToPlaylistButton_Click(object sender, RoutedEventArgs e)
+        private void StackPanelRoot_Loaded(object sender, RoutedEventArgs e)
         {
-            MusicLibraryManagement.AddAlbumToPlaylist(null);
+#if WINDOWS_APP
+            (sender as StackPanel).Margin = new Thickness(24);
+#endif
         }
     }
 }
