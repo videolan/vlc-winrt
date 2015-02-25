@@ -98,7 +98,6 @@
               <FileType>.wav</FileType>
               <FileType>.flac</FileType>
               <FileType>.mlp</FileType>
-              <FileType>.mp3</FileType>
             </SupportedFileTypes>
           </FileTypeAssociation>
         </Extension>
