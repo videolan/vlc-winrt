@@ -302,7 +302,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
 #else
                     var file = await StorageFile.GetFileFromPathAsync(filePath);
                     var destFile = await destinationFolder.CreateFileAsync(album.Id + ".jpg", CreationCollisionOption.ReplaceExisting);
-                    var mP = await file.GetThumbnailAsync(ThumbnailMode.MusicView, 200);
+                    var mP = await file.GetThumbnailAsync(ThumbnailMode.MusicView, 200, ThumbnailOptions.ReturnOnlyIfCached);
                     if (mP == null) return;
                     thumbnail = true;
                     var buffer = new Windows.Storage.Streams.Buffer(Convert.ToUInt32(mP.Size));
