@@ -10,15 +10,5 @@
                 d:DesignWidth="346"
                 Style="{StaticResource SettingsFlyoutStyle}"
                 Width="450">
-    <Grid Tapped="RootGrid_OnTapped">
-        <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition Height="50" />
-        </Grid.RowDefinitions>
-        <albumPageControls:AlbumPageBase />
-        <custom:AppBar Grid.Row="1"
-                       Background="{ThemeResource ApplicationBarForegroundThemeBrush}"
-                       Loaded="AppBar_loaded"
-                       Name="customAppBar"/>
-    </Grid>
+        <albumPageControls:AlbumPageBase Tapped="RootGrid_OnTapped"/>
 </SettingsFlyout>
