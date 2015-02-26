@@ -130,7 +130,8 @@
               Margin="12,0,0,0"
               VerticalAlignment="Center"
               Tapped="RootMiniPlayer_Tapped"
-              Background="Transparent">
+              Background="Transparent"
+              MaxWidth="300">
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition />
