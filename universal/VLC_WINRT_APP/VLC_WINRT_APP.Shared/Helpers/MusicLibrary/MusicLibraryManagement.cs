@@ -281,37 +281,42 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                     if (filePath == null) return;
                     var destinationFolder = await ApplicationData.Current.LocalFolder.CreateFolderAsync("albumPic", CreationCollisionOption.OpenIfExists);
                     var thumbnail = false;
-#if WINDOWS_PHONE_APP
-                    var folderPath = Path.GetDirectoryName(filePath);
-                    var folder = await StorageFolder.GetFolderFromPathAsync(folderPath + "\\");
-                    var coverName = "Folder.jpg";
-                    thumbnail = await folder.ContainsFileAsync(coverName);
-                    if (!thumbnail)
-                    {
-                        coverName = "cover.jpg";
-                        thumbnail = await folder.ContainsFileAsync(coverName);
-                    }
-                    if (thumbnail)
-                    {
-                        var folderPicFile = await folder.GetFileAsync(coverName);
-                        await folderPicFile.CopyAsync(destinationFolder, String.Format("{0}.jpg", album.Id), NameCollisionOption.FailIfExists);
-
-                        await MusicLibraryVM._albumDataRepository.Update(album);
-                    }
-                    else return;
-#else
+#if WINDOWS_APP
                     var file = await StorageFile.GetFileFromPathAsync(filePath);
                     var destFile = await destinationFolder.CreateFileAsync(album.Id + ".jpg", CreationCollisionOption.ReplaceExisting);
                     var mP = await file.GetThumbnailAsync(ThumbnailMode.MusicView, 200, ThumbnailOptions.ReturnOnlyIfCached);
-                    if (mP == null) return;
-                    thumbnail = true;
+                    if (mP != null) thumbnail = true;
                     var buffer = new Windows.Storage.Streams.Buffer(Convert.ToUInt32(mP.Size));
                     var iBuf = await mP.ReadAsync(buffer, buffer.Capacity, InputStreamOptions.None);
                     using (var strm = await destFile.OpenAsync(FileAccessMode.ReadWrite))
                     {
                         await strm.WriteAsync(iBuf);
                     }
+
+                    if (thumbnail == false)
 #endif
+                    {
+                        var folderPath = Path.GetDirectoryName(filePath);
+                        var folder = await StorageFolder.GetFolderFromPathAsync(folderPath + "\\");
+                        var coverName = "Folder.jpg";
+                        thumbnail = await folder.ContainsFileAsync(coverName);
+                        if (!thumbnail)
+                        {
+                            coverName = "cover.jpg";
+                            thumbnail = await folder.ContainsFileAsync(coverName);
+                        }
+                        if (thumbnail)
+                        {
+                            var folderPicFile = await folder.GetFileAsync(coverName);
+                            await
+                                folderPicFile.CopyAsync(destinationFolder, String.Format("{0}.jpg", album.Id),
+                                    NameCollisionOption.FailIfExists);
+
+                            await MusicLibraryVM._albumDataRepository.Update(album);
+                        }
+                        else return;
+                    }
+
                     await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                     {
                         album.IsPictureLoaded = true;
