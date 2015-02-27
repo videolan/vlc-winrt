@@ -285,12 +285,15 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                     var file = await StorageFile.GetFileFromPathAsync(filePath);
                     var destFile = await destinationFolder.CreateFileAsync(album.Id + ".jpg", CreationCollisionOption.ReplaceExisting);
                     var mP = await file.GetThumbnailAsync(ThumbnailMode.MusicView, 200, ThumbnailOptions.ReturnOnlyIfCached);
-                    if (mP != null) thumbnail = true;
-                    var buffer = new Windows.Storage.Streams.Buffer(Convert.ToUInt32(mP.Size));
-                    var iBuf = await mP.ReadAsync(buffer, buffer.Capacity, InputStreamOptions.None);
-                    using (var strm = await destFile.OpenAsync(FileAccessMode.ReadWrite))
+                    if (mP != null)
                     {
-                        await strm.WriteAsync(iBuf);
+                        thumbnail = true;
+                        var buffer = new Windows.Storage.Streams.Buffer(Convert.ToUInt32(mP.Size));
+                        var iBuf = await mP.ReadAsync(buffer, buffer.Capacity, InputStreamOptions.None);
+                        using (var strm = await destFile.OpenAsync(FileAccessMode.ReadWrite))
+                        {
+                            await strm.WriteAsync(iBuf);
+                        }
                     }
 
                     if (thumbnail == false)
