@@ -8,6 +8,9 @@ namespace VLC_WINRT_APP.Views.MusicPages.AlbumPageControls
         public MainAlbumHeader()
         {
             this.InitializeComponent();
+#if WINDOWS_APP
+            CoverColumnDefinition.MinWidth = 200;
+#endif
             this.Loaded += OnLoaded;
         }
 
@@ -24,11 +27,6 @@ namespace VLC_WINRT_APP.Views.MusicPages.AlbumPageControls
         private void OnUnloaded(object sender, RoutedEventArgs routedEventArgs)
         {
             this.SizeChanged -= OnSizeChanged;
-        }
-
-        private void HeaderGrid_OnLoaded(object sender, RoutedEventArgs e)
-        {
-            this.Height = 300;
         }
     }
 }
