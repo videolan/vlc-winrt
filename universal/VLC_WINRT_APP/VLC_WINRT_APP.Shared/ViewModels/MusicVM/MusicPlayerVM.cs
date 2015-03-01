@@ -106,32 +106,8 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 
         public async Task SetCurrentAlbum()
         {
-            if(CurrentTrack ==null)return ;
-            if (CurrentArtist == null) return;
-            if (CurrentTrack == null)
-            {
-#if DEBUG
-                ToastHelper.Basic("currentrack null");
-#endif
-#if WINDOWS_PHONE_APP
-                try
-                {
-                    await UpdateTrackFromMF();
-                }
-                catch { }
-#endif
-            }
-            if (CurrentArtist == null)
-            {
-                #if DEBUG
-                ToastHelper.Basic("currentartist null");
-#endif
-                return;
-            }
-=======
             if (CurrentTrack == null) return;
             if (CurrentArtist == null) return;
->>>>>>> parent of fbbd356... Add debug info
             if (CurrentAlbum != null && CurrentAlbum.Id == CurrentTrack.AlbumId) return;
             CurrentAlbum = await _albumDataRepository.LoadAlbum(CurrentTrack.AlbumId);
         }
