@@ -4932,16 +4932,6 @@ M 15.937 9.056 c 0.629 -1.69 1.208 -2.349 2.063 -2.349 h 5.586 L 20.293 10 l 1.4
                                 <VisualState x:Name="Normal" />
                                 <VisualState x:Name="Pressed">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Stroke"
-                                                                       Storyboard.TargetName="Ellipse">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource AppBarItemForegroundThemeBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill"
-                                                                       Storyboard.TargetName="Ellipse">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource AppBarItemForegroundThemeBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
                                                                        Storyboard.TargetName="Content">
                                             <DiscreteObjectKeyFrame KeyTime="0"
@@ -4951,11 +4941,6 @@ M 15.937 9.056 c 0.629 -1.69 1.208 -2.349 2.063 -2.349 h 5.586 L 20.293 10 l 1.4
                                 </VisualState>
                                 <VisualState x:Name="Disabled">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Stroke"
-                                                                       Storyboard.TargetName="Ellipse">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource AppBarItemDisabledForegroundThemeBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
                                                                        Storyboard.TargetName="Content">
                                             <DiscreteObjectKeyFrame KeyTime="0"
@@ -4969,13 +4954,6 @@ M 15.937 9.056 c 0.629 -1.69 1.208 -2.349 2.063 -2.349 h 5.586 L 20.293 10 l 1.4
                               Height="{TemplateBinding Height}"
                               Margin="0"
                               Width="{TemplateBinding Width}">
-                            <Ellipse x:Name="Ellipse"
-                                     Fill="{ThemeResource AppBarItemBackgroundThemeBrush}"
-                                     Height="{TemplateBinding Height}"
-                                     Stroke="{ThemeResource AppBarItemForegroundThemeBrush}"
-                                     StrokeThickness="1.5"
-                                     UseLayoutRounding="False"
-                                     Width="{TemplateBinding Width}" />
                             <Grid x:Name="ContentRoot"
                                   Background="Transparent">
                                 <ContentPresenter x:Name="Content"
