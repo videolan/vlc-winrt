@@ -106,6 +106,8 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 
         public async Task SetCurrentAlbum()
         {
+            if(CurrentTrack ==null)return ;
+            if (CurrentArtist == null) return;
             if (CurrentTrack == null)
             {
 #if DEBUG
@@ -126,10 +128,12 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 #endif
                 return;
             }
+=======
+            if (CurrentTrack == null) return;
+            if (CurrentArtist == null) return;
+>>>>>>> parent of fbbd356... Add debug info
             if (CurrentAlbum != null && CurrentAlbum.Id == CurrentTrack.AlbumId) return;
             CurrentAlbum = await _albumDataRepository.LoadAlbum(CurrentTrack.AlbumId);
-            OnPropertyChanged("CurrentArtist");
-            OnPropertyChanged("CurrentAlbum");
         }
 
         public TrackItem CurrentTrack
