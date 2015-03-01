@@ -4,6 +4,7 @@ using Windows.UI.Text;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media;
+using VLC_WINRT_APP.ViewModels;
 
 namespace VLC_WINRT_APP.Converters
 {
@@ -13,23 +14,36 @@ namespace VLC_WINRT_APP.Converters
         {
             if (value is bool && (bool)value)
             {
-                if ((string)parameter == "fontweight")
+                if (parameter is string)
                 {
-                    return FontWeights.Bold;
+                    if ((string) parameter == "fontweight")
+                    {
+                        return FontWeights.Bold;
+                    }
+                    if ((string) parameter == "visibility")
+                    {
+                        return Visibility.Visible;
+                    }
+                }
+                if (language == "color")
+                {
+                    return App.Current.Resources["MainColor"];
+                }
+            }
+            if (parameter is string)
+            {
+                if ((string) parameter == "fontweight")
+                {
+                    return FontWeights.Normal;
                 }
                 if ((string) parameter == "visibility")
                 {
-                    return Visibility.Visible;
+                    return Visibility.Collapsed;
                 }
             }
-
-            if ((string)parameter == "fontweight")
+            if (language == "color")
             {
-                return FontWeights.Normal;
-            }
-            if ((string)parameter == "visibility")
-            {
-                return Visibility.Collapsed;
+                return parameter;
             }
             return null;
         }

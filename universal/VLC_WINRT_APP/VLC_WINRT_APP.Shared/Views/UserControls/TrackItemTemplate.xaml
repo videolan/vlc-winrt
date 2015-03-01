@@ -30,13 +30,15 @@
         </interactivity:Interaction.Behaviors>
         <TextBlock Grid.Column="0"
                    Grid.Row="0"
+                   x:Name="NameTextBlock"
                    Text="{Binding Name}"
                    TextWrapping="NoWrap"
                    TextTrimming="CharacterEllipsis"
+                   FontWeight="SemiLight"
                    Style="{StaticResource TitleTextBlockStyle}"
                    FontSize="20"
-                   Margin="0,0,6,0"
-                   FontWeight="{Binding IsCurrentPlaying, Converter={StaticResource CurrentTrackEnhancifierConverter}, ConverterParameter='fontweight'}" />
+                   Margin="0,0,6,0" 
+                   Loaded="NameTextBlock_OnLoaded"/>
         <TextBlock Grid.Column="0"
                    Grid.Row="1"
                    Text="{Binding ArtistName}"

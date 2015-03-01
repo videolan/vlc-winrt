@@ -23,6 +23,7 @@ using VLC_WINRT_APP.Model.Music;
 using VLC_WINRT_APP.Model.Video;
 using XboxMusicLibrary.Models;
 using VLC_WINRT_APP.Model;
+using VLC_WINRT_APP.Views.MusicPages;
 
 namespace VLC_WINRT_APP.ViewModels.Settings
 {
@@ -400,7 +401,9 @@ namespace VLC_WINRT_APP.ViewModels.Settings
         {
             get
             {
-                if (ForceAppTheme)
+                if (App.ApplicationFrame != null && App.ApplicationFrame.CurrentSourcePageType == typeof(MusicPlayerPage))
+                    _applicationTheme = ApplicationTheme.Dark;
+                else if (ForceAppTheme)
                 {
                     var appTheme = ApplicationSettingsHelper.ReadSettingsValue("ApplicationTheme");
                     if (appTheme == null)
@@ -509,5 +512,10 @@ namespace VLC_WINRT_APP.ViewModels.Settings
             VideoFolders = videosLib.Folders.ToList();
         }
 #endif
+
+        public void UpdateRequestedTheme()
+        {
+            OnPropertyChanged("ApplicationTheme");
+        }
     }
 }

@@ -13,132 +13,249 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition />
-            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition x:Name="CoverColumnDefinition" />
+            <ColumnDefinition x:Name="SeparatorColumnDefinition" />
+            <ColumnDefinition x:Name="HorizontalNowPlayingColumnDefinition" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition x:Name="CoverRowDefinition" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="12" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition x:Name="VerticalNowPlayingColumnDefinition" />
         </Grid.RowDefinitions>
+
         <Image Grid.Row="0"
                Grid.Column="0"
-               Grid.ColumnSpan="3"
                Source="{Binding CurrentAlbum.Picture}"
                Stretch="Uniform"
-               Margin="0,12"
                extensions:ImageExtensions.FadeInOnLoaded="True" />
-        <Button Grid.Row="1"
-                Grid.Column="2"
-                Style="{StaticResource TextBlockButtonStyle}"
-                HorizontalAlignment="Center"
-                Command="{Binding ShareNowPlayingMusicCommand}">
-            <Button.Content>
-                <Grid>
-                    <Path Data="{StaticResource SharePath}"
-                          Fill="{ThemeResource BasicForeground}"
-                          Width="32"
-                          Height="32"
-                          Stretch="Uniform" />
-                </Grid>
-            </Button.Content>
-        </Button>
-        <TextBlock Grid.Row="1"
-                   Grid.Column="1"
-                   HorizontalAlignment="Center"
-                   TextWrapping="NoWrap"
-                   TextTrimming="CharacterEllipsis"
-                   TextAlignment="Center">
+
+        <Grid x:Name="NowPlayingGrid">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="12" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0"
+                       Grid.Column="0"
+                       x:Name="SongInformationTextBlock"
+                       TextWrapping="NoWrap"
+                       TextTrimming="CharacterEllipsis">
                         <Run Text="{Binding CurrentTrack.Name}"
                              FontSize="24" />
                         <LineBreak />
-                        <Run Text="{Binding CurrentArtist.Name}"
+                        <Run Text="{Binding CurrentArtist.Name, Converter={StaticResource StringToUpperConverter}}"
                              FontSize="19"
                              Foreground="{ThemeResource ApplicationBackgroundQuarterTranslucentThemeBrush}" />
-        </TextBlock>
-        <userControls:SliderControl Grid.Row="3"
-                                    Grid.ColumnSpan="3" />
-        <AppBarToggleButton Grid.Row="4"
-                            Grid.Column="0"
-                            Icon="Shuffle"
-                            IsCompact="True"
-                            IsChecked="{Binding TrackCollection.IsShuffled}"
-                            VerticalAlignment="Center"
-                            Command="{Binding Shuffle}" />
-        <Grid Grid.Row="4"
-              Grid.Column="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <AppBarButton Grid.Column="0"
-                          HorizontalAlignment="Center"
-                          IsCompact="True"
-                          Style="{StaticResource AppBarButtonStyleHuge}"
-                          Height="50"
-                          Width="50"
-                          VerticalAlignment="Center"
-                          Command="{Binding PlayPreviousCommand}"
-                          IsEnabled="{Binding TrackCollection.CanGoPrevious}">
-                <AppBarButton.Icon>
-                    <FontIcon Glyph="&#xE100;"
-                              FontSize="30" />
-                </AppBarButton.Icon>
-            </AppBarButton>
-            <AppBarButton Grid.Column="1"
-                          IsCompact="True"
-                          Visibility="{Binding IsPlaying, Converter={StaticResource NegatedBooleanToVisibilityConverter}}"
-                          Height="80"
-                          Width="80"
-                          Style="{StaticResource AppBarButtonStyleHuge}"
-                          VerticalAlignment="Center"
-                          Command="{Binding PlayOrPauseCommand}"
-                          Holding="PlayPauseHold">
-                <AppBarButton.Icon>
-                    <FontIcon Glyph="&#xE102;"
-                              FontSize="42" />
-                </AppBarButton.Icon>
-            </AppBarButton>
-            <AppBarButton Grid.Column="1"
-                          IsCompact="True"
-                          Visibility="{Binding IsPlaying, Converter={StaticResource BooleanToVisibilityConverter}}"
-                          Height="80"
-                          Width="80"
-                          Style="{StaticResource AppBarButtonStyleHuge}"
-                          VerticalAlignment="Center"
-                          Command="{Binding PlayOrPauseCommand}"
-                          Holding="PlayPauseHold">
-                <AppBarButton.Icon>
-                    <FontIcon Glyph="&#xE103;"
-                              FontSize="42" />
-                </AppBarButton.Icon>
-            </AppBarButton>
-            <AppBarButton Grid.Column="2"
-                          IsCompact="True"
-                          Style="{StaticResource AppBarButtonStyleHuge}"
-                          Height="50"
-                          Width="50"
-                          VerticalAlignment="Center"
-                          HorizontalAlignment="Center"
-                          Command="{Binding PlayNextCommand}"
-                          IsEnabled="{Binding TrackCollection.CanGoNext}">
-                <AppBarButton.Icon>
-                    <FontIcon Glyph="&#xE101;"
-                              FontSize="30" />
-                </AppBarButton.Icon>
-            </AppBarButton>
+                        <Run Text=" | "
+                             FontSize="16" />
+                        <Run Text="{Binding CurrentAlbum.Name, Converter={StaticResource StringToUpperConverter}}"
+                             FontSize="19"
+                             Foreground="{ThemeResource ApplicationBackgroundQuarterTranslucentThemeBrush}" />
+            </TextBlock>
+            <userControls:SliderControl Grid.Row="2" />
+            <Grid Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <AppBarButton Grid.Column="0"
+                                  HorizontalAlignment="Center"
+                                  IsCompact="True"
+                                  Style="{StaticResource AppBarButtonStyleHuge}"
+                                  Height="50"
+                                  Width="50"
+                                  VerticalAlignment="Center"
+                                  Command="{Binding PlayPreviousCommand}"
+                                  IsEnabled="{Binding TrackCollection.CanGoPrevious}">
+                        <AppBarButton.Icon>
+                            <FontIcon Glyph="&#xE100;"
+                                      FontSize="30" />
+                        </AppBarButton.Icon>
+                    </AppBarButton>
+                    <AppBarButton Grid.Column="1"
+                                  IsCompact="True"
+                                  Visibility="{Binding IsPlaying, Converter={StaticResource NegatedBooleanToVisibilityConverter}}"
+                                  Height="80"
+                                  Width="80"
+                                  Style="{StaticResource AppBarButtonStyleHuge}"
+                                  VerticalAlignment="Center"
+                                  Command="{Binding PlayOrPauseCommand}"
+                                  Holding="PlayPauseHold">
+                        <AppBarButton.Icon>
+                            <FontIcon Glyph="&#xE102;"
+                                      FontSize="42" />
+                        </AppBarButton.Icon>
+                    </AppBarButton>
+                    <AppBarButton Grid.Column="1"
+                                  IsCompact="True"
+                                  Visibility="{Binding IsPlaying, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                  Height="80"
+                                  Width="80"
+                                  Style="{StaticResource AppBarButtonStyleHuge}"
+                                  VerticalAlignment="Center"
+                                  Command="{Binding PlayOrPauseCommand}"
+                                  Holding="PlayPauseHold">
+                        <AppBarButton.Icon>
+                            <FontIcon Glyph="&#xE103;"
+                                      FontSize="42" />
+                        </AppBarButton.Icon>
+                    </AppBarButton>
+                    <AppBarButton Grid.Column="2"
+                                  IsCompact="True"
+                                  Style="{StaticResource AppBarButtonStyleHuge}"
+                                  Height="50"
+                                  Width="50"
+                                  VerticalAlignment="Center"
+                                  HorizontalAlignment="Center"
+                                  Command="{Binding PlayNextCommand}"
+                                  IsEnabled="{Binding TrackCollection.CanGoNext}">
+                        <AppBarButton.Icon>
+                            <FontIcon Glyph="&#xE101;"
+                                      FontSize="30" />
+                        </AppBarButton.Icon>
+                    </AppBarButton>
+                </Grid>
+                <Grid Grid.Column="1"
+                      HorizontalAlignment="Right">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <AppBarToggleButton Grid.Column="0"
+                                        Icon="Shuffle"
+                                        IsCompact="True"
+                                        IsChecked="{Binding TrackCollection.IsShuffled}"
+                                        VerticalAlignment="Center"
+                                        Command="{Binding Shuffle}" />
+                    <Button Grid.Column="1"
+                            Style="{StaticResource TextBlockButtonStyle}"
+                            HorizontalAlignment="Center"
+                            Command="{Binding ShareNowPlayingMusicCommand}">
+                        <Button.Content>
+                            <Grid>
+                                <Path Data="{StaticResource SharePath}"
+                                      Fill="{ThemeResource BasicForeground}"
+                                      Width="32"
+                                      Height="32"
+                                      Stretch="Uniform" />
+                            </Grid>
+                        </Button.Content>
+                    </Button>
+                    <AppBarToggleButton Grid.Column="2"
+                                        Icon="Favorite"
+                                        IsCompact="True"
+                                        VerticalAlignment="Center"
+                                        IsChecked="{Binding CurrentAlbum.Favorite}"
+                                        Command="{Binding CurrentAlbum.FavoriteAlbum}"
+                                        CommandParameter="{Binding CurrentAlbum}" />
+                </Grid>
+            </Grid>
+
+
         </Grid>
-        <AppBarToggleButton Grid.Row="4"
-                            Grid.Column="2"
-                            Icon="Favorite"
-                            IsCompact="True"
-                            VerticalAlignment="Center"
-                            IsChecked="{Binding CurrentAlbum.Favorite}"
-                            Command="{Binding CurrentAlbum.FavoriteAlbum}"
-                            CommandParameter="{Binding CurrentAlbum}" />
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="Wide">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="VerticalNowPlayingColumnDefinition"
+                                                       Storyboard.TargetProperty="Height">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="0" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HorizontalNowPlayingColumnDefinition"
+                                                       Storyboard.TargetProperty="Width">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="*" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="NowPlayingGrid"
+                                                       Storyboard.TargetProperty="Grid.Row">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="0" />
+                        </ObjectAnimationUsingKeyFrames>
+
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="NowPlayingGrid"
+                                                       Storyboard.TargetProperty="Grid.Column">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="2" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SeparatorColumnDefinition"
+                                                       Storyboard.TargetProperty="Width">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="50" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="CoverColumnDefinition"
+                                                       Storyboard.TargetProperty="Width">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="200" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SongInformationTextBlock"
+                                                       Storyboard.TargetProperty="TextAlignment">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Left" />
+                        </ObjectAnimationUsingKeyFrames>
+
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SongInformationTextBlock"
+                                                       Storyboard.TargetProperty="HorizontalAlignment">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Left" />
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Narrow">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="VerticalNowPlayingColumnDefinition"
+                                                       Storyboard.TargetProperty="Height">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="*" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HorizontalNowPlayingColumnDefinition"
+                                                       Storyboard.TargetProperty="Width">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="0" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="NowPlayingGrid"
+                                                       Storyboard.TargetProperty="Grid.Row">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="1" />
+                        </ObjectAnimationUsingKeyFrames>
+
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="NowPlayingGrid"
+                                                       Storyboard.TargetProperty="Grid.Column">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="0" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SeparatorColumnDefinition"
+                                                       Storyboard.TargetProperty="Width">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="0" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="CoverColumnDefinition"
+                                                       Storyboard.TargetProperty="Width">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="*" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SongInformationTextBlock"
+                                                       Storyboard.TargetProperty="TextAlignment">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Center" />
+                        </ObjectAnimationUsingKeyFrames>
+
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SongInformationTextBlock"
+                                                       Storyboard.TargetProperty="HorizontalAlignment">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Center" />
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
     </Grid>
 </UserControl>

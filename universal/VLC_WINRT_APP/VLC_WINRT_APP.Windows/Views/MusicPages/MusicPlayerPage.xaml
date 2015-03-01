@@ -4,51 +4,63 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:triggers="using:WinRT.Triggers"
-      xmlns:musicPlayerPageControls="using:VLC_WINRT_APP.Views.MusicPages.MusicPlayerPageControls"
       xmlns:musicNowPlayingControls="using:VLC_WINRT_APP.Views.MusicPages.MusicNowPlayingControls"
       xmlns:extensions="using:WinRTXamlToolkit.Controls.Extensions"
       mc:Ignorable="d"
       DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}">
 
     <Grid>
-        <Hub x:Name="MainHub"
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition MinWidth="350" />
+                <ColumnDefinition MaxWidth="450" />
+            </Grid.ColumnDefinitions>
+            <musicNowPlayingControls:MusicNowPlaying x:Name="MusicNowPlaying"
+                                                     VerticalAlignment="Center" />
+            <Grid Grid.Column="1"
+                  Background="#B3000000"
+                  VerticalAlignment="Bottom"
+                  MinHeight="450">
+                <ListView Margin="24"
+                          ItemsSource="{Binding TrackCollection.Playlist}"
+                          IsItemClickEnabled="True"
+                          SelectionMode="None"
+                          ItemTemplate="{StaticResource WPTrackTemplateWONumber}"
+                          ItemContainerStyle="{StaticResource ListViewItemStyle}">
+                    <ListView.ItemContainerTransitions>
+                        <TransitionCollection>
+                            <AddDeleteThemeTransition />
+                            <EntranceThemeTransition />
+                        </TransitionCollection>
+                    </ListView.ItemContainerTransitions>
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <ItemsStackPanel />
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                    <triggers:Interactions.Triggers>
+                        <triggers:EventTrigger EventName="ItemClick">
+                            <triggers:InvokeCommandAction Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.TrackClickedCommand}"
+                                                          PassEventArgsToCommand="True" />
+                        </triggers:EventTrigger>
+                    </triggers:Interactions.Triggers>
+                </ListView>
+            </Grid>
+        </Grid>
+
+        <!--<Hub x:Name="MainHub"
              Padding="0,12,0,0">
             <Hub.Sections>
                 <HubSection Header="now playing"
                             Width="450">
                     <HubSection.ContentTemplate>
                         <DataTemplate>
-                            <musicNowPlayingControls:MusicNowPlaying RequestedTheme="Light"/>
                         </DataTemplate>
                     </HubSection.ContentTemplate>
                 </HubSection>
                 <HubSection Header="playlist">
                     <HubSection.ContentTemplate>
                         <DataTemplate>
-                            <ListView ItemsSource="{Binding TrackCollection.Playlist}"
-                                      IsItemClickEnabled="True"
-                                      SelectionMode="None"
-                                      ItemTemplate="{StaticResource WPTrackTemplateWONumber}"
-                                      ItemContainerStyle="{StaticResource ListViewItemStyle}"
-                                      Width="450">
-                                <ListView.ItemContainerTransitions>
-                                    <TransitionCollection>
-                                        <AddDeleteThemeTransition />
-                                        <EntranceThemeTransition />
-                                    </TransitionCollection>
-                                </ListView.ItemContainerTransitions>
-                                <ListView.ItemsPanel>
-                                    <ItemsPanelTemplate>
-                                        <ItemsStackPanel />
-                                    </ItemsPanelTemplate>
-                                </ListView.ItemsPanel>
-                                <triggers:Interactions.Triggers>
-                                    <triggers:EventTrigger EventName="ItemClick">
-                                        <triggers:InvokeCommandAction Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.TrackClickedCommand}"
-                                                                      PassEventArgsToCommand="True" />
-                                    </triggers:EventTrigger>
-                                </triggers:Interactions.Triggers>
-                            </ListView>
                         </DataTemplate>
                     </HubSection.ContentTemplate>
                 </HubSection>
@@ -78,6 +90,52 @@
                     </HubSection.ContentTemplate>
                 </HubSection>
             </Hub.Sections>
-        </Hub>
+        </Hub>-->
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="ExtraWide">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MusicNowPlaying"
+                                                       Storyboard.TargetProperty="VerticalAlignment">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Bottom" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MusicNowPlaying"
+                                                       Storyboard.TargetProperty="Margin">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="50" />
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Wide">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MusicNowPlaying"
+                                                       Storyboard.TargetProperty="VerticalAlignment">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Center" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MusicNowPlaying"
+                                                       Storyboard.TargetProperty="Margin">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="50,0" />
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Narrow">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MusicNowPlaying"
+                                                       Storyboard.TargetProperty="VerticalAlignment">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Center" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MusicNowPlaying"
+                                                       Storyboard.TargetProperty="Margin">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="0" />
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
     </Grid>
 </Page>

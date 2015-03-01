@@ -22,17 +22,14 @@
           Grid.RowSpan="3"
           Visibility="{Binding Source={StaticResource Locator}, Path=VideoVm.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}" />
 
-    <Image Stretch="Uniform"
-           HorizontalAlignment="Right"
-           VerticalAlignment="Bottom"
-           Height="325"
-           Source="ms-appx:///Assets/backgroundBot.png"
-           Opacity="0.8"
-           Grid.RowSpan="3"
-           extensions:ImageExtensions.FadeInOnLoaded="True"
-           Visibility="{Binding Source={StaticResource Locator}, Path=VideoVm.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}" />
+    <Image Grid.Row="0"
+           Grid.RowSpan="2"
+           DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}"
+           Source="{Binding CurrentArtist.Picture}"
+           Stretch="UniformToFill"
+           Opacity="0.3"/>
     <userControls:TopBar Grid.Row="0"
-                         Visibility="{Binding Source={StaticResource Locator}, Path=VideoVm.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}"/>
+                         Visibility="{Binding Source={StaticResource Locator}, Path=VideoVm.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}" />
     <Frame x:Name="MainFrame"
            Grid.Row="1"
            x:FieldModifier="public"
