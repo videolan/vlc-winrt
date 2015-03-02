@@ -256,7 +256,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             }
         }
 
-        public static async Task SetAlbumCover(AlbumItem album, string filePath, bool useLibVLc, MediaService mediaService = null)
+        public static async Task<bool> SetAlbumCover(AlbumItem album, string filePath, bool useLibVLc, MediaService mediaService = null)
         {
             if (useLibVLc)
             {
@@ -271,14 +271,15 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                         album.Picture = System.Net.WebUtility.UrlDecode(albumUrl.Replace("file:///", ""));
                     });
                     await MusicLibraryVM._albumDataRepository.Update(album);
-                    Debug.WriteLine("VLC found embedded cover " + albumUrl);
+                    Debug.WriteLine("VLC found embedded cover " + album.Id + " " + albumUrl);
+                    return true;
                 }
             }
             else
             {
                 try
                 {
-                    if (filePath == null) return;
+                    if (filePath == null) return false;
                     var destinationFolder = await ApplicationData.Current.LocalFolder.CreateFolderAsync("albumPic", CreationCollisionOption.OpenIfExists);
                     var thumbnail = false;
 #if WINDOWS_APP
@@ -287,6 +288,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                     var mP = await file.GetThumbnailAsync(ThumbnailMode.MusicView, 200, ThumbnailOptions.ReturnOnlyIfCached);
                     if (mP != null)
                     {
+                        Debug.WriteLine("WinRT found embedded cover " + album.Id + " " + album.Name);
                         thumbnail = true;
                         var buffer = new Windows.Storage.Streams.Buffer(Convert.ToUInt32(mP.Size));
                         var iBuf = await mP.ReadAsync(buffer, buffer.Capacity, InputStreamOptions.None);
@@ -311,25 +313,29 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                         if (thumbnail)
                         {
                             var folderPicFile = await folder.GetFileAsync(coverName);
+                            Debug.WriteLine("Writing file " + "albumPic" + " " + album.Id);
                             await folderPicFile.CopyAsync(destinationFolder, String.Format("{0}.jpg", album.Id), NameCollisionOption.FailIfExists);
 
                             await MusicLibraryVM._albumDataRepository.Update(album);
                         }
-                        else return;
+                        else return false;
                     }
 
+                    Debug.WriteLine("VLC_WINRT found embedded cover " + album.Id + " " + album.Name);
                     await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                     {
                         album.IsPictureLoaded = true;
                         album.Picture = String.Format("ms-appdata:///local/albumPic/{0}.jpg", album.Id);
                         Debug.WriteLine("WinRT found embedded cover " + album.Picture);
                     });
+                    return true;
                 }
                 catch (Exception exception)
                 {
                     ExceptionHelper.CreateMemorizedException("MusicLibraryManagement.SetAlbumCover : get WinRT cover", exception);
                 }
             }
+            return false;
         }
 
         public static async Task PopulateTracks(this AlbumItem album)
