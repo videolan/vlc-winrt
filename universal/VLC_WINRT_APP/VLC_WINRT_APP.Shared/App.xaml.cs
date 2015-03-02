@@ -1,4 +1,5 @@
-﻿using System;
+﻿using VLC_WINRT_APP.Model.Music;
+using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
@@ -46,7 +47,7 @@ namespace VLC_WINRT_APP
         public static string ApiKeyLastFm = "a8eba7d40559e6f3d15e7cca1bfeaa1c";
         public static string DeezerAppID = "135671";
         public static OpenFilePickerReason OpenFilePickerReason = OpenFilePickerReason.Null;
-
+        public static AlbumItem SelectedAlbumItem;
         public static IContainer Container;
 #if WINDOWS_PHONE_APP
         public static BackgroundAudioHelper BackgroundAudioHelper = new BackgroundAudioHelper();
@@ -210,6 +211,15 @@ namespace VLC_WINRT_APP
                                 string mrl = "file://" + mru;
                                 Locator.VideoVm.OpenSubtitle(mrl);
                             }
+                            break;
+                        case OpenFilePickerReason.OnPickingAlbumArt:
+                            if (continueArgs.Files == null) return;
+                            var file = continueArgs.Files.First();
+                            if (file == null) return;
+                            var byteArray = await ConvertImage.ConvertImagetoByte(file);
+                            await ArtistInformationsHelper.SaveAlbumImageAsync(SelectedAlbumItem, byteArray);
+                            await MusicLibraryVM._albumDataRepository.Update(SelectedAlbumItem);
+                            SelectedAlbumItem = null;
                             break;
                     }
                 }

@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Controls;
 using VLC_WINRT.Common;
 using VLC_WINRT_APP.Common;
 using VLC_WINRT_APP.Helpers.MusicLibrary;
+using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.Model.Music;
 using VLC_WINRT_APP.ViewModels.MusicVM;
 
@@ -40,11 +41,21 @@ namespace VLC_WINRT_APP.Commands.Music
             openPicker.FileTypeFilter.Add(".jpeg");
             openPicker.FileTypeFilter.Add(".png");
             openPicker.FileTypeFilter.Add(".gif");
+            // Windows Phone launches the picker, then freezes the app. We need
+            // to pick it up again on OnActivated.
+#if WINDOWS_PHONE_APP
+            App.OpenFilePickerReason = OpenFilePickerReason.OnPickingAlbumArt;
+            App.SelectedAlbumItem = album;
+            openPicker.PickSingleFileAndContinue();
+#endif
+
+#if WINDOWS_APP
             var file = await openPicker.PickSingleFileAsync();
             if (file == null) return;
             var byteArray = await ConvertImage.ConvertImagetoByte(file);
             await ArtistInformationsHelper.SaveAlbumImageAsync(album, byteArray);
             await MusicLibraryVM._albumDataRepository.Update(album);
+#endif
         }
     }
 }

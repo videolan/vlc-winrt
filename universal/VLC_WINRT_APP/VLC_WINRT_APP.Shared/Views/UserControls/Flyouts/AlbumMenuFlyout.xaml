@@ -19,6 +19,10 @@
                     Text="pin album"
                     Command="{Binding PinAlbumCommand}"
                     CommandParameter="{Binding}" />
+    <MenuFlyoutItem x:Uid="ChangeAlbumArt"
+                                            Text="change album art"
+                                            Command="{Binding ChangeAlbumArtCommand}"
+                                            CommandParameter="{Binding}" />
     <MenuFlyoutItem x:Uid="SeeUpcomingShows"
                     Text="see upcoming shows"
                     Command="{Binding SeeArtistShowsCommand}"

@@ -5,5 +5,6 @@
         Null,
         OnOpeningVideo,
         OnOpeningSubtitle,
+        OnPickingAlbumArt
     }
 }
