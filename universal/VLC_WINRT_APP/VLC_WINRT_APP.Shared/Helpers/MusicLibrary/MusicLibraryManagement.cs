@@ -311,9 +311,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                         if (thumbnail)
                         {
                             var folderPicFile = await folder.GetFileAsync(coverName);
-                            await
-                                folderPicFile.CopyAsync(destinationFolder, String.Format("{0}.jpg", album.Id),
-                                    NameCollisionOption.FailIfExists);
+                            await folderPicFile.CopyAsync(destinationFolder, String.Format("{0}.jpg", album.Id), NameCollisionOption.FailIfExists);
 
                             await MusicLibraryVM._albumDataRepository.Update(album);
                         }

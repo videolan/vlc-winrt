@@ -20,7 +20,7 @@ namespace VLC_WINRT_APP.Helpers
     {
         public static void SetHomeButtonVisibleOrNot()
         {
-            if (App.ApplicationFrame.CurrentSourcePageType == typeof(MainPageHome))
+            if (App.ApplicationFrame.CurrentSourcePageType == typeof (MainPageHome))
             {
                 App.RootPage.CommandBar.HomeButtonVisible = false;
             }
@@ -32,7 +32,8 @@ namespace VLC_WINRT_APP.Helpers
 
         public static void UpdateSecondaryAppBarButtons()
         {
-            if (Locator.MainVM.SecondaryAppBarElements == null || Locator.MainVM.SecondaryAppBarElements.Count != 0) return;
+            if (Locator.MainVM.SecondaryAppBarElements == null || Locator.MainVM.SecondaryAppBarElements.Count != 0)
+                return;
             var appbarel = new List<AppBarButton>();
             appbarel.Add(new AppBarButton()
             {
@@ -79,7 +80,7 @@ namespace VLC_WINRT_APP.Helpers
                     appbarEl = SetMusicCollectionPageButtons(appbarEl);
                 }
 #else
-                if (page == typeof(MainPageHome) && index > -1)
+                if (page == typeof (MainPageHome) && index > -1)
                 {
                     Locator.MainVM.AppBarElements.Clear();
 
@@ -97,15 +98,15 @@ namespace VLC_WINRT_APP.Helpers
                     }
                 }
 #endif
-                else if (page == typeof(ArtistPage))
+                else if (page == typeof (ArtistPage))
                 {
                     SetArtistPageButtons(appbarEl);
                 }
-                else if (page == typeof(AlbumPage))
+                else if (page == typeof (AlbumPage))
                 {
                     SetAlbumPageButtons(appbarEl);
                 }
-                else if (page == typeof(PlaylistPage))
+                else if (page == typeof (PlaylistPage))
                 {
                     //primarycommands
                     var deleteBut = new AppBarButton()
@@ -174,7 +175,7 @@ namespace VLC_WINRT_APP.Helpers
             return appbarEl;
         }
 
-        static List<ICommandBarElement> SetVideoCollectionPageButtons(List<ICommandBarElement> appbarEl)
+        private static List<ICommandBarElement> SetVideoCollectionPageButtons(List<ICommandBarElement> appbarEl)
         {
             appbarEl.Add(new AppBarButton()
             {
@@ -185,7 +186,7 @@ namespace VLC_WINRT_APP.Helpers
             return appbarEl;
         }
 
-        static List<ICommandBarElement> SetMusicCollectionPageButtons(List<ICommandBarElement> appbarEl)
+        private static List<ICommandBarElement> SetMusicCollectionPageButtons(List<ICommandBarElement> appbarEl)
         {
             appbarEl.Add(new AppBarButton()
             {
