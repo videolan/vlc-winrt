@@ -344,6 +344,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             {
                 album.IsPictureLoaded = true;
                 await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => album.Picture = String.Format("ms-appdata:///local/albumPic/{0}.jpg", album.Id));
+                await album.ResetAlbumArt();
                 return true;
             }
             return false;

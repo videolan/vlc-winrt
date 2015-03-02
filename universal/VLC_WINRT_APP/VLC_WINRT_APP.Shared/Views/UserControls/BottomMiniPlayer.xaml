@@ -121,7 +121,7 @@
         </VisualStateManager.VisualStateGroups>
 
         <Image Grid.Row="0"
-               Source="{Binding CurrentAlbum.Picture}"
+               Source="{Binding CurrentAlbum.AlbumImage}"
                Stretch="UniformToFill"
                Tapped="RootMiniPlayer_Tapped" />
         <Grid x:Name="NowPlayingArtistGrid"

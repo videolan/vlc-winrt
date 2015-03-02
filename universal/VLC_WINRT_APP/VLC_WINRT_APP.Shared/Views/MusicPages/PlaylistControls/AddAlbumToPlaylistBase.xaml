@@ -18,7 +18,7 @@
                 <ColumnDefinition Width="6" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <Image Source="{Binding CurrentAlbum.Picture}"
+            <Image Source="{Binding CurrentAlbum.AlbumImage}"
                    Height="50"
                    Stretch="Uniform" />
             <TextBlock Grid.Column="2"

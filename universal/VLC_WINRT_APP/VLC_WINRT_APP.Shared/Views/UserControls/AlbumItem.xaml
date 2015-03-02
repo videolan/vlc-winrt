@@ -20,7 +20,7 @@
             <RowDefinition Height="40" />
         </Grid.RowDefinitions>
         <Image Grid.Row="0"
-               Source="{Binding Picture}"
+               Source="{Binding AlbumImage}"
                Stretch="UniformToFill" />
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>

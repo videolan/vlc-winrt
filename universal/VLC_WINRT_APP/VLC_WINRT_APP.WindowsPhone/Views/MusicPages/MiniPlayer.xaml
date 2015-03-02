@@ -31,7 +31,7 @@
                 <ColumnDefinition Width="70" />
                 <ColumnDefinition Width="12" />
             </Grid.ColumnDefinitions>
-            <Image Source="{Binding CurrentPlayingArtist.CurrentAlbumItem.Picture}"
+            <Image Source="{Binding CurrentPlayingArtist.CurrentAlbumItem.AlbumImage}"
                    Grid.Column="1"
                    Stretch="UniformToFill"
                    Height="70"

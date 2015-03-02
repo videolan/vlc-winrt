@@ -6,8 +6,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Core;
 using Windows.UI.Xaml.Documents;
+using Windows.UI.Xaml.Media.Imaging;
 using Autofac;
 using SQLite;
+using VLC_WINRT.Common;
 using VLC_WINRT_APP.Commands.Music;
 using VLC_WINRT_APP.Commands.MusicPlayer;
 using VLC_WINRT_APP.Common;
@@ -25,6 +27,7 @@ namespace VLC_WINRT_APP.Model.Music
         private string _name;
         private string _artist;
         private string _picture = "ms-appx:///Assets/NoCover.jpg";
+        private BitmapImage _albumImage;
         private uint _year;
         private bool _favorite;
         private bool _isPictureLoaded = false;
@@ -36,6 +39,7 @@ namespace VLC_WINRT_APP.Model.Music
         private ArtistClickedCommand _viewArtist = new ArtistClickedCommand();
         private PinAlbumCommand _pinAlbumCommand = new PinAlbumCommand();
         private bool _isPinned;
+        private ChangeAlbumArtCommand _changeAlbumArtCommand = new ChangeAlbumArtCommand();
         private SeeArtistShowsCommand seeArtistShowsCommand;
 
         [PrimaryKey, AutoIncrement, Column("_id")]
@@ -68,6 +72,13 @@ namespace VLC_WINRT_APP.Model.Music
         }
 
         [Ignore]
+        public ChangeAlbumArtCommand ChangeAlbumArtCommand
+        {
+            get { return _changeAlbumArtCommand; }
+            set { SetProperty(ref _changeAlbumArtCommand, value); }
+        }
+
+        [Ignore]
         public ObservableCollection<TrackItem> Tracks
         {
             get
@@ -86,6 +97,29 @@ namespace VLC_WINRT_APP.Model.Music
         {
             get { return _picture; }
             set { SetProperty(ref _picture, value); }
+        }
+
+        [Ignore]
+        public BitmapImage AlbumImage
+        {
+            get
+            {
+                if (_albumImage == null)
+                {
+                    Task.Run(() => ResetAlbumArt());
+                }
+
+                return _albumImage;
+            }
+            set { SetProperty(ref _albumImage, value); }
+        }
+
+        public async Task ResetAlbumArt()
+        {
+            await DispatchHelper.InvokeAsync(() =>
+            {
+                LoadImageToMemoryHelper.LoadImageToMemory(this);
+            });
         }
 
         public bool IsPictureLoaded { get; set; }

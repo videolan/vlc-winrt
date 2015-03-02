@@ -34,7 +34,7 @@
                Grid.Row="1"
                Grid.RowSpan="3"
                x:Name="HeaderArtistImage"
-               Source="{Binding CurrentAlbum.Picture}"
+               Source="{Binding CurrentAlbum.AlbumImage}"
                Stretch="Uniform"
                Opacity="1"
                VerticalAlignment="Top" />

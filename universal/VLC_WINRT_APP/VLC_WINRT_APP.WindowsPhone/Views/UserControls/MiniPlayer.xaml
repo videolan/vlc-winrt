@@ -25,7 +25,7 @@
             <Image Width="130"
                    Stretch="UniformToFill"
                    Source="ms-appx:///Assets/NoCover.jpg" />
-            <Image Source="{Binding CurrentAlbum.Picture}"
+            <Image Source="{Binding CurrentAlbum.AlbumImage}"
                    Width="130"
                    Stretch="UniformToFill" />
             <TextBlock Text="{Binding CurrentAlbum.Name}"
