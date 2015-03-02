@@ -23,17 +23,6 @@ namespace VLC_WINRT_APP.Views.MainPages.MusicPanes
         private async void ListViewBase_OnContainerContentChanging(ListViewBase sender,
             ContainerContentChangingEventArgs args)
         {
-            if (MemoryUsageHelper.PercentMemoryUsed() > MemoryUsageHelper.MaxRamForResourceIntensiveTasks)
-                return;
-            var albumItem = args.Item as AlbumItem;
-            if (albumItem != null && !albumItem.IsPictureLoaded)
-            {
-                await Task.Run(async () =>
-                {
-                    await albumItem.LoadPicture();
-                    await MusicLibraryVM._albumDataRepository.Update(albumItem);
-                });
-            }
         }
     }
 }
