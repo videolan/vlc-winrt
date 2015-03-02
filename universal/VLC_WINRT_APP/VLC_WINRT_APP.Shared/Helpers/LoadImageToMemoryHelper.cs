@@ -33,5 +33,28 @@ namespace VLC_WINRT_APP.Helpers
 
             await item.LoadPicture();
         }
+        public static async Task LoadImageToMemory(ArtistItem item)
+        {
+            try
+            {
+                var fileName = string.Format("{0}.jpg", item.Id);
+                var albumPic = await ApplicationData.Current.LocalFolder.GetFolderAsync("artistPic");
+                var file = await albumPic.GetFileAsync(fileName);
+                var stream = await file.OpenAsync(FileAccessMode.Read);
+                var image = new BitmapImage();
+                image.SetSource(stream);
+                stream.Dispose();
+                item.ArtistImage = image;
+                return;
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Log("Error getting artist picture : " + item.Name);
+            }
+
+            // Failed to get the artist image or no cover image. So go online and check
+            // for a new one.
+            await item.LoadPicture();
+        }
     }
 }

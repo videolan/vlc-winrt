@@ -26,7 +26,7 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Image Grid.Row="0"
-                   Source="{Binding Picture}"
+                   Source="{Binding ArtistImage}"
                    Stretch="UniformToFill"
                    Width="Auto"
                    Height="Auto" />

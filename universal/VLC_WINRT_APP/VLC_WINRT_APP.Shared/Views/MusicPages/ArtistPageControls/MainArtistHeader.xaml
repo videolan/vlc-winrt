@@ -19,7 +19,7 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <Image Grid.RowSpan="2"
-               Source="{Binding CurrentArtist.Picture}"
+               Source="{Binding CurrentArtist.ArtistImage}"
                Stretch="UniformToFill"
                Opacity="0.5" />
         <userControls:HeaderControl Grid.Row="0"

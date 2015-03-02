@@ -5,7 +5,9 @@ using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Core;
+using Windows.UI.Xaml.Media.Imaging;
 using SQLite;
+using VLC_WINRT.Common;
 using VLC_WINRT_APP.Commands.Music;
 using VLC_WINRT_APP.Common;
 using VLC_WINRT_APP.Helpers;
@@ -38,6 +40,7 @@ namespace VLC_WINRT_APP.Model.Music
         private bool _isPinned;
         private SeeArtistShowsCommand seeArtistShowsCommand;
         private string _genre;
+        private BitmapImage _artistImage;
 
         [PrimaryKey, AutoIncrement, Column("_id")]
         public int Id { get; set; }
@@ -68,6 +71,29 @@ namespace VLC_WINRT_APP.Model.Music
         {
             get { return _name; }
             set { SetProperty(ref _name, value); }
+        }
+
+        [Ignore]
+        public BitmapImage ArtistImage
+        {
+            get
+            {
+                if (_artistImage == null)
+                {
+                    Task.Run(() => ResetArtistHeader());
+                }
+
+                return _artistImage;
+            }
+            set { SetProperty(ref _artistImage, value); }
+        }
+
+        public async Task ResetArtistHeader()
+        {
+            await DispatchHelper.InvokeAsync(() =>
+            {
+                LoadImageToMemoryHelper.LoadImageToMemory(this);
+            });
         }
 
         [Ignore]
@@ -104,7 +130,7 @@ namespace VLC_WINRT_APP.Model.Music
         }
 
 
-        private async Task LoadPicture()
+        public async Task LoadPicture()
         {
             try
             {

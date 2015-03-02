@@ -25,7 +25,7 @@
     <Image Grid.Row="0"
            Grid.RowSpan="2"
            DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}"
-           Source="{Binding CurrentArtist.Picture}"
+           Source="{Binding CurrentArtist.ArtistImage}"
            Stretch="UniformToFill"
            Opacity="0.3"/>
     <userControls:TopBar Grid.Row="0"

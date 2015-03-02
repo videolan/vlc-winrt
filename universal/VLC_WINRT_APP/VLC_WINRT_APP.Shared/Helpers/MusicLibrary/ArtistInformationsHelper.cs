@@ -210,7 +210,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             }
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                artist.IsPictureLoaded = true;
+                artist.ResetArtistHeader();
             });
             await MusicLibraryVM._artistDataRepository.Update(artist);
         }
@@ -251,6 +251,10 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             if (!gotArt)
             {
                 album.IsPictureLoaded = true;
+                StorageFolder install = Windows.ApplicationModel.Package.Current.InstalledLocation;
+                StorageFile file = await install.GetFileAsync("Assets\\NoCover.jpg");
+                var bytes = await ConvertImage.ConvertImagetoByte(file);
+                await SaveAlbumImageAsync(album, bytes);
             }
             await MusicLibraryVM._albumDataRepository.Update(album);
         }

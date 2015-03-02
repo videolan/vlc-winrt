@@ -16,7 +16,7 @@
               Height="156">
             <Image Source="/Assets/NoCoverWide.jpg"
                    Stretch="UniformToFill" />
-            <Image Source="{Binding Group.Picture}"
+            <Image Source="{Binding Group.ArtistImage}"
                    Stretch="UniformToFill" />
             <Grid>
                 <Grid.Background>
@@ -56,7 +56,7 @@
                        Width="200"
                        Height="200" />
                 <Image Grid.Row="0"
-                       Source="{Binding Picture}"
+                       Source="{Binding ArtistImage}"
                        Stretch="UniformToFill"
                        Width="200"
                        Height="200" />
