@@ -9,49 +9,46 @@
       mc:Ignorable="d"
       DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}">
 
-    <Grid>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition x:Name="PlayerColumnDefinition"
-                                  MinWidth="350" />
-                <ColumnDefinition x:Name="PlaylistColumnDefinition"
-                                  MaxWidth="450" />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition x:Name="PlayerRowDefinition"/>
-                <RowDefinition x:Name="PlaylistRowDefinition"/>
-            </Grid.RowDefinitions>
-            <musicNowPlayingControls:MusicNowPlaying x:Name="MusicNowPlaying"
-                                                     VerticalAlignment="Center" />
-            <Grid x:Name="PlaylistGrid"
-                  Background="#B3000000"
-                  VerticalAlignment="Bottom"
-                  MinHeight="450">
-                <ListView Margin="24"
-                          ItemsSource="{Binding TrackCollection.Playlist}"
-                          IsItemClickEnabled="True"
-                          SelectionMode="None"
-                          ItemTemplate="{StaticResource WPTrackTemplateWONumber}"
-                          ItemContainerStyle="{StaticResource ListViewItemStyle}">
-                    <ListView.ItemContainerTransitions>
-                        <TransitionCollection>
-                            <AddDeleteThemeTransition />
-                            <EntranceThemeTransition />
-                        </TransitionCollection>
-                    </ListView.ItemContainerTransitions>
-                    <ListView.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <ItemsStackPanel />
-                        </ItemsPanelTemplate>
-                    </ListView.ItemsPanel>
-                    <triggers:Interactions.Triggers>
-                        <triggers:EventTrigger EventName="ItemClick">
-                            <triggers:InvokeCommandAction Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.TrackClickedCommand}"
-                                                          PassEventArgsToCommand="True" />
-                        </triggers:EventTrigger>
-                    </triggers:Interactions.Triggers>
-                </ListView>
-            </Grid>
+    <Grid Loaded="RootGrid_Loaded">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition x:Name="PlayerColumnDefinition"
+                              MinWidth="350" />
+            <ColumnDefinition x:Name="PlaylistColumnDefinition"
+                              MaxWidth="450" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition x:Name="PlayerRowDefinition" />
+            <RowDefinition x:Name="PlaylistRowDefinition" />
+        </Grid.RowDefinitions>
+        <musicNowPlayingControls:MusicNowPlaying x:Name="MusicNowPlaying"
+                                                 VerticalAlignment="Center" />
+        <Grid x:Name="PlaylistGrid"
+              Background="#B3000000"
+              VerticalAlignment="Bottom">
+            <ListView Margin="24"
+                      ItemsSource="{Binding TrackCollection.Playlist}"
+                      IsItemClickEnabled="True"
+                      SelectionMode="None"
+                      ItemTemplate="{StaticResource WPTrackTemplateWONumber}"
+                      ItemContainerStyle="{StaticResource ListViewItemStyle}">
+                <ListView.ItemContainerTransitions>
+                    <TransitionCollection>
+                        <AddDeleteThemeTransition />
+                        <EntranceThemeTransition />
+                    </TransitionCollection>
+                </ListView.ItemContainerTransitions>
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <ItemsStackPanel />
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <triggers:Interactions.Triggers>
+                    <triggers:EventTrigger EventName="ItemClick">
+                        <triggers:InvokeCommandAction Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.TrackClickedCommand}"
+                                                      PassEventArgsToCommand="True" />
+                    </triggers:EventTrigger>
+                </triggers:Interactions.Triggers>
+            </ListView>
         </Grid>
 
         <VisualStateManager.VisualStateGroups>
@@ -87,7 +84,7 @@
                                                        Storyboard.TargetProperty="Height">
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="*" />
-                        </ObjectAnimationUsingKeyFrames> 
+                        </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlaylistGrid"
                                                        Storyboard.TargetProperty="(Grid.Column)">
                             <DiscreteObjectKeyFrame KeyTime="0"
@@ -97,6 +94,11 @@
                                                        Storyboard.TargetProperty="(Grid.Row)">
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="0" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlaylistGrid"
+                                                       Storyboard.TargetProperty="MinHeight">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="450" />
                         </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
@@ -110,7 +112,7 @@
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MusicNowPlaying"
                                                        Storyboard.TargetProperty="Margin">
                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="50,0" />
+                                                    Value="24,0" />
                         </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlaylistColumnDefinition"
                                                        Storyboard.TargetProperty="MaxWidth">
@@ -137,6 +139,11 @@
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="1" />
                         </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlaylistGrid"
+                                                       Storyboard.TargetProperty="MinHeight">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="0" />
+                        </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
                 <VisualState x:Name="Narrow">
@@ -149,7 +156,7 @@
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MusicNowPlaying"
                                                        Storyboard.TargetProperty="Margin">
                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="0" />
+                                                    Value="24,0" />
                         </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlayerRowDefinition"
                                                        Storyboard.TargetProperty="Height">
@@ -170,6 +177,50 @@
                                                        Storyboard.TargetProperty="(Grid.Row)">
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="1" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlaylistGrid"
+                                                       Storyboard.TargetProperty="MinHeight">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="0" />
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="NarrowAndTiny">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MusicNowPlaying"
+                                                       Storyboard.TargetProperty="VerticalAlignment">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Stretch" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MusicNowPlaying"
+                                                       Storyboard.TargetProperty="Margin">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="24,0" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlayerRowDefinition"
+                                                       Storyboard.TargetProperty="Height">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="*" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlaylistColumnDefinition"
+                                                       Storyboard.TargetProperty="MaxWidth">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="0" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlaylistRowDefinition"
+                                                       Storyboard.TargetProperty="Height">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="0" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlaylistGrid"
+                                                       Storyboard.TargetProperty="(Grid.Row)">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="1" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlaylistGrid"
+                                                       Storyboard.TargetProperty="MinHeight">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="0" />
                         </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>

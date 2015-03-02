@@ -1,5 +1,4 @@
-﻿using System;
-using VLC_WINRT_APP.Helpers;
+﻿using VLC_WINRT_APP.Helpers;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -31,12 +30,15 @@ namespace VLC_WINRT_APP.Views.MusicPages
         {
             base.OnNavigatedTo(e);
             Locator.SettingsVM.UpdateRequestedTheme();
+            Locator.MainVM.CommandBar.Visibility = Visibility.Collapsed;
             await AppBarHelper.UpdateAppBar(typeof(MusicPlayerPage));
         }
+
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             base.OnNavigatedFrom(e);
+            Locator.MainVM.CommandBar.Visibility = Visibility.Visible;
             Locator.SettingsVM.UpdateRequestedTheme();
         }
 
@@ -54,7 +56,7 @@ namespace VLC_WINRT_APP.Views.MusicPages
         {
             if (this.ActualWidth < 900)
             {
-                VisualStateUtilities.GoToState(this, "Narrow", false);
+                VisualStateUtilities.GoToState(this, this.ActualHeight < 1100 ? "NarrowAndTiny" : "Narrow", false);
             }
             else if (this.ActualWidth < 1200)
             {
@@ -77,5 +79,12 @@ namespace VLC_WINRT_APP.Views.MusicPages
             Frame.GoBack();
         }
         #endregion
+
+        private void RootGrid_Loaded(object sender, RoutedEventArgs e)
+        {
+#if WINDOWS_PHONE_APP
+            this.Margin = new Thickness(0, 24, 0, 0);
+#endif
+        }
     }
 }

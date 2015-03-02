@@ -18,7 +18,8 @@
             <ColumnDefinition x:Name="HorizontalNowPlayingColumnDefinition" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition x:Name="HeaderRowDefinition" />
+            <RowDefinition x:Name="HeaderRowDefinition" 
+                           Height="Auto"/>
             <RowDefinition x:Name="CoverRowDefinition" />
             <RowDefinition x:Name="SeparatorRowDefinition" />
             <RowDefinition x:Name="VerticalNowPlayingColumnDefinition" />
@@ -31,7 +32,9 @@
                Grid.Column="0"
                Source="{Binding CurrentAlbum.AlbumImage}"
                Stretch="Uniform"
-               extensions:ImageExtensions.FadeInOnLoaded="True" />
+               extensions:ImageExtensions.FadeInOnLoaded="True"
+               MaxHeight="300"
+               MaxWidth="300" />
 
         <Grid x:Name="NowPlayingGrid">
             <Grid.RowDefinitions>
@@ -39,6 +42,8 @@
                 <RowDefinition Height="12" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto"
+                               x:Name="SecondPlaybackButtonNarrowRowDefinition" />
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0"
                        Grid.Column="0"
@@ -128,42 +133,12 @@
                         </AppBarButton.Icon>
                     </AppBarButton>
                 </Grid>
-                <Grid Grid.Column="1"
-                      HorizontalAlignment="Right">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
-                    <AppBarToggleButton Grid.Column="0"
-                                        Icon="Shuffle"
-                                        IsCompact="True"
-                                        IsChecked="{Binding TrackCollection.IsShuffled}"
-                                        VerticalAlignment="Center"
-                                        Command="{Binding Shuffle}" />
-                    <Button Grid.Column="1"
-                            Style="{StaticResource TextBlockButtonStyle}"
-                            HorizontalAlignment="Center"
-                            Command="{Binding ShareNowPlayingMusicCommand}">
-                        <Button.Content>
-                            <Grid>
-                                <Path Data="{StaticResource SharePath}"
-                                      Fill="{ThemeResource BasicForeground}"
-                                      Width="32"
-                                      Height="32"
-                                      Stretch="Uniform" />
-                            </Grid>
-                        </Button.Content>
-                    </Button>
-                    <AppBarToggleButton Grid.Column="2"
-                                        Icon="Favorite"
-                                        IsCompact="True"
-                                        VerticalAlignment="Center"
-                                        IsChecked="{Binding CurrentAlbum.Favorite}"
-                                        Command="{Binding CurrentAlbum.FavoriteAlbum}"
-                                        CommandParameter="{Binding CurrentAlbum}" />
-                </Grid>
+                <local:SecondaryMusicPlayerButtons Grid.Column="1"
+                                                   HorizontalAlignment="Right" />
             </Grid>
+            <local:SecondaryMusicPlayerButtons x:Name="SecondaryMusicPlayerButtons"
+                                               Grid.Row="4"
+                                               HorizontalAlignment="Stretch"/>
         </Grid>
 
         <VisualStateManager.VisualStateGroups>
@@ -231,6 +206,11 @@
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="Left" />
                         </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SecondPlaybackButtonNarrowRowDefinition"
+                                                       Storyboard.TargetProperty="Height">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="0" />
+                        </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
                 <VisualState x:Name="Narrow">
@@ -293,7 +273,12 @@
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MainPlaybackButtonGrid"
                                                        Storyboard.TargetProperty="HorizontalAlignment">
                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Center" />
+                                                    Value="Stretch" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SecondPlaybackButtonNarrowRowDefinition"
+                                                       Storyboard.TargetProperty="Height">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Auto" />
                         </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>

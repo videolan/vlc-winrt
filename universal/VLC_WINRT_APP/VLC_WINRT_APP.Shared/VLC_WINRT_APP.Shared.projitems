@@ -302,6 +302,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\MusicPages\MusicNowPlayingControls\MusicNowPlaying.xaml.cs">
       <DependentUpon>MusicNowPlaying.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\MusicPages\MusicNowPlayingControls\SecondaryMusicPlayerButtons.xaml.cs">
+      <DependentUpon>SecondaryMusicPlayerButtons.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\MusicPages\MusicPlayerPage.xaml.cs">
       <DependentUpon>MusicPlayerPage.xaml</DependentUpon>
     </Compile>
@@ -568,6 +571,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\MusicPages\MusicNowPlayingControls\MusicNowPlaying.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\MusicPages\MusicNowPlayingControls\SecondaryMusicPlayerButtons.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
