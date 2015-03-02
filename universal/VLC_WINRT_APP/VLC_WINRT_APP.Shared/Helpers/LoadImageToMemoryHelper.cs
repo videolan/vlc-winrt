@@ -12,25 +12,26 @@ namespace VLC_WINRT_APP.Helpers
     {
         public static async Task LoadImageToMemory(AlbumItem item)
         {
-            bool fileExists = false;
+            /*
+            Normally, We would need more tight calls to try and make sure that the file
+            exists in our database. However, since this is on the UI thread, we can't do that.
+            Since binding images directly through XAML leads to blocked files when we
+            need to delete them, we have to load them up manually. This should be enough
+            of a check, for now, to make sure images load correctly.
+            */
+            bool fileExists = item.Picture != null;
             try
             {
-                var fileName = string.Format("{0}.jpg", item.Id);
-                fileExists = await ApplicationData.Current.LocalFolder.ContainsFolderAsync("albumPic");
                 if (fileExists)
                 {
-                    var albumPic = await ApplicationData.Current.LocalFolder.GetFolderAsync("albumPic");
-                    fileExists = await albumPic.ContainsFileAsync(fileName);
-                    if (fileExists)
-                    {
-                        Debug.WriteLine("Opening file albumPic " + item.Id);
-                        var file = await albumPic.GetFileAsync(fileName);
-                        var stream = await file.OpenAsync(FileAccessMode.Read);
-                        var image = new BitmapImage();
-                        image.SetSource(stream);
-                        stream.Dispose();
-                        item.AlbumImage = image;
-                    }
+                    Debug.WriteLine("Opening file albumPic " + item.Id);
+                    var file = await StorageFile.GetFileFromApplicationUriAsync(new Uri(item.Picture));
+                    var stream = await file.OpenAsync(FileAccessMode.Read);
+                    var image = new BitmapImage();
+                    stream.Seek(0);
+                    image.SetSource(stream);
+                    stream.Dispose();
+                    item.AlbumImage = image;
                 }
             }
             catch (Exception)
@@ -43,24 +44,25 @@ namespace VLC_WINRT_APP.Helpers
 
         public static async Task LoadImageToMemory(ArtistItem item)
         {
-            bool fileExists = false;
+            /*
+            Normally, We would need more tight calls to try and make sure that the file
+            exists in our database. However, since this is on the UI thread, we can't do that.
+            Since binding images directly through XAML leads to blocked files when we
+            need to delete them, we have to load them up manually. This should be enough
+            of a check, for now, to make sure images load correctly.
+            */
+            bool fileExists = item.Picture != null;
             try
             {
-                var fileName = string.Format("{0}.jpg", item.Id);
-                fileExists = await ApplicationData.Current.LocalFolder.ContainsFolderAsync("artistPic");
                 if (fileExists)
                 {
-                    var artistPic = await ApplicationData.Current.LocalFolder.GetFolderAsync("artistPic");
-                    fileExists = await artistPic.ContainsFileAsync(fileName);
-                    if (fileExists)
-                    {
-                        var file = await artistPic.GetFileAsync(fileName);
-                        var stream = await file.OpenAsync(FileAccessMode.Read);
-                        var image = new BitmapImage();
-                        image.SetSource(stream);
-                        stream.Dispose();
-                        item.ArtistImage = image;
-                    }
+                    var file = await StorageFile.GetFileFromApplicationUriAsync(new Uri(item.Picture));
+                    var stream = await file.OpenAsync(FileAccessMode.Read);
+                    var image = new BitmapImage();
+                    stream.Seek(0);
+                    image.SetSource(stream);
+                    stream.Dispose();
+                    item.ArtistImage = image;
                 }
             }
             catch (Exception ex)
