@@ -259,32 +259,6 @@ namespace VLC_WINRT_APP.Helpers
 
         public static List<ICommandBarElement> SetMusicPlayerPageButtons(List<ICommandBarElement> appbarEl)
         {
-            Locator.MainVM.AppBarElements.Clear();
-            var isCheckedBinding = new Binding
-            {
-                Source = Locator.MusicPlayerVM.TrackCollection,
-                Path = new PropertyPath("IsShuffled")
-            };
-            var random = new AppBarToggleButton()
-            {
-                Icon = PathHelper.Create(App.Current.Resources["ShufflePath"].ToString()),
-                Command = Locator.MusicPlayerVM.Shuffle,
-            };
-            random.SetBinding(ToggleButton.IsCheckedProperty, isCheckedBinding);
-            appbarEl.Add(random);
-
-            var share = new AppBarButton
-            {
-                Icon = PathHelper.Create(App.Current.Resources["SharePath"].ToString()),
-                Command = Locator.MusicPlayerVM.ShareNowPlayingMusicCommand,
-            };
-            appbarEl.Add(share);
-
-            var playlist = new AppBarButton
-            {
-                Icon = new SymbolIcon(Symbol.List),
-            };
-            appbarEl.Add(playlist);
             return appbarEl;
         }
     }
