@@ -41,6 +41,7 @@ namespace VLC_WINRT_APP.Model.Music
         private SeeArtistShowsCommand seeArtistShowsCommand;
         private string _genre;
         private BitmapImage _artistImage;
+        private LoadingState _artistImageLoadingState = LoadingState.NotLoaded;
 
         [PrimaryKey, AutoIncrement, Column("_id")]
         public int Id { get; set; }
@@ -78,8 +79,9 @@ namespace VLC_WINRT_APP.Model.Music
         {
             get
             {
-                if (_artistImage == null)
+                if (_artistImage == null && _artistImageLoadingState == LoadingState.NotLoaded)
                 {
+                    _artistImageLoadingState = LoadingState.Loading;
                     Task.Run(() => ResetArtistHeader());
                 }
 

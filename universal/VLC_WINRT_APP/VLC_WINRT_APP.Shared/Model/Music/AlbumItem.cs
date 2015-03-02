@@ -28,6 +28,7 @@ namespace VLC_WINRT_APP.Model.Music
         private string _artist;
         private string _picture = "ms-appx:///Assets/NoCover.jpg";
         private BitmapImage _albumImage;
+        private LoadingState _albumImageLoadingState = LoadingState.NotLoaded;
         private uint _year;
         private bool _favorite;
         private bool _isPictureLoaded = false;
@@ -104,8 +105,9 @@ namespace VLC_WINRT_APP.Model.Music
         {
             get
             {
-                if (_albumImage == null)
+                if (_albumImage == null && _albumImageLoadingState == LoadingState.NotLoaded)
                 {
+                    _albumImageLoadingState = LoadingState.Loading;
                     Task.Run(() => ResetAlbumArt());
                 }
 
@@ -136,6 +138,7 @@ namespace VLC_WINRT_APP.Model.Music
         {
             try
             {
+                bool success = false;
                 if (!IsLocalPictureIndexed && !IsPictureLoaded)
                 {
                     Debug.WriteLine("Searching local cover for " + Name);
@@ -143,13 +146,13 @@ namespace VLC_WINRT_APP.Model.Music
                     await MusicLibraryVM._albumDataRepository.Update(this);
                     var mediaService = App.Container.Resolve<IMediaService>() as MediaService;
                     var trackPath = await MusicLibraryVM._trackDataRepository.GetFirstTrackPathByAlbumId(Id);
-                    await MusicLibraryManagement.SetAlbumCover(this, trackPath, false, mediaService);
+                    success = await MusicLibraryManagement.SetAlbumCover(this, trackPath, false, mediaService);
+                    if (success) await ResetAlbumArt();
                 }
-                if (IsPictureLoaded)
+                if (IsPictureLoaded || success)
                     return;
                 Debug.WriteLine("Searching online cover for " + Name);
                 await ArtistInformationsHelper.GetAlbumPicture(this);
-                await ResetAlbumArt();
             }
             catch (Exception)
             {
