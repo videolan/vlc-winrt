@@ -70,10 +70,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                         regionCode = "jp";
                         break;
                 }
-                string url =
-                    string.Format(
- "http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist={1}&api_key={0}&lang={2}&format=json",
-                        App.ApiKeyLastFm, artistName, regionCode);
+                string url = string.Format("http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist={1}&api_key={0}&lang={2}&format=json", App.ApiKeyLastFm, artistName, regionCode);
                 var reponse = await lastFmClient.GetStringAsync(new Uri(url));
                 {
                     var artistInfo = JsonConvert.DeserializeObject<ArtistInformation>(reponse);
