@@ -149,6 +149,7 @@ namespace VLC_WINRT_APP.Model.Music
                     return;
                 Debug.WriteLine("Searching online cover for " + Name);
                 await ArtistInformationsHelper.GetAlbumPicture(this);
+                await ResetAlbumArt();
             }
             catch (Exception)
             {
