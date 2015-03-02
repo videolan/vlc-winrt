@@ -165,9 +165,6 @@
     <Compile Include="Views\MusicPages\ArtistPageControls\ArtistCoverBiographyControl.xaml.cs">
       <DependentUpon>ArtistCoverBiographyControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MusicPages\MusicPlayerPage.xaml.cs">
-      <DependentUpon>MusicPlayerPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\MusicPages\MusicPlayerPageControls\BiographyInfoControl.xaml.cs">
       <DependentUpon>BiographyInfoControl.xaml</DependentUpon>
     </Compile>
@@ -922,10 +919,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MusicPages\ArtistPageControls\ArtistCoverBiographyControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\MusicPages\MusicPlayerPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

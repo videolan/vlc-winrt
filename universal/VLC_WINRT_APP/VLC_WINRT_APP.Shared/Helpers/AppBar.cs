@@ -10,6 +10,7 @@ using VLC_WINRT_APP.Views.MainPages;
 using VLC_WINRT_APP.Views.MusicPages;
 using System.Threading.Tasks;
 using Windows.UI;
+using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Media;
 using VLC_WINRT_APP.Model;
 
@@ -142,11 +143,15 @@ namespace VLC_WINRT_APP.Helpers
                     appbarEl.Add(deleteBut);
                     appbarEl.Add(deleteplaylistbutton);
                 }
+                else if (page == typeof (MusicPlayerPage))
+                {
+                    SetMusicPlayerPageButtons(appbarEl);
+                }
                 Locator.MainVM.AppBarElements = appbarEl;
             });
         }
 
-        static List<ICommandBarElement> SetHomePageButtons(List<ICommandBarElement> appbarEl)
+        private static List<ICommandBarElement> SetHomePageButtons(List<ICommandBarElement> appbarEl)
         {
             appbarEl.Add(new AppBarButton()
             {
@@ -248,6 +253,38 @@ namespace VLC_WINRT_APP.Helpers
                 CommandParameter = Locator.MusicLibraryVM.CurrentArtist
             });
             return appbarEl;
-        } 
+        }
+
+
+        public static List<ICommandBarElement> SetMusicPlayerPageButtons(List<ICommandBarElement> appbarEl)
+        {
+            Locator.MainVM.AppBarElements.Clear();
+            var isCheckedBinding = new Binding
+            {
+                Source = Locator.MusicPlayerVM.TrackCollection,
+                Path = new PropertyPath("IsShuffled")
+            };
+            var random = new AppBarToggleButton()
+            {
+                Icon = PathHelper.Create(App.Current.Resources["ShufflePath"].ToString()),
+                Command = Locator.MusicPlayerVM.Shuffle,
+            };
+            random.SetBinding(ToggleButton.IsCheckedProperty, isCheckedBinding);
+            appbarEl.Add(random);
+
+            var share = new AppBarButton
+            {
+                Icon = PathHelper.Create(App.Current.Resources["SharePath"].ToString()),
+                Command = Locator.MusicPlayerVM.ShareNowPlayingMusicCommand,
+            };
+            appbarEl.Add(share);
+
+            var playlist = new AppBarButton
+            {
+                Icon = new SymbolIcon(Symbol.List),
+            };
+            appbarEl.Add(playlist);
+            return appbarEl;
+        }
     }
 }

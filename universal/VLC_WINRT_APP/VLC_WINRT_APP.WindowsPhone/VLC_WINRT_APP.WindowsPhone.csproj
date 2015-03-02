@@ -119,9 +119,6 @@
     <Compile Include="Views\MusicPages\MiniPlayer.xaml.cs">
       <DependentUpon>MiniPlayer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MusicPages\MusicPlayerPage.xaml.cs">
-      <DependentUpon>MusicPlayerPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\UserControls\MiniPlayer.xaml.cs">
       <DependentUpon>MiniPlayer.xaml</DependentUpon>
     </Compile>
@@ -847,10 +844,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MusicPages\MiniPlayer.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\MusicPages\MusicPlayerPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

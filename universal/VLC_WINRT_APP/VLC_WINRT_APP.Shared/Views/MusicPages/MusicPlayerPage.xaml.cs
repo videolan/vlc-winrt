@@ -27,7 +27,7 @@ namespace VLC_WINRT_APP.Views.MusicPages
         }
 
         #region layout
-        protected override async void OnNavigatedTo(Windows.UI.Xaml.Navigation.NavigationEventArgs e)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
             Locator.SettingsVM.UpdateRequestedTheme();

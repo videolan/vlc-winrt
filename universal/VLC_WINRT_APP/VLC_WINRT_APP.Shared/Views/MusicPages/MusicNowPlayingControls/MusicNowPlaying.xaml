@@ -18,11 +18,16 @@
             <ColumnDefinition x:Name="HorizontalNowPlayingColumnDefinition" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition x:Name="HeaderRowDefinition" />
             <RowDefinition x:Name="CoverRowDefinition" />
+            <RowDefinition x:Name="SeparatorRowDefinition" />
             <RowDefinition x:Name="VerticalNowPlayingColumnDefinition" />
         </Grid.RowDefinitions>
-
-        <Image Grid.Row="0"
+        <TextBlock Grid.ColumnSpan="2"
+                   Text="now playing"
+                   FontSize="36"
+                   FontWeight="ExtraLight" />
+        <Image Grid.Row="1"
                Grid.Column="0"
                Source="{Binding CurrentAlbum.Picture}"
                Stretch="Uniform"
@@ -41,7 +46,8 @@
                        TextWrapping="NoWrap"
                        TextTrimming="CharacterEllipsis">
                         <Run Text="{Binding CurrentTrack.Name}"
-                             FontSize="24" />
+                             FontSize="30"
+                             FontWeight="Light" />
                         <LineBreak />
                         <Run Text="{Binding CurrentArtist.Name, Converter={StaticResource StringToUpperConverter}}"
                              FontSize="19"
@@ -55,10 +61,11 @@
             <userControls:SliderControl Grid.Row="2" />
             <Grid Grid.Row="3">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition />
+                    <ColumnDefinition x:Name="MainPlaybackButtonColumnDefinition"
+                                      Width="Auto" />
+                    <ColumnDefinition x:Name="SecondPlaybackButtonColumnDefinition" />
                 </Grid.ColumnDefinitions>
-                <Grid>
+                <Grid x:Name="MainPlaybackButtonGrid">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition />
@@ -157,8 +164,6 @@
                                         CommandParameter="{Binding CurrentAlbum}" />
                 </Grid>
             </Grid>
-
-
         </Grid>
 
         <VisualStateManager.VisualStateGroups>
@@ -176,13 +181,12 @@
                                                     Value="*" />
                         </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="NowPlayingGrid"
-                                                       Storyboard.TargetProperty="Grid.Row">
+                                                       Storyboard.TargetProperty="(Grid.Row)">
                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="0" />
+                                                    Value="1" />
                         </ObjectAnimationUsingKeyFrames>
-
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="NowPlayingGrid"
-                                                       Storyboard.TargetProperty="Grid.Column">
+                                                       Storyboard.TargetProperty="(Grid.Column)">
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="2" />
                         </ObjectAnimationUsingKeyFrames>
@@ -190,6 +194,11 @@
                                                        Storyboard.TargetProperty="Width">
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="50" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SeparatorRowDefinition"
+                                                       Storyboard.TargetProperty="Height">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="0" />
                         </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="CoverColumnDefinition"
                                                        Storyboard.TargetProperty="Width">
@@ -203,6 +212,21 @@
                         </ObjectAnimationUsingKeyFrames>
 
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SongInformationTextBlock"
+                                                       Storyboard.TargetProperty="HorizontalAlignment">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Left" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SecondPlaybackButtonColumnDefinition"
+                                                       Storyboard.TargetProperty="Width">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="*" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MainPlaybackButtonColumnDefinition"
+                                                       Storyboard.TargetProperty="Width">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Auto" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MainPlaybackButtonGrid"
                                                        Storyboard.TargetProperty="HorizontalAlignment">
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="Left" />
@@ -222,15 +246,19 @@
                                                     Value="0" />
                         </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="NowPlayingGrid"
-                                                       Storyboard.TargetProperty="Grid.Row">
+                                                       Storyboard.TargetProperty="(Grid.Row)">
                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="1" />
+                                                    Value="3" />
                         </ObjectAnimationUsingKeyFrames>
-
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="NowPlayingGrid"
-                                                       Storyboard.TargetProperty="Grid.Column">
+                                                       Storyboard.TargetProperty="(Grid.Column)">
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="0" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SeparatorRowDefinition"
+                                                       Storyboard.TargetProperty="Height">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="24" />
                         </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SeparatorColumnDefinition"
                                                        Storyboard.TargetProperty="Width">
@@ -247,8 +275,22 @@
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="Center" />
                         </ObjectAnimationUsingKeyFrames>
-
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SongInformationTextBlock"
+                                                       Storyboard.TargetProperty="HorizontalAlignment">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Center" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SecondPlaybackButtonColumnDefinition"
+                                                       Storyboard.TargetProperty="Width">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="0" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MainPlaybackButtonColumnDefinition"
+                                                       Storyboard.TargetProperty="Width">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="*" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MainPlaybackButtonGrid"
                                                        Storyboard.TargetProperty="HorizontalAlignment">
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="Center" />
