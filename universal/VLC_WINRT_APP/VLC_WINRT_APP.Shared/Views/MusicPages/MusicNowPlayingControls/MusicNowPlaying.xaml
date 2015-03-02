@@ -29,7 +29,7 @@
                    FontWeight="ExtraLight" />
         <Image Grid.Row="1"
                Grid.Column="0"
-               Source="{Binding CurrentAlbum.Picture}"
+               Source="{Binding CurrentAlbum.AlbumImage}"
                Stretch="Uniform"
                extensions:ImageExtensions.FadeInOnLoaded="True" />
 
