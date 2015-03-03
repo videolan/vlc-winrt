@@ -149,7 +149,7 @@
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MusicNowPlaying"
                                                        Storyboard.TargetProperty="Margin">
                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="24,0" />
+                                                    Value="0" />
                         </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlayerRowDefinition"
                                                        Storyboard.TargetProperty="Height">
@@ -188,7 +188,7 @@
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MusicNowPlaying"
                                                        Storyboard.TargetProperty="Margin">
                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="24,0" />
+                                                    Value="0" />
                         </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlayerRowDefinition"
                                                        Storyboard.TargetProperty="Height">

@@ -9,7 +9,7 @@
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400">
-    <Grid>
+    <Grid x:Name="RootGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition x:Name="CoverColumnDefinition" />
             <ColumnDefinition x:Name="SeparatorColumnDefinition" />
@@ -215,6 +215,11 @@
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="0" />
                         </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RootGrid"
+                                                       Storyboard.TargetProperty="Margin">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="0" />
+                        </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
                 <VisualState x:Name="Narrow">
@@ -283,6 +288,11 @@
                                                        Storyboard.TargetProperty="Height">
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="Auto" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RootGrid"
+                                                       Storyboard.TargetProperty="Margin">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="24,0" />
                         </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
