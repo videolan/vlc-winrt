@@ -10,66 +10,10 @@
         <userControls:ArtistItemTemplate />
     </DataTemplate>
 
-    <!-- ALL // WINDOWS -->
-    <DataTemplate x:Key="SemanticZoomOutViewArtistTemplate">
-        <Grid Width="240"
-              Height="156">
-            <Image Source="/Assets/NoCoverWide.jpg"
-                   Stretch="UniformToFill" />
-            <Image Source="{Binding Group.ArtistImage}"
-                   Stretch="UniformToFill" />
-            <Grid>
-                <Grid.Background>
-                    <LinearGradientBrush EndPoint="0.5,1"
-                                         StartPoint="0.5,0">
-                        <GradientStop Color="#00000000"
-                                      Offset="0" />
-                        <GradientStop Color="#00000000"
-                                      Offset="0.444" />
-                        <GradientStop Color="#D8000000"
-                                      Offset="1" />
-                    </LinearGradientBrush>
-                </Grid.Background>
-                <TextBlock Text="{Binding Group.Name}"
-                           VerticalAlignment="Bottom"
-                           Foreground="White"
-                           TextWrapping="Wrap"
-                           Margin="6,0,0,6"
-                           FontSize="22"
-                           FontWeight="Light" />
-            </Grid>
-        </Grid>
+    <DataTemplate x:Key="ArtistHorizontalTemplate">
+        <userControls:ArtistHorizontalTemplate />
     </DataTemplate>
-
-    <DataTemplate x:Key="SemanticZoomViewInArtistTemplate">
-        <Border Padding="12"
-                Background="White">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="200" />
-                    <RowDefinition Height="6" />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-                <Image Grid.Row="0"
-                       Source="/Assets/NoCover.jpg"
-                       Stretch="UniformToFill"
-                       Width="200"
-                       Height="200" />
-                <Image Grid.Row="0"
-                       Source="{Binding ArtistImage}"
-                       Stretch="UniformToFill"
-                       Width="200"
-                       Height="200" />
-                <StackPanel Grid.Row="2">
-                    <TextBlock Text="{Binding Name, Converter={StaticResource ArtistStringConverter}}"
-                               TextWrapping="NoWrap"
-                               TextTrimming="WordEllipsis"
-                               FontSize="16" />
-                </StackPanel>
-            </Grid>
-        </Border>
-    </DataTemplate>
-
+    
     <DataTemplate x:Key="SimilarArtistTemplate">
         <Grid RequestedTheme="Dark">
             <Image Source="{Binding Images, Converter={StaticResource AlbumImageConverter}}"
