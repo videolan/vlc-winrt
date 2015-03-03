@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
 using VLC_WINRT_APP.Model;
-using VLC_WINRT_APP.ViewModels;
 
 namespace VLC_WINRT_APP.Converters
 {
