@@ -55,8 +55,7 @@
                          x:FieldModifier="public"
                          RequestedTheme="{Binding ApplicationTheme, Converter={StaticResource AppThemeElementThemeConverter}}"
                          Background="{ThemeResource ApplicationBarForegroundThemeBrush}"
-                         HomeButtonClicked="CommandBar_OnHomeButtonClicked"
-                         Visibility="{Binding Source={StaticResource Locator}, Path=VideoVm.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}">
+                         HomeButtonClicked="CommandBar_OnHomeButtonClicked">
         <customAppBar:AppBar.ExtraLeftContent>
             <userControls:BottomMiniPlayer />
         </customAppBar:AppBar.ExtraLeftContent>
