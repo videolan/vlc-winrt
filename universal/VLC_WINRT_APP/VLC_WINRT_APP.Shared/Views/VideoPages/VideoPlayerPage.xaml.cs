@@ -40,6 +40,7 @@ namespace VLC_WINRT_APP.Views.VideoPages
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
+            Locator.MainVM.CommandBar.Visibility = Visibility.Collapsed;
 #if WINDOWS_APP
 #if DEBUG
 #else
@@ -72,6 +73,7 @@ namespace VLC_WINRT_APP.Views.VideoPages
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
             base.OnNavigatingFrom(e);
+            Locator.MainVM.CommandBar.Visibility = Visibility.Visible;
 #if WINDOWS_APP
             AppViewHelper.SetFullscren(false);
 #endif
