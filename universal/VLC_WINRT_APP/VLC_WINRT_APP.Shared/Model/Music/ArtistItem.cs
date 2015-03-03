@@ -98,19 +98,9 @@ namespace VLC_WINRT_APP.Model.Music
             });
         }
 
-        [Ignore]
         public string Picture
         {
-            get
-            {
-                if (!_isPictureLoaded)
-                {
-                    _isPictureLoaded = true;
-                    _picture = "ms-appx:///Assets/NoCover.jpg";
-                    Task.Run(() => LoadPicture());
-                }
-                return _picture;
-            }
+            get { return _picture; }
             set
             {
                 SetProperty(ref _picture, value);

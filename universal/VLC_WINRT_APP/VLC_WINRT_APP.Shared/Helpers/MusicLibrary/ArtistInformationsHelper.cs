@@ -208,10 +208,6 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                 var bytes = await ConvertImage.ConvertImagetoByte(file);
                 await SaveArtistImageAsync(artist, bytes);
             }
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-            {
-                artist.ResetArtistHeader();
-            });
             await MusicLibraryVM._artistDataRepository.Update(artist);
         }
 
@@ -354,9 +350,15 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             return false;
         }
 
-        public static Task<bool> SaveArtistImageAsync(ArtistItem artist, byte[] img)
+        public async static Task<bool> SaveArtistImageAsync(ArtistItem artist, byte[] img)
         {
-            return SaveImage(artist.Id, "artistPic", img);
+            if (await SaveImage(artist.Id, "artistPic", img))
+            {
+                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => artist.Picture = String.Format("ms-appdata:///local/artistPic/{0}.jpg", artist.Id));
+                await artist.ResetArtistHeader();
+                return true;
+            }
+            return false;
         }
 
         private static async Task<bool> SaveImage(int id, String folderName, byte[] img)
