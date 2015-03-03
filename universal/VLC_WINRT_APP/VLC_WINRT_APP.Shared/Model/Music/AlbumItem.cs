@@ -26,7 +26,7 @@ namespace VLC_WINRT_APP.Model.Music
     {
         private string _name;
         private string _artist;
-        private string _picture = "ms-appx:///Assets/NoCover.jpg";
+        private string _picture;
         private BitmapImage _albumImage;
         private LoadingState _albumImageLoadingState = LoadingState.NotLoaded;
         private uint _year;
