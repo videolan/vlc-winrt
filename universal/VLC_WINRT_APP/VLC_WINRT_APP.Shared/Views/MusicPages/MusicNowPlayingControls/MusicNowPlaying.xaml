@@ -19,6 +19,8 @@
         <Grid.RowDefinitions>
             <RowDefinition x:Name="HeaderRowDefinition" 
                            Height="Auto"/>
+            <RowDefinition x:Name="HeaderSeparatorRowDefinition"
+                           Height="24"/>
             <RowDefinition x:Name="CoverRowDefinition" />
             <RowDefinition x:Name="SeparatorRowDefinition" />
             <RowDefinition x:Name="VerticalNowPlayingColumnDefinition" />
@@ -27,7 +29,7 @@
                    Text="now playing"
                    FontSize="36"
                    FontWeight="ExtraLight" />
-        <Image Grid.Row="1"
+        <Image Grid.Row="2"
                Grid.Column="0"
                Source="{Binding Thumbnail}"
                Stretch="Uniform"
@@ -162,7 +164,7 @@
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="NowPlayingGrid"
                                                        Storyboard.TargetProperty="(Grid.Row)">
                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="1" />
+                                                    Value="2" />
                         </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="NowPlayingGrid"
                                                        Storyboard.TargetProperty="(Grid.Column)">
@@ -232,7 +234,7 @@
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="NowPlayingGrid"
                                                        Storyboard.TargetProperty="(Grid.Row)">
                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="3" />
+                                                    Value="4" />
                         </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="NowPlayingGrid"
                                                        Storyboard.TargetProperty="(Grid.Column)">
