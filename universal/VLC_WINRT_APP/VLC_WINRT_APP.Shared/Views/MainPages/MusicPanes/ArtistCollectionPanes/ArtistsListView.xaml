@@ -15,7 +15,9 @@
         </Grid.RowDefinitions>
         <TextBlock Grid.Column="0"
                    Grid.Row="0"
-                   Style="{StaticResource LittleHeaderTextBlockStyle}">
+                   Style="{StaticResource LittleHeaderTextBlockStyle}"
+                   TextWrapping="NoWrap"
+                   TextTrimming="CharacterEllipsis">
             <Run Text="{Binding Artists.Count}" />
             <Run Text="ARTISTS" />
         </TextBlock>
