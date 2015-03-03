@@ -833,6 +833,15 @@
     <Content Include="..\..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\libvlccore.dll">
       <Link>libvlccore.dll</Link>
     </Content>
+    <Content Include="..\..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\access\liblive555_plugin.dll">
+      <Link>plugins\access\liblive555_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\audio_filter\libaudiobargraph_a_plugin.dll">
+      <Link>plugins\audio_filter\libaudiobargraph_a_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\audio_filter\libdtstofloat32_plugin.dll">
+      <Link>plugins\audio_filter\libdtstofloat32_plugin.dll</Link>
+    </Content>
     <Content Include="Assets\BadgeLogo.scale-100.png" />
     <Content Include="Assets\BadgeLogo.scale-140.png" />
     <Content Include="Assets\Logo.scale-100.png" />
