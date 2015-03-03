@@ -54,12 +54,12 @@
                              FontSize="30"
                              FontWeight="Light" />
                         <LineBreak />
-                        <Run Text="{Binding Name, Converter={StaticResource StringToUpperConverter}}"
+                        <Run Text="{Binding AlbumName, Converter={StaticResource StringToUpperConverter}}"
                              FontSize="19"
                              Foreground="{ThemeResource ApplicationBackgroundQuarterTranslucentThemeBrush}" />
                         <Run Text=" | "
                              FontSize="16" />
-                        <Run Text="{Binding Name, Converter={StaticResource StringToUpperConverter}}"
+                        <Run Text="{Binding ArtistName, Converter={StaticResource StringToUpperConverter}}"
                              FontSize="19"
                              Foreground="{ThemeResource ApplicationBackgroundQuarterTranslucentThemeBrush}" />
             </TextBlock>
