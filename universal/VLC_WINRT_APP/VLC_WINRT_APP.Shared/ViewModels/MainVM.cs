@@ -55,6 +55,7 @@ namespace VLC_WINRT_APP.ViewModels
         private ChangeMainPageVideoViewCommand _changeMainPageVideoViewCommand;
         private SearchClickedCommand _searchClickedCommand;
         private string _searchTag = "";
+        private bool _preventAppExit = false;
         #endregion
         #region public fields
         public AppBar CommandBar
@@ -66,11 +67,13 @@ namespace VLC_WINRT_APP.ViewModels
                 return null;
             }
         }
+
         public List<ICommandBarElement> AppBarElements
         {
             get { if (CommandBar != null) return CommandBar.PrimaryCommands as List<ICommandBarElement>; return null; }
             set { if (CommandBar != null) CommandBar.PrimaryCommands = value; }
         }
+
         public IList<AppBarButton> SecondaryAppBarElements
         {
             get { if (CommandBar != null) return CommandBar.SecondaryCommands as List<AppBarButton>; return null; }
@@ -152,6 +155,12 @@ namespace VLC_WINRT_APP.ViewModels
                     SearchHelpers.Search();
                 else if (SearchResults != null) SearchResults.Clear();
             }
+        }
+
+        public bool PreventAppExit
+        {
+            get { return _preventAppExit; }
+            set { SetProperty(ref _preventAppExit, value); }
         }
         #endregion
 

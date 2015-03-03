@@ -273,6 +273,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\MainPages\MainVideoControls\ShowsPivotItem.xaml.cs">
       <DependentUpon>ShowsPivotItem.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\MainPages\MainVideoControls\VideoPanesControls\VideoPaneComboBox.xaml.cs">
+      <DependentUpon>VideoPaneComboBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\MainPages\MusicPanes\AlbumCollectionBase.xaml.cs">
       <DependentUpon>AlbumCollectionBase.xaml</DependentUpon>
     </Compile>
@@ -287,6 +290,9 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\MainPages\MusicPanes\ArtistCollectionPanes\TracksListView.xaml.cs">
       <DependentUpon>TracksListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\MainPages\MusicPanes\MusicPanesControls\MusicPaneComboBox.xaml.cs">
+      <DependentUpon>MusicPaneComboBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\MusicPages\AlbumPage.xaml.cs">
       <DependentUpon>AlbumPage.xaml</DependentUpon>
@@ -550,6 +556,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\MainPages\MainVideoControls\VideoPanesControls\VideoPaneComboBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\MainPages\MusicPanes\AlbumCollectionBase.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -567,6 +577,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\MainPages\MusicPanes\ArtistCollectionPanes\TracksListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\MainPages\MusicPanes\MusicPanesControls\MusicPaneComboBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -6,6 +6,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:triggers="using:WinRT.Triggers"
       xmlns:placeholder="using:VLC_WINRT_APP.Views.UserControls.Placeholder"
+      xmlns:videoPanesControls="using:VLC_WINRT_APP.Views.MainPages.MainVideoControls.VideoPanesControls"
       mc:Ignorable="d"
       DataContext="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM}">
 
@@ -55,21 +56,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <Grid DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}">
-            <ComboBox ItemsSource="{Binding VideoViewCollection}"
-                      SelectedItem="{Binding VideoView, Mode=TwoWay}"
-                      BorderThickness="1"
-                      BorderBrush="{StaticResource MainColor}"
-                      Style="{StaticResource HeaderComboBoxStyle}"
-                      Background="Transparent">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Margin="0,0,6,0"
-                                   Text="{Binding Converter={StaticResource VideoViewStringifyConverter}}" />
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
-        </Grid>
+        <videoPanesControls:VideoPaneComboBox Grid.Row="0"/>
         <ComboBox Grid.Row="1"
                   ItemsSource="{Binding Shows}"
                   SelectedItem="{Binding CurrentShow, Mode=TwoWay}"

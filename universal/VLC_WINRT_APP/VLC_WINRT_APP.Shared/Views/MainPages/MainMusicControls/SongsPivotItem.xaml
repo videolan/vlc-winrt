@@ -8,6 +8,7 @@
       xmlns:triggers="using:WinRT.Triggers"
       xmlns:userControls="using:VLC_WINRT_APP.Views.UserControls"
       xmlns:placeholder="using:VLC_WINRT_APP.Views.UserControls.Placeholder"
+      xmlns:musicPanesControls="using:VLC_WINRT_APP.Views.MainPages.MusicPanes.MusicPanesControls"
       mc:Ignorable="d"
       d:DesignHeight="300"
       d:DesignWidth="400"
@@ -56,21 +57,7 @@
             <RowDefinition Height="50" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <Grid DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}">
-            <ComboBox ItemsSource="{Binding MusicViewCollection}"
-                      SelectedItem="{Binding MusicView, Mode=TwoWay}"
-                      BorderThickness="1"
-                      BorderBrush="{StaticResource MainColor}"
-                      Style="{StaticResource HeaderComboBoxStyle}"
-                      Background="Transparent">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Margin="0,0,6,0"
-                                   Text="{Binding Converter={StaticResource MusicViewStringifyConverter}}" />
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
-        </Grid>
+        <musicPanesControls:MusicPaneComboBox Grid.Row="0" />
         <placeholder:NothingToSeeHere Grid.Row="1"
                                       Visibility="{Binding Tracks.Count, Converter={StaticResource CountToVisibilityConverter}}"
                                       VerticalAlignment="Center" />

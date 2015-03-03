@@ -4,11 +4,11 @@
              xmlns:local="using:VLC_WINRT_APP.Views.MainPages.MusicPanes"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:controls="using:VLC_WINRT.Views.Controls"
              xmlns:triggers="using:WinRT.Triggers"
              xmlns:placeholder="using:VLC_WINRT_APP.Views.UserControls.Placeholder"
              xmlns:artistPageControls="using:VLC_WINRT_APP.Views.MusicPages.ArtistPageControls"
              xmlns:artistCollectionPanes="using:VLC_WINRT_APP.Views.MainPages.MusicPanes.ArtistCollectionPanes"
+             xmlns:musicPanesControls="using:VLC_WINRT_APP.Views.MainPages.MusicPanes.MusicPanesControls"
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400">
@@ -24,21 +24,7 @@
             <ColumnDefinition x:Name="AlbumListColumnDefinition" />
             <ColumnDefinition x:Name="TrackListColumnDefinition" />
         </Grid.ColumnDefinitions>
-        <Grid DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}">
-            <ComboBox ItemsSource="{Binding MusicViewCollection}"
-                      SelectedItem="{Binding MusicView, Mode=TwoWay}"
-                      BorderThickness="1"
-                      BorderBrush="{StaticResource MainColor}"
-                      Style="{StaticResource HeaderComboBoxStyle}"
-                      Background="Transparent">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Margin="0,0,6,0"
-                                   Text="{Binding Converter={StaticResource MusicViewStringifyConverter}}" />
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
-        </Grid>
+        <musicPanesControls:MusicPaneComboBox Grid.Row="0" />
         <placeholder:NothingToSeeHere Grid.Row="1"
                                       Grid.ColumnSpan="2"
                                       Visibility="{Binding Artists.Count, Converter={StaticResource CountToVisibilityConverter}}" />

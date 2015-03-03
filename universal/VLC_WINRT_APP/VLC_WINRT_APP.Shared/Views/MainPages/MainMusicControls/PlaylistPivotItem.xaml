@@ -6,6 +6,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:triggers="using:WinRT.Triggers"
       xmlns:placeholder="using:VLC_WINRT_APP.Views.UserControls.Placeholder"
+      xmlns:musicPanesControls="using:VLC_WINRT_APP.Views.MainPages.MusicPanes.MusicPanesControls"
       mc:Ignorable="d"
       d:DesignHeight="300"
       d:DesignWidth="400"
@@ -54,21 +55,7 @@
                 <ColumnDefinition />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <ComboBox DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}"
-                      ItemsSource="{Binding MusicViewCollection}"
-                      SelectedItem="{Binding MusicView, Mode=TwoWay}"
-                      BorderThickness="1"
-                      BorderBrush="{StaticResource MainColor}"
-                      Style="{StaticResource HeaderComboBoxStyle}"
-                      Background="Transparent">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Margin="0,0,6,0"
-                                   Text="{Binding Converter={StaticResource MusicViewStringifyConverter}}" />
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
-
+            <musicPanesControls:MusicPaneComboBox Grid.Row="0" />
             <AppBarButton Grid.Column="1"
                           x:Uid="NewPlaylist"
                           Label="new playlist"
