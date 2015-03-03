@@ -31,7 +31,11 @@ namespace VLC_WINRT_APP.Views.MusicPages
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            Locator.SettingsVM.UpdateRequestedTheme();
+            try
+            {
+                Locator.SettingsVM.UpdateRequestedTheme();
+            }
+            catch { }
             Locator.MainVM.CommandBar.Visibility = Visibility.Collapsed;
             await AppBarHelper.UpdateAppBar(typeof(MusicPlayerPage));
         }
