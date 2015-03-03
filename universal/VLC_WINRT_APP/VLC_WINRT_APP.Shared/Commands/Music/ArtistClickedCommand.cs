@@ -13,8 +13,12 @@ namespace VLC_WINRT_APP.Commands.Music
         public override void Execute(object parameter)
         {
             ArtistItem artist = null;
+            if (parameter is ArtistItem)
+            {
+                artist = (ArtistItem) parameter;
+            }
             // artist is clicked from a list
-            if (parameter is ItemClickEventArgs)
+            else if (parameter is ItemClickEventArgs)
             {
                 ItemClickEventArgs args = parameter as ItemClickEventArgs;
                 artist = args.ClickedItem as ArtistItem;
