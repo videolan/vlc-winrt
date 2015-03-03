@@ -86,8 +86,8 @@ namespace VLC_WINRT_APP.ViewModels
             set { SetProperty(ref _searchResults, value); }
         }
         #endregion
-        #region public props
 
+        #region public props
         public bool IsInternet
         {
             get { return _isInternet; }

@@ -107,9 +107,9 @@
                     <GridView.ItemContainerStyle>
                         <Style TargetType="GridViewItem">
                             <Setter Property="VerticalContentAlignment"
-                                    Value="Stretch"/>
+                                    Value="Stretch" />
                             <Setter Property="HorizontalContentAlignment"
-                                    Value="Stretch"/>
+                                    Value="Stretch" />
                         </Style>
                     </GridView.ItemContainerStyle>
                     <GridView.ItemsPanel>

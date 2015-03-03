@@ -56,7 +56,7 @@
             </ComboBox>
         </Grid>
         <controls:NothingToSeeHere Grid.Row="1"
-                                      Visibility="{Binding Albums.Count, Converter={StaticResource CountToVisibilityConverter}}" />
+                                   Visibility="{Binding Albums.Count, Converter={StaticResource CountToVisibilityConverter}}" />
         <ListView Grid.Row="1"
                   ItemsSource="{Binding Albums}"
                   ItemTemplate="{StaticResource PhoneSemanticZoomInViewAlbumTemplateLittleSize}"

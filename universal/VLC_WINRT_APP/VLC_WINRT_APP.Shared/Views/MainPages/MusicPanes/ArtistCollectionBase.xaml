@@ -32,7 +32,7 @@
                                                Grid.Column="0" />
         <artistCollectionPanes:AlbumsListView Grid.Row="1"
                                               Grid.Column="1"
-                                              DataContext="{Binding CurrentArtist, TargetNullValue={Binding Source={StaticResource Locator}, Path=MusicLibraryVM}}"/>
+                                              DataContext="{Binding CurrentArtist, TargetNullValue={Binding Source={StaticResource Locator}, Path=MusicLibraryVM}}" />
         <artistCollectionPanes:TracksListView Grid.Row="1"
                                               Grid.Column="2"
                                               DataContext="{Binding CurrentAlbum, TargetNullValue={Binding Source={StaticResource Locator}, Path=MusicLibraryVM}}" />
