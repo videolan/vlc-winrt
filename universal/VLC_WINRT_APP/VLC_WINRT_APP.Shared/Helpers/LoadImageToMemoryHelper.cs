@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.UI.Xaml.Media.Imaging;
 using VLC_WINRT_APP.Model.Music;
-using WinRTXamlToolkit.IO.Extensions;
 
 namespace VLC_WINRT_APP.Helpers
 {
