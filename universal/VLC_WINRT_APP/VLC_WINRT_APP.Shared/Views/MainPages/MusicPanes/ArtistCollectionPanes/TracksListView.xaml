@@ -15,7 +15,7 @@
                Style="{StaticResource LittleHeaderTextBlockStyle}">
             <Run Text="{Binding Tracks.Count}" />
             <Run Text="TRACKS" />
-            <Run Text="{Binding Name}"
+            <Run Text="{Binding Name, Converter={StaticResource StringToUpperConverter}}"
                  Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}" />
     </TextBlock>
     <ListView Grid.Row="1"
