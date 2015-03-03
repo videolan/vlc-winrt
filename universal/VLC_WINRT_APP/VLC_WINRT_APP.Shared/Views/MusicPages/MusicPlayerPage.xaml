@@ -30,12 +30,6 @@
                       SelectionMode="None"
                       ItemTemplate="{StaticResource WPTrackTemplateWONumber}"
                       ItemContainerStyle="{StaticResource ListViewItemStyle}">
-                <ListView.ItemContainerTransitions>
-                    <TransitionCollection>
-                        <AddDeleteThemeTransition />
-                        <EntranceThemeTransition />
-                    </TransitionCollection>
-                </ListView.ItemContainerTransitions>
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <ItemsStackPanel />
