@@ -57,6 +57,25 @@
                         </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
+                <VisualState x:Name="Medium">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="AlbumListColumnDefinition"
+                                                       Storyboard.TargetProperty="Width">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="*" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="TrackListColumnDefinition"
+                                                       Storyboard.TargetProperty="Width">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="0" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ArtistListColumnDefinition"
+                                                       Storyboard.TargetProperty="Width">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="300" />
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
                 <VisualState x:Name="Narrow">
                     <Storyboard>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="AlbumListColumnDefinition"

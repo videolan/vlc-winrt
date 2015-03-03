@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Microsoft.Xaml.Interactivity;
@@ -35,8 +36,9 @@ namespace VLC_WINRT_APP.Views.MainPages.MusicPanes.ArtistCollectionPanes
             Responsive();
         }
 
-        void Responsive()
+        async void Responsive()
         {
+#if WINDOWS_APP
             if (Window.Current.Bounds.Width < 900)
             {
                 var wrapGrid = (ArtistListView).GetFirstDescendantOfType<ItemsWrapGrid>();
@@ -48,6 +50,7 @@ namespace VLC_WINRT_APP.Views.MainPages.MusicPanes.ArtistCollectionPanes
                 VisualStateUtilities.GoToState(this, "Narrow", false);
             }
             else
+#endif
             {
                 VisualStateUtilities.GoToState(this, "Wide", false);
             }
@@ -56,7 +59,7 @@ namespace VLC_WINRT_APP.Views.MainPages.MusicPanes.ArtistCollectionPanes
         private void ArtistListView_OnItemClick(object sender, ItemClickEventArgs e)
         {
             var artist = e.ClickedItem as ArtistItem;
-            if (Window.Current.Bounds.Width > 900)
+            if (Window.Current.Bounds.Width > 800)
                 Locator.MusicLibraryVM.CurrentArtist = artist;
             else Locator.MusicLibraryVM.ArtistClickedCommand.Execute(artist);
         }
