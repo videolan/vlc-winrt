@@ -34,9 +34,12 @@
                Stretch="UniformToFill" />
         <TextBlock Grid.Column="2"
                    Grid.Row="0"
-                   Text="{Binding Name}" />
+                   Text="{Binding Name}"
+                   FontSize="22"
+                   FontWeight="Light"/>
         <TextBlock Grid.Column="2"
-                   Grid.Row="1">
+                   Grid.Row="1"
+                   Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}">
             <Run Text="{Binding Albums.Count}"/>
             <Run Text="albums"/>
         </TextBlock>
