@@ -1,0 +1,22 @@
+﻿<UserControl
+    x:Class="VLC_WINRT_APP.Views.MusicPages.MusicNowPlayingControls.MusicNowPlayingFlipView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:VLC_WINRT_APP.Views.MusicPages.MusicNowPlayingControls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <FlipView x:Name="MusicNowPlaying"
+              ItemsSource="{Binding TrackCollection.Playlist}"
+              Loaded="MusicNowPlaying_OnLoaded"
+              SelectionChanged="MusicNowPlaying_OnSelectionChanged">
+        <FlipView.ItemTemplate>
+            <DataTemplate>
+                <local:MusicNowPlaying VerticalAlignment="Center" />
+            </DataTemplate>
+        </FlipView.ItemTemplate>
+    </FlipView>
+</UserControl>

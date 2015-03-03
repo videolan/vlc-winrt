@@ -1,4 +1,6 @@
-﻿using VLC_WINRT_APP.Helpers;
+﻿using System;
+using System.ComponentModel;
+using VLC_WINRT_APP.Helpers;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;

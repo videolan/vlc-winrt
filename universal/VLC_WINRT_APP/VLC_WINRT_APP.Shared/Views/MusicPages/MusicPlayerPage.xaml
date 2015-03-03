@@ -20,8 +20,7 @@
             <RowDefinition x:Name="PlayerRowDefinition" />
             <RowDefinition x:Name="PlaylistRowDefinition" />
         </Grid.RowDefinitions>
-        <musicNowPlayingControls:MusicNowPlaying x:Name="MusicNowPlaying"
-                                                 VerticalAlignment="Center" />
+        <musicNowPlayingControls:MusicNowPlayingFlipView x:Name="MusicNowPlaying" />
         <Grid x:Name="PlaylistGrid"
               Background="#B3000000"
               VerticalAlignment="Bottom">
