@@ -196,10 +196,10 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                 return;
             }
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Locator.MainVM.IsInternet = true);
-            var gotArt = await DownloadArtistPictureFromDeezer(artist);
+            var gotArt = await DownloadArtistPictureFromLastFm(artist);
             if (!gotArt)
             {
-                gotArt = await DownloadArtistPictureFromLastFm(artist);
+                gotArt = await DownloadArtistPictureFromDeezer(artist);
             }
             if (!gotArt)
             {
