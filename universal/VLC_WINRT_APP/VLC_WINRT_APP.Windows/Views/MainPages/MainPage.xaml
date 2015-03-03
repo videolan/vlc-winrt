@@ -22,14 +22,19 @@
           Grid.RowSpan="3"
           Visibility="{Binding Source={StaticResource Locator}, Path=VideoVm.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}" />
 
-    <Image Grid.Row="0"
-           Grid.RowSpan="2"
-           DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}"
-           Source="{Binding CurrentArtist.ArtistImage}"
-           Stretch="UniformToFill"
-           Opacity="0.3"/>
+    <Grid Grid.Row="0"
+          Grid.RowSpan="2"
+          DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}"
+          Visibility="{Binding CurrentPage, Converter={StaticResource MusicPlayerBackgroundVisibilityConverter}}">
+        <Image DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}"
+               Source="{Binding CurrentArtist.ArtistImage}"
+               Stretch="UniformToFill"
+               Opacity="0.3" />
+    </Grid>
+
     <userControls:TopBar Grid.Row="0"
                          Visibility="{Binding Source={StaticResource Locator}, Path=VideoVm.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}" />
+    
     <Frame x:Name="MainFrame"
            Grid.Row="1"
            x:FieldModifier="public"
