@@ -11,8 +11,7 @@
 
     <FlipView x:Name="MusicNowPlaying"
               ItemsSource="{Binding TrackCollection.Playlist}"
-              Loaded="MusicNowPlaying_OnLoaded"
-              SelectionChanged="MusicNowPlaying_OnSelectionChanged">
+              Loaded="MusicNowPlaying_OnLoaded">
         <FlipView.ItemTemplate>
             <DataTemplate>
                 <local:MusicNowPlaying VerticalAlignment="Center" />

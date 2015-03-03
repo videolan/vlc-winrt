@@ -17,6 +17,7 @@ namespace VLC_WINRT_APP.Views.MusicPages.MusicNowPlayingControls
             MusicNowPlaying.SelectedIndex = Locator.MusicPlayerVM.TrackCollection.CurrentTrack;
             Locator.MusicPlayerVM.TrackCollection.PropertyChanged += TrackCollectionOnPropertyChanged;
             this.Unloaded += MusicNowPlayingOnUnloaded;
+            MusicNowPlaying.SelectionChanged += MusicNowPlaying_OnSelectionChanged;
         }
 
         private void MusicNowPlayingOnUnloaded(object sender, RoutedEventArgs routedEventArgs)
@@ -32,6 +33,7 @@ namespace VLC_WINRT_APP.Views.MusicPages.MusicNowPlayingControls
 
         private async void MusicNowPlaying_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (Locator.MusicPlayerVM.TrackCollection.CurrentTrack == -1) return;
             // TODO: Code a better way to do this >_>' This is obviously messed up (The whole thing actually)
             if (MusicNowPlaying.SelectedIndex == Locator.MusicPlayerVM.TrackCollection.CurrentTrack + 1)
                 await Locator.MusicPlayerVM.PlayNext();
