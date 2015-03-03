@@ -16,7 +16,9 @@
                Grid.Row="0"
                Style="{StaticResource LittleHeaderTextBlockStyle}">
             <Run Text="{Binding Albums.Count}" />
-            <Run Text="ALBUMS" />
+            <Run Text="ALBUMS  " />
+            <Run Text="{Binding Name, Converter={StaticResource StringToUpperConverter}}"
+                 Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}" />
     </TextBlock>
     <ListView x:Name="AlbumsList"
               Grid.Row="1"
