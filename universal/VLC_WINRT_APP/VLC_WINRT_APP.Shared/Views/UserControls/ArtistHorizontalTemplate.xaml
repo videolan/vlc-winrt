@@ -4,11 +4,22 @@
              xmlns:local="using:VLC_WINRT_APP.Views.UserControls"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+             xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+             xmlns:common="using:VLC_WINRT_APP.Common"
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400">
 
-    <Grid>
+    <Grid FlyoutBase.AttachedFlyout="{StaticResource ArtistMenuFlyout}">
+        <interactivity:Interaction.Behaviors>
+            <core:EventTriggerBehavior EventName="Holding">
+                <common:OpenMenuFlyoutAction />
+            </core:EventTriggerBehavior>
+            <core:EventTriggerBehavior EventName="RightTapped">
+                <common:OpenMenuFlyoutAction />
+            </core:EventTriggerBehavior>
+        </interactivity:Interaction.Behaviors>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="50" />
             <ColumnDefinition Width="12"/>
