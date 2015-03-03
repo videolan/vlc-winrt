@@ -9,7 +9,6 @@
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400">
-
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition x:Name="CoverColumnDefinition" />
@@ -191,7 +190,6 @@
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="Left" />
                         </ObjectAnimationUsingKeyFrames>
-
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SongInformationTextBlock"
                                                        Storyboard.TargetProperty="HorizontalAlignment">
                             <DiscreteObjectKeyFrame KeyTime="0"

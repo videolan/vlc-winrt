@@ -272,9 +272,6 @@
     <Content Include="..\..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\access\libzip_plugin.dll">
       <Link>plugins\access\libzip_plugin.dll</Link>
     </Content>
-    <Content Include="..\..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\audio_filter\liba52tofloat32_plugin.dll">
-      <Link>plugins\audio_filter\liba52tofloat32_plugin.dll</Link>
-    </Content>
     <Content Include="..\..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\audio_filter\liba52tospdif_plugin.dll">
       <Link>plugins\audio_filter\liba52tospdif_plugin.dll</Link>
     </Content>
