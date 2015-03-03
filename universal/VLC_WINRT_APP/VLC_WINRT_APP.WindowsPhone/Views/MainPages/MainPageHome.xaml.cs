@@ -72,6 +72,11 @@ namespace VLC_WINRT_APP.Views.MainPages
 
         private void HardwareButtonsOnBackPressed(object sender, BackPressedEventArgs backPressedEventArgs)
         {
+            if (Locator.MainVM.PreventAppExit)
+            {
+                backPressedEventArgs.Handled = true;
+                return;
+            }
             if (MainPivot.SelectedIndex != 3 || (MainPivot.SelectedIndex == 3 && !Locator.ExternalStorageVM.CurrentStorageVM.CanGoBack))
             {
                 backPressedEventArgs.Handled = false;
