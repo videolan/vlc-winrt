@@ -53,7 +53,7 @@
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ArtistListColumnDefinition"
                                                        Storyboard.TargetProperty="Width">
                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="300" />
+                                                    Value="250" />
                         </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
