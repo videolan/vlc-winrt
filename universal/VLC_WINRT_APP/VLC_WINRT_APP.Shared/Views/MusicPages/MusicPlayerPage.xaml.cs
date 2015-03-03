@@ -1,11 +1,12 @@
-﻿using System;
-using System.ComponentModel;
-using VLC_WINRT_APP.Helpers;
+﻿using VLC_WINRT_APP.Helpers;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Xaml.Interactivity;
 using VLC_WINRT_APP.ViewModels;
+#if WINDOWS_PHONE_APP
+using Windows.Phone.UI.Input;
+#endif
 
 namespace VLC_WINRT_APP.Views.MusicPages
 {
@@ -27,6 +28,12 @@ namespace VLC_WINRT_APP.Views.MusicPages
             this.Unloaded += OnUnloaded;
         }
 
+        private void HardwareButtonsOnBackPressed(object sender, BackPressedEventArgs backPressedEventArgs)
+        {
+            App.ApplicationFrame.GoBack();
+            backPressedEventArgs.Handled = true;
+        }
+
         #region layout
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -38,6 +45,9 @@ namespace VLC_WINRT_APP.Views.MusicPages
                 Locator.SettingsVM.UpdateRequestedTheme();
             }
             catch { }
+#if WINDOWS_PHONE_APP
+            HardwareButtons.BackPressed += HardwareButtonsOnBackPressed;
+#endif
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
@@ -45,6 +55,9 @@ namespace VLC_WINRT_APP.Views.MusicPages
             base.OnNavigatedFrom(e);
             Locator.MainVM.CommandBar.Visibility = Visibility.Visible;
             Locator.SettingsVM.UpdateRequestedTheme();
+#if WINDOWS_PHONE_APP
+            HardwareButtons.BackPressed -= HardwareButtonsOnBackPressed;
+#endif
         }
 
         private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
