@@ -43,6 +43,11 @@
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="{StaticResource ArtistHorizontalTemplate}" />
                         </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ArtistListView"
+                                                       Storyboard.TargetProperty="ItemsPanel">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="{StaticResource AdaptativeVerticalPanelTemplate}" />
+                        </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
                 <VisualState x:Name="Narrow">
@@ -52,6 +57,11 @@
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="{StaticResource PhoneArtistSquareTemplate}" />
                         </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ArtistListView"
+                                                       Storyboard.TargetProperty="ItemsPanel">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="{StaticResource AdaptativeHorizontalPanelTemplate}" />
+                        </ObjectAnimationUsingKeyFrames> 
                     </Storyboard>
                 </VisualState>
             </VisualStateGroup>

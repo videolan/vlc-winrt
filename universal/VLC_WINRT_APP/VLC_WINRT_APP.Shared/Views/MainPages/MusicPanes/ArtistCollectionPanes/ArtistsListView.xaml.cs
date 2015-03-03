@@ -37,18 +37,18 @@ namespace VLC_WINRT_APP.Views.MainPages.MusicPanes.ArtistCollectionPanes
 
         void Responsive()
         {
-            var wrapGrid = (ArtistListView).GetFirstDescendantOfType<ItemsWrapGrid>();
             if (Window.Current.Bounds.Width < 900)
             {
-                wrapGrid.Orientation = Orientation.Horizontal;
-                TemplateSizer.ComputeAlbums(wrapGrid, TemplateSize.Normal, this.ActualWidth);
+                var wrapGrid = (ArtistListView).GetFirstDescendantOfType<ItemsWrapGrid>();
+                if (wrapGrid != null)
+                {
+                    wrapGrid.Orientation = Orientation.Horizontal;
+                    TemplateSizer.ComputeAlbums(wrapGrid, TemplateSize.Normal, this.ActualWidth);
+                }
                 VisualStateUtilities.GoToState(this, "Narrow", false);
             }
             else
             {
-                wrapGrid.Orientation = Orientation.Vertical;
-                wrapGrid.ItemHeight = 60;
-                wrapGrid.ItemWidth = this.ActualWidth;
                 VisualStateUtilities.GoToState(this, "Wide", false);
             }
         }

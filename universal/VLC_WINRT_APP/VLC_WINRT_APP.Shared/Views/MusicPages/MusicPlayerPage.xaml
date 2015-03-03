@@ -126,7 +126,7 @@
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlayerRowDefinition"
                                                        Storyboard.TargetProperty="Height">
                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Auto" />
+                                                    Value="300" />
                         </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlaylistGrid"
                                                        Storyboard.TargetProperty="(Grid.Column)">

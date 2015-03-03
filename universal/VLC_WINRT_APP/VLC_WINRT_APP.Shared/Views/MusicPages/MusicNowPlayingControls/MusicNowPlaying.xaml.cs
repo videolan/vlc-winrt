@@ -1,4 +1,5 @@
-﻿using Windows.UI.Xaml.Controls;
+﻿using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Microsoft.Xaml.Interactivity;
 using VLC_WINRT_APP.ViewModels;
@@ -34,7 +35,7 @@ namespace VLC_WINRT_APP.Views.MusicPages.MusicNowPlayingControls
 
         private void Responsive()
         {
-            if (this.ActualWidth < 600)
+            if (Window.Current.Bounds.Width < 650)
             {
                 VisualStateUtilities.GoToState(this, "Narrow", false);
             }
