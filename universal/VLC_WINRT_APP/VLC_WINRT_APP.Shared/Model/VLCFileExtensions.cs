@@ -71,7 +71,6 @@ namespace VLC_WINRT_APP.Model
             ".tob",
             ".ts",
             ".tts",
-            ".vob",
             ".vro",
             ".webm",
             ".wm",
@@ -122,7 +121,7 @@ namespace VLC_WINRT_APP.Model
 
                 ".nsv", ".nut", ".nuv", ".ogm", ".ogv", ".ogx", ".ps", ".rec", ".rm", ".rmvb",
 
-                ".tod", ".ts", ".tts", ".vob", ".vro", ".webm", ".wm", ".wmv", ".wtv", ".xesc" };
+                ".tod", ".ts", ".tts", ".vro", ".webm", ".wm", ".wmv", ".wtv", ".xesc" };
 
         public static string[] AudioExtensions = {
 
