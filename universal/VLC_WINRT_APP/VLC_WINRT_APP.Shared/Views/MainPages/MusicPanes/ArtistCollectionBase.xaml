@@ -21,8 +21,10 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition x:Name="ArtistListColumnDefinition"
                               Width="300" />
-            <ColumnDefinition x:Name="AlbumListColumnDefinition" />
-            <ColumnDefinition x:Name="TrackListColumnDefinition" />
+            <ColumnDefinition x:Name="AlbumListColumnDefinition" 
+                              Width="0"/>
+            <ColumnDefinition x:Name="TrackListColumnDefinition" 
+                              Width="0"/>
         </Grid.ColumnDefinitions>
         <musicPanesControls:MusicPaneComboBox Grid.Row="0" />
         <placeholder:NothingToSeeHere Grid.Row="1"
