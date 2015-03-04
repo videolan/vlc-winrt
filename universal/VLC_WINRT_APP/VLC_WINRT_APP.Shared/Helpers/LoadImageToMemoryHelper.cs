@@ -19,13 +19,14 @@ namespace VLC_WINRT_APP.Helpers
             need to delete them, we have to load them up manually. This should be enough
             of a check, for now, to make sure images load correctly.
             */
-            bool fileExists = item.Picture != null;
+            bool fileExists = item.IsPictureLoaded;
             try
             {
                 if (fileExists)
                 {
                     Debug.WriteLine("Opening file albumPic " + item.Id);
-                    var file = await StorageFile.GetFileFromApplicationUriAsync(new Uri(item.Picture));
+                    var uri = item.AlbumCoverUri;
+                    var file = await StorageFile.GetFileFromApplicationUriAsync(new Uri(uri));
                     var stream = await file.OpenAsync(FileAccessMode.Read);
                     await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                     {
@@ -54,18 +55,21 @@ namespace VLC_WINRT_APP.Helpers
             need to delete them, we have to load them up manually. This should be enough
             of a check, for now, to make sure images load correctly.
             */
-            bool fileExists = item.Picture != null;
+            bool fileExists = item.IsPictureLoaded;
             try
             {
                 if (fileExists)
                 {
                     var file = await StorageFile.GetFileFromApplicationUriAsync(new Uri(item.Picture));
                     var stream = await file.OpenAsync(FileAccessMode.Read);
-                    var image = new BitmapImage();
-                    stream.Seek(0);
-                    image.SetSource(stream);
-                    stream.Dispose();
-                    item.ArtistImage = image;
+                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                    {
+                        var image = new BitmapImage();
+                        stream.Seek(0);
+                        image.SetSource(stream);
+                        stream.Dispose();
+                        item.ArtistImage = image;
+                    });
                 }
             }
             catch (Exception ex)

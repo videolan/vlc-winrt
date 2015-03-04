@@ -20,7 +20,6 @@ namespace VLC_WINRT_APP.Model.Music
     public class ArtistItem : BindableBase
     {
         private string _name;
-        private string _picture;
         private bool _isPictureLoaded;
         private ObservableCollection<AlbumItem> _albumItems;
         private bool _isAlbumsLoaded = false;
@@ -90,37 +89,25 @@ namespace VLC_WINRT_APP.Model.Music
             set { SetProperty(ref _artistImage, value); }
         }
 
-        public async Task ResetArtistHeader()
+        public Task ResetArtistHeader()
         {
-            await DispatchHelper.InvokeAsync(() =>
-            {
-                LoadImageToMemoryHelper.LoadImageToMemory(this);
-            });
+            return LoadImageToMemoryHelper.LoadImageToMemory(this);
         }
 
+        [Ignore]
         public string Picture
         {
-            get { return _picture; }
-            set
+            get
             {
-                SetProperty(ref _picture, value);
-                OnPropertyChanged();
+                return IsPictureLoaded ? string.Format("ms-appdata:///local/artistPic/{0}.jpg", Id) : null;
             }
         }
 
         public bool IsPictureLoaded
         {
             get { return _isPictureLoaded; }
-            set
-            {
-                SetProperty(ref _isPictureLoaded, value);
-                if (value)
-                {
-                    Picture = "ms-appdata:///local/artistPic/" + Id + ".jpg";
-                }
-            }
+            set { SetProperty(ref _isPictureLoaded, value); }
         }
-
 
         public async Task LoadPicture()
         {

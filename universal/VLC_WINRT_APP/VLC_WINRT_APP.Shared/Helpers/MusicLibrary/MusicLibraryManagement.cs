@@ -268,9 +268,9 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                     await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                     {
                         album.IsPictureLoaded = true;
+                        album.IsCoverInLocalFolder = false;
                         album.Picture = System.Net.WebUtility.UrlDecode(albumUrl.Replace("file:///", ""));
                     });
-                    await MusicLibraryVM._albumDataRepository.Update(album);
                     Debug.WriteLine("VLC found embedded cover " + album.Id + " " + albumUrl);
                     return true;
                 }
@@ -315,8 +315,6 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                             var folderPicFile = await folder.GetFileAsync(coverName);
                             Debug.WriteLine("Writing file " + "albumPic" + " " + album.Id);
                             await folderPicFile.CopyAsync(destinationFolder, String.Format("{0}.jpg", album.Id), NameCollisionOption.FailIfExists);
-
-                            await MusicLibraryVM._albumDataRepository.Update(album);
                         }
                         else return false;
                     }
@@ -325,9 +323,10 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                     await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                     {
                         album.IsPictureLoaded = true;
-                        album.Picture = String.Format("ms-appdata:///local/albumPic/{0}.jpg", album.Id);
-                        Debug.WriteLine("WinRT found embedded cover " + album.Picture);
+                        album.IsCoverInLocalFolder = true;
+                        Debug.WriteLine("WinRT found embedded cover " + album.AlbumCoverUri);
                     });
+                    await MusicLibraryVM._albumDataRepository.Update(album);
                     return true;
                 }
                 catch (Exception exception)

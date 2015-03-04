@@ -266,7 +266,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             string artistName = CurrentTrack.ArtistName ?? resourceLoader.GetString("UnknownArtist");
             string albumName = CurrentTrack.AlbumName;
             string trackName = CurrentTrack.Name ?? resourceLoader.GetString("UnknownTrack");
-            var picture = Locator.MusicPlayerVM.CurrentAlbum != null ? Locator.MusicPlayerVM.CurrentAlbum.Picture : null;
+            var picture = Locator.MusicPlayerVM.CurrentAlbum != null ? Locator.MusicPlayerVM.CurrentAlbum.AlbumCoverUri : null;
 
             await base._mediaService.SetMediaTransportControlsInfo(artistName, albumName, trackName, picture);
 
@@ -276,7 +276,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                 var notificationOnNewSongForeground = ApplicationSettingsHelper.ReadSettingsValue("NotificationOnNewSongForeground");
                 if (base._mediaService.IsBackground || (notificationOnNewSongForeground != null && (bool)notificationOnNewSongForeground))
                 {
-                    ToastHelper.ToastImageAndText04(trackName, albumName, artistName, (Locator.MusicPlayerVM.CurrentAlbum == null) ? null : Locator.MusicPlayerVM.CurrentAlbum.Picture ?? null);
+                    ToastHelper.ToastImageAndText04(trackName, albumName, artistName, (Locator.MusicPlayerVM.CurrentAlbum == null) ? null : Locator.MusicPlayerVM.CurrentAlbum.AlbumCoverUri ?? null);
                 }
             }
         }

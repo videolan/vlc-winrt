@@ -342,8 +342,11 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
         {
             if (await SaveImage(album.Id, "albumPic", img))
             {
-                album.IsPictureLoaded = true;
-                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => album.Picture = String.Format("ms-appdata:///local/albumPic/{0}.jpg", album.Id));
+                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                {
+                    album.IsPictureLoaded = true;
+                    album.IsCoverInLocalFolder = true;
+                });
                 await album.ResetAlbumArt();
                 return true;
             }
@@ -354,7 +357,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
         {
             if (await SaveImage(artist.Id, "artistPic", img))
             {
-                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => artist.Picture = String.Format("ms-appdata:///local/artistPic/{0}.jpg", artist.Id));
+                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => artist.IsPictureLoaded = true);
                 await artist.ResetArtistHeader();
                 return true;
             }

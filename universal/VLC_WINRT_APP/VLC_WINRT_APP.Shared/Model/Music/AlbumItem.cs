@@ -101,6 +101,21 @@ namespace VLC_WINRT_APP.Model.Music
         }
 
         [Ignore]
+        public string AlbumCoverUri
+        {
+            get
+            {
+                if (!string.IsNullOrEmpty(_picture)) // custom uri
+                    return _picture;
+                else if(IsPictureLoaded && IsCoverInLocalFolder) // default album cover uri
+                {
+                    return string.Format("ms-appdata:///local/albumPic/{0}.jpg", Id);
+                }
+                return null;
+            }
+        }
+
+        [Ignore]
         public BitmapImage AlbumImage
         {
             get
@@ -110,7 +125,6 @@ namespace VLC_WINRT_APP.Model.Music
                     _albumImageLoadingState = LoadingState.Loading;
                     Task.Run(() => ResetAlbumArt());
                 }
-
                 return _albumImage;
             }
             set { SetProperty(ref _albumImage, value); }
@@ -124,6 +138,8 @@ namespace VLC_WINRT_APP.Model.Music
         public bool IsPictureLoaded { get; set; }
 
         public bool IsLocalPictureIndexed { get; set; }
+
+        public bool IsCoverInLocalFolder { get; set; }
 
         public uint Year
         {
