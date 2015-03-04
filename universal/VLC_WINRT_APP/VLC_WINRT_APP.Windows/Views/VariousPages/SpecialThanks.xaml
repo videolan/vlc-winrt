@@ -137,6 +137,78 @@
                             </StackPanel>
                         </StackPanel>
                     </Grid>
+                    <Grid Margin="100,0,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="important sponsors"
+                                   FontSize="32"
+                                   Style="{StaticResource TitleTextBlockStyle}"
+                                   Foreground="{StaticResource MainColor}" />
+                        <StackPanel Grid.Row="1"
+                                    Margin="0,0,0,0">
+                            <StackPanel>
+                                <TextBlock Text="David Rygg"
+                                           Margin="0,10"
+                                           Style="{StaticResource SubheaderTextBlockStyle}" />
+                                <TextBlock Text="Jason Ledakowich"
+                                           Margin="0,10"
+                                           Style="{StaticResource SubheaderTextBlockStyle}" />
+                                <TextBlock Text="Richard Long"
+                                           Margin="0,10"
+                                           Style="{StaticResource SubheaderTextBlockStyle}" />
+                                <TextBlock Text="Sasha Zivanovic"
+                                           Margin="0,10"
+                                           Style="{StaticResource SubheaderTextBlockStyle}" />
+                                <TextBlock Text="Sergio Ammirata"
+                                           Margin="0,10"
+                                           Style="{StaticResource SubheaderTextBlockStyle}" />
+                                <TextBlock Text="Yui-Man Mak"
+                                           Margin="0,10"
+                                           Style="{StaticResource SubheaderTextBlockStyle}" />
+                                <TextBlock Text="Yuki Kan"
+                                           Margin="0,10"
+                                           Style="{StaticResource SubheaderTextBlockStyle}" />
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                    <Grid Margin="100,0,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="notable sponsors"
+                                   FontSize="32"
+                                   Style="{StaticResource TitleTextBlockStyle}"
+                                   Foreground="{StaticResource MainColor}" />
+                        <StackPanel Grid.Row="1"
+                                    Margin="0,0,0,0">
+                            <StackPanel>
+                                <TextBlock Text="Juan Pablo Black Romero"
+                                           Margin="0,10"
+                                           Style="{StaticResource SubheaderTextBlockStyle}" />
+                                <TextBlock Text="Lissy Alexandre"
+                                           Margin="0,10"
+                                           Style="{StaticResource SubheaderTextBlockStyle}" />
+                                <TextBlock Text="Norm Zastre"
+                                           Margin="0,10"
+                                           Style="{StaticResource SubheaderTextBlockStyle}" />
+                                <TextBlock Text="Pavel Zavodny"
+                                           Margin="0,10"
+                                           Style="{StaticResource SubheaderTextBlockStyle}" />
+                                <TextBlock Text="Peter McQuillan"
+                                           Margin="0,10"
+                                           Style="{StaticResource SubheaderTextBlockStyle}" />
+                                <TextBlock Text="Sardonic Gorilla"
+                                           Margin="0,10"
+                                           Style="{StaticResource SubheaderTextBlockStyle}" />
+                                <TextBlock Text="Zak Counides"
+                                           Margin="0,10"
+                                           Style="{StaticResource SubheaderTextBlockStyle}" />
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
                 </StackPanel>
             </GridView.Header>
             <GridView.GroupStyle>
