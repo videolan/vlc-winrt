@@ -7,6 +7,7 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
+using System;
 using VLC_WINRT.Common;
 using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.Views.MainPages;
@@ -18,7 +19,12 @@ namespace VLC_WINRT_APP.Commands.Video
         public override async void Execute(object parameter)
         {
             await Locator.VideoVm.UpdatePosition();
-            if(App.ApplicationFrame.CanGoBack)
+
+            if (parameter is Type)
+            {
+                App.ApplicationFrame.Navigate((Type) parameter);
+            }
+            else if(App.ApplicationFrame.CanGoBack)
                 App.ApplicationFrame.GoBack();
             else
                 App.ApplicationFrame.Navigate(typeof (MainPageHome));

@@ -13,11 +13,14 @@ using Windows.Graphics.Display;
 using Windows.Media;
 using Windows.System;
 using Windows.UI.ApplicationSettings;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.Services.RunTime;
 using VLC_WINRT_APP.Services.Interface;
+using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.Views.UserControls;
 using VLC_WINRT_APP.Views.VariousPages;
 
@@ -78,7 +81,10 @@ namespace VLC_WINRT_APP.Views.MainPages
             var settings = new SettingsCommand("settings", resourceLoader.GetString("Settings"),
                 command =>
                 {
-                    App.ApplicationFrame.Navigate(typeof(SettingsPage));
+                    if (Locator.VideoVm.PlayingType == PlayingType.Video)
+                    {
+                        Locator.VideoVm.GoBack.Execute(typeof(SettingsPage));
+                    }
                 });
 
             var about = new SettingsCommand("about", "About The App",
