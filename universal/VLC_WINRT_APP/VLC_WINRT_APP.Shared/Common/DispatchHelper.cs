@@ -29,8 +29,7 @@ namespace VLC_WINRT.Common
             }
             else
             {
-                return CoreApplication.MainView.CoreWindow.
-                    Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => action()).AsTask();
+                return CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => action()).AsTask();
             }
         }
 
