@@ -28,11 +28,13 @@ namespace VLC_WINRT_APP.Views.MusicPages
             this.Unloaded += OnUnloaded;
         }
 
+#if WINDOWS_PHONE_APP
         private void HardwareButtonsOnBackPressed(object sender, BackPressedEventArgs backPressedEventArgs)
         {
             App.ApplicationFrame.GoBack();
             backPressedEventArgs.Handled = true;
         }
+#endif
 
         #region layout
         protected override async void OnNavigatedTo(NavigationEventArgs e)

@@ -28,7 +28,7 @@
                   IsItemClickEnabled="True"
                   SelectionMode="None"
                   ItemContainerStyle="{StaticResource ListViewItemStyle}"
-                  ItemTemplate="{StaticResource AdaptativeHorizontalPanelTemplate}"
+                  ItemTemplate="{StaticResource ArtistHorizontalTemplate}"
                   ItemClick="ArtistListView_OnItemClick">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
