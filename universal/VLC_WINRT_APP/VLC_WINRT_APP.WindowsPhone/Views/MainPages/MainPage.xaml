@@ -21,12 +21,15 @@
           Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
           Visibility="{Binding Source={StaticResource Locator}, Path=VideoVm.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}" />
 
-    <Image Grid.Row="0"
-           Grid.RowSpan="2"
-           DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}"
-           Source="{Binding CurrentArtist.Picture}"
-           Stretch="UniformToFill"
-           Opacity="0.3"/>
+    <Grid Grid.Row="0"
+          Grid.RowSpan="2"
+          DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}"
+          Visibility="{Binding CurrentPage, Converter={StaticResource MusicPlayerBackgroundVisibilityConverter}}">
+        <Image DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}"
+               Source="{Binding CurrentArtist.ArtistImage}"
+               Stretch="UniformToFill"
+               Opacity="0.3" />
+    </Grid>
     
     <Frame x:Name="MainFrame"
            x:FieldModifier="public"
