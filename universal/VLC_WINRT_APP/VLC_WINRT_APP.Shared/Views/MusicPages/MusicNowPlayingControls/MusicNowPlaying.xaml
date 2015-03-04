@@ -64,8 +64,10 @@
                              FontSize="19"
                              Foreground="{ThemeResource ApplicationBackgroundQuarterTranslucentThemeBrush}" />
             </TextBlock>
-            <userControls:SliderControl Grid.Row="2"
-                                        DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}" />
+            <Grid Grid.Row="2"
+                  Visibility="{Binding IsCurrentPlaying, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <userControls:SliderControl DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}" />
+            </Grid>
             <Grid Grid.Row="3"
                   DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}">
                 <Grid.ColumnDefinitions>
