@@ -47,7 +47,7 @@
                            FontSize="16"
                            FontWeight="Normal"
                            VerticalAlignment="Center"
-                           Margin="7,0" />
+                           Margin="0,0,7,0" />
                 <TextBlock Grid.Row="1"
                            Grid.Column="0"
                            TextWrapping="NoWrap"
@@ -56,7 +56,7 @@
                            FontWeight="Light"
                            Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
                            VerticalAlignment="Center"
-                           Margin="7,0">
+                           Margin="0,0,7,0">
                         <Run Text="{Binding Albums.Count}" />
                         <Run Text="albums" />
                 </TextBlock>
