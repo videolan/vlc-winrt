@@ -28,7 +28,10 @@ namespace VLC_WINRT_APP.Views.MusicPages.MusicNowPlayingControls
         private void TrackCollectionOnPropertyChanged(object sender, PropertyChangedEventArgs propertyChangedEventArgs)
         {
             if (propertyChangedEventArgs.PropertyName == "CurrentTrack")
-                MusicNowPlaying.SelectedIndex = Locator.MusicPlayerVM.TrackCollection.CurrentTrack;
+            {
+                if (MusicNowPlaying.Items != null && (Locator.MusicPlayerVM.TrackCollection.CurrentTrack == -1 || Locator.MusicPlayerVM.TrackCollection.CurrentTrack < MusicNowPlaying.Items.Count - 1))
+                    MusicNowPlaying.SelectedIndex = Locator.MusicPlayerVM.TrackCollection.CurrentTrack;
+            }
         }
 
         private async void MusicNowPlaying_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
