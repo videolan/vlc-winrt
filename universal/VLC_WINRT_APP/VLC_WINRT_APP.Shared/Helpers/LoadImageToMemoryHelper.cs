@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.UI.Core;
 using Windows.UI.Xaml.Media.Imaging;
+using VLC_WINRT_APP.Helpers.MusicLibrary;
 using VLC_WINRT_APP.Model.Music;
 
 namespace VLC_WINRT_APP.Helpers
@@ -43,7 +44,9 @@ namespace VLC_WINRT_APP.Helpers
                 LogHelper.Log("Error getting album picture : " + item.Name);
             }
             if (!fileExists)
-                await item.LoadPicture();
+            {
+                await MusicLibraryManagement.FetchAlbumCoverOrWaitAsync(item);
+            }
         }
 
         public static async Task LoadImageToMemory(ArtistItem item)
@@ -80,7 +83,7 @@ namespace VLC_WINRT_APP.Helpers
             // Failed to get the artist image or no cover image. So go online and check
             // for a new one.
             if (!fileExists)
-                await item.LoadPicture();
+                await MusicLibraryManagement.FetchArtistPicOrWaitAsync(item);
         }
     }
 }

@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Dynamic;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Storage;
@@ -32,10 +33,40 @@ using Windows.Media.Playback;
 using Windows.Phone.ApplicationModel;
 #else
 #endif
+
 namespace VLC_WINRT_APP.Helpers.MusicLibrary
 {
     public static class MusicLibraryManagement
     {
+        static readonly SemaphoreSlim AlbumCoverFetcherSemaphoreSlim = new SemaphoreSlim(2);
+        static readonly SemaphoreSlim ArtistPicFetcherSemaphoreSlim = new SemaphoreSlim(2);
+        public static async Task FetchAlbumCoverOrWaitAsync(AlbumItem albumItem)
+        {
+            await AlbumCoverFetcherSemaphoreSlim.WaitAsync();
+            try
+            {
+                await albumItem.LoadPicture();
+            }
+            finally
+            {
+                AlbumCoverFetcherSemaphoreSlim.Release();
+            }
+        }
+
+        public static async Task FetchArtistPicOrWaitAsync(ArtistItem artistItem)
+        {
+            await ArtistPicFetcherSemaphoreSlim.WaitAsync();
+            try
+            {
+                await artistItem.LoadPicture();
+            }
+            finally
+            {
+                ArtistPicFetcherSemaphoreSlim.Release();
+            }
+        }
+
+
         public static async Task LoadFromSQL()
         {
             try
