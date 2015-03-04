@@ -2,6 +2,7 @@ using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Windows.Storage;
+using Windows.UI.Core;
 using Windows.UI.Xaml.Media.Imaging;
 using VLC_WINRT_APP.Model.Music;
 
@@ -26,11 +27,14 @@ namespace VLC_WINRT_APP.Helpers
                     Debug.WriteLine("Opening file albumPic " + item.Id);
                     var file = await StorageFile.GetFileFromApplicationUriAsync(new Uri(item.Picture));
                     var stream = await file.OpenAsync(FileAccessMode.Read);
-                    var image = new BitmapImage();
-                    stream.Seek(0);
-                    image.SetSource(stream);
-                    stream.Dispose();
-                    item.AlbumImage = image;
+                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                    {
+                        var image = new BitmapImage();
+                        stream.Seek(0);
+                        image.SetSource(stream);
+                        stream.Dispose();
+                        item.AlbumImage = image;
+                    });
                 }
             }
             catch (Exception)
