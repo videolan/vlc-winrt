@@ -16,19 +16,19 @@
             <ColumnDefinition x:Name="HorizontalNowPlayingColumnDefinition" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition x:Name="HeaderRowDefinition" 
-                           Height="Auto"/>
-            <RowDefinition x:Name="HeaderSeparatorRowDefinition"
-                           Height="24"/>
+            <RowDefinition x:Name="HeaderRowDefinition"
+                           Height="Auto" />
             <RowDefinition x:Name="CoverRowDefinition" />
             <RowDefinition x:Name="SeparatorRowDefinition" />
             <RowDefinition x:Name="VerticalNowPlayingColumnDefinition" />
         </Grid.RowDefinitions>
-        <TextBlock Grid.ColumnSpan="2"
+        <TextBlock x:Name="HeaderTextBlock"
+                   Grid.ColumnSpan="2"
                    Text="now playing"
                    FontSize="36"
-                   FontWeight="ExtraLight" />
-        <Image Grid.Row="2"
+                   FontWeight="ExtraLight"
+                   Margin="0,0,0,24" />
+        <Image Grid.Row="1"
                Grid.Column="0"
                Source="{Binding Thumbnail}"
                Stretch="Uniform"
@@ -75,7 +75,8 @@
                                       Width="Auto" />
                     <ColumnDefinition x:Name="SecondPlaybackButtonColumnDefinition" />
                 </Grid.ColumnDefinitions>
-                <Grid x:Name="MainPlaybackButtonGrid">
+                <Grid x:Name="MainPlaybackButtonGrid"
+                      MaxWidth="250">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition />
@@ -165,7 +166,7 @@
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="NowPlayingGrid"
                                                        Storyboard.TargetProperty="(Grid.Row)">
                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="2" />
+                                                    Value="1" />
                         </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="NowPlayingGrid"
                                                        Storyboard.TargetProperty="(Grid.Column)">
@@ -239,7 +240,7 @@
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="NowPlayingGrid"
                                                        Storyboard.TargetProperty="(Grid.Row)">
                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="4" />
+                                                    Value="3" />
                         </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="NowPlayingGrid"
                                                        Storyboard.TargetProperty="(Grid.Column)">
@@ -295,6 +296,26 @@
                                                        Storyboard.TargetProperty="Margin">
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="24,0" />
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+            <VisualStateGroup>
+                <VisualState x:Name="Tall">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HeaderTextBlock"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Tiny">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HeaderTextBlock"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Collapsed" />
                         </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
