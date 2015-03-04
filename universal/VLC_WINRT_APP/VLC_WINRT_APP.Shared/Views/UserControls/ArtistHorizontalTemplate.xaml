@@ -34,8 +34,8 @@
                Stretch="UniformToFill" />
         <TextBlock Grid.Column="2"
                    Grid.Row="0"
-                   Text="{Binding Name}"
-                   FontSize="22"
+                   Text="{Binding Name, Converter={StaticResource ArtistStringConverter}}"
+                   FontSize="21"
                    FontWeight="Light"/>
         <TextBlock Grid.Column="2"
                    Grid.Row="1"
