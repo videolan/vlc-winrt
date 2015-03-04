@@ -273,6 +273,10 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             // Pause the music viewmodel
             await Locator.MusicPlayerVM.CleanViewModel();
 
+            // If it's a Stream, set the CurrentVideo to null if there was a video previously played
+            if (!string.IsNullOrEmpty(streamMrl))
+                CurrentVideo = null;
+
             IsRunning = true;
             OnPropertyChanged("IsRunning");
             IsPlaying = true;
