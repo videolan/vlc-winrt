@@ -116,12 +116,9 @@ namespace VLC_WINRT_APP.Model.Music
             set { SetProperty(ref _albumImage, value); }
         }
 
-        public async Task ResetAlbumArt()
+        public Task ResetAlbumArt()
         {
-            await DispatchHelper.InvokeAsync(() =>
-            {
-                LoadImageToMemoryHelper.LoadImageToMemory(this);
-            });
+            return LoadImageToMemoryHelper.LoadImageToMemory(this);
         }
 
         public bool IsPictureLoaded { get; set; }
