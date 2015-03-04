@@ -352,23 +352,24 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
 
         public void SetSubtitleTrack(int i)
         {
-            _mediaService.MediaPlayer.setSpu(i);
+            if (_mediaService.MediaPlayer != null) _mediaService.MediaPlayer.setSpu(i);
         }
 
         public void SetAudioTrack(int i)
         {
-            _mediaService.MediaPlayer.setAudioTrack(i);
+            if (_mediaService.MediaPlayer != null) _mediaService.MediaPlayer.setAudioTrack(i);
         }
 
         public void OpenSubtitle(string mrl)
         {
-            _mediaService.MediaPlayer.setSubtitleFile(mrl);
+            if (_mediaService.MediaPlayer != null) _mediaService.MediaPlayer.setSubtitleFile(mrl);
         }
 
         public void SetRate(float rate)
         {
-            _mediaService.MediaPlayer.setRate(rate);
+            if (_mediaService.MediaPlayer != null) _mediaService.MediaPlayer.setRate(rate);
         }
+
         #endregion
     }
 }
