@@ -224,7 +224,7 @@ namespace VLC_WINRT_APP.Services.RunTime
             {
                 mrl = "file://" + GetToken(file);
             }
-            else if(!isStream)
+            else if (!isStream)
             {
                 mrl = "file://" + await GetToken(filePath);
             }

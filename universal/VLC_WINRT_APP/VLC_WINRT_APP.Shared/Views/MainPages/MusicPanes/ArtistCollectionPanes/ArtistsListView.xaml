@@ -64,7 +64,7 @@
                                                        Storyboard.TargetProperty="ItemsPanel">
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="{StaticResource AdaptativeHorizontalPanelTemplate}" />
-                        </ObjectAnimationUsingKeyFrames> 
+                        </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
             </VisualStateGroup>
