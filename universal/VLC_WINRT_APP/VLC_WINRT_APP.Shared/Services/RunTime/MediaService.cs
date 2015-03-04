@@ -27,6 +27,7 @@ using VLC_WINRT_APP.Views.VideoPages;
 using libVLCX;
 using System.Collections.Generic;
 using System.Diagnostics;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using VLC_WINRT_APP.Helpers.MusicPlayer;
 using VLC_WINRT_APP.Model.Music;
@@ -241,7 +242,18 @@ namespace VLC_WINRT_APP.Services.RunTime
             em.OnPaused += OnPaused;
             em.OnTimeChanged += TimeChanged;
             em.OnEndReached += OnEndReached;
+            em.OnEncounteredError += em_OnEncounteredError;
             _isAudioMedia = isAudioMedia;
+        }
+
+        async void em_OnEncounteredError()
+        {
+            Debug.WriteLine("An error occurred ");
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+            {
+                var md = new MessageDialog("Your media cannot be read.", "We're sorry");
+                await md.ShowAsync();
+            });
         }
 
         public async Task<string> GetToken(string filePath)
