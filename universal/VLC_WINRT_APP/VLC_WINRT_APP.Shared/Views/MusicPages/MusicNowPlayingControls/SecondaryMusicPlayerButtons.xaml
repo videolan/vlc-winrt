@@ -8,15 +8,17 @@
       d:DesignHeight="300"
       d:DesignWidth="400">
     <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="Auto" />
-        <ColumnDefinition Width="Auto" />
-        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition />
+        <ColumnDefinition />
+        <ColumnDefinition />
+        <ColumnDefinition />
     </Grid.ColumnDefinitions>
     <AppBarToggleButton Grid.Column="0"
                         Icon="Shuffle"
                         IsCompact="True"
                         IsChecked="{Binding TrackCollection.IsShuffled}"
                         VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
                         Command="{Binding Shuffle}" />
     <Button Grid.Column="1"
             Style="{StaticResource TextBlockButtonStyle}"
@@ -36,7 +38,20 @@
                         Icon="Favorite"
                         IsCompact="True"
                         VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
                         IsChecked="{Binding CurrentAlbum.Favorite}"
                         Command="{Binding CurrentAlbum.FavoriteAlbum}"
                         CommandParameter="{Binding CurrentAlbum}" />
+    <Button Grid.Column="3"
+            HorizontalAlignment="Center"
+            Style="{StaticResource TextBlockButtonStyle}"
+            Command="{Binding GoToMusicPlaylistPageCommand}">
+        <Button.Content>
+            <Path Data="{StaticResource PlaylistPath}"
+                  Fill="White"
+                  Stretch="UniformToFill"
+                  Height="26"
+                  Width="26" />
+        </Button.Content>
+    </Button>
 </Grid>
