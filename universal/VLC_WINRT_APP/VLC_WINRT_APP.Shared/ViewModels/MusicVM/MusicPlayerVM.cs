@@ -9,38 +9,25 @@
 
 using VLC_WINRT_APP.DataRepository;
 using System;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.ComTypes;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Resources;
 using Windows.Storage;
-using Windows.Storage.AccessCache;
 using Windows.UI.Core;
 using Windows.UI.Notifications;
-using Windows.UI.Popups;
-using SQLite;
 using VLC_WINRT.Common;
 using VLC_WINRT_APP.Commands.MediaPlayback;
 using VLC_WINRT_APP.Commands.Music;
 using VLC_WINRT_APP.Helpers;
-using VLC_WINRT_APP.Helpers.MusicLibrary;
-using VLC_WINRT_APP.Helpers.MusicLibrary.Deezer;
 using VLC_WINRT_APP.Model.Music;
 using VLC_WINRT_APP.Services.Interface;
-using VLC_WINRT_APP.Services.RunTime;
-using System.Collections.Generic;
-using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.Views.MainPages;
-using WinRTXamlToolkit.Controls.Extensions;
 using VLC_WINRT_APP.Commands.Social;
 
 #if WINDOWS_PHONE_APP
 using Windows.Media.Playback;
 using VLC_WINRT_APP.BackgroundAudioPlayer.Model;
 using VLC_WINRT_APP.Database.DataRepository;
-using VLC_WINRT_APP.Commands.Social;
+using VLC_WINRT_APP.Model;
 #endif
 
 namespace VLC_WINRT_APP.ViewModels.MusicVM
