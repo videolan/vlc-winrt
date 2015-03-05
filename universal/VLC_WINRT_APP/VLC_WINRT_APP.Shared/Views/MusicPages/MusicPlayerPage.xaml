@@ -21,29 +21,10 @@
             <RowDefinition x:Name="PlaylistRowDefinition" />
         </Grid.RowDefinitions>
         <musicNowPlayingControls:MusicNowPlayingFlipView x:Name="MusicNowPlaying" />
-        <Grid x:Name="PlaylistGrid"
-              Background="#B3000000"
-              VerticalAlignment="Bottom">
-            <ListView Margin="24"
-                      ItemsSource="{Binding TrackCollection.Playlist}"
-                      IsItemClickEnabled="True"
-                      SelectionMode="None"
-                      ItemTemplate="{StaticResource WPTrackTemplateWONumber}"
-                      ItemContainerStyle="{StaticResource ListViewItemStyle}">
-                <ListView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <ItemsStackPanel />
-                    </ItemsPanelTemplate>
-                </ListView.ItemsPanel>
-                <triggers:Interactions.Triggers>
-                    <triggers:EventTrigger EventName="ItemClick">
-                        <triggers:InvokeCommandAction Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.TrackClickedCommand}"
-                                                      PassEventArgsToCommand="True" />
-                    </triggers:EventTrigger>
-                </triggers:Interactions.Triggers>
-            </ListView>
-        </Grid>
 
+        <musicNowPlayingControls:PlaylistControl x:Name="PlaylistGrid"
+                                                 VerticalAlignment="Bottom"
+                                                 Background="#B3000000" />
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
                 <VisualState x:Name="ExtraWide">

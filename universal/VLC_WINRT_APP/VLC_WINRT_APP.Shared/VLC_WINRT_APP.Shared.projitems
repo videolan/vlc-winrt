@@ -322,11 +322,17 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\MusicPages\MusicNowPlayingControls\MusicNowPlayingFlipView.xaml.cs">
       <DependentUpon>MusicNowPlayingFlipView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\MusicPages\MusicNowPlayingControls\PlaylistControl.xaml.cs">
+      <DependentUpon>PlaylistControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\MusicPages\MusicNowPlayingControls\SecondaryMusicPlayerButtons.xaml.cs">
       <DependentUpon>SecondaryMusicPlayerButtons.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\MusicPages\MusicPlayerPage.xaml.cs">
       <DependentUpon>MusicPlayerPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\MusicPages\MusicPlaylistPage.xaml.cs">
+      <DependentUpon>MusicPlaylistPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\MusicPages\PlaylistControls\AddAlbumToPlaylistBase.xaml.cs">
       <DependentUpon>AddAlbumToPlaylistBase.xaml</DependentUpon>
@@ -621,11 +627,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\MusicPages\MusicNowPlayingControls\PlaylistControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\MusicPages\MusicNowPlayingControls\SecondaryMusicPlayerButtons.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\MusicPages\MusicPlayerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\MusicPages\MusicPlaylistPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

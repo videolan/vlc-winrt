@@ -8,30 +8,24 @@
              d:DesignHeight="300"
              d:DesignWidth="400">
 
-    <Grid Height="50">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="50" />
-            <ColumnDefinition />
-            <ColumnDefinition Width="50" />
-        </Grid.ColumnDefinitions>
-        <TextBlock Grid.Column="0"
-                   Text="{Binding Time, Converter={StaticResource MillisecondsStringConverter}}"
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="30" />
+        </Grid.RowDefinitions>
+        <TextBlock Text="{Binding Time, Converter={StaticResource MillisecondsStringConverter}}"
                    HorizontalAlignment="Left"
-                   VerticalAlignment="Center"
                    FontWeight="Light"
                    FontSize="18"
-                   Foreground="{ThemeResource BasicForeground}" />
-        <Slider Grid.Column="1"
-                Margin="6,0"
-                VerticalAlignment="Center"
+                   Foreground="{ThemeResource MainColor}" />
+        <Slider Grid.Row="1"
+                Margin="0,-12,0,0"
                 Value="{Binding Position, Mode=TwoWay, Converter={StaticResource PositionToFixedPointConverter}}"
                 Style="{StaticResource VLCSlider}"
                 Maximum="500"
                 ThumbToolTipValueConverter="{StaticResource PositionToTimeStampStringConverter}" />
-        <TextBlock Grid.Column="2"
-                   Text="{Binding TimeTotal.TotalSeconds, Converter={StaticResource SecondsStringConverter}}"
+        <TextBlock Text="{Binding TimeTotal.TotalSeconds, Converter={StaticResource SecondsStringConverter}}"
                    HorizontalAlignment="Right"
-                   VerticalAlignment="Center"
                    FontWeight="Light"
                    FontSize="18"
                    Foreground="{ThemeResource BasicForeground}" />
