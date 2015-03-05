@@ -173,6 +173,8 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                     if (trackItem == null) continue;
                     trackItem.IsCurrentPlaying = Playlist[_currentTrack].Id == trackItem.Id;
                 }
+                OnPropertyChanged("CanGoPrevious");
+                OnPropertyChanged("CanGoNext");
             }
             catch (ArgumentOutOfRangeException exception)
             {
