@@ -25,7 +25,7 @@
                     <SolidColorBrush x:Key="BasicForeground"
                                      Color="White" />
                     <SolidColorBrush x:Key="SliderForegroundProgressTheneBrush"
-                                     Color="WhiteSmoke" />
+                                     Color="{StaticResource MainColorBase}" />
                 </ResourceDictionary>
                 <ResourceDictionary x:Key="Light">
                     <Color x:Key="ApplicationPageBackgroundThemeColor">WhiteSmoke</Color>
