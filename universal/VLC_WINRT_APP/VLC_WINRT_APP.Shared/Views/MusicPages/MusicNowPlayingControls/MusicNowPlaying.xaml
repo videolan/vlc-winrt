@@ -34,9 +34,8 @@
                Stretch="Uniform"
                VerticalAlignment="Top"
                extensions:ImageExtensions.FadeInOnLoaded="True"
-               MaxHeight="300"
-               MaxWidth="300" />
-
+               MaxHeight="400"
+               MaxWidth="400" />
         <Grid x:Name="NowPlayingGrid">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
