@@ -4,22 +4,60 @@
       xmlns:local="using:VLC_WINRT_APP.Views.MainPages.MusicPanes.ArtistCollectionPanes"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:triggers="using:WinRT.Triggers"
       mc:Ignorable="d"
       d:DesignHeight="300"
       d:DesignWidth="400">
     <Grid.RowDefinitions>
         <RowDefinition Height="40" />
+        <RowDefinition Height="Auto" />
         <RowDefinition />
     </Grid.RowDefinitions>
     <TextBlock Grid.Row="0"
                Style="{StaticResource LittleHeaderTextBlockStyle}">
             <Run Text="{Binding Tracks.Count}" />
             <Run Text="TRACKS" />
-            <Run Text="{Binding Name, Converter={StaticResource StringToUpperConverter}}"
-                 Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}" />
     </TextBlock>
-    <ListView Grid.Row="1"
-              ItemsSource="{Binding Tracks}">
+    <Grid Grid.Row="1"
+          Visibility="{Binding CurrentAlbum, TargetNullValue=Collapsed}"
+          Height="90">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="90" />
+            <ColumnDefinition Width="12" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Image Grid.Row="0"
+               Grid.RowSpan="2"
+               Source="{Binding AlbumImage}"
+               Stretch="UniformToFill" />
+        <TextBlock Grid.Column="2"
+                   Grid.Row="0"
+                   Style="{StaticResource LittleHeaderTextBlockStyle}"
+                   VerticalAlignment="Bottom">
+            <Run Text="{Binding Name}" />
+        </TextBlock>
+        <AppBarButton Grid.Row="1"
+                      Grid.Column="2"
+                      Style="{StaticResource AppBarButtonStyleHorizontal}"
+                      Label="Play all"
+                      Command="{Binding PlayAlbum}"
+                      CommandParameter="{Binding}"
+                      VerticalAlignment="Top">
+            <AppBarButton.Icon>
+                <PathIcon Data="{StaticResource PlayPathNarrow}" />
+            </AppBarButton.Icon>
+        </AppBarButton>
+    </Grid>
+    <ListView Grid.Row="2"
+              ItemsSource="{Binding Tracks}"
+              SelectionMode="None"
+              ItemContainerStyle="{StaticResource ListViewItemStyle}"
+              IsItemClickEnabled="True"
+              ItemClick="ListViewBase_OnItemClick">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <TextBlock Text="{Binding Name}" />
