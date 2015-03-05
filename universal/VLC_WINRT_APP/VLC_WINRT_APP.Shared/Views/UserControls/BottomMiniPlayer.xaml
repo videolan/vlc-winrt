@@ -148,10 +148,15 @@
                        FontSize="15"
                        Foreground="White" />
         </Grid>
-        <local:SliderControl x:Name="SliderControl"
-                             Grid.Column="2"
-                             Margin="12,0" 
-                             RequestedTheme="Dark"/>
+        <Slider x:Name="SliderControl"
+                Grid.Column="2"
+                RequestedTheme="Dark"
+                VerticalAlignment="Center"
+                Margin="0,-12,0,0"
+                Value="{Binding Position, Mode=TwoWay, Converter={StaticResource PositionToFixedPointConverter}}"
+                Style="{StaticResource VLCSlider}"
+                Maximum="500"
+                ThumbToolTipValueConverter="{StaticResource PositionToTimeStampStringConverter}" />
         <Grid x:Name="PlayPauseGrid"
               Grid.Row="0"
               Grid.Column="3"
