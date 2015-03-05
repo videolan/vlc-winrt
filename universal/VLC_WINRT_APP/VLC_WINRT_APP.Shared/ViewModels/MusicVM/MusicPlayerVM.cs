@@ -38,6 +38,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         private TrackCollection _trackCollection;
         private GoToMusicPlayerPage _goToMusicPlayerPage;
         private ShareNowPlayingMusicCommand _shareNowPlayingMusicCommand;
+        private GoToMusicPlaylistPageCommand _goToMusicPlaylistPageCommand;
         private AlbumItem _currentAlbum;
         private ArtistItem _currentArist;
         private ArtistDataRepository _artistDataRepository = new ArtistDataRepository();
@@ -136,6 +137,15 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             get
             {
                 return _shareNowPlayingMusicCommand ?? (_shareNowPlayingMusicCommand = new ShareNowPlayingMusicCommand());
+            }
+        }
+
+        public GoToMusicPlaylistPageCommand GoToMusicPlaylistPageCommand
+        {
+            get
+            {
+                return _goToMusicPlaylistPageCommand ??
+                       (_goToMusicPlaylistPageCommand = new GoToMusicPlaylistPageCommand());
             }
         }
         #endregion
