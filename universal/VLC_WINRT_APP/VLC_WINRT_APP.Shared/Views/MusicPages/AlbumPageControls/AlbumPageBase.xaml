@@ -23,15 +23,9 @@
                 <local:MainAlbumHeader />
             </DataTemplate>
         </ListView.HeaderTemplate>
-        <ListView.ItemContainerTransitions>
-            <TransitionCollection>
-                <AddDeleteThemeTransition />
-                <EntranceThemeTransition />
-            </TransitionCollection>
-        </ListView.ItemContainerTransitions>
         <ListView.ItemsPanel>
             <ItemsPanelTemplate>
-                <ItemsStackPanel Margin="12,12,0,60" />
+                <ItemsStackPanel Margin="12,12,0,60"/>
             </ItemsPanelTemplate>
         </ListView.ItemsPanel>
         <triggers:Interactions.Triggers>
