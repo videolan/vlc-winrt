@@ -4,14 +4,8 @@
       xmlns:local="using:VLC_WINRT_APP.Views.MusicPages"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:triggers="using:WinRT.Triggers"
-      xmlns:placeholder="using:VLC_WINRT_APP.Views.UserControls.Placeholder"
-      xmlns:controls="using:VLC_WINRT.Views.Controls"
       xmlns:musicPanes="using:VLC_WINRT_APP.Views.MainPages.MusicPanes"
       mc:Ignorable="d"
       d:DesignHeight="300"
-      d:DesignWidth="400"
-      DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
-    <musicPanes:ArtistCollectionBase x:Name="ArtistCollectionBase"
-                                     Loaded="Collection_Loaded"/>
+      d:DesignWidth="400">
 </Page>

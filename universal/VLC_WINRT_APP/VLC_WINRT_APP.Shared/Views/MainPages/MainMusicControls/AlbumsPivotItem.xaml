@@ -4,14 +4,7 @@
       xmlns:local="using:VLC_WINRT_APP.Views.MainPages.MainMusicControls"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:scrollWatchedSelector="using:ScrollWatchedSelector"
-      xmlns:triggers="using:WinRT.Triggers"
-      xmlns:placeholder="using:VLC_WINRT_APP.Views.UserControls.Placeholder"
-      xmlns:musicPanes="using:VLC_WINRT_APP.Views.MainPages.MusicPanes"
-      xmlns:albumPageControls="using:VLC_WINRT_APP.Views.MusicPages.AlbumPageControls"
       mc:Ignorable="d"
       d:DesignHeight="300"
       d:DesignWidth="400">
-    <musicPanes:AlbumCollectionBase x:Name="AlbumCollectionBase"
-                                    Loaded="Collection_Loaded" />
 </Page>

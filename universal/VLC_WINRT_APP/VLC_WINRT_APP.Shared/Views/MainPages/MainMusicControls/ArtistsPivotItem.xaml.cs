@@ -1,6 +1,11 @@
-﻿using Windows.UI.Xaml;
+﻿using System;
+using System.Threading.Tasks;
+using Windows.UI.Core;
+using Windows.UI.Popups;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using VLC_WINRT_APP.Model.Video;
+using Windows.UI.Xaml.Navigation;
+using VLC_WINRT_APP.Views.MainPages.MusicPanes;
 
 namespace VLC_WINRT_APP.Views.MainPages.MainMusicControls
 {
@@ -10,11 +15,11 @@ namespace VLC_WINRT_APP.Views.MainPages.MainMusicControls
         {
             this.InitializeComponent();
         }
-        private void Collection_Loaded(object sender, RoutedEventArgs e)
+
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
-#if WINDOWS_APP
-            ArtistCollectionBase.Margin = new Thickness(24, 0, 0, 0);
-#endif
+            base.OnNavigatedTo(e);
+            this.Content = new ArtistCollectionBase();
         }
     }
 }

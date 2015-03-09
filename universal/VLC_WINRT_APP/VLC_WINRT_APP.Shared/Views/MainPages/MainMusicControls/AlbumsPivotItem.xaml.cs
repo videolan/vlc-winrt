@@ -1,11 +1,6 @@
-﻿using System.Diagnostics;
-using System.Threading.Tasks;
-using Windows.UI.Xaml;
+﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using VLC_WINRT_APP.Helpers;
-using VLC_WINRT_APP.Model.Music;
-using VLC_WINRT_APP.Model.Video;
-using VLC_WINRT_APP.ViewModels.MusicVM;
+using VLC_WINRT_APP.Views.MainPages.MusicPanes;
 
 namespace VLC_WINRT_APP.Views.MainPages.MainMusicControls
 {
@@ -14,13 +9,12 @@ namespace VLC_WINRT_APP.Views.MainPages.MainMusicControls
         public AlbumsPivotItem()
         {
             this.InitializeComponent();
+            this.Loaded += AlbumsPivotItem_Loaded;
         }
 
-        private void Collection_Loaded(object sender, RoutedEventArgs e)
+        private void AlbumsPivotItem_Loaded(object sender, RoutedEventArgs e)
         {
-#if WINDOWS_APP
-            AlbumCollectionBase.Margin = new Thickness(24,0,0,0);
-#endif
+            this.Content = new AlbumCollectionBase();
         }
     }
 }
