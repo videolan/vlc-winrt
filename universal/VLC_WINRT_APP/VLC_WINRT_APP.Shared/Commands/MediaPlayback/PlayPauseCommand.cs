@@ -30,7 +30,7 @@ namespace VLC_WINRT_APP.Commands.MediaPlayback
 #if WINDOWS_APP
             playerService.Pause();
 #else
-            if (BackgroundMediaPlayer.Current != null && Locator.MusicPlayerVM.PlayingType == PlayingType.Music && !playerService.UseVlcLib)
+            if (BackgroundMediaPlayer.Current != null && Locator.MediaPlaybackViewModel.PlayingType == PlayingType.Music && !playerService.UseVlcLib)
             {
                 switch (BackgroundMediaPlayer.Current.CurrentState)
                 {

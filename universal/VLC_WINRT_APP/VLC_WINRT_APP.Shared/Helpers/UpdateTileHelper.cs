@@ -93,7 +93,7 @@ namespace VLC_WINRT_APP.Helpers
             tileTextAttributes[0].InnerText = "playing";
             if (Locator.VideoVm.CurrentVideo != null)
             {
-                tileTextAttributes[1].InnerText = Locator.VideoVm.CurrentVideo.Title;
+                tileTextAttributes[1].InnerText = Locator.VideoVm.CurrentVideo.Name;
 
                 var tileImgAttribues = tileXml.GetElementsByTagName("image");
                 if (Locator.VideoVm.CurrentVideo != null)
@@ -114,7 +114,7 @@ namespace VLC_WINRT_APP.Helpers
 #endif
             if (Locator.VideoVm.CurrentVideo != null)
             {
-                tileTextAttributes[0].InnerText = Locator.VideoVm.CurrentVideo.Title;
+                tileTextAttributes[0].InnerText = Locator.VideoVm.CurrentVideo.Name;
                 var tileImgAttribues = tileXml.GetElementsByTagName("image");
                 if (Locator.VideoVm.CurrentVideo != null)
                     tileImgAttribues[0].Attributes[1].NodeValue = "ms-appdata:///local/videoPic/" + Locator.VideoVm.CurrentVideo.Id + ".jpg";

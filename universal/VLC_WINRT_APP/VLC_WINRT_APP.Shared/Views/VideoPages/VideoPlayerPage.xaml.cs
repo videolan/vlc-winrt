@@ -138,12 +138,12 @@ namespace VLC_WINRT_APP.Views.VideoPages
                 return;
             if (e.Cumulative.Translation.X > 100)
             {
-                Locator.VideoVm.SkipAhead.Execute(null);
+                Locator.MediaPlaybackViewModel.SkipAhead.Execute(null);
                 e.Handled = true;
             }
             else if (e.Cumulative.Translation.X < -100)
             {
-                Locator.VideoVm.SkipBack.Execute(null);
+                Locator.MediaPlaybackViewModel.SkipBack.Execute(null);
                 e.Handled = true;
             }
         }

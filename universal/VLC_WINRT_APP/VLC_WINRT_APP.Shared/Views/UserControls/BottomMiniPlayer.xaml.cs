@@ -40,8 +40,8 @@ namespace VLC_WINRT_APP.Views.UserControls
 
         private async void PlayPauseHold(object sender, HoldingRoutedEventArgs e)
         {
-            Locator.MusicPlayerVM.Stop();
-            await Locator.MusicPlayerVM.CleanViewModel();
+            Locator.MediaPlaybackViewModel.Stop();
+            await Locator.MediaPlaybackViewModel.CleanViewModel();
         }
 
         void Responsive()

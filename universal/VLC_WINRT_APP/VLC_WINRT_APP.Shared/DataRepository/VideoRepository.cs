@@ -39,7 +39,7 @@ namespace VLC_WINRT_APP.DataRepository
         public async Task<VideoItem> GetFromPath(String path)
         {
             var conn = new SQLiteAsyncConnection(_dbPath);
-            var req = conn.Table<VideoItem>().Where(x => x.FilePath == path);
+            var req = conn.Table<VideoItem>().Where(x => x.Path == path);
             var res = await req.ToListAsync().ConfigureAwait(false);
             return res.FirstOrDefault();
         }

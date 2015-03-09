@@ -3,6 +3,7 @@ using System.Linq;
 using Windows.UI.Xaml.Controls;
 using VLC_WINRT.Common;
 using VLC_WINRT_APP.Helpers.MusicPlayer;
+using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.Model.Music;
 using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.Views.MusicPages;

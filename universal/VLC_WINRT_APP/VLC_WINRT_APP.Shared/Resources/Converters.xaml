@@ -24,7 +24,6 @@
     <converters:MiniPlayerVisibilityFromPlayingTypeConverter x:Key="MiniPlayerVisibilityFromPlayingTypeConverter" />
     <converters:DoubleSpeedToUnderstandableSpeedConverter x:Key="DoubleSpeedToUnderstandableSpeedConverter" />
     <converters:CurrentTrackForegroundConverter x:Key="CurrentTrackForegroundConverter" />
-    <converters:VLCSearchBoxConverter x:Key="VLCSearchBoxConverter" />
     <converters:IsVisibleDependingOnSidebarState x:Key="IsVisibleDependingOnSidebarState" />
     <converters:OpacityDecreaserConverter  x:Key="OpacityDecreaserConverter" />
     <converters:OrderTypeStringifyConverter x:Key="OrderTypeStringifyConverter" />

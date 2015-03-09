@@ -33,7 +33,7 @@
     </Grid>
 
     <userControls:TopBar Grid.Row="0"
-                         Visibility="{Binding Source={StaticResource Locator}, Path=VideoVm.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}" />
+                         Visibility="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}" />
     
     <Frame x:Name="MainFrame"
            Grid.Row="1"

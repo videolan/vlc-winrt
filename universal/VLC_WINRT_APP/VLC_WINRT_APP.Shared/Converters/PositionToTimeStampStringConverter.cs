@@ -13,15 +13,15 @@ namespace VLC_WINRT_APP.Converters
             var pos = 0.0;
             var totalMs = 0.0;
 
-            if (Locator.MusicPlayerVM.PlayingType == PlayingType.Music)
+            if (Locator.MediaPlaybackViewModel.PlayingType == PlayingType.Music)
             {
-                pos = Locator.MusicPlayerVM.Position * maxPos;
-                totalMs = Locator.MusicPlayerVM.TimeTotal.TotalMilliseconds;
+                pos = Locator.MediaPlaybackViewModel.Position * maxPos;
+                totalMs = Locator.MediaPlaybackViewModel.TimeTotal.TotalMilliseconds;
             }
-            else if (Locator.MusicPlayerVM.PlayingType == PlayingType.Video)
+            else if (Locator.MediaPlaybackViewModel.PlayingType == PlayingType.Video)
             {
-                pos = Locator.VideoVm.Position * maxPos;
-                totalMs = Locator.VideoVm.TimeTotal.TotalMilliseconds;
+                pos = Locator.MediaPlaybackViewModel.Position * maxPos;
+                totalMs = Locator.MediaPlaybackViewModel.TimeTotal.TotalMilliseconds;
             }
             var milliSeconds = (long)((pos / maxPos) * totalMs);
             return new MillisecondsStringConverter().Convert(milliSeconds, null, null, null);

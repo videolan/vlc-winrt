@@ -9,9 +9,12 @@
              d:DesignWidth="400"
              DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}"
              Visibility="{Binding CurrentPage, Converter={StaticResource BottomMiniPlayerVisibilityConverter}}">
-    <Grid x:Name="RootGrid"
-          DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}"
-          Visibility="{Binding TrackCollection.IsRunning, Converter={StaticResource BooleanToVisibilityConverter}}">
+    <Grid x:Name="RootGrid">
+        <Grid.Visibility>
+            <Binding Source="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.TrackCollection}"
+                     Path="IsRunning"
+                     Converter="{StaticResource BooleanToVisibilityConverter}"/>
+        </Grid.Visibility>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
@@ -121,6 +124,7 @@
         </VisualStateManager.VisualStateGroups>
 
         <Image Grid.Row="0"
+               DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}"
                Source="{Binding CurrentAlbum.AlbumImage}"
                Stretch="UniformToFill"
                Tapped="RootMiniPlayer_Tapped" />
@@ -131,7 +135,8 @@
               VerticalAlignment="Center"
               Tapped="RootMiniPlayer_Tapped"
               Background="Transparent"
-              MaxWidth="300">
+              MaxWidth="300"
+              DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}">
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition />
@@ -153,6 +158,7 @@
                 RequestedTheme="Dark"
                 VerticalAlignment="Center"
                 Margin="0,-12,0,0"
+                DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
                 Value="{Binding Position, Mode=TwoWay, Converter={StaticResource PositionToFixedPointConverter}}"
                 Style="{StaticResource VLCSlider}"
                 Maximum="500"
@@ -161,7 +167,8 @@
               Grid.Row="0"
               Grid.Column="3"
               VerticalAlignment="Center"
-              Margin="0,0,14,0">
+              Margin="0,0,14,0"
+              DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}">
             <Button Style="{StaticResource TextBlockButtonStyle}"
                     HorizontalAlignment="Left"
                     Command="{Binding PlayOrPauseCommand}"
@@ -189,6 +196,7 @@
                 Grid.Column="4"
                 Margin="0,0,14,0"
                 Style="{StaticResource TextBlockButtonStyle}"
+                DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
                 Command="{Binding PlayNextCommand}"
                 Visibility="{Binding TrackCollection.CanGoNext, Converter={StaticResource BooleanToVisibilityConverter}}">
             <Path Data="{StaticResource NextPath}"

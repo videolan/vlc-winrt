@@ -8,18 +8,12 @@
  **********************************************************************/
 
 using Windows.UI.Core;
-using System.Collections.Generic;
 using System;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using SQLite;
 using VLC_WINRT_APP.Commands.Music;
 using VLC_WINRT_APP.Common;
-using VLC_WINRT_APP.Helpers;
-using VLC_WINRT_APP.Helpers.MusicLibrary;
-using VLC_WINRT_APP.Helpers.MusicLibrary.Deezer;
 using VLC_WINRT_APP.Model.Music;
 
 #if WINDOWS_PHONE_APP
@@ -187,7 +181,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         {
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Playlist = playlist);
 #if WINDOWS_PHONE_APP
-            var backgroundTracks = BackgroundTaskTools.CreateBackgroundTrackItemList(Locator.MusicPlayerVM.TrackCollection.Playlist.ToList());
+            var backgroundTracks = BackgroundTaskTools.CreateBackgroundTrackItemList(Locator.MediaPlaybackViewModel.TrackCollection.Playlist.ToList());
             await App.BackgroundAudioHelper.AddToPlaylist(backgroundTracks);
 #endif
         }
@@ -196,7 +190,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         {
             if (IsShuffled)
             {
-                await SetPlaylist(Locator.MusicPlayerVM.TrackCollection.NonShuffledPlaylist);
+                await SetPlaylist(Locator.MediaPlaybackViewModel.TrackCollection.NonShuffledPlaylist);
             }
             else
             {

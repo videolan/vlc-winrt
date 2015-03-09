@@ -36,7 +36,7 @@
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Column="0"
                            Grid.ColumnSpan="3"
-                           Text="{Binding Title}"
+                           Text="{Binding Name}"
                            TextWrapping="NoWrap"
                            TextTrimming="CharacterEllipsis"
                            FontSize="15"

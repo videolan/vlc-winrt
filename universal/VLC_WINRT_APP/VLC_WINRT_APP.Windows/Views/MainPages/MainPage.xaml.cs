@@ -28,19 +28,17 @@ namespace VLC_WINRT_APP.Views.MainPages
 {
     public sealed partial class MainPage : SwapChainPanel
     {
-        private readonly IMediaService _mediaService;
-        public MainPage(IMediaService mediaService)
+        public MainPage()
         {
             InitializeComponent();
             Loaded += SwapPanelLoaded;
-            _mediaService = mediaService;
-            (mediaService as MediaService).SetMediaTransportControls(SystemMediaTransportControls.GetForCurrentView());
+            //Locator.MediaPlaybackViewModel._mediaService.SetMediaTransportControls(SystemMediaTransportControls.GetForCurrentView());
         }
 
         private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
         {
             Responsive();
-            _mediaService.SetSizeVideoPlayer((uint)sizeChangedEventArgs.NewSize.Width, (uint)sizeChangedEventArgs.NewSize.Height);
+            Locator.MediaPlaybackViewModel._mediaService.SetSizeVideoPlayer((uint)sizeChangedEventArgs.NewSize.Width, (uint)sizeChangedEventArgs.NewSize.Height);
         }
 
         void Responsive()
@@ -49,7 +47,7 @@ namespace VLC_WINRT_APP.Views.MainPages
 
         private void SwapPanelLoaded(object sender, RoutedEventArgs e)
         {
-            _mediaService.Initialize(SwapChainPanel);
+            Locator.MediaPlaybackViewModel._mediaService.Initialize(SwapChainPanel);
             SizeChanged += OnSizeChanged;
             Unloaded += MainPage_Unloaded;
         }
@@ -81,9 +79,9 @@ namespace VLC_WINRT_APP.Views.MainPages
             var settings = new SettingsCommand("settings", resourceLoader.GetString("Settings"),
                 command =>
                 {
-                    if (Locator.VideoVm.PlayingType == PlayingType.Video)
+                    if (Locator.MediaPlaybackViewModel.PlayingType == PlayingType.Video)
                     {
-                        Locator.VideoVm.GoBack.Execute(typeof(SettingsPage));
+                        Locator.MediaPlaybackViewModel.GoBack.Execute(typeof(SettingsPage));
                     }
                 });
 

@@ -12,9 +12,9 @@ namespace VLC_WINRT_APP.Commands.Video
     {
         public override async void Execute(object parameter)
         {
-            if (Locator.MusicPlayerVM.TrackCollection.IsRunning)
+            if (Locator.MediaPlaybackViewModel.TrackCollection.IsRunning)
             {
-                await Locator.MusicPlayerVM.CleanViewModel();
+                await Locator.MediaPlaybackViewModel.CleanViewModel();
             }
             try
             {

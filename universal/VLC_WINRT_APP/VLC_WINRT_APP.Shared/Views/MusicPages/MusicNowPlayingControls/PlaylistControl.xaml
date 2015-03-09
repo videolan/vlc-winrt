@@ -9,7 +9,7 @@
       d:DesignHeight="300"
       d:DesignWidth="400"
       x:Name="PlaylistGrid"
-      DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}">
+      DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}">
     <ListView Margin="24"
               ItemsSource="{Binding TrackCollection.Playlist}"
               IsItemClickEnabled="True"

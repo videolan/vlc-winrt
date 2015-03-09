@@ -1,18 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using SQLite;
 using VLC_WINRT_APP.Commands.Music;
 using VLC_WINRT_APP.Commands.MusicPlayer;
 using VLC_WINRT_APP.Common;
 using VLC_WINRT_APP.Helpers.MusicLibrary;
-using VLC_WINRT_APP.ViewModels;
 
 namespace VLC_WINRT_APP.Model.Music
 {
-    public class TrackItem : BindableBase
+    public class TrackItem : BindableBase, IVLCMedia
     {
         private string _artistName;
         private string _albumName;

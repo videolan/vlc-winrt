@@ -9,6 +9,7 @@ using libVLCX;
 using VLC_WINRT.Common;
 using VLC_WINRT_APP.Common;
 using VLC_WINRT_APP.Helpers.MusicLibrary.Deezer;
+using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.Model.Music;
 using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.ViewModels.MusicVM;
@@ -30,10 +31,10 @@ namespace VLC_WINRT_APP.Helpers.MusicPlayer
         /// <returns></returns>
         public static async Task PlayTrack(int trackId)
         {
-            var track = Locator.MusicPlayerVM.TrackCollection.Playlist.FirstOrDefault(x => x.Id == trackId);
+            var track = Locator.MediaPlaybackViewModel.TrackCollection.Playlist.FirstOrDefault(x => x.Id == trackId);
             if (track != null)
             {
-                await SetCurrentTrackPosition(Locator.MusicPlayerVM.TrackCollection.Playlist.IndexOf(track));
+                await SetCurrentTrackPosition(Locator.MediaPlaybackViewModel.TrackCollection.Playlist.IndexOf(track));
                 await Task.Run(() => Locator.MusicPlayerVM.Play(false));
             }
         }
@@ -43,7 +44,7 @@ namespace VLC_WINRT_APP.Helpers.MusicPlayer
         public static async Task PlayTrackFromFilePicker(StorageFile file, TrackItem trackItem)
         {
             if (trackItem == null) return;
-            await Locator.MusicPlayerVM.TrackCollection.ResetCollection();
+            await Locator.MediaPlaybackViewModel.TrackCollection.ResetCollection();
 #if WINDOWS_PHONE_APP
             var backgroundTrack = BackgroundTaskTools.CreateBackgroundTrackItem(trackItem);
             await App.BackgroundAudioHelper.AddToPlaylist(backgroundTrack);
@@ -64,10 +65,10 @@ namespace VLC_WINRT_APP.Helpers.MusicPlayer
             if (trackItem == null) return;
             if (resetQueue)
             {
-                await Locator.MusicPlayerVM.TrackCollection.ResetCollection();
+                await Locator.MediaPlaybackViewModel.TrackCollection.ResetCollection();
             }
 #if WINDOWS_PHONE_APP
-            if (Locator.MusicPlayerVM.TrackCollection.Playlist.FirstOrDefault(x => x.Id == trackItem.Id) == null)
+            if (Locator.MediaPlaybackViewModel.TrackCollection.Playlist.FirstOrDefault(x => x.Id == trackItem.Id) == null)
             {
                 var backgroundTrack = BackgroundTaskTools.CreateBackgroundTrackItem(trackItem);
                 await App.BackgroundAudioHelper.AddToPlaylist(backgroundTrack);
@@ -88,7 +89,7 @@ namespace VLC_WINRT_APP.Helpers.MusicPlayer
         {
             if (resetQueue)
             {
-                await Locator.MusicPlayerVM.TrackCollection.ResetCollection();
+                await Locator.MediaPlaybackViewModel.TrackCollection.ResetCollection();
             }
             var trackItems = await MusicLibraryVM._trackDataRepository.LoadTracksByAlbumId(albumId);
 #if WINDOWS_PHONE_APP
@@ -117,7 +118,7 @@ namespace VLC_WINRT_APP.Helpers.MusicPlayer
         {
             if (resetQueue)
             {
-                await Locator.MusicPlayerVM.TrackCollection.ResetCollection();
+                await Locator.MediaPlaybackViewModel.TrackCollection.ResetCollection();
             }
             var trackItems = await MusicLibraryVM._trackDataRepository.LoadTracksByArtistId(artistId);
 #if WINDOWS_PHONE_APP
@@ -131,8 +132,8 @@ namespace VLC_WINRT_APP.Helpers.MusicPlayer
 
         public static async Task AddTrackCollectionToPlaylistAndPlay(ObservableCollection<TrackItem> trackCollection, bool play = true, int? index = null)
         {
-            await Locator.MusicPlayerVM.TrackCollection.ResetCollection();
-            await Locator.MusicPlayerVM.TrackCollection.SetPlaylist(trackCollection);
+            await Locator.MediaPlaybackViewModel.TrackCollection.ResetCollection();
+            await Locator.MediaPlaybackViewModel.TrackCollection.SetPlaylist(trackCollection);
 
             if (play)
             {
@@ -149,22 +150,22 @@ namespace VLC_WINRT_APP.Helpers.MusicPlayer
         /// <param name="index"></param>
         static async Task SetCurrentTrackPosition(int index)
         {
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Locator.MusicPlayerVM.TrackCollection.CurrentTrack = index);
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Locator.MediaPlaybackViewModel.TrackCollection.CurrentTrack = index);
         }
 
         static async Task AddTrack(TrackItem track)
         {
-            if (Locator.MusicPlayerVM.TrackCollection.Playlist.FirstOrDefault(x => x.Id == track.Id) == null)
+            if (Locator.MediaPlaybackViewModel.TrackCollection.Playlist.FirstOrDefault(x => x.Id == track.Id) == null)
             {
-                Locator.MusicPlayerVM.TrackCollection.Add(track, true);
+                Locator.MediaPlaybackViewModel.TrackCollection.Add(track, true);
             }
         }
 
         static void AddTracks(IEnumerable<TrackItem> tracks)
         {
-            foreach (var track in tracks.Where(track => Locator.MusicPlayerVM.TrackCollection.Playlist.FirstOrDefault(x => x.Id == track.Id) == null))
+            foreach (var track in tracks.Where(track => Locator.MediaPlaybackViewModel.TrackCollection.Playlist.FirstOrDefault(x => x.Id == track.Id) == null))
             {
-                Locator.MusicPlayerVM.TrackCollection.Add(track, true);
+                Locator.MediaPlaybackViewModel.TrackCollection.Add(track, true);
             }
         }
     }

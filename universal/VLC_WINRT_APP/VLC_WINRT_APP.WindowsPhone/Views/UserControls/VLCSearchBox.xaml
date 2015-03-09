@@ -16,8 +16,7 @@
                         x:Uid="SearchField"
                         PlaceholderText="Search"
                         Text="{Binding SearchTag, Mode=TwoWay}"
-                        Margin="0,0,20,0"
-                        IsEnabled="{Binding Source={StaticResource Locator}, Path=VideoVm.IsPlaying, Converter={StaticResource VLCSearchBoxConverter}}" >
+                        Margin="0,0,20,0">
             <AutoSuggestBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Text}" />

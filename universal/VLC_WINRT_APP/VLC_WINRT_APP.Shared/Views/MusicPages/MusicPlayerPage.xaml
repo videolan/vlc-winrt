@@ -7,7 +7,7 @@
       xmlns:musicNowPlayingControls="using:VLC_WINRT_APP.Views.MusicPages.MusicNowPlayingControls"
       xmlns:extensions="using:WinRTXamlToolkit.Controls.Extensions"
       mc:Ignorable="d"
-      DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}">
+      DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}">
 
     <Grid Loaded="RootGrid_Loaded">
         <Grid.ColumnDefinitions>

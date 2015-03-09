@@ -56,8 +56,8 @@ namespace VLC_WINRT_APP.Views.MusicPages.MusicNowPlayingControls
 
         private async void PlayPauseHold(object sender, HoldingRoutedEventArgs e)
         {
-            Locator.MusicPlayerVM.PlayOrPauseCommand.Execute(null);
-            await Locator.MusicPlayerVM.CleanViewModel();
+            Locator.MediaPlaybackViewModel.PlayOrPauseCommand.Execute(null);
+            await Locator.MediaPlaybackViewModel.CleanViewModel();
             if (App.ApplicationFrame.CanGoBack)
                 App.ApplicationFrame.GoBack();
         }

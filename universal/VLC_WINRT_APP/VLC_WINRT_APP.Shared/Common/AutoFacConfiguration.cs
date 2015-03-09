@@ -34,11 +34,12 @@ namespace VLC_WINRT_APP.Common
 
             // Register View Models
             // TODO: These should not be SingleInstance
-            builder.RegisterType<VideoPlayerVM>().SingleInstance();
             builder.RegisterType<MainVM>().SingleInstance();
+            builder.RegisterType<MediaPlaybackViewModel>().SingleInstance();
             builder.RegisterType<MusicLibraryVM>().SingleInstance();
             builder.RegisterType<MusicPlayerVM>().SingleInstance();
             builder.RegisterType<VideoLibraryVM>().SingleInstance();
+            builder.RegisterType<VideoPlayerVM>().SingleInstance();
             builder.RegisterType<SettingsViewModel>().SingleInstance();
 
             builder.RegisterType<ExternalStorageViewModel>().SingleInstance();

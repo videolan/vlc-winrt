@@ -18,7 +18,7 @@ namespace VLC_WINRT_APP.Commands.Video
     {
         public override async void Execute(object parameter)
         {
-            await Locator.VideoVm.UpdatePosition();
+            await Locator.MediaPlaybackViewModel.UpdatePosition();
 
             if (parameter is Type)
             {
@@ -28,8 +28,8 @@ namespace VLC_WINRT_APP.Commands.Video
                 App.ApplicationFrame.GoBack();
             else
                 App.ApplicationFrame.Navigate(typeof (MainPageHome));
-            await Locator.VideoVm.CleanViewModel();
-            Locator.VideoVm.IsRunning = false;
+            await Locator.MediaPlaybackViewModel.CleanViewModel();
+            Locator.MediaPlaybackViewModel.IsPlaying = false;
         }
     }
 }

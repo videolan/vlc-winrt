@@ -562,8 +562,8 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                 }
 
                 var playingTrack =
-                    Locator.MusicPlayerVM.TrackCollection.Playlist.FirstOrDefault(x => x.Id == trackItem.Id);
-                if (playingTrack != null) Locator.MusicPlayerVM.TrackCollection.Playlist.Remove(playingTrack);
+                    Locator.MediaPlaybackViewModel.TrackCollection.Playlist.FirstOrDefault(x => x.Id == trackItem.Id);
+                if (playingTrack != null) Locator.MediaPlaybackViewModel.TrackCollection.Playlist.Remove(playingTrack);
             });
         }
 

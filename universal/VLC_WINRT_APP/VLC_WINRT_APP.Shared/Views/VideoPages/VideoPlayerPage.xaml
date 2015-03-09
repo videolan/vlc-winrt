@@ -8,7 +8,7 @@
       xmlns:userControls="using:VLC_WINRT_APP.Views.UserControls"
       mc:Ignorable="d"
       Background="Transparent"
-      DataContext="{Binding Source={StaticResource Locator}, Path=VideoVm}"
+      DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
       RequestedTheme="Dark">
 
     <Grid x:Name="ControlsGrid"
@@ -34,7 +34,8 @@
                    HorizontalAlignment="Center"
                    FontSize="20"
                    Margin="0,12,0,0"
-                   Text="{Binding CurrentVideo.Title}" />
+                   DataContext="{Binding Source={StaticResource Locator}, Path=VideoVm}"
+                   Text="{Binding CurrentVideo.Name}" />
         <Grid Background="Transparent"
               Grid.Row="0"
               Grid.RowSpan="3"

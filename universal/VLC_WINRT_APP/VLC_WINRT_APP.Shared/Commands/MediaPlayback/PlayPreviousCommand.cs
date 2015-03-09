@@ -17,10 +17,10 @@ namespace VLC_WINRT_APP.Commands.MediaPlayback
         public override async void Execute(object parameter)
         {
 #if WINDOWS_APP
-            if (Locator.MusicPlayerVM.IsPlaying)
+            if (Locator.MediaPlaybackViewModel.IsPlaying)
             {
                 // Music Logic
-                await Locator.MusicPlayerVM.PlayPrevious();
+                await Locator.MediaPlaybackViewModel.PlayPrevious();
             }
             else
             {

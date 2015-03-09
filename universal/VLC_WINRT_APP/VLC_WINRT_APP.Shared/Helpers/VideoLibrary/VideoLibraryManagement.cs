@@ -28,8 +28,11 @@ namespace VLC_WINRT_APP.Helpers.VideoLibrary
             {
                 try
                 {
-                    StorageFile file = await StorageFile.GetFileFromPathAsync(videoVm.FilePath);
-                    videoVm.File = file;
+                    if (videoVm.Path != null)
+                    {
+                        StorageFile file = await StorageFile.GetFileFromPathAsync(videoVm.Path);
+                        videoVm.File = file;
+                    }
                     await videoVm.GenerateThumbnail();
                     await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
                     {
@@ -79,10 +82,10 @@ namespace VLC_WINRT_APP.Helpers.VideoLibrary
                             : new VideoItem(showInfoDictionary["season"], showInfoDictionary["episode"]);
                         await mediaVM.Initialize(storageFile);
                         mediaVM.IsCameraRoll = isCameraRoll;
-                        if (string.IsNullOrEmpty(mediaVM.Title))
+                        if (string.IsNullOrEmpty(mediaVM.Name))
                             continue;
                         VideoItem searchVideo =
-                            Locator.VideoLibraryVM.ViewedVideos.FirstOrDefault(x => x.Title == mediaVM.Title);
+                            Locator.VideoLibraryVM.ViewedVideos.FirstOrDefault(x => x.Name == mediaVM.Name);
                         if (searchVideo != null)
                         {
                             mediaVM.TimeWatched = searchVideo.TimeWatched;
@@ -106,7 +109,7 @@ namespace VLC_WINRT_APP.Helpers.VideoLibrary
                         //#if WINDOWS_APP
                         if (Locator.VideoLibraryVM.ViewedVideos.Count < 6 &&
                             Locator.VideoLibraryVM.ViewedVideos.FirstOrDefault(
-                                x => x.FilePath == mediaVM.FilePath && x.TimeWatched == TimeSpan.Zero) == null)
+                                x => x.Path == mediaVM.Path && x.TimeWatched == TimeSpan.Zero) == null)
                             Locator.VideoLibraryVM.ViewedVideos.Add(mediaVM);
                         //#endif
                     });

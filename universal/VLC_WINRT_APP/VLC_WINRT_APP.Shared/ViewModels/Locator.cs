@@ -45,6 +45,11 @@ namespace VLC_WINRT_APP.ViewModels
             get { return App.Container.Resolve<MainVM>(); }
         }
 
+        public static MediaPlaybackViewModel MediaPlaybackViewModel
+        {
+            get { return App.Container.Resolve<MediaPlaybackViewModel>(); }
+        }
+
         public static MusicPlayerVM MusicPlayerVM
         {
             get { return App.Container.Resolve<MusicPlayerVM>(); }
@@ -68,7 +73,6 @@ namespace VLC_WINRT_APP.ViewModels
         {
             get { return App.Container.Resolve<ExternalStorageViewModel>(); }
         }
-
 
         public static DLNAVM DlnaVM
         {

@@ -38,7 +38,7 @@ using MediaPlayer = libVLCX.MediaPlayer;
 
 namespace VLC_WINRT_APP.Services.RunTime
 {
-    public class MediaService : IMediaService
+    public sealed class MediaService : IMediaService
     {
         public event EventHandler<MediaState> StatusChanged;
         public event TimeChanged TimeChanged;
@@ -51,6 +51,7 @@ namespace VLC_WINRT_APP.Services.RunTime
         public Instance Instance { get; private set; }
         public MediaPlayer MediaPlayer { get; private set; }
         public bool UseVlcLib { get; set; }
+
         public MediaService()
         {
             VLCInstanceReady = new TaskCompletionSource<bool>();
@@ -159,16 +160,16 @@ namespace VLC_WINRT_APP.Services.RunTime
                     Stop();
                     break;
                 case SystemMediaTransportControlsButton.Previous:
-                    if (Locator.MusicPlayerVM.PlayingType == PlayingType.Music)
-                        await Locator.MusicPlayerVM.PlayPrevious();
+                    if (Locator.MediaPlaybackViewModel.PlayingType == PlayingType.Music)
+                        await Locator.MediaPlaybackViewModel.PlayPrevious();
                     else
-                        Locator.VideoVm.SkipBack.Execute("");
+                        Locator.MediaPlaybackViewModel.SkipBack.Execute("");
                     break;
                 case SystemMediaTransportControlsButton.Next:
-                    if (Locator.MusicPlayerVM.PlayingType == PlayingType.Music)
-                        await Locator.MusicPlayerVM.PlayNext();
+                    if (Locator.MediaPlaybackViewModel.PlayingType == PlayingType.Music)
+                        await Locator.MediaPlaybackViewModel.PlayNext();
                     else
-                        Locator.VideoVm.SkipAhead.Execute("");
+                        Locator.MediaPlaybackViewModel.SkipAhead.Execute("");
                     break;
             }
         }
@@ -325,8 +326,8 @@ namespace VLC_WINRT_APP.Services.RunTime
                 _systemMediaTransportControls.IsEnabled = true;
                 _systemMediaTransportControls.IsPauseEnabled = true;
                 _systemMediaTransportControls.IsPlayEnabled = true;
-                _systemMediaTransportControls.IsNextEnabled = Locator.MusicPlayerVM.PlayingType != PlayingType.Music || Locator.MusicPlayerVM.TrackCollection.CanGoNext;
-                _systemMediaTransportControls.IsPreviousEnabled = Locator.MusicPlayerVM.PlayingType != PlayingType.Music || Locator.MusicPlayerVM.TrackCollection.CanGoPrevious;
+                _systemMediaTransportControls.IsNextEnabled = Locator.MediaPlaybackViewModel.PlayingType != PlayingType.Music || Locator.MediaPlaybackViewModel.TrackCollection.CanGoNext;
+                _systemMediaTransportControls.IsPreviousEnabled = Locator.MediaPlaybackViewModel.PlayingType != PlayingType.Music || Locator.MediaPlaybackViewModel.TrackCollection.CanGoPrevious;
             }
         }
 

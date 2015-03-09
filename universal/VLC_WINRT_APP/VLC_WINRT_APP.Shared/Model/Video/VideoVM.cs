@@ -23,12 +23,10 @@ using VLC_WINRT_APP.Commands.Video;
 using VLC_WINRT_APP.Common;
 using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.Services.Interface;
-using WinRTXamlToolkit.Imaging;
-using WinRTXamlToolkit.IO.Extensions;
 
 namespace VLC_WINRT_APP.Model.Video
 {
-    public class VideoItem : BindableBase
+    public class VideoItem : BindableBase, IVLCMedia
     {
         #region private props
         private char _alphaKey;
@@ -99,7 +97,7 @@ namespace VLC_WINRT_APP.Model.Video
         }
 
         [Unique]
-        public string FilePath
+        public string Path
         {
             get { return _filePath; }
             set { SetProperty(ref _filePath, value); }
@@ -118,7 +116,7 @@ namespace VLC_WINRT_APP.Model.Video
             set { SetProperty(ref _alphaKey, value); }
         }
 
-        public string Title
+        public string Name
         {
             get { return _title; }
             set { SetProperty(ref _title, value); }
@@ -204,11 +202,11 @@ namespace VLC_WINRT_APP.Model.Video
             if (storageFile != null)
             {
                 File = storageFile;
-                Title = storageFile.DisplayName;
-                AlphaKey = Title.ToUpper()[0];
+                Name = storageFile.DisplayName;
+                AlphaKey = Name.ToUpper()[0];
                 Subtitle = storageFile.FileType.ToUpper() + " File";
                 Type = storageFile.FileType.Replace(".", "").ToLower();
-                FilePath = storageFile.Path;
+                Path = storageFile.Path;
                 await GetTimeInformation();
             }
         }
@@ -217,7 +215,7 @@ namespace VLC_WINRT_APP.Model.Video
         {
             try
             {
-                StorageFile file = await StorageFile.GetFileFromPathAsync(FilePath);
+                StorageFile file = await StorageFile.GetFileFromPathAsync(Path);
                 await Initialize(file);
             }
             catch (Exception)

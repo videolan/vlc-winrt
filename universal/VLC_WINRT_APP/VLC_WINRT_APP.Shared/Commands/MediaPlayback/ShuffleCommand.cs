@@ -12,11 +12,11 @@ namespace VLC_WINRT_APP.Commands.MediaPlayback
     {
         public override async void Execute(object parameter)
         {
-            if (Locator.MusicPlayerVM.TrackCollection == null
-                || Locator.MusicPlayerVM.TrackCollection.Playlist == null
-                || !Locator.MusicPlayerVM.TrackCollection.Playlist.Any()
-                || Locator.MusicPlayerVM.TrackCollection.Playlist.Count < 3) return;
-            await Locator.MusicPlayerVM.TrackCollection.Shuffle();
+            if (Locator.MediaPlaybackViewModel.TrackCollection == null
+                || Locator.MediaPlaybackViewModel.TrackCollection.Playlist == null
+                || !Locator.MediaPlaybackViewModel.TrackCollection.Playlist.Any()
+                || Locator.MediaPlaybackViewModel.TrackCollection.Playlist.Count < 3) return;
+            await Locator.MediaPlaybackViewModel.TrackCollection.Shuffle();
         }
     }
 }

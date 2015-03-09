@@ -65,17 +65,17 @@
             </TextBlock>
             <Grid Grid.Row="2"
                   Visibility="{Binding IsCurrentPlaying, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <userControls:SliderControl DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}" />
+                <userControls:SliderControl />
             </Grid>
-            <Grid Grid.Row="3"
-                  DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}">
+            <Grid Grid.Row="3">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition x:Name="MainPlaybackButtonColumnDefinition"
                                       Width="Auto" />
                     <ColumnDefinition x:Name="SecondPlaybackButtonColumnDefinition" />
                 </Grid.ColumnDefinitions>
                 <Grid x:Name="MainPlaybackButtonGrid"
-                      MaxWidth="250">
+                      MaxWidth="250"
+                      DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition />

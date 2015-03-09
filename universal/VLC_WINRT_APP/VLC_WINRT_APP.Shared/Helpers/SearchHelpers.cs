@@ -33,15 +33,15 @@ namespace VLC_WINRT_APP.Helpers
                     Locator.MusicLibraryVM.ArtistClickedCommand.Execute(idquery);
                     break;
                 case VLCItemType.Video:
-                    VideoItem vm = Locator.VideoLibraryVM.Videos.FirstOrDefault(x => x.Title == query);
+                    VideoItem vm = Locator.VideoLibraryVM.Videos.FirstOrDefault(x => x.Name == query);
                     await vm.Play();
                     break;
                 case VLCItemType.VideoShow:
-                    VideoItem show = Locator.VideoLibraryVM.Shows.SelectMany(x => x.Episodes).FirstOrDefault(x => x.Title == query);
+                    VideoItem show = Locator.VideoLibraryVM.Shows.SelectMany(x => x.Episodes).FirstOrDefault(x => x.Name == query);
                     await show.Play();
                     break;
                 case VLCItemType.VideoCamera:
-                    VideoItem camera = Locator.VideoLibraryVM.CameraRoll.FirstOrDefault(x => x.Title == query);
+                    VideoItem camera = Locator.VideoLibraryVM.CameraRoll.FirstOrDefault(x => x.Name == query);
                     await camera.Play();
                     break;
             }
@@ -67,25 +67,25 @@ namespace VLC_WINRT_APP.Helpers
             if (Locator.SettingsVM.SearchVideos)
             {
                 IEnumerable<VideoItem> videoVms =
-                    Locator.VideoLibraryVM.Videos.Where(x => x.Title.Contains(Locator.MainVM.SearchTag, StringComparison.CurrentCultureIgnoreCase));
+                    Locator.VideoLibraryVM.Videos.Where(x => x.Name.Contains(Locator.MainVM.SearchTag, StringComparison.CurrentCultureIgnoreCase));
                 foreach (VideoItem vm in videoVms)
                 {
-                    Locator.MainVM.SearchResults.Add(new SearchResult(vm.Title,
-                        ApplicationData.Current.LocalFolder.Path + "\\videoPic\\" + vm.Title + ".jpg",
+                    Locator.MainVM.SearchResults.Add(new SearchResult(vm.Name,
+                        ApplicationData.Current.LocalFolder.Path + "\\videoPic\\" + vm.Name + ".jpg",
                         VLCItemType.Video));
                 }
 
-                IEnumerable<VideoItem> showsVms = Locator.VideoLibraryVM.Shows.SelectMany(show => show.Episodes).Where(x => x.Title.Contains(Locator.MainVM.SearchTag, StringComparison.CurrentCultureIgnoreCase));
+                IEnumerable<VideoItem> showsVms = Locator.VideoLibraryVM.Shows.SelectMany(show => show.Episodes).Where(x => x.Name.Contains(Locator.MainVM.SearchTag, StringComparison.CurrentCultureIgnoreCase));
                 foreach (var showsVm in showsVms)
                 {
-                    Locator.MainVM.SearchResults.Add(new SearchResult(showsVm.Title, ApplicationData.Current.LocalFolder.Path + "\\videoPic\\" + showsVm.Title + ".jpg", VLCItemType.VideoShow));
+                    Locator.MainVM.SearchResults.Add(new SearchResult(showsVm.Name, ApplicationData.Current.LocalFolder.Path + "\\videoPic\\" + showsVm.Name + ".jpg", VLCItemType.VideoShow));
                 }
 
                 IEnumerable<VideoItem> cameraVms =
-                    Locator.VideoLibraryVM.CameraRoll.Where(x => x.Title.Contains(Locator.MainVM.SearchTag, StringComparison.CurrentCultureIgnoreCase));
+                    Locator.VideoLibraryVM.CameraRoll.Where(x => x.Name.Contains(Locator.MainVM.SearchTag, StringComparison.CurrentCultureIgnoreCase));
                 foreach (var cameraVm in cameraVms)
                 {
-                    Locator.MainVM.SearchResults.Add(new SearchResult(cameraVm.Title, ApplicationData.Current.LocalFolder.Path + "\\videoPic\\" + cameraVm.Title + ".jpg", VLCItemType.VideoCamera));
+                    Locator.MainVM.SearchResults.Add(new SearchResult(cameraVm.Name, ApplicationData.Current.LocalFolder.Path + "\\videoPic\\" + cameraVm.Name + ".jpg", VLCItemType.VideoCamera));
                 }
             }
 

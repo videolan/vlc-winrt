@@ -132,7 +132,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\TimeSpanSecondsDoubleConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\TimespanShortStringConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\VideoViewStringifyConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Converters\VLCSearchBoxConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataRepository\AlbumDataRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataRepository\ArtistDataRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataRepository\IDataRepository.cs" />
@@ -223,6 +222,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Model\VLCFileExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\VLCFolder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\VLCItemType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\VLCMedia.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\DesignTime\ThumbnailService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Interface\IMediaControl.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Interface\IMediaService.cs" />

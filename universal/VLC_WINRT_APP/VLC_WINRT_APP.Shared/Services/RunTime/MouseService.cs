@@ -46,7 +46,7 @@ namespace VLC_WINRT_APP.Services.RunTime
 
         private void HideCursor(object sender, object e)
         {
-            if (Locator.MusicPlayerVM.PlayingType != PlayingType.Video) return;
+            if (Locator.MediaPlaybackViewModel.PlayingType != PlayingType.Video) return;
             if (App.OpenFilePickerReason != OpenFilePickerReason.Null) return;
             Window.Current.CoreWindow.PointerCursor = null;
             _cursorTimer.Stop();
