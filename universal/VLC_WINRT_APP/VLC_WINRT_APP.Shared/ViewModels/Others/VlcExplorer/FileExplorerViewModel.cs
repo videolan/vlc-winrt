@@ -107,14 +107,11 @@ namespace VLC_WINRT_APP.ViewModels.Others.VlcExplorer
 #else
                 items = await BackStack.Last().GetItemsAsync();
 #endif
-                foreach (IStorageItem storageItem in items)
+                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
                 {
-                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
-                    {
-                        StorageItems.Add(storageItem);
-                        OnPropertyChanged("StorageItems");
-                    });
-                }
+                    StorageItems = new ObservableCollection<IStorageItem>(items);
+                    OnPropertyChanged("StorageItems");
+                });
             }
             catch (Exception exception)
             {
