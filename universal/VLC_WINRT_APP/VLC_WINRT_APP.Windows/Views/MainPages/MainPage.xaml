@@ -20,7 +20,7 @@
     </Grid.RowDefinitions>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
           Grid.RowSpan="3"
-          Visibility="{Binding Source={StaticResource Locator}, Path=VideoVm.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}" />
+          Visibility="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}" />
 
     <Grid Grid.Row="0"
           Grid.RowSpan="2"
