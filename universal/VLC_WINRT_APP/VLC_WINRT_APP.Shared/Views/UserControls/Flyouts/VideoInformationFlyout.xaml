@@ -71,7 +71,7 @@
             </StackPanel>
             <TextBlock Grid.Row="2"
                        Margin="12,0,12,12"
-                       Text="{Binding FilePath}"
+                       Text="{Binding Path}"
                        Style="{StaticResource BodyTextBlockStyle}"
                        Foreground="DimGray" />
         </Grid>
