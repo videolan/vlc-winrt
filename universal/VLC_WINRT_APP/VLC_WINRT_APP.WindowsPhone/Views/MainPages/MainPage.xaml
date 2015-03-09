@@ -33,17 +33,8 @@
     
     <Frame x:Name="MainFrame"
            x:FieldModifier="public"
-           Background="Transparent">
-        <Frame.ContentTransitions>
-            <TransitionCollection>
-                <NavigationThemeTransition>
-                    <NavigationThemeTransition.DefaultNavigationTransitionInfo>
-                        <ContinuumNavigationTransitionInfo />
-                    </NavigationThemeTransition.DefaultNavigationTransitionInfo>
-                </NavigationThemeTransition>
-            </TransitionCollection>
-        </Frame.ContentTransitions>
-    </Frame>
+           Background="Transparent"
+           ContentTransitions="{StaticResource FrameTransitionCollectionStyle}"/>
     <customappbar:AppBar Grid.Row="1"
                          x:Name="CommandBar"
                          x:FieldModifier="public"
