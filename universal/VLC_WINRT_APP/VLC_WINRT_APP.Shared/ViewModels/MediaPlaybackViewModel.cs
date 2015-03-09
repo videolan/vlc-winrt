@@ -396,25 +396,19 @@ namespace VLC_WINRT_APP.ViewModels
 
             _subtitlesTracks = new List<DictionaryKeyValue>();
             _audioTracks = new List<DictionaryKeyValue>();
-#if WINDOWS_APP
-            _mouseService = App.Container.Resolve<MouseService>();
-#endif
+
             _setSubTitlesCommand = new SetSubtitleTrackCommand();
             _setAudioTrackCommand = new SetAudioTrackCommand();
             _openSubtitleCommand = new OpenSubtitleCommand();
             _goBackCommand = new StopVideoCommand();
+#if WINDOWS_APP
+            _mouseService = App.Container.Resolve<MouseService>();
+#endif
         }
 
         #endregion
 
         #region methods
-        public void Dispose()
-        {
-            _mediaService.Stop();
-            _skipAhead = null;
-            _skipBack = null;
-        }
-
         private void ProtectedDisplayCall(bool shouldActivate)
         {
             if (_displayAlwaysOnRequest == null) return;
@@ -529,46 +523,51 @@ namespace VLC_WINRT_APP.ViewModels
 
         async void OnEndReached()
         {
-            // music
-            if (TrackCollection.Playlist.Count == 0 || !TrackCollection.CanGoNext)
+            if (PlayingType == PlayingType.Music)
             {
-                // Playlist is finished
-                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+                if (TrackCollection.Playlist.Count == 0 || !TrackCollection.CanGoNext)
                 {
-                    TrackCollection.IsRunning = false;
-                    App.ApplicationFrame.Navigate(typeof(MainPageHome));
-                });
-            }
-            else
-            {
-                await PlayNext();
-            }
-
-            // video
-
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
-            {
-                if (Locator.VideoVm.CurrentVideo != null)
-                    Locator.VideoVm.CurrentVideo.TimeWatched = TimeSpan.Zero;
-                if (App.ApplicationFrame.CanGoBack)
-                    App.ApplicationFrame.GoBack();
+                    // Playlist is finished
+                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+                    {
+                        TrackCollection.IsRunning = false;
+                        App.ApplicationFrame.Navigate(typeof (MainPageHome));
+                    });
+                }
                 else
                 {
+                    await PlayNext();
+                }
+            }
+            else if (PlayingType == PlayingType.Video)
+            {
+                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+                {
+                    if (Locator.VideoVm.CurrentVideo != null)
+                        Locator.VideoVm.CurrentVideo.TimeWatched = TimeSpan.Zero;
+                    if (App.ApplicationFrame.CanGoBack)
+                        App.ApplicationFrame.GoBack();
+                    else
+                    {
 #if WINDOWS_APP
                     App.ApplicationFrame.Navigate(typeof(MainPageVideos));
 #else
-                    Locator.MainVM.GoToPanelCommand.Execute(0);
+                        Locator.MainVM.GoToPanelCommand.Execute(0);
 #endif
-                }
-                IsPlaying = false;
-                OnPropertyChanged("PlayingType");
-            });
-            if (Locator.VideoVm.CurrentVideo != null)
-                await Locator.VideoLibraryVM.VideoRepository.Update(Locator.VideoVm.CurrentVideo).ConfigureAwait(false);
+                    }
+                    IsPlaying = false;
+                    OnPropertyChanged("PlayingType");
+                });
+                if (Locator.VideoVm.CurrentVideo != null)
+                    await
+                        Locator.VideoLibraryVM.VideoRepository.Update(Locator.VideoVm.CurrentVideo)
+                            .ConfigureAwait(false);
+            }
         }
 
         public async Task PlayNext()
         {
+            // for music only, will change in the future
             if (TrackCollection.CanGoNext)
             {
                 await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
@@ -585,6 +584,7 @@ namespace VLC_WINRT_APP.ViewModels
 
         public async Task PlayPrevious()
         {
+            // for music only, will change in the future
             if (TrackCollection.CanGoPrevious)
             {
                 await DispatchHelper.InvokeAsync(() => TrackCollection.CurrentTrack--);
@@ -595,7 +595,6 @@ namespace VLC_WINRT_APP.ViewModels
                 TileUpdateManager.CreateTileUpdaterForApplication().Clear();
             }
         }
-
 
         public void SetSizeVideoPlayer(uint x, uint y)
         {
@@ -711,8 +710,12 @@ namespace VLC_WINRT_APP.ViewModels
                 await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => OnPropertyChanged("CurrentAudioTrack"));
             }
         }
-
         #endregion
-
+        public void Dispose()
+        {
+            _mediaService.Stop();
+            _skipAhead = null;
+            _skipBack = null;
+        }
     }
 }
