@@ -126,14 +126,16 @@ namespace VLC_WINRT_APP.ViewModels.Others.VlcExplorer
 
         public async Task NavigateTo(IStorageItem storageItem)
         {
-            if (storageItem is StorageFolder)
+            var item = storageItem as StorageFolder;
+            if (item != null)
             {
-                BackStack.Add(storageItem as StorageFolder);
+                BackStack.Add(item);
                 var _ = Task.Run(async () => await GetFiles());
             }
             else
             {
-                StorageFile file = storageItem as StorageFile;
+                var file = storageItem as StorageFile;
+                if (file == null) return;
                 if (VLCFileExtensions.AudioExtensions.Contains(file.FileType))
                 {
                     await MediaService.PlayAudioFile(file);
