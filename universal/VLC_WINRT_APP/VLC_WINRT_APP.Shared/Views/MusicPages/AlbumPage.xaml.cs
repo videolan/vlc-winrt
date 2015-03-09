@@ -1,4 +1,5 @@
-﻿using VLC_WINRT_APP.Helpers;
+﻿using VLC_WINRT_APP.Views.MusicPages.AlbumPageControls;
+using VLC_WINRT_APP.Helpers;
 using System;
 using Windows.UI.Core;
 using Windows.UI.ViewManagement;
@@ -18,16 +19,23 @@ namespace VLC_WINRT_APP.Views.MusicPages
         }
 
 #if WINDOWS_PHONE_APP
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
-            AppBarHelper.UpdateAppBar(typeof(AlbumPage));
+            this.Loaded += AlbumPage_Loaded;
+            await AppBarHelper.UpdateAppBar(typeof(AlbumPage));
             ApplicationView.GetForCurrentView().SetDesiredBoundsMode(ApplicationViewBoundsMode.UseCoreWindow);
             HardwareButtons.BackPressed += HardwareButtonsOnBackPressed;
+        }
+
+        void AlbumPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.Content = new AlbumPageBase();
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             base.OnNavigatedFrom(e);
+            this.Loaded -= AlbumPage_Loaded;
             HardwareButtons.BackPressed -= HardwareButtonsOnBackPressed;
         }
 

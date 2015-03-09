@@ -1,4 +1,5 @@
-﻿using VLC_WINRT_APP.Helpers;
+﻿using VLC_WINRT_APP.Views.MusicPages.ArtistPageControls;
+using VLC_WINRT_APP.Helpers;
 using Windows.UI.Xaml.Controls;
 #if WINDOWS_PHONE_APP
 using Windows.Phone.UI.Input;
@@ -16,6 +17,7 @@ namespace VLC_WINRT_APP.Views.MusicPages
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             base.OnNavigatedFrom(e);
+            this.Loaded -= ArtistPage_Loaded;
             HardwareButtons.BackPressed -= HardwareButtonsOnBackPressed;
         }
 
@@ -32,8 +34,14 @@ namespace VLC_WINRT_APP.Views.MusicPages
         /// Ce paramètre est généralement utilisé pour configurer la page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            this.Loaded += ArtistPage_Loaded;
             HardwareButtons.BackPressed += HardwareButtonsOnBackPressed;
             AppBarHelper.UpdateAppBar(typeof(ArtistPage));
+        }
+
+        void ArtistPage_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            this.Content = new ArtistPageBase();
         }
 #endif
 

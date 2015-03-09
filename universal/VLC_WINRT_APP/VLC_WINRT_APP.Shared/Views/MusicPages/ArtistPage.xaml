@@ -8,5 +8,4 @@
       xmlns:triggers="using:WinRT.Triggers"
       xmlns:artistPageControls="using:VLC_WINRT_APP.Views.MusicPages.ArtistPageControls"
       mc:Ignorable="d">
-    <artistPageControls:ArtistPageBase />
 </Page>
