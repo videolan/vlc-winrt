@@ -78,6 +78,12 @@
                                    Margin="0,0,0,60" />
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
+            <ListView.ItemContainerTransitions>
+                <TransitionCollection>
+                    <EntranceThemeTransition FromHorizontalOffset="50"
+                                             FromVerticalOffset="0" />
+                </TransitionCollection>
+            </ListView.ItemContainerTransitions>
         </ListView>
     </Grid>
 </UserControl>

@@ -34,7 +34,8 @@
             <ListView.ItemContainerTransitions>
                 <TransitionCollection>
                     <AddDeleteThemeTransition />
-                    <EntranceThemeTransition />
+                    <EntranceThemeTransition FromHorizontalOffset="50"
+                                             FromVerticalOffset="0"/>
                 </TransitionCollection>
             </ListView.ItemContainerTransitions>
             <ListView.ItemsPanel>

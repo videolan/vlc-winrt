@@ -10,5 +10,6 @@
 
     <Frame x:Name="MainPageVideoContentPresenter"
            x:FieldModifier="public"
-           Loaded="MainPageVideoContentPresenter_OnLoaded"/>
+           Loaded="MainPageVideoContentPresenter_OnLoaded"
+           ContentTransitions="{StaticResource FrameTransitionCollectionStyle}"/>
 </Page>

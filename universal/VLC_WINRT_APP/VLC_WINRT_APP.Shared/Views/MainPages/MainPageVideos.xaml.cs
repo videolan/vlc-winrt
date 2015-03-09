@@ -44,20 +44,7 @@ namespace VLC_WINRT_APP.Views.MainPages
             {
                 Locator.MainVM.ChangeMainPageVideoViewCommand.Execute((int) Locator.SettingsVM.VideoView);
             }
-#if WINDOWS_APP
-            MainPageVideoContentPresenter.Margin = new Thickness(24, 0, 24, 0);
-            MainPageVideoContentPresenter.ContentTransitions = new TransitionCollection()
-            {
-                new EdgeUIThemeTransition() {Edge = EdgeTransitionLocation.Right},
-            };
-#else
-            MainPageVideoContentPresenter.ContentTransitions = new TransitionCollection()
-            {
-                new NavigationThemeTransition()
-                {
-                    DefaultNavigationTransitionInfo = new CommonNavigationTransitionInfo(),
-                }
-            };
+#if WINDOWS_PHONE_APP
             MainPageVideoContentPresenter.Background = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0));
 #endif
         }
