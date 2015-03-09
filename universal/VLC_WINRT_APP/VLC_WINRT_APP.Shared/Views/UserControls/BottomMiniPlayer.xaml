@@ -144,20 +144,18 @@
             <TextBlock Text="{Binding CurrentTrack.Name}"
                        TextWrapping="NoWrap"
                        TextTrimming="CharacterEllipsis"
-                       FontSize="19"
-                       Foreground="White" />
+                       FontSize="19" />
             <TextBlock Grid.Row="1"
                        Text="{Binding CurrentArtist.Name}"
                        TextWrapping="NoWrap"
                        TextTrimming="CharacterEllipsis"
-                       FontSize="15"
-                       Foreground="White" />
+                       FontSize="15" />
         </Grid>
         <Slider x:Name="SliderControl"
                 Grid.Column="2"
                 RequestedTheme="Dark"
                 VerticalAlignment="Center"
-                Margin="0,-12,0,0"
+                Margin="6,0"
                 DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
                 Value="{Binding Position, Mode=TwoWay, Converter={StaticResource PositionToFixedPointConverter}}"
                 Style="{StaticResource VLCSlider}"
@@ -175,7 +173,6 @@
                     Visibility="{Binding IsPlaying, Converter={StaticResource NegatedBooleanToVisibilityConverter}}"
                     Holding="PlayPauseHold">
                 <Path Data="{StaticResource PlayPath}"
-                      Fill="White"
                       Width="29"
                       Height="29"
                       Stretch="Uniform" />
@@ -186,8 +183,7 @@
                     Visibility="{Binding IsPlaying, Converter={StaticResource BooleanToVisibilityConverter}}"
                     Holding="PlayPauseHold">
                 <Viewbox Height="29">
-                    <Path Data="{StaticResource PausePath}"
-                          Fill="White" />
+                    <Path Data="{StaticResource PausePath}"/>
                 </Viewbox>
             </Button>
         </Grid>
@@ -200,7 +196,6 @@
                 Command="{Binding PlayNextCommand}"
                 Visibility="{Binding TrackCollection.CanGoNext, Converter={StaticResource BooleanToVisibilityConverter}}">
             <Path Data="{StaticResource NextPath}"
-                  Fill="White"
                   Width="29"
                   Height="29"
                   Stretch="Uniform" />
