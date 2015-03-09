@@ -38,7 +38,7 @@
                     <SolidColorBrush x:Key="ApplicationThirdForegroundThemeBrush"
                                      Color="WhiteSmoke" />
                     <SolidColorBrush x:Key="ApplicationBarForegroundThemeBrush"
-                                     Color="{StaticResource MainColorBase}" />
+                                     Color="#E5E5E5" />
                     <SolidColorBrush x:Key="ApplicationOverlayTranslucentThemeBrush"
                                      Color="#ccffffff" />
                     <SolidColorBrush x:Key="ApplicationBackgroundSemiTranslucentThemeBrush"
