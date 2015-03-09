@@ -7,6 +7,7 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
+using System.Linq;
 using VLC_WINRT.Common;
 using VLC_WINRT_APP.DataRepository;
 using VLC_WINRT_APP.Model.Music;
@@ -29,7 +30,9 @@ namespace VLC_WINRT_APP.Commands.Music
             if (album.Favorite)
             {
                 Locator.MusicLibraryVM.FavoriteAlbums.Add(album);
-                Locator.MusicLibraryVM.RandomAlbums.Add(album);
+                // if the album is already in the list then don't add it, simply
+                if (Locator.MusicLibraryVM.RandomAlbums.FirstOrDefault(x => x.Id == album.Id) == null)
+                    Locator.MusicLibraryVM.RandomAlbums.Add(album);
             }
             else if (Locator.MusicLibraryVM.FavoriteAlbums.Contains(album))
             {
