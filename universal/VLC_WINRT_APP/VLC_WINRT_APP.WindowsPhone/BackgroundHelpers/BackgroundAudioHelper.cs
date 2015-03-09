@@ -93,7 +93,7 @@ namespace VLC_WINRT_APP.BackgroundHelpers
 
         private void DispatchTimerOnTick(object sender, object o)
         {
-            Locator.MusicPlayerVM.UpdateTimeFromMF();
+            Locator.MediaPlaybackViewModel.UpdateTimeFromMF();
         }
 
         /// <summary>
@@ -110,7 +110,7 @@ namespace VLC_WINRT_APP.BackgroundHelpers
                     Debug.WriteLine("Media State Changed: Playing");
                     await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                     {
-                        Locator.MusicPlayerVM.IsPlaying = true;
+                        Locator.MediaPlaybackViewModel.IsPlaying = true;
                         dispatchTimer.Start();
                     });
                     break;
@@ -118,7 +118,7 @@ namespace VLC_WINRT_APP.BackgroundHelpers
                     Debug.WriteLine("Media State Changed: Paused");
                     await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                     {
-                        Locator.MusicPlayerVM.IsPlaying = false;
+                        Locator.MediaPlaybackViewModel.IsPlaying = false;
                         dispatchTimer.Stop();
                     });
                     break;
@@ -149,7 +149,7 @@ namespace VLC_WINRT_APP.BackgroundHelpers
                     case BackgroundAudioConstants.BackgroundTaskCancelled:
                         await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
                         {
-                            Locator.MusicPlayerVM.IsPlaying = false;
+                            Locator.MediaPlaybackViewModel.IsPlaying = false;
                         });
                         break;
                     case BackgroundAudioConstants.MFFailed:

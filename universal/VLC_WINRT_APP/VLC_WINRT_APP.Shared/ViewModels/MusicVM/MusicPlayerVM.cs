@@ -157,7 +157,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         {
             var currentTrackFile = file ?? await StorageFile.GetFileFromPathAsync(track.Path);
 #if WINDOWS_PHONE_APP
-            bool playWithLibVlc = !VLCFileExtensions.MFSupported.Contains(currentTrackFile.FileType.ToLower()) || _mediaService.UseVlcLib;
+            bool playWithLibVlc = !VLCFileExtensions.MFSupported.Contains(currentTrackFile.FileType.ToLower()) || Locator.MediaPlaybackViewModel._mediaService.UseVlcLib;
             if (!playWithLibVlc)
             {
                 App.BackgroundAudioHelper.PlayAudio(track.Id);

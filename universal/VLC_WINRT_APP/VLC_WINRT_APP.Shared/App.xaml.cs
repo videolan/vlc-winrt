@@ -209,7 +209,7 @@ namespace VLC_WINRT_APP
                             {
                                 string mru = StorageApplicationPermissions.FutureAccessList.Add(continueArgs.Files[0]);
                                 string mrl = "file://" + mru;
-                                Locator.VideoVm.OpenSubtitle(mrl);
+                                Locator.MediaPlaybackViewModel.OpenSubtitle(mrl);
                             }
                             break;
                         case OpenFilePickerReason.OnPickingAlbumArt:

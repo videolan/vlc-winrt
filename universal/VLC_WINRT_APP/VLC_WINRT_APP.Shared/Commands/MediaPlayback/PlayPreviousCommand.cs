@@ -27,7 +27,7 @@ namespace VLC_WINRT_APP.Commands.MediaPlayback
                 // Video Logic
             }
 #else
-            await Locator.MusicPlayerVM.PlayPrevious();
+            await Locator.MediaPlaybackViewModel.PlayPrevious();
 #endif
         }
     }

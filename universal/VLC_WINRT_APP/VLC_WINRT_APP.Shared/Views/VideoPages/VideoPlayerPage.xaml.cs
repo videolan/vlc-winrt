@@ -66,7 +66,7 @@ namespace VLC_WINRT_APP.Views.VideoPages
         private async void HardwareButtonsOnBackPressed(object sender, BackPressedEventArgs backPressedEventArgs)
         {
             backPressedEventArgs.Handled = true;
-            Locator.VideoVm.GoBack.Execute("");
+            Locator.MediaPlaybackViewModel.GoBack.Execute("");
             DisplayInformation.AutoRotationPreferences = DisplayOrientations.None;
         }
 #endif
