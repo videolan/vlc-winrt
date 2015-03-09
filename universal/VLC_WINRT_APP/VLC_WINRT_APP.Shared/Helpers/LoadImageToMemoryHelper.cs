@@ -25,18 +25,16 @@ namespace VLC_WINRT_APP.Helpers
             {
                 if (fileExists)
                 {
-                    Debug.WriteLine("Opening file albumPic " + item.Id);
-                    var uri = item.AlbumCoverUri;
-                    var file = await StorageFile.GetFileFromApplicationUriAsync(new Uri(uri));
-                    var stream = await file.OpenAsync(FileAccessMode.Read);
-                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                    var file = await StorageFile.GetFileFromApplicationUriAsync(new Uri(item.Picture));
+                    using (var stream = await file.OpenAsync(FileAccessMode.Read))
                     {
-                        var image = new BitmapImage();
-                        stream.Seek(0);
-                        image.SetSource(stream);
-                        stream.Dispose();
-                        item.AlbumImage = image;
-                    });
+                        await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                        {
+                            var image = new BitmapImage();
+                            image.SetSource(stream);
+                            item.AlbumImage = image;
+                        });
+                    }
                 }
             }
             catch (Exception)
@@ -64,15 +62,15 @@ namespace VLC_WINRT_APP.Helpers
                 if (fileExists)
                 {
                     var file = await StorageFile.GetFileFromApplicationUriAsync(new Uri(item.Picture));
-                    var stream = await file.OpenAsync(FileAccessMode.Read);
-                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                    using (var stream = await file.OpenAsync(FileAccessMode.Read))
                     {
-                        var image = new BitmapImage();
-                        stream.Seek(0);
-                        image.SetSource(stream);
-                        stream.Dispose();
-                        item.ArtistImage = image;
-                    });
+                        await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                        {
+                            var image = new BitmapImage();
+                            image.SetSource(stream);
+                            item.ArtistImage = image;
+                        });
+                    }
                 }
             }
             catch (Exception ex)
