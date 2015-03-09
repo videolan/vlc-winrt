@@ -1820,8 +1820,6 @@ M 15.937 9.056 c 0.629 -1.69 1.208 -2.349 2.063 -2.349 h 5.586 L 20.293 10 l 1.4
                 Value="{ThemeResource SliderBorderThemeBrush}" />
         <Setter Property="BorderThickness"
                 Value="{ThemeResource SliderBorderThemeThickness}" />
-        <Setter Property="Foreground"
-                Value="#50FFFFFF" />
         <Setter Property="FontFamily"
                 Value="{ThemeResource ContentControlThemeFontFamily}" />
         <Setter Property="FontSize"
