@@ -37,7 +37,7 @@ namespace VLC_WINRT_APP.BackgroundHelpers
                 {
                     await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                     {
-                        Locator.MusicPlayerVM.IsPlaying = true;
+                        Locator.MediaPlaybackViewModel.IsPlaying = true;
                         dispatchTimer.Start();
                     });
                 }
