@@ -45,7 +45,9 @@ namespace VLC_WINRT_APP.Views.MainPages
             {
                 Locator.MainVM.ChangeMainPageMusicViewCommand.Execute((int)Locator.SettingsVM.MusicView);
             }
-#if WINDOWS_PHONE_APP
+#if WINDOWS_APP
+            MainPageMusicContentPresenter.Margin = new Thickness(24, 0, 0, 0);
+#else
             MainPageMusicContentPresenter.Background = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0));
 #endif
         }

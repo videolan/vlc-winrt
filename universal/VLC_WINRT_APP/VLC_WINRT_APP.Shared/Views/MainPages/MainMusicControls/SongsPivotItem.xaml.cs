@@ -16,9 +16,6 @@ namespace VLC_WINRT_APP.Views.MainPages.MainMusicControls
 
         private void Collection_Loaded(object sender, RoutedEventArgs e)
         {
-#if WINDOWS_APP
-            RootGrid.Margin = new Thickness(24, 0, 0, 0);
-#endif
             Window.Current.SizeChanged += Current_SizeChanged;
             this.Unloaded += OnUnloaded;
             Responsive();

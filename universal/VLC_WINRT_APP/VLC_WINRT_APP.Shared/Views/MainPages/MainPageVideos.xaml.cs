@@ -42,9 +42,11 @@ namespace VLC_WINRT_APP.Views.MainPages
         {
             if (MainPageVideoContentPresenter.CurrentSourcePageType == null)
             {
-                Locator.MainVM.ChangeMainPageVideoViewCommand.Execute((int) Locator.SettingsVM.VideoView);
+                Locator.MainVM.ChangeMainPageVideoViewCommand.Execute((int)Locator.SettingsVM.VideoView);
             }
-#if WINDOWS_PHONE_APP
+#if WINDOWS_APP
+            MainPageVideoContentPresenter.Margin = new Thickness(24, 0, 0, 0);
+#else
             MainPageVideoContentPresenter.Background = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0));
 #endif
         }
