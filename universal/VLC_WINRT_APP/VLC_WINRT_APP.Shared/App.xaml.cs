@@ -261,7 +261,6 @@ namespace VLC_WINRT_APP
             await MediaService.OpenFile(args.Files[0] as StorageFile);
         }
 
-
         private void LaunchTheApp()
         {
             Window.Current.Content = Container.Resolve<MainPage>();

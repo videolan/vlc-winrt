@@ -63,7 +63,6 @@ namespace VLC_WINRT_APP.ViewModels
         protected readonly DisplayRequest _displayAlwaysOnRequest;
 
         protected int _volume = 100;
-
         private bool _isRunning;
         private int _speedRate;
         #endregion
@@ -104,6 +103,7 @@ namespace VLC_WINRT_APP.ViewModels
                 OnPropertyChanged("PlayingType");
             }
         }
+
         public int Volume
         {
             get
@@ -119,6 +119,7 @@ namespace VLC_WINRT_APP.ViewModels
                 }
             }
         }
+
         public int SpeedRate
         {
             get
@@ -172,7 +173,6 @@ namespace VLC_WINRT_APP.ViewModels
             get { return _skipBack; }
             set { SetProperty(ref _skipBack, value); }
         }
-
 
         public TimeSpan TimeTotal
         {
@@ -299,6 +299,7 @@ namespace VLC_WINRT_APP.ViewModels
 #endif
             }
         }
+
         public DictionaryKeyValue CurrentSubtitle
         {
             get
