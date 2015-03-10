@@ -7,6 +7,7 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
+using Windows.System;
 using System.Collections.Generic;
 using VLC_WINRT_APP.Commands.Video;
 using VLC_WINRT_APP.Views.MainPages;
@@ -36,21 +37,21 @@ using VLC_WINRT_APP.BackgroundAudioPlayer.Model;
 
 namespace VLC_WINRT_APP.ViewModels
 {
-    public class MediaPlaybackViewModel : BindableBase, IDisposable
+    public sealed class MediaPlaybackViewModel : BindableBase, IDisposable
     {
         #region private props
 #if WINDOWS_APP
         private MouseService _mouseService;
 #endif
-        protected bool _isPlaying;
+        private bool _isPlaying;
         private PlayingType _playingType;
         private TrackCollection _trackCollection;
-        protected TimeSpan _timeTotal;
-        protected ActionCommand _skipAhead;
-        protected ActionCommand _skipBack;
-        protected PlayNextCommand _playNext;
-        protected PlayPreviousCommand _playPrevious;
-        protected PlayPauseCommand _playOrPause;
+        private TimeSpan _timeTotal;
+        private ActionCommand _skipAhead;
+        private ActionCommand _skipBack;
+        private PlayNextCommand _playNext;
+        private PlayPreviousCommand _playPrevious;
+        private PlayPauseCommand _playOrPause;
 
         private int _currentSubtitle;
         private int _currentAudioTrack;
@@ -58,11 +59,11 @@ namespace VLC_WINRT_APP.ViewModels
         private SetSubtitleTrackCommand _setSubTitlesCommand;
         private OpenSubtitleCommand _openSubtitleCommand;
         private SetAudioTrackCommand _setAudioTrackCommand;
-        protected StopVideoCommand _goBackCommand;
+        private StopVideoCommand _goBackCommand;
 
-        protected readonly DisplayRequest _displayAlwaysOnRequest;
+        private readonly DisplayRequest _displayAlwaysOnRequest;
 
-        protected int _volume = 100;
+        private int _volume = 100;
         private bool _isRunning;
         private int _speedRate;
         #endregion
@@ -466,18 +467,18 @@ namespace VLC_WINRT_APP.ViewModels
             TrackCollection.IsRunning = false;
         }
 
-        protected virtual void OnPlaybackStarting()
+        private virtual void OnPlaybackStarting()
         {
-            ProtectedDisplayCall(true);
+            privateDisplayCall(true);
 #if WINDOWS_APP
             // video playback only
             _mouseService.HideMouse();
 #endif
         }
 
-        protected async Task OnPlaybackStopped()
+        private async Task OnPlaybackStopped()
         {
-            ProtectedDisplayCall(false);
+            privateDisplayCall(false);
 #if WINDOWS_APP
             _mouseService.RestoreMouse();
 #endif
@@ -498,7 +499,7 @@ namespace VLC_WINRT_APP.ViewModels
             });
         }
 
-        protected virtual void OnStopped()
+        private virtual void OnStopped()
         {
             var em = _mediaService.MediaPlayer.eventManager();
             em.OnTrackAdded -= OnTrackAdded;
@@ -531,7 +532,7 @@ namespace VLC_WINRT_APP.ViewModels
                     await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
                     {
                         TrackCollection.IsRunning = false;
-                        App.ApplicationFrame.Navigate(typeof (MainPageHome));
+                        App.ApplicationFrame.Navigate(typeof(MainPageHome));
                     });
                 }
                 else
@@ -638,7 +639,7 @@ namespace VLC_WINRT_APP.ViewModels
 
         #region Events
 
-        protected async void PlayerStateChanged(object sender, MediaState e)
+        private async void PlayerStateChanged(object sender, MediaState e)
         {
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
             {
