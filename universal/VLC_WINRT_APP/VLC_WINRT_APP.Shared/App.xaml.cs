@@ -222,7 +222,7 @@ namespace VLC_WINRT_APP
                             var file = continueArgs.Files.First();
                             if (file == null) return;
                             var byteArray = await ConvertImage.ConvertImagetoByte(file);
-                            await ArtistInformationsHelper.SaveAlbumImageAsync(SelectedAlbumItem, byteArray);
+                            await App.MusicMetaService.SaveAlbumImageAsync(SelectedAlbumItem, byteArray);
                             await Locator.MusicLibraryVM._albumDataRepository.Update(SelectedAlbumItem);
                             SelectedAlbumItem = null;
                             break;
