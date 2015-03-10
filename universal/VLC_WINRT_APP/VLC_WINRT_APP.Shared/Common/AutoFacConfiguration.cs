@@ -48,6 +48,7 @@ namespace VLC_WINRT_APP.Common
 
             // Register Services
             builder.RegisterType<MediaService>().As<IMediaService>().SingleInstance();
+            builder.RegisterType<MusicMetaService>().SingleInstance();
 
             #if WINDOWS_APP
             builder.RegisterType<MouseService>().SingleInstance();
@@ -62,6 +63,7 @@ namespace VLC_WINRT_APP.Common
             {
                 builder.RegisterType<ThumbnailService>().As<IThumbnailService>().SingleInstance();
             }
+
             // Register Views            
 
             builder.RegisterType<MainPage>();

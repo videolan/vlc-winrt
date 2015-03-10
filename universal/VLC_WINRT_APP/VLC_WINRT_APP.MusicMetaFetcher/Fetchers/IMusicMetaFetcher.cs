@@ -9,18 +9,15 @@
 
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using VLC_WINRT_APP.Helpers.MusicLibrary.MusicEntities;
+using VLC_WINRT_APP.MusicMetaFetcher.Models.MusicEntities;
 
-namespace VLC_WINRT_APP.Helpers.MusicLibrary
+namespace VLC_WINRT_APP.MusicMetaFetcher.Fetchers
 {
-    public interface IMusicInformationManager
+    public interface IMusicMetaFetcher
     {
         Task<Artist> GetArtistInfo(string artistName);
-
         Task<List<Artist>> GetSimilarArtists(string artistName);
-
         Task<Album> GetAlbumInfo(string albumTitle, string artistName);
-
         Task<List<Album>> GetArtistTopAlbums(string artistName);
         Task<List<Artist>> GetTopArtistsGenre(string genre);
     }

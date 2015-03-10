@@ -8,7 +8,6 @@ using Windows.UI.Core;
 using libVLCX;
 using VLC_WINRT.Common;
 using VLC_WINRT_APP.Common;
-using VLC_WINRT_APP.Helpers.MusicLibrary.Deezer;
 using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.Model.Music;
 using VLC_WINRT_APP.ViewModels;

@@ -31,7 +31,7 @@ namespace VLC_WINRT_APP.Commands.Music
                     album = args.ClickedItem as AlbumItem;
             }
 
-            await ArtistInformationsHelper.GetAlbumPictureFromInternet(album);
+            await App.MusicMetaService.GetAlbumCover(album);
         }
     }
 }

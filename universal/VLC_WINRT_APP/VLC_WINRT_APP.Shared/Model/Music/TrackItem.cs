@@ -70,7 +70,8 @@ namespace VLC_WINRT_APP.Model.Music
         {
             get
             {
-                Task.Run(() => ArtistInformationsHelper.GetAlbumPicture(this));
+                if(string.IsNullOrEmpty(_thumbnail))
+                    _thumbnail = "ms-appdata:///local/albumPic/" + AlbumId + ".jpg";
                 return _thumbnail;
             }
             set { SetProperty(ref _thumbnail, value); }

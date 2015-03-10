@@ -12,8 +12,10 @@ using VLC_WINRT_APP.Commands.Music;
 using VLC_WINRT_APP.Common;
 using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.Helpers.MusicLibrary;
-using VLC_WINRT_APP.Helpers.MusicLibrary.MusicEntities;
+using VLC_WINRT_APP.MusicMetaFetcher;
 using VLC_WINRT_APP.ViewModels.MusicVM;
+using VLC_WINRT_APP.MusicMetaFetcher.Models.MusicEntities;
+using VLC_WINRT_APP.ViewModels;
 
 namespace VLC_WINRT_APP.Model.Music
 {
@@ -32,7 +34,7 @@ namespace VLC_WINRT_APP.Model.Music
         private List<Artist> _onlineRelatedArtists;
         private bool _isOnlineMusicVideosLoaded = false;
         private string _biography;
-        private List<ShowItem> _upcomingShowItems;
+        private List<Show> _upcomingShowItems;
         private bool _isUpcomingShowsLoading = false;
         private bool _isUpcomingShowsItemsLoaded = false;
         private PinArtistCommand pinArtistCommand;
@@ -114,7 +116,7 @@ namespace VLC_WINRT_APP.Model.Music
             try
             {
                 if (MemoryUsageHelper.PercentMemoryUsed() > MemoryUsageHelper.MaxRamForResourceIntensiveTasks) return;
-                await ArtistInformationsHelper.GetArtistPicture(this);
+                await App.MusicMetaService.GetArtistPicture(this);
             }
             catch (Exception)
             {
@@ -148,7 +150,7 @@ namespace VLC_WINRT_APP.Model.Music
                 }
                 if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
                     return "Please verify your internet connection";
-                Task.Run(async () => await ArtistInformationsHelper.GetArtistBiography(this));
+                Task.Run(async () => await App.MusicMetaService.GetArtistBiography(this));
                 return "Loading";
             }
             set { SetProperty(ref _biography, value); }
@@ -162,7 +164,7 @@ namespace VLC_WINRT_APP.Model.Music
                 if (_onlinePopularAlbumItems != null)
                     return _onlinePopularAlbumItems;
                 if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
-                    Task.Run(() => ArtistInformationsHelper.GetArtistTopAlbums(this));
+                    Task.Run(() => App.MusicMetaService.GetPopularAlbums(this));
                 return null;
             }
             set { SetProperty(ref _onlinePopularAlbumItems, value); }
@@ -176,7 +178,7 @@ namespace VLC_WINRT_APP.Model.Music
                 if (_onlineRelatedArtists != null)
                     return _onlineRelatedArtists;
                 if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
-                    Task.Run(() => ArtistInformationsHelper.GetArtistSimilarsArtist(this));
+                    Task.Run(() => App.MusicMetaService.GetSimilarArtists(this));
                 return null;
             }
             set { SetProperty(ref _onlineRelatedArtists, value); }
@@ -204,7 +206,7 @@ namespace VLC_WINRT_APP.Model.Music
         }
 
         [Ignore]
-        public List<ShowItem> UpcomingShows
+        public List<Show> UpcomingShows
         {
             get
             {
@@ -212,7 +214,7 @@ namespace VLC_WINRT_APP.Model.Music
                 {
                     IsUpcomingShowsLoading = true;
                     _isUpcomingShowsItemsLoaded = true;
-                    Task.Run(() => ArtistInformationsHelper.GetArtistEvents(this));
+                    Task.Run(() => App.MusicMetaService.GetArtistEvents(this));
                 }
                 return _upcomingShowItems;
             }

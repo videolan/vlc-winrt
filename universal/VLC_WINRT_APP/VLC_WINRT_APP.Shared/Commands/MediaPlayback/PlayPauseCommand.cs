@@ -14,7 +14,6 @@ using Windows.Media.Playback;
 #endif
 using Autofac;
 using VLC_WINRT.Common;
-using VLC_WINRT_APP.Helpers.MusicLibrary.LastFm;
 using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.Services.Interface;
 using VLC_WINRT_APP.Services.RunTime;

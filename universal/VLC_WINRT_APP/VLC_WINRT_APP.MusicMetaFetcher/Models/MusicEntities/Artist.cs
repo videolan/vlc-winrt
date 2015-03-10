@@ -12,9 +12,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Windows.ApplicationModel.Resources;
-using VLC_WINRT_APP.Helpers.MusicLibrary.LastFm;
+using VLC_WINRT_APP.MusicMetaFetcher.Models.LastFm;
 
-namespace VLC_WINRT_APP.Helpers.MusicLibrary.MusicEntities
+namespace VLC_WINRT_APP.MusicMetaFetcher.Models.MusicEntities
 {
     public class Artist
     {
@@ -118,8 +118,8 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary.MusicEntities
             this.Name = xboxArtistItem.Name;
             this.Url = xboxArtistItem.Link;
             var image = new Image() { Url = xboxArtistItem.ImageUrl };
-            var imageEx = new Image() {Url = xboxArtistItem.ImageUrlEx};
-            this.Images = new List<Image>(){image, imageEx};
+            var imageEx = new Image() { Url = xboxArtistItem.ImageUrlEx };
+            this.Images = new List<Image>() { image, imageEx };
             this.XboxId = xboxArtistItem.Id;
         }
 

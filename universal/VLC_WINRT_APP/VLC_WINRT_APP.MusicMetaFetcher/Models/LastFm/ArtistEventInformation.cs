@@ -1,8 +1,6 @@
-﻿using Windows.UI.Xaml.Controls.Primitives;
-using Newtonsoft.Json;
-using VLC_WINRT_APP.Helpers.MusicLibrary.Deezer;
+﻿using Newtonsoft.Json;
 
-namespace VLC_WINRT_APP.Helpers.MusicLibrary.LastFm
+namespace VLC_WINRT_APP.MusicMetaFetcher.Models.LastFm
 {
     public class ArtistEventInformation
     {

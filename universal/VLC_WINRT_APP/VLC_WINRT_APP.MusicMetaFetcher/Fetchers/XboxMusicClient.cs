@@ -9,18 +9,18 @@
 
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.ViewModels;
 using XboxMusicLibrary.Models;
 using XboxMusicLibrary.Settings;
-using Album = VLC_WINRT_APP.Helpers.MusicLibrary.MusicEntities.Album;
-using Artist = VLC_WINRT_APP.Helpers.MusicLibrary.MusicEntities.Artist;
+using Artist = VLC_WINRT_APP.MusicMetaFetcher.Models.MusicEntities.Artist;
+using Album = VLC_WINRT_APP.MusicMetaFetcher.Models.MusicEntities.Album;
 
-namespace VLC_WINRT_APP.Helpers.MusicLibrary
+namespace VLC_WINRT_APP.MusicMetaFetcher.Fetchers
 {
-    public class XboxMusicClient : IMusicInformationManager
+    public class XboxMusicClient : IMusicMetaFetcher
     {
         public async Task<Artist> GetArtistInfo(string artistName)
         {

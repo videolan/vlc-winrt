@@ -4,7 +4,6 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.UI.Popups;
-using VLC_WINRT_APP.Helpers.MusicLibrary.MusicEntities;
 using VLC_WINRT_APP.Model.Music;
 using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.ViewModels.MusicVM;
@@ -79,7 +78,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
 #else 
                 return null;
 #endif
-            var artists = await ArtistInformationsHelper.GetTopArtistGenre(currentArtist.Genre);
+            var artists = await App.MusicMetaService.GetTopArtistGenre(currentArtist.Genre);
             if (artists == null || !artists.Any()) return null;
             var artistsInCollection = InCollection(artists.Select(x => x.Name).ToList());
             return artistsInCollection;
@@ -87,7 +86,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
 
         private async Task<List<ArtistItem>> GetFollowingArtistViaSimilarity(ArtistItem currentArtist)
         {
-            await ArtistInformationsHelper.GetArtistSimilarsArtist(currentArtist);
+            await App.MusicMetaService.GetSimilarArtists(currentArtist);
             if (currentArtist.OnlineRelatedArtists == null || !currentArtist.OnlineRelatedArtists.Any())
                 return null; // no more similar artists
             var artistsInCollection = InCollection(currentArtist.OnlineRelatedArtists.Select(x => x.Name).ToList());

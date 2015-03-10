@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
-namespace VLC_WINRT_APP.Helpers.MusicLibrary.LastFm
+namespace VLC_WINRT_APP.MusicMetaFetcher.Models.LastFm
 {
     public class TopArtistInformation
     {

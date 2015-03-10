@@ -7,9 +7,9 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
-using VLC_WINRT_APP.Helpers.MusicLibrary.LastFm;
+using VLC_WINRT_APP.MusicMetaFetcher.Models.LastFm;
 
-namespace VLC_WINRT_APP.Helpers.MusicLibrary.MusicEntities
+namespace VLC_WINRT_APP.MusicMetaFetcher.Models.MusicEntities
 {
     /// <summary>
     /// Entity for images. This may be expanded to use more than just Urls.

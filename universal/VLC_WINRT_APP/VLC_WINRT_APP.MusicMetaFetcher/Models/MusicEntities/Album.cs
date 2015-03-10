@@ -10,9 +10,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using VLC_WINRT_APP.Helpers.MusicLibrary.LastFm;
+using VLC_WINRT_APP.MusicMetaFetcher.Models.LastFm;
 
-namespace VLC_WINRT_APP.Helpers.MusicLibrary.MusicEntities
+namespace VLC_WINRT_APP.MusicMetaFetcher.Models.MusicEntities
 {
     /// <summary>
     /// Entitiy representing an album.

@@ -9,7 +9,7 @@
 
 using Newtonsoft.Json;
 
-namespace VLC_WINRT_APP.Helpers.MusicLibrary.LastFm
+namespace VLC_WINRT_APP.MusicMetaFetcher.Models.LastFm
 {
     public class TopAlbumInformation
     {

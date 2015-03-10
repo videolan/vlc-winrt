@@ -27,7 +27,6 @@ using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.Model.Music;
 using XboxMusicLibrary;
 using VLC_WINRT_APP.Commands.Music;
-using XboxMusicLibrary.Models;
 
 namespace VLC_WINRT_APP.ViewModels.MusicVM
 {

@@ -18,7 +18,6 @@ using Windows.UI.Core;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Autofac;
-using VLC_WINRT_APP.Helpers.MusicLibrary.Deezer;
 using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.Model.Music;
 using VLC_WINRT_APP.Services.Interface;

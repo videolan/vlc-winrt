@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>c3f84118-8e3d-4b19-a300-9cb6f7ae0e87</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>VLC_WINRT_APP.MusicMetaFetcher</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Fetchers\DeezerClient.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Fetchers\IMusicMetaFetcher.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Fetchers\LastFmClient.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Fetchers\XboxMusicClient.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Deezer\Albums.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Deezer\Artists.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Deezer\Tracks.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\LastFm\AlbumInformation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\LastFm\ArtistEventInformation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\LastFm\ArtistInformation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\LastFm\SimilarArtistInformation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\LastFm\TopAlbumInformation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\LastFm\TopArtistInformation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\MusicEntities\Album.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\MusicEntities\Artist.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\MusicEntities\Image.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\MusicEntities\Show.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MusicMDFetcher.cs" />
+  </ItemGroup>
+</Project>

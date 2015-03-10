@@ -9,25 +9,25 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
-using VLC_WINRT_APP.Helpers.MusicLibrary.Deezer;
-using VLC_WINRT_APP;
-using Album = VLC_WINRT_APP.Helpers.MusicLibrary.MusicEntities.Album;
-using Artist = VLC_WINRT_APP.Helpers.MusicLibrary.MusicEntities.Artist;
 using Windows.Web.Http;
+using Newtonsoft.Json;
+using VLC_WINRT_APP.MusicMetaFetcher.Models.Deezer;
+using Album = VLC_WINRT_APP.MusicMetaFetcher.Models.MusicEntities.Album;
+using Artist = VLC_WINRT_APP.MusicMetaFetcher.Models.MusicEntities.Artist;
 
-namespace VLC_WINRT_APP.Helpers.MusicLibrary
+namespace VLC_WINRT_APP.MusicMetaFetcher.Fetchers
 {
-    public class DeezerClient : IMusicInformationManager
+    public class DeezerClient : IMusicMetaFetcher
     {
         public async Task<Artist> GetArtistInfo(string artistName)
         {
             try
             {
                 var deezerClient = new HttpClient();
-                string json = await deezerClient.GetStringAsync(new Uri(string.Format("http://api.deezer.com/search/artist?q={0}&appid={1}", System.Net.WebUtility.HtmlEncode(artistName), App.DeezerAppID)));
+                string json = await deezerClient.GetStringAsync(new Uri(string.Format("http://api.deezer.com/search/artist?q={0}&appid={1}", System.Net.WebUtility.HtmlEncode(artistName), MusicMDFetcher.DeezerAppId)));
                 // TODO: See if this is even needed. It should just map an empty object.
                 if (json == "{\"data\":[],\"total\":0}")
                 {
@@ -44,7 +44,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             }
             catch (Exception e)
             {
-                ExceptionHelper.CreateMemorizedException("DeezerClient.GetArtistInfo", e);
+                Debug.WriteLine("DeezerClient.GetArtistInfo", e);
             }
             return null;
         }
@@ -54,7 +54,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             try
             {
                 var deezerClient = new HttpClient();
-                string json = await deezerClient.GetStringAsync(new Uri(string.Format("http://api.deezer.com/artist/{0}/related?appid={1}", artistId, App.DeezerAppID)));
+                string json = await deezerClient.GetStringAsync(new Uri(string.Format("http://api.deezer.com/artist/{0}/related?appid={1}", artistId, MusicMDFetcher.DeezerAppId)));
                 var deezerArtists = JsonConvert.DeserializeObject<Artists>(json);
                 var artistList = new List<Artist>();
                 if (deezerArtists.Data != null)
@@ -70,7 +70,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             }
             catch (Exception e)
             {
-                ExceptionHelper.CreateMemorizedException("DeezerClient.GetSimilarArtists", e);
+                Debug.WriteLine("DeezerClient.GetSimilarArtists", e);
             }
             return null;
         }
@@ -80,7 +80,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             try
             {
                 var deezerClient = new HttpClient();
-                string json = await deezerClient.GetStringAsync(new Uri(string.Format("http://api.deezer.com/search/album?q={0} {1}&appid={2}", albumTitle, artistName, App.DeezerAppID)));
+                string json = await deezerClient.GetStringAsync(new Uri(string.Format("http://api.deezer.com/search/album?q={0} {1}&appid={2}", albumTitle, artistName, MusicMDFetcher.DeezerAppId)));
                 if (json == "{\"data\":[],\"total\":0}")
                 {
                     return null;
@@ -96,7 +96,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             }
             catch (Exception e)
             {
-                ExceptionHelper.CreateMemorizedException("DeezerClient.GetAlbumInfo", e);
+                Debug.WriteLine("DeezerClient.GetAlbumInfo", e);
             }
             return null;
         }
@@ -106,7 +106,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             try
             {
                 var deezerClient = new HttpClient();
-                string json = await deezerClient.GetStringAsync(new Uri(string.Format("http://api.deezer.com/artist/{0}/albums?appid={1}", artistId, App.DeezerAppID)));
+                string json = await deezerClient.GetStringAsync(new Uri(string.Format("http://api.deezer.com/artist/{0}/albums?appid={1}", artistId, MusicMDFetcher.DeezerAppId)));
                 var deezerAlbums = JsonConvert.DeserializeObject<Albums>(json);
                 if (deezerAlbums == null) return null;
                 if (deezerAlbums.Data == null) return null;
@@ -121,7 +121,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             }
             catch (Exception e)
             {
-                ExceptionHelper.CreateMemorizedException("DeezerClient.GetArtistTopAlbums", e);
+                Debug.WriteLine("DeezerClient.GetArtistTopAlbums", e);
             } 
             return null;
         }

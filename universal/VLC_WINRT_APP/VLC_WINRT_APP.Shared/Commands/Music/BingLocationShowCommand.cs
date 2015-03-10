@@ -2,7 +2,7 @@
 using Windows.System;
 using Windows.UI.Xaml.Controls;
 using VLC_WINRT.Common;
-using VLC_WINRT_APP.Model.Music;
+using VLC_WINRT_APP.MusicMetaFetcher.Models.MusicEntities;
 
 namespace VLC_WINRT_APP.Commands.Music
 {
@@ -13,7 +13,7 @@ namespace VLC_WINRT_APP.Commands.Music
             var itemClick = parameter as ItemClickEventArgs;
             if (itemClick != null)
             {
-                var showItem = itemClick.ClickedItem as ShowItem;
+                var showItem = itemClick.ClickedItem as Show;
                 if (showItem != null)
                 {
                     var uri =
