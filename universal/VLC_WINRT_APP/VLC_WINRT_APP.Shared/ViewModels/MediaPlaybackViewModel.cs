@@ -44,6 +44,7 @@ namespace VLC_WINRT_APP.ViewModels
         private MouseService _mouseService;
 #endif
         private bool _isPlaying;
+        private MediaState _mediaState;
         private PlayingType _playingType;
         private TrackCollection _trackCollection;
         private TimeSpan _timeTotal;
@@ -103,6 +104,12 @@ namespace VLC_WINRT_APP.ViewModels
                 }
                 OnPropertyChanged("PlayingType");
             }
+        }
+
+        public MediaState MediaState
+        {
+            get { return _mediaState; }
+            set { SetProperty(ref _mediaState, value); }
         }
 
         public int Volume
@@ -644,6 +651,7 @@ namespace VLC_WINRT_APP.ViewModels
             {
                 IsPlaying = e == MediaState.Playing;
                 OnPropertyChanged("IsPlaying");
+                MediaState = e;
             });
         }
 

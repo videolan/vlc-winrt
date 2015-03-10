@@ -49,6 +49,7 @@ namespace VLC_WINRT_APP.Common
             // Register Services
             builder.RegisterType<MediaService>().As<IMediaService>().SingleInstance();
             builder.RegisterType<MusicMetaService>().SingleInstance();
+            builder.RegisterType<KeyboardListenerService>().SingleInstance();
 
             #if WINDOWS_APP
             builder.RegisterType<MouseService>().SingleInstance();

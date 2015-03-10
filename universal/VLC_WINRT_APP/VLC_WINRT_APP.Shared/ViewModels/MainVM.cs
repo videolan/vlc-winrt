@@ -19,12 +19,14 @@ using Windows.Foundation.Collections;
 using Windows.UI.Core;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
+using Autofac;
 using VLC_WINRT.Common;
 using VLC_WINRT_APP.Commands.MainPageCommands;
 using VLC_WINRT_APP.Common;
 using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.Commands;
 using VLC_WINRT_APP.Model.Search;
+using VLC_WINRT_APP.Services.RunTime;
 using VLC_WINRT_APP.ViewModels.MusicVM;
 using VLC_WINRT_APP.Views.MainPages;
 using VLC_WINRT_APP.Views.VariousPages;
@@ -40,6 +42,8 @@ namespace VLC_WINRT_APP.ViewModels
     public class MainVM : BindableBase
     {
         #region private fields
+
+        private KeyboardListenerService keyboardListenerService;
         private ObservableCollection<Panel> _panels = new ObservableCollection<Panel>();
         private ObservableCollection<SearchResult> _searchResults;
         #endregion
@@ -167,6 +171,8 @@ namespace VLC_WINRT_APP.ViewModels
 
         public MainVM()
         {
+            keyboardListenerService = App.Container.Resolve<KeyboardListenerService>();  
+            
             GoToPanelCommand = new GoToPanelCommand();
             GoToSettingsPageCommand = new GoToSettingsPageCommand();
             GoToThanksPageCommand = new GoToThanksPageCommand();
@@ -204,6 +210,14 @@ namespace VLC_WINRT_APP.ViewModels
             if (streamFLyout != null)
             {
                 streamFLyout.Hide();
+            }
+        }
+        public void OpenStreamFlyout()
+        {
+            var streamFLyout = App.Current.Resources["PhoneOpenStreamFlyout"] as Flyout;
+            if (streamFLyout != null)
+            {
+                streamFLyout.ShowAt(CommandBar);
             }
         }
 

@@ -135,6 +135,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)DataRepository\AlbumDataRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataRepository\ArtistDataRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataRepository\IDataRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataRepository\KeyboardActionDataRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataRepository\TrackCollectionRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataRepository\TrackDataRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataRepository\TracklistItemRepository.cs" />
@@ -183,6 +184,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\VideoHUDHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\VideoLibrary\VideoLibraryManagement.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\VideoPlayer\PlayVideoHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\KeyboardAction.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\LoadingState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Music\AlbumItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Music\ArtistItem.cs" />
@@ -201,6 +203,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Model\Video\VideoView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Video\VideoVM.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Video\VideTemplateSizer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\VLCAction.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\VLCFileExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\VLCFolder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\VLCItemType.cs" />
@@ -210,6 +213,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Services\Interface\IMediaService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Interface\IThumbnailService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\ExternalDeviceService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\KeyboardListenerService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\MediaService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\MouseService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\MusicMetaService.cs" />

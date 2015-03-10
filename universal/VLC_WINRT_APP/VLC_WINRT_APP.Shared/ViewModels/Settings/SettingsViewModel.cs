@@ -13,10 +13,12 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.Storage;
+using Windows.System;
 using Windows.UI.Xaml;
 using VLC_WINRT_APP.Commands.Music;
 using VLC_WINRT_APP.Commands.Settings;
 using VLC_WINRT_APP.Common;
+using VLC_WINRT_APP.DataRepository;
 using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.Helpers.MusicLibrary;
 using VLC_WINRT_APP.Model.Music;
@@ -50,6 +52,8 @@ namespace VLC_WINRT_APP.ViewModels.Settings
         private bool _lastFmIsConnecting = false;
         private ApplicationTheme _applicationTheme;
         private bool _forceAppTheme;
+
+        public KeyboardActionDataRepository _keyboardActionDataRepository = new KeyboardActionDataRepository();
 #if WINDOWS_APP
         public bool ContinueVideoPlaybackInBackground
         {
@@ -452,8 +456,112 @@ namespace VLC_WINRT_APP.ViewModels.Settings
             VideoViewCollection.Add(VideoView.Videos);
             VideoViewCollection.Add(VideoView.Shows);
             VideoViewCollection.Add(VideoView.CameraRoll);
+
+            InitializeActionKeyboardShortcuts();
         }
 
+        public async Task InitializeActionKeyboardShortcuts()
+        {
+            var actions = await _keyboardActionDataRepository.GetAllKeyboardActions();
+            if (!actions.Any())
+            {
+                // never set before, we need to do it ...
+                var actionsToSet = new List<KeyboardAction>()
+                {
+                    new KeyboardAction()
+                    {
+                        Action = VLCAction.FullscreenToggle,
+                        MainKey = VirtualKey.F
+                    },
+                    new KeyboardAction()
+                    {
+                        Action = VLCAction.LeaveFullscreen,
+                        MainKey = VirtualKey.Escape,
+                    },
+                    new KeyboardAction()
+                    {
+                        Action = VLCAction.PauseToggle,
+                        MainKey = VirtualKey.Space
+                    },
+                    new KeyboardAction()
+                    {
+                        Action = VLCAction.Faster,
+                        MainKey = VirtualKey.Add
+                    },
+                    new KeyboardAction()
+                    {
+                        Action = VLCAction.Slow,
+                        MainKey = VirtualKey.Subtract,
+                    },
+                    new KeyboardAction()
+                    {
+                        Action = VLCAction.NormalRate,
+                        MainKey = VirtualKey.Execute,
+                    },
+                    new KeyboardAction()
+                    {
+                        Action = VLCAction.Next,
+                        MainKey = VirtualKey.N,
+                    },
+                    new KeyboardAction()
+                    {
+                        Action = VLCAction.Previous,
+                        MainKey = VirtualKey.P,
+                    },
+                    new KeyboardAction()
+                    {
+                        Action = VLCAction.Stop,
+                        MainKey = VirtualKey.S,
+                    },
+                    new KeyboardAction()
+                    {
+                        Action = VLCAction.Quit,
+                        MainKey = VirtualKey.Q,
+                    },
+                    new KeyboardAction()
+                    {
+                        Action = VLCAction.VolumeUp,
+                        MainKey = VirtualKey.Control,
+                        SecondKey = VirtualKey.Add,
+                    },
+                    new KeyboardAction()
+                    {
+                        Action = VLCAction.VolumeDown,
+                        MainKey = VirtualKey.Control,
+                        SecondKey = VirtualKey.Subtract,
+                    },
+                    new KeyboardAction()
+                    {
+                        Action = VLCAction.Mute,
+                        MainKey = VirtualKey.M,
+                    },
+                    new KeyboardAction()
+                    {
+                        Action = VLCAction.ChangeAudioTrack,
+                        MainKey = VirtualKey.B,
+                    },
+                    new KeyboardAction()
+                    {
+                        Action = VLCAction.ChangeSubtitle,
+                        MainKey = VirtualKey.V
+                    },
+                    new KeyboardAction()
+                    {
+                        Action = VLCAction.OpenFile,
+                        MainKey = VirtualKey.Control,
+                        SecondKey = VirtualKey.O,
+                    },
+                    new KeyboardAction()
+                    {
+                        Action = VLCAction.OpenNetwork,
+                        MainKey = VirtualKey.Control,
+                        SecondKey = VirtualKey.N
+                    }
+                };
+
+                await _keyboardActionDataRepository.AddKeyboardActions(actionsToSet);
+            }
+        }
 
         public async Task Initialize()
         {
