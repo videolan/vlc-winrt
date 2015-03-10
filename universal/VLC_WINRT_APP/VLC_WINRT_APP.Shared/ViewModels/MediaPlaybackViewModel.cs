@@ -406,11 +406,10 @@ namespace VLC_WINRT_APP.ViewModels
             _mouseService = App.Container.Resolve<MouseService>();
 #endif
         }
-
         #endregion
 
         #region methods
-        private void ProtectedDisplayCall(bool shouldActivate)
+        private void privateDisplayCall(bool shouldActivate)
         {
             if (_displayAlwaysOnRequest == null) return;
             if (shouldActivate)
@@ -467,7 +466,7 @@ namespace VLC_WINRT_APP.ViewModels
             TrackCollection.IsRunning = false;
         }
 
-        private virtual void OnPlaybackStarting()
+        private void OnPlaybackStarting()
         {
             privateDisplayCall(true);
 #if WINDOWS_APP
@@ -499,7 +498,7 @@ namespace VLC_WINRT_APP.ViewModels
             });
         }
 
-        private virtual void OnStopped()
+        private void OnStopped()
         {
             var em = _mediaService.MediaPlayer.eventManager();
             em.OnTrackAdded -= OnTrackAdded;
