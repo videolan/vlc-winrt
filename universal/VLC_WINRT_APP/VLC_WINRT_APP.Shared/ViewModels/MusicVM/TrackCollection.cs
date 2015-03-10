@@ -238,7 +238,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             Playlist = new ObservableCollection<TrackItem>();
             foreach (int trackId in trackIds)
             {
-                var trackItem = await MusicLibraryVM._trackDataRepository.LoadTrack(trackId);
+                var trackItem = await Locator.MusicLibraryVM._trackDataRepository.LoadTrack(trackId);
                 Playlist.Add(trackItem);
             }
             IsRunning = true;

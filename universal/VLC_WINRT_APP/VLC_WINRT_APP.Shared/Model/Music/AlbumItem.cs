@@ -17,6 +17,7 @@ using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.Helpers.MusicLibrary;
 using VLC_WINRT_APP.Services.Interface;
 using VLC_WINRT_APP.Services.RunTime;
+using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.ViewModels.MusicVM;
 
 namespace VLC_WINRT_APP.Model.Music
@@ -156,9 +157,9 @@ namespace VLC_WINRT_APP.Model.Music
                 {
                     Debug.WriteLine("Searching local cover for " + Name);
                     IsLocalPictureIndexed = true;
-                    await MusicLibraryVM._albumDataRepository.Update(this);
+                    await Locator.MusicLibraryVM._albumDataRepository.Update(this);
                     var mediaService = App.Container.Resolve<IMediaService>() as MediaService;
-                    var trackPath = await MusicLibraryVM._trackDataRepository.GetFirstTrackPathByAlbumId(Id);
+                    var trackPath = await Locator.MusicLibraryVM._trackDataRepository.GetFirstTrackPathByAlbumId(Id);
                     success = await MusicLibraryManagement.SetAlbumCover(this, trackPath, false, mediaService);
                     if (success) await ResetAlbumArt();
                 }

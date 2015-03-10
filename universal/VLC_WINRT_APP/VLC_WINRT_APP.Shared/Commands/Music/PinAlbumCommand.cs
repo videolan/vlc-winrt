@@ -2,6 +2,7 @@
 using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.Model.Music;
+using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.ViewModels.MusicVM;
 
 namespace VLC_WINRT_APP.Commands.Music
@@ -14,7 +15,7 @@ namespace VLC_WINRT_APP.Commands.Music
             {
                 var album = parameter as AlbumItem;
                 album.IsPinned = !album.IsPinned;
-                await MusicLibraryVM._albumDataRepository.Update(album);
+                await Locator.MusicLibraryVM._albumDataRepository.Update(album);
                 UpdateTileHelper.CreateOrReplaceSecondaryTile(VLCItemType.Album, album.Id, album.Name);
             }
         }

@@ -90,7 +90,7 @@ namespace VLC_WINRT_APP.Helpers.MusicPlayer
             {
                 await Locator.MediaPlaybackViewModel.TrackCollection.ResetCollection();
             }
-            var trackItems = await MusicLibraryVM._trackDataRepository.LoadTracksByAlbumId(albumId);
+            var trackItems = await Locator.MusicLibraryVM._trackDataRepository.LoadTracksByAlbumId(albumId);
 #if WINDOWS_PHONE_APP
             var backgroundTracks = BackgroundTaskTools.CreateBackgroundTrackItemList(trackItems);
             await App.BackgroundAudioHelper.AddToPlaylist(backgroundTracks);
@@ -119,7 +119,7 @@ namespace VLC_WINRT_APP.Helpers.MusicPlayer
             {
                 await Locator.MediaPlaybackViewModel.TrackCollection.ResetCollection();
             }
-            var trackItems = await MusicLibraryVM._trackDataRepository.LoadTracksByArtistId(artistId);
+            var trackItems = await Locator.MusicLibraryVM._trackDataRepository.LoadTracksByArtistId(artistId);
 #if WINDOWS_PHONE_APP
             var backgroundTracks = BackgroundTaskTools.CreateBackgroundTrackItemList(trackItems);
             await App.BackgroundAudioHelper.AddToPlaylist(backgroundTracks);

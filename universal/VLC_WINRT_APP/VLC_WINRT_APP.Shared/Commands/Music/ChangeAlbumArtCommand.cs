@@ -15,6 +15,7 @@ using VLC_WINRT_APP.Common;
 using VLC_WINRT_APP.Helpers.MusicLibrary;
 using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.Model.Music;
+using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.ViewModels.MusicVM;
 
 namespace VLC_WINRT_APP.Commands.Music
@@ -54,7 +55,7 @@ namespace VLC_WINRT_APP.Commands.Music
             if (file == null) return;
             var byteArray = await ConvertImage.ConvertImagetoByte(file);
             await App.MusicMetaService.SaveAlbumImageAsync(album, byteArray);
-            await MusicLibraryVM._albumDataRepository.Update(album);
+            await Locator.MusicLibraryVM._albumDataRepository.Update(album);
 #endif
         }
     }

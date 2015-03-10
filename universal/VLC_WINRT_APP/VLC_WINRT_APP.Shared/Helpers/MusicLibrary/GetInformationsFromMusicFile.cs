@@ -22,7 +22,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
         public async static Task<TrackItem> GetTrackItemFromFile(StorageFile track)
         {
             //TODO: Warning, is it safe to consider this a good idea?
-            var trackItem = await MusicLibraryVM._trackDataRepository.LoadTrackByPath(track.Path);
+            var trackItem = await Locator.MusicLibraryVM._trackDataRepository.LoadTrackByPath(track.Path);
             if (trackItem != null)
             {
                 return trackItem;

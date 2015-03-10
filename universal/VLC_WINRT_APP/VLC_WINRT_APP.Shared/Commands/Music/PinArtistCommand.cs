@@ -2,6 +2,7 @@
 using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.Model.Music;
+using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.ViewModels.MusicVM;
 
 namespace VLC_WINRT_APP.Commands.Music
@@ -14,7 +15,7 @@ namespace VLC_WINRT_APP.Commands.Music
             {
                 var artist = parameter as ArtistItem;
                 artist.IsPinned = !artist.IsPinned;
-                await MusicLibraryVM._artistDataRepository.Update(artist);
+                await Locator.MusicLibraryVM._artistDataRepository.Update(artist);
                 UpdateTileHelper.CreateOrReplaceSecondaryTile(VLCItemType.Artist, artist.Id, artist.Name);
             }
         }

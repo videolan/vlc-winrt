@@ -66,7 +66,7 @@ namespace VLC_WINRT_APP.Services.RunTime
                 var success = bytes != null && await SaveAlbumImageAsync(album, bytes);
                 if (success)
                 {
-                    await MusicLibraryVM._albumDataRepository.Update(album);
+                    await Locator.MusicLibraryVM._albumDataRepository.Update(album);
                     return true;
                 }
             }
@@ -89,7 +89,7 @@ namespace VLC_WINRT_APP.Services.RunTime
                 var success = bytes != null && await SaveArtistImageAsync(artist, bytes);
                 if (success)
                 {
-                    await MusicLibraryVM._artistDataRepository.Update(artist);
+                    await Locator.MusicLibraryVM._artistDataRepository.Update(artist);
                     return true;
                 }
             }

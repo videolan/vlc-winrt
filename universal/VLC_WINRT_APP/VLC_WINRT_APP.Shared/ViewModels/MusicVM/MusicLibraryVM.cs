@@ -32,11 +32,11 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 {
     public class MusicLibraryVM : BindableBase
     {
-        public static ArtistDataRepository _artistDataRepository = new ArtistDataRepository();
-        public static TrackDataRepository _trackDataRepository = new TrackDataRepository();
-        public static AlbumDataRepository _albumDataRepository = new AlbumDataRepository();
-        public static TracklistItemRepository TracklistItemRepository = new TracklistItemRepository();
-        public static TrackCollectionRepository TrackCollectionRepository = new TrackCollectionRepository();
+        public ArtistDataRepository _artistDataRepository = new ArtistDataRepository();
+        public TrackDataRepository _trackDataRepository = new TrackDataRepository();
+        public AlbumDataRepository _albumDataRepository = new AlbumDataRepository();
+        public TracklistItemRepository TracklistItemRepository = new TracklistItemRepository();
+        public TrackCollectionRepository TrackCollectionRepository = new TrackCollectionRepository();
         public delegate void LoadingEnded(object sender, string myValue);
         public static LoadingEnded MusicCollectionLoaded = delegate { };
         #region private fields

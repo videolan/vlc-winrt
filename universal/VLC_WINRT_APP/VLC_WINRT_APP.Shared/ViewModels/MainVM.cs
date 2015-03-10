@@ -235,17 +235,17 @@ namespace VLC_WINRT_APP.ViewModels
         public void DropTablesIfNeeded()
         {
             if (!NeedsToDrop()) return;
-            MusicLibraryVM.TrackCollectionRepository.Drop();
-            MusicLibraryVM.TracklistItemRepository.Drop();
-            MusicLibraryVM._albumDataRepository.Drop();
-            MusicLibraryVM._artistDataRepository.Drop();
-            MusicLibraryVM._trackDataRepository.Drop();
+            Locator.MusicLibraryVM.TrackCollectionRepository.Drop();
+            Locator.MusicLibraryVM.TracklistItemRepository.Drop();
+            Locator.MusicLibraryVM._albumDataRepository.Drop();
+            Locator.MusicLibraryVM._artistDataRepository.Drop();
+            Locator.MusicLibraryVM._trackDataRepository.Drop();
             Locator.VideoLibraryVM.VideoRepository.Drop();
-            MusicLibraryVM.TrackCollectionRepository.Initialize();
-            MusicLibraryVM.TracklistItemRepository.Initialize();
-            MusicLibraryVM._albumDataRepository.Initialize();
-            MusicLibraryVM._artistDataRepository.Initialize();
-            MusicLibraryVM._trackDataRepository.Initialize();
+            Locator.MusicLibraryVM.TrackCollectionRepository.Initialize();
+            Locator.MusicLibraryVM.TracklistItemRepository.Initialize();
+            Locator.MusicLibraryVM._albumDataRepository.Initialize();
+            Locator.MusicLibraryVM._artistDataRepository.Initialize();
+            Locator.MusicLibraryVM._trackDataRepository.Initialize();
             Locator.VideoLibraryVM.VideoRepository.Initialize();
             LogHelper.SignalUpdate();
         }

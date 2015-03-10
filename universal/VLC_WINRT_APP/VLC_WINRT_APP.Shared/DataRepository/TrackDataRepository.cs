@@ -8,6 +8,7 @@ using VLC_WINRT_APP.Model.Music;
 using VLC_WINRT_APP.ViewModels.MusicVM;
 using WinRTXamlToolkit.IO.Serialization;
 using System.Collections.Generic;
+using VLC_WINRT_APP.ViewModels;
 
 namespace VLC_WINRT_APP.DataRepository
 {
@@ -141,9 +142,9 @@ namespace VLC_WINRT_APP.DataRepository
             // If all tracks for an album are deleted, then remove the album itself
             foreach (TrackItem trackItem in result)
             {
-                AlbumItem album = await MusicLibraryVM._albumDataRepository.LoadAlbum(trackItem.AlbumId);
+                AlbumItem album = await Locator.MusicLibraryVM._albumDataRepository.LoadAlbum(trackItem.AlbumId);
                 if (album != null)
-                    MusicLibraryVM._albumDataRepository.Remove(album);
+                    Locator.MusicLibraryVM._albumDataRepository.Remove(album);
             }
 
             // If all the albums for the artist are gone, remove the artist
@@ -153,11 +154,11 @@ namespace VLC_WINRT_APP.DataRepository
                 return;
             }
 
-            var albums = await MusicLibraryVM._albumDataRepository.LoadAlbumsFromId(firstTrack.ArtistId);
+            var albums = await Locator.MusicLibraryVM._albumDataRepository.LoadAlbumsFromId(firstTrack.ArtistId);
             if (albums != null && !albums.Any())
             {
-                var artist = await MusicLibraryVM._artistDataRepository.LoadArtist(firstTrack.ArtistId);
-                await MusicLibraryVM._artistDataRepository.Remove(artist);
+                var artist = await Locator.MusicLibraryVM._artistDataRepository.LoadArtist(firstTrack.ArtistId);
+                await Locator.MusicLibraryVM._artistDataRepository.Remove(artist);
             }
         }
 

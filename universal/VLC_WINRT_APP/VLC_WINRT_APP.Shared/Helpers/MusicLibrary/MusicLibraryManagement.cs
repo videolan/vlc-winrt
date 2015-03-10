@@ -71,11 +71,11 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             try
             {
                 LogHelper.Log("Loading artists from MusicDB ...");
-                var artists = await MusicLibraryVM._artistDataRepository.Load();
+                var artists = await Locator.MusicLibraryVM._artistDataRepository.Load();
                 LogHelper.Log("Found " + artists.Count + " artists from MusicDB");
                 var orderedArtists = artists.OrderBy(x => x.Name);
-                var tracks = await MusicLibraryVM._trackDataRepository.LoadTracks().ToObservableAsync();
-                var albums = await MusicLibraryVM._albumDataRepository.LoadAlbums(x => x.ArtistId != 0).ToObservableAsync();
+                var tracks = await Locator.MusicLibraryVM._trackDataRepository.LoadTracks().ToObservableAsync();
+                var albums = await Locator.MusicLibraryVM._albumDataRepository.LoadAlbums(x => x.ArtistId != 0).ToObservableAsync();
 
                 await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                 {
@@ -87,7 +87,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                     Locator.MusicLibraryVM.Albums = albums;
                 });
 
-                var trackColl = await MusicLibraryVM.TrackCollectionRepository.LoadTrackCollections().ToObservableAsync();
+                var trackColl = await Locator.MusicLibraryVM.TrackCollectionRepository.LoadTrackCollections().ToObservableAsync();
                 await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                 {
                     Locator.MusicLibraryVM.TrackCollections = trackColl;
@@ -95,10 +95,10 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
 
                 foreach (TrackCollection trackCollection in Locator.MusicLibraryVM.TrackCollections)
                 {
-                    var observableCollection = await MusicLibraryVM.TracklistItemRepository.LoadTracks(trackCollection);
+                    var observableCollection = await Locator.MusicLibraryVM.TracklistItemRepository.LoadTracks(trackCollection);
                     foreach (TracklistItem tracklistItem in observableCollection)
                     {
-                        TrackItem item = await MusicLibraryVM._trackDataRepository.LoadTrack(tracklistItem.TrackId);
+                        TrackItem item = await Locator.MusicLibraryVM._trackDataRepository.LoadTrack(tracklistItem.TrackId);
                         trackCollection.Playlist.Add(item);
                     }
                 }
@@ -190,7 +190,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                         }
                         else
                         {
-                            if (!await MusicLibraryVM._trackDataRepository.DoesTrackExist(storageFile.Path))
+                            if (!await Locator.MusicLibraryVM._trackDataRepository.DoesTrackExist(storageFile.Path))
                             {
                                 await CreateDatabaseFromMusicFile(storageFile);
                             }
@@ -225,12 +225,12 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                 if (mP != null)
                 {
                     var artistName = mP.Artist;
-                    ArtistItem artist = MusicLibraryVM._artistDataRepository.LoadViaArtistName(artistName);
+                    ArtistItem artist = Locator.MusicLibraryVM._artistDataRepository.LoadViaArtistName(artistName);
                     if (artist == null)
                     {
                         artist = new ArtistItem();
                         artist.Name = string.IsNullOrEmpty(artistName) ? string.Empty : artistName;
-                        await MusicLibraryVM._artistDataRepository.Add(artist);
+                        await Locator.MusicLibraryVM._artistDataRepository.Add(artist);
                         await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
                         {
                             Locator.MusicLibraryVM.Artists.Add(artist);
@@ -240,7 +240,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                     var albumName = mP.Album;
                     var albumYear = mP.Year;
                     AlbumItem album =
-                        await MusicLibraryVM._albumDataRepository.LoadAlbumViaName(artist.Id, albumName);
+                        await Locator.MusicLibraryVM._albumDataRepository.LoadAlbumViaName(artist.Id, albumName);
                     if (album == null)
                     {
                         album = new AlbumItem
@@ -251,7 +251,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                             Favorite = false,
                             Year = albumYear
                         };
-                        await MusicLibraryVM._albumDataRepository.Add(album);
+                        await Locator.MusicLibraryVM._albumDataRepository.Add(album);
                         await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
                         {
                             var artistFromCollection = Locator.MusicLibraryVM.Artists.FirstOrDefault(x => x.Id == album.ArtistId);
@@ -277,7 +277,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                         Path = item.Path,
                         Index = mP.Tracknumber,
                     };
-                    await MusicLibraryVM._trackDataRepository.Add(track);
+                    await Locator.MusicLibraryVM._trackDataRepository.Add(track);
                 }
             }
             catch (Exception e)
@@ -356,7 +356,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                         album.IsCoverInLocalFolder = true;
                         Debug.WriteLine("WinRT found embedded cover " + album.AlbumCoverUri);
                     });
-                    await MusicLibraryVM._albumDataRepository.Update(album);
+                    await Locator.MusicLibraryVM._albumDataRepository.Update(album);
                     return true;
                 }
                 catch (Exception exception)
@@ -369,7 +369,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
 
         public static async Task PopulateTracks(this AlbumItem album)
         {
-            var tracks = await MusicLibraryVM._trackDataRepository.LoadTracksByAlbumId(album.Id);
+            var tracks = await Locator.MusicLibraryVM._trackDataRepository.LoadTracksByAlbumId(album.Id);
             var orderedTracks = tracks.OrderBy(x => x.Index).ToObservable();
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
@@ -379,7 +379,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
 
         public static async Task PopulateAlbums(this ArtistItem artist)
         {
-            var albums = await MusicLibraryVM._albumDataRepository.LoadAlbumsFromId(artist.Id);
+            var albums = await Locator.MusicLibraryVM._albumDataRepository.LoadAlbumsFromId(artist.Id);
             var orderedAlbums = albums.OrderBy(x => x.Name).ToObservable();
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
@@ -393,7 +393,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             {
                 int howManyAlbumsToFill = await HowManyAlbumsToDisplayWithTwoRows();
                 if (Locator.MusicLibraryVM.RandomAlbums != null && Locator.MusicLibraryVM.RandomAlbums.Any()) return;
-                ObservableCollection<AlbumItem> favAlbums = await MusicLibraryVM._albumDataRepository.LoadAlbums(x => x.Favorite).ToObservableAsync();
+                ObservableCollection<AlbumItem> favAlbums = await Locator.MusicLibraryVM._albumDataRepository.LoadAlbums(x => x.Favorite).ToObservableAsync();
                 if (favAlbums != null && favAlbums.Any())
                 {
                     await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
@@ -404,7 +404,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                     });
                 }
                 if (howManyAlbumsToFill == 0) return;
-                ObservableCollection<AlbumItem> nonfavAlbums = await MusicLibraryVM._albumDataRepository.LoadAlbums(x => x.Favorite == false).ToObservableAsync();
+                ObservableCollection<AlbumItem> nonfavAlbums = await Locator.MusicLibraryVM._albumDataRepository.LoadAlbums(x => x.Favorite == false).ToObservableAsync();
                 if (nonfavAlbums != null && nonfavAlbums.Any())
                 {
                     await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
@@ -470,7 +470,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
         {
             if (string.IsNullOrEmpty(trackCollectionName)) return;
             TrackCollection trackCollection = null;
-            trackCollection = await MusicLibraryVM.TrackCollectionRepository.LoadFromName(trackCollectionName);
+            trackCollection = await Locator.MusicLibraryVM.TrackCollectionRepository.LoadFromName(trackCollectionName);
             if (trackCollection != null)
             {
                 await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
@@ -482,7 +482,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             {
                 trackCollection = new TrackCollection();
                 trackCollection.Name = trackCollectionName;
-                await MusicLibraryVM.TrackCollectionRepository.Add(trackCollection);
+                await Locator.MusicLibraryVM.TrackCollectionRepository.Add(trackCollection);
                 await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                 Locator.MusicLibraryVM.TrackCollections.Add(trackCollection));
             }
@@ -490,7 +490,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
 
         public static async Task DeletePlaylist(TrackCollection trackCollection)
         {
-            await MusicLibraryVM.TrackCollectionRepository.Remove(trackCollection);
+            await Locator.MusicLibraryVM.TrackCollectionRepository.Remove(trackCollection);
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Locator.MusicLibraryVM.TrackCollections.Remove(trackCollection));
         }
 
@@ -503,7 +503,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                 return;
             }
             Locator.MusicLibraryVM.CurrentTrackCollection.Playlist.Add(trackItem);
-            await MusicLibraryVM.TracklistItemRepository.Add(new TracklistItem()
+            await Locator.MusicLibraryVM.TracklistItemRepository.Add(new TracklistItem()
             {
                 TrackId = trackItem.Id,
                 TrackCollectionId = Locator.MusicLibraryVM.CurrentTrackCollection.Id,
@@ -519,7 +519,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             foreach (TrackItem trackItem in albumItem.Tracks)
             {
                 Locator.MusicLibraryVM.CurrentTrackCollection.Playlist.Add(trackItem);
-                await MusicLibraryVM.TracklistItemRepository.Add(new TracklistItem()
+                await Locator.MusicLibraryVM.TracklistItemRepository.Add(new TracklistItem()
                 {
                     TrackId = trackItem.Id,
                     TrackCollectionId = playlistId,
@@ -530,15 +530,15 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
 
         public static async Task UpdateTrackCollection(TrackCollection trackCollection)
         {
-            var loadTracks = await MusicLibraryVM.TracklistItemRepository.LoadTracks(trackCollection);
+            var loadTracks = await Locator.MusicLibraryVM.TracklistItemRepository.LoadTracks(trackCollection);
             foreach (TracklistItem tracklistItem in loadTracks)
             {
-                await MusicLibraryVM.TracklistItemRepository.Remove(tracklistItem);
+                await Locator.MusicLibraryVM.TracklistItemRepository.Remove(tracklistItem);
             }
             foreach (TrackItem trackItem in trackCollection.Playlist)
             {
                 var trackListItem = new TracklistItem { TrackId = trackItem.Id, TrackCollectionId = trackCollection.Id };
-                await MusicLibraryVM.TracklistItemRepository.Add(trackListItem);
+                await Locator.MusicLibraryVM.TracklistItemRepository.Add(trackListItem);
             }
         }
 
@@ -546,7 +546,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
         {
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                MusicLibraryVM._trackDataRepository.Remove(Locator.MusicLibraryVM.Tracks.FirstOrDefault(x => x.Path == trackItem.Path));
+                Locator.MusicLibraryVM._trackDataRepository.Remove(Locator.MusicLibraryVM.Tracks.FirstOrDefault(x => x.Path == trackItem.Path));
                 Locator.MusicLibraryVM.Tracks.Remove(Locator.MusicLibraryVM.Tracks.FirstOrDefault(x => x.Path == trackItem.Path));
                 var album = Locator.MusicLibraryVM.Albums.FirstOrDefault(x => x.Id == trackItem.AlbumId);
                 if (album != null)

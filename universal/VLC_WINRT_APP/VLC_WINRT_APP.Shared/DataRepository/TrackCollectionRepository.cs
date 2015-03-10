@@ -5,6 +5,7 @@ using SQLite;
 using VLC_WINRT_APP.Model.Music;
 using VLC_WINRT_APP.ViewModels.MusicVM;
 using System.Collections.Generic;
+using VLC_WINRT_APP.ViewModels;
 
 namespace VLC_WINRT_APP.DataRepository
 {
@@ -49,10 +50,10 @@ namespace VLC_WINRT_APP.DataRepository
         public async Task Remove(TrackCollection trackCollection)
         {
             var connection = new SQLiteAsyncConnection(DbPath);
-            var loadTracks = await MusicLibraryVM.TracklistItemRepository.LoadTracks(trackCollection);
+            var loadTracks = await Locator.MusicLibraryVM.TracklistItemRepository.LoadTracks(trackCollection);
             foreach (TracklistItem tracklistItem in loadTracks)
             {
-                await MusicLibraryVM.TracklistItemRepository.Remove(tracklistItem);
+                await Locator.MusicLibraryVM.TracklistItemRepository.Remove(tracklistItem);
             }
             await connection.DeleteAsync(trackCollection);
         }
