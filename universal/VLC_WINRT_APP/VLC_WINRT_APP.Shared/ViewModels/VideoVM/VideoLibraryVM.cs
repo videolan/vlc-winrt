@@ -136,6 +136,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             get { return _pickCommand; }
             set { SetProperty(ref _pickCommand, value); }
         }
+
         public PlayNetworkMRLCommand PlayNetworkMRL
         {
             get { return _playNetworkMRL; }
