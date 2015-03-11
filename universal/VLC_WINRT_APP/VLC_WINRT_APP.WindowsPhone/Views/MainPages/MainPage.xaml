@@ -35,14 +35,6 @@
            x:FieldModifier="public"
            Background="Transparent"
            ContentTransitions="{StaticResource FrameTransitionCollectionStyle}"/>
-    <customappbar:AppBar Grid.Row="1"
-                         x:Name="CommandBar"
-                         x:FieldModifier="public"
-                         Background="{ThemeResource ApplicationBarForegroundThemeBrush}"
-                         HomeButtonClicked="CommandBar_OnHomeButtonClicked"
-                         Visibility="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}">
-        <customappbar:AppBar.ExtraLeftContent>
-            <userControls:BottomMiniPlayer />
-        </customappbar:AppBar.ExtraLeftContent>
-    </customappbar:AppBar>
+    
+    <userControls:BottomMiniPlayer Grid.Row="1"/>
 </SwapChainPanel>

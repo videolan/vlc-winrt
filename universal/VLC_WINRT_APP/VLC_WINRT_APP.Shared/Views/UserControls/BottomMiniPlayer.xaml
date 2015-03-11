@@ -9,7 +9,8 @@
              d:DesignWidth="400"
              DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}"
              Visibility="{Binding CurrentPage, Converter={StaticResource BottomMiniPlayerVisibilityConverter}}">
-    <Grid x:Name="RootGrid">
+    <Grid x:Name="RootGrid"
+          Background="{ThemeResource ApplicationBarForegroundThemeBrush}">
         <Grid.Visibility>
             <Binding Source="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.TrackCollection}"
                      Path="IsRunning"

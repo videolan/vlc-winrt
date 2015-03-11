@@ -31,7 +31,6 @@ namespace VLC_WINRT_APP.Views.MainPages
         {
             base.OnNavigatedTo(e);
             HardwareButtons.BackPressed += HardwareButtonsOnBackPressed;
-            await AppBarHelper.UpdateAppBar(typeof(MainPageHome), MainPivot.SelectedIndex);
             await SdCardTest();
         }
 
@@ -116,7 +115,6 @@ namespace VLC_WINRT_APP.Views.MainPages
 
         private async void MainPivot_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            await AppBarHelper.UpdateAppBar(typeof(MainPageHome), MainPivot.SelectedIndex);
         }
     }
 }

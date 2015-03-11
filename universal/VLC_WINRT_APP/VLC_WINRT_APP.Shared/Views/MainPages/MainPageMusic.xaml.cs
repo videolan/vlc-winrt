@@ -36,7 +36,6 @@ namespace VLC_WINRT_APP.Views.MainPages
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            AppBarHelper.UpdateAppBar(typeof(MainPageMusic));
         }
 
         private void MusicPanesFrame_OnLoaded(object sender, RoutedEventArgs e)

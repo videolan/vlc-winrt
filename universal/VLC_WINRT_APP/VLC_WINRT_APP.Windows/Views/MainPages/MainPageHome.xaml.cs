@@ -29,7 +29,6 @@ namespace VLC_WINRT_APP.Views.MainPages
         protected override void OnNavigatedTo(Windows.UI.Xaml.Navigation.NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            AppBarHelper.UpdateAppBar(typeof(MainPageHome));
         }
 
         void Current_SizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)

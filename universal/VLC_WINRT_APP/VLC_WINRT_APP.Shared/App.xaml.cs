@@ -190,8 +190,6 @@ namespace VLC_WINRT_APP
 #if WINDOWS_PHONE_APP
             StatusBarHelper.SetDefaultForPage(args.SourcePageType);
 #endif
-            AppBarHelper.SetHomeButtonVisibleOrNot();
-            AppBarHelper.UpdateSecondaryAppBarButtons();
             Locator.MainVM.CurrentPage = args.SourcePageType;
         }
 #if WINDOWS_PHONE_APP

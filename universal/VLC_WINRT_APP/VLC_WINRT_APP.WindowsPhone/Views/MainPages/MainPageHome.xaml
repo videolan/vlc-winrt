@@ -9,6 +9,7 @@
       xmlns:extensions="using:WinRTXamlToolkit.Controls.Extensions"
       xmlns:placeholder="using:VLC_WINRT_APP.Views.UserControls.Placeholder"
       xmlns:userControls="using:VLC_WINRT_APP.Views.UserControls"
+      xmlns:homePageControls="using:VLC_WINRT_APP.Views.MainPages.HomePageControls"
       mc:Ignorable="d"
       DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}">
 
@@ -52,9 +53,8 @@
             <PivotItem x:Uid="HomeHeader"
                        Header="home">
                 <ScrollViewer>
-                    <StackPanel>
-                        <StackPanel x:Name="MusicLibrary"
-                                    DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
+                    <Grid>
+                        <StackPanel Margin="0,40,0,0">
                             <Button x:Uid="TopAlbums"
                                     Content="top albums"
                                     FontSize="30"
@@ -63,7 +63,8 @@
                                     Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToPanelCommand}"
                                     CommandParameter="2"
                                     FontWeight="SemiLight" />
-                            <ListView ItemsSource="{Binding RandomAlbums}"
+                            <ListView DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}"
+                                      ItemsSource="{Binding RandomAlbums}"
                                       ItemTemplate="{StaticResource PhoneSemanticZoomInViewAlbumTemplateLittleSize}"
                                       ItemContainerStyle="{StaticResource ListViewItemStyle}"
                                       IsItemClickEnabled="True"
@@ -84,9 +85,6 @@
                                 </ListView.ItemsPanel>
                             </ListView>
                             <controls:NoFavoriteAlbumsControl HorizontalAlignment="Left" />
-                        </StackPanel>
-                        <StackPanel x:Name="VideoLibrary"
-                                    DataContext="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM}">
                             <Button x:Uid="TopVideos"
                                     Content="top videos"
                                     Margin="0,12,0,0"
@@ -96,7 +94,8 @@
                                     Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToPanelCommand}"
                                     CommandParameter="1"
                                     FontWeight="SemiLight" />
-                            <ListView ItemsSource="{Binding ViewedVideos}"
+                            <ListView DataContext="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM}"
+                                      ItemsSource="{Binding ViewedVideos}"
                                       ItemTemplate="{StaticResource PhoneCompactVideoTemplate}"
                                       ItemContainerStyle="{StaticResource ListViewItemStyle}"
                                       Margin="0,0,-25,0"
@@ -124,7 +123,8 @@
                                 </ListView.ItemsPanel>
                             </ListView>
                         </StackPanel>
-                    </StackPanel>
+                        <homePageControls:HomePageButtons />
+                    </Grid>
                 </ScrollViewer>
             </PivotItem>
             <PivotItem x:Uid="VideoHubHeader"

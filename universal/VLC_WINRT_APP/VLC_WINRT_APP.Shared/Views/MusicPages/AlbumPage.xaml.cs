@@ -22,7 +22,6 @@ namespace VLC_WINRT_APP.Views.MusicPages
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             this.Loaded += AlbumPage_Loaded;
-            await AppBarHelper.UpdateAppBar(typeof(AlbumPage));
             ApplicationView.GetForCurrentView().SetDesiredBoundsMode(ApplicationViewBoundsMode.UseCoreWindow);
             HardwareButtons.BackPressed += HardwareButtonsOnBackPressed;
         }

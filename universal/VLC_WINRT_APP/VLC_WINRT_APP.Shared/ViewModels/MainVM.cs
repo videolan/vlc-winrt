@@ -62,27 +62,6 @@ namespace VLC_WINRT_APP.ViewModels
         private bool _preventAppExit = false;
         #endregion
         #region public fields
-        public AppBar CommandBar
-        {
-            get
-            {
-                if (App.RootPage != null && App.RootPage.CommandBar != null)
-                    return App.RootPage.CommandBar;
-                return null;
-            }
-        }
-
-        public List<ICommandBarElement> AppBarElements
-        {
-            get { if (CommandBar != null) return CommandBar.PrimaryCommands as List<ICommandBarElement>; return null; }
-            set { if (CommandBar != null) CommandBar.PrimaryCommands = value; }
-        }
-
-        public IList<AppBarButton> SecondaryAppBarElements
-        {
-            get { if (CommandBar != null) return CommandBar.SecondaryCommands as List<AppBarButton>; return null; }
-            set { if (CommandBar != null) CommandBar.SecondaryCommands = value; }
-        }
 
         public ObservableCollection<SearchResult> SearchResults
         {
@@ -217,7 +196,7 @@ namespace VLC_WINRT_APP.ViewModels
             var streamFLyout = App.Current.Resources["PhoneOpenStreamFlyout"] as Flyout;
             if (streamFLyout != null)
             {
-                streamFLyout.ShowAt(CommandBar);
+                streamFLyout.ShowAt(App.ApplicationFrame);
             }
         }
 

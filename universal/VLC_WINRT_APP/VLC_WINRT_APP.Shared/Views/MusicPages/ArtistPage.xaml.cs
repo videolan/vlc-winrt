@@ -36,7 +36,6 @@ namespace VLC_WINRT_APP.Views.MusicPages
         {
             this.Loaded += ArtistPage_Loaded;
             HardwareButtons.BackPressed += HardwareButtonsOnBackPressed;
-            AppBarHelper.UpdateAppBar(typeof(ArtistPage));
         }
 
         void ArtistPage_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)

@@ -50,14 +50,5 @@
     <userControls:LoadingMusicLibrary Grid.Row="0"
                                       VerticalAlignment="Bottom"
                                       HorizontalAlignment="Right" />
-    <customAppBar:AppBar Grid.Row="2"
-                         x:Name="CommandBar"
-                         x:FieldModifier="public"
-                         RequestedTheme="{Binding ApplicationTheme, Converter={StaticResource AppThemeElementThemeConverter}}"
-                         Background="{ThemeResource ApplicationBarForegroundThemeBrush}"
-                         HomeButtonClicked="CommandBar_OnHomeButtonClicked">
-        <customAppBar:AppBar.ExtraLeftContent>
-            <userControls:BottomMiniPlayer />
-        </customAppBar:AppBar.ExtraLeftContent>
-    </customAppBar:AppBar>
+    <userControls:BottomMiniPlayer Grid.Row="2"/>
 </SwapChainPanel>

@@ -21,39 +21,9 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <musicPanesControls:MusicPaneComboBox Grid.Row="0"/>
-            <ComboBox Grid.Column="1"
-                      HorizontalAlignment="Left"
-                      Height="40"
-                      ItemsSource="{Binding AlbumsOrderTypeCollection}"
-                      SelectedItem="{Binding AlbumsOrderType, Mode=TwoWay}"
-                      BorderThickness="1"
-                      BorderBrush="{StaticResource MainColor}"
-                      Style="{StaticResource NormalComboBoxStyle}">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Margin="0,0,6,0"
-                                   Text="{Binding Converter={StaticResource OrderTypeStringifyConverter}}" />
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
-            <ComboBox Grid.Column="2"
-                      Margin="12,0,0,0"
-                      HorizontalAlignment="Left"
-                      Height="40"
-                      ItemsSource="{Binding AlbumsListingTypeCollection}"
-                      SelectedItem="{Binding AlbumsOrderListing, Mode=TwoWay}"
-                      BorderThickness="1"
-                      BorderBrush="{StaticResource MainColor}"
-                      Style="{StaticResource NormalComboBoxStyle}">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding Converter={StaticResource OrderTypeStringifyConverter}}" />
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
+            <musicPanesControls:AlbumsCollectionButtons Grid.Column="1"/>
         </Grid>
         <controls:NothingToSeeHere Grid.Row="1"
                                    Visibility="{Binding Albums.Count, Converter={StaticResource CountToVisibilityConverter}}" />

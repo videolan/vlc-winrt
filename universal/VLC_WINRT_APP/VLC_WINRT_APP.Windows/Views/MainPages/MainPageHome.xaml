@@ -3,9 +3,8 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:triggers="using:WinRT.Triggers"
-      xmlns:controls="using:VLC_WINRT_APP.Controls"
       xmlns:mainPanes="using:VLC_WINRT_APP.Views.MainPages.MainPanes"
+      xmlns:homePageControls="using:VLC_WINRT_APP.Views.MainPages.HomePageControls"
       mc:Ignorable="d"
       d:DesignHeight="768"
       d:DesignWidth="550">
@@ -38,5 +37,6 @@
                 </HubSection>
             </Hub.Sections>
         </Hub>
+        <homePageControls:HomePageButtons />
     </Grid>
 </Page>

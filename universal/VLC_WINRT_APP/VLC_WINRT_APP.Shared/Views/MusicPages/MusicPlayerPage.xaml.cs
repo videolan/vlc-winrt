@@ -40,8 +40,6 @@ namespace VLC_WINRT_APP.Views.MusicPages
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            Locator.MainVM.CommandBar.Visibility = Visibility.Collapsed;
-            await AppBarHelper.UpdateAppBar(typeof(MusicPlayerPage));
             try
             {
                 Locator.SettingsVM.UpdateRequestedTheme();
@@ -55,7 +53,6 @@ namespace VLC_WINRT_APP.Views.MusicPages
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             base.OnNavigatedFrom(e);
-            Locator.MainVM.CommandBar.Visibility = Visibility.Visible;
             Locator.SettingsVM.UpdateRequestedTheme();
 #if WINDOWS_PHONE_APP
             HardwareButtons.BackPressed -= HardwareButtonsOnBackPressed;

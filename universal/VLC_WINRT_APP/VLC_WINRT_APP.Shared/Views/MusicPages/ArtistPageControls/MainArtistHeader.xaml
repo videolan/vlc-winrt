@@ -17,8 +17,9 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <Image Grid.RowSpan="2"
+        <Image Grid.RowSpan="3"
                Source="{Binding CurrentArtist.ArtistImage}"
                Stretch="UniformToFill"
                Opacity="0.5" />
@@ -33,6 +34,40 @@
                        Margin="24,0,24,12"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Top" />
+        </Grid>
+        <Grid Grid.Row="2"
+              Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}"
+              Height="50">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="36" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="12" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <AppBarButton Grid.Column="0"
+                          Style="{StaticResource AppBarButtonStyleHorizontal}"
+                          Label="Play all"
+                          VerticalAlignment="Center"
+                          Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.PlayArtistAlbumsCommand}"
+                          CommandParameter="{Binding CurrentArtist}"
+                          HorizontalAlignment="Right">
+                <AppBarButton.Icon>
+                    <PathIcon Data="{StaticResource PlayPathNarrow}" />
+                </AppBarButton.Icon>
+            </AppBarButton>
+            <AppBarButton Grid.Column="2"
+                          Style="{StaticResource AppBarButtonStyleHorizontal}"
+                          Icon="{Binding CurrentArtist.IsPinned, Converter={StaticResource PinConverter}, ConverterParameter='icon'}"
+                          VerticalAlignment="Center"
+                          Command="{Binding CurrentArtist.PinArtistCommand}"
+                          CommandParameter="{Binding CurrentArtist}" />
+            <AppBarButton Grid.Column="4"
+                          Style="{StaticResource AppBarButtonStyleHorizontal}"
+                          Icon="Calendar"
+                          VerticalAlignment="Center"
+                          Command="{Binding CurrentArtist.SeeArtistShowsCommand}"
+                          CommandParameter="{Binding CurrentArtist}" />
         </Grid>
     </Grid>
 </UserControl>

@@ -14,8 +14,17 @@
             <RowDefinition Height="50" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <videoPanesControls:VideoPaneComboBox Grid.Row="0"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <videoPanesControls:VideoPaneComboBox Grid.Row="0"
+                                              Grid.Column="0" />
+        <videoPanesControls:VideoPaneButtons Grid.Column="1"
+                                             HorizontalAlignment="Right" />
         <ListView Grid.Row="1"
+                  Grid.Column="0"
+                  Grid.ColumnSpan="2"
                   ItemsSource="{Binding CameraRoll}"
                   ItemTemplate="{StaticResource PhoneCompactVideoTemplate}"
                   ItemContainerStyle="{StaticResource ListViewItemStyle}"

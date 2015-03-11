@@ -25,7 +25,6 @@ namespace VLC_WINRT_APP.Views.MusicPages
 #if WINDOWS_PHONE_APP
             HardwareButtons.BackPressed += HardwareButtonsOnBackPressed;
 #endif
-            await AppBarHelper.UpdateAppBar(typeof(PlaylistPage));
             Responsive();
             Window.Current.SizeChanged += CurrentOnSizeChanged;
             this.Unloaded += OnUnloaded;

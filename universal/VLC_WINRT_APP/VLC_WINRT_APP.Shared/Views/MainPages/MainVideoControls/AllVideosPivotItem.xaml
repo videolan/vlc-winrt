@@ -11,13 +11,23 @@
       d:DesignHeight="300"
       d:DesignWidth="400"
       DataContext="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM}">
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <videoPanesControls:VideoPaneComboBox Grid.Row="0"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <videoPanesControls:VideoPaneComboBox Grid.Row="0"
+                                              Grid.Column="0" />
+        <videoPanesControls:VideoPaneButtons Grid.Column="1"
+                                             HorizontalAlignment="Right"/>
         <ListView Grid.Row="1"
+                  Grid.Column="0"
+                  Grid.ColumnSpan="2"
                   ItemsSource="{Binding Videos}"
                   ItemTemplate="{StaticResource PhoneCompactVideoTemplate}"
                   ItemContainerStyle="{StaticResource ListViewItemStyle}"
@@ -35,7 +45,7 @@
                 <TransitionCollection>
                     <AddDeleteThemeTransition />
                     <EntranceThemeTransition FromHorizontalOffset="50"
-                                             FromVerticalOffset="0"/>
+                                             FromVerticalOffset="0" />
                 </TransitionCollection>
             </ListView.ItemContainerTransitions>
             <ListView.ItemsPanel>
