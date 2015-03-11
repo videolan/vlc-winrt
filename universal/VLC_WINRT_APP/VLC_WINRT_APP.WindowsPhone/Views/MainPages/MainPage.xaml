@@ -30,11 +30,53 @@
                Stretch="UniformToFill"
                Opacity="0.3" />
     </Grid>
-    
+
     <Frame x:Name="MainFrame"
            x:FieldModifier="public"
            Background="Transparent"
-           ContentTransitions="{StaticResource FrameTransitionCollectionStyle}"/>
-    
-    <userControls:BottomMiniPlayer Grid.Row="1"/>
+           ContentTransitions="{StaticResource FrameTransitionCollectionStyle}" />
+
+    <customappbar:AppBar Grid.Row="1"
+                         x:Name="CommandBar"
+                         x:FieldModifier="public"
+                         RequestedTheme="{Binding ApplicationTheme, Converter={StaticResource AppThemeElementThemeConverter}}"
+                         Background="{ThemeResource ApplicationBarForegroundThemeBrush}"
+                         Foreground="Red">
+        <customappbar:AppBar.PrimaryCommands>
+            <AppBarButton Style="{StaticResource EllipseLessAppBarButtonStyle}"
+                          Label="search"
+                          Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToSearchPage}">
+                <AppBarButton.Icon>
+                    <PathIcon Data="{StaticResource SearchPath}" />
+                </AppBarButton.Icon>
+            </AppBarButton>
+            <AppBarButton Grid.Column="1"
+                          Style="{StaticResource EllipseLessAppBarButtonStyle}"
+                          Label="open file"
+                          Command="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM.PickVideo}">
+                <AppBarButton.Icon>
+                    <PathIcon Data="{StaticResource OpenFilePath}" />
+                </AppBarButton.Icon>
+            </AppBarButton>
+            <AppBarButton Grid.Column="2"
+                          Style="{StaticResource EllipseLessAppBarButtonStyle}"
+                          Label="open stream"
+                          Flyout="{StaticResource PhoneOpenStreamFlyout}">
+                <AppBarButton.Icon>
+                    <PathIcon Data="{StaticResource OnlinePath}" />
+                </AppBarButton.Icon>
+            </AppBarButton>
+            <AppBarButton Grid.Column="3"
+                          Style="{StaticResource EllipseLessAppBarButtonStyle}"
+                          Label="settings"
+                          Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToSettingsPageCommand}">
+                <AppBarButton.Icon>
+                    <PathIcon Data="{StaticResource SettingsPath}" />
+                </AppBarButton.Icon>
+            </AppBarButton>
+        </customappbar:AppBar.PrimaryCommands>
+    </customappbar:AppBar>
+    <userControls:BottomMiniPlayer Grid.Row="1"
+                                   x:Name="BottomMiniPlayer"
+                                   x:FieldModifier="public" />
 </SwapChainPanel>
