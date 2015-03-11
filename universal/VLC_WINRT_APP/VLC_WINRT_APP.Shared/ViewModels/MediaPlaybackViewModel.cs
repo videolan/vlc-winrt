@@ -580,7 +580,7 @@ namespace VLC_WINRT_APP.ViewModels
                 await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
                 {
                     TrackCollection.CurrentTrack++;
-                    //await Play(false);
+                    await Locator.MusicPlayerVM.Play(false);
                 });
             }
             else
@@ -595,7 +595,7 @@ namespace VLC_WINRT_APP.ViewModels
             if (TrackCollection.CanGoPrevious)
             {
                 await DispatchHelper.InvokeAsync(() => TrackCollection.CurrentTrack--);
-                //await Play(false);
+                await Locator.MusicPlayerVM.Play(false);
             }
             else
             {
