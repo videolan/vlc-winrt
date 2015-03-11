@@ -1836,15 +1836,17 @@ M 15.937 9.056 c 0.629 -1.69 1.208 -2.349 2.063 -2.349 h 5.586 L 20.293 10 l 1.4
                                 <Setter Property="BorderThickness"
                                         Value="1" />
                                 <Setter Property="BorderBrush"
-                                        Value="{ThemeResource SliderThumbBorderThemeBrush}" />
+                                        Value="{StaticResource MainColor}" />
                                 <Setter Property="Background"
-                                        Value="{ThemeResource SliderThumbBackgroundThemeBrush}" />
+                                        Value="Transparent" />
                                 <Setter Property="Template">
                                     <Setter.Value>
                                         <ControlTemplate TargetType="Thumb">
-                                            <Ellipse Fill="WhiteSmoke"
-                                                     Height="16"
-                                                     Width="16" />
+                                            <Ellipse Fill="{TemplateBinding Background}"
+                                                     Stroke="{TemplateBinding BorderBrush}"
+                                                     StrokeThickness="2"
+                                                     Height="25"
+                                                     Width="25" />
                                         </ControlTemplate>
                                     </Setter.Value>
                                 </Setter>
@@ -1852,7 +1854,7 @@ M 15.937 9.056 c 0.629 -1.69 1.208 -2.349 2.063 -2.349 h 5.586 L 20.293 10 l 1.4
                         </Grid.Resources>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
-                            <RowDefinition Height="*" />
+                            <RowDefinition Height="25" />
                         </Grid.RowDefinitions>
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
@@ -1878,37 +1880,12 @@ M 15.937 9.056 c 0.629 -1.69 1.208 -2.349 2.063 -2.349 h 5.586 L 20.293 10 l 1.4
                                             <DiscreteObjectKeyFrame KeyTime="0"
                                                                     Value="{ThemeResource SliderTrackPressedBackgroundThemeBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill"
-                                                                       Storyboard.TargetName="VerticalDecreaseRect">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{StaticResource MainColor}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill"
-                                                                       Storyboard.TargetName="VerticalTrackRect">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SliderTrackPressedBackgroundThemeBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background"
-                                                                       Storyboard.TargetName="VerticalThumb">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SliderThumbPressedBackgroundThemeBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush"
-                                                                       Storyboard.TargetName="VerticalThumb">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SliderThumbPressedBorderThemeBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="Disabled">
                                     <Storyboard>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Stroke"
                                                                        Storyboard.TargetName="HorizontalBorder">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SliderDisabledBorderThemeBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Stroke"
-                                                                       Storyboard.TargetName="VerticalBorder">
                                             <DiscreteObjectKeyFrame KeyTime="0"
                                                                     Value="{ThemeResource SliderDisabledBorderThemeBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
@@ -1922,16 +1899,6 @@ M 15.937 9.056 c 0.629 -1.69 1.208 -2.349 2.063 -2.349 h 5.586 L 20.293 10 l 1.4
                                             <DiscreteObjectKeyFrame KeyTime="0"
                                                                     Value="{ThemeResource SliderTrackDisabledBackgroundThemeBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill"
-                                                                       Storyboard.TargetName="VerticalDecreaseRect">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{StaticResource MainColor}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill"
-                                                                       Storyboard.TargetName="VerticalTrackRect">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SliderTrackDisabledBackgroundThemeBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background"
                                                                        Storyboard.TargetName="HorizontalThumb">
                                             <DiscreteObjectKeyFrame KeyTime="0"
@@ -1939,16 +1906,6 @@ M 15.937 9.056 c 0.629 -1.69 1.208 -2.349 2.063 -2.349 h 5.586 L 20.293 10 l 1.4
                                         </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush"
                                                                        Storyboard.TargetName="HorizontalThumb">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SliderThumbDisabledBackgroundThemeBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background"
-                                                                       Storyboard.TargetName="VerticalThumb">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SliderThumbDisabledBackgroundThemeBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush"
-                                                                       Storyboard.TargetName="VerticalThumb">
                                             <DiscreteObjectKeyFrame KeyTime="0"
                                                                     Value="{ThemeResource SliderThumbDisabledBackgroundThemeBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
@@ -1967,21 +1924,6 @@ M 15.937 9.056 c 0.629 -1.69 1.208 -2.349 2.063 -2.349 h 5.586 L 20.293 10 l 1.4
                                             <DiscreteObjectKeyFrame KeyTime="0"
                                                                     Value="{ThemeResource SliderTickMarkOutsideDisabledForegroundThemeBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill"
-                                                                       Storyboard.TargetName="LeftTickBar">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SliderTickMarkOutsideDisabledForegroundThemeBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill"
-                                                                       Storyboard.TargetName="VerticalInlineTickBar">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SliderTickMarkInlineDisabledForegroundThemeBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill"
-                                                                       Storyboard.TargetName="RightTickBar">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SliderTickMarkOutsideDisabledForegroundThemeBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="PointerOver">
@@ -1996,16 +1938,6 @@ M 15.937 9.056 c 0.629 -1.69 1.208 -2.349 2.063 -2.349 h 5.586 L 20.293 10 l 1.4
                                             <DiscreteObjectKeyFrame KeyTime="0"
                                                                     Value="{ThemeResource SliderTrackPointerOverBackgroundThemeBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill"
-                                                                       Storyboard.TargetName="VerticalDecreaseRect">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{StaticResource MainColor}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill"
-                                                                       Storyboard.TargetName="VerticalTrackRect">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SliderTrackPointerOverBackgroundThemeBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background"
                                                                        Storyboard.TargetName="HorizontalThumb">
                                             <DiscreteObjectKeyFrame KeyTime="0"
@@ -2013,16 +1945,6 @@ M 15.937 9.056 c 0.629 -1.69 1.208 -2.349 2.063 -2.349 h 5.586 L 20.293 10 l 1.4
                                         </ObjectAnimationUsingKeyFrames>
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush"
                                                                        Storyboard.TargetName="HorizontalThumb">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SliderThumbPointerOverBorderThemeBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background"
-                                                                       Storyboard.TargetName="VerticalThumb">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource SliderThumbPointerOverBackgroundThemeBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush"
-                                                                       Storyboard.TargetName="VerticalThumb">
                                             <DiscreteObjectKeyFrame KeyTime="0"
                                                                     Value="{ThemeResource SliderThumbPointerOverBorderThemeBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
@@ -2060,18 +1982,19 @@ M 15.937 9.056 c 0.629 -1.69 1.208 -2.349 2.063 -2.349 h 5.586 L 20.293 10 l 1.4
                                           FontWeight="{ThemeResource SliderHeaderThemeFontWeight}"
                                           Margin="{ThemeResource SliderHeaderThemeMargin}" />
                         <Grid x:Name="SliderContainer"
-                              Background="Transparent"
                               Grid.Row="1">
-                            <Grid x:Name="HorizontalTemplate">
+                            <Grid x:Name="HorizontalTemplate"
+                                  Height="25"
+                                  Background="Transparent">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="17" />
+                                    <RowDefinition Height="0" />
                                     <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="32" />
+                                    <RowDefinition Height="0" />
                                 </Grid.RowDefinitions>
                                 <Rectangle x:Name="HorizontalTrackRect"
                                            Grid.ColumnSpan="3"
@@ -2108,9 +2031,9 @@ M 15.937 9.056 c 0.629 -1.69 1.208 -2.349 2.063 -2.349 h 5.586 L 20.293 10 l 1.4
                                        AutomationProperties.AccessibilityView="Raw"
                                        Grid.Column="1"
                                        DataContext="{TemplateBinding Value}"
-                                       Height="18"
+                                       Height="25"
                                        Grid.Row="1"
-                                       Width="18" />
+                                       Width="25" />
                                 <Rectangle x:Name="HorizontalBorder"
                                            Grid.ColumnSpan="3"
                                            Grid.Row="1"
@@ -2126,80 +2049,6 @@ M 15.937 9.056 c 0.629 -1.69 1.208 -2.349 2.063 -2.349 h 5.586 L 20.293 10 l 1.4
                                            Stroke="{ThemeResource FocusVisualWhiteStrokeThemeBrush}"
                                            StrokeDashArray="1,1" />
                                 <Rectangle x:Name="FocusVisualBlackHorizontal"
-                                           Grid.ColumnSpan="3"
-                                           IsHitTestVisible="False"
-                                           Opacity="0"
-                                           Grid.RowSpan="3"
-                                           StrokeDashOffset="0.5"
-                                           StrokeEndLineCap="Square"
-                                           Stroke="{ThemeResource FocusVisualBlackStrokeThemeBrush}"
-                                           StrokeDashArray="1,1" />
-                            </Grid>
-                            <Grid x:Name="VerticalTemplate"
-                                  Visibility="Collapsed">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="17" />
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="17" />
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                </Grid.RowDefinitions>
-                                <Rectangle x:Name="VerticalTrackRect"
-                                           Grid.Column="1"
-                                           Fill="{TemplateBinding Background}"
-                                           Grid.RowSpan="3" />
-                                <Rectangle x:Name="VerticalDecreaseRect"
-                                           Grid.Column="1"
-                                           Fill="{TemplateBinding Foreground}"
-                                           Grid.Row="2" />
-                                <TickBar x:Name="LeftTickBar"
-                                         Fill="{ThemeResource SliderTickmarkOutsideBackgroundThemeBrush}"
-                                         HorizontalAlignment="Right"
-                                         Margin="0,0,2,0"
-                                         Grid.RowSpan="3"
-                                         Visibility="Collapsed"
-                                         Width="{ThemeResource SliderOutsideTickBarThemeHeight}" />
-                                <TickBar x:Name="VerticalInlineTickBar"
-                                         Grid.Column="1"
-                                         Fill="{ThemeResource SliderTickMarkInlineBackgroundThemeBrush}"
-                                         Grid.RowSpan="3"
-                                         Visibility="Collapsed"
-                                         Width="{ThemeResource SliderTrackThemeHeight}" />
-                                <TickBar x:Name="RightTickBar"
-                                         Grid.Column="2"
-                                         Fill="{ThemeResource SliderTickmarkOutsideBackgroundThemeBrush}"
-                                         HorizontalAlignment="Left"
-                                         Margin="2,0,0,0"
-                                         Grid.RowSpan="3"
-                                         Visibility="Collapsed"
-                                         Width="{ThemeResource SliderOutsideTickBarThemeHeight}" />
-                                <Thumb x:Name="VerticalThumb"
-                                       AutomationProperties.AccessibilityView="Raw"
-                                       Background="{ThemeResource SliderThumbBackgroundThemeBrush}"
-                                       Grid.Column="1"
-                                       DataContext="{TemplateBinding Value}"
-                                       Height="{ThemeResource SliderTrackThemeHeight}"
-                                       Grid.Row="1"
-                                       Style="{StaticResource SliderThumbStyle}"
-                                       Width="{ThemeResource SliderTrackThemeHeight}" />
-                                <Rectangle x:Name="VerticalBorder"
-                                           Grid.Column="1"
-                                           Grid.RowSpan="3"
-                                           Stroke="{TemplateBinding BorderBrush}"
-                                           StrokeThickness="{TemplateBinding BorderThickness}" />
-                                <Rectangle x:Name="FocusVisualWhiteVertical"
-                                           Grid.ColumnSpan="3"
-                                           IsHitTestVisible="False"
-                                           Opacity="0"
-                                           Grid.RowSpan="3"
-                                           StrokeDashOffset="1.5"
-                                           StrokeEndLineCap="Square"
-                                           Stroke="{ThemeResource FocusVisualWhiteStrokeThemeBrush}"
-                                           StrokeDashArray="1,1" />
-                                <Rectangle x:Name="FocusVisualBlackVertical"
                                            Grid.ColumnSpan="3"
                                            IsHitTestVisible="False"
                                            Opacity="0"
