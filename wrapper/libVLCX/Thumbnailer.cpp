@@ -32,10 +32,12 @@ enum thumbnail_state{
     THUMB_RENDERED
 };
 
-typedef struct
+struct thumbnailer_sys_t
 {
     thumbnail_state                         state;
     task_completion_event<PreparseResult^>  screenshotCompleteEvent;
+    concurrency::task<void>                 cancellationTask;
+    concurrency::cancellation_token_source  timeoutCts;
     char                                    *thumbData;
     unsigned                                thumbHeight;
     unsigned                                thumbWidth;
@@ -43,7 +45,7 @@ typedef struct
     HANDLE                                  hLock;
     libvlc_media_player_t*                  mp;
     libvlc_event_manager_t*                 eventMgr;
-} thumbnailer_sys_t;
+};
 
 Thumbnailer::Thumbnailer()
 {
@@ -137,13 +139,22 @@ static void Unlock(void *opaque, void *picture, void *const *pixels){
     }));
 }
 
-IAsyncOperation<PreparseResult^>^ Thumbnailer::TakeScreenshot(Platform::String^ mrl, int width, int height)
+IAsyncOperation<PreparseResult^>^ Thumbnailer::TakeScreenshot(Platform::String^ mrl, int width, int height, int timeoutMs)
 {
     return concurrency::create_async([&] (concurrency::cancellation_token ct) {
 
         libvlc_media_player_t* mp;
         thumbnailer_sys_t *sys = new thumbnailer_sys_t();
         auto completionTask = concurrency::create_task(sys->screenshotCompleteEvent, ct);
+        sys->cancellationTask = concurrency::create_task([sys, timeoutMs] {
+            concurrency::wait(timeoutMs);
+            if (concurrency::is_task_cancellation_requested())
+                concurrency::cancel_current_task();
+            if (!sys->screenshotCompleteEvent._IsTriggered())
+            {
+                sys->screenshotCompleteEvent.set(nullptr);
+            }
+        }, sys->timeoutCts.get_token());
 
         size_t len2 = WideCharToMultiByte(CP_UTF8, 0, mrl->Data(), -1, NULL, 0, NULL, NULL);
         char* mrl_str = new char[len2];
@@ -188,6 +199,7 @@ IAsyncOperation<PreparseResult^>^ Thumbnailer::TakeScreenshot(Platform::String^ 
             completionTask.then([mp, sys](PreparseResult^ res){
                 if ( res != nullptr )
                     res->length = libvlc_media_player_get_length(mp);
+                sys->timeoutCts.cancel();
                 // We rendered at least one frame, no need to check for EOF anymore
                 libvlc_event_detach(sys->eventMgr, libvlc_MediaPlayerEndReached, &onError, sys);
                 libvlc_media_player_stop(mp);

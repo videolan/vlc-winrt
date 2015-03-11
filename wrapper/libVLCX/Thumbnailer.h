@@ -50,7 +50,7 @@ namespace libVLCX {
     {
     public:
                                            Thumbnailer();
-        IAsyncOperation<PreparseResult^>^  TakeScreenshot(Platform::String^ mrl, int width, int height);
+        IAsyncOperation<PreparseResult^>^  TakeScreenshot(Platform::String^ mrl, int width, int height, int timeoutMs);
         virtual                            ~Thumbnailer();
 
     private:
