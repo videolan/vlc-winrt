@@ -175,7 +175,8 @@
                 <Path Data="{StaticResource PlayPath}"
                       Width="29"
                       Height="29"
-                      Stretch="Uniform" />
+                      Stretch="Uniform" 
+                      Fill="{ThemeResource BasicForeground}"/>
             </Button>
             <Button Style="{StaticResource TextBlockButtonStyle}"
                     HorizontalAlignment="Left"
@@ -183,7 +184,8 @@
                     Visibility="{Binding IsPlaying, Converter={StaticResource BooleanToVisibilityConverter}}"
                     Holding="PlayPauseHold">
                 <Viewbox Height="29">
-                    <Path Data="{StaticResource PausePath}"/>
+                    <Path Data="{StaticResource PausePath}"
+                          Fill="{ThemeResource BasicForeground}" />
                 </Viewbox>
             </Button>
         </Grid>
@@ -198,7 +200,8 @@
             <Path Data="{StaticResource NextPath}"
                   Width="29"
                   Height="29"
-                  Stretch="Uniform" />
+                  Stretch="Uniform"
+                  Fill="{ThemeResource BasicForeground}" />
         </Button>
     </Grid>
 </UserControl>
