@@ -681,6 +681,7 @@ namespace VLC_WINRT_APP.ViewModels
                     Name = t.name(),
                 });
             }
+
             // This assumes we have a "Disable" track for both subtitles & audio
             if (type == TrackType.Subtitle && CurrentSubtitle == null && _subtitlesTracks.Count > 1)
             {
