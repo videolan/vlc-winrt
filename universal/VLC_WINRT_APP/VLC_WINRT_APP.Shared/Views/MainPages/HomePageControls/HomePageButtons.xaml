@@ -28,7 +28,7 @@
         <AppBarButton Grid.Column="1"
                       Style="{StaticResource EllipseLessAppBarButtonStyle}"
                       Label="open file"
-                      Command="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM.OpenVideo}">
+                      Command="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM.PickVideo}">
             <AppBarButton.Icon>
                 <PathIcon Data="{StaticResource OpenFilePath}" />
             </AppBarButton.Icon>
