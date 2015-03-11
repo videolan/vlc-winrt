@@ -1317,4 +1317,8 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <TransitionCollection x:Key="FrameTransitionCollectionStyle">
+        <EdgeUIThemeTransition Edge="Right"/>
+    </TransitionCollection>
 </ResourceDictionary>

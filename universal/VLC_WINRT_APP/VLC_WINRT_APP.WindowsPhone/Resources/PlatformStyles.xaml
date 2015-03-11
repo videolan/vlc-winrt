@@ -577,4 +577,11 @@
         <Setter Property="RequestedTheme"
                 Value="Dark" />
     </Style>
+
+
+
+    <TransitionCollection x:Key="FrameTransitionCollectionStyle">
+        <ContentThemeTransition VerticalOffset="70"
+                                HorizontalOffset="0" />
+    </TransitionCollection>
 </ResourceDictionary>

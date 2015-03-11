@@ -4873,11 +4873,6 @@ M 15.937 9.056 c 0.629 -1.69 1.208 -2.349 2.063 -2.349 h 5.586 L 20.293 10 l 1.4
     </Style>
 
 
-    <TransitionCollection x:Key="FrameTransitionCollectionStyle">
-        <ContentThemeTransition VerticalOffset="70"
-                                HorizontalOffset="0" />
-    </TransitionCollection>
-
 
     <Style x:Key="EllipseLessAppBarButtonStyle"
            TargetType="AppBarButton">
