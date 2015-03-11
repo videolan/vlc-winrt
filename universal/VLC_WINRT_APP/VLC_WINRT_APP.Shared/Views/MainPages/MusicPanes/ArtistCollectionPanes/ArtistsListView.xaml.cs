@@ -13,6 +13,7 @@ namespace VLC_WINRT_APP.Views.MainPages.MusicPanes.ArtistCollectionPanes
 {
     public sealed partial class ArtistsListView : UserControl
     {
+        private bool isNarrow = false;
         public ArtistsListView()
         {
             this.InitializeComponent();
@@ -21,9 +22,9 @@ namespace VLC_WINRT_APP.Views.MainPages.MusicPanes.ArtistCollectionPanes
 
         void ArtistCollectionBase_Loaded(object sender, RoutedEventArgs e)
         {
-            Responsive();
             Window.Current.SizeChanged += Current_SizeChanged;
             this.Unloaded += ArtistCollectionBase_Unloaded;
+            Responsive();
         }
 
         void ArtistCollectionBase_Unloaded(object sender, RoutedEventArgs e)
@@ -45,14 +46,22 @@ namespace VLC_WINRT_APP.Views.MainPages.MusicPanes.ArtistCollectionPanes
                 if (wrapGrid != null)
                 {
                     wrapGrid.Orientation = Orientation.Horizontal;
-                    TemplateSizer.ComputeAlbums(wrapGrid, TemplateSize.Normal, this.ActualWidth);
+                    TemplateSizer.ComputeAlbums(wrapGrid, TemplateSize.Compact, this.ActualWidth);
                 }
-                VisualStateUtilities.GoToState(this, "Narrow", false);
+                if (!isNarrow)
+                {
+                    VisualStateUtilities.GoToState(this, "Narrow", false);
+                    isNarrow = true;
+                }
             }
             else
 #endif
             {
-                VisualStateUtilities.GoToState(this, "Wide", false);
+                if (isNarrow)
+                {
+                    VisualStateUtilities.GoToState(this, "Wide", false);
+                    isNarrow = false;
+                }
             }
         }
 

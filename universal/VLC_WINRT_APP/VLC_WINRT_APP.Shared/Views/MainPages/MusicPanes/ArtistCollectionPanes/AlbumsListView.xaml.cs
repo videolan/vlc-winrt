@@ -15,7 +15,11 @@ namespace VLC_WINRT_APP.Views.MainPages.MusicPanes.ArtistCollectionPanes
 
         private void ItemsWrapGrid_Loaded(object sender, RoutedEventArgs e)
         {
+#if WINDOWS_PHONE_APP
             TemplateSizer.ComputeAlbums(sender as ItemsWrapGrid, Window.Current.Bounds.Width > 900 ? TemplateSize.Compact : TemplateSize.Normal, this.ActualWidth);
+#else
+            TemplateSizer.ComputeAlbums(sender as ItemsWrapGrid, TemplateSize.Compact, this.ActualWidth);
+#endif
         }
 
         private void AlbumsList_OnItemClick(object sender, ItemClickEventArgs e)
