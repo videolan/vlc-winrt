@@ -20,7 +20,6 @@
                    FontSize="18"
                    Foreground="{ThemeResource MainColor}" />
         <Slider Grid.Row="1"
-                Margin="0,-12,0,0"
                 Value="{Binding Position, Mode=TwoWay, Converter={StaticResource PositionToFixedPointConverter}}"
                 Style="{StaticResource VLCSlider}"
                 Maximum="500"
