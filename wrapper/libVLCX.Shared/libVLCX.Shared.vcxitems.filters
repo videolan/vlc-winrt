@@ -4,21 +4,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)..\libVLCX\DirectXManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)..\libVLCX\MMDeviceLocator.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)..\libVLCX\Thumbnailer.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)..\libvlcpp\src\Instance.cpp">
-      <Filter>libvlcpp</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)..\libvlcpp\src\Media.cpp">
-      <Filter>libvlcpp</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)..\libvlcpp\src\MediaPlayer.cpp">
-      <Filter>libvlcpp</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)..\libvlcpp\src\structures.cpp">
-      <Filter>libvlcpp</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)..\libvlcpp\src\EventManager.cpp">
-      <Filter>libvlcpp</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)..\libvlcpp\cppcx\EventManagerCX.cpp">
       <Filter>libvlcpp\cppcx</Filter>
     </ClCompile>
@@ -42,25 +27,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)..\libVLCX\DirectXManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\libVLCX\MMDeviceLocator.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\libVLCX\Thumbnailer.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\libvlcpp\src\EventManager.hpp">
-      <Filter>libvlcpp</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\libvlcpp\src\Instance.hpp">
-      <Filter>libvlcpp</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\libvlcpp\src\Media.hpp">
-      <Filter>libvlcpp</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\libvlcpp\src\MediaPlayer.hpp">
-      <Filter>libvlcpp</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\libvlcpp\src\structures.hpp">
-      <Filter>libvlcpp</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)..\libvlcpp\src\vlc.hpp">
-      <Filter>libvlcpp</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)..\libvlcpp\src\common.hpp">
       <Filter>libvlcpp</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)..\libvlcpp\cppcx\EventManagerCX.hpp">
