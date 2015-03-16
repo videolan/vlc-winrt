@@ -183,13 +183,15 @@ namespace VLC_WINRT_APP.ViewModels
 
         async void networkListenerService_InternetConnectionChanged(object sender, Model.Events.InternetConnectionChangedEventArgs e)
         {
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async()=> {
-                IsInternet = e.IsConnected);
-                if(Locator.MediaPlaybackViewModel.IsPlaying == true && Locator.MediaPlaybackViewModel.IsStream){
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+            {
+                IsInternet = e.IsConnected;
+                if (Locator.MediaPlaybackViewModel.IsPlaying == true && Locator.MediaPlaybackViewModel.IsStream)
+                {
                     var lostStreamDialog = new MessageDialog("Connection to the server was stopped, please check your Internet connection");
                     await lostStreamDialog.ShowAsync();
                 }
-            }
+            });
         }
 
         void Initialize()
