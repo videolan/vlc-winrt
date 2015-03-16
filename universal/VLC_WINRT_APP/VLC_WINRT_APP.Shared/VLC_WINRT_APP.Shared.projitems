@@ -223,18 +223,18 @@
     <Compile Include="$(MSBuildThisFileDirectory)SQLiteAsync.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Locator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainVM.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MediaPlaybackViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MusicVM\MusicLibraryVM.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MusicVM\MusicPlayerVM.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MusicVM\TrackCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\NetworkVM\DLNAVM.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Others\BackerCountryViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Others\SpecialThanksViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Others\VlcExplorer\FileExplorerViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MediaPlaybackViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MusicVM\MusicLibraryVM.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MusicVM\MusicPlayerVM.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RemovableDevicesVM\ExternalStorageViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\VideoVM\VideoPlayerVM.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Settings\SettingsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\VideoVM\VideoLibraryVM.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\VideoVM\VideoPlayerVM.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\MainPages\HomePageControls\HomePageButtons.xaml.cs">
       <DependentUpon>HomePageButtons.xaml</DependentUpon>
     </Compile>

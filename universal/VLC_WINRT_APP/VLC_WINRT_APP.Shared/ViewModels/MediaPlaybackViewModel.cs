@@ -548,6 +548,7 @@ namespace VLC_WINRT_APP.ViewModels
                     await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
                     {
                         TrackCollection.IsRunning = false;
+                        PlayingType = PlayingType.NotPlaying;
                         App.ApplicationFrame.Navigate(typeof(MainPageHome));
                     });
                 }

@@ -34,6 +34,8 @@
             </AppBarButton.Icon>
         </AppBarButton>
         <AppBarButton Grid.Column="2"
+                      DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}"
+                      IsEnabled="{Binding IsInternet}"
                       Style="{StaticResource EllipseLessAppBarButtonStyle}"
                       Label="open stream"
                       Flyout="{StaticResource PhoneOpenStreamFlyout}">

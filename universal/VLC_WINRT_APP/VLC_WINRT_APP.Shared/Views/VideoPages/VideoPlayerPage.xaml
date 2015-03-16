@@ -72,12 +72,6 @@
                       Fill="White" />
             </Viewbox>
         </Button>
-        <Grid Grid.Row="0"
-              Grid.Column="2"
-              DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
-              Visibility="{Binding IsStream}">
-            <placeholder:NoData />
-        </Grid>
         <Grid Grid.Row="2"
               Grid.Column="0"
               Grid.ColumnSpan="3"

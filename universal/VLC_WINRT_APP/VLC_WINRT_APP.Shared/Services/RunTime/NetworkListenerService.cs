@@ -16,10 +16,15 @@ namespace VLC_WINRT_APP.Services.RunTime
         void NetworkInformation_NetworkStatusChanged(object sender)
         {
             if (InternetConnectionChanged == null) return;
+            NotifyNetworkChanged();
+        }
+
+        void NotifyNetworkChanged()
+        {
             var arg = new InternetConnectionChangedEventArgs(IsConnected);
             InternetConnectionChanged(null, arg);
         }
-
+        
         public static bool IsConnected
         {
             get

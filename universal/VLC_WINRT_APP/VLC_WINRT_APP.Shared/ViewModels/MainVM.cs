@@ -36,6 +36,7 @@ using AppBar = CustomAppBarDesktop.AppBar;
 using AppBar = CustomAppBarDesktop.AppBar;
 #endif
 using Panel = VLC_WINRT_APP.Model.Panel;
+using Windows.UI.Popups;
 
 namespace VLC_WINRT_APP.ViewModels
 {
@@ -153,6 +154,7 @@ namespace VLC_WINRT_APP.ViewModels
             keyboardListenerService = App.Container.Resolve<KeyboardListenerService>();
             networkListenerService = App.Container.Resolve<NetworkListenerService>();
             networkListenerService.InternetConnectionChanged += networkListenerService_InternetConnectionChanged;
+            _isInternet = NetworkListenerService.IsConnected;
 
             GoToPanelCommand = new GoToPanelCommand();
             GoToSettingsPageCommand = new GoToSettingsPageCommand();
@@ -181,7 +183,13 @@ namespace VLC_WINRT_APP.ViewModels
 
         async void networkListenerService_InternetConnectionChanged(object sender, Model.Events.InternetConnectionChangedEventArgs e)
         {
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, ()=>IsInternet = e.IsConnected);
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async()=> {
+                IsInternet = e.IsConnected);
+                if(Locator.MediaPlaybackViewModel.IsPlaying == true && Locator.MediaPlaybackViewModel.IsStream){
+                    var lostStreamDialog = new MessageDialog("Connection to the server was stopped, please check your Internet connection");
+                    await lostStreamDialog.ShowAsync();
+                }
+            }
         }
 
         void Initialize()
