@@ -50,10 +50,12 @@ namespace VLC_WINRT_APP.Common
             builder.RegisterType<MediaService>().As<IMediaService>().SingleInstance();
             builder.RegisterType<MusicMetaService>().SingleInstance();
             builder.RegisterType<KeyboardListenerService>().SingleInstance();
+            builder.RegisterType<NetworkListenerService>().SingleInstance();
 
             #if WINDOWS_APP
             builder.RegisterType<MouseService>().SingleInstance();
             #endif
+
             builder.RegisterType<ExternalDeviceService>().SingleInstance();
             builder.RegisterType<SpecialThanksViewModel>().SingleInstance();
             if (Windows.ApplicationModel.DesignMode.DesignModeEnabled)

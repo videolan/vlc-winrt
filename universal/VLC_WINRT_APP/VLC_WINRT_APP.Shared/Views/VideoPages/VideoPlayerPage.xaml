@@ -6,6 +6,7 @@
       xmlns:views="using:VLC_WINRT.Views"
       xmlns:controls="using:VLC_WINRT_APP.Controls"
       xmlns:userControls="using:VLC_WINRT_APP.Views.UserControls"
+      xmlns:placeholder="using:VLC_WINRT_APP.Views.UserControls.Placeholder"
       mc:Ignorable="d"
       Background="Transparent"
       DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
@@ -30,7 +31,14 @@
             <RowDefinition />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <TextBlock Style="{StaticResource TitleTextBlockStyle}"
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Row="0"
+                   Grid.Column="1"
+                   Style="{StaticResource TitleTextBlockStyle}"
                    HorizontalAlignment="Center"
                    FontSize="20"
                    Margin="0,12,0,0"
@@ -39,6 +47,8 @@
         <Grid Background="Transparent"
               Grid.Row="0"
               Grid.RowSpan="3"
+              Grid.Column="0"
+              Grid.ColumnSpan="3"
               Tapped="VideoGrid_Tapped"
               DoubleTapped="VideoGrid_DoubleTapped">
             <controls:FadeTextBlock x:Name="Hud"
@@ -50,7 +60,9 @@
                            HorizontalAlignment="Center" />
             </controls:FadeTextBlock>
         </Grid>
-        <Button Style="{StaticResource TextBlockButtonStyle}"
+        <Button Grid.Row="0"
+                Grid.Column="0"
+                Style="{StaticResource TextBlockButtonStyle}"
                 Command="{Binding GoBack}"
                 HorizontalAlignment="Left"
                 Margin="24,12,0,0">
@@ -60,7 +72,15 @@
                       Fill="White" />
             </Viewbox>
         </Button>
+        <Grid Grid.Row="0"
+              Grid.Column="2"
+              DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
+              Visibility="{Binding IsStream}">
+            <placeholder:NoData />
+        </Grid>
         <Grid Grid.Row="2"
+              Grid.Column="0"
+              Grid.ColumnSpan="3"
               x:Name="FooterGrid"
               VerticalAlignment="Bottom"
               Height="150"

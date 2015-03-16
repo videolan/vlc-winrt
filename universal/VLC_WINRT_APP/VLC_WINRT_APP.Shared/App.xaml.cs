@@ -122,11 +122,6 @@ namespace VLC_WINRT_APP
             {
                 await RedirectFromSecondaryTile(args.Arguments);
             }
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-            {
-                bool isinternet = System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable();
-                Locator.MainVM.IsInternet = isinternet;
-            });
 #if WINDOWS_PHONE_APP
             await BackgroundAudioHelper.InitBackgroundAudio();
 #endif

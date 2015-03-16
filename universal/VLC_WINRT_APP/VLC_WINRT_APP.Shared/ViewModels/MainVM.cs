@@ -43,6 +43,7 @@ namespace VLC_WINRT_APP.ViewModels
     {
         #region private fields
 
+        private NetworkListenerService networkListenerService;
         private KeyboardListenerService keyboardListenerService;
         private ObservableCollection<Panel> _panels = new ObservableCollection<Panel>();
         private ObservableCollection<SearchResult> _searchResults;
@@ -62,7 +63,6 @@ namespace VLC_WINRT_APP.ViewModels
         private bool _preventAppExit = false;
         #endregion
         #region public fields
-
         public ObservableCollection<SearchResult> SearchResults
         {
             get { return _searchResults; }
@@ -150,8 +150,10 @@ namespace VLC_WINRT_APP.ViewModels
 
         public MainVM()
         {
-            keyboardListenerService = App.Container.Resolve<KeyboardListenerService>();  
-            
+            keyboardListenerService = App.Container.Resolve<KeyboardListenerService>();
+            networkListenerService = App.Container.Resolve<NetworkListenerService>();
+            networkListenerService.InternetConnectionChanged += networkListenerService_InternetConnectionChanged;
+
             GoToPanelCommand = new GoToPanelCommand();
             GoToSettingsPageCommand = new GoToSettingsPageCommand();
             GoToThanksPageCommand = new GoToThanksPageCommand();
@@ -177,6 +179,11 @@ namespace VLC_WINRT_APP.ViewModels
             Initialize();
         }
 
+        async void networkListenerService_InternetConnectionChanged(object sender, Model.Events.InternetConnectionChangedEventArgs e)
+        {
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, ()=>IsInternet = e.IsConnected);
+        }
+
         void Initialize()
         {
             if (ApplicationSettingsHelper.ReadSettingsValue("ContinueVideoPlaybackInBackground") == null)
@@ -191,6 +198,7 @@ namespace VLC_WINRT_APP.ViewModels
                 streamFLyout.Hide();
             }
         }
+
         public void OpenStreamFlyout()
         {
             var streamFLyout = App.Current.Resources["PhoneOpenStreamFlyout"] as Flyout;
@@ -208,6 +216,7 @@ namespace VLC_WINRT_APP.ViewModels
                 SetProperty(ref _panels, value);
             }
         }
+
         private bool NeedsToDrop()
         {
             Package thisPackage = Package.Current;

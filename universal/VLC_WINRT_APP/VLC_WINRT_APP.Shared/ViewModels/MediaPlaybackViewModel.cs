@@ -67,6 +67,7 @@ namespace VLC_WINRT_APP.ViewModels
         private int _volume = 100;
         private bool _isRunning;
         private int _speedRate;
+        private bool _isStream;
         #endregion
 
         #region private fields
@@ -142,6 +143,12 @@ namespace VLC_WINRT_APP.ViewModels
                 float r = (float)value / 100;
                 SetRate(r);
             }
+        }
+
+        public bool IsStream
+        {
+            get { return _isStream; }
+            set { SetProperty(ref _isStream, value); }
         }
 
         public TrackCollection TrackCollection
@@ -519,7 +526,10 @@ namespace VLC_WINRT_APP.ViewModels
         public async Task InitializePlayback(String mrl, Boolean isAudio, Boolean isStream, StorageFile file = null)
         {
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                PlayingType = (isAudio) ? PlayingType.Music : PlayingType.Video);
+            {
+                PlayingType = (isAudio) ? PlayingType.Music : PlayingType.Video;
+                IsStream = isStream;
+            });
             await _mediaService.SetMediaFile(mrl, isAudio, isStream, file);
             if (_mediaService.MediaPlayer == null) return;
             var em = _mediaService.MediaPlayer.eventManager();
