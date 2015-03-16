@@ -540,46 +540,49 @@ namespace VLC_WINRT_APP.ViewModels
 
         async void OnEndReached()
         {
-            if (PlayingType == PlayingType.Music)
+            switch (PlayingType)
             {
-                if (TrackCollection.Playlist.Count == 0 || !TrackCollection.CanGoNext)
-                {
-                    // Playlist is finished
-                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+                case PlayingType.Music:
+                    if (TrackCollection.Playlist.Count == 0 || !TrackCollection.CanGoNext)
                     {
-                        TrackCollection.IsRunning = false;
-                        PlayingType = PlayingType.NotPlaying;
-                        App.ApplicationFrame.Navigate(typeof(MainPageHome));
-                    });
-                }
-                else
-                {
-                    await PlayNext();
-                }
-            }
-            else if (PlayingType == PlayingType.Video)
-            {
-                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
-                {
-                    if (Locator.VideoVm.CurrentVideo != null)
-                        Locator.VideoVm.CurrentVideo.TimeWatched = TimeSpan.Zero;
-                    if (App.ApplicationFrame.CanGoBack)
-                        App.ApplicationFrame.GoBack();
+                        // Playlist is finished
+                        await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+                        {
+                            TrackCollection.IsRunning = false;
+                            PlayingType = PlayingType.NotPlaying;
+                            App.ApplicationFrame.Navigate(typeof(MainPageHome));
+                        });
+                    }
                     else
                     {
-#if WINDOWS_APP
-                    App.ApplicationFrame.Navigate(typeof(MainPageVideos));
-#else
-                        Locator.MainVM.GoToPanelCommand.Execute(0);
-#endif
+                        await PlayNext();
                     }
-                    IsPlaying = false;
-                    PlayingType = PlayingType.NotPlaying;
-                });
-                if (Locator.VideoVm.CurrentVideo != null)
-                    await
-                        Locator.VideoLibraryVM.VideoRepository.Update(Locator.VideoVm.CurrentVideo)
-                            .ConfigureAwait(false);
+                    break;
+                case PlayingType.Video:
+                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+                    {
+                        if (Locator.VideoVm.CurrentVideo != null)
+                            Locator.VideoVm.CurrentVideo.TimeWatched = TimeSpan.Zero;
+                        if (App.ApplicationFrame.CanGoBack)
+                            App.ApplicationFrame.GoBack();
+                        else
+                        {
+#if WINDOWS_APP
+                            App.ApplicationFrame.Navigate(typeof(MainPageVideos));
+#else
+                            Locator.MainVM.GoToPanelCommand.Execute(0);
+#endif
+                        }
+                        IsPlaying = false;
+                        PlayingType = PlayingType.NotPlaying;
+                    });
+                    if (Locator.VideoVm.CurrentVideo != null)
+                        await Locator.VideoLibraryVM.VideoRepository.Update(Locator.VideoVm.CurrentVideo).ConfigureAwait(false);
+                    break;
+                case PlayingType.NotPlaying:
+                    break;
+                default:
+                    break;
             }
         }
 
