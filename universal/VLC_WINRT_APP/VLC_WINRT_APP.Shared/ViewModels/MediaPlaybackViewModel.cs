@@ -574,7 +574,7 @@ namespace VLC_WINRT_APP.ViewModels
 #endif
                     }
                     IsPlaying = false;
-                    OnPropertyChanged("PlayingType");
+                    PlayingType = PlayingType.NotPlaying;
                 });
                 if (Locator.VideoVm.CurrentVideo != null)
                     await
