@@ -11,8 +11,6 @@ using libVLCX;
 using System;
 using System.Threading.Tasks;
 using Windows.Storage;
-using VLC_WINRT_APP.Services.RunTime;
-using Windows.UI.Xaml.Controls;
 
 namespace VLC_WINRT_APP.Services.Interface
 {
