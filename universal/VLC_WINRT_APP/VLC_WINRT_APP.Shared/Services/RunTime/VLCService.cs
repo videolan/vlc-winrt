@@ -54,14 +54,14 @@ namespace VLC_WINRT_APP.Services.RunTime
 
         public VLCService()
         {
-            VLCInstanceReady = new TaskCompletionSource<bool>();
+            PlayerInstanceReady = new TaskCompletionSource<bool>();
             CoreWindow.GetForCurrentThread().Activated += ApplicationState_Activated;
         }
 
         public void Initialize(object panel)
         {
             var swapchain = panel as SwapChainPanel;
-            if (swapchain == null) throw new ArgumentNullException("VLCService needs a SwapChainpanel");
+            if (swapchain == null) throw new ArgumentNullException("panel", "VLCService needs a SwapChainpanel");
             var param = new List<String>()
             {
                 "-I",

@@ -18,7 +18,12 @@ namespace VLC_WINRT_APP.Services.Interface
     {
         bool IsBackground { get; }
 
-        void Initialize(SwapChainPanel panel);
+        /// <summary>
+        /// Initialize passes either a SwapChainPanel for VLCService
+        /// or the MediaElement itself from the XAML when using MediaFoundation
+        /// </summary>
+        /// <param name="panel"></param>
+        void Initialize(object panel);
 
         Task SetMediaTransportControlsInfo(string artistName, string albumName, string trackName, string albumUri);
 
