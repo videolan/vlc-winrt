@@ -8,6 +8,7 @@
  **********************************************************************/
 
 using VLC_WINRT.Common;
+using VLC_WINRT_APP.Views.UserControls;
 using VLC_WINRT_APP.Views.VariousPages;
 
 namespace VLC_WINRT_APP.Commands.MainPageCommands
@@ -16,8 +17,13 @@ namespace VLC_WINRT_APP.Commands.MainPageCommands
     {
         public override void Execute(object parameter)
         {
+#if WINDOWS_PHONE_APP
             if (App.ApplicationFrame.CurrentSourcePageType != typeof(SettingsPage))
                 App.ApplicationFrame.Navigate(typeof(SettingsPage));
+#else
+            var settingsFlyout = new SettingsFlyout();
+            settingsFlyout.Show();
+#endif
         }
     }
 }

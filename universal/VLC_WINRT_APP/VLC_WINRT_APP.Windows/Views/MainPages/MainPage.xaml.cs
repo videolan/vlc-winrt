@@ -23,6 +23,7 @@ using VLC_WINRT_APP.Services.Interface;
 using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.Views.UserControls;
 using VLC_WINRT_APP.Views.VariousPages;
+using SettingsFlyout = VLC_WINRT_APP.Views.UserControls.SettingsFlyout;
 
 namespace VLC_WINRT_APP.Views.MainPages
 {
@@ -79,10 +80,8 @@ namespace VLC_WINRT_APP.Views.MainPages
             var settings = new SettingsCommand("settings", resourceLoader.GetString("Settings"),
                 command =>
                 {
-                    if (Locator.MediaPlaybackViewModel.PlayingType == PlayingType.Video)
-                    {
-                        Locator.MediaPlaybackViewModel.GoBack.Execute(typeof(SettingsPage));
-                    }
+                    var settingsFlyout = new SettingsFlyout();
+                    settingsFlyout.Show();
                 });
 
             var about = new SettingsCommand("about", "About The App",
