@@ -1,4 +1,5 @@
-﻿using Windows.UI.Xaml.Controls;
+﻿using Windows.Storage.Search;
+using Windows.UI.Xaml.Controls;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -39,6 +40,8 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
     {
         static readonly SemaphoreSlim AlbumCoverFetcherSemaphoreSlim = new SemaphoreSlim(2);
         static readonly SemaphoreSlim ArtistPicFetcherSemaphoreSlim = new SemaphoreSlim(2);
+        static readonly SemaphoreSlim TrackItemDiscovererSemaphoreSlim = new SemaphoreSlim(1);
+
         public static async Task FetchAlbumCoverOrWaitAsync(AlbumItem albumItem)
         {
             await AlbumCoverFetcherSemaphoreSlim.WaitAsync();
@@ -65,6 +68,21 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             }
         }
 
+        public static async Task DiscoverTrackItemOrWaitAsync(StorageFile storageItem)
+        {
+            await TrackItemDiscovererSemaphoreSlim.WaitAsync();
+            try
+            {
+                if (!await Locator.MusicLibraryVM._trackDataRepository.DoesTrackExist(storageItem.Path))
+                {
+                    await CreateDatabaseFromMusicFile(storageItem);
+                }
+            }
+            finally
+            {
+                TrackItemDiscovererSemaphoreSlim.Release();
+            }
+        }
 
         public static async Task LoadFromSQL()
         {
