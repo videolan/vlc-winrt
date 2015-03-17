@@ -56,7 +56,6 @@ namespace VLC_WINRT_APP.Services.Interface
         event EventHandler<libVLCX.MediaState> StatusChanged;
         event TimeChanged TimeChanged;
 
-        MediaPlayer MediaPlayer { get; }
         TaskCompletionSource<bool> ContinueIndexing { get; set; }
         TaskCompletionSource<bool> PlayerInstanceReady { get; set; } 
     }
