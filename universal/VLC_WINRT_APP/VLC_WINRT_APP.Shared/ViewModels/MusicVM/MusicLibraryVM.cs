@@ -297,7 +297,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 
         public DeleteSelectedTracksInPlaylistCommand DeleteSelectedTracksInPlaylistCommand
         {
-            get { return _deleteSelectedTracksInPlaylistCommand ?? (_deleteSelectedTracksInPlaylistCommand = new DeleteSelectedTracksInPlaylistCommand());}
+            get { return _deleteSelectedTracksInPlaylistCommand ?? (_deleteSelectedTracksInPlaylistCommand = new DeleteSelectedTracksInPlaylistCommand()); }
         }
 
         public ArtistItem CurrentArtist
