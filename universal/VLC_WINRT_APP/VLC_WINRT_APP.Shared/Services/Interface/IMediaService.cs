@@ -50,13 +50,11 @@ namespace VLC_WINRT_APP.Services.Interface
 
         void SetVolume(int volume);
 
-        void Trim();
         void SetSizeVideoPlayer(uint x, uint y);
 
         event EventHandler<libVLCX.MediaState> StatusChanged;
         event TimeChanged TimeChanged;
 
-        TaskCompletionSource<bool> ContinueIndexing { get; set; }
         TaskCompletionSource<bool> PlayerInstanceReady { get; set; } 
     }
 }

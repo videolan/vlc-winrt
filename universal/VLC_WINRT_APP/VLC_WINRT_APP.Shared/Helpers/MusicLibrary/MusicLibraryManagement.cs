@@ -204,10 +204,10 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
         {
             try
             {
-                if (Locator.MediaPlaybackViewModel._mediaService.ContinueIndexing != null)
+                if (Locator.MediaPlaybackViewModel.ContinueIndexing != null)
                 {
-                    await Locator.MediaPlaybackViewModel._mediaService.ContinueIndexing.Task;
-                    Locator.MediaPlaybackViewModel._mediaService.ContinueIndexing = null;
+                    await Locator.MediaPlaybackViewModel.ContinueIndexing.Task;
+                    Locator.MediaPlaybackViewModel.ContinueIndexing = null;
                 }
                 var folders = await musicFolder.GetFoldersAsync();
                 if (folders.Any())

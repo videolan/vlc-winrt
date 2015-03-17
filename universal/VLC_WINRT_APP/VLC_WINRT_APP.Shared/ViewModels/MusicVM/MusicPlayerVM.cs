@@ -70,22 +70,6 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             }
         }
 
-
-        public async Task SetCurrentArtist()
-        {
-            if (CurrentTrack == null) return;
-            if (CurrentArtist != null && CurrentArtist.Id == CurrentTrack.ArtistId) return;
-            CurrentArtist = await _artistDataRepository.LoadArtist(CurrentTrack.ArtistId);
-        }
-
-        public async Task SetCurrentAlbum()
-        {
-            if (CurrentTrack == null) return;
-            if (CurrentArtist == null) return;
-            if (CurrentAlbum != null && CurrentAlbum.Id == CurrentTrack.AlbumId) return;
-            CurrentAlbum = await _albumDataRepository.LoadAlbum(CurrentTrack.AlbumId);
-        }
-
         public TrackItem CurrentTrack
         {
             get
@@ -95,7 +79,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                     return null;
                 if (Locator.MediaPlaybackViewModel.TrackCollection.CurrentTrack > Locator.MediaPlaybackViewModel.TrackCollection.Playlist.Count)
                 {
-                    Locator.MediaPlaybackViewModel.TrackCollection.CurrentTrack = 0;
+                    App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Locator.MediaPlaybackViewModel.TrackCollection.CurrentTrack = 0);
                     return null;
                 }
                 return Locator.MediaPlaybackViewModel.TrackCollection.Playlist[Locator.MediaPlaybackViewModel.TrackCollection.CurrentTrack];
@@ -144,51 +128,9 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 #endif
         }
 
-        public async Task Play(bool forceVlcLib, StorageFile file = null)
-        {
-            Locator.MediaPlaybackViewModel.UseVlcLib = forceVlcLib;
-            Locator.MediaPlaybackViewModel.Stop();
-            if (CurrentTrack == null) return;
-            LogHelper.Log("Opening file: " + CurrentTrack.Path);
-            await SetActiveMusicInfo(CurrentTrack, file);
-        }
 
-        private async Task SetActiveMusicInfo(TrackItem track, StorageFile file = null)
-        {
-            var currentTrackFile = file ?? await StorageFile.GetFileFromPathAsync(track.Path);
-#if WINDOWS_PHONE_APP
-            bool playWithLibVlc = !VLCFileExtensions.MFSupported.Contains(currentTrackFile.FileType.ToLower()) || Locator.MediaPlaybackViewModel.UseVlcLib;
-            if (!playWithLibVlc)
-            {
-                App.BackgroundAudioHelper.PlayAudio(track.Id);
-            }
-            else
-#endif
-            {
-#if WINDOWS_PHONE_APP
-                Locator.MediaPlaybackViewModel.UseVlcLib = true;
-                ToastHelper.Basic("Can't enable background audio", false, "background");
-                if (BackgroundMediaPlayer.Current != null &&
-                    BackgroundMediaPlayer.Current.CurrentState != MediaPlayerState.Stopped)
-                {
-                    BackgroundMediaPlayer.Current.Pause();
-                }
-#endif
-                await Locator.MediaPlaybackViewModel.InitializePlayback(track.Path, true, false, currentTrackFile);
-                Locator.MediaPlaybackViewModel._mediaService.Play();
-                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
-                {
-                    await SetCurrentArtist();
-                    await SetCurrentAlbum();
-                    await UpdatePlayingUI();
-#if WINDOWS_APP
-                    await UpdateWindows8UI();
-#endif
-                });
-            }
-        }
 
-        async Task UpdateWindows8UI()
+        public async Task UpdateWindows8UI()
         {
             // Setting the info for windows 8 controls
             var resourceLoader = new ResourceLoader();
@@ -226,7 +168,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         }
 #endif
 
-        private async Task UpdatePlayingUI()
+        public async Task UpdatePlayingUI()
         {
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
@@ -237,6 +179,21 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                 OnPropertyChanged("CurrentTrack");
                 UpdateTileHelper.UpdateMediumTileWithMusicInfo();
             });
+        }
+
+        public async Task SetCurrentArtist()
+        {
+            if (CurrentTrack == null) return;
+            if (CurrentArtist != null && CurrentArtist.Id == CurrentTrack.ArtistId) return;
+            CurrentArtist = await _artistDataRepository.LoadArtist(CurrentTrack.ArtistId);
+        }
+
+        public async Task SetCurrentAlbum()
+        {
+            if (CurrentTrack == null) return;
+            if (CurrentArtist == null) return;
+            if (CurrentAlbum != null && CurrentAlbum.Id == CurrentTrack.AlbumId) return;
+            CurrentAlbum = await _albumDataRepository.LoadAlbum(CurrentTrack.AlbumId);
         }
     }
 }

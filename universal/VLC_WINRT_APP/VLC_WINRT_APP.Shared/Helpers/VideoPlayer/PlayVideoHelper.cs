@@ -21,7 +21,7 @@ namespace VLC_WINRT_APP.Helpers.VideoPlayer
                 App.ApplicationFrame.Navigate(typeof (VideoPlayerPage));
             LogHelper.Log("PLAYVIDEO: Settings videoVm as Locator.VideoVm.CurrentVideo");
             Locator.VideoVm.CurrentVideo = videoVm;
-            await Locator.VideoVm.SetActiveVideoInfo(videoVm);
+            await Locator.MediaPlaybackViewModel.SetMedia(videoVm);
         }
     }
 }

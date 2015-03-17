@@ -10,6 +10,7 @@
 using System;
 using VLC_WINRT.Common;
 using VLC_WINRT_APP.Helpers;
+using VLC_WINRT_APP.Model.Stream;
 using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.Views.VideoPages;
 
@@ -29,7 +30,8 @@ namespace VLC_WINRT_APP.Commands
             //TODO: pass MRL to vlc
             try
             {
-                await Locator.VideoVm.SetActiveVideoInfo(null, mrl);
+                var stream = new StreamMedia(mrl);
+                await Locator.MediaPlaybackViewModel.SetMedia(stream);
             }
             catch (Exception ex)
             {

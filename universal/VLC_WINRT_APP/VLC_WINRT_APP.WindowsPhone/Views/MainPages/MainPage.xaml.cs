@@ -9,6 +9,7 @@ using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.Services.Interface;
 using VLC_WINRT_APP.Services.RunTime;
 using System;
+using VLC_WINRT_APP.ViewModels;
 
 namespace VLC_WINRT_APP.Views.MainPages
 {
@@ -17,11 +18,9 @@ namespace VLC_WINRT_APP.Views.MainPages
     /// </summary>
     public sealed partial class MainPage : SwapChainPanel
     {
-        private readonly IMediaService _mediaService;
-        public MainPage(IMediaService mediaService)
+        public MainPage()
         {
             this.InitializeComponent();
-            _mediaService = mediaService;
             Loaded += SwapPanelLoaded;
             ApplicationView.GetForCurrentView().SetDesiredBoundsMode(ApplicationViewBoundsMode.UseCoreWindow);
             DisplayInformation.GetForCurrentView().OrientationChanged += DisplayPropertiesOnOrientationChanged;
@@ -29,7 +28,7 @@ namespace VLC_WINRT_APP.Views.MainPages
 
         private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
         {
-            _mediaService.SetSizeVideoPlayer((uint)sizeChangedEventArgs.NewSize.Width, (uint)sizeChangedEventArgs.NewSize.Height);
+            Locator.MediaPlaybackViewModel._mediaService.SetSizeVideoPlayer((uint)sizeChangedEventArgs.NewSize.Width, (uint)sizeChangedEventArgs.NewSize.Height);
         }
 
         private async void DisplayPropertiesOnOrientationChanged(DisplayInformation info, object sender)
@@ -52,7 +51,7 @@ namespace VLC_WINRT_APP.Views.MainPages
 
         private void SwapPanelLoaded(object sender, RoutedEventArgs e)
         {
-            _mediaService.Initialize(SwapChainPanel);
+            Locator.MediaPlaybackViewModel._mediaService.Initialize(SwapChainPanel);
             SizeChanged += OnSizeChanged;
             Unloaded += MainPage_Unloaded;
         }

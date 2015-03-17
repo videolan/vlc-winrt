@@ -44,7 +44,6 @@ namespace VLC_WINRT_APP.Services.RunTime
         public event TimeChanged TimeChanged;
 
         private SystemMediaTransportControls _systemMediaTransportControls;
-        public TaskCompletionSource<bool> ContinueIndexing { get; set; }
 
         public TaskCompletionSource<bool> PlayerInstanceReady { get; set; }
 
@@ -211,8 +210,9 @@ namespace VLC_WINRT_APP.Services.RunTime
             VideoItem videoVm = new VideoItem();
             await videoVm.Initialize(file);
             if (token != null) videoVm.Token = token;
+            
             Locator.VideoVm.CurrentVideo = videoVm;
-            await Locator.VideoVm.SetActiveVideoInfo(videoVm, null, file);
+            await Locator.MediaPlaybackViewModel.SetMedia(videoVm, false, file);
         }
 
         private bool _isAudioMedia;

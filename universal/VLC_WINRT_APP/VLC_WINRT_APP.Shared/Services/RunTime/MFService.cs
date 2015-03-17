@@ -14,12 +14,6 @@ namespace VLC_WINRT_APP.Services.RunTime
         public event EventHandler<MediaState> StatusChanged;
         public event TimeChanged TimeChanged;
         
-        public TaskCompletionSource<bool> ContinueIndexing
-        {
-            get { throw new NotImplementedException(); }
-            set { throw new NotImplementedException(); }
-        }
-
         public TaskCompletionSource<bool> PlayerInstanceReady
         {
             get { throw new NotImplementedException(); }

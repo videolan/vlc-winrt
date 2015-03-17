@@ -234,10 +234,10 @@ namespace VLC_WINRT_APP.Model.Video
                 return false;
             try
             {
-                if (Locator.MediaPlaybackViewModel._mediaService.ContinueIndexing != null)
+                if (Locator.MediaPlaybackViewModel.ContinueIndexing != null)
                 {
-                    await Locator.MediaPlaybackViewModel._mediaService.ContinueIndexing.Task;
-                    Locator.MediaPlaybackViewModel._mediaService.ContinueIndexing = null;
+                    await Locator.MediaPlaybackViewModel.ContinueIndexing.Task;
+                    Locator.MediaPlaybackViewModel.ContinueIndexing = null;
                 }
 #if WINDOWS_PHONE_APP
                 if (MemoryUsageHelper.PercentMemoryUsed() > MemoryUsageHelper.MaxRamForResourceIntensiveTasks)

@@ -34,7 +34,7 @@ namespace VLC_WINRT_APP.Helpers.MusicPlayer
             if (track != null)
             {
                 await SetCurrentTrackPosition(Locator.MediaPlaybackViewModel.TrackCollection.Playlist.IndexOf(track));
-                await Task.Run(() => Locator.MusicPlayerVM.Play(false));
+                await Task.Run(() => Locator.MediaPlaybackViewModel.SetMedia(Locator.MusicPlayerVM.CurrentTrack, false));
             }
         }
 
@@ -50,7 +50,7 @@ namespace VLC_WINRT_APP.Helpers.MusicPlayer
 #endif
             await AddTrack(trackItem);
             await SetCurrentTrackPosition(0);
-            await Task.Run(() => Locator.MusicPlayerVM.Play(false, file));
+            await Task.Run(async () => await Locator.MediaPlaybackViewModel.SetMedia(Locator.MusicPlayerVM.CurrentTrack, false, file));
         }
 
         /// <summary>

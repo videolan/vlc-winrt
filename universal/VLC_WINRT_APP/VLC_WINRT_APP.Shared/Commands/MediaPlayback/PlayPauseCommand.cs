@@ -15,8 +15,6 @@ using Windows.Media.Playback;
 using Autofac;
 using VLC_WINRT.Common;
 using VLC_WINRT_APP.Model;
-using VLC_WINRT_APP.Services.Interface;
-using VLC_WINRT_APP.Services.RunTime;
 using VLC_WINRT_APP.ViewModels;
 
 namespace VLC_WINRT_APP.Commands.MediaPlayback
@@ -33,7 +31,7 @@ namespace VLC_WINRT_APP.Commands.MediaPlayback
                 switch (BackgroundMediaPlayer.Current.CurrentState)
                 {
                     case MediaPlayerState.Closed:
-                        await Locator.MusicPlayerVM.Play(false);
+                        await Locator.MediaPlaybackViewModel.SetMedia(Locator.MusicPlayerVM.CurrentTrack, false);
                         App.BackgroundAudioHelper.AddMediaPlayerEventHandlers();
                         break;
                     case MediaPlayerState.Paused:
@@ -48,7 +46,7 @@ namespace VLC_WINRT_APP.Commands.MediaPlayback
             {
                 await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                 {
-                    if (playerService != null) playerService.Pause();
+                    Locator.MediaPlaybackViewModel._mediaService.Pause();
                 });
             }
 #endif
