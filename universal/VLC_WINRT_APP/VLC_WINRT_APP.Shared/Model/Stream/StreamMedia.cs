@@ -1,4 +1,5 @@
 ﻿using System;
+using Windows.Storage;
 using SQLite;
 using VLC_WINRT_APP.Common;
 
@@ -29,6 +30,12 @@ namespace VLC_WINRT_APP.Model.Stream
         {
             get { return _duration; }
             set { SetProperty(ref _duration, value); }
+        }
+
+        public StorageFile File
+        {
+            get { throw new NotImplementedException(); }
+            set { throw new NotImplementedException(); }
         }
 
         public StreamMedia(string mrl)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Windows.Storage;
 using SQLite;
 using VLC_WINRT_APP.Commands.Music;
 using VLC_WINRT_APP.Commands.MusicPlayer;
@@ -23,6 +24,7 @@ namespace VLC_WINRT_APP.Model.Music
         private TrackClickedCommand _trackClickedCommand = new TrackClickedCommand();
         private FavoriteTrackCommand _favoriteTrackCommand = new FavoriteTrackCommand();
         private ArtistClickedCommand _viewArtist = new ArtistClickedCommand();
+        private StorageFile _file;
 
         [PrimaryKey, AutoIncrement, Column("_id")]
         public int Id { get; set; }
@@ -113,6 +115,13 @@ namespace VLC_WINRT_APP.Model.Music
         {
             get { return _favoriteTrackCommand; }
             set { SetProperty(ref _favoriteTrackCommand, value); }
+        }
+
+        [Ignore]
+        public StorageFile File
+        {
+            get { return _file; }
+            set { SetProperty(ref _file, value); }
         }
     }
 }

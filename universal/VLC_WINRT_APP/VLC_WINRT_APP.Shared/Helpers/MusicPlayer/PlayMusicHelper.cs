@@ -40,7 +40,7 @@ namespace VLC_WINRT_APP.Helpers.MusicPlayer
 
         ///
         /// Play a track from FilePicker
-        public static async Task PlayTrackFromFilePicker(StorageFile file, TrackItem trackItem)
+        public static async Task PlayTrackFromFilePicker(TrackItem trackItem)
         {
             if (trackItem == null) return;
             await Locator.MediaPlaybackViewModel.TrackCollection.ResetCollection();
@@ -50,7 +50,7 @@ namespace VLC_WINRT_APP.Helpers.MusicPlayer
 #endif
             await AddTrack(trackItem);
             await SetCurrentTrackPosition(0);
-            await Task.Run(async () => await Locator.MediaPlaybackViewModel.SetMedia(Locator.MusicPlayerVM.CurrentTrack, false, file));
+            await Task.Run(async () => await Locator.MediaPlaybackViewModel.SetMedia(Locator.MusicPlayerVM.CurrentTrack, false));
         }
 
         /// <summary>

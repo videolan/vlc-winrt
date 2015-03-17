@@ -571,7 +571,7 @@ namespace VLC_WINRT_APP.ViewModels
             _mediaService.SetNullMediaPlayer();
         }
 
-        public async Task SetMedia(IVLCMedia media, bool forceVlcLib = false, StorageFile file = null)
+        public async Task SetMedia(IVLCMedia media, bool forceVlcLib = false)
         {
             if (media == null)
                 throw new ArgumentNullException("media", "Media parameter is missing. Can't play anything");
@@ -584,8 +584,7 @@ namespace VLC_WINRT_APP.ViewModels
                 await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Locator.MediaPlaybackViewModel.PlayingType = PlayingType.Video);
                 _playerEngine = PlayerEngine.VLC;
                 var video = (VideoItem)media;
-                var path = video.Token ?? video.Path;
-                await Locator.MediaPlaybackViewModel.InitializePlayback(path, false, false, file);
+                await Locator.MediaPlaybackViewModel.InitializePlayback(video, false, false);
 
                 if (video.TimeWatched != TimeSpan.FromSeconds(0))
                     await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Locator.MediaPlaybackViewModel.Time = (Int64)video.TimeWatched.TotalMilliseconds);
@@ -598,7 +597,7 @@ namespace VLC_WINRT_APP.ViewModels
                 await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Locator.MediaPlaybackViewModel.PlayingType = PlayingType.Music);
                 _playerEngine = PlayerEngine.VLC;
                 var track = (TrackItem)media;
-                var currentTrackFile = file ?? await StorageFile.GetFileFromPathAsync(track.Path);
+                var currentTrackFile = track.File ?? await StorageFile.GetFileFromPathAsync(track.Path);
 #if WINDOWS_PHONE_APP
                 bool playWithLibVlc = !VLCFileExtensions.MFSupported.Contains(currentTrackFile.FileType.ToLower()) || Locator.MediaPlaybackViewModel.UseVlcLib;
                 if (!playWithLibVlc)
@@ -618,7 +617,7 @@ namespace VLC_WINRT_APP.ViewModels
                         BackgroundMediaPlayer.Current.Pause();
                     }
 #endif
-                    await Locator.MediaPlaybackViewModel.InitializePlayback(track.Path, true, false, currentTrackFile);
+                    await Locator.MediaPlaybackViewModel.InitializePlayback(track, true, false);
                     Locator.MediaPlaybackViewModel._mediaService.Play();
                     await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
                     {
@@ -636,7 +635,7 @@ namespace VLC_WINRT_APP.ViewModels
                 _playerEngine = PlayerEngine.VLC;
                 Locator.VideoVm.CurrentVideo = null;
                 Locator.MediaPlaybackViewModel.PlayingType = PlayingType.Video;
-                await Locator.MediaPlaybackViewModel.InitializePlayback(media.Path, false, true);
+                await Locator.MediaPlaybackViewModel.InitializePlayback(media, false, true);
             }
 
             // Dirty hack because as soon as possible we should communicate with the BackgroundAudioTask via a BackgroundAudioPlayerService
@@ -644,14 +643,14 @@ namespace VLC_WINRT_APP.ViewModels
                 (Locator.MediaPlaybackViewModel._mediaService as VLCService).Play();
         }
 
-        public async Task InitializePlayback(String mrl, Boolean isAudio, Boolean isStream, StorageFile file = null)
+        public async Task InitializePlayback(IVLCMedia media, Boolean isAudio, Boolean isStream)
         {
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 PlayingType = (isAudio) ? PlayingType.Music : PlayingType.Video;
                 IsStream = isStream;
             });
-            await _mediaService.SetMediaFile(mrl, isAudio, isStream, file);
+            await _mediaService.SetMediaFile(media, isAudio, isStream);
             switch (_playerEngine)
             {
                 case PlayerEngine.VLC:

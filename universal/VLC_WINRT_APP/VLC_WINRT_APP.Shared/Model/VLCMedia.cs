@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Windows.Storage;
 
 namespace VLC_WINRT_APP.Model
 {
@@ -10,5 +11,6 @@ namespace VLC_WINRT_APP.Model
         string Path { get; set; }
         string Name { get; set; }
         TimeSpan Duration { get; set; }
+        StorageFile File { get; set; }
     }
 }

@@ -31,6 +31,7 @@ using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using VLC_WINRT_APP.Helpers.MusicPlayer;
 using VLC_WINRT_APP.Model.Music;
+using VLC_WINRT_APP.Model.Stream;
 #if WINDOWS_PHONE_APP
 using Windows.Media.Playback;
 #endif
@@ -196,7 +197,7 @@ namespace VLC_WINRT_APP.Services.RunTime
             if (App.ApplicationFrame.CurrentSourcePageType != typeof(MusicPlayerPage))
                 App.ApplicationFrame.Navigate(typeof(MusicPlayerPage));
             var trackItem = await GetInformationsFromMusicFile.GetTrackItemFromFile(file);
-            await PlayMusicHelper.PlayTrackFromFilePicker(file, trackItem);
+            await PlayMusicHelper.PlayTrackFromFilePicker(trackItem);
         }
 
         /// <summary>
@@ -209,33 +210,37 @@ namespace VLC_WINRT_APP.Services.RunTime
             App.ApplicationFrame.Navigate(typeof(VideoPlayerPage));
             VideoItem videoVm = new VideoItem();
             await videoVm.Initialize(file);
-            if (token != null) videoVm.Token = token;
-            
+            if (token != null) 
+                videoVm.Token = token;
             Locator.VideoVm.CurrentVideo = videoVm;
-            await Locator.MediaPlaybackViewModel.SetMedia(videoVm, false, file);
+            await Locator.MediaPlaybackViewModel.SetMedia(videoVm, false);
         }
 
         private bool _isAudioMedia;
 
-        public async Task SetMediaFile(string filePath, bool isAudioMedia, bool isStream, StorageFile file = null)
+        public async Task SetMediaFile(IVLCMedia media, bool isAudioMedia, bool isStream)
         {
-            LogHelper.Log("SetMediaFile: " + filePath);
+            LogHelper.Log("SetMediaFile: " + media.Path);
             string mrl = null;
-            if (file != null)
+            if (media is StreamMedia)
             {
-                mrl = "file://" + GetToken(file);
-            }
-            else if (!isStream)
-            {
-                mrl = "file://" + await GetToken(filePath);
+                mrl = media.Path;
             }
             else
             {
-                mrl = filePath;
+                if (media.File != null)
+                {
+                    mrl = "file://" + GetToken(media.File);
+                }
+                else
+                {
+                    mrl = "file://" + await GetToken(media.Path);
+                }
             }
+
             if (Instance == null) return;
-            var media = new Media(Instance, mrl);
-            MediaPlayer = new MediaPlayer(media);
+            var mediaVLC = new Media(Instance, mrl);
+            MediaPlayer = new MediaPlayer(mediaVLC);
             LogHelper.Log("PLAYWITHVLC: MediaPlayer instance created");
             var em = MediaPlayer.eventManager();
             em.OnStopped += OnStopped;

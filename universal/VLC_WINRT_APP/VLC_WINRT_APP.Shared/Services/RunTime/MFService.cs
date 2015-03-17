@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.UI.Xaml.Controls;
 using libVLCX;
+using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.Services.Interface;
 
 namespace VLC_WINRT_APP.Services.RunTime
@@ -42,7 +43,7 @@ namespace VLC_WINRT_APP.Services.RunTime
             throw new NotImplementedException();
         }
 
-        public Task SetMediaFile(string filePath, bool isAudioMedia, bool isStream, StorageFile file = null)
+        public Task SetMediaFile(IVLCMedia media, bool isAudioMedia, bool isStream)
         {
             throw new NotImplementedException();
         }

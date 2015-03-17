@@ -44,7 +44,8 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                 Name = (trackInfos == null || string.IsNullOrEmpty(trackInfos.Title)) ? track.DisplayName : trackInfos.Title,
                 Path = track.Path,
                 Duration = (trackInfos == null) ? TimeSpan.Zero : trackInfos.Duration,
-                Index = 0
+                Index = 0,
+                File = track
             };
             return trackItem;
         }
