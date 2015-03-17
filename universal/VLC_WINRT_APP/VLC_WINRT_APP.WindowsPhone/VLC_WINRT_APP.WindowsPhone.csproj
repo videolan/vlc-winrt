@@ -122,9 +122,6 @@
     <Compile Include="Views\UserControls\MiniPlayer.xaml.cs">
       <DependentUpon>MiniPlayer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControls\Placeholder\NoData.xaml.cs">
-      <DependentUpon>NoData.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\UserControls\Placeholder\NoFavoriteAlbumsControl.xaml.cs">
       <DependentUpon>NoFavoriteAlbumsControl.xaml</DependentUpon>
     </Compile>
