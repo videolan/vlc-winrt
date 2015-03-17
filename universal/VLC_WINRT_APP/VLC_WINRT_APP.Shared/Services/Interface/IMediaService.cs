@@ -56,6 +56,6 @@ namespace VLC_WINRT_APP.Services.Interface
         MediaPlayer MediaPlayer { get; }
         bool UseVlcLib { get; set; }
         TaskCompletionSource<bool> ContinueIndexing { get; set; }
-        TaskCompletionSource<bool> VLCInstanceReady { get; set; } 
+        TaskCompletionSource<bool> PlayerInstanceReady { get; set; } 
     }
 }

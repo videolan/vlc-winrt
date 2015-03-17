@@ -46,7 +46,7 @@ namespace VLC_WINRT_APP.Services.RunTime
         private SystemMediaTransportControls _systemMediaTransportControls;
         public TaskCompletionSource<bool> ContinueIndexing { get; set; }
 
-        public TaskCompletionSource<bool> VLCInstanceReady { get; set; }
+        public TaskCompletionSource<bool> PlayerInstanceReady { get; set; }
 
         public Instance Instance { get; private set; }
         public MediaPlayer MediaPlayer { get; private set; }
@@ -74,10 +74,9 @@ namespace VLC_WINRT_APP.Services.RunTime
                 String.Format("--freetype-font={0}\\segoeui.ttf", Windows.ApplicationModel.Package.Current.InstalledLocation.Path)
             };
             // So far, this NEEDS to be called from the main thread
-            Instance = new Instance(param, panel);
-            VLCInstanceReady.SetResult(true);
+            Instance = new Instance(param, swapchain);
+            PlayerInstanceReady.SetResult(true);
         }
-
 
         public void SetMediaTransportControls(SystemMediaTransportControls systemMediaTransportControls)
         {
