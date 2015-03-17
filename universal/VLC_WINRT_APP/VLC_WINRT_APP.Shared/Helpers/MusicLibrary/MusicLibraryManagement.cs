@@ -146,7 +146,37 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             }
         }
 
-        public static async Task GetAllMusicFolders(bool routineCheck = false)
+        public static Task DoRoutineMusicLibraryCheck()
+        {
+#if WINDOWS_PHONE_APP
+            return GetAllMusicFolders();
+#else
+            return PerformMusicLibraryIndexing();  
+#endif
+        }
+
+
+#if WINDOWS_APP
+        /// <summary>
+        /// This method is Windows-only since the crappy WP OS throws a 
+        /// NotImplementedexception when calling QueryOptions, CreateFileQueryWithOptions
+        /// </summary>
+        /// <returns></returns>
+        public static async Task PerformMusicLibraryIndexing()
+        {
+            var queryOptions = new QueryOptions {FolderDepth = FolderDepth.Deep};
+            foreach (var type in VLCFileExtensions.Supported)
+                queryOptions.FileTypeFilter.Add(type);
+            var fileQueryResult = KnownFolders.MusicLibrary.CreateFileQueryWithOptions(queryOptions);
+            var files = await fileQueryResult.GetFilesAsync();  
+            foreach (var item in files)
+            {
+                await DiscoverTrackItemOrWaitAsync(item);
+            }
+        }
+#endif
+
+        public static async Task GetAllMusicFolders()
         {
             try
             {
@@ -154,14 +184,14 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                 StorageLibrary musicLibrary = await StorageLibrary.GetLibraryAsync(KnownLibraryId.Music);
                 foreach (StorageFolder storageFolder in musicLibrary.Folders)
                 {
-                    await CreateDatabaseFromMusicFolder(storageFolder, routineCheck);
+                    await CreateDatabaseFromMusicFolder(storageFolder);
                 }
 #else
                 StorageFolder musicLibrary = KnownFolders.MusicLibrary;
                 LogHelper.Log("Searching for music from Phone MusicLibrary ...");
                 await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                     StatusBarHelper.UpdateTitle("Searching for music"));
-                await CreateDatabaseFromMusicFolder(musicLibrary, routineCheck);
+                await CreateDatabaseFromMusicFolder(musicLibrary);
 #endif
             }
             catch (Exception e)
@@ -170,7 +200,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             }
         }
 
-        private static async Task CreateDatabaseFromMusicFolder(StorageFolder musicFolder, bool routineCheck = false)
+        private static async Task CreateDatabaseFromMusicFolder(StorageFolder musicFolder)
         {
             try
             {
@@ -184,32 +214,15 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                 {
                     foreach (var storageFolder in folders)
                     {
-                        await CreateDatabaseFromMusicFolder(storageFolder, routineCheck);
+                        await CreateDatabaseFromMusicFolder(storageFolder);
                     }
                 }
                 var folderFiles = await musicFolder.GetFilesAsync();
                 if (folderFiles != null && folderFiles.Any())
                 {
-#if WINDOWS_PHONE_APP
-                    if (!routineCheck)
-                    {
-                        await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                            StatusBarHelper.UpdateTitle("Found " + folderFiles.Count + " files"));
-                    }
-#endif
                     foreach (var storageFile in folderFiles)
                     {
-                        if (!routineCheck)
-                        {
-                            await CreateDatabaseFromMusicFile(storageFile);
-                        }
-                        else
-                        {
-                            if (!await Locator.MusicLibraryVM._trackDataRepository.DoesTrackExist(storageFile.Path))
-                            {
-                                await CreateDatabaseFromMusicFile(storageFile);
-                            }
-                        }
+                        await DiscoverTrackItemOrWaitAsync(storageFile);
                     }
                 }
             }
@@ -273,7 +286,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                             if (artistFromCollection != null) artistFromCollection.Albums.Add(album);
                             Locator.MusicLibraryVM.CurrentIndexingStatus = "Found " + Locator.MusicLibraryVM.Albums.Count + " albums";
 #if WINDOWS_PHONE_APP
-                            StatusBarHelper.UpdateTitle("Found " + album.Name);
+                            StatusBarHelper.UpdateTitle(Locator.MusicLibraryVM.CurrentIndexingStatus);
 #endif
                             Locator.MusicLibraryVM.Albums.Add(album);
                         });
