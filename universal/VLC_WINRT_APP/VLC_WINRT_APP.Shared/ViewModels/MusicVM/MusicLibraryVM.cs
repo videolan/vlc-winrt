@@ -430,8 +430,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             _trackDataRepository.Initialize();
             _albumDataRepository.Initialize();
 
-            await MusicLibraryManagement.GetAllMusicFolders();
-
+            await MusicLibraryManagement.DoRoutineMusicLibraryCheck();
             await LoadFromDatabase();
 
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
