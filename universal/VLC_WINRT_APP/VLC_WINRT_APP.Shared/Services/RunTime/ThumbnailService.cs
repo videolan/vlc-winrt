@@ -8,10 +8,8 @@
  **********************************************************************/
 
 using System;
-using System.Diagnostics;
 using System.Threading.Tasks;
 using Windows.Storage.AccessCache;
-using Windows.UI.Xaml.Media.Imaging;
 using VLC_WINRT_APP.Services.Interface;
 using Windows.Storage;
 using Windows.Storage.FileProperties;
