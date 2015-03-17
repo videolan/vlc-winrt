@@ -77,13 +77,6 @@ namespace VLC_WINRT_APP
             get { return Window.Current.Content as MainPage; }
         }
 
-        public static IMediaService IMediaService
-        {
-            get
-            {
-                return Container.Resolve<IMediaService>();
-            }
-        }
 
         public static MusicMetaService MusicMetaService
         {
@@ -255,7 +248,7 @@ namespace VLC_WINRT_APP
         {
             if (Window.Current.Content == null)
                 LaunchTheApp();
-            await IMediaService.PlayerInstanceReady.Task;
+            await Locator.MediaPlaybackViewModel._mediaService.PlayerInstanceReady.Task;
             await VLCService.OpenFile(args.Files[0] as StorageFile);
         }
 

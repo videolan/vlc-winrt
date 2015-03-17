@@ -195,6 +195,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Model\OpenFilePickerReason.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\OrderSettings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Panel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\PlayerEngine.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\PlayingType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Search\SearchResult.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\SidebarState.cs" />

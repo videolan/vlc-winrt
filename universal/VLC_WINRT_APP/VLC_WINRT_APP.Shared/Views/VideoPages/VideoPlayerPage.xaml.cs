@@ -49,7 +49,7 @@ namespace VLC_WINRT_APP.Views.VideoPages
             // If no playback was ever started, ContinueIndexing can be null
             // If we navigate back and forth to the main page, we also don't want to 
             // re-mark the task as completed.
-            App.IMediaService.ContinueIndexing = new TaskCompletionSource<bool>();
+            Locator.MediaPlaybackViewModel._mediaService.ContinueIndexing = new TaskCompletionSource<bool>();
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(5);
             timer.Tick += TimerOnTick;
@@ -75,9 +75,9 @@ namespace VLC_WINRT_APP.Views.VideoPages
 #if WINDOWS_APP
             AppViewHelper.SetFullscren(false);
 #endif
-            if (App.IMediaService.ContinueIndexing != null && !App.IMediaService.ContinueIndexing.Task.IsCompleted)
+            if (Locator.MediaPlaybackViewModel._mediaService.ContinueIndexing != null && !Locator.MediaPlaybackViewModel._mediaService.ContinueIndexing.Task.IsCompleted)
             {
-                App.IMediaService.ContinueIndexing.SetResult(true);
+                Locator.MediaPlaybackViewModel._mediaService.ContinueIndexing.SetResult(true);
             }
 #if WINDOWS_PHONE_APP
             HardwareButtons.BackPressed -= HardwareButtonsOnBackPressed;

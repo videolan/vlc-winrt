@@ -23,6 +23,7 @@ using VLC_WINRT_APP.Commands.Video;
 using VLC_WINRT_APP.Common;
 using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.Services.Interface;
+using VLC_WINRT_APP.ViewModels;
 
 namespace VLC_WINRT_APP.Model.Video
 {

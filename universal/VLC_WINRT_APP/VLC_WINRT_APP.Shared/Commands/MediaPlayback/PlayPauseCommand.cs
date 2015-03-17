@@ -25,9 +25,8 @@ namespace VLC_WINRT_APP.Commands.MediaPlayback
     {
         public override async void Execute(object parameter)
         {
-            var playerService = App.IMediaService;
 #if WINDOWS_APP
-            playerService.Pause();
+            Locator.MediaPlaybackViewModel._mediaService.Pause();
 #else
             if (BackgroundMediaPlayer.Current != null && Locator.MediaPlaybackViewModel.PlayingType == PlayingType.Music && !Locator.MediaPlaybackViewModel.UseVlcLib)
             {

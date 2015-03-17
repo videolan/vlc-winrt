@@ -43,6 +43,7 @@ namespace VLC_WINRT_APP.ViewModels
 #if WINDOWS_APP
         private MouseService _mouseService;
 #endif
+        private PlayerEngine _playerEngine;
         private bool _isPlaying;
         private MediaState _mediaState;
         private PlayingType _playingType;
@@ -78,7 +79,19 @@ namespace VLC_WINRT_APP.ViewModels
         #region public props
         public bool UseVlcLib { get; set; }
 
-        public readonly IMediaService _mediaService;
+        public VLCService _mediaService
+        {
+            get
+            {
+                switch (_playerEngine)
+                {
+                    case PlayerEngine.VLC:
+                        return App.Container.Resolve<VLCService>();
+                }
+                return null;
+            }
+        }
+
         public PlayingType PlayingType
         {
             get { return _playingType; }
@@ -390,8 +403,6 @@ namespace VLC_WINRT_APP.ViewModels
 
         public MediaPlaybackViewModel()
         {
-            var mediaService = App.Container.Resolve<IMediaService>();
-            _mediaService = mediaService;
             _mediaService.StatusChanged += PlayerStateChanged;
             _mediaService.TimeChanged += UpdateTime;
 

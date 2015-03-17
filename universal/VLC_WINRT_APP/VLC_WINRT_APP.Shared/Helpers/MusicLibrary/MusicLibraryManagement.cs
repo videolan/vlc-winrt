@@ -204,10 +204,10 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
         {
             try
             {
-                if (App.IMediaService.ContinueIndexing != null)
+                if (Locator.MediaPlaybackViewModel._mediaService.ContinueIndexing != null)
                 {
-                    await App.IMediaService.ContinueIndexing.Task;
-                    App.IMediaService.ContinueIndexing = null;
+                    await Locator.MediaPlaybackViewModel._mediaService.ContinueIndexing.Task;
+                    Locator.MediaPlaybackViewModel._mediaService.ContinueIndexing = null;
                 }
                 var folders = await musicFolder.GetFoldersAsync();
                 if (folders.Any())
@@ -319,7 +319,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             if (useLibVLc)
             {
                 if (vlcService == null)
-                    vlcService = App.IMediaService as VLCService;
+                    vlcService = App.Container.Resolve<VLCService>();
                 var albumUrl = vlcService.GetAlbumUrl(filePath);
                 if (!string.IsNullOrEmpty(albumUrl))
                 {
