@@ -17,6 +17,11 @@
         <RowDefinition />
         <RowDefinition Height="Auto" />
     </Grid.RowDefinitions>
+    <MediaElement Grid.Row="0"
+                  Grid.RowSpan="2"
+                  x:Name="MfMediaElement"
+                  x:FieldModifier="public"
+                  />
     <Grid Grid.RowSpan="2"
           Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
           Visibility="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}" />
