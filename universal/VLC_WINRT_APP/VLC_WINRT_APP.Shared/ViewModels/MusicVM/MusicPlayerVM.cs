@@ -146,7 +146,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 
         public async Task Play(bool forceVlcLib, StorageFile file = null)
         {
-            Locator.MediaPlaybackViewModel._mediaService.UseVlcLib = forceVlcLib;
+            Locator.MediaPlaybackViewModel.UseVlcLib = forceVlcLib;
             Locator.MediaPlaybackViewModel.Stop();
             if (CurrentTrack == null) return;
             LogHelper.Log("Opening file: " + CurrentTrack.Path);
@@ -157,7 +157,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         {
             var currentTrackFile = file ?? await StorageFile.GetFileFromPathAsync(track.Path);
 #if WINDOWS_PHONE_APP
-            bool playWithLibVlc = !VLCFileExtensions.MFSupported.Contains(currentTrackFile.FileType.ToLower()) || Locator.MediaPlaybackViewModel._mediaService.UseVlcLib;
+            bool playWithLibVlc = !VLCFileExtensions.MFSupported.Contains(currentTrackFile.FileType.ToLower()) || Locator.MediaPlaybackViewModel.UseVlcLib;
             if (!playWithLibVlc)
             {
                 App.BackgroundAudioHelper.PlayAudio(track.Id);
@@ -166,7 +166,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 #endif
             {
 #if WINDOWS_PHONE_APP
-                Locator.MediaPlaybackViewModel._mediaService.UseVlcLib = true;
+                Locator.MediaPlaybackViewModel.UseVlcLib = true;
                 ToastHelper.Basic("Can't enable background audio", false, "background");
                 if (BackgroundMediaPlayer.Current != null &&
                     BackgroundMediaPlayer.Current.CurrentState != MediaPlayerState.Stopped)

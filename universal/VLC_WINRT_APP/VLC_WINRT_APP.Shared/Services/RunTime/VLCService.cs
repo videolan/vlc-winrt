@@ -50,7 +50,6 @@ namespace VLC_WINRT_APP.Services.RunTime
 
         public Instance Instance { get; private set; }
         public MediaPlayer MediaPlayer { get; private set; }
-        public bool UseVlcLib { get; set; }
 
         public VLCService()
         {

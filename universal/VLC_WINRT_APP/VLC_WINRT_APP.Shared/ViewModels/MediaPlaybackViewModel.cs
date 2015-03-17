@@ -76,6 +76,8 @@ namespace VLC_WINRT_APP.ViewModels
         #endregion
 
         #region public props
+        public bool UseVlcLib { get; set; }
+
         public readonly IMediaService _mediaService;
         public PlayingType PlayingType
         {
@@ -209,7 +211,7 @@ namespace VLC_WINRT_APP.ViewModels
 #else
                 if (_mediaService.MediaPlayer != null)
                     return _mediaService.MediaPlayer.time();
-                if (BackgroundMediaPlayer.Current != null && BackgroundMediaPlayer.Current.CurrentState != MediaPlayerState.Closed && BackgroundMediaPlayer.Current.CurrentState != MediaPlayerState.Stopped && !_mediaService.UseVlcLib)
+                if (BackgroundMediaPlayer.Current != null && BackgroundMediaPlayer.Current.CurrentState != MediaPlayerState.Closed && BackgroundMediaPlayer.Current.CurrentState != MediaPlayerState.Stopped && !UseVlcLib)
                 {
                     // CurrentState keeps failing OnCanceled, even though it actually has a state.
                     // The error is useless for now, so try catch and ignore.
@@ -272,7 +274,7 @@ namespace VLC_WINRT_APP.ViewModels
 #else
                 if (_mediaService.MediaPlayer != null)
                     return _mediaService.MediaPlayer.position();
-                if (BackgroundMediaPlayer.Current != null && BackgroundMediaPlayer.Current.CurrentState != MediaPlayerState.Closed && BackgroundMediaPlayer.Current.CurrentState != MediaPlayerState.Stopped && !_mediaService.UseVlcLib)
+                if (BackgroundMediaPlayer.Current != null && BackgroundMediaPlayer.Current.CurrentState != MediaPlayerState.Closed && BackgroundMediaPlayer.Current.CurrentState != MediaPlayerState.Stopped && !UseVlcLib)
                 {
                     switch (BackgroundMediaPlayer.Current.CurrentState)
                     {
