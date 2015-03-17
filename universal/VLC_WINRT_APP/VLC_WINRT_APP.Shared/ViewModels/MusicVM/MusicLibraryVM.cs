@@ -391,7 +391,14 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             });
             MusicCollectionLoaded(null, "music");
             // Routine check to add new files if there are new ones
-            await MusicLibraryManagement.GetAllMusicFolders(true);
+            if (!IsBusy)
+            {
+                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+                {
+                    IsBusy = true;
+                });
+                await MusicLibraryManagement.DoRoutineMusicLibraryCheck();
+            }
 #if WINDOWS_PHONE_APP
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
             {
