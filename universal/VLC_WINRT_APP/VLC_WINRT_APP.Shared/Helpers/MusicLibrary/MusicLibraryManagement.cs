@@ -314,13 +314,13 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             }
         }
 
-        public static async Task<bool> SetAlbumCover(AlbumItem album, string filePath, bool useLibVLc, MediaService mediaService = null)
+        public static async Task<bool> SetAlbumCover(AlbumItem album, string filePath, bool useLibVLc, VLCService vlcService = null)
         {
             if (useLibVLc)
             {
-                if (mediaService == null)
-                    mediaService = App.IMediaService as MediaService;
-                var albumUrl = mediaService.GetAlbumUrl(filePath);
+                if (vlcService == null)
+                    vlcService = App.IMediaService as VLCService;
+                var albumUrl = vlcService.GetAlbumUrl(filePath);
                 if (!string.IsNullOrEmpty(albumUrl))
                 {
                     await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>

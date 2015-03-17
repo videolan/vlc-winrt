@@ -214,7 +214,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Services\Interface\IThumbnailService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\ExternalDeviceService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\KeyboardListenerService.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\MediaService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\MFService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\VLCService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\MouseService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\MusicMetaService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\NetworkListenerService.cs" />

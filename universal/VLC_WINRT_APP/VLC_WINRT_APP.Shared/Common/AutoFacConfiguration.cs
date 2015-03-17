@@ -47,7 +47,7 @@ namespace VLC_WINRT_APP.Common
             builder.RegisterType<DLNAVM>().SingleInstance();
 
             // Register Services
-            builder.RegisterType<MediaService>().As<IMediaService>().SingleInstance();
+            builder.RegisterType<VLCService>().As<IMediaService>().SingleInstance();
             builder.RegisterType<MusicMetaService>().SingleInstance();
             builder.RegisterType<KeyboardListenerService>().SingleInstance();
             builder.RegisterType<NetworkListenerService>().SingleInstance();

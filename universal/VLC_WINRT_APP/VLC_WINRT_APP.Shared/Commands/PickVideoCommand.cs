@@ -63,7 +63,7 @@ namespace VLC_WINRT_APP.Commands
             if (file != null)
             {
                 LogHelper.Log("Opening file: " + file.Path);
-                await MediaService.OpenFile(file);
+                await VLCService.OpenFile(file);
             }
             else
             {

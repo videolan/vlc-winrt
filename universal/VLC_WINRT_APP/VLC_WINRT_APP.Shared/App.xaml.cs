@@ -201,7 +201,7 @@ namespace VLC_WINRT_APP
                         case OpenFilePickerReason.OnOpeningVideo: 
                             if (Window.Current.Content == null)
                                 LaunchTheApp();
-                            await MediaService.OpenFile(continueArgs.Files[0]);
+                            await VLCService.OpenFile(continueArgs.Files[0]);
                             break;
                         case OpenFilePickerReason.OnOpeningSubtitle:
                             {
@@ -256,7 +256,7 @@ namespace VLC_WINRT_APP
             if (Window.Current.Content == null)
                 LaunchTheApp();
             await IMediaService.VLCInstanceReady.Task;
-            await MediaService.OpenFile(args.Files[0] as StorageFile);
+            await VLCService.OpenFile(args.Files[0] as StorageFile);
         }
 
         private void LaunchTheApp()

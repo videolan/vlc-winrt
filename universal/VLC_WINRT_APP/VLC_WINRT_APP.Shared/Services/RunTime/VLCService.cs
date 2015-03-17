@@ -38,7 +38,7 @@ using MediaPlayer = libVLCX.MediaPlayer;
 
 namespace VLC_WINRT_APP.Services.RunTime
 {
-    public sealed class MediaService : IMediaService
+    public sealed class VLCService : IMediaService
     {
         public event EventHandler<MediaState> StatusChanged;
         public event TimeChanged TimeChanged;
@@ -52,14 +52,16 @@ namespace VLC_WINRT_APP.Services.RunTime
         public MediaPlayer MediaPlayer { get; private set; }
         public bool UseVlcLib { get; set; }
 
-        public MediaService()
+        public VLCService()
         {
             VLCInstanceReady = new TaskCompletionSource<bool>();
             CoreWindow.GetForCurrentThread().Activated += ApplicationState_Activated;
         }
 
-        public void Initialize(SwapChainPanel panel)
+        public void Initialize(object panel)
         {
+            var swapchain = panel as SwapChainPanel;
+            if (swapchain == null) throw new ArgumentNullException("VLCService needs a SwapChainpanel");
             var param = new List<String>()
             {
                 "-I",
@@ -180,11 +182,11 @@ namespace VLC_WINRT_APP.Services.RunTime
             if (VLCFileExtensions.FileTypeHelper(file.FileType) == VLCFileExtensions.VLCFileType.Video)
             {
                 var token = StorageApplicationPermissions.FutureAccessList.Add(file);
-                await MediaService.PlayVideoFile(file, token);
+                await VLCService.PlayVideoFile(file, token);
             }
             else
             {
-                await MediaService.PlayAudioFile(file);
+                await VLCService.PlayAudioFile(file);
             }
         }
 
