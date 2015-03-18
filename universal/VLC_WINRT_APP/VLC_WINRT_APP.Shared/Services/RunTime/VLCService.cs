@@ -47,9 +47,7 @@ namespace VLC_WINRT_APP.Services.RunTime
         public event Action OnStopped;
         public event Action<long> OnLengthChanged;
         public event Action OnEndReached;
-
-        private SystemMediaTransportControls _systemMediaTransportControls;
-
+        
         public TaskCompletionSource<bool> PlayerInstanceReady { get; set; }
 
         public Instance Instance { get; private set; }
@@ -79,103 +77,6 @@ namespace VLC_WINRT_APP.Services.RunTime
             // So far, this NEEDS to be called from the main thread
             Instance = new Instance(param, swapchain);
             PlayerInstanceReady.SetResult(true);
-        }
-
-        public void SetMediaTransportControls(SystemMediaTransportControls systemMediaTransportControls)
-        {
-#if WINDOWS_APP
-            ForceMediaTransportControls(systemMediaTransportControls);
-#else
-            if (BackgroundMediaPlayer.Current != null &&
-                BackgroundMediaPlayer.Current.CurrentState == MediaPlayerState.Playing)
-            {
-
-            }
-            else
-            {
-                ForceMediaTransportControls(systemMediaTransportControls);
-            }
-#endif
-        }
-
-        void ForceMediaTransportControls(SystemMediaTransportControls systemMediaTransportControls)
-        {
-            _systemMediaTransportControls = systemMediaTransportControls;
-            _systemMediaTransportControls.PlaybackStatus = MediaPlaybackStatus.Closed;
-            _systemMediaTransportControls.ButtonPressed += SystemMediaTransportControlsOnButtonPressed;
-            _systemMediaTransportControls.IsEnabled = false;
-        }
-
-        public async Task SetMediaTransportControlsInfo(string artistName, string albumName, string trackName, string albumUri)
-        {
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-            {
-                if (_systemMediaTransportControls == null) return;
-                SystemMediaTransportControlsDisplayUpdater updater = _systemMediaTransportControls.DisplayUpdater;
-                updater.Type = MediaPlaybackType.Music;
-                // Music metadata.
-                updater.MusicProperties.AlbumArtist = artistName;
-                updater.MusicProperties.Artist = artistName;
-                updater.MusicProperties.Title = trackName;
-
-                // Set the album art thumbnail.
-                // RandomAccessStreamReference is defined in Windows.Storage.Streams
-
-                if (albumUri != null && !string.IsNullOrEmpty(albumUri))
-                {
-                    updater.Thumbnail = RandomAccessStreamReference.CreateFromUri(new Uri(albumUri));
-                }
-
-                // Update the system media transport controls.
-                updater.Update();
-            });
-        }
-
-        public async Task SetMediaTransportControlsInfo(string title)
-        {
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-            {
-                if (_systemMediaTransportControls != null)
-                {
-                    LogHelper.Log("PLAYVIDEO: Updating SystemMediaTransportControls");
-                    SystemMediaTransportControlsDisplayUpdater updater = _systemMediaTransportControls.DisplayUpdater;
-                    updater.Type = MediaPlaybackType.Video;
-
-                    //Video metadata
-                    updater.VideoProperties.Title = title;
-                    //TODO: add full thumbnail suport
-                    updater.Thumbnail = null;
-                    updater.Update();
-                }
-            });
-        }
-
-        private async void SystemMediaTransportControlsOnButtonPressed(SystemMediaTransportControls sender, SystemMediaTransportControlsButtonPressedEventArgs args)
-        {
-            switch (args.Button)
-            {
-                case SystemMediaTransportControlsButton.Pause:
-                    Pause();
-                    break;
-                case SystemMediaTransportControlsButton.Play:
-                    Play();
-                    break;
-                case SystemMediaTransportControlsButton.Stop:
-                    Stop();
-                    break;
-                case SystemMediaTransportControlsButton.Previous:
-                    if (Locator.MediaPlaybackViewModel.PlayingType == PlayingType.Music)
-                        await Locator.MediaPlaybackViewModel.PlayPrevious();
-                    else
-                        Locator.MediaPlaybackViewModel.SkipBack.Execute("");
-                    break;
-                case SystemMediaTransportControlsButton.Next:
-                    if (Locator.MediaPlaybackViewModel.PlayingType == PlayingType.Music)
-                        await Locator.MediaPlaybackViewModel.PlayNext();
-                    else
-                        Locator.MediaPlaybackViewModel.SkipAhead.Execute("");
-                    break;
-            }
         }
 
         public static async Task OpenFile(StorageFile file)
@@ -350,14 +251,6 @@ namespace VLC_WINRT_APP.Services.RunTime
             if (MediaPlayer == null)
                 return; // Should we just assert/crash here?
             MediaPlayer.play();
-            if (_systemMediaTransportControls != null)
-            {
-                _systemMediaTransportControls.IsEnabled = true;
-                _systemMediaTransportControls.IsPauseEnabled = true;
-                _systemMediaTransportControls.IsPlayEnabled = true;
-                _systemMediaTransportControls.IsNextEnabled = Locator.MediaPlaybackViewModel.PlayingType != PlayingType.Music || Locator.MediaPlaybackViewModel.TrackCollection.CanGoNext;
-                _systemMediaTransportControls.IsPreviousEnabled = Locator.MediaPlaybackViewModel.PlayingType != PlayingType.Music || Locator.MediaPlaybackViewModel.TrackCollection.CanGoPrevious;
-            }
         }
 
         public void Pause()
@@ -454,15 +347,11 @@ namespace VLC_WINRT_APP.Services.RunTime
 
         private void OnPaused()
         {
-            if (_systemMediaTransportControls != null)
-                _systemMediaTransportControls.PlaybackStatus = MediaPlaybackStatus.Paused;
             StatusChanged(this, MediaState.Paused);
         }
 
         private void OnPlaying()
         {
-            if (_systemMediaTransportControls != null)
-                _systemMediaTransportControls.PlaybackStatus = MediaPlaybackStatus.Playing;
             StatusChanged(this, MediaState.Playing);
         }
 

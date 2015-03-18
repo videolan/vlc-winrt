@@ -7,6 +7,7 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
+using Windows.Media;
 using Windows.System;
 using System.Collections.Generic;
 using VLC_WINRT_APP.Commands.Video;
@@ -25,6 +26,7 @@ using VLC_WINRT_APP.Services.Interface;
 using Windows.System.Display;
 using VLC_WINRT_APP.Commands.MediaPlayback;
 using System.Threading.Tasks;
+using Windows.Storage.Streams;
 using Windows.UI.Notifications;
 using Windows.UI.Popups;
 using Autofac;
@@ -49,6 +51,7 @@ namespace VLC_WINRT_APP.ViewModels
 #if WINDOWS_APP
         private MouseService _mouseService;
 #endif
+        private SystemMediaTransportControls _systemMediaTransportControls;
         private PlayerEngine _playerEngine;
         private bool _isPlaying;
         private MediaState _mediaState;
@@ -594,7 +597,7 @@ namespace VLC_WINRT_APP.ViewModels
                 if (video.TimeWatched != TimeSpan.FromSeconds(0))
                     await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Locator.MediaPlaybackViewModel.Time = (Int64)video.TimeWatched.TotalMilliseconds);
 
-                await Locator.MediaPlaybackViewModel._mediaService.SetMediaTransportControlsInfo(string.IsNullOrEmpty(video.Name) ? "Video" : video.Name);
+                await SetMediaTransportControlsInfo(string.IsNullOrEmpty(video.Name) ? "Video" : video.Name);
                 UpdateTileHelper.UpdateMediumTileWithVideoInfo();
             }
             else if (media is TrackItem)
@@ -903,6 +906,32 @@ namespace VLC_WINRT_APP.ViewModels
                 IsPlaying = e == MediaState.Playing;
                 OnPropertyChanged("IsPlaying");
                 MediaState = e;
+
+                switch (MediaState)
+                {
+                    case MediaState.NothingSpecial:
+                        break;
+                    case MediaState.Opening:
+                        break;
+                    case MediaState.Buffering:
+                        break;
+                    case MediaState.Playing:
+                        if (_systemMediaTransportControls != null)
+                            _systemMediaTransportControls.PlaybackStatus = MediaPlaybackStatus.Playing;
+                        break;
+                    case MediaState.Paused:
+                        if (_systemMediaTransportControls != null)
+                            _systemMediaTransportControls.PlaybackStatus = MediaPlaybackStatus.Paused;
+                        break;
+                    case MediaState.Stopped:
+                        break;
+                    case MediaState.Ended:
+                        break;
+                    case MediaState.Error:
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
             });
         }
 
@@ -970,6 +999,103 @@ namespace VLC_WINRT_APP.ViewModels
                 await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => OnPropertyChanged("CurrentAudioTrack"));
             }
         }
+
+
+        public void SetMediaTransportControls(SystemMediaTransportControls systemMediaTransportControls)
+        {
+#if WINDOWS_APP
+            ForceMediaTransportControls(systemMediaTransportControls);
+#else
+            if (BackgroundMediaPlayer.Current != null &&
+                BackgroundMediaPlayer.Current.CurrentState == MediaPlayerState.Playing)
+            {
+
+            }
+            else
+            {
+                ForceMediaTransportControls(systemMediaTransportControls);
+            }
+#endif
+        }
+
+        void ForceMediaTransportControls(SystemMediaTransportControls systemMediaTransportControls)
+        {
+            _systemMediaTransportControls = systemMediaTransportControls;
+            _systemMediaTransportControls.PlaybackStatus = MediaPlaybackStatus.Closed;
+            _systemMediaTransportControls.ButtonPressed += SystemMediaTransportControlsOnButtonPressed;
+            _systemMediaTransportControls.IsEnabled = false;
+        }
+
+        public async Task SetMediaTransportControlsInfo(string artistName, string albumName, string trackName, string albumUri)
+        {
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                if (_systemMediaTransportControls == null) return;
+                SystemMediaTransportControlsDisplayUpdater updater = _systemMediaTransportControls.DisplayUpdater;
+                updater.Type = MediaPlaybackType.Music;
+                // Music metadata.
+                updater.MusicProperties.AlbumArtist = artistName;
+                updater.MusicProperties.Artist = artistName;
+                updater.MusicProperties.Title = trackName;
+
+                // Set the album art thumbnail.
+                // RandomAccessStreamReference is defined in Windows.Storage.Streams
+
+                if (albumUri != null && !string.IsNullOrEmpty(albumUri))
+                {
+                    updater.Thumbnail = RandomAccessStreamReference.CreateFromUri(new Uri(albumUri));
+                }
+
+                // Update the system media transport controls.
+                updater.Update();
+            });
+        }
+
+        public async Task SetMediaTransportControlsInfo(string title)
+        {
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                if (_systemMediaTransportControls != null)
+                {
+                    LogHelper.Log("PLAYVIDEO: Updating SystemMediaTransportControls");
+                    SystemMediaTransportControlsDisplayUpdater updater = _systemMediaTransportControls.DisplayUpdater;
+                    updater.Type = MediaPlaybackType.Video;
+
+                    //Video metadata
+                    updater.VideoProperties.Title = title;
+                    //TODO: add full thumbnail suport
+                    updater.Thumbnail = null;
+                    updater.Update();
+                }
+            });
+        }
+
+        private async void SystemMediaTransportControlsOnButtonPressed(SystemMediaTransportControls sender, SystemMediaTransportControlsButtonPressedEventArgs args)
+        {
+            switch (args.Button)
+            {
+                case SystemMediaTransportControlsButton.Pause:
+                case SystemMediaTransportControlsButton.Play:
+                    _mediaService.Pause();
+                    break;
+                case SystemMediaTransportControlsButton.Stop:
+                    Stop();
+                    break;
+                case SystemMediaTransportControlsButton.Previous:
+                    if (Locator.MediaPlaybackViewModel.PlayingType == PlayingType.Music)
+                        await Locator.MediaPlaybackViewModel.PlayPrevious();
+                    else
+                        Locator.MediaPlaybackViewModel.SkipBack.Execute("");
+                    break;
+                case SystemMediaTransportControlsButton.Next:
+                    if (Locator.MediaPlaybackViewModel.PlayingType == PlayingType.Music)
+                        await Locator.MediaPlaybackViewModel.PlayNext();
+                    else
+                        Locator.MediaPlaybackViewModel.SkipAhead.Execute("");
+                    break;
+            }
+        }
+
         #endregion
         public void Dispose()
         {

@@ -139,7 +139,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             string trackName = CurrentTrack.Name ?? resourceLoader.GetString("UnknownTrack");
             var picture = Locator.MusicPlayerVM.CurrentAlbum != null ? Locator.MusicPlayerVM.CurrentAlbum.AlbumCoverUri : null;
 
-            await Locator.MediaPlaybackViewModel._mediaService.SetMediaTransportControlsInfo(artistName, albumName, trackName, picture);
+            await Locator.MediaPlaybackViewModel.SetMediaTransportControlsInfo(artistName, albumName, trackName, picture);
 
             var notificationOnNewSong = ApplicationSettingsHelper.ReadSettingsValue("NotificationOnNewSong");
             if (notificationOnNewSong != null && (bool)notificationOnNewSong)

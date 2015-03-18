@@ -26,9 +26,6 @@ namespace VLC_WINRT_APP.Services.Interface
         /// <param name="panel"></param>
         void Initialize(object panel);
 
-        Task SetMediaTransportControlsInfo(string artistName, string albumName, string trackName, string albumUri);
-
-        Task SetMediaTransportControlsInfo(string title);
         /// <summary>
         /// Sets the path of the file to played.
         /// </summary>

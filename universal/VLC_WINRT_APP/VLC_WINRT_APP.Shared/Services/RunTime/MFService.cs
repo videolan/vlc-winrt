@@ -86,16 +86,6 @@ namespace VLC_WINRT_APP.Services.RunTime
             }
         }
 
-        public Task SetMediaTransportControlsInfo(string artistName, string albumName, string trackName, string albumUri)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task SetMediaTransportControlsInfo(string title)
-        {
-            //throw new NotImplementedException();
-        }
-
         public async Task SetMediaFile(IVLCMedia media)
         {
             if (Instance == null) return;
