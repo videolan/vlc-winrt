@@ -218,7 +218,7 @@ namespace VLC_WINRT_APP.Services.RunTime
 
         private bool _isAudioMedia;
 
-        public async Task SetMediaFile(IVLCMedia media, bool isAudioMedia, bool isStream)
+        public async Task SetMediaFile(IVLCMedia media)
         {
             LogHelper.Log("SetMediaFile: " + media.Path);
             string mrl = null;
@@ -249,7 +249,8 @@ namespace VLC_WINRT_APP.Services.RunTime
             em.OnTimeChanged += TimeChanged;
             em.OnEndReached += OnEndReached;
             em.OnEncounteredError += em_OnEncounteredError;
-            _isAudioMedia = isAudioMedia;
+            // todo: is there another way? sure there is.
+            _isAudioMedia = media is TrackItem;
         }
 
         async void em_OnEncounteredError()

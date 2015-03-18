@@ -43,7 +43,7 @@ namespace VLC_WINRT_APP.Services.RunTime
             throw new NotImplementedException();
         }
 
-        public Task SetMediaFile(IVLCMedia media, bool isAudioMedia, bool isStream)
+        public Task SetMediaFile(IVLCMedia media)
         {
             throw new NotImplementedException();
         }
