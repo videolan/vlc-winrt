@@ -195,7 +195,6 @@ namespace VLC_WINRT_APP.Services.RunTime
 
         public void SetSizeVideoPlayer(uint x, uint y)
         {
-            throw new NotImplementedException();
         }
 
     }
