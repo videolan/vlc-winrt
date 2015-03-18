@@ -46,6 +46,12 @@
                          x:FieldModifier="public"
                          RequestedTheme="{Binding ApplicationTheme, Converter={StaticResource AppThemeElementThemeConverter}}"
                          Background="{ThemeResource ApplicationBarForegroundThemeBrush}">
+        <customappbar:AppBar.Visibility>
+            <Binding Source="{Binding Source={StaticResource Locator}, Path=MainVM}"
+                     Path="CurrentPage"
+                     Converter="{StaticResource PageToVisibilityConverter}"
+                     ConverterParameter="VideoPlayerPage"/>
+        </customappbar:AppBar.Visibility>
         <customappbar:AppBar.PrimaryCommands>
             <AppBarButton Style="{StaticResource EllipseLessAppBarButtonStyle}"
                           Label="search"
