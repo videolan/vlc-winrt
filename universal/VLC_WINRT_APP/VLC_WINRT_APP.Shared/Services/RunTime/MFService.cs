@@ -267,7 +267,7 @@ namespace VLC_WINRT_APP.Services.RunTime
         public void SetSpeedRate(float desiredRate)
         {
             if (Instance == null) return;
-            Instance.PlaybackRate = desiredRate / 100;
+            Instance.PlaybackRate = desiredRate;
         }
 
         public void Trim()
