@@ -264,6 +264,12 @@ namespace VLC_WINRT_APP.Services.RunTime
             vol = vol / 100; Instance.Volume = vol;
         }
 
+        public void SetSpeedRate(float desiredRate)
+        {
+            if (Instance == null) return;
+            Instance.PlaybackRate = desiredRate / 100;
+        }
+
         public void Trim()
         {
             throw new NotImplementedException();

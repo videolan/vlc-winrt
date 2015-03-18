@@ -439,6 +439,13 @@ namespace VLC_WINRT_APP.Services.RunTime
         {
             return MediaPlayer.volume();
         }
+
+        public void SetSpeedRate(float desiredRate)
+        {
+            if (MediaPlayer == null) return;
+            MediaPlayer.setRate(desiredRate);
+        }
+
         public void Trim()
         {
             if (Instance != null)

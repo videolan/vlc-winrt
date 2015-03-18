@@ -876,10 +876,10 @@ namespace VLC_WINRT_APP.ViewModels
             switch (_playerEngine)
             {
                 case PlayerEngine.VLC:
-                    var vlcService = (VLCService)_mediaService;
-                    if (vlcService.MediaPlayer != null) vlcService.MediaPlayer.setRate(rate);
+                    _mediaService.SetSpeedRate(rate);
                     break;
                 case PlayerEngine.MediaFoundation:
+                    _mediaService.SetSpeedRate(rate);
                     break;
                 case PlayerEngine.BackgroundMFPlayer:
                     break;

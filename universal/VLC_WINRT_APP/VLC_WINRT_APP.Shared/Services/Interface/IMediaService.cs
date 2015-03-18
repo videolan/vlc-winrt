@@ -55,7 +55,7 @@ namespace VLC_WINRT_APP.Services.Interface
         int GetVolume();
 
         void SetVolume(int volume);
-
+        void SetSpeedRate(float desiredRate);
         void SetSizeVideoPlayer(uint x, uint y);
 
         event EventHandler<libVLCX.MediaState> StatusChanged;
