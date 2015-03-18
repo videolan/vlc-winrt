@@ -704,7 +704,7 @@ namespace VLC_WINRT_APP.ViewModels
             }
 
             // todo: implement this thing
-            SpeedRate = 100;
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => SpeedRate = 100);
         }
 
         async void _mediaService_MediaFailed(object sender, EventArgs e)
