@@ -72,6 +72,8 @@ namespace VLC_WINRT_APP.ViewModels
         private bool _isRunning;
         private int _speedRate;
         private bool _isStream;
+
+        private IVLCMedia _currentMedia;
         #endregion
 
         #region private fields
