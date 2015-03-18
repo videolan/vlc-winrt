@@ -579,9 +579,9 @@ namespace VLC_WINRT_APP.ViewModels
         {
             if (media == null)
                 throw new ArgumentNullException("media", "Media parameter is missing. Can't play anything");
-            Locator.MediaPlaybackViewModel.Stop();
-
-            Locator.MediaPlaybackViewModel.UseVlcLib = forceVlcLib;
+            Stop();
+            _currentMedia = media;
+            UseVlcLib = forceVlcLib;
 
             if (media is VideoItem)
             {
