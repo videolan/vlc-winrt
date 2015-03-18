@@ -1055,18 +1055,16 @@ namespace VLC_WINRT_APP.ViewModels
         {
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                if (_systemMediaTransportControls != null)
-                {
-                    LogHelper.Log("PLAYVIDEO: Updating SystemMediaTransportControls");
-                    SystemMediaTransportControlsDisplayUpdater updater = _systemMediaTransportControls.DisplayUpdater;
-                    updater.Type = MediaPlaybackType.Video;
+                if (_systemMediaTransportControls == null) return;
+                LogHelper.Log("PLAYVIDEO: Updating SystemMediaTransportControls");
+                SystemMediaTransportControlsDisplayUpdater updater = _systemMediaTransportControls.DisplayUpdater;
+                updater.Type = MediaPlaybackType.Video;
 
-                    //Video metadata
-                    updater.VideoProperties.Title = title;
-                    //TODO: add full thumbnail suport
-                    updater.Thumbnail = null;
-                    updater.Update();
-                }
+                //Video metadata
+                updater.VideoProperties.Title = title;
+                //TODO: add full thumbnail suport
+                updater.Thumbnail = null;
+                updater.Update();
             });
         }
 
