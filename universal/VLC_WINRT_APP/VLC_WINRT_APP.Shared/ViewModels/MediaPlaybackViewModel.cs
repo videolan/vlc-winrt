@@ -702,6 +702,9 @@ namespace VLC_WINRT_APP.ViewModels
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+
+            // todo: implement this thing
+            SpeedRate = 100;
         }
 
         async void _mediaService_MediaFailed(object sender, EventArgs e)
