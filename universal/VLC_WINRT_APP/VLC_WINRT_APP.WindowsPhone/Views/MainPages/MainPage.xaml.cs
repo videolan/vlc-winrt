@@ -9,6 +9,7 @@ using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.Services.Interface;
 using VLC_WINRT_APP.Services.RunTime;
 using System;
+using Autofac;
 using VLC_WINRT_APP.ViewModels;
 
 namespace VLC_WINRT_APP.Views.MainPages
@@ -51,9 +52,14 @@ namespace VLC_WINRT_APP.Views.MainPages
 
         private void SwapPanelLoaded(object sender, RoutedEventArgs e)
         {
-            Locator.MediaPlaybackViewModel._mediaService.Initialize(SwapChainPanel);
+            App.Container.Resolve<VLCService>().Initialize(SwapChainPanel);
             SizeChanged += OnSizeChanged;
             Unloaded += MainPage_Unloaded;
+        }
+
+        private void MfMediaElement_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            App.Container.Resolve<MFService>().Initialize(MfMediaElement);
         }
 
         private void MainPage_Unloaded(object sender, RoutedEventArgs e)
