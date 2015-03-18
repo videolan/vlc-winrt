@@ -17,6 +17,7 @@ using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using Autofac;
 using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.Services.RunTime;
 using VLC_WINRT_APP.Services.Interface;
@@ -48,9 +49,14 @@ namespace VLC_WINRT_APP.Views.MainPages
 
         private void SwapPanelLoaded(object sender, RoutedEventArgs e)
         {
-            Locator.MediaPlaybackViewModel._mediaService.Initialize(SwapChainPanel);
+            App.Container.Resolve<VLCService>().Initialize(SwapChainPanel);
             SizeChanged += OnSizeChanged;
             Unloaded += MainPage_Unloaded;
+        }
+
+        private void MfMediaElement_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            App.Container.Resolve<MFService>().Initialize(MfMediaElement);
         }
 
         private void MainPage_Unloaded(object sender, RoutedEventArgs e)
