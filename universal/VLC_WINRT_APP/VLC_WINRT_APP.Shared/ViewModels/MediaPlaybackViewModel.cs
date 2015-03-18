@@ -423,9 +423,6 @@ namespace VLC_WINRT_APP.ViewModels
 
         public MediaPlaybackViewModel()
         {
-            _mediaService.StatusChanged += PlayerStateChanged;
-            _mediaService.TimeChanged += UpdateTime;
-
             _displayAlwaysOnRequest = new DisplayRequest();
 
             _skipAhead = new ActionCommand(() =>
@@ -541,9 +538,16 @@ namespace VLC_WINRT_APP.ViewModels
             });
         }
 
-        private void OnStopped()
+        private async void OnStopped()
         {
             _mediaService.MediaFailed -= _mediaService_MediaFailed;
+            _mediaService.StatusChanged -= PlayerStateChanged;
+            _mediaService.TimeChanged -= UpdateTime;
+
+            _mediaService.OnLengthChanged -= OnLengthChanged;
+            _mediaService.OnStopped -= OnStopped;
+            _mediaService.OnEndReached -= OnEndReached;
+
             switch (_playerEngine)
             {
                 case PlayerEngine.VLC:
@@ -668,10 +672,16 @@ namespace VLC_WINRT_APP.ViewModels
             // Now, ensure the chosen Player is ready to play something
             await Locator.MediaPlaybackViewModel._mediaService.PlayerInstanceReady.Task;
 
+            _mediaService.MediaFailed += _mediaService_MediaFailed;
+            _mediaService.StatusChanged += PlayerStateChanged;
+            _mediaService.TimeChanged += UpdateTime;
+
             // Send the media we want to play
             await _mediaService.SetMediaFile(media);
 
-            _mediaService.MediaFailed += _mediaService_MediaFailed;
+            _mediaService.OnLengthChanged += OnLengthChanged;
+            _mediaService.OnStopped += OnStopped;
+            _mediaService.OnEndReached += OnEndReached;
 
             switch (_playerEngine)
             {
@@ -679,9 +689,6 @@ namespace VLC_WINRT_APP.ViewModels
                     var vlcService = (VLCService)_mediaService;
                     if (vlcService.MediaPlayer == null) return;
                     var em = vlcService.MediaPlayer.eventManager();
-                    em.OnLengthChanged += OnLengthChanged;
-                    em.OnStopped += OnStopped;
-                    em.OnEndReached += OnEndReached;
                     em.OnTrackAdded += Locator.MediaPlaybackViewModel.OnTrackAdded;
                     em.OnTrackDeleted += Locator.MediaPlaybackViewModel.OnTrackDeleted;
                     vlcService.Play();

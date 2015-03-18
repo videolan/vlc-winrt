@@ -42,8 +42,11 @@ namespace VLC_WINRT_APP.Services.RunTime
     public sealed class VLCService : IMediaService
     {
         public event EventHandler<MediaState> StatusChanged;
-        public event TimeChanged TimeChanged; 
+        public event TimeChanged TimeChanged;
         public event EventHandler MediaFailed;
+        public event Action OnStopped;
+        public event Action<long> OnLengthChanged;
+        public event Action OnEndReached;
 
         private SystemMediaTransportControls _systemMediaTransportControls;
 
@@ -244,17 +247,37 @@ namespace VLC_WINRT_APP.Services.RunTime
             MediaPlayer = new MediaPlayer(mediaVLC);
             LogHelper.Log("PLAYWITHVLC: MediaPlayer instance created");
             var em = MediaPlayer.eventManager();
-            em.OnStopped += OnStopped;
+            em.OnStopped += EmOnOnStopped;
             em.OnPlaying += OnPlaying;
             em.OnPaused += OnPaused;
-            em.OnTimeChanged += TimeChanged;
-            em.OnEndReached += OnEndReached;
+            if (TimeChanged != null)
+                em.OnTimeChanged += TimeChanged;
+            em.OnEndReached += EmOnOnEndReached;
             em.OnEncounteredError += em_OnEncounteredError;
+            em.OnLengthChanged += em_OnLengthChanged;
             // todo: is there another way? sure there is.
             _isAudioMedia = media is TrackItem;
         }
 
-        async void em_OnEncounteredError()
+        void em_OnLengthChanged(long __param0)
+        {
+            if (OnLengthChanged != null)
+                OnLengthChanged(__param0);
+        }
+
+        private void EmOnOnEndReached()
+        {
+            if (OnEndReached != null)
+                OnEndReached();
+        }
+
+        private void EmOnOnStopped()
+        {
+            if (OnStopped != null)
+                OnStopped();
+        }
+
+        void em_OnEncounteredError()
         {
             Debug.WriteLine("An error occurred ");
             if (MediaFailed != null)
@@ -434,13 +457,6 @@ namespace VLC_WINRT_APP.Services.RunTime
             if (_systemMediaTransportControls != null)
                 _systemMediaTransportControls.PlaybackStatus = MediaPlaybackStatus.Playing;
             StatusChanged(this, MediaState.Playing);
-        }
-
-        private void OnStopped()
-        {
-            if (_systemMediaTransportControls != null)
-                _systemMediaTransportControls.PlaybackStatus = MediaPlaybackStatus.Stopped;
-            StatusChanged(this, MediaState.Stopped);
         }
 
         private void ApplicationState_Activated(object sender, WindowActivatedEventArgs e)

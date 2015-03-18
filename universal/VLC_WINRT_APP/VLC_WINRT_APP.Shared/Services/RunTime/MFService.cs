@@ -2,6 +2,8 @@
 using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.Streams;
+using Windows.UI.Core;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using libVLCX;
@@ -15,6 +17,9 @@ namespace VLC_WINRT_APP.Services.RunTime
     {
         public MediaElement Instance { get; private set; }
         public event EventHandler MediaFailed;
+        public event Action OnStopped;
+        public event Action<long> OnLengthChanged;
+        public event Action OnEndReached;
 
         public event EventHandler<MediaState> StatusChanged;
         public event TimeChanged TimeChanged;
@@ -25,6 +30,8 @@ namespace VLC_WINRT_APP.Services.RunTime
         {
             get { throw new NotImplementedException(); }
         }
+
+        private DispatcherTimer dispatchTimer;
 
         public MFService()
         {
@@ -37,10 +44,41 @@ namespace VLC_WINRT_APP.Services.RunTime
             if (mE == null) throw new ArgumentNullException("mediaElement", "MediaFoundationService needs a MediaElement");
             Instance = mE;
             Instance.MediaFailed += Instance_MediaFailed;
+            Instance.MediaOpened += Instance_MediaOpened;
+            Instance.CurrentStateChanged += Instance_CurrentStateChanged;
+            Instance.MediaEnded += Instance_MediaEnded;
             PlayerInstanceReady.SetResult(true);
+            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                dispatchTimer = new DispatcherTimer()
+                {
+                    Interval = TimeSpan.FromSeconds(1),
+                };
+                dispatchTimer.Tick += dispatchTimer_Tick;
+            });
         }
 
-        void Instance_MediaFailed(object sender, Windows.UI.Xaml.ExceptionRoutedEventArgs e)
+        void Instance_MediaOpened(object sender, RoutedEventArgs e)
+        {
+            if (OnLengthChanged != null)
+                OnLengthChanged((long)GetLength());
+        }
+
+        private void Instance_MediaEnded(object sender, RoutedEventArgs e)
+        {
+            if (OnEndReached != null)
+                OnEndReached();
+            if (OnStopped != null)
+                OnStopped();
+        }
+
+        void dispatchTimer_Tick(object sender, object e)
+        {
+            if (TimeChanged != null)
+                TimeChanged(GetTime());
+        }
+
+        void Instance_MediaFailed(object sender, ExceptionRoutedEventArgs e)
         {
             if (MediaFailed != null)
             {
@@ -87,6 +125,44 @@ namespace VLC_WINRT_APP.Services.RunTime
             }
         }
 
+        void Instance_CurrentStateChanged(object sender, RoutedEventArgs e)
+        {
+            switch (Instance.CurrentState)
+            {
+                case MediaElementState.Closed:
+                    if (StatusChanged != null)
+                        StatusChanged(this, MediaState.NothingSpecial);
+                    break;
+                case MediaElementState.Opening:
+                    if (StatusChanged != null)
+                        StatusChanged(this, MediaState.Opening);
+                    break;
+                case MediaElementState.Buffering:
+                    if (StatusChanged != null)
+                        StatusChanged(this, MediaState.Buffering);
+                    break;
+                case MediaElementState.Playing:
+                    if (StatusChanged != null)
+                        StatusChanged(this, MediaState.Playing);
+                    dispatchTimer.Start();
+                    break;
+                case MediaElementState.Paused:
+                    if (StatusChanged != null)
+                        StatusChanged(this, MediaState.Paused);
+                    dispatchTimer.Stop();
+                    break;
+                case MediaElementState.Stopped:
+                    if (StatusChanged != null)
+                        StatusChanged(this, MediaState.Stopped);
+                    dispatchTimer.Stop();
+                    if (OnStopped != null)
+                        OnStopped();
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+
         public void Play()
         {
             if (Instance == null) return;
@@ -111,12 +187,12 @@ namespace VLC_WINRT_APP.Services.RunTime
         public void Stop()
         {
             if (Instance == null) return;
+            dispatchTimer.Stop();
             Instance.Stop();
         }
 
         public void SetNullMediaPlayer()
         {
-            throw new NotImplementedException();
         }
 
         public void FastForward()
