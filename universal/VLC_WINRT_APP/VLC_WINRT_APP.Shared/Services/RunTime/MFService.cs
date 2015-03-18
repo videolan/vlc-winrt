@@ -38,29 +38,65 @@ namespace VLC_WINRT_APP.Services.RunTime
             throw new NotImplementedException();
         }
 
-        public Task SetMediaTransportControlsInfo(string title)
+        public async Task SetMediaTransportControlsInfo(string title)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
-        public Task SetMediaFile(IVLCMedia media)
+        public async Task SetMediaFile(IVLCMedia media)
         {
-            throw new NotImplementedException();
+            if (Instance == null) return;
+            RandomAccessStreamReference randomAccessStreamReference = null;
+            if (media is StreamMedia)
+            {
+                randomAccessStreamReference = RandomAccessStreamReference.CreateFromUri(new Uri(media.Path));
+            }
+            else
+            {
+                if (media.File != null)
+                {
+                    randomAccessStreamReference = RandomAccessStreamReference.CreateFromFile(media.File);
+                }
+                else
+                {
+                    var file = await StorageFile.GetFileFromPathAsync(media.Path);
+                    if (file != null)
+                        randomAccessStreamReference = RandomAccessStreamReference.CreateFromFile(file);
+                }
+            }
+            if (randomAccessStreamReference != null)
+            {
+                var randomAccessStream = await randomAccessStreamReference.OpenReadAsync();
+                if (randomAccessStream != null)
+                    Instance.SetSource(randomAccessStream, randomAccessStream.ContentType);
+            }
         }
 
         public void Play()
         {
-            throw new NotImplementedException();
+            if (Instance == null) return;
+            Instance.Play();
         }
 
         public void Pause()
         {
-            throw new NotImplementedException();
+            // vlc pause() method is a play/pause toggle. we reproduce the same behaviour here
+            if (Instance == null) return;
+            switch (Instance.CurrentState)
+            {
+                case MediaElementState.Playing:
+                    Instance.Pause();
+                    break;
+                case MediaElementState.Paused:
+                    Instance.Play();
+                    break;
+            }
         }
 
         public void Stop()
         {
-            throw new NotImplementedException();
+            if (Instance == null) return;
+            Instance.Stop();
         }
 
         public void SetNullMediaPlayer()
@@ -90,7 +126,9 @@ namespace VLC_WINRT_APP.Services.RunTime
 
         public float GetLength()
         {
-            throw new NotImplementedException();
+            if (Instance.NaturalDuration.HasTimeSpan)
+                return Instance.NaturalDuration.TimeSpan.Ticks;
+            return 0f;
         }
 
         public int GetVolume()
