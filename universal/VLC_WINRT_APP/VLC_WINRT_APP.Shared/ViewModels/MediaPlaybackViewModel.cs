@@ -93,6 +93,8 @@ namespace VLC_WINRT_APP.ViewModels
                 {
                     case PlayerEngine.VLC:
                         return App.Container.Resolve<VLCService>();
+                    case PlayerEngine.MediaFoundation:
+                        return App.Container.Resolve<MFService>();
                     default:
                         //todo : Implement properly MFService and BackgroundPlayerService 
                         //todo : so we get rid ASAP of this default switch
