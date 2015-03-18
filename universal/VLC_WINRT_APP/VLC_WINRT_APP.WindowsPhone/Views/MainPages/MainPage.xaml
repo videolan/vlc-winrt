@@ -45,8 +45,7 @@
                          x:Name="CommandBar"
                          x:FieldModifier="public"
                          RequestedTheme="{Binding ApplicationTheme, Converter={StaticResource AppThemeElementThemeConverter}}"
-                         Background="{ThemeResource ApplicationBarForegroundThemeBrush}"
-                         Foreground="Red">
+                         Background="{ThemeResource ApplicationBarForegroundThemeBrush}">
         <customappbar:AppBar.PrimaryCommands>
             <AppBarButton Style="{StaticResource EllipseLessAppBarButtonStyle}"
                           Label="search"
