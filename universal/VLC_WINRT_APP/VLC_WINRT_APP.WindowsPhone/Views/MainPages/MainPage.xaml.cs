@@ -25,6 +25,7 @@ namespace VLC_WINRT_APP.Views.MainPages
             Loaded += SwapPanelLoaded;
             ApplicationView.GetForCurrentView().SetDesiredBoundsMode(ApplicationViewBoundsMode.UseCoreWindow);
             DisplayInformation.GetForCurrentView().OrientationChanged += DisplayPropertiesOnOrientationChanged;
+            Locator.MediaPlaybackViewModel.SetMediaTransportControls(SystemMediaTransportControls.GetForCurrentView());
         }
 
         private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)

@@ -34,7 +34,7 @@ namespace VLC_WINRT_APP.Views.MainPages
         {
             InitializeComponent();
             Loaded += SwapPanelLoaded;
-            //Locator.MediaPlaybackViewModel._mediaService.SetMediaTransportControls(SystemMediaTransportControls.GetForCurrentView());
+            Locator.MediaPlaybackViewModel.SetMediaTransportControls(SystemMediaTransportControls.GetForCurrentView());
         }
 
         private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
