@@ -214,7 +214,7 @@ namespace VLC_WINRT_APP.Services.RunTime
             App.ApplicationFrame.Navigate(typeof(VideoPlayerPage));
             VideoItem videoVm = new VideoItem();
             await videoVm.Initialize(file);
-            if (token != null) 
+            if (token != null)
                 videoVm.Token = token;
             Locator.VideoVm.CurrentVideo = videoVm;
             await Locator.MediaPlaybackViewModel.SetMedia(videoVm, false);

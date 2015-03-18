@@ -490,7 +490,6 @@ namespace VLC_WINRT_APP.ViewModels
             });
         }
 
-
         public async Task CleanViewModel()
         {
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
