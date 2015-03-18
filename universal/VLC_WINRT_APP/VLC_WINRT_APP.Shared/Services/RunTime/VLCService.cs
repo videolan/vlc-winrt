@@ -381,7 +381,29 @@ namespace VLC_WINRT_APP.Services.RunTime
 
         public float GetLength()
         {
-            return MediaPlayer.length();
+            return MediaPlayer == null ? 0 : MediaPlayer.length();
+        }
+
+        public long GetTime()
+        {
+            return MediaPlayer == null ? 0 : MediaPlayer.time();
+        }
+
+        public void SetTime(long desiredTime)
+        {
+            if (MediaPlayer == null) return;
+            MediaPlayer.setTime(desiredTime);
+        }
+
+        public float GetPosition()
+        {
+            return MediaPlayer == null ? 0.0f : MediaPlayer.position();
+        }
+
+        public void SetPosition(float desiredPosition)
+        {
+            if (MediaPlayer == null) return;
+            MediaPlayer.setPosition(desiredPosition);
         }
 
         public void SetVolume(int volume)
@@ -389,21 +411,15 @@ namespace VLC_WINRT_APP.Services.RunTime
             MediaPlayer.setVolume(volume);
         }
 
-        public void Trim()
-        {
-            if (Instance != null)
-                Instance.Trim();
-        }
 
         public int GetVolume()
         {
             return MediaPlayer.volume();
         }
-
-        private void OnEndReached()
+        public void Trim()
         {
-            if (_systemMediaTransportControls != null)
-                _systemMediaTransportControls.PlaybackStatus = MediaPlaybackStatus.Stopped;
+            if (Instance != null)
+                Instance.Trim();
         }
 
         private void OnPaused()

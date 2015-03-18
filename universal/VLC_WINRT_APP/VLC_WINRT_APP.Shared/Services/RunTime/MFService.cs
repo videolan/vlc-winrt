@@ -131,29 +131,61 @@ namespace VLC_WINRT_APP.Services.RunTime
 
         public void SkipAhead()
         {
-            throw new NotImplementedException();
+            if (Instance == null) return;
+            Instance.Position = Instance.Position.Add(TimeSpan.FromSeconds(10));
         }
 
         public void SkipBack()
         {
-            throw new NotImplementedException();
+            if (Instance == null) return;
+            Instance.Position = TimeSpan.FromSeconds(Instance.Position.TotalSeconds - 10);
         }
 
         public float GetLength()
         {
             if (Instance.NaturalDuration.HasTimeSpan)
-                return Instance.NaturalDuration.TimeSpan.Ticks;
+                return (float)Instance.NaturalDuration.TimeSpan.TotalMilliseconds;
             return 0f;
+        }
+
+        public void SetTime(long desiredTime)
+        {
+            if (Instance == null) return;
+            Instance.Position = TimeSpan.FromMilliseconds(desiredTime);
+        }
+
+        public long GetTime()
+        {
+            return (Instance == null) ? 0 : (long)Instance.Position.TotalMilliseconds;
+        }
+
+        public float GetPosition()
+        {
+            if (Instance == null) return 0.0f;
+            var pos = (float)Instance.Position.TotalSeconds;
+            var dur = (float)Instance.NaturalDuration.TimeSpan.TotalSeconds;
+            return pos / dur;
+        }
+
+        public void SetPosition(float desiredPosition)
+        {
+            if (Instance == null) return;
+            var posInTimeSpan = Instance.NaturalDuration.TimeSpan.TotalSeconds * desiredPosition;
+            Instance.Position = TimeSpan.FromSeconds(posInTimeSpan);
         }
 
         public int GetVolume()
         {
-            throw new NotImplementedException();
+            if (Instance == null)
+                return 0;
+            return (int)(Instance.Volume * 100);
         }
 
         public void SetVolume(int volume)
         {
-            throw new NotImplementedException();
+            if (Instance == null) return;
+            var vol = (double)volume;
+            vol = vol / 100; Instance.Volume = vol;
         }
 
         public void Trim()

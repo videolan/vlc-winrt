@@ -47,6 +47,11 @@ namespace VLC_WINRT_APP.Services.Interface
 
         float GetLength();
 
+        long GetTime();
+        void SetTime(long desiredTime);
+
+        float GetPosition();
+        void SetPosition(float desiredPosition);
         int GetVolume();
 
         void SetVolume(int volume);

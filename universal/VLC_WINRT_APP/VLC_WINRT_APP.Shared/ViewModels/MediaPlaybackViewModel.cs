@@ -235,12 +235,9 @@ namespace VLC_WINRT_APP.ViewModels
                 switch (_playerEngine)
                 {
                     case PlayerEngine.VLC:
-                        var vlcService = (VLCService)_mediaService;
-                        if (vlcService.MediaPlayer == null)
-                            return 0;
-                        return vlcService.MediaPlayer.time();
+                        return _mediaService.GetTime();
                     case PlayerEngine.MediaFoundation:
-                        return 0;
+                        return _mediaService.GetTime();
                     case PlayerEngine.BackgroundMFPlayer:
                         // CurrentState keeps failing OnCanceled, even though it actually has a state.
                         // The error is useless for now, so try catch and ignore.
@@ -270,10 +267,10 @@ namespace VLC_WINRT_APP.ViewModels
                 switch (_playerEngine)
                 {
                     case PlayerEngine.VLC:
-                        var vlcService = (VLCService)_mediaService;
-                        vlcService.MediaPlayer.setTime(value);
+                        _mediaService.SetTime(value);
                         break;
                     case PlayerEngine.MediaFoundation:
+                        _mediaService.SetTime(value);
                         break;
                     case PlayerEngine.BackgroundMFPlayer:
                         // Same as with "Time", BackgroundMediaPlayer.Current.CurrentState sometimes blows up on OnCancelled. So for now, throw it in a try catch.
@@ -302,19 +299,15 @@ namespace VLC_WINRT_APP.ViewModels
                 switch (_playerEngine)
                 {
                     case PlayerEngine.VLC:
-                        var vlcService = (VLCService)_mediaService;
-                        // XAML might ask for the position while no playback is running, hence the check.
-                        if (vlcService.MediaPlayer == null)
-                            return 0.0f;
-                        return vlcService.MediaPlayer.position();
+                        return _mediaService.GetPosition();
                     case PlayerEngine.MediaFoundation:
-                        return 0;
+                        return _mediaService.GetPosition();
                     case PlayerEngine.BackgroundMFPlayer:
 #if WINDOWS_PHONE_APP
                         switch (BackgroundMediaPlayer.Current.CurrentState)
                         {
                             case MediaPlayerState.Playing:
-                                var pos = (BackgroundMediaPlayer.Current.Position.TotalMilliseconds / BackgroundMediaPlayer.Current.NaturalDuration.TotalMilliseconds);
+                                var pos = (BackgroundMSpeedRateediaPlayer.Current.Position.TotalMilliseconds / BackgroundMediaPlayer.Current.NaturalDuration.TotalMilliseconds);
                                 float posfloat = (float)pos;
                                 return posfloat;
                             case MediaPlayerState.Closed:
@@ -332,10 +325,10 @@ namespace VLC_WINRT_APP.ViewModels
                 switch (_playerEngine)
                 {
                     case PlayerEngine.VLC:
-                        var vlcService = (VLCService)_mediaService;
-                        vlcService.MediaPlayer.setPosition(value);
+                        _mediaService.SetPosition(value);
                         break;
                     case PlayerEngine.MediaFoundation:
+                        _mediaService.SetPosition(value);
                         break;
                     case PlayerEngine.BackgroundMFPlayer:
 #if WINDOWS_PHONE_APP
