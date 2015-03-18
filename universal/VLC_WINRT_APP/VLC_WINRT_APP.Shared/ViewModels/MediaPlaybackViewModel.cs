@@ -307,7 +307,7 @@ namespace VLC_WINRT_APP.ViewModels
                         switch (BackgroundMediaPlayer.Current.CurrentState)
                         {
                             case MediaPlayerState.Playing:
-                                var pos = (BackgroundMSpeedRateediaPlayer.Current.Position.TotalMilliseconds / BackgroundMediaPlayer.Current.NaturalDuration.TotalMilliseconds);
+                                var pos = (BackgroundMediaPlayer.Current.Position.TotalMilliseconds / BackgroundMediaPlayer.Current.NaturalDuration.TotalMilliseconds);
                                 float posfloat = (float)pos;
                                 return posfloat;
                             case MediaPlayerState.Closed:
