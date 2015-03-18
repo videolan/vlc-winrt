@@ -42,7 +42,8 @@ namespace VLC_WINRT_APP.Services.RunTime
     public sealed class VLCService : IMediaService
     {
         public event EventHandler<MediaState> StatusChanged;
-        public event TimeChanged TimeChanged;
+        public event TimeChanged TimeChanged; 
+        public event EventHandler MediaFailed;
 
         private SystemMediaTransportControls _systemMediaTransportControls;
 
@@ -256,11 +257,10 @@ namespace VLC_WINRT_APP.Services.RunTime
         async void em_OnEncounteredError()
         {
             Debug.WriteLine("An error occurred ");
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+            if (MediaFailed != null)
             {
-                var md = new MessageDialog("Your media cannot be read.", "We're sorry");
-                await md.ShowAsync();
-            });
+                MediaFailed(this, new EventArgs());
+            }
         }
 
         public async Task<string> GetToken(string filePath)

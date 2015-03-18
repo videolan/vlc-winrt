@@ -54,7 +54,8 @@ namespace VLC_WINRT_APP.Services.Interface
         void SetSizeVideoPlayer(uint x, uint y);
 
         event EventHandler<libVLCX.MediaState> StatusChanged;
-        event TimeChanged TimeChanged;
+        event TimeChanged TimeChanged; 
+        event EventHandler MediaFailed;
 
         TaskCompletionSource<bool> PlayerInstanceReady { get; set; } 
     }

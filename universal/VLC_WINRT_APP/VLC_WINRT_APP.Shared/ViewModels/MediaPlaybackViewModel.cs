@@ -14,6 +14,8 @@ using VLC_WINRT_APP.Views.MainPages;
 using System.Diagnostics;
 using Windows.Storage;
 using System;
+using System.IO;
+using System.Runtime.InteropServices.ComTypes;
 using Windows.UI.Core;
 using VLC_WINRT_APP.Commands;
 using VLC_WINRT_APP.Common;
@@ -24,6 +26,7 @@ using Windows.System.Display;
 using VLC_WINRT_APP.Commands.MediaPlayback;
 using System.Threading.Tasks;
 using Windows.UI.Notifications;
+using Windows.UI.Popups;
 using Autofac;
 using libVLCX;
 using VLC_WINRT.Common;
@@ -554,6 +557,7 @@ namespace VLC_WINRT_APP.ViewModels
 
         private void OnStopped()
         {
+            _mediaService.MediaFailed -= _mediaService_MediaFailed;
             switch (_playerEngine)
             {
                 case PlayerEngine.VLC:
@@ -590,7 +594,6 @@ namespace VLC_WINRT_APP.ViewModels
                     PlayingType = PlayingType.Video;
                     IsStream = false;
                 });
-                _playerEngine = PlayerEngine.VLC;
                 var video = (VideoItem)media;
                 await Locator.MediaPlaybackViewModel.InitializePlayback(video);
 
@@ -607,7 +610,6 @@ namespace VLC_WINRT_APP.ViewModels
                     IsStream = false;
                     PlayingType = PlayingType.Music;
                 });
-                _playerEngine = PlayerEngine.VLC;
                 var track = (TrackItem)media;
                 var currentTrackFile = track.File ?? await StorageFile.GetFileFromPathAsync(track.Path);
 #if WINDOWS_PHONE_APP
@@ -644,7 +646,6 @@ namespace VLC_WINRT_APP.ViewModels
             }
             else if (media is StreamMedia)
             {
-                _playerEngine = PlayerEngine.VLC;
                 await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                 {
                     Locator.VideoVm.CurrentVideo = null;
@@ -653,15 +654,34 @@ namespace VLC_WINRT_APP.ViewModels
                 });
                 await Locator.MediaPlaybackViewModel.InitializePlayback(media);
             }
-
-            // Dirty hack because as soon as possible we should communicate with the BackgroundAudioTask via a BackgroundAudioPlayerService
-            if (_playerEngine == PlayerEngine.VLC)
-                (Locator.MediaPlaybackViewModel._mediaService as VLCService).Play();
         }
 
         public async Task InitializePlayback(IVLCMedia media)
         {
+            // First set the player engine
+            // For videos AND music, we have to try first with Microsoft own player
+            // Then we register to Failed callback. If it doesn't work, we set ForceVlcLib to true
+            if (UseVlcLib)
+                _playerEngine = PlayerEngine.VLC;
+            else
+            {
+                var path = "";
+                if (!string.IsNullOrEmpty(media.Path))
+                    path = Path.GetExtension(media.Path);
+                else if (media.File != null)
+                    path = media.File.FileType;
+                _playerEngine = VLCFileExtensions.MFSupported.Contains(path.ToLower()) ? PlayerEngine.MediaFoundation : PlayerEngine.VLC;
+            }
+            // else WindowsPhone backgroundmediaplayer etc. (this is a todo )
+
+            // Now, ensure the chosen Player is ready to play something
+            await Locator.MediaPlaybackViewModel._mediaService.PlayerInstanceReady.Task;
+
+            // Send the media we want to play
             await _mediaService.SetMediaFile(media);
+
+            _mediaService.MediaFailed += _mediaService_MediaFailed;
+
             switch (_playerEngine)
             {
                 case PlayerEngine.VLC:
@@ -673,13 +693,36 @@ namespace VLC_WINRT_APP.ViewModels
                     em.OnEndReached += OnEndReached;
                     em.OnTrackAdded += Locator.MediaPlaybackViewModel.OnTrackAdded;
                     em.OnTrackDeleted += Locator.MediaPlaybackViewModel.OnTrackDeleted;
+                    vlcService.Play();
                     break;
                 case PlayerEngine.MediaFoundation:
+                    var mfService = (MFService)_mediaService;
+                    if (mfService == null) return;
+                    _mediaService.Play();
                     break;
                 case PlayerEngine.BackgroundMFPlayer:
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        async void _mediaService_MediaFailed(object sender, EventArgs e)
+        {
+            if (sender is MFService)
+            {
+                // MediaFoundation failed to open the media, switching to VLC player
+                await SetMedia(_currentMedia, true);
+            }
+            else
+            {
+                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+                {
+                    var md = new MessageDialog("Your media cannot be read.", "We're sorry");
+                    await md.ShowAsync();
+                    // ensure we call Stop so we unregister all events
+                    Stop();
+                });
             }
         }
 

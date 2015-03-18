@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Windows.Storage;
+using Windows.Storage.Streams;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media;
 using libVLCX;
 using VLC_WINRT_APP.Model;
+using VLC_WINRT_APP.Model.Stream;
 using VLC_WINRT_APP.Services.Interface;
 
 namespace VLC_WINRT_APP.Services.RunTime
@@ -11,26 +14,38 @@ namespace VLC_WINRT_APP.Services.RunTime
     public class MFService : IMediaService
     {
         public MediaElement Instance { get; private set; }
+        public event EventHandler MediaFailed;
 
         public event EventHandler<MediaState> StatusChanged;
         public event TimeChanged TimeChanged;
-        
-        public TaskCompletionSource<bool> PlayerInstanceReady
-        {
-            get { throw new NotImplementedException(); }
-            set { throw new NotImplementedException(); }
-        }
+
+        public TaskCompletionSource<bool> PlayerInstanceReady { get; set; }
 
         public bool IsBackground
         {
             get { throw new NotImplementedException(); }
         }
 
+        public MFService()
+        {
+            PlayerInstanceReady = new TaskCompletionSource<bool>();
+        }
+
         public void Initialize(object mediaElement)
         {
             var mE = mediaElement as MediaElement;
             if (mE == null) throw new ArgumentNullException("mediaElement", "MediaFoundationService needs a MediaElement");
+            Instance = mE;
+            Instance.MediaFailed += Instance_MediaFailed;
+            PlayerInstanceReady.SetResult(true);
+        }
 
+        void Instance_MediaFailed(object sender, Windows.UI.Xaml.ExceptionRoutedEventArgs e)
+        {
+            if (MediaFailed != null)
+            {
+                MediaFailed(this, new EventArgs());
+            }
         }
 
         public Task SetMediaTransportControlsInfo(string artistName, string albumName, string trackName, string albumUri)
