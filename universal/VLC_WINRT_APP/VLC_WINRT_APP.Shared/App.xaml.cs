@@ -248,7 +248,6 @@ namespace VLC_WINRT_APP
         {
             if (Window.Current.Content == null)
                 LaunchTheApp();
-            await Locator.MediaPlaybackViewModel._mediaService.PlayerInstanceReady.Task;
             await VLCService.OpenFile(args.Files[0] as StorageFile);
         }
 
