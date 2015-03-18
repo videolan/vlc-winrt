@@ -525,19 +525,12 @@ namespace VLC_WINRT_APP.ViewModels
 #endif
         }
 
-        private async Task OnPlaybackStopped()
+        private void OnPlaybackStopped()
         {
             privateDisplayCall(false);
 #if WINDOWS_APP
             _mouseService.RestoreMouse();
 #endif
-            _audioTracks.Clear();
-            _subtitlesTracks.Clear();
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-            {
-                CurrentAudioTrack = null;
-                CurrentSubtitle = null;
-            });
         }
 
         public async void OnLengthChanged(Int64 length)
@@ -558,9 +551,14 @@ namespace VLC_WINRT_APP.ViewModels
                     var em = vlcService.MediaPlayer.eventManager();
                     em.OnTrackAdded -= OnTrackAdded;
                     em.OnTrackDeleted -= OnTrackDeleted;
-                    em.OnLengthChanged -= OnLengthChanged;
-                    em.OnStopped -= OnStopped;
-                    em.OnEndReached -= OnEndReached;
+
+                    _audioTracks.Clear();
+                    _subtitlesTracks.Clear();
+                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                    {
+                        CurrentAudioTrack = null;
+                        CurrentSubtitle = null;
+                    });
                     break;
                 case PlayerEngine.MediaFoundation:
                     break;
