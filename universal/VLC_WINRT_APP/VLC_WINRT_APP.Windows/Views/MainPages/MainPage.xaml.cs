@@ -107,10 +107,5 @@ namespace VLC_WINRT_APP.Views.MainPages
             args.Request.ApplicationCommands.Add(about);
             args.Request.ApplicationCommands.Add(license);
         }
-        private void CommandBar_OnHomeButtonClicked(Button button, EventArgs e)
-        {
-            if (App.ApplicationFrame.CurrentSourcePageType != typeof(MainPageHome))
-                App.ApplicationFrame.Navigate(typeof(MainPageHome));
-        }
     }
 }
