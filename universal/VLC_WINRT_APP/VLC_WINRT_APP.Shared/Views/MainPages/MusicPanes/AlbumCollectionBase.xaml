@@ -19,8 +19,8 @@
         </Grid.RowDefinitions>
         <Grid DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition />
                 <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <musicPanesControls:MusicPaneComboBox Grid.Row="0"/>
             <musicPanesControls:AlbumsCollectionButtons Grid.Column="1"/>

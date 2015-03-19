@@ -1,46 +1,72 @@
-﻿<Grid x:Class="VLC_WINRT_APP.Views.MainPages.MusicPanes.MusicPanesControls.AlbumsCollectionButtons"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:local="using:VLC_WINRT_APP.Views.MainPages.MusicPanes.MusicPanesControls"
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      mc:Ignorable="d"
-      d:DesignHeight="300"
-      d:DesignWidth="400">
-    <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="Auto" />
-        <ColumnDefinition Width="Auto" />
-        <ColumnDefinition Width="Auto" />
-    </Grid.ColumnDefinitions>
-    <ComboBox Grid.Column="0"
-              HorizontalAlignment="Left"
-              Height="40"
-              ItemsSource="{Binding AlbumsOrderTypeCollection}"
-              SelectedItem="{Binding AlbumsOrderType, Mode=TwoWay}"
-              BorderThickness="1"
-              BorderBrush="{StaticResource MainColor}"
-              Style="{StaticResource NormalComboBoxStyle}">
-        <ComboBox.ItemTemplate>
-            <DataTemplate>
-                <TextBlock Margin="0,0,6,0"
-                           Text="{Binding Converter={StaticResource OrderTypeStringifyConverter}}" />
-            </DataTemplate>
-        </ComboBox.ItemTemplate>
-    </ComboBox>
-    <ComboBox Grid.Column="1"
-              Margin="12,0,0,0"
-              HorizontalAlignment="Left"
-              Height="40"
-              ItemsSource="{Binding AlbumsListingTypeCollection}"
-              SelectedItem="{Binding AlbumsOrderListing, Mode=TwoWay}"
-              BorderThickness="1"
-              BorderBrush="{StaticResource MainColor}"
-              Style="{StaticResource NormalComboBoxStyle}">
-        <ComboBox.ItemTemplate>
-            <DataTemplate>
-                <TextBlock Text="{Binding Converter={StaticResource OrderTypeStringifyConverter}}" />
-            </DataTemplate>
-        </ComboBox.ItemTemplate>
-    </ComboBox>
-    <local:MusicPaneButtons Grid.Column="2" />
-</Grid>
+﻿<UserControl x:Class="VLC_WINRT_APP.Views.MainPages.MusicPanes.MusicPanesControls.AlbumsCollectionButtons"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="using:VLC_WINRT_APP.Views.MainPages.MusicPanes.MusicPanesControls"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             d:DesignHeight="300"
+             d:DesignWidth="400">
+    <Grid HorizontalAlignment="Right">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <ComboBox Grid.Column="0"
+                  HorizontalAlignment="Left"
+                  Height="40"
+                  ItemsSource="{Binding AlbumsOrderTypeCollection}"
+                  SelectedItem="{Binding AlbumsOrderType, Mode=TwoWay}"
+                  BorderThickness="1"
+                  BorderBrush="{StaticResource MainColor}"
+                  Style="{StaticResource NormalComboBoxStyle}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Margin="0,0,6,0"
+                               Text="{Binding Converter={StaticResource OrderTypeStringifyConverter}}" />
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <ComboBox x:Name="OrderByComboBox"
+                  Grid.Column="1"
+                  Margin="12,0,0,0"
+                  HorizontalAlignment="Left"
+                  Height="40"
+                  ItemsSource="{Binding AlbumsListingTypeCollection}"
+                  SelectedItem="{Binding AlbumsOrderListing, Mode=TwoWay}"
+                  BorderThickness="1"
+                  BorderBrush="{StaticResource MainColor}"
+                  Style="{StaticResource NormalComboBoxStyle}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Converter={StaticResource OrderTypeStringifyConverter}}" />
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <local:MusicPaneButtons Grid.Column="2" />
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="Minimal">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="OrderByComboBox"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Collapsed" />
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Normal">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="OrderByComboBox"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+    </Grid>
+</UserControl>
