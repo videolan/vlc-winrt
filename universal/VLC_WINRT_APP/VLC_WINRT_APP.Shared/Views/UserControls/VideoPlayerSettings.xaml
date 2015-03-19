@@ -68,10 +68,10 @@
                         <TextBlock x:Uid="Speed"
                                    Text="Speed"
                                    Style="{StaticResource TitleTextBlockStyle}"
-                                   Margin="-6,24,0,-10" />
+                                   Margin="-6,24,0,0" />
                     </Slider.Header>
                 </Slider>
-                <Grid Margin="0,-32,0,0">
+                <Grid>
                     <TextBlock Text="0.5x"
                                Style="{StaticResource TitleTextBlockStyle}" />
                     <TextBlock Text="1x"
