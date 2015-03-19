@@ -176,11 +176,14 @@ namespace VLC_WINRT_APP.Services.RunTime
             }
         }
 
-        public void Stop()
+        public async void Stop()
         {
             if (Instance == null) return;
-            dispatchTimer.Stop();
-            Instance.Stop();
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                dispatchTimer.Stop();
+                Instance.Stop();
+            });
         }
 
         public void SetNullMediaPlayer()
