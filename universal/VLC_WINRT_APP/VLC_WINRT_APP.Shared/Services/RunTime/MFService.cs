@@ -271,6 +271,5 @@ namespace VLC_WINRT_APP.Services.RunTime
         {
             // MediaElement resizes automatically, nothing to do here
         }
-
     }
 }
