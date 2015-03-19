@@ -60,19 +60,19 @@ namespace VLC_WINRT_APP.ViewModels
         private TimeSpan _timeTotal;
         private ActionCommand _skipAhead;
         private ActionCommand _skipBack;
-        private PlayNextCommand _playNext;
-        private PlayPreviousCommand _playPrevious;
-        private PlayPauseCommand _playOrPause;
+        private PlayNextCommand _playNext = new PlayNextCommand();
+        private PlayPreviousCommand _playPrevious = new PlayPreviousCommand();
+        private PlayPauseCommand _playOrPause = new PlayPauseCommand();
 
         private int _currentSubtitle;
         private int _currentAudioTrack;
 
-        private SetSubtitleTrackCommand _setSubTitlesCommand;
-        private OpenSubtitleCommand _openSubtitleCommand;
-        private SetAudioTrackCommand _setAudioTrackCommand;
-        private StopVideoCommand _goBackCommand;
+        private SetSubtitleTrackCommand _setSubTitlesCommand = new SetSubtitleTrackCommand();
+        private OpenSubtitleCommand _openSubtitleCommand = new OpenSubtitleCommand();
+        private SetAudioTrackCommand _setAudioTrackCommand = new SetAudioTrackCommand();
+        private StopVideoCommand _goBackCommand = new StopVideoCommand();
 
-        private readonly DisplayRequest _displayAlwaysOnRequest;
+        private readonly DisplayRequest _displayAlwaysOnRequest = new DisplayRequest();
 
         private int _volume = 100;
         private bool _isRunning;
@@ -83,8 +83,8 @@ namespace VLC_WINRT_APP.ViewModels
         #endregion
 
         #region private fields
-        private List<DictionaryKeyValue> _subtitlesTracks;
-        private List<DictionaryKeyValue> _audioTracks;
+        private List<DictionaryKeyValue> _subtitlesTracks = new List<DictionaryKeyValue>();
+        private List<DictionaryKeyValue> _audioTracks = new List<DictionaryKeyValue>();
         #endregion
 
         #region public props
@@ -426,8 +426,6 @@ namespace VLC_WINRT_APP.ViewModels
 
         public MediaPlaybackViewModel()
         {
-            _displayAlwaysOnRequest = new DisplayRequest();
-
             _skipAhead = new ActionCommand(() =>
             {
                 _mediaService.SkipAhead();
@@ -438,17 +436,6 @@ namespace VLC_WINRT_APP.ViewModels
                 _mediaService.SkipBack();
                 VideoHUDHelper.ShowLittleTextWithFadeOut("-10s");
             });
-            _playNext = new PlayNextCommand();
-            _playPrevious = new PlayPreviousCommand();
-            _playOrPause = new PlayPauseCommand();
-
-            _subtitlesTracks = new List<DictionaryKeyValue>();
-            _audioTracks = new List<DictionaryKeyValue>();
-
-            _setSubTitlesCommand = new SetSubtitleTrackCommand();
-            _setAudioTrackCommand = new SetAudioTrackCommand();
-            _openSubtitleCommand = new OpenSubtitleCommand();
-            _goBackCommand = new StopVideoCommand();
 #if WINDOWS_APP
             _mouseService = App.Container.Resolve<MouseService>();
 #endif
