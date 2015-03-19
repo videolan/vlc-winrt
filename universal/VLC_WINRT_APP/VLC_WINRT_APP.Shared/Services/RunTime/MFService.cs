@@ -155,10 +155,10 @@ namespace VLC_WINRT_APP.Services.RunTime
             }
         }
 
-        public void Play()
+        public async void Play()
         {
             if (Instance == null) return;
-            Instance.Play();
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Instance.Play());
         }
 
         public void Pause()
