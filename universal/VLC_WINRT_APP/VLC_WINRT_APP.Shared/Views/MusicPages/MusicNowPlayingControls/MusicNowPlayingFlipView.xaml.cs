@@ -29,7 +29,7 @@ namespace VLC_WINRT_APP.Views.MusicPages.MusicNowPlayingControls
         {
             if (propertyChangedEventArgs.PropertyName == "CurrentTrack")
             {
-                if (MusicNowPlaying.Items != null && (Locator.MediaPlaybackViewModel.TrackCollection.CurrentTrack == -1 || Locator.MediaPlaybackViewModel.TrackCollection.CurrentTrack < MusicNowPlaying.Items.Count - 1))
+                if (MusicNowPlaying.Items != null && (Locator.MediaPlaybackViewModel.TrackCollection.CurrentTrack == -1 || Locator.MediaPlaybackViewModel.TrackCollection.CurrentTrack < MusicNowPlaying.Items.Count))
                     MusicNowPlaying.SelectedIndex = Locator.MediaPlaybackViewModel.TrackCollection.CurrentTrack;
             }
         }
