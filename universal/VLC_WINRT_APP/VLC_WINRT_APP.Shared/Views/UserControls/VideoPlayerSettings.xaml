@@ -45,7 +45,8 @@
                 <TextBlock Text="Audio tracks"
                            x:Uid="AudioTracks"
                            Style="{StaticResource TitleTextBlockStyle}"
-                           Margin="0,24,0,0" />
+                           Margin="0,24,0,0"
+                           Visibility="{Binding AudioTracks.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}" />
                 <ComboBox ItemsSource="{Binding AudioTracks}"
                           SelectedItem="{Binding CurrentAudioTrack, Mode=TwoWay}"
                           Margin="0,12,0,0"
