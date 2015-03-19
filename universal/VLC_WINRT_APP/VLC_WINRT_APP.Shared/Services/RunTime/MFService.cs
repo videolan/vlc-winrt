@@ -269,6 +269,7 @@ namespace VLC_WINRT_APP.Services.RunTime
 
         public void SetSizeVideoPlayer(uint x, uint y)
         {
+            // MediaElement resizes automatically, nothing to do here
         }
 
     }
