@@ -471,19 +471,17 @@ namespace VLC_WINRT_APP.ViewModels
 
         private async void UpdateTime(Int64 time)
         {
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
-            {
-                OnPropertyChanged("Time");
-                // Assume position also changes when time does.
-                // We could/should also watch OnPositionChanged event, but let's save us
-                // the cost of another dispatched call.
-                OnPropertyChanged("Position");
-            });
+            await UpdateTimeFromUIThread();
         }
 
-        public void UpdateTimeFromMF()
+        public async void UpdateTimeFromMF()
         {
-            App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+            await UpdateTimeFromUIThread();
+        }
+
+        private async Task UpdateTimeFromUIThread()
+        {
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
             {
                 OnPropertyChanged("Time");
                 // Assume position also changes when time does.
