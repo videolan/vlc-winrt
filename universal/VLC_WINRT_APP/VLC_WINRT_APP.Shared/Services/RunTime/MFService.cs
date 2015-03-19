@@ -111,7 +111,9 @@ namespace VLC_WINRT_APP.Services.RunTime
             {
                 var randomAccessStream = await randomAccessStreamReference.OpenReadAsync();
                 if (randomAccessStream != null)
-                    Instance.SetSource(randomAccessStream, randomAccessStream.ContentType);
+                {
+                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Instance.SetSource(randomAccessStream, randomAccessStream.ContentType));
+                }
             }
         }
 
