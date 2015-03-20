@@ -13,7 +13,6 @@ namespace VLC_WINRT_APP.Model
             ".mp4",
             ".mp3",
             ".wma",
-            ".aac",
             ".m4a",
         };
 
