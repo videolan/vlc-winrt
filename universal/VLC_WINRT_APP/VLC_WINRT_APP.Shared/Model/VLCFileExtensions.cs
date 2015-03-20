@@ -15,9 +15,6 @@ namespace VLC_WINRT_APP.Model
             ".wma",
             ".aac",
             ".m4a",
-            // on w10, mkv and flac are supported...
-            ".flac",
-            ".mkv"
         };
 
         public static List<string> Supported = new List<string>()
