@@ -48,7 +48,8 @@ namespace VLC_WINRT_APP.Model.Video
             if (width == null) width = Window.Current.Bounds.Width;
             var splitScreen = (size == TemplateSize.Compact) ? 3 : 2;
 #if WINDOWS_PHONE_APP
-            if(width == 400)
+            width -= 5;
+            if (width < 401 && width > 399)
                 size = TemplateSize.Normal;
             if (!DisplayHelper.IsPortrait())
                 splitScreen = 5;
