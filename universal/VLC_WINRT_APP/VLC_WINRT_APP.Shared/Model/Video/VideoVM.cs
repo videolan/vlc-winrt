@@ -22,6 +22,7 @@ using SQLite;
 using VLC_WINRT_APP.Commands.Video;
 using VLC_WINRT_APP.Common;
 using VLC_WINRT_APP.Helpers;
+using VLC_WINRT_APP.Helpers.VideoLibrary;
 using VLC_WINRT_APP.Services.Interface;
 using VLC_WINRT_APP.ViewModels;
 
@@ -39,9 +40,9 @@ namespace VLC_WINRT_APP.Model.Video
         private TimeSpan _duration;
         private TimeSpan _timeWatched;
         private String _thumbnailPath = "ms-appx:///Assets/NoCover.jpg";
+        private LoadingState _thumbnailLoadingState = LoadingState.NotLoaded;
         private StorageFile _file;
         private FavoriteVideoCommand _favoriteVideo;
-        private readonly IThumbnailService _thumbsService;
         private DateTime _lastWatched;
         // TVShows related
         private int _season = -1;
@@ -71,10 +72,20 @@ namespace VLC_WINRT_APP.Model.Video
         [PrimaryKey, AutoIncrement, Column("_id")]
         public int Id { get; set; }
 
+        [Ignore]
         public String ThumbnailPath
         {
             get
             {
+                if (!HasThumbnail && _thumbnailLoadingState == LoadingState.NotLoaded)
+                {
+                    _thumbnailLoadingState = LoadingState.Loading;
+                    Task.Run(() => VideoLibraryManagement.FetchVideoThumbnailOrWaitAsync(this));
+                }
+                else if (HasThumbnail)
+                {
+                    _thumbnailPath = String.Format("ms-appdata:///local/videoPic/{0}.jpg", Id);
+                }
                 return _thumbnailPath;
             }
             set { SetProperty(ref _thumbnailPath, value); }
@@ -187,13 +198,11 @@ namespace VLC_WINRT_APP.Model.Video
         public VideoItem()
         {
             FavoriteVideo = new FavoriteVideoCommand();
-            _thumbsService = App.Container.Resolve<IThumbnailService>();
         }
 
         public VideoItem(string season, string episode)
         {
             FavoriteVideo = new FavoriteVideoCommand();
-            _thumbsService = App.Container.Resolve<IThumbnailService>();
             Season = int.Parse(season);
             Episode = int.Parse(episode);
         }
@@ -227,65 +236,6 @@ namespace VLC_WINRT_APP.Model.Video
         #endregion
 
         #region methods
-        // Returns false is no snapshot generation was required, true otherwise
-        public async Task<Boolean> GenerateThumbnail()
-        {
-            if (HasThumbnail)
-                return false;
-            try
-            {
-                if (Locator.MediaPlaybackViewModel.ContinueIndexing != null)
-                {
-                    await Locator.MediaPlaybackViewModel.ContinueIndexing.Task;
-                    Locator.MediaPlaybackViewModel.ContinueIndexing = null;
-                }
-#if WINDOWS_PHONE_APP
-                if (MemoryUsageHelper.PercentMemoryUsed() > MemoryUsageHelper.MaxRamForResourceIntensiveTasks)
-                    return false;
-#endif
-                WriteableBitmap image = null;
-                StorageItemThumbnail thumb = null;
-                // If file is a mkv, we save the thumbnail in a VideoPic folder so we don't consume CPU and resources each launch
-                if (VLCFileExtensions.MFSupported.Contains(File.FileType.ToLower()))
-                {
-                    thumb = await _thumbsService.GetThumbnail(File).ConfigureAwait(false);
-                }
-                // If MF thumbnail generation failed or wasn't supported:
-                if (thumb == null)
-                {
-                    var res = await _thumbsService.GetScreenshot(File).ConfigureAwait(false);
-                    if (res == null)
-                        return true;
-                    image = res.Bitmap();
-                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Duration = TimeSpan.FromMilliseconds(res.Length()));
-                }
-                if (thumb != null || image != null)
-                {
-                    // RunAsync won't await on the lambda it receives, so we need to do it ourselves
-                    var tcs = new TaskCompletionSource<bool>();
-                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, new Windows.UI.Core.DispatchedHandler(async () =>
-                    {
-                        if (thumb != null)
-                        {
-                            image = new WriteableBitmap((int)thumb.OriginalWidth, (int)thumb.OriginalHeight);
-                            await image.SetSourceAsync(thumb);
-                        }
-                        await DownloadAndSaveHelper.WriteableBitmapToStorageFile(image, DownloadAndSaveHelper.FileFormat.Jpeg, Id.ToString());
-                        ThumbnailPath = String.Format("ms-appdata:///local/videoPic/{0}.jpg", Id);
-                        tcs.SetResult(true);
-                    }));
-                    await tcs.Task;
-                }
-                HasThumbnail = true;
-                return true;
-            }
-            catch (Exception ex)
-            {
-                LogHelper.Log(ex.ToString());
-            }
-            return false;
-        }
-
         private async Task GetTimeInformation()
         {
             if (VideoProperties == null)

@@ -3,23 +3,46 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Resources;
 using Windows.Storage;
+using Windows.Storage.FileProperties;
 using Windows.System.Threading;
 using Windows.UI.Core;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Media.Imaging;
+using Autofac;
 using VLC_WINRT.Common;
 using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.Model.Video;
 using VLC_WINRT_APP.ViewModels;
-using VLC_WINRT_APP.ViewModels.VideoVM;
 using WinRTXamlToolkit.IO.Extensions;
 using VLC_WINRT_APP.DataRepository;
+using VLC_WINRT_APP.Services.Interface;
 
 namespace VLC_WINRT_APP.Helpers.VideoLibrary
 {
     public static class VideoLibraryManagement
     {
+        static readonly IThumbnailService ThumbsService = App.Container.Resolve<IThumbnailService>();
+        static readonly SemaphoreSlim VideoThumbnailFetcherSemaphoreSlim = new SemaphoreSlim(1);
+
+        public static async Task FetchVideoThumbnailOrWaitAsync(VideoItem videoVm)
+        {
+            await VideoThumbnailFetcherSemaphoreSlim.WaitAsync();
+            try
+            {
+                var isChanged = await VideoLibraryManagement.GenerateThumbnail(videoVm);
+                if (isChanged)
+                    await Locator.VideoLibraryVM.VideoRepository.Update(videoVm);
+            }
+            finally
+            {
+                VideoThumbnailFetcherSemaphoreSlim.Release();
+            }
+        }
+
         public static async Task GetViewedVideos()
         {
             var result = await Locator.VideoLibraryVM.VideoRepository.GetLastViewed(6).ConfigureAwait(false);
@@ -33,7 +56,6 @@ namespace VLC_WINRT_APP.Helpers.VideoLibrary
                         StorageFile file = await StorageFile.GetFileFromPathAsync(videoVm.Path);
                         videoVm.File = file;
                     }
-                    await videoVm.GenerateThumbnail();
                     await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
                     {
                         Locator.VideoLibraryVM.ViewedVideos.Add(videoVm);
@@ -212,87 +234,103 @@ namespace VLC_WINRT_APP.Helpers.VideoLibrary
             return null;
         }
 
-        public static async Task GenerateAllThumbnails()
-        {
-            try
-            {
-#if WINDOWS_PHONE_APP
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-            {
-                StatusBarHelper.UpdateTitle("Getting video thumbnails ...");
-            });
-#endif
-                await ThreadPool.RunAsync(async (work) =>
-                {
-                    //FIXME: Group update requests
-                    foreach (var videoItem in Locator.VideoLibraryVM.Videos)
-                    {
-                        if (await videoItem.GenerateThumbnail())
-                            await Locator.VideoLibraryVM.VideoRepository.Update(videoItem);
-                    }
-                    foreach (var tvShow in Locator.VideoLibraryVM.Shows)
-                    {
-                        foreach (var videoItem in tvShow.Episodes)
-                        {
-                            if (await videoItem.GenerateThumbnail())
-                                await Locator.VideoLibraryVM.VideoRepository.Update(videoItem);
-                        }
-                    }
-                    foreach (var videoItem in Locator.VideoLibraryVM.CameraRoll)
-                    {
-                        if (await videoItem.GenerateThumbnail())
-                            await Locator.VideoLibraryVM.VideoRepository.Update(videoItem);
-                    }
-                });
-            }
-            catch (Exception e)
-            {
-                ExceptionHelper.CreateMemorizedException("VideoLibraryManagement.GenerateAllThumbnails", e);
-            }
-#if WINDOWS_PHONE_APP
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-            {
-                if (App.ApplicationFrame != null)
-                    StatusBarHelper.SetDefaultForPage(App.ApplicationFrame.SourcePageType);
-            });
-#endif
-        }
 
         public static async Task AddTvShow(String name, VideoItem episode)
         {
-            try { 
+            try
+            {
 #if WINDOWS_APP
-            if (Locator.VideoLibraryVM.Panels.Count == 1)
-            {
-                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                if (Locator.VideoLibraryVM.Panels.Count == 1)
                 {
-                    var resourceLoader = new ResourceLoader();
-                    Locator.VideoLibraryVM.Panels.Add(new Panel(resourceLoader.GetString("Shows"), 1, 0.4, null));
-                });
-            }
+                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                    {
+                        var resourceLoader = new ResourceLoader();
+                        Locator.VideoLibraryVM.Panels.Add(new Panel(resourceLoader.GetString("Shows"), 1, 0.4, null));
+                    });
+                }
 #endif
-            TvShow show = Locator.VideoLibraryVM.Shows.FirstOrDefault(x => x.ShowTitle == name);
-            if (show == null)
-            {
-                show = new TvShow(name);
-                await DispatchHelper.InvokeAsync(() =>
+                TvShow show = Locator.VideoLibraryVM.Shows.FirstOrDefault(x => x.ShowTitle == name);
+                if (show == null)
                 {
-                    show.Episodes.Add(episode);
-                    Locator.VideoLibraryVM.Shows.Add(show);
-                    if (Locator.VideoLibraryVM.Shows.Count == 1)
-                        Locator.VideoLibraryVM.CurrentShow = Locator.VideoLibraryVM.Shows[0];
-                });
-            }
-            else
-            {
-                await DispatchHelper.InvokeAsync(() =>
-                show.Episodes.Add(episode));
-            }
+                    show = new TvShow(name);
+                    await DispatchHelper.InvokeAsync(() =>
+                    {
+                        show.Episodes.Add(episode);
+                        Locator.VideoLibraryVM.Shows.Add(show);
+                        if (Locator.VideoLibraryVM.Shows.Count == 1)
+                            Locator.VideoLibraryVM.CurrentShow = Locator.VideoLibraryVM.Shows[0];
+                    });
+                }
+                else
+                {
+                    await DispatchHelper.InvokeAsync(() =>
+                    show.Episodes.Add(episode));
+                }
             }
             catch (Exception e)
             {
                 ExceptionHelper.CreateMemorizedException("VideoLibaryManagement.AddTvShow", e);
             }
         }
+
+        // Returns false is no snapshot generation was required, true otherwise
+        public static async Task<Boolean> GenerateThumbnail(VideoItem videoItem)
+        {
+            if (videoItem.HasThumbnail)
+                return false;
+            try
+            {
+                if (Locator.MediaPlaybackViewModel.ContinueIndexing != null)
+                {
+                    await Locator.MediaPlaybackViewModel.ContinueIndexing.Task;
+                    Locator.MediaPlaybackViewModel.ContinueIndexing = null;
+                }
+#if WINDOWS_PHONE_APP
+                if (MemoryUsageHelper.PercentMemoryUsed() > MemoryUsageHelper.MaxRamForResourceIntensiveTasks)
+                    return false;
+#endif
+                WriteableBitmap image = null;
+                StorageItemThumbnail thumb = null;
+                // If file is a mkv, we save the thumbnail in a VideoPic folder so we don't consume CPU and resources each launch
+                if (VLCFileExtensions.MFSupported.Contains(videoItem.File.FileType.ToLower()))
+                {
+                    thumb = await ThumbsService.GetThumbnail(videoItem.File).ConfigureAwait(false);
+                }
+                // If MF thumbnail generation failed or wasn't supported:
+                if (thumb == null)
+                {
+                    var res = await ThumbsService.GetScreenshot(videoItem.File).ConfigureAwait(false);
+                    if (res == null)
+                        return true;
+                    image = res.Bitmap();
+                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => videoItem.Duration = TimeSpan.FromMilliseconds(res.Length()));
+                }
+                if (thumb != null || image != null)
+                {
+                    // RunAsync won't await on the lambda it receives, so we need to do it ourselves
+                    var tcs = new TaskCompletionSource<bool>();
+                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, async () =>
+                    {
+                        if (thumb != null)
+                        {
+                            image = new WriteableBitmap((int)thumb.OriginalWidth, (int)thumb.OriginalHeight);
+                            await image.SetSourceAsync(thumb);
+                        }
+                        await DownloadAndSaveHelper.WriteableBitmapToStorageFile(image, DownloadAndSaveHelper.FileFormat.Jpeg, videoItem.Id.ToString());
+                        videoItem.ThumbnailPath = String.Format("ms-appdata:///local/videoPic/{0}.jpg", videoItem.Id);
+                        tcs.SetResult(true);
+                    });
+                    await tcs.Task;
+                }
+                videoItem.HasThumbnail = true;
+                return true;
+            }
+            catch (Exception ex)
+            {
+                LogHelper.Log(ex.ToString());
+            }
+            return false;
+        }
+
     }
 }
