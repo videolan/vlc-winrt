@@ -16,14 +16,9 @@ namespace VLC_WINRT_APP.Commands.Video
             {
                 await Locator.MediaPlaybackViewModel.CleanViewModel();
             }
-            try
-            {
-                LogHelper.Log("PlayVideoCommand called");
-                if (App.ApplicationFrame.CurrentSourcePageType != typeof (VideoPlayerPage))
-                    App.ApplicationFrame.Navigate(typeof (VideoPlayerPage));
-                LogHelper.Log("PLAYVIDEO: Navigating to VideoPlayerPage");
-            }
-            catch { }
+
+            LogHelper.Log("PlayVideoCommand called");
+
             VideoItem videoVm = null;
             if (parameter is ItemClickEventArgs)
             {
@@ -34,10 +29,44 @@ namespace VLC_WINRT_APP.Commands.Video
             {
                 videoVm = parameter as VideoItem;
             }
-            if (videoVm != null)
+
+            // If the VM is null, we can't do anything. So just return.
+            if (videoVm == null)
             {
-                LogHelper.Log("PLAYVIDEO: VideoVm is not null, continuing");
+                ToastHelper.Basic("Failed to load the selected video, the video view model is null.");
+                LogHelper.Log("PLAYVIDEO: VideoVm is null, returning");
+                return;
+            }
+
+            LogHelper.Log("PLAYVIDEO: VideoVm is not null, continuing");
+            try
+            {
+                // If the video file is null (For example, the user deleted the video, and it's on
+                // their favorites list.) We need to make sure the whole app does not crash.
+
+                // TODO: If user selectes a video from their favoites, and it has been moved or deleted, we should ask them if we want to remove it from their list
                 await videoVm.Play();
+            }
+            catch (System.Exception)
+            {
+                // TODO: Enhance error handling
+                // TODO: Remove hardcoded English
+                ToastHelper.Basic("Failed to load the selected video");
+                return;
+            }
+
+            try
+            {
+                if (App.ApplicationFrame.CurrentSourcePageType != typeof (VideoPlayerPage))
+                    App.ApplicationFrame.Navigate(typeof (VideoPlayerPage));
+                LogHelper.Log("PLAYVIDEO: Navigating to VideoPlayerPage");
+            }
+            catch
+            {
+                // TODO: Enhance error handling
+                // TODO: Remove hardcoded English
+                ToastHelper.Basic(string.Format("Failed to navigate to video player page."));
+                LogHelper.Log("PLAYVIDEO: failed to navigate to video player page.");
             }
         }
     }
