@@ -27,11 +27,7 @@ namespace VLC_WINRT_APP.Commands.MainPageCommands
     public class GoToPanelCommand : AlwaysExecutableCommand
     {
 #if WINDOWS_APP
-        public static readonly SolidColorBrush SelectedColorBrush = App.Current.Resources["MainColor"] as SolidColorBrush;
-        public static readonly SolidColorBrush DefaultColorBrush = (Locator.SettingsVM.ApplicationTheme == ApplicationTheme.Dark) ? (SolidColorBrush)App.Current.Resources["PivotHeaderForegroundUnselectedBrush"] : new SolidColorBrush(Colors.DimGray);
 #else
-        //public static readonly SolidColorBrush SelectedColorBrush = new SolidColorBrush(Colors.WhiteSmoke);
-        //public static readonly SolidColorBrush DefaultColorBrush = new SolidColorBrush(Color.FromArgb(70, 0, 0, 0));
         public static readonly SolidColorBrush SelectedColorBrush = App.Current.Resources["MainColor"] as SolidColorBrush;
         public static readonly SolidColorBrush DefaultColorBrush = new SolidColorBrush(Colors.DimGray);
 #endif
@@ -55,18 +51,10 @@ namespace VLC_WINRT_APP.Commands.MainPageCommands
 
             foreach (Model.Panel panel1 in Locator.MainVM.Panels)
             {
-                panel1.Color = DefaultColorBrush;
             }
 
             if (panel != null)
             {
-                panel.Color = SelectedColorBrush;
-                while (Locator.MainVM.Panels[0].Color != SelectedColorBrush)
-                {
-                    var pane = Locator.MainVM.Panels[0];
-                    Locator.MainVM.Panels.RemoveAt(0);
-                    Locator.MainVM.Panels.Add(pane);
-                }
                 switch (panel.Index)
                 {
                     case 0:

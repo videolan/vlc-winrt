@@ -38,6 +38,7 @@
     </Grid>
 
     <userControls:TopBar Grid.Row="0"
+                         RequestedTheme="Dark"
                          Visibility="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}" />
     
     <Frame x:Name="MainFrame"

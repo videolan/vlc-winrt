@@ -14,19 +14,21 @@
     <Grid x:Name="ColumnGrid"
           Height="60"
           MinWidth="320"
-          Margin="24,0,0,0">
+          Background="{StaticResource MainColor}">
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="24"/>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <StackPanel Orientation="Horizontal">
+        <StackPanel Orientation="Horizontal"
+                    Grid.Column="1">
             <local:VLCLogoWithGradient Width="36" />
             <TextBlock Text="VLC"
-                       Foreground="{StaticResource MainColor}"
+                       Foreground="{ThemeResource BasicForeground}"
                        Style="{StaticResource SubheaderTextBlockStyle}"
                        VerticalAlignment="Center" />
         </StackPanel>
-        <ListView Grid.Column="1"
+        <ListView Grid.Column="2"
                   x:Name="PanelsListView"
                   ItemsSource="{Binding Panels}"
                   IsItemClickEnabled="True"

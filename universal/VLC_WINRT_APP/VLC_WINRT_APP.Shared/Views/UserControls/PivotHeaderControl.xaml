@@ -92,11 +92,11 @@
               HorizontalAlignment="Center"
               VerticalAlignment="Bottom"
               Stretch="Uniform"
-              Fill="{Binding Color}" />
+              Fill="{ThemeResource BasicForeground}" />
         <TextBlock x:Name="Title"
                    Grid.Column="2"
                    Text="{Binding Title}"
-                   Foreground="{Binding Color}"
+                   Foreground="{ThemeResource BasicForeground}"
                    Style="{StaticResource SubheaderTextBlockStyle}"
                    VerticalAlignment="Bottom"
                    FontSize="22" />

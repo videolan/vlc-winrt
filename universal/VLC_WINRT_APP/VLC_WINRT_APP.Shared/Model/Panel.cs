@@ -29,9 +29,6 @@ namespace VLC_WINRT_APP.Model
             _index = i;
             _opacity = o;
             _pathData = pd;
-            _color = isdefault
-                ? GoToPanelCommand.SelectedColorBrush
-                : GoToPanelCommand.DefaultColorBrush;
         }
 
         public string Title { get { return _title; } set { SetProperty(ref _title, value); } }
