@@ -26,7 +26,7 @@ namespace VLC_WINRT_APP.Commands
                 ToastHelper.Basic("Please enter a valid URL.");
                 return;
             }
-
+            mrl = mrl.Trim();
             //TODO: pass MRL to vlc
             try
             {
