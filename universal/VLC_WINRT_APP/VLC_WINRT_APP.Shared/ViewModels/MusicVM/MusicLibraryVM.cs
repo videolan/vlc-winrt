@@ -54,6 +54,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         #region private props
         private SidebarState _sidebarState;
         private LoadingState _loadingState;
+        private StartMusicIndexingCommand _startMusicIndexingCommand;
         private AddToPlaylistCommand _addToPlaylistCommand;
         private TrackCollectionClickedCommand _trackCollectionClickedCommand;
         private ShowCreateNewPlaylistPane _showCreateNewPlaylistPaneCommamd;
@@ -189,6 +190,11 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         {
             get { return _isMusicLibraryEmpty; }
             set { SetProperty(ref _isMusicLibraryEmpty, value); }
+        }
+
+        public StartMusicIndexingCommand StartMusicIndexingCommand
+        {
+            get { return _startMusicIndexingCommand ?? (_startMusicIndexingCommand = new StartMusicIndexingCommand()); }
         }
 
         public AddToPlaylistCommand AddToPlaylistCommand
@@ -390,6 +396,18 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                 IsBusy = false;
             });
             MusicCollectionLoaded(null, "music");
+            await PerformRoutineCheckIfNotBusy();
+#if WINDOWS_PHONE_APP
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+            {
+                if (App.ApplicationFrame != null)
+                    StatusBarHelper.SetDefaultForPage(App.ApplicationFrame.SourcePageType);
+            });
+#endif
+        }
+
+        public async Task PerformRoutineCheckIfNotBusy()
+        {
             // Routine check to add new files if there are new ones
             if (!IsBusy)
             {
@@ -398,14 +416,11 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                     IsBusy = true;
                 });
                 await MusicLibraryManagement.DoRoutineMusicLibraryCheck();
+                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+                {
+                    IsBusy = false;
+                });
             }
-#if WINDOWS_PHONE_APP
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
-            {
-                if (App.ApplicationFrame != null)
-                    StatusBarHelper.SetDefaultForPage(App.ApplicationFrame.SourcePageType);
-            });
-#endif
         }
 
         public async Task StartIndexing()
