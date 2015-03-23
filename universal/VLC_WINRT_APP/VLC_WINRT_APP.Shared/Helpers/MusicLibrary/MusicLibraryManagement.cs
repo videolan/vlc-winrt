@@ -42,7 +42,12 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
         static readonly SemaphoreSlim AlbumCoverFetcherSemaphoreSlim = new SemaphoreSlim(2);
         static readonly SemaphoreSlim ArtistPicFetcherSemaphoreSlim = new SemaphoreSlim(2);
         static readonly SemaphoreSlim TrackItemDiscovererSemaphoreSlim = new SemaphoreSlim(1);
-        static readonly ResourceLoader ResourcesLoader = ResourceLoader.GetForCurrentView("Resources");
+        private static ResourceLoader _resourcesLoader;
+        static MusicLibraryManagement()
+        {
+            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => _resourcesLoader = ResourceLoader.GetForCurrentView("Resources"));
+        }
+
 
         public static async Task FetchAlbumCoverOrWaitAsync(AlbumItem albumItem)
         {
@@ -286,7 +291,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                         {
                             var artistFromCollection = Locator.MusicLibraryVM.Artists.FirstOrDefault(x => x.Id == album.ArtistId);
                             if (artistFromCollection != null) artistFromCollection.Albums.Add(album);
-                            Locator.MusicLibraryVM.CurrentIndexingStatus = string.Format(ResourcesLoader.GetString("AlbumsFound"), Locator.MusicLibraryVM.Albums.Count);
+                            Locator.MusicLibraryVM.CurrentIndexingStatus = string.Format(_resourcesLoader.GetString("AlbumsFound"), Locator.MusicLibraryVM.Albums.Count);
 #if WINDOWS_PHONE_APP
                             StatusBarHelper.UpdateTitle(Locator.MusicLibraryVM.CurrentIndexingStatus);
 #endif
@@ -505,7 +510,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             {
                 await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
                 {
-                    ToastHelper.Basic(ResourcesLoader.GetString("PlaylistAlreadyExists"));
+                    ToastHelper.Basic(_resourcesLoader.GetString("PlaylistAlreadyExists"));
                 });
             }
             else
@@ -529,7 +534,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             if (Locator.MusicLibraryVM.CurrentTrackCollection == null) return;
             if (Locator.MusicLibraryVM.CurrentTrackCollection.Playlist.Contains(trackItem))
             {
-                ToastHelper.Basic(ResourcesLoader.GetString("TrackAlreadyExistsInPlaylist"));
+                ToastHelper.Basic(_resourcesLoader.GetString("TrackAlreadyExistsInPlaylist"));
                 return;
             }
             Locator.MusicLibraryVM.CurrentTrackCollection.Playlist.Add(trackItem);
@@ -539,7 +544,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                 TrackCollectionId = Locator.MusicLibraryVM.CurrentTrackCollection.Id,
             });
             if (displayToastNotif)
-                ToastHelper.Basic(string.Format(ResourcesLoader.GetString("TrackAddedToYourPlaylist"), trackItem.Name));
+                ToastHelper.Basic(string.Format(_resourcesLoader.GetString("TrackAddedToYourPlaylist"), trackItem.Name));
         }
 
         public static async Task AddToPlaylist(AlbumItem albumItem)
@@ -555,7 +560,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                     TrackCollectionId = playlistId,
                 });
             }
-            ToastHelper.Basic(string.Format(ResourcesLoader.GetString("TrackAddedToYourPlaylist"), albumItem.Name));
+            ToastHelper.Basic(string.Format(_resourcesLoader.GetString("TrackAddedToYourPlaylist"), albumItem.Name));
         }
 
         public static async Task UpdateTrackCollection(TrackCollection trackCollection)
@@ -601,7 +606,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
 #if WINDOWS_PHONE_APP
                 ((ContentDialogButtonClickEventArgs) args).Cancel = true;
 #endif
-                ToastHelper.Basic(ResourcesLoader.GetString("HaveToSelectPlaylist"), false, "selectplaylist");
+                ToastHelper.Basic(_resourcesLoader.GetString("HaveToSelectPlaylist"), false, "selectplaylist");
                 return;
             }
 #if WINDOWS_APP
