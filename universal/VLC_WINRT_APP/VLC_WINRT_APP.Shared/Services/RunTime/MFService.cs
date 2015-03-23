@@ -169,30 +169,36 @@ namespace VLC_WINRT_APP.Services.RunTime
 
         public async void Play()
         {
-            if (Instance == null) return;
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Instance.Play());
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                if (Instance == null) return;
+                Instance.Play();
+            });
         }
 
-        public void Pause()
+        public async void Pause()
         {
             // vlc pause() method is a play/pause toggle. we reproduce the same behaviour here
-            if (Instance == null) return;
-            switch (Instance.CurrentState)
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                case MediaElementState.Playing:
-                    Instance.Pause();
-                    break;
-                case MediaElementState.Paused:
-                    Instance.Play();
-                    break;
-            }
+                if (Instance == null) return;
+                switch (Instance.CurrentState)
+                {
+                    case MediaElementState.Playing:
+                        Instance.Pause();
+                        break;
+                    case MediaElementState.Paused:
+                        Instance.Play();
+                        break;
+                }
+            });
         }
 
         public async void Stop()
         {
-            if (Instance == null) return;
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
+                if (Instance == null) return;
                 dispatchTimer.Stop();
                 Instance.Stop();
             });
@@ -212,16 +218,22 @@ namespace VLC_WINRT_APP.Services.RunTime
             throw new NotImplementedException();
         }
 
-        public void SkipAhead()
+        public async void SkipAhead()
         {
-            if (Instance == null) return;
-            Instance.Position = Instance.Position.Add(TimeSpan.FromSeconds(10));
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                if (Instance == null) return;
+                Instance.Position = Instance.Position.Add(TimeSpan.FromSeconds(10));
+            });
         }
 
-        public void SkipBack()
+        public async void SkipBack()
         {
-            if (Instance == null) return;
-            Instance.Position = TimeSpan.FromSeconds(Instance.Position.TotalSeconds - 10);
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                if (Instance == null) return;
+                Instance.Position = TimeSpan.FromSeconds(Instance.Position.TotalSeconds - 10);
+            });
         }
 
         public float GetLength()
