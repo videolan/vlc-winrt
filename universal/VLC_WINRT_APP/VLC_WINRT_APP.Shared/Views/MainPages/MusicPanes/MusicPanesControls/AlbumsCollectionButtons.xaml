@@ -13,14 +13,17 @@
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
-        <ComboBox Grid.Column="0"
+        <ComboBox x:Name="OrderTypeComboBox"
+                  Grid.Column="0"
                   HorizontalAlignment="Left"
                   Height="40"
                   ItemsSource="{Binding AlbumsOrderTypeCollection}"
                   SelectedItem="{Binding AlbumsOrderType, Mode=TwoWay}"
                   BorderThickness="1"
                   BorderBrush="{StaticResource MainColor}"
-                  Style="{StaticResource NormalComboBoxStyle}">
+                  Style="{StaticResource NormalComboBoxStyle}"
+                  DropDownOpened="ComboBox_OnDropDownOpened"
+                  DropDownClosed="ComboBox_OnDropDownClosed">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Margin="0,0,6,0"
@@ -37,7 +40,9 @@
                   SelectedItem="{Binding AlbumsOrderListing, Mode=TwoWay}"
                   BorderThickness="1"
                   BorderBrush="{StaticResource MainColor}"
-                  Style="{StaticResource NormalComboBoxStyle}">
+                  Style="{StaticResource NormalComboBoxStyle}"
+                  DropDownOpened="ComboBox_OnDropDownOpened"
+                  DropDownClosed="ComboBox_OnDropDownClosed">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Converter={StaticResource OrderTypeStringifyConverter}}" />

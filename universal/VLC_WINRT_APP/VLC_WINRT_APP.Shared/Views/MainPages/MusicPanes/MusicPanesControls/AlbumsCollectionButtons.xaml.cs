@@ -1,7 +1,10 @@
-﻿
-using Microsoft.Xaml.Interactivity;
+﻿using Microsoft.Xaml.Interactivity;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using VLC_WINRT_APP.ViewModels;
+#if WINDOWS_PHONE_APP
+using Windows.Phone.UI.Input;
+#endif
 namespace VLC_WINRT_APP.Views.MainPages.MusicPanes.MusicPanesControls
 {
     public sealed partial class AlbumsCollectionButtons : UserControl
@@ -12,19 +15,31 @@ namespace VLC_WINRT_APP.Views.MainPages.MusicPanes.MusicPanesControls
             this.Loaded += AlbumsCollectionButtons_Loaded;
         }
 
-        void AlbumsCollectionButtons_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        void AlbumsCollectionButtons_Loaded(object sender, RoutedEventArgs e)
         {
             Responsive(Window.Current.Bounds.Width);
             Window.Current.SizeChanged += Current_SizeChanged;
             this.Unloaded += AlbumsCollectionButtons_Unloaded;
+#if WINDOWS_PHONE_APP
+            HardwareButtons.BackPressed+=HardwareButtons_BackPressed;
+#endif
         }
 
+#if WINDOWS_PHONE_APP
+        void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
+        {
+            if (OrderTypeComboBox.IsDropDownOpen)
+                OrderTypeComboBox.IsDropDownOpen = false;
+            if (OrderByComboBox.IsDropDownOpen)
+                OrderByComboBox.IsDropDownOpen = false;
+        }
+#endif
         void Current_SizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)
         {
             Responsive(e.Size.Width);
         }
 
-        void AlbumsCollectionButtons_Unloaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        void AlbumsCollectionButtons_Unloaded(object sender, RoutedEventArgs e)
         {
             Window.Current.SizeChanged -= Current_SizeChanged;
         }
@@ -39,6 +54,16 @@ namespace VLC_WINRT_APP.Views.MainPages.MusicPanes.MusicPanesControls
                 VisualStateUtilities.GoToState(this, "Minimal", false);
             else
                 VisualStateUtilities.GoToState(this, "Normal", false);
+        }
+
+        private void ComboBox_OnDropDownOpened(object sender, object e)
+        {
+            Locator.MainVM.PreventAppExit = true;
+        }
+
+        private void ComboBox_OnDropDownClosed(object sender, object e)
+        {
+            Locator.MainVM.PreventAppExit = false;
         }
     }
 }
