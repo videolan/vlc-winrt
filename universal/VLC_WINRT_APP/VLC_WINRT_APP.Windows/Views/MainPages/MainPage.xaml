@@ -22,7 +22,8 @@
                   x:FieldModifier="public"
                   Grid.Row="0"
                   Grid.RowSpan="3"
-                  Loaded="MfMediaElement_OnLoaded"/>
+                  Loaded="MfMediaElement_OnLoaded"
+                  AudioCategory="BackgroundCapableMedia"/>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
           Grid.RowSpan="3"
           Visibility="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}" />
