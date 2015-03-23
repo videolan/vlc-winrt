@@ -107,9 +107,6 @@
     <Compile Include="Views\UserControls\ConnectToLastFm.xaml.cs">
       <DependentUpon>ConnectToLastFm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControls\LeftColumn.xaml.cs">
-      <DependentUpon>LeftColumn.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\MainPages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -119,17 +116,11 @@
     <Compile Include="Views\MusicPages\MiniPlayer.xaml.cs">
       <DependentUpon>MiniPlayer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControls\MiniPlayer.xaml.cs">
-      <DependentUpon>MiniPlayer.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\UserControls\Placeholder\NoFavoriteAlbumsControl.xaml.cs">
       <DependentUpon>NoFavoriteAlbumsControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\TopBar.xaml.cs">
       <DependentUpon>TopBar.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UserControls\VLCSearchBox.xaml.cs">
-      <DependentUpon>VLCSearchBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\VariousPages\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
@@ -837,10 +828,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\UserControls\LeftColumn.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\MainPages\MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -853,19 +840,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\UserControls\MiniPlayer.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\UserControls\Placeholder\NoFavoriteAlbumsControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\UserControls\TopBar.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\UserControls\VLCSearchBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

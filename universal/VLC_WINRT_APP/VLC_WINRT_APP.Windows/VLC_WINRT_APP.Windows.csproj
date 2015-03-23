@@ -141,9 +141,6 @@
     <Compile Include="Views\MusicPages\CreateNewPlaylist.xaml.cs">
       <DependentUpon>CreateNewPlaylist.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControls\HorizontalMiniPlayer.xaml.cs">
-      <DependentUpon>HorizontalMiniPlayer.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\UserControls\LicenseFlyout.xaml.cs">
       <DependentUpon>LicenseFlyout.xaml</DependentUpon>
     </Compile>
@@ -177,14 +174,8 @@
     <Compile Include="Views\MusicPages\MusicPlayerPageControls\SimilarArtistsInfoControl.xaml.cs">
       <DependentUpon>SimilarArtistsInfoControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControls\LeftColumn.xaml.cs">
-      <DependentUpon>LeftColumn.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\UserControls\LoadingMusicLibrary.xaml.cs">
       <DependentUpon>LoadingMusicLibrary.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UserControls\MiniPlayer.xaml.cs">
-      <DependentUpon>MiniPlayer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\NoNewVideos.xaml.cs">
       <DependentUpon>NoNewVideos.xaml</DependentUpon>
@@ -195,15 +186,9 @@
     <Compile Include="Controls\RemovableStorage\PlugARemovableStorage.xaml.cs">
       <DependentUpon>PlugARemovableStorage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControls\MiniVideoPlayer.xaml.cs">
-      <DependentUpon>MiniVideoPlayer.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\MainPages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UserControls\VLCSearchBox.xaml.cs">
-      <DependentUpon>VLCSearchBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\VariousPages\SpecialThanks.xaml.cs">
       <DependentUpon>SpecialThanks.xaml</DependentUpon>
@@ -896,10 +881,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\UserControls\HorizontalMiniPlayer.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\UserControls\LicenseFlyout.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -944,17 +925,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\UserControls\LeftColumn.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\UserControls\LoadingMusicLibrary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\UserControls\MiniPlayer.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\UserControls\NoNewVideos.xaml">
       <SubType>Designer</SubType>
@@ -968,17 +941,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\UserControls\MiniVideoPlayer.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\MainPages\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\UserControls\VLCSearchBox.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\VariousPages\SpecialThanks.xaml">
       <Generator>MSBuild:Compile</Generator>
