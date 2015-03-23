@@ -6,6 +6,22 @@
     </header>
     <body>
       <group id="Resources">
+        <trans-unit id="Resources\TrackAlreadyExistsInPlaylist" translate="yes" xml:space="preserve">
+          <source>This track is already in your playlist!</source>
+          <target state="new">This track is already in your playlist!</target>
+        </trans-unit>
+        <trans-unit id="Resources\HaveToSelectPlaylist" translate="yes" xml:space="preserve">
+          <source>You have to select a playlist.</source>
+          <target state="new">You have to select a playlist.</target>
+        </trans-unit>
+        <trans-unit id="Resources\PlaylistAlreadyExists" translate="yes" xml:space="preserve">
+          <source>A playlist with this name already exists</source>
+          <target state="new">A playlist with this name already exists</target>
+        </trans-unit>
+        <trans-unit id="Resources\TrackAddedToYourPlaylist" translate="yes" xml:space="preserve">
+          <source>{0} added to your playlist</source>
+          <target state="new">{0} added to your playlist</target>
+        </trans-unit>
         <trans-unit id="Resources\AlbumsFound" translate="yes" xml:space="preserve">
           <source>Albums Found: {0}</source>
           <target state="new">Albums Found: {0}</target>

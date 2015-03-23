@@ -505,7 +505,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             {
                 await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
                 {
-                    ToastHelper.Basic("A playlist with this name already exists");
+                    ToastHelper.Basic(ResourcesLoader.GetString("PlaylistAlreadyExists"));
                 });
             }
             else
@@ -529,7 +529,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             if (Locator.MusicLibraryVM.CurrentTrackCollection == null) return;
             if (Locator.MusicLibraryVM.CurrentTrackCollection.Playlist.Contains(trackItem))
             {
-                ToastHelper.Basic("This track is already in your playlist!");
+                ToastHelper.Basic(ResourcesLoader.GetString("TrackAlreadyExistsInPlaylist"));
                 return;
             }
             Locator.MusicLibraryVM.CurrentTrackCollection.Playlist.Add(trackItem);
@@ -539,7 +539,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                 TrackCollectionId = Locator.MusicLibraryVM.CurrentTrackCollection.Id,
             });
             if (displayToastNotif)
-                ToastHelper.Basic(trackItem.Name + " added to your playlist");
+                ToastHelper.Basic(string.Format(ResourcesLoader.GetString("TrackAddedToYourPlaylist"), trackItem.Name));
         }
 
         public static async Task AddToPlaylist(AlbumItem albumItem)
@@ -555,7 +555,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                     TrackCollectionId = playlistId,
                 });
             }
-            ToastHelper.Basic(albumItem.Name + " added to your playlist");
+            ToastHelper.Basic(string.Format(ResourcesLoader.GetString("TrackAddedToYourPlaylist"), albumItem.Name));
         }
 
         public static async Task UpdateTrackCollection(TrackCollection trackCollection)
@@ -601,7 +601,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
 #if WINDOWS_PHONE_APP
                 ((ContentDialogButtonClickEventArgs) args).Cancel = true;
 #endif
-                ToastHelper.Basic("You have to select a playlist", false, "selectplaylist");
+                ToastHelper.Basic(ResourcesLoader.GetString("HaveToSelectPlaylist"), false, "selectplaylist");
                 return;
             }
 #if WINDOWS_APP

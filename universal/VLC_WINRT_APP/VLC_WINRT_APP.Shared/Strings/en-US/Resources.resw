@@ -540,6 +540,18 @@
   <data name="AlbumsFound" xml:space="preserve">
     <value>Albums Found: {0}</value>
   </data>
+  <data name="HaveToSelectPlaylist" xml:space="preserve">
+    <value>You have to select a playlist.</value>
+  </data>
+  <data name="PlaylistAlreadyExists" xml:space="preserve">
+    <value>A playlist with this name already exists</value>
+  </data>
+  <data name="TrackAddedToYourPlaylist" xml:space="preserve">
+    <value>{0} added to your playlist</value>
+  </data>
+  <data name="TrackAlreadyExistsInPlaylist" xml:space="preserve">
+    <value>This track is already in your playlist!</value>
+  </data>
   <data name="AddToPlaylist.Text" xml:space="preserve">
     <value>Add to playlist</value>
   </data>
