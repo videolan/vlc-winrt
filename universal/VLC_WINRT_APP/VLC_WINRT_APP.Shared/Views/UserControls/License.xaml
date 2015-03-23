@@ -13,7 +13,7 @@
         <StackPanel>
             <TextBlock TextWrapping="Wrap"
                        FontSize="14">
-                            <Run Text="VLC for Windows Phone"
+                            <Run Text="VLC for Windows (Universal)"
                                  FontSize="28" />
                             <LineBreak />
                             <Run Text="Copyleft 1994-2014 VideoLAN, VLC Authors" />
@@ -22,7 +22,7 @@
                             <Run Text="License"
                                  FontSize="22" />
                             <LineBreak />
-                            <Run Text="VLC for WP  is licensed under the GNU General Public License, version 2" />
+                            <Run Text="VLC for Universal is licensed under the GNU General Public License, version 2" />
                             <LineBreak />
                             <LineBreak />
                             <Run Text="Sources"
