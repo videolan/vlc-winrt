@@ -15,7 +15,11 @@ namespace VLC_WINRT_APP.Services.RunTime
 {
     public class MFService : IMediaService
     {
-        public MediaElement Instance { get; private set; }
+        public MediaElement Instance
+        {
+            get { return App.RootPage.MfMediaElement; }
+        }
+
         public event EventHandler MediaFailed;
         public event Action<IMediaService> OnStopped;
         public event Action<long> OnLengthChanged;
@@ -43,7 +47,7 @@ namespace VLC_WINRT_APP.Services.RunTime
         {
             var mE = mediaElement as MediaElement;
             if (mE == null) throw new ArgumentNullException("mediaElement", "MediaFoundationService needs a MediaElement");
-            Instance = mE;
+
             Instance.MediaFailed += Instance_MediaFailed;
             Instance.MediaOpened += Instance_MediaOpened;
             Instance.CurrentStateChanged += Instance_CurrentStateChanged;
