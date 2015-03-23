@@ -89,12 +89,6 @@ namespace VLC_WINRT_APP.Views.MainPages
                     var settingsFlyout = new SettingsFlyout();
                     settingsFlyout.Show();
                 });
-
-            var about = new SettingsCommand("about", "About The App",
-                command =>
-                {
-                    App.ApplicationFrame.Navigate(typeof(AboutPage));
-                });
             var license = new SettingsCommand("license", "License", command =>
             {
                 var licenseFlyout = new LicenseFlyout();
@@ -104,7 +98,6 @@ namespace VLC_WINRT_APP.Views.MainPages
             args.Request.ApplicationCommands.Add(privacyCommand);
             args.Request.ApplicationCommands.Add(specialThanks);
             args.Request.ApplicationCommands.Add(settings);
-            args.Request.ApplicationCommands.Add(about);
             args.Request.ApplicationCommands.Add(license);
         }
     }

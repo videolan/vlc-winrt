@@ -147,9 +147,6 @@
     <Compile Include="Views\UserControls\SettingsFlyout.xaml.cs">
       <DependentUpon>SettingsFlyout.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\VariousPages\AboutPage.xaml.cs">
-      <DependentUpon>AboutPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Controls\Dlna\WaitingForNetworkAnswer.xaml.cs">
       <DependentUpon>WaitingForNetworkAnswer.xaml</DependentUpon>
     </Compile>
@@ -888,10 +885,6 @@
     <Page Include="Views\UserControls\SettingsFlyout.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\VariousPages\AboutPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\Dlna\WaitingForNetworkAnswer.xaml">
       <SubType>Designer</SubType>
