@@ -44,7 +44,7 @@ namespace VLC_WINRT_APP.Services.RunTime
         public event EventHandler<MediaState> StatusChanged;
         public event TimeChanged TimeChanged;
         public event EventHandler MediaFailed;
-        public event Action OnStopped;
+        public event Action<IMediaService> OnStopped;
         public event Action<long> OnLengthChanged;
         public event Action OnEndReached;
         
@@ -175,7 +175,7 @@ namespace VLC_WINRT_APP.Services.RunTime
         private void EmOnOnStopped()
         {
             if (OnStopped != null)
-                OnStopped();
+                OnStopped(this);
         }
 
         void em_OnEncounteredError()

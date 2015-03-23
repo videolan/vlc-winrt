@@ -17,7 +17,7 @@ namespace VLC_WINRT_APP.Services.RunTime
     {
         public MediaElement Instance { get; private set; }
         public event EventHandler MediaFailed;
-        public event Action OnStopped;
+        public event Action<IMediaService> OnStopped;
         public event Action<long> OnLengthChanged;
         public event Action OnEndReached;
 
@@ -69,7 +69,7 @@ namespace VLC_WINRT_APP.Services.RunTime
             if (OnEndReached != null)
                 OnEndReached();
             if (OnStopped != null)
-                OnStopped();
+                OnStopped(this);
         }
 
         void dispatchTimer_Tick(object sender, object e)
@@ -148,7 +148,7 @@ namespace VLC_WINRT_APP.Services.RunTime
                         StatusChanged(this, MediaState.Stopped);
                     dispatchTimer.Stop();
                     if (OnStopped != null)
-                        OnStopped();
+                        OnStopped(this);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

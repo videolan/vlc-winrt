@@ -525,40 +525,38 @@ namespace VLC_WINRT_APP.ViewModels
             });
         }
 
-        private async void OnStopped()
+        private async void OnStopped(IMediaService mediaService)
         {
-            _mediaService.MediaFailed -= _mediaService_MediaFailed;
-            _mediaService.StatusChanged -= PlayerStateChanged;
-            _mediaService.TimeChanged -= UpdateTime;
+            Debug.WriteLine("OnStopped event called from " + mediaService);
+            mediaService.MediaFailed -= _mediaService_MediaFailed;
+            mediaService.StatusChanged -= PlayerStateChanged;
+            mediaService.TimeChanged -= UpdateTime;
 
-            _mediaService.OnLengthChanged -= OnLengthChanged;
-            _mediaService.OnStopped -= OnStopped;
-            _mediaService.OnEndReached -= OnEndReached;
+            mediaService.OnLengthChanged -= OnLengthChanged;
+            mediaService.OnStopped -= OnStopped;
+            mediaService.OnEndReached -= OnEndReached;
 
-            switch (_playerEngine)
+            if (mediaService is VLCService)
             {
-                case PlayerEngine.VLC:
-                    var vlcService = (VLCService)_mediaService;
-                    var em = vlcService.MediaPlayer.eventManager();
-                    em.OnTrackAdded -= OnTrackAdded;
-                    em.OnTrackDeleted -= OnTrackDeleted;
+                var vlcService = (VLCService)mediaService;
+                var em = vlcService.MediaPlayer.eventManager();
+                em.OnTrackAdded -= OnTrackAdded;
+                em.OnTrackDeleted -= OnTrackDeleted;
 
-                    _audioTracks.Clear();
-                    _subtitlesTracks.Clear();
-                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                    {
-                        CurrentAudioTrack = null;
-                        CurrentSubtitle = null;
-                    });
-                    break;
-                case PlayerEngine.MediaFoundation:
-                    break;
-                case PlayerEngine.BackgroundMFPlayer:
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
+                _audioTracks.Clear();
+                _subtitlesTracks.Clear();
+                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                {
+                    CurrentAudioTrack = null;
+                    CurrentSubtitle = null;
+                });
             }
-            _mediaService.SetNullMediaPlayer();
+            else if (mediaService is MFService)
+            {
+                var mfService = (MFService) mediaService;
+                mfService.Instance.Source = null;
+            }
+            mediaService.SetNullMediaPlayer();
         }
 
         public async Task SetMedia(IVLCMedia media, bool forceVlcLib = false)
