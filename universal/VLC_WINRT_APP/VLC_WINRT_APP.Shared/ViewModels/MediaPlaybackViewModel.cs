@@ -1111,6 +1111,16 @@ namespace VLC_WINRT_APP.ViewModels
             }
         }
 
+        public void SystemMediaTransportControlsBackPossible(bool backPossible)
+        {
+            if (_systemMediaTransportControls != null) _systemMediaTransportControls.IsPreviousEnabled = backPossible;
+        }
+
+        public void SystemMediaTransportControlsNextPossible(bool nextPossible)
+        {
+            if (_systemMediaTransportControls != null) _systemMediaTransportControls.IsNextEnabled = nextPossible;
+        }
+
         #endregion
         public void Dispose()
         {

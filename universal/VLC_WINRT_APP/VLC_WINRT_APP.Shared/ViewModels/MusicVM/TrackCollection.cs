@@ -59,14 +59,21 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         {
             get
             {
-                return (CurrentTrack > 0);
+                var previous = (CurrentTrack > 0);
+                Locator.MediaPlaybackViewModel.SystemMediaTransportControlsBackPossible(previous);
+                return previous;
             }
         }
 
         [Ignore]
         public bool CanGoNext
         {
-            get { return (Playlist.Count != 1) && (CurrentTrack < Playlist.Count - 1); }
+            get
+            {
+                var next = (Playlist.Count != 1) && (CurrentTrack < Playlist.Count - 1);
+                Locator.MediaPlaybackViewModel.SystemMediaTransportControlsNextPossible(next);
+                return next;
+            }
         }
 
         [Ignore]
