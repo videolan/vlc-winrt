@@ -628,6 +628,7 @@ namespace VLC_WINRT_APP.ViewModels
             }
             else if (media is StreamMedia)
             {
+                UseVlcLib = true;
                 await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                 {
                     Locator.VideoVm.CurrentVideo = null;
