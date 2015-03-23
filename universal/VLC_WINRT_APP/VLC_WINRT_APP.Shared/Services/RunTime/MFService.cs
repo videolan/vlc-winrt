@@ -100,7 +100,12 @@ namespace VLC_WINRT_APP.Services.RunTime
 
         public async Task SetMediaFile(IVLCMedia media)
         {
-            if (Instance == null) return;
+            var tcs = new TaskCompletionSource<bool>();
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            { tcs.SetResult(Instance != null); });
+            var instanceExists = await tcs.Task;
+            if (!instanceExists) return;
+
             RandomAccessStreamReference randomAccessStreamReference = null;
             if (media is StreamMedia)
             {
