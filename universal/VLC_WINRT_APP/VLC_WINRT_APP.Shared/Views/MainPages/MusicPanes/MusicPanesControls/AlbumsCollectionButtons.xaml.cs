@@ -47,9 +47,9 @@ namespace VLC_WINRT_APP.Views.MainPages.MusicPanes.MusicPanesControls
         void Responsive(double width)
         {
 #if WINDOWS_PHONE_APP
-            if (width < 470)
+            if (width < 500)
 #else
-            if (width < 570)
+            if (width < 670)
 #endif
                 VisualStateUtilities.GoToState(this, "Minimal", false);
             else
