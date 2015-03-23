@@ -112,7 +112,15 @@ Click on Build Solution.
 Click on Deploy Solution
 
 Profit. \o/
- 
+
+6) Coding guidelines
+--------------------
+TextBox and FocusTextBox
+FocusTextBox is a simple TextBox control. However, when the user writes something in the TextBox, it's also 
+listened by the KeyboardListenerService, which believes the user is entering a keyboard shortcut. 
+With FocusTextBox we prevent this behaviour. 
+Therefore ALL future patches should use FocusTextBox instead of TextBox.
+
 7) Extra: Helpful snippets and tools
 ------------------------------------
 Use http://technet.microsoft.com/en-us/sysinternals/bb896647 DebugView to view the debug logs
