@@ -1075,7 +1075,8 @@ namespace VLC_WINRT_APP.ViewModels
                 LogHelper.Log("PLAYVIDEO: Updating SystemMediaTransportControls");
                 SystemMediaTransportControlsDisplayUpdater updater = _systemMediaTransportControls.DisplayUpdater;
                 updater.Type = MediaPlaybackType.Video;
-
+                _systemMediaTransportControls.IsPreviousEnabled = false;
+                _systemMediaTransportControls.IsNextEnabled = false;
                 //Video metadata
                 updater.VideoProperties.Title = title;
                 //TODO: add full thumbnail suport
