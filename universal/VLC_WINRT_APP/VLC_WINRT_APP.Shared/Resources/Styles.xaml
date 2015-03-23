@@ -3673,12 +3673,16 @@ M 15.937 9.056 c 0.629 -1.69 1.208 -2.349 2.063 -2.349 h 5.586 L 20.293 10 l 1.4
                               Width="28.5">
                             <Grid x:Name="ContentRoot"
                                   Background="Transparent">
-                                <ContentPresenter x:Name="Content"
-                                                  AutomationProperties.AccessibilityView="Raw"
-                                                  Content="{TemplateBinding Icon}"
-                                                  Foreground="{TemplateBinding Foreground}"
-                                                  HorizontalAlignment="Stretch"
-                                                  VerticalAlignment="Center" />
+                                <Viewbox Stretch="Uniform"
+                                         Height="28.5"
+                                         Width="28.5">
+                                    <ContentPresenter x:Name="Content"
+                                                      AutomationProperties.AccessibilityView="Raw"
+                                                      Content="{TemplateBinding Icon}"
+                                                      Foreground="{TemplateBinding Foreground}"
+                                                      HorizontalAlignment="Stretch"
+                                                      VerticalAlignment="Center" />
+                                </Viewbox>
                             </Grid>
                         </Grid>
                         <TextBlock x:Name="TextLabel"
