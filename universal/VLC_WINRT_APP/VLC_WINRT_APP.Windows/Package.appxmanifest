@@ -98,7 +98,7 @@
             </SupportedFileTypes>
           </FileTypeAssociation>
         </Extension>
-        <Extension Category="windows.backgroundTasks" EntryPoint="VLC_WINRT_APP.Windows.App">
+        <Extension Category="windows.backgroundTasks" EntryPoint="VLC_WINRT_APP.App">
           <BackgroundTasks>
             <Task Type="audio" />
           </BackgroundTasks>
