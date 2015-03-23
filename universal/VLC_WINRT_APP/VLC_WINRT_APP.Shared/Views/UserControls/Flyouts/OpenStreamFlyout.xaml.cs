@@ -18,7 +18,7 @@ namespace VLC_WINRT_APP.Views.UserControls.Flyouts
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            var urlTextBox = ((sender as Button).Parent as Grid).GetFirstDescendantOfType<TextBox>();
+            var urlTextBox = ((sender as Button).Parent as Grid).GetFirstDescendantOfType<FocusTextBox>();
             if (urlTextBox != null) Locator.VideoLibraryVM.PlayNetworkMRL.Execute(urlTextBox.Text);
         }
     }

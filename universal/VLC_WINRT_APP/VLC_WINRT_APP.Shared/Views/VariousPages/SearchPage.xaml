@@ -211,7 +211,7 @@
                       Loaded="CheckBox_Loaded"
                       MinWidth="0" />
         </controls:WrapPanel>
-        <TextBox x:Uid="SearchField"
+        <userControls:FocusTextBox x:Uid="SearchField"
                  Grid.Row="1"
                  PlaceholderText="Search"
                  Margin="0,12"

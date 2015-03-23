@@ -4,6 +4,7 @@
              xmlns:local="using:VLC_WINRT_APP.Views.UserControls.Flyouts"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:userControls="using:VLC_WINRT_APP.Views.UserControls"
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400">
@@ -27,7 +28,7 @@
                     <ColumnDefinition />
                     <ColumnDefinition Width="50" />
                 </Grid.ColumnDefinitions>
-                <TextBox x:Uid="EnterAUrl"
+                <userControls:FocusTextBox x:Uid="EnterAUrl"
                          PlaceholderText="Enter a URL"
                          InputScope="Url" 
                          MinWidth="350"

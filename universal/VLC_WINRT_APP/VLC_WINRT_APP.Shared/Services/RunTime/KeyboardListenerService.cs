@@ -14,15 +14,17 @@ namespace VLC_WINRT_APP.Services.RunTime
     {
         private const uint MaxVirtualKeys = 3;
         private VirtualKey[] virtualKeys = new VirtualKey[MaxVirtualKeys];
-
+        public bool CanListen { get; set; }
         public KeyboardListenerService()
         {
+            CanListen = true;
             CoreWindow.GetForCurrentThread().KeyUp += KeyboardListenerService_KeyUp;
             CoreWindow.GetForCurrentThread().KeyDown += KeyboardListenerService_KeyDown;
         }
 
         void KeyboardListenerService_KeyUp(CoreWindow sender, KeyEventArgs args)
         {
+            if (!CanListen) return;
             for (int i = 0; i < MaxVirtualKeys; i++)
             {
                 if (virtualKeys[i] == args.VirtualKey)
@@ -34,6 +36,7 @@ namespace VLC_WINRT_APP.Services.RunTime
 
         async void KeyboardListenerService_KeyDown(CoreWindow sender, KeyEventArgs args)
         {
+            if (!CanListen) return;
             // Guidelines:
             // If first VirtualKey is Ctrl, Alt, or Shift, then we're waiting for another key
             var i = 0;

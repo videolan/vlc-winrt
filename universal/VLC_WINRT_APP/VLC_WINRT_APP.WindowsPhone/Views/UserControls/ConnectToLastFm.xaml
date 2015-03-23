@@ -47,10 +47,8 @@
               Height="320"
               VerticalAlignment="Top"
               Background="White">
-
             <StackPanel>
-
-                <TextBox Height="55"
+                <userControls:FocusTextBox Height="55"
                          Width="300"
                          Margin="0,30"
                          FontSize="20"

@@ -21,7 +21,7 @@
                     The playlist will also be available on your Windows computer, laptop or tablet, only if the audio files are on your other devices.
                 </TextBlock.Text>
             </TextBlock>
-            <TextBox Name="playlistName"
+            <userControls:FocusTextBox x:Name="playlistName"
                      Margin="0,12,0,0"
                      PlaceholderText="Playlist name" />
             <Button Margin="0,6"

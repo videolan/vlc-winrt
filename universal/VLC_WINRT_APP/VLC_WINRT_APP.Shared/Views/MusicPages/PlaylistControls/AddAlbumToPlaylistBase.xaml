@@ -37,7 +37,7 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <TextBox Name="playlistName"
+            <userControls:FocusTextBox x:Name="playlistName"
                      PlaceholderText="Playlist name" />
             <Button Grid.Column="1"
                     Content="Add"

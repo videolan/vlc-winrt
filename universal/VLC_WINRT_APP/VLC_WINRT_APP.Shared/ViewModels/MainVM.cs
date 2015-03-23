@@ -44,12 +44,12 @@ namespace VLC_WINRT_APP.ViewModels
     {
         #region private fields
 
-        private NetworkListenerService networkListenerService;
-        private KeyboardListenerService keyboardListenerService;
         private ObservableCollection<Panel> _panels = new ObservableCollection<Panel>();
         private ObservableCollection<SearchResult> _searchResults;
         #endregion
         #region private props
+        private NetworkListenerService networkListenerService;
+        private KeyboardListenerService keyboardListenerService;
         private bool _isInternet;
         private Type _currentPage;
         private GoToPanelCommand _goToPanelCommand;
@@ -72,6 +72,7 @@ namespace VLC_WINRT_APP.ViewModels
         #endregion
 
         #region public props
+        public KeyboardListenerService KeyboardListenerService { get { return keyboardListenerService;} }
         public bool IsInternet
         {
             get { return _isInternet; }

@@ -4,6 +4,7 @@
                xmlns:local="using:VLC_WINRT_APP.Views.MusicPages"
                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+               xmlns:userControls="using:VLC_WINRT_APP.Views.UserControls"
                mc:Ignorable="d"
                Title="CREATE NEW PLAYLIST"
                PrimaryButtonText="ok"
@@ -14,7 +15,7 @@
 
     <StackPanel VerticalAlignment="Stretch"
                 HorizontalAlignment="Stretch">
-        <TextBox Name="playlistName"
+        <userControls:FocusTextBox x:Name="playlistName"
                  PlaceholderText="Playlist name"/>
         
         <!-- Corps de contenu -->
