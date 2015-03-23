@@ -342,9 +342,9 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             LoadingState = LoadingState.NotLoaded;
             var resourceLoader = new ResourceLoader();
 #if WINDOWS_APP
-            Panels.Add(new Model.Panel(resourceLoader.GetString("Albums").ToLower(), 0, 1, App.Current.Resources["HomePath"].ToString(), true));
-            Panels.Add(new Model.Panel(resourceLoader.GetString("Artists").ToLower(), 1, 0.4, App.Current.Resources["HomePath"].ToString()));
-            Panels.Add(new Model.Panel(resourceLoader.GetString("Songs").ToLower(), 2, 0.4, App.Current.Resources["HomePath"].ToString()));
+            Panels.Add(new Model.Panel(resourceLoader.GetString("Albums").ToLower(), 0, App.Current.Resources["HomePath"].ToString(), true));
+            Panels.Add(new Model.Panel(resourceLoader.GetString("Artists").ToLower(), 1, App.Current.Resources["HomePath"].ToString()));
+            Panels.Add(new Model.Panel(resourceLoader.GetString("Songs").ToLower(), 2, App.Current.Resources["HomePath"].ToString()));
             //Panels.Add(new Panel(resourceLoader.GetString("Pinned").ToLower(), 2, 0.4, App.Current.Resources["HomePath"].ToString()));
             //Panels.Add(new Panel(resourceLoader.GetString("Playlists").ToLower(), 2, 0.4, App.Current.Resources["HomePath"].ToString()));
 #endif

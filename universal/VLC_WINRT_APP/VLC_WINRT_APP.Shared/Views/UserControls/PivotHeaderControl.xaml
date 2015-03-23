@@ -9,9 +9,15 @@
              d:DesignWidth="400">
     <Grid Height="36"
           VerticalAlignment="Bottom">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="5" />
+            <RowDefinition Height="1" />
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="6" />
+            <ColumnDefinition Width="6"
+                              x:Name="MiddleColumnDefinition" />
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
         <VisualStateManager.VisualStateGroups>
@@ -66,26 +72,37 @@
                 </VisualState>
                 <VisualState x:Name="Snap">
                     <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MiddleColumnDefinition"
+                                                       Storyboard.TargetProperty="Width">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="0" />
+                        </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Icon"
                                                        Storyboard.TargetProperty="Height">
                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="30" />
+                                                    Value="26" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Icon"
+                                                       Storyboard.TargetProperty="Margin">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="0,0,0,-3" />
                         </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Icon"
                                                        Storyboard.TargetProperty="Width">
                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="30" />
+                                                    Value="26" />
                         </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Title"
                                                        Storyboard.TargetProperty="Visibility">
                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Collapsed"/>
+                                                    Value="Collapsed" />
                         </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
         <Path x:Name="Icon"
+              Grid.Row="0"
               Data="{Binding PathData}"
               Height="18"
               Width="18"
@@ -94,11 +111,18 @@
               Stretch="Uniform"
               Fill="{ThemeResource BasicForeground}" />
         <TextBlock x:Name="Title"
+                   Grid.Row="0"
                    Grid.Column="2"
                    Text="{Binding Title}"
                    Foreground="{ThemeResource BasicForeground}"
                    Style="{StaticResource SubheaderTextBlockStyle}"
                    VerticalAlignment="Bottom"
                    FontSize="22" />
+        <Grid Grid.Column="0"
+              Grid.ColumnSpan="3"
+              Grid.Row="2"
+              Background="White"
+              Margin="0,0,-1,0"
+              Visibility="{Binding IsCurrent, Converter={StaticResource BooleanToVisibilityConverter}}" />
     </Grid>
 </UserControl>

@@ -12,21 +12,25 @@
              DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}">
 
     <Grid x:Name="ColumnGrid"
-          Height="60"
+          Height="50"
           MinWidth="320"
           Background="{StaticResource MainColor}">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="24"/>
+            <ColumnDefinition Width="24" />
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <StackPanel Orientation="Horizontal"
                     Grid.Column="1">
-            <local:VLCLogoWithGradient Width="36" />
+            <Path Data="{StaticResource VLCFlatPath}"
+                  Fill="White"
+                  Width="26"
+                  Stretch="Uniform" />
             <TextBlock Text="VLC"
                        Foreground="{ThemeResource BasicForeground}"
                        Style="{StaticResource SubheaderTextBlockStyle}"
-                       VerticalAlignment="Center" />
+                       VerticalAlignment="Center"
+                       Margin="0,-3,0,0" />
         </StackPanel>
         <ListView Grid.Column="2"
                   x:Name="PanelsListView"
@@ -46,7 +50,7 @@
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <ItemsStackPanel Orientation="Horizontal"
-                                     Margin="12,0,0,-2" />
+                                     Margin="12,0,0,0" />
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
             <ListView.ItemContainerTransitions>

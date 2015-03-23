@@ -153,7 +153,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             CameraRoll = new ObservableCollection<VideoItem>();
 #if WINDOWS_APP
             var resourceLoader = new ResourceLoader();
-            Panels.Add(new Panel(resourceLoader.GetString("Videos"), 0, 1, App.Current.Resources["VideoPath"].ToString(), true));
+            Panels.Add(new Panel(resourceLoader.GetString("Videos"), 0, App.Current.Resources["VideoPath"].ToString(), true));
             //Panels.Add(new Panel("favorite", 2, 0.4));
 #endif
         }

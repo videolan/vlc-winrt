@@ -245,7 +245,7 @@ namespace VLC_WINRT_APP.Helpers.VideoLibrary
                     await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                     {
                         var resourceLoader = new ResourceLoader();
-                        Locator.VideoLibraryVM.Panels.Add(new Panel(resourceLoader.GetString("Shows"), 1, 0.4, null));
+                        Locator.VideoLibraryVM.Panels.Add(new Panel(resourceLoader.GetString("Shows"), 1, null));
                     });
                 }
 #endif

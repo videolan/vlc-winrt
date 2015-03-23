@@ -19,27 +19,25 @@ namespace VLC_WINRT_APP.Model
     {
         private string _title;
         private int _index;
-        private double _opacity;
         private string _pathData;
-        private SolidColorBrush _color;
+        private bool _isCurrent;
 
-        public Panel(string t, int i, double o, string pd, bool isdefault = false)
+        public Panel(string t, int i, string pd, bool isdefault = false)
         {
             _title = t;
             _index = i;
-            _opacity = o;
             _pathData = pd;
+            _isCurrent = isdefault;
         }
 
         public string Title { get { return _title; } set { SetProperty(ref _title, value); } }
         public int Index { get { return _index; } set { SetProperty(ref _index, value); } }
-        public double Opacity { get { return _opacity; } set { SetProperty(ref _opacity, value); } }
         public string PathData { get { return _pathData; } set { SetProperty(ref _pathData, value); } }
 
-        public SolidColorBrush Color
+        public bool IsCurrent
         {
-            get { return _color; }
-            set { SetProperty(ref _color, value); }
+            get { return _isCurrent; }
+            set { SetProperty(ref _isCurrent, value); }
         }
     }
 }

@@ -51,10 +51,11 @@ namespace VLC_WINRT_APP.Commands.MainPageCommands
 
             foreach (Model.Panel panel1 in Locator.MainVM.Panels)
             {
+                panel1.IsCurrent = false;
             }
-
             if (panel != null)
             {
+                panel.IsCurrent = true;
                 switch (panel.Index)
                 {
                     case 0:
