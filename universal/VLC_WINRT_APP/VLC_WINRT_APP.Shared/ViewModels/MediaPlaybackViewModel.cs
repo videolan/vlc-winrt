@@ -78,6 +78,7 @@ namespace VLC_WINRT_APP.ViewModels
         private bool _isRunning;
         private int _speedRate;
         private bool _isStream;
+        private int _bufferingProgress;
 
         private IVLCMedia _currentMedia;
         #endregion
@@ -85,6 +86,8 @@ namespace VLC_WINRT_APP.ViewModels
         #region private fields
         private List<DictionaryKeyValue> _subtitlesTracks = new List<DictionaryKeyValue>();
         private List<DictionaryKeyValue> _audioTracks = new List<DictionaryKeyValue>();
+        private bool _isBuffered;
+
         #endregion
 
         #region public props
@@ -228,9 +231,21 @@ namespace VLC_WINRT_APP.ViewModels
             set { SetProperty(ref _timeTotal, value); }
         }
 
+        public int BufferingProgress
+        {
+            get { return _bufferingProgress; }
+        }
+
+        public bool IsBuffered
+        {
+            get { return _isBuffered; }
+            set { SetProperty(ref _isBuffered, value); }
+        }
+
         /**
          * Elasped time in milliseconds
          */
+
         public long Time
         {
             get
@@ -535,6 +550,7 @@ namespace VLC_WINRT_APP.ViewModels
             mediaService.OnLengthChanged -= OnLengthChanged;
             mediaService.OnStopped -= OnStopped;
             mediaService.OnEndReached -= OnEndReached;
+            _mediaService.OnBuffering -= MediaServiceOnOnBuffering;
 
             if (mediaService is VLCService)
             {
@@ -668,6 +684,7 @@ namespace VLC_WINRT_APP.ViewModels
             _mediaService.OnLengthChanged += OnLengthChanged;
             _mediaService.OnStopped += OnStopped;
             _mediaService.OnEndReached += OnEndReached;
+            _mediaService.OnBuffering += MediaServiceOnOnBuffering;
 
             switch (_playerEngine)
             {
@@ -692,6 +709,16 @@ namespace VLC_WINRT_APP.ViewModels
 
             // todo: implement this thing
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => SpeedRate = 100);
+        }
+
+        private async void MediaServiceOnOnBuffering(int f)
+        {
+            _bufferingProgress = f;
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                IsBuffered = f == 100;
+                OnPropertyChanged("BufferingProgress");
+            });
         }
 
         async void _mediaService_MediaFailed(object sender, EventArgs e)

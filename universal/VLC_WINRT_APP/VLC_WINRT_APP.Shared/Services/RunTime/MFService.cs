@@ -20,6 +20,7 @@ namespace VLC_WINRT_APP.Services.RunTime
         public event Action<IMediaService> OnStopped;
         public event Action<long> OnLengthChanged;
         public event Action OnEndReached;
+        public event Action<int> OnBuffering;
 
         public event EventHandler<MediaState> StatusChanged;
         public event TimeChanged TimeChanged;
@@ -47,6 +48,7 @@ namespace VLC_WINRT_APP.Services.RunTime
             Instance.MediaOpened += Instance_MediaOpened;
             Instance.CurrentStateChanged += Instance_CurrentStateChanged;
             Instance.MediaEnded += Instance_MediaEnded;
+            Instance.BufferingProgressChanged += Instance_BufferingProgressChanged;
             PlayerInstanceReady.SetResult(true);
             App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
@@ -56,6 +58,12 @@ namespace VLC_WINRT_APP.Services.RunTime
                 };
                 dispatchTimer.Tick += dispatchTimer_Tick;
             });
+        }
+
+        void Instance_BufferingProgressChanged(object sender, RoutedEventArgs e)
+        {
+            if (OnBuffering != null)
+                OnBuffering((int) (Instance.BufferingProgress * 100));
         }
 
         void Instance_MediaOpened(object sender, RoutedEventArgs e)

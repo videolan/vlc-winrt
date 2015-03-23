@@ -36,6 +36,9 @@
             <ColumnDefinition />
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
+        <userControls:BufferingControl  Grid.Row="1"
+                                        Grid.Column="0"
+                                        Grid.ColumnSpan="3" />
         <TextBlock Grid.Row="0"
                    Grid.Column="1"
                    Style="{StaticResource TitleTextBlockStyle}"

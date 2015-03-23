@@ -47,7 +47,8 @@ namespace VLC_WINRT_APP.Services.RunTime
         public event Action<IMediaService> OnStopped;
         public event Action<long> OnLengthChanged;
         public event Action OnEndReached;
-        
+        public event Action<int> OnBuffering;
+
         public TaskCompletionSource<bool> PlayerInstanceReady { get; set; }
 
         public Instance Instance { get; private set; }
@@ -148,6 +149,7 @@ namespace VLC_WINRT_APP.Services.RunTime
             MediaPlayer = new MediaPlayer(mediaVLC);
             LogHelper.Log("PLAYWITHVLC: MediaPlayer instance created");
             var em = MediaPlayer.eventManager();
+            em.OnBuffering += EmOnOnBuffering;
             em.OnStopped += EmOnOnStopped;
             em.OnPlaying += OnPlaying;
             em.OnPaused += OnPaused;
@@ -158,6 +160,12 @@ namespace VLC_WINRT_APP.Services.RunTime
             em.OnLengthChanged += em_OnLengthChanged;
             // todo: is there another way? sure there is.
             _isAudioMedia = media is TrackItem;
+        }
+
+        private void EmOnOnBuffering(float param0)
+        {
+            if (OnBuffering != null)
+                OnBuffering((int)param0);
         }
 
         void em_OnLengthChanged(long __param0)

@@ -61,6 +61,7 @@ namespace VLC_WINRT_APP.Services.Interface
         event Action<IMediaService> OnStopped;
         event Action<long> OnLengthChanged;
         event Action OnEndReached;
+        event Action<int> OnBuffering;
 
         TaskCompletionSource<bool> PlayerInstanceReady { get; set; } 
     }
