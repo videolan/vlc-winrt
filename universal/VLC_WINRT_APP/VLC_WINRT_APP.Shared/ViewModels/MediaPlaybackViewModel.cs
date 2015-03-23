@@ -1042,6 +1042,11 @@ namespace VLC_WINRT_APP.ViewModels
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 if (_systemMediaTransportControls == null) return;
+                _systemMediaTransportControls.PlaybackStatus = MediaPlaybackStatus.Playing;
+                _systemMediaTransportControls.IsEnabled = true;
+                _systemMediaTransportControls.IsPauseEnabled = true;
+                _systemMediaTransportControls.IsPlayEnabled = true;
+
                 SystemMediaTransportControlsDisplayUpdater updater = _systemMediaTransportControls.DisplayUpdater;
                 updater.Type = MediaPlaybackType.Music;
                 // Music metadata.
