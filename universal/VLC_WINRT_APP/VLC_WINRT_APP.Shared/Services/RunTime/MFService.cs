@@ -67,7 +67,7 @@ namespace VLC_WINRT_APP.Services.RunTime
         void Instance_BufferingProgressChanged(object sender, RoutedEventArgs e)
         {
             if (OnBuffering != null)
-                OnBuffering((int) (Instance.BufferingProgress * 100));
+                OnBuffering((int)(Instance.BufferingProgress * 100));
         }
 
         void Instance_MediaOpened(object sender, RoutedEventArgs e)
