@@ -6,6 +6,10 @@
     </header>
     <body>
       <group id="Resources">
+        <trans-unit id="Resources\AlbumsFound" translate="yes" xml:space="preserve">
+          <source>Albums Found: {0}</source>
+          <target state="new">Albums Found: {0}</target>
+        </trans-unit>
         <trans-unit id="Resources\WeDidNotFindVideos\Text" translate="yes" xml:space="preserve">
           <source>We did not find videos in your Videos folder</source>
           <target state="new">We did not find videos in your Videos folder</target>

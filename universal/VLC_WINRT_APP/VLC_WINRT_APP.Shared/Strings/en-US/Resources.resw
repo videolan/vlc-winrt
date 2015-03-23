@@ -537,6 +537,9 @@
   <data name="ViewArtist.Text" xml:space="preserve">
     <value>view artist</value>
   </data>
+  <data name="AlbumsFound" xml:space="preserve">
+    <value>Albums Found: {0}</value>
+  </data>
   <data name="AddToPlaylist.Text" xml:space="preserve">
     <value>Add to playlist</value>
   </data>

@@ -9,6 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Resources;
 using Windows.Foundation;
 using Windows.Storage;
 using Windows.Storage.AccessCache;
@@ -41,6 +42,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
         static readonly SemaphoreSlim AlbumCoverFetcherSemaphoreSlim = new SemaphoreSlim(2);
         static readonly SemaphoreSlim ArtistPicFetcherSemaphoreSlim = new SemaphoreSlim(2);
         static readonly SemaphoreSlim TrackItemDiscovererSemaphoreSlim = new SemaphoreSlim(1);
+        static readonly ResourceLoader ResourcesLoader = ResourceLoader.GetForCurrentView("Resources");
 
         public static async Task FetchAlbumCoverOrWaitAsync(AlbumItem albumItem)
         {
@@ -284,7 +286,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                         {
                             var artistFromCollection = Locator.MusicLibraryVM.Artists.FirstOrDefault(x => x.Id == album.ArtistId);
                             if (artistFromCollection != null) artistFromCollection.Albums.Add(album);
-                            Locator.MusicLibraryVM.CurrentIndexingStatus = "Found " + Locator.MusicLibraryVM.Albums.Count + " albums";
+                            Locator.MusicLibraryVM.CurrentIndexingStatus = string.Format(ResourcesLoader.GetString("AlbumsFound"), Locator.MusicLibraryVM.Albums.Count);
 #if WINDOWS_PHONE_APP
                             StatusBarHelper.UpdateTitle(Locator.MusicLibraryVM.CurrentIndexingStatus);
 #endif

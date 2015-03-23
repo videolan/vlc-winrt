@@ -6,6 +6,10 @@
     </header>
     <body>
       <group id="Resources">
+        <trans-unit id="Resources\AlbumsFound" translate="yes" xml:space="preserve">
+          <source>Albums Found: {0}</source>
+          <target state="new">Albums Found: {0}</target>
+        </trans-unit>
         <trans-unit id="Resources\ViewArtistLabel\Label" translate="yes" xml:space="preserve">
           <source>view artist</source>
           <target state="new">view artist</target>
