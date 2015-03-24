@@ -15,24 +15,18 @@
         <Grid Name="HeaderGrid"
               Height="100"
               Background="{Binding HeaderBackground, Mode=TwoWay}">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="12" />
-                <RowDefinition />
-            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Path Grid.Row="1"
-                  Data="{StaticResource VLCFlatPath}"
+            <Path Data="{StaticResource VLCFlatPath}"
                   Loaded="BackButton_Loaded"
                   Fill="{ThemeResource BasicForeground}"
                   VerticalAlignment="Center"
                   Margin="24,6,0,0"
                   Height="26"
                   Stretch="UniformToFill" />
-            <TextBlock Grid.Row="1"
-                       Margin="12,-3,0,0"
+            <TextBlock Margin="12,-3,0,0"
                        TextTrimming="CharacterEllipsis"
                        TextWrapping="NoWrap"
                        VerticalAlignment="Center"

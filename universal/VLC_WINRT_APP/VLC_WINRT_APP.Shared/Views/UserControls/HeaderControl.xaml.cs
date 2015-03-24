@@ -65,7 +65,7 @@ namespace VLC_WINRT_APP.Views.UserControls
 
         private void GoBack_Click(object sender, RoutedEventArgs e)
         {
-            var flyout = this.GetFirstAncestorOfType<SettingsFlyout>();
+            var flyout = this.GetFirstAncestorOfType<Windows.UI.Xaml.Controls.SettingsFlyout>();
             if (flyout != null) flyout.Hide();
             else if (App.ApplicationFrame.CanGoBack) App.ApplicationFrame.GoBack();
         }
