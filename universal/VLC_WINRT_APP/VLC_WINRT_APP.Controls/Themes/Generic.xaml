@@ -94,23 +94,17 @@
                               Grid.Row="1"
                               Grid.Column="0"
                               Grid.ColumnSpan="2">
-                            <TextBlock x:Name="InformationTextBlock" 
+                            <TextBlock x:Name="InformationTextBlock"
                                        TextWrapping="NoWrap"
                                        TextTrimming="CharacterEllipsis"
                                        Foreground="White"
                                        HorizontalAlignment="Right"
-                                       Margin="0,0,12,0"/>
+                                       Margin="0,0,12,0" />
                         </Grid>
-                        <Frame x:Name="NavigationFrame"
-                               Grid.Column="1"
-                               Grid.Row="2"
-                               Background="Transparent">
-                            <Frame.ContentTransitions>
-                                <TransitionCollection>
-                                    <EdgeUIThemeTransition Edge="Right" />
-                                </TransitionCollection>
-                            </Frame.ContentTransitions>
-                        </Frame>
+
+                        <ContentPresenter x:Name="ContentPresenter"
+                                          Grid.Column="1"
+                                          Grid.Row="2" />
                         <Grid x:Name="SidebarGridContainer"
                               Grid.Column="0"
                               Grid.ColumnSpan="2"
