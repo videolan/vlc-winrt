@@ -18,9 +18,22 @@
           RequestedTheme="Dark">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="12" />
+            <ColumnDefinition Width="Auto" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <ListView Grid.Column="1"
+        <StackPanel Orientation="Horizontal"
+                    Grid.Column="1">
+            <Path Data="{StaticResource VLCFlatPath}"
+                  Fill="White"
+                  Width="26"
+                  Stretch="Uniform" />
+            <TextBlock Text="VLC"
+                       Foreground="{ThemeResource BasicForeground}"
+                       Style="{StaticResource SubheaderTextBlockStyle}"
+                       VerticalAlignment="Center"
+                       Margin="0,-3,0,0" />
+        </StackPanel>
+        <ListView Grid.Column="2"
                   x:Name="PanelsListView"
                   ItemsSource="{Binding Panels}"
                   IsItemClickEnabled="True"
@@ -37,7 +50,8 @@
             </triggers:Interactions.Triggers>
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <ItemsStackPanel Orientation="Horizontal"/>
+                    <ItemsStackPanel Orientation="Horizontal"
+                                     Margin="12,0,0,0" />
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
         </ListView>
