@@ -9,10 +9,10 @@ namespace VLC_WINRT_APP.Views.UserControls
         public PivotHeaderControl()
         {
             this.InitializeComponent();
+            Responsive();
             Window.Current.SizeChanged += Current_SizeChanged;
         }
-
-        private void Current_SizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)
+        void Responsive()
         {
             if (Window.Current.Bounds.Width < 600)
             {
@@ -26,6 +26,11 @@ namespace VLC_WINRT_APP.Views.UserControls
             {
                 VisualStateUtilities.GoToState(this, "Normal", false);
             }
+        }
+
+        private void Current_SizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)
+        {
+            Responsive();
         }
     }
 }
