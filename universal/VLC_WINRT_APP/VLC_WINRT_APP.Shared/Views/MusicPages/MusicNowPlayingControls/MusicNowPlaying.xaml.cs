@@ -44,7 +44,7 @@ namespace VLC_WINRT_APP.Views.MusicPages.MusicNowPlayingControls
                 VisualStateUtilities.GoToState(this, "Wide", false);
             }
 
-            if (Window.Current.Bounds.Height < 650)
+            if (Window.Current.Bounds.Height < 700)
             {
                 VisualStateUtilities.GoToState(this, "Tiny", false);
             }
