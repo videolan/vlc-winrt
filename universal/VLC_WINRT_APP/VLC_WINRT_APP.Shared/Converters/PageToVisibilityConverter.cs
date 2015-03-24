@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
 
@@ -9,8 +10,8 @@ namespace VLC_WINRT_APP.Converters
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             var currentpage = value as Type;
-            var pageparameter = parameter.ToString();
-            if (currentpage != null && currentpage.Name == pageparameter)
+            var pages = parameter.ToString().Split(',');
+            if (currentpage != null && pages.Contains(currentpage.Name))
             {
                 return Visibility.Collapsed;
             }

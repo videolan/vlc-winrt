@@ -70,9 +70,8 @@
             <Binding Source="{Binding Source={StaticResource Locator}, Path=MainVM}"
                      Path="CurrentPage"
                      Converter="{StaticResource PageToVisibilityConverter}"
-                     ConverterParameter="VideoPlayerPage" />
+                     ConverterParameter="VideoPlayerPage,MusicPlayerPage" />
         </customAppBarDesktop:AppBar.Visibility>
-
         <customAppBarDesktop:AppBar.PrimaryCommands>
             <AppBarButton Style="{StaticResource EllipseLessAppBarButtonStyle}"
                           Label="search"
