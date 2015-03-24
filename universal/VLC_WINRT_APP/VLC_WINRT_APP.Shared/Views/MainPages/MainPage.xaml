@@ -5,6 +5,7 @@
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:userControls="using:VLC_WINRT_APP.Views.UserControls"
                 xmlns:controls="using:VLC_WINRT_APP.Controls"
+                xmlns:customAppBarDesktop="using:CustomAppBarDesktop"
                 mc:Ignorable="d"
                 DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}"
                 RequestedTheme="{Binding ApplicationTheme, Converter={StaticResource AppThemeElementThemeConverter}}"
@@ -50,12 +51,57 @@
                          InformationText="{Binding Source={StaticResource Locator}, Path=MainVM.InformationText}"
                          InformationBackground="{StaticResource MainColor}">
         <controls:SplitShell.SideBarContent>
-            <userControls:SideBar Visibility="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}"/>
+            <userControls:SideBar Visibility="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}" />
         </controls:SplitShell.SideBarContent>
         <controls:SplitShell.TopBarContent>
             <userControls:TopBar Visibility="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}" />
         </controls:SplitShell.TopBarContent>
     </controls:SplitShell>
+    <customAppBarDesktop:AppBar Grid.Row="1"
+                                x:Name="CommandBar"
+                                x:FieldModifier="public"
+                                RequestedTheme="{Binding ApplicationTheme, Converter={StaticResource AppThemeElementThemeConverter}}"
+                                Background="{ThemeResource ApplicationBarForegroundThemeBrush}">
+        <customAppBarDesktop:AppBar.Visibility>
+            <Binding Source="{Binding Source={StaticResource Locator}, Path=MainVM}"
+                     Path="CurrentPage"
+                     Converter="{StaticResource PageToVisibilityConverter}"
+                     ConverterParameter="VideoPlayerPage" />
+        </customAppBarDesktop:AppBar.Visibility>
 
+        <customAppBarDesktop:AppBar.PrimaryCommands>
+            <AppBarButton Style="{StaticResource EllipseLessAppBarButtonStyle}"
+                          Label="search"
+                          Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToSearchPage}">
+                <AppBarButton.Icon>
+                    <PathIcon Data="{StaticResource SearchPath}" />
+                </AppBarButton.Icon>
+            </AppBarButton>
+            <AppBarButton Grid.Column="1"
+                          Style="{StaticResource EllipseLessAppBarButtonStyle}"
+                          Label="open file"
+                          Command="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM.PickVideo}">
+                <AppBarButton.Icon>
+                    <PathIcon Data="{StaticResource OpenFilePath}" />
+                </AppBarButton.Icon>
+            </AppBarButton>
+            <AppBarButton Grid.Column="2"
+                          Style="{StaticResource EllipseLessAppBarButtonStyle}"
+                          Label="open stream"
+                          Flyout="{StaticResource PhoneOpenStreamFlyout}">
+                <AppBarButton.Icon>
+                    <PathIcon Data="{StaticResource OnlinePath}" />
+                </AppBarButton.Icon>
+            </AppBarButton>
+            <AppBarButton Grid.Column="3"
+                          Style="{StaticResource EllipseLessAppBarButtonStyle}"
+                          Label="settings"
+                          Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToSettingsPageCommand}">
+                <AppBarButton.Icon>
+                    <PathIcon Data="{StaticResource SettingsPath}" />
+                </AppBarButton.Icon>
+            </AppBarButton>
+        </customAppBarDesktop:AppBar.PrimaryCommands>
+    </customAppBarDesktop:AppBar>
     <userControls:BottomMiniPlayer Grid.Row="1" />
 </SwapChainPanel>
