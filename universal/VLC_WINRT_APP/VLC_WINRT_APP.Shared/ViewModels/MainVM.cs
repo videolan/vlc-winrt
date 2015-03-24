@@ -61,6 +61,8 @@ namespace VLC_WINRT_APP.ViewModels
         private SearchClickedCommand _searchClickedCommand;
         private string _searchTag = "";
         private bool _preventAppExit = false;
+        private string _informationText;
+
         #endregion
         #region public fields
         public ObservableCollection<SearchResult> SearchResults
@@ -75,7 +77,11 @@ namespace VLC_WINRT_APP.ViewModels
         public bool IsInternet
         {
             get { return _isInternet; }
-            set { SetProperty(ref _isInternet, value); }
+            set
+            {
+                InformationText = !value ? "No Internet connection" : "";
+                SetProperty(ref _isInternet, value);
+            }
         }
 
         public Type CurrentPage
@@ -141,6 +147,13 @@ namespace VLC_WINRT_APP.ViewModels
             get { return _preventAppExit; }
             set { SetProperty(ref _preventAppExit, value); }
         }
+
+        public string InformationText
+        {
+            get { return _informationText; }
+            set { SetProperty(ref _informationText, value); }
+        }
+
         #endregion
 
 
