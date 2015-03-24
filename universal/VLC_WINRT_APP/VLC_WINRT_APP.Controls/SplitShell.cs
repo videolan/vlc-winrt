@@ -224,17 +224,7 @@ namespace VLC_WINRT_APP.Controls
 
         private void Responsive()
         {
-            if (Window.Current.Bounds.Width < 600)
-            {
-                if (_alwaysVisibleSideBarVisualState)
-                    VisualStateManager.GoToState(this, AlwaysVisibleSideBarVisualStateName, false);
-                else
-                    VisualStateManager.GoToState(this, SideBarVisualStateName, false);
-            }
-            else
-            {
-                VisualStateManager.GoToState(this, TopBarVisualStateName, false);
-            }
+            VisualStateManager.GoToState(this, TopBarVisualStateName, false);
         }
 
         void _edgePaneGrid_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
