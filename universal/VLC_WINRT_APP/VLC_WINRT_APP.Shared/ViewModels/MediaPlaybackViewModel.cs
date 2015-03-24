@@ -628,7 +628,6 @@ namespace VLC_WINRT_APP.ViewModels
                     }
 #endif
                     await Locator.MediaPlaybackViewModel.InitializePlayback(track);
-                    Locator.MediaPlaybackViewModel._mediaService.Play();
                     await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
                     {
                         await Locator.MusicPlayerVM.SetCurrentArtist();
