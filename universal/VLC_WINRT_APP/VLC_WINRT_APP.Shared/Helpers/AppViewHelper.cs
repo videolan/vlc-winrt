@@ -20,7 +20,9 @@ namespace VLC_WINRT_APP.Helpers
             titleBar = allProperties.FirstOrDefault(x => x.Name == "TitleBar");
             if (titleBar == null) return;
             dynamic bb = titleBar.GetMethod.Invoke(v, null);
-            bb.ExtendViewIntoTitleBar = true;
+            bb.BackgroundColor = (Color)App.Current.Resources["MainColorBase"];
+            bb.ForegroundColor = Colors.WhiteSmoke;
+            bb.ButtonForegroundColor = Colors.WhiteSmoke;
 #endif
         }
 
@@ -32,7 +34,7 @@ namespace VLC_WINRT_APP.Helpers
             titleBar = allProperties.FirstOrDefault(x => x.Name == "TitleBar");
             if (titleBar == null) return;
             dynamic bb = titleBar.GetMethod.Invoke(v, null);
-            bb.ButtonBackgroundColor = Colors.WhiteSmoke;
+            bb.ButtonBackgroundColor = (Color) App.Current.Resources["MainColorBase"];
 #endif
         }
 
