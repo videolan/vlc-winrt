@@ -298,10 +298,20 @@
                             <VisualStateGroup x:Name="Orientation">
                                 <VisualState x:Name="Portrait">
                                     <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ScrollViewer"
+                                                                       Storyboard.TargetProperty="Margin">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                                    Value="0,0,0,0" />
+                                        </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="Landscape">
                                     <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ScrollViewer"
+                                                                       Storyboard.TargetProperty="Margin">
+                                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                                    Value="0,-25,0,0" />
+                                        </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
@@ -320,7 +330,7 @@
                             <PivotPanel x:Name="Panel"
                                         VerticalAlignment="Stretch">
                                 <PivotHeaderPanel x:Name="Header"
-                                                  Height="0">
+                                                  Visibility="Collapsed">
                                     <PivotHeaderPanel.RenderTransform>
                                         <CompositeTransform x:Name="HeaderTranslateTransform"
                                                             TranslateX="0" />
@@ -334,7 +344,7 @@
                                 </ItemsPresenter>
                             </PivotPanel>
                         </ScrollViewer>
-                            <ContentControl x:Name="TitleContentControl"/>
+                        <ContentControl x:Name="TitleContentControl" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
