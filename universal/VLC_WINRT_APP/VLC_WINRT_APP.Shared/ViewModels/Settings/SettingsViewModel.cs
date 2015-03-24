@@ -467,7 +467,7 @@ namespace VLC_WINRT_APP.ViewModels.Settings
             VideoViewCollection.Add(VideoView.Videos);
             VideoViewCollection.Add(VideoView.Shows);
             VideoViewCollection.Add(VideoView.CameraRoll);
-
+            Initialize();
             InitializeActionKeyboardShortcuts();
         }
 
