@@ -196,8 +196,6 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
 #else
                 StorageFolder musicLibrary = KnownFolders.MusicLibrary;
                 LogHelper.Log("Searching for music from Phone MusicLibrary ...");
-                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                    StatusBarHelper.UpdateTitle("Searching for music"));
                 await CreateDatabaseFromMusicFolder(musicLibrary);
 #endif
             }
