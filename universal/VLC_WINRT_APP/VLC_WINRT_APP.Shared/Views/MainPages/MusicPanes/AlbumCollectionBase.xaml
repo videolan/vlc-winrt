@@ -13,28 +13,15 @@
              d:DesignWidth="400">
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="50" />
-            <RowDefinition />
-        </Grid.RowDefinitions>
-        <Grid DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <musicPanesControls:MusicPaneComboBox Grid.Row="0"/>
-            <musicPanesControls:AlbumsCollectionButtons Grid.Column="1"/>
-        </Grid>
-        <controls:NothingToSeeHere Grid.Row="1"
+        <controls:NothingToSeeHere Grid.Row="0"
                                    Visibility="{Binding Albums.Count, Converter={StaticResource CountToVisibilityConverter}}" />
-        <ListView Grid.Row="1"
-                  ItemsSource="{Binding Albums}"
+        <ListView ItemsSource="{Binding Albums}"
                   ItemTemplate="{StaticResource PhoneSemanticZoomInViewAlbumTemplateLittleSize}"
                   ItemContainerStyle="{StaticResource ListViewItemStyle}"
                   IsItemClickEnabled="True"
                   SelectionMode="None"
                   ContainerContentChanging="ListViewBase_OnContainerContentChanging"
-                  IsSwipeEnabled="False">
+                  IsSwipeEnabled="False"> 
             <triggers:Interactions.Triggers>
                 <triggers:EventTrigger EventName="ItemClick">
                     <triggers:InvokeCommandAction Command="{Binding AlbumClickedCommand}"

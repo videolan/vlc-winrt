@@ -1,5 +1,4 @@
-﻿using System;
-using Windows.UI.Core;
+﻿using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Microsoft.Xaml.Interactivity;
@@ -9,6 +8,7 @@ namespace VLC_WINRT_APP.Views.MainPages.MainMusicControls
 {
     public sealed partial class SongsPivotItem : Page
     {
+        private bool isWide;
         public SongsPivotItem()
         {
             this.InitializeComponent();
@@ -29,15 +29,20 @@ namespace VLC_WINRT_APP.Views.MainPages.MainMusicControls
 
         void Responsive()
         {
-            if (Window.Current.Bounds.Width > 700)
+            if (Window.Current.Bounds.Width > 500)
             {
-                VisualStateUtilities.GoToState(this, "Horizontal", false);
+                if (isWide) return;
+                isWide = true;
+                VisualStateUtilities.GoToState(this, "Wide", false);
             }
             else
             {
-                VisualStateUtilities.GoToState(this, "Vertical", false);
+                if (!isWide) return;
+                isWide = false;
+                VisualStateUtilities.GoToState(this, "Narrow", false);
             }
         }
+
         private void OnUnloaded(object sender, RoutedEventArgs routedEventArgs)
         {
             Window.Current.SizeChanged -= Current_SizeChanged;

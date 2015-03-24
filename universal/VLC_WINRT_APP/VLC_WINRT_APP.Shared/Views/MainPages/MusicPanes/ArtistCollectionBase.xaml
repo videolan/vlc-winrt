@@ -14,10 +14,6 @@
              d:DesignWidth="400">
 
     <Grid x:Name="ArtistsGrid">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="50" />
-            <RowDefinition />
-        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition x:Name="ArtistListColumnDefinition"
                               Width="300" />
@@ -26,19 +22,10 @@
             <ColumnDefinition x:Name="TrackListColumnDefinition"
                               Width="0" />
         </Grid.ColumnDefinitions>
-        <musicPanesControls:ArtistPaneButtons Grid.Row="0"
-                                              Grid.Column="0"
-                                              Grid.ColumnSpan="3"/>
-        <placeholder:NothingToSeeHere Grid.Row="1"
-                                      Grid.ColumnSpan="2"
-                                      Visibility="{Binding Artists.Count, Converter={StaticResource CountToVisibilityConverter}}" />
-        <artistCollectionPanes:ArtistsListView Grid.Row="1"
-                                               Grid.Column="0" />
-        <artistCollectionPanes:AlbumsListView Grid.Row="1"
-                                              Grid.Column="1"
+        <artistCollectionPanes:ArtistsListView Grid.Column="0" />
+        <artistCollectionPanes:AlbumsListView Grid.Column="1"
                                               DataContext="{Binding CurrentArtist, TargetNullValue={Binding Source={StaticResource Locator}, Path=MusicLibraryVM}}" />
-        <artistCollectionPanes:TracksListView Grid.Row="1"
-                                              Grid.Column="2"
+        <artistCollectionPanes:TracksListView Grid.Column="2"
                                               DataContext="{Binding CurrentAlbum, TargetNullValue={Binding Source={StaticResource Locator}, Path=MusicLibraryVM}}" />
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>

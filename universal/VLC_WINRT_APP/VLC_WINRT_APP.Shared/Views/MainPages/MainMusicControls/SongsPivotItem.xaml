@@ -23,52 +23,35 @@
           Loaded="Collection_Loaded">
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="Standard">
-                <VisualState x:Name="Vertical">
+                <VisualState x:Name="Narrow">
                     <Storyboard>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="TracksZoomedInView"
-                                                       Storyboard.TargetProperty="Style">
+                                                       Storyboard.TargetProperty="ItemTemplate">
                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="{StaticResource AdaptativeListViewScrollVerticalStyle}" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="TracksZoomedInView"
-                                                       Storyboard.TargetProperty="ItemsPanel">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="{StaticResource AdaptativeVerticalPanelTemplate}" />
+                                                    Value="{StaticResource WPTrackTemplateWONumber}"/>
                         </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
-                <VisualState x:Name="Horizontal">
+                <VisualState x:Name="Wide">
                     <Storyboard>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="TracksZoomedInView"
-                                                       Storyboard.TargetProperty="Style">
+                                                       Storyboard.TargetProperty="ItemTemplate">
                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="{StaticResource AdaptativeListViewScrollHorizontalStyle}" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="TracksZoomedInView"
-                                                       Storyboard.TargetProperty="ItemsPanel">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="{StaticResource AdaptativeHorizontalPanelTemplate}" />
+                                                    Value="{StaticResource TrackTemplateDetailed}" />
                         </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="50" />
-            <RowDefinition />
-        </Grid.RowDefinitions>
-        <musicPanesControls:SongsPaneButtons Grid.Row="0"/>
-        <placeholder:NothingToSeeHere Grid.Row="1"
-                                      Visibility="{Binding Tracks.Count, Converter={StaticResource CountToVisibilityConverter}}"
+        <placeholder:NothingToSeeHere Visibility="{Binding Tracks.Count, Converter={StaticResource CountToVisibilityConverter}}"
                                       VerticalAlignment="Center" />
-        <SemanticZoom Grid.Row="1"
-                      ViewChangeCompleted="SemanticZoom_OnViewChangeCompleted">
+        <SemanticZoom ViewChangeCompleted="SemanticZoom_OnViewChangeCompleted">
             <SemanticZoom.ZoomedInView>
                 <ListView x:Name="TracksZoomedInView"
                           ItemsSource="{Binding Source={StaticResource GroupTracks}}"
                           SelectionMode="None"
                           IsItemClickEnabled="True"
-                          ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                          ItemContainerStyle="{StaticResource ListViewItemContainerStyleNoSelectCheck}"
                           ItemTemplate="{StaticResource WPTrackTemplateWONumber}">
                     <triggers:Interactions.Triggers>
                         <triggers:EventTrigger EventName="ItemClick">

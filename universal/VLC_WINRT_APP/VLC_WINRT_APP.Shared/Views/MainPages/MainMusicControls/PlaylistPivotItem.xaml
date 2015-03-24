@@ -46,13 +46,7 @@
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="50" />
-            <RowDefinition />
-        </Grid.RowDefinitions>
-        <musicPanesControls:PlaylistPaneButtons Grid.Row="0"/>
         <ListView x:Name="PlaylistListView"
-                  Grid.Row="1"
                   ItemsSource="{Binding TrackCollections}"
                   IsItemClickEnabled="True"
                   ItemTemplate="{StaticResource PhoneTrackCollectionTemplate}"
@@ -65,8 +59,7 @@
                 </triggers:EventTrigger>
             </triggers:Interactions.Triggers>
         </ListView>
-        <placeholder:NoPlaylistPlaceholder Grid.Row="1"
-                                           Margin="0,50,0,0"
+        <placeholder:NoPlaylistPlaceholder Margin="0,50,0,0"
                                            VerticalAlignment="Center"
                                            Visibility="{Binding TrackCollections.Count, Converter={StaticResource CountToVisibilityConverter}}" />
     </Grid>

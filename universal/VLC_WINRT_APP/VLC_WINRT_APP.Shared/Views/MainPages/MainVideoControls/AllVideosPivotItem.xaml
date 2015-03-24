@@ -12,25 +12,10 @@
       DataContext="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM}">
     
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="50" />
-            <RowDefinition />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="Auto" />
-        </Grid.ColumnDefinitions>
-        <videoPanesControls:VideoPaneComboBox Grid.Row="0"
-                                              Grid.Column="0" />
-        <videoPanesControls:VideoPaneButtons Grid.Column="1"
-                                             HorizontalAlignment="Right"/>
-        <ListView Grid.Row="1"
-                  Grid.Column="0"
-                  Grid.ColumnSpan="2"
+        <ListView
                   ItemsSource="{Binding Videos}"
                   ItemTemplate="{StaticResource PhoneCompactVideoTemplate}"
                   ItemContainerStyle="{StaticResource ListViewItemStyle}"
-                  Margin="0,0,-25,0"
                   IsItemClickEnabled="True"
                   SelectionMode="None"
                   IsSwipeEnabled="False">

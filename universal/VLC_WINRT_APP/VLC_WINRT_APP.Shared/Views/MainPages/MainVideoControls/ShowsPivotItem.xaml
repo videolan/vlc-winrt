@@ -52,21 +52,10 @@
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50" />
             <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="Auto" />
-        </Grid.ColumnDefinitions>
-        <videoPanesControls:VideoPaneComboBox Grid.Row="0"
-                                              Grid.Column="0" />
-        <videoPanesControls:VideoPaneButtons Grid.Column="1"
-                                             HorizontalAlignment="Right" />
-        <ComboBox Grid.Row="1"
-                  Grid.Column="0"
-                  Grid.ColumnSpan="2"
+        <ComboBox Grid.Row="0"
                   ItemsSource="{Binding Shows}"
                   SelectedItem="{Binding CurrentShow, Mode=TwoWay}"
                   Visibility="{Binding Shows.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}">
@@ -77,9 +66,7 @@
             </ComboBox.ItemTemplate>
         </ComboBox>
         <ListView x:Name="EpisodesListView"
-                  Grid.Row="2"
-                  Grid.Column="0"
-                  Grid.ColumnSpan="2"
+                  Grid.Row="1"
                   ItemsSource="{Binding CurrentShow.Episodes}"
                   ItemTemplate="{StaticResource PhoneShowTemplate}"
                   ItemContainerStyle="{StaticResource ListViewItemStyle}"
@@ -93,7 +80,6 @@
             </triggers:Interactions.Triggers>
         </ListView>
         <placeholder:NoShowPlaceholder Grid.Row="1"
-                                       Grid.RowSpan="2"
                                        Margin="0,50,0,0"
                                        Visibility="{Binding Shows.Count, Converter={StaticResource CountToVisibilityConverter}}" />
     </Grid>
