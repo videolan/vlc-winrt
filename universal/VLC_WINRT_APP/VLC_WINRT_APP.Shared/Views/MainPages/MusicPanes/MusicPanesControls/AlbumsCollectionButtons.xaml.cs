@@ -30,9 +30,15 @@ namespace VLC_WINRT_APP.Views.MainPages.MusicPanes.MusicPanesControls
         void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
         {
             if (OrderTypeComboBox.IsDropDownOpen)
+            {
+                e.Handled = true;
                 OrderTypeComboBox.IsDropDownOpen = false;
+            }
             if (OrderByComboBox.IsDropDownOpen)
+            {
+                e.Handled = true;
                 OrderByComboBox.IsDropDownOpen = false;
+            }
         }
 #endif
         void Current_SizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)

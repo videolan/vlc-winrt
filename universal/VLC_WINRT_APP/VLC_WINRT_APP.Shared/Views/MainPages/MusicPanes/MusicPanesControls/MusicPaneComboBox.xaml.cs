@@ -26,7 +26,10 @@ namespace VLC_WINRT_APP.Views.MainPages.MusicPanes.MusicPanesControls
         void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
         {
             if (MusicViewComboBox.IsDropDownOpen)
+            {
+                e.Handled = true;
                 MusicViewComboBox.IsDropDownOpen = false;
+            }
         }
 
         void MusicPaneComboBox_Unloaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
