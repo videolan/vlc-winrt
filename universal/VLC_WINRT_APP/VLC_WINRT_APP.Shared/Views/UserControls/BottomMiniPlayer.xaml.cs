@@ -47,7 +47,6 @@ namespace VLC_WINRT_APP.Views.UserControls
         void Responsive()
         {
 #if WINDOWS_PHONE_APP
-
             RootGrid.Height = 60;
 
 #else
