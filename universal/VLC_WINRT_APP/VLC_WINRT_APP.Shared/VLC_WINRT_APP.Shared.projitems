@@ -39,7 +39,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Music\FavoriteTrackCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Music\GoToMusicPlayerPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Music\GoToMusicPlaylistPageCommand.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Commands\Music\NavToLastFmPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Music\OpenAddAlbumToPlaylistDialog.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Music\PinAlbumCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Music\PinArtistCommand.cs" />
