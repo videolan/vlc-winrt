@@ -12,7 +12,7 @@ namespace VLC_WINRT_APP.Views.MusicPages.ArtistPageControls
         }
         private void ItemsWrapGrid_Loaded(object sender, RoutedEventArgs e)
         {
-            TemplateSizer.ComputeAlbums(sender as ItemsWrapGrid, TemplateSize.Normal, this.ActualWidth - 24);
+            TemplateSizer.ComputeAlbums(sender as ItemsWrapGrid, this.ActualWidth - 24, TemplateSize.Normal);
         }
     }
 }
