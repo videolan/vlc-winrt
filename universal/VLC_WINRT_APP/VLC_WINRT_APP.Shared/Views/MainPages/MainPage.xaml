@@ -29,8 +29,9 @@
            VerticalAlignment="Top"
            Opacity="0.7"
            Grid.Row="0"
-           Grid.RowSpan="2" 
-           Margin="{Binding ElementName=SplitShell, Path=Margin, UpdateSourceTrigger=Default}"/>
+           Grid.RowSpan="2"
+           Margin="{Binding ElementName=SplitShell, Path=Margin, UpdateSourceTrigger=Default}"
+           Visibility="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}" />
     
     <Grid Grid.Row="0"
           DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}"
@@ -49,7 +50,7 @@
                          InformationText="{Binding Source={StaticResource Locator}, Path=MainVM.InformationText}"
                          InformationBackground="{StaticResource MainColor}">
         <controls:SplitShell.SideBarContent>
-            <userControls:SideBar />
+            <userControls:SideBar Visibility="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}"/>
         </controls:SplitShell.SideBarContent>
         <controls:SplitShell.TopBarContent>
             <userControls:TopBar Visibility="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}" />
