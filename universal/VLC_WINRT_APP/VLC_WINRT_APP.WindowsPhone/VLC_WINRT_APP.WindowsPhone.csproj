@@ -849,6 +849,10 @@
       <Project>{6bdaba8a-b559-4007-a17f-42125d3aa7a3}</Project>
       <Name>VLC_WINRT_APP.BackgroundAudioPlayer</Name>
     </ProjectReference>
+    <ProjectReference Include="..\VLC_WINRT_APP.Controls\VLC_WINRT_APP.Controls.csproj">
+      <Project>{0627f270-00d9-45e8-8cae-74bfea436379}</Project>
+      <Name>VLC_WINRT_APP.Controls</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="MultilingualResources\VLC_WINRT_APP.WindowsPhone.qps-ploc.xlf" />
