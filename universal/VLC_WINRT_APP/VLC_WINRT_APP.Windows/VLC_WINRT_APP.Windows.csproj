@@ -120,15 +120,6 @@
     </SDKReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Views\MainPages\MainPanes\TopAlbumsControl.xaml.cs">
-      <DependentUpon>TopAlbumsControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\MainPages\MainPanes\TopVideosControl.xaml.cs">
-      <DependentUpon>TopVideosControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\MainPages\MusicPanes\SongsListView.xaml.cs">
-      <DependentUpon>SongsListView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\MusicPages\AddAlbumToPlaylist.xaml.cs">
       <DependentUpon>AddAlbumToPlaylist.xaml</DependentUpon>
     </Compile>
@@ -832,18 +823,6 @@
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
-    <Page Include="Views\MainPages\MainPanes\TopAlbumsControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\MainPages\MainPanes\TopVideosControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\MainPages\MusicPanes\SongsListView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\MusicPages\AddAlbumToPlaylist.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -892,10 +871,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\UserControls\LoadingMusicLibrary.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\UserControls\NoNewVideos.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -904,21 +879,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Controls\RemovableStorage\PlugARemovableStorage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\MainPages\MainPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Views\VariousPages\SpecialThanks.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\UserControls\TopBar.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>

@@ -865,6 +865,7 @@
   <ItemGroup>
     <Folder Include="Views\MainPages\MainMusicControls\" />
     <Folder Include="Views\UserControls\Flyouts\" />
+    <Folder Include="Views\UserControls\Placeholder\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>
