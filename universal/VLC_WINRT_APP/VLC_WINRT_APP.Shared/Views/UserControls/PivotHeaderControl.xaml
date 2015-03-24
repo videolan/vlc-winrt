@@ -81,7 +81,7 @@
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Icon"
                                                        Storyboard.TargetProperty="Height">
                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="26" />
+                                                    Value="32" />
                         </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Icon"
                                                        Storyboard.TargetProperty="Margin">
@@ -91,7 +91,7 @@
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Icon"
                                                        Storyboard.TargetProperty="Width">
                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="26" />
+                                                    Value="32" />
                         </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Title"
                                                        Storyboard.TargetProperty="Visibility">
