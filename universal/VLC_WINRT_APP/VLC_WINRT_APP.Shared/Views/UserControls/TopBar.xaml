@@ -22,7 +22,9 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <StackPanel Orientation="Horizontal"
-                    Grid.Column="1">
+                    Grid.Column="1"
+                    VerticalAlignment="Top"
+                    Margin="0,6,0,0">
             <Path Data="{StaticResource VLCFlatPath}"
                   Fill="White"
                   Width="26"
@@ -30,7 +32,6 @@
             <TextBlock Text="VLC"
                        Foreground="{ThemeResource BasicForeground}"
                        Style="{StaticResource SubheaderTextBlockStyle}"
-                       VerticalAlignment="Center"
                        Margin="0,-3,0,0" />
         </StackPanel>
         <ListView Grid.Column="2"
