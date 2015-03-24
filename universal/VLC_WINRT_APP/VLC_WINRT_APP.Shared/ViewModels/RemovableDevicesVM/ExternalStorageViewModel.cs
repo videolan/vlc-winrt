@@ -25,7 +25,6 @@ using Windows.Devices.Portable;
 
 namespace VLC_WINRT_APP.ViewModels.RemovableDevicesVM
 {
-#if WINDOWS_APP
     public class ExternalStorageViewModel : BindableBase, IDisposable
     {
         #region private props
@@ -36,8 +35,7 @@ namespace VLC_WINRT_APP.ViewModels.RemovableDevicesVM
         #endregion
 
         #region private fields
-        private ObservableCollection<FileExplorerViewModel> _removableStorageVMs =
-            new ObservableCollection<FileExplorerViewModel>();
+        private ObservableCollection<FileExplorerViewModel> _removableStorageVMs = new ObservableCollection<FileExplorerViewModel>();
         #endregion
 
         #region public props
@@ -63,26 +61,37 @@ namespace VLC_WINRT_APP.ViewModels.RemovableDevicesVM
             get { return _removableStorageVMs; }
             set { SetProperty(ref _removableStorageVMs, value); }
         }
-
-        
         #endregion
-
-
 
         public ExternalStorageViewModel()
         {
             RemovableDeviceClicked = new RemovableDeviceClickedCommand();
+#if WINDOWS_APP
             _deviceService = App.Container.Resolve<ExternalDeviceService>();
             _deviceService.ExternalDeviceAdded += DeviceAdded;
             _deviceService.ExternalDeviceRemoved += DeviceRemoved;
+#else
+            Initialize();           
+#endif
         }
 
-        public void Dispose()
+        private async void Initialize()
         {
-            _deviceService.ExternalDeviceAdded -= DeviceAdded;
-            _deviceService.ExternalDeviceRemoved -= DeviceRemoved;
+            var devices = KnownFolders.RemovableDevices;
+            var cards = await devices.GetFoldersAsync();
+            if (cards.Any())
+            {
+                var external = new FileExplorerViewModel(cards[0]);
+                RemovableStorageVMs.Add(external);
+                CurrentStorageVM = RemovableStorageVMs[0];
+                await CurrentStorageVM.GetFiles();
+            }
+        }
 
-            _deviceService = null;
+#if WINDOWS_APP
+        private async void DeviceAdded(object sender, string id)
+        {
+            await AddFolder(id);
         }
 
         private async Task AddFolder(string newId)
@@ -118,39 +127,15 @@ namespace VLC_WINRT_APP.ViewModels.RemovableDevicesVM
                 }
             });
         }
-
-        private async void DeviceAdded(object sender, string id)
-        {
-            await AddFolder(id);
-        }
-    }
-#else
-    public class ExternalStorageViewModel : BindableBase
-    {
-        private FileExplorerViewModel _currentStorageVM;
-        public FileExplorerViewModel CurrentStorageVM
-        {
-            get
-            {
-                return _currentStorageVM;
-            }
-            set { SetProperty(ref _currentStorageVM, value); }
-        }
-        public ExternalStorageViewModel()
-        {
-            Get();
-        }
-
-        private async Task Get()
-        {
-            var test = KnownFolders.RemovableDevices;
-            var cards = await test.GetFoldersAsync();
-            if (cards.Any())
-            {
-                CurrentStorageVM = new FileExplorerViewModel(cards[0]);
-                await CurrentStorageVM.GetFiles();
-            }
-        }
-    }
 #endif
+
+        public void Dispose()
+        {
+#if WINDOWS_APP
+            _deviceService.ExternalDeviceAdded -= DeviceAdded;
+            _deviceService.ExternalDeviceRemoved -= DeviceRemoved;
+            _deviceService = null;
+#endif
+        }
+    }
 }
