@@ -35,7 +35,6 @@
                        VerticalAlignment="Top" />
             <StackPanel Grid.Row="2"
                         Margin="0,30,0,0">
-                <placeholder:NothingToSeeHere Foreground="Black" />
                 <TextBlock x:Uid="RemoveableDeviceMessage1"
                            TextWrapping="Wrap"
                            Text="Plug in a removable storage and VLC will detects all the files in it."
