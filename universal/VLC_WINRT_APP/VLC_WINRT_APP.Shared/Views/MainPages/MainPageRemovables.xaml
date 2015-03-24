@@ -133,7 +133,6 @@
         </Grid>
         <removableStorage:PlugARemovableStorage Grid.Row="1"
                                                 Grid.RowSpan="2"
-                                                Margin="-40,0,0,0"
                                                 d:IsHidden="True"
                                                 Visibility="{Binding RemovableStorageVMs.Count, Converter={StaticResource CountToVisibilityConverter}}" />
     </Grid>
