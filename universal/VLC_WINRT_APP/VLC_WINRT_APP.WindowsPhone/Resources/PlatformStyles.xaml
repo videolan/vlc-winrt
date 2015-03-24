@@ -274,7 +274,7 @@
     <Thickness x:Key="PivotLandscapeThemePadding">19,12,0,12</Thickness>
     <Thickness x:Key="PivotPortraitThemeHeaderMargin">108,33,0,0</Thickness>
     <Thickness x:Key="PivotLandscapeThemeHeaderMargin">108,20,0,0</Thickness>
-    <Thickness x:Key="PivotItemMargin">18,-12,19,0</Thickness>
+    <Thickness x:Key="PivotItemMargin">0,25,0,0</Thickness>
     <Style x:Key="HorizontalPivotStyle"
            TargetType="Pivot">
         <Setter Property="Margin"
@@ -303,30 +303,10 @@
                             <VisualStateGroup x:Name="Orientation">
                                 <VisualState x:Name="Portrait">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Margin"
-                                                                       Storyboard.TargetName="TitleContentControl">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource PivotPortraitThemePadding}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Margin"
-                                                                       Storyboard.TargetName="Header">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource PivotPortraitThemeHeaderMargin}" />
-                                        </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="Landscape">
                                     <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Margin"
-                                                                       Storyboard.TargetName="TitleContentControl">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource PivotLandscapeThemePadding}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Margin"
-                                                                       Storyboard.TargetName="Header">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource PivotLandscapeThemeHeaderMargin}" />
-                                        </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
@@ -335,7 +315,7 @@
                                       HorizontalSnapPointsAlignment="Center"
                                       HorizontalSnapPointsType="MandatorySingle"
                                       HorizontalScrollBarVisibility="Hidden"
-                                      Margin="{TemplateBinding Padding}"
+                                      Margin="0"
                                       Template="{StaticResource ScrollViewerScrollBarlessTemplate}"
                                       VerticalSnapPointsType="None"
                                       VerticalScrollBarVisibility="Disabled"
@@ -345,7 +325,7 @@
                             <PivotPanel x:Name="Panel"
                                         VerticalAlignment="Stretch">
                                 <PivotHeaderPanel x:Name="Header"
-                                                  Margin="{ThemeResource PivotPortraitThemeHeaderMargin}">
+                                                  Height="0">
                                     <PivotHeaderPanel.RenderTransform>
                                         <CompositeTransform x:Name="HeaderTranslateTransform"
                                                             TranslateX="0" />
@@ -359,15 +339,7 @@
                                 </ItemsPresenter>
                             </PivotPanel>
                         </ScrollViewer>
-                        <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-                              VerticalAlignment="Top"
-                              HorizontalAlignment="Left">
-                            <ContentControl x:Name="TitleContentControl"
-                                            ContentTemplate="{TemplateBinding TitleTemplate}"
-                                            Content="{TemplateBinding Title}"
-                                            Style="{StaticResource PivotTitleContentControlStyle}"
-                                            Padding="0,0,6,0"/>
-                        </Grid>
+                            <ContentControl x:Name="TitleContentControl"/>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
