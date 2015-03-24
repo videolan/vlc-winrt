@@ -23,8 +23,18 @@
           Grid.RowSpan="2"
           Visibility="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}" />
 
+    <Image x:Name="HeaderBackgroundImage"
+           Source="/Assets/backgroundTop.png"
+           Stretch="Uniform"
+           VerticalAlignment="Top"
+           Opacity="0.7"
+           Grid.Row="0"
+           Grid.RowSpan="2" 
+           Margin="{Binding ElementName=SplitShell, Path=Margin, UpdateSourceTrigger=Default}"/>
+    
     <Grid Grid.Row="0"
           DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}"
+          Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
           Visibility="{Binding CurrentPage, Converter={StaticResource MusicPlayerBackgroundVisibilityConverter}}">
         <Image DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}"
                Source="{Binding CurrentArtist.ArtistImage}"
