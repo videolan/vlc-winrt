@@ -13,7 +13,9 @@ namespace VLC_WINRT_APP.Controls
     [TemplatePart(Name = SidebarContentPresenterName, Type = typeof(ContentPresenter))]
     [TemplatePart(Name = AlwaysVisibleSidebarContentPresenterName, Type = typeof(ContentPresenter))]
     [TemplatePart(Name = TopBarContentPresenterName, Type = typeof(ContentPresenter))]
+    [TemplatePart(Name = InformationGridName, Type = typeof(Grid))]
     [TemplatePart(Name = NavigationFrameName, Type = typeof(Frame))]
+    [TemplatePart(Name = InformationTextBlockName, Type = typeof(TextBlock))]
     public sealed class SplitShell : Control
     {
         public TaskCompletionSource<bool> TemplateApplied = new TaskCompletionSource<bool>();
@@ -26,12 +28,16 @@ namespace VLC_WINRT_APP.Controls
         private const string TopBarVisualStateName = "TopBarVisualState";
         private const string SideBarVisualStateName = "SideBarVisualState";
         private const string AlwaysVisibleSideBarVisualStateName = "AlwaysVisibleSideBarVisualState";
+        private const string InformationGridName = "InformationGrid";
+        private const string InformationTextBlockName = "InformationTextBlock";
 
         private Grid _edgePaneGrid;
         private Grid _sidebarGridContainer;
         private ContentPresenter _sidebarContentPresenter;
         private ContentPresenter _alwaysVisibleSidebarContentPresenter;
         private ContentPresenter _topBarContentPresenter;
+        private Grid _informationGrid;
+        private TextBlock _informationTextBlock;
         private Frame _navigationFrame;
 
         private bool _alwaysVisibleSideBarVisualState;
@@ -52,6 +58,19 @@ namespace VLC_WINRT_APP.Controls
         {
             await TemplateApplied.Task;
             _topBarContentPresenter.Content = contentPresenter;
+        }
+
+        public async void SetInformationText(string text)
+        {
+            await TemplateApplied.Task;
+            _informationGrid.Visibility = string.IsNullOrEmpty(text) ? Visibility.Collapsed : Visibility.Visible;
+            _informationTextBlock.Text = text;
+        }
+
+        public async void SetInformationBrush(Brush brush)
+        {
+            await TemplateApplied.Task;
+            _informationGrid.Background = brush;
         }
 
         public async void SetEdgePaneColor(object color)
@@ -141,6 +160,37 @@ namespace VLC_WINRT_APP.Controls
         }
         #endregion
 
+        #region InformationContent Property
+        public Brush InformationBackground
+        {
+            get { return (Brush)GetValue(InformationBackgroundProperty); }
+            set { SetValue(InformationBackgroundProperty, value); }
+        }
+
+        public static readonly DependencyProperty InformationBackgroundProperty = DependencyProperty.Register("InformationBackground", typeof(DependencyObject), typeof(SplitShell), new PropertyMetadata(default(Brush), InformationBackgroundPropertyChangedCallback));
+
+        private static void InformationBackgroundPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
+        {
+            var that = (SplitShell)dependencyObject;
+            that.SetInformationBrush((Brush) dependencyPropertyChangedEventArgs.NewValue);
+        }
+
+
+        public string InformationText
+        {
+            get { return (string)GetValue(InformationTextProperty); }
+            set { SetValue(InformationTextProperty, value); }
+        }
+
+        public static readonly DependencyProperty InformationTextProperty = DependencyProperty.Register("InformationText", typeof(DependencyObject), typeof(SplitShell), new PropertyMetadata(default(string), InformationContentPresenterPropertyChangedCallback));
+
+        private static void InformationContentPresenterPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
+        {
+            var that = (SplitShell)dependencyObject;
+            that.SetInformationText((string)dependencyPropertyChangedEventArgs.NewValue);
+        }
+        #endregion
+
         public SplitShell()
         {
             DefaultStyleKey = typeof(SplitShell);
@@ -154,6 +204,8 @@ namespace VLC_WINRT_APP.Controls
             _sidebarContentPresenter = (ContentPresenter)GetTemplateChild(SidebarContentPresenterName);
             _alwaysVisibleSidebarContentPresenter = (ContentPresenter)GetTemplateChild(AlwaysVisibleSidebarContentPresenterName);
             _topBarContentPresenter = (ContentPresenter)GetTemplateChild(TopBarContentPresenterName);
+            _informationTextBlock = (TextBlock) GetTemplateChild(InformationTextBlockName);
+            _informationGrid = (Grid) GetTemplateChild(InformationGridName);
             _edgePaneGrid = (Grid)GetTemplateChild(EdgePaneName);
 
             TemplateApplied.SetResult(true);
