@@ -53,16 +53,18 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "VLC_WINRT_APP.MusicMetaFetc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VLC_WINRT_APP.Controls", "..\universal\VLC_WINRT_APP\VLC_WINRT_APP.Controls\VLC_WINRT_APP.Controls.csproj", "{0627F270-00D9-45E8-8CAE-74BFEA436379}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VLC_WINRT_APP.LastFmScrobbler", "..\universal\VLC_WINRT_APP\VLC_WINRT_APP.LastFmScrobbler\VLC_WINRT_APP.LastFmScrobbler.csproj", "{F531474D-C881-4776-B519-E6374E80F4CE}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		..\universal\VLC_WINRT_APP\VLC_WINRT_APP.Shared\VLC_WINRT_APP.Shared.projitems*{db1dea15-00b8-4707-8c70-53431c4fa754}*SharedItemsImports = 13
-		..\universal\VLC_WINRT_APP\VLC_WINRT_APP.Shared\VLC_WINRT_APP.Shared.projitems*{b1a5a4dc-2c9f-4343-af3f-372944c4607d}*SharedItemsImports = 4
 		..\universal\VLC_WINRT_APP\VLC_WINRT_APP.MusicMetaFetcher\VLC_WINRT_APP.MusicMetaFetcher.projitems*{b1a5a4dc-2c9f-4343-af3f-372944c4607d}*SharedItemsImports = 4
+		..\universal\VLC_WINRT_APP\VLC_WINRT_APP.Shared\VLC_WINRT_APP.Shared.projitems*{b1a5a4dc-2c9f-4343-af3f-372944c4607d}*SharedItemsImports = 4
 		..\modules\libaccess_winrt_plugin.Shared\libaccess_winrt_plugin.Shared.vcxitems*{544ebd72-c9e2-4c3f-9038-36683f843241}*SharedItemsImports = 4
 		..\wrapper\libVLCX.Shared\libVLCX.Shared.vcxitems*{22532381-be8b-40e0-a881-22ce24342d5a}*SharedItemsImports = 4
 		..\wrapper\libVLCX.Shared\libVLCX.Shared.vcxitems*{5d78f68e-c377-449e-a508-5b8e706d0039}*SharedItemsImports = 4
-		..\universal\VLC_WINRT_APP\VLC_WINRT_APP.Shared\VLC_WINRT_APP.Shared.projitems*{c8711a23-f511-4fa1-a3f5-f2578f820a5a}*SharedItemsImports = 4
 		..\universal\VLC_WINRT_APP\VLC_WINRT_APP.MusicMetaFetcher\VLC_WINRT_APP.MusicMetaFetcher.projitems*{c8711a23-f511-4fa1-a3f5-f2578f820a5a}*SharedItemsImports = 4
+		..\universal\VLC_WINRT_APP\VLC_WINRT_APP.Shared\VLC_WINRT_APP.Shared.projitems*{c8711a23-f511-4fa1-a3f5-f2578f820a5a}*SharedItemsImports = 4
 		..\universal\VLC_WINRT_APP\VLC_WINRT_APP.MusicMetaFetcher\VLC_WINRT_APP.MusicMetaFetcher.projitems*{c3f84118-8e3d-4b19-a300-9cb6f7ae0e87}*SharedItemsImports = 13
 		..\modules\libaccess_winrt_plugin.Shared\libaccess_winrt_plugin.Shared.vcxitems*{90a8a6a5-091d-4d4e-a8cd-4ec09ddb1047}*SharedItemsImports = 9
 		..\modules\libdirect2d_winrt_plugin.Shared\libdirect2d_winrt_plugin.Shared.vcxitems*{231dfaab-c462-49bf-8611-1fa6ee39983d}*SharedItemsImports = 4
@@ -321,6 +323,22 @@ Global
 		{0627F270-00D9-45E8-8CAE-74BFEA436379}.Release|Win32.ActiveCfg = Release|Any CPU
 		{0627F270-00D9-45E8-8CAE-74BFEA436379}.Release|x64.ActiveCfg = Release|Any CPU
 		{0627F270-00D9-45E8-8CAE-74BFEA436379}.Release|x86.ActiveCfg = Release|Any CPU
+		{F531474D-C881-4776-B519-E6374E80F4CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F531474D-C881-4776-B519-E6374E80F4CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F531474D-C881-4776-B519-E6374E80F4CE}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{F531474D-C881-4776-B519-E6374E80F4CE}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{F531474D-C881-4776-B519-E6374E80F4CE}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{F531474D-C881-4776-B519-E6374E80F4CE}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{F531474D-C881-4776-B519-E6374E80F4CE}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F531474D-C881-4776-B519-E6374E80F4CE}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F531474D-C881-4776-B519-E6374E80F4CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F531474D-C881-4776-B519-E6374E80F4CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F531474D-C881-4776-B519-E6374E80F4CE}.Release|ARM.ActiveCfg = Release|Any CPU
+		{F531474D-C881-4776-B519-E6374E80F4CE}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{F531474D-C881-4776-B519-E6374E80F4CE}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{F531474D-C881-4776-B519-E6374E80F4CE}.Release|Win32.ActiveCfg = Release|Any CPU
+		{F531474D-C881-4776-B519-E6374E80F4CE}.Release|x64.ActiveCfg = Release|Any CPU
+		{F531474D-C881-4776-B519-E6374E80F4CE}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -342,5 +360,6 @@ Global
 		{E53727A5-95F9-4DAC-A24F-18437811B5B0} = {492C16E2-63FB-49B4-843A-095DB095F15D}
 		{C3F84118-8E3D-4B19-A300-9CB6F7AE0E87} = {492C16E2-63FB-49B4-843A-095DB095F15D}
 		{0627F270-00D9-45E8-8CAE-74BFEA436379} = {492C16E2-63FB-49B4-843A-095DB095F15D}
+		{F531474D-C881-4776-B519-E6374E80F4CE} = {492C16E2-63FB-49B4-843A-095DB095F15D}
 	EndGlobalSection
 EndGlobal
