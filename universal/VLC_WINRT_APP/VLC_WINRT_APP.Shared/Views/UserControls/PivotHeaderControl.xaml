@@ -27,12 +27,12 @@
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Icon"
                                                        Storyboard.TargetProperty="Height">
                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="18" />
+                                                    Value="26" />
                         </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Icon"
                                                        Storyboard.TargetProperty="Width">
                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="18" />
+                                                    Value="26" />
                         </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Title"
                                                        Storyboard.TargetProperty="Visibility">
@@ -51,12 +51,12 @@
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Icon"
                                                        Storyboard.TargetProperty="Height">
                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="20" />
+                                                    Value="26" />
                         </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Icon"
                                                        Storyboard.TargetProperty="Width">
                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="20" />
+                                                    Value="26" />
                         </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Title"
                                                        Storyboard.TargetProperty="Visibility">
