@@ -79,8 +79,8 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         private bool _isBusy = false;
         private bool _isMusicLibraryEmpty = true;
         private bool _isAlbumPageShown = false;
-        private string _currentIndexingStatus = "";
         private bool _isMainPageMusicArtistAlbumsSemanticZoomViewedIn;
+        public MusicView _musicView;
         #endregion
 
         #region public fields
@@ -137,6 +137,12 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 
         #endregion
         #region public props
+        public MusicView MusicView
+        {
+            get { return _musicView; }
+            set { SetProperty(ref _musicView, value); }
+        }
+
 
         public IEnumerable<IGrouping<char, TrackItem>> AlphaGroupedTracks
         {
@@ -158,11 +164,6 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             set { SetProperty(ref _loadingState, value); }
         }
 
-        public string CurrentIndexingStatus
-        {
-            get { return _currentIndexingStatus; }
-            set { SetProperty(ref _currentIndexingStatus, value); }
-        }
 
         public bool IsAlbumPageShown
         {
@@ -361,7 +362,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         {
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                CurrentIndexingStatus = "Loading music";
+                Locator.MainVM.InformationText = "Loading music";
                 LoadingState = LoadingState.Loading;
             });
             await GetFavoriteAndRandomAlbums();
@@ -394,6 +395,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                 LoadingState = LoadingState.Loaded;
                 IsLoaded = true;
                 IsBusy = false;
+                Locator.MainVM.InformationText = "";
             });
             MusicCollectionLoaded(null, "music");
             await PerformRoutineCheckIfNotBusy();
@@ -431,14 +433,11 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
 
             await DispatchHelper.InvokeAsync(() =>
             {
-                CurrentIndexingStatus = "Searching for music";
+                Locator.MainVM.InformationText = "Searching for music";
                 IsBusy = true;
                 IsLoaded = false;
                 OnPropertyChanged("IsBusy");
                 OnPropertyChanged("IsLoaded");
-#if WINDOWS_PHONE_APP
-                StatusBarHelper.UpdateTitle("Searching for music ...");
-#endif
             });
             _artistDataRepository = new ArtistDataRepository();
             _artistDataRepository.Initialize();
@@ -463,6 +462,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                 if (App.ApplicationFrame != null)
                     StatusBarHelper.SetDefaultForPage(App.ApplicationFrame.SourcePageType);
 #endif
+                Locator.MainVM.InformationText = "";
             });
             await GetFavoriteAndRandomAlbums();
         }
