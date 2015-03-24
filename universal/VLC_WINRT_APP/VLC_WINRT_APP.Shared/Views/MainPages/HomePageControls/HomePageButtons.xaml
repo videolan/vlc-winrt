@@ -43,13 +43,5 @@
                 <PathIcon Data="{StaticResource OnlinePath}" />
             </AppBarButton.Icon>
         </AppBarButton>
-        <AppBarButton Grid.Column="3"
-                      Style="{StaticResource EllipseLessAppBarButtonStyle}"
-                      Label="settings"
-                      Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToSettingsPageCommand}">
-            <AppBarButton.Icon>
-                <PathIcon Data="{StaticResource SettingsPath}" />
-            </AppBarButton.Icon>
-        </AppBarButton>
     </Grid>
 </UserControl>
