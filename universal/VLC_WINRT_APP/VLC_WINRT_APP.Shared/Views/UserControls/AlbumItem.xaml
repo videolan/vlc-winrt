@@ -27,12 +27,7 @@
                 <RowDefinition />
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0"
-                       Grid.ColumnSpan="2"
+            <TextBlock 
                        Text="{Binding Name, Converter={StaticResource AlbumStringConverter}}"
                        TextWrapping="NoWrap"
                        TextTrimming="CharacterEllipsis"
@@ -41,7 +36,6 @@
                        VerticalAlignment="Center"
                        Margin="0,0,7,0" />
             <TextBlock Grid.Row="1"
-                       Grid.Column="0"
                        Text="{Binding Artist, Converter={StaticResource ArtistStringConverter}}"
                        TextWrapping="NoWrap"
                        TextTrimming="CharacterEllipsis"
@@ -50,19 +44,6 @@
                        Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
                        VerticalAlignment="Center"
                        Margin="0,0,7,0" />
-            <Button Grid.Column="1"
-                    Grid.Row="0"
-                    Grid.RowSpan="2"
-                    Style="{StaticResource TextBlockButtonStyle}"
-                    Content=""
-                    VerticalAlignment="Stretch"
-                    VerticalContentAlignment="Bottom"
-                    Foreground="#ACACAC"
-                    FontFamily="Segoe UI Symbol"
-                    Margin="0,0,0,0"
-                    Padding="0,0,3,0"
-                    Flyout="{StaticResource AlbumMenuFlyout}">
-            </Button>
         </Grid>
     </Grid>
 </UserControl>
