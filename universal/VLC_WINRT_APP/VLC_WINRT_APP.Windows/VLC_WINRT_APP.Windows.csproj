@@ -911,6 +911,10 @@
       <Project>{22532381-be8b-40e0-a881-22ce24342d5a}</Project>
       <Name>libVLCX</Name>
     </ProjectReference>
+    <ProjectReference Include="..\VLC_WINRT_APP.Controls\VLC_WINRT_APP.Controls.csproj">
+      <Project>{0627f270-00d9-45e8-8cae-74bfea436379}</Project>
+      <Name>VLC_WINRT_APP.Controls</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="MultilingualResources\VLC_WINRT_APP.Windows.ja-JP.xlf" />
