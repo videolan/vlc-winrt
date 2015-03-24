@@ -50,6 +50,10 @@
                          AlwaysVisibleSidebar="True"
                          InformationText="{Binding Source={StaticResource Locator}, Path=MainVM.InformationText}"
                          InformationBackground="{StaticResource MainColor}">
+        <controls:SplitShell.Content>
+            <userControls:ShellContent x:Name="ShellContent"
+                                       x:FieldModifier="public"/>
+        </controls:SplitShell.Content>
         <controls:SplitShell.SideBarContent>
             <userControls:SideBar Visibility="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}" />
         </controls:SplitShell.SideBarContent>

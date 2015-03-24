@@ -98,6 +98,9 @@
     <Compile Include="Views\MusicPages\CreateNewPlaylist.xaml.cs">
       <DependentUpon>CreateNewPlaylist.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserControls\ShellContent.xaml.cs">
+      <DependentUpon>ShellContent.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\VariousPages\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>
@@ -788,6 +791,10 @@
     <Page Include="Views\MusicPages\CreateNewPlaylist.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\ShellContent.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\VariousPages\AboutPage.xaml">
       <SubType>Designer</SubType>

@@ -154,6 +154,9 @@
       <DependentUpon>SimilarArtistsInfoControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\UserControls\ShellContent.xaml.cs">
+      <DependentUpon>ShellContent.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\VariousPages\SpecialThanks.xaml.cs">
       <DependentUpon>SpecialThanks.xaml</DependentUpon>
     </Compile>
@@ -857,6 +860,10 @@
     <Page Include="Views\MusicPages\MusicPlayerPageControls\SimilarArtistsInfoControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\ShellContent.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\VariousPages\SpecialThanks.xaml">
       <Generator>MSBuild:Compile</Generator>

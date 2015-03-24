@@ -68,7 +68,7 @@ namespace VLC_WINRT_APP
         {
             get
             {
-                return RootPage != null ? RootPage.SplitShell.NavigationFrame : null;
+                return RootPage != null ? RootPage.ShellContent.NavigationFrame : null;
             }
         }
 
