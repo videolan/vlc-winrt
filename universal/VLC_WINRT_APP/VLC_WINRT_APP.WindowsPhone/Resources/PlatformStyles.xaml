@@ -269,7 +269,7 @@
         <TextBlock Text="{Binding}"
                    Style="{StaticResource PivotTitleStyle}" />
     </DataTemplate>
-
+    <Thickness x:Key="PivotItemMargin">0</Thickness>
     <Style x:Key="HorizontalPivotStyle"
            TargetType="Pivot">
         <Setter Property="Margin"
@@ -301,7 +301,7 @@
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ScrollViewer"
                                                                        Storyboard.TargetProperty="Margin">
                                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="0,0,0,0" />
+                                                                    Value="0,28,0,0" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -310,7 +310,7 @@
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ScrollViewer"
                                                                        Storyboard.TargetProperty="Margin">
                                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="0,-25,0,0" />
+                                                                    Value="0,0,0,0" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
