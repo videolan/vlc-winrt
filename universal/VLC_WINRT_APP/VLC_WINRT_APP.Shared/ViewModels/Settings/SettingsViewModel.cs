@@ -49,7 +49,7 @@ namespace VLC_WINRT_APP.ViewModels.Settings
         private bool _searchVideo;
         private string _lastFmUserName;
         private string _lastFmPassword;
-        private bool _lastFmIsConnecting = false;
+        private bool _lastFmIsConnected = false;
         private ApplicationTheme _applicationTheme;
         private bool _forceAppTheme;
 
@@ -367,15 +367,26 @@ namespace VLC_WINRT_APP.ViewModels.Settings
             }
         }
 
-        public bool LastFmIsConnecting
+        public bool LastFmIsConnected
         {
-            get { return _lastFmIsConnecting; }
-            set { SetProperty(ref _lastFmIsConnecting, value); }
-        }
-
-        public NavToLastFmPage NavToLastFmPage
-        {
-            get { return new NavToLastFmPage(); }
+            get
+            {
+                var lastFmIsConnected = ApplicationSettingsHelper.ReadSettingsValue("LastFmIsConnected");
+                if (lastFmIsConnected == null)
+                {
+                    _lastFmIsConnected = false;
+                }
+                else
+                {
+                    _lastFmIsConnected = (bool) lastFmIsConnected;
+                }
+                return _lastFmIsConnected;
+            }
+            set
+            {
+                ApplicationSettingsHelper.SaveSettingsValue("LastFmIsConnected", value);
+                SetProperty(ref _lastFmIsConnected, value);
+            }
         }
 
         public bool ForceAppTheme
