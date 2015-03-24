@@ -176,7 +176,6 @@ namespace VLC_WINRT_APP.ViewModels
             SearchResults = new ObservableCollection<SearchResult>();
             SearchClickedCommand = new SearchClickedCommand();
             // TODO: For Windows 8.1 build, use ResourceLoader.GetForCurrentView(); 
-#if WINDOWS_APP
             var resourceLoader = new ResourceLoader();
             Panels.Add(new Panel(resourceLoader.GetString("Home"), 0, App.Current.Resources["HomePath"].ToString(), true));
             Panels.Add(new Panel(resourceLoader.GetString("Videos"), 1, App.Current.Resources["VideoPath"].ToString()));
@@ -184,7 +183,6 @@ namespace VLC_WINRT_APP.ViewModels
             string removableName = "";
             removableName = resourceLoader.GetString("RemovableStorage");
             Panels.Add(new Panel(removableName, 3, App.Current.Resources["RemovablesPath"].ToString()));
-#endif
             Initialize();
         }
 
