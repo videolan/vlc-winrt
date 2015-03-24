@@ -67,88 +67,37 @@
                    Style="{StaticResource SubheaderTextBlockStyle}" />
     </DataTemplate>
 
-    <!-- WINDOWS PHONE -->
-    <DataTemplate x:Key="WPSidebarItemTemplate">
-        <Grid Height="60"
-              Width="340">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <Path Data="{Binding PathData}"
-                  Height="30"
-                  Width="30"
-                  HorizontalAlignment="Center"
-                  Stretch="Uniform"
-                  Fill="{Binding Color}"
-                  Margin="25,0,0,0" />
-            <TextBlock Grid.Column="1"
-                       Text="{Binding Title}"
-                       Foreground="{Binding Color}"
-                       TextWrapping="NoWrap"
-                       TextTrimming="None"
-                       Margin="12,-9,0,0"
-                       VerticalAlignment="Center"
-                       Style="{StaticResource SubheaderTextBlockStyle}"
-                       FontSize="28" />
-        </Grid>
-    </DataTemplate>
-
-    <!-- WINDOWS -->
-    <DataTemplate x:Key="SidebarItemTemplate">
-        <Grid Height="60"
-              Width="340">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <Path Data="{Binding PathData}"
-                  Height="30"
-                  Width="30"
-                  HorizontalAlignment="Center"
-                  Stretch="Uniform"
-                  Fill="{Binding Color}"
-                  Margin="42,0,0,0" />
-            <TextBlock Grid.Column="1"
-                       Text="{Binding Title}"
-                       Foreground="{Binding Color}"
-                       TextWrapping="NoWrap"
-                       TextTrimming="None"
-                       Margin="12,-9,0,0"
-                       VerticalAlignment="Center"
-                       Style="{StaticResource SubheaderTextBlockStyle}"
-                       FontSize="28" />
-        </Grid>
-    </DataTemplate>
-
-    <DataTemplate x:Key="SidebarIconItemTemplate">
-        <Grid Height="60"
-              Width="100">
-            <Path Data="{Binding PathData}"
-                  Height="30"
-                  Width="30"
-                  HorizontalAlignment="Center"
-                  Stretch="Uniform"
-                  Fill="{Binding Color}"
-                  Margin="-9,0,0,0" />
-        </Grid>
-    </DataTemplate>
-
     <DataTemplate x:Key="SidebarMiniIconItemTemplate">
-        <Grid Height="60"
-              Width="36">
-            <Path Data="{Binding PathData}"
+        <Grid Height="100">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="12" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0"
+                  Grid.RowSpan="5"
+                  Background="{StaticResource MainColor}"
+                  Visibility="{Binding IsCurrent, Converter={StaticResource BooleanToVisibilityConverter}}" />
+            <Path Grid.Row="1"
+                  Data="{Binding PathData}"
                   Height="36"
                   Width="36"
                   HorizontalAlignment="Center"
                   Stretch="Uniform"
-                  Fill="{Binding Color}" />
+                  Fill="{ThemeResource BasicForeground}" />
+            <TextBlock Grid.Row="3"
+                       Text="{Binding Title}"
+                       FontSize="11"
+                       HorizontalAlignment="Center"
+                       TextWrapping="Wrap"
+                       TextTrimming="CharacterEllipsis"
+                       TextAlignment="Center" />
         </Grid>
     </DataTemplate>
 
     <DataTemplate x:Key="PivotHeaderDataTemplate">
-        <userControls:PivotHeaderControl/>
+        <userControls:PivotHeaderControl />
     </DataTemplate>
-
-
 </ResourceDictionary>
