@@ -242,20 +242,23 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\MainPages\HomePageControls\HomePageButtons.xaml.cs">
       <DependentUpon>HomePageButtons.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\MainPages\MainMusicControls\AlbumsPivotItem.xaml.cs">
-      <DependentUpon>AlbumsPivotItem.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\MainPages\MainMusicControls\ArtistsPivotItem.xaml.cs">
-      <DependentUpon>ArtistsPivotItem.xaml</DependentUpon>
-    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\MainPages\MainMusicControls\PlaylistPivotItem.xaml.cs">
       <DependentUpon>PlaylistPivotItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\MainPages\MainMusicControls\SongsPivotItem.xaml.cs">
       <DependentUpon>SongsPivotItem.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\MainPages\MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\MainPages\MainPageHome.xaml.cs">
+      <DependentUpon>MainPageHome.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\MainPages\MainPageMusic.xaml.cs">
       <DependentUpon>MainPageMusic.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\MainPages\MainPageRemovables.xaml.cs">
+      <DependentUpon>MainPageRemovables.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\MainPages\MainPageVideos.xaml.cs">
       <DependentUpon>MainPageVideos.xaml</DependentUpon>
@@ -553,19 +556,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Views\MainPages\MainMusicControls\AlbumsPivotItem.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Views\MainPages\MainMusicControls\ArtistsPivotItem.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\MainPages\MainMusicControls\PlaylistPivotItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\MainPages\MainMusicControls\SongsPivotItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\MainPages\MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\MainPages\MainPageHome.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

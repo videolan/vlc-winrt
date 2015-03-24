@@ -26,15 +26,8 @@ namespace VLC_WINRT_APP.Commands.MainPageCommands
 
     public class GoToPanelCommand : AlwaysExecutableCommand
     {
-#if WINDOWS_APP
-#else
-        public static readonly SolidColorBrush SelectedColorBrush = App.Current.Resources["MainColor"] as SolidColorBrush;
-        public static readonly SolidColorBrush DefaultColorBrush = new SolidColorBrush(Colors.DimGray);
-#endif
-
         public override async void Execute(object parameter)
         {
-#if WINDOWS_APP
             Model.Panel panel = null;
             if (parameter is ItemClickEventArgs)
             {
@@ -74,30 +67,15 @@ namespace VLC_WINRT_APP.Commands.MainPageCommands
                         if (App.ApplicationFrame.CurrentSourcePageType != typeof(MainPageRemovables))
                             App.ApplicationFrame.Navigate(typeof(MainPageRemovables));
                         break;
+
+#if WINDOWS_APP
                     case 4:
                         if (App.ApplicationFrame.CurrentSourcePageType != typeof(MainPageMediaServers))
                             App.ApplicationFrame.Navigate(typeof(MainPageMediaServers));
                         break;
-                }
-            }
-#else
-            if (App.ApplicationFrame.Content is MainPageHome)
-            {
-                if (App.ApplicationFrame.CurrentSourcePageType != typeof(MainPageHome))
-                    App.ApplicationFrame.Navigate(typeof(MainPageHome));
-                if (parameter is int)
-                {
-                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                        (App.ApplicationFrame.Content as MainPageHome).MainPivot.SelectedIndex = (int)parameter);
-                }
-                else if (parameter is string)
-                {
-                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                        (App.ApplicationFrame.Content as MainPageHome).MainPivot.SelectedIndex = int.Parse(parameter.ToString()));
-                }
-            }
 #endif
-
+                }
+            }
         }
     }
 }

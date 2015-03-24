@@ -107,26 +107,11 @@
     <Compile Include="Views\UserControls\ConnectToLastFm.xaml.cs">
       <DependentUpon>ConnectToLastFm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MainPages\MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\MainPages\MainPageHome.xaml.cs">
-      <DependentUpon>MainPageHome.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\MusicPages\MiniPlayer.xaml.cs">
       <DependentUpon>MiniPlayer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControls\Placeholder\NoFavoriteAlbumsControl.xaml.cs">
-      <DependentUpon>NoFavoriteAlbumsControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UserControls\TopBar.xaml.cs">
-      <DependentUpon>TopBar.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\VariousPages\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\VariousPages\DEBUG\historyvideo.xaml.cs">
-      <DependentUpon>historyvideo.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\VariousPages\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
