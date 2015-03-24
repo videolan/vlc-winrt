@@ -289,10 +289,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                         {
                             var artistFromCollection = Locator.MusicLibraryVM.Artists.FirstOrDefault(x => x.Id == album.ArtistId);
                             if (artistFromCollection != null) artistFromCollection.Albums.Add(album);
-                            Locator.MusicLibraryVM.CurrentIndexingStatus = string.Format(_resourcesLoader.GetString("AlbumsFound"), Locator.MusicLibraryVM.Albums.Count);
-#if WINDOWS_PHONE_APP
-                            StatusBarHelper.UpdateTitle(Locator.MusicLibraryVM.CurrentIndexingStatus);
-#endif
+                            Locator.MainVM.InformationText = string.Format(_resourcesLoader.GetString("AlbumsFound"), Locator.MusicLibraryVM.Albums.Count);
                             Locator.MusicLibraryVM.Albums.Add(album);
                         });
                     }
