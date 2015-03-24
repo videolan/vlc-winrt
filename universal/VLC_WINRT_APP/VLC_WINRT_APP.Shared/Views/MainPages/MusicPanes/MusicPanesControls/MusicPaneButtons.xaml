@@ -31,8 +31,6 @@
                   DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}"
                   Command="{Binding StartMusicIndexingCommand}"
                   IsEnabled="{Binding IsBusy, Converter={StaticResource BooleanNegationConverter}}"
-                  Label="refresh"
-                  Margin="12,0"
                   Loaded="RefreshButton_Loaded">
         <AppBarButton.Icon>
             <PathIcon Data="{StaticResource RefreshPath}" />
