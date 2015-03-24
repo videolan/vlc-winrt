@@ -29,18 +29,12 @@ namespace VLC_WINRT_APP.Views.MainPages
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-#if WINDOWS_PHONE_APP
-            HardwareButtons.BackPressed += HardwareButtonsOnBackPressed;
-#endif
-            }
+        }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             base.OnNavigatedFrom(e);
-#if WINDOWS_PHONE_APP
-            HardwareButtons.BackPressed -= HardwareButtonsOnBackPressed;
-#endif
-            }
+        }
 
         private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
         {
@@ -51,18 +45,7 @@ namespace VLC_WINRT_APP.Views.MainPages
         {
             Responsive();
         }
-
-#if WINDOWS_PHONE_APP
-        private void HardwareButtonsOnBackPressed(object sender, BackPressedEventArgs backPressedEventArgs)
-        {
-            if (Locator.MainVM.PreventAppExit)
-            {
-                backPressedEventArgs.Handled = true;
-                return;
-            }
-        }
-#endif
-
+        
         private void Responsive()
         {
         }
