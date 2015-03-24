@@ -172,7 +172,7 @@ namespace VLC_WINRT_APP.Controls
         private static void InformationBackgroundPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
             var that = (SplitShell)dependencyObject;
-            that.SetInformationBrush((Brush) dependencyPropertyChangedEventArgs.NewValue);
+            that.SetInformationBrush((Brush)dependencyPropertyChangedEventArgs.NewValue);
         }
 
 
@@ -204,8 +204,8 @@ namespace VLC_WINRT_APP.Controls
             _sidebarContentPresenter = (ContentPresenter)GetTemplateChild(SidebarContentPresenterName);
             _alwaysVisibleSidebarContentPresenter = (ContentPresenter)GetTemplateChild(AlwaysVisibleSidebarContentPresenterName);
             _topBarContentPresenter = (ContentPresenter)GetTemplateChild(TopBarContentPresenterName);
-            _informationTextBlock = (TextBlock) GetTemplateChild(InformationTextBlockName);
-            _informationGrid = (Grid) GetTemplateChild(InformationGridName);
+            _informationTextBlock = (TextBlock)GetTemplateChild(InformationTextBlockName);
+            _informationGrid = (Grid)GetTemplateChild(InformationGridName);
             _edgePaneGrid = (Grid)GetTemplateChild(EdgePaneName);
 
             TemplateApplied.SetResult(true);
