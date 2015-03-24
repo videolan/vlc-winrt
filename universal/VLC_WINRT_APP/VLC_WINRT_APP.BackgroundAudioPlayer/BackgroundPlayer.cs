@@ -9,6 +9,7 @@ using Windows.Media.Playback;
 using Windows.UI.Xaml;
 using VLC_WINRT_APP.BackgroundAudioPlayer.Model;
 using VLC_WINRT_APP.Database.DataRepository;
+using VLC_WINRT_APP.LastFmScrobbler;
 
 namespace VLC_WINRT_APP.BackgroundAudioPlayer
 {
@@ -25,6 +26,7 @@ namespace VLC_WINRT_APP.BackgroundAudioPlayer
     public sealed class BackgroundPlayer : IBackgroundTask
     {
         #region Private fields, properties
+        private LastFmScrobblerHelper lastFmScrobblerHelper;
         private SystemMediaTransportControls systemmediatransportcontrol;
         private BackgroundTrackCollection playlistManager;
         private BackgroundTaskDeferral deferral; // Used to keep task alive
@@ -165,6 +167,29 @@ namespace VLC_WINRT_APP.BackgroundAudioPlayer
             systemmediatransportcontrol.DisplayUpdater.Update();
         }
 
+        private async void UpdateLastFmOnNewTrack()
+        {
+            string pseudo = (string) ApplicationSettingsHelper.ReadSettingsValue("LastFmUserName");
+            string pd = (string) ApplicationSettingsHelper.ReadSettingsValue("LastFmPassword");
+            if (string.IsNullOrEmpty(pseudo) || string.IsNullOrEmpty(pd)) return;
+
+            if (lastFmScrobblerHelper == null)
+            {
+                // try to instanciate it
+                lastFmScrobblerHelper = new LastFmScrobblerHelper("a8eba7d40559e6f3d15e7cca1bfeaa1c", "bd9ad107438d9107296ef799703d478e");
+            }
+
+            if (!lastFmScrobblerHelper.IsConnected)
+            {
+                var success = await lastFmScrobblerHelper.ConnectOperation(pseudo,pd);
+                if (!success) return;
+            }
+
+            if (lastFmScrobblerHelper != null && lastFmScrobblerHelper.IsConnected)
+            {
+                lastFmScrobblerHelper.ScrobbleTrack(Playlist.CurrentTrackItem.ArtistName, Playlist.CurrentTrackItem.AlbumName, Playlist.CurrentTrackItem.Name);
+            }
+        }
 
         /// <summary>
         /// Fires when any SystemMediaTransportControl property is changed by system or user
@@ -256,6 +281,7 @@ namespace VLC_WINRT_APP.BackgroundAudioPlayer
         void playList_TrackChanged(object sender, object args)
         {
             UpdateUVCOnNewTrack();
+            UpdateLastFmOnNewTrack();
             ApplicationSettingsHelper.SaveSettingsValue(BackgroundAudioConstants.CurrentTrack, Playlist.CurrentTrackIndex);
 
             if (foregroundAppState == ForegroundAppStatus.Active)

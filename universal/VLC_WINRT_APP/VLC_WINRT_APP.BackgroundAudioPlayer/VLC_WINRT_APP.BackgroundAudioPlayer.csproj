@@ -103,6 +103,10 @@
       <Project>{1e0bf0fc-e5cb-4bdf-918f-d2de64f7a6c5}</Project>
       <Name>VLC_WINRT_APP.Database</Name>
     </ProjectReference>
+    <ProjectReference Include="..\VLC_WINRT_APP.LastFmScrobbler\VLC_WINRT_APP.LastFmScrobbler.csproj">
+      <Project>{f531474d-c881-4776-b519-e6374e80f4ce}</Project>
+      <Name>VLC_WINRT_APP.LastFmScrobbler</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>
