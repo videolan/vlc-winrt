@@ -427,6 +427,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\Placeholders\StartSearchingSomething.xaml.cs">
       <DependentUpon>StartSearchingSomething.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\Placeholders\WaitingForNetworkAnswer.xaml.cs">
+      <DependentUpon>WaitingForNetworkAnswer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\SideBar.xaml.cs">
       <DependentUpon>SideBar.xaml</DependentUpon>
     </Compile>
@@ -812,6 +815,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\Placeholders\StartSearchingSomething.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\Placeholders\WaitingForNetworkAnswer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
