@@ -69,10 +69,6 @@ namespace VLC_WINRT_APP.Common
                 builder.RegisterType<ThumbnailService>().As<IThumbnailService>().SingleInstance();
             }
 
-            // Register Views            
-
-            builder.RegisterType<MainPage>();
-
             return builder.Build();
         }
     }

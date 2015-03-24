@@ -249,7 +249,7 @@ namespace VLC_WINRT_APP
 
         private async Task LaunchTheApp()
         {
-            Window.Current.Content = Container.Resolve<MainPage>();
+            Window.Current.Content = new MainPage();
             Dispatcher = Window.Current.Content.Dispatcher;
             Window.Current.Activate();
             await RootPage.SplitShell.TemplateApplied.Task;
