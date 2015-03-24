@@ -2081,22 +2081,34 @@ M 15.937 9.056 c 0.629 -1.69 1.208 -2.349 2.063 -2.349 h 5.586 L 20.293 10 l 1.4
         <Setter Property="Margin"
                 Value="{StaticResource HorizontalListViewItemMargin}" />
         <Setter Property="HorizontalContentAlignment"
-                Value="Left" />
+                Value="Stretch" />
         <Setter Property="VerticalContentAlignment"
-                Value="Top" />
+                Value="Center" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ListViewItem">
                     <Border x:Name="OuterContainer">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
-                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="Normal">
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="PointerOverBorder"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         SpeedRatio="2"
+                                                         To="0" />
+                                    </Storyboard>
+                                </VisualState>
                                 <VisualState x:Name="PointerOver">
                                     <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="PointerOverBorder" 
+                                                         Storyboard.TargetProperty="Opacity" 
+                                                         SpeedRatio="3" 
+                                                         To="0.5" />
                                         <DoubleAnimation Storyboard.TargetName="contentPresenter"
                                                          Storyboard.TargetProperty="Opacity"
                                                          To="0.7"
                                                          SpeedRatio="4" />
+
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="Pressed">
@@ -2450,7 +2462,7 @@ M 15.937 9.056 c 0.629 -1.69 1.208 -2.349 2.063 -2.349 h 5.586 L 20.293 10 l 1.4
                                     <Rectangle x:Name="PointerOverBorder"
                                                IsHitTestVisible="False"
                                                Opacity="0"
-                                               Fill="{StaticResource ListViewItemPointerOverBackgroundThemeBrush}"
+                                               Fill="{StaticResource MainColor}"
                                                Margin="1" />
                                     <Rectangle x:Name="FocusVisual"
                                                IsHitTestVisible="False"
@@ -2554,9 +2566,9 @@ M 15.937 9.056 c 0.629 -1.69 1.208 -2.349 2.063 -2.349 h 5.586 L 20.293 10 l 1.4
         <Setter Property="IsHoldingEnabled"
                 Value="True" />
         <Setter Property="Margin"
-                Value="{StaticResource HorizontalListViewItemMargin}" />
+                Value="0" />
         <Setter Property="HorizontalContentAlignment"
-                Value="Left" />
+                Value="Stretch" />
         <Setter Property="VerticalContentAlignment"
                 Value="Top" />
         <Setter Property="Template">
@@ -2974,7 +2986,7 @@ M 15.937 9.056 c 0.629 -1.69 1.208 -2.349 2.063 -2.349 h 5.586 L 20.293 10 l 1.4
                                             Background="{TemplateBinding Background}"
                                             BorderBrush="{TemplateBinding BorderBrush}"
                                             BorderThickness="{TemplateBinding BorderThickness}"
-                                            Margin="4">
+                                            Margin="0">
                                         <Grid>
                                             <ContentPresenter x:Name="contentPresenter"
                                                               ContentTransitions="{TemplateBinding ContentTransitions}"
