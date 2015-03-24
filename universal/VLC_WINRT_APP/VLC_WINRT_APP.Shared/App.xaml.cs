@@ -168,11 +168,6 @@ namespace VLC_WINRT_APP
             }
         }
 
-        /// <summary>
-        /// Restores the content transitions after the app has launched.
-        /// </summary>
-        /// <param name="sender">The object where the handler is attached.</param>
-        /// <param name="args">Details about the navigation event.</param>
         private void RootFrame_FirstNavigated(object sender, NavigationEventArgs args)
         {
 #if WINDOWS_PHONE_APP
