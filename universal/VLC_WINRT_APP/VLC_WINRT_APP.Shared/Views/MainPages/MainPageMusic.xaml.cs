@@ -7,21 +7,10 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
-using System.Linq;
-using Windows.Devices.Input;
-using Windows.UI;
-using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
-using VLC_WINRT_APP.Helpers;
-using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.ViewModels;
-using VLC_WINRT_APP.Views.MainPages.MusicPanes;
 
 namespace VLC_WINRT_APP.Views.MainPages
 {
@@ -33,22 +22,12 @@ namespace VLC_WINRT_APP.Views.MainPages
             this.NavigationCacheMode = NavigationCacheMode.Enabled;
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            base.OnNavigatedTo(e);
-        }
-
         private void MusicPanesFrame_OnLoaded(object sender, RoutedEventArgs e)
         {
-            if (MainPageMusicContentPresenter.CurrentSourcePageType == null)
+            if (MainPageMusicContentPresenter.Content == null)
             {
                 Locator.MainVM.ChangeMainPageMusicViewCommand.Execute((int)Locator.SettingsVM.MusicView);
             }
-#if WINDOWS_APP
-            MainPageMusicContentPresenter.Margin = new Thickness(24, 0, 0, 0);
-#else
-            MainPageMusicContentPresenter.Background = new SolidColorBrush(Color.FromArgb(0, 0, 0, 0));
-#endif
         }
     }
 }

@@ -8,10 +8,5 @@
       mc:Ignorable="d"
       d:DesignHeight="300"
       d:DesignWidth="400">
-    <Grid.ColumnDefinitions>
-        <ColumnDefinition />
-        <ColumnDefinition Width="Auto" />
-    </Grid.ColumnDefinitions>
-    <musicPanesControls:MusicPaneComboBox Grid.Column="0" />
     <local:MusicPaneButtons Grid.Column="1" />
 </Grid>

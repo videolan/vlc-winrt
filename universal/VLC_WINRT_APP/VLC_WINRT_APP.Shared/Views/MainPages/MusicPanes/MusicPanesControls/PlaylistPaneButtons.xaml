@@ -9,12 +9,10 @@
       d:DesignHeight="300"
       d:DesignWidth="400">
     <Grid.ColumnDefinitions>
-        <ColumnDefinition />
         <ColumnDefinition Width="Auto" />
         <ColumnDefinition Width="Auto" />
     </Grid.ColumnDefinitions>
-    <musicPanesControls:MusicPaneComboBox Grid.Row="0" />
-    <AppBarButton Grid.Column="1"
+    <AppBarButton Grid.Column="0"
                   x:Uid="NewPlaylist"
                   Label="new playlist"
                   Icon="Add"
@@ -22,5 +20,5 @@
                   Command="{Binding ShowCreateNewPlaylistPaneCommand}"
                   Margin="0,0,12,0"
                   VerticalAlignment="Center" />
-    <local:MusicPaneButtons Grid.Column="2" />
+    <local:MusicPaneButtons Grid.Column="1" />
 </Grid>

@@ -3,14 +3,37 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:musicPanesControls="using:VLC_WINRT_APP.Views.MainPages.MusicPanes.MusicPanesControls"
       mc:Ignorable="d"
       d:DesignHeight="300"
       d:DesignWidth="600"
       x:Name="MusicLibrary"
       DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
 
-    <Frame x:Name="MainPageMusicContentPresenter"
-           x:FieldModifier="public"
-           Loaded="MusicPanesFrame_OnLoaded"
-           ContentTransitions="{StaticResource FrameTransitionCollectionStyle}"/>
+    <Grid Margin="12,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <musicPanesControls:MusicPaneComboBox Grid.Row="0" />
+        <musicPanesControls:AlbumsCollectionButtons Grid.Column="1"
+                                                    Visibility="{Binding MusicView, Converter={StaticResource MusicViewVisibilityConverter}, ConverterParameter='albums'}">
+        </musicPanesControls:AlbumsCollectionButtons>
+        <musicPanesControls:ArtistPaneButtons Grid.Column="1"
+                                              Visibility="{Binding MusicView, Converter={StaticResource MusicViewVisibilityConverter}, ConverterParameter='artists'}" />
+        <musicPanesControls:SongsPaneButtons Grid.Column="1"
+                                             Visibility="{Binding MusicView, Converter={StaticResource MusicViewVisibilityConverter}, ConverterParameter='songs'}" />
+        <musicPanesControls:PlaylistPaneButtons Grid.Column="1"
+                                                Visibility="{Binding MusicView, Converter={StaticResource MusicViewVisibilityConverter}, ConverterParameter='playlists'}" />
+        <ContentPresenter x:Name="MainPageMusicContentPresenter"
+                          x:FieldModifier="public"
+                          Grid.Row="1"
+                          Grid.Column="0"
+                          Grid.ColumnSpan="2"
+                          Loaded="MusicPanesFrame_OnLoaded" />
+    </Grid>
 </Page>
