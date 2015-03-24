@@ -30,20 +30,13 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0"
-                           Grid.ColumnSpan="3"
-                           Text="{Binding Name}"
+                <TextBlock Text="{Binding Name}"
                            TextWrapping="NoWrap"
                            TextTrimming="CharacterEllipsis"
                            FontSize="15"
                            FontWeight="Normal"
                            Margin="0,0,7,0" />
                 <TextBlock Grid.Row="1"
-                           Grid.Column="0"
                            Text="{Binding Duration, Converter={StaticResource TimeSpanShortStringConverter}}"
                            Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
                            TextWrapping="NoWrap"
@@ -51,15 +44,6 @@
                            FontSize="14"
                            Margin="0,0,7,0"
                            FontWeight="Light" />
-                <Button Grid.Column="1"
-                        Grid.Row="1"
-                        VerticalAlignment="Bottom"
-                        Style="{StaticResource TextBlockButtonStyle}"
-                        Content=""
-                        Foreground="#ACACAC"
-                        FontFamily="Segoe UI Symbol"
-                        Margin="0,0,3,0"
-                        Flyout="{StaticResource VideoInformationFlyout}"/>
             </Grid>
             <ProgressBar Grid.Row="2"
                          VerticalAlignment="Bottom"
