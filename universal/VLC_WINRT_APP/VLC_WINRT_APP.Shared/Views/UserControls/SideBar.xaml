@@ -13,17 +13,14 @@
     <Grid x:Name="SidebarGrid"
           Loaded="Sidebar_Loaded"
           Background="{ThemeResource ApplicationBarForegroundThemeBrush}">
-        <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
         <ListView x:Name="PanelsListView"
                   ItemsSource="{Binding Panels}"
                   IsItemClickEnabled="True"
                   SelectionMode="None"
                   ItemContainerStyle="{StaticResource ListViewItemContainerStyle}"
                   ItemTemplate="{StaticResource SidebarMiniIconItemTemplate}"
-                  ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                  ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                  VerticalAlignment="Top">
             <triggers:Interactions.Triggers>
                 <triggers:EventTrigger EventName="ItemClick">
                     <triggers:InvokeCommandAction Command="{Binding GoToPanelCommand}"
@@ -31,15 +28,5 @@
                 </triggers:EventTrigger>
             </triggers:Interactions.Triggers>
         </ListView>
-
-        <AppBarButton Grid.Row="1"
-                      HorizontalAlignment="Center"
-                      Style="{StaticResource EllipseLessAppBarButtonStyle}"
-                      Label="settings"
-                      Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToSettingsPageCommand}">
-            <AppBarButton.Icon>
-                <PathIcon Data="{StaticResource SettingsPath}" />
-            </AppBarButton.Icon>
-        </AppBarButton>
     </Grid>
 </UserControl>
