@@ -55,6 +55,11 @@
                                      Margin="12,0,0,0" />
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
+            <ListView.ItemContainerTransitions>
+                <TransitionCollection>
+                    <RepositionThemeTransition/>
+                </TransitionCollection>
+            </ListView.ItemContainerTransitions>
         </ListView>
     </Grid>
 </UserControl>
