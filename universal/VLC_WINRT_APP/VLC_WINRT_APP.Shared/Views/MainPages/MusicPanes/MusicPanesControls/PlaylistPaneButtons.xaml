@@ -20,5 +20,4 @@
                   Command="{Binding ShowCreateNewPlaylistPaneCommand}"
                   Margin="0,0,12,0"
                   VerticalAlignment="Center" />
-    <local:MusicPaneButtons Grid.Column="1" />
 </Grid>
