@@ -10,7 +10,8 @@
       mc:Ignorable="d">
 
     <Grid>
-        <ListView ItemsSource="{Binding CameraRoll}"
+        <ListView x:Name="CameraRollListView"
+                  ItemsSource="{Binding CameraRoll}"
                   ItemTemplate="{StaticResource PhoneCompactVideoTemplate}"
                   ItemContainerStyle="{StaticResource ListViewItemStyle}"
                   IsItemClickEnabled="True">
