@@ -98,12 +98,6 @@
     <Compile Include="Views\MusicPages\CreateNewPlaylist.xaml.cs">
       <DependentUpon>CreateNewPlaylist.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MusicPages\ShowsAroundMe.xaml.cs">
-      <DependentUpon>ShowsAroundMe.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\MusicPages\MiniPlayer.xaml.cs">
-      <DependentUpon>MiniPlayer.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\VariousPages\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>
@@ -795,14 +789,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\MusicPages\ShowsAroundMe.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\MusicPages\MiniPlayer.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\VariousPages\AboutPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -863,11 +849,7 @@
   <ItemGroup>
     <None Include="MultilingualResources\VLC_WINRT_APP.WindowsPhone.ja-JP.xlf" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\MainPages\MainMusicControls\" />
-    <Folder Include="Views\UserControls\Flyouts\" />
-    <Folder Include="Views\UserControls\Placeholder\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>
   </PropertyGroup>
