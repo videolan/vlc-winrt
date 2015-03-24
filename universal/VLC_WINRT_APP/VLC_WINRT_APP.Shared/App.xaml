@@ -28,7 +28,7 @@
                                      Color="{StaticResource MainColorBase}" />
                 </ResourceDictionary>
                 <ResourceDictionary x:Key="Light">
-                    <Color x:Key="ApplicationPageBackgroundThemeColor">WhiteSmoke</Color>
+                    <Color x:Key="ApplicationPageBackgroundThemeColor">White</Color>
                     <SolidColorBrush x:Key="ApplicationPageBackgroundThemeBrush"
                                      Color="{StaticResource ApplicationPageBackgroundThemeColor}" />
                     <SolidColorBrush x:Key="PivotHeaderForegroundUnselectedBrush"
