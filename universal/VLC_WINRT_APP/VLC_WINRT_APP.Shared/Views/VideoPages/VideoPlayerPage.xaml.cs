@@ -56,8 +56,6 @@ namespace VLC_WINRT_APP.Views.VideoPages
             timer.Start();
 #if WINDOWS_PHONE_APP
             HardwareButtons.BackPressed += HardwareButtonsOnBackPressed;
-            StatusBar sB = StatusBar.GetForCurrentView();
-            await sB.HideAsync();
 #endif
         }
 
