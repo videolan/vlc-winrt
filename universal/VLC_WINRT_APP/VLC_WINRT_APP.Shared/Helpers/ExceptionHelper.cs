@@ -163,16 +163,20 @@ namespace VLC_WINRT_APP.Helpers
         private static void AppendMemoryUsage(StringBuilder stringBuilder)
         {
 #if WINDOWS_PHONE_APP
-            // Gets the app's current memory usage    
-            ulong AppMemoryUsageUlong = MemoryManager.AppMemoryUsage;
-            // Gets the app's memory usage limit    
-            ulong AppMemoryUsageLimitUlong = MemoryManager.AppMemoryUsageLimit;
+            try
+            {
+                // Gets the app's current memory usage    
+                ulong AppMemoryUsageUlong = MemoryManager.AppMemoryUsage;
+                // Gets the app's memory usage limit    
+                ulong AppMemoryUsageLimitUlong = MemoryManager.AppMemoryUsageLimit;
 
-            AppMemoryUsageUlong /= 1024 * 1024;
-            AppMemoryUsageLimitUlong /= 1024 * 1024;
-            stringBuilder.Append("CurrentRAM: ").AppendLine(AppMemoryUsageUlong.ToString());
-            stringBuilder.Append("MaxRAM: ").AppendLine(AppMemoryUsageLimitUlong.ToString());
-            stringBuilder.Append("CommentOnRAM: ").AppendLine(MemoryManager.AppMemoryUsageLevel.ToString());
+                AppMemoryUsageUlong /= 1024*1024;
+                AppMemoryUsageLimitUlong /= 1024*1024;
+                stringBuilder.Append("CurrentRAM: ").AppendLine(AppMemoryUsageUlong.ToString());
+                stringBuilder.Append("MaxRAM: ").AppendLine(AppMemoryUsageLimitUlong.ToString());
+                stringBuilder.Append("CommentOnRAM: ").AppendLine(MemoryManager.AppMemoryUsageLevel.ToString());
+            }
+            catch { }
 #endif
         }
     }
