@@ -14,7 +14,7 @@ namespace VLC_WINRT_APP.Controls
     [TemplatePart(Name = AlwaysVisibleSidebarContentPresenterName, Type = typeof(ContentPresenter))]
     [TemplatePart(Name = TopBarContentPresenterName, Type = typeof(ContentPresenter))]
     [TemplatePart(Name = InformationGridName, Type = typeof(Grid))]
-    [TemplatePart(Name = NavigationFrameName, Type = typeof(Frame))]
+    [TemplatePart(Name = ContentPresenterName, Type = typeof(ContentPresenter))]
     [TemplatePart(Name = InformationTextBlockName, Type = typeof(TextBlock))]
     public sealed class SplitShell : Control
     {
@@ -23,7 +23,7 @@ namespace VLC_WINRT_APP.Controls
         private const string SidebarGridContainerName = "SidebarGridContainer";
         private const string SidebarContentPresenterName = "SidebarContentPresenter";
         private const string AlwaysVisibleSidebarContentPresenterName = "AlwaysVisibleSidebarContentPresenter";
-        private const string NavigationFrameName = "NavigationFrame";
+        private const string ContentPresenterName = "ContentPresenter";
         private const string TopBarContentPresenterName = "TopBarContentPresenter";
         private const string TopBarVisualStateName = "TopBarVisualState";
         private const string SideBarVisualStateName = "SideBarVisualState";
@@ -33,18 +33,18 @@ namespace VLC_WINRT_APP.Controls
 
         private Grid _edgePaneGrid;
         private Grid _sidebarGridContainer;
+        private ContentPresenter _contentPresenter;
         private ContentPresenter _sidebarContentPresenter;
         private ContentPresenter _alwaysVisibleSidebarContentPresenter;
         private ContentPresenter _topBarContentPresenter;
         private Grid _informationGrid;
         private TextBlock _informationTextBlock;
-        private Frame _navigationFrame;
-
         private bool _alwaysVisibleSideBarVisualState;
 
-        public Frame NavigationFrame
+        public async void SetContentPresenter(object contentPresenter)
         {
-            get { return _navigationFrame; }
+            await TemplateApplied.Task;
+            _contentPresenter.Content = contentPresenter;
         }
 
         public async void SetSidebarContentPresenter(object contentPresenter)
@@ -86,6 +86,23 @@ namespace VLC_WINRT_APP.Controls
             Responsive();
         }
 
+        #region Content Property
+        public DependencyObject Content
+        {
+            get { return (DependencyObject)GetValue(ContentProperty); }
+            set { SetValue(ContentProperty, value); }
+        }
+
+        public static readonly DependencyProperty ContentProperty = DependencyProperty.Register(
+            "Content", typeof(DependencyObject), typeof(SplitShell), new PropertyMetadata(default(DependencyObject), ContentPropertyChangedCallback));
+
+
+        private static void ContentPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
+        {
+            var that = (SplitShell)dependencyObject;
+            that.SetContentPresenter(dependencyPropertyChangedEventArgs.NewValue);
+        }
+        #endregion
         #region AlwaysVisibleSidebar Property
 
         public bool AlwaysVisibleSidebar
@@ -199,7 +216,7 @@ namespace VLC_WINRT_APP.Controls
         protected override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
-            _navigationFrame = (Frame)GetTemplateChild(NavigationFrameName);
+            _contentPresenter = (ContentPresenter) GetTemplateChild(ContentPresenterName);
             _sidebarGridContainer = (Grid)GetTemplateChild(SidebarGridContainerName);
             _sidebarContentPresenter = (ContentPresenter)GetTemplateChild(SidebarContentPresenterName);
             _alwaysVisibleSidebarContentPresenter = (ContentPresenter)GetTemplateChild(AlwaysVisibleSidebarContentPresenterName);
@@ -216,6 +233,7 @@ namespace VLC_WINRT_APP.Controls
             Window.Current.SizeChanged += Current_SizeChanged;
             Responsive();
         }
+
 
         void Current_SizeChanged(object sender, WindowSizeChangedEventArgs e)
         {
