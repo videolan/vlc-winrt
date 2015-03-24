@@ -26,7 +26,10 @@ namespace VLC_WINRT_APP.Views.MainPages.MainVideoControls.VideoPanesControls
         void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
         {
             if (VideoViewComboBox.IsDropDownOpen)
+            {
                 VideoViewComboBox.IsDropDownOpen = false;
+                e.Handled = true;
+            }
         }
 
         void VideoPaneComboBox_Unloaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
