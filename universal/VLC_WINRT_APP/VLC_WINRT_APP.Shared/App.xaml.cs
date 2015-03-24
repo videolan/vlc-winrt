@@ -68,7 +68,7 @@ namespace VLC_WINRT_APP
         {
             get
             {
-                return RootPage != null ? RootPage.MainFrame : null;
+                return RootPage != null ? RootPage.SplitShell.NavigationFrame : null;
             }
         }
 
@@ -99,7 +99,7 @@ namespace VLC_WINRT_APP
 #endif
             if (Window.Current.Content == null)
             {
-                LaunchTheApp();
+                await LaunchTheApp();
                 ApplicationFrame.Navigated += this.RootFrame_FirstNavigated;
                 ApplicationFrame.Navigate(typeof(MainPageHome));
 
@@ -175,6 +175,7 @@ namespace VLC_WINRT_APP
 #endif
             Locator.MainVM.CurrentPage = args.SourcePageType;
         }
+
 #if WINDOWS_PHONE_APP
         protected async override void OnActivated(IActivatedEventArgs args)
         {
@@ -188,7 +189,7 @@ namespace VLC_WINRT_APP
                     {
                         case OpenFilePickerReason.OnOpeningVideo: 
                             if (Window.Current.Content == null)
-                                LaunchTheApp();
+                                await LaunchTheApp();
                             await VLCService.OpenFile(continueArgs.Files[0]);
                             break;
                         case OpenFilePickerReason.OnOpeningSubtitle:
@@ -242,15 +243,16 @@ namespace VLC_WINRT_APP
         private async Task ManageOpeningFiles(FileActivatedEventArgs args)
         {
             if (Window.Current.Content == null)
-                LaunchTheApp();
+                await LaunchTheApp();
             await VLCService.OpenFile(args.Files[0] as StorageFile);
         }
 
-        private void LaunchTheApp()
+        private async Task LaunchTheApp()
         {
             Window.Current.Content = Container.Resolve<MainPage>();
             Dispatcher = Window.Current.Content.Dispatcher;
             Window.Current.Activate();
+            await RootPage.SplitShell.TemplateApplied.Task;
 #if WINDOWS_APP
             AppViewHelper.SetAppView(); 
             AppViewHelper.SetBackgroundButtonColor();

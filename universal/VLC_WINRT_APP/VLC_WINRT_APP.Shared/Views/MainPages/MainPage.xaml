@@ -4,32 +4,26 @@
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:userControls="using:VLC_WINRT_APP.Views.UserControls"
-                xmlns:extensions="using:WinRTXamlToolkit.Controls.Extensions"
-                xmlns:customAppBar="using:CustomAppBarDesktop"
-                xmlns:albumPageControls="using:VLC_WINRT_APP.Views.MusicPages.AlbumPageControls"
-                xmlns:musicPages="using:VLC_WINRT_APP.Views.MusicPages"
+                xmlns:controls="using:VLC_WINRT_APP.Controls"
                 mc:Ignorable="d"
                 DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}"
                 RequestedTheme="{Binding ApplicationTheme, Converter={StaticResource AppThemeElementThemeConverter}}"
                 x:Name="SwapChainPanel">
     <Grid.RowDefinitions>
-        <RowDefinition Height="Auto"
-                       x:Name="TopBarRowDefinition" />
         <RowDefinition Height="*" />
         <RowDefinition Height="Auto" />
     </Grid.RowDefinitions>
     <MediaElement x:Name="MfMediaElement"
                   x:FieldModifier="public"
                   Grid.Row="0"
-                  Grid.RowSpan="3"
+                  Grid.RowSpan="2"
                   Loaded="MfMediaElement_OnLoaded"
-                  AudioCategory="BackgroundCapableMedia"/>
+                  AudioCategory="BackgroundCapableMedia" />
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-          Grid.RowSpan="3"
+          Grid.RowSpan="2"
           Visibility="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}" />
 
     <Grid Grid.Row="0"
-          Grid.RowSpan="2"
           DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}"
           Visibility="{Binding CurrentPage, Converter={StaticResource MusicPlayerBackgroundVisibilityConverter}}">
         <Image DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}"
@@ -38,24 +32,19 @@
                Opacity="0.3" />
     </Grid>
 
-    <userControls:TopBar Grid.Row="0"
-                         RequestedTheme="Dark"
-                         Visibility="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}" />
-    
-    <Frame x:Name="MainFrame"
-           Grid.Row="1"
-           x:FieldModifier="public"
-           Navigated="MainFrame_OnNavigated">
-        <Frame.ContentTransitions>
-            <TransitionCollection>
-                <EdgeUIThemeTransition x:Name="MainFrameThemeTransition"
-                                       x:FieldModifier="public"
-                                       Edge="Bottom" />
-            </TransitionCollection>
-        </Frame.ContentTransitions>
-    </Frame>
-    <userControls:LoadingMusicLibrary Grid.Row="0"
-                                      VerticalAlignment="Bottom"
-                                      HorizontalAlignment="Right" />
-    <userControls:BottomMiniPlayer Grid.Row="2"/>
+    <controls:SplitShell x:Name="SplitShell"
+                         x:FieldModifier="public"
+                         EdgePaneColor="{ThemeResource ApplicationThirdForegroundThemeBrush}"
+                         AlwaysVisibleSidebar="True"
+                         InformationText="{Binding Source={StaticResource Locator}, Path=MainVM.InformationText}"
+                         InformationBackground="{StaticResource MainColor}">
+        <controls:SplitShell.SideBarContent>
+            <userControls:SideBar />
+        </controls:SplitShell.SideBarContent>
+        <controls:SplitShell.TopBarContent>
+            <userControls:TopBar Visibility="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}" />
+        </controls:SplitShell.TopBarContent>
+    </controls:SplitShell>
+
+    <userControls:BottomMiniPlayer Grid.Row="1" />
 </SwapChainPanel>
