@@ -10,5 +10,5 @@
                 Style="{StaticResource SettingsFlyoutStyle}"
                 d:DesignWidth="346"
                 Width="500">
-    <artistPageControls:ArtistPageBase />
+    <artistPageControls:ArtistPageBase Tapped="RootGrid_OnTapped"/>
 </SettingsFlyout>
