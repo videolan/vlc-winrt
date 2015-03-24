@@ -17,16 +17,11 @@ namespace VLC_WINRT_APP.Model.Video
         public static void ComputeCompactVideo(ItemsWrapGrid wrapGrid, double? width = null)
         {
             if (width == null) width = Window.Current.Bounds.Width;
-            var splitScreen = 2;
-#if WINDOWS_PHONE_APP
-            if (!DisplayHelper.IsPortrait())
-                splitScreen = 4;
-#endif
-#if WINDOWS_APP
-            if (width > 614)
+            const int splitScreen = 2;
+            if (width > 600)
             {
-                wrapGrid.ItemHeight = tileSize + contentGridWindows;
                 wrapGrid.ItemWidth = 307;
+                wrapGrid.ItemHeight = tileSize + contentGridWindows;
             }
             else
             {
@@ -35,30 +30,15 @@ namespace VLC_WINRT_APP.Model.Video
                 wrapGrid.ItemHeight = itemHeight;
                 wrapGrid.ItemWidth = itemWidth;
             }
-#else
-            var itemWidth = (width.Value / splitScreen);
-            var itemHeight = (itemWidth * 9 / 16) + contentGrid;
-            wrapGrid.ItemWidth = itemWidth - 10;
-            wrapGrid.ItemHeight = itemHeight;
-#endif
         }
 
-        public static void ComputeAlbums(ItemsWrapGrid wrapGrid, TemplateSize size = TemplateSize.Compact, double? width = null)
+        public static void ComputeAlbums(ItemsWrapGrid wrapGrid, double? width = null, TemplateSize size = TemplateSize.Compact)
         {
             if (width == null) width = Window.Current.Bounds.Width;
-            var splitScreen = (size == TemplateSize.Compact) ? 3 : 2;
-#if WINDOWS_PHONE_APP
-            width -= 5;
-            if (width < 401 && width > 399)
+            if (width < 401) // force templatesize to normal
                 size = TemplateSize.Normal;
-            if (!DisplayHelper.IsPortrait())
-                splitScreen = 5;
-            var itemWidth = (width.Value / splitScreen);
-            var itemHeight = itemWidth + 40;
-            wrapGrid.ItemWidth = itemWidth;
-            wrapGrid.ItemHeight = itemHeight;
-#else
-            if (width > tileSize*3)
+            var splitScreen = (size == TemplateSize.Compact) ? 3 : 2;
+            if (width > tileSize*splitScreen)
             {
                 wrapGrid.ItemWidth = tileSize;
                 wrapGrid.ItemHeight = tileSize + contentGridWindows;
@@ -68,7 +48,6 @@ namespace VLC_WINRT_APP.Model.Video
                 wrapGrid.ItemWidth = (width.Value / splitScreen);
                 wrapGrid.ItemHeight = wrapGrid.ItemWidth + contentGridWindows;
             }
-#endif
         }
     }
 }
