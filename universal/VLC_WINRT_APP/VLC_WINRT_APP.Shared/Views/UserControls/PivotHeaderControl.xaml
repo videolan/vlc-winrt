@@ -18,7 +18,7 @@
             <ColumnDefinition Width="6"
                               x:Name="MiddleColumnDefinition" />
             <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="12"/>
+            <ColumnDefinition Width="12" />
         </Grid.ColumnDefinitions>
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
