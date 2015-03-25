@@ -185,6 +185,10 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                 _currentTrack = 0;
                 SetActiveTrackProperty();
             }
+            catch (Exception exception)
+            {
+                
+            }
         }
 
         public async Task SetPlaylist(ObservableCollection<TrackItem> playlist)
