@@ -31,7 +31,7 @@
                 <userControls:FocusTextBox x:Uid="EnterAUrl"
                          PlaceholderText="Enter a URL"
                          InputScope="Url" 
-                         MinWidth="350"
+                         MinWidth="200"
                          TextWrapping="Wrap"/>
                 <Button Grid.Column="1"
                         Style="{StaticResource TextBlockButtonStyle}"
