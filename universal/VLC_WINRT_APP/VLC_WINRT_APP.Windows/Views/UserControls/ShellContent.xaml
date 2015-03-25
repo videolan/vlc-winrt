@@ -10,7 +10,8 @@
 
     <Frame x:Name="NavigationFrame"
            x:FieldModifier="public"
-           Background="Transparent">
+           Background="Transparent"
+           Navigated="MainFrame_OnNavigated">
         <Frame.ContentTransitions>
             <TransitionCollection>
                 <EdgeUIThemeTransition Edge="Right" />
