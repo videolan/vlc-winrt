@@ -591,36 +591,30 @@ namespace VLC_WINRT_APP.ViewModels.Settings
             NotificationOnNewSongForeground = notificationOnNewSongForeground != null && (bool)notificationOnNewSongForeground;
             var sidebar = ApplicationSettingsHelper.ReadSettingsValue("IsSidebarAlwaysMinimized");
             if (sidebar != null) IsSidebarAlwaysMinimized = (bool)sidebar;
-            ContinueVideoPlaybackInBackground =
-                (bool)ApplicationSettingsHelper.ReadSettingsValue("ContinueVideoPlaybackInBackground");
 
+            var continuePlaybackInBackground = ApplicationSettingsHelper.ReadSettingsValue("ContinueVideoPlaybackInBackground");
+            if (continuePlaybackInBackground != null)
+                ContinueVideoPlaybackInBackground =(bool)continuePlaybackInBackground;
             await GetLibrariesFolders();
 #else
             var searchArtist = ApplicationSettingsHelper.ReadSettingsValue("SearchArtists");
             if (searchArtist == null)
-            {
                 SearchArtists = false;
-            }
 
             var searchVideo = ApplicationSettingsHelper.ReadSettingsValue("SearchVideos");
             if (searchVideo == null)
-            {
                 SearchVideos = true;
-            }
 
             var searchAlbum = ApplicationSettingsHelper.ReadSettingsValue("SearchAlbums");
             if (searchAlbum == null)
-            {
                 SearchAlbums = false;
-            }
 
             var searchTrack = ApplicationSettingsHelper.ReadSettingsValue("SearchTracks");
             if (searchTrack == null)
-            {
                 SearchTracks = false;
-            }
 #endif
         }
+
 #if WINDOWS_APP
         public async Task GetLibrariesFolders()
         {
