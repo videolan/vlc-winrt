@@ -22,18 +22,21 @@
                Source="{Binding CurrentArtist.ArtistImage}"
                Stretch="UniformToFill"
                Opacity="0.5" />
-        <userControls:HeaderControl Grid.Row="0"
-                                    HeaderTextBlock="{Binding CurrentArtist.Name, Converter={StaticResource ArtistStringConverter}}"
-                                    HeaderBackground="#00ffffff"
-                                    VerticalAlignment="Top" />
-        <Grid Grid.Row="1">
-            <TextBlock Text="{Binding CurrentArtist.Biography}"
-                       Style="{StaticResource BodyTextBlockStyle}"
-                       TextTrimming="CharacterEllipsis"
-                       Margin="24,0,24,12"
-                       HorizontalAlignment="Left"
-                       VerticalAlignment="Top" />
-        </Grid>
+        <TextBlock Grid.Row="0"
+                   Margin="24,12"
+                   TextTrimming="CharacterEllipsis"
+                   TextWrapping="NoWrap"
+                   VerticalAlignment="Center"
+                   Text="{Binding CurrentArtist.Name, Converter={StaticResource ArtistStringConverter}}"
+                   Style="{StaticResource SubheaderTextBlockStyle}" />
+
+        <TextBlock Grid.Row="1"
+                   Text="{Binding CurrentArtist.Biography}"
+                   Style="{StaticResource BodyTextBlockStyle}"
+                   TextTrimming="CharacterEllipsis"
+                   Margin="24,0,24,12"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top" />
         <Grid Grid.Row="2"
               Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}"
               Height="50">

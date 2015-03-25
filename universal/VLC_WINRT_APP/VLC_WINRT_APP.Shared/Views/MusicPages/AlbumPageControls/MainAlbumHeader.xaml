@@ -11,90 +11,119 @@
              d:DesignHeight="300"
              d:DesignWidth="400">
     <Grid x:Name="HeaderGrid"
-          Margin="-12,0,0,0">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="24" />
-            <ColumnDefinition MinWidth="110"
-                              MaxWidth="200"
-                              Width="2*"/>
-            <ColumnDefinition Width="12" />
-            <ColumnDefinition Width="3*"/>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="12" />
-        </Grid.ColumnDefinitions>
+          Background="Black"
+          RequestedTheme="Dark"
+          Height="260">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition />
         </Grid.RowDefinitions>
-        <userControls:HeaderControl Grid.Row="0"
-                                    Grid.ColumnSpan="4"
-                                    HeaderTextBlock="{Binding CurrentArtist.Name, Converter={StaticResource AlbumStringConverter}}"
-                                    HeaderBackground="#00ffffff" />
-        <Image Grid.Column="1"
-               Grid.Row="1"
-               Grid.RowSpan="3"
-               x:Name="HeaderArtistImage"
-               Source="{Binding CurrentAlbum.AlbumImage}"
-               Stretch="Uniform"
-               Opacity="1"
-               VerticalAlignment="Top" />
-        <Button Grid.Row="1"
-                Grid.Column="3"
-                Grid.ColumnSpan="3"
-                VerticalAlignment="Top"
-                Style="{StaticResource TextBlockButtonStyle}"
-                Command="{Binding CurrentAlbum.ViewArtist}"
-                CommandParameter="{Binding CurrentAlbum.ArtistId}">
-            <Button.Content>
-                <TextBlock TextWrapping="NoWrap"
-                           TextTrimming="CharacterEllipsis">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <Image Grid.RowSpan="4"
+               Grid.ColumnSpan="2"
+               Source="{Binding CurrentArtist.ArtistImage}"
+               Stretch="UniformToFill"
+               Opacity="0.5" />
+        <TextBlock  Grid.Row="0"
+                    Grid.Column="0"
+                    Margin="24,12"
+                    TextTrimming="CharacterEllipsis"
+                    TextWrapping="NoWrap"
+                    VerticalAlignment="Top"
+                    Text="{Binding CurrentArtist.Name, Converter={StaticResource AlbumStringConverter}}"
+                    Style="{StaticResource SubheaderTextBlockStyle}" />
+        <AppBarButton Grid.Row="0"
+                      Grid.Column="1"
+                      Margin="12"
+                      Style="{StaticResource AppBarButtonStyleHorizontal}"
+                      Label="view artist"
+                      Command="{Binding CurrentAlbum.ViewArtist}"
+                      CommandParameter="{Binding CurrentAlbum.ArtistId}">
+            <AppBarButton.Icon>
+                <FontIcon Glyph="{StaticResource BuddySymbol}"
+                          FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+            </AppBarButton.Icon>
+        </AppBarButton>
+
+        <Grid Grid.Row="1"
+              Grid.Column="0"
+              Grid.ColumnSpan="2"
+              VerticalAlignment="Center"
+              Margin="0,0,0,30">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="24" />
+                <ColumnDefinition MinWidth="110"
+                                  MaxWidth="200"
+                                  Width="2*" />
+                <ColumnDefinition Width="12" />
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="12" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Image Grid.Column="1"
+                   Grid.Row="0"
+                   Grid.RowSpan="3"
+                   x:Name="HeaderArtistImage"
+                   Source="{Binding CurrentAlbum.AlbumImage}"
+                   Stretch="Uniform"
+                   Opacity="1"
+                   VerticalAlignment="Top" />
+            <TextBlock Grid.Row="0"
+                       Grid.Column="3"
+                       Grid.ColumnSpan="3"
+                       VerticalAlignment="Top"
+                       TextWrapping="NoWrap"
+                       TextTrimming="CharacterEllipsis">
                         <Run Text="{Binding CurrentAlbum.Name, Converter={StaticResource ArtistStringConverter}}"
                              FontWeight="Light"
-                             FontSize="24" />
-                        <Run Text="{StaticResource NextSymbol}"
-                             FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
-                </TextBlock>
-            </Button.Content>
-        </Button>
-        <AppBarButton Grid.Row="3"
-                      Grid.Column="4"
-                      Style="{StaticResource AppBarButtonStyleHorizontal}"
-                      Icon="{Binding CurrentAlbum.Favorite, Converter={StaticResource FavoriteSymbolConverter}}"
-                      VerticalAlignment="Bottom"
-                      Command="{Binding CurrentAlbum.FavoriteAlbum}"
-                      CommandParameter="{Binding CurrentAlbum}" />
-        <AppBarButton Grid.Row="2"
-                      Grid.Column="4"
-                      Style="{StaticResource AppBarButtonStyleHorizontal}"
-                      Icon="{Binding CurrentAlbum.IsPinned, Converter={StaticResource PinConverter}, ConverterParameter='icon'}"
-                      VerticalAlignment="Bottom"
-                      Command="{Binding CurrentAlbum.PinAlbumCommand}"
-                      CommandParameter="{Binding CurrentAlbum}" />
-        <AppBarButton Grid.Row="2"
-                      Grid.Column="3"
-                      Style="{StaticResource AppBarButtonStyleHorizontal}"
-                      Label="add to playlist"
-                      VerticalAlignment="Bottom"
-                      DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}"
-                      Command="{Binding OpenAddAlbumToPlaylistDialogCommand}">
-            <AppBarButton.Icon>
-                <FontIcon Glyph="{StaticResource AddSymbol}"
-                          FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
-            </AppBarButton.Icon>
-        </AppBarButton>
-        <AppBarButton Grid.Row="3"
-                      Grid.Column="3"
-                      Style="{StaticResource AppBarButtonStyleHorizontal}"
-                      Label="Play all"
-                      VerticalAlignment="Bottom"
-                      Command="{Binding CurrentAlbum.PlayAlbum}"
-                      CommandParameter="{Binding CurrentAlbum}">
-            <AppBarButton.Icon>
-                <FontIcon Glyph="{StaticResource PlaySymbol}"
-                          FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
-            </AppBarButton.Icon>
-        </AppBarButton>
+                             FontSize="22" />
+            </TextBlock>
+            <AppBarButton Grid.Row="2"
+                          Grid.Column="4"
+                          Style="{StaticResource AppBarButtonStyleHorizontal}"
+                          Icon="{Binding CurrentAlbum.Favorite, Converter={StaticResource FavoriteSymbolConverter}}"
+                          VerticalAlignment="Top"
+                          Command="{Binding CurrentAlbum.FavoriteAlbum}"
+                          CommandParameter="{Binding CurrentAlbum}" />
+            <AppBarButton Grid.Row="1"
+                          Grid.Column="4"
+                          Style="{StaticResource AppBarButtonStyleHorizontal}"
+                          Icon="{Binding CurrentAlbum.IsPinned, Converter={StaticResource PinConverter}, ConverterParameter='icon'}"
+                          VerticalAlignment="Top"
+                          Command="{Binding CurrentAlbum.PinAlbumCommand}"
+                          CommandParameter="{Binding CurrentAlbum}" />
+            <AppBarButton Grid.Row="1"
+                          Grid.Column="3"
+                          Style="{StaticResource AppBarButtonStyleHorizontal}"
+                          Label="add to playlist"
+                          VerticalAlignment="Top"
+                          DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}"
+                          Command="{Binding OpenAddAlbumToPlaylistDialogCommand}">
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="{StaticResource AddSymbol}"
+                              FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+                </AppBarButton.Icon>
+            </AppBarButton>
+            <AppBarButton Grid.Row="2"
+                          Grid.Column="3"
+                          Style="{StaticResource AppBarButtonStyleHorizontal}"
+                          Label="Play all"
+                          VerticalAlignment="Top"
+                          Command="{Binding CurrentAlbum.PlayAlbum}"
+                          CommandParameter="{Binding CurrentAlbum}">
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="{StaticResource PlaySymbol}"
+                              FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+                </AppBarButton.Icon>
+            </AppBarButton>
+        </Grid>
     </Grid>
 </UserControl>
