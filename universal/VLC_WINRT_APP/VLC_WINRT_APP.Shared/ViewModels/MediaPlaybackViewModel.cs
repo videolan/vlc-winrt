@@ -569,7 +569,7 @@ namespace VLC_WINRT_APP.ViewModels
             }
             else if (mediaService is MFService)
             {
-                var mfService = (MFService) mediaService;
+                var mfService = (MFService)mediaService;
                 mfService.Instance.Source = null;
             }
             mediaService.SetNullMediaPlayer();
@@ -1050,30 +1050,31 @@ namespace VLC_WINRT_APP.ViewModels
         {
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                try{
-                if (_systemMediaTransportControls == null) return;
-                _systemMediaTransportControls.PlaybackStatus = MediaPlaybackStatus.Playing;
-                _systemMediaTransportControls.IsEnabled = true;
-                _systemMediaTransportControls.IsPauseEnabled = true;
-                _systemMediaTransportControls.IsPlayEnabled = true;
-
-                SystemMediaTransportControlsDisplayUpdater updater = _systemMediaTransportControls.DisplayUpdater;
-                updater.Type = MediaPlaybackType.Music;
-                // Music metadata.
-                updater.MusicProperties.AlbumArtist = artistName;
-                updater.MusicProperties.Artist = artistName;
-                updater.MusicProperties.Title = trackName;
-
-                // Set the album art thumbnail.
-                // RandomAccessStreamReference is defined in Windows.Storage.Streams
-
-                if (albumUri != null && !string.IsNullOrEmpty(albumUri))
+                try
                 {
-                    updater.Thumbnail = RandomAccessStreamReference.CreateFromUri(new Uri(albumUri));
-                }
+                    if (_systemMediaTransportControls == null) return;
+                    _systemMediaTransportControls.PlaybackStatus = MediaPlaybackStatus.Playing;
+                    _systemMediaTransportControls.IsEnabled = true;
+                    _systemMediaTransportControls.IsPauseEnabled = true;
+                    _systemMediaTransportControls.IsPlayEnabled = true;
 
-                // Update the system media transport controls.
-                updater.Update();
+                    SystemMediaTransportControlsDisplayUpdater updater = _systemMediaTransportControls.DisplayUpdater;
+                    updater.Type = MediaPlaybackType.Music;
+                    // Music metadata.
+                    updater.MusicProperties.AlbumArtist = artistName;
+                    updater.MusicProperties.Artist = artistName;
+                    updater.MusicProperties.Title = trackName;
+
+                    // Set the album art thumbnail.
+                    // RandomAccessStreamReference is defined in Windows.Storage.Streams
+
+                    if (albumUri != null && !string.IsNullOrEmpty(albumUri))
+                    {
+                        updater.Thumbnail = RandomAccessStreamReference.CreateFromUri(new Uri(albumUri));
+                    }
+
+                    // Update the system media transport controls.
+                    updater.Update();
                 }
                 catch (Exception exception)
                 {
@@ -1086,18 +1087,19 @@ namespace VLC_WINRT_APP.ViewModels
         {
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                try{
-                if (_systemMediaTransportControls == null) return;
-                LogHelper.Log("PLAYVIDEO: Updating SystemMediaTransportControls");
-                SystemMediaTransportControlsDisplayUpdater updater = _systemMediaTransportControls.DisplayUpdater;
-                updater.Type = MediaPlaybackType.Video;
-                _systemMediaTransportControls.IsPreviousEnabled = false;
-                _systemMediaTransportControls.IsNextEnabled = false;
-                //Video metadata
-                updater.VideoProperties.Title = title;
-                //TODO: add full thumbnail suport
-                updater.Thumbnail = null;
-                updater.Update();
+                try
+                {
+                    if (_systemMediaTransportControls == null) return;
+                    LogHelper.Log("PLAYVIDEO: Updating SystemMediaTransportControls");
+                    SystemMediaTransportControlsDisplayUpdater updater = _systemMediaTransportControls.DisplayUpdater;
+                    updater.Type = MediaPlaybackType.Video;
+                    _systemMediaTransportControls.IsPreviousEnabled = false;
+                    _systemMediaTransportControls.IsNextEnabled = false;
+                    //Video metadata
+                    updater.VideoProperties.Title = title;
+                    //TODO: add full thumbnail suport
+                    updater.Thumbnail = null;
+                    updater.Update();
                 }
                 catch (Exception exception)
                 {
