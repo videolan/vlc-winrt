@@ -162,6 +162,8 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             {
                 Playlist.Clear();
                 CurrentTrack = -1;
+                if (NonShuffledPlaylist != null) NonShuffledPlaylist.Clear();
+                IsShuffled = false;
             });
         }
 
@@ -198,10 +200,6 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         {
             if (IsShuffled)
             {
-                await SetPlaylist(Locator.MediaPlaybackViewModel.TrackCollection.NonShuffledPlaylist);
-            }
-            else
-            {
                 NonShuffledPlaylist = new ObservableCollection<TrackItem>(Playlist);
                 Random r = new Random();
                 for (int i = 0; i < Playlist.Count; i++)
@@ -214,8 +212,10 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
                     }
                 }
             }
-            IsShuffled = !IsShuffled;
-
+            else
+            {
+                await SetPlaylist(Locator.MediaPlaybackViewModel.TrackCollection.NonShuffledPlaylist);
+            }
 #if WINDOWS_PHONE_APP
             await App.BackgroundAudioHelper.ResetCollection(ResetType.ShuffleReset);
             var backgorundTracks = BackgroundTaskTools.CreateBackgroundTrackItemList(Playlist.ToList());
