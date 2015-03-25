@@ -1011,6 +1011,9 @@ namespace VLC_WINRT_APP.ViewModels
             }
         }
 
+        #endregion
+
+        #region MediaTransportControls
 
         public void SetMediaTransportControls(SystemMediaTransportControls systemMediaTransportControls)
         {
@@ -1120,8 +1123,8 @@ namespace VLC_WINRT_APP.ViewModels
         {
             if (_systemMediaTransportControls != null) _systemMediaTransportControls.IsNextEnabled = nextPossible;
         }
-
         #endregion
+
         public void Dispose()
         {
             _mediaService.Stop();
