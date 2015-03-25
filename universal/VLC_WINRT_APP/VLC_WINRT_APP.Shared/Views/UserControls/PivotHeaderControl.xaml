@@ -104,8 +104,9 @@
         <FontIcon x:Name="Icon"
                   FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets"
                   Glyph="{Binding PathData}"
-                  FontSize="26" 
-                  VerticalAlignment="Bottom"/>
+                  FontSize="26"
+                  VerticalAlignment="Bottom"
+                  Foreground="{ThemeResource BasicForeground}" />
         <TextBlock x:Name="Title"
                    Grid.Row="0"
                    Grid.Column="2"
