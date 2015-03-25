@@ -57,7 +57,6 @@ namespace VLC_WINRT_APP.Services.RunTime
         public VLCService()
         {
             PlayerInstanceReady = new TaskCompletionSource<bool>();
-            CoreWindow.GetForCurrentThread().Activated += ApplicationState_Activated;
         }
 
         public void Initialize(object panel)
@@ -363,46 +362,10 @@ namespace VLC_WINRT_APP.Services.RunTime
             StatusChanged(this, MediaState.Playing);
         }
 
-        private void ApplicationState_Activated(object sender, WindowActivatedEventArgs e)
-        {
-            if (MediaPlayer == null)
-                return;
-            if (e.WindowActivationState == CoreWindowActivationState.Deactivated)
-            {
-                IsBackground = true;
-                if (!MediaPlayer.isPlaying())
-                    return;
-
-                // If we're playing a video, just pause.
-                if (!_isAudioMedia)
-                {
-                    // TODO: Route Video Player calls through Media Service
-                    if (!(bool)ApplicationSettingsHelper.ReadSettingsValue("ContinueVideoPlaybackInBackground"))
-                        MediaPlayer.pause();
-                }
-            }
-            else
-            {
-                IsBackground = false;
-
-                if (!MediaPlayer.isPlaying() && _isAudioMedia)
-                    return;
-
-                // If we're playing a video, start playing again.
-                if (!_isAudioMedia && MediaPlayer.isPlaying())
-                {
-                    // TODO: Route Video Player calls through Media Service
-                    MediaPlayer.play();
-                    return;
-                }
-            }
-        }
 
         public void SetSizeVideoPlayer(uint x, uint y)
         {
             Instance.UpdateSize(x, y);
         }
-
-        public bool IsBackground { get; private set; }
     }
 }

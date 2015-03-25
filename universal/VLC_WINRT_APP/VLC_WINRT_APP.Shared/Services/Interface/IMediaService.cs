@@ -17,8 +17,6 @@ namespace VLC_WINRT_APP.Services.Interface
 {
     public interface IMediaService
     {
-        bool IsBackground { get; }
-
         /// <summary>
         /// Initialize passes either a SwapChainPanel for VLCService
         /// or the MediaElement itself from the XAML when using MediaFoundation
