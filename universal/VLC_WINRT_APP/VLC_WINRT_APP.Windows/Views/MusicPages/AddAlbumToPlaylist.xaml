@@ -14,11 +14,16 @@
                 Style="{StaticResource SettingsFlyoutStyle}">
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <userControls:HeaderControl HeaderTextBlock="add to playlist" />
+        <TextBlock Margin="12,0,0,0"
+                   TextTrimming="CharacterEllipsis"
+                   TextWrapping="NoWrap"
+                   VerticalAlignment="Center"
+                   Text="add to playlist"
+                   Style="{StaticResource SubheaderTextBlockStyle}" />
         <playlistControls:AddAlbumToPlaylistBase Grid.Row="1" />
         <Button Grid.Row="2"
                 Margin="24,0,0,0"

@@ -12,7 +12,12 @@
                 Style="{StaticResource SettingsFlyoutStyle}">
 
     <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <userControls:HeaderControl HeaderTextBlock="New playlist" />
+        <TextBlock Margin="12,0,0,0"
+                   TextTrimming="CharacterEllipsis"
+                   TextWrapping="NoWrap"
+                   VerticalAlignment="Center"
+                   Text="New playlist"
+                   Style="{StaticResource SubheaderTextBlockStyle}" />
         <StackPanel Margin="24">
             <TextBlock Name="body"
                        Style="{StaticResource CaptionTextBlockStyle}"
