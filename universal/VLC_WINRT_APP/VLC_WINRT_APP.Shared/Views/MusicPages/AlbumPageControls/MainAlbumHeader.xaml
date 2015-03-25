@@ -14,9 +14,11 @@
           Margin="-12,0,0,0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="24" />
-            <ColumnDefinition x:Name="CoverColumnDefinition" />
+            <ColumnDefinition MinWidth="110"
+                              MaxWidth="200"
+                              Width="2*"/>
             <ColumnDefinition Width="12" />
-            <ColumnDefinition />
+            <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="12" />
         </Grid.ColumnDefinitions>
@@ -28,7 +30,7 @@
         </Grid.RowDefinitions>
         <userControls:HeaderControl Grid.Row="0"
                                     Grid.ColumnSpan="4"
-                                    HeaderTextBlock="{Binding CurrentAlbum.Name, Converter={StaticResource AlbumStringConverter}}"
+                                    HeaderTextBlock="{Binding CurrentArtist.Name, Converter={StaticResource AlbumStringConverter}}"
                                     HeaderBackground="#00ffffff" />
         <Image Grid.Column="1"
                Grid.Row="1"
@@ -48,12 +50,11 @@
             <Button.Content>
                 <TextBlock TextWrapping="NoWrap"
                            TextTrimming="CharacterEllipsis">
-                        <Run Text="{Binding CurrentArtist.Name, Converter={StaticResource ArtistStringConverter}}"
+                        <Run Text="{Binding CurrentAlbum.Name, Converter={StaticResource ArtistStringConverter}}"
                              FontWeight="Light"
                              FontSize="24" />
-                        <Run Text=""
-                             FontFamily="Segoe UI Symbol"
-                             FontSize="24" />
+                        <Run Text="{StaticResource NextSymbol}"
+                             FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
                 </TextBlock>
             </Button.Content>
         </Button>
