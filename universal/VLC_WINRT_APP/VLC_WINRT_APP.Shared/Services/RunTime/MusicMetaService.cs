@@ -43,7 +43,7 @@ namespace VLC_WINRT_APP.Services.RunTime
         public async Task GetArtistBiography(ArtistItem artist)
         {
             var bio = await musicMdFetcher.GetArtistBiography(artist.Name);
-            if (string.IsNullOrEmpty(bio)) return;
+            if (bio == null) return;
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 artist.Biography = bio;
