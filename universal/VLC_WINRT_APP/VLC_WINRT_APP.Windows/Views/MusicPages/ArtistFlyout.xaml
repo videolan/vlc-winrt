@@ -9,6 +9,6 @@
                 mc:Ignorable="d"
                 Style="{StaticResource SettingsFlyoutStyle}"
                 d:DesignWidth="346"
-                Width="500">
-    <artistPageControls:ArtistPageBase Tapped="RootGrid_OnTapped"/>
+                Loaded="ArtistFlyout_OnLoaded">
+    <artistPageControls:ArtistPageBase Tapped="RootGrid_OnTapped" />
 </SettingsFlyout>

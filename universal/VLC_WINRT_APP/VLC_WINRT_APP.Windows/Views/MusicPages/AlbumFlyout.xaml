@@ -9,6 +9,6 @@
                 mc:Ignorable="d"
                 d:DesignWidth="346"
                 Style="{StaticResource SettingsFlyoutStyle}"
-                Width="450">
+                Loaded="AlbumFlyout_OnLoaded">
         <albumPageControls:AlbumPageBase Tapped="RootGrid_OnTapped"/>
 </SettingsFlyout>

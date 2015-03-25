@@ -1,6 +1,7 @@
 ﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
+using VLC_WINRT_APP.Helpers;
 using WinRTXamlToolkit.Controls.Extensions;
 
 namespace VLC_WINRT_APP.Views.MusicPages
@@ -26,6 +27,11 @@ namespace VLC_WINRT_APP.Views.MusicPages
                 }
             }
             this.Hide();
+        }
+
+        private void AlbumFlyout_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            this.Width = FlyoutHelper.GetSettingsFlyoutWidthFromWindowWidth(400);
         }
     }
 }
