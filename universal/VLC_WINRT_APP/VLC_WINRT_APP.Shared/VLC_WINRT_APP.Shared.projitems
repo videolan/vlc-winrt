@@ -98,6 +98,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ArtistStringConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\BackgroundVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\BooleanNegationConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\BooleanToMainColorConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\BottomMiniPlayerVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\CountToVisibilityConverter.cs" />
@@ -149,6 +150,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\DoesFileExistHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\DownloadAndSaveHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\ExceptionHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\FlyoutHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\LoadImageToMemoryHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\LogHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\MathHelper.cs" />
