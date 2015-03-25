@@ -615,9 +615,9 @@
         <Setter Property="Background"
                 Value="Transparent" />
         <Setter Property="BorderThickness"
-                Value="1,0,0,0" />
+                Value="0,0,0,0" />
         <Setter Property="Padding"
-                Value="0" />
+                Value="0,50,0,0" />
         <Setter Property="HorizontalContentAlignment"
                 Value="Stretch" />
         <Setter Property="VerticalContentAlignment"
@@ -635,7 +635,7 @@
         <Setter Property="ScrollViewer.ZoomMode"
                 Value="Disabled" />
         <Setter Property="Width"
-                Value="346" />
+                Value="320" />
         <Setter Property="MinWidth"
                 Value="320" />
         <Setter Property="Template">
