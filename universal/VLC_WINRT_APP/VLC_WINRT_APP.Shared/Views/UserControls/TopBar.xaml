@@ -14,7 +14,7 @@
     <Grid x:Name="ColumnGrid"
           Height="50"
           MinWidth="320"
-          Background="{StaticResource MainColor}"
+          Background="{Binding IsBackground, Converter={StaticResource BooleanToMainColorConverter}}"
           RequestedTheme="Dark">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="12" />

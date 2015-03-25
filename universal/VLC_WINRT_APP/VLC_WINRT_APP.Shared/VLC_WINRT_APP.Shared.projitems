@@ -226,6 +226,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\ThumbnailService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SQLite.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SQLiteAsync.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utils\Strings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Locator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainVM.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MediaPlaybackViewModel.cs" />
