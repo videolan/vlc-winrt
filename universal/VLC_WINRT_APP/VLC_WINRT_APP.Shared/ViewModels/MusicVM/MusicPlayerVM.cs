@@ -145,7 +145,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             if (notificationOnNewSong != null && (bool)notificationOnNewSong)
             {
                 var notificationOnNewSongForeground = ApplicationSettingsHelper.ReadSettingsValue("NotificationOnNewSongForeground");
-                if (Locator.MediaPlaybackViewModel._mediaService.IsBackground || (notificationOnNewSongForeground != null && (bool)notificationOnNewSongForeground))
+                if (Locator.MediaPlaybackViewModel.IsBackground || (notificationOnNewSongForeground != null && (bool)notificationOnNewSongForeground))
                 {
                     ToastHelper.ToastImageAndText04(trackName, albumName, artistName, (Locator.MusicPlayerVM.CurrentAlbum == null) ? null : Locator.MusicPlayerVM.CurrentAlbum.AlbumCoverUri ?? null);
                 }

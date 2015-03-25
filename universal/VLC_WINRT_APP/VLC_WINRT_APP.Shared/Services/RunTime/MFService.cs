@@ -30,12 +30,7 @@ namespace VLC_WINRT_APP.Services.RunTime
         public event TimeChanged TimeChanged;
 
         public TaskCompletionSource<bool> PlayerInstanceReady { get; set; }
-
-        public bool IsBackground
-        {
-            get { throw new NotImplementedException(); }
-        }
-
+        
         private DispatcherTimer dispatchTimer;
 
         public MFService()
