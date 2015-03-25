@@ -76,7 +76,7 @@ namespace VLC_WINRT_APP.ViewModels
         #endregion
 
         #region public props
-        public KeyboardListenerService KeyboardListenerService { get { return keyboardListenerService;} }
+        public KeyboardListenerService KeyboardListenerService { get { return keyboardListenerService; } }
         public bool IsInternet
         {
             get { return _isInternet; }
