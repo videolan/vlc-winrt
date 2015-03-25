@@ -65,7 +65,8 @@
                               Click="ActionButton_Click"
                               Style="{StaticResource AppBarButtonStyleHorizontal}">
                     <AppBarButton.Icon>
-                        <PathIcon Data="{StaticResource PlayPathNarrow}" />
+                        <FontIcon Glyph="{StaticResource PlaySymbol}"
+                                  FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
                     </AppBarButton.Icon>
                 </AppBarButton>
             </StackPanel>
