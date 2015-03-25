@@ -77,7 +77,8 @@
                           Label="search"
                           Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToSearchPage}">
                 <AppBarButton.Icon>
-                    <PathIcon Data="{StaticResource SearchPath}" />
+                    <FontIcon Glyph="{StaticResource SearchSymbol}"
+                              FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
                 </AppBarButton.Icon>
             </AppBarButton>
             <AppBarButton Grid.Column="1"
@@ -85,15 +86,17 @@
                           Label="open file"
                           Command="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM.PickVideo}">
                 <AppBarButton.Icon>
-                    <PathIcon Data="{StaticResource OpenFilePath}" />
-                </AppBarButton.Icon>
+                    <FontIcon Glyph="{StaticResource OpenFileSymbol}"
+                              FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+                </AppBarButton.Icon> 
             </AppBarButton>
             <AppBarButton Grid.Column="2"
                           Style="{StaticResource EllipseLessAppBarButtonStyle}"
                           Label="open stream"
                           Flyout="{StaticResource PhoneOpenStreamFlyout}">
                 <AppBarButton.Icon>
-                    <PathIcon Data="{StaticResource OnlinePath}" />
+                    <FontIcon Glyph="{StaticResource StreamSymbol}"
+                              FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
                 </AppBarButton.Icon>
             </AppBarButton>
             <AppBarButton Grid.Column="3"
@@ -101,7 +104,8 @@
                           Label="settings"
                           Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToSettingsPageCommand}">
                 <AppBarButton.Icon>
-                    <PathIcon Data="{StaticResource SettingsPath}" />
+                    <FontIcon Glyph="{StaticResource SettingsSymbol}"
+                              FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
                 </AppBarButton.Icon>
             </AppBarButton>
         </customAppBarDesktop:AppBar.PrimaryCommands>

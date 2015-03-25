@@ -11,7 +11,8 @@
     <AppBarButton Style="{StaticResource EllipseLessAppBarButtonStyle}"
                   Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToSearchPage}">
         <AppBarButton.Icon>
-            <PathIcon Data="{StaticResource SearchPath}" />
+            <FontIcon Glyph="{StaticResource SearchSymbol}"
+                      FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
         </AppBarButton.Icon>
     </AppBarButton>
 </UserControl>

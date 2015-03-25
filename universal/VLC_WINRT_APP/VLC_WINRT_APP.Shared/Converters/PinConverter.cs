@@ -1,7 +1,9 @@
 ﻿using System;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
+using Windows.UI.Xaml.Media;
 using VLC_WINRT_APP.Helpers;
+using VLC_WINRT_APP.Utils;
 
 namespace VLC_WINRT_APP.Converters
 {
@@ -10,27 +12,24 @@ namespace VLC_WINRT_APP.Converters
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             if (!(value is bool)) return null;
-            if ((string)parameter == "text")
+            switch ((string)parameter)
             {
-                if ((bool)value)
-                {
-                    return "unpin";
-                }
-                else
-                {
-                    return "pin";
-                }
-            }
-            else if ((string)parameter == "icon")
-            {
-                if ((bool)value)
-                {
-                    return new SymbolIcon(Symbol.UnPin);
-                }
-                else
-                {
-                    return PathHelper.Create(App.Current.Resources["PinPath"].ToString());
-                }
+                case "text":
+                    if ((bool)value)
+                    {
+                        return "unpin";
+                    }
+                    else
+                    {
+                        return "pin";
+                    }
+                case "icon":
+                    var icon = ((bool)value) ? "UnpinSymbol" : "PinSymbol";
+                    return new FontIcon()
+                    {
+                        FontFamily = new FontFamily(Strings.ModernFont),
+                        Glyph = (string) App.Current.Resources[icon]
+                    };
             }
             return null;
         }

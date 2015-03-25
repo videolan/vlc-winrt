@@ -39,7 +39,8 @@
                         VerticalAlignment="Stretch"
                         Click="ButtonBase_OnClick">
                     <Button.Content>
-                        <SymbolIcon Symbol="Accept" />
+                        <FontIcon Glyph="{StaticResource CheckSymbol}"
+                                  FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
                     </Button.Content>
                 </Button>
             </Grid>

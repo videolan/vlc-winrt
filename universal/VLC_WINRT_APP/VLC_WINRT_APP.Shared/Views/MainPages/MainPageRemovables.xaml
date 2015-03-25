@@ -79,10 +79,9 @@
                     Visibility="{Binding CurrentStorageVM.CanGoBack, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <Button.Content>
                     <StackPanel Orientation="Horizontal">
-                        <Path Data="{StaticResource BackPath}"
-                              Height="30"
-                              Stretch="Uniform"
-                              Fill="DimGray" />
+                        <FontIcon Glyph="{StaticResource BackSymbol}"
+                                  FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" 
+                                  Foreground="DimGray"/>
                         <TextBlock Text="Back"
                                    Foreground="DimGray"
                                    VerticalAlignment="Center"

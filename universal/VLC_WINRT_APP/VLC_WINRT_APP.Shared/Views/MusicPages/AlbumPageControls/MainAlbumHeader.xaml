@@ -80,7 +80,8 @@
                       DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}"
                       Command="{Binding OpenAddAlbumToPlaylistDialogCommand}">
             <AppBarButton.Icon>
-                <PathIcon Data="{StaticResource AddPath}" />
+                <FontIcon Glyph="{StaticResource AddSymbol}"
+                          FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
             </AppBarButton.Icon>
         </AppBarButton>
         <AppBarButton Grid.Row="3"
@@ -91,7 +92,8 @@
                       Command="{Binding CurrentAlbum.PlayAlbum}"
                       CommandParameter="{Binding CurrentAlbum}">
             <AppBarButton.Icon>
-                <PathIcon Data="{StaticResource PlayPathNarrow}" />
+                <FontIcon Glyph="{StaticResource PlaySymbol}"
+                          FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
             </AppBarButton.Icon>
         </AppBarButton>
     </Grid>

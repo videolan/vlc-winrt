@@ -11,9 +11,17 @@ namespace VLC_WINRT_APP.Converters
         {
             if (value is bool && (bool)value)
             {
-                return new SymbolIcon(Symbol.UnFavorite);
+                return new FontIcon()
+                {
+                    FontFamily = new FontFamily(Strings.ModernFont),
+                    Glyph = (string) App.Current.Resources["UnfavoriteSymbol"]
+                };
             }
-            return PathHelper.Create(App.Current.Resources["StarPath"].ToString());
+            return new FontIcon()
+            {
+                FontFamily = new FontFamily(Strings.ModernFont),
+                Glyph = (string)App.Current.Resources["FavoriteSymbol"]
+            };
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

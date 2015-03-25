@@ -91,7 +91,8 @@
                                   Command="{Binding PlayPreviousCommand}"
                                   IsEnabled="{Binding TrackCollection.CanGoPrevious}">
                         <AppBarButton.Icon>
-                            <FontIcon Glyph="&#xE100;"
+                            <FontIcon Glyph="{StaticResource PreviousSymbol}"
+                                      FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets"
                                       FontSize="30" />
                         </AppBarButton.Icon>
                     </AppBarButton>
@@ -105,8 +106,9 @@
                                   Command="{Binding PlayOrPauseCommand}"
                                   Holding="PlayPauseHold">
                         <AppBarButton.Icon>
-                            <FontIcon Glyph="&#xE102;"
-                                      FontSize="42" />
+                            <FontIcon Glyph="{StaticResource PlaySymbol}"
+                                      FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets"
+                                      FontSize="30" />
                         </AppBarButton.Icon>
                     </AppBarButton>
                     <AppBarButton Grid.Column="1"
@@ -119,8 +121,9 @@
                                   Command="{Binding PlayOrPauseCommand}"
                                   Holding="PlayPauseHold">
                         <AppBarButton.Icon>
-                            <FontIcon Glyph="&#xE103;"
-                                      FontSize="42" />
+                            <FontIcon Glyph="{StaticResource PauseSymbol}"
+                                      FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets"
+                                      FontSize="30" />
                         </AppBarButton.Icon>
                     </AppBarButton>
                     <AppBarButton Grid.Column="2"
@@ -133,7 +136,8 @@
                                   Command="{Binding PlayNextCommand}"
                                   IsEnabled="{Binding TrackCollection.CanGoNext}">
                         <AppBarButton.Icon>
-                            <FontIcon Glyph="&#xE101;"
+                            <FontIcon Glyph="{StaticResource SkipNextSymbol}"
+                                      FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets"
                                       FontSize="30" />
                         </AppBarButton.Icon>
                     </AppBarButton>

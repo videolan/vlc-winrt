@@ -6,6 +6,33 @@
         <ResourceDictionary Source="/Resources/PlatformStyles.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
+    <x:String x:Key="HomeSymbol"></x:String>
+    <x:String x:Key="VideoSymbol"></x:String>
+    <x:String x:Key="MusicSymbol"></x:String>
+    <x:String x:Key="USBSymbol"></x:String>
+    <x:String x:Key="SDCardSymbol"></x:String>
+    <x:String x:Key="SearchSymbol"></x:String>
+    <x:String x:Key="SettingsSymbol"></x:String>
+    <x:String x:Key="ShuffleSymbol"></x:String>
+    <x:String x:Key="RefreshSymbol"></x:String>
+    <x:String x:Key="BackSymbol"></x:String>
+    <x:String x:Key="NextSymbol"></x:String>
+    <x:String x:Key="AddSymbol"></x:String>
+    <x:String x:Key="PinSymbol"></x:String>
+    <x:String x:Key="UnpinSymbol"></x:String>
+    <x:String x:Key="PlaySymbol"></x:String>
+    <x:String x:Key="PauseSymbol"></x:String>
+    <x:String x:Key="PreviousSymbol"></x:String>
+    <x:String x:Key="SkipNextSymbol"></x:String>
+    <x:String x:Key="FavoriteSymbol"></x:String>
+    <x:String x:Key="UnfavoriteSymbol"></x:String>
+    <x:String x:Key="CalendarSymbol"></x:String>
+    <x:String x:Key="ShareSymbol"></x:String>
+    <x:String x:Key="StreamSymbol"></x:String>
+    <x:String x:Key="OpenFileSymbol"></x:String>
+    <x:String x:Key="CheckSymbol"></x:String>
+
+
     <x:String x:Key="VLCFlatPath">M12.898766,39.914001C12.898766,39.914001 10.235924,44.351395 18.445856,46.570889 18.445856,46.570889 31.982473,51.452282 43.077751,43.796696 43.077751,43.796696 44.408473,42.576598 43.40966,39.914001L48.957946,40.0246C48.957946,40.0246,50.178165,40.579298,50.178165,41.577999L56.279766,60.883268C56.279766,60.883268,56.946475,64.211365,53.728923,63.989365L2.3581964,63.767365C2.3581967,63.767365,-0.30444613,64.766058,0.028872865,60.993866L6.0197563,41.577999C6.0197558,41.577999,6.2424092,39.914001,8.4612555,40.0246z M37.501666,19.888L40.912998,31.620548C40.912998,31.620548 40.746402,34.782299 31.344285,35.781053 31.344285,35.781052 18.030643,37.11239 15.117999,31.620548L18.779428,19.971296C18.779428,19.971296,26.684276,25.130454,37.501666,19.888z M26.350536,0L29.928667,0C31.010774,0,31.675981,1.1654816,31.675981,1.1654816L34.09,8.737812C26.267234,11.317205,22.107,8.654501,22.107,8.654501L24.437719,1.1654816C25.103124,0.16669083,26.350536,0,26.350536,0z</x:String>
     <x:String x:Key="UsbKeyPath">M59.219027,10.469002L54.417002,12.729231 55.85708,15.785002 60.659002,13.523472z M42.428656,4.0179999L51.748999,23.801879 32.933715,32.665174C28.494471,34.755733,23.361592,33.601233,20.212013,30.164306L20.022849,29.947291 2.5351801,38.186004 0,32.803334 17.486965,24.564977 17.440177,24.281508C16.795782,19.665428,19.175554,14.972496,23.615773,12.879985z M55.827108,3.2680008L51.025999,5.5285715 52.463694,8.5850005 57.266001,6.3229687z M56.804689,0L64.000002,15.276258 55.078211,19.478001 47.883001,4.203233z</x:String>
     <x:String x:Key="HomePath">M 49.611 25.251 l -23.89 -24.89 C 25.533 0.164 25.272 0.053 25 0.053 s -0.533 0.111 -0.722 0.308 L 0.389 25.25 c -0.383 0.398 -0.37 1.031 0.029 1.414 c 0.398 0.381 1.031 0.37 1.414 -0.029 L 5 23.334 V 50 h 40 V 23.335 l 3.168 3.301 c 0.196 0.205 0.459 0.308 0.722 0.308 c 0.249 0 0.499 -0.093 0.692 -0.278 C 49.98 26.282 49.993 25.649 49.611 25.251 Z M 30 48 H 20 V 29 h 10 V 48 Z M 43 48 H 32 V 27 H 18 v 21 H 7 V 21.25 L 25 2.498 l 18 18.754 V 48 Z</x:String>

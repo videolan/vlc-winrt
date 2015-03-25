@@ -14,28 +14,32 @@
         <ColumnDefinition />
     </Grid.ColumnDefinitions>
     <AppBarToggleButton Grid.Column="0"
-                        Icon="Shuffle"
                         IsCompact="True"
-                        IsChecked="{Binding TrackCollection.IsShuffled}"
+                        DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.TrackCollection}"
+                        IsChecked="{Binding IsShuffled, Mode=TwoWay}"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Center"
-                        Command="{Binding Shuffle}" />
+                        Command="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM.Shuffle}">
+        <AppBarToggleButton.Icon>
+            <FontIcon Glyph="{StaticResource ShuffleSymbol}"
+                      FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets"
+                      FontSize="30" />
+        </AppBarToggleButton.Icon>
+    </AppBarToggleButton>
     <Button Grid.Column="1"
             Style="{StaticResource TextBlockButtonStyle}"
             HorizontalAlignment="Center"
             Command="{Binding ShareNowPlayingMusicCommand}">
         <Button.Content>
             <Grid>
-                <Path Data="{StaticResource SharePath}"
-                      Fill="{ThemeResource BasicForeground}"
-                      Width="32"
-                      Height="32"
-                      Stretch="Uniform" />
+                <FontIcon Glyph="{StaticResource ShareSymbol}"
+                          FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" 
+                          FontSize="30"/>
             </Grid>
         </Button.Content>
     </Button>
     <AppBarToggleButton Grid.Column="2"
-                        Icon="Favorite"
+                        Icon="{Binding CurrentAlbum.Favorite, Converter={StaticResource FavoriteSymbolConverter}}"
                         IsCompact="True"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Center"

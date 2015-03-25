@@ -9,23 +9,29 @@
       d:DesignWidth="400">
     <Grid.ColumnDefinitions>
         <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="1" />
         <ColumnDefinition Width="Auto" />
         <ColumnDefinition Width="Auto" />
     </Grid.ColumnDefinitions>
     <AppBarButton Style="{StaticResource EllipseLessAppBarButtonStyle}"
-                  Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToSearchPage}">
-        <AppBarButton.Icon>
-            <PathIcon Data="{StaticResource SearchPath}" />
-        </AppBarButton.Icon>
-    </AppBarButton>
-    <AppBarButton Grid.Column="1"
-                  Style="{StaticResource EllipseLessAppBarButtonStyle}"
                   Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.PlayAllRandomCommand}">
         <AppBarButton.Icon>
-            <PathIcon Data="{StaticResource ShufflePath}" />
+            <FontIcon Glyph="{StaticResource ShuffleSymbol}"
+                      FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
         </AppBarButton.Icon>
     </AppBarButton>
+    <Grid Background="DimGray"
+          Grid.Column="1"
+          Margin="0,6"/>
     <AppBarButton Grid.Column="2"
+                  Style="{StaticResource EllipseLessAppBarButtonStyle}"
+                  Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToSearchPage}">
+        <AppBarButton.Icon>
+            <FontIcon Glyph="{StaticResource SearchSymbol}"
+                      FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+        </AppBarButton.Icon>
+    </AppBarButton>
+    <AppBarButton Grid.Column="3"
                   VerticalAlignment="Center"
                   Style="{StaticResource AppBarButtonStyleHorizontal}"
                   DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}"
@@ -33,7 +39,8 @@
                   IsEnabled="{Binding IsBusy, Converter={StaticResource BooleanNegationConverter}}"
                   Loaded="RefreshButton_Loaded">
         <AppBarButton.Icon>
-            <PathIcon Data="{StaticResource RefreshPath}" />
+            <FontIcon Glyph="{StaticResource RefreshSymbol}"
+                      FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
         </AppBarButton.Icon>
     </AppBarButton>
 </Grid>
