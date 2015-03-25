@@ -906,9 +906,9 @@ M 15.937 9.056 c 0.629 -1.69 1.208 -2.349 2.063 -2.349 h 5.586 L 20.293 10 l 1.4
                                 </VisualState>
                                 <VisualState x:Name="PointerOver">
                                     <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="PointerOverBorder" 
-                                                         Storyboard.TargetProperty="Opacity" 
-                                                         SpeedRatio="3" 
+                                        <DoubleAnimation Storyboard.TargetName="PointerOverBorder"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         SpeedRatio="3"
                                                          To="0.5" />
                                         <DoubleAnimation Storyboard.TargetName="contentPresenter"
                                                          Storyboard.TargetProperty="Opacity"
