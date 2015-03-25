@@ -91,7 +91,6 @@ namespace VLC_WINRT_APP.ViewModels
         #endregion
 
         #region public props
-        public bool IsBackground { get; private set; }
         public TaskCompletionSource<bool> ContinueIndexing { get; set; }
         public bool UseVlcLib { get; set; }
 
@@ -437,6 +436,9 @@ namespace VLC_WINRT_APP.ViewModels
             get { return _subtitlesTracks; }
             set { _subtitlesTracks = value; }
         }
+
+        public IVLCMedia CurrentMedia { get { return _currentMedia; } }
+
         #endregion
         #region constructors
 
@@ -455,7 +457,6 @@ namespace VLC_WINRT_APP.ViewModels
 #if WINDOWS_APP
             _mouseService = App.Container.Resolve<MouseService>();
 #endif
-            CoreWindow.GetForCurrentThread().Activated += ApplicationState_Activated;
         }
         #endregion
 
@@ -910,34 +911,6 @@ namespace VLC_WINRT_APP.ViewModels
         #endregion
 
         #region Events
-
-        private void ApplicationState_Activated(object sender, WindowActivatedEventArgs e)
-        {
-            if (_currentMedia == null) return;
-            if (e.WindowActivationState == CoreWindowActivationState.Deactivated)
-            {
-                IsBackground = true;
-
-                if (!IsPlaying) return;
-                // If we're playing a video, just pause.
-                if (PlayingType == PlayingType.Video)
-                {
-                    // TODO: Route Video Player calls through Media Service
-                    if (!(bool)ApplicationSettingsHelper.ReadSettingsValue("ContinueVideoPlaybackInBackground"))
-                        _mediaService.Pause();
-                }
-            }
-            else
-            {
-                IsBackground = false;
-
-                if(PlayingType != PlayingType.Video)
-                    return;
-                if(MediaState == MediaState.Paused)
-                    _mediaService.Pause();
-            }
-        }
-
         private async void PlayerStateChanged(object sender, MediaState e)
         {
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>

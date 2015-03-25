@@ -37,6 +37,8 @@ using AppBar = CustomAppBarDesktop.AppBar;
 #endif
 using Panel = VLC_WINRT_APP.Model.Panel;
 using Windows.UI.Popups;
+using libVLCX;
+using VLC_WINRT_APP.Model;
 
 namespace VLC_WINRT_APP.ViewModels
 {
@@ -62,6 +64,7 @@ namespace VLC_WINRT_APP.ViewModels
         private string _searchTag = "";
         private bool _preventAppExit = false;
         private string _informationText;
+        private bool _isBackground = false;
 
         #endregion
         #region public fields
@@ -154,6 +157,12 @@ namespace VLC_WINRT_APP.ViewModels
             set { SetProperty(ref _informationText, value); }
         }
 
+        public bool IsBackground
+        {
+            get { return _isBackground; }
+            private set { SetProperty(ref _isBackground, value); }
+        }
+
         #endregion
 
 
@@ -177,13 +186,46 @@ namespace VLC_WINRT_APP.ViewModels
             SearchClickedCommand = new SearchClickedCommand();
             // TODO: For Windows 8.1 build, use ResourceLoader.GetForCurrentView(); 
             var resourceLoader = new ResourceLoader();
-            Panels.Add(new Panel(resourceLoader.GetString("Home"), 0, App.Current.Resources["HomePath"].ToString(), true));
-            Panels.Add(new Panel(resourceLoader.GetString("Videos"), 1, App.Current.Resources["VideoPath"].ToString()));
-            Panels.Add(new Panel(resourceLoader.GetString("Music"), 2, App.Current.Resources["MusicPath"].ToString()));
+            Panels.Add(new Panel(resourceLoader.GetString("Home"), 0, App.Current.Resources["HomeSymbol"].ToString(), true));
+            Panels.Add(new Panel(resourceLoader.GetString("Videos"), 1, App.Current.Resources["VideoSymbol"].ToString()));
+            Panels.Add(new Panel(resourceLoader.GetString("Music"), 2, App.Current.Resources["MusicSymbol"].ToString()));
             string removableName = "";
             removableName = resourceLoader.GetString("RemovableStorage");
-            Panels.Add(new Panel(removableName, 3, App.Current.Resources["RemovablesPath"].ToString()));
+#if WINDOWS_PHONE_APP
+            var removableSymbol = "SDCardSymbol";
+#else
+            var removableSymbol = "USBSymbol";
+#endif
+            Panels.Add(new Panel(removableName, 3, App.Current.Resources[removableSymbol].ToString()));
             Initialize();
+
+            CoreWindow.GetForCurrentThread().Activated += ApplicationState_Activated;
+        }
+
+        private void ApplicationState_Activated(object sender, WindowActivatedEventArgs e)
+        {
+            if (e.WindowActivationState == CoreWindowActivationState.Deactivated)
+            {
+                IsBackground = true;
+                if (Locator.MediaPlaybackViewModel.CurrentMedia == null) return;
+                if (!Locator.MediaPlaybackViewModel.IsPlaying) return;
+                // If we're playing a video, just pause.
+                if (Locator.MediaPlaybackViewModel.PlayingType == PlayingType.Video)
+                {
+                    // TODO: Route Video Player calls through Media Service
+                    if (!(bool)ApplicationSettingsHelper.ReadSettingsValue("ContinueVideoPlaybackInBackground"))
+                        Locator.MediaPlaybackViewModel._mediaService.Pause();
+                }
+            }
+            else
+            {
+                IsBackground = false;
+                if (Locator.MediaPlaybackViewModel.CurrentMedia == null) return;
+                if (Locator.MediaPlaybackViewModel.PlayingType != PlayingType.Video)
+                    return;
+                if (Locator.MediaPlaybackViewModel.MediaState == MediaState.Paused)
+                    Locator.MediaPlaybackViewModel._mediaService.Pause();
+            }
         }
 
         async void networkListenerService_InternetConnectionChanged(object sender, Model.Events.InternetConnectionChangedEventArgs e)
