@@ -1034,16 +1034,24 @@ namespace VLC_WINRT_APP.ViewModels
 
         void ForceMediaTransportControls(SystemMediaTransportControls systemMediaTransportControls)
         {
-            _systemMediaTransportControls = systemMediaTransportControls;
-            _systemMediaTransportControls.PlaybackStatus = MediaPlaybackStatus.Closed;
-            _systemMediaTransportControls.ButtonPressed += SystemMediaTransportControlsOnButtonPressed;
-            _systemMediaTransportControls.IsEnabled = false;
+            try
+            {
+                _systemMediaTransportControls = systemMediaTransportControls;
+                _systemMediaTransportControls.PlaybackStatus = MediaPlaybackStatus.Closed;
+                _systemMediaTransportControls.ButtonPressed += SystemMediaTransportControlsOnButtonPressed;
+                _systemMediaTransportControls.IsEnabled = false;
+            }
+            catch (Exception exception)
+            {
+                ExceptionHelper.CreateMemorizedException("MediaPlaybackViewModel.ForceMediaTransportControls", exception);
+            }
         }
 
         public async Task SetMediaTransportControlsInfo(string artistName, string albumName, string trackName, string albumUri)
         {
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
+                try{
                 if (_systemMediaTransportControls == null) return;
                 _systemMediaTransportControls.PlaybackStatus = MediaPlaybackStatus.Playing;
                 _systemMediaTransportControls.IsEnabled = true;
@@ -1067,6 +1075,11 @@ namespace VLC_WINRT_APP.ViewModels
 
                 // Update the system media transport controls.
                 updater.Update();
+                }
+                catch (Exception exception)
+                {
+                    ExceptionHelper.CreateMemorizedException("MediaPlaybackViewModel.SetMediaTransportControlsInfo(string artistname, etc)", exception);
+                }
             });
         }
 
@@ -1074,6 +1087,7 @@ namespace VLC_WINRT_APP.ViewModels
         {
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
+                try{
                 if (_systemMediaTransportControls == null) return;
                 LogHelper.Log("PLAYVIDEO: Updating SystemMediaTransportControls");
                 SystemMediaTransportControlsDisplayUpdater updater = _systemMediaTransportControls.DisplayUpdater;
@@ -1085,6 +1099,11 @@ namespace VLC_WINRT_APP.ViewModels
                 //TODO: add full thumbnail suport
                 updater.Thumbnail = null;
                 updater.Update();
+                }
+                catch (Exception exception)
+                {
+                    ExceptionHelper.CreateMemorizedException("MediaPlaybackViewModel.SetMediaTransportControls(title)", exception);
+                }
             });
         }
 
