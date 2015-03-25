@@ -20,7 +20,7 @@
               Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <ListView.HeaderTemplate>
             <DataTemplate>
-                <local:MainAlbumHeader />
+                <local:MainAlbumHeader/>
             </DataTemplate>
         </ListView.HeaderTemplate>
         <ListView.ItemsPanel>
