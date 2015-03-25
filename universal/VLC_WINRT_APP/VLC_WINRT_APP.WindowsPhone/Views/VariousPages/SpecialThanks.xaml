@@ -22,8 +22,13 @@
             <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <userControls:HeaderControl Grid.Row="0"
-                                    HeaderTextBlock="Special thanks" />
+        <TextBlock Grid.Row="0"
+                   Margin="12,0,0,0"
+                   TextTrimming="CharacterEllipsis"
+                   TextWrapping="NoWrap"
+                   VerticalAlignment="Center"
+                   Text="Special thanks"
+                   Style="{StaticResource SubheaderTextBlockStyle}" />
         <Grid Grid.Row="1">
             <TextBlock Text="The VLC team would like to thank everyone who is in this page"
                        Margin="12,0,0,0"
