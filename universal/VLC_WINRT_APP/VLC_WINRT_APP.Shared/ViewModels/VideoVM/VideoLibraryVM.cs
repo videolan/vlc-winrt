@@ -189,9 +189,21 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
         #endregion
 
         #region methods
-        public void ExecuteSemanticZoom(SemanticZoom sZ, CollectionViewSource cvs)
+        public async Task PerformRoutineCheckIfNotBusy()
         {
-            (sZ.ZoomedOutView as ListViewBase).ItemsSource = cvs.View.CollectionGroups;
+            // Routine check to add new files if there are new ones
+            if (!IsBusy)
+            {
+                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+                {
+                    IsBusy = true;
+                });
+                await Initialize();
+                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+                {
+                    IsBusy = false;
+                });
+            }
         }
         #endregion
     }
