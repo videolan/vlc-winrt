@@ -17,6 +17,17 @@ namespace VLC_WINRT_APP.Views.VariousPages
         {
             this.InitializeComponent();
         }
+
+        void FocusTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            Locator.MainVM.KeyboardListenerService.CanListen = true;
+        }
+
+        void FocusTextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            Locator.MainVM.KeyboardListenerService.CanListen = false;
+        }
+
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             HardwareButtons.BackPressed += HardwareButtonsOnBackPressed;
