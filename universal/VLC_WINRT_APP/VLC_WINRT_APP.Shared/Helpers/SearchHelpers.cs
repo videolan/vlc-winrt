@@ -10,6 +10,7 @@ using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.Views.MusicPages;
 using VLC_WINRT_APP.Model.Search;
 using Windows.Storage;
+using System.Collections.ObjectModel;
 
 namespace VLC_WINRT_APP.Helpers
 {
