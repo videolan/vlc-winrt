@@ -50,74 +50,139 @@ namespace VLC_WINRT_APP.Helpers
         public static void Search()
         {
             if (string.IsNullOrEmpty(Locator.MainVM.SearchTag)) return;
+            var results = new ObservableCollection<SearchResult>();
             Locator.MainVM.SearchResults.Clear();
             // We don't need null checks here, because even if nothing was found, the Enumerable items will be loaded with zero items in them.
             // So the foreach loops will skip past them.
             if (Locator.SettingsVM.SearchTracks)
             {
-                IEnumerable<TrackItem> trackItems =
-                    Locator.MusicLibraryVM.Tracks.Where(x => x.Name.Contains(Locator.MainVM.SearchTag, StringComparison.CurrentCultureIgnoreCase));
-                foreach (TrackItem item in trackItems)
-                {
-                    Locator.MainVM.SearchResults.Add(new SearchResult(item.Name, item.Thumbnail,
-                        VLCItemType.Track, item.Id));
-                }
+                SearchTracks(Locator.MainVM.SearchTag, results);
             }
 
             if (Locator.SettingsVM.SearchVideos)
             {
-                IEnumerable<VideoItem> videoVms =
-                    Locator.VideoLibraryVM.Videos.Where(x => x.Name.Contains(Locator.MainVM.SearchTag, StringComparison.CurrentCultureIgnoreCase));
-                foreach (VideoItem vm in videoVms)
-                {
-                    Locator.MainVM.SearchResults.Add(new SearchResult(vm.Name,
-                        ApplicationData.Current.LocalFolder.Path + "\\videoPic\\" + vm.Name + ".jpg",
-                        VLCItemType.Video));
-                }
-
-                IEnumerable<VideoItem> showsVms = Locator.VideoLibraryVM.Shows.SelectMany(show => show.Episodes).Where(x => x.Name.Contains(Locator.MainVM.SearchTag, StringComparison.CurrentCultureIgnoreCase));
-                foreach (var showsVm in showsVms)
-                {
-                    Locator.MainVM.SearchResults.Add(new SearchResult(showsVm.Name, ApplicationData.Current.LocalFolder.Path + "\\videoPic\\" + showsVm.Name + ".jpg", VLCItemType.VideoShow));
-                }
-
-                IEnumerable<VideoItem> cameraVms =
-                    Locator.VideoLibraryVM.CameraRoll.Where(x => x.Name.Contains(Locator.MainVM.SearchTag, StringComparison.CurrentCultureIgnoreCase));
-                foreach (var cameraVm in cameraVms)
-                {
-                    Locator.MainVM.SearchResults.Add(new SearchResult(cameraVm.Name, ApplicationData.Current.LocalFolder.Path + "\\videoPic\\" + cameraVm.Name + ".jpg", VLCItemType.VideoCamera));
-                }
+                SearchVideosGeneric(Locator.MainVM.SearchTag, results);
             }
 
             if (Locator.SettingsVM.SearchArtists)
             {
-                IEnumerable<ArtistItem> artistItems =
-                    Locator.MusicLibraryVM.Artists.Where(x => x.Name.Contains(Locator.MainVM.SearchTag, StringComparison.CurrentCultureIgnoreCase));
-
-                foreach (var artistItem in artistItems)
-                {
-                    Locator.MainVM.SearchResults.Add(new SearchResult(artistItem.Name,
-                        ApplicationData.Current.LocalFolder.Path + "\\artistPic\\" + artistItem.Id + ".jpg",
-                        VLCItemType.Artist, artistItem.Id));
-                }
+                SearchArtists(Locator.MainVM.SearchTag, results);
             }
 
             if (Locator.SettingsVM.SearchAlbums)
             {
-                IEnumerable<AlbumItem> albumItems =
-                    Locator.MusicLibraryVM.Artists.SelectMany(node => node.Albums)
-                        .Where(x => x.Name.Contains(Locator.MainVM.SearchTag, StringComparison.CurrentCultureIgnoreCase));
+                SearchAlbums(Locator.MainVM.SearchTag, results);
+            }
+            Locator.MainVM.SearchResults = results;
+        }
 
-                foreach (AlbumItem albumItem in albumItems)
-                {
-                    Locator.MainVM.SearchResults.Add(new SearchResult(albumItem.Name,
-                        ApplicationData.Current.LocalFolder.Path + "\\albumPic\\" + albumItem.Id + ".jpg",
-                        VLCItemType.Album,
-                        albumItem.Id));
-                }
+
+        public static ObservableCollection<SearchResult> SearchAlbums(string tag, ObservableCollection<SearchResult> results)
+        {
+            IEnumerable<AlbumItem> albumItems =
+                Locator.MusicLibraryVM.Artists.SelectMany(node => node.Albums)
+                    .Where(x => x.Name.Contains(tag, StringComparison.CurrentCultureIgnoreCase));
+
+            foreach (AlbumItem albumItem in albumItems)
+            {
+                results.Add(new SearchResult(albumItem.Name,
+                    ApplicationData.Current.LocalFolder.Path + "\\albumPic\\" + albumItem.Id + ".jpg",
+                    VLCItemType.Album,
+                    albumItem.Id));
+            }
+            return results;
+        }
+
+        public static ObservableCollection<SearchResult> SearchArtists(string tag, ObservableCollection<SearchResult> results)
+        {
+            IEnumerable<ArtistItem> artistItems =
+                Locator.MusicLibraryVM.Artists.Where(x => x.Name.Contains(tag, StringComparison.CurrentCultureIgnoreCase));
+
+            foreach (var artistItem in artistItems)
+            {
+                results.Add(new SearchResult(artistItem.Name,
+                    ApplicationData.Current.LocalFolder.Path + "\\artistPic\\" + artistItem.Id + ".jpg",
+                    VLCItemType.Artist, artistItem.Id));
+            }
+            return results;
+        }
+
+        public static ObservableCollection<SearchResult> SearchTracks(string tag, ObservableCollection<SearchResult> results)
+        {
+            IEnumerable<TrackItem> trackItems =
+                Locator.MusicLibraryVM.Tracks.Where(x => x.Name.Contains(tag, StringComparison.CurrentCultureIgnoreCase));
+            foreach (TrackItem item in trackItems)
+            {
+                results.Add(new SearchResult(item.Name, item.Thumbnail,
+                    VLCItemType.Track, item.Id));
+            }
+            return results;
+        }
+
+        public static ObservableCollection<SearchResult> SearchVideosGeneric(string tag, ObservableCollection<SearchResult> results)
+        {
+            var videoVms = SearchVideoItems(tag);
+            foreach (VideoItem vm in videoVms)
+            {
+                results.Add(new SearchResult(vm.Name, ApplicationData.Current.LocalFolder.Path + "\\videoPic\\" + vm.Name + ".jpg", VLCItemType.Video));
+            }
+
+            var showsVms = SearchShowItems(tag);
+            foreach (var showsVm in showsVms)
+            {
+                results.Add(new SearchResult(showsVm.Name, ApplicationData.Current.LocalFolder.Path + "\\videoPic\\" + showsVm.Name + ".jpg", VLCItemType.VideoShow));
+            }
+
+            var cameraVms = SearchCameraItems(tag);
+            foreach (var cameraVm in cameraVms)
+            {
+                results.Add(new SearchResult(cameraVm.Name, ApplicationData.Current.LocalFolder.Path + "\\videoPic\\" + cameraVm.Name + ".jpg", VLCItemType.VideoCamera));
+            }
+            return results;
+        }
+
+        public static void SearchVideos(string tag, ObservableCollection<VideoItem> results)
+        {
+            var videos = SearchVideoItems(tag);
+            foreach (var video in videos)
+            {
+                if (!results.Contains(video))
+                    results.Add(video);
+            }
+            var shows = SearchShowItems(tag);
+            foreach (var show in shows)
+            {
+                if (!results.Contains(show))
+                    results.Add(show);
+            }
+
+            var cameras = SearchCameraItems(tag);
+            foreach (var camera in cameras)
+            {
+                if (!results.Contains(camera))
+                    results.Add(camera);
+            }
+
+            foreach (var result in results.ToList())
+            {
+                if (!videos.Contains(result) && !shows.Contains(result) && !cameras.Contains(result))
+                    results.Remove(result);
             }
         }
 
-        //}
+        public static IEnumerable<VideoItem> SearchVideoItems(string tag)
+        {
+            return Locator.VideoLibraryVM.Videos.Where(x => x.Name.Contains(tag, StringComparison.CurrentCultureIgnoreCase));
+        }
+
+        public static IEnumerable<VideoItem> SearchCameraItems(string tag)
+        {
+            return Locator.VideoLibraryVM.CameraRoll.Where(x => x.Name.Contains(tag, StringComparison.CurrentCultureIgnoreCase));
+        }
+
+        public static IEnumerable<VideoItem> SearchShowItems(string tag)
+        {
+            return Locator.VideoLibraryVM.Shows.SelectMany(show => show.Episodes).Where(x => x.Name.Contains(tag, StringComparison.CurrentCultureIgnoreCase));
+        }
     }
 }
