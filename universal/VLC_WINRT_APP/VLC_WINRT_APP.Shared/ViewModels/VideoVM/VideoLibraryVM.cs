@@ -170,6 +170,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
                 SetProperty(ref _searchTag, value);
             }
         }
+
         public bool IsBusy
         {
             get { return _isBusy; }
