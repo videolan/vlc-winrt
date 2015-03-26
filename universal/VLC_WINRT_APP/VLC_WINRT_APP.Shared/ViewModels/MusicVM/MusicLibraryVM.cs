@@ -27,6 +27,7 @@ using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.Model.Music;
 using XboxMusicLibrary;
 using VLC_WINRT_APP.Commands.Music;
+using VLC_WINRT_APP.Model.Search;
 
 namespace VLC_WINRT_APP.ViewModels.MusicVM
 {
@@ -40,6 +41,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         public delegate void LoadingEnded(object sender, string myValue);
         public static LoadingEnded MusicCollectionLoaded = delegate { };
         #region private fields
+        private ObservableCollection<SearchResult> _searchResults = new ObservableCollection<SearchResult>();
 #if WINDOWS_APP
         private ObservableCollection<Model.Panel> _panels = new ObservableCollection<Model.Panel>();
 #endif
@@ -81,9 +83,15 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         private bool _isAlbumPageShown = false;
         private bool _isMainPageMusicArtistAlbumsSemanticZoomViewedIn;
         public MusicView _musicView;
+        private string _searchTag;
         #endregion
 
         #region public fields
+        public ObservableCollection<SearchResult> SearchResults
+        {
+            get { return _searchResults; }
+            set { SetProperty(ref _searchResults, value); }
+        }
 
         public ObservableCollection<TrackCollection> TrackCollections
         {
@@ -191,6 +199,18 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         {
             get { return _isMusicLibraryEmpty; }
             set { SetProperty(ref _isMusicLibraryEmpty, value); }
+        }
+        public string SearchTag
+        {
+            get { return _searchTag; }
+            set
+            {
+                if (string.IsNullOrEmpty(_searchTag) && !string.IsNullOrEmpty(value))
+                    Locator.MainVM.ChangeMainPageMusicViewCommand.Execute(4);
+                if (!string.IsNullOrEmpty(value))
+                    SearchHelpers.SearchMusic(value, SearchResults);
+                SetProperty(ref _searchTag, value);
+            }
         }
 
         public StartMusicIndexingCommand StartMusicIndexingCommand
