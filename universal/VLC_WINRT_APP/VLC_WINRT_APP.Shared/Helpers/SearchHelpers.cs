@@ -57,48 +57,47 @@ namespace VLC_WINRT_APP.Helpers
             // So the foreach loops will skip past them.
             if (Locator.SettingsVM.SearchTracks)
             {
-                SearchTracks(Locator.MainVM.SearchTag, results);
+                var tracks = SearchTracks(Locator.MainVM.SearchTag);
+                foreach (var track in tracks)
+                {
+                    results.Add(track);
+                }
             }
 
             if (Locator.SettingsVM.SearchVideos)
             {
-                SearchVideosGeneric(Locator.MainVM.SearchTag, results);
+                var videos = SearchVideosGeneric(Locator.MainVM.SearchTag, results);
+                foreach (var video in videos)
+                {
+                    results.Add(video);
+                }
             }
 
             if (Locator.SettingsVM.SearchArtists)
             {
-                SearchArtists(Locator.MainVM.SearchTag, results);
+                var artists = SearchArtists(Locator.MainVM.SearchTag);
+                foreach (var artist in artists)
+                {
+                    results.Add(artist);
+                }
             }
 
             if (Locator.SettingsVM.SearchAlbums)
             {
-                SearchAlbums(Locator.MainVM.SearchTag, results);
+                var albums = SearchAlbums(Locator.MainVM.SearchTag);
+                foreach (var album in albums)
+                {
+                    results.Add(album);
+                }
             }
             Locator.MainVM.SearchResults = results;
         }
 
 
-        public static ObservableCollection<SearchResult> SearchAlbums(string tag, ObservableCollection<SearchResult> results)
+        public static ObservableCollection<SearchResult> SearchArtists(string tag)
         {
-            IEnumerable<AlbumItem> albumItems =
-                Locator.MusicLibraryVM.Artists.SelectMany(node => node.Albums)
-                    .Where(x => x.Name.Contains(tag, StringComparison.CurrentCultureIgnoreCase));
-
-            foreach (AlbumItem albumItem in albumItems)
-            {
-                results.Add(new SearchResult(albumItem.Name,
-                    ApplicationData.Current.LocalFolder.Path + "\\albumPic\\" + albumItem.Id + ".jpg",
-                    VLCItemType.Album,
-                    albumItem.Id));
-            }
-            return results;
-        }
-
-        public static ObservableCollection<SearchResult> SearchArtists(string tag, ObservableCollection<SearchResult> results)
-        {
-            IEnumerable<ArtistItem> artistItems =
-                Locator.MusicLibraryVM.Artists.Where(x => x.Name.Contains(tag, StringComparison.CurrentCultureIgnoreCase));
-
+            var results = new ObservableCollection<SearchResult>();
+            IEnumerable<ArtistItem> artistItems = SearchArtistItems(tag);
             foreach (var artistItem in artistItems)
             {
                 results.Add(new SearchResult(artistItem.Name,
@@ -108,14 +107,28 @@ namespace VLC_WINRT_APP.Helpers
             return results;
         }
 
-        public static ObservableCollection<SearchResult> SearchTracks(string tag, ObservableCollection<SearchResult> results)
+        public static ObservableCollection<SearchResult> SearchTracks(string tag)
         {
-            IEnumerable<TrackItem> trackItems =
-                Locator.MusicLibraryVM.Tracks.Where(x => x.Name.Contains(tag, StringComparison.CurrentCultureIgnoreCase));
+            var results = new ObservableCollection<SearchResult>();
+            IEnumerable<TrackItem> trackItems = SearchTrackItems(tag);
             foreach (TrackItem item in trackItems)
             {
                 results.Add(new SearchResult(item.Name, item.Thumbnail,
                     VLCItemType.Track, item.Id));
+            }
+            return results;
+        }
+
+        public static ObservableCollection<SearchResult> SearchAlbums(string tag)
+        {
+            var results = new ObservableCollection<SearchResult>();
+            IEnumerable<AlbumItem> albumItems = SearchAlbumItems(tag);
+            foreach (AlbumItem albumItem in albumItems)
+            {
+                results.Add(new SearchResult(albumItem.Name,
+                    ApplicationData.Current.LocalFolder.Path + "\\albumPic\\" + albumItem.Id + ".jpg",
+                    VLCItemType.Album,
+                    albumItem.Id));
             }
             return results;
         }
@@ -169,6 +182,53 @@ namespace VLC_WINRT_APP.Helpers
                 if (!videos.Contains(result) && !shows.Contains(result) && !cameras.Contains(result))
                     results.Remove(result);
             }
+        }
+
+        public static void SearchMusic(string tag, ObservableCollection<SearchResult> results)
+        {
+            var albums = SearchAlbums(tag);
+            foreach (var album in albums)
+            {
+                if (!results.Contains(album))
+                    results.Add(album);
+            }
+
+            var artists = SearchArtists(tag);
+            foreach (var artist in artists)
+            {
+                if (!results.Contains(artist))
+                    results.Add(artist);
+            }
+
+            var tracks = SearchTracks(tag);
+            foreach (var track in tracks)
+            {
+                if (!results.Contains(track))
+                    results.Add(track);
+            }
+
+            foreach (var result in results.ToList())
+            {
+                if (!albums.Contains(result) && !artists.Contains(result) && !tracks.Contains(result))
+                    results.Remove(result);
+            }
+        }
+
+
+        public static IEnumerable<ArtistItem> SearchArtistItems(string tag)
+        {
+            return Locator.MusicLibraryVM.Artists.Where(x => x.Name.Contains(tag, StringComparison.CurrentCultureIgnoreCase));
+        }
+
+        public static IEnumerable<AlbumItem> SearchAlbumItems(string tag)
+        {
+            return Locator.MusicLibraryVM.Artists.SelectMany(node => node.Albums)
+                    .Where(x => x.Name.Contains(tag, StringComparison.CurrentCultureIgnoreCase));
+        }
+
+        public static IEnumerable<TrackItem> SearchTrackItems(string tag)
+        {
+            return Locator.MusicLibraryVM.Tracks.Where(x => x.Name.Contains(tag, StringComparison.CurrentCultureIgnoreCase));
         }
 
         public static IEnumerable<VideoItem> SearchVideoItems(string tag)
