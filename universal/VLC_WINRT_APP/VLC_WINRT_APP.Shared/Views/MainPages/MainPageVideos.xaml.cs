@@ -28,15 +28,6 @@ namespace VLC_WINRT_APP.Views.MainPages
             this.NavigationCacheMode = NavigationCacheMode.Enabled;
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            base.OnNavigatedTo(e);
-            if (e.NavigationMode == NavigationMode.New && Locator.VideoLibraryVM.LoadingState == LoadingState.NotLoaded)
-            {
-                Locator.VideoLibraryVM.Initialize();
-            }
-        }
-
         private void MainPageVideoContentPresenter_OnLoaded(object sender, RoutedEventArgs e)
         {
             if (MainPageVideoContentPresenter.Content == null)
