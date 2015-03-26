@@ -14,7 +14,7 @@ namespace VLC_WINRT_APP.Commands.MainPageCommands
             var index = int.Parse(parameter.ToString());
             if (App.ApplicationFrame.CurrentSourcePageType != typeof (MainPageMusic)) return;
             var frame = (App.ApplicationFrame.Content as MainPageMusic).MainPageMusicContentPresenter;
-            Locator.MusicLibraryVM.MusicView = (MusicView) index;
+            Locator.MusicLibraryVM.MusicView = (MusicView)index;
             switch (index)
             {
                 case 0:
