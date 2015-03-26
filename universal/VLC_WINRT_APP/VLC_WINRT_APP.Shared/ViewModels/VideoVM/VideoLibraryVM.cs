@@ -36,6 +36,7 @@ using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.Model.Video;
 using WinRTXamlToolkit.IO.Extensions;
 using Panel = VLC_WINRT_APP.Model.Panel;
+using VLC_WINRT_APP.Model.Search;
 
 namespace VLC_WINRT_APP.ViewModels.VideoVM
 {
@@ -43,12 +44,13 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
     {
         public VideoRepository VideoRepository = new VideoRepository();
         #region private fields
+        private ObservableCollection<VideoItem> _searchResults = new ObservableCollection<VideoItem>();
 #if WINDOWS_APP
         private ObservableCollection<Panel> _panels = new ObservableCollection<Panel>();
 #endif
         private ObservableCollection<VideoItem> _videos;
         private ObservableCollection<VideoItem> _viewedVideos;
-        private ObservableCollection<VideoItem> _cameraRoll; 
+        private ObservableCollection<VideoItem> _cameraRoll;
         private ObservableCollection<TvShow> _shows = new ObservableCollection<TvShow>();
         #endregion
 
@@ -61,9 +63,15 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
         private TvShow _currentShow;
         private CloseFlyoutAndPlayVideoCommand _closeFlyoutAndPlayVideoCommand;
 
+        private string _searchTag;
         #endregion
 
         #region public fields
+        public ObservableCollection<VideoItem> SearchResults
+        {
+            get { return _searchResults; }
+            set { SetProperty(ref _searchResults, value); }
+        }
 #if WINDOWS_APP
         public ObservableCollection<Panel> Panels
         {
@@ -100,7 +108,7 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
         {
             get { return _cameraRoll; }
             set { SetProperty(ref _cameraRoll, value); }
-        } 
+        }
         #endregion
 
         #region public props
@@ -141,6 +149,19 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
         {
             get { return _playNetworkMRL; }
             set { SetProperty(ref _playNetworkMRL, value); }
+        }
+
+        public string SearchTag
+        {
+            get { return _searchTag; }
+            set
+            {
+                if (string.IsNullOrEmpty(_searchTag) && !string.IsNullOrEmpty(value))
+                    Locator.MainVM.ChangeMainPageVideoViewCommand.Execute(3);
+                if (!string.IsNullOrEmpty(value))
+                    SearchHelpers.SearchVideos(value, SearchResults);
+                SetProperty(ref _searchTag, value);
+            }
         }
         #endregion
         #region contructors
