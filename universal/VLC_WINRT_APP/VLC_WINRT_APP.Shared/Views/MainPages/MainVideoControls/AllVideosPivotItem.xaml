@@ -12,8 +12,7 @@
       DataContext="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM}">
     
     <Grid>
-        <ListView
-                  ItemsSource="{Binding Videos}"
+        <ListView ItemsSource="{Binding Videos}"
                   ItemTemplate="{StaticResource PhoneCompactVideoTemplate}"
                   ItemContainerStyle="{StaticResource ListViewItemStyle}"
                   IsItemClickEnabled="True"
