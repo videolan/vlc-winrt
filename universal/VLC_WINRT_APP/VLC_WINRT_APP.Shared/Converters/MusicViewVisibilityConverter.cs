@@ -17,6 +17,8 @@ namespace VLC_WINRT_APP.Converters
                 var viewName = view.ToString().ToLower();
                 if (viewName == (string) parameter)
                     return Visibility.Visible;
+                if (value is string && (string)value == "4" && (string)parameter == "4")
+                    return Visibility.Visible;
             }
             return Visibility.Collapsed;
         }
