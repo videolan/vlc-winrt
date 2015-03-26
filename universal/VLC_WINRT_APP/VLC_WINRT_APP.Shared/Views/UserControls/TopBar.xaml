@@ -23,23 +23,21 @@
         </Grid.ColumnDefinitions>
         <StackPanel Orientation="Horizontal"
                     Grid.Column="1"
-                    VerticalAlignment="Top"
-                    Margin="0,6,0,0">
+                    VerticalAlignment="Center">
             <Path Data="{StaticResource VLCFlatPath}"
                   Fill="White"
                   Width="26"
                   Stretch="Uniform" />
             <TextBlock Text="VLC"
                        Foreground="{ThemeResource BasicForeground}"
-                       Style="{StaticResource SubheaderTextBlockStyle}"
-                       Margin="0,-3,0,0" />
+                       Style="{StaticResource SubheaderTextBlockStyle}" 
+                       Margin="0,-5,0,0"/>
         </StackPanel>
         <ListView Grid.Column="2"
                   x:Name="PanelsListView"
                   ItemsSource="{Binding Panels}"
                   IsItemClickEnabled="True"
                   SelectionMode="None"
-                  VerticalAlignment="Center"
                   ItemContainerStyle="{StaticResource ListViewItemContainerStyle}"
                   ItemTemplate="{StaticResource PivotHeaderDataTemplate}"
                   ScrollViewer.VerticalScrollBarVisibility="Disabled">
