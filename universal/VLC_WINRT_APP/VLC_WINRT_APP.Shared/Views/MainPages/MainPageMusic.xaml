@@ -29,6 +29,9 @@
                                              Visibility="{Binding MusicView, Converter={StaticResource MusicViewVisibilityConverter}, ConverterParameter='songs'}" />
         <musicPanesControls:PlaylistPaneButtons Grid.Column="1"
                                                 Visibility="{Binding MusicView, Converter={StaticResource MusicViewVisibilityConverter}, ConverterParameter='playlists'}" />
+
+        <musicPanesControls:ArtistPaneButtons Grid.Column="1"
+                                              Visibility="{Binding MusicView, Converter={StaticResource MusicViewVisibilityConverter}, ConverterParameter='4'}" />
         <ContentPresenter x:Name="MainPageMusicContentPresenter"
                           x:FieldModifier="public"
                           Grid.Row="1"
