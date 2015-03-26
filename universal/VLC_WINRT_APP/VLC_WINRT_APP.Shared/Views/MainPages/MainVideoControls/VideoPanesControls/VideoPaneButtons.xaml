@@ -7,12 +7,79 @@
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <AppBarButton x:Name="SearchButton"
+                      Grid.Column="1"
+                      Style="{StaticResource EllipseLessAppBarButtonStyle}"
+                      Command="{Binding Source={StaticResource Locator}, Path=MainVM.ChangeMainPageVideoViewCommand}"
+                      CommandParameter="3">
+            <AppBarButton.Icon>
+                <FontIcon Glyph="{StaticResource SearchSymbol}"
+                          FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+            </AppBarButton.Icon>
+        </AppBarButton>
+        <AppBarButton x:Name="RefreshButton"
+                      Style="{StaticResource EllipseLessAppBarButtonStyle}"
+                      Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToSearchPage}">
+            <AppBarButton.Icon>
+                <FontIcon Glyph="{StaticResource RefreshSymbol}"
+                          FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+            </AppBarButton.Icon>
+        </AppBarButton>
+        <TextBox x:Name="VideoSearchBox"
+                 Grid.Column="1"
+                 Text="{Binding SearchTag}"
+                 PlaceholderText="search a video"
+                 Height="30"
+                 Width="250"
+                 TextChanged="TextBox_TextChanged"
+                 HorizontalAlignment="Right" />
 
-    <AppBarButton Style="{StaticResource EllipseLessAppBarButtonStyle}"
-                  Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToSearchPage}">
-        <AppBarButton.Icon>
-            <FontIcon Glyph="{StaticResource SearchSymbol}"
-                      FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
-        </AppBarButton.Icon>
-    </AppBarButton>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="Minimal">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SearchButton"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RefreshButton"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="VideoSearchBox"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Collapsed" />
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Normal">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SearchButton"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Collapsed" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RefreshButton"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="VideoSearchBox"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+    </Grid>
 </UserControl>
