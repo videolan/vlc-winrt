@@ -122,18 +122,22 @@ namespace VLC_WINRT_APP.Helpers.VideoLibrary
                     {
                         if (mediaVM.IsCameraRoll)
                         {
-                            Locator.VideoLibraryVM.CameraRoll.Add(mediaVM);
+                            // TODO: Find a more efficient way to know if it's already in the list or not
+                            if (Locator.VideoLibraryVM.CameraRoll.FirstOrDefault(x => x.Id == mediaVM.Id) == null)
+                                Locator.VideoLibraryVM.CameraRoll.Add(mediaVM);
                         }
                         else if (!mediaVM.IsTvShow)
                         {
-                            Locator.VideoLibraryVM.Videos.Add(mediaVM);
+                            if (Locator.VideoLibraryVM.Videos.FirstOrDefault(x => x.Id == mediaVM.Id) == null)
+                                Locator.VideoLibraryVM.Videos.Add(mediaVM);
                         }
-                        //#if WINDOWS_APP
                         if (Locator.VideoLibraryVM.ViewedVideos.Count < 6 &&
                             Locator.VideoLibraryVM.ViewedVideos.FirstOrDefault(
                                 x => x.Path == mediaVM.Path && x.TimeWatched == TimeSpan.Zero) == null)
-                            Locator.VideoLibraryVM.ViewedVideos.Add(mediaVM);
-                        //#endif
+                        {
+                            if (Locator.VideoLibraryVM.ViewedVideos.FirstOrDefault(x => x.Id == mediaVM.Id) == null)
+                                Locator.VideoLibraryVM.ViewedVideos.Add(mediaVM);
+                        }
                     });
                 }
             }
