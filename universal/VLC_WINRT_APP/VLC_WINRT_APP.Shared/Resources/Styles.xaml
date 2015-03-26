@@ -1404,7 +1404,7 @@ M 15.937 9.056 c 0.629 -1.69 1.208 -2.349 2.063 -2.349 h 5.586 L 20.293 10 l 1.4
         <Setter Property="HorizontalContentAlignment"
                 Value="Stretch" />
         <Setter Property="VerticalContentAlignment"
-                Value="Top" />
+                Value="Stretch" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ListViewItem">
@@ -3268,8 +3268,7 @@ M 15.937 9.056 c 0.629 -1.69 1.208 -2.349 2.063 -2.349 h 5.586 L 20.293 10 l 1.4
                                                       Content="{TemplateBinding Icon}"
                                                       Foreground="{TemplateBinding Foreground}"
                                                       HorizontalAlignment="Stretch"
-                                                      VerticalAlignment="Stretch"
-                                                      Margin="0,-5,0,0" />
+                                                      VerticalAlignment="Stretch" />
                                 </Viewbox>
                             </Grid>
                         </Grid>
