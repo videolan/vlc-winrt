@@ -68,6 +68,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Video\PlayVideoCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Video\SetAudioTrackCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Video\SetSubtitleTrackCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\Video\StartVideoIndexingCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Video\StopVideoCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\AlwaysExecutableCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\AutoFacConfiguration.cs" />

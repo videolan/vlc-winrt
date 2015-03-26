@@ -56,12 +56,14 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
 
         #region private props
         private LoadingState _loadingState;
+        private bool _isBusy = false;
         private PlayVideoCommand _openVideo;
         private PickVideoCommand _pickCommand = new PickVideoCommand();
         private PlayNetworkMRLCommand _playNetworkMRL = new PlayNetworkMRLCommand();
         private bool _hasNoMedia = true;
         private TvShow _currentShow;
         private CloseFlyoutAndPlayVideoCommand _closeFlyoutAndPlayVideoCommand;
+        private StartVideoIndexingCommand _startVideoIndexingCommand;
 
         private string _searchTag;
         #endregion
@@ -151,6 +153,11 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             set { SetProperty(ref _playNetworkMRL, value); }
         }
 
+        public StartVideoIndexingCommand StartVideoIndexingCommand
+        {
+            get { return _startVideoIndexingCommand ?? (_startVideoIndexingCommand = new StartVideoIndexingCommand()); }
+        }
+
         public string SearchTag
         {
             get { return _searchTag; }
@@ -162,6 +169,11 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
                     SearchHelpers.SearchVideos(value, SearchResults);
                 SetProperty(ref _searchTag, value);
             }
+        }
+        public bool IsBusy
+        {
+            get { return _isBusy; }
+            set { SetProperty(ref _isBusy, value); }
         }
         #endregion
         #region contructors

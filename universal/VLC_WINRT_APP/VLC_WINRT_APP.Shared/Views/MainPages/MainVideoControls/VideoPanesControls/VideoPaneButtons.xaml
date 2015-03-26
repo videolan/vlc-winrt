@@ -24,7 +24,9 @@
         </AppBarButton>
         <AppBarButton x:Name="RefreshButton"
                       Style="{StaticResource EllipseLessAppBarButtonStyle}"
-                      Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToSearchPage}">
+                      DataContext="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM}"
+                      Command="{Binding StartVideoIndexingCommand}"
+                      IsEnabled="{Binding IsBusy, Converter={StaticResource BooleanNegationConverter}}">
             <AppBarButton.Icon>
                 <FontIcon Glyph="{StaticResource RefreshSymbol}"
                           FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
