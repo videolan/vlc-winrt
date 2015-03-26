@@ -33,6 +33,10 @@ namespace VLC_WINRT_APP.Commands.MainPageCommands
                     if (!(frame.Content is PlaylistPivotItem))
                         frame.Content = new PlaylistPivotItem();
                     break;
+                case 4:
+                    if (!(frame.Content is SearchMusicPane))
+                        frame.Content = new SearchMusicPane();
+                    break;
             }
         }
     }
