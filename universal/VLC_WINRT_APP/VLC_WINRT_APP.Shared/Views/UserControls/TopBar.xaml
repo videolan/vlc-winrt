@@ -55,7 +55,7 @@
             </ListView.ItemsPanel>
             <ListView.ItemContainerTransitions>
                 <TransitionCollection>
-                    <RepositionThemeTransition/>
+                    <RepositionThemeTransition />
                 </TransitionCollection>
             </ListView.ItemContainerTransitions>
         </ListView>
