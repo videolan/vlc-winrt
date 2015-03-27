@@ -1043,9 +1043,7 @@ namespace VLC_WINRT_APP.ViewModels
                 _systemMediaTransportControls.IsEnabled = false;
             }
             catch (Exception exception)
-            {
-                ExceptionHelper.CreateMemorizedException("MediaPlaybackViewModel.ForceMediaTransportControls", exception);
-            }
+            { }
         }
 
         public async Task SetMediaTransportControlsInfo(string artistName, string albumName, string trackName, string albumUri)
@@ -1079,9 +1077,7 @@ namespace VLC_WINRT_APP.ViewModels
                     updater.Update();
                 }
                 catch (Exception exception)
-                {
-                    ExceptionHelper.CreateMemorizedException("MediaPlaybackViewModel.SetMediaTransportControlsInfo(string artistname, etc)", exception);
-                }
+                {}
             });
         }
 
