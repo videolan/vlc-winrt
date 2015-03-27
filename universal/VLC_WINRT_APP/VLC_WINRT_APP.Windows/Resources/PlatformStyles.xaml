@@ -104,15 +104,6 @@
                             <VisualStateGroup x:Name="FocusStates">
                                 <VisualState x:Name="Focused">
                                     <Storyboard>
-                                        <DoubleAnimation Duration="0"
-                                                         To="1"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         Storyboard.TargetName="Highlight" />
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
-                                                                       Storyboard.TargetName="ContentPresenter">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource ComboBoxFocusedForegroundThemeBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="FocusedPressed">
@@ -121,11 +112,6 @@
                                                                        Storyboard.TargetName="ContentPresenter">
                                             <DiscreteObjectKeyFrame KeyTime="0"
                                                                     Value="{ThemeResource ComboBoxPressedForegroundThemeBrush}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill"
-                                                                       Storyboard.TargetName="Highlight">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="{ThemeResource ComboBoxPressedHighlightThemeBrush}" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
