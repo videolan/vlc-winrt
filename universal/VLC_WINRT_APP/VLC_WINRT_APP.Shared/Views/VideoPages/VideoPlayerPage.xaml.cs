@@ -28,8 +28,6 @@ namespace VLC_WINRT_APP.Views.VideoPages
     public sealed partial class VideoPlayerPage : Page
     {
         private bool isVisible = true;
-        private bool needDoubleTapToAct = false;
-        private TimeSpan _fadeDuration = TimeSpan.FromMilliseconds(250);
         private DispatcherTimer timer;
 
         public VideoPlayerPage()
@@ -82,17 +80,6 @@ namespace VLC_WINRT_APP.Views.VideoPages
 #endif
         }
 
-        private async void VideoGrid_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            if (!needDoubleTapToAct)
-                await DisplayOrHide();
-        }
-
-        private async void VideoGrid_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
-        {
-            await DisplayOrHide();
-        }
-
         private async void TimerOnTick(object sender, object o)
         {
             await DisplayOrHide();
@@ -102,46 +89,7 @@ namespace VLC_WINRT_APP.Views.VideoPages
         {
             if (timer == null)
                 timer = new DispatcherTimer();
-            Task t1;
-            Task t2;
-            if (isVisible)
-            {
-                t1 = ControlsGrid.FadeOut(_fadeDuration);
-                t2 = FooterGrid.FadeOut(_fadeDuration);
-                FooterGrid.IsHitTestVisible = false;
-                timer.Stop();
-            }
-            else
-            {
-                t1 = FooterGrid.FadeIn(_fadeDuration);
-                t2 = ControlsGrid.FadeIn(_fadeDuration);
-                FooterGrid.IsHitTestVisible = true;
-                timer.Start();
-            }
-            await Task.WhenAll(t1, t2);
             isVisible = !isVisible;
-        }
-
-        private void EnableDoubleTapToShowCommands_Click(object sender, RoutedEventArgs e)
-        {
-            needDoubleTapToAct = !needDoubleTapToAct;
-            timer.Start();
-        }
-
-        private void ControlsGrid_ManipulationDelta(object sender, ManipulationDeltaRoutedEventArgs e)
-        {
-            if (e.PointerDeviceType == PointerDeviceType.Mouse)
-                return;
-            if (e.Cumulative.Translation.X > 100)
-            {
-                Locator.MediaPlaybackViewModel.SkipAhead.Execute(null);
-                e.Handled = true;
-            }
-            else if (e.Cumulative.Translation.X < -100)
-            {
-                Locator.MediaPlaybackViewModel.SkipBack.Execute(null);
-                e.Handled = true;
-            }
         }
     }
 }

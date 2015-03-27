@@ -12,48 +12,41 @@
       DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
       RequestedTheme="Dark">
 
-    <Grid x:Name="ControlsGrid"
-          ManipulationMode="TranslateX"
-          ManipulationDelta="ControlsGrid_ManipulationDelta">
-        <Grid.Background>
-            <LinearGradientBrush EndPoint="0.5,1"
-                                 StartPoint="0.5,0">
-                <GradientStop Color="#B2000000"
-                              Offset="0" />
-                <GradientStop Color="#BA000000"
-                              Offset="1" />
-                <GradientStop Offset="0.278" />
-                <GradientStop Offset="0.7" />
-            </LinearGradientBrush>
-        </Grid.Background>
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition />
-            <ColumnDefinition Width="Auto" />
-        </Grid.ColumnDefinitions>
-        <userControls:BufferingControl  Grid.Row="1"
-                                        Grid.Column="0"
-                                        Grid.ColumnSpan="3" />
-        <TextBlock Grid.Row="0"
-                   Grid.Column="1"
-                   Style="{StaticResource TitleTextBlockStyle}"
-                   HorizontalAlignment="Center"
-                   FontSize="20"
-                   Margin="0,12,0,0"
-                   DataContext="{Binding Source={StaticResource Locator}, Path=VideoVm}"
-                   Text="{Binding CurrentVideo.Name}" />
-        <Grid Background="Transparent"
-              Grid.Row="0"
-              Grid.RowSpan="3"
-              Grid.Column="0"
-              Grid.ColumnSpan="3"
-              Tapped="VideoGrid_Tapped"
-              DoubleTapped="VideoGrid_DoubleTapped">
+        <Image Source="http://vignette1.wikia.nocookie.net/marvelcinematicuniverse/images/f/f0/Snapz-Pro-XScreenSnapz0013.jpg/revision/latest?cb=20140503201956"
+               Stretch="UniformToFill"
+               Grid.Row="0"
+               Grid.RowSpan="3"/>
+        <Grid x:Name="HeaderGrid"
+              Margin="24">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0"
+                    Style="{StaticResource TextBlockButtonStyle}"
+                    Command="{Binding GoBack}">
+                <Viewbox Height="36"
+                         Width="36">
+                    <Path Data="{StaticResource BackPath}"
+                          Fill="White" />
+                </Viewbox>
+            </Button>
+            <TextBlock Grid.Column="1"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       FontSize="20"
+                       DataContext="{Binding Source={StaticResource Locator}, Path=VideoVm}"
+                       Text="{Binding CurrentVideo.Name}" />
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <userControls:BufferingControl />
             <controls:FadeTextBlock x:Name="Hud"
                                     x:FieldModifier="public">
                 <TextBlock x:Name="HudTextBlock"
@@ -63,109 +56,100 @@
                            HorizontalAlignment="Center" />
             </controls:FadeTextBlock>
         </Grid>
-        <Button Grid.Row="0"
-                Grid.Column="0"
-                Style="{StaticResource TextBlockButtonStyle}"
-                Command="{Binding GoBack}"
-                HorizontalAlignment="Left"
-                Margin="24,12,0,0">
-            <Viewbox Height="36"
-                     Width="36">
-                <Path Data="{StaticResource BackPath}"
-                      Fill="White" />
-            </Viewbox>
-        </Button>
-        <Grid Grid.Row="2"
-              Grid.Column="0"
-              Grid.ColumnSpan="3"
-              x:Name="FooterGrid"
-              VerticalAlignment="Bottom"
-              Height="150"
-              Margin="12">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="50" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <userControls:SliderControl />
-            <Grid Grid.Row="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-                <AppBarToggleButton Grid.Column="0"
-                                    Name="LockToggleButton"
-                                    Icon="Permissions"
-                                    IsCompact="True"
-                                    VerticalAlignment="Center"
-                                    Click="EnableDoubleTapToShowCommands_Click" />
-                <AppBarButton Grid.Column="1"
-                              HorizontalAlignment="Center"
-                              IsCompact="True"
-                              Style="{StaticResource AppBarButtonStyleHuge}"
-                              Height="50"
-                              Width="50"
-                              VerticalAlignment="Center"
-                              Command="{Binding SkipBack}">
-                    <AppBarButton.Icon>
-                        <FontIcon Glyph="&#xE100;"
-                                  FontSize="30" />
-                    </AppBarButton.Icon>
-                </AppBarButton>
-                <AppBarButton Grid.Column="2"
-                              IsCompact="True"
-                              Visibility="{Binding IsPlaying, Converter={StaticResource NegatedBooleanToVisibilityConverter}}"
-                              Height="80"
-                              Width="80"
-                              Style="{StaticResource AppBarButtonStyleHuge}"
-                              VerticalAlignment="Center"
-                              Command="{Binding PlayOrPauseCommand}">
-                    <AppBarButton.Icon>
-                        <FontIcon Glyph="&#xE102;"
-                                  FontSize="42" />
-                    </AppBarButton.Icon>
-                </AppBarButton>
-                <AppBarButton Grid.Column="2"
-                              IsCompact="True"
-                              Visibility="{Binding IsPlaying, Converter={StaticResource BooleanToVisibilityConverter}}"
-                              Height="80"
-                              Width="80"
-                              Style="{StaticResource AppBarButtonStyleHuge}"
-                              VerticalAlignment="Center"
-                              Command="{Binding PlayOrPauseCommand}">
-                    <AppBarButton.Icon>
-                        <FontIcon Glyph="&#xE103;"
-                                  FontSize="42" />
-                    </AppBarButton.Icon>
-                </AppBarButton>
-                <AppBarButton Grid.Column="3"
-                              IsCompact="True"
-                              Style="{StaticResource AppBarButtonStyleHuge}"
-                              Height="50"
-                              Width="50"
-                              VerticalAlignment="Center"
-                              HorizontalAlignment="Center"
-                              Command="{Binding SkipAhead}">
-                    <AppBarButton.Icon>
-                        <FontIcon Glyph="&#xE101;"
-                                  FontSize="30" />
-                    </AppBarButton.Icon>
-                </AppBarButton>
-                <AppBarButton Grid.Column="4"
-                              Name="MenuButton"
-                              Icon="More"
-                              IsCompact="True"
-                              IsTabStop="False"
-                              VerticalAlignment="Center">
-                    <AppBarButton.Flyout>
-                        <Flyout>
-                            <userControls:VideoPlayerSettings />
-                        </Flyout>
-                    </AppBarButton.Flyout>
-                </AppBarButton>
+
+        <Border x:Name="ControlsGrid"
+                Grid.Row="2"
+                Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}"
+                Margin="24"
+                Padding="24">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <userControls:SliderControl />
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <AppBarToggleButton Grid.Column="0"
+                                        Name="LockToggleButton"
+                                        Icon="Permissions"
+                                        IsCompact="True"
+                                        VerticalAlignment="Center" />
+                    <AppBarButton Grid.Column="1"
+                                  HorizontalAlignment="Center"
+                                  IsCompact="True"
+                                  Style="{StaticResource AppBarButtonStyleHuge}"
+                                  Height="50"
+                                  Width="50"
+                                  VerticalAlignment="Center"
+                                  Command="{Binding SkipBack}">
+                        <AppBarButton.Icon>
+                            <FontIcon Glyph="&#xE100;"
+                                      FontSize="30" />
+                        </AppBarButton.Icon>
+                    </AppBarButton>
+                    <AppBarButton Grid.Column="2"
+                                  IsCompact="True"
+                                  Visibility="{Binding IsPlaying, Converter={StaticResource NegatedBooleanToVisibilityConverter}}"
+                                  Height="80"
+                                  Width="80"
+                                  Style="{StaticResource AppBarButtonStyleHuge}"
+                                  VerticalAlignment="Center"
+                                  Command="{Binding PlayOrPauseCommand}">
+                        <AppBarButton.Icon>
+                            <FontIcon Glyph="{StaticResource PlaySymbol}"
+                                      FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets"
+                                      FontSize="42" />
+                        </AppBarButton.Icon>
+                    </AppBarButton>
+                    <AppBarButton Grid.Column="2"
+                                  IsCompact="True"
+                                  Visibility="{Binding IsPlaying, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                  Height="80"
+                                  Width="80"
+                                  Style="{StaticResource AppBarButtonStyleHuge}"
+                                  VerticalAlignment="Center"
+                                  Command="{Binding PlayOrPauseCommand}">
+                        <AppBarButton.Icon>
+                            <FontIcon Glyph="{StaticResource PauseSymbol}"
+                                      FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets"
+                                      FontSize="42" />
+                        </AppBarButton.Icon>
+                    </AppBarButton>
+                    <AppBarButton Grid.Column="3"
+                                  IsCompact="True"
+                                  Style="{StaticResource AppBarButtonStyleHuge}"
+                                  Height="50"
+                                  Width="50"
+                                  VerticalAlignment="Center"
+                                  HorizontalAlignment="Center"
+                                  Command="{Binding SkipAhead}">
+                        <AppBarButton.Icon>
+                            <FontIcon Glyph="&#xE101;"
+                                      FontSize="30" />
+                        </AppBarButton.Icon>
+                    </AppBarButton>
+                    <AppBarButton Grid.Column="4"
+                                  Name="MenuButton"
+                                  Icon="More"
+                                  IsCompact="True"
+                                  IsTabStop="False"
+                                  VerticalAlignment="Center"
+                                  Style="{StaticResource AppBarButtonStyleHuge}">
+                        <AppBarButton.Flyout>
+                            <Flyout>
+                                <userControls:VideoPlayerSettings />
+                            </Flyout>
+                        </AppBarButton.Flyout>
+                    </AppBarButton>
+                </Grid>
             </Grid>
-        </Grid>
+        </Border>
     </Grid>
 </Page>
