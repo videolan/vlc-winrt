@@ -100,7 +100,6 @@ namespace VLC_WINRT_APP
             if (Window.Current.Content == null)
             {
                 await LaunchTheApp();
-                ApplicationFrame.Navigated += this.RootFrame_FirstNavigated;
                 ApplicationFrame.Navigate(typeof(MainPageHome));
 
                 try
@@ -266,6 +265,7 @@ namespace VLC_WINRT_APP
             {
                 var _ = Task.Run(async () => await Locator.MusicLibraryVM.Initialize());
             }
+            ApplicationFrame.Navigated += this.RootFrame_FirstNavigated;
         }
     }
 }
