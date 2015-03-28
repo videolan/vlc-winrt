@@ -33,6 +33,40 @@ namespace VLC_WINRT_APP.Views.VideoPages
         public VideoPlayerPage()
         {
             InitializeComponent();
+            this.Loaded += VideoPlayerPage_Loaded;
+        }
+
+        void VideoPlayerPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.Unloaded += VideoPlayerPage_Unloaded;
+            this.SizeChanged += VideoPlayerPage_SizeChanged;
+        }
+
+        void VideoPlayerPage_Unloaded(object sender, RoutedEventArgs e)
+        {
+            this.SizeChanged -= VideoPlayerPage_SizeChanged;
+        }
+
+        void VideoPlayerPage_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            Responsive();
+        }
+
+        void Responsive()
+        {
+            var width = Window.Current.Bounds.Width;
+            if (width < 800)
+            {
+                VisualStateManager.GoToState(this, "Narrow", false);
+            }
+            else if (width < 848)
+            {
+                VisualStateManager.GoToState(this, "Medium", false);
+            }
+            else
+            {
+                VisualStateManager.GoToState(this, "Full", false);
+            }
         }
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)

@@ -65,7 +65,7 @@
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50" />
-                    <RowDefinition Height="*" />
+                    <RowDefinition Height="50" />
                 </Grid.RowDefinitions>
                 <userControls:SliderControl />
                 <Grid Grid.Row="1">
@@ -85,8 +85,6 @@
                                   HorizontalAlignment="Center"
                                   IsCompact="True"
                                   Style="{StaticResource AppBarButtonStyleHuge}"
-                                  Height="50"
-                                  Width="50"
                                   VerticalAlignment="Center"
                                   Command="{Binding SkipBack}">
                         <AppBarButton.Icon>
@@ -97,8 +95,6 @@
                     <AppBarButton Grid.Column="2"
                                   IsCompact="True"
                                   Visibility="{Binding IsPlaying, Converter={StaticResource NegatedBooleanToVisibilityConverter}}"
-                                  Height="80"
-                                  Width="80"
                                   Style="{StaticResource AppBarButtonStyleHuge}"
                                   VerticalAlignment="Center"
                                   Command="{Binding PlayOrPauseCommand}">
@@ -111,8 +107,6 @@
                     <AppBarButton Grid.Column="2"
                                   IsCompact="True"
                                   Visibility="{Binding IsPlaying, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                  Height="80"
-                                  Width="80"
                                   Style="{StaticResource AppBarButtonStyleHuge}"
                                   VerticalAlignment="Center"
                                   Command="{Binding PlayOrPauseCommand}">
@@ -125,8 +119,6 @@
                     <AppBarButton Grid.Column="3"
                                   IsCompact="True"
                                   Style="{StaticResource AppBarButtonStyleHuge}"
-                                  Height="50"
-                                  Width="50"
                                   VerticalAlignment="Center"
                                   HorizontalAlignment="Center"
                                   Command="{Binding SkipAhead}">
@@ -151,5 +143,46 @@
                 </Grid>
             </Grid>
         </Border>
+        
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="Narrow">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ControlsGrid"
+                                                       Storyboard.TargetProperty="Margin">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="0"/>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Medium">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ControlsGrid"
+                                                       Storyboard.TargetProperty="Margin">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="24" />
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Full">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ControlsGrid"
+                                                       Storyboard.TargetProperty="Margin">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="24" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ControlsGrid"
+                                                       Storyboard.TargetProperty="Padding">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="24,12" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ControlsGrid"
+                                                       Storyboard.TargetProperty="Width">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="800" />
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
     </Grid>
 </Page>
