@@ -1182,12 +1182,22 @@ namespace VLC_WINRT_APP.ViewModels
 
         public void SystemMediaTransportControlsBackPossible(bool backPossible)
         {
-            if (_systemMediaTransportControls != null) _systemMediaTransportControls.IsPreviousEnabled = backPossible;
+            try
+            {
+                if (_systemMediaTransportControls != null) _systemMediaTransportControls.IsPreviousEnabled = backPossible;
+            }
+            catch { }
         }
 
         public void SystemMediaTransportControlsNextPossible(bool nextPossible)
         {
-            if (_systemMediaTransportControls != null) _systemMediaTransportControls.IsNextEnabled = nextPossible;
+            try
+            {
+                if (_systemMediaTransportControls != null) _systemMediaTransportControls.IsNextEnabled = nextPossible;
+            }
+            catch
+            {
+            }
         }
         #endregion
 
