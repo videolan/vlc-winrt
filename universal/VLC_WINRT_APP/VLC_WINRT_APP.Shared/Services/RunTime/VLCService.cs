@@ -79,48 +79,6 @@ namespace VLC_WINRT_APP.Services.RunTime
             PlayerInstanceReady.SetResult(true);
         }
 
-        public static async Task OpenFile(StorageFile file)
-        {
-            if (file == null) return;
-            if (VLCFileExtensions.FileTypeHelper(file.FileType) == VLCFileExtensions.VLCFileType.Video)
-            {
-                var token = StorageApplicationPermissions.FutureAccessList.Add(file);
-                await VLCService.PlayVideoFile(file, token);
-            }
-            else
-            {
-                await VLCService.PlayAudioFile(file);
-            }
-        }
-
-        /// <summary>
-        /// Navigates to the Audio Player screen with the requested file a parameter.
-        /// </summary>
-        /// <param name="file">The file to be played.</param>
-        public static async Task PlayAudioFile(StorageFile file)
-        {
-            if (App.ApplicationFrame.CurrentSourcePageType != typeof(MusicPlayerPage))
-                App.ApplicationFrame.Navigate(typeof(MusicPlayerPage));
-            var trackItem = await GetInformationsFromMusicFile.GetTrackItemFromFile(file);
-            await PlayMusicHelper.PlayTrackFromFilePicker(trackItem);
-        }
-
-        /// <summary>
-        /// Navigates to the Video Player screen with the requested file a parameter.
-        /// </summary>
-        /// <param name="file">The file to be played.</param>
-        /// <param name="token">Token is for files that are NOT in the sandbox, such as files taken from the filepicker from a sd card but not in the Video/Music folder.</param>
-        public static async Task PlayVideoFile(StorageFile file, string token = null)
-        {
-            App.ApplicationFrame.Navigate(typeof(VideoPlayerPage));
-            VideoItem videoVm = new VideoItem();
-            await videoVm.Initialize(file);
-            if (token != null)
-                videoVm.Token = token;
-            Locator.VideoVm.CurrentVideo = videoVm;
-            await Locator.MediaPlaybackViewModel.SetMedia(videoVm, false);
-        }
-
         private bool _isAudioMedia;
 
         public async Task SetMediaFile(IVLCMedia media)

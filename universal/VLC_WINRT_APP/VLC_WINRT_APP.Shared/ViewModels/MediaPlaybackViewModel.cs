@@ -7,6 +7,7 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
+using Windows.Storage.AccessCache;
 using Windows.Media;
 using Windows.System;
 using System.Collections.Generic;
@@ -32,12 +33,15 @@ using Windows.UI.Popups;
 using Autofac;
 using libVLCX;
 using VLC_WINRT.Common;
+using VLC_WINRT_APP.Helpers.MusicLibrary;
+using VLC_WINRT_APP.Helpers.MusicPlayer;
 using VLC_WINRT_APP.Model.Music;
 using VLC_WINRT_APP.Model.Stream;
 using VLC_WINRT_APP.Model.Video;
 using VLC_WINRT_APP.Services.RunTime;
 using VLC_WINRT_APP.ViewModels.MusicVM;
-
+using VLC_WINRT_APP.Views.MusicPages;
+using VLC_WINRT_APP.Views.VideoPages;
 #if WINDOWS_PHONE_APP
 using Windows.Media.Playback;
 using VLC_WINRT_APP.BackgroundAudioPlayer.Model;
@@ -461,6 +465,50 @@ namespace VLC_WINRT_APP.ViewModels
         #endregion
 
         #region methods
+
+        public async Task OpenFile(StorageFile file)
+        {
+            if (file == null) return;
+            if (VLCFileExtensions.FileTypeHelper(file.FileType) == VLCFileExtensions.VLCFileType.Video)
+            {
+                var token = StorageApplicationPermissions.FutureAccessList.Add(file);
+                await PlayVideoFile(file, token);
+            }
+            else
+            {
+                await PlayAudioFile(file);
+            }
+        }
+
+        /// <summary>
+        /// Navigates to the Audio Player screen with the requested file a parameter.
+        /// </summary>
+        /// <param name="file">The file to be played.</param>
+        public async Task PlayAudioFile(StorageFile file)
+        {
+            if (App.ApplicationFrame.CurrentSourcePageType != typeof(MusicPlayerPage))
+                App.ApplicationFrame.Navigate(typeof(MusicPlayerPage));
+            var trackItem = await GetInformationsFromMusicFile.GetTrackItemFromFile(file);
+            await PlayMusicHelper.PlayTrackFromFilePicker(trackItem);
+        }
+
+        /// <summary>
+        /// Navigates to the Video Player screen with the requested file a parameter.
+        /// </summary>
+        /// <param name="file">The file to be played.</param>
+        /// <param name="token">Token is for files that are NOT in the sandbox, such as files taken from the filepicker from a sd card but not in the Video/Music folder.</param>
+        public async Task PlayVideoFile(StorageFile file, string token = null)
+        {
+            App.ApplicationFrame.Navigate(typeof(VideoPlayerPage));
+            VideoItem videoVm = new VideoItem();
+            await videoVm.Initialize(file);
+            if (token != null)
+                videoVm.Token = token;
+            Locator.VideoVm.CurrentVideo = videoVm;
+            await Locator.MediaPlaybackViewModel.SetMedia(videoVm, false);
+        }
+
+
         private void privateDisplayCall(bool shouldActivate)
         {
             if (_displayAlwaysOnRequest == null) return;

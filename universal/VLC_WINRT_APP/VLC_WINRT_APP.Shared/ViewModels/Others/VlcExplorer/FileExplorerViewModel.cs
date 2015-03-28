@@ -138,11 +138,11 @@ namespace VLC_WINRT_APP.ViewModels.Others.VlcExplorer
                 if (file == null) return;
                 if (VLCFileExtensions.AudioExtensions.Contains(file.FileType))
                 {
-                    await VLCService.PlayAudioFile(file);
+                    await Locator.MediaPlaybackViewModel.PlayAudioFile(file);
                 }
                 else if (VLCFileExtensions.VideoExtensions.Contains(file.FileType))
                 {
-                    await VLCService.PlayVideoFile(file);
+                    await Locator.MediaPlaybackViewModel.PlayVideoFile(file);
                 }
             }
             OnPropertyChanged("CurrentFolderName");

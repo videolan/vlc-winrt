@@ -16,6 +16,7 @@ using System.Diagnostics;
 using VLC_WINRT_APP.Services.RunTime;
 using System.Collections.Generic;
 using VLC_WINRT_APP.Helpers;
+using VLC_WINRT_APP.ViewModels;
 
 namespace VLC_WINRT_APP.Commands
 {
@@ -63,7 +64,7 @@ namespace VLC_WINRT_APP.Commands
             if (file != null)
             {
                 LogHelper.Log("Opening file: " + file.Path);
-                await VLCService.OpenFile(file);
+                await Locator.MediaPlaybackViewModel.OpenFile(file);
             }
             else
             {
