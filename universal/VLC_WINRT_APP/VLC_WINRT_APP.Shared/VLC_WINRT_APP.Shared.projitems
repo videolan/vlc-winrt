@@ -80,9 +80,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Controls\FadeTextBlock.xaml.cs">
       <DependentUpon>FadeTextBlock.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Controls\SnapMiniPlayer.xaml.cs">
-      <DependentUpon>SnapMiniPlayer.xaml</DependentUpon>
-    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Controls\NoFavoriteAlbumsControl.xaml.cs">
       <DependentUpon>NoFavoriteAlbumsControl.xaml</DependentUpon>
     </Compile>
@@ -507,10 +504,6 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="$(MSBuildThisFileDirectory)Controls\FadeTextBlock.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Controls\SnapMiniPlayer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
