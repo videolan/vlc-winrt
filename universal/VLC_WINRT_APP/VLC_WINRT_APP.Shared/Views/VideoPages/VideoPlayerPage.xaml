@@ -19,10 +19,6 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <!-- We will put there the control for swype, tap, double tap, etc -->
-        <Grid x:Name="PlaceholderInteractionGrid"
-              Grid.Row="0"
-              Grid.RowSpan="3" />
 
         <Border x:Name="HeaderGrid">
             <Border.Background>
@@ -67,6 +63,10 @@
                            VerticalAlignment="Center"
                            HorizontalAlignment="Center" />
             </controls:FadeTextBlock>
+            <!-- We will put there the control for swype, tap, double tap, etc -->
+            <Grid x:Name="PlaceholderInteractionGrid"
+                  Background="Transparent"
+                  Tapped="PlaceholderInteractionGrid_OnTapped" />
         </Grid>
 
         <Border x:Name="ControlsGrid"
