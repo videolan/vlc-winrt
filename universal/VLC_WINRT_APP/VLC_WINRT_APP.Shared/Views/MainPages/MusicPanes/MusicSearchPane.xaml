@@ -6,6 +6,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:placeholder="using:VLC_WINRT_APP.Views.UserControls.Placeholder"
              xmlns:triggers="using:WinRT.Triggers"
+             xmlns:userControls="using:VLC_WINRT_APP.Views.UserControls"
              mc:Ignorable="d"
              DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
 
@@ -14,13 +15,12 @@
             <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <TextBox x:Name="MusicSearchBox"
-                 Grid.Column="1"
-                 Text="{Binding SearchTag}"
-                 PlaceholderText="search in music"
-                 Height="30"
-                 TextChanged="TextBox_TextChanged"
-                 HorizontalAlignment="Stretch" />
+        <userControls:FocusTextBox x:Name="MusicSearchBox"
+                                   Text="{Binding SearchTag}"
+                                   PlaceholderText="search in music"
+                                   Height="30"
+                                   TextChanged="TextBox_TextChanged"
+                                   HorizontalAlignment="Stretch" />
         <ListView Grid.Row="1"
                   ItemsSource="{Binding SearchResults}"
                   ItemContainerStyle="{StaticResource ListViewItemStyle}"

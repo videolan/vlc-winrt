@@ -4,6 +4,7 @@
              xmlns:local="using:VLC_WINRT_APP.Views.MainPages.MusicPanes.MusicPanesControls"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:userControls="using:VLC_WINRT_APP.Views.UserControls"
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400">
@@ -49,14 +50,14 @@
             </AppBarButton.Icon>
         </AppBarButton>
 
-        <TextBox x:Name="MusicSearchBox"
-                 Grid.Column="3"
-                 Text="{Binding SearchTag}"
-                 PlaceholderText="search in music"
-                 Height="30"
-                 Width="250"
-                 TextChanged="TextBox_TextChanged"
-                 HorizontalAlignment="Right" />
+        <userControls:FocusTextBox x:Name="MusicSearchBox"
+                                   Grid.Column="3"
+                                   Text="{Binding SearchTag}"
+                                   PlaceholderText="search in music"
+                                   Height="30"
+                                   Width="250"
+                                   TextChanged="TextBox_TextChanged"
+                                   HorizontalAlignment="Right" />
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
                 <VisualState x:Name="Minimal">
