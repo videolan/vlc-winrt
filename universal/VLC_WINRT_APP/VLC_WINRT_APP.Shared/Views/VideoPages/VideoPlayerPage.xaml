@@ -18,32 +18,44 @@
             <RowDefinition />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <Image Source="http://vignette1.wikia.nocookie.net/marvelcinematicuniverse/images/f/f0/Snapz-Pro-XScreenSnapz0013.jpg/revision/latest?cb=20140503201956"
-               Stretch="UniformToFill"
-               Grid.Row="0"
-               Grid.RowSpan="3"/>
-        <Grid x:Name="HeaderGrid"
-              Margin="24">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <Button Grid.Column="0"
-                    Style="{StaticResource TextBlockButtonStyle}"
-                    Command="{Binding GoBack}">
-                <Viewbox Height="36"
-                         Width="36">
-                    <Path Data="{StaticResource BackPath}"
-                          Fill="White" />
-                </Viewbox>
-            </Button>
-            <TextBlock Grid.Column="1"
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Center"
-                       FontSize="20"
-                       DataContext="{Binding Source={StaticResource Locator}, Path=VideoVm}"
-                       Text="{Binding CurrentVideo.Name}" />
-        </Grid>
+
+        <!-- We will put there the control for swype, tap, double tap, etc -->
+        <Grid x:Name="PlaceholderInteractionGrid"
+              Grid.Row="0"
+              Grid.RowSpan="3" />
+
+        <Border x:Name="HeaderGrid">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1"
+                                     StartPoint="0.5,0">
+                    <GradientStop Color="#DD000000"
+                                  Offset="0.2" />
+                    <GradientStop Color="#00000000"
+                                  Offset="1" />
+                </LinearGradientBrush>
+            </Border.Background>
+            <Grid  Margin="24">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0"
+                        Style="{StaticResource TextBlockButtonStyle}"
+                        Command="{Binding GoBack}">
+                    <Viewbox Height="30"
+                             Width="30">
+                        <FontIcon Glyph=""
+                                  FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+                    </Viewbox>
+                </Button>
+                <TextBlock Grid.Column="1"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           FontSize="20"
+                           DataContext="{Binding Source={StaticResource Locator}, Path=VideoVm}"
+                           Text="{Binding CurrentVideo.Name}" />
+            </Grid>
+        </Border>
 
         <Grid Grid.Row="1">
             <userControls:BufferingControl />
@@ -78,18 +90,23 @@
                     </Grid.ColumnDefinitions>
                     <AppBarToggleButton Grid.Column="0"
                                         Name="LockToggleButton"
-                                        Icon="Permissions"
                                         IsCompact="True"
-                                        VerticalAlignment="Center" />
+                                        VerticalAlignment="Center">
+                        <AppBarToggleButton.Icon>
+                            <FontIcon Glyph="{StaticResource KeySymbol}"
+                                      FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets"
+                                      FontSize="22" />
+                        </AppBarToggleButton.Icon>
+                    </AppBarToggleButton>
                     <AppBarButton Grid.Column="1"
                                   HorizontalAlignment="Center"
                                   IsCompact="True"
                                   Style="{StaticResource AppBarButtonStyleHuge}"
-                                  VerticalAlignment="Center"
-                                  Command="{Binding SkipBack}">
+                                  VerticalAlignment="Center">
                         <AppBarButton.Icon>
-                            <FontIcon Glyph="&#xE100;"
-                                      FontSize="30" />
+                            <FontIcon Glyph="{StaticResource ConversationSymbol}"
+                                      FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets"
+                                      FontSize="22" />
                         </AppBarButton.Icon>
                     </AppBarButton>
                     <AppBarButton Grid.Column="2"
@@ -120,11 +137,11 @@
                                   IsCompact="True"
                                   Style="{StaticResource AppBarButtonStyleHuge}"
                                   VerticalAlignment="Center"
-                                  HorizontalAlignment="Center"
-                                  Command="{Binding SkipAhead}">
+                                  HorizontalAlignment="Center">
                         <AppBarButton.Icon>
-                            <FontIcon Glyph="&#xE101;"
-                                      FontSize="30" />
+                            <FontIcon Glyph="{StaticResource VolumeSymbol}"
+                                      FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets"
+                                      FontSize="22" />
                         </AppBarButton.Icon>
                     </AppBarButton>
                     <AppBarButton Grid.Column="4"
@@ -143,14 +160,15 @@
                 </Grid>
             </Grid>
         </Border>
-        
+
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
                 <VisualState x:Name="Narrow">
                     <Storyboard>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ControlsGrid"
                                                        Storyboard.TargetProperty="Margin">
-                            <DiscreteObjectKeyFrame KeyTime="0" Value="0"/>
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="0" />
                         </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
