@@ -52,9 +52,7 @@ namespace VLC_WINRT_APP.ViewModels
     public sealed class MediaPlaybackViewModel : BindableBase, IDisposable
     {
         #region private props
-#if WINDOWS_APP
         private MouseService _mouseService;
-#endif
         private SystemMediaTransportControls _systemMediaTransportControls;
         private PlayerEngine _playerEngine;
         private bool _isPlaying;
@@ -95,6 +93,7 @@ namespace VLC_WINRT_APP.ViewModels
         #endregion
 
         #region public props
+        public MouseService MouseService { get { return _mouseService; } }
         public TaskCompletionSource<bool> ContinueIndexing { get; set; }
         public bool UseVlcLib { get; set; }
 
@@ -458,9 +457,7 @@ namespace VLC_WINRT_APP.ViewModels
                 _mediaService.SkipBack();
                 VideoHUDHelper.ShowLittleTextWithFadeOut("-10s");
             });
-#if WINDOWS_APP
             _mouseService = App.Container.Resolve<MouseService>();
-#endif
         }
         #endregion
 
@@ -569,18 +566,14 @@ namespace VLC_WINRT_APP.ViewModels
         private void OnPlaybackStarting()
         {
             privateDisplayCall(true);
-#if WINDOWS_APP
             // video playback only
             _mouseService.HideMouse();
-#endif
         }
 
         private void OnPlaybackStopped()
         {
             privateDisplayCall(false);
-#if WINDOWS_APP
             _mouseService.RestoreMouse();
-#endif
         }
 
         public async void OnLengthChanged(Int64 length)
@@ -1125,7 +1118,7 @@ namespace VLC_WINRT_APP.ViewModels
                     updater.Update();
                 }
                 catch (Exception exception)
-                {}
+                { }
             });
         }
 

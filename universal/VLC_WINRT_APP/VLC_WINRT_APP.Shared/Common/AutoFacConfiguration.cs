@@ -54,9 +54,7 @@ namespace VLC_WINRT_APP.Common
             builder.RegisterType<KeyboardListenerService>().SingleInstance();
             builder.RegisterType<NetworkListenerService>().SingleInstance();
 
-            #if WINDOWS_APP
             builder.RegisterType<MouseService>().SingleInstance();
-            #endif
 
             builder.RegisterType<ExternalDeviceService>().SingleInstance();
             builder.RegisterType<SpecialThanksViewModel>().SingleInstance();

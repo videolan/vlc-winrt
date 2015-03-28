@@ -8,6 +8,7 @@
  **********************************************************************/
 
 using System;
+using Windows.Devices.Geolocation;
 using Windows.Devices.Input;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
@@ -18,10 +19,21 @@ namespace VLC_WINRT_APP.Services.RunTime
 {
     public class MouseService
     {
+#if WINDOWS_APP
         private CoreCursor _oldCursor;
+#else
+#endif
         private DispatcherTimer _cursorTimer;
-        private const int CursorHiddenAfterSeconds = 3;
+        private const int CursorHiddenAfterSeconds = 5;
         private bool _shouldMouseBeHidden = false;
+        private bool isMouseVisible=true;
+
+        public delegate void MouseHidden();
+
+        public delegate void OnMouseMoved();
+
+        public MouseHidden OnHidden;
+        public OnMouseMoved OnMoved;
 
         public MouseService()
         {
@@ -31,25 +43,61 @@ namespace VLC_WINRT_APP.Services.RunTime
 
             if (!Windows.ApplicationModel.DesignMode.DesignModeEnabled)
             {
-                _oldCursor = Window.Current.CoreWindow.PointerCursor;
-                Windows.Devices.Input.MouseDevice.GetForCurrentView().MouseMoved += MouseMoved;
+#if WINDOWS_APP
+                if (Window.Current.CoreWindow.PointerCursor != null)
+                    _oldCursor = Window.Current.CoreWindow.PointerCursor;
+                var mouse = MouseDevice.GetForCurrentView();
+                if (mouse != null) mouse.MouseMoved += MouseMoved;
+#else
+#endif
             }
+        }
+
+        public void Content_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
+        {
+            if (!isMouseVisible)
+                InputDetected();
+            else
+                LostInput();
         }
 
         private void MouseMoved(MouseDevice sender, MouseEventArgs args)
         {
+            InputDetected();
+        }
+
+        void InputDetected()
+        {
             if (!_shouldMouseBeHidden) return;
-            Window.Current.CoreWindow.PointerCursor = _oldCursor;
             _cursorTimer.Stop();
             _cursorTimer.Start();
+            if (isMouseVisible) return;
+            isMouseVisible = true;
+#if WINDOWS_APP
+            Window.Current.CoreWindow.PointerCursor = _oldCursor;
+#else
+#endif
+            if (OnMoved != null)
+                OnMoved();
+        }
+
+        void LostInput()
+        {
+            if (Locator.MediaPlaybackViewModel.PlayingType != PlayingType.Video) return;
+            if (App.OpenFilePickerReason != OpenFilePickerReason.Null) return;
+            isMouseVisible = false;
+#if WINDOWS_APP
+            Window.Current.CoreWindow.PointerCursor = null;
+#else
+#endif
+            _cursorTimer.Stop();
+            if (OnHidden != null)
+                OnHidden();
         }
 
         private void HideCursor(object sender, object e)
         {
-            if (Locator.MediaPlaybackViewModel.PlayingType != PlayingType.Video) return;
-            if (App.OpenFilePickerReason != OpenFilePickerReason.Null) return;
-            Window.Current.CoreWindow.PointerCursor = null;
-            _cursorTimer.Stop();
+            LostInput();
         }
 
         public void HideMouse()
@@ -67,7 +115,9 @@ namespace VLC_WINRT_APP.Services.RunTime
             {
                 _shouldMouseBeHidden = false;
                 _cursorTimer.Stop();
+#if WINDOWS_APP
                 Window.Current.CoreWindow.PointerCursor = _oldCursor;
+#endif
             }
         }
     }

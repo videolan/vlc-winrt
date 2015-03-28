@@ -78,6 +78,8 @@ namespace VLC_WINRT_APP.Views.VideoPages
             AppViewHelper.SetFullscren(true);
 #endif
 #endif
+            Locator.MediaPlaybackViewModel.MouseService.OnHidden += MouseStateChanged;
+            Locator.MediaPlaybackViewModel.MouseService.OnMoved += MouseStateChanged;
             // If no playback was ever started, ContinueIndexing can be null
             // If we navigate back and forth to the main page, we also don't want to 
             // re-mark the task as completed.
@@ -90,6 +92,13 @@ namespace VLC_WINRT_APP.Views.VideoPages
             HardwareButtons.BackPressed += HardwareButtonsOnBackPressed;
 #endif
         }
+
+
+        private void MouseStateChanged()
+        {
+            DisplayOrHide();
+        }
+
 
 #if WINDOWS_PHONE_APP
         private async void HardwareButtonsOnBackPressed(object sender, BackPressedEventArgs backPressedEventArgs)
@@ -116,14 +125,17 @@ namespace VLC_WINRT_APP.Views.VideoPages
 
         private async void TimerOnTick(object sender, object o)
         {
-            await DisplayOrHide();
         }
 
-        async Task DisplayOrHide()
+        void DisplayOrHide()
         {
-            if (timer == null)
-                timer = new DispatcherTimer();
+            VisualStateManager.GoToState(this, isVisible ? "ControlsCollapsed" : "ControlsVisible", false);
             isVisible = !isVisible;
+        }
+
+        private void PlaceholderInteractionGrid_OnTapped(object sender, TappedRoutedEventArgs e)
+        {
+            Locator.MediaPlaybackViewModel.MouseService.Content_Tapped(sender, e);
         }
     }
 }
