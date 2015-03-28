@@ -267,8 +267,8 @@ namespace VLC_WINRT_APP.Helpers.VideoLibrary
                 }
                 else
                 {
-                    await DispatchHelper.InvokeAsync(() =>
-                    show.Episodes.Add(episode));
+                    if (show.Episodes.FirstOrDefault(x => x.Id == episode.Id) == null)
+                        await DispatchHelper.InvokeAsync(() => show.Episodes.Add(episode));
                 }
             }
             catch (Exception e)
