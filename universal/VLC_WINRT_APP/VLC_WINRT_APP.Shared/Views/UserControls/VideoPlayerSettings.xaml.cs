@@ -15,7 +15,6 @@ namespace VLC_WINRT_APP.Views.UserControls
         private void RootGrid_OnLoaded(object sender, RoutedEventArgs e)
         {
 #if WINDOWS_APP
-            RootGrid.Background = new SolidColorBrush(Color.FromArgb(255,25,25,25));
             RootScrollViewer.Margin = new Thickness(12);
 #endif
         }
