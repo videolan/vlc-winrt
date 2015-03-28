@@ -546,8 +546,14 @@
   <data name="BackButton.Text" xml:space="preserve">
     <value>Back</value>
   </data>
+  <data name="GeneralSettingsHeader.Header" xml:space="preserve">
+    <value>general</value>
+  </data>
   <data name="PlaceholderTextBox.PlaceholderText" xml:space="preserve">
     <value>Playlist Name</value>
+  </data>
+  <data name="PlaylistShareText.Text" xml:space="preserve">
+    <value>The playlist will also be available on your Windows computer, laptop or tablet, only if the audio files are on your other devices.</value>
   </data>
   <data name="AddToPlaylist.Text" xml:space="preserve">
     <value>Add to playlist</value>

@@ -20,11 +20,10 @@
         
         <!-- Corps de contenu -->
         <TextBlock Name="body"
+                   x:Uid="PlaylistShareText"
+                   Text="The playlist will also be available on your Windows computer, laptop or tablet, only if the audio files are on your other devices."
                    Style="{StaticResource MessageDialogContentStyle}"
                    TextWrapping="Wrap">
-            <TextBlock.Text>
-                The playlist will also be available on your Windows computer, laptop or tablet, only if the audio files are on your other devices.
-            </TextBlock.Text>
         </TextBlock>
     </StackPanel>
 </ContentDialog>
