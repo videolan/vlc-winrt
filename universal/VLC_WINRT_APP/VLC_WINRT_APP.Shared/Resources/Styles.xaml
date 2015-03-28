@@ -3307,7 +3307,7 @@ M 15.937 9.056 c 0.629 -1.69 1.208 -2.349 2.063 -2.349 h 5.586 L 20.293 10 l 1.4
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RootGrid"
                                                                        Storyboard.TargetProperty="Width">
                                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="60" />
+                                                                    Value="30" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
@@ -3406,22 +3406,17 @@ M 15.937 9.056 c 0.629 -1.69 1.208 -2.349 2.063 -2.349 h 5.586 L 20.293 10 l 1.4
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
 
-                        <StackPanel VerticalAlignment="Top"
-                                    Margin="0,14,0,13">
+                        <StackPanel VerticalAlignment="Top">
                             <Grid Width="40"
                                   Height="40"
                                   Margin="0,0,0,5"
                                   HorizontalAlignment="Center">
-                                <Viewbox Stretch="Uniform"
-                                         Height="30"
-                                         Width="30">
-                                    <ContentPresenter x:Name="Content"
-                                                      Content="{TemplateBinding Icon}"
-                                                      Foreground="{TemplateBinding Foreground}"
-                                                      HorizontalAlignment="Stretch"
-                                                      VerticalAlignment="Stretch"
-                                                      AutomationProperties.AccessibilityView="Raw" />
-                                </Viewbox>
+                                <ContentPresenter x:Name="Content"
+                                                  Content="{TemplateBinding Icon}"
+                                                  Foreground="{TemplateBinding Foreground}"
+                                                  HorizontalAlignment="Stretch"
+                                                  VerticalAlignment="Stretch"
+                                                  AutomationProperties.AccessibilityView="Raw" />
                             </Grid>
                             <TextBlock x:Name="TextLabel"
                                        Text="{TemplateBinding Label}"
