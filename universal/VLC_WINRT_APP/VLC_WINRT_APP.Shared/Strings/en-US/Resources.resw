@@ -537,20 +537,17 @@
   <data name="ViewArtist.Text" xml:space="preserve">
     <value>view artist</value>
   </data>
-  <data name="AlbumsFound" xml:space="preserve">
-    <value>Albums Found: {0}</value>
+  <data name="AddToCollectionButton.Content" xml:space="preserve">
+    <value>Add to Collection</value>
   </data>
-  <data name="HaveToSelectPlaylist" xml:space="preserve">
-    <value>You have to select a playlist.</value>
+  <data name="AddToPlaylistButton.Content" xml:space="preserve">
+    <value>Add to Playlist</value>
   </data>
-  <data name="PlaylistAlreadyExists" xml:space="preserve">
-    <value>A playlist with this name already exists</value>
+  <data name="BackButton.Text" xml:space="preserve">
+    <value>Back</value>
   </data>
-  <data name="TrackAddedToYourPlaylist" xml:space="preserve">
-    <value>{0} added to your playlist</value>
-  </data>
-  <data name="TrackAlreadyExistsInPlaylist" xml:space="preserve">
-    <value>This track is already in your playlist!</value>
+  <data name="PlaceholderTextBox.PlaceholderText" xml:space="preserve">
+    <value>Playlist Name</value>
   </data>
   <data name="AddToPlaylist.Text" xml:space="preserve">
     <value>Add to playlist</value>

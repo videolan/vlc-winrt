@@ -86,6 +86,7 @@
                               Stretch="Uniform"
                               Fill="DimGray" />
                         <TextBlock Text="Back"
+                                   x:Uid="BackButton"
                                    Foreground="DimGray"
                                    VerticalAlignment="Center"
                                    Margin="6,0,0,0" />

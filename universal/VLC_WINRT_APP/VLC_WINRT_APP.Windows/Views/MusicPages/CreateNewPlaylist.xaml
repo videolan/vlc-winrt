@@ -20,16 +20,17 @@
                    Style="{StaticResource SubheaderTextBlockStyle}" />
         <StackPanel Margin="24">
             <TextBlock Name="body"
+                       x:Uid="PlaylistShareText"
+                       Text="The playlist will also be available on your Windows computer, laptop or tablet, only if the audio files are on your other devices."
                        Style="{StaticResource CaptionTextBlockStyle}"
                        TextWrapping="Wrap">
-                <TextBlock.Text>
-                    The playlist will also be available on your Windows computer, laptop or tablet, only if the audio files are on your other devices.
-                </TextBlock.Text>
             </TextBlock>
             <userControls:FocusTextBox x:Name="playlistName"
                      Margin="0,12,0,0"
+                     x:Uid="PlaceholderTextBox"
                      PlaceholderText="Playlist name" />
             <Button Margin="0,6"
+                    x:Uid="AddToCollectionButton"
                     Content="Add to collection"
                     Click="AddToCollection_Click" />
         </StackPanel>

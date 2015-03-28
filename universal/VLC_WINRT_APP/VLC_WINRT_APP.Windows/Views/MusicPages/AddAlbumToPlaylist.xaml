@@ -27,6 +27,7 @@
         <playlistControls:AddAlbumToPlaylistBase Grid.Row="1" />
         <Button Grid.Row="2"
                 Margin="24,0,0,0"
+                x:Uid="AddToPlaylistButton"
                 Content="Add to playlist"
                 Click="AddToPlaylistButton_Click" />
     </Grid>
