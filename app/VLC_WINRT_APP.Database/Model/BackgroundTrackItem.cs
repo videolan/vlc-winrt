@@ -22,8 +22,7 @@ namespace VLC_WINRT_APP.Database.Model
         
         public bool IsCurrentPlaying { get; set; }
 
-        public BackgroundTrackItem(int id, int albumId, int artistId, string artistName, string albumName, string name,
-            string path, int index)
+        public BackgroundTrackItem(int id, int albumId, int artistId, string artistName, string albumName, string name, string path, int index)
         {
             Id = id;
             AlbumId = albumId;
