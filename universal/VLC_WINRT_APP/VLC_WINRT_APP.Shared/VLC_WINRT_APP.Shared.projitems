@@ -127,7 +127,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)DataRepository\TrackDataRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataRepository\TracklistItemRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataRepository\VideoRepository.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DataTemplateSelectors\MediaItemDataTemplateSelector.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataTemplateSelectors\StorageItemDataTemplateSelector.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\ApplicationSettingsHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\AppViewHelper.cs" />
