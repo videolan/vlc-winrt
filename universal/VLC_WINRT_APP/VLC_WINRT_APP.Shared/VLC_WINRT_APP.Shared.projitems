@@ -137,7 +137,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\FlyoutHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\LoadImageToMemoryHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\LogHelper.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Helpers\MathHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\MemoryUsageHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\MusicLibrary\EchonestClient.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\MusicLibrary\EchoNest\Artists.cs" />
