@@ -55,14 +55,6 @@
 
         <Grid Grid.Row="1">
             <userControls:BufferingControl />
-            <controls:FadeTextBlock x:Name="Hud"
-                                    x:FieldModifier="public">
-                <TextBlock x:Name="HudTextBlock"
-                           x:FieldModifier="public"
-                           Style="{StaticResource HeaderTextBlockStyle}"
-                           VerticalAlignment="Center"
-                           HorizontalAlignment="Center" />
-            </controls:FadeTextBlock>
             <!-- We will put there the control for swype, tap, double tap, etc -->
             <Grid x:Name="PlaceholderInteractionGrid"
                   Background="Transparent"

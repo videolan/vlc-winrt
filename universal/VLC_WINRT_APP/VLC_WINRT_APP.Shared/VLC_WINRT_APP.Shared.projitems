@@ -180,7 +180,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\TitleDecrapifier.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\ToastHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\UpdateTileHelper.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Helpers\VideoHUDHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\VideoLibrary\VideoLibraryManagement.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\VideoPlayer\PlayVideoHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Events\InteretConnectionChangedEventArgs.cs" />

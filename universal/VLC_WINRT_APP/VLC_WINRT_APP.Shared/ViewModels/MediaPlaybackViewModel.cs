@@ -216,18 +216,6 @@ namespace VLC_WINRT_APP.ViewModels
             set { SetProperty(ref _playPrevious, value); }
         }
 
-        public ActionCommand SkipAhead
-        {
-            get { return _skipAhead; }
-            set { SetProperty(ref _skipAhead, value); }
-        }
-
-        public ActionCommand SkipBack
-        {
-            get { return _skipBack; }
-            set { SetProperty(ref _skipBack, value); }
-        }
-
         public TimeSpan TimeTotal
         {
             get { return _timeTotal; }
@@ -447,16 +435,6 @@ namespace VLC_WINRT_APP.ViewModels
 
         public MediaPlaybackViewModel()
         {
-            _skipAhead = new ActionCommand(() =>
-            {
-                _mediaService.SkipAhead();
-                VideoHUDHelper.ShowLittleTextWithFadeOut("+10s");
-            });
-            _skipBack = new ActionCommand(() =>
-            {
-                _mediaService.SkipBack();
-                VideoHUDHelper.ShowLittleTextWithFadeOut("-10s");
-            });
             _mouseService = App.Container.Resolve<MouseService>();
         }
         #endregion
@@ -1161,14 +1139,10 @@ namespace VLC_WINRT_APP.ViewModels
                 case SystemMediaTransportControlsButton.Previous:
                     if (Locator.MediaPlaybackViewModel.PlayingType == PlayingType.Music)
                         await Locator.MediaPlaybackViewModel.PlayPrevious();
-                    else
-                        Locator.MediaPlaybackViewModel.SkipBack.Execute("");
                     break;
                 case SystemMediaTransportControlsButton.Next:
                     if (Locator.MediaPlaybackViewModel.PlayingType == PlayingType.Music)
                         await Locator.MediaPlaybackViewModel.PlayNext();
-                    else
-                        Locator.MediaPlaybackViewModel.SkipAhead.Execute("");
                     break;
             }
         }
