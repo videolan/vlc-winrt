@@ -2180,13 +2180,6 @@
         <Setter Property="FontWeight"
                 Value="Normal" />
     </Style>
-    <DataTemplate x:Key="ColoredHeader">
-        <TextBlock Foreground="{StaticResource MainColor}"
-                   FontWeight="Light"
-                   FontSize="48"
-                   Text="{Binding}" />
-    </DataTemplate>
-
 
 
     <Style BasedOn="{StaticResource ComboBoxStyle1}"
