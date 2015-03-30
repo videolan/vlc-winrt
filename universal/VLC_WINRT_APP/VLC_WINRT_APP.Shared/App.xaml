@@ -56,7 +56,6 @@
                 <ResourceDictionary Source="Resources/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Converters.xaml" />
                 <ResourceDictionary Source="Resources/Styles.xaml" />
-                <ResourceDictionary Source="Resources/DataTemplateSelectors.xaml" />
                 <ResourceDictionary Source="Resources/Templates.xaml" />
                 <ResourceDictionary Source="ms-appx:///Resources/Flyouts.xaml" />
                 <ResourceDictionary Source="ms-appx:///Resources/PlatformFlyouts.xaml" />
