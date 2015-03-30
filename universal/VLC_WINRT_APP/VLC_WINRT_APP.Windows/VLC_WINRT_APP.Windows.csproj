@@ -437,9 +437,6 @@
     <Content Include="..\..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\demux\libmp4_plugin.dll">
       <Link>plugins\demux\libmp4_plugin.dll</Link>
     </Content>
-    <Content Include="..\..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\demux\libmpc_plugin.dll">
-      <Link>plugins\demux\libmpc_plugin.dll</Link>
-    </Content>
     <Content Include="..\..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\demux\libmpgv_plugin.dll">
       <Link>plugins\demux\libmpgv_plugin.dll</Link>
     </Content>
@@ -778,12 +775,6 @@
     </Content>
     <Content Include="..\..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\libvlccore.dll">
       <Link>libvlccore.dll</Link>
-    </Content>
-    <Content Include="..\..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\access\liblive555_plugin.dll">
-      <Link>plugins\access\liblive555_plugin.dll</Link>
-    </Content>
-    <Content Include="..\..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\audio_filter\libaudiobargraph_a_plugin.dll">
-      <Link>plugins\audio_filter\libaudiobargraph_a_plugin.dll</Link>
     </Content>
     <Content Include="..\..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\audio_filter\libdtstofloat32_plugin.dll">
       <Link>plugins\audio_filter\libdtstofloat32_plugin.dll</Link>
