@@ -40,9 +40,6 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         public static LoadingEnded MusicCollectionLoaded = delegate { };
         #region private fields
         private ObservableCollection<SearchResult> _searchResults = new ObservableCollection<SearchResult>();
-#if WINDOWS_APP
-        private ObservableCollection<Model.Panel> _panels = new ObservableCollection<Model.Panel>();
-#endif
         private ObservableCollection<ArtistItem> _artistses = new ObservableCollection<ArtistItem>();
         private ObservableCollection<TrackItem> _tracks = new ObservableCollection<TrackItem>();
         private ObservableCollection<AlbumItem> _favoriteAlbums = new ObservableCollection<AlbumItem>();
@@ -108,17 +105,6 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             get { return _randomAlbums; }
             set { SetProperty(ref _randomAlbums, value); }
         }
-
-#if WINDOWS_APP
-        public ObservableCollection<Model.Panel> Panels
-        {
-            get { return _panels; }
-            set
-            {
-                SetProperty(ref _panels, value);
-            }
-        }
-#endif
 
         public ObservableCollection<ArtistItem> Artists
         {
@@ -354,14 +340,6 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         public MusicLibraryVM()
         {
             LoadingState = LoadingState.NotLoaded;
-            var resourceLoader = new ResourceLoader();
-#if WINDOWS_APP
-            Panels.Add(new Model.Panel(resourceLoader.GetString("Albums").ToLower(), 0, App.Current.Resources["HomePath"].ToString(), true));
-            Panels.Add(new Model.Panel(resourceLoader.GetString("Artists").ToLower(), 1, App.Current.Resources["HomePath"].ToString()));
-            Panels.Add(new Model.Panel(resourceLoader.GetString("Songs").ToLower(), 2, App.Current.Resources["HomePath"].ToString()));
-            //Panels.Add(new Panel(resourceLoader.GetString("Pinned").ToLower(), 2, 0.4, App.Current.Resources["HomePath"].ToString()));
-            //Panels.Add(new Panel(resourceLoader.GetString("Playlists").ToLower(), 2, 0.4, App.Current.Resources["HomePath"].ToString()));
-#endif
             _albumClickedCommand = new AlbumClickedCommand();
             _artistClickedCommand = new ArtistClickedCommand();
             _trackClickedCommand = new TrackClickedCommand();
