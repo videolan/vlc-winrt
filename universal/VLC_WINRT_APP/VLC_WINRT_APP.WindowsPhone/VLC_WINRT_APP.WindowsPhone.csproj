@@ -865,7 +865,6 @@
   </PropertyGroup>
   <Import Project="..\VLC_WINRT_APP.Shared\VLC_WINRT_APP.Shared.projitems" Label="Shared" />
   <Import Project="..\VLC_WINRT_APP.MusicMetaFetcher\VLC_WINRT_APP.MusicMetaFetcher.projitems" Label="Shared" Condition="Exists('..\VLC_WINRT_APP.MusicMetaFetcher\VLC_WINRT_APP.MusicMetaFetcher.projitems')" />
-  <Import Project="..\VLC_WINRT_APP.MusicMetaFetcher\VLC_WINRT_APP.MusicMetaFetcher.projitems" Label="Shared" Condition="Exists('..\VLC_WINRT_APP.MusicMetaFetcher\VLC_WINRT_APP.MusicMetaFetcher.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <Import Project="..\..\..\app\packages\SQLitePCL.raw_basic.0.7.0\build\wpa81\SQLitePCL.raw_basic.targets" Condition="Exists('..\..\..\app\packages\SQLitePCL.raw_basic.0.7.0\build\wpa81\SQLitePCL.raw_basic.targets')" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Multilingual App Toolkit\Microsoft.Multilingual.PriResources.targets" Label="MultilingualAppToolkit" />
