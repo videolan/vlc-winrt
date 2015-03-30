@@ -46,12 +46,6 @@
                                              FromVerticalOffset="0" />
                 </TransitionCollection>
             </ListView.ItemContainerTransitions>
-            <ListView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <StackPanel Orientation="Horizontal"
-                                Margin="0,0,0,60" />
-                </ItemsPanelTemplate>
-            </ListView.ItemsPanel>
         </ListView>
         <placeholder:NoResults Grid.Row="1"
                                Visibility="{Binding SearchResults.Count, Converter={StaticResource CountToVisibilityConverter}}" />
