@@ -51,7 +51,7 @@ namespace VLC_WINRT_APP.Helpers
             }
         }
 #else
-        // Just mock it on WindowsRT
+        // Just mock it on WinRT
         public static ulong MaxRamForResourceIntensiveTasks { get { return 100; } }
         public static ulong PercentMemoryUsed()
         {
