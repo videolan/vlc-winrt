@@ -127,7 +127,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)DataRepository\TrackDataRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataRepository\TracklistItemRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataRepository\VideoRepository.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)DataTemplateSelectors\StorageItemDataTemplateSelector.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\ApplicationSettingsHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\AppViewHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\CapabilitiesHelper.cs" />
@@ -483,10 +482,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Resources\DataTemplateSelectors.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Resources\Factory.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -826,6 +821,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Commands\VLCFileExplorer\" />
+    <Folder Include="$(MSBuildThisFileDirectory)DataTemplateSelectors\" />
     <Folder Include="$(MSBuildThisFileDirectory)Services\Mocks\" />
   </ItemGroup>
   <ItemGroup>
