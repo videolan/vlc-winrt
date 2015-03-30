@@ -77,12 +77,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Common\DispatchHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\Extensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\OpenMenuFlyoutAction.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Controls\VideoItemControl.xaml.cs">
-      <DependentUpon>VideoItemControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Controls\VideoItemInfoControl.xaml.cs">
-      <DependentUpon>VideoItemInfoControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Converters\AlbumImageConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\AlbumStringConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ApplicationThemeBooleanConverter.cs" />
@@ -499,14 +493,6 @@
     <Content Include="$(MSBuildThisFileDirectory)segoeui.ttf" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="$(MSBuildThisFileDirectory)Controls\VideoItemControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Controls\VideoItemInfoControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Resources\Colors.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
