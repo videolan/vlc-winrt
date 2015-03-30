@@ -112,17 +112,7 @@ namespace VLC_WINRT_APP.MusicMetaFetcher.Models.MusicEntities
             }
             this.Biography = biography;
         }
-
-        public void MapFrom(XboxMusicLibrary.Models.Artist xboxArtistItem)
-        {
-            this.Name = xboxArtistItem.Name;
-            this.Url = xboxArtistItem.Link;
-            var image = new Image() { Url = xboxArtistItem.ImageUrl };
-            var imageEx = new Image() { Url = xboxArtistItem.ImageUrlEx };
-            this.Images = new List<Image>() { image, imageEx };
-            this.XboxId = xboxArtistItem.Id;
-        }
-
+        
         public void MapFrom(Deezer.Artist deezerArtist)
         {
             this.Name = deezerArtist.Name;

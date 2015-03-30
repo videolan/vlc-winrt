@@ -12,7 +12,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Fetchers\DeezerClient.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Fetchers\IMusicMetaFetcher.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Fetchers\LastFmClient.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Fetchers\XboxMusicClient.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Deezer\Albums.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Deezer\Artists.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Deezer\Tracks.cs" />

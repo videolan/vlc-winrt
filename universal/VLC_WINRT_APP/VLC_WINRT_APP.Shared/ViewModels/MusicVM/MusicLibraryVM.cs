@@ -22,10 +22,8 @@ using VLC_WINRT_APP.Common;
 using VLC_WINRT_APP.DataRepository;
 using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.Helpers.MusicLibrary;
-using VLC_WINRT_APP.Helpers.MusicLibrary.xboxmusic.Models;
 using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.Model.Music;
-using XboxMusicLibrary;
 using VLC_WINRT_APP.Commands.Music;
 using VLC_WINRT_APP.Model.Search;
 
@@ -351,11 +349,6 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             get { return _currentTrackCollection; }
             set { SetProperty(ref _currentTrackCollection, value); }
         }
-
-        #endregion
-        #region XBOX Music Stuff
-        public MusicHelper XboxMusicHelper = new MusicHelper();
-        public Authenication XboxMusicAuthenication;
 
         #endregion
         public MusicLibraryVM()

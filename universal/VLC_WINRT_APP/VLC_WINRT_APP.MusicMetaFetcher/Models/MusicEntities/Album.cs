@@ -49,15 +49,6 @@ namespace VLC_WINRT_APP.MusicMetaFetcher.Models.MusicEntities
             }
         }
 
-        public void MapFrom(XboxMusicLibrary.Models.Album xboxAlbum)
-        {
-            this.Name = xboxAlbum.Name;
-            this.Url = xboxAlbum.Link;
-            var image = new Image { Url = xboxAlbum.ImageUrl };
-            var imageEx = new Image { Url = xboxAlbum.ImageUrlEx };
-            this.Images = new List<Image> { image, imageEx };
-        }
-
         public void MapFrom(Deezer.Album deezerAlbum)
         {
             this.Name = deezerAlbum.Title;

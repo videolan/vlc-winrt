@@ -23,7 +23,6 @@ using VLC_WINRT_APP.Helpers;
 using VLC_WINRT_APP.Helpers.MusicLibrary;
 using VLC_WINRT_APP.Model.Music;
 using VLC_WINRT_APP.Model.Video;
-using XboxMusicLibrary.Models;
 using VLC_WINRT_APP.Model;
 using VLC_WINRT_APP.Views.MusicPages;
 
