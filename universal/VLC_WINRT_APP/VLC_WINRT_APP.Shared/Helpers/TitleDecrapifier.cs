@@ -13,7 +13,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Windows.ApplicationModel.Resources;
-using Microsoft.VisualBasic.CompilerServices;
 
 namespace VLC_WINRT_APP.Helpers
 {
@@ -199,6 +198,5 @@ namespace VLC_WINRT_APP.Helpers
             string result = arr.Where(s => s.Length > 1).Aggregate(string.Empty, (current, s) => current + (s.First().ToString().ToUpper() + s.Substring(1) + " "));
             return result.Trim();
         }
-
     }
 }
