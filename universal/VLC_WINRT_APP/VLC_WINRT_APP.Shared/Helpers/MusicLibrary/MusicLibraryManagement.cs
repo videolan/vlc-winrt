@@ -610,5 +610,36 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
 #endif
             Locator.MusicLibraryVM.AddToPlaylistCommand.Execute(Locator.MusicLibraryVM.CurrentAlbum);
         }
+
+        public async static Task<TrackItem> GetTrackItemFromFile(StorageFile track)
+        {
+            //TODO: Warning, is it safe to consider this a good idea?
+            var trackItem = await Locator.MusicLibraryVM._trackDataRepository.LoadTrackByPath(track.Path);
+            if (trackItem != null)
+            {
+                return trackItem;
+            }
+
+            MusicProperties trackInfos = null;
+            try
+            {
+                trackInfos = await track.Properties.GetMusicPropertiesAsync();
+            }
+            catch
+            {
+
+            }
+            trackItem = new TrackItem
+            {
+                ArtistName = (trackInfos == null || string.IsNullOrEmpty(trackInfos.Artist)) ? "Unknown artist" : trackInfos.Artist,
+                AlbumName = (trackInfos == null) ? "Uknown album" : trackInfos.Album,
+                Name = (trackInfos == null || string.IsNullOrEmpty(trackInfos.Title)) ? track.DisplayName : trackInfos.Title,
+                Path = track.Path,
+                Duration = (trackInfos == null) ? TimeSpan.Zero : trackInfos.Duration,
+                Index = 0,
+                File = track
+            };
+            return trackItem;
+        }
     }
 }

@@ -144,7 +144,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\MusicLibrary\EchoNest\Artists.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\MusicLibrary\EchoNest\Twitter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\MusicLibrary\EchoNest\Videos.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Helpers\MusicLibrary\GetInformationsFromMusicFile.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\MusicLibrary\MusicFlow.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\MusicLibrary\MusicLibraryManagement.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\MusicPlayer\PlayMusicHelper.cs" />

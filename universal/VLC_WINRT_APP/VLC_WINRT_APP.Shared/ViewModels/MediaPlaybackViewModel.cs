@@ -463,7 +463,7 @@ namespace VLC_WINRT_APP.ViewModels
         {
             if (App.ApplicationFrame.CurrentSourcePageType != typeof(MusicPlayerPage))
                 App.ApplicationFrame.Navigate(typeof(MusicPlayerPage));
-            var trackItem = await GetInformationsFromMusicFile.GetTrackItemFromFile(file);
+            var trackItem = await MusicLibraryManagement.GetTrackItemFromFile(file);
             await PlayMusicHelper.PlayTrackFromFilePicker(trackItem);
         }
 
