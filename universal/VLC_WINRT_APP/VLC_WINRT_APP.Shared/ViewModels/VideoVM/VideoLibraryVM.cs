@@ -45,9 +45,6 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
         public VideoRepository VideoRepository = new VideoRepository();
         #region private fields
         private ObservableCollection<VideoItem> _searchResults = new ObservableCollection<VideoItem>();
-#if WINDOWS_APP
-        private ObservableCollection<Panel> _panels = new ObservableCollection<Panel>();
-#endif
         private ObservableCollection<VideoItem> _videos;
         private ObservableCollection<VideoItem> _viewedVideos;
         private ObservableCollection<VideoItem> _cameraRoll;
@@ -69,21 +66,12 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
         #endregion
 
         #region public fields
+
         public ObservableCollection<VideoItem> SearchResults
         {
             get { return _searchResults; }
             set { SetProperty(ref _searchResults, value); }
         }
-#if WINDOWS_APP
-        public ObservableCollection<Panel> Panels
-        {
-            get { return _panels; }
-            set
-            {
-                SetProperty(ref _panels, value);
-            }
-        }
-#endif
 
         public ObservableCollection<VideoItem> Videos
         {
@@ -185,11 +173,6 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
             Videos = new ObservableCollection<VideoItem>();
             ViewedVideos = new ObservableCollection<VideoItem>();
             CameraRoll = new ObservableCollection<VideoItem>();
-#if WINDOWS_APP
-            var resourceLoader = new ResourceLoader();
-            Panels.Add(new Panel(resourceLoader.GetString("Videos"), 0, App.Current.Resources["VideoPath"].ToString(), true));
-            //Panels.Add(new Panel("favorite", 2, 0.4));
-#endif
         }
 
         public async Task Initialize()
