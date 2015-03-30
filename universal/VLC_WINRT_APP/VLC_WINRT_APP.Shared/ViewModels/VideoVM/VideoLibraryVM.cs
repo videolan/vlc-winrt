@@ -54,14 +54,8 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
         #region private props
         private LoadingState _loadingState;
         private bool _isBusy = false;
-        private PlayVideoCommand _openVideo;
-        private PickVideoCommand _pickCommand = new PickVideoCommand();
-        private PlayNetworkMRLCommand _playNetworkMRL = new PlayNetworkMRLCommand();
         private bool _hasNoMedia = true;
         private TvShow _currentShow;
-        private CloseFlyoutAndPlayVideoCommand _closeFlyoutAndPlayVideoCommand;
-        private StartVideoIndexingCommand _startVideoIndexingCommand;
-
         private string _searchTag;
         #endregion
 
@@ -117,34 +111,14 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
         }
 
         [Ignore]
-        public PlayVideoCommand OpenVideo
-        {
-            get { return _openVideo; }
-            set { SetProperty(ref _openVideo, value); }
-        }
+        public PlayVideoCommand OpenVideo { get; } = new PlayVideoCommand();
 
         [Ignore]
-        public CloseFlyoutAndPlayVideoCommand CloseFlyoutAndPlayVideoCommand
-        {
-            get { return _closeFlyoutAndPlayVideoCommand ?? (_closeFlyoutAndPlayVideoCommand = new CloseFlyoutAndPlayVideoCommand()); }
-        }
+        public CloseFlyoutAndPlayVideoCommand CloseFlyoutAndPlayVideoCommand { get; }=new CloseFlyoutAndPlayVideoCommand();
 
-        public PickVideoCommand PickVideo
-        {
-            get { return _pickCommand; }
-            set { SetProperty(ref _pickCommand, value); }
-        }
+        public PlayNetworkMRLCommand PlayNetworkMRL { get; }=new PlayNetworkMRLCommand();
 
-        public PlayNetworkMRLCommand PlayNetworkMRL
-        {
-            get { return _playNetworkMRL; }
-            set { SetProperty(ref _playNetworkMRL, value); }
-        }
-
-        public StartVideoIndexingCommand StartVideoIndexingCommand
-        {
-            get { return _startVideoIndexingCommand ?? (_startVideoIndexingCommand = new StartVideoIndexingCommand()); }
-        }
+        public StartVideoIndexingCommand StartVideoIndexingCommand { get; }=new StartVideoIndexingCommand();
 
         public string SearchTag
         {
@@ -169,7 +143,6 @@ namespace VLC_WINRT_APP.ViewModels.VideoVM
         public VideoLibraryVM()
         {
             LoadingState = LoadingState.NotLoaded;
-            OpenVideo = new PlayVideoCommand();
             Videos = new ObservableCollection<VideoItem>();
             ViewedVideos = new ObservableCollection<VideoItem>();
             CameraRoll = new ObservableCollection<VideoItem>();

@@ -30,8 +30,6 @@ namespace VLC_WINRT_APP.ViewModels.RemovableDevicesVM
         #region private props
         private ExternalDeviceService _deviceService;
         private FileExplorerViewModel _currentStorageVM;
-
-        private RemovableDeviceClickedCommand _removableDeviceClickedCommand;
         #endregion
 
         #region private fields
@@ -40,11 +38,8 @@ namespace VLC_WINRT_APP.ViewModels.RemovableDevicesVM
 
         #region public props
 
-        public RemovableDeviceClickedCommand RemovableDeviceClicked
-        {
-            get { return _removableDeviceClickedCommand; }
-            set { SetProperty(ref _removableDeviceClickedCommand, value); }
-        }
+        public RemovableDeviceClickedCommand RemovableDeviceClicked { get; }=new RemovableDeviceClickedCommand();
+
         public FileExplorerViewModel CurrentStorageVM
         {
             get

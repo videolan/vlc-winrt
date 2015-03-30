@@ -120,7 +120,7 @@ namespace VLC_WINRT_APP.Services.RunTime
                     {
                         case VLCAction.OpenFile:
                             {
-                                Locator.VideoLibraryVM.PickVideo.Execute(null);
+                                Locator.VideoLibraryVM.OpenVideo.Execute(null);
                             }
                             break;
                         case VLCAction.OpenNetwork:

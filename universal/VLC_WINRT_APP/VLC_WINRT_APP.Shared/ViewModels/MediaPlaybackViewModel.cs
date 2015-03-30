@@ -60,20 +60,10 @@ namespace VLC_WINRT_APP.ViewModels
         private PlayingType _playingType;
         private TrackCollection _trackCollection;
         private TimeSpan _timeTotal;
-        private ActionCommand _skipAhead;
-        private ActionCommand _skipBack;
-        private PlayNextCommand _playNext = new PlayNextCommand();
-        private PlayPreviousCommand _playPrevious = new PlayPreviousCommand();
-        private PlayPauseCommand _playOrPause = new PlayPauseCommand();
 
         private int _currentSubtitle;
         private int _currentAudioTrack;
-
-        private SetSubtitleTrackCommand _setSubTitlesCommand = new SetSubtitleTrackCommand();
-        private OpenSubtitleCommand _openSubtitleCommand = new OpenSubtitleCommand();
-        private SetAudioTrackCommand _setAudioTrackCommand = new SetAudioTrackCommand();
-        private StopVideoCommand _goBackCommand = new StopVideoCommand();
-
+        
         private readonly DisplayRequest _displayAlwaysOnRequest = new DisplayRequest();
 
         private int _volume = 100;
@@ -199,22 +189,19 @@ namespace VLC_WINRT_APP.ViewModels
             }
         }
 
-        public PlayPauseCommand PlayOrPauseCommand
-        {
-            get { return _playOrPause; }
-            set { SetProperty(ref _playOrPause, value); }
-        }
+        public PlayPauseCommand PlayOrPauseCommand { get; } = new PlayPauseCommand();
 
-        public PlayNextCommand PlayNextCommand
-        {
-            get { return _playNext; }
-            set { SetProperty(ref _playNext, value); }
-        }
-        public PlayPreviousCommand PlayPreviousCommand
-        {
-            get { return _playPrevious; }
-            set { SetProperty(ref _playPrevious, value); }
-        }
+        public PlayNextCommand PlayNextCommand { get; }= new PlayNextCommand();
+
+        public PlayPreviousCommand PlayPreviousCommand { get; }= new PlayPreviousCommand();
+        
+        public SetSubtitleTrackCommand SetSubtitleTrackCommand { get; }= new SetSubtitleTrackCommand();
+
+        public OpenSubtitleCommand OpenSubtitleCommand { get; } = new OpenSubtitleCommand();
+
+        public SetAudioTrackCommand SetAudioTrackCommand { get; }= new SetAudioTrackCommand();
+
+        public StopVideoCommand GoBack { get; } = new StopVideoCommand();
 
         public TimeSpan TimeTotal
         {
@@ -389,29 +376,6 @@ namespace VLC_WINRT_APP.ViewModels
                 if (value != null)
                     SetAudioTrackCommand.Execute(value.Id);
             }
-        }
-
-        public SetSubtitleTrackCommand SetSubtitleTrackCommand
-        {
-            get { return _setSubTitlesCommand; }
-            set { SetProperty(ref _setSubTitlesCommand, value); }
-        }
-
-        public OpenSubtitleCommand OpenSubtitleCommand
-        {
-            get { return _openSubtitleCommand; }
-            set { SetProperty(ref _openSubtitleCommand, value); }
-        }
-
-        public SetAudioTrackCommand SetAudioTrackCommand
-        {
-            get { return _setAudioTrackCommand; }
-            set { SetProperty(ref _setAudioTrackCommand, value); }
-        }
-        public StopVideoCommand GoBack
-        {
-            get { return _goBackCommand; }
-            set { SetProperty(ref _goBackCommand, value); }
         }
         #endregion
 
@@ -1171,8 +1135,6 @@ namespace VLC_WINRT_APP.ViewModels
         public void Dispose()
         {
             _mediaService.Stop();
-            _skipAhead = null;
-            _skipBack = null;
         }
     }
 }

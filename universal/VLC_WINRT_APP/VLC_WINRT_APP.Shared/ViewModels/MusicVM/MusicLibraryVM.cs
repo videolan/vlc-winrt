@@ -12,9 +12,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
-using Windows.ApplicationModel.Resources;
 using Windows.UI.Core;
-using Windows.UI.ViewManagement;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 using VLC_WINRT.Common;
@@ -50,24 +48,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         #endregion
         #region private props
         private SidebarState _sidebarState;
-        private LoadingState _loadingState;
-        private StartMusicIndexingCommand _startMusicIndexingCommand;
-        private AddToPlaylistCommand _addToPlaylistCommand;
-        private TrackCollectionClickedCommand _trackCollectionClickedCommand;
-        private ShowCreateNewPlaylistPane _showCreateNewPlaylistPaneCommamd;
-        private ArtistAlbumsSemanticZoomInvertZoomCommand _artistAlbumsSemanticZoomInvertZoomCommand;
-        private ChangeAlbumArtCommand _changeAlbumArtCommand;
-        private DownloadAlbumArtCommand _downloadAlbumArtCommand;
-        private AlbumClickedCommand _albumClickedCommand;
-        private ArtistClickedCommand _artistClickedCommand;
-        private TrackClickedCommand _trackClickedCommand;
-        private PlayArtistAlbumsCommand _playArtistAlbumsCommand;
-        private PlayAllRandomCommand _playAllRandomCommand;
-        private PlayAllSongsCommand _playAllSongsCommand;
-        private OpenAddAlbumToPlaylistDialog _openAddAlbumToPlaylistDialogCommand;
-        private BingLocationShowCommand _bingLocationShowCommand;
-        private DeletePlaylistCommand _deletePlaylistCommand;
-        private DeleteSelectedTracksInPlaylistCommand _deleteSelectedTracksInPlaylistCommand;
+        private LoadingState _loadingState = LoadingState.NotLoaded;
 
         private AlbumItem _currentAlbum;
         private ArtistItem _currentArtist;
@@ -134,8 +115,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             get { return _musicView; }
             set { SetProperty(ref _musicView, value); }
         }
-
-
+        
         public IEnumerable<IGrouping<char, TrackItem>> AlphaGroupedTracks
         {
             get
@@ -150,6 +130,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             get { return _sidebarState; }
             set { SetProperty(ref _sidebarState, value); }
         }
+
         public LoadingState LoadingState
         {
             get { return _loadingState; }
@@ -197,126 +178,43 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             }
         }
 
-        public StartMusicIndexingCommand StartMusicIndexingCommand
-        {
-            get { return _startMusicIndexingCommand ?? (_startMusicIndexingCommand = new StartMusicIndexingCommand()); }
-        }
+        public StartMusicIndexingCommand StartMusicIndexingCommand { get; } = new StartMusicIndexingCommand();
 
-        public AddToPlaylistCommand AddToPlaylistCommand
-        {
-            get { return _addToPlaylistCommand ?? (_addToPlaylistCommand = new AddToPlaylistCommand()); }
-        }
+        public AddToPlaylistCommand AddToPlaylistCommand { get; } = new AddToPlaylistCommand();
 
-        public TrackCollectionClickedCommand TrackCollectionClickedCommand
-        {
-            get
-            {
-                return _trackCollectionClickedCommand ??
-                       (_trackCollectionClickedCommand = new TrackCollectionClickedCommand());
-            }
-        }
+        public TrackCollectionClickedCommand TrackCollectionClickedCommand { get; } = new TrackCollectionClickedCommand();
 
-        public ShowCreateNewPlaylistPane ShowCreateNewPlaylistPaneCommand
-        {
-            get
-            {
-                return _showCreateNewPlaylistPaneCommamd ??
-                       (_showCreateNewPlaylistPaneCommamd = new ShowCreateNewPlaylistPane());
-            }
-        }
+        public ShowCreateNewPlaylistPane ShowCreateNewPlaylistPaneCommand { get; } = new ShowCreateNewPlaylistPane();
 
-        public ArtistAlbumsSemanticZoomInvertZoomCommand ArtistAlbumsSemanticZoomInvertZoomCommand
-        {
-            get { return _artistAlbumsSemanticZoomInvertZoomCommand; }
-            set { SetProperty(ref _artistAlbumsSemanticZoomInvertZoomCommand, value); }
-        }
+        public ArtistAlbumsSemanticZoomInvertZoomCommand ArtistAlbumsSemanticZoomInvertZoomCommand { get; }= new ArtistAlbumsSemanticZoomInvertZoomCommand();
 
-        public ChangeAlbumArtCommand ChangeAlbumArtCommand
-        {
-            get
-            {
-                return _changeAlbumArtCommand;
-            }
-            set { SetProperty(ref _changeAlbumArtCommand, value); }
-        }
+        public ChangeAlbumArtCommand ChangeAlbumArtCommand { get; } = new ChangeAlbumArtCommand();
 
-        public DownloadAlbumArtCommand DownloadAlbumArtCommand
-        {
-            get
-            {
-                return _downloadAlbumArtCommand;
-            }
-            set { SetProperty(ref _downloadAlbumArtCommand, value); }
-        }
+        public DownloadAlbumArtCommand DownloadAlbumArtCommand { get; } = new DownloadAlbumArtCommand();
 
-        public AlbumClickedCommand AlbumClickedCommand
-        {
-            get
-            {
-                return _albumClickedCommand;
-            }
-            set { SetProperty(ref _albumClickedCommand, value); }
-        }
+        public AlbumClickedCommand AlbumClickedCommand { get; } = new AlbumClickedCommand();
 
-        public ArtistClickedCommand ArtistClickedCommand
-        {
-            get
-            {
-                return _artistClickedCommand;
-            }
-            set { SetProperty(ref _artistClickedCommand, value); }
-        }
+        public ArtistClickedCommand ArtistClickedCommand { get; }= new ArtistClickedCommand();
 
-        public PlayArtistAlbumsCommand PlayArtistAlbumsCommand
-        {
-            get { return _playArtistAlbumsCommand ?? (_playArtistAlbumsCommand = new PlayArtistAlbumsCommand()); }
-        }
+        public PlayArtistAlbumsCommand PlayArtistAlbumsCommand { get; }= new PlayArtistAlbumsCommand();
 
-        public TrackClickedCommand TrackClickedCommand
-        {
-            get { return _trackClickedCommand; }
-            set { SetProperty(ref _trackClickedCommand, value); }
-        }
+        public TrackClickedCommand TrackClickedCommand { get; }= new TrackClickedCommand();
 
-        public PlayAllRandomCommand PlayAllRandomCommand
-        {
-            get { return _playAllRandomCommand; }
-            set { SetProperty(ref _playAllRandomCommand, value); }
-        }
+        public PlayAllRandomCommand PlayAllRandomCommand { get; }=new PlayAllRandomCommand();
 
-        public PlayAllSongsCommand PlayAllSongsCommand
-        {
-            get { return _playAllSongsCommand ?? (_playAllSongsCommand = new PlayAllSongsCommand()); }
-        }
+        public PlayAllSongsCommand PlayAllSongsCommand { get; }=new PlayAllSongsCommand();
 
-        public OpenAddAlbumToPlaylistDialog OpenAddAlbumToPlaylistDialogCommand
-        {
-            get
-            {
-                return _openAddAlbumToPlaylistDialogCommand ??
-                       (_openAddAlbumToPlaylistDialogCommand = new OpenAddAlbumToPlaylistDialog());
-            }
-            set { SetProperty(ref _openAddAlbumToPlaylistDialogCommand, value); }
-        }
+        public OpenAddAlbumToPlaylistDialog OpenAddAlbumToPlaylistDialogCommand { get; }=new OpenAddAlbumToPlaylistDialog();
 
-        public BingLocationShowCommand BingLocationShowCommand { get { return _bingLocationShowCommand ?? (_bingLocationShowCommand = new BingLocationShowCommand()); } }
+        public BingLocationShowCommand BingLocationShowCommand { get; }=new BingLocationShowCommand();
 
-        public DeletePlaylistCommand DeletePlaylistCommand
-        {
-            get { return _deletePlaylistCommand ?? (_deletePlaylistCommand = new DeletePlaylistCommand()); }
-        }
+        public DeletePlaylistCommand DeletePlaylistCommand { get; }= new DeletePlaylistCommand();
 
-        public DeleteSelectedTracksInPlaylistCommand DeleteSelectedTracksInPlaylistCommand
-        {
-            get { return _deleteSelectedTracksInPlaylistCommand ?? (_deleteSelectedTracksInPlaylistCommand = new DeleteSelectedTracksInPlaylistCommand()); }
-        }
+        public DeleteSelectedTracksInPlaylistCommand DeleteSelectedTracksInPlaylistCommand { get; }= new DeleteSelectedTracksInPlaylistCommand();
 
         public ArtistItem CurrentArtist
         {
-            get
-            {
-                return _currentArtist;
-            }
+            get { return _currentArtist; }
             set { SetProperty(ref _currentArtist, value); }
         }
 
@@ -337,17 +235,6 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         }
 
         #endregion
-        public MusicLibraryVM()
-        {
-            LoadingState = LoadingState.NotLoaded;
-            _albumClickedCommand = new AlbumClickedCommand();
-            _artistClickedCommand = new ArtistClickedCommand();
-            _trackClickedCommand = new TrackClickedCommand();
-            _changeAlbumArtCommand = new ChangeAlbumArtCommand();
-            _downloadAlbumArtCommand = new DownloadAlbumArtCommand();
-            _artistAlbumsSemanticZoomInvertZoomCommand = new ArtistAlbumsSemanticZoomInvertZoomCommand();
-            _playAllRandomCommand = new PlayAllRandomCommand();
-        }
 
         public async Task Initialize()
         {

@@ -54,13 +54,6 @@ namespace VLC_WINRT_APP.ViewModels
         private KeyboardListenerService keyboardListenerService;
         private bool _isInternet;
         private Type _currentPage;
-        private GoToPanelCommand _goToPanelCommand;
-        private GoToSettingsPageCommand _goToSettingsPageCommand;
-        private GoToThanksPageCommand _goToThanksPageCommand;
-        private ChangeMainPageMusicViewCommand _changeMainPageMusicViewCommand;
-        private AlwaysExecutableCommand _goToSearchPage;
-        private ChangeMainPageVideoViewCommand _changeMainPageVideoViewCommand;
-        private SearchClickedCommand _searchClickedCommand;
         private string _searchTag = "";
         private bool _preventAppExit = false;
         private string _informationText;
@@ -93,46 +86,19 @@ namespace VLC_WINRT_APP.ViewModels
             set { SetProperty(ref _currentPage, value); }
         }
 
-        public GoToPanelCommand GoToPanelCommand
-        {
-            get { return _goToPanelCommand; }
-            set { SetProperty(ref _goToPanelCommand, value); }
-        }
+        public GoToPanelCommand GoToPanelCommand { get; } = new GoToPanelCommand();
 
-        public GoToSettingsPageCommand GoToSettingsPageCommand
-        {
-            get { return _goToSettingsPageCommand; }
-            set { SetProperty(ref _goToSettingsPageCommand, value); }
-        }
+        public GoToSettingsPageCommand GoToSettingsPageCommand { get; } = new GoToSettingsPageCommand();
 
-        public GoToThanksPageCommand GoToThanksPageCommand
-        {
-            get { return _goToThanksPageCommand; }
-            set { SetProperty(ref _goToThanksPageCommand, value); }
-        }
+        public GoToThanksPageCommand GoToThanksPageCommand { get; } = new GoToThanksPageCommand();
 
-        public ChangeMainPageMusicViewCommand ChangeMainPageMusicViewCommand
-        {
-            get { return _changeMainPageMusicViewCommand; }
-            set { SetProperty(ref _changeMainPageMusicViewCommand, value); }
-        }
-        public AlwaysExecutableCommand GoToSearchPage
-        {
-            get { return _goToSearchPage; }
-            set { _goToSearchPage = value; }
-        }
-        public ChangeMainPageVideoViewCommand ChangeMainPageVideoViewCommand
-        {
-            get { return _changeMainPageVideoViewCommand; }
-            set { SetProperty(ref _changeMainPageVideoViewCommand, value); }
-        }
+        public ChangeMainPageMusicViewCommand ChangeMainPageMusicViewCommand { get; } = new ChangeMainPageMusicViewCommand();
 
+        public AlwaysExecutableCommand GoToSearchPage { get; } = new ActionCommand(() => { App.ApplicationFrame.Navigate(typeof(SearchPage)); });
+        public ChangeMainPageVideoViewCommand ChangeMainPageVideoViewCommand { get; } = new ChangeMainPageVideoViewCommand();
 
-        public SearchClickedCommand SearchClickedCommand
-        {
-            get { return _searchClickedCommand; }
-            set { SetProperty(ref _searchClickedCommand, value); }
-        }
+        public SearchClickedCommand SearchClickedCommand { get; }= new SearchClickedCommand();
+
         public string SearchTag
         {
             get { return _searchTag; }
@@ -172,18 +138,8 @@ namespace VLC_WINRT_APP.ViewModels
             networkListenerService = App.Container.Resolve<NetworkListenerService>();
             networkListenerService.InternetConnectionChanged += networkListenerService_InternetConnectionChanged;
             _isInternet = NetworkListenerService.IsConnected;
-
-            GoToPanelCommand = new GoToPanelCommand();
-            GoToSettingsPageCommand = new GoToSettingsPageCommand();
-            GoToThanksPageCommand = new GoToThanksPageCommand();
-            ChangeMainPageMusicViewCommand = new ChangeMainPageMusicViewCommand();
-            ChangeMainPageVideoViewCommand = new ChangeMainPageVideoViewCommand();
-            GoToSearchPage = new ActionCommand(() =>
-            {
-                App.ApplicationFrame.Navigate(typeof(SearchPage));
-            });
+            
             SearchResults = new ObservableCollection<SearchResult>();
-            SearchClickedCommand = new SearchClickedCommand();
             // TODO: For Windows 8.1 build, use ResourceLoader.GetForCurrentView(); 
             var resourceLoader = new ResourceLoader();
             Panels.Add(new Panel(resourceLoader.GetString("Home"), 0, App.Current.Resources["HomeSymbol"].ToString(), true));

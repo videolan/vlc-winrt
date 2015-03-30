@@ -12,8 +12,7 @@ namespace VLC_WINRT_APP.ViewModels.RemovableDevicesVM
 {
     public class SpecialThanksViewModel : BindableBase
     {
-        private ObservableCollection<BackerCountryViewModel> _backerCountries =
-            new ObservableCollection<BackerCountryViewModel>();
+        private ObservableCollection<BackerCountryViewModel> _backerCountries = new ObservableCollection<BackerCountryViewModel>();
 
         public SpecialThanksViewModel()
         {

@@ -20,7 +20,6 @@ namespace VLC_WINRT_APP.ViewModels.NetworkVM
         #region private fields
 
         private ObservableCollection<FileExplorerViewModel> _dlnaVMs = new ObservableCollection<FileExplorerViewModel>();
-        private DlnaClickedCommand _dlnaClickedCommand;
 
         #endregion
 
@@ -32,12 +31,7 @@ namespace VLC_WINRT_APP.ViewModels.NetworkVM
             set { SetProperty(ref _currentDlnaVm, value); }
         }
 
-        public DlnaClickedCommand DlnaClickedCommand
-        {
-            get { return _dlnaClickedCommand; }
-            set { SetProperty(ref _dlnaClickedCommand, value); }
-        }
-
+        public DlnaClickedCommand DlnaClickedCommand { get; }=new DlnaClickedCommand();
         #endregion
 
         #region public fields

@@ -31,7 +31,6 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         private ObservableCollection<TrackItem> _nonShuffledPlaylist;
         private int _currentTrack;
         private bool _isRunning;
-        private PlayTrackCollCommand _playTrackCollCommand;
         private bool _isShuffled;
 
         // ui related management
@@ -90,10 +89,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         }
 
         [Ignore]
-        public PlayTrackCollCommand PlayTrackCollCommand
-        {
-            get { return _playTrackCollCommand ?? (_playTrackCollCommand = new PlayTrackCollCommand()); }
-        }
+        public PlayTrackCollCommand PlayTrackCollCommand { get; }=new PlayTrackCollCommand();
 
         [Ignore]
         public bool IsShuffled

@@ -32,9 +32,6 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
     public class MusicPlayerVM : BindableBase
     {
         #region private props
-        private GoToMusicPlayerPage _goToMusicPlayerPage;
-        private ShareNowPlayingMusicCommand _shareNowPlayingMusicCommand;
-        private GoToMusicPlaylistPageCommand _goToMusicPlaylistPageCommand;
         private AlbumItem _currentAlbum;
         private ArtistItem _currentArist;
         private ArtistDataRepository _artistDataRepository = new ArtistDataRepository();
@@ -42,7 +39,6 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
         #endregion
 
         #region private fields
-        private ShuffleCommand _shuffle;
         #endregion
 
         #region public props
@@ -86,50 +82,22 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             }
         }
 
-        public GoToMusicPlayerPage GoToMusicPlayerPage
-        {
-            get { return _goToMusicPlayerPage; }
-            set { SetProperty(ref _goToMusicPlayerPage, value); }
-        }
+        public GoToMusicPlayerPage GoToMusicPlayerPage { get; } = new GoToMusicPlayerPage();
 
-        public ShuffleCommand Shuffle
-        {
-            get
-            {
-                _shuffle = _shuffle ?? new ShuffleCommand();
-                return _shuffle;
-            }
-            set { SetProperty(ref _shuffle, value); }
-        }
+        public ShuffleCommand Shuffle { get; }= new ShuffleCommand();
 
-        public ShareNowPlayingMusicCommand ShareNowPlayingMusicCommand
-        {
-            get
-            {
-                return _shareNowPlayingMusicCommand ?? (_shareNowPlayingMusicCommand = new ShareNowPlayingMusicCommand());
-            }
-        }
+        public ShareNowPlayingMusicCommand ShareNowPlayingMusicCommand { get; }=new ShareNowPlayingMusicCommand();
 
-        public GoToMusicPlaylistPageCommand GoToMusicPlaylistPageCommand
-        {
-            get
-            {
-                return _goToMusicPlaylistPageCommand ??
-                       (_goToMusicPlaylistPageCommand = new GoToMusicPlaylistPageCommand());
-            }
-        }
+        public GoToMusicPlaylistPageCommand GoToMusicPlaylistPageCommand { get; } = new GoToMusicPlaylistPageCommand();
         #endregion
 
         public MusicPlayerVM()
         {
-            GoToMusicPlayerPage = new GoToMusicPlayerPage();
 #if WINDOWS_PHONE_APP
             BackgroundTrackRepository = new BackgroundTrackRepository();
 #endif
         }
-
-
-
+                
         public async Task UpdateWindows8UI()
         {
             // Setting the info for windows 8 controls

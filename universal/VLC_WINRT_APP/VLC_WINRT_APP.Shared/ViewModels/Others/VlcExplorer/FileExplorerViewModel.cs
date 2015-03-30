@@ -22,8 +22,6 @@ namespace VLC_WINRT_APP.ViewModels.Others.VlcExplorer
     public class FileExplorerViewModel : BindableBase
     {
         #region private props
-        private IStorageItemClickedCommand _navigateToCommand;
-        private GoUpperFolderCommand _goUpperFolderCommand;
         private bool _isFolderEmpty;
         #endregion
 
@@ -36,17 +34,9 @@ namespace VLC_WINRT_APP.ViewModels.Others.VlcExplorer
         public string Id;
         public string Name { get; set; }
 
-        public IStorageItemClickedCommand NavigateToCommand
-        {
-            get { return _navigateToCommand; }
-            set { SetProperty(ref _navigateToCommand, value); }
-        }
+        public IStorageItemClickedCommand NavigateToCommand { get; }=new IStorageItemClickedCommand();
 
-        public GoUpperFolderCommand GoBackCommand
-        {
-            get { return _goUpperFolderCommand; }
-            set { SetProperty(ref _goUpperFolderCommand, value); }
-        }
+        public GoUpperFolderCommand GoBackCommand { get; }=new GoUpperFolderCommand();
 
         public bool CanGoBack
         {
