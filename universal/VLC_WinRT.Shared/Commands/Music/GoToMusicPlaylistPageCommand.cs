@@ -7,7 +7,9 @@ namespace VLC_WinRT.Commands.Music
     {
         public override void Execute(object parameter)
         {
-            App.ApplicationFrame.Navigate(typeof (MusicPlaylistPage));
+            App.ApplicationFrame.Navigate(App.ApplicationFrame.CurrentSourcePageType != typeof (MusicPlayerPage)
+                ? typeof (MusicPlayerPage)
+                : typeof (MusicPlaylistPage));
         }
     }
 }
