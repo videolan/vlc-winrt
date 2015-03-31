@@ -1,7 +1,7 @@
 ﻿using Windows.UI.Xaml.Controls;
-using VLC_WINRT_APP.Helpers.MusicLibrary;
+using VLC_WinRT.Helpers.MusicLibrary;
 
-namespace VLC_WINRT_APP.Views.MusicPages
+namespace VLC_WinRT.Views.MusicPages
 {
     public sealed partial class AddAlbumToPlaylist : ContentDialog
     {

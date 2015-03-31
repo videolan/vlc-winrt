@@ -22,9 +22,9 @@ using VLC_WinRT.Common;
 
 #if WINDOWS_PHONE_APP
 using Windows.Media.Playback;
-using VLC_WINRT_APP.BackgroundAudioPlayer.Model;
-using VLC_WINRT_APP.Database.DataRepository;
-using VLC_WINRT_APP.Model;
+using VLC_WinRT.BackgroundAudioPlayer.Model;
+using VLC_WinRT.Database.DataRepository;
+using VLC_WinRT.Model;
 #endif
 
 namespace VLC_WinRT.ViewModels.MusicVM

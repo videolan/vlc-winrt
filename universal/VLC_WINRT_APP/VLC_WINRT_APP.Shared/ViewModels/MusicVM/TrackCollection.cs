@@ -18,9 +18,9 @@ using VLC_WinRT.Model.Music;
 
 #if WINDOWS_PHONE_APP
 using System.Linq;
-using VLC_WINRT_APP.BackgroundHelpers;
-using VLC_WINRT_APP.BackgroundAudioPlayer.Model;
-using VLC_WINRT_APP.Helpers;
+using VLC_WinRT.BackgroundHelpers;
+using VLC_WinRT.BackgroundAudioPlayer.Model;
+using VLC_WinRT.Helpers;
 #endif
 
 namespace VLC_WinRT.ViewModels.MusicVM

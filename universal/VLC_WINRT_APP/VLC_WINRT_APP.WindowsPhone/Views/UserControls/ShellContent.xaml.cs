@@ -2,10 +2,10 @@
 using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using VLC_WINRT_APP.ViewModels;
-using VLC_WINRT_APP.Views.MainPages;
+using VLC_WinRT.ViewModels;
+using VLC_WinRT.Views.MainPages;
 
-namespace VLC_WINRT_APP.Views.UserControls
+namespace VLC_WinRT.Views.UserControls
 {
     public sealed partial class ShellContent : UserControl
     {

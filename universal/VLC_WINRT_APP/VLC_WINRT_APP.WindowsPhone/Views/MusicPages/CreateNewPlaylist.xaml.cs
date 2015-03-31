@@ -1,8 +1,8 @@
 ﻿using Windows.UI.Xaml.Controls;
-using VLC_WINRT_APP.Helpers.MusicLibrary;
-using VLC_WINRT_APP.ViewModels.MusicVM;
+using VLC_WinRT.Helpers.MusicLibrary;
+using VLC_WinRT.ViewModels.MusicVM;
 
-namespace VLC_WINRT_APP.Views.MusicPages
+namespace VLC_WinRT.Views.MusicPages
 {
     public sealed partial class CreateNewPlaylist : ContentDialog
     {

@@ -3,7 +3,7 @@
   <Identity Name="4639bdf0-410a-43a6-ae5b-29730068c920" Publisher="CN=716F2E5E-A03A-486B-BC67-9B18474B9D51" Version="1.0.0.0" />
   <mp:PhoneIdentity PhoneProductId="4639bdf0-410a-43a6-ae5b-29730068c920" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
-    <DisplayName>VLC_WINRT_APP.WindowsPhone</DisplayName>
+    <DisplayName>VLC_WinRT.WindowsPhone</DisplayName>
     <PublisherDisplayName>VideoLAN</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
@@ -15,7 +15,7 @@
     <Resource Language="x-generate" />
   </Resources>
   <Applications>
-    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="VLC_WINRT_APP.WindowsPhone.App">
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="VLC_WinRT.WindowsPhone.App">
       <m3:VisualElements DisplayName="VLC" Square150x150Logo="Assets\Logo.png" Square44x44Logo="Assets\SmallLogo.png" Description="VLC for WP" ForegroundText="light" BackgroundColor="transparent" ToastCapable="true">
         <m3:DefaultTile Wide310x150Logo="Assets\WideLogo.png" Square71x71Logo="Assets\Square71x71Logo.png">
           <m3:ShowNameOnTiles>
@@ -28,7 +28,7 @@
         <!--Used in XAML Designer. DO NOT REMOVE-->
       </m3:VisualElements>
       <Extensions>
-        <Extension Category="windows.fileTypeAssociation" EntryPoint="VLC_WINRT_APP.WindowsPhone.App">
+        <Extension Category="windows.fileTypeAssociation" EntryPoint="VLC_WinRT.WindowsPhone.App">
           <FileTypeAssociation Name="vlc">
             <DisplayName>VLC Media Player</DisplayName>
             <SupportedFileTypes>
@@ -100,7 +100,7 @@
             </SupportedFileTypes>
           </FileTypeAssociation>
         </Extension>
-        <Extension Category="windows.backgroundTasks" EntryPoint="VLC_WINRT_APP.BackgroundAudioPlayer.BackgroundPlayer">
+        <Extension Category="windows.backgroundTasks" EntryPoint="VLC_WinRT.BackgroundAudioPlayer.BackgroundPlayer">
           <BackgroundTasks>
             <Task Type="audio" />
           </BackgroundTasks>

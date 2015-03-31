@@ -3,11 +3,11 @@ using System;
 using Windows.Foundation;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml.Media;
-using VLC_WINRT_APP.Views.MainPages;
-using VLC_WINRT_APP.Views.MusicPages.ArtistPages;
+using VLC_WinRT.Views.MainPages;
+using VLC_WinRT.Views.MusicPages.ArtistPages;
 using System.Threading.Tasks;
 
-namespace VLC_WINRT_APP.Helpers
+namespace VLC_WinRT.Helpers
 {
     public static class StatusBarHelper
     {

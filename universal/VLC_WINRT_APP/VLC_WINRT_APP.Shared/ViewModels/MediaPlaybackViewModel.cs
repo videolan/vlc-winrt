@@ -44,7 +44,7 @@ using VLC_WinRT.Views.MusicPages;
 using VLC_WinRT.Views.VideoPages;
 #if WINDOWS_PHONE_APP
 using Windows.Media.Playback;
-using VLC_WINRT_APP.BackgroundAudioPlayer.Model;
+using VLC_WinRT.BackgroundAudioPlayer.Model;
 #endif
 
 namespace VLC_WinRT.ViewModels

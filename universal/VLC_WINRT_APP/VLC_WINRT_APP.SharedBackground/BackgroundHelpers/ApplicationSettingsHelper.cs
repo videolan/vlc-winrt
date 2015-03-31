@@ -10,7 +10,7 @@
 using System.Diagnostics;
 using Windows.Storage;
 
-namespace VLC_WINRT_APP.BackgroundHelpers
+namespace VLC_WinRT.BackgroundHelpers
 {
     static class ApplicationSettingsHelper
     {

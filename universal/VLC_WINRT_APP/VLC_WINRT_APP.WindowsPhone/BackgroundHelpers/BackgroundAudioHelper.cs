@@ -11,13 +11,13 @@ using Windows.Foundation.Collections;
 using Windows.Media.Playback;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
-using VLC_WINRT_APP.BackgroundAudioPlayer;
-using VLC_WINRT_APP.BackgroundAudioPlayer.Model;
-using VLC_WINRT_APP.Helpers;
-using VLC_WINRT_APP.Model.Music;
-using VLC_WINRT_APP.ViewModels;
+using VLC_WinRT.BackgroundAudioPlayer;
+using VLC_WinRT.BackgroundAudioPlayer.Model;
+using VLC_WinRT.Helpers;
+using VLC_WinRT.Model.Music;
+using VLC_WinRT.ViewModels;
 
-namespace VLC_WINRT_APP.BackgroundHelpers
+namespace VLC_WinRT.BackgroundHelpers
 {
     public class BackgroundAudioHelper
     {

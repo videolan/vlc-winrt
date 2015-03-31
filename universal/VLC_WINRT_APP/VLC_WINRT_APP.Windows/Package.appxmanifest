@@ -14,7 +14,7 @@
     <Resource Language="x-generate" />
   </Resources>
   <Applications>
-    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="VLC_WINRT_APP.Windows.App">
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="VLC_WinRT.Windows.App">
       <m2:VisualElements DisplayName="VLC for Modern Windows" Square150x150Logo="Assets\Logo.png" Square30x30Logo="Assets\SmallLogo.png" Description="VLC for the Windows Store experience" ForegroundText="light" BackgroundColor="#ff8800" ToastCapable="true">
         <m2:DefaultTile ShortName="VLC" Wide310x150Logo="Assets\Wide310x150Logo.png" Square70x70Logo="Assets\Square70x70Logo.png">
           <m2:ShowNameOnTiles>
@@ -26,7 +26,7 @@
         <m2:ApplicationView MinWidth="width320" />
       </m2:VisualElements>
       <Extensions>
-        <Extension Category="windows.fileTypeAssociation" EntryPoint="VLC_WINRT_APP.Windows.App">
+        <Extension Category="windows.fileTypeAssociation" EntryPoint="VLC_WinRT.Windows.App">
           <FileTypeAssociation Name="vlc" m2:DesiredView="useHalf">
             <DisplayName>VLC Media Player</DisplayName>
             <EditFlags AlwaysUnsafe="true" />
@@ -97,7 +97,7 @@
             </SupportedFileTypes>
           </FileTypeAssociation>
         </Extension>
-        <Extension Category="windows.backgroundTasks" EntryPoint="VLC_WINRT_APP.App">
+        <Extension Category="windows.backgroundTasks" EntryPoint="VLC_WinRT.App">
           <BackgroundTasks>
             <Task Type="audio" />
           </BackgroundTasks>

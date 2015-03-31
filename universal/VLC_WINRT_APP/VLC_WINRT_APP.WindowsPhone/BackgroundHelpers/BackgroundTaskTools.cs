@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using VLC_WINRT_APP.BackgroundAudioPlayer;
-using VLC_WINRT_APP.Model.Music;
+using VLC_WinRT.BackgroundAudioPlayer;
+using VLC_WinRT.Model.Music;
 
-namespace VLC_WINRT_APP.BackgroundHelpers
+namespace VLC_WinRT.BackgroundHelpers
 {
     public static class BackgroundTaskTools
     {

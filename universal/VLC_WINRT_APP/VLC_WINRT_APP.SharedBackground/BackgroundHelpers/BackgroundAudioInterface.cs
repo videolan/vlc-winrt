@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
-using VLC_WINRT_APP.BackgroundAudioPlayer.Model;
+using VLC_WinRT.BackgroundAudioPlayer.Model;
 
-namespace VLC_WINRT_APP.BackgroundHelpers
+namespace VLC_WinRT.BackgroundHelpers
 {
     public static class AudioBackgroundInterface
     {

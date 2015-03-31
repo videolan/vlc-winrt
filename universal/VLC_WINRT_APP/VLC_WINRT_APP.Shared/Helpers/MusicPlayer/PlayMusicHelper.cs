@@ -14,7 +14,7 @@ using VLC_WinRT.ViewModels;
 using VLC_WinRT.ViewModels.MusicVM;
 
 #if WINDOWS_PHONE_APP
-using VLC_WINRT_APP.BackgroundHelpers;
+using VLC_WinRT.BackgroundHelpers;
 #endif
 
 namespace VLC_WinRT.Helpers.MusicPlayer
