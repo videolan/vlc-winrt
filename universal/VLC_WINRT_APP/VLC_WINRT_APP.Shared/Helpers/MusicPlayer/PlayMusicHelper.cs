@@ -48,7 +48,7 @@ namespace VLC_WINRT_APP.Helpers.MusicPlayer
             var backgroundTrack = BackgroundTaskTools.CreateBackgroundTrackItem(trackItem);
             await App.BackgroundAudioHelper.AddToPlaylist(backgroundTrack);
 #endif
-            await AddTrack(trackItem);
+            AddTrack(trackItem);
             await SetCurrentTrackPosition(0);
             await Task.Run(async () => await Locator.MediaPlaybackViewModel.SetMedia(Locator.MusicPlayerVM.CurrentTrack, false));
         }
@@ -73,7 +73,7 @@ namespace VLC_WINRT_APP.Helpers.MusicPlayer
                 await App.BackgroundAudioHelper.AddToPlaylist(backgroundTrack);
             }
 #endif
-            await AddTrack(trackItem);
+            AddTrack(trackItem);
             if (play)
                 await PlayTrack(trackItem.Id);
         }
