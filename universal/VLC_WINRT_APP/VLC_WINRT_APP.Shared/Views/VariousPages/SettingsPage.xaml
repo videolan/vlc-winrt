@@ -13,63 +13,72 @@
             <StackPanel MaxWidth="600"
                         Margin="12,0">
                 <TextBlock x:Name="AppVersion" />
-                <TextBlock Text="user interface" 
-                           Style="{StaticResource SubheaderTextBlockStyle}"/>
+                <TextBlock Text="user interface"
+                           Style="{StaticResource SubheaderTextBlockStyle}" 
+                           Foreground="{StaticResource MainColor}"/>
                 <CheckBox x:Uid="ManualSetThemeCheckbox"
                           Content="Manually set the application theme"
-                          IsChecked="{Binding ForceAppTheme, Mode=TwoWay}" />
+                          IsChecked="{Binding ForceAppTheme, Mode=TwoWay}"
+                          Margin="-3,6,0,0" />
                 <ToggleSwitch IsEnabled="{Binding ForceAppTheme}"
                               x:Uid="ApplicationTheme"
                               Header="Application theme"
                               OffContent="Light"
                               OnContent="Dark"
-                              IsOn="{Binding ApplicationTheme, Converter={StaticResource ApplicationThemeBooleanConverter}, Mode=TwoWay}" />
+                              IsOn="{Binding ApplicationTheme, Converter={StaticResource ApplicationThemeBooleanConverter}, Mode=TwoWay}"
+                              Margin="-3,0,0,0" />
 
-                <TextBlock Text="music"
-                           Style="{StaticResource SubheaderTextBlockStyle}" />
                 <Border Height="1"
                         Margin="0,12"
                         Background="{StaticResource SecondColor}" />
-                <TextBlock Text="last.fm"
-                           Style="{StaticResource SubheaderTextBlockStyle}" />
-                <userControls:FocusTextBox Height="40"
+
+                <TextBlock Text="music"
+                           Style="{StaticResource SubheaderTextBlockStyle}"
+                           Foreground="{StaticResource MainColor}" />
+                <TextBlock Text="CONNECT TO LAST.FM"
+                           Style="{StaticResource TitleTextBlockStyle}" />
+                <userControls:FocusTextBox Height="30"
+                                           Width="250"
                                            x:Uid="UsernameTextbox"
-                                           Margin="0,12"
-                                           FontSize="20"
+                                           Margin="0,12,0,12"
+                                           FontSize="18"
                                            FontWeight="Light"
                                            Text="{Binding LastFmUserName, Mode=TwoWay}"
-                                           PlaceholderText="username" />
+                                           PlaceholderText="username"
+                                           HorizontalAlignment="Left" />
                 <PasswordBox x:Name="PasswordBoxLastFm"
                              x:Uid="PasswordBoxLastFm"
-                             Height="40"
-                             Margin="0,12"
-                             FontSize="20"
+                             Height="30"
+                             Width="250"
+                             FontSize="18"
                              FontWeight="Light"
                              Password="{Binding LastFmPassword, Mode=TwoWay}"
                              PlaceholderText="password"
                              GotFocus="FocusTextBox_GotFocus"
-                             LostFocus="FocusTextBox_LostFocus" />
-                <Button Content="CONNECT"
-                        x:Uid="ConnectButton"
-                        HorizontalAlignment="Stretch"
-                        Background="{StaticResource MainColor}"
-                        Foreground="White"
-                        Height="55"
-                        FontSize="20"
-                        BorderThickness="0"
-                        FontWeight="SemiLight"
-                        Click="ConnectToLastFM_Click" />
+                             LostFocus="FocusTextBox_LostFocus"
+                             HorizontalAlignment="Left" />
                 <TextBlock Text="You are connected to Last.FM"
                            x:Uid="ConnectedToLastFm"
                            Style="{StaticResource TitleTextBlockStyle}"
                            Foreground="{StaticResource SecondColor}"
                            Visibility="{Binding LastFmIsConnected, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                <AppBarButton Label="connect"
+                              Style="{StaticResource AppBarButtonStyleHorizontal}"
+                              Margin="0,12,0,0"
+                              Click="ConnectToLastFM_Click">
+                    <AppBarButton.Icon>
+                        <FontIcon Glyph="{StaticResource BuddySymbol}"
+                                  FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+                    </AppBarButton.Icon>
+                </AppBarButton>
 
+                <TextBlock Text="MUSIC LIBRARY"
+                           Style="{StaticResource TitleTextBlockStyle}"
+                           Margin="0,12,0,0" />
                 <TextBlock x:Uid="MusicSettings"
                            Text="VLC will only search songs that are in your music library. You can add folders to your library here:"
                            Style="{StaticResource BodyTextBlockStyle}" />
-                <ListView Margin="0,12,0,0"
-                          ItemsSource="{Binding MusicFolders}"
+                <ListView ItemsSource="{Binding MusicFolders}"
                           SelectionMode="None"
                           IsItemClickEnabled="False">
                     <ListView.ItemTemplate>
@@ -104,9 +113,9 @@
                         x:Uid="AddFolder"
                         Command="{Binding AddFolderToLibrary}"
                         CommandParameter="{Binding MusicLibraryId}" />
-                <Border Height="1"
-                        Margin="0,12"
-                        Background="{StaticResource SecondColor}" />
+                <TextBlock Text="NOTIFICATIONS"
+                           Style="{StaticResource TitleTextBlockStyle}"
+                           Margin="0,12,0,0" />
                 <ToggleSwitch x:Uid="NotificationSongStarts"
                               Header="Notification when a new song starts"
                               IsOn="{Binding NotificationOnNewSong, Mode=TwoWay}" />
@@ -116,9 +125,15 @@
                               Visibility="{Binding NotificationOnNewSong, Converter={StaticResource BooleanToVisibilityConverter}}" />
 
 
+                <Border Height="1"
+                        Margin="0,12"
+                        Background="{StaticResource SecondColor}" />
 
                 <TextBlock Text="video"
-                           Style="{StaticResource SubheaderTextBlockStyle}" />
+                           Style="{StaticResource SubheaderTextBlockStyle}"
+                           Foreground="{StaticResource MainColor}" />
+                <TextBlock Text="VIDEO LIBRARY"
+                           Style="{StaticResource TitleTextBlockStyle}" />
                 <TextBlock x:Uid="VideoSettings"
                            Text="VLC will only search videos that are in your video library. You can add folders to your library here:"
                            Style="{StaticResource BodyTextBlockStyle}" />
@@ -158,9 +173,6 @@
                         x:Uid="AddFolder"
                         Command="{Binding AddFolderToLibrary}"
                         CommandParameter="{Binding VideoLibraryId}" />
-                <Border Height="1"
-                        Margin="0,12"
-                        Background="{StaticResource SecondColor}" />
                 <ToggleSwitch Header="Video playback in background"
                               IsOn="{Binding ContinueVideoPlaybackInBackground, Mode=TwoWay}" />
 
