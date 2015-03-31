@@ -209,10 +209,7 @@ namespace VLC_WINRT_APP.ViewModels
             set { SetProperty(ref _timeTotal, value); }
         }
 
-        public int BufferingProgress
-        {
-            get { return _bufferingProgress; }
-        }
+        public int BufferingProgress => _bufferingProgress;
 
         public bool IsBuffered
         {
@@ -392,7 +389,7 @@ namespace VLC_WINRT_APP.ViewModels
             set { _subtitlesTracks = value; }
         }
 
-        public IVLCMedia CurrentMedia { get { return _currentMedia; } }
+        public IVLCMedia CurrentMedia => _currentMedia;
 
         #endregion
         #region constructors

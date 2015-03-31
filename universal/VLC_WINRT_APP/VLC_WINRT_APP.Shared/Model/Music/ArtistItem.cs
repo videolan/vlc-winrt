@@ -97,13 +97,7 @@ namespace VLC_WINRT_APP.Model.Music
         }
 
         [Ignore]
-        public string Picture
-        {
-            get
-            {
-                return IsPictureLoaded ? string.Format("ms-appdata:///local/artistPic/{0}.jpg", Id) : null;
-            }
-        }
+        public string Picture => IsPictureLoaded ? string.Format("ms-appdata:///local/artistPic/{0}.jpg", Id) : null;
 
         public bool IsPictureLoaded
         {
@@ -185,10 +179,7 @@ namespace VLC_WINRT_APP.Model.Music
         }
 
         [Ignore]
-        public PinArtistCommand PinArtistCommand
-        {
-            get { return pinArtistCommand ?? (pinArtistCommand = new PinArtistCommand()); }
-        }
+        public PinArtistCommand PinArtistCommand => pinArtistCommand ?? (pinArtistCommand = new PinArtistCommand());
 
         public bool IsPinned
         {
