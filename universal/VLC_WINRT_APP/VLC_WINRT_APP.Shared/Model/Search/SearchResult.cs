@@ -40,7 +40,7 @@ namespace VLC_WINRT_APP.Model.Search
             Picture = pic;
             Text = text;
             SearchItemType = itemType;
-            if (id != null && id.HasValue) 
+            if (id != null) 
                 Id = id.Value;
         }
     }
