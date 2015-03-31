@@ -121,35 +121,28 @@ namespace VLC_WINRT_APP.Services.RunTime
 
         private void EmOnOnBuffering(float param0)
         {
-            if (OnBuffering != null)
-                OnBuffering((int)param0);
+            OnBuffering?.Invoke((int)param0);
         }
 
         void em_OnLengthChanged(long __param0)
         {
-            if (OnLengthChanged != null)
-                OnLengthChanged(__param0);
+            OnLengthChanged?.Invoke(__param0);
         }
 
         private void EmOnOnEndReached()
         {
-            if (OnEndReached != null)
-                OnEndReached();
+            OnEndReached?.Invoke();
         }
 
         private void EmOnOnStopped()
         {
-            if (OnStopped != null)
-                OnStopped(this);
+            OnStopped?.Invoke(this);
         }
 
         void em_OnEncounteredError()
         {
             Debug.WriteLine("An error occurred ");
-            if (MediaFailed != null)
-            {
-                MediaFailed(this, new EventArgs());
-            }
+            MediaFailed?.Invoke(this, new EventArgs());
         }
 
         public async Task<string> GetToken(string filePath)
@@ -213,22 +206,17 @@ namespace VLC_WINRT_APP.Services.RunTime
 
         public void Play()
         {
-            if (MediaPlayer == null)
-                return; // Should we just assert/crash here?
-            MediaPlayer.play();
+            MediaPlayer?.play();
         }
 
         public void Pause()
         {
-            if (MediaPlayer == null)
-                return; // Should we just assert/crash here?
-            MediaPlayer.pause();
+            MediaPlayer?.pause();
         }
 
         public void Stop()
         {
-            if (MediaPlayer != null)
-                MediaPlayer.stop();
+            MediaPlayer?.stop();
         }
 
         public void SetNullMediaPlayer()
@@ -248,43 +236,37 @@ namespace VLC_WINRT_APP.Services.RunTime
 
         public void SkipAhead()
         {
-            if (MediaPlayer == null)
-                return; // Should we just assert/crash here?
-            MediaPlayer.setTime(MediaPlayer.time() + 10000);
+            MediaPlayer?.setTime(MediaPlayer.time() + 10000);
         }
 
         public void SkipBack()
         {
-            if (MediaPlayer == null)
-                return; // Should we just assert/crash here?
-            MediaPlayer.setTime(MediaPlayer.time() - 10000);
+            MediaPlayer?.setTime(MediaPlayer.time() - 10000);
         }
 
         public float GetLength()
         {
-            return MediaPlayer == null ? 0 : MediaPlayer.length();
+            return MediaPlayer?.length() ?? 0;
         }
 
         public long GetTime()
         {
-            return MediaPlayer == null ? 0 : MediaPlayer.time();
+            return MediaPlayer?.time() ?? 0;
         }
 
         public void SetTime(long desiredTime)
         {
-            if (MediaPlayer == null) return;
-            MediaPlayer.setTime(desiredTime);
+            MediaPlayer?.setTime(desiredTime);
         }
 
         public float GetPosition()
         {
-            return MediaPlayer == null ? 0.0f : MediaPlayer.position();
+            return MediaPlayer?.position() ?? 0.0f;
         }
 
         public void SetPosition(float desiredPosition)
         {
-            if (MediaPlayer == null) return;
-            MediaPlayer.setPosition(desiredPosition);
+            MediaPlayer?.setPosition(desiredPosition);
         }
 
         public void SetVolume(int volume)
@@ -300,14 +282,12 @@ namespace VLC_WINRT_APP.Services.RunTime
 
         public void SetSpeedRate(float desiredRate)
         {
-            if (MediaPlayer == null) return;
-            MediaPlayer.setRate(desiredRate);
+            MediaPlayer?.setRate(desiredRate);
         }
 
         public void Trim()
         {
-            if (Instance != null)
-                Instance.Trim();
+            Instance?.Trim();
         }
 
         private void OnPaused()

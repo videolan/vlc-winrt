@@ -51,18 +51,12 @@ namespace VLC_WINRT_APP.Services.RunTime
 
         private void DeviceAdded(DeviceWatcher sender, DeviceInformation args)
         {
-            if (ExternalDeviceAdded != null)
-            {
-                ExternalDeviceAdded(this, args.Id);
-            }
+            ExternalDeviceAdded?.Invoke(this, args.Id);
         }
 
         private void DeviceRemoved(DeviceWatcher sender, DeviceInformationUpdate args)
         {
-            if (ExternalDeviceRemoved != null)
-            {
-                ExternalDeviceRemoved(this, args.Id);
-            }
+            ExternalDeviceRemoved?.Invoke(this, args.Id);
         }
     }
 }

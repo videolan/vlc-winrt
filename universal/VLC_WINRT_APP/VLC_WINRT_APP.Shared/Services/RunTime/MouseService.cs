@@ -77,8 +77,7 @@ namespace VLC_WINRT_APP.Services.RunTime
             Window.Current.CoreWindow.PointerCursor = _oldCursor;
 #else
 #endif
-            if (OnMoved != null)
-                OnMoved();
+            OnMoved?.Invoke();
         }
 
         void LostInput()
@@ -91,8 +90,7 @@ namespace VLC_WINRT_APP.Services.RunTime
 #else
 #endif
             _cursorTimer.Stop();
-            if (OnHidden != null)
-                OnHidden();
+            OnHidden?.Invoke();
         }
 
         private void HideCursor(object sender, object e)

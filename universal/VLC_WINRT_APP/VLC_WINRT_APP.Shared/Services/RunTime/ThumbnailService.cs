@@ -50,8 +50,7 @@ namespace VLC_WINRT_APP.Services.RunTime
                 return;
             if (disposing)
             {
-                if (_thumbnailer != null)
-                    _thumbnailer.Dispose();
+                _thumbnailer?.Dispose();
             }
             _disposed = true;
         }

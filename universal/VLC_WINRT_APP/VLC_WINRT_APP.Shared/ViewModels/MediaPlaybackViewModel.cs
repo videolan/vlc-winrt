@@ -825,7 +825,7 @@ namespace VLC_WINRT_APP.ViewModels
             {
                 case PlayerEngine.VLC:
                     var vlcService = (VLCService)_mediaService;
-                    if (vlcService.MediaPlayer != null) vlcService.MediaPlayer.setSpu(i);
+                    vlcService.MediaPlayer?.setSpu(i);
                     break;
                 case PlayerEngine.MediaFoundation:
                     break;
@@ -842,7 +842,7 @@ namespace VLC_WINRT_APP.ViewModels
             {
                 case PlayerEngine.VLC:
                     var vlcService = (VLCService)_mediaService;
-                    if (vlcService.MediaPlayer != null) vlcService.MediaPlayer.setAudioTrack(i);
+                    vlcService.MediaPlayer?.setAudioTrack(i);
                     break;
                 case PlayerEngine.MediaFoundation:
                     break;
@@ -859,7 +859,7 @@ namespace VLC_WINRT_APP.ViewModels
             {
                 case PlayerEngine.VLC:
                     var vlcService = (VLCService)_mediaService;
-                    if (vlcService.MediaPlayer != null) vlcService.MediaPlayer.setSubtitleFile(mrl);
+                    vlcService.MediaPlayer?.setSubtitleFile(mrl);
                     break;
                 case PlayerEngine.MediaFoundation:
                     break;

@@ -21,10 +21,7 @@ namespace VLC_WINRT_APP.Views.MainPages.MusicPanes.ArtistCollectionPanes
             else
             {
                 var item = this.DataContext as AlbumItem;
-                if (item != null)
-                {
-                    item.TrackClicked.Execute(e);
-                }
+                item?.TrackClicked.Execute(e);
             }
         }
     }

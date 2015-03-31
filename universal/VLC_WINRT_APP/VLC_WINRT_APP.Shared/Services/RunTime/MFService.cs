@@ -61,36 +61,28 @@ namespace VLC_WINRT_APP.Services.RunTime
 
         void Instance_BufferingProgressChanged(object sender, RoutedEventArgs e)
         {
-            if (OnBuffering != null)
-                OnBuffering((int)(Instance.BufferingProgress * 100));
+            OnBuffering?.Invoke((int)(Instance.BufferingProgress * 100));
         }
 
         void Instance_MediaOpened(object sender, RoutedEventArgs e)
         {
-            if (OnLengthChanged != null)
-                OnLengthChanged((long)GetLength());
+            OnLengthChanged?.Invoke((long)GetLength());
         }
 
         private void Instance_MediaEnded(object sender, RoutedEventArgs e)
         {
-            if (OnEndReached != null)
-                OnEndReached();
-            if (OnStopped != null)
-                OnStopped(this);
+            OnEndReached?.Invoke();
+            OnStopped?.Invoke(this);
         }
 
         void dispatchTimer_Tick(object sender, object e)
         {
-            if (TimeChanged != null)
-                TimeChanged(GetTime());
+            TimeChanged?.Invoke(GetTime());
         }
 
         void Instance_MediaFailed(object sender, ExceptionRoutedEventArgs e)
         {
-            if (MediaFailed != null)
-            {
-                MediaFailed(this, new EventArgs());
-            }
+            MediaFailed?.Invoke(this, new EventArgs());
         }
 
         public async Task SetMediaFile(IVLCMedia media)
@@ -134,33 +126,26 @@ namespace VLC_WINRT_APP.Services.RunTime
             switch (Instance.CurrentState)
             {
                 case MediaElementState.Closed:
-                    if (StatusChanged != null)
-                        StatusChanged(this, MediaState.NothingSpecial);
+                    StatusChanged?.Invoke(this, MediaState.NothingSpecial);
                     break;
                 case MediaElementState.Opening:
-                    if (StatusChanged != null)
-                        StatusChanged(this, MediaState.Opening);
+                    StatusChanged?.Invoke(this, MediaState.Opening);
                     break;
                 case MediaElementState.Buffering:
-                    if (StatusChanged != null)
-                        StatusChanged(this, MediaState.Buffering);
+                    StatusChanged?.Invoke(this, MediaState.Buffering);
                     break;
                 case MediaElementState.Playing:
-                    if (StatusChanged != null)
-                        StatusChanged(this, MediaState.Playing);
+                    StatusChanged?.Invoke(this, MediaState.Playing);
                     dispatchTimer.Start();
                     break;
                 case MediaElementState.Paused:
-                    if (StatusChanged != null)
-                        StatusChanged(this, MediaState.Paused);
+                    StatusChanged?.Invoke(this, MediaState.Paused);
                     dispatchTimer.Stop();
                     break;
                 case MediaElementState.Stopped:
-                    if (StatusChanged != null)
-                        StatusChanged(this, MediaState.Stopped);
+                    StatusChanged?.Invoke(this, MediaState.Stopped);
                     dispatchTimer.Stop();
-                    if (OnStopped != null)
-                        OnStopped(this);
+                    OnStopped?.Invoke(this);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

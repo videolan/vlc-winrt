@@ -158,7 +158,7 @@ namespace VLC_WINRT_APP.ViewModels.MusicVM
             {
                 Playlist.Clear();
                 CurrentTrack = -1;
-                if (NonShuffledPlaylist != null) NonShuffledPlaylist.Clear();
+                NonShuffledPlaylist?.Clear();
                 IsShuffled = false;
             });
         }

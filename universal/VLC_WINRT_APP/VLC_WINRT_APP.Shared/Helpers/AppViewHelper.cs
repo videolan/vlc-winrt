@@ -73,14 +73,12 @@ namespace VLC_WINRT_APP.Helpers
             if (isfullscreen)
             {
                 var tryEnterFullScreenMode = runtimeMethods.FirstOrDefault(x => x.Name == "TryEnterFullScreenMode");
-                if (tryEnterFullScreenMode == null) return;
-                tryEnterFullScreenMode.Invoke(v, null);
+                tryEnterFullScreenMode?.Invoke(v, null);
             }
             else
             {
                 var exitFullScreenMode = runtimeMethods.FirstOrDefault(x => x.Name == "ExitFullScreenMode");
-                if (exitFullScreenMode == null) return;
-                exitFullScreenMode.Invoke(v, null);
+                exitFullScreenMode?.Invoke(v, null);
             }
 #endif
         }

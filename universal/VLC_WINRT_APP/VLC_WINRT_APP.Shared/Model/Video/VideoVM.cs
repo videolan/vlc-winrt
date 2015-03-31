@@ -243,7 +243,7 @@ namespace VLC_WINRT_APP.Model.Video
                 await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
                 {
                     VideoProperties = await _file.Properties.GetVideoPropertiesAsync();
-                    TimeSpan duration = VideoProperties != null ? VideoProperties.Duration : TimeSpan.FromSeconds(0);
+                    TimeSpan duration = VideoProperties?.Duration ?? TimeSpan.FromSeconds(0);
 #if WINDOWS_PHONE_APP
                     // Absolutely totally bad workaround
                     if (duration.Seconds < 1)

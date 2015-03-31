@@ -107,7 +107,10 @@ namespace VLC_WINRT_APP.ViewModels
                 SetProperty(ref _searchTag, value);
                 if (!string.IsNullOrEmpty(value))
                     SearchHelpers.Search();
-                else if (SearchResults != null) SearchResults.Clear();
+                else
+                {
+                    SearchResults?.Clear();
+                }
             }
         }
 
@@ -209,19 +212,13 @@ namespace VLC_WINRT_APP.ViewModels
         public void CloseStreamFlyout()
         {
             var streamFLyout = App.Current.Resources["PhoneOpenStreamFlyout"] as Flyout;
-            if (streamFLyout != null)
-            {
-                streamFLyout.Hide();
-            }
+            streamFLyout?.Hide();
         }
 
         public void OpenStreamFlyout()
         {
             var streamFLyout = App.Current.Resources["PhoneOpenStreamFlyout"] as Flyout;
-            if (streamFLyout != null)
-            {
-                streamFLyout.ShowAt(App.ApplicationFrame);
-            }
+            streamFLyout?.ShowAt(App.ApplicationFrame);
         }
 
         public ObservableCollection<Panel> Panels

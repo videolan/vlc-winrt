@@ -9,10 +9,7 @@ namespace VLC_WINRT_APP.Commands.Video
         public override void Execute(object parameter)
         {
             var videoFlyout = App.Current.Resources["VideoInformationFlyout"] as Flyout;
-            if (videoFlyout != null)
-            {
-                videoFlyout.Hide();
-            }
+            videoFlyout?.Hide();
             Locator.VideoLibraryVM.OpenVideo.Execute(parameter);
         }
     }

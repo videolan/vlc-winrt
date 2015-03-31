@@ -576,17 +576,12 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
                 Locator.MusicLibraryVM._trackDataRepository.Remove(Locator.MusicLibraryVM.Tracks.FirstOrDefault(x => x.Path == trackItem.Path));
                 Locator.MusicLibraryVM.Tracks.Remove(Locator.MusicLibraryVM.Tracks.FirstOrDefault(x => x.Path == trackItem.Path));
                 var album = Locator.MusicLibraryVM.Albums.FirstOrDefault(x => x.Id == trackItem.AlbumId);
-                if (album != null)
-                    album.Tracks.Remove(album.Tracks.FirstOrDefault(x => x.Path == trackItem.Path));
+                album?.Tracks.Remove(album.Tracks.FirstOrDefault(x => x.Path == trackItem.Path));
                 var artist = Locator.MusicLibraryVM.Artists.FirstOrDefault(x => x.Id == trackItem.ArtistId);
-                if (artist != null)
-                {
-                    var artistalbum = artist.Albums.FirstOrDefault(x => x.Id == trackItem.AlbumId);
-                    if (artistalbum != null) artistalbum.Tracks.Remove(artistalbum.Tracks.FirstOrDefault(x => x.Path == trackItem.Path));
-                }
+                var artistalbum = artist?.Albums.FirstOrDefault(x => x.Id == trackItem.AlbumId);
+                artistalbum?.Tracks.Remove(artistalbum.Tracks.FirstOrDefault(x => x.Path == trackItem.Path));
 
-                var playingTrack =
-                    Locator.MediaPlaybackViewModel.TrackCollection.Playlist.FirstOrDefault(x => x.Id == trackItem.Id);
+                var playingTrack = Locator.MediaPlaybackViewModel.TrackCollection.Playlist.FirstOrDefault(x => x.Id == trackItem.Id);
                 if (playingTrack != null) Locator.MediaPlaybackViewModel.TrackCollection.Playlist.Remove(playingTrack);
             });
         }
@@ -603,7 +598,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             }
 #if WINDOWS_APP
             var flyout = ((AddAlbumToPlaylistBase)args).GetFirstDescendantOfType<SettingsFlyout>();
-            if (flyout != null) flyout.Hide();
+            flyout?.Hide();
 #endif
             Locator.MusicLibraryVM.AddToPlaylistCommand.Execute(Locator.MusicLibraryVM.CurrentAlbum);
         }

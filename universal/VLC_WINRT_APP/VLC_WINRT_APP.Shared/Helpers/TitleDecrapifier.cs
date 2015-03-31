@@ -123,11 +123,11 @@ namespace VLC_WINRT_APP.Helpers
 
                     dictionary["season"] = season;
                     dictionary["episode"] = episode;
-                    if (tvShowName != null && !string.IsNullOrEmpty(tvShowName))
+                    if (!string.IsNullOrEmpty(tvShowName))
                     {
                         dictionary["tvShowName"] = tvShowName;
                     }
-                    if (episodeName != null && !string.IsNullOrEmpty(episodeName))
+                    if (!string.IsNullOrEmpty(episodeName))
                     {
                         dictionary["tvEpisodeName"] = CapitalizedString(episodeName);
                     }
@@ -170,11 +170,11 @@ namespace VLC_WINRT_APP.Helpers
                         // 'episode' will never be null according to conditions above, so checking for it is not needed.
                         dictionary["episode"] = episode;
 
-                        if (tvShowName != null && !string.IsNullOrEmpty(tvShowName))
+                        if (!string.IsNullOrEmpty(tvShowName))
                         {
                             dictionary["tvShowName"] = tvShowName;
                         }
-                        if (episodeName != null && !string.IsNullOrEmpty(episodeName))
+                        if (!string.IsNullOrEmpty(episodeName))
                         {
                             dictionary["tvEpisodeName"] = CapitalizedString(episodeName);
                         }
