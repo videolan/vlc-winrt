@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Windows.Storage;
-using VLC_WINRT_APP.Commands.Dlna;
-using VLC_WINRT_APP.Commands.RemovableDevices;
-using VLC_WINRT_APP.Common;
-using VLC_WINRT_APP.ViewModels.Others.VlcExplorer;
+using VLC_WinRT.Commands.Dlna;
+using VLC_WinRT.Commands.RemovableDevices;
+using VLC_WinRT.Common;
+using VLC_WinRT.ViewModels.Others.VlcExplorer;
 
-namespace VLC_WINRT_APP.ViewModels.NetworkVM
+namespace VLC_WinRT.ViewModels.NetworkVM
 {
     public class DLNAVM : BindableBase, IDisposable
     {

@@ -1,4 +1,4 @@
-﻿using VLC_WINRT_APP.Model.Music;
+﻿using VLC_WinRT.Model.Music;
 using System;
 using System.Diagnostics;
 using System.Linq;
@@ -16,18 +16,18 @@ using Windows.UI.Xaml.Navigation;
 using Autofac;
 using Autofac.Core;
 using VLC_WINRT.Common;
-using VLC_WINRT_APP.Commands.Music;
-using VLC_WINRT_APP.Helpers;
-using VLC_WINRT_APP.Helpers.MusicLibrary;
-using VLC_WINRT_APP.Model;
-using VLC_WINRT_APP.Services.Interface;
-using VLC_WINRT_APP.Services.RunTime;
-using VLC_WINRT_APP.ViewModels;
-using VLC_WINRT_APP.Views;
-using VLC_WINRT_APP.Views.MainPages;
-using VLC_WINRT_APP.Common;
-using VLC_WINRT_APP.ViewModels.MusicVM;
-using VLC_WINRT_APP.Views.VideoPages;
+using VLC_WinRT.Commands.Music;
+using VLC_WinRT.Helpers;
+using VLC_WinRT.Helpers.MusicLibrary;
+using VLC_WinRT.Model;
+using VLC_WinRT.Services.Interface;
+using VLC_WinRT.Services.RunTime;
+using VLC_WinRT.ViewModels;
+using VLC_WinRT.Views;
+using VLC_WinRT.Views.MainPages;
+using VLC_WinRT.Common;
+using VLC_WinRT.ViewModels.MusicVM;
+using VLC_WinRT.Views.VideoPages;
 using WinRTXamlToolkit.Controls.Extensions;
 #if WINDOWS_PHONE_APP
 using Windows.Phone.Management.Deployment;
@@ -35,7 +35,7 @@ using Windows.Media.Playback;
 using VLC_WINRT_APP.BackgroundHelpers;
 #endif
 
-namespace VLC_WINRT_APP
+namespace VLC_WinRT
 {
     /// <summary>
     ///     Provides application-specific behavior to supplement the default Application class.

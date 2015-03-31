@@ -10,13 +10,13 @@
 using System;
 using System.Threading.Tasks;
 using Windows.Storage.AccessCache;
-using VLC_WINRT_APP.Services.Interface;
+using VLC_WinRT.Services.Interface;
 using Windows.Storage;
 using Windows.Storage.FileProperties;
 using libVLCX;
-using VLC_WINRT_APP.Helpers;
+using VLC_WinRT.Helpers;
 
-namespace VLC_WINRT_APP.Services.RunTime
+namespace VLC_WinRT.Services.RunTime
 {
     public class ThumbnailService : IThumbnailService, IDisposable
     {

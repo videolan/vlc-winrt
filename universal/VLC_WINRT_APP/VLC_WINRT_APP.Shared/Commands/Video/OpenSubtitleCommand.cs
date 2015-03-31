@@ -15,11 +15,11 @@ using Windows.Storage.Pickers;
 using Windows.UI.Core;
 using Windows.UI.Popups;
 using VLC_WINRT.Common;
-using VLC_WINRT_APP.Helpers;
-using VLC_WINRT_APP.Model;
-using VLC_WINRT_APP.ViewModels;
+using VLC_WinRT.Helpers;
+using VLC_WinRT.Model;
+using VLC_WinRT.ViewModels;
 
-namespace VLC_WINRT_APP.Commands.Video
+namespace VLC_WinRT.Commands.Video
 {
     public class OpenSubtitleCommand : AlwaysExecutableCommand
     {

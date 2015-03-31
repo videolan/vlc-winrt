@@ -15,18 +15,18 @@ using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.System;
 using Windows.UI.Xaml;
-using VLC_WINRT_APP.Commands.Music;
-using VLC_WINRT_APP.Commands.Settings;
-using VLC_WINRT_APP.Common;
-using VLC_WINRT_APP.DataRepository;
-using VLC_WINRT_APP.Helpers;
-using VLC_WINRT_APP.Helpers.MusicLibrary;
-using VLC_WINRT_APP.Model.Music;
-using VLC_WINRT_APP.Model.Video;
-using VLC_WINRT_APP.Model;
-using VLC_WINRT_APP.Views.MusicPages;
+using VLC_WinRT.Commands.Music;
+using VLC_WinRT.Commands.Settings;
+using VLC_WinRT.Common;
+using VLC_WinRT.DataRepository;
+using VLC_WinRT.Helpers;
+using VLC_WinRT.Helpers.MusicLibrary;
+using VLC_WinRT.Model.Music;
+using VLC_WinRT.Model.Video;
+using VLC_WinRT.Model;
+using VLC_WinRT.Views.MusicPages;
 
-namespace VLC_WINRT_APP.ViewModels.Settings
+namespace VLC_WinRT.ViewModels.Settings
 {
     public class SettingsViewModel : BindableBase
     {

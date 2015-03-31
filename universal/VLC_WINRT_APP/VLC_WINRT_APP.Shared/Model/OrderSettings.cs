@@ -1,4 +1,4 @@
-﻿namespace VLC_WINRT_APP.Model
+﻿namespace VLC_WinRT.Model
 {
     public enum OrderType
     {

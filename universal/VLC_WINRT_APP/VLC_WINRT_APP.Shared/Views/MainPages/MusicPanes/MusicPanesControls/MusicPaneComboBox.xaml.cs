@@ -1,10 +1,10 @@
 ﻿using Windows.UI.Xaml.Controls;
-using VLC_WINRT_APP.ViewModels;
+using VLC_WinRT.ViewModels;
 #if WINDOWS_PHONE_APP
 using Windows.Phone.UI.Input;
 #endif
 
-namespace VLC_WINRT_APP.Views.MainPages.MusicPanes.MusicPanesControls
+namespace VLC_WinRT.Views.MainPages.MusicPanes.MusicPanesControls
 {
     public sealed partial class MusicPaneComboBox : UserControl
     {

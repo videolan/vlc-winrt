@@ -4,9 +4,9 @@ using Windows.System;
 using Windows.UI.ApplicationSettings;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using VLC_WINRT_APP.Views.VariousPages;
+using VLC_WinRT.Views.VariousPages;
 
-namespace VLC_WINRT_APP.Views.UserControls
+namespace VLC_WinRT.Views.UserControls
 {
     public sealed partial class ShellContent : UserControl
     {

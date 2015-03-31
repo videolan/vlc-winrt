@@ -10,17 +10,17 @@ using Windows.UI.Xaml.Media.Imaging;
 using Autofac;
 using SQLite;
 using VLC_WINRT.Common;
-using VLC_WINRT_APP.Commands.Music;
-using VLC_WINRT_APP.Commands.MusicPlayer;
-using VLC_WINRT_APP.Common;
-using VLC_WINRT_APP.Helpers;
-using VLC_WINRT_APP.Helpers.MusicLibrary;
-using VLC_WINRT_APP.Services.Interface;
-using VLC_WINRT_APP.Services.RunTime;
-using VLC_WINRT_APP.ViewModels;
-using VLC_WINRT_APP.ViewModels.MusicVM;
+using VLC_WinRT.Commands.Music;
+using VLC_WinRT.Commands.MusicPlayer;
+using VLC_WinRT.Common;
+using VLC_WinRT.Helpers;
+using VLC_WinRT.Helpers.MusicLibrary;
+using VLC_WinRT.Services.Interface;
+using VLC_WinRT.Services.RunTime;
+using VLC_WinRT.ViewModels;
+using VLC_WinRT.ViewModels.MusicVM;
 
-namespace VLC_WINRT_APP.Model.Music
+namespace VLC_WinRT.Model.Music
 {
 
     public class AlbumItem : BindableBase

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace VLC_WINRT_APP.Model.Search
+namespace VLC_WinRT.Model.Search
 {
     public class SearchResult
     {

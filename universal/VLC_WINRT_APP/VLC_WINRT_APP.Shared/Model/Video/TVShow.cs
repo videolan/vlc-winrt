@@ -1,7 +1,7 @@
 ﻿using System.Collections.ObjectModel;
-using VLC_WINRT_APP.Common;
+using VLC_WinRT.Common;
 
-namespace VLC_WINRT_APP.Model.Video
+namespace VLC_WinRT.Model.Video
 {
     public class TvShow : BindableBase
     {

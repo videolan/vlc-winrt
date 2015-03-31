@@ -4,13 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using SQLite;
-using VLC_WINRT_APP.Model.Music;
-using VLC_WINRT_APP.ViewModels.MusicVM;
+using VLC_WinRT.Model.Music;
+using VLC_WinRT.ViewModels.MusicVM;
 using WinRTXamlToolkit.IO.Serialization;
 using System.Collections.Generic;
-using VLC_WINRT_APP.ViewModels;
+using VLC_WinRT.ViewModels;
 
-namespace VLC_WINRT_APP.DataRepository
+namespace VLC_WinRT.DataRepository
 {
     public class TrackDataRepository : IDataRepository
     {

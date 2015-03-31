@@ -10,10 +10,10 @@
 using Windows.UI;
 using Windows.UI.Xaml.Media;
 using VLC_WINRT.Common;
-using VLC_WINRT_APP.Commands.MainPageCommands;
-using VLC_WINRT_APP.Common;
+using VLC_WinRT.Commands.MainPageCommands;
+using VLC_WinRT.Common;
 
-namespace VLC_WINRT_APP.Model
+namespace VLC_WinRT.Model
 {
     public class Panel : BindableBase
     {

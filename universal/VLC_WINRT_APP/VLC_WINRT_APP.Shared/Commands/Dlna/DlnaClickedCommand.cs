@@ -4,10 +4,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
 using VLC_WINRT.Common;
-using VLC_WINRT_APP.ViewModels;
-using VLC_WINRT_APP.ViewModels.Others.VlcExplorer;
+using VLC_WinRT.ViewModels;
+using VLC_WinRT.ViewModels.Others.VlcExplorer;
 
-namespace VLC_WINRT_APP.Commands.Dlna
+namespace VLC_WinRT.Commands.Dlna
 {
     public class DlnaClickedCommand : AlwaysExecutableCommand
     {

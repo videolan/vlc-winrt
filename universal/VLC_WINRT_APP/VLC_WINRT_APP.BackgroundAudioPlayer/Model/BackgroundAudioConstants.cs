@@ -1,4 +1,4 @@
-﻿namespace VLC_WINRT_APP.BackgroundAudioPlayer
+﻿namespace VLC_WinRT.BackgroundAudioPlayer
 {
     sealed class BackgroundAudioConstants
     {

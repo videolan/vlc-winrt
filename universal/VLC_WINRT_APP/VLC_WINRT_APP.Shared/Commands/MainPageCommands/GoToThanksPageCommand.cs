@@ -11,9 +11,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using VLC_WINRT.Common;
-using VLC_WINRT_APP.Views.VariousPages;
+using VLC_WinRT.Views.VariousPages;
 
-namespace VLC_WINRT_APP.Commands.MainPageCommands
+namespace VLC_WinRT.Commands.MainPageCommands
 {
     public class GoToThanksPageCommand: AlwaysExecutableCommand
     {

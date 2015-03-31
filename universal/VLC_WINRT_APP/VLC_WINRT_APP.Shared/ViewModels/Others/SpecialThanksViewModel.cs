@@ -6,9 +6,9 @@ using Windows.ApplicationModel;
 using Windows.Storage;
 using Windows.System.Threading;
 using VLC_WINRT.Common;
-using VLC_WINRT_APP.Common;
+using VLC_WinRT.Common;
 
-namespace VLC_WINRT_APP.ViewModels.RemovableDevicesVM
+namespace VLC_WinRT.ViewModels.RemovableDevicesVM
 {
     public class SpecialThanksViewModel : BindableBase
     {

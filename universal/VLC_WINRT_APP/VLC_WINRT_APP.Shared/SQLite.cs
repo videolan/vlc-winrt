@@ -27,7 +27,7 @@
 #define USE_NEW_REFLECTION_API
 #endif
 
-using VLC_WINRT_APP.Helpers;
+using VLC_WinRT.Helpers;
 using System;
 using System.Diagnostics;
 #if !USE_SQLITEPCL_RAW

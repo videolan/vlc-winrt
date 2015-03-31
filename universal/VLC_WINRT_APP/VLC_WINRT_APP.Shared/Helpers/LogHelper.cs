@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using Windows.Storage;
 
-namespace VLC_WINRT_APP.Helpers
+namespace VLC_WinRT.Helpers
 {
     public static class LogHelper
     {

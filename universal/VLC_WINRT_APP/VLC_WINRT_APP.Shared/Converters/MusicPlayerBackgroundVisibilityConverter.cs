@@ -1,10 +1,10 @@
 ﻿using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
-using VLC_WINRT_APP.ViewModels;
-using VLC_WINRT_APP.Views.MusicPages;
+using VLC_WinRT.ViewModels;
+using VLC_WinRT.Views.MusicPages;
 
-namespace VLC_WINRT_APP.Converters
+namespace VLC_WinRT.Converters
 {
     public class MusicPlayerBackgroundVisibilityConverter : IValueConverter
     {

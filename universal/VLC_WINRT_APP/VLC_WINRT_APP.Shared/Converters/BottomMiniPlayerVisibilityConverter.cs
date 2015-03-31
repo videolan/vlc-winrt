@@ -1,10 +1,10 @@
 ﻿using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
-using VLC_WINRT_APP.Views.MusicPages;
-using VLC_WINRT_APP.Views.VideoPages;
+using VLC_WinRT.Views.MusicPages;
+using VLC_WinRT.Views.VideoPages;
 
-namespace VLC_WINRT_APP.Converters
+namespace VLC_WinRT.Converters
 {
     public class BottomMiniPlayerVisibilityConverter : IValueConverter
     {

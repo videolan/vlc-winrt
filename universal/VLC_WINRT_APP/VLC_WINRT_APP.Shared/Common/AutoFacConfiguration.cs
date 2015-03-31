@@ -8,18 +8,18 @@
  **********************************************************************/
 
 using Autofac;
-using VLC_WINRT_APP.Services.Interface;
-using VLC_WINRT_APP.Services.RunTime;
-using VLC_WINRT_APP.ViewModels;
-using VLC_WINRT_APP.ViewModels.MusicVM;
-using VLC_WINRT_APP.ViewModels.NetworkVM;
-using VLC_WINRT_APP.ViewModels.RemovableDevicesVM;
-using VLC_WINRT_APP.ViewModels.Settings;
-using VLC_WINRT_APP.ViewModels.VideoVM;
-using VLC_WINRT_APP.Views.MainPages;
-using DesignTime = VLC_WINRT_APP.Services.DesignTime;
+using VLC_WinRT.Services.Interface;
+using VLC_WinRT.Services.RunTime;
+using VLC_WinRT.ViewModels;
+using VLC_WinRT.ViewModels.MusicVM;
+using VLC_WinRT.ViewModels.NetworkVM;
+using VLC_WinRT.ViewModels.RemovableDevicesVM;
+using VLC_WinRT.ViewModels.Settings;
+using VLC_WinRT.ViewModels.VideoVM;
+using VLC_WinRT.Views.MainPages;
+using DesignTime = VLC_WinRT.Services.DesignTime;
 
-namespace VLC_WINRT_APP.Common
+namespace VLC_WinRT.Common
 {
     public static class AutoFacConfiguration
     {

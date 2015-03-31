@@ -1,6 +1,6 @@
-﻿<UserControl x:Class="VLC_WINRT_APP.Views.UserControls.VLCLogoWithGradient"
+﻿<UserControl x:Class="VLC_WinRT.Views.UserControls.VLCLogoWithGradient"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:local="using:VLC_WINRT_APP.Views.UserControls"
+             xmlns:local="using:VLC_WinRT.Views.UserControls"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"

@@ -7,15 +7,15 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
-using VLC_WINRT_APP.Common;
+using VLC_WinRT.Common;
 using Windows.Storage;
 using System;
 using System.Threading.Tasks;
-using VLC_WINRT_APP.Model.Video;
-using VLC_WINRT_APP.Helpers;
-using VLC_WINRT_APP.Model;
+using VLC_WinRT.Model.Video;
+using VLC_WinRT.Helpers;
+using VLC_WinRT.Model;
 
-namespace VLC_WINRT_APP.ViewModels.VideoVM
+namespace VLC_WinRT.ViewModels.VideoVM
 {
     public class VideoPlayerVM : BindableBase
     {

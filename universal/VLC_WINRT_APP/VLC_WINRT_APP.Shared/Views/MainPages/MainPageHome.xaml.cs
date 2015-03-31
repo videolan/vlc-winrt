@@ -7,14 +7,14 @@ using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using VLC_WINRT_APP.Helpers;
-using VLC_WINRT_APP.Model.Video;
-using VLC_WINRT_APP.ViewModels;
+using VLC_WinRT.Helpers;
+using VLC_WinRT.Model.Video;
+using VLC_WinRT.ViewModels;
 #if WINDOWS_PHONE_APP
 using Windows.Phone.UI.Input;
 #endif
 
-namespace VLC_WINRT_APP.Views.MainPages
+namespace VLC_WinRT.Views.MainPages
 {
     public sealed partial class MainPageHome : Page
     {

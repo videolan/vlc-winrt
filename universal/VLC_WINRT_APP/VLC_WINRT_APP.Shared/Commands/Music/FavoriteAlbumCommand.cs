@@ -9,11 +9,11 @@
 
 using System.Linq;
 using VLC_WINRT.Common;
-using VLC_WINRT_APP.DataRepository;
-using VLC_WINRT_APP.Model.Music;
-using VLC_WINRT_APP.ViewModels;
+using VLC_WinRT.DataRepository;
+using VLC_WinRT.Model.Music;
+using VLC_WinRT.ViewModels;
 
-namespace VLC_WINRT_APP.Commands.Music
+namespace VLC_WinRT.Commands.Music
 {
     public class FavoriteAlbumCommand : AlwaysExecutableCommand
     {

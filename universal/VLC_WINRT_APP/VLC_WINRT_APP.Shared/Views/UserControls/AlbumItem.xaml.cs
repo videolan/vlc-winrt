@@ -3,9 +3,9 @@ using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
-using VLC_WINRT_APP.ViewModels;
+using VLC_WinRT.ViewModels;
 
-namespace VLC_WINRT_APP.Views.UserControls
+namespace VLC_WinRT.Views.UserControls
 {
     public sealed partial class AlbumItem : UserControl
     {

@@ -1,9 +1,9 @@
 ﻿using Windows.UI.Xaml.Controls;
 using VLC_WINRT.Common;
-using VLC_WINRT_APP.Helpers;
-using VLC_WINRT_APP.Model.Search;
+using VLC_WinRT.Helpers;
+using VLC_WinRT.Model.Search;
 
-namespace VLC_WINRT_APP.Commands
+namespace VLC_WinRT.Commands
 {
     public class SearchClickedCommand : AlwaysExecutableCommand
     {

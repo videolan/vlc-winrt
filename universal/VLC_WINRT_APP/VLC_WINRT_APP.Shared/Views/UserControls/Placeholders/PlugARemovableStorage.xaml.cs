@@ -11,7 +11,7 @@ using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-namespace VLC_WINRT_APP.Controls.RemovableStorage
+namespace VLC_WinRT.Controls.RemovableStorage
 {
     public sealed partial class PlugARemovableStorage : UserControl
     {

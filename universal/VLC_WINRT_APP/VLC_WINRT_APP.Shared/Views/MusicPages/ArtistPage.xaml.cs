@@ -1,11 +1,11 @@
-﻿using VLC_WINRT_APP.Views.MusicPages.ArtistPageControls;
-using VLC_WINRT_APP.Helpers;
+﻿using VLC_WinRT.Views.MusicPages.ArtistPageControls;
+using VLC_WinRT.Helpers;
 using Windows.UI.Xaml.Controls;
 #if WINDOWS_PHONE_APP
 using Windows.Phone.UI.Input;
 using Windows.UI.Xaml.Navigation;
 #endif
-namespace VLC_WINRT_APP.Views.MusicPages
+namespace VLC_WinRT.Views.MusicPages
 {
     public sealed partial class ArtistPage : Page
     {

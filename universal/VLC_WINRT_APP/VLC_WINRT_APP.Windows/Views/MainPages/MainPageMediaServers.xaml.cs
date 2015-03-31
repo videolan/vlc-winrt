@@ -4,7 +4,7 @@ using Microsoft.Xaml.Interactivity;
 
 // Pour en savoir plus sur le modèle d'élément Page vierge, consultez la page http://go.microsoft.com/fwlink/?LinkId=234238
 
-namespace VLC_WINRT_APP.Views.MainPages
+namespace VLC_WinRT.Views.MainPages
 {
     public sealed partial class MainPageMediaServers : Page
     {

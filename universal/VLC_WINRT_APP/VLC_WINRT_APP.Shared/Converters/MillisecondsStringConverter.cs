@@ -11,7 +11,7 @@ using System;
 using System.Diagnostics;
 using Windows.UI.Xaml.Data;
 
-namespace VLC_WINRT_APP.Converters
+namespace VLC_WinRT.Converters
 {
     public class MillisecondsStringConverter : IValueConverter
     {

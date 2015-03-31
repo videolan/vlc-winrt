@@ -2,9 +2,9 @@
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Microsoft.Xaml.Interactivity;
-using VLC_WINRT_APP.ViewModels;
+using VLC_WinRT.ViewModels;
 
-namespace VLC_WINRT_APP.Views.MusicPages.MusicNowPlayingControls
+namespace VLC_WinRT.Views.MusicPages.MusicNowPlayingControls
 {
     public sealed partial class MusicNowPlaying : UserControl
     {

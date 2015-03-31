@@ -14,11 +14,11 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
-using VLC_WINRT_APP.Helpers;
-using VLC_WINRT_APP.Model;
-using VLC_WINRT_APP.ViewModels;
+using VLC_WinRT.Helpers;
+using VLC_WinRT.Model;
+using VLC_WinRT.ViewModels;
 
-namespace VLC_WINRT_APP.Views.MainPages
+namespace VLC_WinRT.Views.MainPages
 {
     public sealed partial class MainPageVideos : Page
     {

@@ -2,11 +2,11 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using VLC_WINRT.Common;
-using VLC_WINRT_APP.Model.Music;
-using VLC_WINRT_APP.ViewModels;
+using VLC_WinRT.Model.Music;
+using VLC_WinRT.ViewModels;
 using WinRTXamlToolkit.Tools;
 
-namespace VLC_WINRT_APP.Commands.MediaPlayback
+namespace VLC_WinRT.Commands.MediaPlayback
 {
     public class ShuffleCommand : AlwaysExecutableCommand
     {

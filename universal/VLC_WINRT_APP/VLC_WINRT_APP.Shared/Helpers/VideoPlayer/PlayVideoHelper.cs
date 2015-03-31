@@ -1,11 +1,11 @@
 ﻿using System.Threading.Tasks;
 using Windows.Storage.AccessCache;
-using VLC_WINRT_APP.Model.Video;
-using VLC_WINRT_APP.ViewModels;
-using VLC_WINRT_APP.ViewModels.VideoVM;
-using VLC_WINRT_APP.Views.VideoPages;
+using VLC_WinRT.Model.Video;
+using VLC_WinRT.ViewModels;
+using VLC_WinRT.ViewModels.VideoVM;
+using VLC_WinRT.Views.VideoPages;
 
-namespace VLC_WINRT_APP.Helpers.VideoPlayer
+namespace VLC_WinRT.Helpers.VideoPlayer
 {
     public static class PlayVideoHelper
     {

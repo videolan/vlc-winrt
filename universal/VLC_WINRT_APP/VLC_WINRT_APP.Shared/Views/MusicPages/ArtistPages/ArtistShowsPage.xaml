@@ -1,10 +1,10 @@
-﻿<Page x:Class="VLC_WINRT_APP.Views.MusicPages.ArtistPages.ArtistShowsPage"
+﻿<Page x:Class="VLC_WinRT.Views.MusicPages.ArtistPages.ArtistShowsPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:local="using:VLC_WINRT_APP.Views.MusicPages.ArtistPages"
+      xmlns:local="using:VLC_WinRT.Views.MusicPages.ArtistPages"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:placeholder="using:VLC_WINRT_APP.Views.UserControls.Placeholder"
+      xmlns:placeholder="using:VLC_WinRT.Views.UserControls.Placeholder"
       xmlns:triggers="using:WinRT.Triggers"
       mc:Ignorable="d"
       d:DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM.CurrentArtist}">

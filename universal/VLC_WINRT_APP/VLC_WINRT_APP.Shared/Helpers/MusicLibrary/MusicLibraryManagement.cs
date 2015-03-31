@@ -20,13 +20,13 @@ using Windows.UI.Core;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Autofac;
-using VLC_WINRT_APP.Model;
-using VLC_WINRT_APP.Model.Music;
-using VLC_WINRT_APP.Services.Interface;
-using VLC_WINRT_APP.Services.RunTime;
-using VLC_WINRT_APP.ViewModels;
-using VLC_WINRT_APP.ViewModels.MusicVM;
-using VLC_WINRT_APP.Views.MusicPages.PlaylistControls;
+using VLC_WinRT.Model;
+using VLC_WinRT.Model.Music;
+using VLC_WinRT.Services.Interface;
+using VLC_WinRT.Services.RunTime;
+using VLC_WinRT.ViewModels;
+using VLC_WinRT.ViewModels.MusicVM;
+using VLC_WinRT.Views.MusicPages.PlaylistControls;
 using WinRTXamlToolkit.Controls.Extensions;
 using WinRTXamlToolkit.IO.Extensions;
 #if WINDOWS_PHONE_APP
@@ -35,7 +35,7 @@ using Windows.Phone.ApplicationModel;
 #else
 #endif
 
-namespace VLC_WINRT_APP.Helpers.MusicLibrary
+namespace VLC_WinRT.Helpers.MusicLibrary
 {
     public static class MusicLibraryManagement
     {

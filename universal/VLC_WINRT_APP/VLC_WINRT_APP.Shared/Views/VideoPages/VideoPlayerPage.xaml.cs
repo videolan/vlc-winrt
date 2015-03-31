@@ -9,7 +9,7 @@
 
 using System;
 using System.Threading.Tasks;
-using VLC_WINRT_APP.ViewModels;
+using VLC_WinRT.ViewModels;
 using Windows.Devices.Input;
 using Windows.Graphics.Display;
 using Windows.System;
@@ -18,12 +18,12 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
-using VLC_WINRT_APP.Helpers;
+using VLC_WinRT.Helpers;
 using WinRTXamlToolkit.Controls.Extensions;
 #if WINDOWS_PHONE_APP
 using Windows.Phone.UI.Input;
 #endif
-namespace VLC_WINRT_APP.Views.VideoPages
+namespace VLC_WinRT.Views.VideoPages
 {
     public sealed partial class VideoPlayerPage : Page
     {

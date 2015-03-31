@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace VLC_WINRT_APP.Database.Model
+namespace VLC_WinRT.Database.Model
 {
     public sealed class BackgroundTrackItem
     {

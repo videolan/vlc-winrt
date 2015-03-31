@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace VLC_WINRT_APP.MusicMetaFetcher.Models.MusicEntities
+namespace VLC_WinRT.MusicMetaFetcher.Models.MusicEntities
 {
     /// <summary>
     /// Entity representing a show

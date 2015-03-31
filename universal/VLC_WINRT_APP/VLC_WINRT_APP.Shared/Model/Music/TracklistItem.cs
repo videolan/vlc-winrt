@@ -1,6 +1,6 @@
 ﻿using SQLite;
 
-namespace VLC_WINRT_APP.Model.Music
+namespace VLC_WinRT.Model.Music
 {
     public class TracklistItem
     {

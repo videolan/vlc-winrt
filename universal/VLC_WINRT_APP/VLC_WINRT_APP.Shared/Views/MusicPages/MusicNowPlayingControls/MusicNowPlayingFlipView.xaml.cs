@@ -1,9 +1,9 @@
 ﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using VLC_WINRT_APP.ViewModels;
+using VLC_WinRT.ViewModels;
 using System.ComponentModel;
 
-namespace VLC_WINRT_APP.Views.MusicPages.MusicNowPlayingControls
+namespace VLC_WinRT.Views.MusicPages.MusicNowPlayingControls
 {
     public sealed partial class MusicNowPlayingFlipView : UserControl
     {

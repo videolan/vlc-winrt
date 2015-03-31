@@ -20,11 +20,11 @@ using Windows.UI.StartScreen;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Imaging;
-using VLC_WINRT_APP.Model;
-using VLC_WINRT_APP.ViewModels;
+using VLC_WinRT.Model;
+using VLC_WinRT.ViewModels;
 using WinRTXamlToolkit.Imaging;
 
-namespace VLC_WINRT_APP.Helpers
+namespace VLC_WinRT.Helpers
 {
     public class UpdateTileHelper
     {

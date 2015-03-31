@@ -12,10 +12,10 @@ using Windows.Devices.Geolocation;
 using Windows.Devices.Input;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
-using VLC_WINRT_APP.Model;
-using VLC_WINRT_APP.ViewModels;
+using VLC_WinRT.Model;
+using VLC_WinRT.ViewModels;
 
-namespace VLC_WINRT_APP.Services.RunTime
+namespace VLC_WinRT.Services.RunTime
 {
     public class MouseService
     {

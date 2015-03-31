@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Text;
 using Windows.UI;
 
-namespace VLC_WINRT_APP.Helpers
+namespace VLC_WinRT.Helpers
 {
 
     public static class AppViewHelper

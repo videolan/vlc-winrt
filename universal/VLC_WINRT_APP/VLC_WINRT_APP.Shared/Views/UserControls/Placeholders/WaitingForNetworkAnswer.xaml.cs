@@ -15,7 +15,7 @@ using Windows.UI.Xaml.Navigation;
 
 // Pour en savoir plus sur le modèle d'élément Contrôle utilisateur, consultez la page http://go.microsoft.com/fwlink/?LinkId=234236
 
-namespace VLC_WINRT_APP.Controls.Dlna
+namespace VLC_WinRT.Controls.Dlna
 {
     public sealed partial class WaitingForNetworkAnswer : UserControl
     {

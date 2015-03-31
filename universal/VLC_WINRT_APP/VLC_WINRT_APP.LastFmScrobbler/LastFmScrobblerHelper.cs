@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Windows.Foundation;
 using IF.Lastfm.Core.Api;
 
-namespace VLC_WINRT_APP.LastFmScrobbler
+namespace VLC_WinRT.LastFmScrobbler
 {
     public sealed class LastFmScrobblerHelper
     {

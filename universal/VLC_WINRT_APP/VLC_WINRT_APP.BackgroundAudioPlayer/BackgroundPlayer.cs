@@ -7,11 +7,11 @@ using Windows.Foundation.Collections;
 using Windows.Media;
 using Windows.Media.Playback;
 using Windows.UI.Xaml;
-using VLC_WINRT_APP.BackgroundAudioPlayer.Model;
-using VLC_WINRT_APP.Database.DataRepository;
-using VLC_WINRT_APP.LastFmScrobbler;
+using VLC_WinRT.BackgroundAudioPlayer.Model;
+using VLC_WinRT.Database.DataRepository;
+using VLC_WinRT.LastFmScrobbler;
 
-namespace VLC_WINRT_APP.BackgroundAudioPlayer
+namespace VLC_WinRT.BackgroundAudioPlayer
 {
     /// <summary>
     /// Enum to identify foreground app state

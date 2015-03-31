@@ -2,13 +2,13 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using VLC_WINRT_APP.Helpers;
-using VLC_WINRT_APP.ViewModels;
+using VLC_WinRT.Helpers;
+using VLC_WinRT.ViewModels;
 #if WINDOWS_PHONE_APP
 using Windows.Phone.UI.Input;
 #endif
 
-namespace VLC_WINRT_APP.Views.VariousPages
+namespace VLC_WinRT.Views.VariousPages
 {
     public sealed partial class SearchPage : Page
     {

@@ -13,31 +13,31 @@ using Windows.Media;
 using Windows.Storage.AccessCache;
 using Windows.Storage.Streams;
 using VLC_WINRT.Common;
-using VLC_WINRT_APP.Helpers;
-using VLC_WINRT_APP.Helpers.MusicLibrary;
-using VLC_WINRT_APP.Model;
-using VLC_WINRT_APP.Model.Video;
-using VLC_WINRT_APP.Services.Interface;
+using VLC_WinRT.Helpers;
+using VLC_WinRT.Helpers.MusicLibrary;
+using VLC_WinRT.Model;
+using VLC_WinRT.Model.Video;
+using VLC_WinRT.Services.Interface;
 using Windows.Storage;
 using Windows.UI.Core;
 using Windows.UI.Xaml.Controls;
-using VLC_WINRT_APP.ViewModels;
-using VLC_WINRT_APP.Views.MusicPages;
-using VLC_WINRT_APP.Views.VideoPages;
+using VLC_WinRT.ViewModels;
+using VLC_WinRT.Views.MusicPages;
+using VLC_WinRT.Views.VideoPages;
 using libVLCX;
 using System.Collections.Generic;
 using System.Diagnostics;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
-using VLC_WINRT_APP.Helpers.MusicPlayer;
-using VLC_WINRT_APP.Model.Music;
-using VLC_WINRT_APP.Model.Stream;
+using VLC_WinRT.Helpers.MusicPlayer;
+using VLC_WinRT.Model.Music;
+using VLC_WinRT.Model.Stream;
 #if WINDOWS_PHONE_APP
 using Windows.Media.Playback;
 #endif
 using MediaPlayer = libVLCX.MediaPlayer;
 
-namespace VLC_WINRT_APP.Services.RunTime
+namespace VLC_WinRT.Services.RunTime
 {
     public sealed class VLCService : IMediaService
     {

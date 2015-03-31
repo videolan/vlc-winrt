@@ -9,7 +9,7 @@
 
 using Newtonsoft.Json;
 
-namespace VLC_WINRT_APP.Helpers.MusicLibrary.EchoNest
+namespace VLC_WinRT.Helpers.MusicLibrary.EchoNest
 {
     public class Twitter
     {

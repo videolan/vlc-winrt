@@ -1,6 +1,6 @@
 ﻿using Windows.Devices.Input;
 
-namespace VLC_WINRT_APP.Helpers
+namespace VLC_WinRT.Helpers
 {
     public static class CapabilitiesHelper
     {

@@ -16,16 +16,16 @@ using Windows.UI.Core;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 using VLC_WINRT.Common;
-using VLC_WINRT_APP.Common;
-using VLC_WINRT_APP.DataRepository;
-using VLC_WINRT_APP.Helpers;
-using VLC_WINRT_APP.Helpers.MusicLibrary;
-using VLC_WINRT_APP.Model;
-using VLC_WINRT_APP.Model.Music;
-using VLC_WINRT_APP.Commands.Music;
-using VLC_WINRT_APP.Model.Search;
+using VLC_WinRT.Common;
+using VLC_WinRT.DataRepository;
+using VLC_WinRT.Helpers;
+using VLC_WinRT.Helpers.MusicLibrary;
+using VLC_WinRT.Model;
+using VLC_WinRT.Model.Music;
+using VLC_WinRT.Commands.Music;
+using VLC_WinRT.Model.Search;
 
-namespace VLC_WINRT_APP.ViewModels.MusicVM
+namespace VLC_WinRT.ViewModels.MusicVM
 {
     public class MusicLibraryVM : BindableBase
     {

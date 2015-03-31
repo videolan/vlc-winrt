@@ -7,18 +7,18 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
-using VLC_WINRT_APP.DataRepository;
+using VLC_WinRT.DataRepository;
 using System;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Resources;
 using Windows.Storage;
 using Windows.UI.Core;
-using VLC_WINRT_APP.Commands.MediaPlayback;
-using VLC_WINRT_APP.Commands.Music;
-using VLC_WINRT_APP.Helpers;
-using VLC_WINRT_APP.Model.Music;
-using VLC_WINRT_APP.Commands.Social;
-using VLC_WINRT_APP.Common;
+using VLC_WinRT.Commands.MediaPlayback;
+using VLC_WinRT.Commands.Music;
+using VLC_WinRT.Helpers;
+using VLC_WinRT.Model.Music;
+using VLC_WinRT.Commands.Social;
+using VLC_WinRT.Common;
 
 #if WINDOWS_PHONE_APP
 using Windows.Media.Playback;
@@ -27,7 +27,7 @@ using VLC_WINRT_APP.Database.DataRepository;
 using VLC_WINRT_APP.Model;
 #endif
 
-namespace VLC_WINRT_APP.ViewModels.MusicVM
+namespace VLC_WinRT.ViewModels.MusicVM
 {
     public class MusicPlayerVM : BindableBase
     {

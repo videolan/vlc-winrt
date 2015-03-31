@@ -3,10 +3,10 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using SQLite;
-using VLC_WINRT_APP.Model.Music;
+using VLC_WinRT.Model.Music;
 using System.Collections.Generic;
 
-namespace VLC_WINRT_APP.DataRepository
+namespace VLC_WinRT.DataRepository
 {
     public class ArtistDataRepository : IDataRepository
     {

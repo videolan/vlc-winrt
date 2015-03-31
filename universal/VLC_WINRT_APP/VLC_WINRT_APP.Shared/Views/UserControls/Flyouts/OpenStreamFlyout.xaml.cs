@@ -1,10 +1,10 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
-using VLC_WINRT_APP.ViewModels;
+using VLC_WinRT.ViewModels;
 using WinRTXamlToolkit.Controls.Extensions;
 
-namespace VLC_WINRT_APP.Views.UserControls.Flyouts
+namespace VLC_WinRT.Views.UserControls.Flyouts
 {
     public sealed partial class OpenStreamFlyout
     {

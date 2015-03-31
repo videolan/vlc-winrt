@@ -2,7 +2,7 @@
 using Windows.UI.Xaml.Data;
 using Newtonsoft.Json.Schema;
 
-namespace VLC_WINRT_APP.Converters
+namespace VLC_WinRT.Converters
 {
     public class NullIntConverter : IValueConverter
     {

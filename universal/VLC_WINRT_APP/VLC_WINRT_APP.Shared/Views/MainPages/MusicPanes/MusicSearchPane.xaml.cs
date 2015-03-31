@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
-using VLC_WINRT_APP.ViewModels;
+using VLC_WinRT.ViewModels;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -15,7 +15,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-namespace VLC_WINRT_APP.Views.MainPages.MusicPanes
+namespace VLC_WinRT.Views.MainPages.MusicPanes
 {
     public sealed partial class SearchMusicPane : UserControl
     {

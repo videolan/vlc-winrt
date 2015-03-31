@@ -8,16 +8,16 @@ using Windows.UI.Core;
 using Windows.UI.Xaml.Media.Imaging;
 using SQLite;
 using VLC_WINRT.Common;
-using VLC_WINRT_APP.Commands.Music;
-using VLC_WINRT_APP.Common;
-using VLC_WINRT_APP.Helpers;
-using VLC_WINRT_APP.Helpers.MusicLibrary;
-using VLC_WINRT_APP.MusicMetaFetcher;
-using VLC_WINRT_APP.ViewModels.MusicVM;
-using VLC_WINRT_APP.MusicMetaFetcher.Models.MusicEntities;
-using VLC_WINRT_APP.ViewModels;
+using VLC_WinRT.Commands.Music;
+using VLC_WinRT.Common;
+using VLC_WinRT.Helpers;
+using VLC_WinRT.Helpers.MusicLibrary;
+using VLC_WinRT.MusicMetaFetcher;
+using VLC_WinRT.ViewModels.MusicVM;
+using VLC_WinRT.MusicMetaFetcher.Models.MusicEntities;
+using VLC_WinRT.ViewModels;
 
-namespace VLC_WINRT_APP.Model.Music
+namespace VLC_WinRT.Model.Music
 {
     public class ArtistItem : BindableBase
     {

@@ -19,14 +19,14 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Autofac;
-using VLC_WINRT_APP.Helpers;
-using VLC_WINRT_APP.Model;
-using VLC_WINRT_APP.Services.RunTime;
-using VLC_WINRT_APP.Services.Interface;
-using VLC_WINRT_APP.ViewModels;
-using VLC_WINRT_APP.Views.UserControls;
-using VLC_WINRT_APP.Views.VariousPages;
-namespace VLC_WINRT_APP.Views.MainPages
+using VLC_WinRT.Helpers;
+using VLC_WinRT.Model;
+using VLC_WinRT.Services.RunTime;
+using VLC_WinRT.Services.Interface;
+using VLC_WinRT.ViewModels;
+using VLC_WinRT.Views.UserControls;
+using VLC_WinRT.Views.VariousPages;
+namespace VLC_WinRT.Views.MainPages
 {
     public sealed partial class MainPage : SwapChainPanel
     {

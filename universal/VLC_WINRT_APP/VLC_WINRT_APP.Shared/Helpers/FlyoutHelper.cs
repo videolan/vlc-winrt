@@ -1,6 +1,6 @@
 ﻿using Windows.UI.Xaml;
 
-namespace VLC_WINRT_APP.Helpers
+namespace VLC_WinRT.Helpers
 {
     public static class FlyoutHelper
     {

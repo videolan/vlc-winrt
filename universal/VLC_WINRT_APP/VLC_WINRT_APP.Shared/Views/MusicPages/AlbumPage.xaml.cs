@@ -1,5 +1,5 @@
-﻿using VLC_WINRT_APP.Views.MusicPages.AlbumPageControls;
-using VLC_WINRT_APP.Helpers;
+﻿using VLC_WinRT.Views.MusicPages.AlbumPageControls;
+using VLC_WinRT.Helpers;
 using System;
 using Windows.UI.Core;
 using Windows.UI.ViewManagement;
@@ -9,7 +9,7 @@ using Windows.UI.Xaml.Navigation;
 #if WINDOWS_PHONE_APP
 using Windows.Phone.UI.Input;
 #endif
-namespace VLC_WINRT_APP.Views.MusicPages
+namespace VLC_WinRT.Views.MusicPages
 {
     public sealed partial class AlbumPage : Page
     {

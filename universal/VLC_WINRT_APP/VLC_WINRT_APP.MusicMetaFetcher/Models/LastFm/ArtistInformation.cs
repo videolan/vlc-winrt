@@ -9,7 +9,7 @@
 
 using Newtonsoft.Json;
 
-namespace VLC_WINRT_APP.MusicMetaFetcher.Models.LastFm
+namespace VLC_WinRT.MusicMetaFetcher.Models.LastFm
 {
 
     public class ArtistInformation

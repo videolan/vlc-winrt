@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="using:VLC_WINRT_APP.Resources"
-                    xmlns:converters="using:VLC_WINRT_APP.Converters">
+                    xmlns:local="using:VLC_WinRT.Resources"
+                    xmlns:converters="using:VLC_WinRT.Converters">
 
     <converters:AlbumImageConverter x:Key="AlbumImageConverter" />
     <converters:AlbumStringConverter x:Key="AlbumStringConverter" />

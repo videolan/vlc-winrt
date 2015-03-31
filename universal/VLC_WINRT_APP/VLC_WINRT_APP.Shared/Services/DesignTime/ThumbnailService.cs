@@ -10,12 +10,12 @@
 using System;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Media.Imaging;
-using VLC_WINRT_APP.Services.Interface;
+using VLC_WinRT.Services.Interface;
 using Windows.Storage;
 using Windows.Storage.FileProperties;
 using libVLCX;
 
-namespace VLC_WINRT_APP.Services.DesignTime
+namespace VLC_WinRT.Services.DesignTime
 {
     public class ThumbnailService : IThumbnailService
     {

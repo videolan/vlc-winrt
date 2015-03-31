@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 using VLC_WINRT.Common;
-using VLC_WINRT_APP.ViewModels;
+using VLC_WinRT.ViewModels;
 
-namespace VLC_WINRT_APP.Commands.Video
+namespace VLC_WinRT.Commands.Video
 {
     public class StartVideoIndexingCommand : AlwaysExecutableCommand
     {

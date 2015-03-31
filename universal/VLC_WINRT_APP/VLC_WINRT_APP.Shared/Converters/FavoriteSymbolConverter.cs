@@ -2,10 +2,10 @@
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media;
-using VLC_WINRT_APP.Helpers;
-using VLC_WINRT_APP.Utils;
+using VLC_WinRT.Helpers;
+using VLC_WinRT.Utils;
 
-namespace VLC_WINRT_APP.Converters
+namespace VLC_WinRT.Converters
 {
     public class FavoriteSymbolConverter : IValueConverter
     {

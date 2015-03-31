@@ -2,7 +2,7 @@
 using System.IO;
 using System.Xml.Serialization;
 
-namespace VLC_WINRT_APP.BackgroundAudioPlayer
+namespace VLC_WinRT.BackgroundAudioPlayer
 {
     public static class AudioBackgroundInterface
     {

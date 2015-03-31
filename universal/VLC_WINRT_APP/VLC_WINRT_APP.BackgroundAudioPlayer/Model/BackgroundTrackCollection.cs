@@ -9,10 +9,10 @@ using Windows.Foundation.Collections;
 using Windows.Media;
 using Windows.Media.Playback;
 using Windows.Storage;
-using VLC_WINRT_APP.Database.DataRepository;
-using VLC_WINRT_APP.BackgroundAudioPlayer.Model;
+using VLC_WinRT.Database.DataRepository;
+using VLC_WinRT.BackgroundAudioPlayer.Model;
 
-namespace VLC_WINRT_APP.BackgroundAudioPlayer
+namespace VLC_WinRT.BackgroundAudioPlayer
 {
     public sealed class BackgroundTrackCollection
     {

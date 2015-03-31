@@ -12,7 +12,7 @@ using Windows.ApplicationModel.Email;
 using Windows.Security.ExchangeActiveSyncProvisioning;
 #endif
 
-namespace VLC_WINRT_APP.Helpers
+namespace VLC_WinRT.Helpers
 {
     public static class ExceptionHelper
     {

@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
-using VLC_WINRT_APP.Model.Video;
-using VLC_WINRT_APP.ViewModels;
+using VLC_WinRT.Model.Video;
+using VLC_WinRT.ViewModels;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -15,7 +15,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-namespace VLC_WINRT_APP.Views.MainPages.MainVideoControls
+namespace VLC_WinRT.Views.MainPages.MainVideoControls
 {
     public sealed partial class SearchVideoPage : UserControl
     {

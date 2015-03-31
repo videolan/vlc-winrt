@@ -2,7 +2,7 @@
 using Windows.UI.Xaml.Controls;
 using Microsoft.Xaml.Interactivity;
 
-namespace VLC_WINRT_APP.Views.UserControls
+namespace VLC_WinRT.Views.UserControls
 {
     public sealed partial class PivotHeaderControl : UserControl
     {

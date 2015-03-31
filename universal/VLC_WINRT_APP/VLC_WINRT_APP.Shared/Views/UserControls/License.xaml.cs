@@ -15,7 +15,7 @@ using Windows.UI.Xaml.Navigation;
 
 // The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
 
-namespace VLC_WINRT_APP.Views.UserControls
+namespace VLC_WinRT.Views.UserControls
 {
     public sealed partial class License : UserControl
     {

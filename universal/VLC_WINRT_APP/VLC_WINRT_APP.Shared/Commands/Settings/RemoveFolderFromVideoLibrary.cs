@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using Windows.Storage;
 using VLC_WINRT.Common;
-using VLC_WINRT_APP.ViewModels;
+using VLC_WinRT.ViewModels;
 
-namespace VLC_WINRT_APP.Commands.Settings
+namespace VLC_WinRT.Commands.Settings
 {
     public class RemoveFolderFromVideoLibrary : AlwaysExecutableCommand
     {

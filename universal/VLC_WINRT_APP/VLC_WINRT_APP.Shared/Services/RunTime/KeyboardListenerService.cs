@@ -4,11 +4,11 @@ using System.Threading.Tasks;
 using Windows.System;
 using Windows.UI.Core;
 using libVLCX;
-using VLC_WINRT_APP.DataRepository;
-using VLC_WINRT_APP.Model;
-using VLC_WINRT_APP.ViewModels;
+using VLC_WinRT.DataRepository;
+using VLC_WinRT.Model;
+using VLC_WinRT.ViewModels;
 
-namespace VLC_WINRT_APP.Services.RunTime
+namespace VLC_WinRT.Services.RunTime
 {
     public class KeyboardListenerService
     {

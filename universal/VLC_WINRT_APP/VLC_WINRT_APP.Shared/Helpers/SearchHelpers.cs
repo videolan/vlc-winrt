@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using VLC_WINRT_APP.Helpers.VideoPlayer;
-using VLC_WINRT_APP.Model;
-using VLC_WINRT_APP.Model.Music;
-using VLC_WINRT_APP.Model.Video;
-using VLC_WINRT_APP.ViewModels;
-using VLC_WINRT_APP.Views.MusicPages;
-using VLC_WINRT_APP.Model.Search;
+using VLC_WinRT.Helpers.VideoPlayer;
+using VLC_WinRT.Model;
+using VLC_WinRT.Model.Music;
+using VLC_WinRT.Model.Video;
+using VLC_WinRT.ViewModels;
+using VLC_WinRT.Views.MusicPages;
+using VLC_WinRT.Model.Search;
 using Windows.Storage;
 using System.Collections.ObjectModel;
 
-namespace VLC_WINRT_APP.Helpers
+namespace VLC_WinRT.Helpers
 {
     public static class SearchHelpers
     {

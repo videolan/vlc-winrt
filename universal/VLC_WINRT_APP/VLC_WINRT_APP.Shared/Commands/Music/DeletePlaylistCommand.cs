@@ -2,10 +2,10 @@
 using Windows.UI.Core;
 using Windows.UI.Popups;
 using VLC_WINRT.Common;
-using VLC_WINRT_APP.Helpers.MusicLibrary;
-using VLC_WINRT_APP.ViewModels;
+using VLC_WinRT.Helpers.MusicLibrary;
+using VLC_WinRT.ViewModels;
 
-namespace VLC_WINRT_APP.Commands.Music
+namespace VLC_WinRT.Commands.Music
 {
     public class DeletePlaylistCommand : AlwaysExecutableCommand
     {

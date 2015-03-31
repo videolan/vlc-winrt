@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.Streams;
 
-namespace VLC_WINRT_APP.Common
+namespace VLC_WinRT.Common
 {
     public class ConvertImage
     {

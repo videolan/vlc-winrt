@@ -14,14 +14,14 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media.Imaging;
 using Autofac;
 using VLC_WINRT.Common;
-using VLC_WINRT_APP.Model;
-using VLC_WINRT_APP.Model.Video;
-using VLC_WINRT_APP.ViewModels;
+using VLC_WinRT.Model;
+using VLC_WinRT.Model.Video;
+using VLC_WinRT.ViewModels;
 using WinRTXamlToolkit.IO.Extensions;
-using VLC_WINRT_APP.DataRepository;
-using VLC_WINRT_APP.Services.Interface;
+using VLC_WinRT.DataRepository;
+using VLC_WinRT.Services.Interface;
 
-namespace VLC_WINRT_APP.Helpers.VideoLibrary
+namespace VLC_WinRT.Helpers.VideoLibrary
 {
     public static class VideoLibraryManagement
     {

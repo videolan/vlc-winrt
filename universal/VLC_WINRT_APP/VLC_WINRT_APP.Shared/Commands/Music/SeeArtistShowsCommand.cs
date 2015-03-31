@@ -1,10 +1,10 @@
 ﻿using System.Linq;
 using VLC_WINRT.Common;
-using VLC_WINRT_APP.Model.Music;
-using VLC_WINRT_APP.ViewModels;
-using VLC_WINRT_APP.Views.MusicPages.ArtistPages;
+using VLC_WinRT.Model.Music;
+using VLC_WinRT.ViewModels;
+using VLC_WinRT.Views.MusicPages.ArtistPages;
 
-namespace VLC_WINRT_APP.Commands.Music
+namespace VLC_WinRT.Commands.Music
 {
     public class SeeArtistShowsCommand : AlwaysExecutableCommand
     {

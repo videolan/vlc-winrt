@@ -1,4 +1,4 @@
-﻿namespace VLC_WINRT_APP.Utils
+﻿namespace VLC_WinRT.Utils
 {
     public static class Strings
     {

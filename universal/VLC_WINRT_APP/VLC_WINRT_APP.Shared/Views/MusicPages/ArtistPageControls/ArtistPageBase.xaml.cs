@@ -1,8 +1,8 @@
 ﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using VLC_WINRT_APP.Model.Video;
+using VLC_WinRT.Model.Video;
 
-namespace VLC_WINRT_APP.Views.MusicPages.ArtistPageControls
+namespace VLC_WinRT.Views.MusicPages.ArtistPageControls
 {
     public sealed partial class ArtistPageBase : UserControl
     {

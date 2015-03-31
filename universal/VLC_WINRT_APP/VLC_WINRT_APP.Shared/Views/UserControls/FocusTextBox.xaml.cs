@@ -1,7 +1,7 @@
 ﻿using Windows.UI.Xaml.Controls;
-using VLC_WINRT_APP.ViewModels;
+using VLC_WinRT.ViewModels;
 
-namespace VLC_WINRT_APP.Views.UserControls
+namespace VLC_WinRT.Views.UserControls
 {
     public sealed partial class FocusTextBox : TextBox
     {

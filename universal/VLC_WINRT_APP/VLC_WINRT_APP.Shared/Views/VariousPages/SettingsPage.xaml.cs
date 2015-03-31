@@ -4,11 +4,11 @@ using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using VLC_WINRT_APP.Helpers;
-using VLC_WINRT_APP.LastFmScrobbler;
-using VLC_WINRT_APP.ViewModels;
+using VLC_WinRT.Helpers;
+using VLC_WinRT.LastFmScrobbler;
+using VLC_WinRT.ViewModels;
 
-namespace VLC_WINRT_APP.Views.VariousPages
+namespace VLC_WinRT.Views.VariousPages
 {
     public sealed partial class SettingsPage : Page
     {

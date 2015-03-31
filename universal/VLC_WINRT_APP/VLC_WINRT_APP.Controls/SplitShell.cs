@@ -5,7 +5,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 
-namespace VLC_WINRT_APP.Controls
+namespace VLC_WinRT.Controls
 {
 
     [TemplatePart(Name = EdgePaneName, Type = typeof(Grid))]

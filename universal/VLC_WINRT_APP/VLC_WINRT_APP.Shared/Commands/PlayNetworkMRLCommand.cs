@@ -9,12 +9,12 @@
 
 using System;
 using VLC_WINRT.Common;
-using VLC_WINRT_APP.Helpers;
-using VLC_WINRT_APP.Model.Stream;
-using VLC_WINRT_APP.ViewModels;
-using VLC_WINRT_APP.Views.VideoPages;
+using VLC_WinRT.Helpers;
+using VLC_WinRT.Model.Stream;
+using VLC_WinRT.ViewModels;
+using VLC_WinRT.Views.VideoPages;
 
-namespace VLC_WINRT_APP.Commands
+namespace VLC_WinRT.Commands
 {
     public class PlayNetworkMRLCommand : AlwaysExecutableCommand
     {

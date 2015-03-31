@@ -5,7 +5,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Xaml.Interactivity;
 
-namespace VLC_WINRT_APP.Views.MainPages.MainVideoControls
+namespace VLC_WinRT.Views.MainPages.MainVideoControls
 {
     public sealed partial class ShowsPivotItem : Page
     {

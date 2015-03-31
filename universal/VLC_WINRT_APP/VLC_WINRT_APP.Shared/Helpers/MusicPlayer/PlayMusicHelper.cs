@@ -7,17 +7,17 @@ using Windows.Storage;
 using Windows.UI.Core;
 using libVLCX;
 using VLC_WINRT.Common;
-using VLC_WINRT_APP.Common;
-using VLC_WINRT_APP.Model;
-using VLC_WINRT_APP.Model.Music;
-using VLC_WINRT_APP.ViewModels;
-using VLC_WINRT_APP.ViewModels.MusicVM;
+using VLC_WinRT.Common;
+using VLC_WinRT.Model;
+using VLC_WinRT.Model.Music;
+using VLC_WinRT.ViewModels;
+using VLC_WinRT.ViewModels.MusicVM;
 
 #if WINDOWS_PHONE_APP
 using VLC_WINRT_APP.BackgroundHelpers;
 #endif
 
-namespace VLC_WINRT_APP.Helpers.MusicPlayer
+namespace VLC_WinRT.Helpers.MusicPlayer
 {
     public static class PlayMusicHelper
     {

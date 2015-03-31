@@ -11,14 +11,14 @@ using System;
 using Windows.Storage.Pickers;
 using Windows.UI.Xaml.Controls;
 using VLC_WINRT.Common;
-using VLC_WINRT_APP.Common;
-using VLC_WINRT_APP.Helpers.MusicLibrary;
-using VLC_WINRT_APP.Model;
-using VLC_WINRT_APP.Model.Music;
-using VLC_WINRT_APP.ViewModels;
-using VLC_WINRT_APP.ViewModels.MusicVM;
+using VLC_WinRT.Common;
+using VLC_WinRT.Helpers.MusicLibrary;
+using VLC_WinRT.Model;
+using VLC_WinRT.Model.Music;
+using VLC_WinRT.ViewModels;
+using VLC_WinRT.ViewModels.MusicVM;
 
-namespace VLC_WINRT_APP.Commands.Music
+namespace VLC_WinRT.Commands.Music
 {
     public class ChangeAlbumArtCommand : AlwaysExecutableCommand
     {

@@ -19,14 +19,14 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Autofac;
 using SQLite;
-using VLC_WINRT_APP.Commands.Video;
-using VLC_WINRT_APP.Common;
-using VLC_WINRT_APP.Helpers;
-using VLC_WINRT_APP.Helpers.VideoLibrary;
-using VLC_WINRT_APP.Services.Interface;
-using VLC_WINRT_APP.ViewModels;
+using VLC_WinRT.Commands.Video;
+using VLC_WinRT.Common;
+using VLC_WinRT.Helpers;
+using VLC_WinRT.Helpers.VideoLibrary;
+using VLC_WinRT.Services.Interface;
+using VLC_WinRT.ViewModels;
 
-namespace VLC_WINRT_APP.Model.Video
+namespace VLC_WinRT.Model.Video
 {
     public class VideoItem : BindableBase, IVLCMedia
     {

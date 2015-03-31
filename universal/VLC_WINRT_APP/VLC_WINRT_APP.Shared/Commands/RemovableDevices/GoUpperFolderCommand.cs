@@ -1,8 +1,8 @@
 ﻿using VLC_WINRT.Common;
-using VLC_WINRT_APP.ViewModels;
-using VLC_WINRT_APP.Views.MainPages;
+using VLC_WinRT.ViewModels;
+using VLC_WinRT.Views.MainPages;
 
-namespace VLC_WINRT_APP.Commands.RemovableDevices
+namespace VLC_WinRT.Commands.RemovableDevices
 {
     public class GoUpperFolderCommand : AlwaysExecutableCommand
     {

@@ -1,9 +1,9 @@
 ﻿using System;
 using Windows.Storage;
 using SQLite;
-using VLC_WINRT_APP.Common;
+using VLC_WinRT.Common;
 
-namespace VLC_WINRT_APP.Model.Stream
+namespace VLC_WinRT.Model.Stream
 {
     class StreamMedia : BindableBase, IVLCMedia
     {

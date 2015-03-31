@@ -7,8 +7,8 @@
     <ProjectGuid>{B1A5A4DC-2C9F-4343-AF3F-372944C4607D}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>VLC_WINRT_APP</RootNamespace>
-    <AssemblyName>VLC_WINRT_APP.Windows</AssemblyName>
+    <RootNamespace>VLC_WinRT</RootNamespace>
+    <AssemblyName>VLC_WinRT.Windows</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformVersion>8.1</TargetPlatformVersion>
     <MinimumVisualStudioVersion>12</MinimumVisualStudioVersion>

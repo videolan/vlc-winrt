@@ -3,7 +3,7 @@ using System;
 using System.Diagnostics;
 using Windows.System;
 
-namespace VLC_WINRT_APP.Helpers
+namespace VLC_WinRT.Helpers
 {
     public static class MemoryUsageHelper
     {

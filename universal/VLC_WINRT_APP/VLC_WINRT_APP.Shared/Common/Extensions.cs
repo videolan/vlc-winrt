@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
-namespace VLC_WINRT_APP
+namespace VLC_WinRT
 {
     public static class Extensions
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Windows.Storage;
 
-namespace VLC_WINRT_APP.Model
+namespace VLC_WinRT.Model
 {
     public interface IVLCMedia
     {

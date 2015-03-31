@@ -1,5 +1,5 @@
 ﻿using Windows.UI.Xaml.Controls;
-namespace VLC_WINRT_APP.Views.UserControls
+namespace VLC_WinRT.Views.UserControls
 {
     public sealed partial class SliderControl : UserControl
     {

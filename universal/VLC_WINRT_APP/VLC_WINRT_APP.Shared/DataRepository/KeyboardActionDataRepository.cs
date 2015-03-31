@@ -6,9 +6,9 @@ using Windows.Storage;
 using Windows.Storage.FileProperties;
 using Windows.System;
 using SQLite;
-using VLC_WINRT_APP.Model;
+using VLC_WinRT.Model;
 
-namespace VLC_WINRT_APP.DataRepository
+namespace VLC_WinRT.DataRepository
 {
     public class KeyboardActionDataRepository : IDataRepository
     {

@@ -1,9 +1,9 @@
 ﻿using System;
 using Windows.ApplicationModel.Resources;
 using Windows.UI.Xaml.Data;
-using VLC_WINRT_APP.Model.Video;
+using VLC_WinRT.Model.Video;
 
-namespace VLC_WINRT_APP.Converters
+namespace VLC_WinRT.Converters
 {
     public class VideoViewStringifyConverter : IValueConverter
     {

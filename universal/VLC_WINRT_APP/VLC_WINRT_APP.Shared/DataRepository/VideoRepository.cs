@@ -5,9 +5,9 @@ using System.IO;
 using System.Text;
 using System.Linq;
 using System.Threading.Tasks;
-using VLC_WINRT_APP.Model.Video;
+using VLC_WinRT.Model.Video;
 
-namespace VLC_WINRT_APP.DataRepository
+namespace VLC_WinRT.DataRepository
 {
     public class VideoRepository : IDataRepository
     {

@@ -13,14 +13,14 @@
 */
 
 using Autofac;
-using VLC_WINRT_APP.Common;
-using VLC_WINRT_APP.ViewModels.NetworkVM;
-using VLC_WINRT_APP.ViewModels.RemovableDevicesVM;
-using VLC_WINRT_APP.ViewModels.Settings;
-using VLC_WINRT_APP.ViewModels.MusicVM;
-using VLC_WINRT_APP.ViewModels.VideoVM;
+using VLC_WinRT.Common;
+using VLC_WinRT.ViewModels.NetworkVM;
+using VLC_WinRT.ViewModels.RemovableDevicesVM;
+using VLC_WinRT.ViewModels.Settings;
+using VLC_WinRT.ViewModels.MusicVM;
+using VLC_WinRT.ViewModels.VideoVM;
 
-namespace VLC_WINRT_APP.ViewModels
+namespace VLC_WinRT.ViewModels
 {
     /// <summary>
     ///     This class contains static references to all the view models in the

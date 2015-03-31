@@ -1,6 +1,6 @@
 ﻿using Windows.UI.Xaml.Controls;
 
-namespace VLC_WINRT_APP.Views.MusicPages.ArtistPageControls
+namespace VLC_WinRT.Views.MusicPages.ArtistPageControls
 {
     public sealed partial class MainArtistHeader : UserControl
     {

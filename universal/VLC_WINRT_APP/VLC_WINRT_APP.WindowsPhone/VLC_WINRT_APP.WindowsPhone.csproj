@@ -7,8 +7,8 @@
     <ProjectGuid>{C8711A23-F511-4FA1-A3F5-F2578F820A5A}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>VLC_WINRT_APP</RootNamespace>
-    <AssemblyName>VLC_WINRT_APP.WindowsPhone</AssemblyName>
+    <RootNamespace>VLC_WinRT</RootNamespace>
+    <AssemblyName>VLC_WinRT.WindowsPhone</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformVersion>8.1</TargetPlatformVersion>
     <MinimumVisualStudioVersion>12</MinimumVisualStudioVersion>

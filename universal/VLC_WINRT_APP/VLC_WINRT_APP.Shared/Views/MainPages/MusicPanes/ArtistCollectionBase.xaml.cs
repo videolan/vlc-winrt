@@ -1,11 +1,11 @@
 ﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Microsoft.Xaml.Interactivity;
-using VLC_WINRT_APP.Helpers;
-using VLC_WINRT_APP.Model.Video;
+using VLC_WinRT.Helpers;
+using VLC_WinRT.Model.Video;
 using WinRTXamlToolkit.Controls.Extensions;
 
-namespace VLC_WINRT_APP.Views.MainPages.MusicPanes
+namespace VLC_WinRT.Views.MainPages.MusicPanes
 {
     public sealed partial class ArtistCollectionBase : UserControl
     {

@@ -14,11 +14,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Windows.Web.Http;
 using Newtonsoft.Json;
-using VLC_WINRT_APP.MusicMetaFetcher.Models.Deezer;
-using Album = VLC_WINRT_APP.MusicMetaFetcher.Models.MusicEntities.Album;
-using Artist = VLC_WINRT_APP.MusicMetaFetcher.Models.MusicEntities.Artist;
+using VLC_WinRT.MusicMetaFetcher.Models.Deezer;
+using Album = VLC_WinRT.MusicMetaFetcher.Models.MusicEntities.Album;
+using Artist = VLC_WinRT.MusicMetaFetcher.Models.MusicEntities.Artist;
 
-namespace VLC_WINRT_APP.MusicMetaFetcher.Fetchers
+namespace VLC_WinRT.MusicMetaFetcher.Fetchers
 {
     public class DeezerClient : IMusicMetaFetcher
     {

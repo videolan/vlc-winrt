@@ -1,9 +1,9 @@
 ﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using VLC_WINRT_APP.Model.Video;
-using VLC_WINRT_APP.ViewModels;
+using VLC_WinRT.Model.Video;
+using VLC_WinRT.ViewModels;
 
-namespace VLC_WINRT_APP.Views.UserControls.Placeholder
+namespace VLC_WinRT.Views.UserControls.Placeholder
 {
     public sealed partial class NoVideosPlaceholder : UserControl
     {

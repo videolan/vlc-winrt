@@ -1,8 +1,8 @@
 ﻿using Windows.UI.Xaml.Controls;
-using VLC_WINRT_APP.Model.Music;
-using VLC_WINRT_APP.ViewModels.MusicVM;
+using VLC_WinRT.Model.Music;
+using VLC_WinRT.ViewModels.MusicVM;
 
-namespace VLC_WINRT_APP.Views.MainPages.MusicPanes.ArtistCollectionPanes
+namespace VLC_WinRT.Views.MainPages.MusicPanes.ArtistCollectionPanes
 {
     public sealed partial class TracksListView : Grid
     {

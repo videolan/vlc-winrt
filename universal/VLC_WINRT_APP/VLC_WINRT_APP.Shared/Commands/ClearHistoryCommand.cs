@@ -9,10 +9,10 @@
 
 using Autofac;
 using VLC_WINRT.Common;
-using VLC_WINRT_APP.Services.RunTime;
+using VLC_WinRT.Services.RunTime;
 
 
-namespace VLC_WINRT_APP.Commands
+namespace VLC_WinRT.Commands
 {
     public class ClearHistoryCommand : AlwaysExecutableCommand
     {

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
-using VLC_WINRT_APP.Model.Music;
+using VLC_WinRT.Model.Music;
 
-namespace VLC_WINRT_APP.Converters
+namespace VLC_WinRT.Converters
 {
     public class MusicViewVisibilityConverter : IValueConverter
     {

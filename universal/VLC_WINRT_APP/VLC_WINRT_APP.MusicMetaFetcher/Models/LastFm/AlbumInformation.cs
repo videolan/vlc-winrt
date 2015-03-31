@@ -9,7 +9,7 @@
 
 using Newtonsoft.Json;
 
-namespace VLC_WINRT_APP.MusicMetaFetcher.Models.LastFm
+namespace VLC_WinRT.MusicMetaFetcher.Models.LastFm
 {
     /// <summary>
     /// Used for mapping Last.FM Json object.

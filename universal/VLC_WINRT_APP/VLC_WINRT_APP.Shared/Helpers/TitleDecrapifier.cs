@@ -14,7 +14,7 @@ using System.Linq;
 using System.Text;
 using Windows.ApplicationModel.Resources;
 
-namespace VLC_WINRT_APP.Helpers
+namespace VLC_WinRT.Helpers
 {
     public static class TitleDecrapifier
     {

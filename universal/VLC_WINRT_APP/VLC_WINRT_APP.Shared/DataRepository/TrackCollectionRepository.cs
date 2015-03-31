@@ -2,12 +2,12 @@
 using System.IO;
 using System.Threading.Tasks;
 using SQLite;
-using VLC_WINRT_APP.Model.Music;
-using VLC_WINRT_APP.ViewModels.MusicVM;
+using VLC_WinRT.Model.Music;
+using VLC_WinRT.ViewModels.MusicVM;
 using System.Collections.Generic;
-using VLC_WINRT_APP.ViewModels;
+using VLC_WinRT.ViewModels;
 
-namespace VLC_WINRT_APP.DataRepository
+namespace VLC_WinRT.DataRepository
 {
     public class TrackCollectionRepository : IDataRepository
     {

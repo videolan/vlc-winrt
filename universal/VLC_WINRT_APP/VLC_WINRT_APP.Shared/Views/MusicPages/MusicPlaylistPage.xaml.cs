@@ -3,7 +3,7 @@ using Windows.Phone.UI.Input;
 #endif
 using Windows.UI.Xaml.Controls;
 
-namespace VLC_WINRT_APP.Views.MusicPages
+namespace VLC_WinRT.Views.MusicPages
 {
     public sealed partial class MusicPlaylistPage : Page
     {

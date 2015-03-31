@@ -13,11 +13,11 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media;
-using VLC_WINRT_APP.Model.Music;
-using VLC_WINRT_APP.ViewModels;
-using VLC_WINRT_APP.ViewModels.MusicVM;
+using VLC_WinRT.Model.Music;
+using VLC_WinRT.ViewModels;
+using VLC_WinRT.ViewModels.MusicVM;
 
-namespace VLC_WINRT_APP.Converters
+namespace VLC_WinRT.Converters
 {
     public class CurrentTrackForegroundConverter : IValueConverter
     {

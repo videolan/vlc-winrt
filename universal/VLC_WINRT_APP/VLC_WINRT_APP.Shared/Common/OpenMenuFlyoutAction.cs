@@ -11,7 +11,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls.Primitives;
 using Microsoft.Xaml.Interactivity;
 
-namespace VLC_WINRT_APP.Common
+namespace VLC_WinRT.Common
 {
     public class OpenMenuFlyoutAction : DependencyObject, IAction
     {

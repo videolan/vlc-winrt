@@ -8,16 +8,16 @@ using Windows.Storage;
 using Windows.Storage.AccessCache;
 using Windows.Storage.Search;
 using Windows.UI.Core;
-using VLC_WINRT_APP.Commands.RemovableDevices;
-using VLC_WINRT_APP.Common;
-using VLC_WINRT_APP.Helpers;
-using VLC_WINRT_APP.Helpers.MusicLibrary;
-using VLC_WINRT_APP.Model;
-using VLC_WINRT_APP.Model.Music;
-using VLC_WINRT_APP.Services.RunTime;
-using VLC_WINRT_APP.Views.VideoPages;
+using VLC_WinRT.Commands.RemovableDevices;
+using VLC_WinRT.Common;
+using VLC_WinRT.Helpers;
+using VLC_WinRT.Helpers.MusicLibrary;
+using VLC_WinRT.Model;
+using VLC_WinRT.Model.Music;
+using VLC_WinRT.Services.RunTime;
+using VLC_WinRT.Views.VideoPages;
 
-namespace VLC_WINRT_APP.ViewModels.Others.VlcExplorer
+namespace VLC_WinRT.ViewModels.Others.VlcExplorer
 {
     public class FileExplorerViewModel : BindableBase
     {

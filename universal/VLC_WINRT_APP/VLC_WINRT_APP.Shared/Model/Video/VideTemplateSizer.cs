@@ -1,8 +1,8 @@
 ﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using VLC_WINRT_APP.Helpers;
+using VLC_WinRT.Helpers;
 
-namespace VLC_WINRT_APP.Model.Video
+namespace VLC_WinRT.Model.Video
 {
     public enum TemplateSize
     {

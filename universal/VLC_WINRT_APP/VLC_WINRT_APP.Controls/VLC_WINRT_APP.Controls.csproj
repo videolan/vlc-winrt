@@ -8,8 +8,8 @@
     <ProjectGuid>{0627F270-00D9-45E8-8CAE-74BFEA436379}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>VLC_WINRT_APP.Controls</RootNamespace>
-    <AssemblyName>VLC_WINRT_APP.Controls</AssemblyName>
+    <RootNamespace>VLC_WinRT.Controls</RootNamespace>
+    <AssemblyName>VLC_WinRT.Controls</AssemblyName>
     <DefaultLanguage>fr-FR</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>

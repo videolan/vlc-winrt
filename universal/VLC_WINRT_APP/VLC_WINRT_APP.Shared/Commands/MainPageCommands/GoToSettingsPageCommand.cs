@@ -8,10 +8,10 @@
  **********************************************************************/
 
 using VLC_WINRT.Common;
-using VLC_WINRT_APP.Views.UserControls;
-using VLC_WINRT_APP.Views.VariousPages;
+using VLC_WinRT.Views.UserControls;
+using VLC_WinRT.Views.VariousPages;
 
-namespace VLC_WINRT_APP.Commands.MainPageCommands
+namespace VLC_WinRT.Commands.MainPageCommands
 {
     public class GoToSettingsPageCommand : AlwaysExecutableCommand
     {

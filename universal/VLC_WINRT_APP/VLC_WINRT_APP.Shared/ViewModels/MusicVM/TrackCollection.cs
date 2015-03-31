@@ -12,9 +12,9 @@ using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using SQLite;
-using VLC_WINRT_APP.Commands.Music;
-using VLC_WINRT_APP.Common;
-using VLC_WINRT_APP.Model.Music;
+using VLC_WinRT.Commands.Music;
+using VLC_WinRT.Common;
+using VLC_WinRT.Model.Music;
 
 #if WINDOWS_PHONE_APP
 using System.Linq;
@@ -23,7 +23,7 @@ using VLC_WINRT_APP.BackgroundAudioPlayer.Model;
 using VLC_WINRT_APP.Helpers;
 #endif
 
-namespace VLC_WINRT_APP.ViewModels.MusicVM
+namespace VLC_WinRT.ViewModels.MusicVM
 {
     public class TrackCollection : BindableBase
     {

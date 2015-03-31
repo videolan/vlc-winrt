@@ -6,9 +6,9 @@ using System.Collections.Generic;
 using System.Net;
 using Windows.Storage;
 using Windows.Storage.Streams;
-using VLC_WINRT_APP.ViewModels;
+using VLC_WinRT.ViewModels;
 
-namespace VLC_WINRT_APP.Commands.Social
+namespace VLC_WinRT.Commands.Social
 {
     public class ShareNowPlayingMusicCommand : AlwaysExecutableCommand
     {

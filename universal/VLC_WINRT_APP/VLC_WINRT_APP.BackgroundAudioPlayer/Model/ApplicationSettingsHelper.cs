@@ -10,7 +10,7 @@
 using System.Diagnostics;
 using Windows.Storage;
 
-namespace VLC_WINRT_APP.BackgroundAudioPlayer
+namespace VLC_WinRT.BackgroundAudioPlayer
 {
     static class ApplicationSettingsHelper
     {

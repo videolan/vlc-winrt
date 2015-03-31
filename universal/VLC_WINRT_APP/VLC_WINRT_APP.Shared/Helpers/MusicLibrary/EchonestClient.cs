@@ -14,9 +14,9 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using VLC_WINRT_APP.Helpers.MusicLibrary.EchoNest;
+using VLC_WinRT.Helpers.MusicLibrary.EchoNest;
 
-namespace VLC_WINRT_APP.Helpers.MusicLibrary
+namespace VLC_WinRT.Helpers.MusicLibrary
 {
     public class EchonestClient
     {

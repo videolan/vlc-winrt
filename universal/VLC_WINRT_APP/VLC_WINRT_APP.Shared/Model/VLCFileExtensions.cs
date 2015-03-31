@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace VLC_WINRT_APP.Model
+namespace VLC_WinRT.Model
 {
     public static class VLCFileExtensions
     {

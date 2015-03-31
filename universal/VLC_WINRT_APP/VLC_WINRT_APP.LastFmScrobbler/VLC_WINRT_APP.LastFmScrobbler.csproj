@@ -8,8 +8,8 @@
     <ProjectGuid>{F531474D-C881-4776-B519-E6374E80F4CE}</ProjectGuid>
     <OutputType>winmdobj</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>VLC_WINRT_APP.LastFmScrobbler</RootNamespace>
-    <AssemblyName>VLC_WINRT_APP.LastFmScrobbler</AssemblyName>
+    <RootNamespace>VLC_WinRT.LastFmScrobbler</RootNamespace>
+    <AssemblyName>VLC_WinRT.LastFmScrobbler</AssemblyName>
     <DefaultLanguage>fr-FR</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>

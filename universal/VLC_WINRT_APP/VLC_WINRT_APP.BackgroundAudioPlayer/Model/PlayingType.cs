@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace VLC_WINRT_APP.BackgroundAudioPlayer
+namespace VLC_WinRT.BackgroundAudioPlayer
 {
     public enum PlayingType
     {

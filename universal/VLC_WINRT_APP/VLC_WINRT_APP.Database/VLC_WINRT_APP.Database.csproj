@@ -8,8 +8,8 @@
     <ProjectGuid>{1E0BF0FC-E5CB-4BDF-918F-D2DE64F7A6C5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>VLC_WINRT_APP.Database</RootNamespace>
-    <AssemblyName>VLC_WINRT_APP.Database</AssemblyName>
+    <RootNamespace>VLC_WinRT.Database</RootNamespace>
+    <AssemblyName>VLC_WinRT.Database</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>

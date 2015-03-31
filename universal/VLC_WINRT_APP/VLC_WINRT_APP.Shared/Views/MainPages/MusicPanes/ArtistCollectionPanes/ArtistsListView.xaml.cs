@@ -3,13 +3,13 @@ using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Microsoft.Xaml.Interactivity;
-using VLC_WINRT_APP.Helpers;
-using VLC_WINRT_APP.Model.Music;
-using VLC_WINRT_APP.Model.Video;
-using VLC_WINRT_APP.ViewModels;
+using VLC_WinRT.Helpers;
+using VLC_WinRT.Model.Music;
+using VLC_WinRT.Model.Video;
+using VLC_WinRT.ViewModels;
 using WinRTXamlToolkit.Controls.Extensions;
 
-namespace VLC_WINRT_APP.Views.MainPages.MusicPanes.ArtistCollectionPanes
+namespace VLC_WinRT.Views.MainPages.MusicPanes.ArtistCollectionPanes
 {
     public sealed partial class ArtistsListView : UserControl
     {

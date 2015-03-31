@@ -21,26 +21,26 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using Autofac;
 using VLC_WINRT.Common;
-using VLC_WINRT_APP.Commands.MainPageCommands;
-using VLC_WINRT_APP.Common;
-using VLC_WINRT_APP.Helpers;
-using VLC_WINRT_APP.Commands;
-using VLC_WINRT_APP.Model.Search;
-using VLC_WINRT_APP.Services.RunTime;
-using VLC_WINRT_APP.ViewModels.MusicVM;
-using VLC_WINRT_APP.Views.MainPages;
-using VLC_WINRT_APP.Views.VariousPages;
+using VLC_WinRT.Commands.MainPageCommands;
+using VLC_WinRT.Common;
+using VLC_WinRT.Helpers;
+using VLC_WinRT.Commands;
+using VLC_WinRT.Model.Search;
+using VLC_WinRT.Services.RunTime;
+using VLC_WinRT.ViewModels.MusicVM;
+using VLC_WinRT.Views.MainPages;
+using VLC_WinRT.Views.VariousPages;
 #if WINDOWS_PHONE_APP
 using AppBar = CustomAppBarDesktop.AppBar;
 #else
 using AppBar = CustomAppBarDesktop.AppBar;
 #endif
-using Panel = VLC_WINRT_APP.Model.Panel;
+using Panel = VLC_WinRT.Model.Panel;
 using Windows.UI.Popups;
 using libVLCX;
-using VLC_WINRT_APP.Model;
+using VLC_WinRT.Model;
 
-namespace VLC_WINRT_APP.ViewModels
+namespace VLC_WinRT.ViewModels
 {
     public class MainVM : BindableBase
     {

@@ -7,11 +7,11 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using libVLCX;
-using VLC_WINRT_APP.Model;
-using VLC_WINRT_APP.Model.Stream;
-using VLC_WINRT_APP.Services.Interface;
+using VLC_WinRT.Model;
+using VLC_WinRT.Model.Stream;
+using VLC_WinRT.Services.Interface;
 
-namespace VLC_WINRT_APP.Services.RunTime
+namespace VLC_WinRT.Services.RunTime
 {
     public class MFService : IMediaService
     {

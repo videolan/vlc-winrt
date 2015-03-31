@@ -11,7 +11,7 @@ using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
 
-namespace VLC_WINRT_APP.Converters
+namespace VLC_WinRT.Converters
 {
     /// <summary>
     ///     Value converter that translates true to <see cref="Visibility.Visible" /> and false to

@@ -17,11 +17,11 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Media;
 using VLC_WINRT.Common;
-using VLC_WINRT_APP.Model;
-using VLC_WINRT_APP.ViewModels;
-using VLC_WINRT_APP.Views.MainPages;
+using VLC_WinRT.Model;
+using VLC_WinRT.ViewModels;
+using VLC_WinRT.Views.MainPages;
 
-namespace VLC_WINRT_APP.Commands.MainPageCommands
+namespace VLC_WinRT.Commands.MainPageCommands
 {
 
     public class GoToPanelCommand : AlwaysExecutableCommand

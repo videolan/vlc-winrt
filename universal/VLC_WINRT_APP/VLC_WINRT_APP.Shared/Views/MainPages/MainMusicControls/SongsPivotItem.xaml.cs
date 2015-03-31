@@ -2,9 +2,9 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Microsoft.Xaml.Interactivity;
-using VLC_WINRT_APP.Helpers;
+using VLC_WinRT.Helpers;
 
-namespace VLC_WINRT_APP.Views.MainPages.MainMusicControls
+namespace VLC_WinRT.Views.MainPages.MainMusicControls
 {
     public sealed partial class SongsPivotItem : Page
     {

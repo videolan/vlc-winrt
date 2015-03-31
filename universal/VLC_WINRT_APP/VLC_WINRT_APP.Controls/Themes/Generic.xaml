@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="using:VLC_WINRT_APP.Controls.Themes"
-                    xmlns:controls="using:VLC_WINRT_APP.Controls">
+                    xmlns:local="using:VLC_WinRT.Controls.Themes"
+                    xmlns:controls="using:VLC_WinRT.Controls">
 
     <Style TargetType="controls:SplitShell">
         <Setter Property="Template">

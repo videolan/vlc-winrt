@@ -16,10 +16,10 @@ using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.Streams;
 using Newtonsoft.Json.Linq;
-using VLC_WINRT_APP.MusicMetaFetcher.Fetchers;
-using VLC_WINRT_APP.MusicMetaFetcher.Models.MusicEntities;
+using VLC_WinRT.MusicMetaFetcher.Fetchers;
+using VLC_WinRT.MusicMetaFetcher.Models.MusicEntities;
 
-namespace VLC_WINRT_APP.MusicMetaFetcher
+namespace VLC_WinRT.MusicMetaFetcher
 {
     public class MusicMDFetcher
     {

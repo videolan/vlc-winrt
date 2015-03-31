@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace VLC_WINRT_APP.Model.Events
+namespace VLC_WinRT.Model.Events
 {
     public class InternetConnectionChangedEventArgs : EventArgs
     {

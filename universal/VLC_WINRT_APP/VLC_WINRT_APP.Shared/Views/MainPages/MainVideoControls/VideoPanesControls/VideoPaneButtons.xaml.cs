@@ -1,9 +1,9 @@
 ﻿using Microsoft.Xaml.Interactivity;
-using VLC_WINRT_APP.ViewModels;
+using VLC_WinRT.ViewModels;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-namespace VLC_WINRT_APP.Views.MainPages.MainVideoControls.VideoPanesControls
+namespace VLC_WinRT.Views.MainPages.MainVideoControls.VideoPanesControls
 {
     public sealed partial class VideoPaneButtons : UserControl
     {

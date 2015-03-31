@@ -26,19 +26,19 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 using SQLite;
 using VLC_WINRT.Common;
-using VLC_WINRT_APP.Commands;
-using VLC_WINRT_APP.Commands.Video;
-using VLC_WINRT_APP.Common;
-using VLC_WINRT_APP.DataRepository;
-using VLC_WINRT_APP.Helpers;
-using VLC_WINRT_APP.Helpers.VideoLibrary;
-using VLC_WINRT_APP.Model;
-using VLC_WINRT_APP.Model.Video;
+using VLC_WinRT.Commands;
+using VLC_WinRT.Commands.Video;
+using VLC_WinRT.Common;
+using VLC_WinRT.DataRepository;
+using VLC_WinRT.Helpers;
+using VLC_WinRT.Helpers.VideoLibrary;
+using VLC_WinRT.Model;
+using VLC_WinRT.Model.Video;
 using WinRTXamlToolkit.IO.Extensions;
-using Panel = VLC_WINRT_APP.Model.Panel;
-using VLC_WINRT_APP.Model.Search;
+using Panel = VLC_WinRT.Model.Panel;
+using VLC_WinRT.Model.Search;
 
-namespace VLC_WINRT_APP.ViewModels.VideoVM
+namespace VLC_WinRT.ViewModels.VideoVM
 {
     public class VideoLibraryVM : BindableBase
     {

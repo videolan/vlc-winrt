@@ -1,4 +1,4 @@
-﻿namespace VLC_WINRT_APP.Database.DataRepository
+﻿namespace VLC_WinRT.Database.DataRepository
 {
     interface IDataRepository
     {

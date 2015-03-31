@@ -1,11 +1,11 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="using:VLC_WINRT_APP.Resources"
-                    xmlns:controls="using:VLC_WINRT_APP.Controls"
+                    xmlns:local="using:VLC_WinRT.Resources"
+                    xmlns:controls="using:VLC_WinRT.Controls"
                     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
-                    xmlns:common="using:VLC_WINRT_APP.Common"
+                    xmlns:common="using:VLC_WinRT.Common"
                     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
-                    xmlns:userControls="using:VLC_WINRT_APP.Views.UserControls"
+                    xmlns:userControls="using:VLC_WinRT.Views.UserControls"
                     xmlns:triggers="using:WinRT.Triggers">
 
     <ResourceDictionary.MergedDictionaries>

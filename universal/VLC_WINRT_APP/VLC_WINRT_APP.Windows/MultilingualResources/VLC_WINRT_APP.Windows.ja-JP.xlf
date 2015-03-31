@@ -6,26 +6,6 @@
     </header>
     <body>
       <group id="Resources">
-        <trans-unit id="Resources\TrackAlreadyExistsInPlaylist" translate="yes" xml:space="preserve">
-          <source>This track is already in your playlist!</source>
-          <target state="new">This track is already in your playlist!</target>
-        </trans-unit>
-        <trans-unit id="Resources\HaveToSelectPlaylist" translate="yes" xml:space="preserve">
-          <source>You have to select a playlist.</source>
-          <target state="new">You have to select a playlist.</target>
-        </trans-unit>
-        <trans-unit id="Resources\PlaylistAlreadyExists" translate="yes" xml:space="preserve">
-          <source>A playlist with this name already exists</source>
-          <target state="new">A playlist with this name already exists</target>
-        </trans-unit>
-        <trans-unit id="Resources\TrackAddedToYourPlaylist" translate="yes" xml:space="preserve">
-          <source>{0} added to your playlist</source>
-          <target state="new">{0} added to your playlist</target>
-        </trans-unit>
-        <trans-unit id="Resources\AlbumsFound" translate="yes" xml:space="preserve">
-          <source>Albums Found: {0}</source>
-          <target state="new">Albums Found: {0}</target>
-        </trans-unit>
         <trans-unit id="Resources\ViewArtistLabel\Label" translate="yes" xml:space="preserve">
           <source>view artist</source>
           <target state="new">view artist</target>
@@ -105,6 +85,30 @@
         <trans-unit id="Resources\AddToPlaylist\Text" translate="yes" xml:space="preserve">
           <source>Add to playlist</source>
           <target state="translated">アルバム</target>
+        </trans-unit>
+        <trans-unit id="Resources\AddToCollectionButton\Content" translate="yes" xml:space="preserve">
+          <source>Add to Collection</source>
+          <target state="new">Add to Collection</target>
+        </trans-unit>
+        <trans-unit id="Resources\AddToPlaylistButton\Content" translate="yes" xml:space="preserve">
+          <source>Add to Playlist</source>
+          <target state="new">Add to Playlist</target>
+        </trans-unit>
+        <trans-unit id="Resources\BackButton\Text" translate="yes" xml:space="preserve">
+          <source>Back</source>
+          <target state="new">Back</target>
+        </trans-unit>
+        <trans-unit id="Resources\GeneralSettingsHeader\Header" translate="yes" xml:space="preserve">
+          <source>general</source>
+          <target state="new">general</target>
+        </trans-unit>
+        <trans-unit id="Resources\PlaceholderTextBox\PlaceholderText" translate="yes" xml:space="preserve">
+          <source>Playlist Name</source>
+          <target state="new">Playlist Name</target>
+        </trans-unit>
+        <trans-unit id="Resources\PlaylistShareText\Text" translate="yes" xml:space="preserve">
+          <source>The playlist will also be available on your Windows computer, laptop or tablet, only if the audio files are on your other devices.</source>
+          <target state="new">The playlist will also be available on your Windows computer, laptop or tablet, only if the audio files are on your other devices.</target>
         </trans-unit>
         <trans-unit id="Resources\ViewArtist\Text" translate="yes" xml:space="preserve">
           <source>view artist</source>

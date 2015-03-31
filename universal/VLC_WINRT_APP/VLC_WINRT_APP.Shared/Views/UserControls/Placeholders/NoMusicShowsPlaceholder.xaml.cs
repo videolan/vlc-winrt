@@ -1,6 +1,6 @@
 ﻿using Windows.UI.Xaml.Controls;
 
-namespace VLC_WINRT_APP.Views.UserControls.Placeholder
+namespace VLC_WinRT.Views.UserControls.Placeholder
 {
     public sealed partial class NoMusicShowsPlaceholder : UserControl
     {

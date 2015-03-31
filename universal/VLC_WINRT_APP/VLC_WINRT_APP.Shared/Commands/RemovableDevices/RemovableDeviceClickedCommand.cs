@@ -1,10 +1,10 @@
 ﻿using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
 using VLC_WINRT.Common;
-using VLC_WINRT_APP.ViewModels;
-using VLC_WINRT_APP.ViewModels.Others.VlcExplorer;
+using VLC_WinRT.ViewModels;
+using VLC_WinRT.ViewModels.Others.VlcExplorer;
 
-namespace VLC_WINRT_APP.Commands.RemovableDevices
+namespace VLC_WinRT.Commands.RemovableDevices
 {
     public class RemovableDeviceClickedCommand : AlwaysExecutableCommand
     {

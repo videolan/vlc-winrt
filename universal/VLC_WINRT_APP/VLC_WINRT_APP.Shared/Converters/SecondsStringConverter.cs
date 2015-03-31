@@ -10,7 +10,7 @@
 using System;
 using Windows.UI.Xaml.Data;
 
-namespace VLC_WINRT_APP.Converters
+namespace VLC_WinRT.Converters
 {
     public class SecondsStringConverter : IValueConverter
     {

@@ -3,7 +3,7 @@ using Windows.UI.Popups;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 
-namespace VLC_WINRT_APP.Views.UserControls.Placeholder
+namespace VLC_WinRT.Views.UserControls.Placeholder
 {
     public sealed partial class NoData : UserControl
     {

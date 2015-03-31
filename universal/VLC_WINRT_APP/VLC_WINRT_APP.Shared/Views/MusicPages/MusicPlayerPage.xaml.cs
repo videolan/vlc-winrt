@@ -1,14 +1,14 @@
-﻿using VLC_WINRT_APP.Helpers;
+﻿using VLC_WinRT.Helpers;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Xaml.Interactivity;
-using VLC_WINRT_APP.ViewModels;
+using VLC_WinRT.ViewModels;
 #if WINDOWS_PHONE_APP
 using Windows.Phone.UI.Input;
 #endif
 
-namespace VLC_WINRT_APP.Views.MusicPages
+namespace VLC_WinRT.Views.MusicPages
 {
     /// <summary>
     /// Une page vide peut être utilisée seule ou constituer une page de destination au sein d'un frame.

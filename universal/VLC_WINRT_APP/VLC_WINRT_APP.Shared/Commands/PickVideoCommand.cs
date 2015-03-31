@@ -11,14 +11,14 @@ using System;
 using System.Windows.Input;
 using Windows.Storage;
 using Windows.Storage.Pickers;
-using VLC_WINRT_APP.Model;
+using VLC_WinRT.Model;
 using System.Diagnostics;
-using VLC_WINRT_APP.Services.RunTime;
+using VLC_WinRT.Services.RunTime;
 using System.Collections.Generic;
-using VLC_WINRT_APP.Helpers;
-using VLC_WINRT_APP.ViewModels;
+using VLC_WinRT.Helpers;
+using VLC_WinRT.ViewModels;
 
-namespace VLC_WINRT_APP.Commands
+namespace VLC_WinRT.Commands
 {
     public class PickVideoCommand : ICommand
     {

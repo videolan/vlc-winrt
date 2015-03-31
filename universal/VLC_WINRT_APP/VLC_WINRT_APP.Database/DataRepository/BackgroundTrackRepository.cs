@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SQLite;
-using VLC_WINRT_APP.Database.Model;
+using VLC_WinRT.Database.Model;
 
-namespace VLC_WINRT_APP.Database.DataRepository
+namespace VLC_WinRT.Database.DataRepository
 {
     public class BackgroundTrackRepository : IDataRepository
     {

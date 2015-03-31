@@ -8,10 +8,10 @@
  **********************************************************************/
 
 using VLC_WINRT.Common;
-using VLC_WINRT_APP.Model.Video;
-using VLC_WINRT_APP.ViewModels.VideoVM;
+using VLC_WinRT.Model.Video;
+using VLC_WinRT.ViewModels.VideoVM;
 
-namespace VLC_WINRT_APP.Commands.Video
+namespace VLC_WinRT.Commands.Video
 {
     public class FavoriteVideoCommand : AlwaysExecutableCommand
     {

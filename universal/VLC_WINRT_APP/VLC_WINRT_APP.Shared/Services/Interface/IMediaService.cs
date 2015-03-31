@@ -11,9 +11,9 @@ using libVLCX;
 using System;
 using System.Threading.Tasks;
 using Windows.Storage;
-using VLC_WINRT_APP.Model;
+using VLC_WinRT.Model;
 
-namespace VLC_WINRT_APP.Services.Interface
+namespace VLC_WinRT.Services.Interface
 {
     public interface IMediaService
     {

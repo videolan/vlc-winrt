@@ -9,8 +9,8 @@
     <ProjectGuid>{6BDABA8A-B559-4007-A17F-42125D3AA7A3}</ProjectGuid>
     <OutputType>winmdobj</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>VLC_WINRT_APP.BackgroundAudioPlayer</RootNamespace>
-    <AssemblyName>VLC_WINRT_APP.BackgroundAudioPlayer</AssemblyName>
+    <RootNamespace>VLC_WinRT.BackgroundAudioPlayer</RootNamespace>
+    <AssemblyName>VLC_WinRT.BackgroundAudioPlayer</AssemblyName>
     <DefaultLanguage>fr-FR</DefaultLanguage>
     <TargetPlatformVersion>8.1</TargetPlatformVersion>
     <MinimumVisualStudioVersion>12</MinimumVisualStudioVersion>

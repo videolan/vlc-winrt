@@ -1,9 +1,9 @@
 ﻿using System;
 using Windows.UI.Xaml.Data;
-using VLC_WINRT_APP.Model;
-using VLC_WINRT_APP.ViewModels;
+using VLC_WinRT.Model;
+using VLC_WinRT.ViewModels;
 
-namespace VLC_WINRT_APP.Converters
+namespace VLC_WinRT.Converters
 {
     public class PositionToTimeStampStringConverter : IValueConverter
     {

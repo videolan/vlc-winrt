@@ -2,12 +2,12 @@
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using VLC_WINRT_APP.Helpers;
-using VLC_WINRT_APP.Model.Video;
-using VLC_WINRT_APP.ViewModels.MusicVM;
-using VLC_WINRT_APP.Model.Music;
+using VLC_WinRT.Helpers;
+using VLC_WinRT.Model.Video;
+using VLC_WinRT.ViewModels.MusicVM;
+using VLC_WinRT.Model.Music;
 
-namespace VLC_WINRT_APP.Views.MainPages.MusicPanes
+namespace VLC_WinRT.Views.MainPages.MusicPanes
 {
     public sealed partial class AlbumCollectionBase : UserControl
     {
