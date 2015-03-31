@@ -623,11 +623,11 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             }
             trackItem = new TrackItem
             {
-                ArtistName = (trackInfos == null || string.IsNullOrEmpty(trackInfos.Artist)) ? "Unknown artist" : trackInfos.Artist,
-                AlbumName = (trackInfos == null) ? "Uknown album" : trackInfos.Album,
-                Name = (trackInfos == null || string.IsNullOrEmpty(trackInfos.Title)) ? track.DisplayName : trackInfos.Title,
+                ArtistName = (string.IsNullOrEmpty(trackInfos?.Artist)) ? "Unknown artist" : trackInfos?.Artist,
+                AlbumName = trackInfos?.Album ?? "Uknown album",
+                Name = (string.IsNullOrEmpty(trackInfos?.Title)) ? track.DisplayName : trackInfos?.Title,
                 Path = track.Path,
-                Duration = (trackInfos == null) ? TimeSpan.Zero : trackInfos.Duration,
+                Duration = trackInfos?.Duration ?? TimeSpan.Zero,
                 Index = 0,
                 File = track
             };
