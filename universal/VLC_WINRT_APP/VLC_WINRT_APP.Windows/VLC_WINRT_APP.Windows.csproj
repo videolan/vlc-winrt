@@ -135,9 +135,6 @@
     <Compile Include="Views\UserControls\LicenseFlyout.xaml.cs">
       <DependentUpon>LicenseFlyout.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControls\SettingsFlyout.xaml.cs">
-      <DependentUpon>SettingsFlyout.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\MainPages\MainPageMediaServers.xaml.cs">
       <DependentUpon>MainPageMediaServers.xaml</DependentUpon>
     </Compile>
@@ -825,10 +822,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControls\LicenseFlyout.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\UserControls\SettingsFlyout.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

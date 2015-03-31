@@ -17,13 +17,8 @@ namespace VLC_WINRT_APP.Commands.MainPageCommands
     {
         public override void Execute(object parameter)
         {
-#if WINDOWS_PHONE_APP
             if (App.ApplicationFrame.CurrentSourcePageType != typeof(SettingsPage))
                 App.ApplicationFrame.Navigate(typeof(SettingsPage));
-#else
-            var settingsFlyout = new SettingsFlyout();
-            settingsFlyout.Show();
-#endif
         }
     }
 }

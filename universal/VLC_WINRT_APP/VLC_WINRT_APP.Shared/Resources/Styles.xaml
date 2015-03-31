@@ -93,6 +93,7 @@
                 Value="Disabled" />
     </Style>
 
+
     <Style x:Key="TextBlockButtonStyle"
            TargetType="ButtonBase">
         <Setter Property="MinWidth"

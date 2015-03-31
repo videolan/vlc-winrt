@@ -104,9 +104,6 @@
     <Compile Include="Views\VariousPages\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\VariousPages\SettingsPage.xaml.cs">
-      <DependentUpon>SettingsPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\VariousPages\SpecialThanks.xaml.cs">
       <DependentUpon>SpecialThanks.xaml</DependentUpon>
     </Compile>
@@ -797,10 +794,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\VariousPages\AboutPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\VariousPages\SettingsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

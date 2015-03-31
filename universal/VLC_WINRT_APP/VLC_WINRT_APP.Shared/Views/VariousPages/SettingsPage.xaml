@@ -1,0 +1,173 @@
+﻿<Page x:Class="VLC_WINRT_APP.Views.VariousPages.SettingsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:VLC_WINRT_APP.Views.VariousPages"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:userControls="using:VLC_WINRT_APP.Views.UserControls"
+      mc:Ignorable="d"
+      Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}">
+        <ScrollViewer Style="{StaticResource VerticalScrollViewerStyle}">
+            <StackPanel MaxWidth="600"
+                        Margin="12,0">
+                <TextBlock x:Name="AppVersion" />
+                <TextBlock Text="user interface" 
+                           Style="{StaticResource SubheaderTextBlockStyle}"/>
+                <CheckBox x:Uid="ManualSetThemeCheckbox"
+                          Content="Manually set the application theme"
+                          IsChecked="{Binding ForceAppTheme, Mode=TwoWay}" />
+                <ToggleSwitch IsEnabled="{Binding ForceAppTheme}"
+                              x:Uid="ApplicationTheme"
+                              Header="Application theme"
+                              OffContent="Light"
+                              OnContent="Dark"
+                              IsOn="{Binding ApplicationTheme, Converter={StaticResource ApplicationThemeBooleanConverter}, Mode=TwoWay}" />
+
+                <TextBlock Text="music"
+                           Style="{StaticResource SubheaderTextBlockStyle}" />
+                <Border Height="1"
+                        Margin="0,12"
+                        Background="{StaticResource SecondColor}" />
+                <TextBlock Text="last.fm"
+                           Style="{StaticResource SubheaderTextBlockStyle}" />
+                <userControls:FocusTextBox Height="40"
+                                           x:Uid="UsernameTextbox"
+                                           Margin="0,12"
+                                           FontSize="20"
+                                           FontWeight="Light"
+                                           Text="{Binding LastFmUserName, Mode=TwoWay}"
+                                           PlaceholderText="username" />
+                <PasswordBox x:Name="PasswordBoxLastFm"
+                             x:Uid="PasswordBoxLastFm"
+                             Height="40"
+                             Margin="0,12"
+                             FontSize="20"
+                             FontWeight="Light"
+                             Password="{Binding LastFmPassword, Mode=TwoWay}"
+                             PlaceholderText="password"
+                             GotFocus="FocusTextBox_GotFocus"
+                             LostFocus="FocusTextBox_LostFocus" />
+                <Button Content="CONNECT"
+                        x:Uid="ConnectButton"
+                        HorizontalAlignment="Stretch"
+                        Background="{StaticResource MainColor}"
+                        Foreground="White"
+                        Height="55"
+                        FontSize="20"
+                        BorderThickness="0"
+                        FontWeight="SemiLight"
+                        Click="ConnectToLastFM_Click" />
+                <TextBlock Text="You are connected to Last.FM"
+                           x:Uid="ConnectedToLastFm"
+                           Style="{StaticResource TitleTextBlockStyle}"
+                           Foreground="{StaticResource SecondColor}"
+                           Visibility="{Binding LastFmIsConnected, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+                <TextBlock x:Uid="MusicSettings"
+                           Text="VLC will only search songs that are in your music library. You can add folders to your library here:"
+                           Style="{StaticResource BodyTextBlockStyle}" />
+                <ListView Margin="0,12,0,0"
+                          ItemsSource="{Binding MusicFolders}"
+                          SelectionMode="None"
+                          IsItemClickEnabled="False">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Background="Transparent">
+                                <Grid.Resources>
+                                    <Flyout x:Key="RemoveFlyout">
+                                        <Button Content="Remove this folder"
+                                                BorderThickness="0"
+                                                Background="#454545"
+                                                x:Uid="RemoveFolder"
+                                                Command="{Binding Source={StaticResource Locator}, Path=SettingsVM.RemoveFolderFromMusicLibrary}"
+                                                CommandParameter="{Binding}" />
+                                    </Flyout>
+                                </Grid.Resources>
+                                <TextBlock Margin="0,6,0,0"
+                                           TextWrapping="Wrap"
+                                           FlyoutBase.AttachedFlyout="{StaticResource RemoveFlyout}"
+                                           Tapped="VideoFolder_Tapped">
+                                                    <Run Text="{Binding DisplayName}"
+                                                         FontSize="19"
+                                                         FontWeight="SemiLight" />
+                                                    <LineBreak />
+                                                    <Run Text="{Binding Path}"
+                                                         FontSize="14" />
+                                </TextBlock>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Button Content="Add a new folder"
+                        x:Uid="AddFolder"
+                        Command="{Binding AddFolderToLibrary}"
+                        CommandParameter="{Binding MusicLibraryId}" />
+                <Border Height="1"
+                        Margin="0,12"
+                        Background="{StaticResource SecondColor}" />
+                <ToggleSwitch x:Uid="NotificationSongStarts"
+                              Header="Notification when a new song starts"
+                              IsOn="{Binding NotificationOnNewSong, Mode=TwoWay}" />
+                <ToggleSwitch x:Uid="NotificationNotBackground"
+                              Header="Even if the app is not in background"
+                              IsOn="{Binding NotificationOnNewSongForeground, Mode=TwoWay}"
+                              Visibility="{Binding NotificationOnNewSong, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+
+
+                <TextBlock Text="video"
+                           Style="{StaticResource SubheaderTextBlockStyle}" />
+                <TextBlock x:Uid="VideoSettings"
+                           Text="VLC will only search videos that are in your video library. You can add folders to your library here:"
+                           Style="{StaticResource BodyTextBlockStyle}" />
+                <ListView Margin="0,12,0,0"
+                          ItemsSource="{Binding VideoFolders}"
+                          SelectionMode="None"
+                          IsItemClickEnabled="False">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Background="Transparent">
+                                <Grid.Resources>
+                                    <Flyout x:Key="RemoveFlyout">
+                                        <Button Content="Remove this folder"
+                                                BorderThickness="0"
+                                                Background="#454545"
+                                                x:Uid="RemoveFolder"
+                                                Command="{Binding Source={StaticResource Locator}, Path=SettingsVM.RemoveFolderFromVideoLibrary}"
+                                                CommandParameter="{Binding}" />
+                                    </Flyout>
+                                </Grid.Resources>
+                                <TextBlock Margin="0,6,0,0"
+                                           TextWrapping="Wrap"
+                                           FlyoutBase.AttachedFlyout="{StaticResource RemoveFlyout}"
+                                           Tapped="VideoFolder_Tapped">
+                                                    <Run Text="{Binding DisplayName}"
+                                                         FontSize="19"
+                                                         FontWeight="SemiLight" />
+                                                    <LineBreak />
+                                                    <Run Text="{Binding Path}"
+                                                         FontSize="14" />
+                                </TextBlock>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Button Content="Add a new folder"
+                        x:Uid="AddFolder"
+                        Command="{Binding AddFolderToLibrary}"
+                        CommandParameter="{Binding VideoLibraryId}" />
+                <Border Height="1"
+                        Margin="0,12"
+                        Background="{StaticResource SecondColor}" />
+                <ToggleSwitch Header="Video playback in background"
+                              IsOn="{Binding ContinueVideoPlaybackInBackground, Mode=TwoWay}" />
+
+
+
+
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

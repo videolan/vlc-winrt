@@ -26,10 +26,6 @@ using VLC_WINRT_APP.Services.Interface;
 using VLC_WINRT_APP.ViewModels;
 using VLC_WINRT_APP.Views.UserControls;
 using VLC_WINRT_APP.Views.VariousPages;
-#if WINDOWS_APP
-using Windows.UI.ApplicationSettings;
-using SettingsFlyout = VLC_WINRT_APP.Views.UserControls.SettingsFlyout;
-#endif
 namespace VLC_WINRT_APP.Views.MainPages
 {
     public sealed partial class MainPage : SwapChainPanel
