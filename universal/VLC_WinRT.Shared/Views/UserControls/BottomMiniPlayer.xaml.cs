@@ -50,7 +50,7 @@ namespace VLC_WinRT.Views.UserControls
             RootGrid.Height = 60;
 
 #else
-            RootGrid.Height = 50;
+            RootGrid.Height = 85;
 #endif
             if (this.ActualWidth > 700)
                 VisualStateUtilities.GoToState(this, "FullWindows", false);

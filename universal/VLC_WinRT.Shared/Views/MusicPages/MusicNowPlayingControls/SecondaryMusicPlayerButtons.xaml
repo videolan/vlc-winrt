@@ -9,11 +9,15 @@
       d:DesignWidth="400">
     <Grid.ColumnDefinitions>
         <ColumnDefinition />
+        <ColumnDefinition Width="12" />
         <ColumnDefinition />
+        <ColumnDefinition Width="12" />
         <ColumnDefinition />
+        <ColumnDefinition Width="12" />
         <ColumnDefinition />
     </Grid.ColumnDefinitions>
     <AppBarToggleButton Grid.Column="0"
+                        Margin="0,6,0,0"
                         IsCompact="True"
                         DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.TrackCollection}"
                         IsChecked="{Binding IsShuffled, Mode=TwoWay}"
@@ -23,39 +27,50 @@
         <AppBarToggleButton.Icon>
             <FontIcon Glyph="{StaticResource ShuffleSymbol}"
                       FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets"
-                      FontSize="30" />
+                      FontSize="30"
+                      x:Name="ShuffleFontIcon" />
         </AppBarToggleButton.Icon>
     </AppBarToggleButton>
-    <Button Grid.Column="1"
+    <Button Grid.Column="2"
             Style="{StaticResource TextBlockButtonStyle}"
             HorizontalAlignment="Center"
+            DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}"
             Command="{Binding ShareNowPlayingMusicCommand}">
         <Button.Content>
             <Grid>
                 <FontIcon Glyph="{StaticResource ShareSymbol}"
-                          FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" 
-                          FontSize="30"/>
+                          FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets"
+                          FontSize="30"
+                          x:Name="ShareFontIcon" />
             </Grid>
         </Button.Content>
     </Button>
-    <AppBarToggleButton Grid.Column="2"
-                        Icon="{Binding CurrentAlbum.Favorite, Converter={StaticResource FavoriteSymbolConverter}}"
+    <AppBarToggleButton Grid.Column="4"
                         IsCompact="True"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Center"
                         IsChecked="{Binding CurrentAlbum.Favorite}"
                         Command="{Binding CurrentAlbum.FavoriteAlbum}"
-                        CommandParameter="{Binding CurrentAlbum}" />
-    <Button Grid.Column="3"
+                        CommandParameter="{Binding CurrentAlbum}">
+        <AppBarToggleButton.Icon>
+            <FontIcon Glyph="{StaticResource FavoriteSymbol}"
+                      FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets"
+                      FontSize="30"
+                      x:Name="FavoriteFontIcon" />
+        </AppBarToggleButton.Icon>
+    </AppBarToggleButton>
+    <Button Grid.Column="6"
             HorizontalAlignment="Center"
             Style="{StaticResource TextBlockButtonStyle}"
+            DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}"
             Command="{Binding GoToMusicPlaylistPageCommand}">
         <Button.Content>
             <Path Data="{StaticResource PlaylistPath}"
-                  Fill="White"
+                  Fill="{ThemeResource BasicForeground}"
                   Stretch="UniformToFill"
                   Height="26"
-                  Width="26" />
+                  Width="26"
+                  x:Name="PlaylistPath" />
         </Button.Content>
     </Button>
 </Grid>

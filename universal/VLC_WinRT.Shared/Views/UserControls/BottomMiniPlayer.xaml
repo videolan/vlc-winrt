@@ -4,6 +4,7 @@
              xmlns:local="using:VLC_WinRT.Views.UserControls"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:musicNowPlayingControls="using:VLC_WinRT.Views.MusicPages.MusicNowPlayingControls"
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400"
@@ -14,7 +15,7 @@
         <Grid.Visibility>
             <Binding Source="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.TrackCollection}"
                      Path="IsRunning"
-                     Converter="{StaticResource BooleanToVisibilityConverter}"/>
+                     Converter="{StaticResource BooleanToVisibilityConverter}" />
         </Grid.Visibility>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
@@ -22,11 +23,18 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
                 <VisualState x:Name="FullWindows">
                     <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SecondaryMusicPlayerButtons"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SliderControl"
                                                        Storyboard.TargetProperty="Visibility">
                             <DiscreteObjectKeyFrame KeyTime="0"
@@ -43,6 +51,11 @@
                                                     Value="Visible" />
                         </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="NextButton"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PreviousButton"
                                                        Storyboard.TargetProperty="Visibility">
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="Visible" />
@@ -51,6 +64,11 @@
                 </VisualState>
                 <VisualState x:Name="Narrow">
                     <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SecondaryMusicPlayerButtons"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SliderControl"
                                                        Storyboard.TargetProperty="Visibility">
                             <DiscreteObjectKeyFrame KeyTime="0"
@@ -67,6 +85,11 @@
                                                     Value="Visible" />
                         </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="NextButton"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PreviousButton"
                                                        Storyboard.TargetProperty="Visibility">
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="Visible" />
@@ -75,6 +98,11 @@
                 </VisualState>
                 <VisualState x:Name="ExtraNarrow">
                     <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SecondaryMusicPlayerButtons"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Collapsed" />
+                        </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SliderControl"
                                                        Storyboard.TargetProperty="Visibility">
                             <DiscreteObjectKeyFrame KeyTime="0"
@@ -95,10 +123,20 @@
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="Collapsed" />
                         </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PreviousButton"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Collapsed" />
+                        </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
                 <VisualState x:Name="Minimum">
                     <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SecondaryMusicPlayerButtons"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Collapsed" />
+                        </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SliderControl"
                                                        Storyboard.TargetProperty="Visibility">
                             <DiscreteObjectKeyFrame KeyTime="0"
@@ -119,6 +157,11 @@
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="Collapsed" />
                         </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PreviousButton"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Collapsed" />
+                        </ObjectAnimationUsingKeyFrames> 
                     </Storyboard>
                 </VisualState>
             </VisualStateGroup>
@@ -136,7 +179,7 @@
               VerticalAlignment="Center"
               Tapped="RootMiniPlayer_Tapped"
               Background="Transparent"
-              MaxWidth="300"
+              MaxWidth="250"
               DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}">
             <Grid.RowDefinitions>
                 <RowDefinition />
@@ -162,9 +205,20 @@
                 Style="{StaticResource VLCSlider}"
                 Maximum="500"
                 ThumbToolTipValueConverter="{StaticResource PositionToTimeStampStringConverter}" />
+        <Button x:Name="PreviousButton"
+                Grid.Row="0"
+                Grid.Column="3"
+                Margin="6,0,14,0"
+                Style="{StaticResource TextBlockButtonStyle}"
+                DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
+                Command="{Binding PlayPreviousCommand}"
+                Visibility="{Binding TrackCollection.CanGoPrevious, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <FontIcon Glyph="{StaticResource PreviousSymbol}"
+                      FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+        </Button>
         <Grid x:Name="PlayPauseGrid"
               Grid.Row="0"
-              Grid.Column="3"
+              Grid.Column="4"
               VerticalAlignment="Center"
               Margin="0,0,14,0"
               DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}">
@@ -181,16 +235,13 @@
                     Command="{Binding PlayOrPauseCommand}"
                     Visibility="{Binding IsPlaying, Converter={StaticResource BooleanToVisibilityConverter}}"
                     Holding="PlayPauseHold">
-                <Viewbox Height="29">
-                    <FontIcon Glyph="{StaticResource PauseSymbol}"
-                              FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
-                </Viewbox>
+                <FontIcon Glyph="{StaticResource PauseSymbol}"
+                          FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
             </Button>
         </Grid>
         <Button x:Name="NextButton"
                 Grid.Row="0"
-                Grid.Column="4"
-                Margin="0,0,14,0"
+                Grid.Column="5"
                 Style="{StaticResource TextBlockButtonStyle}"
                 DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
                 Command="{Binding PlayNextCommand}"
@@ -198,5 +249,9 @@
             <FontIcon Glyph="{StaticResource SkipNextSymbol}"
                       FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
         </Button>
+        <musicNowPlayingControls:SecondaryMusicPlayerButtons x:Name="SecondaryMusicPlayerButtons"
+                                                             Grid.Column="6"
+                                                             FontSize="20"
+                                                             Margin="14,0" />
     </Grid>
 </UserControl>
