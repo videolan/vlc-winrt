@@ -33,37 +33,37 @@ namespace VLC_WINRT_APP.Common
             var builder = new ContainerBuilder();
 
             // Register View Models
-            // TODO: These should not be SingleInstance
-            builder.RegisterType<MainVM>().SingleInstance();
-            builder.RegisterType<MediaPlaybackViewModel>().SingleInstance();
-            builder.RegisterType<MusicLibraryVM>().SingleInstance();
-            builder.RegisterType<MusicPlayerVM>().SingleInstance();
-            builder.RegisterType<VideoLibraryVM>().SingleInstance();
-            builder.RegisterType<VideoPlayerVM>().SingleInstance();
-            builder.RegisterType<SettingsViewModel>().SingleInstance();
-
-            builder.RegisterType<ExternalStorageViewModel>().SingleInstance();
-
-            builder.RegisterType<DLNAVM>().SingleInstance();
-
-            // Register Services
-            builder.RegisterType<VLCService>().SingleInstance();
-            builder.RegisterType<MFService>().SingleInstance();
-
-            builder.RegisterType<MusicMetaService>().SingleInstance();
-            builder.RegisterType<KeyboardListenerService>().SingleInstance();
-            builder.RegisterType<NetworkListenerService>().SingleInstance();
-
-            builder.RegisterType<MouseService>().SingleInstance();
-
-            builder.RegisterType<ExternalDeviceService>().SingleInstance();
-            builder.RegisterType<SpecialThanksViewModel>().SingleInstance();
             if (Windows.ApplicationModel.DesignMode.DesignModeEnabled)
             {
                 builder.RegisterType<DesignTime.ThumbnailService>().As<IThumbnailService>().SingleInstance();
             }
             else
             {
+                // TODO: These should not be SingleInstance
+                builder.RegisterType<MainVM>().SingleInstance();
+                builder.RegisterType<MediaPlaybackViewModel>().SingleInstance();
+                builder.RegisterType<MusicLibraryVM>().SingleInstance();
+                builder.RegisterType<MusicPlayerVM>().SingleInstance();
+                builder.RegisterType<VideoLibraryVM>().SingleInstance();
+                builder.RegisterType<VideoPlayerVM>().SingleInstance();
+                builder.RegisterType<SettingsViewModel>().SingleInstance();
+
+                builder.RegisterType<ExternalStorageViewModel>().SingleInstance();
+
+                builder.RegisterType<DLNAVM>().SingleInstance();
+
+                // Register Services
+                builder.RegisterType<VLCService>().SingleInstance();
+                builder.RegisterType<MFService>().SingleInstance();
+
+                builder.RegisterType<MusicMetaService>().SingleInstance();
+                builder.RegisterType<KeyboardListenerService>().SingleInstance();
+                builder.RegisterType<NetworkListenerService>().SingleInstance();
+
+                builder.RegisterType<MouseService>().SingleInstance();
+
+                builder.RegisterType<ExternalDeviceService>().SingleInstance();
+                builder.RegisterType<SpecialThanksViewModel>().SingleInstance();
                 builder.RegisterType<ThumbnailService>().As<IThumbnailService>().SingleInstance();
             }
 
