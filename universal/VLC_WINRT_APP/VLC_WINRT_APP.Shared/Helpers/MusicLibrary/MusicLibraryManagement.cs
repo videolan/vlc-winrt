@@ -503,10 +503,7 @@ namespace VLC_WINRT_APP.Helpers.MusicLibrary
             trackCollection = await Locator.MusicLibraryVM.TrackCollectionRepository.LoadFromName(trackCollectionName);
             if (trackCollection != null)
             {
-                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
-                {
-                    ToastHelper.Basic(_resourcesLoader.GetString("PlaylistAlreadyExists"));
-                });
+                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => ToastHelper.Basic(_resourcesLoader.GetString("PlaylistAlreadyExists")));
             }
             else
             {
