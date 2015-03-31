@@ -816,10 +816,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\app\VLC_WINRT_APP.Database\VLC_WINRT_APP.Database.csproj">
-      <Project>{1E0BF0FC-E5CB-4BDF-918F-D2DE64F7A6C5}</Project>
-      <Name>VLC_WINRT_APP.Database</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\wrapper\libVLCX.WindowsPhone\libVLCX.WindowsPhone.vcxproj">
       <Project>{5d78f68e-c377-449e-a508-5b8e706d0039}</Project>
       <Name>libVLCX.WindowsPhone</Name>
@@ -831,6 +827,10 @@
     <ProjectReference Include="..\VLC_WINRT_APP.Controls\VLC_WINRT_APP.Controls.csproj">
       <Project>{0627f270-00d9-45e8-8cae-74bfea436379}</Project>
       <Name>VLC_WINRT_APP.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VLC_WINRT_APP.Database\VLC_WINRT_APP.Database.csproj">
+      <Project>{1e0bf0fc-e5cb-4bdf-918f-d2de64f7a6c5}</Project>
+      <Name>VLC_WINRT_APP.Database</Name>
     </ProjectReference>
     <ProjectReference Include="..\VLC_WINRT_APP.LastFmScrobbler\VLC_WINRT_APP.LastFmScrobbler.csproj">
       <Project>{f531474d-c881-4776-b519-e6374e80f4ce}</Project>
