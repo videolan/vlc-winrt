@@ -885,6 +885,10 @@
       <Project>{0627f270-00d9-45e8-8cae-74bfea436379}</Project>
       <Name>VLC_WINRT_APP.Controls</Name>
     </ProjectReference>
+    <ProjectReference Include="..\VLC_WINRT_APP.LastFmScrobbler\VLC_WINRT_APP.LastFmScrobbler.csproj">
+      <Project>{f531474d-c881-4776-b519-e6374e80f4ce}</Project>
+      <Name>VLC_WINRT_APP.LastFmScrobbler</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="MultilingualResources\VLC_WINRT_APP.Windows.ja-JP.xlf" />
