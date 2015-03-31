@@ -7,7 +7,9 @@ using Windows.UI.Xaml.Navigation;
 using VLC_WinRT.Helpers;
 using VLC_WinRT.LastFmScrobbler;
 using VLC_WinRT.ViewModels;
-
+#if WINDOWS_PHONE_APP
+using Windows.Phone.UI.Input;
+#endif
 namespace VLC_WinRT.Views.VariousPages
 {
     public sealed partial class SettingsPage : Page

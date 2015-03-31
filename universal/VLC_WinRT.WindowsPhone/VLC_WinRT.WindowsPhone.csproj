@@ -1,0 +1,877 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C8711A23-F511-4FA1-A3F5-F2578F820A5A}</ProjectGuid>
+    <OutputType>AppContainerExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>VLC_WinRT</RootNamespace>
+    <AssemblyName>VLC_WinRT.WindowsPhone</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <TargetPlatformVersion>8.1</TargetPlatformVersion>
+    <MinimumVisualStudioVersion>12</MinimumVisualStudioVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{76F1466A-8B6D-4E39-A767-685A06062A39};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <SynthesizeLinkMetadata>true</SynthesizeLinkMetadata>
+    <NuGetPackageImportStamp>1bc79a32</NuGetPackageImportStamp>
+    <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
+    <AppxBundlePlatforms>arm</AppxBundlePlatforms>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_PHONE_APP</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_PHONE_APP</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ARM\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;NETFX_CORE;WINDOWS_PHONE_APP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
+    <OutputPath>bin\ARM\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_PHONE_APP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_PHONE_APP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_PHONE_APP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Label="MultilingualAppToolkit">
+    <MultilingualAppToolkitVersion>3.0</MultilingualAppToolkitVersion>
+    <MakePriLog>$(Temp)\$(MSBuildProjectName)_Multilingual.prilog.xml</MakePriLog>
+    <AppxGenerateProjectPriFileAdditionalMakepriExeParameters>/IndexLog "$(MakePriLog)"</AppxGenerateProjectPriFileAdditionalMakepriExeParameters>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="BackgroundHelpers\BackgroundAudioConstants.cs" />
+    <Compile Include="BackgroundHelpers\BackgroundAudioHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="BackgroundHelpers\BackgroundTaskTools.cs" />
+    <Compile Include="Views\MusicPages\AddAlbumToPlaylist.xaml.cs">
+      <DependentUpon>AddAlbumToPlaylist.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MusicPages\CreateNewPlaylist.xaml.cs">
+      <DependentUpon>CreateNewPlaylist.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\ShellContent.xaml.cs">
+      <DependentUpon>ShellContent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\VariousPages\AboutPage.xaml.cs">
+      <DependentUpon>AboutPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\VariousPages\SpecialThanks.xaml.cs">
+      <DependentUpon>SpecialThanks.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\libvlc.dll">
+      <Link>libvlc.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\libvlccore.dll">
+      <Link>libvlccore.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\access\libaccess_bd_plugin.dll">
+      <Link>plugins\access\libaccess_bd_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\access\libaccess_mms_plugin.dll">
+      <Link>plugins\access\libaccess_mms_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\access\libattachment_plugin.dll">
+      <Link>plugins\access\libattachment_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\access\libfilesystem_plugin.dll">
+      <Link>plugins\access\libfilesystem_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\access\libftp_plugin.dll">
+      <Link>plugins\access\libftp_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\access\libhttp_plugin.dll">
+      <Link>plugins\access\libhttp_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\access\libidummy_plugin.dll">
+      <Link>plugins\access\libidummy_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\access\libimem_plugin.dll">
+      <Link>plugins\access\libimem_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\access\librar_plugin.dll">
+      <Link>plugins\access\librar_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\access\librtp_plugin.dll">
+      <Link>plugins\access\librtp_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\access\libsdp_plugin.dll">
+      <Link>plugins\access\libsdp_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\access\libshm_plugin.dll">
+      <Link>plugins\access\libshm_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\access\libtcp_plugin.dll">
+      <Link>plugins\access\libtcp_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\access\libtimecode_plugin.dll">
+      <Link>plugins\access\libtimecode_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\access\libudp_plugin.dll">
+      <Link>plugins\access\libudp_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\access\libvdr_plugin.dll">
+      <Link>plugins\access\libvdr_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\access\libzip_plugin.dll">
+      <Link>plugins\access\libzip_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\audio_filter\liba52tofloat32_plugin.dll">
+      <Link>plugins\audio_filter\liba52tofloat32_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\audio_filter\liba52tospdif_plugin.dll">
+      <Link>plugins\audio_filter\liba52tospdif_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\audio_filter\libaudio_format_plugin.dll">
+      <Link>plugins\audio_filter\libaudio_format_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\audio_filter\libchorus_flanger_plugin.dll">
+      <Link>plugins\audio_filter\libchorus_flanger_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\audio_filter\libcompressor_plugin.dll">
+      <Link>plugins\audio_filter\libcompressor_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\audio_filter\libdolby_surround_decoder_plugin.dll">
+      <Link>plugins\audio_filter\libdolby_surround_decoder_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\audio_filter\libdtstospdif_plugin.dll">
+      <Link>plugins\audio_filter\libdtstospdif_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\audio_filter\libequalizer_plugin.dll">
+      <Link>plugins\audio_filter\libequalizer_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\audio_filter\libgain_plugin.dll">
+      <Link>plugins\audio_filter\libgain_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\audio_filter\libheadphone_channel_mixer_plugin.dll">
+      <Link>plugins\audio_filter\libheadphone_channel_mixer_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\audio_filter\libkaraoke_plugin.dll">
+      <Link>plugins\audio_filter\libkaraoke_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\audio_filter\libmono_plugin.dll">
+      <Link>plugins\audio_filter\libmono_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\audio_filter\libnormvol_plugin.dll">
+      <Link>plugins\audio_filter\libnormvol_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\audio_filter\libparam_eq_plugin.dll">
+      <Link>plugins\audio_filter\libparam_eq_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\audio_filter\libremap_plugin.dll">
+      <Link>plugins\audio_filter\libremap_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\audio_filter\libscaletempo_plugin.dll">
+      <Link>plugins\audio_filter\libscaletempo_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\audio_filter\libsimple_channel_mixer_plugin.dll">
+      <Link>plugins\audio_filter\libsimple_channel_mixer_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\audio_filter\libspatializer_plugin.dll">
+      <Link>plugins\audio_filter\libspatializer_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\audio_filter\libstereo_widen_plugin.dll">
+      <Link>plugins\audio_filter\libstereo_widen_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\audio_filter\libtrivial_channel_mixer_plugin.dll">
+      <Link>plugins\audio_filter\libtrivial_channel_mixer_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\audio_filter\libugly_resampler_plugin.dll">
+      <Link>plugins\audio_filter\libugly_resampler_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\audio_mixer\libfloat_mixer_plugin.dll">
+      <Link>plugins\audio_mixer\libfloat_mixer_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\audio_mixer\libinteger_mixer_plugin.dll">
+      <Link>plugins\audio_mixer\libinteger_mixer_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\audio_output\libadummy_plugin.dll">
+      <Link>plugins\audio_output\libadummy_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\audio_output\libafile_plugin.dll">
+      <Link>plugins\audio_output\libafile_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\audio_output\libamem_plugin.dll">
+      <Link>plugins\audio_output\libamem_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\audio_output\libwasapi_plugin.dll">
+      <Link>plugins\audio_output\libwasapi_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\audio_output\libwinstore_plugin.dll">
+      <Link>plugins\audio_output\libwinstore_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\codec\liba52_plugin.dll">
+      <Link>plugins\codec\liba52_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\codec\libadpcm_plugin.dll">
+      <Link>plugins\codec\libadpcm_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\codec\libaes3_plugin.dll">
+      <Link>plugins\codec\libaes3_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\codec\libaraw_plugin.dll">
+      <Link>plugins\codec\libaraw_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\codec\libavcodec_plugin.dll">
+      <Link>plugins\codec\libavcodec_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\codec\libcc_plugin.dll">
+      <Link>plugins\codec\libcc_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\codec\libcdg_plugin.dll">
+      <Link>plugins\codec\libcdg_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\codec\libcvdsub_plugin.dll">
+      <Link>plugins\codec\libcvdsub_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\codec\libddummy_plugin.dll">
+      <Link>plugins\codec\libddummy_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\codec\libdts_plugin.dll">
+      <Link>plugins\codec\libdts_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\codec\libdvbsub_plugin.dll">
+      <Link>plugins\codec\libdvbsub_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\codec\libg711_plugin.dll">
+      <Link>plugins\codec\libg711_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\codec\libkate_plugin.dll">
+      <Link>plugins\codec\libkate_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\codec\liblpcm_plugin.dll">
+      <Link>plugins\codec\liblpcm_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\codec\libmpeg_audio_plugin.dll">
+      <Link>plugins\codec\libmpeg_audio_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\codec\libopus_plugin.dll">
+      <Link>plugins\codec\libopus_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\codec\librawvideo_plugin.dll">
+      <Link>plugins\codec\librawvideo_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\codec\libscte27_plugin.dll">
+      <Link>plugins\codec\libscte27_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\codec\libspudec_plugin.dll">
+      <Link>plugins\codec\libspudec_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\codec\libstl_plugin.dll">
+      <Link>plugins\codec\libstl_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\codec\libsubsdec_plugin.dll">
+      <Link>plugins\codec\libsubsdec_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\codec\libsubstx3g_plugin.dll">
+      <Link>plugins\codec\libsubstx3g_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\codec\libsubsusf_plugin.dll">
+      <Link>plugins\codec\libsubsusf_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\codec\libsvcdsub_plugin.dll">
+      <Link>plugins\codec\libsvcdsub_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\codec\libuleaddvaudio_plugin.dll">
+      <Link>plugins\codec\libuleaddvaudio_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\codec\libvorbis_plugin.dll">
+      <Link>plugins\codec\libvorbis_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\control\libdummy_plugin.dll">
+      <Link>plugins\control\libdummy_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\control\libgestures_plugin.dll">
+      <Link>plugins\control\libgestures_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\control\libhotkeys_plugin.dll">
+      <Link>plugins\control\libhotkeys_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\demux\libaiff_plugin.dll">
+      <Link>plugins\demux\libaiff_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\demux\libasf_plugin.dll">
+      <Link>plugins\demux\libasf_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\demux\libau_plugin.dll">
+      <Link>plugins\demux\libau_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\demux\libavi_plugin.dll">
+      <Link>plugins\demux\libavi_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\demux\libcaf_plugin.dll">
+      <Link>plugins\demux\libcaf_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\demux\libdash_plugin.dll">
+      <Link>plugins\demux\libdash_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\demux\libdemuxdump_plugin.dll">
+      <Link>plugins\demux\libdemuxdump_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\demux\libdemux_cdg_plugin.dll">
+      <Link>plugins\demux\libdemux_cdg_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\demux\libdemux_stl_plugin.dll">
+      <Link>plugins\demux\libdemux_stl_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\demux\libdiracsys_plugin.dll">
+      <Link>plugins\demux\libdiracsys_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\demux\libes_plugin.dll">
+      <Link>plugins\demux\libes_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\demux\libflacsys_plugin.dll">
+      <Link>plugins\demux\libflacsys_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\demux\libh264_plugin.dll">
+      <Link>plugins\demux\libh264_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\demux\libhevc_plugin.dll">
+      <Link>plugins\demux\libhevc_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\demux\libimage_plugin.dll">
+      <Link>plugins\demux\libimage_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\demux\libmjpeg_plugin.dll">
+      <Link>plugins\demux\libmjpeg_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\demux\libmkv_plugin.dll">
+      <Link>plugins\demux\libmkv_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\demux\libmp4_plugin.dll">
+      <Link>plugins\demux\libmp4_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\demux\libmpc_plugin.dll">
+      <Link>plugins\demux\libmpc_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\demux\libmpgv_plugin.dll">
+      <Link>plugins\demux\libmpgv_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\demux\libnsc_plugin.dll">
+      <Link>plugins\demux\libnsc_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\demux\libnsv_plugin.dll">
+      <Link>plugins\demux\libnsv_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\demux\libnuv_plugin.dll">
+      <Link>plugins\demux\libnuv_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\demux\libogg_plugin.dll">
+      <Link>plugins\demux\libogg_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\demux\libplaylist_plugin.dll">
+      <Link>plugins\demux\libplaylist_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\demux\libps_plugin.dll">
+      <Link>plugins\demux\libps_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\demux\libpva_plugin.dll">
+      <Link>plugins\demux\libpva_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\demux\librawaud_plugin.dll">
+      <Link>plugins\demux\librawaud_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\demux\librawdv_plugin.dll">
+      <Link>plugins\demux\librawdv_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\demux\librawvid_plugin.dll">
+      <Link>plugins\demux\librawvid_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\demux\libreal_plugin.dll">
+      <Link>plugins\demux\libreal_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\demux\libsmf_plugin.dll">
+      <Link>plugins\demux\libsmf_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\demux\libsubtitle_plugin.dll">
+      <Link>plugins\demux\libsubtitle_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\demux\libtta_plugin.dll">
+      <Link>plugins\demux\libtta_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\demux\libty_plugin.dll">
+      <Link>plugins\demux\libty_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\demux\libvc1_plugin.dll">
+      <Link>plugins\demux\libvc1_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\demux\libvobsub_plugin.dll">
+      <Link>plugins\demux\libvobsub_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\demux\libvoc_plugin.dll">
+      <Link>plugins\demux\libvoc_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\demux\libwav_plugin.dll">
+      <Link>plugins\demux\libwav_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\demux\libxa_plugin.dll">
+      <Link>plugins\demux\libxa_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\meta_engine\libfolder_plugin.dll">
+      <Link>plugins\meta_engine\libfolder_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\misc\libaddonsfsstorage_plugin.dll">
+      <Link>plugins\misc\libaddonsfsstorage_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\misc\libaddonsvorepository_plugin.dll">
+      <Link>plugins\misc\libaddonsvorepository_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\misc\libaudioscrobbler_plugin.dll">
+      <Link>plugins\misc\libaudioscrobbler_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\misc\libexport_plugin.dll">
+      <Link>plugins\misc\libexport_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\misc\libfingerprinter_plugin.dll">
+      <Link>plugins\misc\libfingerprinter_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\misc\liblogger_plugin.dll">
+      <Link>plugins\misc\liblogger_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\misc\libstats_plugin.dll">
+      <Link>plugins\misc\libstats_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\misc\libxml_plugin.dll">
+      <Link>plugins\misc\libxml_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\packetizer\libpacketizer_dirac_plugin.dll">
+      <Link>plugins\packetizer\libpacketizer_dirac_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\packetizer\libpacketizer_flac_plugin.dll">
+      <Link>plugins\packetizer\libpacketizer_flac_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\packetizer\libpacketizer_h264_plugin.dll">
+      <Link>plugins\packetizer\libpacketizer_h264_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\packetizer\libpacketizer_hevc_plugin.dll">
+      <Link>plugins\packetizer\libpacketizer_hevc_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\packetizer\libpacketizer_mlp_plugin.dll">
+      <Link>plugins\packetizer\libpacketizer_mlp_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\packetizer\libpacketizer_mpeg4audio_plugin.dll">
+      <Link>plugins\packetizer\libpacketizer_mpeg4audio_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\packetizer\libpacketizer_mpeg4video_plugin.dll">
+      <Link>plugins\packetizer\libpacketizer_mpeg4video_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\packetizer\libpacketizer_mpegvideo_plugin.dll">
+      <Link>plugins\packetizer\libpacketizer_mpegvideo_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\packetizer\libpacketizer_vc1_plugin.dll">
+      <Link>plugins\packetizer\libpacketizer_vc1_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\services_discovery\libmediadirs_plugin.dll">
+      <Link>plugins\services_discovery\libmediadirs_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\services_discovery\libpodcast_plugin.dll">
+      <Link>plugins\services_discovery\libpodcast_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\stream_filter\libhds_plugin.dll">
+      <Link>plugins\stream_filter\libhds_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\stream_filter\librecord_plugin.dll">
+      <Link>plugins\stream_filter\librecord_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\stream_filter\libsmooth_plugin.dll">
+      <Link>plugins\stream_filter\libsmooth_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\text_renderer\libfreetype_plugin.dll">
+      <Link>plugins\text_renderer\libfreetype_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\text_renderer\libtdummy_plugin.dll">
+      <Link>plugins\text_renderer\libtdummy_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\video_chroma\libchain_plugin.dll">
+      <Link>plugins\video_chroma\libchain_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\video_chroma\libgrey_yuv_plugin.dll">
+      <Link>plugins\video_chroma\libgrey_yuv_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\video_chroma\libi420_rgb_plugin.dll">
+      <Link>plugins\video_chroma\libi420_rgb_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\video_chroma\libi420_yuy2_plugin.dll">
+      <Link>plugins\video_chroma\libi420_yuy2_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\video_chroma\libi422_i420_plugin.dll">
+      <Link>plugins\video_chroma\libi422_i420_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\video_chroma\libi422_yuy2_plugin.dll">
+      <Link>plugins\video_chroma\libi422_yuy2_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\video_chroma\librv32_plugin.dll">
+      <Link>plugins\video_chroma\librv32_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\video_chroma\libswscale_plugin.dll">
+      <Link>plugins\video_chroma\libswscale_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\video_chroma\libyuy2_i420_plugin.dll">
+      <Link>plugins\video_chroma\libyuy2_i420_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\video_chroma\libyuy2_i422_plugin.dll">
+      <Link>plugins\video_chroma\libyuy2_i422_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\video_filter\libadjust_plugin.dll">
+      <Link>plugins\video_filter\libadjust_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\video_filter\libalphamask_plugin.dll">
+      <Link>plugins\video_filter\libalphamask_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\video_filter\libanaglyph_plugin.dll">
+      <Link>plugins\video_filter\libanaglyph_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\video_filter\libantiflicker_plugin.dll">
+      <Link>plugins\video_filter\libantiflicker_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\video_filter\libball_plugin.dll">
+      <Link>plugins\video_filter\libball_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\video_filter\libblendbench_plugin.dll">
+      <Link>plugins\video_filter\libblendbench_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\video_filter\libblend_plugin.dll">
+      <Link>plugins\video_filter\libblend_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\video_filter\libbluescreen_plugin.dll">
+      <Link>plugins\video_filter\libbluescreen_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\video_filter\libcanvas_plugin.dll">
+      <Link>plugins\video_filter\libcanvas_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\video_filter\libcolorthres_plugin.dll">
+      <Link>plugins\video_filter\libcolorthres_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\video_filter\libcroppadd_plugin.dll">
+      <Link>plugins\video_filter\libcroppadd_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\video_filter\libdeinterlace_plugin.dll">
+      <Link>plugins\video_filter\libdeinterlace_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\video_filter\liberase_plugin.dll">
+      <Link>plugins\video_filter\liberase_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\video_filter\libextract_plugin.dll">
+      <Link>plugins\video_filter\libextract_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\video_filter\libfps_plugin.dll">
+      <Link>plugins\video_filter\libfps_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\video_filter\libfreeze_plugin.dll">
+      <Link>plugins\video_filter\libfreeze_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\video_filter\libgaussianblur_plugin.dll">
+      <Link>plugins\video_filter\libgaussianblur_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\video_filter\libgradfun_plugin.dll">
+      <Link>plugins\video_filter\libgradfun_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\video_filter\libgradient_plugin.dll">
+      <Link>plugins\video_filter\libgradient_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\video_filter\libgrain_plugin.dll">
+      <Link>plugins\video_filter\libgrain_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\video_filter\libhqdn3d_plugin.dll">
+      <Link>plugins\video_filter\libhqdn3d_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\video_filter\libinvert_plugin.dll">
+      <Link>plugins\video_filter\libinvert_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\video_filter\liblogo_plugin.dll">
+      <Link>plugins\video_filter\liblogo_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\video_filter\libmagnify_plugin.dll">
+      <Link>plugins\video_filter\libmagnify_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\video_filter\libmarq_plugin.dll">
+      <Link>plugins\video_filter\libmarq_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\video_filter\libmirror_plugin.dll">
+      <Link>plugins\video_filter\libmirror_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\video_filter\libmosaic_plugin.dll">
+      <Link>plugins\video_filter\libmosaic_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\video_filter\libmotionblur_plugin.dll">
+      <Link>plugins\video_filter\libmotionblur_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\video_filter\libmotiondetect_plugin.dll">
+      <Link>plugins\video_filter\libmotiondetect_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\video_filter\liboldmovie_plugin.dll">
+      <Link>plugins\video_filter\liboldmovie_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\video_filter\libposterize_plugin.dll">
+      <Link>plugins\video_filter\libposterize_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\video_filter\libpsychedelic_plugin.dll">
+      <Link>plugins\video_filter\libpsychedelic_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\video_filter\libpuzzle_plugin.dll">
+      <Link>plugins\video_filter\libpuzzle_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\video_filter\libripple_plugin.dll">
+      <Link>plugins\video_filter\libripple_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\video_filter\librss_plugin.dll">
+      <Link>plugins\video_filter\librss_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\video_filter\libscale_plugin.dll">
+      <Link>plugins\video_filter\libscale_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\video_filter\libscene_plugin.dll">
+      <Link>plugins\video_filter\libscene_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\video_filter\libsepia_plugin.dll">
+      <Link>plugins\video_filter\libsepia_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\video_filter\libsharpen_plugin.dll">
+      <Link>plugins\video_filter\libsharpen_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\video_filter\libsubsdelay_plugin.dll">
+      <Link>plugins\video_filter\libsubsdelay_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\video_filter\libtransform_plugin.dll">
+      <Link>plugins\video_filter\libtransform_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\video_filter\libvhs_plugin.dll">
+      <Link>plugins\video_filter\libvhs_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\video_filter\libwave_plugin.dll">
+      <Link>plugins\video_filter\libwave_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\video_filter\libyuvp_plugin.dll">
+      <Link>plugins\video_filter\libyuvp_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\video_output\libdrawable_plugin.dll">
+      <Link>plugins\video_output\libdrawable_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\video_output\libvdummy_plugin.dll">
+      <Link>plugins\video_output\libvdummy_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\video_output\libvmem_plugin.dll">
+      <Link>plugins\video_output\libvmem_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\video_output\libyuv_plugin.dll">
+      <Link>plugins\video_output\libyuv_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\video_splitter\libclone_plugin.dll">
+      <Link>plugins\video_splitter\libclone_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\video_splitter\libwall_plugin.dll">
+      <Link>plugins\video_splitter\libwall_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\visualization\libvisual_plugin.dll">
+      <Link>plugins\visualization\libvisual_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\access\libaccess_winphone_plugin.dll">
+      <Link>plugins\access\libaccess_winphone_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\video_output\libdirect2d_winphone_plugin.dll">
+      <Link>plugins\video_output\libdirect2d_winphone_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\access\liblive555_plugin.dll">
+      <Link>plugins\access\liblive555_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\audio_filter\libaudiobargraph_a_plugin.dll">
+      <Link>plugins\audio_filter\libaudiobargraph_a_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\audio_filter\libdtstofloat32_plugin.dll">
+      <Link>plugins\audio_filter\libdtstofloat32_plugin.dll</Link>
+    </Content>
+    <Content Include="Assets\BadgeLogo.scale-100.png" />
+    <Content Include="Assets\BadgeLogo.scale-140.png" />
+    <Content Include="Assets\Logo.scale-100.png" />
+    <Content Include="Assets\Logo.scale-140.png" />
+    <Content Include="Assets\Logo.scale-240.png" />
+    <Content Include="Assets\SmallLogo.scale-240.png" />
+    <Content Include="Assets\SplashScreen.scale-140.png" />
+    <Content Include="Assets\SplashScreen.scale-240.png" />
+    <Content Include="Assets\Square71x71Logo.scale-240.png" />
+    <Content Include="Assets\StoreLogo.scale-140.png" />
+    <Content Include="Assets\StoreLogo.scale-240.png" />
+    <Content Include="Assets\WideLogo.scale-100.png" />
+    <Content Include="Assets\WideLogo.scale-140.png" />
+    <Content Include="Assets\WideLogo.scale-240.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Autofac">
+      <HintPath>..\..\app\packages\Autofac.3.5.2\lib\portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="CustomAppBar, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\app\packages\CustomAppBar.1.1.2\lib\wpa81\CustomAppBar.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\app\packages\Newtonsoft.Json.6.0.7\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="WinRT.Triggers">
+      <HintPath>..\..\app\packages\WinRTTriggers.1.6.0\lib\winrt45\WinRT.Triggers.dll</HintPath>
+    </Reference>
+    <Reference Include="WinRTXamlToolkit">
+      <HintPath>..\..\app\packages\winrtxamltoolkit.1.6.1.3\lib\netcore451\WinRTXamlToolkit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Resources\PlatformFlyouts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="Resources\PlatformStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="Views\MusicPages\AddAlbumToPlaylist.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MusicPages\CreateNewPlaylist.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\ShellContent.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\VariousPages\AboutPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\VariousPages\SpecialThanks.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <SDKReference Include="BehaviorsXamlSDKManaged, Version=12.0">
+      <Name>Behaviors SDK %28XAML%29</Name>
+    </SDKReference>
+    <SDKReference Include="Microsoft.VCLibs, version=12.0">
+      <Name>Microsoft Visual C++ 2013 Runtime Package for Windows Phone</Name>
+    </SDKReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\wrapper\libVLCX.WindowsPhone\libVLCX.WindowsPhone.vcxproj">
+      <Project>{5d78f68e-c377-449e-a508-5b8e706d0039}</Project>
+      <Name>libVLCX.WindowsPhone</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VLC_WinRT.BackgroundAudioPlayer\VLC_WinRT.BackgroundAudioPlayer.csproj">
+      <Project>{6bdaba8a-b559-4007-a17f-42125d3aa7a3}</Project>
+      <Name>VLC_WinRT.BackgroundAudioPlayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VLC_WinRT.Controls\VLC_WinRT.Controls.csproj">
+      <Project>{0627f270-00d9-45e8-8cae-74bfea436379}</Project>
+      <Name>VLC_WinRT.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VLC_WinRT.Database\VLC_WinRT.Database.csproj">
+      <Project>{1e0bf0fc-e5cb-4bdf-918f-d2de64f7a6c5}</Project>
+      <Name>VLC_WinRT.Database</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VLC_WinRT.LastFmScrobbler\VLC_WinRT.LastFmScrobbler.csproj">
+      <Project>{f531474d-c881-4776-b519-e6374e80f4ce}</Project>
+      <Name>VLC_WinRT.LastFmScrobbler</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="MultilingualResources\VLC_WinRT.WindowsPhone.qps-ploc.xlf" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="MultilingualResources\VLC_WinRT.WindowsPhone.de.xlf" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="MultilingualResources\VLC_WinRT.WindowsPhone.en.xlf" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="MultilingualResources\VLC_WinRT.WindowsPhone.ja-JP.xlf" />
+  </ItemGroup>
+  <ItemGroup />
+  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
+    <VisualStudioVersion>12.0</VisualStudioVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(TargetPlatformIdentifier)' == '' ">
+    <TargetPlatformIdentifier>WindowsPhoneApp</TargetPlatformIdentifier>
+  </PropertyGroup>
+  <Import Project="..\VLC_WinRT.Shared\VLC_WinRT.Shared.projitems" Label="Shared" />
+  <Import Project="..\VLC_WinRT.MusicMetaFetcher\VLC_WinRT.MusicMetaFetcher.projitems" Label="Shared" Condition="Exists('..\VLC_WinRT.MusicMetaFetcher\VLC_WinRT.MusicMetaFetcher.projitems')" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <Import Project="..\..\app\packages\SQLitePCL.raw_basic.0.7.0\build\wpa81\SQLitePCL.raw_basic.targets" Condition="Exists('..\..\app\packages\SQLitePCL.raw_basic.0.7.0\build\wpa81\SQLitePCL.raw_basic.targets')" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Multilingual App Toolkit\Microsoft.Multilingual.PriResources.targets" Label="MultilingualAppToolkit" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\app\packages\SQLitePCL.raw_basic.0.7.0\build\wpa81\SQLitePCL.raw_basic.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\app\packages\SQLitePCL.raw_basic.0.7.0\build\wpa81\SQLitePCL.raw_basic.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

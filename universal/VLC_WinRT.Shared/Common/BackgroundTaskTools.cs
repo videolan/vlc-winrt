@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using VLC_WINRT_APP.Model.Music;
-using BackgroundTrackItem = VLC_WINRT_APP.Database.Model.BackgroundTrackItem;
+using VLC_WinRT.Model.Music;
+using BackgroundTrackItem = VLC_WinRT.Database.Model.BackgroundTrackItem;
 
-namespace VLC_WINRT_APP.Common
+namespace VLC_WinRT.Common
 {
     public class BackgroundTaskTools
     {
