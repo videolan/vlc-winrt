@@ -820,21 +820,21 @@
       <Project>{5d78f68e-c377-449e-a508-5b8e706d0039}</Project>
       <Name>libVLCX.WindowsPhone</Name>
     </ProjectReference>
-    <ProjectReference Include="..\VLC_WINRT_APP.BackgroundAudioPlayer\VLC_WINRT_APP.BackgroundAudioPlayer.csproj">
+    <ProjectReference Include="..\VLC_WINRT_APP.BackgroundAudioPlayer\VLC_WinRT.BackgroundAudioPlayer.csproj">
       <Project>{6bdaba8a-b559-4007-a17f-42125d3aa7a3}</Project>
-      <Name>VLC_WINRT_APP.BackgroundAudioPlayer</Name>
+      <Name>VLC_WinRT.BackgroundAudioPlayer</Name>
     </ProjectReference>
-    <ProjectReference Include="..\VLC_WINRT_APP.Controls\VLC_WINRT_APP.Controls.csproj">
+    <ProjectReference Include="..\VLC_WINRT_APP.Controls\VLC_WinRT.Controls.csproj">
       <Project>{0627f270-00d9-45e8-8cae-74bfea436379}</Project>
-      <Name>VLC_WINRT_APP.Controls</Name>
+      <Name>VLC_WinRT.Controls</Name>
     </ProjectReference>
-    <ProjectReference Include="..\VLC_WINRT_APP.Database\VLC_WINRT_APP.Database.csproj">
+    <ProjectReference Include="..\VLC_WINRT_APP.Database\VLC_WinRT.Database.csproj">
       <Project>{1e0bf0fc-e5cb-4bdf-918f-d2de64f7a6c5}</Project>
-      <Name>VLC_WINRT_APP.Database</Name>
+      <Name>VLC_WinRT.Database</Name>
     </ProjectReference>
-    <ProjectReference Include="..\VLC_WINRT_APP.LastFmScrobbler\VLC_WINRT_APP.LastFmScrobbler.csproj">
+    <ProjectReference Include="..\VLC_WINRT_APP.LastFmScrobbler\VLC_WinRT.LastFmScrobbler.csproj">
       <Project>{f531474d-c881-4776-b519-e6374e80f4ce}</Project>
-      <Name>VLC_WINRT_APP.LastFmScrobbler</Name>
+      <Name>VLC_WinRT.LastFmScrobbler</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

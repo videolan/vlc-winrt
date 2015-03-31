@@ -6,7 +6,7 @@
     <SharedGUID>e53727a5-95f9-4dac-a24f-18437811b5b0</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
-    <Import_RootNamespace>VLC_WINRT_APP.SharedBackground</Import_RootNamespace>
+    <Import_RootNamespace>VLC_WinRT.SharedBackground</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Model\" />

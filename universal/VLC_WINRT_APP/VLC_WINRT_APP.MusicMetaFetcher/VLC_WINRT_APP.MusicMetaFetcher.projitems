@@ -6,7 +6,7 @@
     <SharedGUID>c3f84118-8e3d-4b19-a300-9cb6f7ae0e87</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
-    <Import_RootNamespace>VLC_WINRT_APP.MusicMetaFetcher</Import_RootNamespace>
+    <Import_RootNamespace>VLC_WinRT.MusicMetaFetcher</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Fetchers\DeezerClient.cs" />

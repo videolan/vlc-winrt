@@ -32,7 +32,7 @@ using WinRTXamlToolkit.Controls.Extensions;
 #if WINDOWS_PHONE_APP
 using Windows.Phone.Management.Deployment;
 using Windows.Media.Playback;
-using VLC_WINRT_APP.BackgroundHelpers;
+using VLC_WinRT.BackgroundHelpers;
 #endif
 
 namespace VLC_WinRT
