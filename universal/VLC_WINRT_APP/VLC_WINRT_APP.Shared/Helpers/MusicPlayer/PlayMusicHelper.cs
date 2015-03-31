@@ -152,7 +152,7 @@ namespace VLC_WINRT_APP.Helpers.MusicPlayer
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Locator.MediaPlaybackViewModel.TrackCollection.CurrentTrack = index);
         }
 
-        static async Task AddTrack(TrackItem track)
+        static void AddTrack(TrackItem track)
         {
             if (Locator.MediaPlaybackViewModel.TrackCollection.Playlist.FirstOrDefault(x => x.Id == track.Id) == null)
             {
