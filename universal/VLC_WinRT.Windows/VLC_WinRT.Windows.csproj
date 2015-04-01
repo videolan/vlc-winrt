@@ -120,9 +120,6 @@
     </SDKReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Views\MusicPages\CreateNewPlaylist.xaml.cs">
-      <DependentUpon>CreateNewPlaylist.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\UserControls\LicenseFlyout.xaml.cs">
       <DependentUpon>LicenseFlyout.xaml</DependentUpon>
     </Compile>
@@ -795,10 +792,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Page>
-    <Page Include="Views\MusicPages\CreateNewPlaylist.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControls\LicenseFlyout.xaml">
       <SubType>Designer</SubType>
