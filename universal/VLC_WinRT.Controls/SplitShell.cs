@@ -3,7 +3,9 @@ using System.Threading.Tasks;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Animation;
 
 namespace VLC_WinRT.Controls
 {
@@ -15,10 +17,16 @@ namespace VLC_WinRT.Controls
     [TemplatePart(Name = TopBarContentPresenterName, Type = typeof(ContentPresenter))]
     [TemplatePart(Name = InformationGridName, Type = typeof(Grid))]
     [TemplatePart(Name = ContentPresenterName, Type = typeof(ContentPresenter))]
+    [TemplatePart(Name = RightFlyoutContentPresenterName, Type = typeof(ContentPresenter))]
     [TemplatePart(Name = InformationTextBlockName, Type = typeof(TextBlock))]
+    [TemplatePart(Name = RightFlyoutFadeInName, Type = typeof(Storyboard))]
+    [TemplatePart(Name = RightFlyoutPlaneProjectionName, Type = typeof(PlaneProjection))]
+    [TemplatePart(Name = RightFlyoutGridContainerName, Type = typeof(Grid))]
     public sealed class SplitShell : Control
     {
         public TaskCompletionSource<bool> TemplateApplied = new TaskCompletionSource<bool>();
+        private double MaxRightFlyoutWidth = 350;
+
         private const string EdgePaneName = "EdgePane";
         private const string SidebarGridContainerName = "SidebarGridContainer";
         private const string SidebarContentPresenterName = "SidebarContentPresenter";
@@ -30,16 +38,27 @@ namespace VLC_WinRT.Controls
         private const string AlwaysVisibleSideBarVisualStateName = "AlwaysVisibleSideBarVisualState";
         private const string InformationGridName = "InformationGrid";
         private const string InformationTextBlockName = "InformationTextBlock";
+        private const string RightFlyoutContentPresenterName = "RightFlyoutContentPresenter";
+        private const string RightFlyoutFadeInName = "RightFlyoutFadeIn";
+        private const string RightFlyoutPlaneProjectionName = "RightFlyoutPlaneProjection";
+        private const string RightFlyoutGridContainerName = "RightFlyoutGridContainer";
 
         private Grid _edgePaneGrid;
         private Grid _sidebarGridContainer;
+        private Grid _rightFlyoutGridContainer;
         private ContentPresenter _contentPresenter;
         private ContentPresenter _sidebarContentPresenter;
         private ContentPresenter _alwaysVisibleSidebarContentPresenter;
         private ContentPresenter _topBarContentPresenter;
+        private ContentPresenter _rightFlyoutContentPresenter;
+
+        private PlaneProjection _rightFlyoutPlaneProjection;
+        private Storyboard _rightFlyoutFadeIn;
         private Grid _informationGrid;
         private TextBlock _informationTextBlock;
         private bool _alwaysVisibleSideBarVisualState;
+
+        public bool IsPhone { get; set; } = true;
 
         public async void SetContentPresenter(object contentPresenter)
         {
@@ -84,6 +103,22 @@ namespace VLC_WinRT.Controls
             await TemplateApplied.Task;
             _alwaysVisibleSideBarVisualState = alwaysVisible;
             Responsive();
+        }
+
+        public async void SetRightPaneContentPresenter(object content)
+        {
+            await TemplateApplied.Task;
+            if (content is FrameworkElement)
+            {
+                if (double.IsNaN(((FrameworkElement)content).Width))
+                {
+                    _rightFlyoutContentPresenter.Width = MaxRightFlyoutWidth;
+                    _rightFlyoutPlaneProjection.GlobalOffsetX = MaxRightFlyoutWidth;
+                }
+                else
+                    _rightFlyoutPlaneProjection.GlobalOffsetX = ((FrameworkElement)content).Width;
+            }
+            _rightFlyoutContentPresenter.Content = content;
         }
 
         #region Content Property
@@ -177,6 +212,24 @@ namespace VLC_WinRT.Controls
         }
         #endregion
 
+        #region RightPaneContent Property
+
+        public DependencyObject RightFlyoutContent
+        {
+            get { return (DependencyObject)GetValue(RightFlyoutContentProperty); }
+            set { SetValue(RightFlyoutContentProperty, value); }
+        }
+
+        public static readonly DependencyProperty RightFlyoutContentProperty = DependencyProperty.Register(
+            "RightFlyoutContent", typeof(DependencyObject), typeof(SplitShell),
+            new PropertyMetadata(default(DependencyObject), RightFlyoutContentPropertyChangedCallback));
+
+        private static void RightFlyoutContentPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
+        {
+            var that = (SplitShell)dependencyObject;
+            that.SetRightPaneContentPresenter(dependencyPropertyChangedEventArgs.NewValue);
+        }
+        #endregion
         #region InformationContent Property
         public Brush InformationBackground
         {
@@ -216,7 +269,7 @@ namespace VLC_WinRT.Controls
         protected override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
-            _contentPresenter = (ContentPresenter) GetTemplateChild(ContentPresenterName);
+            _contentPresenter = (ContentPresenter)GetTemplateChild(ContentPresenterName);
             _sidebarGridContainer = (Grid)GetTemplateChild(SidebarGridContainerName);
             _sidebarContentPresenter = (ContentPresenter)GetTemplateChild(SidebarContentPresenterName);
             _alwaysVisibleSidebarContentPresenter = (ContentPresenter)GetTemplateChild(AlwaysVisibleSidebarContentPresenterName);
@@ -224,15 +277,22 @@ namespace VLC_WinRT.Controls
             _informationTextBlock = (TextBlock)GetTemplateChild(InformationTextBlockName);
             _informationGrid = (Grid)GetTemplateChild(InformationGridName);
             _edgePaneGrid = (Grid)GetTemplateChild(EdgePaneName);
+            _rightFlyoutContentPresenter = (ContentPresenter)GetTemplateChild(RightFlyoutContentPresenterName);
+            _rightFlyoutFadeIn = (Storyboard)GetTemplateChild(RightFlyoutFadeInName);
+            _rightFlyoutPlaneProjection = (PlaneProjection)GetTemplateChild(RightFlyoutPlaneProjectionName);
+            _rightFlyoutGridContainer = (Grid)GetTemplateChild(RightFlyoutGridContainerName);
 
             TemplateApplied.SetResult(true);
 
             _sidebarGridContainer.Visibility = Visibility.Collapsed;
+            _rightFlyoutGridContainer.Visibility = Visibility.Collapsed;
             _edgePaneGrid.Tapped += _edgePaneGrid_Tapped;
             _sidebarGridContainer.Tapped += _sidebarGridContainer_Tapped;
+            _rightFlyoutGridContainer.Tapped += RightFlyoutGridContainerOnTapped;
             Window.Current.SizeChanged += Current_SizeChanged;
             Responsive();
         }
+
 
 
         void Current_SizeChanged(object sender, WindowSizeChangedEventArgs e)
@@ -242,15 +302,29 @@ namespace VLC_WinRT.Controls
 
         private void Responsive()
         {
+            MaxRightFlyoutWidth = GetSettingsFlyoutWidthFromWindowWidth(400);
             VisualStateManager.GoToState(this, TopBarVisualStateName, false);
         }
 
-        void _edgePaneGrid_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
+        double GetSettingsFlyoutWidthFromWindowWidth(double max)
+        {
+            var width = Window.Current.Bounds.Width;
+            if (!IsPhone)
+                return width < max ? width : max;
+            return width;
+        }
+
+        void _edgePaneGrid_Tapped(object sender, TappedRoutedEventArgs e)
         {
             Open();
         }
 
-        void _sidebarGridContainer_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
+        private void RightFlyoutGridContainerOnTapped(object sender, TappedRoutedEventArgs tappedRoutedEventArgs)
+        {
+            HideFlyout();
+        }
+
+        void _sidebarGridContainer_Tapped(object sender, TappedRoutedEventArgs e)
         {
             _sidebarGridContainer.Visibility = Visibility.Collapsed;
         }
@@ -259,5 +333,19 @@ namespace VLC_WinRT.Controls
         {
             _sidebarGridContainer.Visibility = Visibility.Visible;
         }
+
+        public void ShowFlyout()
+        {
+            _rightFlyoutFadeIn.Begin();
+            IsRightFlyoutOpen = true;
+        }
+
+        public void HideFlyout()
+        {
+            _rightFlyoutGridContainer.Visibility = Visibility.Collapsed;
+            IsRightFlyoutOpen = false;
+        }
+
+        public bool IsRightFlyoutOpen { get; set; }
     }
 }

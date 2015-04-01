@@ -123,12 +123,6 @@
     <Compile Include="Views\MusicPages\AddAlbumToPlaylist.xaml.cs">
       <DependentUpon>AddAlbumToPlaylist.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MusicPages\AlbumFlyout.xaml.cs">
-      <DependentUpon>AlbumFlyout.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\MusicPages\ArtistFlyout.xaml.cs">
-      <DependentUpon>ArtistFlyout.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\MusicPages\CreateNewPlaylist.xaml.cs">
       <DependentUpon>CreateNewPlaylist.xaml</DependentUpon>
     </Compile>
@@ -806,14 +800,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
     <Page Include="Views\MusicPages\AddAlbumToPlaylist.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\MusicPages\AlbumFlyout.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\MusicPages\ArtistFlyout.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

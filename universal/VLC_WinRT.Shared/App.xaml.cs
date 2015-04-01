@@ -252,7 +252,9 @@ namespace VLC_WinRT
             Dispatcher = Window.Current.Content.Dispatcher;
             Window.Current.Activate();
             await RootPage.SplitShell.TemplateApplied.Task;
+
 #if WINDOWS_APP
+            RootPage.SplitShell.IsPhone = false;
             AppViewHelper.SetAppView(); 
             AppViewHelper.SetBackgroundButtonColor();
 #endif

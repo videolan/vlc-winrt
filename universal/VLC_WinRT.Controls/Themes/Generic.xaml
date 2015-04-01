@@ -8,6 +8,25 @@
             <Setter.Value>
                 <ControlTemplate TargetType="controls:SplitShell">
                     <Grid>
+                        <Grid.Resources>
+                            <Storyboard x:Name="RightFlyoutFadeIn">
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RightFlyoutGridContainer"
+                                                               Storyboard.TargetProperty="Visibility">
+                                    <DiscreteObjectKeyFrame KeyTime="0"
+                                                            Value="Visible" />
+                                </ObjectAnimationUsingKeyFrames>
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="RightFlyoutPlaneProjection"
+                                                               Storyboard.TargetProperty="GlobalOffsetX">
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.5"
+                                                          Value="0">
+                                        <EasingDoubleKeyFrame.EasingFunction>
+                                            <ExponentialEase Exponent="4"
+                                                             EasingMode="EaseOut" />
+                                        </EasingDoubleKeyFrame.EasingFunction>
+                                    </EasingDoubleKeyFrame>
+                                </DoubleAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </Grid.Resources>
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup>
                                 <VisualState x:Name="TopBarVisualState">
@@ -105,6 +124,7 @@
                         <ContentPresenter x:Name="ContentPresenter"
                                           Grid.Column="1"
                                           Grid.Row="2" />
+
                         <Grid x:Name="SidebarGridContainer"
                               Grid.Column="0"
                               Grid.ColumnSpan="2"
@@ -116,6 +136,25 @@
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
                             <ContentPresenter x:Name="SidebarContentPresenter" />
+                        </Grid>
+
+                        <Grid x:Name="RightFlyoutGridContainer"
+                              Grid.Column="0"
+                              Grid.ColumnSpan="2"
+                              Grid.Row="1"
+                              Grid.RowSpan="2"
+                              Background="#50000000">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <ContentPresenter x:Name="RightFlyoutContentPresenter"
+                                              HorizontalAlignment="Right">
+                                <ContentPresenter.Projection>
+                                    <PlaneProjection x:Name="RightFlyoutPlaneProjection"
+                                                     GlobalOffsetX="450" />
+                                </ContentPresenter.Projection>
+                            </ContentPresenter>
                         </Grid>
                     </Grid>
                 </ControlTemplate>
