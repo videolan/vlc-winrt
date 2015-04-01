@@ -20,9 +20,6 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
 using VLC_WinRT.Helpers;
 using WinRTXamlToolkit.Controls.Extensions;
-#if WINDOWS_PHONE_APP
-using Windows.Phone.UI.Input;
-#endif
 namespace VLC_WinRT.Views.VideoPages
 {
     public sealed partial class VideoPlayerPage : Page
@@ -88,9 +85,6 @@ namespace VLC_WinRT.Views.VideoPages
             timer.Interval = TimeSpan.FromSeconds(5);
             timer.Tick += TimerOnTick;
             timer.Start();
-#if WINDOWS_PHONE_APP
-            HardwareButtons.BackPressed += HardwareButtonsOnBackPressed;
-#endif
         }
 
 
@@ -99,15 +93,7 @@ namespace VLC_WinRT.Views.VideoPages
             DisplayOrHide();
         }
 
-
-#if WINDOWS_PHONE_APP
-        private async void HardwareButtonsOnBackPressed(object sender, BackPressedEventArgs backPressedEventArgs)
-        {
-            backPressedEventArgs.Handled = true;
-            Locator.MediaPlaybackViewModel.GoBack.Execute("");
-            DisplayInformation.AutoRotationPreferences = DisplayOrientations.None;
-        }
-#endif
+        
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
             base.OnNavigatingFrom(e);
@@ -118,9 +104,6 @@ namespace VLC_WinRT.Views.VideoPages
             {
                 Locator.MediaPlaybackViewModel.ContinueIndexing.SetResult(true);
             }
-#if WINDOWS_PHONE_APP
-            HardwareButtons.BackPressed -= HardwareButtonsOnBackPressed;
-#endif
         }
 
         private async void TimerOnTick(object sender, object o)

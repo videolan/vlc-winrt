@@ -21,31 +21,8 @@ namespace VLC_WinRT.Views.MainPages
         private void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
         {
             Responsive();
-            this.Unloaded += OnUnloaded;
-#if WINDOWS_PHONE_APP
-            HardwareButtons.BackPressed += HardwareButtonsOnBackPressed;
-#endif
         }
-
-        private void OnUnloaded(object sender, RoutedEventArgs routedEventArgs)
-        {
-#if WINDOWS_PHONE_APP
-            HardwareButtons.BackPressed -= HardwareButtonsOnBackPressed;
-#endif
-        }
-#if WINDOWS_PHONE_APP
-        private void HardwareButtonsOnBackPressed(object sender, BackPressedEventArgs backPressedEventArgs)
-        {
-            if (Locator.ExternalStorageVM.CurrentStorageVM.CanGoBack)
-            {
-                backPressedEventArgs.Handled = true;
-                Locator.ExternalStorageVM.CurrentStorageVM.GoBackCommand.Execute(null);
-            }
-            else
-            {
-            }
-        }
-#endif
+        
         private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)
         {
             Responsive();

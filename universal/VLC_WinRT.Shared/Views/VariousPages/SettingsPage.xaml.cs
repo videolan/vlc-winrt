@@ -7,9 +7,6 @@ using Windows.UI.Xaml.Navigation;
 using VLC_WinRT.Helpers;
 using VLC_WinRT.LastFmScrobbler;
 using VLC_WinRT.ViewModels;
-#if WINDOWS_PHONE_APP
-using Windows.Phone.UI.Input;
-#endif
 namespace VLC_WinRT.Views.VariousPages
 {
     public sealed partial class SettingsPage : Page
@@ -31,33 +28,13 @@ namespace VLC_WinRT.Views.VariousPages
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-#if WINDOWS_PHONE_APP
-            HardwareButtons.BackPressed += HardwareButtonsOnBackPressed;
-#endif
             Package thisPackage = Package.Current;
             PackageVersion version = thisPackage.Id.Version;
             string appVersion = string.Format("{0}.{1}.{2}.{3}",
                 version.Major, version.Minor, version.Build, version.Revision);
             AppVersion.Text = "v" + appVersion;
         }
-
-#if WINDOWS_PHONE_APP
-        private void HardwareButtonsOnBackPressed(object sender, BackPressedEventArgs backPressedEventArgs)
-        {
-            if (App.ApplicationFrame.CanGoBack)
-                App.ApplicationFrame.GoBack();
-            backPressedEventArgs.Handled = true;
-        }
-#endif
-
-
-        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
-        {
-            base.OnNavigatingFrom(e);
-#if WINDOWS_PHONE_APP
-            HardwareButtons.BackPressed -= HardwareButtonsOnBackPressed;
-#endif
-        }
+        
 
         private async void ConnectToLastFM_Click(object sender, RoutedEventArgs e)
         {

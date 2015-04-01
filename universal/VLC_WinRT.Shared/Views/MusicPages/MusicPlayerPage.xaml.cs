@@ -27,15 +27,7 @@ namespace VLC_WinRT.Views.MusicPages
             this.SizeChanged += OnSizeChanged;
             this.Unloaded += OnUnloaded;
         }
-
-#if WINDOWS_PHONE_APP
-        private void HardwareButtonsOnBackPressed(object sender, BackPressedEventArgs backPressedEventArgs)
-        {
-            App.ApplicationFrame.GoBack();
-            backPressedEventArgs.Handled = true;
-        }
-#endif
-
+        
         #region layout
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -45,18 +37,12 @@ namespace VLC_WinRT.Views.MusicPages
                 Locator.SettingsVM.UpdateRequestedTheme();
             }
             catch { }
-#if WINDOWS_PHONE_APP
-            HardwareButtons.BackPressed += HardwareButtonsOnBackPressed;
-#endif
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             base.OnNavigatedFrom(e);
             Locator.SettingsVM.UpdateRequestedTheme();
-#if WINDOWS_PHONE_APP
-            HardwareButtons.BackPressed -= HardwareButtonsOnBackPressed;
-#endif
         }
 
         private void OnSizeChanged(object sender, SizeChangedEventArgs sizeChangedEventArgs)

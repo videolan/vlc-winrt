@@ -4,9 +4,6 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using VLC_WinRT.Helpers;
 using VLC_WinRT.ViewModels;
-#if WINDOWS_PHONE_APP
-using Windows.Phone.UI.Input;
-#endif
 
 namespace VLC_WinRT.Views.VariousPages
 {
@@ -16,25 +13,7 @@ namespace VLC_WinRT.Views.VariousPages
         {
             this.InitializeComponent();
         }
-#if WINDOWS_PHONE_APP
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            HardwareButtons.BackPressed += HardwareButtonsOnBackPressed;
-        }
 
-        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
-        {
-            base.OnNavigatingFrom(e);
-            HardwareButtons.BackPressed -= HardwareButtonsOnBackPressed;
-        }
-
-        private void HardwareButtonsOnBackPressed(object sender, BackPressedEventArgs backPressedEventArgs)
-        {
-            backPressedEventArgs.Handled = true;
-            if (App.ApplicationFrame.CanGoBack)
-                App.ApplicationFrame.GoBack();
-        }
-#endif
         private void SearchBox_OnTextChanged(object sender, TextChangedEventArgs e)
         {
             Locator.MainVM.SearchTag = SearchBox.Text;

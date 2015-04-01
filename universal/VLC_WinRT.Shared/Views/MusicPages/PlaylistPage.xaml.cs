@@ -6,10 +6,6 @@ using Microsoft.Xaml.Interactivity;
 using VLC_WinRT.Helpers;
 using VLC_WinRT.Model.Music;
 using VLC_WinRT.ViewModels;
-#if WINDOWS_PHONE_APP
-using Windows.Phone.UI.Input;
-#endif
-
 
 namespace VLC_WinRT.Views.MusicPages
 {
@@ -22,9 +18,6 @@ namespace VLC_WinRT.Views.MusicPages
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
-#if WINDOWS_PHONE_APP
-            HardwareButtons.BackPressed += HardwareButtonsOnBackPressed;
-#endif
             Responsive();
             Window.Current.SizeChanged += CurrentOnSizeChanged;
             this.Unloaded += OnUnloaded;
@@ -51,21 +44,7 @@ namespace VLC_WinRT.Views.MusicPages
                 VisualStateUtilities.GoToState(this, "Vertical", false);
             }
         }
-
-#if WINDOWS_PHONE_APP
-        private void HardwareButtonsOnBackPressed(object sender, BackPressedEventArgs backPressedEventArgs)
-        {
-            if (App.ApplicationFrame.CanGoBack)
-                App.ApplicationFrame.GoBack();
-            backPressedEventArgs.Handled = true;
-        }
-
-        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
-        {
-            base.OnNavigatingFrom(e);
-            HardwareButtons.BackPressed -= HardwareButtonsOnBackPressed;
-        }
-#endif
+        
         private void PlayListView_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (e.AddedItems != null && e.AddedItems.Any())
