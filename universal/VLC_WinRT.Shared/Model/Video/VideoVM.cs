@@ -42,7 +42,6 @@ namespace VLC_WinRT.Model.Video
         private String _thumbnailPath = "ms-appx:///Assets/NoCover.jpg";
         private LoadingState _thumbnailLoadingState = LoadingState.NotLoaded;
         private StorageFile _file;
-        private FavoriteVideoCommand _favoriteVideo;
         private DateTime _lastWatched;
         // TVShows related
         private int _season = -1;
@@ -163,11 +162,7 @@ namespace VLC_WinRT.Model.Video
         }
 
         [Ignore]
-        public FavoriteVideoCommand FavoriteVideo
-        {
-            get { return _favoriteVideo; }
-            set { SetProperty(ref _favoriteVideo, value); }
-        }
+        public FavoriteVideoCommand FavoriteVideo { get; }=new FavoriteVideoCommand();
 
         public VideoProperties VideoProperties;
 

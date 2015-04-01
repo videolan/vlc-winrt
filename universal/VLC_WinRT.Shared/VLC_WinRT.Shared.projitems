@@ -184,6 +184,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\ExternalDeviceService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\KeyboardListenerService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\MFService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\NavigationService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\VLCService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\MouseService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\MusicMetaService.cs" />
@@ -813,7 +814,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Commands\VLCFileExplorer\" />
-    <Folder Include="$(MSBuildThisFileDirectory)DataTemplateSelectors\" />
     <Folder Include="$(MSBuildThisFileDirectory)Services\Mocks\" />
   </ItemGroup>
   <ItemGroup>

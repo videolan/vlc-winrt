@@ -1,24 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿
+using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Text;
 using System.Threading.Tasks;
-using Windows.UI.Core;
-using Windows.UI.Xaml.Documents;
 using Windows.UI.Xaml.Media.Imaging;
 using Autofac;
 using SQLite;
-using VLC_WINRT.Common;
 using VLC_WinRT.Commands.Music;
-using VLC_WinRT.Commands.MusicPlayer;
 using VLC_WinRT.Common;
 using VLC_WinRT.Helpers;
 using VLC_WinRT.Helpers.MusicLibrary;
-using VLC_WinRT.Services.Interface;
 using VLC_WinRT.Services.RunTime;
 using VLC_WinRT.ViewModels;
-using VLC_WinRT.ViewModels.MusicVM;
 
 namespace VLC_WinRT.Model.Music
 {
@@ -35,14 +28,7 @@ namespace VLC_WinRT.Model.Music
         private bool _isPictureLoaded = false;
         private bool _isTracksLoaded = false;
         private ObservableCollection<TrackItem> _trackItems;
-        private PlayAlbumCommand _playAlbumCommand = new PlayAlbumCommand();
-        private FavoriteAlbumCommand _favoriteAlbumCommand = new FavoriteAlbumCommand();
-        private AlbumTrackClickedCommand _trackClickedCommand = new AlbumTrackClickedCommand();
-        private ArtistClickedCommand _viewArtist = new ArtistClickedCommand();
-        private PinAlbumCommand _pinAlbumCommand = new PinAlbumCommand();
         private bool _isPinned;
-        private ChangeAlbumArtCommand _changeAlbumArtCommand = new ChangeAlbumArtCommand();
-        private SeeArtistShowsCommand seeArtistShowsCommand;
 
         [PrimaryKey, AutoIncrement, Column("_id")]
         public int Id { get; set; }
@@ -74,11 +60,25 @@ namespace VLC_WinRT.Model.Music
         }
 
         [Ignore]
-        public ChangeAlbumArtCommand ChangeAlbumArtCommand
-        {
-            get { return _changeAlbumArtCommand; }
-            set { SetProperty(ref _changeAlbumArtCommand, value); }
-        }
+        public ChangeAlbumArtCommand ChangeAlbumArtCommand { get; } = new ChangeAlbumArtCommand();
+
+        [Ignore]
+        public ArtistClickedCommand ViewArtist { get; } = new ArtistClickedCommand();
+
+        [Ignore]
+        public PlayAlbumCommand PlayAlbum { get; } = new PlayAlbumCommand();
+
+        [Ignore]
+        public FavoriteAlbumCommand FavoriteAlbum { get; } = new FavoriteAlbumCommand();
+
+        [Ignore]
+        public AlbumTrackClickedCommand TrackClicked { get; } = new AlbumTrackClickedCommand();
+
+        [Ignore]
+        public PinAlbumCommand PinAlbumCommand { get; } = new PinAlbumCommand();
+
+        [Ignore]
+        public SeeArtistShowsCommand SeeArtistShowsCommand { get; } = new SeeArtistShowsCommand();
 
         [Ignore]
         public ObservableCollection<TrackItem> Tracks
@@ -108,7 +108,7 @@ namespace VLC_WinRT.Model.Music
             {
                 if (!string.IsNullOrEmpty(_picture)) // custom uri
                     return _picture;
-                else if(IsPictureLoaded && IsCoverInLocalFolder) // default album cover uri
+                else if (IsPictureLoaded && IsCoverInLocalFolder) // default album cover uri
                 {
                     return string.Format("ms-appdata:///local/albumPic/{0}.jpg", Id);
                 }
@@ -175,52 +175,11 @@ namespace VLC_WinRT.Model.Music
             }
         }
 
-        [Ignore]
-        public ArtistClickedCommand ViewArtist
-        {
-            get { return _viewArtist; }
-            set { SetProperty(ref _viewArtist, value); }
-        }
 
-        [Ignore]
-        public PlayAlbumCommand PlayAlbum
-        {
-            get { return _playAlbumCommand; }
-            set { SetProperty(ref _playAlbumCommand, value); }
-        }
-
-        [Ignore]
-        public FavoriteAlbumCommand FavoriteAlbum
-        {
-            get { return _favoriteAlbumCommand; }
-            set { SetProperty(ref _favoriteAlbumCommand, value); }
-        }
-
-        [Ignore]
-        public AlbumTrackClickedCommand TrackClicked
-        {
-            get { return _trackClickedCommand; }
-            set { SetProperty(ref _trackClickedCommand, value); }
-        }
-
-        [Ignore]
-        public PinAlbumCommand PinAlbumCommand
-        {
-            get { return _pinAlbumCommand; }
-            set { SetProperty(ref _pinAlbumCommand, value); }
-        }
         public bool IsPinned
         {
             get { return _isPinned; }
             set { SetProperty(ref _isPinned, value); }
-        }
-        [Ignore]
-        public SeeArtistShowsCommand SeeArtistShowsCommand
-        {
-            get
-            {
-                return seeArtistShowsCommand ?? (seeArtistShowsCommand = new SeeArtistShowsCommand());
-            }
         }
     }
 }

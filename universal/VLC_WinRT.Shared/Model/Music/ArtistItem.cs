@@ -1,21 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.Text;
 using System.Threading.Tasks;
-using Windows.UI.Core;
 using Windows.UI.Xaml.Media.Imaging;
 using SQLite;
-using VLC_WINRT.Common;
 using VLC_WinRT.Commands.Music;
 using VLC_WinRT.Common;
 using VLC_WinRT.Helpers;
 using VLC_WinRT.Helpers.MusicLibrary;
-using VLC_WinRT.MusicMetaFetcher;
-using VLC_WinRT.ViewModels.MusicVM;
 using VLC_WinRT.MusicMetaFetcher.Models.MusicEntities;
-using VLC_WinRT.ViewModels;
 
 namespace VLC_WinRT.Model.Music
 {
@@ -37,9 +30,7 @@ namespace VLC_WinRT.Model.Music
         private List<Show> _upcomingShowItems;
         private bool _isUpcomingShowsLoading = false;
         private bool _isUpcomingShowsItemsLoaded = false;
-        private PinArtistCommand pinArtistCommand;
         private bool _isPinned;
-        private SeeArtistShowsCommand seeArtistShowsCommand;
         private string _genre;
         private BitmapImage _artistImage;
         private LoadingState _artistImageLoadingState = LoadingState.NotLoaded;
@@ -179,7 +170,10 @@ namespace VLC_WinRT.Model.Music
         }
 
         [Ignore]
-        public PinArtistCommand PinArtistCommand => pinArtistCommand ?? (pinArtistCommand = new PinArtistCommand());
+        public PinArtistCommand PinArtistCommand { get; } = new PinArtistCommand();
+
+        [Ignore]
+        public SeeArtistShowsCommand SeeArtistShowsCommand { get; } = new SeeArtistShowsCommand();
 
         public bool IsPinned
         {
@@ -187,14 +181,6 @@ namespace VLC_WinRT.Model.Music
             set { SetProperty(ref _isPinned, value); }
         }
 
-        [Ignore]
-        public SeeArtistShowsCommand SeeArtistShowsCommand
-        {
-            get
-            {
-                return seeArtistShowsCommand ?? (seeArtistShowsCommand = new SeeArtistShowsCommand());
-            }
-        }
 
         [Ignore]
         public List<Show> UpcomingShows

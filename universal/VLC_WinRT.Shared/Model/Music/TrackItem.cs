@@ -21,9 +21,6 @@ namespace VLC_WinRT.Model.Music
         private int _currentPosition;
         private bool _isCurrentPlaying;
         private string _thumbnail;
-        private TrackClickedCommand _trackClickedCommand = new TrackClickedCommand();
-        private FavoriteTrackCommand _favoriteTrackCommand = new FavoriteTrackCommand();
-        private ArtistClickedCommand _viewArtist = new ArtistClickedCommand();
         private StorageFile _file;
 
         [PrimaryKey, AutoIncrement, Column("_id")]
@@ -97,25 +94,13 @@ namespace VLC_WinRT.Model.Music
         }
 
         [Ignore]
-        public TrackClickedCommand TrackClicked
-        {
-            get { return _trackClickedCommand; }
-            set { SetProperty(ref _trackClickedCommand, value); }
-        }
+        public TrackClickedCommand TrackClicked { get; }=new TrackClickedCommand();
 
         [Ignore]
-        public ArtistClickedCommand ViewArtist
-        {
-            get { return _viewArtist; }
-            set { SetProperty(ref _viewArtist, value); }
-        }
+        public ArtistClickedCommand ViewArtist { get; }=new ArtistClickedCommand();
 
         [Ignore]
-        public FavoriteTrackCommand FavoriteTrack
-        {
-            get { return _favoriteTrackCommand; }
-            set { SetProperty(ref _favoriteTrackCommand, value); }
-        }
+        public FavoriteTrackCommand FavoriteTrack { get; }=new FavoriteTrackCommand();
 
         [Ignore]
         public StorageFile File
