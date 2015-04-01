@@ -28,7 +28,7 @@ namespace VLC_WinRT.Commands.Music
         {
             if (App.ApplicationFrame.CurrentSourcePageType != typeof(MusicPlayerPage))
                 App.ApplicationFrame.Navigate(typeof(MusicPlayerPage));
-            Locator.MusicLibraryVM.IsAlbumPageShown = false;
+            App.RootPage.SplitShell.HideFlyout();
             try
             {
                 if (parameter is AlbumItem)

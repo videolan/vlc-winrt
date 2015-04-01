@@ -26,6 +26,13 @@
                                     </EasingDoubleKeyFrame>
                                 </DoubleAnimationUsingKeyFrames>
                             </Storyboard>
+                            <Storyboard x:Name="RightFlyoutFadeOut">
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RightFlyoutGridContainer"
+                                                               Storyboard.TargetProperty="Visibility">
+                                    <DiscreteObjectKeyFrame KeyTime="0"
+                                                            Value="Collapsed" />
+                                </ObjectAnimationUsingKeyFrames>
+                            </Storyboard>
                         </Grid.Resources>
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup>

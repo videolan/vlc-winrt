@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
+using Windows.UI;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -20,6 +22,7 @@ namespace VLC_WinRT.Controls
     [TemplatePart(Name = RightFlyoutContentPresenterName, Type = typeof(ContentPresenter))]
     [TemplatePart(Name = InformationTextBlockName, Type = typeof(TextBlock))]
     [TemplatePart(Name = RightFlyoutFadeInName, Type = typeof(Storyboard))]
+    [TemplatePart(Name = RightFlyoutFadeOutName, Type = typeof(Storyboard))]
     [TemplatePart(Name = RightFlyoutPlaneProjectionName, Type = typeof(PlaneProjection))]
     [TemplatePart(Name = RightFlyoutGridContainerName, Type = typeof(Grid))]
     public sealed class SplitShell : Control
@@ -40,6 +43,7 @@ namespace VLC_WinRT.Controls
         private const string InformationTextBlockName = "InformationTextBlock";
         private const string RightFlyoutContentPresenterName = "RightFlyoutContentPresenter";
         private const string RightFlyoutFadeInName = "RightFlyoutFadeIn";
+        private const string RightFlyoutFadeOutName = "RightFlyoutFadeOut";
         private const string RightFlyoutPlaneProjectionName = "RightFlyoutPlaneProjection";
         private const string RightFlyoutGridContainerName = "RightFlyoutGridContainer";
 
@@ -54,6 +58,7 @@ namespace VLC_WinRT.Controls
 
         private PlaneProjection _rightFlyoutPlaneProjection;
         private Storyboard _rightFlyoutFadeIn;
+        private Storyboard _rightFlyoutFadeOut;
         private Grid _informationGrid;
         private TextBlock _informationTextBlock;
         private bool _alwaysVisibleSideBarVisualState;
@@ -279,6 +284,7 @@ namespace VLC_WinRT.Controls
             _edgePaneGrid = (Grid)GetTemplateChild(EdgePaneName);
             _rightFlyoutContentPresenter = (ContentPresenter)GetTemplateChild(RightFlyoutContentPresenterName);
             _rightFlyoutFadeIn = (Storyboard)GetTemplateChild(RightFlyoutFadeInName);
+            _rightFlyoutFadeOut = (Storyboard)GetTemplateChild(RightFlyoutFadeOutName);
             _rightFlyoutPlaneProjection = (PlaneProjection)GetTemplateChild(RightFlyoutPlaneProjectionName);
             _rightFlyoutGridContainer = (Grid)GetTemplateChild(RightFlyoutGridContainerName);
 
@@ -292,8 +298,6 @@ namespace VLC_WinRT.Controls
             Window.Current.SizeChanged += Current_SizeChanged;
             Responsive();
         }
-
-
 
         void Current_SizeChanged(object sender, WindowSizeChangedEventArgs e)
         {
@@ -342,7 +346,7 @@ namespace VLC_WinRT.Controls
 
         public void HideFlyout()
         {
-            _rightFlyoutGridContainer.Visibility = Visibility.Collapsed;
+            _rightFlyoutFadeOut.Begin();
             IsRightFlyoutOpen = false;
         }
 
