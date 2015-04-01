@@ -92,9 +92,6 @@
     <Compile Include="BackgroundHelpers\BackgroundAudioHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BackgroundHelpers\BackgroundTaskTools.cs" />
-    <Compile Include="Views\MusicPages\AddAlbumToPlaylist.xaml.cs">
-      <DependentUpon>AddAlbumToPlaylist.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\MusicPages\CreateNewPlaylist.xaml.cs">
       <DependentUpon>CreateNewPlaylist.xaml</DependentUpon>
     </Compile>
@@ -780,10 +777,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Page>
-    <Page Include="Views\MusicPages\AddAlbumToPlaylist.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MusicPages\CreateNewPlaylist.xaml">
       <SubType>Designer</SubType>
