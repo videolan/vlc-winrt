@@ -69,7 +69,7 @@ namespace VLC_WinRT.Model.Music
         {
             get
             {
-                if(string.IsNullOrEmpty(_thumbnail))
+                if (string.IsNullOrEmpty(_thumbnail))
                     _thumbnail = "ms-appdata:///local/albumPic/" + AlbumId + ".jpg";
                 return _thumbnail;
             }
@@ -94,13 +94,13 @@ namespace VLC_WinRT.Model.Music
         }
 
         [Ignore]
-        public TrackClickedCommand TrackClicked { get; }=new TrackClickedCommand();
+        public TrackClickedCommand TrackClicked { get; } = new TrackClickedCommand();
 
         [Ignore]
-        public ArtistClickedCommand ViewArtist { get; }=new ArtistClickedCommand();
+        public ArtistClickedCommand ViewArtist { get; } = new ArtistClickedCommand();
 
         [Ignore]
-        public FavoriteTrackCommand FavoriteTrack { get; }=new FavoriteTrackCommand();
+        public FavoriteTrackCommand FavoriteTrack { get; } = new FavoriteTrackCommand();
 
         [Ignore]
         public StorageFile File

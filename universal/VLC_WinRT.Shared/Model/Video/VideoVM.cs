@@ -162,7 +162,7 @@ namespace VLC_WinRT.Model.Video
         }
 
         [Ignore]
-        public FavoriteVideoCommand FavoriteVideo { get; }=new FavoriteVideoCommand();
+        public FavoriteVideoCommand FavoriteVideo { get; } = new FavoriteVideoCommand();
 
         public VideoProperties VideoProperties;
 
@@ -182,7 +182,7 @@ namespace VLC_WinRT.Model.Video
         {
             get { return _season != -1; }
         }
-        
+
         #endregion
 
         #region public fields
