@@ -40,12 +40,12 @@ namespace VLC_WinRT.Views.MainPages.MainVideoControls.VideoPanesControls
 
         private void ComboBox_OnDropDownOpened(object sender, object e)
         {
-            Locator.MainVM.PreventAppExit = true;
+            Locator.MainVM.NavigationService.PreventAppExit = true;
         }
 
         private void ComboBox_OnDropDownClosed(object sender, object e)
         {
-            Locator.MainVM.PreventAppExit = false;
+            Locator.MainVM.NavigationService.PreventAppExit = false;
         }
     }
 }

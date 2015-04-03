@@ -9,6 +9,7 @@ namespace VLC_WinRT.Services.RunTime
     public class NavigationService
     {
         public VLCPage CurrentPage;
+        public bool PreventAppExit { get; set; } = false;
 
         public NavigationService()
         {
@@ -20,9 +21,11 @@ namespace VLC_WinRT.Services.RunTime
 #if WINDOWS_PHONE_APP
         private void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
         {
+            e.Handled = true;
             switch (CurrentPage)
             {
                 case VLCPage.MainPageHome:
+                    e.Handled = false;
                     break;
                 case VLCPage.MainPageVideo:
                     break;
@@ -31,16 +34,22 @@ namespace VLC_WinRT.Services.RunTime
                 case VLCPage.MainPageFileExplorer:
                     break;
                 case VLCPage.AlbumPage:
+                    GoBack_HideFlyout();
                     break;
                 case VLCPage.ArtistPage:
+                    GoBack_HideFlyout();
                     break;
                 case VLCPage.PlaylistPage:
+                    GoBack_Default();
                     break;
                 case VLCPage.CurrentPlaylistPage:
+                    GoBack_Default();
                     break;
                 case VLCPage.VideoPlayerPage:
+                    GoBack_Default();
                     break;
                 case VLCPage.MusicPlayerPage:
+                    GoBack_Default();
                     break;
                 case VLCPage.SettingsPage:
                     break;
@@ -49,5 +58,15 @@ namespace VLC_WinRT.Services.RunTime
             }
         }
 #endif
+
+        void GoBack_Default()
+        {
+            App.ApplicationFrame.GoBack();
+        }
+
+        void GoBack_HideFlyout()
+        {
+            App.RootPage.SplitShell.HideFlyout();
+        }
     }
 }

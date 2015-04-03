@@ -69,6 +69,8 @@ namespace VLC_WinRT.ViewModels
         #endregion
 
         #region public props
+        public NavigationService NavigationService { get; private set;}
+
         public KeyboardListenerService KeyboardListenerService { get { return keyboardListenerService; } }
         public bool IsInternet
         {
@@ -138,6 +140,7 @@ namespace VLC_WinRT.ViewModels
         public MainVM()
         {
             keyboardListenerService = App.Container.Resolve<KeyboardListenerService>();
+            NavigationService = App.Container.Resolve<NavigationService>();
             networkListenerService = App.Container.Resolve<NetworkListenerService>();
             networkListenerService.InternetConnectionChanged += networkListenerService_InternetConnectionChanged;
             _isInternet = NetworkListenerService.IsConnected;
