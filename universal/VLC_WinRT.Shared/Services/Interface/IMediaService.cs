@@ -30,6 +30,7 @@ namespace VLC_WinRT.Services.Interface
         Task SetMediaFile(IVLCMedia media);
 
         void Play();
+        void Play(int trackId);
         void Pause();
 
         void Stop();

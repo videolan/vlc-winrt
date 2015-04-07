@@ -30,7 +30,7 @@ namespace VLC_WinRT.Services.RunTime
         public event TimeChanged TimeChanged;
 
         public TaskCompletionSource<bool> PlayerInstanceReady { get; set; }
-        
+
         private DispatcherTimer dispatchTimer;
 
         public MFService()
@@ -116,7 +116,11 @@ namespace VLC_WinRT.Services.RunTime
                 var randomAccessStream = await randomAccessStreamReference.OpenReadAsync();
                 if (randomAccessStream != null)
                 {
-                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Instance.SetSource(randomAccessStream, randomAccessStream.ContentType));
+                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                    {
+                        Instance.AutoPlay = false;
+                        Instance.SetSource(randomAccessStream, randomAccessStream.ContentType);
+                    });
                 }
             }
         }
@@ -136,15 +140,15 @@ namespace VLC_WinRT.Services.RunTime
                     break;
                 case MediaElementState.Playing:
                     StatusChanged?.Invoke(this, MediaState.Playing);
-                    dispatchTimer.Start();
+                    dispatchTimer?.Start();
                     break;
                 case MediaElementState.Paused:
                     StatusChanged?.Invoke(this, MediaState.Paused);
-                    dispatchTimer.Stop();
+                    dispatchTimer?.Stop();
                     break;
                 case MediaElementState.Stopped:
                     StatusChanged?.Invoke(this, MediaState.Stopped);
-                    dispatchTimer.Stop();
+                    dispatchTimer?.Stop();
                     OnStopped?.Invoke(this);
                     break;
                 default:
@@ -157,8 +161,14 @@ namespace VLC_WinRT.Services.RunTime
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 if (Instance == null) return;
-                Instance.Play();
+                Instance.MediaOpened += (sender, args) => Instance.Play();
             });
+        }
+
+
+        public void Play(int trackId)
+        {
+            throw new NotImplementedException();
         }
 
         public async void Pause()
@@ -184,7 +194,7 @@ namespace VLC_WinRT.Services.RunTime
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 if (Instance == null) return;
-                dispatchTimer.Stop();
+                dispatchTimer?.Stop();
                 Instance.Stop();
             });
         }

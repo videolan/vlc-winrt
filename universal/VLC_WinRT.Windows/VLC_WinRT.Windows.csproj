@@ -857,6 +857,10 @@
       <Project>{0627f270-00d9-45e8-8cae-74bfea436379}</Project>
       <Name>VLC_WinRT.Controls</Name>
     </ProjectReference>
+    <ProjectReference Include="..\VLC_WinRT.Database\VLC_WinRT.Database.csproj">
+      <Project>{1e0bf0fc-e5cb-4bdf-918f-d2de64f7a6c5}</Project>
+      <Name>VLC_WinRT.Database</Name>
+    </ProjectReference>
     <ProjectReference Include="..\VLC_WinRT.LastFmScrobbler\VLC_WinRT.LastFmScrobbler.csproj">
       <Project>{f531474d-c881-4776-b519-e6374e80f4ce}</Project>
       <Name>VLC_WinRT.LastFmScrobbler</Name>
@@ -877,6 +881,7 @@
   </PropertyGroup>
   <Import Project="..\VLC_WinRT.Shared\VLC_WinRT.Shared.projitems" Label="Shared" />
   <Import Project="..\VLC_WinRT.MusicMetaFetcher\VLC_WinRT.MusicMetaFetcher.projitems" Label="Shared" Condition="Exists('..\VLC_WinRT.MusicMetaFetcher\VLC_WinRT.MusicMetaFetcher.projitems')" />
+  <Import Project="..\VLC_WinRT.SharedBackground\VLC_WinRT.SharedBackground.projitems" Label="Shared" Condition="Exists('..\VLC_WinRT.SharedBackground\VLC_WinRT.SharedBackground.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <Import Project="..\..\app\packages\SQLitePCL.raw_basic.0.7.1\build\netcore451\SQLitePCL.raw_basic.targets" Condition="Exists('..\..\app\packages\SQLitePCL.raw_basic.0.7.1\build\netcore451\SQLitePCL.raw_basic.targets')" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Multilingual App Toolkit\Microsoft.Multilingual.PriResources.targets" Label="MultilingualAppToolkit" />

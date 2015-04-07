@@ -3,7 +3,8 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using SQLite;
-using VLC_WinRT.Database.Model;
+using VLC_WinRT.BackgroundAudioPlayer;
+using VLC_WinRT.BackgroundAudioPlayer.Model;
 
 namespace VLC_WinRT.Database.DataRepository
 {
@@ -41,7 +42,7 @@ Windows.Storage.ApplicationData.Current.LocalFolder.Path,
             return connection.InsertAsync(track);
         }
 
-        public Task AddBunchTracks(List<BackgroundTrackItem> tracks)
+        public Task AddBunchTracks(dynamic tracks)
         {
             var connection = new SQLiteAsyncConnection(DbPath);
             return connection.InsertAllAsync(tracks);

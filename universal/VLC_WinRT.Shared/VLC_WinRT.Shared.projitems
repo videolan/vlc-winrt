@@ -12,6 +12,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)BackgroundHelpers\BackgroundAudioConstants.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)BackgroundHelpers\BackgroundAudioHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)BackgroundHelpers\BackgroundTaskTools.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\ActionCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\ClearHistoryCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Dlna\DlnaClickedCommand.cs" />
@@ -181,6 +184,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Services\DesignTime\ThumbnailService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Interface\IMediaService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Interface\IThumbnailService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\BGPlayerService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\ExternalDeviceService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\KeyboardListenerService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\MFService.cs" />

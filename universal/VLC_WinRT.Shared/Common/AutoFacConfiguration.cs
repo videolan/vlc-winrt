@@ -54,7 +54,9 @@ namespace VLC_WinRT.Common
                 // Register Services
                 builder.RegisterType<VLCService>().SingleInstance();
                 builder.RegisterType<MFService>().SingleInstance();
-
+#if WINDOWS_PHONE_APP
+                builder.RegisterType<BGPlayerService>().SingleInstance();
+#endif
                 builder.RegisterType<NavigationService>().SingleInstance();
                 builder.RegisterType<MusicMetaService>().SingleInstance();
                 builder.RegisterType<KeyboardListenerService>().SingleInstance();

@@ -18,10 +18,10 @@ using VLC_WinRT.Helpers;
 using VLC_WinRT.Model.Music;
 using VLC_WinRT.Commands.Social;
 using VLC_WinRT.Common;
+using VLC_WinRT.Database.DataRepository;
+using VLC_WinRT.BackgroundAudioPlayer.Model;
 #if WINDOWS_PHONE_APP
 using Windows.Media.Playback;
-using VLC_WinRT.BackgroundAudioPlayer.Model;
-using VLC_WinRT.Database.DataRepository;
 #endif
 
 namespace VLC_WinRT.ViewModels.MusicVM
@@ -39,9 +39,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
         #endregion
 
         #region public props
-#if WINDOWS_PHONE_APP
-        public BackgroundTrackRepository BackgroundTrackRepository { get; set; }
-#endif
+        public BackgroundTrackRepository BackgroundTrackRepository { get; set; } = new BackgroundTrackRepository();
 
         public AlbumItem CurrentAlbum
         {
@@ -90,9 +88,6 @@ namespace VLC_WinRT.ViewModels.MusicVM
 
         public MusicPlayerVM()
         {
-#if WINDOWS_PHONE_APP
-            BackgroundTrackRepository = new BackgroundTrackRepository();
-#endif
         }
                 
         public async Task UpdateWindows8UI()
@@ -116,13 +111,15 @@ namespace VLC_WinRT.ViewModels.MusicVM
                 }
             }
         }
-
-#if WINDOWS_PHONE_APP
+        
         public async Task UpdateTrackFromMF()
         {
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
             {
+#if WINDOWS_PHONE_APP
+                // TODO : this shouldn't be here
                 Locator.MediaPlaybackViewModel.OnLengthChanged((long)BackgroundMediaPlayer.Current.NaturalDuration.TotalMilliseconds);
+#endif          
                 if (!ApplicationSettingsHelper.Contains(BackgroundAudioConstants.CurrentTrack)) return;
                 int index = (int)ApplicationSettingsHelper.ReadSettingsValue(BackgroundAudioConstants.CurrentTrack);
                 Locator.MediaPlaybackViewModel.TrackCollection.CurrentTrack = index;
@@ -131,7 +128,6 @@ namespace VLC_WinRT.ViewModels.MusicVM
                 await UpdatePlayingUI();
             });
         }
-#endif
 
         public async Task UpdatePlayingUI()
         {

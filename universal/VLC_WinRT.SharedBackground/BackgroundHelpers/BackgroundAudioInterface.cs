@@ -3,7 +3,7 @@ using System.IO;
 using System.Xml.Serialization;
 using VLC_WinRT.BackgroundAudioPlayer.Model;
 
-namespace VLC_WinRT.BackgroundHelpers
+namespace VLC_WinRT.BackgroundAudioPlayer
 {
     public static class AudioBackgroundInterface
     {
@@ -16,30 +16,30 @@ namespace VLC_WinRT.BackgroundHelpers
             return textWriter.ToString();
         }
 
-        public static object DeserializeObjectAudioTrack(this string s)
+        public static BackgroundTrackItem DeserializeObjectAudioTrack(this string s)
         {
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(BackgroundTrackItem));
             StringReader textReader = new StringReader(s);
 
-            return xmlSerializer.Deserialize(textReader);
+            return xmlSerializer.Deserialize(textReader) as BackgroundTrackItem;
         }
 
-        public static string SerializeObjectListTrack(this object toSerialize)
+        public static string SerializeAudioTracks(object tracks)
         {
-            List<BackgroundTrackItem> local = toSerialize as List<BackgroundTrackItem>;
-            XmlSerializer xmlSerializer = new XmlSerializer(local.GetType());
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<BackgroundTrackItem>));
             StringWriter textWriter = new StringWriter();
 
-            xmlSerializer.Serialize(textWriter, toSerialize);
+            xmlSerializer.Serialize(textWriter, tracks);
             return textWriter.ToString();
         }
 
-        public static object DeserializeObjectListTrack(this string s)
+        public static object DeserializeAudioTracks(string tracksString)
         {
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<BackgroundTrackItem>));
-            StringReader textReader = new StringReader(s);
+            XmlSerializer xmlDeSerializer = new XmlSerializer(typeof(List<BackgroundTrackItem>));
+            StringReader textReader = new StringReader(tracksString);
 
-            return xmlSerializer.Deserialize(textReader);
+            return xmlDeSerializer.Deserialize(textReader) as List<BackgroundTrackItem>;
         }
     }
 }
+

@@ -80,13 +80,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="BackgroundPlayer.cs" />
-    <Compile Include="Model\ApplicationSettingsHelper.cs" />
     <Compile Include="Model\BackgroundAudioConstants.cs" />
-    <Compile Include="Model\BackgroundAudioInterface.cs" />
     <Compile Include="Model\BackgroundTrackCollection.cs" />
-    <Compile Include="Model\BackgroundTrackItem.cs" />
     <Compile Include="Model\PlayingType.cs" />
-    <Compile Include="Model\ResetType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -114,6 +110,7 @@
   <PropertyGroup Condition=" '$(TargetPlatformIdentifier)' == '' ">
     <TargetPlatformIdentifier>WindowsPhoneApp</TargetPlatformIdentifier>
   </PropertyGroup>
+  <Import Project="..\VLC_WinRT.SharedBackground\VLC_WinRT.SharedBackground.projitems" Label="Shared" Condition="Exists('..\VLC_WinRT.SharedBackground\VLC_WinRT.SharedBackground.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

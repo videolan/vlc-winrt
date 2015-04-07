@@ -194,6 +194,11 @@ namespace VLC_WinRT.Services.RunTime
             MediaPlayer?.play();
         }
 
+        public void Play(int trackId)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Pause()
         {
             MediaPlayer?.pause();

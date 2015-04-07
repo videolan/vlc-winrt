@@ -36,6 +36,7 @@ using VLC_WinRT.Model.Video;
 using VLC_WinRT.Services.RunTime;
 using VLC_WinRT.ViewModels.MusicVM;
 using VLC_WinRT.Commands;
+using VLC_WinRT.BackgroundAudioPlayer.Model;
 #if WINDOWS_PHONE_APP
 using Windows.Media.Playback;
 using VLC_WinRT.BackgroundAudioPlayer.Model;
@@ -92,12 +93,15 @@ namespace VLC_WinRT.ViewModels
                         return App.Container.Resolve<VLCService>();
                     case PlayerEngine.MediaFoundation:
                         return App.Container.Resolve<MFService>();
+#if WINDOWS_PHONE_APP
+                    case PlayerEngine.BackgroundMFPlayer:
+                        return App.Container.Resolve<BGPlayerService>();
+#endif
                     default:
                         //todo : Implement properly BackgroundPlayerService 
                         //todo : so we get rid ASAP of this default switch
                         return App.Container.Resolve<VLCService>();
                 }
-                return null;
             }
         }
 
@@ -217,68 +221,15 @@ namespace VLC_WinRT.ViewModels
         /**
          * Elasped time in milliseconds
          */
-
         public long Time
         {
             get
             {
-                switch (_playerEngine)
-                {
-                    case PlayerEngine.VLC:
-                        return _mediaService.GetTime();
-                    case PlayerEngine.MediaFoundation:
-                        return _mediaService.GetTime();
-                    case PlayerEngine.BackgroundMFPlayer:
-                        // CurrentState keeps failing OnCanceled, even though it actually has a state.
-                        // The error is useless for now, so try catch and ignore.
-#if WINDOWS_PHONE_APP
-                        try
-                        {
-                            switch (BackgroundMediaPlayer.Current.CurrentState)
-                            {
-                                case MediaPlayerState.Playing:
-                                    return (long)BackgroundMediaPlayer.Current.Position.TotalMilliseconds;
-                                case MediaPlayerState.Closed:
-                                    // TODO: Use saved time value to populate time field.
-                                    break;
-                            }
-                        }
-                        catch
-                        {
-                        }
-#endif
-                        return 0;
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
+                return _mediaService.GetTime();
             }
             set
             {
-                switch (_playerEngine)
-                {
-                    case PlayerEngine.VLC:
-                        _mediaService.SetTime(value);
-                        break;
-                    case PlayerEngine.MediaFoundation:
-                        _mediaService.SetTime(value);
-                        break;
-                    case PlayerEngine.BackgroundMFPlayer:
-                        // Same as with "Time", BackgroundMediaPlayer.Current.CurrentState sometimes blows up on OnCancelled. So for now, throw it in a try catch.
-                        // This really seems like an WinRT API bug to me...
-#if WINDOWS_PHONE_APP
-                        try
-                        {
-                            BackgroundMediaPlayer.Current.Position = TimeSpan.FromMilliseconds(value);
-                        }
-                        catch (Exception ex)
-                        {
-                            Debug.WriteLine("Error with position : " + ex.Message);
-                        }
-#endif
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
+                _mediaService.SetTime(value);
             }
         }
 
@@ -286,57 +237,11 @@ namespace VLC_WinRT.ViewModels
         {
             get
             {
-                switch (_playerEngine)
-                {
-                    case PlayerEngine.VLC:
-                        return _mediaService.GetPosition();
-                    case PlayerEngine.MediaFoundation:
-                        return _mediaService.GetPosition();
-                    case PlayerEngine.BackgroundMFPlayer:
-#if WINDOWS_PHONE_APP
-                        switch (BackgroundMediaPlayer.Current.CurrentState)
-                        {
-                            case MediaPlayerState.Playing:
-                                var pos = (BackgroundMediaPlayer.Current.Position.TotalMilliseconds / BackgroundMediaPlayer.Current.NaturalDuration.TotalMilliseconds);
-                                float posfloat = (float)pos;
-                                return posfloat;
-                            case MediaPlayerState.Closed:
-                                break;
-                        }
-#endif
-                        return 0;
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
+                return _mediaService.GetPosition();
             }
             set
             {
-                // We shouldn't be able to set the position without a running playback.
-                switch (_playerEngine)
-                {
-                    case PlayerEngine.VLC:
-                        _mediaService.SetPosition(value);
-                        break;
-                    case PlayerEngine.MediaFoundation:
-                        _mediaService.SetPosition(value);
-                        break;
-                    case PlayerEngine.BackgroundMFPlayer:
-#if WINDOWS_PHONE_APP
-                        switch (BackgroundMediaPlayer.Current.CurrentState)
-                        {
-                            case MediaPlayerState.Playing:
-                            case MediaPlayerState.Closed:
-                                if (BackgroundMediaPlayer.Current.NaturalDuration.TotalMilliseconds != 0)
-                                {
-                                    BackgroundMediaPlayer.Current.Position = TimeSpan.FromMilliseconds(value * BackgroundMediaPlayer.Current.NaturalDuration.TotalMilliseconds);
-                                }
-                                break;
-                        }
-#endif
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
+                _mediaService.SetPosition(value);
             }
         }
 
@@ -371,9 +276,9 @@ namespace VLC_WinRT.ViewModels
                     SetAudioTrackCommand.Execute(value.Id);
             }
         }
-        #endregion
+#endregion
 
-        #region public fields
+#region public fields
         public List<DictionaryKeyValue> AudioTracks
         {
             get { return _audioTracks; }
@@ -387,18 +292,16 @@ namespace VLC_WinRT.ViewModels
         }
 
         public IVLCMedia CurrentMedia => _currentMedia;
+#endregion
 
-        #endregion
-        #region constructors
-
+#region constructors
         public MediaPlaybackViewModel()
         {
             _mouseService = App.Container.Resolve<MouseService>();
         }
-        #endregion
+#endregion
 
-        #region methods
-
+#region methods
         public async Task OpenFile(StorageFile file)
         {
             if (file == null) return;
@@ -440,7 +343,6 @@ namespace VLC_WinRT.ViewModels
             await Locator.MediaPlaybackViewModel.SetMedia(videoVm, false);
         }
 
-
         private void privateDisplayCall(bool shouldActivate)
         {
             if (_displayAlwaysOnRequest == null) return;
@@ -455,11 +357,6 @@ namespace VLC_WinRT.ViewModels
         }
 
         private async void UpdateTime(Int64 time)
-        {
-            await UpdateTimeFromUIThread();
-        }
-
-        public async void UpdateTimeFromMF()
         {
             await UpdateTimeFromUIThread();
         }
@@ -554,7 +451,7 @@ namespace VLC_WinRT.ViewModels
             mediaService.SetNullMediaPlayer();
         }
 
-        public async Task SetMedia(IVLCMedia media, bool forceVlcLib = false)
+        public async Task SetMedia(IVLCMedia media, bool forceVlcLib = false, bool autoPlay = true)
         {
             if (media == null)
                 throw new ArgumentNullException("media", "Media parameter is missing. Can't play anything");
@@ -570,7 +467,7 @@ namespace VLC_WinRT.ViewModels
                     IsStream = false;
                 });
                 var video = (VideoItem)media;
-                await Locator.MediaPlaybackViewModel.InitializePlayback(video);
+                await Locator.MediaPlaybackViewModel.InitializePlayback(video, autoPlay);
 
                 if (video.TimeWatched != TimeSpan.FromSeconds(0))
                     await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Locator.MediaPlaybackViewModel.Time = (Int64)video.TimeWatched.TotalMilliseconds);
@@ -587,26 +484,10 @@ namespace VLC_WinRT.ViewModels
                 });
                 var track = (TrackItem)media;
                 var currentTrackFile = track.File ?? await StorageFile.GetFileFromPathAsync(track.Path);
-#if WINDOWS_PHONE_APP
-                bool playWithLibVlc = !VLCFileExtensions.MFSupported.Contains(currentTrackFile.FileType.ToLower()) || Locator.MediaPlaybackViewModel.UseVlcLib;
-                if (!playWithLibVlc)
+
+                await Locator.MediaPlaybackViewModel.InitializePlayback(track, autoPlay);
+                if (_playerEngine != PlayerEngine.BackgroundMFPlayer)
                 {
-                    _playerEngine = PlayerEngine.BackgroundMFPlayer;
-                    App.BackgroundAudioHelper.PlayAudio(track.Id);
-                }
-                else
-#endif
-                {
-#if WINDOWS_PHONE_APP
-                    Locator.MediaPlaybackViewModel.UseVlcLib = true;
-                    ToastHelper.Basic("Can't enable background audio", false, "background");
-                    if (BackgroundMediaPlayer.Current != null &&
-                        BackgroundMediaPlayer.Current.CurrentState != MediaPlayerState.Stopped)
-                    {
-                        BackgroundMediaPlayer.Current.Pause();
-                    }
-#endif
-                    await Locator.MediaPlaybackViewModel.InitializePlayback(track);
                     await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
                     {
                         await Locator.MusicPlayerVM.SetCurrentArtist();
@@ -617,6 +498,7 @@ namespace VLC_WinRT.ViewModels
 #endif
                     });
                 }
+                ApplicationSettingsHelper.SaveSettingsValue(BackgroundAudioConstants.CurrentTrack, TrackCollection.CurrentTrack);
             }
             else if (media is StreamMedia)
             {
@@ -627,11 +509,11 @@ namespace VLC_WinRT.ViewModels
                     Locator.MediaPlaybackViewModel.PlayingType = PlayingType.Video;
                     IsStream = true;
                 });
-                await Locator.MediaPlaybackViewModel.InitializePlayback(media);
+                await Locator.MediaPlaybackViewModel.InitializePlayback(media, autoPlay);
             }
         }
 
-        public async Task InitializePlayback(IVLCMedia media)
+        public async Task InitializePlayback(IVLCMedia media, bool autoPlay)
         {
             // First set the player engine
             // For videos AND music, we have to try first with Microsoft own player
@@ -645,9 +527,25 @@ namespace VLC_WinRT.ViewModels
                     path = Path.GetExtension(media.Path);
                 else if (media.File != null)
                     path = media.File.FileType;
-                _playerEngine = VLCFileExtensions.MFSupported.Contains(path.ToLower()) ? PlayerEngine.MediaFoundation : PlayerEngine.VLC;
+#if WINDOWS_PHONE_APP
+                if (media is TrackItem)
+                {
+                    if (VLCFileExtensions.MFSupported.Contains(path.ToLower()))
+                    {
+                        _playerEngine = PlayerEngine.BackgroundMFPlayer;
+                    }
+                    else
+                    {
+                        ToastHelper.Basic("Can't enable background audio", false, "background");
+                        _playerEngine = PlayerEngine.VLC;
+                        _mediaService.Stop();
+                    }
+                }
+                else
+#endif
+                    _playerEngine = VLCFileExtensions.MFSupported.Contains(path.ToLower()) ? PlayerEngine.MediaFoundation : PlayerEngine.VLC;
+
             }
-            // else WindowsPhone backgroundmediaplayer etc. (this is a todo )
 
             // Now, ensure the chosen Player is ready to play something
             await Locator.MediaPlaybackViewModel._mediaService.PlayerInstanceReady.Task;
@@ -672,14 +570,20 @@ namespace VLC_WinRT.ViewModels
                     var em = vlcService.MediaPlayer.eventManager();
                     em.OnTrackAdded += Locator.MediaPlaybackViewModel.OnTrackAdded;
                     em.OnTrackDeleted += Locator.MediaPlaybackViewModel.OnTrackDeleted;
+
+                    if (!autoPlay) return;
                     vlcService.Play();
                     break;
                 case PlayerEngine.MediaFoundation:
                     var mfService = (MFService)_mediaService;
                     if (mfService == null) return;
+
+                    if (!autoPlay) return;
                     _mediaService.Play();
                     break;
                 case PlayerEngine.BackgroundMFPlayer:
+                    if (!autoPlay) return;
+                    _mediaService.Play(CurrentMedia.Id);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -880,9 +784,9 @@ namespace VLC_WinRT.ViewModels
         {
             _mediaService.Stop();
         }
-        #endregion
+#endregion
 
-        #region Events
+#region Events
         private async void PlayerStateChanged(object sender, MediaState e)
         {
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
@@ -984,9 +888,9 @@ namespace VLC_WinRT.ViewModels
             }
         }
 
-        #endregion
+#endregion
 
-        #region MediaTransportControls
+#region MediaTransportControls
 
         public void SetMediaTransportControls(SystemMediaTransportControls systemMediaTransportControls)
         {
@@ -1119,40 +1023,16 @@ namespace VLC_WinRT.ViewModels
             {
             }
         }
-        #endregion
+#endregion
 
-        public async void Pause()
+        public void Pause()
         {
-#if WINDOWS_APP
             _mediaService.Pause();
-#else
-            if (BackgroundMediaPlayer.Current != null && Locator.MediaPlaybackViewModel.PlayingType == PlayingType.Music && !Locator.MediaPlaybackViewModel.UseVlcLib)
-            {
-                switch (BackgroundMediaPlayer.Current.CurrentState)
-                {
-                    case MediaPlayerState.Closed:
-                        await SetMedia(Locator.MusicPlayerVM.CurrentTrack, false);
-                        App.BackgroundAudioHelper.AddMediaPlayerEventHandlers();
-                        break;
-                    case MediaPlayerState.Paused:
-                        BackgroundMediaPlayer.Current.Play();
-                        break;
-                    case MediaPlayerState.Playing:
-                        BackgroundMediaPlayer.Current.Pause();
-                        break;
-                }
-            }
-            else
-            {
-                _mediaService.Pause();
-            }
-#endif
         }
 
         public void Dispose()
         {
             _mediaService.Stop();
         }
-
     }
 }

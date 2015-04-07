@@ -20,9 +20,7 @@ using VLC_WinRT.Common;
 using VLC_WinRT.ViewModels.MusicVM;
 using System.Linq;
 using Windows.Storage.AccessCache;
-#if WINDOWS_PHONE_APP
 using VLC_WinRT.BackgroundHelpers;
-#endif
 
 namespace VLC_WinRT
 {
@@ -38,9 +36,7 @@ namespace VLC_WinRT
         public static OpenFilePickerReason OpenFilePickerReason = OpenFilePickerReason.Null;
         public static AlbumItem SelectedAlbumItem;
         public static IContainer Container;
-#if WINDOWS_PHONE_APP
         public static BackgroundAudioHelper BackgroundAudioHelper = new BackgroundAudioHelper();
-#endif
         /// <summary>
         ///     Initializes the singleton application object.  This is the first line of authored code
         ///     executed, and as such is the logical equivalent of main() or WinMain().
@@ -102,9 +98,6 @@ namespace VLC_WinRT
             {
                 await RedirectFromSecondaryTile(args.Arguments);
             }
-#if WINDOWS_PHONE_APP
-            await BackgroundAudioHelper.InitBackgroundAudio();
-#endif
         }
 
         private async Task RedirectFromSecondaryTile(string args)

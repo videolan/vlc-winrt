@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace VLC_WinRT.BackgroundAudioPlayer
+namespace VLC_WinRT.BackgroundAudioPlayer.Model
 {
     public sealed class BackgroundTrackItem
     {
@@ -15,9 +15,7 @@ namespace VLC_WinRT.BackgroundAudioPlayer
         public string Name { get; set; }
 
         public string Path { get; set; }
-
-        public int Index { get; set; }
-
+        
         public TimeSpan Duration { get; set; }
 
         public bool IsCurrentPlaying { get; set; }
@@ -33,6 +31,7 @@ namespace VLC_WinRT.BackgroundAudioPlayer
             Name = name;
             Path = path;
         }
+
         public BackgroundTrackItem() { }
     }
 }
