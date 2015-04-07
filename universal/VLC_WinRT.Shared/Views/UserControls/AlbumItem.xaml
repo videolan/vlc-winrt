@@ -34,8 +34,7 @@
                 <RowDefinition />
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <TextBlock 
-                       Text="{Binding Name, Converter={StaticResource AlbumStringConverter}}"
+            <TextBlock Text="{Binding Name, Converter={StaticResource AlbumStringConverter}}"
                        TextWrapping="NoWrap"
                        TextTrimming="CharacterEllipsis"
                        FontSize="15"
