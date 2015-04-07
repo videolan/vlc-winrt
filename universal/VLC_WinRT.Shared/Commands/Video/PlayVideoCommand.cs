@@ -57,7 +57,7 @@ namespace VLC_WinRT.Commands.Video
 
             try
             {
-                Locator.MainVM.NavigationService.Go(VLCPage.VideoPlayerPage);
+                Locator.NavigationService.Go(VLCPage.VideoPlayerPage);
                 LogHelper.Log("PLAYVIDEO: Navigating to VideoPlayerPage");
             }
             catch

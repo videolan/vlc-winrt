@@ -12,7 +12,7 @@ namespace VLC_WinRT.Commands.Music
         {
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                Locator.MainVM.NavigationService.Go(VLCPage.CreateNewPlaylistDialog);
+                Locator.NavigationService.Go(VLCPage.CreateNewPlaylistDialog);
             });
         }
     }

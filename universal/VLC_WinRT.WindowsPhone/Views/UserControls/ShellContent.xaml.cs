@@ -26,7 +26,7 @@ namespace VLC_WinRT.Views.UserControls
 
         void ApplicationFrame_Navigated(object sender, Windows.UI.Xaml.Navigation.NavigationEventArgs e)
         {
-            if(Locator.MainVM.NavigationService.IsCurrentPageAMainPage())
+            if(Locator.NavigationService.IsCurrentPageAMainPage())
                 FlipViewFrameContainer.IsLocked = false;
             else FlipViewFrameContainer.IsLocked = true;
         }
@@ -38,24 +38,24 @@ namespace VLC_WinRT.Views.UserControls
             FlipViewFrameContainer.SelectedIndex = 1;
             if (index == 0)
             {
-                if(Locator.MainVM.NavigationService.CurrentPage == VLCPage.MainPageHome)
+                if(Locator.NavigationService.CurrentPage == VLCPage.MainPageHome)
                     Locator.MainVM.GoToPanelCommand.Execute(3);
-                else if (Locator.MainVM.NavigationService.CurrentPage == VLCPage.MainPageVideo)
+                else if (Locator.NavigationService.CurrentPage == VLCPage.MainPageVideo)
                     Locator.MainVM.GoToPanelCommand.Execute(0);
-                else if (Locator.MainVM.NavigationService.CurrentPage == VLCPage.MainPageMusic)
+                else if (Locator.NavigationService.CurrentPage == VLCPage.MainPageMusic)
                     Locator.MainVM.GoToPanelCommand.Execute(1);
-                else if (Locator.MainVM.NavigationService.CurrentPage == VLCPage.MainPageFileExplorer)
+                else if (Locator.NavigationService.CurrentPage == VLCPage.MainPageFileExplorer)
                     Locator.MainVM.GoToPanelCommand.Execute(2);
             }
             else if (index == 2)
             {
-                if (Locator.MainVM.NavigationService.CurrentPage == VLCPage.MainPageHome)
+                if (Locator.NavigationService.CurrentPage == VLCPage.MainPageHome)
                     Locator.MainVM.GoToPanelCommand.Execute(1);
-                else if (Locator.MainVM.NavigationService.CurrentPage == VLCPage.MainPageVideo)
+                else if (Locator.NavigationService.CurrentPage == VLCPage.MainPageVideo)
                     Locator.MainVM.GoToPanelCommand.Execute(2);
-                else if (Locator.MainVM.NavigationService.CurrentPage == VLCPage.MainPageMusic)
+                else if (Locator.NavigationService.CurrentPage == VLCPage.MainPageMusic)
                     Locator.MainVM.GoToPanelCommand.Execute(3);
-                else if (Locator.MainVM.NavigationService.CurrentPage == VLCPage.MainPageFileExplorer)
+                else if (Locator.NavigationService.CurrentPage == VLCPage.MainPageFileExplorer)
                     Locator.MainVM.GoToPanelCommand.Execute(0);
                 // Told ya ¯\_(ツ)_/¯
             }

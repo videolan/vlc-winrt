@@ -11,7 +11,7 @@ namespace VLC_WinRT.Commands.Music
     {
         public override void Execute(object parameter)
         {
-            Locator.MainVM.NavigationService.Go(VLCPage.ArtistShowsPage);
+            Locator.NavigationService.Go(VLCPage.ArtistShowsPage);
             if (parameter is ArtistItem)
             {
                 (App.ApplicationFrame.Content as ArtistShowsPage).DataContext = parameter as ArtistItem;

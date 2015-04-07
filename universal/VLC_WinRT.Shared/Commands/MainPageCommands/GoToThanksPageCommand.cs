@@ -17,7 +17,7 @@ namespace VLC_WinRT.Commands.MainPageCommands
     {
         public override void Execute(object parameter)
         {
-            Locator.MainVM.NavigationService.Go(VLCPage.SpecialThanksPage);
+            Locator.NavigationService.Go(VLCPage.SpecialThanksPage);
         }
     }
 }

@@ -1,8 +1,7 @@
 ﻿using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
-using VLC_WinRT.Views.MusicPages;
-using VLC_WinRT.Views.VideoPages;
+using VLC_WinRT.Model;
 
 namespace VLC_WinRT.Converters
 {
@@ -10,7 +9,7 @@ namespace VLC_WinRT.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            if (value is Type && (Type) value != typeof (MusicPlayerPage) && (Type)value != typeof(VideoPlayerPage))
+            if (value is VLCPage && (VLCPage) value != VLCPage.MusicPlayerPage && (VLCPage)value != VLCPage.VideoPlayerPage)
             {
                 return Visibility.Visible;
             }

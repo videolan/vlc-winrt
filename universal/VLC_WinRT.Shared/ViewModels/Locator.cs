@@ -19,6 +19,7 @@ using VLC_WinRT.ViewModels.RemovableDevicesVM;
 using VLC_WinRT.ViewModels.Settings;
 using VLC_WinRT.ViewModels.MusicVM;
 using VLC_WinRT.ViewModels.VideoVM;
+using VLC_WinRT.Services.RunTime;
 
 namespace VLC_WinRT.ViewModels
 {
@@ -86,6 +87,14 @@ namespace VLC_WinRT.ViewModels
         public static SpecialThanksViewModel SpecialThanksVM
         {
             get { return App.Container.Resolve<SpecialThanksViewModel>(); }
+        }
+
+        public static NavigationService NavigationService
+        {
+            get
+            {
+                return App.Container.Resolve<NavigationService>();
+            }
         }
     }
 }

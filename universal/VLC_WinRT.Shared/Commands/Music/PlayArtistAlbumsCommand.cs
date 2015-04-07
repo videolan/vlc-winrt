@@ -10,7 +10,7 @@ namespace VLC_WinRT.Commands.Music
     {
         public override async void Execute(object parameter)
         {
-            Locator.MainVM.NavigationService.Go(VLCPage.MusicPlayerPage);
+            Locator.NavigationService.Go(VLCPage.MusicPlayerPage);
             Locator.MusicLibraryVM.IsAlbumPageShown = false;
             if (parameter is ArtistItem)
             {

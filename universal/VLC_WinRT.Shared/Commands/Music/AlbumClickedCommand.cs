@@ -32,7 +32,7 @@ namespace VLC_WinRT.Commands.Music
                 Locator.MusicLibraryVM.Artists.FirstOrDefault(x => x.Id == album.ArtistId);
             Locator.MusicLibraryVM.CurrentAlbum = album;
             
-            Locator.MainVM.NavigationService.Go(VLCPage.AlbumPage);
+            Locator.NavigationService.Go(VLCPage.AlbumPage);
         }
     }
 }

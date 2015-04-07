@@ -13,19 +13,19 @@ namespace VLC_WinRT.Commands.Music
             if (parameter is TrackCollection)
             {
                 Locator.MusicLibraryVM.CurrentTrackCollection = parameter as TrackCollection;
-                Locator.MainVM.NavigationService.Go(VLCPage.PlaylistPage);
+                Locator.NavigationService.Go(VLCPage.PlaylistPage);
             }
             else if (parameter is SelectionChangedEventArgs)
             {
                 Locator.MusicLibraryVM.CurrentTrackCollection =
                     (parameter as SelectionChangedEventArgs).AddedItems[0] as TrackCollection;
-                Locator.MainVM.NavigationService.Go(VLCPage.PlaylistPage);
+                Locator.NavigationService.Go(VLCPage.PlaylistPage);
             }
             else if (parameter is ItemClickEventArgs)
             {
                 Locator.MusicLibraryVM.CurrentTrackCollection =
                     (parameter as ItemClickEventArgs).ClickedItem as TrackCollection;
-                Locator.MainVM.NavigationService.Go(VLCPage.PlaylistPage);
+                Locator.NavigationService.Go(VLCPage.PlaylistPage);
             }
         }
     }

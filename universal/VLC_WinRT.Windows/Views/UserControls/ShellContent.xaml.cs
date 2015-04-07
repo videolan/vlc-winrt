@@ -34,7 +34,7 @@ namespace VLC_WinRT.Views.UserControls
             var specialThanks = new SettingsCommand("specialThanks", resourceLoader.GetString("SpecialThanks"),
                 command =>
                 {
-                    Locator.MainVM.NavigationService.Go(VLCPage.SpecialThanksPage);
+                    Locator.NavigationService.Go(VLCPage.SpecialThanksPage);
                 });
 
             var settings = new SettingsCommand("settings", resourceLoader.GetString("Settings"),

@@ -38,7 +38,7 @@ namespace VLC_WinRT.Commands
                 ExceptionHelper.CreateMemorizedException("PlayNetworkMRLCommand.Execute", ex);
                 return;
             }
-            Locator.MainVM.NavigationService.Go(VLCPage.VideoPlayerPage);
+            Locator.NavigationService.Go(VLCPage.VideoPlayerPage);
             Locator.MainVM.CloseStreamFlyout();
         }
     }

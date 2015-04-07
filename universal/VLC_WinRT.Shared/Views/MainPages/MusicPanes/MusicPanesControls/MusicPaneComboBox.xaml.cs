@@ -39,12 +39,12 @@ namespace VLC_WinRT.Views.MainPages.MusicPanes.MusicPanesControls
 #endif
         private void ComboBox_OnDropDownOpened(object sender, object e)
         {
-            Locator.MainVM.NavigationService.PreventAppExit = true;
+            Locator.NavigationService.PreventAppExit = true;
         }
 
         private void ComboBox_OnDropDownClosed(object sender, object e)
         {
-            Locator.MainVM.NavigationService.PreventAppExit = false;
+            Locator.NavigationService.PreventAppExit = false;
         }
     }
 }

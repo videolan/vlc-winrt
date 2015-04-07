@@ -416,7 +416,7 @@ namespace VLC_WinRT.ViewModels
         /// <param name="file">The file to be played.</param>
         public async Task PlayAudioFile(StorageFile file)
         {
-            Locator.MainVM.NavigationService.Go(VLCPage.MusicPlayerPage);
+            Locator.NavigationService.Go(VLCPage.MusicPlayerPage);
             var trackItem = await MusicLibraryManagement.GetTrackItemFromFile(file);
             await PlayMusicHelper.PlayTrackFromFilePicker(trackItem);
         }
@@ -428,7 +428,7 @@ namespace VLC_WinRT.ViewModels
         /// <param name="token">Token is for files that are NOT in the sandbox, such as files taken from the filepicker from a sd card but not in the Video/Music folder.</param>
         public async Task PlayVideoFile(StorageFile file, string token = null)
         {
-            Locator.MainVM.NavigationService.Go(VLCPage.VideoPlayerPage);
+            Locator.NavigationService.Go(VLCPage.VideoPlayerPage);
             VideoItem videoVm = new VideoItem();
             await videoVm.Initialize(file);
             if (token != null)
@@ -728,7 +728,7 @@ namespace VLC_WinRT.ViewModels
                         {
                             TrackCollection.IsRunning = false;
                             PlayingType = PlayingType.NotPlaying;
-                            Locator.MainVM.NavigationService.Go(VLCPage.MainPageHome);
+                            Locator.NavigationService.Go(VLCPage.MainPageHome);
                         });
                     }
                     else
@@ -743,7 +743,7 @@ namespace VLC_WinRT.ViewModels
                             Locator.VideoVm.CurrentVideo.TimeWatched = TimeSpan.Zero;
                         if (App.ApplicationFrame.CanGoBack)
                             App.ApplicationFrame.GoBack();
-                        if (!Locator.MainVM.NavigationService.GoBack_Default())
+                        if (!Locator.NavigationService.GoBack_Default())
                         {
                             Locator.MainVM.GoToPanelCommand.Execute(0);
                         }

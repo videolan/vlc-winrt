@@ -25,7 +25,7 @@ namespace VLC_WinRT.Views.VariousPages
 
         private void GoBack_Click(object sender, RoutedEventArgs e)
         {
-            Locator.MainVM.NavigationService.GoBack_Default();
+            Locator.NavigationService.GoBack_Default();
         }
     }
 }

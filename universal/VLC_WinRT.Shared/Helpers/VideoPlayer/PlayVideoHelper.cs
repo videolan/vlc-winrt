@@ -16,7 +16,7 @@ namespace VLC_WinRT.Helpers.VideoPlayer
                 LogHelper.Log("PLAYVIDEO: Getting video path token");
                 videoVm.Token = token;
             }
-            Locator.MainVM.NavigationService.Go(VLCPage.VideoPlayerPage);
+            Locator.NavigationService.Go(VLCPage.VideoPlayerPage);
             LogHelper.Log("PLAYVIDEO: Settings videoVm as Locator.VideoVm.CurrentVideo");
             Locator.VideoVm.CurrentVideo = videoVm;
             await Locator.MediaPlaybackViewModel.SetMedia(videoVm);

@@ -10,7 +10,7 @@ namespace VLC_WinRT.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            if (Locator.MainVM.NavigationService.CurrentPage == VLCPage.MusicPlayerPage)
+            if (Locator.NavigationService.CurrentPage == VLCPage.MusicPlayerPage)
                 return Visibility.Visible;
             return Visibility.Collapsed;
         }

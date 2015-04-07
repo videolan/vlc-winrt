@@ -25,7 +25,7 @@ namespace VLC_WinRT.Commands.Music
                 await PlayMusicHelper.AddTrackCollectionToPlaylistAndPlay(trackCollection.Playlist, true, index);
             }
             else await PlayMusicHelper.AddTrackCollectionToPlaylistAndPlay(trackCollection.Playlist);
-            Locator.MainVM.NavigationService.Go(VLCPage.MusicPlayerPage);
+            Locator.NavigationService.Go(VLCPage.MusicPlayerPage);
         }
     }
 }

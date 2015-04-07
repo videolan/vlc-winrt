@@ -58,7 +58,7 @@ namespace VLC_WinRT.Views.MusicPages.MusicNowPlayingControls
         {
             Locator.MediaPlaybackViewModel.PlayOrPauseCommand.Execute(null);
             await Locator.MediaPlaybackViewModel.CleanViewModel();
-            Locator.MainVM.NavigationService.GoBack_Default();
+            Locator.NavigationService.GoBack_Default();
         }
     }
 }

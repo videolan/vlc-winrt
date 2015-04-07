@@ -25,6 +25,7 @@ using Panel = VLC_WinRT.Model.Panel;
 using Windows.UI.Popups;
 using VLC_WinRT.Model;
 using libVLCX;
+
 namespace VLC_WinRT.ViewModels
 {
     public class MainVM : BindableBase
@@ -42,7 +43,7 @@ namespace VLC_WinRT.ViewModels
         private bool _preventAppExit = false;
         private string _informationText;
         private bool _isBackground = false;
-
+        private VLCPage currentPage;
         #endregion
         #region public fields
         public ObservableCollection<SearchResult> SearchResults
@@ -53,7 +54,11 @@ namespace VLC_WinRT.ViewModels
         #endregion
 
         #region public props
-        public NavigationService NavigationService { get; private set;}
+        public VLCPage CurrentPage
+        {
+            get { return currentPage; }
+            set { SetProperty(ref currentPage, value); }
+        }
 
         public KeyboardListenerService KeyboardListenerService { get { return keyboardListenerService; } }
         public bool IsInternet
@@ -74,7 +79,7 @@ namespace VLC_WinRT.ViewModels
 
         public ChangeMainPageMusicViewCommand ChangeMainPageMusicViewCommand { get; } = new ChangeMainPageMusicViewCommand();
 
-        public AlwaysExecutableCommand GoToSearchPage { get; } = new ActionCommand(() => { Locator.MainVM.NavigationService.Go(VLCPage.SearchPage); });
+        public AlwaysExecutableCommand GoToSearchPage { get; } = new ActionCommand(() => { Locator.NavigationService.Go(VLCPage.SearchPage); });
         public ChangeMainPageVideoViewCommand ChangeMainPageVideoViewCommand { get; } = new ChangeMainPageVideoViewCommand();
 
         public SearchClickedCommand SearchClickedCommand { get; }= new SearchClickedCommand();
@@ -118,7 +123,6 @@ namespace VLC_WinRT.ViewModels
         public MainVM()
         {
             keyboardListenerService = App.Container.Resolve<KeyboardListenerService>();
-            NavigationService = App.Container.Resolve<NavigationService>();
             networkListenerService = App.Container.Resolve<NetworkListenerService>();
             networkListenerService.InternetConnectionChanged += networkListenerService_InternetConnectionChanged;
             _isInternet = NetworkListenerService.IsConnected;
@@ -140,6 +144,10 @@ namespace VLC_WinRT.ViewModels
             Initialize();
 
             CoreWindow.GetForCurrentThread().Activated += ApplicationState_Activated;
+            Locator.NavigationService.ViewNavigated += (sender, page) =>
+            {
+                CurrentPage = page;
+            };
         }
 
         private void ApplicationState_Activated(object sender, WindowActivatedEventArgs e)

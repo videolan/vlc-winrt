@@ -8,10 +8,10 @@ namespace VLC_WinRT.Commands.Music
     {
         public override void Execute(object parameter)
         {
-            if (Locator.MainVM.NavigationService.CurrentPage != VLCPage.MusicPlayerPage)
-                Locator.MainVM.NavigationService.Go(VLCPage.MusicPlayerPage);
+            if (Locator.NavigationService.CurrentPage != VLCPage.MusicPlayerPage)
+                Locator.NavigationService.Go(VLCPage.MusicPlayerPage);
             else
-                Locator.MainVM.NavigationService.Go(VLCPage.CurrentPlaylistPage);
+                Locator.NavigationService.Go(VLCPage.CurrentPlaylistPage);
         }
     }
 }

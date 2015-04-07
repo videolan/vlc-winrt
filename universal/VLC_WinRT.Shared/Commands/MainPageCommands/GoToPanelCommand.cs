@@ -45,16 +45,16 @@ namespace VLC_WinRT.Commands.MainPageCommands
                 switch (panel.Index)
                 {
                     case 0:
-                        Locator.MainVM.NavigationService.Go(VLCPage.MainPageHome);
+                        Locator.NavigationService.Go(VLCPage.MainPageHome);
                         break;
                     case 1:
-                        Locator.MainVM.NavigationService.Go(VLCPage.MainPageVideo);
+                        Locator.NavigationService.Go(VLCPage.MainPageVideo);
                         break;
                     case 2:
-                        Locator.MainVM.NavigationService.Go(VLCPage.MainPageMusic);
+                        Locator.NavigationService.Go(VLCPage.MainPageMusic);
                         break;
                     case 3:
-                        Locator.MainVM.NavigationService.Go(VLCPage.MainPageFileExplorer);
+                        Locator.NavigationService.Go(VLCPage.MainPageFileExplorer);
                         break;
 #if WINDOWS_APP
                     case 4:
