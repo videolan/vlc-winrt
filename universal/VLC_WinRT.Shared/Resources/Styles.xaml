@@ -23,6 +23,7 @@
     <x:String x:Key="PlaySymbol"></x:String>
     <x:String x:Key="PauseSymbol"></x:String>
     <x:String x:Key="PreviousSymbol"></x:String>
+    <x:String x:Key="PreviousPageSymbol"></x:String>
     <x:String x:Key="SkipNextSymbol"></x:String>
     <x:String x:Key="FavoriteSymbol"></x:String>
     <x:String x:Key="UnfavoriteSymbol"></x:String>

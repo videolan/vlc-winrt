@@ -40,7 +40,7 @@
                         Command="{Binding GoBack}">
                     <Viewbox Height="30"
                              Width="30">
-                        <FontIcon Glyph=""
+                        <FontIcon Glyph="{StaticResource PreviousPageSymbol}"
                                   FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
                     </Viewbox>
                 </Button>
