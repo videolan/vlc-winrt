@@ -84,7 +84,7 @@
             <AppBarButton Grid.Column="1"
                           Style="{StaticResource EllipseLessAppBarButtonStyle}"
                           Label="open file"
-                          Command="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM.PickVideo}">
+                          Command="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.PickVideoCommand}">
                 <AppBarButton.Icon>
                     <FontIcon Glyph="{StaticResource OpenFileSymbol}"
                               FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />

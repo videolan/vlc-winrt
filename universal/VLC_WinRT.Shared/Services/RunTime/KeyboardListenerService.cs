@@ -118,7 +118,7 @@ namespace VLC_WinRT.Services.RunTime
                     {
                         case VLCAction.OpenFile:
                             {
-                                Locator.VideoLibraryVM.OpenVideo.Execute(null);
+                                Locator.MediaPlaybackViewModel.PickVideoCommand.Execute(null);
                             }
                             break;
                         case VLCAction.OpenNetwork:

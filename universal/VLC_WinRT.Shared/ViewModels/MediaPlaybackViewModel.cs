@@ -35,6 +35,7 @@ using VLC_WinRT.Model.Stream;
 using VLC_WinRT.Model.Video;
 using VLC_WinRT.Services.RunTime;
 using VLC_WinRT.ViewModels.MusicVM;
+using VLC_WinRT.Commands;
 #if WINDOWS_PHONE_APP
 using Windows.Media.Playback;
 using VLC_WinRT.BackgroundAudioPlayer.Model;
@@ -194,6 +195,8 @@ namespace VLC_WinRT.ViewModels
         public OpenSubtitleCommand OpenSubtitleCommand { get; } = new OpenSubtitleCommand();
 
         public SetAudioTrackCommand SetAudioTrackCommand { get; } = new SetAudioTrackCommand();
+
+        public PickVideoCommand PickVideoCommand { get; } = new PickVideoCommand();
 
         public StopVideoCommand GoBack { get; } = new StopVideoCommand();
 
