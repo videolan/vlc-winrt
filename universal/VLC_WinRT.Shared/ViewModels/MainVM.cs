@@ -30,11 +30,7 @@ using VLC_WinRT.Services.RunTime;
 using VLC_WinRT.ViewModels.MusicVM;
 using VLC_WinRT.Views.MainPages;
 using VLC_WinRT.Views.VariousPages;
-#if WINDOWS_PHONE_APP
 using AppBar = CustomAppBarDesktop.AppBar;
-#else
-using AppBar = CustomAppBarDesktop.AppBar;
-#endif
 using Panel = VLC_WinRT.Model.Panel;
 using Windows.UI.Popups;
 using libVLCX;

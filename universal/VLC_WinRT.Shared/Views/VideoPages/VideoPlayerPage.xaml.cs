@@ -69,11 +69,9 @@ namespace VLC_WinRT.Views.VideoPages
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-#if WINDOWS_APP
 #if DEBUG
 #else
             AppViewHelper.SetFullscren(true);
-#endif
 #endif
             Locator.MediaPlaybackViewModel.MouseService.OnHidden += MouseStateChanged;
             Locator.MediaPlaybackViewModel.MouseService.OnMoved += MouseStateChanged;
@@ -97,9 +95,7 @@ namespace VLC_WinRT.Views.VideoPages
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
             base.OnNavigatingFrom(e);
-#if WINDOWS_APP
             AppViewHelper.SetFullscren(false);
-#endif
             if (Locator.MediaPlaybackViewModel.ContinueIndexing != null && !Locator.MediaPlaybackViewModel.ContinueIndexing.Task.IsCompleted)
             {
                 Locator.MediaPlaybackViewModel.ContinueIndexing.SetResult(true);

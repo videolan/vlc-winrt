@@ -32,9 +32,6 @@ using Windows.UI.Xaml;
 using VLC_WinRT.Helpers.MusicPlayer;
 using VLC_WinRT.Model.Music;
 using VLC_WinRT.Model.Stream;
-#if WINDOWS_PHONE_APP
-using Windows.Media.Playback;
-#endif
 using MediaPlayer = libVLCX.MediaPlayer;
 
 namespace VLC_WinRT.Services.RunTime

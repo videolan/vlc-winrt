@@ -14,9 +14,7 @@ namespace VLC_WinRT.Views.UserControls
         }
         private void Grid_RightTapped(object sender, RightTappedRoutedEventArgs e)
         {
-#if WINDOWS_APP
             Flyout.ShowAttachedFlyout((Grid)sender);
-#endif
         }
 
         private void NameTextBlock_OnLoaded(object sender, RoutedEventArgs e)

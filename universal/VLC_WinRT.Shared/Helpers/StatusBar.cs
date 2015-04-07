@@ -3,8 +3,6 @@ using System;
 using Windows.Foundation;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml.Media;
-using VLC_WinRT.Views.MainPages;
-using VLC_WinRT.Views.MusicPages.ArtistPages;
 using System.Threading.Tasks;
 
 namespace VLC_WinRT.Helpers

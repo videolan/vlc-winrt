@@ -48,9 +48,7 @@ namespace VLC_WinRT.Commands.Music
             App.OpenFilePickerReason = OpenFilePickerReason.OnPickingAlbumArt;
             App.SelectedAlbumItem = album;
             openPicker.PickSingleFileAndContinue();
-#endif
-
-#if WINDOWS_APP
+#else
             var file = await openPicker.PickSingleFileAsync();
             if (file == null) return;
             var byteArray = await ConvertImage.ConvertImagetoByte(file);

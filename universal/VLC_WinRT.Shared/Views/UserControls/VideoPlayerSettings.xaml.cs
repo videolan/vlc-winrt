@@ -14,9 +14,7 @@ namespace VLC_WinRT.Views.UserControls
 
         private void RootGrid_OnLoaded(object sender, RoutedEventArgs e)
         {
-#if WINDOWS_APP
             RootScrollViewer.Margin = new Thickness(12);
-#endif
         }
     }
 }

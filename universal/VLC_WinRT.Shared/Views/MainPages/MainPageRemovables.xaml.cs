@@ -3,9 +3,6 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Microsoft.Xaml.Interactivity;
 using VLC_WinRT.ViewModels;
-#if WINDOWS_PHONE_APP
-using Windows.Phone.UI.Input;
-#endif
 
 namespace VLC_WinRT.Views.MainPages
 {

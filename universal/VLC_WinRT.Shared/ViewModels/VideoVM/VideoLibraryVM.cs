@@ -7,9 +7,6 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
-#if WINDOWS_PHONE_APP
-
-#endif
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

@@ -751,11 +751,7 @@ namespace VLC_WinRT.ViewModels
                             App.ApplicationFrame.GoBack();
                         if (!Locator.MainVM.NavigationService.GoBack_Default())
                         {
-#if WINDOWS_APP
-                            Locator.MainVM.NavigationService.Go(VLCPage.MainPageVideo);
-#else
                             Locator.MainVM.GoToPanelCommand.Execute(0);
-#endif
                         }
                         IsPlaying = false;
                         PlayingType = PlayingType.NotPlaying;
@@ -1128,9 +1124,38 @@ namespace VLC_WinRT.ViewModels
         }
         #endregion
 
+        public async void Pause()
+        {
+#if WINDOWS_APP
+            _mediaService.Pause();
+#else
+            if (BackgroundMediaPlayer.Current != null && Locator.MediaPlaybackViewModel.PlayingType == PlayingType.Music && !Locator.MediaPlaybackViewModel.UseVlcLib)
+            {
+                switch (BackgroundMediaPlayer.Current.CurrentState)
+                {
+                    case MediaPlayerState.Closed:
+                        await SetMedia(Locator.MusicPlayerVM.CurrentTrack, false);
+                        App.BackgroundAudioHelper.AddMediaPlayerEventHandlers();
+                        break;
+                    case MediaPlayerState.Paused:
+                        BackgroundMediaPlayer.Current.Play();
+                        break;
+                    case MediaPlayerState.Playing:
+                        BackgroundMediaPlayer.Current.Pause();
+                        break;
+                }
+            }
+            else
+            {
+                _mediaService.Pause();
+            }
+#endif
+        }
+
         public void Dispose()
         {
             _mediaService.Stop();
         }
+
     }
 }

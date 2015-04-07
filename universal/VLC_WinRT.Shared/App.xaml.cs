@@ -30,8 +30,6 @@ using VLC_WinRT.ViewModels.MusicVM;
 using VLC_WinRT.Views.VideoPages;
 using WinRTXamlToolkit.Controls.Extensions;
 #if WINDOWS_PHONE_APP
-using Windows.Phone.Management.Deployment;
-using Windows.Media.Playback;
 using VLC_WinRT.BackgroundHelpers;
 #endif
 
@@ -215,7 +213,6 @@ namespace VLC_WinRT
                 ExceptionHelper.CreateMemorizedException("App.cs.OnActivated", e);
             }
         }
-
 #endif
 
         /// <summary>

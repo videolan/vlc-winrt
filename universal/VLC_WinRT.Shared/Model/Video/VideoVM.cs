@@ -247,10 +247,6 @@ namespace VLC_WinRT.Model.Video
                     Duration = duration;
                 });
             }
-
-            //App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-            //{
-            //});
         }
         #endregion
     }
