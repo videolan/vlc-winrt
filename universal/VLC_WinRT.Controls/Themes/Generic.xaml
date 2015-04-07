@@ -14,10 +14,27 @@
                                                                Storyboard.TargetProperty="Visibility">
                                     <DiscreteObjectKeyFrame KeyTime="0"
                                                             Value="Visible" />
-                                </ObjectAnimationUsingKeyFrames>
+                                </ObjectAnimationUsingKeyFrames>            
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="RightFlyoutGridContainer"
+                                                               Storyboard.TargetProperty="Opacity">
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.4"
+                                                          Value="1">
+                                        <EasingDoubleKeyFrame.EasingFunction>
+                                            <ExponentialEase Exponent="4"
+                                                             EasingMode="EaseOut" />
+                                        </EasingDoubleKeyFrame.EasingFunction>
+                                    </EasingDoubleKeyFrame>
+                                </DoubleAnimationUsingKeyFrames>
                                 <DoubleAnimationUsingKeyFrames Storyboard.TargetName="RightFlyoutPlaneProjection"
-                                                               Storyboard.TargetProperty="GlobalOffsetX">
-                                    <EasingDoubleKeyFrame KeyTime="0:0:0.5"
+                                                               Storyboard.TargetProperty="GlobalOffsetZ">
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.0"
+                                                          Value="100">
+                                        <EasingDoubleKeyFrame.EasingFunction>
+                                            <ExponentialEase Exponent="4"
+                                                             EasingMode="EaseOut" />
+                                        </EasingDoubleKeyFrame.EasingFunction>
+                                    </EasingDoubleKeyFrame>
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.4"
                                                           Value="0">
                                         <EasingDoubleKeyFrame.EasingFunction>
                                             <ExponentialEase Exponent="4"
@@ -27,9 +44,36 @@
                                 </DoubleAnimationUsingKeyFrames>
                             </Storyboard>
                             <Storyboard x:Name="RightFlyoutFadeOut">
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="RightFlyoutPlaneProjection"
+                                                               Storyboard.TargetProperty="GlobalOffsetZ">
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.0"
+                                                          Value="1">
+                                        <EasingDoubleKeyFrame.EasingFunction>
+                                            <ExponentialEase Exponent="4"
+                                                             EasingMode="EaseOut" />
+                                        </EasingDoubleKeyFrame.EasingFunction>
+                                    </EasingDoubleKeyFrame>
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.4"
+                                                          Value="-50">
+                                        <EasingDoubleKeyFrame.EasingFunction>
+                                            <ExponentialEase Exponent="4"
+                                                             EasingMode="EaseOut" />
+                                        </EasingDoubleKeyFrame.EasingFunction>
+                                    </EasingDoubleKeyFrame>
+                                </DoubleAnimationUsingKeyFrames>                                
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetName="RightFlyoutGridContainer"
+                                                               Storyboard.TargetProperty="Opacity">
+                                    <EasingDoubleKeyFrame KeyTime="0:0:0.4"
+                                                          Value="0">
+                                        <EasingDoubleKeyFrame.EasingFunction>
+                                            <ExponentialEase Exponent="4"
+                                                             EasingMode="EaseOut" />
+                                        </EasingDoubleKeyFrame.EasingFunction>
+                                    </EasingDoubleKeyFrame>
+                                </DoubleAnimationUsingKeyFrames>
                                 <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RightFlyoutGridContainer"
                                                                Storyboard.TargetProperty="Visibility">
-                                    <DiscreteObjectKeyFrame KeyTime="0"
+                                    <DiscreteObjectKeyFrame KeyTime="0:0:0.4"
                                                             Value="Collapsed" />
                                 </ObjectAnimationUsingKeyFrames>
                             </Storyboard>
@@ -151,15 +195,11 @@
                               Grid.Row="1"
                               Grid.RowSpan="2"
                               Background="#50000000">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
                             <ContentPresenter x:Name="RightFlyoutContentPresenter"
-                                              HorizontalAlignment="Right">
+                                              HorizontalAlignment="Center"
+                                              MaxWidth="500">
                                 <ContentPresenter.Projection>
-                                    <PlaneProjection x:Name="RightFlyoutPlaneProjection"
-                                                     GlobalOffsetX="450" />
+                                    <PlaneProjection x:Name="RightFlyoutPlaneProjection" />
                                 </ContentPresenter.Projection>
                             </ContentPresenter>
                         </Grid>
