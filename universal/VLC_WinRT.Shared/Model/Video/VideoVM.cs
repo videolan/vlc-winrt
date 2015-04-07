@@ -30,7 +30,7 @@ namespace VLC_WinRT.Model.Video
         private bool _favorite;
         private TimeSpan _duration;
         private TimeSpan _timeWatched;
-        private String _thumbnailPath = "ms-appx:///Assets/NoCover.jpg";
+        private String _thumbnailPath = "";
         private LoadingState _thumbnailLoadingState = LoadingState.NotLoaded;
         private StorageFile _file;
         private DateTime _lastWatched;
