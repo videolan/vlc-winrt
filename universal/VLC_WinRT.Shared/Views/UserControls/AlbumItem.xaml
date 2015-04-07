@@ -19,6 +19,13 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="40" />
         </Grid.RowDefinitions>
+        <Grid Grid.Row="0"
+              Background="WhiteSmoke">
+            <FontIcon Glyph="{StaticResource AlbumDiscSymbol}"
+                      FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" 
+                      FontSize="42"
+                      Foreground="{ThemeResource MainColor}"/>
+        </Grid>
         <Image Grid.Row="0"
                Source="{Binding AlbumImage}"
                Stretch="UniformToFill" />

@@ -28,7 +28,15 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
+        </Grid.RowDefinitions>        
+        <Grid Grid.Row="0"
+              Grid.RowSpan="2"
+              Background="WhiteSmoke">
+            <FontIcon Glyph="{StaticResource BuddySymbol}"
+                      FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" 
+                      FontSize="26"
+                      Foreground="{ThemeResource MainColor}"/>
+        </Grid>
         <Image Grid.RowSpan="2"
                Source="{Binding ArtistImage}"
                Stretch="UniformToFill" />
