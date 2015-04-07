@@ -44,15 +44,10 @@ namespace VLC_WinRT.Views.UserControls
 
         void Responsive()
         {
-#if WINDOWS_PHONE_APP
-            RootGrid.Height = 60;
-
-#else
             RootGrid.Height = 75;
-#endif
             if (this.ActualWidth > 700)
                 VisualStateUtilities.GoToState(this, "FullWindows", false);
-            else if (this.ActualWidth > 400)
+            else if (this.ActualWidth > 500)
                 VisualStateUtilities.GoToState(this, "Narrow", false);
             else if (this.ActualWidth > 200)
                 VisualStateUtilities.GoToState(this, "ExtraNarrow", false);
