@@ -39,7 +39,6 @@ using VLC_WinRT.Commands;
 using VLC_WinRT.BackgroundAudioPlayer.Model;
 #if WINDOWS_PHONE_APP
 using Windows.Media.Playback;
-using VLC_WinRT.BackgroundAudioPlayer.Model;
 #endif
 using libVLCX;
 

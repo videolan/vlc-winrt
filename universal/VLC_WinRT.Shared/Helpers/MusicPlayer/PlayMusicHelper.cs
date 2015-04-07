@@ -6,9 +6,6 @@ using System.Threading.Tasks;
 using Windows.UI.Core;
 using VLC_WinRT.Model.Music;
 using VLC_WinRT.ViewModels;
-#if WINDOWS_PHONE_APP
-using VLC_WinRT.BackgroundHelpers;
-#endif
 
 namespace VLC_WinRT.Helpers.MusicPlayer
 {
