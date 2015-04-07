@@ -1,11 +1,12 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Linq;
+using System.Collections.ObjectModel;
 using VLC_WINRT.Common;
 using Windows.Storage;
 using System.Collections.Generic;
 using VLC_WinRT.Model;
 using VLC_WinRT.Helpers.MusicLibrary;
-using VLC_WinRT.Model.Music;
 using VLC_WinRT.Helpers.MusicPlayer;
+using VLC_WinRT.Model.Video;
 
 namespace VLC_WinRT.Commands.VLCFileExplorer
 {
@@ -21,11 +22,20 @@ namespace VLC_WinRT.Commands.VLCFileExplorer
                 if (file != null && VLCFileExtensions.Supported.Contains(file.FileType.ToLower()))
                     files.Add((StorageFile)item);
             }
-            var playlist = new ObservableCollection<TrackItem>();
+            var playlist = new ObservableCollection<IVLCMedia>();
             foreach (var file in files)
             {
-                var trackItem = await MusicLibraryManagement.GetTrackItemFromFile(file);
-                playlist.Add(trackItem);
+                if(VLCFileExtensions.AudioExtensions.Contains(file.FileType.ToLower()))
+                {
+                    var trackItem = await MusicLibraryManagement.GetTrackItemFromFile(file);
+                    playlist.Add(trackItem);
+                }
+                else if(VLCFileExtensions.VideoExtensions.Contains(file.FileType.ToLower()))
+                {
+                    var videoVm = new VideoItem();
+                    await videoVm.Initialize(file);
+                    playlist.Add(videoVm);
+                }
             }
             await PlayMusicHelper.AddTrackCollectionToPlaylistAndPlay(playlist, true, 0);
         }

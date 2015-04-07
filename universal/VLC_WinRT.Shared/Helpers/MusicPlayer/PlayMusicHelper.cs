@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Windows.UI.Core;
 using VLC_WinRT.Model.Music;
 using VLC_WinRT.ViewModels;
+using VLC_WinRT.Model;
 
 namespace VLC_WinRT.Helpers.MusicPlayer
 {
@@ -23,7 +24,7 @@ namespace VLC_WinRT.Helpers.MusicPlayer
             var track = Locator.MediaPlaybackViewModel.TrackCollection.Playlist.FirstOrDefault(x => x.Id == trackId);
             if (track != null)
             {
-                await SetCurrentTrackPosition(Locator.MediaPlaybackViewModel.TrackCollection.Playlist.IndexOf(track));
+                await Locator.MediaPlaybackViewModel.TrackCollection.SetCurrentTrackPosition(Locator.MediaPlaybackViewModel.TrackCollection.Playlist.IndexOf(track));
                 await Task.Run(() => Locator.MediaPlaybackViewModel.SetMedia(Locator.MusicPlayerVM.CurrentTrack, false));
             }
         }
@@ -35,7 +36,7 @@ namespace VLC_WinRT.Helpers.MusicPlayer
             if (trackItem == null) return;
             await Locator.MediaPlaybackViewModel.TrackCollection.ResetCollection();
             await Locator.MediaPlaybackViewModel.TrackCollection.Add(trackItem, true);
-            await SetCurrentTrackPosition(0);
+            await Locator.MediaPlaybackViewModel.TrackCollection.SetCurrentTrackPosition(0);
             await Task.Run(async () => await Locator.MediaPlaybackViewModel.SetMedia(Locator.MusicPlayerVM.CurrentTrack, false));
         }
 
@@ -100,7 +101,7 @@ namespace VLC_WinRT.Helpers.MusicPlayer
                 await PlayTrack(trackItems[0].Id);
         }
 
-        public static async Task AddTrackCollectionToPlaylistAndPlay(ObservableCollection<TrackItem> trackCollection, bool play = true, int? index = null)
+        public static async Task AddTrackCollectionToPlaylistAndPlay(ObservableCollection<IVLCMedia> trackCollection, bool play = true, int? index = null)
         {
             await Locator.MediaPlaybackViewModel.TrackCollection.ResetCollection();
             await Locator.MediaPlaybackViewModel.TrackCollection.SetPlaylist(trackCollection);
@@ -112,15 +113,6 @@ namespace VLC_WinRT.Helpers.MusicPlayer
                 var finalindex = trackCollection[index ?? 0];
                 await PlayTrack(finalindex.Id);
             }
-        }
-
-        /// <summary>
-        /// Only this method should set the CurrentTrack property of TrackCollection.
-        /// </summary>
-        /// <param name="index"></param>
-        static async Task SetCurrentTrackPosition(int index)
-        {
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Locator.MediaPlaybackViewModel.TrackCollection.CurrentTrack = index);
         }
     }
 }

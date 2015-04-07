@@ -19,7 +19,9 @@ namespace VLC_WinRT.Helpers.VideoPlayer
             Locator.NavigationService.Go(VLCPage.VideoPlayerPage);
             LogHelper.Log("PLAYVIDEO: Settings videoVm as Locator.VideoVm.CurrentVideo");
             Locator.VideoVm.CurrentVideo = videoVm;
-            await Locator.MediaPlaybackViewModel.SetMedia(videoVm);
+            await Locator.MediaPlaybackViewModel.TrackCollection.ResetCollection();
+            await Locator.MediaPlaybackViewModel.TrackCollection.Add(videoVm, true);
+            await Locator.MediaPlaybackViewModel.TrackCollection.SetCurrentTrackPosition(0);
         }
     }
 }

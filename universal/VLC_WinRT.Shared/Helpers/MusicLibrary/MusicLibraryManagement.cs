@@ -1,13 +1,5 @@
 ﻿using Windows.UI.Xaml.Controls;
-using System
-/* Unmerged change from project 'VLC_WinRT.Windows'
-Before:
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-After:
-using System.Collections.ObjectModel;
-*/
-;
+using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;

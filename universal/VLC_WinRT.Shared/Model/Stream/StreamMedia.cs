@@ -38,6 +38,8 @@ namespace VLC_WinRT.Model.Stream
             set { throw new NotImplementedException(); }
         }
 
+        public bool IsCurrentPlaying { get; set; }
+
         public StreamMedia(string mrl)
         {
             Path = mrl;

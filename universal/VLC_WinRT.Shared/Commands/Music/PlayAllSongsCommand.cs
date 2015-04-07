@@ -5,6 +5,7 @@ using VLC_WinRT.Helpers.MusicPlayer;
 using VLC_WinRT.Model;
 using VLC_WinRT.Model.Music;
 using VLC_WinRT.ViewModels;
+using System.Collections.ObjectModel;
 
 namespace VLC_WinRT.Commands.Music
 {
@@ -20,7 +21,7 @@ namespace VLC_WinRT.Commands.Music
                 var index = Locator.MusicLibraryVM.Tracks.IndexOf(selectedTrack);
                 if (selectedTrack != null)
                 {
-                    await PlayMusicHelper.AddTrackCollectionToPlaylistAndPlay(Locator.MusicLibraryVM.Tracks, true, index);
+                    await PlayMusicHelper.AddTrackCollectionToPlaylistAndPlay(Locator.MusicLibraryVM.Tracks.ToPlaylist(), true, index);
                     Locator.NavigationService.Go(VLCPage.MusicPlayerPage);
                 }
             }

@@ -20,19 +20,21 @@ using System.Linq;
 using VLC_WinRT.BackgroundHelpers;
 using VLC_WinRT.BackgroundAudioPlayer.Model;
 using VLC_WinRT.Helpers;
+using VLC_WinRT.Model;
+using VLC_WinRT.Model.Video;
 
 namespace VLC_WinRT.ViewModels.MusicVM
 {
     public class TrackCollection : BindableBase
     {
-        private ObservableCollection<TrackItem> _tracksCollection;
-        private ObservableCollection<TrackItem> _nonShuffledPlaylist;
+        private ObservableCollection<IVLCMedia> _tracksCollection;
+        private ObservableCollection<IVLCMedia> _nonShuffledPlaylist;
         private int _currentTrack;
         private bool _isRunning;
         private bool _isShuffled;
 
         // ui related management
-        private ObservableCollection<TrackItem> _selectedTracks;
+        private ObservableCollection<IVLCMedia> _selectedTracks;
 
         [PrimaryKey, AutoIncrement, Column("_id")]
         public int Id { get; set; }
@@ -98,7 +100,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
 
         #region public fields
         [Ignore]
-        public ObservableCollection<TrackItem> Playlist
+        public ObservableCollection<IVLCMedia> Playlist
         {
             get { return _tracksCollection; }
             private set
@@ -108,16 +110,16 @@ namespace VLC_WinRT.ViewModels.MusicVM
         }
 
         [Ignore]
-        public ObservableCollection<TrackItem> NonShuffledPlaylist
+        public ObservableCollection<IVLCMedia> NonShuffledPlaylist
         {
             get { return _nonShuffledPlaylist; }
             set { SetProperty(ref _nonShuffledPlaylist, value); }
         }
 
         [Ignore]
-        public ObservableCollection<TrackItem> SelectedTracks
+        public ObservableCollection<IVLCMedia> SelectedTracks
         {
-            get { return _selectedTracks ?? (_selectedTracks = new ObservableCollection<TrackItem>()); }
+            get { return _selectedTracks ?? (_selectedTracks = new ObservableCollection<IVLCMedia>()); }
             set { SetProperty(ref _selectedTracks, value); }
         }
 
@@ -130,12 +132,12 @@ namespace VLC_WinRT.ViewModels.MusicVM
             {
                 RestorePlaylist();
             }
-            _tracksCollection = new ObservableCollection<TrackItem>();
+            _tracksCollection = new ObservableCollection<IVLCMedia>();
             InitializePlaylist();
         }
         public TrackCollection()
         {
-            _tracksCollection = new ObservableCollection<TrackItem>();
+            _tracksCollection = new ObservableCollection<IVLCMedia>();
             InitializePlaylist();
         }
         #endregion
@@ -183,10 +185,10 @@ namespace VLC_WinRT.ViewModels.MusicVM
             }
         }
 
-        public async Task SetPlaylist(ObservableCollection<TrackItem> playlist)
+        public async Task SetPlaylist(ObservableCollection<IVLCMedia> playlist)
         {
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Playlist = playlist);
-            var backgroundTracks = BackgroundTaskTools.CreateBackgroundTrackItemList(Locator.MediaPlaybackViewModel.TrackCollection.Playlist.ToList());
+            var backgroundTracks = BackgroundTaskTools.CreateBackgroundTrackItemList(Locator.MediaPlaybackViewModel.TrackCollection.Playlist.ToTrackItemPlaylist());
             await App.BackgroundAudioHelper.AddToPlaylist(backgroundTracks);
         }
 
@@ -194,7 +196,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
         {
             if (IsShuffled)
             {
-                NonShuffledPlaylist = new ObservableCollection<TrackItem>(Playlist);
+                NonShuffledPlaylist = new ObservableCollection<IVLCMedia>(Playlist);
                 Random r = new Random();
                 for (int i = 0; i < Playlist.Count; i++)
                 {
@@ -211,13 +213,19 @@ namespace VLC_WinRT.ViewModels.MusicVM
                 await SetPlaylist(Locator.MediaPlaybackViewModel.TrackCollection.NonShuffledPlaylist);
             }
             await App.BackgroundAudioHelper.ResetCollection(ResetType.ShuffleReset);
-            var backgorundTracks = BackgroundTaskTools.CreateBackgroundTrackItemList(Playlist.ToList());
+            var backgorundTracks = BackgroundTaskTools.CreateBackgroundTrackItemList(Playlist.ToTrackItemPlaylist());
             await App.BackgroundAudioHelper.AddToPlaylist(backgorundTracks);
         }
 
         public void Remove(TrackItem trackItem)
         {
             Playlist.Remove(trackItem);
+        }
+
+        public async Task Add(VideoItem videoItem, bool isPlayingPlaylist)
+        {
+            if (Playlist.FirstOrDefault(x => x.Path == videoItem.Path) != null) return;
+            Playlist.Add(videoItem);
         }
 
         public async Task Add(TrackItem trackItem, bool isPlayingPlaylist)
@@ -244,7 +252,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
                 return;
             }
             var trackIds = playlist.Select(node => node.Id);
-            Playlist = new ObservableCollection<TrackItem>();
+            Playlist = new ObservableCollection<IVLCMedia>();
             foreach (int trackId in trackIds)
             {
                 var trackItem = await Locator.MusicLibraryVM._trackDataRepository.LoadTrack(trackId);
@@ -270,5 +278,14 @@ namespace VLC_WinRT.ViewModels.MusicVM
             await Locator.MediaPlaybackViewModel.SetMedia(Locator.MusicPlayerVM.CurrentTrack, false, false);
         }
         #endregion
+
+        /// <summary>
+        /// Only this method should set the CurrentTrack property of TrackCollection.
+        /// </summary>
+        /// <param name="index"></param>
+        public async Task SetCurrentTrackPosition(int index)
+        {
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => CurrentTrack = index);
+        }
     }
 }

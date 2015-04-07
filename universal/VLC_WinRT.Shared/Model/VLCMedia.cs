@@ -10,5 +10,6 @@ namespace VLC_WinRT.Model
         string Name { get; set; }
         TimeSpan Duration { get; set; }
         StorageFile File { get; set; }
+        bool IsCurrentPlaying { get; set; }
     }
 }

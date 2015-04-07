@@ -174,6 +174,8 @@ namespace VLC_WinRT.Model.Video
             get { return _season != -1; }
         }
 
+        public bool IsCurrentPlaying { get; set; }
+
         #endregion
 
         #region public fields

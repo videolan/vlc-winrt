@@ -37,6 +37,7 @@ using VLC_WinRT.Services.RunTime;
 using VLC_WinRT.ViewModels.MusicVM;
 using VLC_WinRT.Commands;
 using VLC_WinRT.BackgroundAudioPlayer.Model;
+using VLC_WinRT.Helpers.VideoPlayer;
 #if WINDOWS_PHONE_APP
 using Windows.Media.Playback;
 #endif
@@ -66,21 +67,27 @@ namespace VLC_WinRT.ViewModels
         private int _speedRate;
         private bool _isStream;
         private int _bufferingProgress;
-
-        private IVLCMedia _currentMedia;
         #endregion
 
         #region private fields
         private List<DictionaryKeyValue> _subtitlesTracks = new List<DictionaryKeyValue>();
         private List<DictionaryKeyValue> _audioTracks = new List<DictionaryKeyValue>();
         private bool _isBuffered;
-
         #endregion
 
         #region public props
         public MouseService MouseService { get { return _mouseService; } }
         public TaskCompletionSource<bool> ContinueIndexing { get; set; }
         public bool UseVlcLib { get; set; }
+        
+        public IVLCMedia CurrentMedia
+        {
+            get
+            {
+                if (TrackCollection.CurrentTrack == -1) return null;
+                return TrackCollection.Playlist[TrackCollection.CurrentTrack];
+            }
+        }
 
         public IMediaService _mediaService
         {
@@ -290,7 +297,7 @@ namespace VLC_WinRT.ViewModels
             set { _subtitlesTracks = value; }
         }
 
-        public IVLCMedia CurrentMedia => _currentMedia;
+
         #endregion
 
         #region constructors
@@ -339,7 +346,7 @@ namespace VLC_WinRT.ViewModels
             if (token != null)
                 videoVm.Token = token;
             Locator.VideoVm.CurrentVideo = videoVm;
-            await Locator.MediaPlaybackViewModel.SetMedia(videoVm, false);
+            await PlayVideoHelper.Play(videoVm);
         }
 
         private void privateDisplayCall(bool shouldActivate)
@@ -455,7 +462,6 @@ namespace VLC_WinRT.ViewModels
             if (media == null)
                 throw new ArgumentNullException("media", "Media parameter is missing. Can't play anything");
             Stop();
-            _currentMedia = media;
             UseVlcLib = forceVlcLib;
 
             if (media is VideoItem)
@@ -473,6 +479,7 @@ namespace VLC_WinRT.ViewModels
 
                 await SetMediaTransportControlsInfo(string.IsNullOrEmpty(video.Name) ? "Video" : video.Name);
                 UpdateTileHelper.UpdateMediumTileWithVideoInfo();
+                Locator.NavigationService.Go(VLCPage.VideoPlayerPage);
             }
             else if (media is TrackItem)
             {
@@ -607,7 +614,7 @@ namespace VLC_WinRT.ViewModels
             if (sender is MFService)
             {
                 // MediaFoundation failed to open the media, switching to VLC player
-                await SetMedia(_currentMedia, true);
+                await SetMedia(CurrentMedia, true);
             }
             else
             {
@@ -674,7 +681,7 @@ namespace VLC_WinRT.ViewModels
                 await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
                 {
                     TrackCollection.CurrentTrack++;
-                    await Locator.MediaPlaybackViewModel.SetMedia(Locator.MusicPlayerVM.CurrentTrack, false);
+                    await Locator.MediaPlaybackViewModel.SetMedia(CurrentMedia, false);
                 });
             }
             else
@@ -689,7 +696,7 @@ namespace VLC_WinRT.ViewModels
             if (TrackCollection.CanGoPrevious)
             {
                 await DispatchHelper.InvokeAsync(() => TrackCollection.CurrentTrack--);
-                await Locator.MediaPlaybackViewModel.SetMedia(Locator.MusicPlayerVM.CurrentTrack, false);
+                await Locator.MediaPlaybackViewModel.SetMedia(CurrentMedia, false);
             }
             else
             {

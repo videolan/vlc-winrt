@@ -73,7 +73,8 @@ namespace VLC_WinRT.ViewModels.MusicVM
                     App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Locator.MediaPlaybackViewModel.TrackCollection.CurrentTrack = 0);
                     return null;
                 }
-                return Locator.MediaPlaybackViewModel.TrackCollection.Playlist[Locator.MediaPlaybackViewModel.TrackCollection.CurrentTrack];
+                var media = Locator.MediaPlaybackViewModel.CurrentMedia;
+                return (media is TrackItem) ? (TrackItem)media : null;
             }
         }
 
