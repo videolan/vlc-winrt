@@ -783,43 +783,47 @@ namespace VLC_WinRT.ViewModels
         {
             _mediaService.Stop();
         }
-#endregion
+        #endregion
 
-#region Events
+        #region Events
         private async void PlayerStateChanged(object sender, MediaState e)
         {
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+            try
             {
-                IsPlaying = e == MediaState.Playing;
-                OnPropertyChanged("IsPlaying");
-                MediaState = e;
-
-                switch (MediaState)
+                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
                 {
-                    case MediaState.NothingSpecial:
-                        break;
-                    case MediaState.Opening:
-                        break;
-                    case MediaState.Buffering:
-                        break;
-                    case MediaState.Playing:
-                        if (_systemMediaTransportControls != null)
-                            _systemMediaTransportControls.PlaybackStatus = MediaPlaybackStatus.Playing;
-                        break;
-                    case MediaState.Paused:
-                        if (_systemMediaTransportControls != null)
-                            _systemMediaTransportControls.PlaybackStatus = MediaPlaybackStatus.Paused;
-                        break;
-                    case MediaState.Stopped:
-                        break;
-                    case MediaState.Ended:
-                        break;
-                    case MediaState.Error:
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
-            });
+                    IsPlaying = e == MediaState.Playing;
+                    OnPropertyChanged("IsPlaying");
+                    MediaState = e;
+
+                    switch (MediaState)
+                    {
+                        case MediaState.NothingSpecial:
+                            break;
+                        case MediaState.Opening:
+                            break;
+                        case MediaState.Buffering:
+                            break;
+                        case MediaState.Playing:
+                            if (_systemMediaTransportControls != null)
+                                _systemMediaTransportControls.PlaybackStatus = MediaPlaybackStatus.Playing;
+                            break;
+                        case MediaState.Paused:
+                            if (_systemMediaTransportControls != null)
+                                _systemMediaTransportControls.PlaybackStatus = MediaPlaybackStatus.Paused;
+                            break;
+                        case MediaState.Stopped:
+                            break;
+                        case MediaState.Ended:
+                            break;
+                        case MediaState.Error:
+                            break;
+                        default:
+                            throw new ArgumentOutOfRangeException();
+                    }
+                });
+            }
+            catch { }
         }
 
         public async void OnTrackAdded(TrackType type, int trackId)
