@@ -13,10 +13,17 @@
             RightTapped="Grid_RightTapped">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition  />
+                <RowDefinition />
                 <RowDefinition Height="40" />
                 <RowDefinition Height="2" />
             </Grid.RowDefinitions>
+            <Grid Grid.Row="0"
+                  Background="WhiteSmoke">
+                <FontIcon Glyph="{StaticResource PylonSymbol}"
+                          FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets"
+                          FontSize="42"
+                          Foreground="{ThemeResource MainColor}" />
+            </Grid>
             <Image Grid.Row="0"
                    Source="{Binding ThumbnailPath}"
                    Stretch="UniformToFill"
