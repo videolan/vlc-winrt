@@ -319,7 +319,7 @@ namespace VLC_WinRT.Controls
             _sidebarGridContainer.Visibility = Visibility.Visible;
         }
 
-        public void ShowFlyout()
+        void ShowFlyout()
         {
             _rightFlyoutFadeIn.Begin();
             IsRightFlyoutOpen = true;

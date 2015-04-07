@@ -113,11 +113,9 @@ namespace VLC_WinRT.Services.RunTime
                     break;
                 case VLCPage.AlbumPage:
                     App.RootPage.SplitShell.RightFlyoutContent = new AlbumPageBase();
-                    App.RootPage.SplitShell.ShowFlyout();
                     break;
                 case VLCPage.ArtistPage:
                     App.RootPage.SplitShell.RightFlyoutContent = new ArtistPageBase();
-                    App.RootPage.SplitShell.ShowFlyout();
                     break;
                 case VLCPage.PlaylistPage:
                     App.ApplicationFrame.Navigate(typeof(PlaylistPage));
@@ -146,18 +144,17 @@ namespace VLC_WinRT.Services.RunTime
                 case VLCPage.AddAlbumToPlaylistDialog:
                     var addToPlaylist = new AddAlbumToPlaylistBase();
                     App.RootPage.SplitShell.RightFlyoutContent = addToPlaylist;
-                    App.RootPage.SplitShell.ShowFlyout();
                     break;
                 case VLCPage.CreateNewPlaylistDialog:
                     var createPlaylist = new CreateNewPlaylist();
                     App.RootPage.SplitShell.RightFlyoutContent = createPlaylist;
-                    App.RootPage.SplitShell.ShowFlyout();
                     break;
                 default:
                     break;
             }
             if (isFlyout(desiredPage))
                 CurrentPage = desiredPage;
+            ViewNavigated(null, CurrentPage);
         }
 
         bool isFlyout(VLCPage page)
