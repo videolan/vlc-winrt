@@ -25,16 +25,13 @@ namespace VLC_WinRT.BackgroundHelpers
 
         public async Task AddToPlaylist(List<BackgroundTrackItem> trackItems)
         {
-            //if (IsMyBackgroundTaskRunning)
-            {
-                var bgTracks = trackItems.Select(backgroundTrackItem => new BackgroundTrackItem(backgroundTrackItem.Id, backgroundTrackItem.AlbumId, backgroundTrackItem.ArtistId, backgroundTrackItem.ArtistName, backgroundTrackItem.AlbumName, backgroundTrackItem.Name, backgroundTrackItem.Path)).ToList();
-                await Locator.MusicPlayerVM.BackgroundTrackRepository.AddBunchTracks(bgTracks);
+            var bgTracks = trackItems.Select(backgroundTrackItem => new BackgroundTrackItem(backgroundTrackItem.Id, backgroundTrackItem.AlbumId, backgroundTrackItem.ArtistId, backgroundTrackItem.ArtistName, backgroundTrackItem.AlbumName, backgroundTrackItem.Name, backgroundTrackItem.Path)).ToList();
+            await Locator.MusicPlayerVM.BackgroundTrackRepository.AddBunchTracks(bgTracks);
 #if WINDOWS_PHONE_APP
-                var msgDictionary = new ValueSet();
-                msgDictionary.Add(BackgroundAudioConstants.UpdatePlaylist, "");
-                BackgroundMediaPlayer.SendMessageToBackground(msgDictionary);
+            var msgDictionary = new ValueSet();
+            msgDictionary.Add(BackgroundAudioConstants.UpdatePlaylist, "");
+            BackgroundMediaPlayer.SendMessageToBackground(msgDictionary);
 #endif
-            }
         }
 
         public async Task AddToPlaylist(BackgroundTrackItem trackItem)
@@ -45,16 +42,13 @@ namespace VLC_WinRT.BackgroundHelpers
 
         public async Task ResetCollection(ResetType resetType)
         {
-            //if (IsMyBackgroundTaskRunning)
-            {
-                Locator.MusicPlayerVM.BackgroundTrackRepository.Clear();
+            Locator.MusicPlayerVM.BackgroundTrackRepository.Clear();
 #if WINDOWS_PHONE_APP
-                ValueSet messageDictionary = new ValueSet();
-                messageDictionary.Add(BackgroundAudioConstants.ResetPlaylist, (int)resetType);
-                BackgroundMediaPlayer.SendMessageToBackground(messageDictionary);
-                await Task.Delay(500);
+            ValueSet messageDictionary = new ValueSet();
+            messageDictionary.Add(BackgroundAudioConstants.ResetPlaylist, (int)resetType);
+            BackgroundMediaPlayer.SendMessageToBackground(messageDictionary);
+            await Task.Delay(500);
 #endif
-            }
         }
     }
 }

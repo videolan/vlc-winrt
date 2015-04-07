@@ -276,9 +276,9 @@ namespace VLC_WinRT.ViewModels
                     SetAudioTrackCommand.Execute(value.Id);
             }
         }
-#endregion
+        #endregion
 
-#region public fields
+        #region public fields
         public List<DictionaryKeyValue> AudioTracks
         {
             get { return _audioTracks; }
@@ -292,16 +292,16 @@ namespace VLC_WinRT.ViewModels
         }
 
         public IVLCMedia CurrentMedia => _currentMedia;
-#endregion
+        #endregion
 
-#region constructors
+        #region constructors
         public MediaPlaybackViewModel()
         {
             _mouseService = App.Container.Resolve<MouseService>();
         }
-#endregion
+        #endregion
 
-#region methods
+        #region methods
         public async Task OpenFile(StorageFile file)
         {
             if (file == null) return;
@@ -888,9 +888,9 @@ namespace VLC_WinRT.ViewModels
             }
         }
 
-#endregion
+        #endregion
 
-#region MediaTransportControls
+        #region MediaTransportControls
 
         public void SetMediaTransportControls(SystemMediaTransportControls systemMediaTransportControls)
         {
@@ -1023,7 +1023,7 @@ namespace VLC_WinRT.ViewModels
             {
             }
         }
-#endregion
+        #endregion
 
         public void Pause()
         {
