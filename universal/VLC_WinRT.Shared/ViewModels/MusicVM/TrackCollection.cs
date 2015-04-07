@@ -232,6 +232,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
         public async Task Add(TrackItem trackItem, bool isPlayingPlaylist)
         {
             if (Playlist.FirstOrDefault(x => x.Id == trackItem.Id) != null) return;
+            trackItem.Index = (uint)Playlist.Count;
             Playlist.Add(trackItem);
             var backgroundTrack = BackgroundTaskTools.CreateBackgroundTrackItem(trackItem);
             await App.BackgroundAudioHelper.AddToPlaylist(backgroundTrack);
@@ -240,7 +241,10 @@ namespace VLC_WinRT.ViewModels.MusicVM
         public async Task Add(List<TrackItem> trackItems)
         {
             foreach (var track in trackItems)
+            {
+                track.Index = (uint)Playlist.Count;
                 Playlist.Add(track);
+            }
             var backgroundTracks = BackgroundTaskTools.CreateBackgroundTrackItemList(trackItems);
             await App.BackgroundAudioHelper.AddToPlaylist(backgroundTracks);
         }
