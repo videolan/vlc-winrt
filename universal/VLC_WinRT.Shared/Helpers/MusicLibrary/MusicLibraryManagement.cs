@@ -17,18 +17,7 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel.Resources;
 using Windows.Storage;
 using Windows.Storage.FileProperties;
-using Windows.
-/* Unmerged change from project 'VLC_WinRT.Windows'
-Before:
-using Windows.System.Threading;
 using Windows.UI.Core;
-using Windows.UI.Popups;
-using Windows.UI.Xaml;
-After:
-using Windows.UI.Core;
-using Windows.UI.Xaml;
-*/
-UI.Core;
 using Autofac;
 using VLC_WinRT.Model;
 using VLC_WinRT.Model.Music;
@@ -41,9 +30,6 @@ using Windows.Storage.Streams;
 using Windows.UI.Xaml;
 using VLC_WinRT.Views.MusicPages.PlaylistControls;
 using WinRTXamlToolkit.Controls.Extensions;
-#if WINDOWS_PHONE_APP
-#else
-#endif
 
 namespace VLC_WinRT.Helpers.MusicLibrary
 {
