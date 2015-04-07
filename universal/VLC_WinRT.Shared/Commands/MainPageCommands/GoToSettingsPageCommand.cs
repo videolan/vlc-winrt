@@ -8,8 +8,8 @@
  **********************************************************************/
 
 using VLC_WINRT.Common;
-using VLC_WinRT.Views.UserControls;
-using VLC_WinRT.Views.VariousPages;
+using VLC_WinRT.Model;
+using VLC_WinRT.ViewModels;
 
 namespace VLC_WinRT.Commands.MainPageCommands
 {
@@ -17,8 +17,7 @@ namespace VLC_WinRT.Commands.MainPageCommands
     {
         public override void Execute(object parameter)
         {
-            if (App.ApplicationFrame.CurrentSourcePageType != typeof(SettingsPage))
-                App.ApplicationFrame.Navigate(typeof(SettingsPage));
+            Locator.MainVM.NavigationService.Go(VLCPage.SettingsPage);
         }
     }
 }

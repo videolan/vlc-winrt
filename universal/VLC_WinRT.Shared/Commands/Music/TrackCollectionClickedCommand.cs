@@ -3,6 +3,7 @@ using VLC_WINRT.Common;
 using VLC_WinRT.ViewModels;
 using VLC_WinRT.ViewModels.MusicVM;
 using VLC_WinRT.Views.MusicPages;
+using VLC_WinRT.Model;
 
 namespace VLC_WinRT.Commands.Music
 {
@@ -13,19 +14,19 @@ namespace VLC_WinRT.Commands.Music
             if (parameter is TrackCollection)
             {
                 Locator.MusicLibraryVM.CurrentTrackCollection = parameter as TrackCollection;
-                App.ApplicationFrame.Navigate(typeof (PlaylistPage));
+                Locator.MainVM.NavigationService.Go(VLCPage.PlaylistPage);
             }
             else if (parameter is SelectionChangedEventArgs)
             {
                 Locator.MusicLibraryVM.CurrentTrackCollection =
                     (parameter as SelectionChangedEventArgs).AddedItems[0] as TrackCollection;
-                App.ApplicationFrame.Navigate(typeof (PlaylistPage));
+                Locator.MainVM.NavigationService.Go(VLCPage.PlaylistPage);
             }
             else if (parameter is ItemClickEventArgs)
             {
                 Locator.MusicLibraryVM.CurrentTrackCollection =
                     (parameter as ItemClickEventArgs).ClickedItem as TrackCollection;
-                App.ApplicationFrame.Navigate(typeof (PlaylistPage));
+                Locator.MainVM.NavigationService.Go(VLCPage.PlaylistPage);
             }
         }
     }

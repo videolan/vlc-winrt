@@ -63,7 +63,7 @@ namespace VLC_WinRT.ViewModels
 
         private int _currentSubtitle;
         private int _currentAudioTrack;
-        
+
         private readonly DisplayRequest _displayAlwaysOnRequest = new DisplayRequest();
 
         private int _volume = 100;
@@ -191,15 +191,15 @@ namespace VLC_WinRT.ViewModels
 
         public PlayPauseCommand PlayOrPauseCommand { get; } = new PlayPauseCommand();
 
-        public PlayNextCommand PlayNextCommand { get; }= new PlayNextCommand();
+        public PlayNextCommand PlayNextCommand { get; } = new PlayNextCommand();
 
-        public PlayPreviousCommand PlayPreviousCommand { get; }= new PlayPreviousCommand();
-        
-        public SetSubtitleTrackCommand SetSubtitleTrackCommand { get; }= new SetSubtitleTrackCommand();
+        public PlayPreviousCommand PlayPreviousCommand { get; } = new PlayPreviousCommand();
+
+        public SetSubtitleTrackCommand SetSubtitleTrackCommand { get; } = new SetSubtitleTrackCommand();
 
         public OpenSubtitleCommand OpenSubtitleCommand { get; } = new OpenSubtitleCommand();
 
-        public SetAudioTrackCommand SetAudioTrackCommand { get; }= new SetAudioTrackCommand();
+        public SetAudioTrackCommand SetAudioTrackCommand { get; } = new SetAudioTrackCommand();
 
         public StopVideoCommand GoBack { get; } = new StopVideoCommand();
 
@@ -422,8 +422,7 @@ namespace VLC_WinRT.ViewModels
         /// <param name="file">The file to be played.</param>
         public async Task PlayAudioFile(StorageFile file)
         {
-            if (App.ApplicationFrame.CurrentSourcePageType != typeof(MusicPlayerPage))
-                App.ApplicationFrame.Navigate(typeof(MusicPlayerPage));
+            Locator.MainVM.NavigationService.Go(VLCPage.MusicPlayerPage);
             var trackItem = await MusicLibraryManagement.GetTrackItemFromFile(file);
             await PlayMusicHelper.PlayTrackFromFilePicker(trackItem);
         }
@@ -435,7 +434,7 @@ namespace VLC_WinRT.ViewModels
         /// <param name="token">Token is for files that are NOT in the sandbox, such as files taken from the filepicker from a sd card but not in the Video/Music folder.</param>
         public async Task PlayVideoFile(StorageFile file, string token = null)
         {
-            App.ApplicationFrame.Navigate(typeof(VideoPlayerPage));
+            Locator.MainVM.NavigationService.Go(VLCPage.VideoPlayerPage);
             VideoItem videoVm = new VideoItem();
             await videoVm.Initialize(file);
             if (token != null)
@@ -735,7 +734,7 @@ namespace VLC_WinRT.ViewModels
                         {
                             TrackCollection.IsRunning = false;
                             PlayingType = PlayingType.NotPlaying;
-                            App.ApplicationFrame.Navigate(typeof(MainPageHome));
+                            Locator.MainVM.NavigationService.Go(VLCPage.MainPageHome);
                         });
                     }
                     else
@@ -750,10 +749,10 @@ namespace VLC_WinRT.ViewModels
                             Locator.VideoVm.CurrentVideo.TimeWatched = TimeSpan.Zero;
                         if (App.ApplicationFrame.CanGoBack)
                             App.ApplicationFrame.GoBack();
-                        else
+                        if (!Locator.MainVM.NavigationService.GoBack_Default())
                         {
 #if WINDOWS_APP
-                            App.ApplicationFrame.Navigate(typeof(MainPageVideos));
+                            Locator.MainVM.NavigationService.Go(VLCPage.MainPageVideo);
 #else
                             Locator.MainVM.GoToPanelCommand.Execute(0);
 #endif

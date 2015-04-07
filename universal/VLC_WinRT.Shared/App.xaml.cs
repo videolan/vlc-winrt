@@ -100,8 +100,7 @@ namespace VLC_WinRT
             if (Window.Current.Content == null)
             {
                 await LaunchTheApp();
-                ApplicationFrame.Navigate(typeof(MainPageHome));
-
+                Locator.MainVM.NavigationService.Go(VLCPage.MainPageHome);
                 try
                 {
                     await ExceptionHelper.ExceptionLogCheckup();
@@ -172,7 +171,7 @@ namespace VLC_WinRT
 #if WINDOWS_PHONE_APP
             StatusBarHelper.SetDefaultForPage(args.SourcePageType);
 #endif
-            Locator.MainVM.CurrentPage = args.SourcePageType;
+            Locator.MainVM.NavigationService.PageNavigatedCallback(args.SourcePageType);
         }
 
 #if WINDOWS_PHONE_APP

@@ -4,6 +4,7 @@ using VLC_WinRT.Model.Video;
 using VLC_WinRT.ViewModels;
 using VLC_WinRT.ViewModels.VideoVM;
 using VLC_WinRT.Views.VideoPages;
+using VLC_WinRT.Model;
 
 namespace VLC_WinRT.Helpers.VideoPlayer
 {
@@ -17,8 +18,7 @@ namespace VLC_WinRT.Helpers.VideoPlayer
                 LogHelper.Log("PLAYVIDEO: Getting video path token");
                 videoVm.Token = token;
             }
-            if (App.ApplicationFrame.CurrentSourcePageType != typeof (VideoPlayerPage))
-                App.ApplicationFrame.Navigate(typeof (VideoPlayerPage));
+            Locator.MainVM.NavigationService.Go(VLCPage.VideoPlayerPage);
             LogHelper.Log("PLAYVIDEO: Settings videoVm as Locator.VideoVm.CurrentVideo");
             Locator.VideoVm.CurrentVideo = videoVm;
             await Locator.MediaPlaybackViewModel.SetMedia(videoVm);

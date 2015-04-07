@@ -53,7 +53,6 @@ namespace VLC_WinRT.ViewModels
         private NetworkListenerService networkListenerService;
         private KeyboardListenerService keyboardListenerService;
         private bool _isInternet;
-        private Type _currentPage;
         private string _searchTag = "";
         private bool _preventAppExit = false;
         private string _informationText;
@@ -82,12 +81,6 @@ namespace VLC_WinRT.ViewModels
             }
         }
 
-        public Type CurrentPage
-        {
-            get { return _currentPage; }
-            set { SetProperty(ref _currentPage, value); }
-        }
-
         public GoToPanelCommand GoToPanelCommand { get; } = new GoToPanelCommand();
 
         public GoToSettingsPageCommand GoToSettingsPageCommand { get; } = new GoToSettingsPageCommand();
@@ -96,7 +89,7 @@ namespace VLC_WinRT.ViewModels
 
         public ChangeMainPageMusicViewCommand ChangeMainPageMusicViewCommand { get; } = new ChangeMainPageMusicViewCommand();
 
-        public AlwaysExecutableCommand GoToSearchPage { get; } = new ActionCommand(() => { App.ApplicationFrame.Navigate(typeof(SearchPage)); });
+        public AlwaysExecutableCommand GoToSearchPage { get; } = new ActionCommand(() => { Locator.MainVM.NavigationService.Go(VLCPage.SearchPage); });
         public ChangeMainPageVideoViewCommand ChangeMainPageVideoViewCommand { get; } = new ChangeMainPageVideoViewCommand();
 
         public SearchClickedCommand SearchClickedCommand { get; }= new SearchClickedCommand();

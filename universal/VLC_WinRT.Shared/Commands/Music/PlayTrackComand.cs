@@ -19,6 +19,7 @@ using VLC_WinRT.Model.Music;
 using VLC_WinRT.ViewModels;
 using VLC_WinRT.ViewModels.MusicVM;
 using VLC_WinRT.Views.MusicPages;
+using VLC_WinRT.Model;
 
 namespace VLC_WinRT.Commands.Music
 {
@@ -26,8 +27,7 @@ namespace VLC_WinRT.Commands.Music
     {
         public async override void Execute(object parameter)
         {
-            if (App.ApplicationFrame.CurrentSourcePageType != typeof(MusicPlayerPage))
-                App.ApplicationFrame.Navigate(typeof(MusicPlayerPage));
+            Locator.MainVM.NavigationService.Go(VLCPage.MusicPlayerPage);
             Locator.MusicLibraryVM.IsAlbumPageShown = false;
             TrackItem track = null;
             if (parameter is ItemClickEventArgs)

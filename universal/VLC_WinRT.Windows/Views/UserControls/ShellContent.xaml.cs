@@ -5,6 +5,8 @@ using Windows.UI.ApplicationSettings;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using VLC_WinRT.Views.VariousPages;
+using VLC_WinRT.Model;
+using VLC_WinRT.ViewModels;
 
 namespace VLC_WinRT.Views.UserControls
 {
@@ -33,7 +35,7 @@ namespace VLC_WinRT.Views.UserControls
             var specialThanks = new SettingsCommand("specialThanks", resourceLoader.GetString("SpecialThanks"),
                 command =>
                 {
-                    App.ApplicationFrame.Navigate(typeof(SpecialThanks));
+                    Locator.MainVM.NavigationService.Go(VLCPage.SpecialThanksPage);
                 });
 
             var settings = new SettingsCommand("settings", resourceLoader.GetString("Settings"),

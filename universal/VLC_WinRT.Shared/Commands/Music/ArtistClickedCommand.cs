@@ -6,6 +6,7 @@ using VLC_WinRT.Model.Music;
 using VLC_WinRT.ViewModels;
 using VLC_WinRT.Views.MusicPages;
 using VLC_WinRT.Views.MusicPages.ArtistPageControls;
+using VLC_WinRT.Model;
 
 namespace VLC_WinRT.Commands.Music
 {
@@ -13,8 +14,7 @@ namespace VLC_WinRT.Commands.Music
     {
         public override void Execute(object parameter)
         {
-            App.RootPage.SplitShell.RightFlyoutContent = new ArtistPageBase();
-            App.RootPage.SplitShell.ShowFlyout();
+            Locator.MainVM.NavigationService.Go(VLCPage.ArtistPage);
             ArtistItem artist = null;
             if (parameter is ArtistItem)
             {

@@ -13,6 +13,7 @@ using VLC_WinRT.Helpers;
 using VLC_WinRT.Model.Stream;
 using VLC_WinRT.ViewModels;
 using VLC_WinRT.Views.VideoPages;
+using VLC_WinRT.Model;
 
 namespace VLC_WinRT.Commands
 {
@@ -38,12 +39,7 @@ namespace VLC_WinRT.Commands
                 ExceptionHelper.CreateMemorizedException("PlayNetworkMRLCommand.Execute", ex);
                 return;
             }
-
-            if (App.ApplicationFrame.CurrentSourcePageType != typeof(VideoPlayerPage))
-            {
-                App.ApplicationFrame.Navigate(typeof(VideoPlayerPage));
-            }
-
+            Locator.MainVM.NavigationService.Go(VLCPage.VideoPlayerPage);
             Locator.MainVM.CloseStreamFlyout();
         }
     }

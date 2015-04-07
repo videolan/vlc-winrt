@@ -23,8 +23,7 @@ namespace VLC_WinRT.Commands.Music
                 if (selectedTrack != null)
                 {
                     await PlayMusicHelper.AddTrackCollectionToPlaylistAndPlay(Locator.MusicLibraryVM.Tracks, true, index);
-                    if (App.ApplicationFrame.CurrentSourcePageType != typeof(MusicPlayerPage))
-                        App.ApplicationFrame.Navigate(typeof(MusicPlayerPage));
+                    Locator.MainVM.NavigationService.Go(VLCPage.MusicPlayerPage);
                 }
             }
         }

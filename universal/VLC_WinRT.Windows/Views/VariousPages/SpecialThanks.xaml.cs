@@ -7,6 +7,7 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
+using VLC_WinRT.ViewModels;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -24,7 +25,7 @@ namespace VLC_WinRT.Views.VariousPages
 
         private void GoBack_Click(object sender, RoutedEventArgs e)
         {
-            App.ApplicationFrame.GoBack();
+            Locator.MainVM.NavigationService.GoBack_Default();
         }
     }
 }

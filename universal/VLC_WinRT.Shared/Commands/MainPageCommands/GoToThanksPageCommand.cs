@@ -7,11 +7,9 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
-using System;
-using System.Collections.Generic;
-using System.Text;
 using VLC_WINRT.Common;
-using VLC_WinRT.Views.VariousPages;
+using VLC_WinRT.Model;
+using VLC_WinRT.ViewModels;
 
 namespace VLC_WinRT.Commands.MainPageCommands
 {
@@ -19,10 +17,7 @@ namespace VLC_WinRT.Commands.MainPageCommands
     {
         public override void Execute(object parameter)
         {
-            if (App.ApplicationFrame.CurrentSourcePageType != typeof (SpecialThanks))
-            {
-                App.ApplicationFrame.Navigate(typeof (SpecialThanks));
-            }
+            Locator.MainVM.NavigationService.Go(VLCPage.SpecialThanksPage);
         }
     }
 }

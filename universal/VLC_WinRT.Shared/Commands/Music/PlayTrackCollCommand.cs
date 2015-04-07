@@ -6,6 +6,7 @@ using VLC_WinRT.Model.Music;
 using VLC_WinRT.ViewModels;
 using VLC_WinRT.ViewModels.MusicVM;
 using VLC_WinRT.Views.MusicPages;
+using VLC_WinRT.Model;
 
 namespace VLC_WinRT.Commands.Music
 {
@@ -26,8 +27,7 @@ namespace VLC_WinRT.Commands.Music
                 await PlayMusicHelper.AddTrackCollectionToPlaylistAndPlay(trackCollection.Playlist, true, index);
             }
             else await PlayMusicHelper.AddTrackCollectionToPlaylistAndPlay(trackCollection.Playlist);
-            if (App.ApplicationFrame.CurrentSourcePageType != typeof (MusicPlayerPage))
-                App.ApplicationFrame.Navigate(typeof (MusicPlayerPage));
+            Locator.MainVM.NavigationService.Go(VLCPage.MusicPlayerPage);
         }
     }
 }

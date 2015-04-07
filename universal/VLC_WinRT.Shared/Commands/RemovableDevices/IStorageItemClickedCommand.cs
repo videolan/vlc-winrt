@@ -3,6 +3,7 @@ using Windows.UI.Xaml.Controls;
 using VLC_WINRT.Common;
 using VLC_WinRT.ViewModels;
 using VLC_WinRT.Views.MainPages;
+using VLC_WinRT.Model;
 
 namespace VLC_WinRT.Commands.RemovableDevices
 {
@@ -10,9 +11,8 @@ namespace VLC_WinRT.Commands.RemovableDevices
     {
         public override async void Execute(object parameter)
         {
-            IStorageItem storageItem = ((ItemClickEventArgs) parameter).ClickedItem as IStorageItem;
-
-            if(App.ApplicationFrame.CurrentSourcePageType == typeof(MainPageRemovables))
+            IStorageItem storageItem = ((ItemClickEventArgs)parameter).ClickedItem as IStorageItem;
+            if (Locator.MainVM.NavigationService.CurrentPage == VLCPage.MainPageFileExplorer)
                 await Locator.ExternalStorageVM.CurrentStorageVM.NavigateTo(storageItem);
 #if WINDOWS_APP
             else if(App.ApplicationFrame.CurrentSourcePageType == typeof(MainPageMediaServers))

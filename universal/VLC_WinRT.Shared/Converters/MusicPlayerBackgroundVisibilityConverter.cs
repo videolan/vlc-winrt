@@ -3,6 +3,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
 using VLC_WinRT.ViewModels;
 using VLC_WinRT.Views.MusicPages;
+using VLC_WinRT.Model;
 
 namespace VLC_WinRT.Converters
 {
@@ -10,7 +11,7 @@ namespace VLC_WinRT.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            if (Locator.MainVM.CurrentPage == typeof (MusicPlayerPage))
+            if (Locator.MainVM.NavigationService.CurrentPage == VLCPage.MusicPlayerPage)
                 return Visibility.Visible;
             return Visibility.Collapsed;
         }

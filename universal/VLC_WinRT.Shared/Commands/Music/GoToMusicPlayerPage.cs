@@ -1,5 +1,7 @@
 ﻿using VLC_WINRT.Common;
 using VLC_WinRT.Views.MusicPages;
+using VLC_WinRT.Model;
+using VLC_WinRT.ViewModels;
 
 namespace VLC_WinRT.Commands.Music
 {
@@ -7,8 +9,7 @@ namespace VLC_WinRT.Commands.Music
     {
         public override void Execute(object parameter)
         {
-            if(App.ApplicationFrame.CurrentSourcePageType != typeof(MusicPlayerPage))
-                App.ApplicationFrame.Navigate(typeof (MusicPlayerPage));
+            Locator.MainVM.NavigationService.Go(VLCPage.MusicPlayerPage);
         }
     }
 }

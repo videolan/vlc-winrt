@@ -2,6 +2,7 @@
 {
     public enum VLCPage
     {
+        None,
         MainPageHome,
         MainPageVideo,
         MainPageMusic,
@@ -13,5 +14,10 @@
         VideoPlayerPage,
         MusicPlayerPage,
         SettingsPage,
+        SpecialThanksPage,
+        ArtistShowsPage,
+        SearchPage,
+        AddAlbumToPlaylistDialog,
+        CreateNewPlaylistDialog,
     }
 }

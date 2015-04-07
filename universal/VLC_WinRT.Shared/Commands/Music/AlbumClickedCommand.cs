@@ -7,6 +7,7 @@ using VLC_WinRT.Model.Music;
 using VLC_WinRT.ViewModels;
 using VLC_WinRT.Views.MusicPages;
 using VLC_WinRT.Views.MusicPages.AlbumPageControls;
+using VLC_WinRT.Model;
 
 namespace VLC_WinRT.Commands.Music
 {
@@ -34,9 +35,8 @@ namespace VLC_WinRT.Commands.Music
             Locator.MusicLibraryVM.CurrentArtist =
                 Locator.MusicLibraryVM.Artists.FirstOrDefault(x => x.Id == album.ArtistId);
             Locator.MusicLibraryVM.CurrentAlbum = album;
-
-            App.RootPage.SplitShell.RightFlyoutContent = new AlbumPageBase();
-            App.RootPage.SplitShell.ShowFlyout();
+            
+            Locator.MainVM.NavigationService.Go(VLCPage.AlbumPage);
         }
     }
 }

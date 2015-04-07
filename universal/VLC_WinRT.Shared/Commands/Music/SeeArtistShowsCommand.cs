@@ -3,6 +3,7 @@ using VLC_WINRT.Common;
 using VLC_WinRT.Model.Music;
 using VLC_WinRT.ViewModels;
 using VLC_WinRT.Views.MusicPages.ArtistPages;
+using VLC_WinRT.Model;
 
 namespace VLC_WinRT.Commands.Music
 {
@@ -10,7 +11,7 @@ namespace VLC_WinRT.Commands.Music
     {
         public override void Execute(object parameter)
         {
-            App.ApplicationFrame.Navigate(typeof(ArtistShowsPage));
+            Locator.MainVM.NavigationService.Go(VLCPage.ArtistShowsPage);
             if (parameter is ArtistItem)
             {
                 (App.ApplicationFrame.Content as ArtistShowsPage).DataContext = parameter as ArtistItem;

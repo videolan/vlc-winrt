@@ -5,6 +5,7 @@ using VLC_WinRT.Model.Video;
 using VLC_WinRT.ViewModels;
 using VLC_WinRT.Views.VideoPages;
 using VLC_WinRT.Helpers.VideoPlayer;
+using VLC_WinRT.Model;
 
 namespace VLC_WinRT.Commands.Video
 {
@@ -57,8 +58,7 @@ namespace VLC_WinRT.Commands.Video
 
             try
             {
-                if (App.ApplicationFrame.CurrentSourcePageType != typeof (VideoPlayerPage))
-                    App.ApplicationFrame.Navigate(typeof (VideoPlayerPage));
+                Locator.MainVM.NavigationService.Go(VLCPage.VideoPlayerPage);
                 LogHelper.Log("PLAYVIDEO: Navigating to VideoPlayerPage");
             }
             catch

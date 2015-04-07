@@ -11,6 +11,7 @@ using System;
 using VLC_WINRT.Common;
 using VLC_WinRT.ViewModels;
 using VLC_WinRT.Views.MainPages;
+using VLC_WinRT.Model;
 
 namespace VLC_WinRT.Commands.Video
 {
@@ -22,12 +23,12 @@ namespace VLC_WinRT.Commands.Video
 
             if (parameter is Type)
             {
-                App.ApplicationFrame.Navigate((Type) parameter);
+                App.ApplicationFrame.Navigate((Type)parameter);
             }
-            else if(App.ApplicationFrame.CanGoBack)
-                App.ApplicationFrame.GoBack();
+            else if (App.ApplicationFrame.CanGoBack)
+                Locator.MainVM.NavigationService.GoBack_Default();
             else
-                App.ApplicationFrame.Navigate(typeof (MainPageHome));
+                Locator.MainVM.NavigationService.Go(VLCPage.MainPageHome);
             await Locator.MediaPlaybackViewModel.CleanViewModel();
             Locator.MediaPlaybackViewModel.IsPlaying = false;
         }

@@ -2,6 +2,8 @@
 using VLC_WINRT.Common;
 using VLC_WinRT.Views.MusicPages;
 using System;
+using VLC_WinRT.Model;
+using VLC_WinRT.ViewModels;
 
 namespace VLC_WinRT.Commands.Music
 {
@@ -11,9 +13,7 @@ namespace VLC_WinRT.Commands.Music
         {
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                var createPlaylist = new CreateNewPlaylist();
-                App.RootPage.SplitShell.RightFlyoutContent = createPlaylist;
-                App.RootPage.SplitShell.ShowFlyout();
+                Locator.MainVM.NavigationService.Go(VLCPage.CreateNewPlaylistDialog);
             });
         }
     }

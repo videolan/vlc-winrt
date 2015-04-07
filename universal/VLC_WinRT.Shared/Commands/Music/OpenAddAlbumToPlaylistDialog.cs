@@ -1,7 +1,6 @@
-﻿using System;
+﻿using VLC_WinRT.Model;
+using VLC_WinRT.ViewModels;
 using VLC_WINRT.Common;
-using VLC_WinRT.Views.MusicPages;
-using VLC_WinRT.Views.MusicPages.PlaylistControls;
 
 namespace VLC_WinRT.Commands.Music
 {
@@ -9,9 +8,7 @@ namespace VLC_WinRT.Commands.Music
     {
         public override void Execute(object parameter)
         {
-            var addToPlaylist = new AddAlbumToPlaylistBase();
-            App.RootPage.SplitShell.RightFlyoutContent = addToPlaylist;
-            App.RootPage.SplitShell.ShowFlyout();
+            Locator.MainVM.NavigationService.Go(VLCPage.AddAlbumToPlaylistDialog);
         }
     }
 }

@@ -52,22 +52,17 @@ namespace VLC_WinRT.Commands.MainPageCommands
                 switch (panel.Index)
                 {
                     case 0:
-                        if (App.ApplicationFrame.CurrentSourcePageType != typeof(MainPageHome))
-                            App.ApplicationFrame.Navigate(typeof(MainPageHome));
+                        Locator.MainVM.NavigationService.Go(VLCPage.MainPageHome);
                         break;
                     case 1:
-                        if (App.ApplicationFrame.CurrentSourcePageType != typeof(MainPageVideos))
-                            App.ApplicationFrame.Navigate(typeof(MainPageVideos));
+                        Locator.MainVM.NavigationService.Go(VLCPage.MainPageVideo);
                         break;
                     case 2:
-                        if (App.ApplicationFrame.CurrentSourcePageType != typeof(MainPageMusic))
-                            App.ApplicationFrame.Navigate(typeof(MainPageMusic));
+                        Locator.MainVM.NavigationService.Go(VLCPage.MainPageMusic);
                         break;
                     case 3:
-                        if (App.ApplicationFrame.CurrentSourcePageType != typeof(MainPageRemovables))
-                            App.ApplicationFrame.Navigate(typeof(MainPageRemovables));
+                        Locator.MainVM.NavigationService.Go(VLCPage.MainPageFileExplorer);
                         break;
-
 #if WINDOWS_APP
                     case 4:
                         if (App.ApplicationFrame.CurrentSourcePageType != typeof(MainPageMediaServers))
