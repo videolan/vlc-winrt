@@ -30,7 +30,7 @@
         </ListView.ItemsPanel>
         <ListView.ItemContainerTransitions>
             <TransitionCollection>
-                <EntranceThemeTransition />
+                <AddDeleteThemeTransition />
             </TransitionCollection>
         </ListView.ItemContainerTransitions>
         <triggers:Interactions.Triggers>
