@@ -269,7 +269,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
             var currentTrack = ApplicationSettingsHelper.ReadSettingsValue(BackgroundAudioConstants.CurrentTrack);
             if (currentTrack != null)
             {
-                CurrentTrack = (int) currentTrack;
+                CurrentTrack = (int)currentTrack;
                 if ((int)currentTrack == -1)
                 {
                     // Background Audio was terminated
