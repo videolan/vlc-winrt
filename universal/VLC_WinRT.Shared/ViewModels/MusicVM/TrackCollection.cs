@@ -15,6 +15,7 @@ using SQLite;
 using VLC_WinRT.Commands.Music;
 using VLC_WinRT.Common;
 using VLC_WinRT.Model.Music;
+using System.Collections.Generic;
 
 #if WINDOWS_PHONE_APP
 using System.Linq;
@@ -89,7 +90,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
         }
 
         [Ignore]
-        public PlayTrackCollCommand PlayTrackCollCommand { get; }=new PlayTrackCollCommand();
+        public PlayTrackCollCommand PlayTrackCollCommand { get; } = new PlayTrackCollCommand();
 
         [Ignore]
         public bool IsShuffled
@@ -183,7 +184,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
             }
             catch (Exception exception)
             {
-                
+
             }
         }
 
@@ -228,9 +229,24 @@ namespace VLC_WinRT.ViewModels.MusicVM
             Playlist.Remove(trackItem);
         }
 
-        public void Add(TrackItem trackItem, bool isPlayingPlaylist)
+        public async Task Add(TrackItem trackItem, bool isPlayingPlaylist)
         {
+            if (Playlist.FirstOrDefault(x => x.Id == trackItem.Id) != null)return;
             Playlist.Add(trackItem);
+#if WINDOWS_PHONE_APP
+            var backgroundTrack = BackgroundTaskTools.CreateBackgroundTrackItem(trackItem);
+            await App.BackgroundAudioHelper.AddToPlaylist(backgroundTrack);
+#endif
+        }
+
+        public async Task Add(List<TrackItem> trackItems)
+        {
+            foreach (var track in trackItems)
+                Playlist.Add(track);
+#if WINDOWS_PHONE_APP
+            var backgroundTracks = BackgroundTaskTools.CreateBackgroundTrackItemList(trackItems);
+            await App.BackgroundAudioHelper.AddToPlaylist(backgroundTracks);
+#endif
         }
 
         public async Task RestorePlaylist()
