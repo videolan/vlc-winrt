@@ -1,10 +1,7 @@
 ﻿using System;
-using Windows.UI;
 using Windows.UI.Text;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Media;
-using VLC_WinRT.ViewModels;
 
 namespace VLC_WinRT.Converters
 {

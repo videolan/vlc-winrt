@@ -8,12 +8,7 @@
  **********************************************************************/
 
 using VLC_WinRT.Common;
-using Windows.Storage;
-using System;
-using System.Threading.Tasks;
 using VLC_WinRT.Model.Video;
-using VLC_WinRT.Helpers;
-using VLC_WinRT.Model;
 
 namespace VLC_WinRT.ViewModels.VideoVM
 {

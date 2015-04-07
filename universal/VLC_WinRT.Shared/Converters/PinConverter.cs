@@ -2,7 +2,6 @@
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media;
-using VLC_WinRT.Helpers;
 using VLC_WinRT.Utils;
 
 namespace VLC_WinRT.Converters

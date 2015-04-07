@@ -8,16 +8,14 @@
  **********************************************************************/
 
 using System;
-using System.Diagnostics;
-using Windows.Storage;
-using Windows.Storage.AccessCache;
 using Windows.Storage.Pickers;
-using Windows.UI.Core;
 using Windows.UI.Popups;
 using VLC_WINRT.Common;
-using VLC_WinRT.Helpers;
 using VLC_WinRT.Model;
+using Windows.Storage;
+using Windows.Storage.AccessCache;
 using VLC_WinRT.ViewModels;
+using VLC_WinRT.Helpers;
 
 namespace VLC_WinRT.Commands.Video
 {

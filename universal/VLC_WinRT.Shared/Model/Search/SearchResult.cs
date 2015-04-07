@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace VLC_WinRT.Model.Search
+﻿namespace VLC_WinRT.Model.Search
 {
     public class SearchResult
     {

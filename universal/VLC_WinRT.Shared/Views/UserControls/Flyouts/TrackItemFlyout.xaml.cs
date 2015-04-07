@@ -1,9 +1,9 @@
 ﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
 using VLC_WinRT.Model.Music;
 using VLC_WinRT.ViewModels;
 using VLC_WinRT.ViewModels.MusicVM;
+using Windows.UI.Xaml.Controls.Primitives;
 
 namespace VLC_WinRT.Views.UserControls.Flyouts
 {

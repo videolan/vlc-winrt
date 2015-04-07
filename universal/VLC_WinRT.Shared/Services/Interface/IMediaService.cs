@@ -7,11 +7,10 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
-using libVLCX;
 using System;
 using System.Threading.Tasks;
-using Windows.Storage;
 using VLC_WinRT.Model;
+using libVLCX;
 
 namespace VLC_WinRT.Services.Interface
 {

@@ -9,12 +9,10 @@
 
 using System;
 using System.Windows.Input;
-using Windows.Storage;
 using Windows.Storage.Pickers;
 using VLC_WinRT.Model;
-using System.Diagnostics;
-using VLC_WinRT.Services.RunTime;
 using System.Collections.Generic;
+using Windows.Storage;
 using VLC_WinRT.Helpers;
 using VLC_WinRT.ViewModels;
 

@@ -10,16 +10,11 @@
 using System;
 using System.Threading.Tasks;
 using VLC_WinRT.ViewModels;
-using Windows.Devices.Input;
-using Windows.Graphics.Display;
-using Windows.System;
-using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
 using VLC_WinRT.Helpers;
-using WinRTXamlToolkit.Controls.Extensions;
 namespace VLC_WinRT.Views.VideoPages
 {
     public sealed partial class VideoPlayerPage : Page

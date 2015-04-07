@@ -7,25 +7,33 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
+
+/* Unmerged change from project 'VLC_WinRT.Windows'
+Before:
 using System;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Resources;
 using Windows.Graphics.Display;
+After:
+using Windows.Graphics.Display;
+*/
+using Windows.Graphics.Display;
 using Windows.Media;
-using Windows.System;
-using Windows.UI.Popups;
-using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Navigation;
 using Autofac;
+
+/* Unmerged change from project 'VLC_WinRT.Windows'
+Before:
 using VLC_WinRT.Helpers;
 using VLC_WinRT.Model;
 using VLC_WinRT.Services.RunTime;
-using VLC_WinRT.Services.Interface;
+After:
+using VLC_WinRT.Services.RunTime;
+*/
+using VLC_WinRT.Helpers;
+using VLC_WinRT.Services.RunTime;
 using VLC_WinRT.ViewModels;
-using VLC_WinRT.Views.UserControls;
-using VLC_WinRT.Views.VariousPages;
 namespace VLC_WinRT.Views.MainPages
 {
     public sealed partial class MainPage : SwapChainPanel

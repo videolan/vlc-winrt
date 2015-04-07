@@ -9,29 +9,17 @@
 
 using System;
 using System.Threading.Tasks;
-using Windows.Media;
 using Windows.Storage.AccessCache;
-using Windows.Storage.Streams;
-using VLC_WINRT.Common;
 using VLC_WinRT.Helpers;
-using VLC_WinRT.Helpers.MusicLibrary;
 using VLC_WinRT.Model;
-using VLC_WinRT.Model.Video;
 using VLC_WinRT.Services.Interface;
 using Windows.Storage;
-using Windows.UI.Core;
 using Windows.UI.Xaml.Controls;
-using VLC_WinRT.ViewModels;
-using VLC_WinRT.Views.MusicPages;
-using VLC_WinRT.Views.VideoPages;
-using libVLCX;
 using System.Collections.Generic;
 using System.Diagnostics;
-using Windows.UI.Popups;
-using Windows.UI.Xaml;
-using VLC_WinRT.Helpers.MusicPlayer;
 using VLC_WinRT.Model.Music;
 using VLC_WinRT.Model.Stream;
+using libVLCX;
 using MediaPlayer = libVLCX.MediaPlayer;
 
 namespace VLC_WinRT.Services.RunTime

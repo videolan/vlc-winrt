@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Windows.ApplicationModel.Resources;
 using Windows.UI.Xaml.Data;
-using VLC_WinRT.Model;
 using VLC_WinRT.Model.Music;
 
 namespace VLC_WinRT.Converters

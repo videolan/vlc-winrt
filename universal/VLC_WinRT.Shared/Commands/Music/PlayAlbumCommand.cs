@@ -7,18 +7,12 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
-using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.IO;
-using System.Threading.Tasks;
-using Windows.UI.Xaml.Controls.Primitives;
 using VLC_WINRT.Common;
 using VLC_WinRT.Helpers;
 using VLC_WinRT.Helpers.MusicPlayer;
 using VLC_WinRT.Model.Music;
 using VLC_WinRT.ViewModels;
-using VLC_WinRT.ViewModels.MusicVM;
-using VLC_WinRT.Views.MusicPages;
 using VLC_WinRT.Model;
 
 namespace VLC_WinRT.Commands.Music

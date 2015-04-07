@@ -13,8 +13,8 @@ using Windows.Storage.AccessCache;
 using VLC_WinRT.Services.Interface;
 using Windows.Storage;
 using Windows.Storage.FileProperties;
-using libVLCX;
 using VLC_WinRT.Helpers;
+using libVLCX;
 
 namespace VLC_WinRT.Services.RunTime
 {

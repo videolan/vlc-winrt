@@ -6,17 +6,21 @@
  * Licensed under GPLv2+ and MPLv2
  * Refer to COPYING file of the official project for license
  **********************************************************************/
-
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
-using Windows.Storage;
 using Windows.System;
 using Windows.UI.Xaml;
+
+/* Unmerged change from project 'VLC_WinRT.Windows'
+Before:
 using VLC_WinRT.Commands.Music;
 using VLC_WinRT.Commands.Settings;
+After:
+using VLC_WinRT.Commands.Settings;
+*/
 using VLC_WinRT.Common;
 using VLC_WinRT.DataRepository;
 using VLC_WinRT.Helpers;
@@ -25,6 +29,8 @@ using VLC_WinRT.Model.Music;
 using VLC_WinRT.Model.Video;
 using VLC_WinRT.Model;
 using VLC_WinRT.Views.MusicPages;
+using Windows.Storage;
+using VLC_WinRT.Commands.Settings;
 
 namespace VLC_WinRT.ViewModels.Settings
 {

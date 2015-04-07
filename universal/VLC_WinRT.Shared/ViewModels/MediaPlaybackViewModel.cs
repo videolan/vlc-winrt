@@ -9,17 +9,13 @@
 
 using Windows.Storage.AccessCache;
 using Windows.Media;
-using Windows.System;
 using System.Collections.Generic;
 using VLC_WinRT.Commands.Video;
-using VLC_WinRT.Views.MainPages;
 using System.Diagnostics;
 using Windows.Storage;
 using System;
 using System.IO;
-using System.Runtime.InteropServices.ComTypes;
 using Windows.UI.Core;
-using VLC_WinRT.Commands;
 using VLC_WinRT.Common;
 using VLC_WinRT.Helpers;
 using VLC_WinRT.Model;
@@ -31,7 +27,6 @@ using Windows.Storage.Streams;
 using Windows.UI.Notifications;
 using Windows.UI.Popups;
 using Autofac;
-using libVLCX;
 using VLC_WINRT.Common;
 using VLC_WinRT.Helpers.MusicLibrary;
 using VLC_WinRT.Helpers.MusicPlayer;
@@ -40,12 +35,11 @@ using VLC_WinRT.Model.Stream;
 using VLC_WinRT.Model.Video;
 using VLC_WinRT.Services.RunTime;
 using VLC_WinRT.ViewModels.MusicVM;
-using VLC_WinRT.Views.MusicPages;
-using VLC_WinRT.Views.VideoPages;
 #if WINDOWS_PHONE_APP
 using Windows.Media.Playback;
 using VLC_WinRT.BackgroundAudioPlayer.Model;
 #endif
+using libVLCX;
 
 namespace VLC_WinRT.ViewModels
 {

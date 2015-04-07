@@ -3,9 +3,7 @@ using Windows.Foundation;
 using VLC_WINRT.Common;
 using System;
 using System.Collections.Generic;
-using System.Net;
 using Windows.Storage;
-using Windows.Storage.Streams;
 using VLC_WinRT.ViewModels;
 
 namespace VLC_WinRT.Commands.Social

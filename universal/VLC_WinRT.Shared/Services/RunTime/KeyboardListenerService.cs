@@ -1,12 +1,10 @@
 ﻿using System.Diagnostics;
-using System.Linq;
 using System.Threading.Tasks;
 using Windows.System;
 using Windows.UI.Core;
-using libVLCX;
-using VLC_WinRT.DataRepository;
 using VLC_WinRT.Model;
 using VLC_WinRT.ViewModels;
+using libVLCX;
 
 namespace VLC_WinRT.Services.RunTime
 {

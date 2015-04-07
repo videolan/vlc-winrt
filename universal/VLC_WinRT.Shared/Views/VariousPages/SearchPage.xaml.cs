@@ -1,8 +1,5 @@
-﻿using System;
-using Windows.UI.Xaml;
+﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Navigation;
-using VLC_WinRT.Helpers;
 using VLC_WinRT.ViewModels;
 
 namespace VLC_WinRT.Views.VariousPages

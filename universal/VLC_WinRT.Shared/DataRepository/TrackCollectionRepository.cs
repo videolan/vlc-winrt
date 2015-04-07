@@ -1,5 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using System.IO;
+﻿using System.IO;
 using System.Threading.Tasks;
 using SQLite;
 using VLC_WinRT.Model.Music;

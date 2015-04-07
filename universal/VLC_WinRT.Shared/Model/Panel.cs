@@ -7,10 +7,6 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
-using Windows.UI;
-using Windows.UI.Xaml.Media;
-using VLC_WINRT.Common;
-using VLC_WinRT.Commands.MainPageCommands;
 using VLC_WinRT.Common;
 
 namespace VLC_WinRT.Model

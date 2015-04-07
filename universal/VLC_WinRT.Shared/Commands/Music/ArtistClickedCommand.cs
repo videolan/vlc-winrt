@@ -1,11 +1,8 @@
 ﻿using System.Linq;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using VLC_WINRT.Common;
 using VLC_WinRT.Model.Music;
 using VLC_WinRT.ViewModels;
-using VLC_WinRT.Views.MusicPages;
-using VLC_WinRT.Views.MusicPages.ArtistPageControls;
 using VLC_WinRT.Model;
 
 namespace VLC_WinRT.Commands.Music

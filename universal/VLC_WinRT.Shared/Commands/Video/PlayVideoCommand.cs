@@ -3,7 +3,6 @@ using VLC_WINRT.Common;
 using VLC_WinRT.Helpers;
 using VLC_WinRT.Model.Video;
 using VLC_WinRT.ViewModels;
-using VLC_WinRT.Views.VideoPages;
 using VLC_WinRT.Helpers.VideoPlayer;
 using VLC_WinRT.Model;
 

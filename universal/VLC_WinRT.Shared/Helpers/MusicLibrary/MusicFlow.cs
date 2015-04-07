@@ -6,8 +6,6 @@ using System.Threading.Tasks;
 using Windows.UI.Popups;
 using VLC_WinRT.Model.Music;
 using VLC_WinRT.ViewModels;
-using VLC_WinRT.ViewModels.MusicVM;
-using VLC_WinRT.Views.MainPages.MainMusicControls;
 
 namespace VLC_WinRT.Helpers.MusicLibrary
 {

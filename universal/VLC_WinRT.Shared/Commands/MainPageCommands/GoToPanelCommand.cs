@@ -7,15 +7,8 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
-using System;
 using System.Linq;
-using System.Threading.Tasks;
-using Windows.UI;
-using Windows.UI.Core;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Media;
 using VLC_WINRT.Common;
 using VLC_WinRT.Model;
 using VLC_WinRT.ViewModels;

@@ -1,6 +1,5 @@
 ﻿using Windows.UI.Core;
 using VLC_WINRT.Common;
-using VLC_WinRT.Views.MusicPages;
 using System;
 using VLC_WinRT.Model;
 using VLC_WinRT.ViewModels;

@@ -9,13 +9,10 @@
 
 using System;
 using Windows.UI;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media;
 using VLC_WinRT.Model.Music;
 using VLC_WinRT.ViewModels;
-using VLC_WinRT.ViewModels.MusicVM;
 
 namespace VLC_WinRT.Converters
 {

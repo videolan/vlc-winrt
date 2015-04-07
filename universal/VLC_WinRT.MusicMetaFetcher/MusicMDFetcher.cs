@@ -13,8 +13,6 @@ using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Windows.Storage;
-using Windows.Storage.Streams;
 using Newtonsoft.Json.Linq;
 using VLC_WinRT.MusicMetaFetcher.Fetchers;
 using VLC_WinRT.MusicMetaFetcher.Models.MusicEntities;

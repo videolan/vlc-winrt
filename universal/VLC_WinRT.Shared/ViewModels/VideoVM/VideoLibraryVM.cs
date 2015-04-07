@@ -8,21 +8,10 @@
  **********************************************************************/
 
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
-using Windows.ApplicationModel.Resources;
-using Windows.Storage;
-using Windows.Storage.Search;
-using Windows.System.Threading;
 using Windows.UI.Core;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Data;
 using SQLite;
-using VLC_WINRT.Common;
 using VLC_WinRT.Commands;
 using VLC_WinRT.Commands.Video;
 using VLC_WinRT.Common;
@@ -31,9 +20,6 @@ using VLC_WinRT.Helpers;
 using VLC_WinRT.Helpers.VideoLibrary;
 using VLC_WinRT.Model;
 using VLC_WinRT.Model.Video;
-using WinRTXamlToolkit.IO.Extensions;
-using Panel = VLC_WinRT.Model.Panel;
-using VLC_WinRT.Model.Search;
 
 namespace VLC_WinRT.ViewModels.VideoVM
 {

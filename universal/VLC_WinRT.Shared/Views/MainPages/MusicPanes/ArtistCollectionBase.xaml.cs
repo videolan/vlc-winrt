@@ -1,9 +1,6 @@
 ﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Microsoft.Xaml.Interactivity;
-using VLC_WinRT.Helpers;
-using VLC_WinRT.Model.Video;
-using WinRTXamlToolkit.Controls.Extensions;
 
 namespace VLC_WinRT.Views.MainPages.MusicPanes
 {

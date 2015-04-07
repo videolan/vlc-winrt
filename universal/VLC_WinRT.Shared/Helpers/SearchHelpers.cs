@@ -7,7 +7,6 @@ using VLC_WinRT.Model;
 using VLC_WinRT.Model.Music;
 using VLC_WinRT.Model.Video;
 using VLC_WinRT.ViewModels;
-using VLC_WinRT.Views.MusicPages;
 using VLC_WinRT.Model.Search;
 using Windows.Storage;
 using System.Collections.ObjectModel;

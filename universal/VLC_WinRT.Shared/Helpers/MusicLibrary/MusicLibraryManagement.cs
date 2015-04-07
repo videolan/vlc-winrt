@@ -1,37 +1,47 @@
-﻿using Windows.Storage.Search;
-using Windows.UI.Xaml.Controls;
-using System;
+﻿using Windows.UI.Xaml.Controls;
+using System
+/* Unmerged change from project 'VLC_WinRT.Windows'
+Before:
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+After:
+using System.Collections.ObjectModel;
+*/
+;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Dynamic;
 using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Resources;
-using Windows.Foundation;
 using Windows.Storage;
-using Windows.Storage.AccessCache;
 using Windows.Storage.FileProperties;
-using Windows.Storage.Streams;
+using Windows.
+/* Unmerged change from project 'VLC_WinRT.Windows'
+Before:
 using Windows.System.Threading;
 using Windows.UI.Core;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
+After:
+using Windows.UI.Core;
+using Windows.UI.Xaml;
+*/
+UI.Core;
 using Autofac;
 using VLC_WinRT.Model;
 using VLC_WinRT.Model.Music;
-using VLC_WinRT.Services.Interface;
 using VLC_WinRT.Services.RunTime;
 using VLC_WinRT.ViewModels;
 using VLC_WinRT.ViewModels.MusicVM;
+using WinRTXamlToolkit.IO.Extensions;
+using Windows.Storage.Search;
+using Windows.Storage.Streams;
+using Windows.UI.Xaml;
 using VLC_WinRT.Views.MusicPages.PlaylistControls;
 using WinRTXamlToolkit.Controls.Extensions;
-using WinRTXamlToolkit.IO.Extensions;
 #if WINDOWS_PHONE_APP
-using Windows.Media.Playback;
-using Windows.Phone.ApplicationModel;
 #else
 #endif
 

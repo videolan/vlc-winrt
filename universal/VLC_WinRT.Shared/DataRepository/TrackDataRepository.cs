@@ -1,12 +1,8 @@
-﻿using System.Collections.ObjectModel;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Xml.Linq;
 using SQLite;
 using VLC_WinRT.Model.Music;
-using VLC_WinRT.ViewModels.MusicVM;
-using WinRTXamlToolkit.IO.Serialization;
 using System.Collections.Generic;
 using VLC_WinRT.ViewModels;
 

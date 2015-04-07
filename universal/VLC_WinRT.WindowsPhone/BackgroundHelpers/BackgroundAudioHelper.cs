@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using Windows.ApplicationModel;
-using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Media.Playback;
 using Windows.UI.Core;
@@ -14,7 +11,6 @@ using Windows.UI.Xaml;
 using VLC_WinRT.BackgroundAudioPlayer;
 using VLC_WinRT.BackgroundAudioPlayer.Model;
 using VLC_WinRT.Helpers;
-using VLC_WinRT.Model.Music;
 using VLC_WinRT.ViewModels;
 
 namespace VLC_WinRT.BackgroundHelpers

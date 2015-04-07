@@ -1,9 +1,7 @@
-﻿using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
+﻿using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Microsoft.Xaml.Interactivity;
 using VLC_WinRT.ViewModels;
-using VLC_WinRT.Helpers;
 
 namespace VLC_WinRT.Views.UserControls
 {

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace VLC_WinRT.DataRepository
+﻿namespace VLC_WinRT.DataRepository
 {
     interface IDataRepository
     {

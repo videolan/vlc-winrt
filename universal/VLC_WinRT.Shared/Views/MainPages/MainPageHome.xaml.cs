@@ -1,15 +1,7 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-using Windows.ApplicationModel.Resources;
-
-using Windows.Storage;
-using Windows.UI.Xaml;
+﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using VLC_WinRT.Helpers;
 using VLC_WinRT.Model.Video;
-using VLC_WinRT.ViewModels;
 
 
 namespace VLC_WinRT.Views.MainPages

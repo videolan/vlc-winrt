@@ -4,7 +4,6 @@ using Windows.System;
 using Windows.UI.ApplicationSettings;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using VLC_WinRT.Views.VariousPages;
 using VLC_WinRT.Model;
 using VLC_WinRT.ViewModels;
 

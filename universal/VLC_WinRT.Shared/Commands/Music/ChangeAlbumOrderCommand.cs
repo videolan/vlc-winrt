@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Linq;
-using VLC_WINRT.Common;
-using VLC_WinRT.ViewModels;
+﻿using VLC_WINRT.Common;
 
 namespace VLC_WinRT.Commands.Music
 {

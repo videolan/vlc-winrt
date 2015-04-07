@@ -7,9 +7,7 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
-using Autofac;
 using VLC_WINRT.Common;
-using VLC_WinRT.Services.RunTime;
 
 
 namespace VLC_WinRT.Commands

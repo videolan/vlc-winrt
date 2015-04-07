@@ -9,7 +9,6 @@
 
 using System;
 using System.Threading.Tasks;
-using Windows.UI.Xaml.Media.Imaging;
 using VLC_WinRT.Services.Interface;
 using Windows.Storage;
 using Windows.Storage.FileProperties;

@@ -10,7 +10,6 @@ using VLC_WinRT.Model.Music;
 using VLC_WinRT.MusicMetaFetcher;
 using VLC_WinRT.MusicMetaFetcher.Models.MusicEntities;
 using VLC_WinRT.ViewModels;
-using VLC_WinRT.ViewModels.MusicVM;
 
 namespace VLC_WinRT.Services.RunTime
 {

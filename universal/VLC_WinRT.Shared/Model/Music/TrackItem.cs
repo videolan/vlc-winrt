@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Threading.Tasks;
 using Windows.Storage;
 using SQLite;
 using VLC_WinRT.Commands.Music;
 using VLC_WinRT.Commands.MusicPlayer;
 using VLC_WinRT.Common;
-using VLC_WinRT.Helpers.MusicLibrary;
 
 namespace VLC_WinRT.Model.Music
 {

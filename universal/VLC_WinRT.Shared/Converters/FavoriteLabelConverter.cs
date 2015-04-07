@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Threading.Tasks;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
-using VLC_WinRT.Helpers;
 
 namespace VLC_WinRT.Converters
 {

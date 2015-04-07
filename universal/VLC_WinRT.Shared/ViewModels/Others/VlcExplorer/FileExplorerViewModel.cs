@@ -1,21 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using Windows.Storage;
+using Windows.Storage
+/* Unmerged change from project 'VLC_WinRT.Windows'
+Before:
 using Windows.Storage.AccessCache;
 using Windows.Storage.Search;
+After:
+using Windows.Storage.Search;
+*/
+;
 using Windows.UI.Core;
 using VLC_WinRT.Commands.RemovableDevices;
 using VLC_WinRT.Common;
 using VLC_WinRT.Helpers;
+
+/* Unmerged change from project 'VLC_WinRT.Windows'
+Before:
 using VLC_WinRT.Helpers.MusicLibrary;
 using VLC_WinRT.Model;
 using VLC_WinRT.Model.Music;
 using VLC_WinRT.Services.RunTime;
 using VLC_WinRT.Views.VideoPages;
+After:
+using VLC_WinRT.Model;
+*/
+using VLC_WinRT.Model;
+using Windows.Storage.Search;
 
 namespace VLC_WinRT.ViewModels.Others.VlcExplorer
 {

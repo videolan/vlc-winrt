@@ -8,17 +8,11 @@
  **********************************************************************/
 
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
 using Windows.ApplicationModel;
-using Windows.ApplicationModel.Background;
 using Windows.ApplicationModel.Resources;
-using Windows.Foundation.Collections;
 using Windows.UI.Core;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media;
 using Autofac;
 using VLC_WINRT.Common;
 using VLC_WinRT.Commands.MainPageCommands;
@@ -27,15 +21,10 @@ using VLC_WinRT.Helpers;
 using VLC_WinRT.Commands;
 using VLC_WinRT.Model.Search;
 using VLC_WinRT.Services.RunTime;
-using VLC_WinRT.ViewModels.MusicVM;
-using VLC_WinRT.Views.MainPages;
-using VLC_WinRT.Views.VariousPages;
-using AppBar = CustomAppBarDesktop.AppBar;
 using Panel = VLC_WinRT.Model.Panel;
 using Windows.UI.Popups;
-using libVLCX;
 using VLC_WinRT.Model;
-
+using libVLCX;
 namespace VLC_WinRT.ViewModels
 {
     public class MainVM : BindableBase

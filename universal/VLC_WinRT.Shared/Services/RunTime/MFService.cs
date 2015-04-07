@@ -6,10 +6,10 @@ using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
-using libVLCX;
 using VLC_WinRT.Model;
 using VLC_WinRT.Model.Stream;
 using VLC_WinRT.Services.Interface;
+using libVLCX;
 
 namespace VLC_WinRT.Services.RunTime
 {

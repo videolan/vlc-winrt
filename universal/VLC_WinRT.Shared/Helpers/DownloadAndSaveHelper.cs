@@ -15,7 +15,6 @@ using Windows.Storage;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Graphics.Imaging;
 using Windows.Storage.Streams;
-using Windows.UI.Core;
 using Windows.UI.Xaml.Media.Imaging;
 
 namespace VLC_WinRT.Helpers

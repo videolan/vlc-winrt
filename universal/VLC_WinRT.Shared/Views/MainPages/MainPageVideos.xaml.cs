@@ -7,15 +7,9 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
-using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
-using VLC_WinRT.Helpers;
-using VLC_WinRT.Model;
 using VLC_WinRT.ViewModels;
 
 namespace VLC_WinRT.Views.MainPages

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace VLC_WinRT.Model
+﻿namespace VLC_WinRT.Model
 {
     public enum PlayingType
     {

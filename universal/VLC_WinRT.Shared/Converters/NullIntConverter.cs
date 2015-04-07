@@ -1,6 +1,5 @@
 ﻿using System;
 using Windows.UI.Xaml.Data;
-using Newtonsoft.Json.Schema;
 
 namespace VLC_WinRT.Converters
 {

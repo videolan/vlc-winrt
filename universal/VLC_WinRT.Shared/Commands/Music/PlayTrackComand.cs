@@ -7,18 +7,11 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
-using System.Linq;
-using System.Threading.Tasks;
-using Windows.Globalization.DateTimeFormatting;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
 using VLC_WINRT.Common;
-using VLC_WinRT.Helpers.MusicLibrary;
 using VLC_WinRT.Helpers.MusicPlayer;
 using VLC_WinRT.Model.Music;
 using VLC_WinRT.ViewModels;
-using VLC_WinRT.ViewModels.MusicVM;
-using VLC_WinRT.Views.MusicPages;
 using VLC_WinRT.Model;
 
 namespace VLC_WinRT.Commands.Music

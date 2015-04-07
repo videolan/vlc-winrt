@@ -1,7 +1,7 @@
-﻿using System;
-using Windows.Storage;
+﻿using VLC_WinRT.ViewModels;
 using VLC_WINRT.Common;
-using VLC_WinRT.ViewModels;
+using Windows.Storage;
+using System;
 
 namespace VLC_WinRT.Commands.Settings
 {

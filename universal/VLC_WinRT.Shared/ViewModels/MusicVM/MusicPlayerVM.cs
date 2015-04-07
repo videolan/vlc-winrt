@@ -11,7 +11,6 @@ using VLC_WinRT.DataRepository;
 using System;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Resources;
-using Windows.Storage;
 using Windows.UI.Core;
 using VLC_WinRT.Commands.MediaPlayback;
 using VLC_WinRT.Commands.Music;
@@ -24,7 +23,6 @@ using VLC_WinRT.Common;
 using Windows.Media.Playback;
 using VLC_WinRT.BackgroundAudioPlayer.Model;
 using VLC_WinRT.Database.DataRepository;
-using VLC_WinRT.Model;
 #endif
 
 namespace VLC_WinRT.ViewModels.MusicVM

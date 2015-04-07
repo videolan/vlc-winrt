@@ -12,7 +12,6 @@ using VLC_WINRT.Common;
 using VLC_WinRT.DataRepository;
 using VLC_WinRT.Model.Music;
 using VLC_WinRT.ViewModels;
-using VLC_WinRT.ViewModels.MusicVM;
 
 namespace VLC_WinRT.Commands.MusicPlayer
 {

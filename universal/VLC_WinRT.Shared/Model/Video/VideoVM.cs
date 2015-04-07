@@ -8,23 +8,14 @@
  **********************************************************************/
 
 using System;
-using System.Diagnostics;
 using System.Threading.Tasks;
 using Windows.Storage;
-using Windows.Storage.AccessCache;
 using Windows.Storage.FileProperties;
-using Windows.Storage.Streams;
 using Windows.UI.Core;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Media.Imaging;
-using Autofac;
 using SQLite;
 using VLC_WinRT.Commands.Video;
 using VLC_WinRT.Common;
-using VLC_WinRT.Helpers;
 using VLC_WinRT.Helpers.VideoLibrary;
-using VLC_WinRT.Services.Interface;
-using VLC_WinRT.ViewModels;
 
 namespace VLC_WinRT.Model.Video
 {

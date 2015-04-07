@@ -1,9 +1,7 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using VLC_WinRT.ViewModels;
-using VLC_WinRT.Views.MainPages;
 using VLC_WinRT.Model;
 
 namespace VLC_WinRT.Views.UserControls

@@ -7,7 +7,6 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
-using System.Diagnostics;
 using Windows.Storage;
 
 namespace VLC_WinRT.Helpers

@@ -16,7 +16,6 @@ using VLC_WinRT.ViewModels.NetworkVM;
 using VLC_WinRT.ViewModels.RemovableDevicesVM;
 using VLC_WinRT.ViewModels.Settings;
 using VLC_WinRT.ViewModels.VideoVM;
-using VLC_WinRT.Views.MainPages;
 using DesignTime = VLC_WinRT.Services.DesignTime;
 
 namespace VLC_WinRT.Common

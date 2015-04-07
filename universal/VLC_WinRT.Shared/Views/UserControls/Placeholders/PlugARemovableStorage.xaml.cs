@@ -7,8 +7,6 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
-using System;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 namespace VLC_WinRT.Controls.RemovableStorage

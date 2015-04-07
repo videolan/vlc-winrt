@@ -7,16 +7,13 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
-using System;
 using Windows.Storage.Pickers;
 using Windows.UI.Xaml.Controls;
 using VLC_WINRT.Common;
-using VLC_WinRT.Common;
-using VLC_WinRT.Helpers.MusicLibrary;
-using VLC_WinRT.Model;
 using VLC_WinRT.Model.Music;
+using System;
+using VLC_WinRT.Common;
 using VLC_WinRT.ViewModels;
-using VLC_WinRT.ViewModels.MusicVM;
 
 namespace VLC_WinRT.Commands.Music
 {

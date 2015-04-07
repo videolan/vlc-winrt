@@ -1,5 +1,4 @@
 ﻿using VLC_WINRT.Common;
-using VLC_WinRT.Views.MusicPages;
 using VLC_WinRT.ViewModels;
 using VLC_WinRT.Model;
 

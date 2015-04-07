@@ -2,8 +2,6 @@
 using Windows.Storage.AccessCache;
 using VLC_WinRT.Model.Video;
 using VLC_WinRT.ViewModels;
-using VLC_WinRT.ViewModels.VideoVM;
-using VLC_WinRT.Views.VideoPages;
 using VLC_WinRT.Model;
 
 namespace VLC_WinRT.Helpers.VideoPlayer

@@ -6,7 +6,6 @@ using Windows.ApplicationModel.Background;
 using Windows.Foundation.Collections;
 using Windows.Media;
 using Windows.Media.Playback;
-using Windows.UI.Xaml;
 using VLC_WinRT.BackgroundAudioPlayer.Model;
 using VLC_WinRT.Database.DataRepository;
 using VLC_WinRT.LastFmScrobbler;

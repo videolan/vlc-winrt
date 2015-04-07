@@ -5,8 +5,6 @@ using VLC_WinRT.Helpers.MusicPlayer;
 using VLC_WinRT.Model;
 using VLC_WinRT.Model.Music;
 using VLC_WinRT.ViewModels;
-using VLC_WinRT.ViewModels.MusicVM;
-using VLC_WinRT.Views.MusicPages;
 using WinRTXamlToolkit.Tools;
 
 namespace VLC_WinRT.Commands.Music
