@@ -107,17 +107,13 @@ namespace VLC_WinRT.Controls
         public async void SetRightPaneContentPresenter(object content)
         {
             await TemplateApplied.Task;
-            if (content is FrameworkElement)
+            if(IsRightFlyoutOpen)
             {
-                if (double.IsNaN(((FrameworkElement)content).Width))
-                {
-                    _rightFlyoutContentPresenter.Width = MaxRightFlyoutWidth;
-                    _rightFlyoutPlaneProjection.GlobalOffsetX = MaxRightFlyoutWidth;
-                }
-                else
-                    _rightFlyoutPlaneProjection.GlobalOffsetX = ((FrameworkElement)content).Width;
+                HideFlyout();
+                await Task.Delay(400);
             }
             _rightFlyoutContentPresenter.Content = content;
+            ShowFlyout();
         }
 
         #region Content Property
