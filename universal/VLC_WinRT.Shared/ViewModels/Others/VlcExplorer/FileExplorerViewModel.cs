@@ -29,6 +29,7 @@ using VLC_WinRT.Model;
 */
 using VLC_WinRT.Model;
 using Windows.Storage.Search;
+using VLC_WinRT.Commands.VLCFileExplorer;
 
 namespace VLC_WinRT.ViewModels.Others.VlcExplorer
 {
@@ -49,7 +50,9 @@ namespace VLC_WinRT.ViewModels.Others.VlcExplorer
 
         public IStorageItemClickedCommand NavigateToCommand { get; }=new IStorageItemClickedCommand();
 
-        public GoUpperFolderCommand GoBackCommand { get; }=new GoUpperFolderCommand();
+        public GoUpperFolderCommand GoBackCommand { get; } = new GoUpperFolderCommand();
+
+        public PlayFolderCommand PlayFolderCommand { get; } = new PlayFolderCommand();
 
         public bool CanGoBack
         {

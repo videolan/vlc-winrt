@@ -73,6 +73,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Video\SetSubtitleTrackCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Video\StartVideoIndexingCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Video\StopVideoCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\VLCFileExplorer\PlayFolderCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\AlwaysExecutableCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\AutoFacConfiguration.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\BindableBase.cs" />
@@ -817,7 +818,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)Commands\VLCFileExplorer\" />
     <Folder Include="$(MSBuildThisFileDirectory)Services\Mocks\" />
   </ItemGroup>
   <ItemGroup>
