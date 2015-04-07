@@ -25,7 +25,6 @@ namespace VLC_WinRT.Controls
     public sealed class SplitShell : Control
     {
         public TaskCompletionSource<bool> TemplateApplied = new TaskCompletionSource<bool>();
-        private double MaxRightFlyoutWidth = 350;
 
         private const string EdgePaneName = "EdgePane";
         private const string SidebarGridContainerName = "SidebarGridContainer";
@@ -59,9 +58,7 @@ namespace VLC_WinRT.Controls
         private Grid _informationGrid;
         private TextBlock _informationTextBlock;
         private bool _alwaysVisibleSideBarVisualState;
-
-        public bool IsPhone { get; set; } = true;
-
+        
         public async void SetContentPresenter(object contentPresenter)
         {
             await TemplateApplied.Task;
@@ -303,18 +300,9 @@ namespace VLC_WinRT.Controls
 
         private void Responsive()
         {
-            MaxRightFlyoutWidth = GetSettingsFlyoutWidthFromWindowWidth(400);
             VisualStateManager.GoToState(this, TopBarVisualStateName, false);
         }
-
-        double GetSettingsFlyoutWidthFromWindowWidth(double max)
-        {
-            var width = Window.Current.Bounds.Width;
-            if (!IsPhone)
-                return width < max ? width : max;
-            return width;
-        }
-
+        
         void _edgePaneGrid_Tapped(object sender, TappedRoutedEventArgs e)
         {
             Open();
