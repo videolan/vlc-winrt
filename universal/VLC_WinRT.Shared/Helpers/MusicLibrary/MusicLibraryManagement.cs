@@ -624,7 +624,6 @@ namespace VLC_WinRT.Helpers.MusicLibrary
                 Name = (string.IsNullOrEmpty(trackInfos?.Title)) ? track.DisplayName : trackInfos?.Title,
                 Path = track.Path,
                 Duration = trackInfos?.Duration ?? TimeSpan.Zero,
-                Index = 0,
                 File = track
             };
             return trackItem;
