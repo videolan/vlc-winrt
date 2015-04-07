@@ -61,16 +61,22 @@ namespace VLC_WinRT.Services.RunTime
                     GoBack_Default();
                     break;
                 case VLCPage.SettingsPage:
+                    GoBack_Default();
                     break;
                 case VLCPage.SpecialThanksPage:
+                    GoBack_Default();
                     break;
                 case VLCPage.ArtistShowsPage:
+                    GoBack_Default();
                     break;
                 case VLCPage.SearchPage:
+                    GoBack_Default();
                     break;
                 case VLCPage.AddAlbumToPlaylistDialog:
+                    GoBack_HideFlyout();
                     break;
                 case VLCPage.CreateNewPlaylistDialog:
+                    GoBack_HideFlyout();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
