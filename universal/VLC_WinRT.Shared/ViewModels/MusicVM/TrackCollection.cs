@@ -278,7 +278,8 @@ namespace VLC_WinRT.ViewModels.MusicVM
             await Locator.MusicPlayerVM.UpdateTrackFromMF();
             App.BackgroundAudioHelper.RestorePlaylist();
             SetActiveTrackProperty();
-            await Locator.MediaPlaybackViewModel.SetMedia(Locator.MusicPlayerVM.CurrentTrack, false, false);
+            if(Locator.MusicPlayerVM.CurrentTrack != null)
+                await Locator.MediaPlaybackViewModel.SetMedia(Locator.MusicPlayerVM.CurrentTrack, false, false);
         }
         #endregion
 
