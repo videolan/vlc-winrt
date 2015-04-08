@@ -6,41 +6,105 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:triggers="using:WinRT.Triggers"
              xmlns:controls="using:VLC_WinRT.Views.UserControls.Placeholder"
-             xmlns:controls1="using:VLC_WINRT.Views.Controls"
-             xmlns:musicPanesControls="using:VLC_WinRT.Views.MainPages.MusicPanes.MusicPanesControls"
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400">
-
+    <UserControl.Resources>
+        <CollectionViewSource x:Key="GroupAlbums"
+                              x:Name="GroupAlbums"
+                              IsSourceGrouped="True"
+                              Source="{Binding AlphaGroupedAlbums}" />
+    </UserControl.Resources>
     <Grid>
         <controls:NothingToSeeHere Grid.Row="0"
                                    Visibility="{Binding Albums.Count, Converter={StaticResource CountToVisibilityConverter}}" />
-        <ListView ItemsSource="{Binding Albums}"
-                  ItemTemplate="{StaticResource PhoneSemanticZoomInViewAlbumTemplateLittleSize}"
-                  ItemContainerStyle="{StaticResource ListViewItemStyle}"
-                  IsItemClickEnabled="True"
-                  SelectionMode="None"
-                  ContainerContentChanging="ListViewBase_OnContainerContentChanging"
-                  IsSwipeEnabled="False"> 
-            <triggers:Interactions.Triggers>
-                <triggers:EventTrigger EventName="ItemClick">
-                    <triggers:InvokeCommandAction Command="{Binding AlbumClickedCommand}"
-                                                  PassEventArgsToCommand="True" />
-                </triggers:EventTrigger>
-            </triggers:Interactions.Triggers>
-            <ListView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <ItemsWrapGrid SizeChanged="AlbumsWrapGrid_SizeChanged"
-                                   Orientation="Horizontal"
-                                   Margin="0,0,0,60" />
-                </ItemsPanelTemplate>
-            </ListView.ItemsPanel>
-            <ListView.ItemContainerTransitions>
-                <TransitionCollection>
-                    <EntranceThemeTransition FromHorizontalOffset="50"
-                                             FromVerticalOffset="0" />
-                </TransitionCollection>
-            </ListView.ItemContainerTransitions>
-        </ListView>
+        <SemanticZoom ViewChangeCompleted="SemanticZoom_OnViewChangeCompleted">
+            <SemanticZoom.ZoomedInView>
+                <ListView ItemsSource="{Binding Source={StaticResource GroupAlbums}}"
+                          ItemTemplate="{StaticResource PhoneSemanticZoomInViewAlbumTemplateLittleSize}"
+                          ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                          IsItemClickEnabled="True"
+                          SelectionMode="None"
+                          ContainerContentChanging="ListViewBase_OnContainerContentChanging"
+                          IsSwipeEnabled="False">
+                    <triggers:Interactions.Triggers>
+                        <triggers:EventTrigger EventName="ItemClick">
+                            <triggers:InvokeCommandAction Command="{Binding AlbumClickedCommand}"
+                                                          PassEventArgsToCommand="True" />
+                        </triggers:EventTrigger>
+                    </triggers:Interactions.Triggers>
+                    <ListView.GroupStyle>
+                        <GroupStyle>
+                            <GroupStyle.HeaderTemplate>
+                                <DataTemplate>
+                                    <Border BorderThickness="2"
+                                            BorderBrush="{StaticResource MainColor}"
+                                            Background="Transparent"
+                                            Height="63"
+                                            Width="63"
+                                            Margin="0,12,0,0">
+                                        <Grid>
+                                            <TextBlock Text="{Binding Key}"
+                                                       Foreground="{StaticResource MainColor}"
+                                                       Margin="3,0,0,3"
+                                                       VerticalAlignment="Bottom"
+                                                       FontSize="23" />
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </GroupStyle.HeaderTemplate>
+                        </GroupStyle>
+                    </ListView.GroupStyle>
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <ItemsWrapGrid SizeChanged="AlbumsWrapGrid_SizeChanged"
+                                           Orientation="Horizontal"
+                                           Margin="0,0,0,60">
+                                <ItemsWrapGrid.ChildrenTransitions>
+                                    <TransitionCollection>
+                                        <EntranceThemeTransition FromHorizontalOffset="50"
+                                                                 FromVerticalOffset="0" />
+                                    </TransitionCollection>
+                                </ItemsWrapGrid.ChildrenTransitions>
+                            </ItemsWrapGrid>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                </ListView>
+            </SemanticZoom.ZoomedInView>
+            <SemanticZoom.ZoomedOutView>
+                <GridView x:Name="AlbumsZoomedOutView"
+                          Background="{ThemeResource ApplicationBackgroundSemiTranslucentThemeBrush}"
+                          VerticalContentAlignment="Center">
+                    <GridView.ItemContainerStyle>
+                        <Style TargetType="GridViewItem">
+                            <Setter Property="VerticalContentAlignment"
+                                    Value="Stretch" />
+                            <Setter Property="HorizontalContentAlignment"
+                                    Value="Stretch" />
+                        </Style>
+                    </GridView.ItemContainerStyle>
+                    <GridView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <ItemsWrapGrid Orientation="Horizontal"
+                                           Margin="0,0,-12,0"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center" />
+                        </ItemsPanelTemplate>
+                    </GridView.ItemsPanel>
+                    <GridView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Background="{StaticResource MainColor}">
+                                <TextBlock Text="{Binding Group.Key}"
+                                           Foreground="White"
+                                           Margin="5,0,0,3"
+                                           VerticalAlignment="Bottom"
+                                           HorizontalAlignment="Left"
+                                           FontSize="36" />
+                            </Grid>
+                        </DataTemplate>
+                    </GridView.ItemTemplate>
+                </GridView>
+            </SemanticZoom.ZoomedOutView>
+        </SemanticZoom>
     </Grid>
 </UserControl>
