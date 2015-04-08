@@ -85,7 +85,7 @@
             </SemanticZoom.ZoomedInView>
             <SemanticZoom.ZoomedOutView>
                 <GridView x:Name="TracksZoomedOutView"
-                          Background="#D8000000"
+                          Background="{ThemeResource ApplicationBackgroundSemiTranslucentThemeBrush}"
                           VerticalContentAlignment="Center">
                     <GridView.ItemContainerStyle>
                         <Style TargetType="GridViewItem">
