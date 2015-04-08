@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.Streams;
 using Windows.UI.Core;
-using VLC_WinRT.Common;
 using VLC_WinRT.Model.Music;
 using VLC_WinRT.MusicMetaFetcher;
 using VLC_WinRT.MusicMetaFetcher.Models.MusicEntities;

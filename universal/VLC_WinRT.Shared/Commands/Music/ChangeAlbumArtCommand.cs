@@ -11,7 +11,6 @@ using Windows.Storage.Pickers;
 using Windows.UI.Xaml.Controls;
 using VLC_WinRT.Model.Music;
 using System;
-using VLC_WinRT.Common;
 using VLC_WinRT.ViewModels;
 using VLC_WinRT.Model;
 using VLC_WinRT.Utils;

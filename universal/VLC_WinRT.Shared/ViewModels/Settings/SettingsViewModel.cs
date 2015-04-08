@@ -13,15 +13,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Windows.System;
 using Windows.UI.Xaml;
-
-/* Unmerged change from project 'VLC_WinRT.Windows'
-Before:
-using VLC_WinRT.Commands.Music;
-using VLC_WinRT.Commands.Settings;
-After:
-using VLC_WinRT.Commands.Settings;
-*/
-using VLC_WinRT.Common;
 using VLC_WinRT.DataRepository;
 using VLC_WinRT.Helpers;
 using VLC_WinRT.Helpers.MusicLibrary;

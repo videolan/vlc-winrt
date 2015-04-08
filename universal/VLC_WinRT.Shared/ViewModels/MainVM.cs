@@ -15,7 +15,6 @@ using Windows.UI.Core;
 using Windows.UI.Xaml.Controls;
 using Autofac;
 using VLC_WinRT.Commands.MainPageCommands;
-using VLC_WinRT.Common;
 using VLC_WinRT.Helpers;
 using VLC_WinRT.Commands;
 using VLC_WinRT.Model.Search;

@@ -6,8 +6,7 @@
  * Licensed under GPLv2+ and MPLv2
  * Refer to COPYING file of the official project for license
  **********************************************************************/
-
-using VLC_WinRT.Common;
+ 
 using VLC_WinRT.Utils;
 
 namespace VLC_WinRT.Model

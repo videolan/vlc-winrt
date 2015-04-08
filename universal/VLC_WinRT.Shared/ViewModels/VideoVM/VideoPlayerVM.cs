@@ -7,7 +7,6 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
-using VLC_WinRT.Common;
 using VLC_WinRT.Model.Video;
 using VLC_WinRT.Utils;
 

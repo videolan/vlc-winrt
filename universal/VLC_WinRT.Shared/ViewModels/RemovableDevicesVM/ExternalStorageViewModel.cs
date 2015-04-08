@@ -12,7 +12,6 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using Windows.Storage;
 using VLC_WinRT.Commands.RemovableDevices;
-using VLC_WinRT.Common;
 using VLC_WinRT.Services.RunTime;
 using VLC_WinRT.ViewModels.Others.VlcExplorer;
 using System.Threading.Tasks;

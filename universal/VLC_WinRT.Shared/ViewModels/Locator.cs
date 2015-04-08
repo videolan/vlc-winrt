@@ -13,7 +13,6 @@
 */
 
 using Autofac;
-using VLC_WinRT.Common;
 using VLC_WinRT.ViewModels.NetworkVM;
 using VLC_WinRT.ViewModels.RemovableDevicesVM;
 using VLC_WinRT.ViewModels.Settings;

@@ -18,7 +18,6 @@ using VLC_WinRT.Commands.Music;
 using VLC_WinRT.Helpers;
 using VLC_WinRT.Model.Music;
 using VLC_WinRT.Commands.Social;
-using VLC_WinRT.Common;
 using VLC_WinRT.Database.DataRepository;
 using VLC_WinRT.BackgroundAudioPlayer.Model;
 #if WINDOWS_PHONE_APP

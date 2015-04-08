@@ -16,7 +16,6 @@ using Windows.Storage;
 using System;
 using System.IO;
 using Windows.UI.Core;
-using VLC_WinRT.Common;
 using VLC_WinRT.Helpers;
 using VLC_WinRT.Model;
 using VLC_WinRT.Services.Interface;

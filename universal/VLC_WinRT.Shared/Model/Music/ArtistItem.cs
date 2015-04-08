@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Windows.UI.Xaml.Media.Imaging;
 using SQLite;
 using VLC_WinRT.Commands.Music;
-using VLC_WinRT.Common;
 using VLC_WinRT.Helpers;
 using VLC_WinRT.Helpers.MusicLibrary;
 using VLC_WinRT.MusicMetaFetcher.Models.MusicEntities;

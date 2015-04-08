@@ -16,7 +16,6 @@ using VLC_WinRT.Model;
 using VLC_WinRT.Services.RunTime;
 using VLC_WinRT.ViewModels;
 using VLC_WinRT.Views.MainPages;
-using VLC_WinRT.Common;
 using VLC_WinRT.ViewModels.MusicVM;
 using System.Linq;
 using Windows.Storage.AccessCache;

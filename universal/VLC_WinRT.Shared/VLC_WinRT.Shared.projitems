@@ -74,7 +74,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Video\StartVideoIndexingCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Video\StopVideoCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\VLCFileExplorer\PlayFolderCommand.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Common\OpenMenuFlyoutAction.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\AlbumImageConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\AlbumStringConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ApplicationThemeBooleanConverter.cs" />
@@ -197,6 +196,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Utils\ConvertImage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\DispatchHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\Extensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utils\OpenMenuFlyoutAction.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\Strings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Locator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainVM.cs" />
@@ -818,6 +818,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Common\" />
     <Folder Include="$(MSBuildThisFileDirectory)Services\Mocks\" />
   </ItemGroup>
   <ItemGroup>
