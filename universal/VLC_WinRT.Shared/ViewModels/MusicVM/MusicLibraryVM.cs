@@ -29,13 +29,16 @@ namespace VLC_WinRT.ViewModels.MusicVM
 {
     public class MusicLibraryVM : BindableBase
     {
+        #region databases
         public ArtistDataRepository _artistDataRepository = new ArtistDataRepository();
         public TrackDataRepository _trackDataRepository = new TrackDataRepository();
         public AlbumDataRepository _albumDataRepository = new AlbumDataRepository();
         public TracklistItemRepository TracklistItemRepository = new TracklistItemRepository();
         public TrackCollectionRepository TrackCollectionRepository = new TrackCollectionRepository();
-        public delegate void LoadingEnded(object sender, string myValue);
-        public static LoadingEnded MusicCollectionLoaded = delegate { };
+        #endregion
+        #region task completion sources
+        public TaskCompletionSource<bool> MusicCollectionLoaded = new TaskCompletionSource<bool>();
+        #endregion
         #region private fields
         private ObservableCollection<SearchResult> _searchResults = new ObservableCollection<SearchResult>();
         private ObservableCollection<ArtistItem> _artistses = new ObservableCollection<ArtistItem>();
@@ -275,7 +278,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
                 IsBusy = false;
                 Locator.MainVM.InformationText = "";
             });
-            MusicCollectionLoaded(null, "music");
+            MusicCollectionLoaded.SetResult(true);
             await PerformRoutineCheckIfNotBusy();
 #if WINDOWS_PHONE_APP
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>

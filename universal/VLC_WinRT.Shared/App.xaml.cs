@@ -116,11 +116,8 @@ namespace VLC_WinRT
                     }
                     else
                     {
-                        MusicLibraryVM.MusicCollectionLoaded += async (sender, eventArgs) =>
-                        {
-                            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                            Locator.MusicLibraryVM.AlbumClickedCommand.Execute(id));
-                        };
+                        await Locator.MusicLibraryVM.MusicCollectionLoaded.Task;
+                        await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Locator.MusicLibraryVM.AlbumClickedCommand.Execute(id));
                     }
                 }
                 else if (args.Contains("Artist"))
@@ -129,16 +126,12 @@ namespace VLC_WinRT
                     id = int.Parse(query);
                     if (Locator.MusicLibraryVM.LoadingState == LoadingState.Loaded)
                     {
-                        await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
-                            () => Locator.MusicLibraryVM.ArtistClickedCommand.Execute(id));
+                        await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Locator.MusicLibraryVM.ArtistClickedCommand.Execute(id));
                     }
                     else
                     {
-                        MusicLibraryVM.MusicCollectionLoaded += async (sender, value) =>
-                        {
-                            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                                Locator.MusicLibraryVM.ArtistClickedCommand.Execute(id));
-                        };
+                        await Locator.MusicLibraryVM.MusicCollectionLoaded.Task;
+                        await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Locator.MusicLibraryVM.ArtistClickedCommand.Execute(id));
                     }
                 }
             }
