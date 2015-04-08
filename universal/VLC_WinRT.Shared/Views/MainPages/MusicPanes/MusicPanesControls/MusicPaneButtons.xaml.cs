@@ -37,12 +37,6 @@ namespace VLC_WinRT.Views.MainPages.MusicPanes.MusicPanesControls
                 VisualStateUtilities.GoToState(this, "Normal", false);
         }
 
-        private void RefreshButton_Loaded(object sender, RoutedEventArgs e)
-        {
-#if WINDOWS_PHONE_APP
-            (sender as AppBarButton).Visibility = Visibility.Collapsed;
-#endif
-        }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
