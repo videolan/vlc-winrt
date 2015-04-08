@@ -6,12 +6,13 @@ using Windows.Storage;
 using Windows.System;
 using SQLite;
 using VLC_WinRT.Model;
+using VLC_WinRT.Utils;
 
 namespace VLC_WinRT.DataRepository
 {
     public class KeyboardActionDataRepository : IDataRepository
     {
-        private static readonly string _dbPath = Path.Combine(ApplicationData.Current.LocalFolder.Path, "settings.sqlite");
+        private static readonly string DbPath = Strings.SettingsDatabase;
 
         public KeyboardActionDataRepository()
         {
@@ -20,7 +21,7 @@ namespace VLC_WinRT.DataRepository
 
         public void Initialize()
         {
-            using (var db = new SQLiteConnection(_dbPath))
+            using (var db = new SQLiteConnection(DbPath))
             {
                 db.CreateTable<KeyboardAction>();
             }
@@ -28,26 +29,26 @@ namespace VLC_WinRT.DataRepository
 
         public Task AddKeyboardActions(List<KeyboardAction> keyboardActions)
         {
-            var connection = new SQLiteAsyncConnection(_dbPath);
+            var connection = new SQLiteAsyncConnection(DbPath);
             return connection.InsertAllAsync(keyboardActions);
         }
 
         public Task UpdateKeyboardAction(KeyboardAction keyboardAction)
         {
             //one shortcut per action, so only updates
-            var connection = new SQLiteAsyncConnection(_dbPath);
+            var connection = new SQLiteAsyncConnection(DbPath);
             return connection.UpdateAsync(keyboardAction);
         }
 
         public Task<List<KeyboardAction>> GetAllKeyboardActions()
         {
-            var connection = new SQLiteAsyncConnection(_dbPath);
+            var connection = new SQLiteAsyncConnection(DbPath);
             return connection.Table<KeyboardAction>().ToListAsync();
         }
 
         public Task<KeyboardAction> GetKeyboardAction(VirtualKey mainpressedKey, VirtualKey secondKey)
         {
-            var connection = new SQLiteAsyncConnection(_dbPath);
+            var connection = new SQLiteAsyncConnection(DbPath);
             return connection.Table<KeyboardAction>().Where(x => x.MainKey == mainpressedKey && x.SecondKey == secondKey).FirstOrDefaultAsync();
         }
 

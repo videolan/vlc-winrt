@@ -4,15 +4,13 @@ using System.Threading.Tasks;
 using SQLite;
 using VLC_WinRT.Model.Music;
 using System.Collections.Generic;
+using VLC_WinRT.Utils;
 
 namespace VLC_WinRT.DataRepository
 {
     public class ArtistDataRepository : IDataRepository
     {
-        private static readonly string _dbPath =
-    Path.Combine(
-    Windows.Storage.ApplicationData.Current.LocalFolder.Path,
-    "mediavlc.sqlite");
+        private static readonly string DbPath = Strings.MusicDatabase;
 
         private SQLiteConnection connection;
         public ArtistDataRepository()
@@ -22,14 +20,14 @@ namespace VLC_WinRT.DataRepository
 
         public void Initialize()
         {
-            var db = new SQLiteConnection(_dbPath);
+            var db = new SQLiteConnection(DbPath);
             connection = db;
             connection.CreateTable<ArtistItem>();
         }
 
         public void Drop()
         {
-            using (var db = new SQLite.SQLiteConnection(_dbPath))
+            using (var db = new SQLite.SQLiteConnection(DbPath))
             {
                 db.DropTable<ArtistItem>();
             }
@@ -37,7 +35,7 @@ namespace VLC_WinRT.DataRepository
 
         public async Task<List<ArtistItem>> Load()
         {
-            var connection = new SQLiteAsyncConnection(_dbPath);
+            var connection = new SQLiteAsyncConnection(DbPath);
             return await connection.Table<ArtistItem>().ToListAsync();
         }
 
@@ -49,19 +47,19 @@ namespace VLC_WinRT.DataRepository
 
         public Task Update(ArtistItem artist)
         {
-            var connection = new SQLiteAsyncConnection(_dbPath);
+            var connection = new SQLiteAsyncConnection(DbPath);
             return connection.UpdateAsync(artist);
         }
 
         public Task Add(ArtistItem artist)
         {
-            var connection = new SQLiteAsyncConnection(_dbPath);
+            var connection = new SQLiteAsyncConnection(DbPath);
             return connection.InsertAsync(artist);
         }
 
         public async Task<ArtistItem> LoadArtist(int artistId)
         {
-            var connection = new SQLiteAsyncConnection(_dbPath);
+            var connection = new SQLiteAsyncConnection(DbPath);
             var query = connection.Table<ArtistItem>().Where(x => x.Id.Equals(artistId));
             var result = await query.ToListAsync();
             return result.FirstOrDefault();
@@ -69,7 +67,7 @@ namespace VLC_WinRT.DataRepository
 
         public Task Remove(ArtistItem artist)
         {
-            var connection = new SQLiteAsyncConnection(_dbPath);
+            var connection = new SQLiteAsyncConnection(DbPath);
             return connection.DeleteAsync(artist);
         }
     }

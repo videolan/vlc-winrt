@@ -4,15 +4,13 @@ using SQLite;
 using VLC_WinRT.Model.Music;
 using VLC_WinRT.ViewModels.MusicVM;
 using System.Collections.Generic;
+using VLC_WinRT.Utils;
 
 namespace VLC_WinRT.DataRepository
 {
     public class TracklistItemRepository : IDataRepository
     {
-        private static readonly string DbPath =
-   Path.Combine(
-   Windows.Storage.ApplicationData.Current.LocalFolder.Path,
-   "mediavlc.sqlite");
+        private static readonly string DbPath = Strings.MusicDatabase;
 
         public TracklistItemRepository()
         {
