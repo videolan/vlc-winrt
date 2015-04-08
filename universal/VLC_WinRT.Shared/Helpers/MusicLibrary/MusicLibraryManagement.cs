@@ -20,6 +20,7 @@ using WinRTXamlToolkit.IO.Extensions;
 using Windows.Storage.Search;
 using Windows.Storage.Streams;
 using Windows.UI.Xaml;
+using VLC_WinRT.Utils;
 using VLC_WinRT.Views.MusicPages.PlaylistControls;
 using WinRTXamlToolkit.Controls.Extensions;
 

@@ -10,6 +10,7 @@ using VLC_WinRT.ViewModels;
 using VLC_WinRT.Model.Search;
 using Windows.Storage;
 using System.Collections.ObjectModel;
+using VLC_WinRT.Utils;
 
 namespace VLC_WinRT.Helpers
 {

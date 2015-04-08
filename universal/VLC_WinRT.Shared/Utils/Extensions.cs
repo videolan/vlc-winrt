@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using VLC_WinRT.Model;
 using VLC_WinRT.Model.Music;
 
-namespace VLC_WinRT
+namespace VLC_WinRT.Utils
 {
     public static class Extensions
     {
