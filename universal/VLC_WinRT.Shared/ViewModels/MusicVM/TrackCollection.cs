@@ -22,6 +22,7 @@ using VLC_WinRT.BackgroundAudioPlayer.Model;
 using VLC_WinRT.Helpers;
 using VLC_WinRT.Model;
 using VLC_WinRT.Model.Video;
+using VLC_WinRT.Utils;
 
 namespace VLC_WinRT.ViewModels.MusicVM
 {

@@ -31,6 +31,7 @@ using VLC_WinRT.Model;
 using VLC_WinRT.Views.MusicPages;
 using Windows.Storage;
 using VLC_WinRT.Commands.Settings;
+using VLC_WinRT.Utils;
 
 namespace VLC_WinRT.ViewModels.Settings
 {

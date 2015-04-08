@@ -9,6 +9,7 @@ using VLC_WinRT.Common;
 using VLC_WinRT.Helpers;
 using VLC_WinRT.Helpers.MusicLibrary;
 using VLC_WinRT.MusicMetaFetcher.Models.MusicEntities;
+using VLC_WinRT.Utils;
 
 namespace VLC_WinRT.Model.Music
 {

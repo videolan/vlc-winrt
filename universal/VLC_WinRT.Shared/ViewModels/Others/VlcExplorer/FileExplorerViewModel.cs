@@ -30,6 +30,7 @@ using VLC_WinRT.Model;
 using VLC_WinRT.Model;
 using Windows.Storage.Search;
 using VLC_WinRT.Commands.VLCFileExplorer;
+using VLC_WinRT.Utils;
 
 namespace VLC_WinRT.ViewModels.Others.VlcExplorer
 {

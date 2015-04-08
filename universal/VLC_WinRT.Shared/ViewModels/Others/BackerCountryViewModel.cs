@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using VLC_WinRT.Common;
+using VLC_WinRT.Utils;
 
 namespace VLC_WinRT.ViewModels.RemovableDevicesVM
 {

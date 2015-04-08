@@ -2,6 +2,7 @@
 using Windows.Storage;
 using SQLite;
 using VLC_WinRT.Common;
+using VLC_WinRT.Utils;
 
 namespace VLC_WinRT.Model.Stream
 {

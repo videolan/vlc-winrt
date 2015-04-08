@@ -4,6 +4,7 @@ using SQLite;
 using VLC_WinRT.Commands.Music;
 using VLC_WinRT.Commands.MusicPlayer;
 using VLC_WinRT.Common;
+using VLC_WinRT.Utils;
 
 namespace VLC_WinRT.Model.Music
 {

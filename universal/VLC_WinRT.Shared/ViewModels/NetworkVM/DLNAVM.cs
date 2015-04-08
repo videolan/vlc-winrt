@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Windows.Storage;
 using VLC_WinRT.Commands.Dlna;
 using VLC_WinRT.Common;
+using VLC_WinRT.Utils;
 using VLC_WinRT.ViewModels.Others.VlcExplorer;
 
 namespace VLC_WinRT.ViewModels.NetworkVM

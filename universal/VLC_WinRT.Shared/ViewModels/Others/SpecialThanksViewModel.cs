@@ -7,6 +7,7 @@ using Windows.Storage;
 using Windows.System.Threading;
 using VLC_WINRT.Common;
 using VLC_WinRT.Common;
+using VLC_WinRT.Utils;
 
 namespace VLC_WinRT.ViewModels.RemovableDevicesVM
 {

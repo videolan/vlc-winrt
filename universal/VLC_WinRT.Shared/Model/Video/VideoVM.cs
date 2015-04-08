@@ -16,6 +16,7 @@ using SQLite;
 using VLC_WinRT.Commands.Video;
 using VLC_WinRT.Common;
 using VLC_WinRT.Helpers.VideoLibrary;
+using VLC_WinRT.Utils;
 
 namespace VLC_WinRT.Model.Video
 {

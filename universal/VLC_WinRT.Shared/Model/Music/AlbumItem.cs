@@ -11,6 +11,7 @@ using VLC_WinRT.Common;
 using VLC_WinRT.Helpers;
 using VLC_WinRT.Helpers.MusicLibrary;
 using VLC_WinRT.Services.RunTime;
+using VLC_WinRT.Utils;
 using VLC_WinRT.ViewModels;
 
 namespace VLC_WinRT.Model.Music

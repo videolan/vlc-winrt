@@ -21,6 +21,7 @@ using VLC_WinRT.ViewModels.MusicVM;
 using System.Linq;
 using Windows.Storage.AccessCache;
 using VLC_WinRT.BackgroundHelpers;
+using VLC_WinRT.Utils;
 
 namespace VLC_WinRT
 {

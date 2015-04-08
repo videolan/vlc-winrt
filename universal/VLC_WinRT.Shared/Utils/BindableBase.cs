@@ -12,7 +12,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Windows.Foundation.Metadata;
 
-namespace VLC_WinRT.Common
+namespace VLC_WinRT.Utils
 {
     /// <summary>
     ///     Implementation of <see cref="INotifyPropertyChanged" /> to simplify models.

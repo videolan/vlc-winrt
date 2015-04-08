@@ -74,8 +74,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Video\StartVideoIndexingCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Video\StopVideoCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\VLCFileExplorer\PlayFolderCommand.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Common\AutoFacConfiguration.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Common\BindableBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\ConvertImage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\DispatchHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\Extensions.cs" />
@@ -197,6 +195,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)SQLite.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SQLiteAsync.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\AlwaysExecutableCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utils\AutoFacConfiguration.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utils\BindableBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\Strings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Locator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainVM.cs" />

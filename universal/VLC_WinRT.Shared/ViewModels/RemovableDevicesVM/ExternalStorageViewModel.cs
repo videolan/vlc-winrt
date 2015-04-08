@@ -17,6 +17,7 @@ using VLC_WinRT.Services.RunTime;
 using VLC_WinRT.ViewModels.Others.VlcExplorer;
 using System.Threading.Tasks;
 using Autofac;
+using VLC_WinRT.Utils;
 using VLC_WINRT.Common;
 #if WINDOWS_APP
 using Windows.Devices.Portable;

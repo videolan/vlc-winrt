@@ -20,6 +20,7 @@ using VLC_WinRT.ViewModels.Settings;
 using VLC_WinRT.ViewModels.MusicVM;
 using VLC_WinRT.ViewModels.VideoVM;
 using VLC_WinRT.Services.RunTime;
+using VLC_WinRT.Utils;
 
 namespace VLC_WinRT.ViewModels
 {

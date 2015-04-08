@@ -17,8 +17,9 @@ using VLC_WinRT.ViewModels.RemovableDevicesVM;
 using VLC_WinRT.ViewModels.Settings;
 using VLC_WinRT.ViewModels.VideoVM;
 using DesignTime = VLC_WinRT.Services.DesignTime;
+using ThumbnailService = VLC_WinRT.Services.RunTime.ThumbnailService;
 
-namespace VLC_WinRT.Common
+namespace VLC_WinRT.Utils
 {
     public static class AutoFacConfiguration
     {

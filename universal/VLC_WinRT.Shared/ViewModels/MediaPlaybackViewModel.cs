@@ -42,6 +42,7 @@ using VLC_WinRT.Helpers.VideoPlayer;
 using Windows.Media.Playback;
 #endif
 using libVLCX;
+using VLC_WinRT.Utils;
 
 namespace VLC_WinRT.ViewModels
 {

@@ -7,6 +7,7 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
+using VLC_WinRT.Utils;
 using VLC_WinRT.DataRepository;
 using System;
 using System.Threading.Tasks;
