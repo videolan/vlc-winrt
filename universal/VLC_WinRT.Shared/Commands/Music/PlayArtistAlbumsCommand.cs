@@ -1,8 +1,8 @@
-﻿using VLC_WinRT.Helpers.MusicPlayer;
-using VLC_WinRT.Model.Music;
+﻿using VLC_WinRT.Model.Music;
 using VLC_WinRT.ViewModels;
 using VLC_WinRT.Model;
 using VLC_WinRT.Utils;
+using VLC_WinRT.Helpers;
 
 namespace VLC_WinRT.Commands.Music
 {
@@ -16,7 +16,7 @@ namespace VLC_WinRT.Commands.Music
             {
                 var artist = parameter as ArtistItem;
                 var tracks = await Locator.MusicLibraryVM._trackDataRepository.LoadTracksByArtistId(artist.Id).ToObservableAsync();
-                await PlayMusicHelper.AddTrackCollectionToPlaylistAndPlay(tracks.ToPlaylist());
+                await PlaylistHelper.AddTrackCollectionToPlaylistAndPlay(tracks.ToPlaylist());
             }
         }
     }

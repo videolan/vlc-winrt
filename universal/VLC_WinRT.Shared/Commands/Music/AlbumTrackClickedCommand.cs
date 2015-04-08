@@ -1,9 +1,9 @@
 ﻿using Windows.UI.Xaml.Controls;
-using VLC_WinRT.Helpers.MusicPlayer;
 using VLC_WinRT.Model.Music;
 using VLC_WinRT.ViewModels;
 using VLC_WinRT.Model;
 using VLC_WinRT.Utils;
+using VLC_WinRT.Helpers;
 
 namespace VLC_WinRT.Commands.Music
 {
@@ -24,7 +24,7 @@ namespace VLC_WinRT.Commands.Music
                 // if the track is still null (for some reason), we need to break early.
                 return;
             }
-            await PlayMusicHelper.AddAlbumToPlaylist(track.AlbumId, true, true, track);
+            await PlaylistHelper.AddAlbumToPlaylist(track.AlbumId, true, true, track);
         }
     }
 }

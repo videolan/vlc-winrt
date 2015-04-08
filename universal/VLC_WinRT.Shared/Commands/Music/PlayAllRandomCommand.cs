@@ -1,6 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
-using VLC_WinRT.Helpers.MusicPlayer;
+using VLC_WinRT.Helpers;
 using VLC_WinRT.Model;
 using VLC_WinRT.Model.Music;
 using VLC_WinRT.Utils;
@@ -15,7 +15,7 @@ namespace VLC_WinRT.Commands.Music
         {
             if (Locator.MusicLibraryVM.Tracks == null || !Locator.MusicLibraryVM.Tracks.Any()) return;
             var shuffledTracks = Locator.MusicLibraryVM.Tracks.Shuffle();
-            await PlayMusicHelper.AddTrackCollectionToPlaylistAndPlay(shuffledTracks.ToPlaylist());
+            await PlaylistHelper.AddTrackCollectionToPlaylistAndPlay(shuffledTracks.ToPlaylist());
             Locator.NavigationService.Go(VLCPage.MusicPlayerPage);
         }
     }

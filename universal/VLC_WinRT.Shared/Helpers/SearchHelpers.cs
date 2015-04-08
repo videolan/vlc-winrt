@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using VLC_WinRT.Helpers.VideoPlayer;
 using VLC_WinRT.Model;
 using VLC_WinRT.Model.Music;
 using VLC_WinRT.Model.Video;

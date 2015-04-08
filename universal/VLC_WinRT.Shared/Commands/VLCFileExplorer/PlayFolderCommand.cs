@@ -4,9 +4,9 @@ using Windows.Storage;
 using System.Collections.Generic;
 using VLC_WinRT.Model;
 using VLC_WinRT.Helpers.MusicLibrary;
-using VLC_WinRT.Helpers.MusicPlayer;
 using VLC_WinRT.Model.Video;
 using VLC_WinRT.Utils;
+using VLC_WinRT.Helpers;
 
 namespace VLC_WinRT.Commands.VLCFileExplorer
 {
@@ -37,7 +37,7 @@ namespace VLC_WinRT.Commands.VLCFileExplorer
                     playlist.Add(videoVm);
                 }
             }
-            await PlayMusicHelper.AddTrackCollectionToPlaylistAndPlay(playlist, true, 0);
+            await PlaylistHelper.AddTrackCollectionToPlaylistAndPlay(playlist, true, 0);
         }
     }
 }

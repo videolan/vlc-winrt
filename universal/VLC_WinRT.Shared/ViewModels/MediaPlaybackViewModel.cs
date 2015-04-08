@@ -27,7 +27,6 @@ using Windows.UI.Notifications;
 using Windows.UI.Popups;
 using Autofac;
 using VLC_WinRT.Helpers.MusicLibrary;
-using VLC_WinRT.Helpers.MusicPlayer;
 using VLC_WinRT.Model.Music;
 using VLC_WinRT.Model.Stream;
 using VLC_WinRT.Model.Video;
@@ -35,7 +34,6 @@ using VLC_WinRT.Services.RunTime;
 using VLC_WinRT.ViewModels.MusicVM;
 using VLC_WinRT.Commands;
 using VLC_WinRT.BackgroundAudioPlayer.Model;
-using VLC_WinRT.Helpers.VideoPlayer;
 #if WINDOWS_PHONE_APP
 using Windows.Media.Playback;
 #endif
@@ -329,7 +327,7 @@ namespace VLC_WinRT.ViewModels
         {
             Locator.NavigationService.Go(VLCPage.MusicPlayerPage);
             var trackItem = await MusicLibraryManagement.GetTrackItemFromFile(file);
-            await PlayMusicHelper.PlayTrackFromFilePicker(trackItem);
+            await PlaylistHelper.PlayTrackFromFilePicker(trackItem);
         }
 
         /// <summary>
@@ -345,7 +343,7 @@ namespace VLC_WinRT.ViewModels
             if (token != null)
                 videoVm.Token = token;
             Locator.VideoVm.CurrentVideo = videoVm;
-            await PlayVideoHelper.Play(videoVm);
+            await PlaylistHelper.Play(videoVm);
         }
 
         private void privateDisplayCall(bool shouldActivate)

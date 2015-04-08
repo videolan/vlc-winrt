@@ -1,17 +1,35 @@
-﻿using System.Collections.Generic;
-using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
-using Windows.UI.Core;
-using VLC_WinRT.Model.Music;
-using VLC_WinRT.ViewModels;
 using VLC_WinRT.Model;
+using VLC_WinRT.Model.Music;
+using VLC_WinRT.Model.Video;
+using VLC_WinRT.ViewModels;
+using Windows.Storage.AccessCache;
 
-namespace VLC_WinRT.Helpers.MusicPlayer
+namespace VLC_WinRT.Helpers
 {
-    public static class PlayMusicHelper
+    public static class PlaylistHelper
     {
+        #region Videos
+        public static async Task Play(this VideoItem videoVm)
+        {
+            if (string.IsNullOrEmpty(videoVm.Token))
+            {
+                string token = StorageApplicationPermissions.FutureAccessList.Add(videoVm.File);
+                LogHelper.Log("PLAYVIDEO: Getting video path token");
+                videoVm.Token = token;
+            }
+            Locator.NavigationService.Go(VLCPage.VideoPlayerPage);
+            LogHelper.Log("PLAYVIDEO: Settings videoVm as Locator.VideoVm.CurrentVideo");
+            Locator.VideoVm.CurrentVideo = videoVm;
+            await Locator.MediaPlaybackViewModel.TrackCollection.ResetCollection();
+            await Locator.MediaPlaybackViewModel.TrackCollection.Add(videoVm, true);
+            await Locator.MediaPlaybackViewModel.TrackCollection.SetCurrentTrackPosition(0);
+        }
+
+        #endregion
+        #region Music
         /// <summary>
         /// Play a track
         /// If the track is already in the Playlist, we set the CurrenTrack to reach this new track
@@ -28,8 +46,7 @@ namespace VLC_WinRT.Helpers.MusicPlayer
                 await Task.Run(() => Locator.MediaPlaybackViewModel.SetMedia(Locator.MusicPlayerVM.CurrentTrack, false));
             }
         }
-
-        ///
+        
         /// Play a track from FilePicker
         public static async Task PlayTrackFromFilePicker(TrackItem trackItem)
         {
@@ -114,5 +131,6 @@ namespace VLC_WinRT.Helpers.MusicPlayer
                 await PlayTrack(finalindex.Id);
             }
         }
+        #endregion
     }
 }

@@ -2,7 +2,6 @@
 using VLC_WinRT.Helpers;
 using VLC_WinRT.Model.Video;
 using VLC_WinRT.ViewModels;
-using VLC_WinRT.Helpers.VideoPlayer;
 using VLC_WinRT.Model;
 using VLC_WinRT.Utils;
 

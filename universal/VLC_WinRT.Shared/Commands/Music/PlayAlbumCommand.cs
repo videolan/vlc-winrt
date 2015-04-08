@@ -9,7 +9,6 @@
 
 using System.IO;
 using VLC_WinRT.Helpers;
-using VLC_WinRT.Helpers.MusicPlayer;
 using VLC_WinRT.Model.Music;
 using VLC_WinRT.ViewModels;
 using VLC_WinRT.Model;
@@ -28,7 +27,7 @@ namespace VLC_WinRT.Commands.Music
                 if (parameter is AlbumItem)
                 {
                     var album = parameter as AlbumItem;
-                    await PlayMusicHelper.AddAlbumToPlaylist(album.Id, true, true, null, 0);
+                    await PlaylistHelper.AddAlbumToPlaylist(album.Id, true, true, null, 0);
                 }
             }
             catch (FileNotFoundException exception)

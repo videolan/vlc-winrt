@@ -139,14 +139,13 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\MusicLibrary\EchoNest\Videos.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\MusicLibrary\MusicFlow.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\MusicLibrary\MusicLibraryManagement.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Helpers\MusicPlayer\PlayMusicHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers\PlaylistHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\SearchHelpers.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\StatusBar.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\TitleDecrapifier.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\ToastHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\UpdateTileHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\VideoLibrary\VideoLibraryManagement.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Helpers\VideoPlayer\PlayVideoHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Events\InteretConnectionChangedEventArgs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\KeyboardAction.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\LoadingState.cs" />
@@ -818,7 +817,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)Common\" />
     <Folder Include="$(MSBuildThisFileDirectory)Services\Mocks\" />
   </ItemGroup>
   <ItemGroup>
