@@ -1,6 +1,5 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
-using VLC_WINRT.Common;
 using VLC_WinRT.Helpers.MusicPlayer;
 using VLC_WinRT.Model;
 using VLC_WinRT.Model.Music;

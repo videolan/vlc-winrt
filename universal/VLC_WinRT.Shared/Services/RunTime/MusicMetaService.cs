@@ -9,6 +9,7 @@ using VLC_WinRT.Common;
 using VLC_WinRT.Model.Music;
 using VLC_WinRT.MusicMetaFetcher;
 using VLC_WinRT.MusicMetaFetcher.Models.MusicEntities;
+using VLC_WinRT.Utils;
 using VLC_WinRT.ViewModels;
 
 namespace VLC_WinRT.Services.RunTime

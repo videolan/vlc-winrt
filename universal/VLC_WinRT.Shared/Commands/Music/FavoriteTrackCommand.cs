@@ -8,7 +8,6 @@
  **********************************************************************/
 
 using System.Linq;
-using VLC_WINRT.Common;
 using VLC_WinRT.DataRepository;
 using VLC_WinRT.Model.Music;
 using VLC_WinRT.Utils;

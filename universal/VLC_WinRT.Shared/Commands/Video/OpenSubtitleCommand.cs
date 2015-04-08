@@ -10,7 +10,6 @@
 using System;
 using Windows.Storage.Pickers;
 using Windows.UI.Popups;
-using VLC_WINRT.Common;
 using VLC_WinRT.Model;
 using Windows.Storage;
 using Windows.Storage.AccessCache;

@@ -1,7 +1,6 @@
 ﻿using System;
 using Windows.System;
 using Windows.UI.Xaml.Controls;
-using VLC_WINRT.Common;
 using VLC_WinRT.MusicMetaFetcher.Models.MusicEntities;
 using VLC_WinRT.Utils;
 

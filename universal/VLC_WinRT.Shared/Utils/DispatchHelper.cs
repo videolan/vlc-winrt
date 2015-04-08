@@ -13,7 +13,7 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Core;
 using Windows.UI.Core;
 
-namespace VLC_WINRT.Common
+namespace VLC_WinRT.Utils
 {
     public class DispatchHelper
     {

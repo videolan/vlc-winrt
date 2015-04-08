@@ -1,5 +1,4 @@
 ﻿using Windows.UI.Xaml.Controls;
-using VLC_WINRT.Common;
 using VLC_WinRT.ViewModels;
 using VLC_WinRT.ViewModels.MusicVM;
 using VLC_WinRT.Model;

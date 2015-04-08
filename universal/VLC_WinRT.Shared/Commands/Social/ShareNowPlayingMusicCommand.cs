@@ -1,6 +1,5 @@
 ﻿using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
-using VLC_WINRT.Common;
 using System;
 using System.Collections.Generic;
 using Windows.Storage;

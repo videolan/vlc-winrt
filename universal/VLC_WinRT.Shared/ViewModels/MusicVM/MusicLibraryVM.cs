@@ -15,7 +15,6 @@ using System.Threading.Tasks;
 using Windows.UI.Core;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
-using VLC_WINRT.Common;
 using VLC_WinRT.Common;
 using VLC_WinRT.DataRepository;
 using VLC_WinRT.Helpers;

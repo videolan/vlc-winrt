@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using System.Collections.ObjectModel;
-using VLC_WINRT.Common;
 using Windows.Storage;
 using System.Collections.Generic;
 using VLC_WinRT.Model;

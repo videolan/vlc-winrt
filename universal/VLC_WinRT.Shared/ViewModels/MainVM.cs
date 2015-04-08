@@ -14,7 +14,6 @@ using Windows.ApplicationModel.Resources;
 using Windows.UI.Core;
 using Windows.UI.Xaml.Controls;
 using Autofac;
-using VLC_WINRT.Common;
 using VLC_WinRT.Commands.MainPageCommands;
 using VLC_WinRT.Common;
 using VLC_WinRT.Helpers;

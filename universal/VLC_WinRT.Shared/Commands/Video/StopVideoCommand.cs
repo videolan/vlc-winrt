@@ -8,7 +8,6 @@
  **********************************************************************/
 
 using System;
-using VLC_WINRT.Common;
 using VLC_WinRT.ViewModels;
 using VLC_WinRT.Model;
 using VLC_WinRT.Utils;

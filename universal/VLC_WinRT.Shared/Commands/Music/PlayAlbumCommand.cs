@@ -8,7 +8,6 @@
  **********************************************************************/
 
 using System.IO;
-using VLC_WINRT.Common;
 using VLC_WinRT.Helpers;
 using VLC_WinRT.Helpers.MusicPlayer;
 using VLC_WinRT.Model.Music;

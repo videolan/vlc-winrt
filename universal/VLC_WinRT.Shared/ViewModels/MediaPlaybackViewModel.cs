@@ -27,7 +27,6 @@ using Windows.Storage.Streams;
 using Windows.UI.Notifications;
 using Windows.UI.Popups;
 using Autofac;
-using VLC_WINRT.Common;
 using VLC_WinRT.Helpers.MusicLibrary;
 using VLC_WinRT.Helpers.MusicPlayer;
 using VLC_WinRT.Model.Music;

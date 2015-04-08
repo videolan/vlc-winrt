@@ -7,7 +7,6 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
-using VLC_WINRT.Common;
 using VLC_WinRT.Model;
 using VLC_WinRT.Utils;
 using VLC_WinRT.ViewModels;

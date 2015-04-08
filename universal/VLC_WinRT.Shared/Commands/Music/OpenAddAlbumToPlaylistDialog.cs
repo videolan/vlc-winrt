@@ -1,7 +1,6 @@
 ﻿using VLC_WinRT.Model;
 using VLC_WinRT.Utils;
 using VLC_WinRT.ViewModels;
-using VLC_WINRT.Common;
 
 namespace VLC_WinRT.Commands.Music
 {

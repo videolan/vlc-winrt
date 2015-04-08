@@ -1,5 +1,4 @@
 ﻿using Windows.UI.Core;
-using VLC_WINRT.Common;
 using System;
 using VLC_WinRT.Model;
 using VLC_WinRT.Utils;

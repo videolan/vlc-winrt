@@ -8,7 +8,6 @@
  **********************************************************************/
 
 using VLC_WinRT.Utils;
-using VLC_WINRT.Common;
 
 
 namespace VLC_WinRT.Commands

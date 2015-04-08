@@ -1,5 +1,4 @@
 ﻿using VLC_WinRT.ViewModels;
-using VLC_WINRT.Common;
 using Windows.Storage;
 using System;
 using VLC_WinRT.Utils;

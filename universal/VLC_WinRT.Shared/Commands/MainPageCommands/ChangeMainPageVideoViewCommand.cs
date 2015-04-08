@@ -1,5 +1,4 @@
 ﻿using VLC_WinRT.Utils;
-using VLC_WINRT.Common;
 using VLC_WinRT.Views.MainPages;
 using VLC_WinRT.Views.MainPages.MainVideoControls;
 

@@ -1,5 +1,4 @@
-﻿using VLC_WINRT.Common;
-using VLC_WinRT.Helpers.MusicLibrary;
+﻿using VLC_WinRT.Helpers.MusicLibrary;
 using VLC_WinRT.Model.Music;
 using VLC_WinRT.Utils;
 
