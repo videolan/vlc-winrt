@@ -91,11 +91,16 @@ namespace VLC_WinRT.Helpers.MusicLibrary
                 var tracks = await Locator.MusicLibraryVM._trackDataRepository.LoadTracks().ToObservableAsync();
                 var albums = await Locator.MusicLibraryVM._albumDataRepository.LoadAlbums(x => x.ArtistId != 0).ToObservableAsync();
                 var orderedAlbums = albums.OrderBy(x => x.Artist).ThenBy(x => x.Name);
+                var groupedTracks = tracks.GroupBy(x => string.IsNullOrEmpty(x.Name) ? '#' : (char.IsLetter(x.Name.ToLower().ElementAt(0)) ? x.Name.ToLower().ElementAt(0) : '#'));
+                var groupedAlbums = albums.OrderBy(x => x.Name).GroupBy(x => string.IsNullOrEmpty(x.Name) ? '#' : (char.IsLetter(x.Name.ToLower().ElementAt(0)) ? x.Name.ToLower().ElementAt(0) : '#'));
+
                 await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                 {
                     Locator.MusicLibraryVM.Artists = new ObservableCollection<ArtistItem>(orderedArtists);
                     Locator.MusicLibraryVM.Tracks = tracks;
                     Locator.MusicLibraryVM.Albums = new ObservableCollection<AlbumItem>(orderedAlbums);
+                    Locator.MusicLibraryVM.AlphaGroupedTracks = groupedTracks;
+                    Locator.MusicLibraryVM.AlphaGroupedAlbums = groupedAlbums;
                 });
 
                 var trackColl = await Locator.MusicLibraryVM.TrackCollectionRepository.LoadTrackCollections().ToObservableAsync();
@@ -113,28 +118,6 @@ namespace VLC_WinRT.Helpers.MusicLibrary
                         trackCollection.Playlist.Add(item);
                     }
                 }
-                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                {
-                    Locator.MusicLibraryVM.AlphaGroupedTracks =
-                        Locator.MusicLibraryVM.Tracks
-                            .GroupBy(
-                                x =>
-                                    x.Name != null
-                                        ? (char
-                                            .IsLetter
-                                            (x.Name
-                                                .ToLower
-                                                ()
-                                                .ElementAt
-                                                (0))
-                                            ? x.Name
-                                                .ToLower
-                                                ()
-                                                .ElementAt
-                                                (0)
-                                            : '#')
-                                        : '\0');
-                });
             }
             catch (Exception)
             {

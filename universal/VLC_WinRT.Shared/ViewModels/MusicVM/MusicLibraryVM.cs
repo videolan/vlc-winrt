@@ -46,7 +46,10 @@ namespace VLC_WinRT.ViewModels.MusicVM
         private ObservableCollection<AlbumItem> _randomAlbums = new ObservableCollection<AlbumItem>();
         private ObservableCollection<AlbumItem> _albums = new ObservableCollection<AlbumItem>();
         private ObservableCollection<TrackCollection> _trackCollections = new ObservableCollection<TrackCollection>();
+
         private IEnumerable<IGrouping<char, TrackItem>> _alphaGroupedTracks;
+        private IEnumerable<IGrouping<char, AlbumItem>> _alphaGroupedAlbums;
+
         #endregion
         #region private props
         private SidebarState _sidebarState;
@@ -98,10 +101,13 @@ namespace VLC_WinRT.ViewModels.MusicVM
         public ObservableCollection<TrackItem> Tracks
         {
             get { return _tracks; }
-            set
-            {
-                SetProperty(ref _tracks, value);
-            }
+            set { SetProperty(ref _tracks, value); }
+        }
+
+        public IEnumerable<IGrouping<char, TrackItem>> AlphaGroupedTracks
+        {
+            get { return _alphaGroupedTracks; }
+            set { SetProperty(ref _alphaGroupedTracks, value); }
         }
 
         public ObservableCollection<AlbumItem> Albums
@@ -110,21 +116,17 @@ namespace VLC_WinRT.ViewModels.MusicVM
             set { SetProperty(ref _albums, value); }
         }
 
+        public IEnumerable<IGrouping<char, AlbumItem>> AlphaGroupedAlbums
+        {
+            get { return _alphaGroupedAlbums; }
+            set { SetProperty(ref _alphaGroupedAlbums, value); }
+        }
         #endregion
         #region public props
         public MusicView MusicView
         {
             get { return _musicView; }
             set { SetProperty(ref _musicView, value); }
-        }
-        
-        public IEnumerable<IGrouping<char, TrackItem>> AlphaGroupedTracks
-        {
-            get
-            {
-                return _alphaGroupedTracks;
-            }
-            set { SetProperty(ref _alphaGroupedTracks, value); }
         }
 
         public SidebarState SidebarState
