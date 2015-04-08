@@ -186,30 +186,13 @@ namespace VLC_WinRT.Helpers
         public static void SearchMusic(string tag, ObservableCollection<SearchResult> results)
         {
             var albums = SearchAlbums(tag);
-            foreach (var album in albums)
+            foreach (var album in albums.Where(album => !results.Contains(album)))
             {
-                if (!results.Contains(album))
-                    results.Add(album);
+                results.Add(album);
             }
-
-            var artists = SearchArtists(tag);
-            foreach (var artist in artists)
+            foreach (var result in results.ToList().Where(result => !albums.Contains(result)))
             {
-                if (!results.Contains(artist))
-                    results.Add(artist);
-            }
-
-            var tracks = SearchTracks(tag);
-            foreach (var track in tracks)
-            {
-                if (!results.Contains(track))
-                    results.Add(track);
-            }
-
-            foreach (var result in results.ToList())
-            {
-                if (!albums.Contains(result) && !artists.Contains(result) && !tracks.Contains(result))
-                    results.Remove(result);
+                results.Remove(result);
             }
         }
 

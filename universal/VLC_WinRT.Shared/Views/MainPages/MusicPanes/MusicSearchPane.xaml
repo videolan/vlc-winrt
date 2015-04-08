@@ -33,10 +33,33 @@
                                                   PassEventArgsToCommand="True" />
                 </triggers:EventTrigger>
             </triggers:Interactions.Triggers>
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <ItemsWrapGrid SizeChanged="MusicWrapGrid_SizeChanged"
+                                   Orientation="Horizontal"
+                                   Margin="0,0,0,60">
+                        <ItemsWrapGrid.ChildrenTransitions>
+                            <TransitionCollection>
+                                <AddDeleteThemeTransition />
+                            </TransitionCollection>
+                        </ItemsWrapGrid.ChildrenTransitions>
+                    </ItemsWrapGrid>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="test"
-                               Foreground="Red" />
+                    <Grid Height="170" Width="150">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="150"/>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Image Source="{Binding Picture}"
+                               Stretch="UniformToFill"/>
+                        <TextBlock Grid.Row="1"
+                                   Text="{Binding Text}"
+                                   TextWrapping="NoWrap"
+                                   TextTrimming="CharacterEllipsis"/>
+                    </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
             <ListView.ItemContainerTransitions>

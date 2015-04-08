@@ -32,8 +32,7 @@
                       Style="{StaticResource AppBarButtonStyleHorizontal}"
                       DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}"
                       Command="{Binding StartMusicIndexingCommand}"
-                      IsEnabled="{Binding IsBusy, Converter={StaticResource BooleanNegationConverter}}"
-                      Loaded="RefreshButton_Loaded">
+                      IsEnabled="{Binding IsBusy, Converter={StaticResource BooleanNegationConverter}}">
             <AppBarButton.Icon>
                 <FontIcon Glyph="{StaticResource RefreshSymbol}"
                           FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />

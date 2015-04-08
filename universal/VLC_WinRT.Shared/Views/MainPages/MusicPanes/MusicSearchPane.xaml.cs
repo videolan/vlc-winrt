@@ -1,7 +1,11 @@
-﻿using Microsoft.Xaml.Interactivity;
+﻿using System.Linq;
+using Microsoft.Xaml.Interactivity;
 using VLC_WinRT.ViewModels;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using VLC_WinRT.Model.Video;
+using VLC_WinRT.Views.MainPages.MusicPanes.MusicPanesControls;
+using WinRTXamlToolkit.Controls.Extensions;
 
 namespace VLC_WinRT.Views.MainPages.MusicPanes
 {
@@ -13,11 +17,21 @@ namespace VLC_WinRT.Views.MainPages.MusicPanes
             this.Loaded += SearchMusicPane_Loaded;
         }
 
+        private void MusicWrapGrid_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            TemplateSizer.ComputeAlbums(sender as ItemsWrapGrid, this.ActualWidth);
+        }
+
         void SearchMusicPane_Loaded(object sender, RoutedEventArgs e)
         {
             Responsive(Window.Current.Bounds.Width);
             Window.Current.SizeChanged += Current_SizeChanged;
             this.Unloaded += SearchMusicPane_Unloaded;
+
+            var artistPane = (App.ApplicationFrame.Content as MainPageMusic).GetDescendantsOfType<ArtistPaneButtons>().FirstOrDefault(x => x.Visibility == Visibility.Visible);
+            var textbox = artistPane.GetFirstDescendantOfType<TextBox>();
+            textbox.Focus(FocusState.Keyboard);
+            textbox.SelectionStart = textbox.Text.Length;
         }
 
         void Current_SizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)
