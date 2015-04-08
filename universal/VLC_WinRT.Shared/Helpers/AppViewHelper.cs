@@ -1,21 +1,4 @@
-﻿
-/* Unmerged change from project 'VLC_WinRT.Windows'
-Before:
-using System;
-using System.Collections.Generic;
-using System.Linq;
-After:
-using System.Linq;
-*/
-
-/* Unmerged change from project 'VLC_WinRT.Windows'
-Before:
-using System.Text;
-using Windows.UI;
-After:
-using Windows.UI;
-*/
-using System.Linq;
+﻿using System.Linq;
 using System.Reflection;
 using Windows.UI;
 

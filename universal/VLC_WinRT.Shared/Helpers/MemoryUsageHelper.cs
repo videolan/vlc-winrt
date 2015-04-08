@@ -1,16 +1,4 @@
-﻿
-/* Unmerged change from project 'VLC_WinRT.Windows'
-Before:
-using System;
-using System.Diagnostics;
-using Windows.System;
-
-namespace VLC_WinRT.Helpers
-After:
-namespace VLC_WinRT.Helpers
-*/
-
-using System;
+﻿using System;
 using Windows.System;
 
 namespace VLC_WinRT.Helpers

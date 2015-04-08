@@ -7,17 +7,6 @@ using Windows.Storage;
 using Windows.UI.Core;
 using VLC_WinRT.Commands.RemovableDevices;
 using VLC_WinRT.Helpers;
-
-/* Unmerged change from project 'VLC_WinRT.Windows'
-Before:
-using VLC_WinRT.Helpers.MusicLibrary;
-using VLC_WinRT.Model;
-using VLC_WinRT.Model.Music;
-using VLC_WinRT.Services.RunTime;
-using VLC_WinRT.Views.VideoPages;
-After:
-using VLC_WinRT.Model;
-*/
 using VLC_WinRT.Model;
 using Windows.Storage.Search;
 using VLC_WinRT.Commands.VLCFileExplorer;
