@@ -31,7 +31,6 @@ namespace VLC_WinRT.ViewModels
     public class MainVM : BindableBase
     {
         #region private fields
-
         private ObservableCollection<Panel> _panels = new ObservableCollection<Panel>();
         private ObservableCollection<SearchResult> _searchResults;
         #endregion

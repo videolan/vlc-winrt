@@ -103,10 +103,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
         public ObservableCollection<IVLCMedia> Playlist
         {
             get { return _tracksCollection; }
-            private set
-            {
-                SetProperty(ref _tracksCollection, value);
-            }
+            private set { SetProperty(ref _tracksCollection, value); }
         }
 
         [Ignore]
@@ -135,6 +132,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
             _tracksCollection = new ObservableCollection<IVLCMedia>();
             InitializePlaylist();
         }
+
         public TrackCollection()
         {
             _tracksCollection = new ObservableCollection<IVLCMedia>();

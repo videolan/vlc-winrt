@@ -227,7 +227,7 @@ namespace VLC_WinRT
             await RootPage.SplitShell.TemplateApplied.Task;
 
 #if WINDOWS_APP
-            AppViewHelper.SetAppView(); 
+            AppViewHelper.SetAppView();
             AppViewHelper.SetBackgroundButtonColor();
 #endif
             Locator.MainVM.DropTablesIfNeeded();
