@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using VLC_WinRT.Model;
 using VLC_WinRT.Model.Music;
@@ -31,13 +32,7 @@ namespace VLC_WinRT.Utils
 
         public static List<TrackItem> ToTrackItemPlaylist(this IEnumerable<IVLCMedia> source)
         {
-            var trackItems = new List<TrackItem>();
-            foreach (var item in source)
-            {
-                if (item is TrackItem)
-                    trackItems.Add((TrackItem)item);
-            }
-            return trackItems;
+            return source.OfType<TrackItem>().ToList();
         }
     }
 }
