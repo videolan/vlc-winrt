@@ -18,9 +18,10 @@ namespace VLC_WinRT.DataRepository
         {
             Initialize();
         }
+
         public void Initialize()
         {
-            using (var db = new SQLite.SQLiteConnection(DbPath))
+            using (var db = new SQLiteConnection(DbPath))
             {
                 db.CreateTable<AlbumItem>();
             }
@@ -28,7 +29,7 @@ namespace VLC_WinRT.DataRepository
 
         public void Drop()
         {
-            using (var db = new SQLite.SQLiteConnection(DbPath))
+            using (var db = new SQLiteConnection(DbPath))
             {
                 db.DropTable<AlbumItem>();
             }
@@ -37,9 +38,7 @@ namespace VLC_WinRT.DataRepository
         public async Task<List<AlbumItem>> LoadAlbumsFromId(int artistId)
         {
             var connection = new SQLiteAsyncConnection(DbPath);
-
             return await connection.Table<AlbumItem>().Where(x => x.ArtistId == artistId).ToListAsync();
-
         }
 
         public async Task<AlbumItem> LoadAlbumViaName(int artistId, string albumName)
