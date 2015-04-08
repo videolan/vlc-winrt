@@ -6,31 +6,11 @@
  * Licensed under GPLv2+ and MPLv2
  * Refer to COPYING file of the official project for license
  **********************************************************************/
-
-
-/* Unmerged change from project 'VLC_WinRT.Windows'
-Before:
-using System;
-using System.Threading.Tasks;
-using Windows.ApplicationModel.Resources;
-using Windows.Graphics.Display;
-After:
-using Windows.Graphics.Display;
-*/
 using Windows.Graphics.Display;
 using Windows.Media;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Autofac;
-
-/* Unmerged change from project 'VLC_WinRT.Windows'
-Before:
-using VLC_WinRT.Helpers;
-using VLC_WinRT.Model;
-using VLC_WinRT.Services.RunTime;
-After:
-using VLC_WinRT.Services.RunTime;
-*/
 using VLC_WinRT.Helpers;
 using VLC_WinRT.Services.RunTime;
 using VLC_WinRT.ViewModels;
