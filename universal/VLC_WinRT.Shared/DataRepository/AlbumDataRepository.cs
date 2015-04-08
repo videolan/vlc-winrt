@@ -63,6 +63,7 @@ namespace VLC_WinRT.DataRepository
             var query = connection.Table<AlbumItem>().Where(compare);
             return await query.ToListAsync();
         }
+
         public Task Update(AlbumItem album)
         {
             var connection = new SQLiteAsyncConnection(DbPath);

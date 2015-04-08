@@ -20,7 +20,7 @@ namespace VLC_WinRT.DataRepository
 
         public void Initialize()
         {
-            using (var db = new SQLite.SQLiteConnection(DbPath))
+            using (var db = new SQLiteConnection(DbPath))
             {
                 db.CreateTable<TrackCollection>();
             }
@@ -57,7 +57,7 @@ namespace VLC_WinRT.DataRepository
 
         public void Drop()
         {
-            using (var db = new SQLite.SQLiteConnection(DbPath))
+            using (var db = new SQLiteConnection(DbPath))
             {
                 db.DropTable<TrackCollection>();
             }

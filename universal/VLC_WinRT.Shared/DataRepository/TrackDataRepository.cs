@@ -20,13 +20,13 @@ namespace VLC_WinRT.DataRepository
 
         public void Initialize()
         {
-            var db = new SQLite.SQLiteConnection(DbPath);
+            var db = new SQLiteConnection(DbPath);
             db.CreateTable<TrackItem>();
         }
 
         public void Drop()
         {
-            using (var db = new SQLite.SQLiteConnection(DbPath))
+            using (var db = new SQLiteConnection(DbPath))
             {
                 db.DropTable<TrackItem>();
             }
