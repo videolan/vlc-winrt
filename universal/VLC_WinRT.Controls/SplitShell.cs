@@ -22,6 +22,7 @@ namespace VLC_WinRT.Controls
     [TemplatePart(Name = RightFlyoutFadeOutName, Type = typeof(Storyboard))]
     [TemplatePart(Name = RightFlyoutPlaneProjectionName, Type = typeof(PlaneProjection))]
     [TemplatePart(Name = RightFlyoutGridContainerName, Type = typeof(Grid))]
+    [TemplatePart(Name = FooterContentPresenterName, Type = typeof(ContentPresenter))]
     public sealed class SplitShell : Control
     {
         public TaskCompletionSource<bool> TemplateApplied = new TaskCompletionSource<bool>();
@@ -42,6 +43,7 @@ namespace VLC_WinRT.Controls
         private const string RightFlyoutFadeOutName = "RightFlyoutFadeOut";
         private const string RightFlyoutPlaneProjectionName = "RightFlyoutPlaneProjection";
         private const string RightFlyoutGridContainerName = "RightFlyoutGridContainer";
+        private const string FooterContentPresenterName = "FooterContentPresenter";
 
         private Grid _edgePaneGrid;
         private Grid _sidebarGridContainer;
@@ -51,6 +53,7 @@ namespace VLC_WinRT.Controls
         private ContentPresenter _alwaysVisibleSidebarContentPresenter;
         private ContentPresenter _topBarContentPresenter;
         private ContentPresenter _rightFlyoutContentPresenter;
+        private ContentPresenter _footerContentPresenter;
 
         private PlaneProjection _rightFlyoutPlaneProjection;
         private Storyboard _rightFlyoutFadeIn;
@@ -114,6 +117,12 @@ namespace VLC_WinRT.Controls
             }
             _rightFlyoutContentPresenter.Content = content;
             ShowFlyout();
+        }
+
+        public async void SetFooterContentPresenter(object content)
+        {
+            await TemplateApplied.Task;
+            _footerContentPresenter.Content = content;
         }
 
         #region Content Property
@@ -225,6 +234,26 @@ namespace VLC_WinRT.Controls
             that.SetRightPaneContentPresenter(dependencyPropertyChangedEventArgs.NewValue);
         }
         #endregion
+
+        #region FooterContent Property
+
+        public DependencyObject FooterContent
+        {
+            get { return (DependencyObject)GetValue(FooterContentProperty); }
+            set { SetValue(FooterContentProperty, value); }
+        }
+
+        public static readonly DependencyProperty FooterContentProperty = DependencyProperty.Register(
+            "FooterContent", typeof(DependencyObject), typeof(SplitShell),
+            new PropertyMetadata(default(DependencyObject), FooterContentPropertyChangedCallback));
+
+        private static void FooterContentPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
+        {
+            var that = (SplitShell)dependencyObject;
+            that.SetFooterContentPresenter(dependencyPropertyChangedEventArgs.NewValue);
+        }
+        #endregion
+
         #region InformationContent Property
         public Brush InformationBackground
         {
@@ -277,6 +306,7 @@ namespace VLC_WinRT.Controls
             _rightFlyoutFadeOut = (Storyboard)GetTemplateChild(RightFlyoutFadeOutName);
             _rightFlyoutPlaneProjection = (PlaneProjection)GetTemplateChild(RightFlyoutPlaneProjectionName);
             _rightFlyoutGridContainer = (Grid)GetTemplateChild(RightFlyoutGridContainerName);
+            _footerContentPresenter = (ContentPresenter) GetTemplateChild(FooterContentPresenterName);
 
             TemplateApplied.SetResult(true);
 

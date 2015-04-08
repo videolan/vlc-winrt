@@ -143,6 +143,7 @@
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition />
+                            <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
@@ -176,6 +177,12 @@
                                           Grid.Column="1"
                                           Grid.Row="2" />
 
+                        <ContentPresenter x:Name="FooterContentPresenter" 
+                                          Grid.Row="3"
+                                          Grid.Column="0"
+                                          Grid.ColumnSpan="3"
+                                          HorizontalAlignment="Stretch"/>
+                        
                         <Grid x:Name="SidebarGridContainer"
                               Grid.Column="0"
                               Grid.ColumnSpan="2"
@@ -192,7 +199,7 @@
                         <Grid x:Name="RightFlyoutGridContainer"
                               Grid.Column="0"
                               Grid.ColumnSpan="2"
-                              Grid.Row="0"
+                              Grid.Row="1"
                               Grid.RowSpan="3"
                               Background="#50000000">
                             <ContentPresenter x:Name="RightFlyoutContentPresenter"
