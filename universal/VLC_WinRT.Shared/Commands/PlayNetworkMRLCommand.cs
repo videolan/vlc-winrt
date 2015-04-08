@@ -13,6 +13,7 @@ using VLC_WinRT.Helpers;
 using VLC_WinRT.Model.Stream;
 using VLC_WinRT.ViewModels;
 using VLC_WinRT.Model;
+using VLC_WinRT.Utils;
 
 namespace VLC_WinRT.Commands
 {

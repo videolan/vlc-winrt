@@ -25,6 +25,7 @@ using Panel = VLC_WinRT.Model.Panel;
 using Windows.UI.Popups;
 using VLC_WinRT.Model;
 using libVLCX;
+using VLC_WinRT.Utils;
 
 namespace VLC_WinRT.ViewModels
 {

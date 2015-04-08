@@ -9,6 +9,7 @@
 
 using VLC_WINRT.Common;
 using VLC_WinRT.Model.Video;
+using VLC_WinRT.Utils;
 
 namespace VLC_WinRT.Commands.Video
 {

@@ -10,6 +10,7 @@
 using Windows.UI.Xaml.Controls;
 using VLC_WINRT.Common;
 using VLC_WinRT.Model.Music;
+using VLC_WinRT.Utils;
 
 namespace VLC_WinRT.Commands.Music
 {

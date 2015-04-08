@@ -3,6 +3,7 @@ using Windows.UI.Core;
 using Windows.UI.Popups;
 using VLC_WINRT.Common;
 using VLC_WinRT.Helpers.MusicLibrary;
+using VLC_WinRT.Utils;
 using VLC_WinRT.ViewModels;
 
 namespace VLC_WinRT.Commands.Music

@@ -1,5 +1,6 @@
 ﻿using VLC_WINRT.Common;
 using VLC_WinRT.Model.Music;
+using VLC_WinRT.Utils;
 using VLC_WinRT.ViewModels;
 using VLC_WinRT.Views.MainPages;
 using VLC_WinRT.Views.MainPages.MainMusicControls;

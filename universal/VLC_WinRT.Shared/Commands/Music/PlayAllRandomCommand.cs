@@ -4,6 +4,7 @@ using VLC_WINRT.Common;
 using VLC_WinRT.Helpers.MusicPlayer;
 using VLC_WinRT.Model;
 using VLC_WinRT.Model.Music;
+using VLC_WinRT.Utils;
 using VLC_WinRT.ViewModels;
 using WinRTXamlToolkit.Tools;
 

@@ -2,6 +2,7 @@
 using VLC_WINRT.Common;
 using VLC_WinRT.Helpers;
 using VLC_WinRT.Model.Search;
+using VLC_WinRT.Utils;
 
 namespace VLC_WinRT.Commands
 {

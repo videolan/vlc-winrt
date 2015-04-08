@@ -1,4 +1,5 @@
 ﻿using Windows.UI.Xaml.Controls;
+using VLC_WinRT.Utils;
 using VLC_WINRT.Common;
 using VLC_WinRT.ViewModels;
 

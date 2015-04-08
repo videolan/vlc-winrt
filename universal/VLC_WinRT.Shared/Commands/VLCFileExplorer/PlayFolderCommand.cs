@@ -7,6 +7,7 @@ using VLC_WinRT.Model;
 using VLC_WinRT.Helpers.MusicLibrary;
 using VLC_WinRT.Helpers.MusicPlayer;
 using VLC_WinRT.Model.Video;
+using VLC_WinRT.Utils;
 
 namespace VLC_WinRT.Commands.VLCFileExplorer
 {

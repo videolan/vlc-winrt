@@ -16,6 +16,7 @@ using Windows.Storage;
 using Windows.Storage.AccessCache;
 using VLC_WinRT.ViewModels;
 using VLC_WinRT.Helpers;
+using VLC_WinRT.Utils;
 
 namespace VLC_WinRT.Commands.Video
 {

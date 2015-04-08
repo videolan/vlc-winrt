@@ -6,6 +6,7 @@ using VLC_WinRT.Model;
 using VLC_WinRT.Model.Music;
 using VLC_WinRT.ViewModels;
 using System.Collections.ObjectModel;
+using VLC_WinRT.Utils;
 
 namespace VLC_WinRT.Commands.Music
 {
