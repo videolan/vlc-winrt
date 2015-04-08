@@ -82,6 +82,8 @@ namespace VLC_WinRT.ViewModels
             get
             {
                 if (TrackCollection.CurrentTrack == -1) return null;
+                if (TrackCollection.CurrentTrack == TrackCollection.Playlist.Count)
+                    TrackCollection.CurrentTrack--;
                 return TrackCollection.Playlist[TrackCollection.CurrentTrack];
             }
         }
