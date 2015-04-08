@@ -27,7 +27,7 @@ namespace VLC_WinRT.DataRepository
             }
         }
 
-        public Task AddKeyboardActions(List<KeyboardAction> keyboardActions)
+        public Task AddKeyboardActions(IEnumerable<KeyboardAction> keyboardActions)
         {
             var connection = new SQLiteAsyncConnection(DbPath);
             return connection.InsertAllAsync(keyboardActions);
