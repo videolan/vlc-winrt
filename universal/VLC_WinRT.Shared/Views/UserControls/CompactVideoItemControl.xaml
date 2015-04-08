@@ -18,7 +18,7 @@
                 <RowDefinition Height="2" />
             </Grid.RowDefinitions>
             <Grid Grid.Row="0"
-                  Background="WhiteSmoke">
+                  Background="{ThemeResource ApplicationThirdForegroundThemeBrush}">
                 <FontIcon Glyph="{StaticResource PylonSymbol}"
                           FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets"
                           FontSize="42"
