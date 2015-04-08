@@ -140,13 +140,13 @@ namespace VLC_WinRT.ViewModels.MusicVM
             get { return _loadingState; }
             set { SetProperty(ref _loadingState, value); }
         }
-
-
+        
         public bool IsAlbumPageShown
         {
             get { return _isAlbumPageShown; }
             set { SetProperty(ref _isAlbumPageShown, value); }
         }
+
         public bool IsMainPageMusicArtistAlbumsSemanticZoomViewedIn
         {
             get { return _isMainPageMusicArtistAlbumsSemanticZoomViewedIn; }
@@ -169,6 +169,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
             get { return _isMusicLibraryEmpty; }
             set { SetProperty(ref _isMusicLibraryEmpty, value); }
         }
+
         public string SearchTag
         {
             get { return _searchTag; }
@@ -190,7 +191,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
 
         public ShowCreateNewPlaylistPane ShowCreateNewPlaylistPaneCommand { get; } = new ShowCreateNewPlaylistPane();
 
-        public ArtistAlbumsSemanticZoomInvertZoomCommand ArtistAlbumsSemanticZoomInvertZoomCommand { get; }= new ArtistAlbumsSemanticZoomInvertZoomCommand();
+        public ArtistAlbumsSemanticZoomInvertZoomCommand ArtistAlbumsSemanticZoomInvertZoomCommand { get; } = new ArtistAlbumsSemanticZoomInvertZoomCommand();
 
         public ChangeAlbumArtCommand ChangeAlbumArtCommand { get; } = new ChangeAlbumArtCommand();
 
@@ -198,23 +199,23 @@ namespace VLC_WinRT.ViewModels.MusicVM
 
         public AlbumClickedCommand AlbumClickedCommand { get; } = new AlbumClickedCommand();
 
-        public ArtistClickedCommand ArtistClickedCommand { get; }= new ArtistClickedCommand();
+        public ArtistClickedCommand ArtistClickedCommand { get; } = new ArtistClickedCommand();
 
-        public PlayArtistAlbumsCommand PlayArtistAlbumsCommand { get; }= new PlayArtistAlbumsCommand();
+        public PlayArtistAlbumsCommand PlayArtistAlbumsCommand { get; } = new PlayArtistAlbumsCommand();
 
-        public TrackClickedCommand TrackClickedCommand { get; }= new TrackClickedCommand();
+        public TrackClickedCommand TrackClickedCommand { get; } = new TrackClickedCommand();
 
-        public PlayAllRandomCommand PlayAllRandomCommand { get; }=new PlayAllRandomCommand();
+        public PlayAllRandomCommand PlayAllRandomCommand { get; } = new PlayAllRandomCommand();
 
-        public PlayAllSongsCommand PlayAllSongsCommand { get; }=new PlayAllSongsCommand();
+        public PlayAllSongsCommand PlayAllSongsCommand { get; } = new PlayAllSongsCommand();
 
-        public OpenAddAlbumToPlaylistDialog OpenAddAlbumToPlaylistDialogCommand { get; }=new OpenAddAlbumToPlaylistDialog();
+        public OpenAddAlbumToPlaylistDialog OpenAddAlbumToPlaylistDialogCommand { get; } = new OpenAddAlbumToPlaylistDialog();
 
-        public BingLocationShowCommand BingLocationShowCommand { get; }=new BingLocationShowCommand();
+        public BingLocationShowCommand BingLocationShowCommand { get; } = new BingLocationShowCommand();
 
-        public DeletePlaylistCommand DeletePlaylistCommand { get; }= new DeletePlaylistCommand();
+        public DeletePlaylistCommand DeletePlaylistCommand { get; } = new DeletePlaylistCommand();
 
-        public DeleteSelectedTracksInPlaylistCommand DeleteSelectedTracksInPlaylistCommand { get; }= new DeleteSelectedTracksInPlaylistCommand();
+        public DeleteSelectedTracksInPlaylistCommand DeleteSelectedTracksInPlaylistCommand { get; } = new DeleteSelectedTracksInPlaylistCommand();
 
         public ArtistItem CurrentArtist
         {
@@ -364,12 +365,6 @@ namespace VLC_WinRT.ViewModels.MusicVM
                 OnPropertyChanged("IsMusicLibraryEmpty");
             });
         }
-
-        public void ExecuteSemanticZoom(SemanticZoom sZ, CollectionViewSource cvs)
-        {
-            (sZ.ZoomedOutView as ListViewBase).ItemsSource = cvs.View.CollectionGroups;
-        }
-
         #endregion
     }
 }
