@@ -6,7 +6,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
              xmlns:core="using:Microsoft.Xaml.Interactions.Core"
-             xmlns:common="using:VLC_WinRT.Common"
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400">

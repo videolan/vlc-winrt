@@ -4,7 +4,6 @@
                     xmlns:triggers="using:WinRT.Triggers"
                     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
                     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
-                    xmlns:common="using:VLC_WinRT.Common"
                     xmlns:winrtext="using:WinRTXamlToolkit.Controls.Extensions"
                     xmlns:userControls="using:VLC_WinRT.Views.UserControls">
 

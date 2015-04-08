@@ -3,7 +3,6 @@
                     xmlns:local="using:VLC_WinRT.Resources"
                     xmlns:controls="using:VLC_WinRT.Controls"
                     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
-                    xmlns:common="using:VLC_WinRT.Common"
                     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
                     xmlns:userControls="using:VLC_WinRT.Views.UserControls"
                     xmlns:triggers="using:WinRT.Triggers">
