@@ -10,18 +10,11 @@
                 DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}"
                 RequestedTheme="{Binding ApplicationTheme, Converter={StaticResource AppThemeElementThemeConverter}}"
                 x:Name="SwapChainPanel">
-    <Grid.RowDefinitions>
-        <RowDefinition Height="*" />
-        <RowDefinition Height="Auto" />
-    </Grid.RowDefinitions>
     <MediaElement x:Name="MfMediaElement"
                   x:FieldModifier="public"
-                  Grid.Row="0"
-                  Grid.RowSpan="2"
                   Loaded="MfMediaElement_OnLoaded"
                   AudioCategory="BackgroundCapableMedia" />
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-          Grid.RowSpan="2"
           Visibility="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}" />
 
     <Image x:Name="HeaderBackgroundImage"
@@ -29,13 +22,10 @@
            Stretch="Uniform"
            VerticalAlignment="Top"
            Opacity="0.7"
-           Grid.Row="0"
-           Grid.RowSpan="2"
            Margin="{Binding ElementName=SplitShell, Path=Margin, UpdateSourceTrigger=Default}"
            Visibility="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}" />
-    
-    <Grid Grid.Row="0"
-          DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}"
+
+    <Grid DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}"
           Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
           Visibility="{Binding CurrentPage, Converter={StaticResource MusicPlayerBackgroundVisibilityConverter}}">
         <Image DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}"
@@ -52,7 +42,7 @@
                          InformationBackground="{StaticResource MainColor}">
         <controls:SplitShell.Content>
             <userControls:ShellContent x:Name="ShellContent"
-                                       x:FieldModifier="public"/>
+                                       x:FieldModifier="public" />
         </controls:SplitShell.Content>
         <controls:SplitShell.SideBarContent>
             <userControls:SideBar Visibility="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}" />
@@ -60,55 +50,58 @@
         <controls:SplitShell.TopBarContent>
             <userControls:TopBar Visibility="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}" />
         </controls:SplitShell.TopBarContent>
+        <controls:SplitShell.FooterContent>
+            <Grid>
+                <customAppBarDesktop:AppBar x:Name="CommandBar"
+                                            x:FieldModifier="public"
+                                            RequestedTheme="{Binding ApplicationTheme, Converter={StaticResource AppThemeElementThemeConverter}}"
+                                            Background="{ThemeResource ApplicationBarForegroundThemeBrush}">
+                    <customAppBarDesktop:AppBar.Visibility>
+                        <Binding Source="{Binding Source={StaticResource Locator}, Path=MainVM}"
+                                 Path="CurrentPage"
+                                 Converter="{StaticResource PageToVisibilityConverter}"
+                                 ConverterParameter="VideoPlayerPage,MusicPlayerPage" />
+                    </customAppBarDesktop:AppBar.Visibility>
+                    <customAppBarDesktop:AppBar.PrimaryCommands>
+                        <AppBarButton Style="{StaticResource EllipseLessAppBarButtonStyle}"
+                                      Label="search"
+                                      Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToSearchPage}">
+                            <AppBarButton.Icon>
+                                <FontIcon Glyph="{StaticResource SearchSymbol}"
+                                          FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+                            </AppBarButton.Icon>
+                        </AppBarButton>
+                        <AppBarButton Grid.Column="1"
+                                      Style="{StaticResource EllipseLessAppBarButtonStyle}"
+                                      Label="open file"
+                                      Command="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.PickVideoCommand}">
+                            <AppBarButton.Icon>
+                                <FontIcon Glyph="{StaticResource OpenFileSymbol}"
+                                          FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+                            </AppBarButton.Icon>
+                        </AppBarButton>
+                        <AppBarButton Grid.Column="2"
+                                      Style="{StaticResource EllipseLessAppBarButtonStyle}"
+                                      Label="open stream"
+                                      Flyout="{StaticResource PhoneOpenStreamFlyout}">
+                            <AppBarButton.Icon>
+                                <FontIcon Glyph="{StaticResource StreamSymbol}"
+                                          FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+                            </AppBarButton.Icon>
+                        </AppBarButton>
+                        <AppBarButton Grid.Column="3"
+                                      Style="{StaticResource EllipseLessAppBarButtonStyle}"
+                                      Label="settings"
+                                      Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToSettingsPageCommand}">
+                            <AppBarButton.Icon>
+                                <FontIcon Glyph="{StaticResource SettingsSymbol}"
+                                          FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+                            </AppBarButton.Icon>
+                        </AppBarButton>
+                    </customAppBarDesktop:AppBar.PrimaryCommands>
+                </customAppBarDesktop:AppBar>
+                <userControls:BottomMiniPlayer />
+            </Grid>
+        </controls:SplitShell.FooterContent>
     </controls:SplitShell>
-    <customAppBarDesktop:AppBar Grid.Row="1"
-                                x:Name="CommandBar"
-                                x:FieldModifier="public"
-                                RequestedTheme="{Binding ApplicationTheme, Converter={StaticResource AppThemeElementThemeConverter}}"
-                                Background="{ThemeResource ApplicationBarForegroundThemeBrush}">
-        <customAppBarDesktop:AppBar.Visibility>
-            <Binding Source="{Binding Source={StaticResource Locator}, Path=MainVM}"
-                     Path="CurrentPage"
-                     Converter="{StaticResource PageToVisibilityConverter}"
-                     ConverterParameter="VideoPlayerPage,MusicPlayerPage" />
-        </customAppBarDesktop:AppBar.Visibility>
-        <customAppBarDesktop:AppBar.PrimaryCommands>
-            <AppBarButton Style="{StaticResource EllipseLessAppBarButtonStyle}"
-                          Label="search"
-                          Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToSearchPage}">
-                <AppBarButton.Icon>
-                    <FontIcon Glyph="{StaticResource SearchSymbol}"
-                              FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
-                </AppBarButton.Icon>
-            </AppBarButton>
-            <AppBarButton Grid.Column="1"
-                          Style="{StaticResource EllipseLessAppBarButtonStyle}"
-                          Label="open file"
-                          Command="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.PickVideoCommand}">
-                <AppBarButton.Icon>
-                    <FontIcon Glyph="{StaticResource OpenFileSymbol}"
-                              FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
-                </AppBarButton.Icon> 
-            </AppBarButton>
-            <AppBarButton Grid.Column="2"
-                          Style="{StaticResource EllipseLessAppBarButtonStyle}"
-                          Label="open stream"
-                          Flyout="{StaticResource PhoneOpenStreamFlyout}">
-                <AppBarButton.Icon>
-                    <FontIcon Glyph="{StaticResource StreamSymbol}"
-                              FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
-                </AppBarButton.Icon>
-            </AppBarButton>
-            <AppBarButton Grid.Column="3"
-                          Style="{StaticResource EllipseLessAppBarButtonStyle}"
-                          Label="settings"
-                          Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToSettingsPageCommand}">
-                <AppBarButton.Icon>
-                    <FontIcon Glyph="{StaticResource SettingsSymbol}"
-                              FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
-                </AppBarButton.Icon>
-            </AppBarButton>
-        </customAppBarDesktop:AppBar.PrimaryCommands>
-    </customAppBarDesktop:AppBar>
-    <userControls:BottomMiniPlayer Grid.Row="1" />
 </SwapChainPanel>
