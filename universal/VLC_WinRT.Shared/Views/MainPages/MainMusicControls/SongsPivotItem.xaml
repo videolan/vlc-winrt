@@ -107,8 +107,7 @@
                     </GridView.ItemsPanel>
                     <GridView.ItemTemplate>
                         <DataTemplate>
-                            <Grid Background="{StaticResource MainColor}"
-                                  Margin="0,0,12,12">
+                            <Grid Background="{StaticResource MainColor}">
                                 <TextBlock Text="{Binding Group.Key}"
                                            Foreground="White"
                                            Margin="5,0,0,3"
