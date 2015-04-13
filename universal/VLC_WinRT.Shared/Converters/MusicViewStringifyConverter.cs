@@ -2,6 +2,7 @@
 using Windows.ApplicationModel.Resources;
 using Windows.UI.Xaml.Data;
 using VLC_WinRT.Model.Music;
+using VLC_WinRT.Utils;
 
 namespace VLC_WinRT.Converters
 {
@@ -9,19 +10,18 @@ namespace VLC_WinRT.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            var resourceLoader = new ResourceLoader();
             if (value is MusicView)
             {
                 switch ((MusicView)value)
                 {
                     case MusicView.Albums:
-                        return resourceLoader.GetString("Albums").ToLower();
+                        return Strings.Albums.ToLower();
                     case MusicView.Artists:
-                        return resourceLoader.GetString("Artists").ToLower();
+                        return Strings.Artists.ToLower();
                     case MusicView.Playlists:
-                        return resourceLoader.GetString("Playlists").ToLower();
+                        return Strings.Playlists.ToLower();
                     case MusicView.Songs:
-                        return resourceLoader.GetString("Songs").ToLower();
+                        return Strings.Songs.ToLower();
                 }
             }
             return "";

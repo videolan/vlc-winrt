@@ -13,6 +13,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using Windows.ApplicationModel.Resources;
 using VLC_WinRT.MusicMetaFetcher.Models.LastFm;
+using VLC_WinRT.Utils;
 
 namespace VLC_WinRT.MusicMetaFetcher.Models.MusicEntities
 {
@@ -91,8 +92,7 @@ namespace VLC_WinRT.MusicMetaFetcher.Models.MusicEntities
             this.Playcount = Convert.ToInt64(this.Playcount);
             this.Listeners = Convert.ToInt64(this.Listeners);
             string biography;
-
-            var resourceLoader = new ResourceLoader();
+            
             var bioSummary = artist.Bio.Summary;
             if (bioSummary != null)
             {
@@ -104,11 +104,11 @@ namespace VLC_WinRT.MusicMetaFetcher.Models.MusicEntities
                 biography = biography.Trim();
                 // TODO: Replace string "remove" with something better. It may not work on all artists and in all languages.
                 biography = !string.IsNullOrEmpty(biography) ? biography.Remove(biography.Length - "Read more about  on Last.fm".Length - artist.Name.Length - 6)
-                    : resourceLoader.GetString("NoBiographyFound");
+                    : Strings.NoBiographyFound;
             }
             else
             {
-                biography = resourceLoader.GetString("NoBiographyFound");
+                biography = Strings.NoBiographyFound;
             }
             this.Biography = biography;
         }

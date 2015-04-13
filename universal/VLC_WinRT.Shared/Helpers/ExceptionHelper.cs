@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Text;
 using System.Threading.Tasks;
+using VLC_WinRT.Utils;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Resources;
 using Windows.System;
@@ -36,9 +37,8 @@ namespace VLC_WinRT.Helpers
             LogHelper.usedForRead = true;
             if (ApplicationSettingsHelper.Contains("ExceptionLog"))
             {
-                var resourcesLoader = ResourceLoader.GetForCurrentView("Resources");
-                var dialog = new MessageDialog(resourcesLoader.GetString("CrashReport"), resourcesLoader.GetString("WeNeedYourHelp"));
-                dialog.Commands.Add(new UICommand(resourcesLoader.GetString("Yes"), async command =>
+                var dialog = new MessageDialog(Strings.CrashReport, Strings.WeNeedYourHelp);
+                dialog.Commands.Add(new UICommand(Strings.Yes, async command =>
                 {
 #if WINDOWS_PHONE_APP
                     EasClientDeviceInformation deviceInfo = new EasClientDeviceInformation();
@@ -63,7 +63,7 @@ namespace VLC_WinRT.Helpers
                     await Launcher.LaunchUriAsync(uri);
 #endif
                 }));
-                dialog.Commands.Add(new UICommand(resourcesLoader.GetString("No"), command =>
+                dialog.Commands.Add(new UICommand(Strings.No, command =>
                 {
                     ApplicationSettingsHelper.ReadResetSettingsValue("ExceptionLog");
                 }));

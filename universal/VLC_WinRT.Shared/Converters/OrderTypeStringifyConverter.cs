@@ -2,6 +2,7 @@
 using Windows.ApplicationModel.Resources;
 using Windows.UI.Xaml.Data;
 using VLC_WinRT.Model;
+using VLC_WinRT.Utils;
 
 namespace VLC_WinRT.Converters
 {
@@ -13,16 +14,18 @@ namespace VLC_WinRT.Converters
             if (value is OrderType)
             {
                 if ((OrderType)value == OrderType.ByArtist)
-                    return resourceLoader.GetString("OrderByArtist");
+                    return Strings.OrderByArtist;
                 if ((OrderType)value == OrderType.ByDate)
-                    return resourceLoader.GetString("OrderByDate");
+                    return Strings.OrderByDate;
+                if ((OrderType)value == OrderType.ByAlbum)
+                    return Strings.OrderByAlbum;
             }
             else if (value is OrderListing)
             {
                 if ((OrderListing) value == OrderListing.Ascending)
-                    return resourceLoader.GetString("OrderAscending");
+                    return Strings.OrderAscending;
                 if ((OrderListing) value == OrderListing.Descending)
-                    return resourceLoader.GetString("OrderDescending");
+                    return Strings.OrderDescending;
             }
             return "";
         }

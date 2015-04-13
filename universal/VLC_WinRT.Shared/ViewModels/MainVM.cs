@@ -126,19 +126,15 @@ namespace VLC_WinRT.ViewModels
             _isInternet = NetworkListenerService.IsConnected;
             
             SearchResults = new ObservableCollection<SearchResult>();
-            // TODO: For Windows 8.1 build, use ResourceLoader.GetForCurrentView(); 
-            var resourceLoader = new ResourceLoader();
-            Panels.Add(new Panel(resourceLoader.GetString("Home"), 0, App.Current.Resources["HomeSymbol"].ToString(), true));
-            Panels.Add(new Panel(resourceLoader.GetString("Videos"), 1, App.Current.Resources["VideoSymbol"].ToString()));
-            Panels.Add(new Panel(resourceLoader.GetString("Music"), 2, App.Current.Resources["MusicSymbol"].ToString()));
-            string removableName = "";
-            removableName = resourceLoader.GetString("RemovableStorage");
+            Panels.Add(new Panel(Strings.Home, 0, App.Current.Resources["HomeSymbol"].ToString(), true));
+            Panels.Add(new Panel(Strings.Videos, 1, App.Current.Resources["VideoSymbol"].ToString()));
+            Panels.Add(new Panel(Strings.Music, 2, App.Current.Resources["MusicSymbol"].ToString()));
 #if WINDOWS_PHONE_APP
             var removableSymbol = "SDCardSymbol";
 #else
             var removableSymbol = "USBSymbol";
 #endif
-            Panels.Add(new Panel(removableName, 3, App.Current.Resources[removableSymbol].ToString()));
+            Panels.Add(new Panel(Strings.RemovableStorage, 3, App.Current.Resources[removableSymbol].ToString()));
             Initialize();
 
             CoreWindow.GetForCurrentThread().Activated += ApplicationState_Activated;

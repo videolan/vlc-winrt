@@ -1,4 +1,5 @@
 ﻿using System;
+using VLC_WinRT.Utils;
 using Windows.UI.Xaml.Data;
 
 namespace VLC_WinRT.Converters
@@ -11,10 +12,7 @@ namespace VLC_WinRT.Converters
             {
                 return value;
             }
-
-            // This might be expensive, but it won't be called too often.
-            var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
-            return loader.GetString("UnknownAlbum");
+            return Strings.UnknownAlbum;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

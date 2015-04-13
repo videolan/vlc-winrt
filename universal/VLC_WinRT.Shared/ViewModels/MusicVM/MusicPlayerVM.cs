@@ -94,10 +94,9 @@ namespace VLC_WinRT.ViewModels.MusicVM
         public async Task UpdateWindows8UI()
         {
             // Setting the info for windows 8 controls
-            var resourceLoader = new ResourceLoader();
-            string artistName = CurrentTrack.ArtistName ?? resourceLoader.GetString("UnknownArtist");
+            string artistName = CurrentTrack.ArtistName ?? Strings.UnknownArtist;
             string albumName = CurrentTrack.AlbumName;
-            string trackName = CurrentTrack.Name ?? resourceLoader.GetString("UnknownTrack");
+            string trackName = CurrentTrack.Name ?? Strings.UnknownTrack;
             var picture = Locator.MusicPlayerVM.CurrentAlbum != null ? Locator.MusicPlayerVM.CurrentAlbum.AlbumCoverUri : null;
 
             await Locator.MediaPlaybackViewModel.SetMediaTransportControlsInfo(artistName, albumName, trackName, picture);

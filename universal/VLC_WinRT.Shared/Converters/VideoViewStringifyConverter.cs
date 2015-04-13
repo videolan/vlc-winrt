@@ -2,6 +2,7 @@
 using Windows.ApplicationModel.Resources;
 using Windows.UI.Xaml.Data;
 using VLC_WinRT.Model.Video;
+using VLC_WinRT.Utils;
 
 namespace VLC_WinRT.Converters
 {
@@ -15,11 +16,11 @@ namespace VLC_WinRT.Converters
                 switch ((VideoView)value)
                 {
                     case VideoView.Videos:
-                        return resourceLoader.GetString("Videos").ToLower();
+                        return Strings.Videos.ToLower();
                     case VideoView.Shows:
-                        return resourceLoader.GetString("Shows").ToLower();
+                        return Strings.Shows.ToLower();
                     case VideoView.CameraRoll:
-                        return resourceLoader.GetString("CameraRoll/Text").ToLower();
+                        return Strings.CameraRoll.ToLower();
                 }
             }
             return "";

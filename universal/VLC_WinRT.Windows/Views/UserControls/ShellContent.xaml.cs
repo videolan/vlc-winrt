@@ -6,6 +6,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using VLC_WinRT.Model;
 using VLC_WinRT.ViewModels;
+using VLC_WinRT.Utils;
 
 namespace VLC_WinRT.Views.UserControls
 {
@@ -27,23 +28,22 @@ namespace VLC_WinRT.Views.UserControls
 #if WINDOWS_APP
         private void SettingsCommandRequested(SettingsPane sender, SettingsPaneCommandsRequestedEventArgs args)
         {
-            ResourceLoader resourceLoader = ResourceLoader.GetForCurrentView();
-            var privacyCommand = new SettingsCommand("privacy", resourceLoader.GetString("PrivacyStatement"),
+            var privacyCommand = new SettingsCommand("privacy", Strings.PrivacyStatement,
                 async h => await Launcher.LaunchUriAsync(new Uri("http://videolan.org/vlc/privacy.html")));
 
-            var specialThanks = new SettingsCommand("specialThanks", resourceLoader.GetString("SpecialThanks"),
+            var specialThanks = new SettingsCommand("specialThanks", Strings.SpecialThanks,
                 command =>
                 {
                     Locator.NavigationService.Go(VLCPage.SpecialThanksPage);
                 });
 
-            var settings = new SettingsCommand("settings", resourceLoader.GetString("Settings"),
+            var settings = new SettingsCommand("settings", Strings.Settings,
                 command =>
                 {
                     var settingsFlyout = new SettingsFlyout();
                     settingsFlyout.Show();
                 });
-            var license = new SettingsCommand("license", "License", command =>
+            var license = new SettingsCommand("license", Strings.License, command =>
             {
                 var licenseFlyout = new LicenseFlyout();
                 licenseFlyout.Show();

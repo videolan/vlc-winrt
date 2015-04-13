@@ -10,6 +10,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using VLC_WinRT.Utils;
 using Windows.ApplicationModel.Resources;
 
 namespace VLC_WinRT.Helpers
@@ -85,7 +86,6 @@ namespace VLC_WinRT.Helpers
             int stringLength = title.Length;
 
             if (stringLength < 6) return null;
-            var resourceLoader = new ResourceLoader();
             try
             {
                 // Search for s01e10.
@@ -107,7 +107,7 @@ namespace VLC_WinRT.Helpers
                     else
                         episode = title.ElementAt(i + 4).ToString() + title.ElementAt(i + 5).ToString();
 
-                    string tvShowName = i > 0 ? title.Substring(0, i) : resourceLoader.GetString("UntitledShow");
+                    string tvShowName = i > 0 ? title.Substring(0, i) : Strings.UnknownShow;
                     if (tvShowName != null)
                     {
                         tvShowName = CapitalizedString(Decrapify(tvShowName));
@@ -147,7 +147,7 @@ namespace VLC_WinRT.Helpers
                         string season = title.ElementAt(i).ToString();
                         string episode = title.ElementAt(i + 2).ToString() + title.ElementAt(i + 3).ToString();
 
-                        string tvShowName = i > 0 ? title.Substring(0, i) : resourceLoader.GetString("UntitledShow");
+                        string tvShowName = i > 0 ? title.Substring(0, i) : Strings.UnknownShow;
                         ;
                         if (tvShowName != null)
                         {

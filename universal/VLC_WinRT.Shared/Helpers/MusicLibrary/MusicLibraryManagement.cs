@@ -261,7 +261,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
                         {
                             var artistFromCollection = Locator.MusicLibraryVM.Artists.FirstOrDefault(x => x.Id == album.ArtistId);
                             if (artistFromCollection != null) artistFromCollection.Albums.Add(album);
-                            Locator.MainVM.InformationText = string.Format(_resourcesLoader.GetString("AlbumsFound"), Locator.MusicLibraryVM.Albums.Count);
+                            Locator.MainVM.InformationText = string.Format(Strings.AlbumsFound, Locator.MusicLibraryVM.Albums.Count);
                             Locator.MusicLibraryVM.Albums.Add(album);
                         });
                     }
@@ -475,7 +475,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
             trackCollection = await Locator.MusicLibraryVM.TrackCollectionRepository.LoadFromName(trackCollectionName);
             if (trackCollection != null)
             {
-                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => ToastHelper.Basic(_resourcesLoader.GetString("PlaylistAlreadyExists")));
+                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => ToastHelper.Basic(Strings.PlaylistAlreadyExists));
             }
             else
             {
@@ -498,7 +498,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
             if (Locator.MusicLibraryVM.CurrentTrackCollection == null) return;
             if (Locator.MusicLibraryVM.CurrentTrackCollection.Playlist.Contains(trackItem))
             {
-                ToastHelper.Basic(_resourcesLoader.GetString("TrackAlreadyExistsInPlaylist"));
+                ToastHelper.Basic(Strings.TrackAlreadyExistsInPlaylist);
                 return;
             }
             Locator.MusicLibraryVM.CurrentTrackCollection.Playlist.Add(trackItem);
@@ -508,7 +508,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
                 TrackCollectionId = Locator.MusicLibraryVM.CurrentTrackCollection.Id,
             });
             if (displayToastNotif)
-                ToastHelper.Basic(string.Format(_resourcesLoader.GetString("TrackAddedToYourPlaylist"), trackItem.Name));
+                ToastHelper.Basic(string.Format(Strings.TrackAddedToYourPlaylist, trackItem.Name));
         }
 
         public static async Task AddToPlaylist(AlbumItem albumItem)
@@ -524,7 +524,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
                     TrackCollectionId = playlistId,
                 });
             }
-            ToastHelper.Basic(string.Format(_resourcesLoader.GetString("TrackAddedToYourPlaylist"), albumItem.Name));
+            ToastHelper.Basic(string.Format(Strings.TrackAddedToYourPlaylist, albumItem.Name));
         }
 
         public static async Task UpdateTrackCollection(TrackCollection trackCollection)
@@ -565,7 +565,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
 #if WINDOWS_PHONE_APP
                 ((ContentDialogButtonClickEventArgs) args).Cancel = true;
 #endif
-                ToastHelper.Basic(_resourcesLoader.GetString("HaveToSelectPlaylist"), false, "selectplaylist");
+                ToastHelper.Basic(Strings.HaveToSelectPlaylist, false, "selectplaylist");
                 return;
             }
 #if WINDOWS_APP
@@ -595,8 +595,8 @@ namespace VLC_WinRT.Helpers.MusicLibrary
             }
             trackItem = new TrackItem
             {
-                ArtistName = (string.IsNullOrEmpty(trackInfos?.Artist)) ? "Unknown artist" : trackInfos?.Artist,
-                AlbumName = trackInfos?.Album ?? "Uknown album",
+                ArtistName = (string.IsNullOrEmpty(trackInfos?.Artist)) ? Strings.UnknownArtist: trackInfos?.Artist,
+                AlbumName = trackInfos?.Album ?? Strings.UnknownAlbum,
                 Name = (string.IsNullOrEmpty(trackInfos?.Title)) ? track.DisplayName : trackInfos?.Title,
                 Path = track.Path,
                 Duration = trackInfos?.Duration ?? TimeSpan.Zero,
