@@ -66,6 +66,7 @@ namespace VLC_WinRT.Services.RunTime
 
         void Instance_MediaOpened(object sender, RoutedEventArgs e)
         {
+            OnBuffering?.Invoke(100);
             OnLengthChanged?.Invoke((long)GetLength());
         }
 
