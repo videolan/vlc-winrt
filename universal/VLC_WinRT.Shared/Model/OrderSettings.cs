@@ -4,6 +4,7 @@
     {
         ByArtist = 0,
         ByDate = 1,
+        ByAlbum = 2,
     }
 
     public enum OrderListing

@@ -238,7 +238,7 @@ namespace VLC_WinRT.ViewModels.Settings
             set
             {
                 ApplicationSettingsHelper.SaveSettingsValue("AlbumsOrderType", (int)value);
-                if (value != _albumsOrderType)
+                if ((int)value == 0 || value != _albumsOrderType)
                     MusicLibraryManagement.OrderAlbums();
                 SetProperty(ref _albumsOrderType, value);
             }
@@ -449,6 +449,7 @@ namespace VLC_WinRT.ViewModels.Settings
             AlbumsOrderTypeCollection = new ObservableCollection<OrderType>();
             AlbumsOrderTypeCollection.Add(OrderType.ByArtist);
             AlbumsOrderTypeCollection.Add(OrderType.ByDate);
+            AlbumsOrderTypeCollection.Add(OrderType.ByAlbum);
 
             AlbumsListingTypeCollection = new ObservableCollection<OrderListing>();
             AlbumsListingTypeCollection.Add(OrderListing.Ascending);

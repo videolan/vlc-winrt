@@ -23,6 +23,7 @@ using Windows.UI.Xaml;
 using VLC_WinRT.Utils;
 using VLC_WinRT.Views.MusicPages.PlaylistControls;
 using WinRTXamlToolkit.Controls.Extensions;
+using System.Collections.Generic;
 
 namespace VLC_WinRT.Helpers.MusicLibrary
 {
@@ -80,13 +81,14 @@ namespace VLC_WinRT.Helpers.MusicLibrary
             {
                 LogHelper.Log("Loading artists from MusicDB ...");
                 var artists = await Locator.MusicLibraryVM._artistDataRepository.Load();
-                LogHelper.Log("Found " + artists.Count + " artists from MusicDB");
                 var orderedArtists = artists.OrderBy(x => x.Name);
-                var tracks = await Locator.MusicLibraryVM._trackDataRepository.LoadTracks().ToObservableAsync();
+                LogHelper.Log("Found " + artists.Count + " artists from MusicDB");
+
                 var albums = await Locator.MusicLibraryVM._albumDataRepository.LoadAlbums(x => x.ArtistId != 0).ToObservableAsync();
                 var orderedAlbums = albums.OrderBy(x => x.Artist).ThenBy(x => x.Name);
+
+                var tracks = await Locator.MusicLibraryVM._trackDataRepository.LoadTracks().ToObservableAsync();
                 var groupedTracks = tracks.GroupBy(x => string.IsNullOrEmpty(x.Name) ? '#' : (char.IsLetter(x.Name.ToLower().ElementAt(0)) ? x.Name.ToLower().ElementAt(0) : '#'));
-                var groupedAlbums = albums.OrderBy(x => x.Name).GroupBy(x => string.IsNullOrEmpty(x.Name) ? '#' : (char.IsLetter(x.Name.ToLower().ElementAt(0)) ? x.Name.ToLower().ElementAt(0) : '#'));
 
                 await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                 {
@@ -94,7 +96,6 @@ namespace VLC_WinRT.Helpers.MusicLibrary
                     Locator.MusicLibraryVM.Tracks = tracks;
                     Locator.MusicLibraryVM.Albums = new ObservableCollection<AlbumItem>(orderedAlbums);
                     Locator.MusicLibraryVM.AlphaGroupedTracks = groupedTracks;
-                    Locator.MusicLibraryVM.AlphaGroupedAlbums = groupedAlbums;
                 });
 
                 var trackColl = await Locator.MusicLibraryVM.TrackCollectionRepository.LoadTrackCollections().ToObservableAsync();
@@ -124,7 +125,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
 #if WINDOWS_PHONE_APP
             return GetAllMusicFolders();
 #else
-            return PerformMusicLibraryIndexing();  
+            return PerformMusicLibraryIndexing();
 #endif
         }
 
@@ -435,29 +436,40 @@ namespace VLC_WinRT.Helpers.MusicLibrary
             return 6;
 #endif
         }
-
+        
         public static void OrderAlbums()
         {
             if (Locator.SettingsVM.AlbumsOrderType == OrderType.ByArtist)
             {
                 if (Locator.SettingsVM.AlbumsOrderListing == OrderListing.Ascending)
                 {
-                    Locator.MusicLibraryVM.Albums = Locator.MusicLibraryVM.Albums.OrderBy(x => x.Artist).ToObservable();
+                    Locator.MusicLibraryVM.AlphaGroupedAlbums = Locator.MusicLibraryVM.Albums.OrderBy(x => x.Artist).GroupBy(x => string.IsNullOrEmpty(x.Artist) ? Strings.UnknownString : x.Artist);
                 }
                 else if (Locator.SettingsVM.AlbumsOrderListing == OrderListing.Descending)
                 {
-                    Locator.MusicLibraryVM.Albums = Locator.MusicLibraryVM.Albums.OrderByDescending(x => x.Artist).ToObservable();
+                    Locator.MusicLibraryVM.AlphaGroupedAlbums = Locator.MusicLibraryVM.Albums.OrderByDescending(x => x.Artist).GroupBy(x => string.IsNullOrEmpty(x.Artist) ? Strings.UnknownString : x.Artist);
                 }
             }
             else if (Locator.SettingsVM.AlbumsOrderType == OrderType.ByDate)
             {
                 if (Locator.SettingsVM.AlbumsOrderListing == OrderListing.Ascending)
                 {
-                    Locator.MusicLibraryVM.Albums = Locator.MusicLibraryVM.Albums.OrderBy(x => x.Year).ToObservable();
+                    Locator.MusicLibraryVM.AlphaGroupedAlbums = Locator.MusicLibraryVM.Albums.OrderBy(x => x.Year).GroupBy(x => (x.Year == 0) ? Strings.UnknownString : x.Year.ToString());
                 }
                 else if (Locator.SettingsVM.AlbumsOrderListing == OrderListing.Descending)
                 {
-                    Locator.MusicLibraryVM.Albums = Locator.MusicLibraryVM.Albums.OrderByDescending(x => x.Year).ToObservable();
+                    Locator.MusicLibraryVM.AlphaGroupedAlbums = Locator.MusicLibraryVM.Albums.OrderByDescending(x => x.Year).GroupBy(x => (x.Year == 0) ? Strings.UnknownString : x.Year.ToString());
+                }
+            }
+            else if (Locator.SettingsVM.AlbumsOrderType == OrderType.ByAlbum)
+            {
+                if (Locator.SettingsVM.AlbumsOrderListing == OrderListing.Ascending)
+                {
+                    Locator.MusicLibraryVM.AlphaGroupedAlbums = Locator.MusicLibraryVM.Albums.OrderBy(x => x.Name).GroupBy(x => string.IsNullOrEmpty(x.Name) ? Strings.UnknownString : (char.IsLetter(x.Name.ToLower().ElementAt(0)) ? x.Name.ToLower().ElementAt(0).ToString() : Strings.UnknownString));
+                }
+                else if (Locator.SettingsVM.AlbumsOrderListing == OrderListing.Descending)
+                {
+                    Locator.MusicLibraryVM.AlphaGroupedAlbums = Locator.MusicLibraryVM.Albums.OrderByDescending(x => x.Name).GroupBy(x => string.IsNullOrEmpty(x.Name) ? Strings.UnknownString : (char.IsLetter(x.Name.ToLower().ElementAt(0)) ? x.Name.ToLower().ElementAt(0).ToString() : Strings.UnknownString));
                 }
             }
         }
