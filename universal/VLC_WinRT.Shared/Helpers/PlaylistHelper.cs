@@ -26,9 +26,11 @@ namespace VLC_WinRT.Helpers
             await Locator.MediaPlaybackViewModel.TrackCollection.ResetCollection();
             await Locator.MediaPlaybackViewModel.TrackCollection.Add(videoVm, true);
             await Locator.MediaPlaybackViewModel.TrackCollection.SetCurrentTrackPosition(0);
+            await Task.Run(() => Locator.MediaPlaybackViewModel.SetMedia(Locator.VideoVm.CurrentVideo, false));
         }
 
         #endregion
+
         #region Music
         /// <summary>
         /// Play a track
