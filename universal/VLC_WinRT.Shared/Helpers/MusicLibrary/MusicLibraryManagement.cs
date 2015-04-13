@@ -31,12 +31,6 @@ namespace VLC_WinRT.Helpers.MusicLibrary
         static readonly SemaphoreSlim AlbumCoverFetcherSemaphoreSlim = new SemaphoreSlim(2);
         static readonly SemaphoreSlim ArtistPicFetcherSemaphoreSlim = new SemaphoreSlim(2);
         static readonly SemaphoreSlim TrackItemDiscovererSemaphoreSlim = new SemaphoreSlim(1);
-        private static ResourceLoader _resourcesLoader;
-        static MusicLibraryManagement()
-        {
-            App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => _resourcesLoader = ResourceLoader.GetForCurrentView("Resources"));
-        }
-
 
         public static async Task FetchAlbumCoverOrWaitAsync(AlbumItem albumItem)
         {
