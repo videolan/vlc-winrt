@@ -138,11 +138,11 @@ namespace VLC_WinRT.Helpers.MusicLibrary
         /// <returns></returns>
         public static async Task PerformMusicLibraryIndexing()
         {
-            var queryOptions = new QueryOptions {FolderDepth = FolderDepth.Deep};
+            var queryOptions = new QueryOptions { FolderDepth = FolderDepth.Deep };
             foreach (var type in VLCFileExtensions.Supported)
                 queryOptions.FileTypeFilter.Add(type);
             var fileQueryResult = KnownFolders.MusicLibrary.CreateFileQueryWithOptions(queryOptions);
-            var files = await fileQueryResult.GetFilesAsync();  
+            var files = await fileQueryResult.GetFilesAsync();
             foreach (var item in files)
             {
                 await DiscoverTrackItemOrWaitAsync(item);

@@ -289,8 +289,7 @@ namespace VLC_WinRT.Services.RunTime
         {
             StatusChanged(this, MediaState.Playing);
         }
-
-
+        
         public void SetSizeVideoPlayer(uint x, uint y)
         {
             Instance.UpdateSize(x, y);

@@ -220,6 +220,7 @@ namespace VLC_WinRT.ViewModels.Settings
                 }
             }
         }
+
         public OrderType AlbumsOrderType
         {
             get
