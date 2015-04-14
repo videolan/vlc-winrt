@@ -8,11 +8,6 @@
              d:DesignHeight="300"
              d:DesignWidth="400">
     <Grid VerticalAlignment="Center">
-        <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition Height="5" />
-            <RowDefinition Height="1" />
-        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="6"
@@ -103,23 +98,16 @@
         </VisualStateManager.VisualStateGroups>
         <FontIcon x:Name="Icon"
                   FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets"
-                  Glyph="{Binding PathData}"
+                  Glyph="{Binding Panel.PathData}"
                   FontSize="26"
                   VerticalAlignment="Bottom"
                   Foreground="{ThemeResource BasicForeground}" />
         <TextBlock x:Name="Title"
-                   Grid.Row="0"
                    Grid.Column="2"
-                   Text="{Binding Title}"
+                   Text="{Binding Panel.Title}"
                    Foreground="{ThemeResource BasicForeground}"
                    Style="{StaticResource SubheaderTextBlockStyle}"
                    VerticalAlignment="Bottom"
                    FontSize="22" />
-        <Grid Grid.Column="0"
-              Grid.ColumnSpan="3"
-              Grid.Row="2"
-              Background="White"
-              Margin="0,0,-1,0"
-              Visibility="{Binding IsCurrent, Converter={StaticResource BooleanToVisibilityConverter}}" />
     </Grid>
 </UserControl>
