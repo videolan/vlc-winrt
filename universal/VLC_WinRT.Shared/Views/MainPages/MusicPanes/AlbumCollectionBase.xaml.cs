@@ -23,8 +23,7 @@ namespace VLC_WinRT.Views.MainPages.MusicPanes
 
         private void SemanticZoom_OnViewChangeCompleted(object sender, SemanticZoomViewChangedEventArgs e)
         {
-            if (AlbumsZoomedOutView.ItemsSource == null)
-                AlbumsZoomedOutView.ItemsSource = GroupAlbums.View.CollectionGroups;
+            AlbumsZoomedOutView.ItemsSource = GroupAlbums.View.CollectionGroups;
         }
     }
 }

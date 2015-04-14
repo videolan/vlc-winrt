@@ -37,20 +37,16 @@
                         <GroupStyle>
                             <GroupStyle.HeaderTemplate>
                                 <DataTemplate>
-                                    <Border BorderThickness="2"
-                                            BorderBrush="{StaticResource MainColor}"
-                                            Background="Transparent"
-                                            Height="63"
-                                            Width="63"
-                                            Margin="0,12,0,0">
-                                        <Grid>
-                                            <TextBlock Text="{Binding Key}"
-                                                       Foreground="{StaticResource MainColor}"
-                                                       Margin="3,0,0,3"
-                                                       VerticalAlignment="Bottom"
-                                                       FontSize="23" />
-                                        </Grid>
-                                    </Border>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="12" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Grid.Row="1"
+                                                   Text="{Binding Key}"
+                                                   Foreground="{StaticResource MainColor}"
+                                                   FontSize="23" />
+                                    </Grid>
                                 </DataTemplate>
                             </GroupStyle.HeaderTemplate>
                         </GroupStyle>
@@ -81,25 +77,28 @@
                                     Value="Stretch" />
                             <Setter Property="HorizontalContentAlignment"
                                     Value="Stretch" />
+                            <Setter Property="Margin"
+                                    Value="6" />
                         </Style>
                     </GridView.ItemContainerStyle>
                     <GridView.ItemsPanel>
                         <ItemsPanelTemplate>
                             <ItemsWrapGrid Orientation="Horizontal"
-                                           Margin="0,0,-12,0"
                                            HorizontalAlignment="Center"
-                                           VerticalAlignment="Center" />
+                                           VerticalAlignment="Center"
+                                           ItemWidth="300"/>
                         </ItemsPanelTemplate>
                     </GridView.ItemsPanel>
                     <GridView.ItemTemplate>
                         <DataTemplate>
-                            <Grid Background="{StaticResource MainColor}">
+                            <Grid Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}">
                                 <TextBlock Text="{Binding Group.Key}"
-                                           Foreground="White"
                                            Margin="5,0,0,3"
-                                           VerticalAlignment="Bottom"
-                                           HorizontalAlignment="Left"
-                                           FontSize="36" />
+                                           VerticalAlignment="Center"
+                                           FontSize="26" 
+                                           TextTrimming="CharacterEllipsis"
+                                           TextWrapping="NoWrap"
+                                           Foreground="{ThemeResource MainColor}"/>
                             </Grid>
                         </DataTemplate>
                     </GridView.ItemTemplate>
