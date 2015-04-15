@@ -41,7 +41,10 @@ namespace VLC_WinRT.ViewModels
         private bool _preventAppExit = false;
         private string _informationText;
         private bool _isBackground = false;
+
+        // Navigation props
         private VLCPage currentPage;
+        private bool canGoBack;
         #endregion
         #region public fields
         public ObservableCollection<SearchResult> SearchResults
@@ -56,6 +59,15 @@ namespace VLC_WinRT.ViewModels
         {
             get { return currentPage; }
             set { SetProperty(ref currentPage, value); }
+        }
+
+        public bool CanGoBack
+        {
+            get
+            {
+                return canGoBack;
+            }
+            set { SetProperty(ref canGoBack, value); }
         }
 
         public KeyboardListenerService KeyboardListenerService { get { return keyboardListenerService; } }
@@ -141,6 +153,7 @@ namespace VLC_WinRT.ViewModels
             Locator.NavigationService.ViewNavigated += (sender, page) =>
             {
                 CurrentPage = page;
+                CanGoBack = Locator.NavigationService.CanGoBack();
             };
         }
 

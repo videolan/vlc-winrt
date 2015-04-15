@@ -23,16 +23,29 @@
         </Grid.ColumnDefinitions>
         <StackPanel Orientation="Horizontal"
                     Grid.Column="1"
-                    VerticalAlignment="Center">
+                    VerticalAlignment="Center"
+                    Visibility="{Binding CanGoBack, Converter={StaticResource NegatedBooleanToVisibilityConverter}}">
             <Path Data="{StaticResource VLCFlatPath}"
                   Fill="White"
                   Width="26"
                   Stretch="Uniform" />
             <TextBlock Text="VLC"
                        Foreground="{ThemeResource BasicForeground}"
-                       Style="{StaticResource SubheaderTextBlockStyle}" 
-                       Margin="0,-5,0,0"/>
+                       Style="{StaticResource SubheaderTextBlockStyle}"
+                       Margin="0,-5,0,0" />
         </StackPanel>
+        <Grid Grid.Column="1"
+              Visibility="{Binding CanGoBack, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <AppBarButton Label="Back"
+                          Style="{StaticResource AppBarButtonStyleHorizontal}"
+                          VerticalAlignment="Center"
+                          Click="GoBack_Click">
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="{StaticResource PreviousPageSymbol}"
+                              FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+                </AppBarButton.Icon>
+            </AppBarButton>
+        </Grid>
         <ListView Grid.Column="2"
                   x:Name="PanelsListView"
                   ItemsSource="{Binding Panels}"

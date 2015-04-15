@@ -1,4 +1,5 @@
-﻿using Windows.UI.Xaml.Controls;
+﻿using VLC_WinRT.ViewModels;
+using Windows.UI.Xaml.Controls;
 
 namespace VLC_WinRT.Views.UserControls
 {
@@ -7,6 +8,11 @@ namespace VLC_WinRT.Views.UserControls
         public TopBar()
         {
             this.InitializeComponent();
+        }
+
+        private void GoBack_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            Locator.NavigationService.GoBack_Specific();
         }
     }
 }

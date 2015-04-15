@@ -32,10 +32,17 @@ namespace VLC_WinRT.Services.RunTime
         private void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
         {
             e.Handled = true;
+            if(CurrentPage == VLCPage.MainPageHome)
+                e.Handled = false;
+            GoBack_Specific();
+        }
+#endif
+
+        public void GoBack_Specific()
+        {
             switch (CurrentPage)
             {
                 case VLCPage.MainPageHome:
-                    e.Handled = false;
                     break;
                 case VLCPage.MainPageVideo:
                     break;
@@ -83,12 +90,20 @@ namespace VLC_WinRT.Services.RunTime
                     throw new ArgumentOutOfRangeException();
             }
         }
-#endif
+
+        public bool CanGoBack()
+        {
+            if (isFlyout(CurrentPage))
+                return true;
+            if (IsCurrentPageAMainPage())
+                return false;
+            return App.ApplicationFrame.CanGoBack;
+        }
 
         // Returns false if it can't go back
         public bool GoBack_Default()
         {
-            bool canGoBack = App.ApplicationFrame.CanGoBack;
+            bool canGoBack = CanGoBack();
             if (canGoBack)
             {
                 App.ApplicationFrame.GoBack();
