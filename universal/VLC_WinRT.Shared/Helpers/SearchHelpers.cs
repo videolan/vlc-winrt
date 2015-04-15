@@ -83,7 +83,7 @@ namespace VLC_WinRT.Helpers
 
             if (Locator.SettingsVM.SearchAlbums)
             {
-                var albums = SearchAlbums(Locator.MainVM.SearchTag);
+                var albums = SearchAlbumsGeneric(Locator.MainVM.SearchTag);
                 foreach (var album in albums)
                 {
                     results.Add(album);
@@ -118,7 +118,7 @@ namespace VLC_WinRT.Helpers
             return results;
         }
 
-        public static ObservableCollection<SearchResult> SearchAlbums(string tag)
+        public static ObservableCollection<SearchResult> SearchAlbumsGeneric(string tag)
         {
             var results = new ObservableCollection<SearchResult>();
             IEnumerable<AlbumItem> albumItems = SearchAlbumItems(tag);
@@ -130,6 +130,21 @@ namespace VLC_WinRT.Helpers
                     albumItem.Id));
             }
             return results;
+        }
+
+        public static void SearchAlbums(string tag, ObservableCollection<AlbumItem> results)
+        {
+            var albums = SearchAlbumItems(tag);
+            foreach (var album in albums)
+            {
+                if (!results.Contains(album)) 
+                    results.Add(album);
+            }
+            foreach (var result in results.ToList())
+            {
+                if (!albums.Contains(result))
+                    results.Remove(result);
+            }
         }
 
         public static ObservableCollection<SearchResult> SearchVideosGeneric(string tag, ObservableCollection<SearchResult> results)
@@ -185,7 +200,7 @@ namespace VLC_WinRT.Helpers
 
         public static void SearchMusic(string tag, ObservableCollection<SearchResult> results)
         {
-            var albums = SearchAlbums(tag);
+            var albums = SearchAlbumsGeneric(tag);
             foreach (var album in albums.Where(album => !results.Contains(album)))
             {
                 results.Add(album);
@@ -204,8 +219,7 @@ namespace VLC_WinRT.Helpers
 
         public static IEnumerable<AlbumItem> SearchAlbumItems(string tag)
         {
-            return Locator.MusicLibraryVM.Artists.SelectMany(node => node.Albums)
-                    .Where(x => x.Name.Contains(tag, StringComparison.CurrentCultureIgnoreCase));
+            return Locator.MusicLibraryVM.Artists.SelectMany(node => node.Albums).Where(x => x.Name.Contains(tag, StringComparison.CurrentCultureIgnoreCase));
         }
 
         public static IEnumerable<TrackItem> SearchTrackItems(string tag)
