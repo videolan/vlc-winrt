@@ -11,7 +11,7 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="22" />
             <RowDefinition Height="30" />
         </Grid.RowDefinitions>
         <TextBlock Text="{Binding Time, Converter={StaticResource MillisecondsStringConverter}}"

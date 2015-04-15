@@ -40,7 +40,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="12" />
-                <RowDefinition Height="Auto" />
+                <RowDefinition Height="52" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto"
                                x:Name="SecondPlaybackButtonNarrowRowDefinition" />
