@@ -3640,6 +3640,7 @@
                 Value="{ThemeResource ApplicationBackgroundSemiTranslucentThemeBrush}" />
     </Style>
 
+    <Thickness x:Key="TextControlThemePadding">10,3,10,5</Thickness>
     <Style x:Key="FocusTextBoxStyle"
            TargetType="TextBox">
         <Setter Property="MinWidth"
@@ -3825,7 +3826,7 @@
                         </VisualStateManager.VisualStateGroups>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="40" />
+                            <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
@@ -3868,7 +3869,7 @@
                         <ContentControl x:Name="PlaceholderTextContentPresenter"
                                         Grid.Row="1"
                                         Margin="{TemplateBinding BorderThickness}"
-                                        Foreground="Red"
+                                        Foreground="{ThemeResource BasicForeground}"
                                         Padding="{TemplateBinding Padding}"
                                         IsTabStop="False"
                                         Grid.ColumnSpan="2"
