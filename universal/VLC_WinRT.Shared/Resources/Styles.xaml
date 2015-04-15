@@ -3666,7 +3666,7 @@
         <Setter Property="FontFamily"
                 Value="{ThemeResource ContentControlThemeFontFamily}" />
         <Setter Property="FontSize"
-                Value="{ThemeResource ControlContentThemeFontSize}" />
+                Value="15" />
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility"
                 Value="Hidden" />
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility"
