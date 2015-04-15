@@ -39,7 +39,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
         public TaskCompletionSource<bool> MusicCollectionLoaded = new TaskCompletionSource<bool>();
         #endregion
         #region private fields
-        private ObservableCollection<SearchResult> _searchResults = new ObservableCollection<SearchResult>();
+        private ObservableCollection<AlbumItem> _searchResults = new ObservableCollection<AlbumItem>();
         private ObservableCollection<ArtistItem> _artistses = new ObservableCollection<ArtistItem>();
         private ObservableCollection<TrackItem> _tracks = new ObservableCollection<TrackItem>();
         private ObservableCollection<AlbumItem> _favoriteAlbums = new ObservableCollection<AlbumItem>();
@@ -68,7 +68,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
         #endregion
 
         #region public fields
-        public ObservableCollection<SearchResult> SearchResults
+        public ObservableCollection<AlbumItem> SearchResults
         {
             get { return _searchResults; }
             set { SetProperty(ref _searchResults, value); }
@@ -178,7 +178,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
                 if (string.IsNullOrEmpty(_searchTag) && !string.IsNullOrEmpty(value))
                     Locator.MainVM.ChangeMainPageMusicViewCommand.Execute(4);
                 if (!string.IsNullOrEmpty(value))
-                    SearchHelpers.SearchMusic(value, SearchResults);
+                    SearchHelpers.SearchAlbums(value, SearchResults);
                 SetProperty(ref _searchTag, value);
             }
         }
