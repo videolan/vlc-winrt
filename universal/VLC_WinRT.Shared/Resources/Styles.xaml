@@ -2486,7 +2486,7 @@
         <Setter Property="FontSize"
                 Value="18" />
         <Setter Property="FontWeight"
-                Value="SemiBold" />
+                Value="Medium" />
         <Setter Property="TextTrimming"
                 Value="CharacterEllipsis" />
     </Style>
