@@ -11,20 +11,37 @@
 
     <Grid Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}">
         <Grid.RowDefinitions>
+            <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <TextBlock Text="{Binding Name, Converter={StaticResource ArtistStringConverter}}"
-                   Style="{StaticResource SubheaderTextBlockStyle}"
-                   Foreground="{StaticResource MainColor}"
-                   Margin="3,0,0,0" />
-        <TextBlock Grid.Row="1"
-                   Text="UPCOMING SHOWS"
-                   Style="{StaticResource TitleTextBlockStyle}"
-                   Margin="3,0,0,0" />
+        <Grid Grid.Row="1"
+              Margin="{StaticResource FrameMargin}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="90" />
+                <ColumnDefinition Width="12" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Ellipse Height="90"
+                     Width="90">
+                <Ellipse.Fill>
+                    <ImageBrush ImageSource="{Binding Picture}"
+                                Stretch="UniformToFill" />
+                </Ellipse.Fill>
+            </Ellipse>
+            <TextBlock Grid.Column="2"
+                       Style="{StaticResource SubheaderTextBlockStyle}"
+                       VerticalAlignment="Center">
+                <Run Text="{Binding Name, Converter={StaticResource ArtistStringConverter}}"
+                     Foreground="{StaticResource MainColor}" />
+                <LineBreak />
+                <Run Text="UPCOMING SHOWS"
+                     FontSize="19" />
+            </TextBlock>
+        </Grid>
         <Grid Grid.Row="2"
-              Margin="0,12,0,0">
+              Margin="{StaticResource FrameMargin}">
             <placeholder:NoMusicShowsPlaceholder Visibility="{Binding UpcomingShows.Count, Converter={StaticResource CountToVisibilityConverter}}"
                                                  Margin="0,50,0,0" />
             <ListView ItemsSource="{Binding UpcomingShows}"

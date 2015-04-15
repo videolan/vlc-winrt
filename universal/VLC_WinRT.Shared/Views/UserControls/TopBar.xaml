@@ -17,7 +17,7 @@
           Background="{Binding IsBackground, Converter={StaticResource BooleanToMainColorConverter}}"
           RequestedTheme="Dark">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="12" />
+            <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>

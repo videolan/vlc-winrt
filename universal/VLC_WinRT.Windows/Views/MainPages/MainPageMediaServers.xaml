@@ -13,7 +13,7 @@
       DataContext="{Binding Source={StaticResource Locator}, Path=DlnaVM}">
 
     <Grid x:Name="RootGrid"
-          Margin="24,0,0,0">
+          Margin="{StaticResource FrameMargin}">
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="Standard">
                 <VisualState x:Name="Vertical">

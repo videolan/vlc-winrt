@@ -9,7 +9,7 @@
       mc:Ignorable="d"
       DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}">
 
-    <ScrollViewer Margin="12,0">
+    <ScrollViewer Margin="{StaticResource FrameMargin}">
         <StackPanel>
             <Button x:Uid="TopAlbums"
                     Content="top albums"

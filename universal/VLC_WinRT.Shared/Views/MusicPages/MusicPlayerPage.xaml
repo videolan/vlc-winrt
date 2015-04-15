@@ -86,7 +86,7 @@
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MusicNowPlaying"
                                                        Storyboard.TargetProperty="Margin">
                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="24,0" />
+                                                    Value="{StaticResource FrameMargin}" />
                         </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlaylistColumnDefinition"
                                                        Storyboard.TargetProperty="MaxWidth">

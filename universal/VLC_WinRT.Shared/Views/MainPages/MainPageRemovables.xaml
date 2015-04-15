@@ -11,7 +11,7 @@
       DataContext="{Binding Source={StaticResource Locator}, Path=ExternalStorageVM}">
 
     <Grid x:Name="RootGrid"
-          Margin="12,0">
+          Margin="{StaticResource FrameMargin}">
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="Standard">
                 <VisualState x:Name="Vertical">

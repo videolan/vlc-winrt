@@ -15,6 +15,7 @@
           RequestedTheme="Dark"
           Height="260">
         <Grid.RowDefinitions>
+            <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
             <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
@@ -22,22 +23,22 @@
             <ColumnDefinition />
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
-        <Image Grid.RowSpan="4"
+        <Image Grid.RowSpan="5"
                Grid.ColumnSpan="2"
                Source="{Binding CurrentArtist.ArtistImage}"
                Stretch="UniformToFill"
                Opacity="0.5" />
-        <TextBlock  Grid.Row="0"
+        <TextBlock  Grid.Row="1"
                     Grid.Column="0"
-                    Margin="24,12"
+                    Margin="{StaticResource FrameMargin}"
                     TextTrimming="CharacterEllipsis"
                     TextWrapping="NoWrap"
                     VerticalAlignment="Top"
                     Text="{Binding CurrentArtist.Name, Converter={StaticResource AlbumStringConverter}}"
                     Style="{StaticResource SubheaderTextBlockStyle}" />
-        <AppBarButton Grid.Row="0"
+        <AppBarButton Grid.Row="1"
                       Grid.Column="1"
-                      Margin="12"
+                    Margin="{StaticResource FrameMargin}"
                       Style="{StaticResource AppBarButtonStyleHorizontal}"
                       Label="view artist"
                       Command="{Binding CurrentAlbum.ViewArtist}"
@@ -48,13 +49,13 @@
             </AppBarButton.Icon>
         </AppBarButton>
 
-        <Grid Grid.Row="1"
+        <Grid Grid.Row="2"
               Grid.Column="0"
               Grid.ColumnSpan="2"
               VerticalAlignment="Center"
               Margin="0,0,0,30">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="24" />
+                <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
                 <ColumnDefinition MinWidth="110"
                                   MaxWidth="200"
                                   Width="2*" />

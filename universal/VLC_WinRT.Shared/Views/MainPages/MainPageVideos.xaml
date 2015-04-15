@@ -9,7 +9,7 @@
       d:DesignWidth="400"
       DataContext="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM}">
 
-    <Grid Margin="12,0">
+    <Grid Margin="{StaticResource FrameMargin}">
         <Grid.RowDefinitions>
             <RowDefinition Height="50" />
             <RowDefinition />
