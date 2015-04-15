@@ -22,15 +22,36 @@
             <ColumnDefinition x:Name="TrackListColumnDefinition"
                               Width="0" />
         </Grid.ColumnDefinitions>
-        <artistCollectionPanes:ArtistsListView Grid.Column="0" />
-        <artistCollectionPanes:AlbumsListView Grid.Column="1"
+        <artistCollectionPanes:ArtistsListView x:Name="ArtistsListView"
+                                               Grid.Column="0"
+                                               Visibility="Collapsed" />
+        <artistCollectionPanes:AlbumsListView x:Name="AlbumsListView"
+                                              Grid.Column="1"
+                                              Visibility="Collapsed"
                                               DataContext="{Binding CurrentArtist, TargetNullValue={Binding Source={StaticResource Locator}, Path=MusicLibraryVM}}" />
-        <artistCollectionPanes:TracksListView Grid.Column="2"
+        <artistCollectionPanes:TracksListView x:Name="TracksListView"
+                                              Grid.Column="2"
+                                              Visibility="Collapsed"
                                               DataContext="{Binding CurrentAlbum, TargetNullValue={Binding Source={StaticResource Locator}, Path=MusicLibraryVM}}" />
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
                 <VisualState x:Name="Wide">
                     <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ArtistsListView"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="AlbumsListView"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="TracksListView"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="AlbumListColumnDefinition"
                                                        Storyboard.TargetProperty="Width">
                             <DiscreteObjectKeyFrame KeyTime="0"
@@ -50,6 +71,21 @@
                 </VisualState>
                 <VisualState x:Name="Medium">
                     <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ArtistsListView"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="AlbumsListView"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="TracksListView"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Collapsed" />
+                        </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="AlbumListColumnDefinition"
                                                        Storyboard.TargetProperty="Width">
                             <DiscreteObjectKeyFrame KeyTime="0"
@@ -69,6 +105,21 @@
                 </VisualState>
                 <VisualState x:Name="Narrow">
                     <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ArtistsListView"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="AlbumsListView"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Collapsed" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="TracksListView"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Collapsed" />
+                        </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="AlbumListColumnDefinition"
                                                        Storyboard.TargetProperty="Width">
                             <DiscreteObjectKeyFrame KeyTime="0"
