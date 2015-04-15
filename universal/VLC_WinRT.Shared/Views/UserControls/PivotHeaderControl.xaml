@@ -7,7 +7,8 @@
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400">
-    <Grid VerticalAlignment="Center">
+    <Grid VerticalAlignment="Center"
+          Background="Transparent">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="6"
@@ -67,15 +68,10 @@
                 </VisualState>
                 <VisualState x:Name="Snap">
                     <Storyboard>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MiddleColumnDefinition"
-                                                       Storyboard.TargetProperty="Width">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="0" />
-                        </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Icon"
                                                        Storyboard.TargetProperty="Height">
                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="32" />
+                                                    Value="46" />
                         </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Icon"
                                                        Storyboard.TargetProperty="Margin">
@@ -85,7 +81,7 @@
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Icon"
                                                        Storyboard.TargetProperty="Width">
                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="32" />
+                                                    Value="46" />
                         </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Title"
                                                        Storyboard.TargetProperty="Visibility">
