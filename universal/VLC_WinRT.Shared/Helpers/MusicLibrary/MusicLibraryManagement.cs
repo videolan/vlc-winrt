@@ -490,11 +490,11 @@ namespace VLC_WinRT.Helpers.MusicLibrary
             {
                 if (Locator.SettingsVM.AlbumsOrderListing == OrderListing.Ascending)
                 {
-                    Locator.MusicLibraryVM.AlphaGroupedAlbums = Locator.MusicLibraryVM.Albums.OrderBy(x => x.Name).GroupBy(x => string.IsNullOrEmpty(x.Name) ? Strings.UnknownString : (char.IsLetter(x.Name.ElementAt(0)) ? x.Name.ElementAt(0).ToString() : Strings.UnknownString));
+                    Locator.MusicLibraryVM.AlphaGroupedAlbums = Locator.MusicLibraryVM.Albums.OrderBy(x => x.Name).GroupBy(x => string.IsNullOrEmpty(x.Name) ? Strings.UnknownString : (char.IsLetter(x.Name.ElementAt(0)) ? x.Name.ElementAt(0).ToString().ToUpper() : Strings.UnknownString));
                 }
                 else if (Locator.SettingsVM.AlbumsOrderListing == OrderListing.Descending)
                 {
-                    Locator.MusicLibraryVM.AlphaGroupedAlbums = Locator.MusicLibraryVM.Albums.OrderByDescending(x => x.Name).GroupBy(x => string.IsNullOrEmpty(x.Name) ? Strings.UnknownString : (char.IsLetter(x.Name.ElementAt(0)) ? x.Name.ElementAt(0).ToString() : Strings.UnknownString));
+                    Locator.MusicLibraryVM.AlphaGroupedAlbums = Locator.MusicLibraryVM.Albums.OrderByDescending(x => x.Name).GroupBy(x => string.IsNullOrEmpty(x.Name) ? Strings.UnknownString : (char.IsLetter(x.Name.ElementAt(0)) ? x.Name.ElementAt(0).ToString().ToUpper() : Strings.UnknownString));
                 }
             }
         }
