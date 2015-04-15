@@ -145,7 +145,7 @@ namespace VLC_WinRT.Services.RunTime
                     App.ApplicationFrame.Navigate(typeof(SpecialThanks));
                     break;
                 case VLCPage.ArtistShowsPage:
-                    App.ApplicationFrame.Navigate(typeof(ArtistShowsPage));
+                    App.RootPage.SplitShell.RightFlyoutContent = new ArtistShowsPage();
                     break;
                 case VLCPage.SearchPage:
                     App.ApplicationFrame.Navigate(typeof(SearchPage));

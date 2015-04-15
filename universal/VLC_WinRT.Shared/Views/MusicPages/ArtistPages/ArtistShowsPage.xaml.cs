@@ -2,7 +2,7 @@
 
 namespace VLC_WinRT.Views.MusicPages.ArtistPages
 {
-    public sealed partial class ArtistShowsPage : Page
+    public sealed partial class ArtistShowsPage : UserControl
     {
         public ArtistShowsPage()
         {
