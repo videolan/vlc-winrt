@@ -14,20 +14,23 @@
     </UserControl.Resources>
     <ListView ItemsSource="{Binding Source={StaticResource TracksGroupedByAlbum}}"
               ItemTemplate="{StaticResource WPTrackTemplateWNumber}"
-              Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+              Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+              SelectionMode="None"
+              IsItemClickEnabled="True"
+              ItemContainerStyle="{StaticResource ListViewItemStyle}">
         <ListView.HeaderTemplate>
             <DataTemplate>
                 <local:MainArtistHeader />
             </DataTemplate>
         </ListView.HeaderTemplate>
         <ListView.GroupStyle>
-            <GroupStyle>
-                <GroupStyle.HeaderTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding Key}" />
-                    </DataTemplate>
-                </GroupStyle.HeaderTemplate>
-            </GroupStyle>
+            <GroupStyle HeaderTemplate="{StaticResource AlbumHorizontalTemplate}" />
+
         </ListView.GroupStyle>
+        <ListView.ItemsPanel>
+            <ItemsPanelTemplate>
+                <VirtualizingStackPanel Margin="{StaticResource FrameMargin}" />
+            </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
     </ListView>
 </UserControl>

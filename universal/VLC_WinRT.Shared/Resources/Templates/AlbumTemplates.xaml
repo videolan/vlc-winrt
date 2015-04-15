@@ -7,9 +7,12 @@
                     xmlns:winrtext="using:WinRTXamlToolkit.Controls.Extensions"
                     xmlns:userControls="using:VLC_WinRT.Views.UserControls">
 
-    <!-- WINDOWS PHONE -->
     <DataTemplate x:Key="PhoneSemanticZoomInViewAlbumTemplateLittleSize">
         <userControls:AlbumItem />
+    </DataTemplate>  
+    
+    <DataTemplate x:Key="AlbumHorizontalTemplate">
+        <userControls:AlbumHorizontalTemplate />
     </DataTemplate>
 
     <DataTemplate x:Key="PopularAlbumTemplate">

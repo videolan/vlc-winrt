@@ -18,7 +18,7 @@ namespace VLC_WinRT.Model.Music
         private string _name;
         private bool _isPictureLoaded;
         private ObservableCollection<AlbumItem> _albumItems;
-        private IEnumerable<IGrouping<string, TrackItem>> _tracksByAlbum;
+        private IEnumerable<IGrouping<Tuple<string, string>, TrackItem>> _tracksByAlbum;
 
         private bool _isTracksGroupedByAlbumLoaded;
         private bool _isAlbumsLoaded = false;
@@ -129,7 +129,7 @@ namespace VLC_WinRT.Model.Music
         }
 
         [Ignore]
-        public IEnumerable<IGrouping<string, TrackItem>> TracksGroupedByAlbum
+        public IEnumerable<IGrouping<Tuple<string, string>, TrackItem>> TracksGroupedByAlbum
         {
             get
             {
