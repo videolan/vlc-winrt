@@ -53,7 +53,7 @@
         <userControls:FocusTextBox x:Name="MusicSearchBox"
                                    Grid.Column="3"
                                    Text="{Binding SearchTag}"
-                                   PlaceholderText="search in music"
+                                   PlaceholderText="search an album"
                                    Height="30"
                                    Width="250"
                                    TextChanged="TextBox_TextChanged"

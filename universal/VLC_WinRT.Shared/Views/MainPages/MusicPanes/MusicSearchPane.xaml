@@ -17,7 +17,7 @@
         </Grid.RowDefinitions>
         <userControls:FocusTextBox x:Name="MusicSearchBox"
                                    Text="{Binding SearchTag}"
-                                   PlaceholderText="search in music"
+                                   PlaceholderText="search an album"
                                    Height="30"
                                    TextChanged="TextBox_TextChanged"
                                    HorizontalAlignment="Stretch" />
