@@ -88,12 +88,13 @@ namespace VLC_WinRT.Services.RunTime
         // Returns false if it can't go back
         public bool GoBack_Default()
         {
-            if (App.ApplicationFrame.CanGoBack)
+            bool canGoBack = App.ApplicationFrame.CanGoBack;
+            if (canGoBack)
             {
                 App.ApplicationFrame.GoBack();
                 ViewNavigated(null, CurrentPage);
             }
-            return App.ApplicationFrame.CanGoBack;
+            return canGoBack;
         }
 
         void GoBack_HideFlyout()
