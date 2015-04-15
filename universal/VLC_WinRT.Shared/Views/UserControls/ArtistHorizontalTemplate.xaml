@@ -26,8 +26,8 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition />
         </Grid.RowDefinitions>
         <Grid Grid.Row="0"
               Grid.RowSpan="2">
@@ -51,10 +51,12 @@
                    Grid.Row="0"
                    Text="{Binding Name, Converter={StaticResource ArtistStringConverter}}"
                    FontSize="21"
-                   FontWeight="Light" />
+                   FontWeight="Light" 
+                   VerticalAlignment="Bottom"/>
         <TextBlock Grid.Column="2"
                    Grid.Row="1"
-                   Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}">
+                   Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
+                   VerticalAlignment="Top">
             <Run Text="{Binding Albums.Count}" />
             <Run Text="albums" />
         </TextBlock>
