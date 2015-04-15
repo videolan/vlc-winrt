@@ -23,13 +23,14 @@
                                    HorizontalAlignment="Stretch" />
         <ListView Grid.Row="1"
                   ItemsSource="{Binding SearchResults}"
+                  ItemTemplate="{StaticResource PhoneSemanticZoomInViewAlbumTemplateLittleSize}"
                   ItemContainerStyle="{StaticResource ListViewItemStyle}"
                   IsItemClickEnabled="True"
                   SelectionMode="None"
                   IsSwipeEnabled="False">
             <triggers:Interactions.Triggers>
                 <triggers:EventTrigger EventName="ItemClick">
-                    <triggers:InvokeCommandAction Command="{Binding OpenVideo}"
+                    <triggers:InvokeCommandAction Command="{Binding AlbumClickedCommand}"
                                                   PassEventArgsToCommand="True" />
                 </triggers:EventTrigger>
             </triggers:Interactions.Triggers>
@@ -46,22 +47,6 @@
                     </ItemsWrapGrid>
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Grid Height="170" Width="150">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="150"/>
-                            <RowDefinition />
-                        </Grid.RowDefinitions>
-                        <Image Source="{Binding Picture}"
-                               Stretch="UniformToFill"/>
-                        <TextBlock Grid.Row="1"
-                                   Text="{Binding Text}"
-                                   TextWrapping="NoWrap"
-                                   TextTrimming="CharacterEllipsis"/>
-                    </Grid>
-                </DataTemplate>
-            </ListView.ItemTemplate>
             <ListView.ItemContainerTransitions>
                 <TransitionCollection>
                     <AddDeleteThemeTransition />
