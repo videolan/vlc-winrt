@@ -20,11 +20,13 @@
             <RowDefinition x:Name="PlayerRowDefinition" />
             <RowDefinition x:Name="PlaylistRowDefinition" />
         </Grid.RowDefinitions>
-        <musicNowPlayingControls:MusicNowPlayingFlipView x:Name="MusicNowPlaying" />
+        <musicNowPlayingControls:MusicNowPlayingFlipView x:Name="MusicNowPlaying" 
+                                                         Visibility="Collapsed"/>
 
         <musicNowPlayingControls:PlaylistControl x:Name="PlaylistGrid"
                                                  VerticalAlignment="Bottom"
-                                                 Background="#B3000000" />
+                                                 Background="#B3000000"
+                                                 Visibility="Collapsed"/>
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
                 <VisualState x:Name="ExtraWide">
@@ -74,6 +76,16 @@
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="450" />
                         </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlaylistGrid"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames> 
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MusicNowPlaying"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>     
                     </Storyboard>
                 </VisualState>
                 <VisualState x:Name="Wide">
@@ -118,6 +130,16 @@
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="0" />
                         </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlaylistGrid"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>    
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MusicNowPlaying"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>      
                     </Storyboard>
                 </VisualState>
                 <VisualState x:Name="Narrow">
@@ -157,6 +179,16 @@
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="0" />
                         </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlaylistGrid"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>     
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MusicNowPlaying"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>     
                     </Storyboard>
                 </VisualState>
                 <VisualState x:Name="NarrowAndTiny">
@@ -196,6 +228,16 @@
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="0" />
                         </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlaylistGrid"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Collapsed" />
+                        </ObjectAnimationUsingKeyFrames>     
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MusicNowPlaying"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>                        
                     </Storyboard>
                 </VisualState>
             </VisualStateGroup>
