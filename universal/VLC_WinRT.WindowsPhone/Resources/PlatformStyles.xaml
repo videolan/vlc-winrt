@@ -126,7 +126,6 @@
     <Thickness x:Key="TextControlBorderThemeThickness">2.5001</Thickness>
     <FontFamily x:Key="PhoneFontFamilyNormal">Segoe WP</FontFamily>
     <x:Double x:Key="ContentControlFontSize">20.26</x:Double>
-    <Thickness x:Key="TextControlThemePadding">7,2.5,8,4</Thickness>
     <Thickness x:Key="TextControlMarginThemeThickness">0,9.5,0,9.5</Thickness>
     <Thickness x:Key="TextControlHeaderMarginThemeThickness">0,0,0,4.8</Thickness>
     <SolidColorBrush x:Key="TextBoxDisabledBackgroundThemeBrush"
