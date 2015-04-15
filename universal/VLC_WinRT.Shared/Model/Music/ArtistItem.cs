@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
@@ -17,6 +18,9 @@ namespace VLC_WinRT.Model.Music
         private string _name;
         private bool _isPictureLoaded;
         private ObservableCollection<AlbumItem> _albumItems;
+        private IEnumerable<IGrouping<string, TrackItem>> _tracksByAlbum;
+
+        private bool _isTracksGroupedByAlbumLoaded;
         private bool _isAlbumsLoaded = false;
 
         // more informations
@@ -125,6 +129,24 @@ namespace VLC_WinRT.Model.Music
         }
 
         [Ignore]
+        public IEnumerable<IGrouping<string, TrackItem>> TracksGroupedByAlbum
+        {
+            get
+            {
+                if (!_isTracksGroupedByAlbumLoaded)
+                {
+                    _isTracksGroupedByAlbumLoaded = true;
+                    Task.Run(async () => await this.PopulateTracksByAlbum());
+                }
+                return _tracksByAlbum;
+            }
+            set
+            {
+                SetProperty(ref _tracksByAlbum, value);
+            }
+        }
+
+        [Ignore]
         public string Biography
         {
             get
@@ -203,6 +225,7 @@ namespace VLC_WinRT.Model.Music
             get { return _genre; }
             set { SetProperty(ref _genre, value); }
         }
+
         [Ignore]
         public bool IsUpcomingShowsLoading
         {
