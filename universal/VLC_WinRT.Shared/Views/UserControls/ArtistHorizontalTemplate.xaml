@@ -21,35 +21,42 @@
             </core:EventTriggerBehavior>
         </interactivity:Interaction.Behaviors>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="50" />
-            <ColumnDefinition Width="12"/>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="12" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>        
+        </Grid.RowDefinitions>
         <Grid Grid.Row="0"
-              Grid.RowSpan="2"
-              Background="{ThemeResource ApplicationThirdForegroundThemeBrush}">
+              Grid.RowSpan="2">
+            <Ellipse Fill="{ThemeResource ApplicationThirdForegroundThemeBrush}"
+                     Height="60"
+                     Width="60" />
             <FontIcon Glyph="{StaticResource BuddySymbol}"
-                      FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" 
+                      FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets"
                       FontSize="26"
-                      Foreground="{ThemeResource MainColor}"/>
+                      Foreground="{ThemeResource MainColor}" />
         </Grid>
-        <Image Grid.RowSpan="2"
-               Source="{Binding ArtistImage}"
-               Stretch="UniformToFill" />
+        <Ellipse Grid.RowSpan="2"
+                 Height="60"
+                 Width="60">
+            <Ellipse.Fill>
+                <ImageBrush Stretch="UniformToFill"
+                            ImageSource="{Binding ArtistImage}" />
+            </Ellipse.Fill>
+        </Ellipse>
         <TextBlock Grid.Column="2"
                    Grid.Row="0"
                    Text="{Binding Name, Converter={StaticResource ArtistStringConverter}}"
                    FontSize="21"
-                   FontWeight="Light"/>
+                   FontWeight="Light" />
         <TextBlock Grid.Column="2"
                    Grid.Row="1"
                    Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}">
-            <Run Text="{Binding Albums.Count}"/>
-            <Run Text="albums"/>
+            <Run Text="{Binding Albums.Count}" />
+            <Run Text="albums" />
         </TextBlock>
     </Grid>
 </UserControl>
