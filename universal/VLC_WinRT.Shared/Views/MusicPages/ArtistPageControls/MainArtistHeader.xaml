@@ -47,6 +47,17 @@
                 <ColumnDefinition Width="12" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
+            <AppBarButton x:Name="SwitchBetweenViewsButton"
+                          Loaded="SwitchBetweenViewsButton_Loaded"
+                          Click="SwitchBetweenViewsButton_Click"
+                          Style="{StaticResource AppBarButtonStyleHorizontal}"
+                          VerticalAlignment="Center"
+                          Margin="{StaticResource FrameMargin}">
+                <AppBarButton.Icon>
+                    <FontIcon x:Name="SwitchBetweenViewsGlyph"
+                              FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+                </AppBarButton.Icon>
+            </AppBarButton>
             <AppBarButton Grid.Column="0"
                           Style="{StaticResource AppBarButtonStyleHorizontal}"
                           Label="Play all"
