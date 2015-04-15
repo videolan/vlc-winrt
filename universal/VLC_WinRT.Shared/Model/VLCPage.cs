@@ -16,7 +16,6 @@
         SettingsPage,
         SpecialThanksPage,
         ArtistShowsPage,
-        SearchPage,
         AddAlbumToPlaylistDialog,
         CreateNewPlaylistDialog,
     }

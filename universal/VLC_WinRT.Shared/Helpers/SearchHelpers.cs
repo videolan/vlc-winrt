@@ -46,53 +46,7 @@ namespace VLC_WinRT.Helpers
                     break;
             }
         }
-
-        public static void Search()
-        {
-            if (string.IsNullOrEmpty(Locator.MainVM.SearchTag)) return;
-            var results = new ObservableCollection<SearchResult>();
-            Locator.MainVM.SearchResults.Clear();
-            // We don't need null checks here, because even if nothing was found, the Enumerable items will be loaded with zero items in them.
-            // So the foreach loops will skip past them.
-            if (Locator.SettingsVM.SearchTracks)
-            {
-                var tracks = SearchTracks(Locator.MainVM.SearchTag);
-                foreach (var track in tracks)
-                {
-                    results.Add(track);
-                }
-            }
-
-            if (Locator.SettingsVM.SearchVideos)
-            {
-                var videos = SearchVideosGeneric(Locator.MainVM.SearchTag, results);
-                foreach (var video in videos)
-                {
-                    results.Add(video);
-                }
-            }
-
-            if (Locator.SettingsVM.SearchArtists)
-            {
-                var artists = SearchArtists(Locator.MainVM.SearchTag);
-                foreach (var artist in artists)
-                {
-                    results.Add(artist);
-                }
-            }
-
-            if (Locator.SettingsVM.SearchAlbums)
-            {
-                var albums = SearchAlbumsGeneric(Locator.MainVM.SearchTag);
-                foreach (var album in albums)
-                {
-                    results.Add(album);
-                }
-            }
-            Locator.MainVM.SearchResults = results;
-        }
-
-
+        
         public static ObservableCollection<SearchResult> SearchArtists(string tag)
         {
             var results = new ObservableCollection<SearchResult>();
@@ -210,7 +164,6 @@ namespace VLC_WinRT.Helpers
                 results.Remove(result);
             }
         }
-
 
         public static IEnumerable<ArtistItem> SearchArtistItems(string tag)
         {

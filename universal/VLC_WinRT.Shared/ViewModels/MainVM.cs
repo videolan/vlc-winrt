@@ -31,7 +31,6 @@ namespace VLC_WinRT.ViewModels
     {
         #region private fields
         private ObservableCollection<Panel> _panels = new ObservableCollection<Panel>();
-        private ObservableCollection<SearchResult> _searchResults;
         #endregion
         #region private props
         private NetworkListenerService networkListenerService;
@@ -45,13 +44,6 @@ namespace VLC_WinRT.ViewModels
         // Navigation props
         private VLCPage currentPage;
         private bool canGoBack;
-        #endregion
-        #region public fields
-        public ObservableCollection<SearchResult> SearchResults
-        {
-            get { return _searchResults; }
-            set { SetProperty(ref _searchResults, value); }
-        }
         #endregion
 
         #region public props
@@ -88,27 +80,11 @@ namespace VLC_WinRT.ViewModels
         public GoToThanksPageCommand GoToThanksPageCommand { get; } = new GoToThanksPageCommand();
 
         public ChangeMainPageMusicViewCommand ChangeMainPageMusicViewCommand { get; } = new ChangeMainPageMusicViewCommand();
-
-        public AlwaysExecutableCommand GoToSearchPage { get; } = new ActionCommand(() => { Locator.NavigationService.Go(VLCPage.SearchPage); });
+        
         public ChangeMainPageVideoViewCommand ChangeMainPageVideoViewCommand { get; } = new ChangeMainPageVideoViewCommand();
 
         public SearchClickedCommand SearchClickedCommand { get; }= new SearchClickedCommand();
-
-        public string SearchTag
-        {
-            get { return _searchTag; }
-            set
-            {
-                SetProperty(ref _searchTag, value);
-                if (!string.IsNullOrEmpty(value))
-                    SearchHelpers.Search();
-                else
-                {
-                    SearchResults?.Clear();
-                }
-            }
-        }
-
+        
         public bool PreventAppExit
         {
             get { return _preventAppExit; }
@@ -137,7 +113,6 @@ namespace VLC_WinRT.ViewModels
             networkListenerService.InternetConnectionChanged += networkListenerService_InternetConnectionChanged;
             _isInternet = NetworkListenerService.IsConnected;
             
-            SearchResults = new ObservableCollection<SearchResult>();
             Panels.Add(new Panel(Strings.Home, 0, App.Current.Resources["HomeSymbol"].ToString(), true));
             Panels.Add(new Panel(Strings.Videos, 1, App.Current.Resources["VideoSymbol"].ToString()));
             Panels.Add(new Panel(Strings.Music, 2, App.Current.Resources["MusicSymbol"].ToString()));

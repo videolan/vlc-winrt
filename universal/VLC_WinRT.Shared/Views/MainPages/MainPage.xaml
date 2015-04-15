@@ -63,14 +63,6 @@
                                  ConverterParameter="VideoPlayerPage,MusicPlayerPage" />
                     </customAppBarDesktop:AppBar.Visibility>
                     <customAppBarDesktop:AppBar.PrimaryCommands>
-                        <AppBarButton Style="{StaticResource EllipseLessAppBarButtonStyle}"
-                                      Label="search"
-                                      Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToSearchPage}">
-                            <AppBarButton.Icon>
-                                <FontIcon Glyph="{StaticResource SearchSymbol}"
-                                          FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
-                            </AppBarButton.Icon>
-                        </AppBarButton>
                         <AppBarButton Grid.Column="1"
                                       Style="{StaticResource EllipseLessAppBarButtonStyle}"
                                       Label="open file"
