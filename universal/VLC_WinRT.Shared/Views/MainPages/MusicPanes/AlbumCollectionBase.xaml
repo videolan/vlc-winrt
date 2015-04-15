@@ -70,7 +70,8 @@
             <SemanticZoom.ZoomedOutView>
                 <ListView x:Name="AlbumsZoomedOutView"
                           Background="{ThemeResource ApplicationBackgroundSemiTranslucentThemeBrush}"
-                          VerticalContentAlignment="Center">
+                          VerticalContentAlignment="Center"
+                          SelectionMode="None">
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">
                             <Setter Property="VerticalContentAlignment"
