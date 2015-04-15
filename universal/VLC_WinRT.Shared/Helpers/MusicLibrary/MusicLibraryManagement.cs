@@ -399,6 +399,16 @@ namespace VLC_WinRT.Helpers.MusicLibrary
             });
         }
 
+        public static async Task PopulateTracksByAlbum(this ArtistItem artist)
+        {
+            var tracks = await Locator.MusicLibraryVM._trackDataRepository.LoadTracksByArtistId(artist.Id);
+            var groupedTracks = tracks.GroupBy(x => x.AlbumName);
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                artist.TracksGroupedByAlbum = groupedTracks;
+            });
+        }
+
         public static async Task LoadFavoriteRandomAlbums()
         {
             try
