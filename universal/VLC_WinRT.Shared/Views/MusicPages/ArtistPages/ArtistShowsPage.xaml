@@ -138,8 +138,7 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <Grid Visibility="{Binding IsUpcomingShowsLoading, Converter={StaticResource BooleanToVisibilityConverter}}"
-                  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+            <Grid Visibility="{Binding IsUpcomingShowsLoading, Converter={StaticResource BooleanToVisibilityConverter}}">
                 <ProgressRing IsActive="True"
                               Background="Transparent"
                               Foreground="{StaticResource MainColor}"
