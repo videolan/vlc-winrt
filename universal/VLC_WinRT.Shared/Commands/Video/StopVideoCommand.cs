@@ -24,9 +24,7 @@ namespace VLC_WinRT.Commands.Video
             {
                 App.ApplicationFrame.Navigate((Type)parameter);
             }
-            else if (App.ApplicationFrame.CanGoBack)
-                Locator.NavigationService.GoBack_Default();
-            else
+            else if (!Locator.NavigationService.GoBack_Default())
                 Locator.NavigationService.Go(VLCPage.MainPageHome);
             await Locator.MediaPlaybackViewModel.CleanViewModel();
             Locator.MediaPlaybackViewModel.IsPlaying = false;
