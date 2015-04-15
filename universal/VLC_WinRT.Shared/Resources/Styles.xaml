@@ -6,6 +6,11 @@
         <ResourceDictionary Source="/Resources/PlatformStyles.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
+    <!-- DEFAULT MARGINS -->
+    <Thickness x:Key="FrameMargin">12,0</Thickness>
+    <x:Double x:Key="FrameMarginSides">12</x:Double>
+    <GridLength x:Key="FrameMarginGridLength">12</GridLength>
+    
     <!-- ICONS AND SYMBOLS -->
     <x:String x:Key="HomeSymbol"></x:String>
     <x:String x:Key="VideoSymbol"></x:String>
