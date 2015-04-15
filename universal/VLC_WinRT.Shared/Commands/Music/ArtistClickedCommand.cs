@@ -15,7 +15,7 @@ namespace VLC_WinRT.Commands.Music
             ArtistItem artist = null;
             if (parameter is ArtistItem)
             {
-                artist = (ArtistItem) parameter;
+                artist = (ArtistItem)parameter;
             }
             // artist is clicked from a list
             else if (parameter is ItemClickEventArgs)
