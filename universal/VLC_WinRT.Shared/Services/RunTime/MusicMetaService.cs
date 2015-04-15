@@ -51,16 +51,12 @@ namespace VLC_WinRT.Services.RunTime
 
         public async Task<bool> GetAlbumCover(AlbumItem album)
         {
-            if (Locator.MainVM.IsInternet)
+            if (Locator.MainVM.IsInternet && !string.IsNullOrEmpty(album.Name))
             {
                 var bytes = await musicMdFetcher.GetAlbumPictureFromInternet(album.Name, album.Artist);
                 if (bytes == null)
                 {
-                    // If we still could not find album art, flag the picture as loaded.
-                    // This way, we won't keep pinging the APIs for album art that may not exist.
-                    var installFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
-                    var file = await installFolder.GetFileAsync("Assets\\NoCover.jpg");
-                    bytes = await ConvertImage.ConvertImagetoByte(file);
+                    // TODO: Add a TriedWithNoSuccess flag in DB
                 }
                 var success = bytes != null && await SaveAlbumImageAsync(album, bytes);
                 if (success)
@@ -74,16 +70,12 @@ namespace VLC_WinRT.Services.RunTime
 
         public async Task<bool> GetArtistPicture(ArtistItem artist)
         {
-            if (Locator.MainVM.IsInternet)
+            if (Locator.MainVM.IsInternet && !string.IsNullOrEmpty(artist.Name))
             {
                 var bytes = await musicMdFetcher.GetArtistPicture(artist.Name);
                 if (bytes == null)
                 {
-                    // If we still could not find album art, flag the picture as loaded.
-                    // This way, we won't keep pinging the APIs for album art that may not exist.
-                    var installFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
-                    var file = await installFolder.GetFileAsync("Assets\\NoCover.jpg");
-                    bytes = await ConvertImage.ConvertImagetoByte(file);
+                    // TODO: Add a TriedWithNoSuccess flag in DB
                 }
                 var success = bytes != null && await SaveArtistImageAsync(artist, bytes);
                 if (success)
