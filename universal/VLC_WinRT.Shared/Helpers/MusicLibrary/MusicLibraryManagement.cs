@@ -584,7 +584,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
             if (Locator.MusicLibraryVM.CurrentTrackCollection == null)
             {
 #if WINDOWS_PHONE_APP
-                ((ContentDialogButtonClickEventArgs) args).Cancel = true;
+                ((ContentDialogButtonClickEventArgs)args).Cancel = true;
 #endif
                 ToastHelper.Basic(Strings.HaveToSelectPlaylist, false, "selectplaylist");
                 return;
@@ -616,7 +616,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
             }
             trackItem = new TrackItem
             {
-                ArtistName = (string.IsNullOrEmpty(trackInfos?.Artist)) ? Strings.UnknownArtist: trackInfos?.Artist,
+                ArtistName = (string.IsNullOrEmpty(trackInfos?.Artist)) ? Strings.UnknownArtist : trackInfos?.Artist,
                 AlbumName = trackInfos?.Album ?? Strings.UnknownAlbum,
                 Name = (string.IsNullOrEmpty(trackInfos?.Title)) ? track.DisplayName : trackInfos?.Title,
                 Path = track.Path,
