@@ -8,12 +8,14 @@
       mc:Ignorable="d">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
             <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <TextBlock Text="playlist"
+        <TextBlock Grid.Row="1"
+                   Text="playlist"
                    Style="{StaticResource SubheaderTextBlockStyle}"
-                   Margin="24,24,0,0" />
-        <musicNowPlayingControls:PlaylistControl Grid.Row="1" />
+                   Margin="{StaticResource FrameMargin}" />
+        <musicNowPlayingControls:PlaylistControl Grid.Row="2" />
     </Grid>
 </Page>
