@@ -233,14 +233,13 @@ namespace VLC_WinRT.Helpers.MusicLibrary
                         await Locator.MusicLibraryVM._artistDataRepository.Add(artist);
                         await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
                         {
-                            Locator.MusicLibraryVM.Artists.Add(artist);
+                            AddArtist(artist);
                         });
                     }
 
                     var albumName = mP.Album;
                     var albumYear = mP.Year;
-                    AlbumItem album =
-                        await Locator.MusicLibraryVM._albumDataRepository.LoadAlbumViaName(artist.Id, albumName);
+                    AlbumItem album = await Locator.MusicLibraryVM._albumDataRepository.LoadAlbumViaName(artist.Id, albumName);
                     if (album == null)
                     {
                         album = new AlbumItem
@@ -255,9 +254,8 @@ namespace VLC_WinRT.Helpers.MusicLibrary
                         await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
                         {
                             var artistFromCollection = Locator.MusicLibraryVM.Artists.FirstOrDefault(x => x.Id == album.ArtistId);
-                            if (artistFromCollection != null) artistFromCollection.Albums.Add(album);
+                            AddAlbum(album, artistFromCollection);
                             Locator.MainVM.InformationText = string.Format(Strings.AlbumsFound, Locator.MusicLibraryVM.Albums.Count);
-                            Locator.MusicLibraryVM.Albums.Add(album);
                         });
                     }
 
@@ -275,12 +273,29 @@ namespace VLC_WinRT.Helpers.MusicLibrary
                         Index = mP.Tracknumber,
                     };
                     await Locator.MusicLibraryVM._trackDataRepository.Add(track);
+                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => AddTrack(track));
                 }
             }
             catch (Exception e)
             {
                 ExceptionHelper.CreateMemorizedException("MusicLibraryManagement.CreateDatabaseFromMusicFile", e);
             }
+        }
+
+        public static void AddArtist(ArtistItem artist)
+        {
+            Locator.MusicLibraryVM.Artists.Add(artist);
+        }
+
+        public static void AddAlbum(AlbumItem album, ArtistItem artist)
+        {
+            artist?.Albums.Add(album);
+            Locator.MusicLibraryVM.Albums.Add(album);
+        }
+
+        public static void AddTrack(TrackItem track)
+        {
+            Locator.MusicLibraryVM.Tracks.Add(track);
         }
 
         public static async Task<bool> SetAlbumCover(AlbumItem album, string filePath, bool useLibVLc, VLCService vlcService = null)
