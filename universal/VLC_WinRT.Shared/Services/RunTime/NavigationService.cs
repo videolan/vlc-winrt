@@ -1,5 +1,6 @@
 ﻿using System;
 using VLC_WinRT.Model;
+using VLC_WinRT.ViewModels;
 using VLC_WinRT.Views.MainPages;
 using VLC_WinRT.Views.MusicPages;
 using VLC_WinRT.Views.MusicPages.AlbumPageControls;
@@ -55,7 +56,7 @@ namespace VLC_WinRT.Services.RunTime
                     GoBack_Default();
                     break;
                 case VLCPage.VideoPlayerPage:
-                    GoBack_Default();
+                    Locator.MediaPlaybackViewModel.GoBack.Execute(null);
                     break;
                 case VLCPage.MusicPlayerPage:
                     GoBack_Default();
