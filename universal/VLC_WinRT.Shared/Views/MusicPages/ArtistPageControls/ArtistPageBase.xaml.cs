@@ -9,10 +9,12 @@ namespace VLC_WinRT.Views.MusicPages.ArtistPageControls
         public ArtistPageBase()
         {
             this.InitializeComponent();
+            ArtistPageBaseContent.Loaded += ArtistPageBaseContent_Loaded;
         }
-        private void ItemsWrapGrid_Loaded(object sender, RoutedEventArgs e)
+
+        private void ArtistPageBaseContent_Loaded(object sender, RoutedEventArgs e)
         {
-            TemplateSizer.ComputeAlbums(sender as ItemsWrapGrid, this.ActualWidth - 24, TemplateSize.Normal);
+            ArtistPageBaseContent.Content = new ArtistAlbumsList();
         }
     }
 }
