@@ -171,7 +171,8 @@ namespace VLC_WinRT.Services.RunTime
             return page == VLCPage.AlbumPage ||
                 page == VLCPage.ArtistPage ||
                 page == VLCPage.AddAlbumToPlaylistDialog ||
-                page == VLCPage.CreateNewPlaylistDialog;
+                page == VLCPage.CreateNewPlaylistDialog ||
+                page == VLCPage.ArtistShowsPage;
         }
 
         /// <summary>
