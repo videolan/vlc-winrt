@@ -1,37 +1,33 @@
-﻿<ResourceDictionary
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:VLC_WinRT.Resources.Templates"
-    xmlns:controls="using:VLC_WinRT.Controls"
-    xmlns:userControls="using:VLC_WinRT.Views.UserControls">
-    
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="using:VLC_WinRT.Resources.Templates"
+                    xmlns:controls="using:VLC_WinRT.Controls"
+                    xmlns:userControls="using:VLC_WinRT.Views.UserControls">
+
     <DataTemplate x:Key="PhoneCompactVideoTemplate">
         <userControls:CompactVideoItemControl />
     </DataTemplate>
-    
+
     <DataTemplate x:Key="PhoneShowTemplate">
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200" />
-                <ColumnDefinition Width="6" />
+                <ColumnDefinition Width="180" />
+                <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <Image Width="190"
-                   Height="105"
+            <Image Height="102"
                    Source="{Binding ThumbnailPath}"
-                   Stretch="UniformToFill"
-                   Margin="-6,0,0,0" />
+                   Stretch="UniformToFill" />
             <TextBlock Grid.Column="2"
-                       Margin="0,-16,0,0"
                        Style="{StaticResource SubheaderTextBlockStyle}"
                        VerticalAlignment="Center">
-                                    <Run Text="Season" />
-                                    <Run Text="{Binding Season}" />
-                                    <LineBreak />
-                                    <Run Text="Episode"
-                                         FontSize="22" />
-                                    <Run Text="{Binding Episode}"
-                                         FontSize="22" />
+                <Run Text="Season"
+                     FontSize="20" />
+                <Run Text="{Binding Season}" />
+                <LineBreak />
+                <Run Text="Episode"
+                     FontSize="20" />
+                <Run Text="{Binding Episode}" />
             </TextBlock>
         </Grid>
     </DataTemplate>

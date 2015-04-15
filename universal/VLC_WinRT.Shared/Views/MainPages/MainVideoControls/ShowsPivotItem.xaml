@@ -11,63 +11,17 @@
       DataContext="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM}">
 
     <Page.Resources>
-        <CollectionViewSource x:Name="ShowsGroupedByName"
+        <CollectionViewSource x:Key="ShowsGroupedByName"
+                              x:Name="ShowsGroupedByName"
                               Source="{Binding Shows}"
                               IsSourceGrouped="True"
                               ItemsPath="Episodes" />
-
     </Page.Resources>
 
     <Grid>
-        <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup x:Name="Standard">
-                <VisualState x:Name="Vertical">
-                    <Storyboard>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="EpisodesListView"
-                                                       Storyboard.TargetProperty="Style">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="{StaticResource AdaptativeListViewScrollVerticalStyle}" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="EpisodesListView"
-                                                       Storyboard.TargetProperty="ItemsPanel">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="{StaticResource AdaptativeVerticalPanelTemplate}" />
-                        </ObjectAnimationUsingKeyFrames>
-                    </Storyboard>
-                </VisualState>
-                <VisualState x:Name="Horizontal">
-                    <Storyboard>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="EpisodesListView"
-                                                       Storyboard.TargetProperty="Style">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="{StaticResource AdaptativeListViewScrollHorizontalStyle}" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="EpisodesListView"
-                                                       Storyboard.TargetProperty="ItemsPanel">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="{StaticResource AdaptativeHorizontalPanelTemplate}" />
-                        </ObjectAnimationUsingKeyFrames>
-                    </Storyboard>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition />
-        </Grid.RowDefinitions>
-        <ComboBox Grid.Row="0"
-                  ItemsSource="{Binding Shows}"
-                  SelectedItem="{Binding CurrentShow, Mode=TwoWay}"
-                  Visibility="{Binding Shows.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}">
-            <ComboBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding ShowTitle}" />
-                </DataTemplate>
-            </ComboBox.ItemTemplate>
-        </ComboBox>
         <ListView x:Name="EpisodesListView"
                   Grid.Row="1"
-                  ItemsSource="{Binding CurrentShow.Episodes}"
+                  ItemsSource="{Binding Source={StaticResource ShowsGroupedByName}}"
                   ItemTemplate="{StaticResource PhoneShowTemplate}"
                   ItemContainerStyle="{StaticResource ListViewItemStyle}"
                   IsItemClickEnabled="True"
@@ -78,6 +32,32 @@
                                                   PassEventArgsToCommand="True" />
                 </triggers:EventTrigger>
             </triggers:Interactions.Triggers>
+            <ListView.GroupStyle>
+                <GroupStyle>
+                    <GroupStyle.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding ShowTitle}"
+                                       Style="{StaticResource SubheaderTextBlockStyle}"
+                                       Foreground="{StaticResource MainColor}" />
+                        </DataTemplate>
+                    </GroupStyle.HeaderTemplate>
+                </GroupStyle>
+            </ListView.GroupStyle>
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <ItemsWrapGrid ItemWidth="330"
+                                   ItemHeight="102"
+                                   Orientation="Horizontal"
+                                   Margin="0,0,0,60">
+                        <ItemsWrapGrid.ChildrenTransitions>
+                            <TransitionCollection>
+                                <EntranceThemeTransition FromHorizontalOffset="50"
+                                                         FromVerticalOffset="0" />
+                            </TransitionCollection>
+                        </ItemsWrapGrid.ChildrenTransitions>
+                    </ItemsWrapGrid>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
         </ListView>
         <placeholder:NoShowPlaceholder Grid.Row="1"
                                        Margin="0,50,0,0"
