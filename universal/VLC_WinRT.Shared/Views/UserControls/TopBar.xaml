@@ -36,8 +36,7 @@
         </StackPanel>
         <Grid Grid.Column="1"
               Visibility="{Binding CanGoBack, Converter={StaticResource BooleanToVisibilityConverter}}">
-            <AppBarButton Label="Back"
-                          Style="{StaticResource AppBarButtonStyleHorizontal}"
+            <AppBarButton Style="{StaticResource AppBarButtonStyleHorizontal}"
                           VerticalAlignment="Center"
                           Click="GoBack_Click">
                 <AppBarButton.Icon>
