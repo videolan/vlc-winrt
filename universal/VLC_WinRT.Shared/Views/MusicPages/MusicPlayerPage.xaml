@@ -76,11 +76,6 @@
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="450" />
                         </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlaylistGrid"
-                                                       Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Visible" />
-                        </ObjectAnimationUsingKeyFrames> 
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MusicNowPlaying"
                                                        Storyboard.TargetProperty="Visibility">
                             <DiscreteObjectKeyFrame KeyTime="0"
