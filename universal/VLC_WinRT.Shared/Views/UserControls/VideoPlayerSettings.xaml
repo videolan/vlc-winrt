@@ -11,79 +11,30 @@
     <Grid x:Name="RootGrid"
           Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}"
           RequestedTheme="Dark"
-          Loaded="RootGrid_OnLoaded">
-        <ScrollViewer x:Name="RootScrollViewer"
-                      HorizontalAlignment="Left"
-                      VerticalAlignment="Stretch"
-                      Margin="12,0,0,0"
-                      Width="300">
-            <StackPanel>
-                <TextBlock Text="VIDEO SETTINGS"
+          VerticalAlignment="Center"
+          HorizontalAlignment="Center"
+          Width="300">
+        <StackPanel Margin="{StaticResource FrameMarginBothSides}">
+            <TextBlock x:Uid="Speed"
+                       Text="Speed"
+                       Style="{StaticResource TitleTextBlockStyle}" />
+            <Slider Margin="0,12,0,0"
+                    Style="{StaticResource VLCSlider}"
+                    Minimum="50"
+                    Value="{Binding SpeedRate, Mode=TwoWay}"
+                    Maximum="200"
+                    IsThumbToolTipEnabled="True"
+                    ThumbToolTipValueConverter="{StaticResource DoubleSpeedToUnderstandableSpeedConverter}" />
+            <Grid>
+                <TextBlock Text="0.5x"
                            Style="{StaticResource TitleTextBlockStyle}" />
-                <TextBlock Text="Subtitles"
-                           x:Uid="Subtitles"
-                           Style="{StaticResource TitleTextBlockStyle}"
-                           Margin="0,24,0,0" />
-                <ComboBox ItemsSource="{Binding Subtitles}"
-                          SelectedItem="{Binding CurrentSubtitle, Mode=TwoWay}"
-                          Margin="0,12,0,0"
-                          Style="{StaticResource ComboBoxStyleDark}"
-                          Visibility="{Binding Subtitles.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}">
-                    <ComboBox.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding Name}"
-                                       Foreground="White" />
-                        </DataTemplate>
-                    </ComboBox.ItemTemplate>
-                </ComboBox>
-                <Button Content="Open a subtitle"
-                        x:Uid="OpenSubtitle"
-                        Margin="0,12,0,0"
-                        Command="{Binding OpenSubtitleCommand}"
-                        Background="#404040"
-                        BorderBrush="#404040" />
-
-                <TextBlock Text="Audio tracks"
-                           x:Uid="AudioTracks"
-                           Style="{StaticResource TitleTextBlockStyle}"
-                           Margin="0,24,0,0"
-                           Visibility="{Binding AudioTracks.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}" />
-                <ComboBox ItemsSource="{Binding AudioTracks}"
-                          SelectedItem="{Binding CurrentAudioTrack, Mode=TwoWay}"
-                          Margin="0,12,0,0"
-                          Style="{StaticResource ComboBoxStyleDark}"
-                          Visibility="{Binding AudioTracks.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}">
-                    <ComboBox.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding Name}"
-                                       Foreground="White" />
-                        </DataTemplate>
-                    </ComboBox.ItemTemplate>
-                </ComboBox>
-                <Slider Style="{StaticResource VLCSlider}"
-                        Minimum="50"
-                        Value="{Binding SpeedRate, Mode=TwoWay}"
-                        Maximum="200"
-                        IsThumbToolTipEnabled="True"
-                        ThumbToolTipValueConverter="{StaticResource DoubleSpeedToUnderstandableSpeedConverter}">
-                    <Slider.Header>
-                        <TextBlock x:Uid="Speed"
-                                   Text="Speed"
-                                   Style="{StaticResource TitleTextBlockStyle}"
-                                   Margin="-6,24,0,0" />
-                    </Slider.Header>
-                </Slider>
-                <Grid>
-                    <TextBlock Text="0.5x"
-                               Style="{StaticResource TitleTextBlockStyle}" />
-                    <TextBlock Text="1x"
-                               Margin="96,0,0,0"
-                               Style="{StaticResource TitleTextBlockStyle}" />
-                    <TextBlock Text="2x"
-                               HorizontalAlignment="Right"
-                               Style="{StaticResource TitleTextBlockStyle}" />
-                </Grid>
-            </StackPanel>
-        </ScrollViewer>
+                <TextBlock Text="1x"
+                           Margin="96,0,0,0"
+                           Style="{StaticResource TitleTextBlockStyle}" />
+                <TextBlock Text="2x"
+                           HorizontalAlignment="Right"
+                           Style="{StaticResource TitleTextBlockStyle}" />
+            </Grid>
+        </StackPanel>
     </Grid>
 </UserControl>

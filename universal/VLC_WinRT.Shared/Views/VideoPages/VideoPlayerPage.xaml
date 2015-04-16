@@ -19,7 +19,6 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-
         <Border x:Name="HeaderGrid">
             <Border.Background>
                 <LinearGradientBrush EndPoint="0.5,1"
@@ -33,6 +32,7 @@
             <Grid Margin="24">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <Button x:Name="GoBackButton"
@@ -45,8 +45,8 @@
                                   FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
                     </Viewbox>
                 </Button>
-                <TextBlock Grid.Column="1"
-                           HorizontalAlignment="Center"
+                <TextBlock Grid.Column="2"
+                           TextAlignment="Center"
                            VerticalAlignment="Center"
                            FontSize="20"
                            DataContext="{Binding Source={StaticResource Locator}, Path=VideoVm}"
@@ -60,6 +60,9 @@
             <Grid x:Name="PlaceholderInteractionGrid"
                   Background="Transparent"
                   Tapped="PlaceholderInteractionGrid_OnTapped" />
+            <userControls:VideoPlayerSettings x:Name="VideoPlayerSettings"
+                                              VerticalAlignment="Bottom"
+                                              Visibility="Collapsed" />
         </Grid>
 
         <Border x:Name="ControlsGrid"
@@ -105,6 +108,16 @@
                                       FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets"
                                       FontSize="22" />
                         </AppBarButton.Icon>
+                        <AppBarButton.Flyout>
+                            <MenuFlyout>
+                                <MenuFlyoutItem Text="Audio Tracks"
+                                                x:Uid="AudioTracks" />
+                                <MenuFlyoutItem x:Uid="Subtitles"
+                                                Text="Subtitles" />
+                                <MenuFlyoutItem Text="Select subtitle file"
+                                                Command="{Binding OpenSubtitleCommand}" />
+                            </MenuFlyout>
+                        </AppBarButton.Flyout>
                     </AppBarButton>
                     <AppBarButton x:Name="PlayButton"
                                   Grid.Column="2"
@@ -150,13 +163,8 @@
                                    IsCompact="True"
                                    IsTabStop="False"
                                    VerticalAlignment="Center"
-                                   Style="{StaticResource AppBarButtonStyleHuge}">
-                        <AppBarButton.Flyout>
-                            <Flyout>
-                                <userControls:VideoPlayerSettings />
-                            </Flyout>
-                        </AppBarButton.Flyout>
-                    </AppBarButton>
+                                   Style="{StaticResource AppBarButtonStyleHuge}"
+                                   Click="MenuButton_Click"/>
                 </Grid>
             </Grid>
         </Border>
@@ -210,6 +218,11 @@
                                                     Value="Collapsed" />
                         </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HeaderGrid"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Collapsed" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="VideoPlayerSettings"
                                                        Storyboard.TargetProperty="Visibility">
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="Collapsed" />

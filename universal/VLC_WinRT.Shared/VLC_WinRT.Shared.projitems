@@ -364,9 +364,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\Flyouts\TrackItemFlyout.xaml.cs">
       <DependentUpon>TrackItemFlyout.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\Flyouts\VideoInformationFlyout.xaml.cs">
-      <DependentUpon>VideoInformationFlyout.xaml</DependentUpon>
-    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\FocusTextBox.xaml.cs">
       <DependentUpon>FocusTextBox.xaml</DependentUpon>
     </Compile>
@@ -426,6 +423,9 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\TrackItemTemplateDetailed.xaml.cs">
       <DependentUpon>TrackItemTemplateDetailed.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\VideoInformationFlyout.xaml.cs">
+      <DependentUpon>VideoInformationFlyout.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\VideoPlayerSettings.xaml.cs">
       <DependentUpon>VideoPlayerSettings.xaml</DependentUpon>
@@ -729,10 +729,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\Flyouts\VideoInformationFlyout.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\FocusTextBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -810,6 +806,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\TrackItemTemplateDetailed.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\VideoInformationFlyout.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
