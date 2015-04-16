@@ -20,8 +20,7 @@ namespace VLC_WinRT.Views.VideoPages
     public sealed partial class VideoPlayerPage : Page
     {
         private bool isVisible = true;
-        private DispatcherTimer timer;
-
+        private bool isLocked = false;
         public VideoPlayerPage()
         {
             InitializeComponent();
@@ -110,6 +109,24 @@ namespace VLC_WinRT.Views.VideoPages
         private void PlaceholderInteractionGrid_OnTapped(object sender, TappedRoutedEventArgs e)
         {
             Locator.MediaPlaybackViewModel.MouseService.Content_Tapped(sender, e);
+        }
+
+        private void LockToggleButton_Click(object sender, RoutedEventArgs e)
+        {
+            SwitchLock();
+        }
+
+        void SwitchLock()
+        {
+            isLocked = !isLocked;
+            LockToggleIcon.Glyph = (isLocked) ? App.Current.Resources["LockedSymbol"].ToString() : App.Current.Resources["UnlockedSymbol"].ToString();
+            GoBackButton.Visibility = (isLocked) ? Visibility.Collapsed : Visibility.Visible;
+            Slider.IsEnabled = !isLocked;
+            SubtitlesButton.IsEnabled = !isLocked;
+            PlayButton.IsEnabled = !isLocked;
+            PauseButton.IsEnabled = !isLocked;
+            VolumeButton.IsEnabled = !isLocked;
+            MenuButton.IsEnabled = !isLocked;
         }
     }
 }

@@ -30,12 +30,13 @@
                                   Offset="1" />
                 </LinearGradientBrush>
             </Border.Background>
-            <Grid  Margin="24">
+            <Grid Margin="24">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="0"
+                <Button x:Name="GoBackButton"
+                        Grid.Column="0"
                         Style="{StaticResource TextBlockButtonStyle}"
                         Command="{Binding GoBack}">
                     <Viewbox Height="30"
@@ -65,13 +66,14 @@
                 Grid.Row="2"
                 Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}"
                 Margin="24"
-                Padding="24">
+                Padding="24"
+                CornerRadius="6">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50" />
                     <RowDefinition Height="50" />
                 </Grid.RowDefinitions>
-                <userControls:SliderControl />
+                <userControls:SliderControl x:Name="Slider" />
                 <Grid Grid.Row="1">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
@@ -83,14 +85,17 @@
                     <AppBarToggleButton Grid.Column="0"
                                         Name="LockToggleButton"
                                         IsCompact="True"
-                                        VerticalAlignment="Center">
+                                        VerticalAlignment="Center"
+                                        Click="LockToggleButton_Click">
                         <AppBarToggleButton.Icon>
-                            <FontIcon Glyph="{StaticResource KeySymbol}"
+                            <FontIcon x:Name="LockToggleIcon"
+                                      Glyph="{StaticResource UnlockedSymbol}"
                                       FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets"
                                       FontSize="22" />
                         </AppBarToggleButton.Icon>
                     </AppBarToggleButton>
-                    <AppBarButton Grid.Column="1"
+                    <AppBarButton x:Name="SubtitlesButton"
+                                  Grid.Column="1"
                                   HorizontalAlignment="Center"
                                   IsCompact="True"
                                   Style="{StaticResource AppBarButtonStyleHuge}"
@@ -101,7 +106,8 @@
                                       FontSize="22" />
                         </AppBarButton.Icon>
                     </AppBarButton>
-                    <AppBarButton Grid.Column="2"
+                    <AppBarButton x:Name="PlayButton"
+                                  Grid.Column="2"
                                   IsCompact="True"
                                   Visibility="{Binding IsPlaying, Converter={StaticResource NegatedBooleanToVisibilityConverter}}"
                                   Style="{StaticResource AppBarButtonStyleHuge}"
@@ -113,7 +119,8 @@
                                       FontSize="42" />
                         </AppBarButton.Icon>
                     </AppBarButton>
-                    <AppBarButton Grid.Column="2"
+                    <AppBarButton x:Name="PauseButton"
+                                  Grid.Column="2"
                                   IsCompact="True"
                                   Visibility="{Binding IsPlaying, Converter={StaticResource BooleanToVisibilityConverter}}"
                                   Style="{StaticResource AppBarButtonStyleHuge}"
@@ -125,7 +132,8 @@
                                       FontSize="42" />
                         </AppBarButton.Icon>
                     </AppBarButton>
-                    <AppBarButton Grid.Column="3"
+                    <AppBarButton x:Name="VolumeButton"
+                                  Grid.Column="3"
                                   IsCompact="True"
                                   Style="{StaticResource AppBarButtonStyleHuge}"
                                   VerticalAlignment="Center"
@@ -133,16 +141,16 @@
                         <AppBarButton.Icon>
                             <FontIcon Glyph="{StaticResource VolumeSymbol}"
                                       FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets"
-                                      FontSize="22" />
+                                      FontSize="24" />
                         </AppBarButton.Icon>
                     </AppBarButton>
-                    <AppBarButton Grid.Column="4"
-                                  Name="MenuButton"
-                                  Icon="More"
-                                  IsCompact="True"
-                                  IsTabStop="False"
-                                  VerticalAlignment="Center"
-                                  Style="{StaticResource AppBarButtonStyleHuge}">
+                    <AppBarButton  Grid.Column="4"
+                                   Name="MenuButton"
+                                   Icon="More"
+                                   IsCompact="True"
+                                   IsTabStop="False"
+                                   VerticalAlignment="Center"
+                                   Style="{StaticResource AppBarButtonStyleHuge}">
                         <AppBarButton.Flyout>
                             <Flyout>
                                 <userControls:VideoPlayerSettings />
@@ -205,7 +213,7 @@
                                                        Storyboard.TargetProperty="Visibility">
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="Collapsed" />
-                        </ObjectAnimationUsingKeyFrames> 
+                        </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
                 <VisualState x:Name="ControlsVisible">
