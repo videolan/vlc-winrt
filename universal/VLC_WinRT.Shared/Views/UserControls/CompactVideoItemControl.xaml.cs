@@ -9,6 +9,7 @@ namespace VLC_WinRT.Views.UserControls
         {
             this.InitializeComponent();
         }
+
         private void RootAlbumItem_Holding(object sender, HoldingRoutedEventArgs e)
         {
             Flyout.ShowAttachedFlyout((Border)sender);
