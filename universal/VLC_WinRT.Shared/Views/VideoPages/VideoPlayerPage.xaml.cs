@@ -73,10 +73,6 @@ namespace VLC_WinRT.Views.VideoPages
             // If we navigate back and forth to the main page, we also don't want to 
             // re-mark the task as completed.
             Locator.MediaPlaybackViewModel.ContinueIndexing = new TaskCompletionSource<bool>();
-            timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(5);
-            timer.Tick += TimerOnTick;
-            timer.Start();
         }
 
 
@@ -94,10 +90,6 @@ namespace VLC_WinRT.Views.VideoPages
             {
                 Locator.MediaPlaybackViewModel.ContinueIndexing.SetResult(true);
             }
-        }
-
-        private async void TimerOnTick(object sender, object o)
-        {
         }
 
         void DisplayOrHide()
