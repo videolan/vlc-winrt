@@ -78,12 +78,5 @@ namespace VLC_WinRT.Views.MusicPages
             Frame.GoBack();
         }
         #endregion
-
-        private void RootGrid_Loaded(object sender, RoutedEventArgs e)
-        {
-#if WINDOWS_PHONE_APP
-            this.Margin = new Thickness(0, 24, 0, 0);
-#endif
-        }
     }
 }

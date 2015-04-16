@@ -9,7 +9,7 @@
       mc:Ignorable="d"
       DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}">
 
-    <Grid Loaded="RootGrid_Loaded">
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition x:Name="PlayerColumnDefinition"
                               MinWidth="350" />
