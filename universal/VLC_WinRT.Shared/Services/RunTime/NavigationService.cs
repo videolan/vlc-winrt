@@ -45,10 +45,13 @@ namespace VLC_WinRT.Services.RunTime
                 case VLCPage.MainPageHome:
                     break;
                 case VLCPage.MainPageVideo:
+                    Locator.MainVM.GoToPanelCommand.Execute(0);
                     break;
                 case VLCPage.MainPageMusic:
+                    Locator.MainVM.GoToPanelCommand.Execute(0);
                     break;
                 case VLCPage.MainPageFileExplorer:
+                    Locator.MainVM.GoToPanelCommand.Execute(0);
                     break;
                 case VLCPage.AlbumPage:
                     GoBack_HideFlyout();
