@@ -15,6 +15,8 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
 using VLC_WinRT.Helpers;
+using Windows.Graphics.Display;
+
 namespace VLC_WinRT.Views.VideoPages
 {
     public sealed partial class VideoPlayerPage : Page
@@ -121,6 +123,7 @@ namespace VLC_WinRT.Views.VideoPages
             PauseButton.IsEnabled = !isLocked;
             VolumeButton.IsEnabled = !isLocked;
             MenuButton.IsEnabled = !isLocked;
+            DisplayProperties.AutoRotationPreferences = (isLocked) ? DisplayInformation.GetForCurrentView().CurrentOrientation : DisplayOrientations.None;
         }
 
         private void MenuButton_Click(object sender, RoutedEventArgs e)
