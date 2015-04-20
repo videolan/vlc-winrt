@@ -253,7 +253,7 @@
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SeparatorRowDefinition"
                                                        Storyboard.TargetProperty="Height">
                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="24" />
+                                                    Value="{StaticResource FrameMarginGridLength}" />
                         </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SeparatorColumnDefinition"
                                                        Storyboard.TargetProperty="Width">
@@ -298,7 +298,7 @@
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RootGrid"
                                                        Storyboard.TargetProperty="Margin">
                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="24,0" />
+                                                    Value="{StaticResource FrameMargin}" />
                         </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
