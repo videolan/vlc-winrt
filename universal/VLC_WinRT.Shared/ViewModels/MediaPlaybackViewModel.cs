@@ -798,8 +798,7 @@ namespace VLC_WinRT.ViewModels
             {
                 await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
                 {
-                    IsPlaying = e == MediaState.Playing;
-                    OnPropertyChanged("IsPlaying");
+                    IsPlaying = e == MediaState.Playing || e == MediaState.Buffering;
                     MediaState = e;
 
                     switch (MediaState)
