@@ -42,7 +42,8 @@
                     <TextBlock Grid.Column="0"
                                Margin="12,0,0,4"
                                Text="{Binding Name}"
-                               TextWrapping="Wrap"
+                               TextWrapping="NoWrap"
+                               TextTrimming="CharacterEllipsis"
                                Style="{StaticResource SubheaderTextBlockStyle}" />
                     <TextBlock Grid.Column="1"
                                Text="{Binding Type}"
