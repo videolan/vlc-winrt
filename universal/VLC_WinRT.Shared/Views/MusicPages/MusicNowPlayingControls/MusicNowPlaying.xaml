@@ -179,7 +179,7 @@
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SeparatorColumnDefinition"
                                                        Storyboard.TargetProperty="Width">
                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="50" />
+                                                    Value="40" />
                         </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SeparatorRowDefinition"
                                                        Storyboard.TargetProperty="Height">
