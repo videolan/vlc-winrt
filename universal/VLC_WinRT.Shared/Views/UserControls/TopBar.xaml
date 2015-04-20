@@ -12,7 +12,7 @@
              DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}">
 
     <Grid x:Name="ColumnGrid"
-          Height="50"
+          Height="60"
           MinWidth="320"
           Background="{Binding IsBackground, Converter={StaticResource BooleanToMainColorConverter}}"
           RequestedTheme="Dark">
@@ -41,6 +41,7 @@
                           Click="GoBack_Click">
                 <AppBarButton.Icon>
                     <FontIcon Glyph="{StaticResource PreviousPageSymbol}"
+                              Margin="0,3,0,0"
                               FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
                 </AppBarButton.Icon>
             </AppBarButton>
@@ -62,7 +63,8 @@
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <ItemsStackPanel Orientation="Horizontal"
-                                     Margin="12,0,0,0" />
+                                     Margin="12,0,0,0" 
+                                     Height="60"/>
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
             <ListView.ItemContainerTransitions>

@@ -7,7 +7,7 @@
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400">
-    <Grid VerticalAlignment="Center"
+    <Grid VerticalAlignment="Stretch"
           Background="Transparent">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
@@ -20,16 +20,6 @@
             <VisualStateGroup>
                 <VisualState x:Name="Normal">
                     <Storyboard>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Icon"
-                                                       Storyboard.TargetProperty="Height">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="26" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Icon"
-                                                       Storyboard.TargetProperty="Width">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="26" />
-                        </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Title"
                                                        Storyboard.TargetProperty="Visibility">
                             <DiscreteObjectKeyFrame KeyTime="0"
@@ -38,22 +28,12 @@
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Title"
                                                        Storyboard.TargetProperty="FontSize">
                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="22" />
+                                                    Value="24" />
                         </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
                 <VisualState x:Name="HalfSnap">
                     <Storyboard>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Icon"
-                                                       Storyboard.TargetProperty="Height">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="26" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Icon"
-                                                       Storyboard.TargetProperty="Width">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="26" />
-                        </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Title"
                                                        Storyboard.TargetProperty="Visibility">
                             <DiscreteObjectKeyFrame KeyTime="0"
@@ -62,27 +42,12 @@
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Title"
                                                        Storyboard.TargetProperty="FontSize">
                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="16" />
+                                                    Value="19" />
                         </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
                 <VisualState x:Name="Snap">
                     <Storyboard>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Icon"
-                                                       Storyboard.TargetProperty="Height">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="46" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Icon"
-                                                       Storyboard.TargetProperty="Margin">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="0,0,0,-3" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Icon"
-                                                       Storyboard.TargetProperty="Width">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="46" />
-                        </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Title"
                                                        Storyboard.TargetProperty="Visibility">
                             <DiscreteObjectKeyFrame KeyTime="0"
@@ -96,14 +61,13 @@
                   FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets"
                   Glyph="{Binding Panel.PathData}"
                   FontSize="26"
-                  VerticalAlignment="Bottom"
+                  VerticalAlignment="Center"
                   Foreground="{ThemeResource BasicForeground}" />
         <TextBlock x:Name="Title"
                    Grid.Column="2"
                    Text="{Binding Panel.Title}"
                    Foreground="{ThemeResource BasicForeground}"
-                   Style="{StaticResource SubheaderTextBlockStyle}"
-                   VerticalAlignment="Bottom"
-                   FontSize="22" />
+                   VerticalAlignment="Center"
+                   FontWeight="Light"/>
     </Grid>
 </UserControl>
