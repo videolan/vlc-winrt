@@ -280,10 +280,9 @@
               Grid.Column="1"
               Margin="12,0,0,0"
               VerticalAlignment="Center"
-              Tapped="RootMiniPlayer_Tapped"
               Background="Transparent"
-              MaxWidth="250"
-              DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}">
+              DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}"
+              Tapped="RootMiniPlayer_Tapped">
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition />
@@ -316,7 +315,8 @@
                 DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
                 Command="{Binding PlayPreviousCommand}"
                 Visibility="{Binding TrackCollection.CanGoPrevious, Converter={StaticResource BooleanToVisibilityConverter}}">
-            <FontIcon Glyph="{StaticResource PreviousSymbol}"
+            <FontIcon x:Name="PreviousIcon"
+                      Glyph="{StaticResource PreviousSymbol}"
                       FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
         </Button>
         <Grid x:Name="PlayPauseGrid"
@@ -330,7 +330,8 @@
                     Command="{Binding PlayOrPauseCommand}"
                     Visibility="{Binding IsPlaying, Converter={StaticResource NegatedBooleanToVisibilityConverter}}"
                     Holding="PlayPauseHold">
-                <FontIcon Glyph="{StaticResource PlaySymbol}"
+                <FontIcon x:Name="PlayIcon"
+                          Glyph="{StaticResource PlaySymbol}"
                           FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
             </Button>
             <Button Style="{StaticResource TextBlockButtonStyle}"
@@ -338,7 +339,8 @@
                     Command="{Binding PlayOrPauseCommand}"
                     Visibility="{Binding IsPlaying, Converter={StaticResource BooleanToVisibilityConverter}}"
                     Holding="PlayPauseHold">
-                <FontIcon Glyph="{StaticResource PauseSymbol}"
+                <FontIcon x:Name="PauseIcon"
+                          Glyph="{StaticResource PauseSymbol}"
                           FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
             </Button>
         </Grid>
@@ -348,13 +350,15 @@
                 Style="{StaticResource TextBlockButtonStyle}"
                 DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
                 Command="{Binding PlayNextCommand}"
-                Visibility="{Binding TrackCollection.CanGoNext, Converter={StaticResource BooleanToVisibilityConverter}}">
-            <FontIcon Glyph="{StaticResource SkipNextSymbol}"
+                Visibility="{Binding TrackCollection.CanGoNext, Converter={StaticResource BooleanToVisibilityConverter}}"
+                Margin="0,0,6,0">
+            <FontIcon x:Name="NextIcon"
+                      Glyph="{StaticResource SkipNextSymbol}"
                       FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
         </Button>
         <musicNowPlayingControls:SecondaryMusicPlayerButtons x:Name="SecondaryMusicPlayerButtons"
                                                              Grid.Column="6"
                                                              FontSize="20"
-                                                             Margin="14,0" />
+                                                             Margin="6,0" />
     </Grid>
 </UserControl>
