@@ -15,35 +15,6 @@ namespace VLC_WinRT.Views.MusicPages
             this.InitializeComponent();
         }
 
-        protected override async void OnNavigatedTo(NavigationEventArgs e)
-        {
-            Responsive();
-            Window.Current.SizeChanged += CurrentOnSizeChanged;
-            this.Unloaded += OnUnloaded;
-        }
-
-        private void CurrentOnSizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)
-        {
-            Responsive();
-        }
-
-        private void OnUnloaded(object sender, RoutedEventArgs e)
-        {
-            Window.Current.SizeChanged -= CurrentOnSizeChanged;
-        }
-
-        void Responsive()
-        {
-            if (Window.Current.Bounds.Width > 700)
-            {
-                VisualStateUtilities.GoToState(this, "Horizontal", false);
-            }
-            else
-            {
-                VisualStateUtilities.GoToState(this, "Vertical", false);
-            }
-        }
-        
         private void PlayListView_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (e.AddedItems != null && e.AddedItems.Any())
