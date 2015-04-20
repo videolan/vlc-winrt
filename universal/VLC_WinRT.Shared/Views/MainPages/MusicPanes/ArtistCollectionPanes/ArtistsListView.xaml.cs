@@ -38,7 +38,7 @@ namespace VLC_WinRT.Views.MainPages.MusicPanes.ArtistCollectionPanes
         private void ArtistListView_OnItemClick(object sender, ItemClickEventArgs e)
         {
             var artist = e.ClickedItem as ArtistItem;
-            if (Window.Current.Bounds.Width > 800)
+            if (Window.Current.Bounds.Width >= 800)
                 Locator.MusicLibraryVM.CurrentArtist = artist;
             else Locator.MusicLibraryVM.ArtistClickedCommand.Execute(artist);
         }
