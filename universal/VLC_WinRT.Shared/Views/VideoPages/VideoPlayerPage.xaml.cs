@@ -64,10 +64,7 @@ namespace VLC_WinRT.Views.VideoPages
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-#if DEBUG
-#else
             AppViewHelper.SetFullscren(true);
-#endif
             Locator.MediaPlaybackViewModel.MouseService.OnHidden += MouseStateChanged;
             Locator.MediaPlaybackViewModel.MouseService.OnMoved += MouseStateChanged;
             // If no playback was ever started, ContinueIndexing can be null

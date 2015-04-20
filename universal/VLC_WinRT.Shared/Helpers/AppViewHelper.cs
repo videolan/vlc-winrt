@@ -62,9 +62,11 @@ namespace VLC_WinRT.Helpers
 #endif
         }
 
-        public static void SetFullscren(bool isfullscreen)
+        public static async void SetFullscren(bool isfullscreen)
         {
 #if WINDOWS_APP
+#if DEBUG
+#else
             var v = Windows.UI.ViewManagement.ApplicationView.GetForCurrentView();
             var runtimeMethods = v.GetType().GetRuntimeMethods();
             if (isfullscreen)
@@ -77,6 +79,7 @@ namespace VLC_WinRT.Helpers
                 var exitFullScreenMode = runtimeMethods.FirstOrDefault(x => x.Name == "ExitFullScreenMode");
                 exitFullScreenMode?.Invoke(v, null);
             }
+#endif
 #endif
         }
     }
