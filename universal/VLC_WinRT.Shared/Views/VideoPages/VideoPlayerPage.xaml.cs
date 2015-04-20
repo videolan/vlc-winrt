@@ -81,7 +81,7 @@ namespace VLC_WinRT.Views.VideoPages
             DisplayOrHide();
         }
 
-        
+
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
             base.OnNavigatingFrom(e);

@@ -48,7 +48,7 @@ namespace VLC_WinRT.Utils
                 builder.RegisterType<VideoPlayerVM>().SingleInstance();
                 builder.RegisterType<SettingsViewModel>().SingleInstance();
 
-                builder.RegisterType<ExternalStorageViewModel>().SingleInstance();
+                builder.RegisterType<VLCExplorerViewModel>().SingleInstance();
 
                 builder.RegisterType<DLNAVM>().SingleInstance();
 

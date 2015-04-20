@@ -13,8 +13,8 @@ namespace VLC_WinRT.Commands.RemovableDevices
             if ((parameter as SelectionChangedEventArgs).AddedItems.Count != 0)
             {
                 FileExplorerViewModel fileExplorer = (parameter as SelectionChangedEventArgs).AddedItems[0] as FileExplorerViewModel;
-                Locator.ExternalStorageVM.CurrentStorageVM = fileExplorer;
-                Task.Run(() => Locator.ExternalStorageVM.CurrentStorageVM.GetFiles());
+                Locator.FileExplorerVM.CurrentStorageVM = fileExplorer;
+                Task.Run(() => Locator.FileExplorerVM.CurrentStorageVM.GetFiles());
             }
         }
     }

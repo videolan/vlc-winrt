@@ -70,9 +70,10 @@ namespace VLC_WinRT.ViewModels
         {
             get { return App.Container.Resolve<VideoPlayerVM>(); }
         }
-        public static ExternalStorageViewModel ExternalStorageVM
+
+        public static VLCExplorerViewModel FileExplorerVM
         {
-            get { return App.Container.Resolve<ExternalStorageViewModel>(); }
+            get { return App.Container.Resolve<VLCExplorerViewModel>(); }
         }
 
         public static DLNAVM DlnaVM

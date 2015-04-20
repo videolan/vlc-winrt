@@ -49,6 +49,7 @@
     <x:String x:Key="DropdownSymbol"></x:String>
     <x:String x:Key="UnlockedSymbol"></x:String>
     <x:String x:Key="LockedSymbol"></x:String>
+    <x:String x:Key="FolderSymbol"></x:String>
     
     <!-- Segoe UI Symbol Font -->
     <x:String x:Key="VerticalDotsSymbol"></x:String>

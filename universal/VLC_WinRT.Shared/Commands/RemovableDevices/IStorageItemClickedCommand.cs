@@ -13,7 +13,7 @@ namespace VLC_WinRT.Commands.RemovableDevices
         {
             IStorageItem storageItem = ((ItemClickEventArgs)parameter).ClickedItem as IStorageItem;
             if (Locator.NavigationService.CurrentPage == VLCPage.MainPageFileExplorer)
-                await Locator.ExternalStorageVM.CurrentStorageVM.NavigateTo(storageItem);
+                await Locator.FileExplorerVM.CurrentStorageVM.NavigateTo(storageItem);
 #if WINDOWS_APP
             else if(App.ApplicationFrame.CurrentSourcePageType == typeof(MainPageMediaServers))
                 await Locator.DlnaVM.CurrentDlnaVm.NavigateTo(storageItem);

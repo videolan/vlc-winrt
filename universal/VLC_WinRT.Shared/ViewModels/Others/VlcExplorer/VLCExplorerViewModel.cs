@@ -17,14 +17,13 @@ using VLC_WinRT.ViewModels.Others.VlcExplorer;
 using System.Threading.Tasks;
 using Autofac;
 using VLC_WinRT.Utils;
-
 #if WINDOWS_APP
 using Windows.Devices.Portable;
 #endif
 
 namespace VLC_WinRT.ViewModels.RemovableDevicesVM
 {
-    public class ExternalStorageViewModel : BindableBase, IDisposable
+    public class VLCExplorerViewModel : BindableBase, IDisposable
     {
         #region private props
         private ExternalDeviceService _deviceService;
@@ -32,12 +31,12 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
         #endregion
 
         #region private fields
-        private ObservableCollection<FileExplorerViewModel> _removableStorageVMs = new ObservableCollection<FileExplorerViewModel>();
+        private ObservableCollection<FileExplorerViewModel> _storageVMs = new ObservableCollection<FileExplorerViewModel>();
         #endregion
 
         #region public props
 
-        public RemovableDeviceClickedCommand RemovableDeviceClicked { get; }=new RemovableDeviceClickedCommand();
+        public RemovableDeviceClickedCommand RemovableDeviceClicked { get; } =new RemovableDeviceClickedCommand();
 
         public FileExplorerViewModel CurrentStorageVM
         {
@@ -50,16 +49,22 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
         #endregion
 
         #region public fields
-        public ObservableCollection<FileExplorerViewModel> RemovableStorageVMs
+        public ObservableCollection<FileExplorerViewModel> StorageVMs
         {
-            get { return _removableStorageVMs; }
-            set { SetProperty(ref _removableStorageVMs, value); }
+            get { return _storageVMs; }
+            set { SetProperty(ref _storageVMs, value); }
         }
         #endregion
 
-        public ExternalStorageViewModel()
+        public VLCExplorerViewModel()
         {
             RemovableDeviceClicked = new RemovableDeviceClickedCommand();
+            var musicLibrary = new FileExplorerViewModel(KnownFolders.MusicLibrary);
+            StorageVMs.Add(musicLibrary);
+            var videoLibrary = new FileExplorerViewModel(KnownFolders.VideosLibrary);
+            StorageVMs.Add(videoLibrary);
+            CurrentStorageVM = StorageVMs[0];
+            CurrentStorageVM?.GetFiles();
 #if WINDOWS_APP
             _deviceService = App.Container.Resolve<ExternalDeviceService>();
             _deviceService.ExternalDeviceAdded += DeviceAdded;
@@ -76,9 +81,7 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
             if (cards.Any())
             {
                 var external = new FileExplorerViewModel(cards[0]);
-                RemovableStorageVMs.Add(external);
-                CurrentStorageVM = RemovableStorageVMs[0];
-                await CurrentStorageVM.GetFiles();
+                StorageVMs.Add(external);
             }
         }
 
@@ -92,14 +95,14 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
         {
             await DispatchHelper.InvokeAsync(() =>
             {
-                if (RemovableStorageVMs.All(vm => vm.Id != newId))
+                if (StorageVMs.All(vm => vm.Id != newId))
                 {
                     var external = new FileExplorerViewModel(StorageDevice.FromId(newId), newId);
-                    RemovableStorageVMs.Add(external);
+                    StorageVMs.Add(external);
                 }
-                if (RemovableStorageVMs.Any())
+                if (StorageVMs.Any())
                 {
-                    CurrentStorageVM = RemovableStorageVMs[0];
+                    CurrentStorageVM = StorageVMs[0];
                 }
             });
         }
@@ -108,7 +111,7 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
         {
             await DispatchHelper.InvokeAsync(() =>
             {
-                FileExplorerViewModel removedViewModel = RemovableStorageVMs.FirstOrDefault(vm => vm.Id == id);
+                FileExplorerViewModel removedViewModel = StorageVMs.FirstOrDefault(vm => vm.Id == id);
                 if (removedViewModel != null)
                 {
                     if (CurrentStorageVM == removedViewModel)
@@ -116,7 +119,7 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
                         CurrentStorageVM.StorageItems.Clear();
                         CurrentStorageVM = null;
                     }
-                    RemovableStorageVMs.Remove(removedViewModel);
+                    StorageVMs.Remove(removedViewModel);
                     GC.Collect();
                 }
             });

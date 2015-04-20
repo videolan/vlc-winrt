@@ -135,7 +135,7 @@ namespace VLC_WinRT.Services.RunTime
                     App.ApplicationFrame.Navigate(typeof(MainPageMusic));
                     break;
                 case VLCPage.MainPageFileExplorer:
-                    App.ApplicationFrame.Navigate(typeof(MainPageRemovables));
+                    App.ApplicationFrame.Navigate(typeof(MainPageFileExplorer));
                     break;
                 case VLCPage.AlbumPage:
                     App.RootPage.SplitShell.RightFlyoutContent = new AlbumPageBase();
@@ -205,7 +205,7 @@ namespace VLC_WinRT.Services.RunTime
                 return VLCPage.MainPageVideo;
             if (page == typeof(MainPageMusic))
                 return VLCPage.MainPageMusic;
-            if (page == typeof(MainPageRemovables))
+            if (page == typeof(MainPageFileExplorer))
                 return VLCPage.MainPageFileExplorer;
             if (page == typeof(PlaylistPage))
                 return VLCPage.PlaylistPage;

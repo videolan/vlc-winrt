@@ -206,8 +206,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\NetworkVM\DLNAVM.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Others\BackerCountryViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Others\SpecialThanksViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Others\VlcExplorer\VLCExplorerViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Others\VlcExplorer\FileExplorerViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\RemovableDevicesVM\ExternalStorageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Settings\SettingsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\VideoVM\VideoLibraryVM.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\VideoVM\VideoPlayerVM.cs" />
@@ -226,8 +226,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\MainPages\MainPageMusic.xaml.cs">
       <DependentUpon>MainPageMusic.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\MainPages\MainPageRemovables.xaml.cs">
-      <DependentUpon>MainPageRemovables.xaml</DependentUpon>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\MainPages\MainPageFileExplorer.xaml.cs">
+      <DependentUpon>MainPageFileExplorer.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\MainPages\MainPageVideos.xaml.cs">
       <DependentUpon>MainPageVideos.xaml</DependentUpon>
@@ -545,7 +545,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Views\MainPages\MainPageRemovables.xaml">
+    <Page Include="$(MSBuildThisFileDirectory)Views\MainPages\MainPageFileExplorer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

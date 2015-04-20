@@ -1,4 +1,4 @@
-﻿<Page x:Class="VLC_WinRT.Views.MainPages.MainPageRemovables"
+﻿<Page x:Class="VLC_WinRT.Views.MainPages.MainPageFileExplorer"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -8,7 +8,7 @@
       xmlns:controls="using:VLC_WINRT.Views.Controls"
       xmlns:placeholder="using:VLC_WinRT.Views.UserControls.Placeholder"
       mc:Ignorable="d"
-      DataContext="{Binding Source={StaticResource Locator}, Path=ExternalStorageVM}">
+      DataContext="{Binding Source={StaticResource Locator}, Path=FileExplorerVM}">
 
     <Grid x:Name="RootGrid"
           Margin="{StaticResource FrameMargin}">
@@ -51,10 +51,10 @@
         </Grid.RowDefinitions>
         <ComboBox Grid.Row="0"
                   Width="280"
-                  ItemsSource="{Binding RemovableStorageVMs}"
+                  ItemsSource="{Binding StorageVMs}"
                   SelectedItem="{Binding CurrentStorageVM}"
-                  Visibility="{Binding RemovableStorageVMs.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}"
-                  Style="{StaticResource ComboBoxStyle1}"
+                  Visibility="{Binding StorageVMs.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}"
+                  Style="{StaticResource HeaderComboBoxStyle}"
                   FontSize="26"
                   HorizontalAlignment="Left"
                   VerticalAlignment="Center"
@@ -110,7 +110,7 @@
                       SelectionMode="None"
                       IsSwipeEnabled="False"
                       ItemContainerStyle="{StaticResource ListViewItemStyle}"
-                      Visibility="{Binding RemovableStorageVMs.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}">
+                      Visibility="{Binding StorageVMs.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}">
                 <triggers:Interactions.Triggers>
                     <triggers:EventTrigger EventName="ItemClick">
                         <triggers:InvokeCommandAction Command="{Binding CurrentStorageVM.NavigateToCommand}"
@@ -143,6 +143,6 @@
         <removableStorage:PlugARemovableStorage Grid.Row="1"
                                                 Grid.RowSpan="2"
                                                 d:IsHidden="True"
-                                                Visibility="{Binding RemovableStorageVMs.Count, Converter={StaticResource CountToVisibilityConverter}}" />
+                                                Visibility="{Binding StorageVMs.Count, Converter={StaticResource CountToVisibilityConverter}}" />
     </Grid>
 </Page>

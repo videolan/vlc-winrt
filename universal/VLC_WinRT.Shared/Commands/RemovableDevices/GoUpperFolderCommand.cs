@@ -8,11 +8,11 @@ namespace VLC_WinRT.Commands.RemovableDevices
     {
         public override void Execute(object parameter)
         {
-            if (App.ApplicationFrame.CurrentSourcePageType == typeof (MainPageRemovables))
+            if (App.ApplicationFrame.CurrentSourcePageType == typeof (MainPageFileExplorer))
             {
-                if (Locator.ExternalStorageVM.CurrentStorageVM != null &&
-                    Locator.ExternalStorageVM.CurrentStorageVM.CanGoBack)
-                    Locator.ExternalStorageVM.CurrentStorageVM.GoBack();
+                if (Locator.FileExplorerVM.CurrentStorageVM != null &&
+                    Locator.FileExplorerVM.CurrentStorageVM.CanGoBack)
+                    Locator.FileExplorerVM.CurrentStorageVM.GoBack();
             }
 #if WINDOWS_APP
             else if(App.ApplicationFrame.CurrentSourcePageType == typeof(MainPageMediaServers))

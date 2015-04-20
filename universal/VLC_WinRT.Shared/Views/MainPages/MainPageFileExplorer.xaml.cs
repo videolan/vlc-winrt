@@ -4,9 +4,9 @@ using Microsoft.Xaml.Interactivity;
 
 namespace VLC_WinRT.Views.MainPages
 {
-    public sealed partial class MainPageRemovables : Page
+    public sealed partial class MainPageFileExplorer : Page
     {
-        public MainPageRemovables()
+        public MainPageFileExplorer()
         {
             this.InitializeComponent();
             SizeChanged += OnSizeChanged;
