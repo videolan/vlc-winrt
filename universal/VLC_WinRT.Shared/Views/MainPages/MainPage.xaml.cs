@@ -14,6 +14,7 @@ using Autofac;
 using VLC_WinRT.Helpers;
 using VLC_WinRT.Services.RunTime;
 using VLC_WinRT.ViewModels;
+
 namespace VLC_WinRT.Views.MainPages
 {
     public sealed partial class MainPage : SwapChainPanel
@@ -70,6 +71,11 @@ namespace VLC_WinRT.Views.MainPages
         private void MainPage_Unloaded(object sender, RoutedEventArgs e)
         {
             Window.Current.SizeChanged -= Current_SizeChanged;
+        }
+
+        private void SplitShell_FlyoutCloseRequested(object sender, System.EventArgs e)
+        {
+            Locator.NavigationService.GoBack_HideFlyout();
         }
     }
 }

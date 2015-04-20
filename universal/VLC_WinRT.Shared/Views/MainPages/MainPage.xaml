@@ -39,7 +39,8 @@
                          EdgePaneColor="{ThemeResource ApplicationThirdForegroundThemeBrush}"
                          AlwaysVisibleSidebar="True"
                          InformationText="{Binding Source={StaticResource Locator}, Path=MainVM.InformationText}"
-                         InformationBackground="{StaticResource MainColor}">
+                         InformationBackground="{StaticResource MainColor}"
+                         FlyoutCloseRequested="SplitShell_FlyoutCloseRequested">
         <controls:SplitShell.Content>
             <userControls:ShellContent x:Name="ShellContent"
                                        x:FieldModifier="public" />

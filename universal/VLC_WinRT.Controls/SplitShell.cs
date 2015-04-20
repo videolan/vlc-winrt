@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -8,6 +9,7 @@ using Windows.UI.Xaml.Media.Animation;
 
 namespace VLC_WinRT.Controls
 {
+    public delegate void FlyoutCloseRequested(object sender, EventArgs e);
 
     [TemplatePart(Name = EdgePaneName, Type = typeof(Grid))]
     [TemplatePart(Name = SidebarGridContainerName, Type = typeof(Grid))]
@@ -22,9 +24,11 @@ namespace VLC_WinRT.Controls
     [TemplatePart(Name = RightFlyoutFadeOutName, Type = typeof(Storyboard))]
     [TemplatePart(Name = RightFlyoutPlaneProjectionName, Type = typeof(PlaneProjection))]
     [TemplatePart(Name = RightFlyoutGridContainerName, Type = typeof(Grid))]
+    [TemplatePart(Name = FlyoutBackgroundGridName, Type = typeof(Grid))]
     [TemplatePart(Name = FooterContentPresenterName, Type = typeof(ContentPresenter))]
     public sealed class SplitShell : Control
     {
+        public event FlyoutCloseRequested FlyoutCloseRequested;
         public TaskCompletionSource<bool> TemplateApplied = new TaskCompletionSource<bool>();
 
         private const string EdgePaneName = "EdgePane";
@@ -43,11 +47,13 @@ namespace VLC_WinRT.Controls
         private const string RightFlyoutFadeOutName = "RightFlyoutFadeOut";
         private const string RightFlyoutPlaneProjectionName = "RightFlyoutPlaneProjection";
         private const string RightFlyoutGridContainerName = "RightFlyoutGridContainer";
+        private const string FlyoutBackgroundGridName = "FlyoutBackgroundGrid";
         private const string FooterContentPresenterName = "FooterContentPresenter";
 
         private Grid _edgePaneGrid;
         private Grid _sidebarGridContainer;
         private Grid _rightFlyoutGridContainer;
+        private Grid _flyoutBackgroundGrid;
         private ContentPresenter _contentPresenter;
         private ContentPresenter _sidebarContentPresenter;
         private ContentPresenter _alwaysVisibleSidebarContentPresenter;
@@ -306,6 +312,7 @@ namespace VLC_WinRT.Controls
             _rightFlyoutFadeOut = (Storyboard)GetTemplateChild(RightFlyoutFadeOutName);
             _rightFlyoutPlaneProjection = (PlaneProjection)GetTemplateChild(RightFlyoutPlaneProjectionName);
             _rightFlyoutGridContainer = (Grid)GetTemplateChild(RightFlyoutGridContainerName);
+            _flyoutBackgroundGrid = (Grid)GetTemplateChild(FlyoutBackgroundGridName);
             _footerContentPresenter = (ContentPresenter) GetTemplateChild(FooterContentPresenterName);
 
             TemplateApplied.SetResult(true);
@@ -314,7 +321,7 @@ namespace VLC_WinRT.Controls
             _rightFlyoutGridContainer.Visibility = Visibility.Collapsed;
             _edgePaneGrid.Tapped += _edgePaneGrid_Tapped;
             _sidebarGridContainer.Tapped += _sidebarGridContainer_Tapped;
-            _rightFlyoutGridContainer.Tapped += RightFlyoutGridContainerOnTapped;
+            _flyoutBackgroundGrid.Tapped += RightFlyoutGridContainerOnTapped;
             Window.Current.SizeChanged += Current_SizeChanged;
             Responsive();
         }
@@ -336,7 +343,8 @@ namespace VLC_WinRT.Controls
 
         private void RightFlyoutGridContainerOnTapped(object sender, TappedRoutedEventArgs tappedRoutedEventArgs)
         {
-            HideFlyout();
+            if (FlyoutCloseRequested != null)
+                FlyoutCloseRequested.Invoke(null, new EventArgs());
         }
 
         void _sidebarGridContainer_Tapped(object sender, TappedRoutedEventArgs e)

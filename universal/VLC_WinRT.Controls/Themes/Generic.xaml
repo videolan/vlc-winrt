@@ -203,6 +203,8 @@
                               Grid.RowSpan="3"
                               Background="#50000000"
                               Opacity="0">
+                            <Grid Background="Transparent" 
+                                  x:Name="FlyoutBackgroundGrid"/>
                             <ContentPresenter x:Name="RightFlyoutContentPresenter"
                                               HorizontalAlignment="Stretch"
                                               MaxWidth="500">

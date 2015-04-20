@@ -25,7 +25,7 @@ namespace VLC_WinRT.Services.RunTime
         {
 #if WINDOWS_PHONE_APP
             HardwareButtons.BackPressed += HardwareButtons_BackPressed;
-#endif    
+#endif
         }
 
 #if WINDOWS_PHONE_APP
