@@ -32,7 +32,9 @@
             </Ellipse>
             <TextBlock Grid.Column="2"
                        Style="{StaticResource SubheaderTextBlockStyle}"
-                       VerticalAlignment="Center">
+                       VerticalAlignment="Center"
+                       TextWrapping="NoWrap"
+                       TextTrimming="CharacterEllipsis">
                 <Run Text="{Binding Name, Converter={StaticResource ArtistStringConverter}}"
                      Foreground="{StaticResource MainColor}" />
                 <LineBreak />
