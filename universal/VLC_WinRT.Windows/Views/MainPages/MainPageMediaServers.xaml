@@ -14,38 +14,6 @@
 
     <Grid x:Name="RootGrid"
           Margin="{StaticResource FrameMargin}">
-        <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup x:Name="Standard">
-                <VisualState x:Name="Vertical">
-                    <Storyboard>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="StorageItemsListView"
-                                                       Storyboard.TargetProperty="Style">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="{StaticResource AdaptativeListViewScrollVerticalStyle}" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="StorageItemsListView"
-                                                       Storyboard.TargetProperty="ItemsPanel">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="{StaticResource AdaptativeVerticalPanelTemplate}" />
-                        </ObjectAnimationUsingKeyFrames>
-                    </Storyboard>
-                </VisualState>
-                <VisualState x:Name="Horizontal">
-                    <Storyboard>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="StorageItemsListView"
-                                                       Storyboard.TargetProperty="Style">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="{StaticResource AdaptativeListViewScrollHorizontalStyle}" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="StorageItemsListView"
-                                                       Storyboard.TargetProperty="ItemsPanel">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="{StaticResource AdaptativeHorizontalPanelTemplate}" />
-                        </ObjectAnimationUsingKeyFrames>
-                    </Storyboard>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
         <Grid.RowDefinitions>
             <RowDefinition Height="45" />
             <RowDefinition Height="60" />
@@ -104,6 +72,7 @@
                       SelectionMode="None"
                       IsSwipeEnabled="False"
                       ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                      ItemsPanel="{StaticResource WrapPanelTemplate}"
                       Visibility="{Binding DLNAVMs.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}">
                 <triggers:Interactions.Triggers>
                     <triggers:EventTrigger EventName="ItemClick">

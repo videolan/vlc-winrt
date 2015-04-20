@@ -2460,39 +2460,10 @@
                 Value="#ff8800" />
     </Style>
 
-    <Style x:Key="AdaptativeListViewScrollHorizontalStyle"
-           TargetType="ListView">
-        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility"
-                Value="Auto" />
-        <Setter Property="ScrollViewer.VerticalScrollBarVisibility"
-                Value="Disabled" />
-        <Setter Property="ScrollViewer.HorizontalScrollMode"
-                Value="Enabled" />
-        <Setter Property="ScrollViewer.VerticalScrollMode"
-                Value="Disabled" />
-        <Setter Property="ScrollViewer.ZoomMode"
-                Value="Disabled" />
-    </Style>
-
-    <Style x:Key="AdaptativeListViewScrollVerticalStyle"
-           TargetType="ListView">
-        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility"
-                Value="Disabled" />
-        <Setter Property="ScrollViewer.VerticalScrollBarVisibility"
-                Value="Auto" />
-        <Setter Property="ScrollViewer.HorizontalScrollMode"
-                Value="Disabled" />
-        <Setter Property="ScrollViewer.VerticalScrollMode"
-                Value="Enabled" />
-        <Setter Property="ScrollViewer.ZoomMode"
-                Value="Disabled" />
-    </Style>
-    <ItemsPanelTemplate x:Key="AdaptativeHorizontalPanelTemplate">
-        <ItemsWrapGrid Margin="0,0,0,60"
-                       ItemWidth="400" />
-    </ItemsPanelTemplate>
-    <ItemsPanelTemplate x:Key="AdaptativeVerticalPanelTemplate">
-        <ItemsStackPanel Margin="0,0,0,60" />
+    <ItemsPanelTemplate x:Key="WrapPanelTemplate">
+        <ItemsWrapGrid Margin="0,0,0,60" 
+                       Orientation="Horizontal"
+                       ItemWidth="300"/>
     </ItemsPanelTemplate>
 
     <Style x:Key="LittleHeaderTextBlockStyle"

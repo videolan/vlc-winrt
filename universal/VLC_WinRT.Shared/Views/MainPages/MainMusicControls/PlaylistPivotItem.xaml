@@ -14,43 +14,12 @@
 
     <Grid x:Name="RootGrid"
           Loaded="Collection_Loaded">
-        <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup x:Name="Standard">
-                <VisualState x:Name="Vertical">
-                    <Storyboard>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlaylistListView"
-                                                       Storyboard.TargetProperty="Style">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="{StaticResource AdaptativeListViewScrollVerticalStyle}" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlaylistListView"
-                                                       Storyboard.TargetProperty="ItemsPanel">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="{StaticResource AdaptativeVerticalPanelTemplate}" />
-                        </ObjectAnimationUsingKeyFrames>
-                    </Storyboard>
-                </VisualState>
-                <VisualState x:Name="Horizontal">
-                    <Storyboard>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlaylistListView"
-                                                       Storyboard.TargetProperty="Style">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="{StaticResource AdaptativeListViewScrollHorizontalStyle}" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlaylistListView"
-                                                       Storyboard.TargetProperty="ItemsPanel">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="{StaticResource AdaptativeHorizontalPanelTemplate}" />
-                        </ObjectAnimationUsingKeyFrames>
-                    </Storyboard>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
         <ListView x:Name="PlaylistListView"
                   ItemsSource="{Binding TrackCollections}"
                   IsItemClickEnabled="True"
                   ItemTemplate="{StaticResource PhoneTrackCollectionTemplate}"
-                  ItemContainerStyle="{StaticResource ListViewItemStyle}">
+                  ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                  ItemsPanel="{StaticResource WrapPanelTemplate}">
             <triggers:Interactions.Triggers>
                 <triggers:EventTrigger EventName="ItemClick">
                     <triggers:InvokeCommandAction Command="{Binding TrackCollectionClickedCommand}"

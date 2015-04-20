@@ -10,38 +10,6 @@
       DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
 
     <Grid>
-        <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup x:Name="Standard">
-                <VisualState x:Name="Vertical">
-                    <Storyboard>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlayListView"
-                                                       Storyboard.TargetProperty="Style">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="{StaticResource AdaptativeListViewScrollVerticalStyle}" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlayListView"
-                                                       Storyboard.TargetProperty="ItemsPanel">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="{StaticResource AdaptativeVerticalPanelTemplate}" />
-                        </ObjectAnimationUsingKeyFrames>
-                    </Storyboard>
-                </VisualState>
-                <VisualState x:Name="Horizontal">
-                    <Storyboard>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlayListView"
-                                                       Storyboard.TargetProperty="Style">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="{StaticResource AdaptativeListViewScrollHorizontalStyle}" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlayListView"
-                                                       Storyboard.TargetProperty="ItemsPanel">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="{StaticResource AdaptativeHorizontalPanelTemplate}" />
-                        </ObjectAnimationUsingKeyFrames>
-                    </Storyboard>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
         <Grid.RowDefinitions>
             <RowDefinition Height="80" />
             <RowDefinition />
@@ -59,7 +27,7 @@
                   Grid.Row="1"
                   SelectionMode="Multiple"
                   ItemsSource="{Binding CurrentTrackCollection.Playlist}"
-                  ItemTemplate="{StaticResource WPTrackTemplateWONumber}"
+                  ItemTemplate="{StaticResource TrackTemplateDetailed}"
                   ItemContainerStyle="{StaticResource ListViewItemStyle}"
                   Margin="24,24,0,0"
                   SelectionChanged="PlayListView_OnSelectionChanged"
