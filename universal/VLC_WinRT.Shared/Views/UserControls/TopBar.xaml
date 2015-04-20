@@ -32,7 +32,7 @@
             <TextBlock Text="VLC"
                        Foreground="{ThemeResource BasicForeground}"
                        Style="{StaticResource SubheaderTextBlockStyle}"
-                       Margin="0,-5,0,0" />
+                       Margin="6,-5,0,0" />
         </StackPanel>
         <Grid Grid.Column="1"
               Visibility="{Binding CanGoBack, Converter={StaticResource BooleanToVisibilityConverter}}">
