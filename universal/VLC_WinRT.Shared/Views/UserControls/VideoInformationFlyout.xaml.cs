@@ -28,12 +28,10 @@ namespace VLC_WinRT.Views.UserControls.Flyouts
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
             var RootGrid = sender as Border;
-#if WINDOWS_PHONE_APP
-            RootGrid.MaxHeight = 400;
-            RootGrid.Margin = new Thickness(40, 0, 40, 0);
-#else
             RootGrid.MaxWidth = 400;
             RootGrid.MaxHeight = 400;
+#if WINDOWS_PHONE_APP
+            RootGrid.Margin = new Thickness(40, 0, 40, 0);
 #endif
         }
     }

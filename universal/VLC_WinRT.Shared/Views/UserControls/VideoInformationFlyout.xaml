@@ -33,7 +33,7 @@
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0"
                                Margin="12,0,0,4"
-                               Text="{Binding Title}"
+                               Text="{Binding Name}"
                                TextWrapping="Wrap"
                                Style="{StaticResource SubheaderTextBlockStyle}" />
                     <TextBlock Grid.Column="1"
