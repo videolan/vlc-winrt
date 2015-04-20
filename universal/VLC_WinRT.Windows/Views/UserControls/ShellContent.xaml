@@ -14,7 +14,7 @@
            Navigated="MainFrame_OnNavigated">
         <Frame.ContentTransitions>
             <TransitionCollection>
-                <EdgeUIThemeTransition Edge="Right" />
+                <PaneThemeTransition />
             </TransitionCollection>
         </Frame.ContentTransitions>
     </Frame>

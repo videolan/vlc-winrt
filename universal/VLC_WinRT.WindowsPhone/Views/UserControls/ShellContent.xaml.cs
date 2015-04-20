@@ -36,8 +36,10 @@ namespace VLC_WinRT.Views.UserControls
             var index = FlipViewFrameContainer.SelectedIndex;
             await Task.Delay(200);
             FlipViewFrameContainer.SelectedIndex = 1;
+            EntranceThemeTransition.FromVerticalOffset = 0;
             if (index == 0)
             {
+                EntranceThemeTransition.FromHorizontalOffset = -200;
                 if(Locator.NavigationService.CurrentPage == VLCPage.MainPageHome)
                     Locator.MainVM.GoToPanelCommand.Execute(3);
                 else if (Locator.NavigationService.CurrentPage == VLCPage.MainPageVideo)
@@ -49,6 +51,7 @@ namespace VLC_WinRT.Views.UserControls
             }
             else if (index == 2)
             {
+                EntranceThemeTransition.FromHorizontalOffset = 200;
                 if (Locator.NavigationService.CurrentPage == VLCPage.MainPageHome)
                     Locator.MainVM.GoToPanelCommand.Execute(1);
                 else if (Locator.NavigationService.CurrentPage == VLCPage.MainPageVideo)
@@ -59,6 +62,9 @@ namespace VLC_WinRT.Views.UserControls
                     Locator.MainVM.GoToPanelCommand.Execute(0);
                 // Told ya ¯\_(ツ)_/¯
             }
+            await Task.Delay(200);
+            EntranceThemeTransition.FromHorizontalOffset = 0;
+            EntranceThemeTransition.FromVerticalOffset = 100;
         }
     }
 }

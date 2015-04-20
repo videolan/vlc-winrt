@@ -18,7 +18,8 @@
                    Background="Transparent">
                 <Frame.ContentTransitions>
                     <TransitionCollection>
-                        <EntranceThemeTransition />
+                        <EntranceThemeTransition x:Name="EntranceThemeTransition"
+                                                 x:FieldModifier="public" />
                     </TransitionCollection>
                 </Frame.ContentTransitions>
             </Frame>
