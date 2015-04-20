@@ -105,11 +105,6 @@
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="*" />
                         </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlayerRowDefinition"
-                                                       Storyboard.TargetProperty="Height">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="300" />
-                        </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlaylistGrid"
                                                        Storyboard.TargetProperty="(Grid.Column)">
                             <DiscreteObjectKeyFrame KeyTime="0"
@@ -233,6 +228,26 @@
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="Visible" />
                         </ObjectAnimationUsingKeyFrames>                        
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+            <VisualStateGroup>
+                <VisualState x:Name="WideTall">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlayerRowDefinition"
+                                                       Storyboard.TargetProperty="Height">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="300" />
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="WideTiny">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlayerRowDefinition"
+                                                       Storyboard.TargetProperty="Height">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="210" />
+                        </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
             </VisualStateGroup>

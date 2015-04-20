@@ -60,6 +60,7 @@ namespace VLC_WinRT.Views.MusicPages
             else if (this.ActualWidth < 1150)
             {
                 VisualStateUtilities.GoToState(this, "Wide", false);
+                VisualStateUtilities.GoToState(this, this.ActualHeight < 700 ? "WideTiny" : "WideTall", false);
             }
             else
             {
