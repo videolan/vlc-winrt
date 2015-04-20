@@ -42,6 +42,10 @@ namespace VLC_WinRT.Commands.MainPageCommands
             if (panel != null)
             {
                 panel.IsCurrent = true;
+                if (App.RootPage.SplitShell.IsRightFlyoutOpen)
+                {
+                    Locator.NavigationService.GoBack_HideFlyout();
+                }
                 switch (panel.Index)
                 {
                     case 0:

@@ -109,7 +109,7 @@ namespace VLC_WinRT.Services.RunTime
             return canGoBack;
         }
 
-        void GoBack_HideFlyout()
+        public void GoBack_HideFlyout()
         {
             App.RootPage.SplitShell.HideFlyout();
             // Restoring the currentPage
