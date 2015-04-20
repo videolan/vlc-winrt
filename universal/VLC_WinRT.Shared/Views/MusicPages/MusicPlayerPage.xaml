@@ -12,7 +12,7 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition x:Name="PlayerColumnDefinition"
-                              MinWidth="350" />
+                              MinWidth="320" />
             <ColumnDefinition x:Name="PlaylistColumnDefinition"
                               MaxWidth="450" />
         </Grid.ColumnDefinitions>
