@@ -12,7 +12,15 @@ namespace VLC_WinRT.Helpers
     public static class PlaylistHelper
     {
         #region Videos
-        public static async Task Play(this VideoItem videoVm)
+        public static async Task AddVideoToPlaylist(this VideoItem videoVm, bool resetPlaylist = true)
+        {
+            if (resetPlaylist)
+                await Locator.MediaPlaybackViewModel.TrackCollection.ResetCollection();
+            await Locator.MediaPlaybackViewModel.TrackCollection.Add(videoVm, true);
+            await Locator.MediaPlaybackViewModel.TrackCollection.SetCurrentTrackPosition(0);
+        }
+
+        public static async Task Play(this VideoItem videoVm, bool resetPlaylist = true)
         {
             if (string.IsNullOrEmpty(videoVm.Token))
             {
@@ -20,12 +28,9 @@ namespace VLC_WinRT.Helpers
                 LogHelper.Log("PLAYVIDEO: Getting video path token");
                 videoVm.Token = token;
             }
-            Locator.NavigationService.Go(VLCPage.VideoPlayerPage);
+            await videoVm.AddVideoToPlaylist(resetPlaylist);
             LogHelper.Log("PLAYVIDEO: Settings videoVm as Locator.VideoVm.CurrentVideo");
             Locator.VideoVm.CurrentVideo = videoVm;
-            await Locator.MediaPlaybackViewModel.TrackCollection.ResetCollection();
-            await Locator.MediaPlaybackViewModel.TrackCollection.Add(videoVm, true);
-            await Locator.MediaPlaybackViewModel.TrackCollection.SetCurrentTrackPosition(0);
             await Task.Run(() => Locator.MediaPlaybackViewModel.SetMedia(Locator.VideoVm.CurrentVideo, false));
         }
 
