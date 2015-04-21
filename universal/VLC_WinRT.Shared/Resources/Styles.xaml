@@ -1888,49 +1888,6 @@
         </Setter>
     </Style>
 
-
-
-    <Style x:Key="BasicTextStyle"
-           TargetType="TextBlock">
-        <Setter Property="Foreground"
-                Value="{StaticResource ApplicationForegroundThemeBrush}" />
-        <Setter Property="FontSize"
-                Value="{StaticResource ControlContentThemeFontSize}" />
-        <Setter Property="FontFamily"
-                Value="{StaticResource ContentControlThemeFontFamily}" />
-        <Setter Property="TextTrimming"
-                Value="WordEllipsis" />
-        <Setter Property="TextWrapping"
-                Value="Wrap" />
-        <Setter Property="Typography.StylisticSet20"
-                Value="True" />
-        <Setter Property="Typography.DiscretionaryLigatures"
-                Value="True" />
-        <Setter Property="Typography.CaseSensitiveForms"
-                Value="True" />
-    </Style>
-    <Style x:Key="BaselineTextStyle"
-           TargetType="TextBlock"
-           BasedOn="{StaticResource BasicTextStyle}">
-        <Setter Property="LineHeight"
-                Value="20" />
-        <Setter Property="LineStackingStrategy"
-                Value="BlockLineHeight" />
-        <!-- Properly align text along its baseline -->
-        <Setter Property="RenderTransform">
-            <Setter.Value>
-                <TranslateTransform X="-1"
-                                    Y="4" />
-            </Setter.Value>
-        </Setter>
-    </Style>
-    <Style x:Key="SubtitleTextBlockStyle"
-           TargetType="TextBlock"
-           BasedOn="{StaticResource BaselineTextStyle}">
-        <Setter Property="FontWeight"
-                Value="Normal" />
-    </Style>
-
     <!-- Style for Windows.UI.Xaml.Controls.ListViewItem -->
     <Style TargetType="ListViewItem"
            x:Key="ListViewItemStyle">
@@ -2448,6 +2405,49 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+
+    <Style x:Key="BasicTextStyle"
+           TargetType="TextBlock">
+        <Setter Property="Foreground"
+                Value="{StaticResource ApplicationForegroundThemeBrush}" />
+        <Setter Property="FontSize"
+                Value="{StaticResource ControlContentThemeFontSize}" />
+        <Setter Property="FontFamily"
+                Value="{StaticResource ContentControlThemeFontFamily}" />
+        <Setter Property="TextTrimming"
+                Value="WordEllipsis" />
+        <Setter Property="TextWrapping"
+                Value="Wrap" />
+        <Setter Property="Typography.StylisticSet20"
+                Value="True" />
+        <Setter Property="Typography.DiscretionaryLigatures"
+                Value="True" />
+        <Setter Property="Typography.CaseSensitiveForms"
+                Value="True" />
+    </Style>
+    <Style x:Key="BaselineTextStyle"
+           TargetType="TextBlock"
+           BasedOn="{StaticResource BasicTextStyle}">
+        <Setter Property="LineHeight"
+                Value="20" />
+        <Setter Property="LineStackingStrategy"
+                Value="BlockLineHeight" />
+        <!-- Properly align text along its baseline -->
+        <Setter Property="RenderTransform">
+            <Setter.Value>
+                <TranslateTransform X="-1"
+                                    Y="4" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="SubtitleTextBlockStyle"
+           TargetType="TextBlock"
+           BasedOn="{StaticResource BaselineTextStyle}">
+        <Setter Property="FontWeight"
+                Value="Normal" />
+    </Style>
+
 
     <Style TargetType="MenuFlyoutPresenter">
         <Setter Property="BorderThickness"
