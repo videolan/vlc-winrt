@@ -2461,9 +2461,9 @@
     </Style>
 
     <ItemsPanelTemplate x:Key="WrapPanelTemplate">
-        <ItemsWrapGrid Margin="0,0,0,60" 
+        <ItemsWrapGrid Margin="0,0,0,60"
                        Orientation="Horizontal"
-                       ItemWidth="300"/>
+                       ItemWidth="300" />
     </ItemsPanelTemplate>
 
     <Style x:Key="LittleHeaderTextBlockStyle"
