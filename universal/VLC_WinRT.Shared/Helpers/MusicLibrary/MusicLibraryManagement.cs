@@ -403,7 +403,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
         {
             var t = new Tuple<string, string>("", "");
             var tracks = await Locator.MusicLibraryVM._trackDataRepository.LoadTracksByArtistId(artist.Id);
-            var groupedTracks = tracks.GroupBy(x => new Tuple<string,string>(x.AlbumName, x.Thumbnail));
+            var groupedTracks = tracks.GroupBy(x => new Tuple<string, string>(x.AlbumName, x.Thumbnail));
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 artist.TracksGroupedByAlbum = groupedTracks;
@@ -462,7 +462,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
             return 6;
 #endif
         }
-        
+
         public static void OrderAlbums()
         {
             if (Locator.SettingsVM.AlbumsOrderType == OrderType.ByArtist)
