@@ -469,6 +469,7 @@ namespace VLC_WinRT.ViewModels
                 {
                     PlayingType = PlayingType.Video;
                     IsStream = false;
+                    Locator.NavigationService.Go(VLCPage.VideoPlayerPage);
                 });
                 var video = (VideoItem)media;
                 await Locator.MediaPlaybackViewModel.InitializePlayback(video, autoPlay);
@@ -478,7 +479,6 @@ namespace VLC_WinRT.ViewModels
 
                 await SetMediaTransportControlsInfo(string.IsNullOrEmpty(video.Name) ? "Video" : video.Name);
                 UpdateTileHelper.UpdateMediumTileWithVideoInfo();
-                Locator.NavigationService.Go(VLCPage.VideoPlayerPage);
             }
             else if (media is TrackItem)
             {
