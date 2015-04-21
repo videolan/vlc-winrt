@@ -42,11 +42,11 @@
                      FontSize="19" />
             </TextBlock>
         </Grid>
-        <Grid Grid.Row="3"
-              Margin="{StaticResource FrameMargin}">
+        <Grid Grid.Row="3">
             <placeholder:NoMusicShowsPlaceholder Visibility="{Binding UpcomingShows.Count, Converter={StaticResource CountToVisibilityConverter}}"
-                                                 Margin="0,50,0,0" />
+                                                 Margin="{StaticResource FrameMargin}" />
             <ListView ItemsSource="{Binding UpcomingShows}"
+                      ItemsPanel="{StaticResource StackPanelTemplate}"
                       ItemContainerStyle="{StaticResource ListViewItemStyle}"
                       SelectionMode="None"
                       IsItemClickEnabled="True">
@@ -62,11 +62,6 @@
                         <AddDeleteThemeTransition />
                     </TransitionCollection>
                 </ListView.ItemContainerTransitions>
-                <ListView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <ItemsStackPanel />
-                    </ItemsPanelTemplate>
-                </ListView.ItemsPanel>
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Grid Background="{ThemeResource ApplicationThirdForegroundThemeBrush}">

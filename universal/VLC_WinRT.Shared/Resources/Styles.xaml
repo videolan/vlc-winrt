@@ -2466,6 +2466,10 @@
                        ItemWidth="300" />
     </ItemsPanelTemplate>
 
+    <ItemsPanelTemplate x:Key="StackPanelTemplate">
+        <ItemsStackPanel Margin="{StaticResource FrameMargin}" />
+    </ItemsPanelTemplate>
+    
     <Style x:Key="LittleHeaderTextBlockStyle"
            TargetType="TextBlock">
         <Setter Property="FontSize"

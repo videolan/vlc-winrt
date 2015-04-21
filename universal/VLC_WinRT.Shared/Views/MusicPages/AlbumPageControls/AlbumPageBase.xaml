@@ -17,17 +17,13 @@
               SelectionMode="None"
               ItemTemplate="{StaticResource WPTrackTemplateWNumber}"
               ItemContainerStyle="{StaticResource ListViewItemStyle}"
+              ItemsPanel="{StaticResource StackPanelTemplate}"
               Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <ListView.HeaderTemplate>
             <DataTemplate>
                 <local:MainAlbumHeader/>
             </DataTemplate>
         </ListView.HeaderTemplate>
-        <ListView.ItemsPanel>
-            <ItemsPanelTemplate>
-                <ItemsStackPanel Margin="12,12,12,60"/>
-            </ItemsPanelTemplate>
-        </ListView.ItemsPanel>
         <ListView.ItemContainerTransitions>
             <TransitionCollection>
                 <AddDeleteThemeTransition />
