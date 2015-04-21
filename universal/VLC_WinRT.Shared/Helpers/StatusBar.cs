@@ -11,7 +11,7 @@ namespace VLC_WinRT.Helpers
     {
         public static void Default()
         {
-            Set(App.Current.Resources["MainColor"] as SolidColorBrush, null, 1, "", ApplicationViewBoundsMode.UseVisible);
+            Set(App.Current.Resources["StatusBarColor"] as SolidColorBrush, null, 1, "", ApplicationViewBoundsMode.UseVisible);
         }
 
         public static void SetTransparent()
