@@ -38,7 +38,7 @@ namespace VLC_WinRT.Utils
 
         public static readonly string OrderByArtist = _resourcesLoader.GetString("OrderByArtist");
         public static readonly string OrderByDate = _resourcesLoader.GetString("OrderByDate");
-        public static readonly string OrderByAlbum = _resourcesLoader.GetString("OrderByAlbum");
+        public static readonly string OrderByAlbum = "by album";
 
         public static readonly string OrderAscending = _resourcesLoader.GetString("OrderAscending");
         public static readonly string OrderDescending = _resourcesLoader.GetString("OrderDescending");
