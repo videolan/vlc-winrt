@@ -11,23 +11,64 @@
              d:DesignWidth="400">
 
     <Grid FlyoutBase.AttachedFlyout="{StaticResource AlbumMenuFlyout}"
-          Loaded="RootAlbumItem_Loaded"
           Holding="RootAlbumItem_Holding"
           RightTapped="Grid_RightTapped">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="Normal">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ButtonOverlay"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Collapsed" />
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="MouseOver">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ButtonOverlay"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="40" />
         </Grid.RowDefinitions>
         <Grid Grid.Row="0"
-              Background="{ThemeResource ApplicationThirdForegroundThemeBrush}">
+              Background="{ThemeResource ApplicationThirdForegroundThemeBrush}"
+              PointerEntered="Cover_PointerEntered">
             <FontIcon Glyph="{StaticResource AlbumDiscSymbol}"
-                      FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" 
+                      FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets"
                       FontSize="42"
-                      Foreground="{ThemeResource MainColor}"/>
+                      Foreground="{ThemeResource MainColor}" />
         </Grid>
         <Image Grid.Row="0"
                Source="{Binding AlbumImage}"
-               Stretch="UniformToFill" />
+               Stretch="UniformToFill"
+               PointerEntered="Cover_PointerEntered"/>
+        <Grid x:Name="ButtonOverlay"
+              Grid.Row="0"
+              Visibility="Collapsed"
+              RequestedTheme="Dark"
+              Background="{ThemeResource ApplicationBackgroundSemiTranslucentThemeBrush}"
+              PointerExited="Cover_PointerExited">
+            <AppBarButton Style="{StaticResource AppBarButtonStyleHuge}"
+                          Label="Play album"
+                          VerticalAlignment="Center"
+                          Command="{Binding PlayAlbum}"
+                          CommandParameter="{Binding}">
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="{StaticResource PlaySymbol}"
+                              FontSize="36"
+                              FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+                </AppBarButton.Icon>
+            </AppBarButton>
+        </Grid>
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition />
