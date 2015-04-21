@@ -1931,7 +1931,7 @@
                                         <DoubleAnimation Storyboard.TargetName="ContentPresenterProjection"
                                                          Storyboard.TargetProperty="LocalOffsetZ"
                                                          SpeedRatio="6"
-                                                         To="25">
+                                                         To="-15">
                                             <DoubleAnimation.EasingFunction>
                                                 <ExponentialEase EasingMode="EaseOut"
                                                                  Exponent="4" />
@@ -2304,12 +2304,12 @@
                                       FlowDirection="LeftToRight" />
                             </Border>
                             <Border x:Name="ContentContainer">
-                                <Grid x:Name="InnerDragContent">
+                                <Grid x:Name="InnerDragContent"
+                                      Margin="0,0,8,8">
                                     <Rectangle x:Name="PointerOverBorder"
                                                IsHitTestVisible="False"
                                                Opacity="0"
-                                               Fill="{ThemeResource ListViewItemPointerOverBackgroundThemeBrush}"
-                                               Margin="1" />
+                                               Fill="{StaticResource MainColor}" />
                                     <Rectangle x:Name="FocusVisual"
                                                IsHitTestVisible="False"
                                                Opacity="0"
@@ -2322,8 +2322,7 @@
                                     <Border x:Name="ContentBorder"
                                             Background="{TemplateBinding Background}"
                                             BorderBrush="{TemplateBinding BorderBrush}"
-                                            BorderThickness="{TemplateBinding BorderThickness}"
-                                            Margin="4">
+                                            BorderThickness="{TemplateBinding BorderThickness}">
                                         <Grid>
                                             <ContentPresenter x:Name="contentPresenter"
                                                               ContentTransitions="{TemplateBinding ContentTransitions}"
