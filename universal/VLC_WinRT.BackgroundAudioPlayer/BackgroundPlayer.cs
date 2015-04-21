@@ -49,56 +49,62 @@ namespace VLC_WinRT.BackgroundAudioPlayer
         /// <param name="taskInstance"></param>
         public void Run(IBackgroundTaskInstance taskInstance)
         {
-            Debug.WriteLine("Background Audio Task " + taskInstance.Task.Name + " starting...");
-            // Initialize SMTC object to talk with UVC. 
-            //Note that, this is intended to run after app is paused and 
-            //hence all the logic must be written to run in background process
-            systemmediatransportcontrol = SystemMediaTransportControls.GetForCurrentView();
-            systemmediatransportcontrol.ButtonPressed += systemmediatransportcontrol_ButtonPressed;
-            systemmediatransportcontrol.PropertyChanged += systemmediatransportcontrol_PropertyChanged;
-            systemmediatransportcontrol.IsEnabled = true;
-            systemmediatransportcontrol.IsPauseEnabled = true;
-            systemmediatransportcontrol.IsPlayEnabled = true;
-            systemmediatransportcontrol.IsNextEnabled = true;
-            systemmediatransportcontrol.IsPreviousEnabled = true;
-
-            // Associate a cancellation and completed handlers with the background task.
-            taskInstance.Canceled += new BackgroundTaskCanceledEventHandler(OnCanceled);
-            taskInstance.Task.Completed += Taskcompleted;
-
-            var value = ApplicationSettingsHelper.ReadResetSettingsValue(BackgroundAudioConstants.AppState);
-            if (value == null)
-                foregroundAppState = ForegroundAppStatus.Unknown;
-            else
-                foregroundAppState = (ForegroundAppStatus)Enum.Parse(typeof(ForegroundAppStatus), value.ToString());
-
-            //Add handlers for MediaPlayer
-            BackgroundMediaPlayer.Current.CurrentStateChanged += Current_CurrentStateChanged;
-
-            //Add handlers for playlist trackchanged
-            Playlist.TrackChanged += playList_TrackChanged;
-
-            //Initialize message channel 
-            BackgroundMediaPlayer.MessageReceivedFromForeground += BackgroundMediaPlayer_MessageReceivedFromForeground;
-
-            //Send information to foreground that background task has been started if app is active
-            if (foregroundAppState != ForegroundAppStatus.Suspended)
+            try
             {
-                ValueSet message = new ValueSet();
-                message.Add(BackgroundAudioConstants.BackgroundTaskStarted, "");
-                BackgroundMediaPlayer.SendMessageToForeground(message);
-            }
-            BackgroundTaskStarted.Set();
-            backgroundtaskrunning = true;
+                Debug.WriteLine("Background Audio Task " + taskInstance.Task.Name + " starting...");
+                // Initialize SMTC object to talk with UVC. 
+                //Note that, this is intended to run after app is paused and 
+                //hence all the logic must be written to run in background process
+                systemmediatransportcontrol = SystemMediaTransportControls.GetForCurrentView();
+                systemmediatransportcontrol.ButtonPressed += systemmediatransportcontrol_ButtonPressed;
+                systemmediatransportcontrol.PropertyChanged += systemmediatransportcontrol_PropertyChanged;
+                systemmediatransportcontrol.IsEnabled = true;
+                systemmediatransportcontrol.IsPauseEnabled = true;
+                systemmediatransportcontrol.IsPlayEnabled = true;
+                systemmediatransportcontrol.IsNextEnabled = true;
+                systemmediatransportcontrol.IsPreviousEnabled = true;
 
-            Playlist.PopulatePlaylist();
-            var currentTrackIndex = ApplicationSettingsHelper.ReadSettingsValue(BackgroundAudioConstants.CurrentTrack);
-            if (currentTrackIndex != null)
-            {
-                Playlist.CurrentTrack = (int)currentTrackIndex;
+                // Associate a cancellation and completed handlers with the background task.
+                taskInstance.Canceled += new BackgroundTaskCanceledEventHandler(OnCanceled);
+                taskInstance.Task.Completed += Taskcompleted;
+
+                var value = ApplicationSettingsHelper.ReadResetSettingsValue(BackgroundAudioConstants.AppState);
+                if (value == null)
+                    foregroundAppState = ForegroundAppStatus.Unknown;
+                else
+                    foregroundAppState = (ForegroundAppStatus)Enum.Parse(typeof(ForegroundAppStatus), value.ToString());
+
+                //Add handlers for MediaPlayer
+                BackgroundMediaPlayer.Current.CurrentStateChanged += Current_CurrentStateChanged;
+
+                //Add handlers for playlist trackchanged
+                Playlist.TrackChanged += playList_TrackChanged;
+
+                //Initialize message channel 
+                BackgroundMediaPlayer.MessageReceivedFromForeground += BackgroundMediaPlayer_MessageReceivedFromForeground;
+
+                //Send information to foreground that background task has been started if app is active
+                if (foregroundAppState != ForegroundAppStatus.Suspended)
+                {
+                    ValueSet message = new ValueSet();
+                    message.Add(BackgroundAudioConstants.BackgroundTaskStarted, "");
+                    BackgroundMediaPlayer.SendMessageToForeground(message);
+                }
+                BackgroundTaskStarted.Set();
+                backgroundtaskrunning = true;
+
+                Playlist.PopulatePlaylist();
+                var currentTrackIndex = ApplicationSettingsHelper.ReadSettingsValue(BackgroundAudioConstants.CurrentTrack);
+                if (currentTrackIndex != null)
+                {
+                    Playlist.CurrentTrack = (int)currentTrackIndex;
+                }
+                ApplicationSettingsHelper.SaveSettingsValue(BackgroundAudioConstants.BackgroundTaskState, BackgroundAudioConstants.BackgroundTaskRunning);
+                deferral = taskInstance.GetDeferral();
             }
-            ApplicationSettingsHelper.SaveSettingsValue(BackgroundAudioConstants.BackgroundTaskState, BackgroundAudioConstants.BackgroundTaskRunning);
-            deferral = taskInstance.GetDeferral();
+            catch
+            {
+            }
         }
 
         /// <summary>
@@ -148,7 +154,7 @@ namespace VLC_WinRT.BackgroundAudioPlayer
             {
                 Debug.WriteLine(ex.ToString());
             }
-            deferral.Complete(); // signals task completion. 
+            deferral?.Complete(); // signals task completion. 
             Debug.WriteLine("MyBackgroundAudioTask Cancel complete...");
         }
         #endregion
