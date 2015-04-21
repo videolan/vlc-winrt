@@ -15,12 +15,15 @@
                               IsSourceGrouped="True"
                               Source="{Binding AlphaGroupedAlbums}" />
     </UserControl.Resources>
-    <Grid>
+    <Grid >
         <controls:NothingToSeeHere Grid.Row="0"
                                    Visibility="{Binding Albums.Count, Converter={StaticResource CountToVisibilityConverter}}" />
-        <SemanticZoom ViewChangeCompleted="SemanticZoom_OnViewChangeCompleted">
+        <SemanticZoom
+                      Padding="0"
+                      ViewChangeCompleted="SemanticZoom_OnViewChangeCompleted">
             <SemanticZoom.ZoomedInView>
-                <ListView ItemsSource="{Binding Source={StaticResource GroupAlbums}}"
+                <ListView
+                          ItemsSource="{Binding Source={StaticResource GroupAlbums}}"
                           ItemTemplate="{StaticResource PhoneSemanticZoomInViewAlbumTemplateLittleSize}"
                           ItemContainerStyle="{StaticResource ListViewItemStyle}"
                           IsItemClickEnabled="True"
@@ -87,7 +90,7 @@
                             <ItemsWrapGrid Orientation="Horizontal"
                                            HorizontalAlignment="Center"
                                            VerticalAlignment="Center"
-                                           ItemWidth="300"/>
+                                           ItemWidth="300" />
                         </ItemsPanelTemplate>
                     </ListView.ItemsPanel>
                     <ListView.ItemTemplate>
@@ -96,11 +99,11 @@
                                 <TextBlock Text="{Binding Group.Key}"
                                            Margin="5,0,0,3"
                                            VerticalAlignment="Center"
-                                           FontSize="26" 
+                                           FontSize="26"
                                            TextTrimming="CharacterEllipsis"
                                            TextWrapping="NoWrap"
                                            FontWeight="Light"
-                                           Foreground="{ThemeResource MainColor}"/>
+                                           Foreground="{ThemeResource MainColor}" />
                             </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>
