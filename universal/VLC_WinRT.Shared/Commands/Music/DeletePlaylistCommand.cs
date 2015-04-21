@@ -15,7 +15,7 @@ namespace VLC_WinRT.Commands.Music
             md.Commands.Add(new UICommand("yes", async command =>
             {
                 await MusicLibraryManagement.DeletePlaylist(Locator.MusicLibraryVM.CurrentTrackCollection);
-                Locator.NavigationService.GoBack_Default();
+                Locator.NavigationService.GoBack_Specific();
             }));
             md.Commands.Add(new UICommand("no"));
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () => await md.ShowAsync());
