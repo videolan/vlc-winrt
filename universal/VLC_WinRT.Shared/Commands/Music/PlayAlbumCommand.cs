@@ -20,8 +20,8 @@ namespace VLC_WinRT.Commands.Music
     {
         public override async void Execute(object parameter)
         {
+            Locator.NavigationService.GoBack_HideFlyout();
             Locator.NavigationService.Go(VLCPage.MusicPlayerPage);
-            App.RootPage.SplitShell.HideFlyout();
             try
             {
                 if (parameter is AlbumItem)
