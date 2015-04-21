@@ -50,6 +50,7 @@
     <x:String x:Key="UnlockedSymbol"></x:String>
     <x:String x:Key="LockedSymbol"></x:String>
     <x:String x:Key="FolderSymbol"></x:String>
+    <x:String x:Key="DeleteSymbol"></x:String>
 
     <!-- Segoe UI Symbol Font -->
     <x:String x:Key="VerticalDotsSymbol"></x:String>
