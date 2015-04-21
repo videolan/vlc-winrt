@@ -116,7 +116,7 @@
             <AppBarButton Grid.Row="2"
                           Grid.Column="3"
                           Style="{StaticResource AppBarButtonStyleHorizontal}"
-                          Label="Play all"
+                          Label="Play album"
                           VerticalAlignment="Top"
                           Command="{Binding CurrentAlbum.PlayAlbum}"
                           CommandParameter="{Binding CurrentAlbum}">
