@@ -174,8 +174,8 @@ namespace VLC_WinRT.BackgroundAudioPlayer
 
         private async void UpdateLastFmOnNewTrack()
         {
-            string pseudo = (string) ApplicationSettingsHelper.ReadSettingsValue("LastFmUserName");
-            string pd = (string) ApplicationSettingsHelper.ReadSettingsValue("LastFmPassword");
+            string pseudo = (string)ApplicationSettingsHelper.ReadSettingsValue("LastFmUserName");
+            string pd = (string)ApplicationSettingsHelper.ReadSettingsValue("LastFmPassword");
             if (string.IsNullOrEmpty(pseudo) || string.IsNullOrEmpty(pd)) return;
 
             if (lastFmScrobblerHelper == null)
@@ -186,7 +186,7 @@ namespace VLC_WinRT.BackgroundAudioPlayer
 
             if (!lastFmScrobblerHelper.IsConnected)
             {
-                var success = await lastFmScrobblerHelper.ConnectOperation(pseudo,pd);
+                var success = await lastFmScrobblerHelper.ConnectOperation(pseudo, pd);
                 if (!success) return;
             }
 
@@ -304,7 +304,7 @@ namespace VLC_WinRT.BackgroundAudioPlayer
         private void SkipToPrevious()
         {
             systemmediatransportcontrol.PlaybackStatus = MediaPlaybackStatus.Changing;
-            
+
             if (BackgroundMediaPlayer.Current.Position.TotalSeconds > 30)
             {
                 Playlist.Play();
