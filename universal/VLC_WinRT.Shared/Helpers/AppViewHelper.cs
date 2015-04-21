@@ -31,7 +31,7 @@ namespace VLC_WinRT.Helpers
                 if (bb != null)
                 {
                     var appViewProperties = bb.GetType().DeclaredProperties;
-                    bb.BackgroundColor = (Color)App.Current.Resources["MainColorBase"];
+                    bb.BackgroundColor = (Color)App.Current.Resources["StatusBarColorBase"];
                     bb.ForegroundColor = Colors.WhiteSmoke;
 
                     bb.ButtonForegroundColor = Colors.WhiteSmoke;
@@ -55,7 +55,7 @@ namespace VLC_WinRT.Helpers
             titleBar = allProperties.FirstOrDefault(x => x.Name == "TitleBar");
             if (titleBar == null) return;
             dynamic bb = titleBar.GetMethod.Invoke(v, null);
-            bb.ButtonBackgroundColor = (Color)App.Current.Resources["MainColorBase"];
+            bb.ButtonBackgroundColor = (Color)App.Current.Resources["StatusBarColorBase"];
             var appViewProperties = bb.GetType().DeclaredProperties;
             if (DoesPropertyExist("ButtonInactiveBackgroundColor", appViewProperties))
                 bb.ButtonInactiveBackgroundColor = (Color)App.Current.Resources["InactiveMainColorBase"];
