@@ -514,15 +514,18 @@ namespace VLC_WinRT.Helpers.MusicLibrary
                 trackCollection = new TrackCollection();
                 trackCollection.Name = trackCollectionName;
                 await Locator.MusicLibraryVM.TrackCollectionRepository.Add(trackCollection);
-                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                Locator.MusicLibraryVM.TrackCollections.Add(trackCollection));
+                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Locator.MusicLibraryVM.TrackCollections.Add(trackCollection));
             }
         }
 
         public static async Task DeletePlaylist(TrackCollection trackCollection)
         {
             await Locator.MusicLibraryVM.TrackCollectionRepository.Remove(trackCollection);
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Locator.MusicLibraryVM.TrackCollections.Remove(trackCollection));
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                Locator.MusicLibraryVM.TrackCollections.Remove(trackCollection);
+                Locator.MusicLibraryVM.CurrentTrackCollection = null;
+            });
         }
 
         public static async Task AddToPlaylist(TrackItem trackItem, bool displayToastNotif = true)
