@@ -39,7 +39,7 @@ namespace VLC_WinRT.Helpers
         /// </summary>
         /// <param name="track"></param>
         /// <returns></returns>
-        public static async Task PlayTrack(int trackId)
+        public static async Task PlayMusicTrack(int trackId)
         {
             var track = Locator.MediaPlaybackViewModel.TrackCollection.Playlist.FirstOrDefault(x => x.Id == trackId);
             if (track != null)
@@ -74,7 +74,7 @@ namespace VLC_WinRT.Helpers
             }
             await Locator.MediaPlaybackViewModel.TrackCollection.Add(trackItem, true);
             if (play)
-                await PlayTrack(trackItem.Id);
+                await PlayMusicTrack(trackItem.Id);
         }
 
         /// <summary>
@@ -98,7 +98,7 @@ namespace VLC_WinRT.Helpers
                     index = trackItems.IndexOf(trackItems.FirstOrDefault(x => x.Id == track.Id));
                 }
                 if (index != -1)
-                    await PlayTrack(trackItems[index].Id);
+                    await PlayMusicTrack(trackItems[index].Id);
             }
         }
 
@@ -117,7 +117,7 @@ namespace VLC_WinRT.Helpers
             var trackItems = await Locator.MusicLibraryVM._trackDataRepository.LoadTracksByArtistId(artistId);
             await Locator.MediaPlaybackViewModel.TrackCollection.Add(trackItems);
             if (play)
-                await PlayTrack(trackItems[0].Id);
+                await PlayMusicTrack(trackItems[0].Id);
         }
 
         public static async Task AddTrackCollectionToPlaylistAndPlay(ObservableCollection<IVLCMedia> trackCollection, bool play = true, int? index = null)
@@ -130,7 +130,10 @@ namespace VLC_WinRT.Helpers
                 if (!trackCollection.Any()) return;
                 if (index >= trackCollection.Count) return;
                 var finalindex = trackCollection[index ?? 0];
-                await PlayTrack(finalindex.Id);
+                if (finalindex is TrackItem)
+                    await PlayMusicTrack(finalindex.Id);
+                else if (finalindex is VideoItem)
+                    await ((VideoItem)finalindex).Play(false);
             }
         }
         #endregion
