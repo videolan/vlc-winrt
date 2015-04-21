@@ -1,43 +1,118 @@
-﻿<Page x:Class="VLC_WinRT.Views.MusicPages.PlaylistPage"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:local="using:VLC_WinRT.Views.MusicPages"
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:userControls="using:VLC_WinRT.Views.UserControls"
-      xmlns:triggers="using:WinRT.Triggers"
-      mc:Ignorable="d"
-      DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
+﻿<UserControl x:Class="VLC_WinRT.Views.MusicPages.PlaylistPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="using:VLC_WinRT.Views.MusicPages"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:userControls="using:VLC_WinRT.Views.UserControls"
+             xmlns:triggers="using:WinRT.Triggers"
+             mc:Ignorable="d"
+             DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="80" />
-            <RowDefinition />
-        </Grid.RowDefinitions>
-
-        <TextBlock Grid.Row="0"
-                   Margin="24,0,0,0"
-                   TextTrimming="CharacterEllipsis"
-                   TextWrapping="NoWrap"
-                   VerticalAlignment="Center"
-                   Text="{Binding CurrentTrackCollection.Name}"
-                   Style="{StaticResource SubheaderTextBlockStyle}" />
-        
-        <ListView x:Name="PlayListView"
-                  Grid.Row="1"
-                  SelectionMode="Multiple"
-                  ItemsSource="{Binding CurrentTrackCollection.Playlist}"
-                  ItemTemplate="{StaticResource TrackTemplateDetailed}"
-                  ItemContainerStyle="{StaticResource ListViewItemStyle}"
-                  Margin="24,24,0,0"
-                  SelectionChanged="PlayListView_OnSelectionChanged"
-                  IsItemClickEnabled="True">
-            <triggers:Interactions.Triggers>
-                <triggers:EventTrigger EventName="ItemClick">
-                    <triggers:InvokeCommandAction Command="{Binding CurrentTrackCollection.PlayTrackCollCommand}"
-                                                  PassEventArgsToCommand="True" />
-                </triggers:EventTrigger>
-            </triggers:Interactions.Triggers>
-        </ListView>
-    </Grid>
-</Page>
+    <ListView x:Name="PlayListView"
+              SelectionMode="Multiple"
+              ItemsSource="{Binding CurrentTrackCollection.Playlist}"
+              ItemTemplate="{StaticResource TrackTemplateDetailed}"
+              ItemContainerStyle="{StaticResource ListViewItemStyle}"
+              ItemsPanel="{StaticResource StackPanelTemplate}"
+              SelectionChanged="PlayListView_OnSelectionChanged"
+              IsItemClickEnabled="True"
+              Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <ListView.Header>
+            <Grid x:Name="HeaderGrid"
+                  Height="Auto">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Row="1"
+                      Grid.Column="0"
+                      Grid.ColumnSpan="2"
+                      VerticalAlignment="Center"
+                      Margin="0,0,0,30">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
+                        <ColumnDefinition MinWidth="110"
+                                          MaxWidth="200"
+                                          Width="2*" />
+                        <ColumnDefinition Width="12" />
+                        <ColumnDefinition Width="3*" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="12" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Image Grid.Column="1"
+                           Grid.Row="0"
+                           Grid.RowSpan="3"
+                           x:Name="HeaderArtistImage"
+                           Source="{Binding CurrentTrackCollection.Playlist[0].Thumbnail}"
+                           Stretch="Uniform"
+                           Opacity="1"
+                           VerticalAlignment="Top" />
+                    <TextBlock Grid.Row="0"
+                               Grid.Column="3"
+                               Grid.ColumnSpan="3"
+                               VerticalAlignment="Top"
+                               TextWrapping="NoWrap"
+                               TextTrimming="CharacterEllipsis">
+                        <Run Text="{Binding CurrentTrackCollection.Name}"
+                             FontWeight="Light"
+                             FontSize="22" />
+                    </TextBlock>
+                    <!--<AppBarButton Grid.Row="2"
+                                  Grid.Column="4"
+                                  Style="{StaticResource AppBarButtonStyleHorizontal}"
+                                  Icon="{Binding CurrentAlbum.Favorite, Converter={StaticResource FavoriteSymbolConverter}}"
+                                  VerticalAlignment="Top"
+                                  Command="{Binding CurrentAlbum.FavoriteAlbum}"
+                                  CommandParameter="{Binding CurrentAlbum}" />
+                    <AppBarButton Grid.Row="1"
+                                  Grid.Column="4"
+                                  Style="{StaticResource AppBarButtonStyleHorizontal}"
+                                  Icon="{Binding CurrentAlbum.IsPinned, Converter={StaticResource PinConverter}, ConverterParameter='icon'}"
+                                  VerticalAlignment="Top"
+                                  Command="{Binding CurrentAlbum.PinAlbumCommand}"
+                                  CommandParameter="{Binding CurrentAlbum}" />-->
+                    <AppBarButton Grid.Row="1"
+                                  Grid.Column="3"
+                                  Style="{StaticResource AppBarButtonStyleHorizontal}"
+                                  Label="delete playlist"
+                                  VerticalAlignment="Top"
+                                  DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}"
+                                  Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.DeletePlaylistCommand}">
+                        <AppBarButton.Icon>
+                            <FontIcon Glyph="{StaticResource DeleteSymbol}"
+                                      FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+                        </AppBarButton.Icon>
+                    </AppBarButton>
+                    <AppBarButton Grid.Row="2"
+                                  Grid.Column="3"
+                                  Style="{StaticResource AppBarButtonStyleHorizontal}"
+                                  Label="Play all"
+                                  VerticalAlignment="Top"
+                                  Command="{Binding CurrentTrackCollection.PlayTrackCollCommand}"
+                                  CommandParameter="0">
+                        <AppBarButton.Icon>
+                            <FontIcon Glyph="{StaticResource PlaySymbol}"
+                                      FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+                        </AppBarButton.Icon>
+                    </AppBarButton>
+                </Grid>
+            </Grid>
+        </ListView.Header>
+        <triggers:Interactions.Triggers>
+            <triggers:EventTrigger EventName="ItemClick">
+                <triggers:InvokeCommandAction Command="{Binding CurrentTrackCollection.PlayTrackCollCommand}"
+                                              PassEventArgsToCommand="True" />
+            </triggers:EventTrigger>
+        </triggers:Interactions.Triggers>
+    </ListView>
+</UserControl>

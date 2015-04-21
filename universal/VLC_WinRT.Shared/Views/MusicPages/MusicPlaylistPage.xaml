@@ -10,12 +10,13 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
             <RowDefinition />
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="1"
                    Text="playlist"
                    Style="{StaticResource SubheaderTextBlockStyle}"
                    Margin="{StaticResource FrameMargin}" />
-        <musicNowPlayingControls:PlaylistControl Grid.Row="2" />
+        <musicNowPlayingControls:PlaylistControl Grid.Row="3" />
     </Grid>
 </Page>

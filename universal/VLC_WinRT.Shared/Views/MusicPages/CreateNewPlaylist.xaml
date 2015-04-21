@@ -8,28 +8,42 @@
              mc:Ignorable="d"
              d:DesignWidth="346">
 
-    <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <TextBlock Margin="24,0,0,0"
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="1"
+                   Margin="{StaticResource FrameMargin}"
                    TextTrimming="CharacterEllipsis"
                    TextWrapping="NoWrap"
                    VerticalAlignment="Center"
                    Text="New playlist"
                    Style="{StaticResource SubheaderTextBlockStyle}" />
-        <StackPanel Margin="24">
-            <TextBlock Name="body"
-                       x:Uid="PlaylistShareText"
-                       Text="The playlist will also be available on your Windows computer, laptop or tablet, only if the audio files are on your other devices."
-                       Style="{StaticResource BaseTextBlockStyle}"
-                       TextWrapping="Wrap">
-            </TextBlock>
-            <userControls:FocusTextBox x:Name="playlistName"
-                                       Margin="0,12,0,0"
-                                       x:Uid="PlaceholderTextBox"
-                                       PlaceholderText="Playlist name" />
-            <Button Margin="0,6"
-                    x:Uid="AddToCollectionButton"
-                    Content="Add to collection"
-                    Click="AddToCollection_Click" />
-        </StackPanel>
-    </StackPanel>
+        <TextBlock Grid.Row="3"
+                   Margin="{StaticResource FrameMargin}"
+                   Name="body"
+                   x:Uid="PlaylistShareText"
+                   Text="The playlist will also be available on your Windows computer, laptop or tablet, only if the audio files are on your other devices."
+                   Style="{StaticResource BaseTextBlockStyle}"
+                   TextWrapping="Wrap">
+        </TextBlock>
+        <userControls:FocusTextBox Grid.Row="5"
+                                   x:Name="playlistName"
+                                   Margin="{StaticResource FrameMargin}"
+                                   x:Uid="PlaceholderTextBox"
+                                   PlaceholderText="Playlist name" />
+        <Button Grid.Row="7"
+                Margin="{StaticResource FrameMargin}"
+                x:Uid="AddToCollectionButton"
+                Content="Add to collection"
+                Click="AddToCollection_Click" />
+    </Grid>
 </UserControl>
