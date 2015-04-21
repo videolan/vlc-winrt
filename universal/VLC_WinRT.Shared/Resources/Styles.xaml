@@ -788,14 +788,6 @@
                                                          To="1"
                                                          Storyboard.TargetProperty="Opacity"
                                                          Storyboard.TargetName="FocusVisualBlackHorizontal" />
-                                        <DoubleAnimation Duration="0"
-                                                         To="1"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         Storyboard.TargetName="FocusVisualWhiteVertical" />
-                                        <DoubleAnimation Duration="0"
-                                                         To="1"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         Storyboard.TargetName="FocusVisualBlackVertical" />
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="Unfocused" />
