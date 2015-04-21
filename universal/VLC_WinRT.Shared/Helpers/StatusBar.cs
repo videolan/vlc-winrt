@@ -68,6 +68,7 @@ namespace VLC_WinRT.Helpers
             StatusBar sB = StatusBar.GetForCurrentView();
             await sB.HideAsync();
         }
+
         public static async Task Show()
         {
             StatusBar sB = StatusBar.GetForCurrentView();
