@@ -3427,6 +3427,8 @@
     <Style BasedOn="{StaticResource ComboBoxStyle1}"
            TargetType="ComboBox"
            x:Key="HeaderComboBoxStyle">
+        <Setter Property="Background"
+                Value="Transparent" />
         <Setter Property="FontSize"
                 Value="30" />
         <Setter Property="FontWeight"
