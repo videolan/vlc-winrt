@@ -14,7 +14,6 @@
               BorderThickness="1"
               BorderBrush="{StaticResource MainColor}"
               Style="{StaticResource HeaderComboBoxStyle}"
-              Background="Transparent"
               DropDownOpened="ComboBox_OnDropDownOpened"
               DropDownClosed="ComboBox_OnDropDownClosed">
         <ComboBox.ItemTemplate>
