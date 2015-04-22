@@ -97,7 +97,8 @@
                             </TextBlock>
                             <ListView Grid.Row="1"
                                       Grid.Column="1"
-                                      ItemsSource="{Binding Artists}">
+                                      ItemsSource="{Binding Artists}"
+                                      SelectionMode="None">
                                 <ListView.ItemsPanel>
                                     <ItemsPanelTemplate>
                                         <ItemsStackPanel Orientation="Horizontal" />
