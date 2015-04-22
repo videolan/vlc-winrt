@@ -373,7 +373,6 @@ namespace VLC_WinRT.Helpers.MusicLibrary
                 }
                 catch (Exception exception)
                 {
-                    ExceptionHelper.CreateMemorizedException("MusicLibraryManagement.SetAlbumCover : get WinRT cover", exception);
                 }
             }
             return false;
