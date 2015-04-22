@@ -44,8 +44,7 @@ namespace VLC_WinRT.Views.UserControls
                 });
             var license = new SettingsCommand("license", Strings.License, command =>
             {
-                var licenseFlyout = new LicenseFlyout();
-                licenseFlyout.Show();
+                Locator.NavigationService.Go(VLCPage.LicensePage);
             });
             args.Request.ApplicationCommands.Clear();
             args.Request.ApplicationCommands.Add(privacyCommand);

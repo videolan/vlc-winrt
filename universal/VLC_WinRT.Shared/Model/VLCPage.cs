@@ -18,5 +18,6 @@
         ArtistShowsPage,
         AddAlbumToPlaylistDialog,
         CreateNewPlaylistDialog,
+        LicensePage,
     }
 }

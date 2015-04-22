@@ -75,7 +75,7 @@ namespace VLC_WinRT.Services.RunTime
                     GoBack_HideFlyout();
                     break;
                 case VLCPage.SpecialThanksPage:
-                    GoBack_Default();
+                    GoBack_HideFlyout();
                     break;
                 case VLCPage.ArtistShowsPage:
                     GoBack_HideFlyout();
@@ -84,6 +84,9 @@ namespace VLC_WinRT.Services.RunTime
                     GoBack_HideFlyout();
                     break;
                 case VLCPage.CreateNewPlaylistDialog:
+                    GoBack_HideFlyout();
+                    break;
+                case VLCPage.LicensePage:
                     GoBack_HideFlyout();
                     break;
                 default:
@@ -159,7 +162,7 @@ namespace VLC_WinRT.Services.RunTime
                     App.RootPage.SplitShell.RightFlyoutContent = new SettingsPage();
                     break;
                 case VLCPage.SpecialThanksPage:
-                    App.ApplicationFrame.Navigate(typeof(SpecialThanks));
+                    App.RootPage.SplitShell.RightFlyoutContent = new SpecialThanks();
                     break;
                 case VLCPage.ArtistShowsPage:
                     App.RootPage.SplitShell.RightFlyoutContent = new ArtistShowsPage();
@@ -171,6 +174,9 @@ namespace VLC_WinRT.Services.RunTime
                 case VLCPage.CreateNewPlaylistDialog:
                     var createPlaylist = new CreateNewPlaylist();
                     App.RootPage.SplitShell.RightFlyoutContent = createPlaylist;
+                    break;
+                case VLCPage.LicensePage:
+                    App.RootPage.SplitShell.RightFlyoutContent = new LicensePage();
                     break;
                 default:
                     break;
@@ -188,7 +194,9 @@ namespace VLC_WinRT.Services.RunTime
                 page == VLCPage.CreateNewPlaylistDialog ||
                 page == VLCPage.ArtistShowsPage ||
                 page == VLCPage.PlaylistPage ||
-                page == VLCPage.SettingsPage;
+                page == VLCPage.SettingsPage ||
+                page == VLCPage.LicensePage ||
+                page == VLCPage.SpecialThanksPage;
         }
 
         /// <summary>
@@ -217,12 +225,6 @@ namespace VLC_WinRT.Services.RunTime
                 return VLCPage.VideoPlayerPage;
             if (page == typeof(MusicPlayerPage))
                 return VLCPage.MusicPlayerPage;
-            if (page == typeof(SettingsPage))
-                return VLCPage.SettingsPage;
-            if (page == typeof(SpecialThanks))
-                return VLCPage.SpecialThanksPage;
-            if (page == typeof(ArtistShowsPage))
-                return VLCPage.ArtistShowsPage;
             return VLCPage.None;
         }
 
