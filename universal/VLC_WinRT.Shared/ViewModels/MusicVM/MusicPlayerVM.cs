@@ -20,6 +20,7 @@ using VLC_WinRT.Model.Music;
 using VLC_WinRT.Commands.Social;
 using VLC_WinRT.Database.DataRepository;
 using VLC_WinRT.BackgroundAudioPlayer.Model;
+using VLC_WinRT.LastFmScrobbler;
 #if WINDOWS_PHONE_APP
 using Windows.Media.Playback;
 #endif
@@ -28,6 +29,9 @@ namespace VLC_WinRT.ViewModels.MusicVM
 {
     public class MusicPlayerVM : BindableBase
     {
+        #region duplicate with Background Audio Task on WP
+        LastFmScrobblerHelper lastFmScrobblerHelper;
+        #endregion
         #region private props
         private AlbumItem _currentAlbum;
         private ArtistItem _currentArist;
@@ -155,6 +159,32 @@ namespace VLC_WinRT.ViewModels.MusicVM
             if (CurrentArtist == null) return;
             if (CurrentAlbum != null && CurrentAlbum.Id == CurrentTrack.AlbumId) return;
             CurrentAlbum = await _albumDataRepository.LoadAlbum(CurrentTrack.AlbumId);
+        }
+
+
+        public async Task Scrobble()
+        {
+            if (!Locator.SettingsVM.LastFmIsConnected) return;
+            if (lastFmScrobblerHelper == null)
+            {
+                // try to instanciate it
+                lastFmScrobblerHelper = new LastFmScrobblerHelper("a8eba7d40559e6f3d15e7cca1bfeaa1c", "bd9ad107438d9107296ef799703d478e");
+            }
+
+            if (!lastFmScrobblerHelper.IsConnected)
+            {
+                var pseudo = Locator.SettingsVM.LastFmUserName;
+                var pd = Locator.SettingsVM.LastFmPassword;
+                var success = await lastFmScrobblerHelper.ConnectOperation(pseudo, pd);
+                if (!success) return;
+            }
+
+            if (lastFmScrobblerHelper != null && lastFmScrobblerHelper.IsConnected)
+            {
+                lastFmScrobblerHelper.ScrobbleTrack(Locator.MusicPlayerVM.CurrentTrack.ArtistName,
+                                                    Locator.MusicPlayerVM.CurrentTrack.AlbumName,
+                                                    Locator.MusicPlayerVM.CurrentTrack.Name);
+            }
         }
     }
 }

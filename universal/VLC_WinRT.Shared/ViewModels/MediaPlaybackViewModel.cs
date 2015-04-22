@@ -500,6 +500,7 @@ namespace VLC_WinRT.ViewModels
                         await Locator.MusicPlayerVM.UpdatePlayingUI();
 #if WINDOWS_APP
                         await Locator.MusicPlayerVM.UpdateWindows8UI();
+                        await Locator.MusicPlayerVM.Scrobble();
 #endif
                     });
                 }
