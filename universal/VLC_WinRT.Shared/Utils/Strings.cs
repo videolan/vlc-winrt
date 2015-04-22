@@ -62,5 +62,13 @@ namespace VLC_WinRT.Utils
         public static readonly string SpecialThanks = _resourcesLoader.GetString("SpecialThanks");
         public static readonly string Settings = _resourcesLoader.GetString("Settings");
         public static readonly string License = "License";
+
+        static Strings()
+        {
+            PlaylistAlreadyExists = "This playlist already exists";
+            TrackAddedToYourPlaylist = "Track added to the playlist";
+            TrackAlreadyExistsInPlaylist = "This track is already in the playlist";
+            HaveToSelectPlaylist = "You need to select a playlist";
+        }
     }
 }
