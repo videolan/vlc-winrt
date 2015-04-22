@@ -13,7 +13,36 @@
         <ScrollViewer Style="{StaticResource VerticalScrollViewerStyle}">
             <StackPanel x:Name="RootPanel"
                         Margin="{StaticResource FrameMargin}">
-                <TextBlock x:Name="AppVersion" />
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <AppBarButton Label="license page"
+                                  Style="{StaticResource AppBarButtonStyleHorizontal}"
+                                  Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToLicensePageCommand}">
+                        <AppBarButton.Icon>
+                            <FontIcon Glyph="{StaticResource PylonSymbol}"
+                                      FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+                        </AppBarButton.Icon>
+                    </AppBarButton>
+                    <AppBarButton Grid.Column="1"
+                                  Margin="12,0,0,0"
+                                  Label="thanks page"
+                                  Style="{StaticResource AppBarButtonStyleHorizontal}"
+                                  Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToThanksPageCommand}">
+                        <AppBarButton.Icon>
+                            <FontIcon Glyph="{StaticResource ThumbsupSymbol}"
+                                      FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+                        </AppBarButton.Icon>
+                    </AppBarButton>
+                    <TextBlock x:Name="AppVersion"
+                               Grid.Column="2" 
+                               Style="{StaticResource TitleTextBlockStyle}"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Right"/>
+                </Grid>
                 <TextBlock Text="user interface"
                            Style="{StaticResource SubheaderTextBlockStyle}"
                            Foreground="{StaticResource MainColor}" />
