@@ -9,11 +9,25 @@ using VLC_WinRT.LastFmScrobbler;
 using VLC_WinRT.ViewModels;
 namespace VLC_WinRT.Views.VariousPages
 {
-    public sealed partial class SettingsPage : Page
+    public sealed partial class SettingsPage : UserControl
     {
         public SettingsPage()
         {
             this.InitializeComponent();
+            Package thisPackage = Package.Current;
+            PackageVersion version = thisPackage.Id.Version;
+            string appVersion = string.Format("{0}.{1}.{2}.{3}",
+                version.Major, version.Minor, version.Build, version.Revision);
+            AppVersion.Text = "v" + appVersion;
+            foreach(var element in RootPanel.Children)
+            {
+#if WINDOWS_PHONE_APP
+                if((string)((FrameworkElement)element).Tag == "WindowsOnly")
+                {
+                    element.Visibility = Visibility.Collapsed;
+                }
+#endif
+            }
         }
 
         void FocusTextBox_LostFocus(object sender, RoutedEventArgs e)
@@ -25,17 +39,7 @@ namespace VLC_WinRT.Views.VariousPages
         {
             Locator.MainVM.KeyboardListenerService.CanListen = false;
         }
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            Package thisPackage = Package.Current;
-            PackageVersion version = thisPackage.Id.Version;
-            string appVersion = string.Format("{0}.{1}.{2}.{3}",
-                version.Major, version.Minor, version.Build, version.Revision);
-            AppVersion.Text = "v" + appVersion;
-        }
         
-
         private async void ConnectToLastFM_Click(object sender, RoutedEventArgs e)
         {
             LastFmScrobblerHelper lastFm = new LastFmScrobblerHelper(App.ApiKeyLastFm, "bd9ad107438d9107296ef799703d478e");

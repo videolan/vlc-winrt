@@ -40,8 +40,7 @@ namespace VLC_WinRT.Views.UserControls
             var settings = new SettingsCommand("settings", Strings.Settings,
                 command =>
                 {
-                    var settingsFlyout = new SettingsFlyout();
-                    settingsFlyout.Show();
+                    Locator.NavigationService.Go(VLCPage.SettingsPage);
                 });
             var license = new SettingsCommand("license", Strings.License, command =>
             {

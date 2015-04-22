@@ -72,7 +72,7 @@ namespace VLC_WinRT.Services.RunTime
                     GoBack_Default();
                     break;
                 case VLCPage.SettingsPage:
-                    GoBack_Default();
+                    GoBack_HideFlyout();
                     break;
                 case VLCPage.SpecialThanksPage:
                     GoBack_Default();
@@ -156,7 +156,7 @@ namespace VLC_WinRT.Services.RunTime
                     App.ApplicationFrame.Navigate(typeof(MusicPlayerPage));
                     break;
                 case VLCPage.SettingsPage:
-                    App.ApplicationFrame.Navigate(typeof(SettingsPage));
+                    App.RootPage.SplitShell.RightFlyoutContent = new SettingsPage();
                     break;
                 case VLCPage.SpecialThanksPage:
                     App.ApplicationFrame.Navigate(typeof(SpecialThanks));
@@ -187,7 +187,8 @@ namespace VLC_WinRT.Services.RunTime
                 page == VLCPage.AddAlbumToPlaylistDialog ||
                 page == VLCPage.CreateNewPlaylistDialog ||
                 page == VLCPage.ArtistShowsPage ||
-                page == VLCPage.PlaylistPage;
+                page == VLCPage.PlaylistPage ||
+                page == VLCPage.SettingsPage;
         }
 
         /// <summary>
