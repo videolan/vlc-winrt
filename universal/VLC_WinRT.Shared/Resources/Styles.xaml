@@ -2360,8 +2360,7 @@
                                     <Border x:Name="SelectedCheckMarkOuter"
                                             IsHitTestVisible="False"
                                             HorizontalAlignment="Right"
-                                            VerticalAlignment="Top"
-                                            Margin="4">
+                                            VerticalAlignment="Top">
                                         <Grid x:Name="SelectedCheckMark"
                                               Opacity="0"
                                               Height="40"
