@@ -75,9 +75,11 @@ namespace VLC_WinRT.ViewModels
 
         public GoToPanelCommand GoToPanelCommand { get; } = new GoToPanelCommand();
 
-        public GoToSettingsPageCommand GoToSettingsPageCommand { get; } = new GoToSettingsPageCommand();
+        public ActionCommand GoToSettingsPageCommand { get; } = new ActionCommand(() => Locator.NavigationService.Go(VLCPage.SettingsPage));
 
-        public GoToThanksPageCommand GoToThanksPageCommand { get; } = new GoToThanksPageCommand();
+        public ActionCommand GoToThanksPageCommand { get; } = new ActionCommand(() => Locator.NavigationService.Go(VLCPage.SpecialThanksPage));
+
+        public ActionCommand GoToLicensePageCommand { get; } = new ActionCommand(() => Locator.NavigationService.Go(VLCPage.LicensePage));
 
         public ChangeMainPageMusicViewCommand ChangeMainPageMusicViewCommand { get; } = new ChangeMainPageMusicViewCommand();
         

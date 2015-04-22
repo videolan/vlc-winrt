@@ -14,14 +14,6 @@ namespace VLC_WinRT.Commands.RemovableDevices
                     Locator.FileExplorerVM.CurrentStorageVM.CanGoBack)
                     Locator.FileExplorerVM.CurrentStorageVM.GoBack();
             }
-#if WINDOWS_APP
-            else if(App.ApplicationFrame.CurrentSourcePageType == typeof(MainPageMediaServers))
-            {
-                if(Locator.DlnaVM.CurrentDlnaVm != null &&
-                    Locator.DlnaVM.CurrentDlnaVm.CanGoBack)
-                    Locator.DlnaVM.CurrentDlnaVm.GoBack();
-            }
-#endif
         }
     }
 }

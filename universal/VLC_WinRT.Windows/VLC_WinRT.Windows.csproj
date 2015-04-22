@@ -120,30 +120,9 @@
     </SDKReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Views\UserControls\LicenseFlyout.xaml.cs">
-      <DependentUpon>LicenseFlyout.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\MainPages\MainPageMediaServers.xaml.cs">
-      <DependentUpon>MainPageMediaServers.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\MusicPages\ArtistPageControls\ArtistCoverBiographyControl.xaml.cs">
-      <DependentUpon>ArtistCoverBiographyControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\MusicPages\MusicPlayerPageControls\BiographyInfoControl.xaml.cs">
-      <DependentUpon>BiographyInfoControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\MusicPages\MusicPlayerPageControls\PopularAlbumsInfoControl.xaml.cs">
-      <DependentUpon>PopularAlbumsInfoControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\MusicPages\MusicPlayerPageControls\SimilarArtistsInfoControl.xaml.cs">
-      <DependentUpon>SimilarArtistsInfoControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\UserControls\ShellContent.xaml.cs">
       <DependentUpon>ShellContent.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\VariousPages\SpecialThanks.xaml.cs">
-      <DependentUpon>SpecialThanks.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -793,35 +772,7 @@
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
-    <Page Include="Views\UserControls\LicenseFlyout.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\MainPages\MainPageMediaServers.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\MusicPages\ArtistPageControls\ArtistCoverBiographyControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\MusicPages\MusicPlayerPageControls\BiographyInfoControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\MusicPages\MusicPlayerPageControls\PopularAlbumsInfoControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\MusicPages\MusicPlayerPageControls\SimilarArtistsInfoControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\UserControls\ShellContent.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\VariousPages\SpecialThanks.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -869,10 +820,7 @@
   <ItemGroup>
     <None Include="MultilingualResources\VLC_WinRT.Windows.ja-JP.xlf" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\UserControls\Flyouts\" />
-    <Folder Include="Views\VideoPages\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <XliffResource Include="MultilingualResources\VLC_WinRT.Windows.en-US.xlf" />
   </ItemGroup>

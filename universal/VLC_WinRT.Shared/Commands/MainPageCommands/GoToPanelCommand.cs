@@ -60,12 +60,6 @@ namespace VLC_WinRT.Commands.MainPageCommands
                     case 3:
                         Locator.NavigationService.Go(VLCPage.MainPageFileExplorer);
                         break;
-#if WINDOWS_APP
-                    case 4:
-                        if (App.ApplicationFrame.CurrentSourcePageType != typeof(MainPageMediaServers))
-                            App.ApplicationFrame.Navigate(typeof(MainPageMediaServers));
-                        break;
-#endif
                 }
             }
         }
