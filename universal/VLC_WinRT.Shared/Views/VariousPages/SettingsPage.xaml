@@ -13,7 +13,7 @@
         <ScrollViewer Style="{StaticResource VerticalScrollViewerStyle}">
             <StackPanel x:Name="RootPanel"
                         Margin="{StaticResource FrameMargin}">
-                <Grid>
+                <Grid Margin="0,12,0,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="Auto" />
