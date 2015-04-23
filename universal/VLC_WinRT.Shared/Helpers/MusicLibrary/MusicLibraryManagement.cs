@@ -82,6 +82,8 @@ namespace VLC_WinRT.Helpers.MusicLibrary
                 LogHelper.Log("Loading artists from MusicDB ...");
                 var artists = await Locator.MusicLibraryVM._artistDataRepository.Load();
                 var orderedArtists = artists.OrderBy(x => x.Name);
+                var groupedArtists = orderedArtists.GroupBy(x => string.IsNullOrEmpty(x.Name) ? Strings.UnknownString : (char.IsLetter(x.Name.ElementAt(0)) ? x.Name.ToUpper().ElementAt(0).ToString() : Strings.UnknownString));
+
                 LogHelper.Log("Found " + artists.Count + " artists from MusicDB");
 
                 var albums = await Locator.MusicLibraryVM._albumDataRepository.LoadAlbums(x => x.ArtistId != 0).ToObservableAsync();
@@ -93,6 +95,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
                 await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                 {
                     Locator.MusicLibraryVM.Artists = new ObservableCollection<ArtistItem>(orderedArtists);
+                    Locator.MusicLibraryVM.GroupedArtists = groupedArtists;
                     Locator.MusicLibraryVM.Tracks = tracks;
                     Locator.MusicLibraryVM.Albums = new ObservableCollection<AlbumItem>(orderedAlbums);
                     Locator.MusicLibraryVM.AlphaGroupedTracks = groupedTracks;
