@@ -17,7 +17,7 @@
         <CollectionViewSource x:Key="GroupTracks"
                               x:Name="GroupTracks"
                               IsSourceGrouped="True"
-                              Source="{Binding AlphaGroupedTracks}" />
+                              Source="{Binding GroupedTracks}" />
     </Page.Resources>
     <Grid x:Name="RootGrid"
           Loaded="Collection_Loaded">

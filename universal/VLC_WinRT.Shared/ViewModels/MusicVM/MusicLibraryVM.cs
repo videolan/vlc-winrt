@@ -47,9 +47,9 @@ namespace VLC_WinRT.ViewModels.MusicVM
         private ObservableCollection<AlbumItem> _albums = new ObservableCollection<AlbumItem>();
         private ObservableCollection<TrackCollection> _trackCollections = new ObservableCollection<TrackCollection>();
 
-        private IEnumerable<IGrouping<char, TrackItem>> _alphaGroupedTracks;
-        private IEnumerable<IGrouping<string, AlbumItem>> _alphaGroupedAlbums;
-
+        private IEnumerable<IGrouping<char, TrackItem>> _groupedTracks;
+        private IEnumerable<IGrouping<string, AlbumItem>> _groupedAlbums;
+        private IEnumerable<IGrouping<string, ArtistItem>> _groupedArtists;
         #endregion
         #region private props
         private SidebarState _sidebarState;
@@ -110,10 +110,10 @@ namespace VLC_WinRT.ViewModels.MusicVM
             set { SetProperty(ref _tracks, value); }
         }
 
-        public IEnumerable<IGrouping<char, TrackItem>> AlphaGroupedTracks
+        public IEnumerable<IGrouping<char, TrackItem>> GroupedTracks
         {
-            get { return _alphaGroupedTracks; }
-            set { SetProperty(ref _alphaGroupedTracks, value); }
+            get { return _groupedTracks; }
+            set { SetProperty(ref _groupedTracks, value); }
         }
 
         public ObservableCollection<AlbumItem> Albums
@@ -122,10 +122,10 @@ namespace VLC_WinRT.ViewModels.MusicVM
             set { SetProperty(ref _albums, value); }
         }
 
-        public IEnumerable<IGrouping<string, AlbumItem>> AlphaGroupedAlbums
+        public IEnumerable<IGrouping<string, AlbumItem>> GroupedAlbums
         {
-            get { return _alphaGroupedAlbums; }
-            set { SetProperty(ref _alphaGroupedAlbums, value); }
+            get { return _groupedAlbums; }
+            set { SetProperty(ref _groupedAlbums, value); }
         }
         #endregion
         #region public props
