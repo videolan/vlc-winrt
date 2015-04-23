@@ -184,7 +184,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
                     await Locator.MediaPlaybackViewModel.ContinueIndexing.Task;
                     Locator.MediaPlaybackViewModel.ContinueIndexing = null;
                 }
-                if (musicFolder.Name == Strings.PodcastFolderName)
+                if (musicFolder.Name != Strings.PodcastFolderName)
                 {
                     var folders = await musicFolder.GetFoldersAsync();
                     if (folders.Any())
