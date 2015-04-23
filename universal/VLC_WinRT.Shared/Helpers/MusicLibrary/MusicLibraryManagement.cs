@@ -184,20 +184,23 @@ namespace VLC_WinRT.Helpers.MusicLibrary
                     await Locator.MediaPlaybackViewModel.ContinueIndexing.Task;
                     Locator.MediaPlaybackViewModel.ContinueIndexing = null;
                 }
-                var folders = await musicFolder.GetFoldersAsync();
-                if (folders.Any())
+                if (musicFolder.Name == Strings.PodcastFolderName)
                 {
-                    foreach (var storageFolder in folders)
+                    var folders = await musicFolder.GetFoldersAsync();
+                    if (folders.Any())
                     {
-                        await CreateDatabaseFromMusicFolder(storageFolder);
+                        foreach (var storageFolder in folders)
+                        {
+                            await CreateDatabaseFromMusicFolder(storageFolder);
+                        }
                     }
-                }
-                var folderFiles = await musicFolder.GetFilesAsync();
-                if (folderFiles != null && folderFiles.Any())
-                {
-                    foreach (var storageFile in folderFiles)
+                    var folderFiles = await musicFolder.GetFilesAsync();
+                    if (folderFiles != null && folderFiles.Any())
                     {
-                        await DiscoverTrackItemOrWaitAsync(storageFile);
+                        foreach (var storageFile in folderFiles)
+                        {
+                            await DiscoverTrackItemOrWaitAsync(storageFile);
+                        }
                     }
                 }
             }
