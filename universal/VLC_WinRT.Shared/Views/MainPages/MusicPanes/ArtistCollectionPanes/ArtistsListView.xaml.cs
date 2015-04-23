@@ -2,6 +2,8 @@
 using Windows.UI.Xaml.Controls;
 using VLC_WinRT.Model.Music;
 using VLC_WinRT.ViewModels;
+using Windows.UI.Xaml.Data;
+using VLC_WinRT.Utils;
 
 namespace VLC_WinRT.Views.MainPages.MusicPanes.ArtistCollectionPanes
 {
@@ -14,25 +16,21 @@ namespace VLC_WinRT.Views.MainPages.MusicPanes.ArtistCollectionPanes
             this.Loaded += ArtistCollectionBase_Loaded;
         }
 
-        void ArtistCollectionBase_Loaded(object sender, RoutedEventArgs e)
+        async void ArtistCollectionBase_Loaded(object sender, RoutedEventArgs e)
         {
-            Window.Current.SizeChanged += Current_SizeChanged;
-            this.Unloaded += ArtistCollectionBase_Unloaded;
-            Responsive();
+            await Locator.MusicLibraryVM.MusicCollectionLoaded.Task;
+            if(Locator.MusicLibraryVM.Artists.Count > Numbers.SemanticZoomItemCountThreshold)
+            {
+                var b = new Binding();
+                b.Mode = BindingMode.OneWay;
+                b.Source = this.Resources["GroupArtists"] as CollectionViewSource;
+                ArtistListView.SetBinding(ListView.ItemsSourceProperty, b);
+                SemanticZoom.IsZoomOutButtonEnabled = true;
+            }
         }
-
-        void ArtistCollectionBase_Unloaded(object sender, RoutedEventArgs e)
+        private void SemanticZoom_OnViewChangeCompleted(object sender, SemanticZoomViewChangedEventArgs e)
         {
-            Window.Current.SizeChanged -= Current_SizeChanged;
-        }
-
-        void Current_SizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)
-        {
-            Responsive();
-        }
-
-        async void Responsive()
-        {
+            ArtistsZoomedOutView.ItemsSource = GroupArtists.View.CollectionGroups;
         }
 
         private void ArtistListView_OnItemClick(object sender, ItemClickEventArgs e)
