@@ -183,7 +183,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
             {
                 if (string.IsNullOrEmpty(_searchTag) && !string.IsNullOrEmpty(value))
                     Locator.MainVM.ChangeMainPageMusicViewCommand.Execute(4);
-                if (!string.IsNullOrEmpty(value))
+                if (!string.IsNullOrEmpty(value) && value.Length > 1)
                     SearchHelpers.SearchAlbums(value, SearchResults);
                 SetProperty(ref _searchTag, value);
             }
