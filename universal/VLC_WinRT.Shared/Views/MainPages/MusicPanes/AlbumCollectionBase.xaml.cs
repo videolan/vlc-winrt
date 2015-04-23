@@ -16,11 +16,6 @@ namespace VLC_WinRT.Views.MainPages.MusicPanes
             TemplateSizer.ComputeAlbums(sender as ItemsWrapGrid, this.ActualWidth);
         }
 
-        private async void ListViewBase_OnContainerContentChanging(ListViewBase sender,
-            ContainerContentChangingEventArgs args)
-        {
-        }
-
         private void SemanticZoom_OnViewChangeCompleted(object sender, SemanticZoomViewChangedEventArgs e)
         {
             AlbumsZoomedOutView.ItemsSource = GroupAlbums.View.CollectionGroups;
