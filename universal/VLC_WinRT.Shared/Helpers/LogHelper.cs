@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Threading;
 using System.Threading.Tasks;
 using Windows.Storage;
 
@@ -10,6 +11,7 @@ namespace VLC_WinRT.Helpers
         public static StorageFile LogFile;
         public static bool usedForRead = false;
         private static bool signalUpdate = false;
+        static readonly SemaphoreSlim WriteFileSemaphoreSlim = new SemaphoreSlim(1);
         static LogHelper()
         {
             Initialize();
@@ -28,15 +30,27 @@ namespace VLC_WinRT.Helpers
             Log("------------------------------------------");
             Log("App launch " + DateTime.Now.ToString());
         }
-        public static void Log(object o)
+
+        public static async void Log(object o)
         {
-            Debug.WriteLine(o.ToString());
-            WriteInLog(o.ToString());
+            Debug.WriteLine(o.ToString());            
+            await WriteInLog(LogFile, o.ToString());
         }
 
-        static void WriteInLog(string value)
+        static async Task WriteInLog(StorageFile file, string value)
         {
-            if (LogFile != null && !usedForRead) FileIO.AppendTextAsync(LogFile, value);
+            await WriteFileSemaphoreSlim.WaitAsync();
+            try
+            {
+                if(file != null && !usedForRead)
+                {
+                    await FileIO.AppendLinesAsync(file, new string[1] { value });
+                }
+            }
+            finally
+            {
+                WriteFileSemaphoreSlim.Release();
+            }
         }
 
         public static void SignalUpdate()
