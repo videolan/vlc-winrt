@@ -14,6 +14,8 @@ namespace VLC_WinRT.Utils
         public static readonly string VideoDatabase = Path.Combine(ApplicationData.Current.LocalFolder.Path, "mediavlcVideos.sqlite");
         public static readonly string SettingsDatabase = Path.Combine(ApplicationData.Current.LocalFolder.Path, "settings.sqlite");
 
+        public static readonly string PodcastFolderName = "Podcasts";
+
         public static readonly char UnknownChar = '#';
         public static readonly string UnknownString = UnknownChar.ToString();
 
