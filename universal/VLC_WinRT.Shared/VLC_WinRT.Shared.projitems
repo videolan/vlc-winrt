@@ -193,6 +193,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Utils\ConvertImage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\DispatchHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\Extensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Utils\Numbers.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\OpenMenuFlyoutAction.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\Strings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Locator.cs" />
