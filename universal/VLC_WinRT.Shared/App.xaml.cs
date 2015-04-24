@@ -59,7 +59,7 @@ namespace VLC_WinRT
 
         public static MainPage RootPage
         {
-            get { return Window.Current.Content as MainPage; }
+            get { return Window.Current?.Content as MainPage; }
         }
 
 
