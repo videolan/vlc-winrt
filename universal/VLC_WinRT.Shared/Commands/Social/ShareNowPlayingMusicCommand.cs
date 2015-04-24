@@ -21,16 +21,14 @@ namespace VLC_WinRT.Commands.Social
         private void RegisterForShare()
         {
             DataTransferManager dataTransferManager = DataTransferManager.GetForCurrentView();
-            dataTransferManager.DataRequested += new TypedEventHandler<DataTransferManager,
-                DataRequestedEventArgs>(this.ShareLinkHandler);
+            dataTransferManager.DataRequested += new TypedEventHandler<DataTransferManager, DataRequestedEventArgs>(this.ShareLinkHandler);
         }
 
         private async void ShareLinkHandler(DataTransferManager sender, DataRequestedEventArgs e)
         {
             DataRequest request = e.Request;
             var uri = string.Format("http://www.last.fm/music/{0}/{1}", Locator.MusicPlayerVM.CurrentArtist.Name, Locator.MusicPlayerVM.CurrentAlbum.Name);
-
-            string title = string.Format("#NowPlaying {0} - {1}", Locator.MusicPlayerVM.CurrentTrack.Name, Locator.MusicPlayerVM.CurrentArtist.Name);
+            var title = string.Format("#NowPlaying {0} - {1}", Locator.MusicPlayerVM.CurrentTrack.Name, Locator.MusicPlayerVM.CurrentArtist.Name);
 
             request.Data.Properties.Title = title;
             request.Data.Properties.Description = title;
