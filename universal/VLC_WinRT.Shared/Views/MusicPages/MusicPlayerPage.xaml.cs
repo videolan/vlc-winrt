@@ -53,7 +53,7 @@ namespace VLC_WinRT.Views.MusicPages
 
         void Responsive()
         {
-            if (Window.Current.Bounds.Width < 650)
+            if (Window.Current.Bounds.Width < 640)
             {
                 VisualStateUtilities.GoToState(this, this.ActualHeight < 900 ? "NarrowAndTiny" : "Narrow", false);
             }

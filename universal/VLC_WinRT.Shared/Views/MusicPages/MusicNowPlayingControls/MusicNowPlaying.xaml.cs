@@ -35,7 +35,7 @@ namespace VLC_WinRT.Views.MusicPages.MusicNowPlayingControls
 
         private void Responsive()
         {
-            if (Window.Current.Bounds.Width < 650)
+            if (Window.Current.Bounds.Width < 640)
             {
                 VisualStateUtilities.GoToState(this, "Narrow", false);
             }
