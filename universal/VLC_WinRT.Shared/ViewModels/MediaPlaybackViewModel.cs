@@ -39,6 +39,7 @@ using Windows.Media.Playback;
 #endif
 using libVLCX;
 using VLC_WinRT.Utils;
+using WinRTXamlToolkit.Controls.Extensions;
 
 namespace VLC_WinRT.ViewModels
 {
@@ -621,7 +622,7 @@ namespace VLC_WinRT.ViewModels
                 await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
                 {
                     var md = new MessageDialog("Your media cannot be read.", "We're sorry");
-                    await md.ShowAsync();
+                    await md.ShowAsyncQueue();
                     // ensure we call Stop so we unregister all events
                     Stop();
                 });

@@ -24,6 +24,7 @@ using Windows.UI.Popups;
 using VLC_WinRT.Model;
 using libVLCX;
 using VLC_WinRT.Utils;
+using WinRTXamlToolkit.Controls.Extensions;
 
 namespace VLC_WinRT.ViewModels
 {
@@ -165,7 +166,7 @@ namespace VLC_WinRT.ViewModels
                     if (Locator.MediaPlaybackViewModel.IsPlaying == true && Locator.MediaPlaybackViewModel.IsStream)
                     {
                         var lostStreamDialog = new MessageDialog("Connection to the server was stopped, please check your Internet connection");
-                        await lostStreamDialog.ShowAsync();
+                        await lostStreamDialog.ShowAsyncQueue();
                     }
                 }
             });
