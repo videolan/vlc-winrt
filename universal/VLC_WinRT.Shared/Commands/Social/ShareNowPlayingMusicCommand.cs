@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Windows.Storage;
 using VLC_WinRT.Utils;
 using VLC_WinRT.ViewModels;
+using WinRTXamlToolkit.IO.Extensions;
 
 namespace VLC_WinRT.Commands.Social
 {
@@ -33,14 +34,21 @@ namespace VLC_WinRT.Commands.Social
             request.Data.Properties.Title = title;
             request.Data.Properties.Description = title;
             request.Data.SetWebLink(new Uri(uri, UriKind.Absolute));
-            DataRequestDeferral deferral = request.GetDeferral();
 
+            DataRequestDeferral deferral = request.GetDeferral();
             try
             {
                 string fileName = string.Format("{0}.jpg", Locator.MusicPlayerVM.CurrentAlbum.Id);
                 var albumPic = await ApplicationData.Current.LocalFolder.GetFolderAsync("albumPic");
-                var file = await albumPic.GetFileAsync(fileName);
-                request.Data.SetStorageItems(new List<StorageFile> { file });
+                if (await albumPic.ContainsFileAsync(fileName))
+                {
+                    var file = await albumPic.GetFileAsync(fileName);
+                    request.Data.SetStorageItems(new List<StorageFile> { file });
+                }
+            }
+            catch
+            {
+                deferral.Complete();
             }
             finally
             {
