@@ -2,6 +2,8 @@
 using VLC_WinRT.ViewModels;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
+
 namespace VLC_WinRT.Views.MainPages.MusicPanes.MusicPanesControls
 {
     public sealed partial class MusicPaneButtons : UserControl
@@ -35,14 +37,6 @@ namespace VLC_WinRT.Views.MainPages.MusicPanes.MusicPanesControls
                 VisualStateUtilities.GoToState(this, "Minimal", false);
             else
                 VisualStateUtilities.GoToState(this, "Normal", false);
-        }
-
-
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (string.IsNullOrEmpty(MusicSearchBox.Text) && !string.IsNullOrEmpty(Locator.MusicLibraryVM.SearchTag))
-                Locator.MainVM.ChangeMainPageMusicViewCommand.Execute((int)Locator.SettingsVM.MusicView);
-            Locator.MusicLibraryVM.SearchTag = MusicSearchBox.Text;
         }
     }
 }

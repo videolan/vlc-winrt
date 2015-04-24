@@ -2,6 +2,7 @@
 using VLC_WinRT.ViewModels;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
 
 namespace VLC_WinRT.Views.MainPages.MainVideoControls.VideoPanesControls
 {
@@ -10,6 +11,7 @@ namespace VLC_WinRT.Views.MainPages.MainVideoControls.VideoPanesControls
         public VideoPaneButtons()
         {
             this.InitializeComponent();
+            VideoSearchBox.AddHandler(TappedEvent, new TappedEventHandler(VideoSearchBox_Tapped), true);
             this.Loaded += VideoPaneButtons_Loaded;
         }
 
@@ -43,6 +45,11 @@ namespace VLC_WinRT.Views.MainPages.MainVideoControls.VideoPanesControls
             if (string.IsNullOrEmpty(VideoSearchBox.Text) && !string.IsNullOrEmpty(Locator.VideoLibraryVM.SearchTag))
                 Locator.MainVM.ChangeMainPageVideoViewCommand.Execute((int)Locator.SettingsVM.VideoView);
             Locator.VideoLibraryVM.SearchTag = VideoSearchBox.Text;
+        }
+
+        private void VideoSearchBox_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            Locator.MainVM.ChangeMainPageVideoViewCommand.Execute(3);
         }
     }
 }

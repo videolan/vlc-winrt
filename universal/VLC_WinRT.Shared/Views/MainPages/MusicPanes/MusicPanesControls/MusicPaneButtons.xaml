@@ -13,7 +13,6 @@
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="1" />
             <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
         <AppBarButton x:Name="ShuffleButton"
                       Style="{StaticResource EllipseLessAppBarButtonStyle}"
@@ -39,59 +38,20 @@
                           FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
             </AppBarButton.Icon>
         </AppBarButton>
-        <AppBarButton x:Name="SearchButton"
-                      Grid.Column="3"
-                      Style="{StaticResource EllipseLessAppBarButtonStyle}"
-                      Command="{Binding Source={StaticResource Locator}, Path=MainVM.ChangeMainPageMusicViewCommand}"
-                      CommandParameter="4">
-            <AppBarButton.Icon>
-                <FontIcon Glyph="{StaticResource SearchSymbol}"
-                          FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
-            </AppBarButton.Icon>
-        </AppBarButton>
-
-        <userControls:FocusTextBox x:Name="MusicSearchBox"
-                                   Grid.Column="3"
-                                   Text="{Binding SearchTag}"
-                                   PlaceholderText="search an album"
-                                   Height="30"
-                                   Width="250"
-                                   TextChanged="TextBox_TextChanged"
-                                   HorizontalAlignment="Right" />
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
                 <VisualState x:Name="Minimal">
                     <Storyboard>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SearchButton"
-                                                       Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Visible" />
-                        </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RefreshButton"
                                                        Storyboard.TargetProperty="Visibility">
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="Visible" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MusicSearchBox"
-                                                       Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Collapsed" />
                         </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
                 <VisualState x:Name="Normal">
                     <Storyboard>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SearchButton"
-                                                       Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Collapsed" />
-                        </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RefreshButton"
-                                                       Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Visible" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MusicSearchBox"
                                                        Storyboard.TargetProperty="Visibility">
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="Visible" />

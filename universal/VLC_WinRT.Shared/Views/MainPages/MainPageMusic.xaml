@@ -4,6 +4,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:musicPanesControls="using:VLC_WinRT.Views.MainPages.MusicPanes.MusicPanesControls"
+      xmlns:userControls="using:VLC_WinRT.Views.UserControls"
       mc:Ignorable="d"
       d:DesignHeight="300"
       d:DesignWidth="600"
@@ -20,23 +21,86 @@
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
         <musicPanesControls:MusicPaneComboBox Grid.Row="0" />
-        <musicPanesControls:AlbumsCollectionButtons Grid.Column="1"
-                                                    Visibility="{Binding MusicView, Converter={StaticResource MusicViewVisibilityConverter}, ConverterParameter='albums'}">
-        </musicPanesControls:AlbumsCollectionButtons>
-        <musicPanesControls:ArtistPaneButtons Grid.Column="1"
-                                              Visibility="{Binding MusicView, Converter={StaticResource MusicViewVisibilityConverter}, ConverterParameter='artists'}" />
-        <musicPanesControls:SongsPaneButtons Grid.Column="1"
-                                             Visibility="{Binding MusicView, Converter={StaticResource MusicViewVisibilityConverter}, ConverterParameter='songs'}" />
-        <musicPanesControls:PlaylistPaneButtons Grid.Column="1"
-                                                Visibility="{Binding MusicView, Converter={StaticResource MusicViewVisibilityConverter}, ConverterParameter='playlists'}" />
-
-        <musicPanesControls:ArtistPaneButtons Grid.Column="1"
-                                              Visibility="{Binding MusicView, Converter={StaticResource MusicViewVisibilityConverter}, ConverterParameter='4'}" />
+        <Grid Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <musicPanesControls:AlbumsCollectionButtons Visibility="{Binding MusicView, Converter={StaticResource MusicViewVisibilityConverter}, ConverterParameter='0'}" />
+            <musicPanesControls:MusicPaneButtons Grid.Column="1"
+                                                 Visibility="{Binding MusicView, Converter={StaticResource MusicViewVisibilityConverter}, ConverterParameter='0,1,2'}" />
+            <AppBarButton x:Uid="NewPlaylist"
+                          Grid.Column="2"
+                          Label="new playlist"
+                          Style="{StaticResource AppBarButtonStyleHorizontal}"
+                          Command="{Binding ShowCreateNewPlaylistPaneCommand}"
+                          Margin="0,0,12,0"
+                          VerticalAlignment="Center"
+                          Visibility="{Binding MusicView, Converter={StaticResource MusicViewVisibilityConverter}, ConverterParameter='3'}">
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="{StaticResource AddSymbol}"
+                              FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+                </AppBarButton.Icon>
+            </AppBarButton>
+            <AppBarButton x:Name="SearchButton"
+                          Grid.Column="3"
+                          Style="{StaticResource EllipseLessAppBarButtonStyle}"
+                          Command="{Binding Source={StaticResource Locator}, Path=MainVM.ChangeMainPageMusicViewCommand}"
+                          CommandParameter="4">
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="{StaticResource SearchSymbol}"
+                              FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+                </AppBarButton.Icon>
+            </AppBarButton>
+            <userControls:FocusTextBox x:Name="MusicSearchBox"
+                                       Grid.Column="3"
+                                       Text="{Binding SearchTag}"
+                                       PlaceholderText="search an album"
+                                       Height="30"
+                                       Width="250"
+                                       TextChanged="TextBox_TextChanged"
+                                       HorizontalAlignment="Right" />
+        </Grid>
         <ContentPresenter x:Name="MainPageMusicContentPresenter"
                           x:FieldModifier="public"
                           Grid.Row="1"
                           Grid.Column="0"
                           Grid.ColumnSpan="2"
                           Loaded="MusicPanesFrame_OnLoaded" />
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="Minimal">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SearchButton"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MusicSearchBox"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Collapsed" />
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Normal">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SearchButton"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Collapsed" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MusicSearchBox"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
     </Grid>
 </Page>

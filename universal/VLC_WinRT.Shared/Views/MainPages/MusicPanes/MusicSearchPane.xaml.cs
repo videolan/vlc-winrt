@@ -27,11 +27,6 @@ namespace VLC_WinRT.Views.MainPages.MusicPanes
             Responsive(Window.Current.Bounds.Width);
             Window.Current.SizeChanged += Current_SizeChanged;
             this.Unloaded += SearchMusicPane_Unloaded;
-
-            var artistPane = (App.ApplicationFrame.Content as MainPageMusic).GetDescendantsOfType<ArtistPaneButtons>().FirstOrDefault(x => x.Visibility == Visibility.Visible);
-            var textbox = artistPane.GetFirstDescendantOfType<TextBox>();
-            textbox.Focus(FocusState.Keyboard);
-            textbox.SelectionStart = textbox.Text.Length;
         }
 
         void Current_SizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)

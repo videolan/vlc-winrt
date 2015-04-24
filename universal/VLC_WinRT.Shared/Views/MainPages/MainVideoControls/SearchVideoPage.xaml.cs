@@ -1,8 +1,12 @@
 ﻿using Microsoft.Xaml.Interactivity;
+using System.Linq;
 using VLC_WinRT.Model.Video;
 using VLC_WinRT.ViewModels;
+using VLC_WinRT.Views.MainPages.MainVideoControls.VideoPanesControls;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using WinRTXamlToolkit.Controls.Extensions;
+
 namespace VLC_WinRT.Views.MainPages.MainVideoControls
 {
     public sealed partial class SearchVideoPage : UserControl
@@ -18,6 +22,11 @@ namespace VLC_WinRT.Views.MainPages.MainVideoControls
             Responsive(Window.Current.Bounds.Width);
             Window.Current.SizeChanged += Current_SizeChanged;
             this.Unloaded += SearchVideoPage_Unloaded;
+
+            var videoPane = (App.ApplicationFrame.Content as MainPageVideos).GetDescendantsOfType<VideoPaneButtons>().FirstOrDefault();
+            var textbox = videoPane.GetFirstDescendantOfType<TextBox>();
+            textbox.Focus(FocusState.Keyboard);
+            textbox.SelectionStart = 0;
         }
 
         void Current_SizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)

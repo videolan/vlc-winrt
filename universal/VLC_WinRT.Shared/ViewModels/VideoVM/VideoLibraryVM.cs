@@ -108,8 +108,6 @@ namespace VLC_WinRT.ViewModels.VideoVM
             get { return _searchTag; }
             set
             {
-                if (string.IsNullOrEmpty(_searchTag) && !string.IsNullOrEmpty(value))
-                    Locator.MainVM.ChangeMainPageVideoViewCommand.Execute(3);
                 if (!string.IsNullOrEmpty(value))
                     SearchHelpers.SearchVideos(value, SearchResults);
                 SetProperty(ref _searchTag, value);
