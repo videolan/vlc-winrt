@@ -1,6 +1,8 @@
 ﻿using VLC_WinRT.Utils;
+using VLC_WinRT.ViewModels;
 using VLC_WinRT.Views.MainPages;
 using VLC_WinRT.Views.MainPages.MainVideoControls;
+using Windows.UI.Xaml.Controls;
 
 namespace VLC_WinRT.Commands.MainPageCommands
 {
@@ -10,6 +12,11 @@ namespace VLC_WinRT.Commands.MainPageCommands
         {
             var index = int.Parse(parameter.ToString());
             var frame = (App.ApplicationFrame.Content as MainPageVideos).MainPageVideoContentPresenter;
+            Switch(index, frame);
+        }
+
+        void Switch(int index, ContentPresenter frame)
+        {
             switch (index)
             {
                 case 0:
@@ -25,7 +32,12 @@ namespace VLC_WinRT.Commands.MainPageCommands
                         frame.Content = new CameraRollPivotItem();
                     break;
                 case 3:
-                    if (!(frame.Content is SearchVideoPage))
+                    if (frame.Content is SearchVideoPage)
+                    {
+                        Switch((int)Locator.SettingsVM.VideoView, frame);
+                        Locator.VideoLibraryVM.SearchTag = "";
+                    }
+                    else
                         frame.Content = new SearchVideoPage();
                     break;
             }

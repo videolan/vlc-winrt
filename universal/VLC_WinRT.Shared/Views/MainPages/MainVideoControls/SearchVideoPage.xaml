@@ -15,13 +15,31 @@
             <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <AppBarButton Style="{StaticResource AppBarButtonStyleHorizontal}"
+                      Label="Back"
+                      VerticalAlignment="Center"
+                      Command="{Binding Source={StaticResource Locator}, Path=MainVM.ChangeMainPageVideoViewCommand}"
+                      CommandParameter="3">
+            <AppBarButton.Icon>
+                <FontIcon Glyph="{StaticResource PreviousPageSymbol}"
+                          Margin="0,3,0,0"
+                          FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+            </AppBarButton.Icon>
+        </AppBarButton>
         <userControls:FocusTextBox x:Name="VideoSearchBox"
+                                   Grid.Column="1"
                                    Text="{Binding SearchTag}"
                                    PlaceholderText="search a video"
                                    Height="30"
                                    TextChanged="TextBox_TextChanged"
                                    HorizontalAlignment="Stretch" />
         <ListView Grid.Row="1"
+                  Grid.Column="0"
+                  Grid.ColumnSpan="2"
                   ItemsSource="{Binding SearchResults}"
                   ItemTemplate="{StaticResource PhoneCompactVideoTemplate}"
                   ItemContainerStyle="{StaticResource ListViewItemStyle}"

@@ -4,6 +4,7 @@ using VLC_WinRT.ViewModels;
 using VLC_WinRT.Views.MainPages;
 using VLC_WinRT.Views.MainPages.MainMusicControls;
 using VLC_WinRT.Views.MainPages.MusicPanes;
+using Windows.UI.Xaml.Controls;
 
 namespace VLC_WinRT.Commands.MainPageCommands
 {
@@ -12,9 +13,14 @@ namespace VLC_WinRT.Commands.MainPageCommands
         public override void Execute(object parameter)
         {
             var index = int.Parse(parameter.ToString());
-            if (App.ApplicationFrame.CurrentSourcePageType != typeof (MainPageMusic)) return;
+            if (App.ApplicationFrame.CurrentSourcePageType != typeof(MainPageMusic)) return;
             var frame = (App.ApplicationFrame.Content as MainPageMusic).MainPageMusicContentPresenter;
             Locator.MusicLibraryVM.MusicView = (MusicView)index;
+            Switch(index, frame);
+        }
+
+        void Switch(int index, ContentPresenter frame)
+        {
             switch (index)
             {
                 case 0:
@@ -34,7 +40,12 @@ namespace VLC_WinRT.Commands.MainPageCommands
                         frame.Content = new PlaylistPivotItem();
                     break;
                 case 4:
-                    if (!(frame.Content is SearchMusicPane))
+                    if (frame.Content is SearchMusicPane)
+                    {
+                        Switch((int)Locator.SettingsVM.MusicView, frame);
+                        Locator.MusicLibraryVM.SearchTag = "";
+                    }
+                    else
                         frame.Content = new SearchMusicPane();
                     break;
             }
