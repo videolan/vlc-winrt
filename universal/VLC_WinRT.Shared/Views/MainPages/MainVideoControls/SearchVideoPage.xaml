@@ -17,6 +17,7 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <AppBarButton Style="{StaticResource AppBarButtonStyleHorizontal}"
@@ -31,7 +32,7 @@
             </AppBarButton.Icon>
         </AppBarButton>
         <userControls:FocusTextBox x:Name="VideoSearchBox"
-                                   Grid.Column="1"
+                                   Grid.Column="2"
                                    Text="{Binding SearchTag}"
                                    PlaceholderText="search a video"
                                    Height="30"
@@ -39,7 +40,7 @@
                                    HorizontalAlignment="Stretch" />
         <ListView Grid.Row="1"
                   Grid.Column="0"
-                  Grid.ColumnSpan="2"
+                  Grid.ColumnSpan="3"
                   ItemsSource="{Binding SearchResults}"
                   ItemTemplate="{StaticResource PhoneCompactVideoTemplate}"
                   ItemContainerStyle="{StaticResource ListViewItemStyle}"
@@ -68,6 +69,8 @@
             </ListView.ItemsPanel>
         </ListView>
         <placeholder:NoResults Grid.Row="1"
+                               Grid.Column="0"
+                               Grid.ColumnSpan="3"
                                Visibility="{Binding SearchResults.Count, Converter={StaticResource CountToVisibilityConverter}}" />
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>

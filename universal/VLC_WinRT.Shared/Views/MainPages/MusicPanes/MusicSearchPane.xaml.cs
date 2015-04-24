@@ -46,7 +46,7 @@ namespace VLC_WinRT.Views.MainPages.MusicPanes
 
         void Responsive(double width)
         {
-            if (width <= 550)
+            if (width <= 650)
                 VisualStateUtilities.GoToState(this, "Minimal", false);
             else
                 VisualStateUtilities.GoToState(this, "Normal", false);
