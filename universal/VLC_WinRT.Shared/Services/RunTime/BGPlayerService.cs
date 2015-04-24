@@ -93,27 +93,34 @@ namespace VLC_WinRT.Services.RunTime
 
         private async void BackgroundMediaPlayer_MessageReceivedFromBackground(object sender, MediaPlayerDataReceivedEventArgs e)
         {
-            foreach (string key in e.Data.Keys)
+            try
             {
-                switch (key)
+                foreach (string key in e.Data.Keys)
                 {
-                    case BackgroundAudioConstants.BackgroundTaskStarted:
-                        //Wait for Background Task to be initialized before starting playback
-                        Debug.WriteLine("Background Task started");
-                        PlayerInstanceReady.SetResult(true);
-                        break;
-                    case BackgroundAudioConstants.BackgroundTaskCancelled:
-                        await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
-                        {
-                            Locator.MediaPlaybackViewModel.IsPlaying = false;
-                        });
-                        break;
-                    case BackgroundAudioConstants.MFFailed:
-                        LogHelper.Log("VLC process is aware MF Background Media Player failed to open the file : " + e.Data[key]);
-                        await Locator.MediaPlaybackViewModel.SetMedia(Locator.MusicPlayerVM.CurrentTrack, true);
-                        MediaFailed?.Invoke(this, new EventArgs());
-                        break;
+                    switch (key)
+                    {
+                        case BackgroundAudioConstants.BackgroundTaskStarted:
+                            //Wait for Background Task to be initialized before starting playback
+                            Debug.WriteLine("Background Task started");
+                            PlayerInstanceReady.SetResult(true);
+                            break;
+                        case BackgroundAudioConstants.BackgroundTaskCancelled:
+                            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+                            {
+                                Locator.MediaPlaybackViewModel.IsPlaying = false;
+                            });
+                            break;
+                        case BackgroundAudioConstants.MFFailed:
+                            LogHelper.Log("VLC process is aware MF Background Media Player failed to open the file : " + e.Data[key]);
+                            await Locator.MediaPlaybackViewModel.SetMedia(Locator.MusicPlayerVM.CurrentTrack, true);
+                            MediaFailed?.Invoke(this, new EventArgs());
+                            break;
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.ToString());
             }
         }
 
