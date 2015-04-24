@@ -39,6 +39,12 @@ namespace VLC_WinRT.Services.RunTime
 
         private DispatcherTimer dispatchTimer;
 
+        // HACK
+        // We cache those values to reduce the CPU consumption of the IPC
+        private long time;
+        private float position;
+        private float length;
+        private MediaPlayerState mediaState;
         public BGPlayerService()
         {
             PlayerInstanceReady = new TaskCompletionSource<bool>();
@@ -164,7 +170,8 @@ namespace VLC_WinRT.Services.RunTime
 
         void Instance_CurrentStateChanged(object sender, RoutedEventArgs e)
         {
-            switch (Instance.CurrentState)
+            mediaState = Instance.CurrentState;
+            switch (mediaState)
             {
                 case MediaPlayerState.Playing:
                     Debug.WriteLine("Media State Changed: Playing");
@@ -210,7 +217,7 @@ namespace VLC_WinRT.Services.RunTime
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
             {
                 if (Instance == null) return;
-                switch (Instance.CurrentState)
+                switch (mediaState)
                 {
                     case MediaPlayerState.Closed:
                         // If MediaPlayer was closed, run it agaain
@@ -232,7 +239,7 @@ namespace VLC_WinRT.Services.RunTime
             {
                 if (Instance == null) return;
                 dispatchTimer?.Stop();
-                if (Instance.CurrentState == MediaPlayerState.Playing)
+                if (mediaState == MediaPlayerState.Playing)
                     Instance.Pause();
             });
         }
@@ -272,7 +279,10 @@ namespace VLC_WinRT.Services.RunTime
         public float GetLength()
         {
             if (TimeSpan.Zero != Instance.NaturalDuration)
-                return (float)Instance.NaturalDuration.TotalMilliseconds;
+            {
+                length = (float)Instance.NaturalDuration.TotalMilliseconds;
+                return length;
+            }
             return 0f;
         }
 
@@ -292,10 +302,11 @@ namespace VLC_WinRT.Services.RunTime
         {
             try
             {
-                switch (Instance.CurrentState)
+                switch (mediaState)
                 {
                     case MediaPlayerState.Playing:
-                        return (long)Instance.Position.TotalMilliseconds;
+                        time = (long)Instance.Position.TotalMilliseconds;
+                        return time;
                     case MediaPlayerState.Closed:
                         // TODO: Use saved time value to populate time field.
                         break;
@@ -309,10 +320,10 @@ namespace VLC_WinRT.Services.RunTime
 
         public float GetPosition()
         {
-            switch (Instance.CurrentState)
+            switch (mediaState)
             {
                 case MediaPlayerState.Playing:
-                    var pos = (Instance.Position.TotalMilliseconds / Instance.NaturalDuration.TotalMilliseconds);
+                    var pos = time / length;
                     float posfloat = (float)pos;
                     return posfloat;
                 case MediaPlayerState.Closed:
@@ -323,7 +334,7 @@ namespace VLC_WinRT.Services.RunTime
 
         public void SetPosition(float desiredPosition)
         {
-            switch (Instance.CurrentState)
+            switch (mediaState)
             {
                 case MediaPlayerState.Playing:
                 case MediaPlayerState.Closed:
