@@ -77,7 +77,7 @@ namespace VLC_WinRT.Services.RunTime
                     });
                 }
             }
-            if (Instance != null)
+            if (Instance != null && PlayerInstanceReady.Task?.Status != TaskStatus.RanToCompletion)
                 PlayerInstanceReady.SetResult(true);
         }
 
@@ -102,7 +102,8 @@ namespace VLC_WinRT.Services.RunTime
                         case BackgroundAudioConstants.BackgroundTaskStarted:
                             //Wait for Background Task to be initialized before starting playback
                             Debug.WriteLine("Background Task started");
-                            PlayerInstanceReady.SetResult(true);
+                            if (PlayerInstanceReady.Task?.Status != TaskStatus.RanToCompletion)
+                                PlayerInstanceReady.SetResult(true);
                             break;
                         case BackgroundAudioConstants.BackgroundTaskCancelled:
                             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
