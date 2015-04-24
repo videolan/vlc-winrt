@@ -29,7 +29,7 @@ namespace VLC_WinRT.Views.UserControls
                 Source = trackItem,
                 Path = new PropertyPath("IsCurrentPlaying"),
             };
-            ((TextBlock) sender).SetBinding(TextBlock.ForegroundProperty, b);
+            ((TextBlock)sender).SetBinding(TextBlock.ForegroundProperty, b);
         }
     }
 }

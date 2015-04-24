@@ -55,6 +55,5 @@ namespace VLC_WinRT.Commands.Social
                 deferral.Complete();
             }
         }
-
     }
 }
