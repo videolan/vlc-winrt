@@ -7,6 +7,9 @@ using Windows.UI.Xaml.Navigation;
 using VLC_WinRT.Helpers;
 using VLC_WinRT.LastFmScrobbler;
 using VLC_WinRT.ViewModels;
+using Windows.UI.Xaml.Media;
+using Windows.UI;
+
 namespace VLC_WinRT.Views.VariousPages
 {
     public sealed partial class SettingsPage : UserControl
@@ -48,18 +51,21 @@ namespace VLC_WinRT.Views.VariousPages
             string pd = (string) ApplicationSettingsHelper.ReadSettingsValue("LastFmPassword");
 
             if (string.IsNullOrEmpty(pseudo) || string.IsNullOrEmpty(pd)) return;
-
+            ErrorConnectLastFmTextBox.Text = "Connecting";
+            ErrorConnectLastFmTextBox.Visibility = Visibility.Visible;
+            ErrorConnectLastFmTextBox.Foreground = new SolidColorBrush(Colors.Black);
             var success = await lastFm.ConnectOperation(pseudo, pd);
             if (success)
             {
-                var md = new MessageDialog("Enjoy!", "You are connected to Last.FM");
-                md.ShowAsync();
+                ErrorConnectLastFmTextBox.Text = "";
+                ErrorConnectLastFmTextBox.Visibility = Visibility.Collapsed;
+                ToastHelper.Basic("Congrats! You're connected to Last.Fm!");
                 Locator.SettingsVM.LastFmIsConnected = true;
             }
             else
             {
-                var md = new MessageDialog("Please check your credentials and your internet connection", "We can't connect you to Last.FM");
-                md.ShowAsync();
+                ErrorConnectLastFmTextBox.Foreground = new SolidColorBrush(Colors.Red);
+                ErrorConnectLastFmTextBox.Text = "It didn't worked. Please check your credentials";
                 Locator.SettingsVM.LastFmIsConnected = false;
             }
         }

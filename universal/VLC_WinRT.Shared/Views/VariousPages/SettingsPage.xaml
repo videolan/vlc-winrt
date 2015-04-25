@@ -91,6 +91,9 @@
                            Style="{StaticResource TitleTextBlockStyle}"
                            Foreground="{StaticResource SecondColor}"
                            Visibility="{Binding LastFmIsConnected, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                <TextBlock x:Name="ErrorConnectLastFmTextBox"
+                           Style="{StaticResource TitleTextBlockStyle}"
+                           Visibility="Collapsed" />
                 <AppBarButton Label="connect"
                               Style="{StaticResource AppBarButtonStyleHorizontal}"
                               Margin="0,12,0,0"
