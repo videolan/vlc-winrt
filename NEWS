@@ -1,0 +1,68 @@
+Changes between 1.3.1 and 1.3.2
+-------------------------------
+Scheduled release : April 27th 2015
+
+Changelog:
+ * Add back button in Search Pages
+ * Fix responsive design and UX issues in Search Pages
+ * Lumia 1020/920/925 get Responsive Design fix for issue « Music Player isn’t showing all controls in landscape mode »
+ * InterProcess communication between the VLC process and the Background Audio Task was using to much CPU to get Position, Time, MediaPlayerState… Now using a cache for those values, CPU consumption went from up to 40% to less than 10%. Great news.
+ * Fixed FileNotFoundException when Sharing the now playing album if it has no cover.
+ * If a media fails to read, sometimes the app crashed when it wants to display the « can’t read media » dialog. It should be fixed.
+ * A dozen of tiny bugs/crashes are also fixed.
+ 
+Delayed for 1.3.3:
+ * Access to Open File, Open Stream, Settings even while playing music
+ * Weird cross mark in TextBox on Windows Phone
+ 
+
+Changes between 1.3.0 and 1.3.1
+-------------------------------
+Release : April 24th 2015
+
+Changelog:
+ * Semantic Zoom in Artists view
+ * Don't index Podcasts folder
+ * Several bug fixes.
+ 
+
+Changes between 1.1.2 and 1.3.0
+-------------------------------
+Release : April 23th 2015
+
+Notes:
+>> Worked a lot on cleaning the code (and there's much to do left), optimizations, fixing bugs, etc...
+>> 99% of our code is now shared between Windows Phone and Windows, we're basically ready for the Windows 10 SDK migration.
+
+Uncomplete changelog:
+ * Updated User Interface
+ * Optimisations of XAML code, which is between 50% and 130% faster (parsing and layout rendering).
+ * LastFM scrobbling working on Windows
+ * Browse music and videos from folders. For example if your songs are not correctly tagged, you can browse in VLC and "play a folder" just like you would play an album.
+ * XAML Responsive Design enhancements : we're trying to use your screen as best as possible. On tiny screens we removed the "now playing" title which is useless, and on a big screen we give more options with extra buttons, etc.
+ * Use of Windows 10 APIs via Reflection for setting a custom, orange window background color.
+ * New icons, margins and alignments are more polished (even if it's still work in progress)
+ * Refresh button in the Video Library, just like the Music library
+ * Search videos or albums easily.
+ * Updated design for Video Player (still very work in progress though)
+ * Adding Semantic Zoom in the Albums view, with custom selection of ordering (by artist, by date, by album).
+ * We added a back button so devices like Lumia 730 or future tiny tablets will be able to go back easily.
+ * Using the same colors as VLC for Android/iOS.
+Along with lots of bug fixes, etc.
+ 
+Please don't forget:
+>> This version is still far from perfect and we would like to hear your feedback. What you like and dislike, what features you want us to add, etc.
+>> Windows Phone got v1.3 today however we're not releasing this update on Windows.
+ 
+Known bugs:
+ * The video player still sucks
+ * Unless you play an MKV file or an uncommon video, you won't be able to choose an embedded or external subtitle, nor specify an audio track.
+ * The latest Windows 10 Mobile builds are really buggy and lots of apps are crashing, so don't expect much stability over there.
+ 
+What's next:
+>> A v1.3.1 is coming early next week with more improvements and bugfixes, and will be released on Windows Phone, Windows, and Windows RT.
+We're still working on:
+ * TagLib port so we can finally fix the Album Cover problem (for now this is full of workarounds)
+ * Direct3D 11 video output. Now we're using D2D11. The D3D output is now working on WinRT but disabled by default, cause it's still experimental stuff. Once it's stable, we'll be able to enable Hardware Decoding: which means you'll finally play HD MKVs on low budget phones.
+Plus, once this is available, the subtitles+audio track selection bug I mentioned earlier will be automatically fixed.
+ * Adding the DLNA support back!
