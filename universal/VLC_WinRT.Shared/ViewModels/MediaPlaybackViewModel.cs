@@ -534,24 +534,31 @@ namespace VLC_WinRT.ViewModels
                     path = Path.GetExtension(media.Path);
                 else if (media.File != null)
                     path = media.File.FileType;
-#if WINDOWS_PHONE_APP
                 if (media is TrackItem)
                 {
                     if (VLCFileExtensions.MFSupported.Contains(path.ToLower()))
                     {
+#if WINDOWS_PHONE_APP
                         _playerEngine = PlayerEngine.BackgroundMFPlayer;
+#else
+                        _playerEngine = PlayerEngine.MediaFoundation;
+#endif
                     }
                     else
                     {
-                        ToastHelper.Basic("Can't enable background audio", false, "background");
+                        ToastHelper.Basic("This file might not play in background", false, "background");
                         _playerEngine = PlayerEngine.VLC;
                         _mediaService.Stop();
                     }
                 }
                 else
-#endif
+                { // if it's a Video (Streams are always played with UseVlcLib flag). on WP we need smooth playback so using MediaFoundation as much as we can.
+#if WINDOWS_PHONE_APP
                     _playerEngine = VLCFileExtensions.MFSupported.Contains(path.ToLower()) ? PlayerEngine.MediaFoundation : PlayerEngine.VLC;
-
+#else
+                    _playerEngine = PlayerEngine.VLC;
+#endif
+                }
             }
 
             // Now, ensure the chosen Player is ready to play something
@@ -595,8 +602,6 @@ namespace VLC_WinRT.ViewModels
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-
-            // todo: implement this thing
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => SpeedRate = 100);
         }
 
