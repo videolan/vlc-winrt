@@ -28,6 +28,14 @@
                    FontSize="36"
                    FontWeight="ExtraLight"
                    Margin="0,0,0,24" />
+        <Grid Grid.Row="1"
+              Grid.Column="0"
+              Background="{ThemeResource ApplicationThirdForegroundThemeBrush}">
+            <FontIcon Glyph="{StaticResource AlbumDiscSymbol}"
+                      FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets"
+                      FontSize="60"
+                      Foreground="{ThemeResource MainColor}" />
+        </Grid>
         <Image Grid.Row="1"
                Grid.Column="0"
                Source="{Binding Thumbnail}"
