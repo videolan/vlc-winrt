@@ -63,7 +63,7 @@ namespace VLC_WinRT.Helpers
                 var navBarHeight = tmpAppViewHeight - sender.VisibleBounds.Height;
                 await Show();
                 var rect = OccludedRect;
-                App.RootPage.SplitShell.Margin = new Thickness(0, statusBarHeight, 0, navBarHeight);
+                App.SplitShell.Margin = new Thickness(0, statusBarHeight, 0, navBarHeight);
             }
             else
             {
@@ -72,7 +72,7 @@ namespace VLC_WinRT.Helpers
                 var tmpAppViewWidth = sender.VisibleBounds.Width;
                 double navBarWidth;
                 navBarWidth = screenWidth - tmpAppViewWidth;
-                App.RootPage.SplitShell.Margin = new Thickness((sender.VisibleBounds.Left > 0) ? navBarWidth : 0,
+                App.SplitShell.Margin = new Thickness((sender.VisibleBounds.Left > 0) ? navBarWidth : 0,
                                                                0,
                                                                (sender.VisibleBounds.Left > 0) ? 0 : navBarWidth,
                                                                0);
