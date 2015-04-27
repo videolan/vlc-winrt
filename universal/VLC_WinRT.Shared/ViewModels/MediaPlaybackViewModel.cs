@@ -491,8 +491,26 @@ namespace VLC_WinRT.ViewModels
                     PlayingType = PlayingType.Music;
                 });
                 var track = (TrackItem)media;
-                var currentTrackFile = track.File ?? await StorageFile.GetFileFromPathAsync(track.Path);
+                StorageFile currentTrackFile;
+                try
+                {
+                    currentTrackFile = track.File ?? await StorageFile.GetFileFromPathAsync(track.Path);
+                }
+                catch (FileNotFoundException exception)
+                {
+                    await MusicLibraryManagement.RemoveTrackFromCollectionAndDatabase(track);
+                    await Task.Delay(500);
 
+                    if (TrackCollection.CanGoNext)
+                    {
+                        await PlayNext();
+                    }
+                    else
+                    {
+                        Locator.NavigationService.GoBack_Specific();
+                    }
+                    return;
+                }
                 await Locator.MediaPlaybackViewModel.InitializePlayback(track, autoPlay);
                 if (_playerEngine != PlayerEngine.BackgroundMFPlayer)
                 {
