@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -27,10 +28,12 @@ namespace VLC_WinRT.DataRepository
             }
         }
 
-        public Task AddKeyboardActions(IEnumerable<KeyboardAction> keyboardActions)
+        public void AddKeyboardActions(IEnumerable<KeyboardAction> keyboardActions)
         {
-            var connection = new SQLiteAsyncConnection(DbPath);
-            return connection.InsertAllAsync(keyboardActions);
+            using (var connection = new SQLiteConnection(DbPath))
+            {
+                connection.InsertAll(keyboardActions);
+            }
         }
 
         public Task UpdateKeyboardAction(KeyboardAction keyboardAction)
@@ -40,10 +43,14 @@ namespace VLC_WinRT.DataRepository
             return connection.UpdateAsync(keyboardAction);
         }
 
-        public Task<List<KeyboardAction>> GetAllKeyboardActions()
+        public List<KeyboardAction> GetAllKeyboardActions()
         {
-            var connection = new SQLiteAsyncConnection(DbPath);
-            return connection.Table<KeyboardAction>().ToListAsync();
+            using (var connection = new SQLiteConnection(DbPath))
+            {
+                var table = connection.Table<KeyboardAction>();
+                var oc = table.ToList();
+                return oc;
+            }
         }
 
         public Task<KeyboardAction> GetKeyboardAction(VirtualKey mainpressedKey, VirtualKey secondKey)
