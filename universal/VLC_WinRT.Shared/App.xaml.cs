@@ -29,11 +29,6 @@ namespace VLC_WinRT
     /// </summary>
     public sealed partial class App : Application
     {
-        /// <summary>
-        /// Allows tracking page views, exceptions and other telemetry through the Microsoft Application Insights service.
-        /// </summary>
-        public static Microsoft.ApplicationInsights.TelemetryClient TelemetryClient;
-
         public static CoreDispatcher Dispatcher;
         public static IPropertySet LocalSettings = ApplicationData.Current.LocalSettings.Values;
         public static string ApiKeyLastFm = "a8eba7d40559e6f3d15e7cca1bfeaa1c";
@@ -48,8 +43,6 @@ namespace VLC_WinRT
         /// </summary>
         public App()
         {
-            TelemetryClient = new Microsoft.ApplicationInsights.TelemetryClient();
-
             InitializeComponent();
             Suspending += OnSuspending;
             UnhandledException += ExceptionHelper.UnhandledExceptionLogger;
