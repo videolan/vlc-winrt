@@ -14,10 +14,14 @@ namespace VLC_WinRT.Views.MusicPages.MusicNowPlayingControls
 
         private void MusicNowPlaying_OnLoaded(object sender, RoutedEventArgs e)
         {
-            MusicNowPlaying.SelectedIndex = Locator.MediaPlaybackViewModel.TrackCollection.CurrentTrack;
-            Locator.MediaPlaybackViewModel.TrackCollection.PropertyChanged += TrackCollectionOnPropertyChanged;
-            this.Unloaded += MusicNowPlayingOnUnloaded;
-            MusicNowPlaying.SelectionChanged += MusicNowPlaying_OnSelectionChanged;
+            try
+            {
+                MusicNowPlaying.SelectedIndex = Locator.MediaPlaybackViewModel.TrackCollection.CurrentTrack;
+                Locator.MediaPlaybackViewModel.TrackCollection.PropertyChanged += TrackCollectionOnPropertyChanged;
+                this.Unloaded += MusicNowPlayingOnUnloaded;
+                MusicNowPlaying.SelectionChanged += MusicNowPlaying_OnSelectionChanged;
+            }
+            catch { }
         }
 
         private void MusicNowPlayingOnUnloaded(object sender, RoutedEventArgs routedEventArgs)
