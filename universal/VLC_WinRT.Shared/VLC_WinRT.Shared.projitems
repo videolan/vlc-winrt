@@ -437,20 +437,9 @@
     <PRIResource Include="$(MSBuildThisFileDirectory)Strings\en-US\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="$(MSBuildThisFileDirectory)Assets\backgroundBot.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Assets\backgroundTop.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\DeezerApplats_RVB_Noir.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Assets\flatbackground1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="$(MSBuildThisFileDirectory)Assets\Icons\circleShadow.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Icons\icons.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Assets\NoCover.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="$(MSBuildThisFileDirectory)Assets\NoCoverWide.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="$(MSBuildThisFileDirectory)backers.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -462,9 +451,6 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="$(MSBuildThisFileDirectory)Assets\background.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="$(MSBuildThisFileDirectory)Assets\Icons\music.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -817,8 +803,5 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Services\Mocks\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="$(MSBuildThisFileDirectory)Assets\flatbackground1.psd" />
   </ItemGroup>
 </Project>
