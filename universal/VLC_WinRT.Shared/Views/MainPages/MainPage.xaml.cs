@@ -14,6 +14,7 @@ using Autofac;
 using VLC_WinRT.Helpers;
 using VLC_WinRT.Services.RunTime;
 using VLC_WinRT.ViewModels;
+using Windows.UI.ViewManagement;
 
 namespace VLC_WinRT.Views.MainPages
 {
@@ -26,53 +27,16 @@ namespace VLC_WinRT.Views.MainPages
             Locator.MediaPlaybackViewModel.SetMediaTransportControls(SystemMediaTransportControls.GetForCurrentView());
         }
 
-        async void Responsive()
-        {
-#if WINDOWS_PHONE_APP
-            if (DisplayHelper.IsPortrait())
-            {
-                await StatusBarHelper.Show();
-                var rect = StatusBarHelper.OccludedRect;
-                SplitShell.Margin = new Thickness(0, rect.Height, 0, 0);
-            }
-            else
-            {
-                SplitShell.Margin = new Thickness(0);
-                await StatusBarHelper.Hide();
-            }
-#endif
-        }
-
         private void SwapPanelLoaded(object sender, RoutedEventArgs e)
         {
-            App.Container.Resolve<VLCService>().Initialize(SwapChainPanel);
-            Window.Current.SizeChanged += Current_SizeChanged;
-            DisplayInformation.GetForCurrentView().OrientationChanged += MainPage_OrientationChanged;
-            Unloaded += MainPage_Unloaded;
-            Responsive();
+            App.Container.Resolve<VLCService>().Initialize(SwapChainPanel);      
         }
-
-        async void MainPage_OrientationChanged(DisplayInformation sender, object args)
-        {
-            Responsive();
-        }
-
-        void Current_SizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)
-        {
-            Responsive();
-            Locator.MediaPlaybackViewModel._mediaService.SetSizeVideoPlayer((uint)e.Size.Width, (uint)e.Size.Height);
-        }
-
+        
         private void MfMediaElement_OnLoaded(object sender, RoutedEventArgs e)
         {
             App.Container.Resolve<MFService>().Initialize(MfMediaElement);
         }
-
-        private void MainPage_Unloaded(object sender, RoutedEventArgs e)
-        {
-            Window.Current.SizeChanged -= Current_SizeChanged;
-        }
-
+        
         private void SplitShell_FlyoutCloseRequested(object sender, System.EventArgs e)
         {
             Locator.NavigationService.GoBack_HideFlyout();

@@ -150,9 +150,6 @@ namespace VLC_WinRT
 
         private void RootFrame_FirstNavigated(object sender, NavigationEventArgs args)
         {
-#if WINDOWS_PHONE_APP
-            StatusBarHelper.SetDefaultForPage(args.SourcePageType);
-#endif
             Locator.NavigationService.PageNavigatedCallback(args.SourcePageType);
         }
 
@@ -236,6 +233,8 @@ namespace VLC_WinRT
 #if WINDOWS_APP
             AppViewHelper.SetAppView();
             AppViewHelper.SetBackgroundButtonColor();
+#else
+            StatusBarHelper.Default();
 #endif
             Locator.MainVM.DropTablesIfNeeded();
             if (Locator.VideoLibraryVM.LoadingState == LoadingState.NotLoaded)

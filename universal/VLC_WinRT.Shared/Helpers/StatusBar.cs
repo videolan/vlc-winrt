@@ -4,29 +4,28 @@ using Windows.Foundation;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml.Media;
 using System.Threading.Tasks;
+using Windows.UI.Xaml;
+using System.Diagnostics;
+using Windows.Graphics.Display;
 
 namespace VLC_WinRT.Helpers
 {
     public static class StatusBarHelper
     {
+        static StatusBarHelper()
+        {
+            //DisplayInformation.GetForCurrentView().OrientationChanged += MainPage_OrientationChanged;
+            Responsive(ApplicationView.GetForCurrentView());
+        }
+
         public static void Default()
         {
             Set(App.Current.Resources["StatusBarColor"] as SolidColorBrush, null, 1, "", ApplicationViewBoundsMode.UseVisible);
         }
 
-        public static void SetTransparent()
-        {
-            Set(null, App.Current.Resources["MainColor"] as SolidColorBrush, 0, "");
-        }
-
-        public static void SetForeground(SolidColorBrush color)
-        {
-            StatusBar sB = StatusBar.GetForCurrentView();
-            if (color != null) sB.ForegroundColor = color.Color;
-        }
-
         static void Set(SolidColorBrush background, SolidColorBrush foreground, double opacity, string text, ApplicationViewBoundsMode? boundsMode = ApplicationViewBoundsMode.UseVisible, double? progress = 0)
         {
+            ApplicationView.GetForCurrentView().VisibleBoundsChanged += StatusBarHelper_VisibleBoundsChanged;
             StatusBar sB = StatusBar.GetForCurrentView();
             if (background != null)
                 sB.BackgroundColor = background.Color;
@@ -49,9 +48,35 @@ namespace VLC_WinRT.Helpers
             }
         }
 
-        public static void SetDefaultForPage(Type type)
+        private static void StatusBarHelper_VisibleBoundsChanged(ApplicationView sender, object args)
         {
-            Default();
+            Responsive(sender);
+        }
+
+        static async void Responsive(ApplicationView sender)
+        {
+            if (DisplayHelper.IsPortrait())
+            {
+                var screenHeight = Window.Current.Bounds.Height;
+                var statusBarHeight = OccludedRect.Height;
+                var tmpAppViewHeight = screenHeight - statusBarHeight;
+                var navBarHeight = tmpAppViewHeight - sender.VisibleBounds.Height;
+                await Show();
+                var rect = OccludedRect;
+                App.RootPage.SplitShell.Margin = new Thickness(0, statusBarHeight, 0, navBarHeight);
+            }
+            else
+            {
+                await Hide();
+                var screenWidth = Window.Current.Bounds.Width;
+                var tmpAppViewWidth = sender.VisibleBounds.Width;
+                double navBarWidth;
+                navBarWidth = screenWidth - tmpAppViewWidth;
+                App.RootPage.SplitShell.Margin = new Thickness((sender.VisibleBounds.Left > 0) ? navBarWidth : 0,
+                                                               0,
+                                                               (sender.VisibleBounds.Left > 0) ? 0 : navBarWidth,
+                                                               0);
+            }
         }
 
         public static Rect OccludedRect

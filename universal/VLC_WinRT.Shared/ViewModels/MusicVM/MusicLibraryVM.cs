@@ -288,13 +288,6 @@ namespace VLC_WinRT.ViewModels.MusicVM
             });
             MusicCollectionLoaded.SetResult(true);
             await PerformRoutineCheckIfNotBusy();
-#if WINDOWS_PHONE_APP
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
-            {
-                if (App.ApplicationFrame != null)
-                    StatusBarHelper.SetDefaultForPage(App.ApplicationFrame.SourcePageType);
-            });
-#endif
         }
 
         public async Task PerformRoutineCheckIfNotBusy()
@@ -347,10 +340,6 @@ namespace VLC_WinRT.ViewModels.MusicVM
                 OnPropertyChanged("IsMusicLibraryEmpty");
                 OnPropertyChanged("IsLoaded");
                 LoadingState = LoadingState.Loaded;
-#if WINDOWS_PHONE_APP
-                if (App.ApplicationFrame != null)
-                    StatusBarHelper.SetDefaultForPage(App.ApplicationFrame.SourcePageType);
-#endif
                 Locator.MainVM.InformationText = "";
             });
             await GetFavoriteAndRandomAlbums();
