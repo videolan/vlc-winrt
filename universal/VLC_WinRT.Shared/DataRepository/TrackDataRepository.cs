@@ -117,44 +117,5 @@ namespace VLC_WinRT.DataRepository
             var connection = new SQLiteAsyncConnection(DbPath);
             return connection.DeleteAsync(track);
         }
-
-
-        public async Task Remove(string folderPath)
-        {
-            // TODO: None of this logic should live here. This is for "TrackDataRepository",
-            // so it should not know about the other repositories.
-
-            // This will delete all the entries that are in folderPath and its subfolders
-            var connection = new SQLiteAsyncConnection(DbPath);
-            var query = connection.Table<TrackItem>().Where(x => x.Path.Contains(folderPath));
-            var result = await query.ToListAsync();
-            foreach (TrackItem trackItem in result)
-            {
-                await connection.DeleteAsync(trackItem);
-            }
-
-            // If all tracks for an album are deleted, then remove the album itself
-            foreach (TrackItem trackItem in result)
-            {
-                AlbumItem album = await Locator.MusicLibraryVM._albumDataRepository.LoadAlbum(trackItem.AlbumId);
-                if (album != null)
-                    Locator.MusicLibraryVM._albumDataRepository.Remove(album);
-            }
-
-            // If all the albums for the artist are gone, remove the artist
-            var firstTrack = result.FirstOrDefault();
-            if (firstTrack == null)
-            {
-                return;
-            }
-
-            var albums = await Locator.MusicLibraryVM._albumDataRepository.LoadAlbumsFromId(firstTrack.ArtistId);
-            if (albums != null && !albums.Any())
-            {
-                var artist = await Locator.MusicLibraryVM._artistDataRepository.LoadArtist(firstTrack.ArtistId);
-                await Locator.MusicLibraryVM._artistDataRepository.Remove(artist);
-            }
-        }
-
     }
 }
