@@ -404,6 +404,7 @@ namespace VLC_WinRT.ViewModels
 
         private void OnPlaybackStarting()
         {
+            if (Locator.NavigationService.CurrentPage != VLCPage.VideoPlayerPage) return;
             privateDisplayCall(true);
             // video playback only
             _mouseService.HideMouse();
@@ -411,6 +412,7 @@ namespace VLC_WinRT.ViewModels
 
         private void OnPlaybackStopped()
         {
+            if (Locator.NavigationService.CurrentPage != VLCPage.VideoPlayerPage) return;
             privateDisplayCall(false);
             _mouseService.RestoreMouse();
         }
