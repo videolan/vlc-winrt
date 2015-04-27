@@ -17,27 +17,8 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
           Visibility="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}" />
 
-    <Image x:Name="HeaderBackgroundImage"
-           Source="/Assets/backgroundTop.png"
-           Stretch="Uniform"
-           VerticalAlignment="Top"
-           Opacity="0.7"
-           Margin="{Binding ElementName=SplitShell, Path=Margin, UpdateSourceTrigger=Default}"
-           Visibility="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}" />
-
-    <Grid DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}"
-          Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-          Visibility="{Binding CurrentPage, Converter={StaticResource MusicPlayerBackgroundVisibilityConverter}}">
-        <Image DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}"
-               Source="{Binding CurrentArtist.ArtistImage}"
-               Stretch="UniformToFill"
-               Opacity="0.3" />
-    </Grid>
-
     <controls:SplitShell x:Name="SplitShell"
                          x:FieldModifier="public"
-                         EdgePaneColor="{ThemeResource ApplicationThirdForegroundThemeBrush}"
-                         AlwaysVisibleSidebar="True"
                          InformationText="{Binding Source={StaticResource Locator}, Path=MainVM.InformationText}"
                          InformationBackground="{StaticResource MainColor}"
                          FlyoutCloseRequested="SplitShell_FlyoutCloseRequested">
@@ -45,9 +26,6 @@
             <userControls:ShellContent x:Name="ShellContent"
                                        x:FieldModifier="public" />
         </controls:SplitShell.Content>
-        <controls:SplitShell.SideBarContent>
-            <userControls:SideBar Visibility="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}" />
-        </controls:SplitShell.SideBarContent>
         <controls:SplitShell.TopBarContent>
             <userControls:TopBar Visibility="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}" />
         </controls:SplitShell.TopBarContent>
