@@ -27,7 +27,7 @@
                                        x:FieldModifier="public" />
         </controls:SplitShell.Content>
         <controls:SplitShell.TopBarContent>
-            <userControls:TopBar Visibility="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.PlayingType, Converter={StaticResource BackgroundVisibilityConverter}}" />
+            <userControls:TopBar Visibility="{Binding Source={StaticResource Locator}, Path=MainVM.CurrentPage, Converter={StaticResource PageToVisibilityConverter},ConverterParameter='VideoPlayerPage'}" />
         </controls:SplitShell.TopBarContent>
         <controls:SplitShell.FooterContent>
             <Grid>
