@@ -42,7 +42,6 @@
     <converters:AppThemeElementThemeConverter x:Key="AppThemeElementThemeConverter"/>
     <converters:PageToVisibilityConverter x:Key="PageToVisibilityConverter"/>
     <converters:PositionToTimeStampStringConverter x:Key="PositionToTimeStampStringConverter"/>
-    <converters:MusicPlayerBackgroundVisibilityConverter x:Key="MusicPlayerBackgroundVisibilityConverter"/>
     <converters:MusicViewVisibilityConverter x:Key="MusicViewVisibilityConverter"/>
     <converters:BooleanToMainColorConverter x:Key="BooleanToMainColorConverter"/>
 </ResourceDictionary>
