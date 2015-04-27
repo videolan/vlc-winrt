@@ -69,6 +69,14 @@ namespace VLC_WinRT
             get { return Window.Current?.Content as MainPage; }
         }
 
+        public static SplitShell SplitShell
+        {
+            get
+            {
+                return RootPage.SplitShell;
+                //return new SplitShell();
+            }
+        }
 
         public static MusicMetaService MusicMetaService
         {
@@ -228,7 +236,7 @@ namespace VLC_WinRT
             Window.Current.Content = new MainPage();
             Dispatcher = Window.Current.Content.Dispatcher;
             Window.Current.Activate();
-            await RootPage.SplitShell.TemplateApplied.Task;
+            await SplitShell.TemplateApplied.Task;
 
 #if WINDOWS_APP
             AppViewHelper.SetAppView();

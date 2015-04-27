@@ -117,7 +117,7 @@ namespace VLC_WinRT.Services.RunTime
 
         public void GoBack_HideFlyout()
         {
-            App.RootPage.SplitShell.HideFlyout();
+            App.SplitShell.HideFlyout();
             // Restoring the currentPage
             CurrentPage = PageTypeToVLCPage(App.ApplicationFrame.CurrentSourcePageType);
             ViewNavigated(null, CurrentPage);
@@ -141,13 +141,13 @@ namespace VLC_WinRT.Services.RunTime
                     App.ApplicationFrame.Navigate(typeof(MainPageFileExplorer));
                     break;
                 case VLCPage.AlbumPage:
-                    App.RootPage.SplitShell.RightFlyoutContent = new AlbumPageBase();
+                    App.SplitShell.RightFlyoutContent = new AlbumPageBase();
                     break;
                 case VLCPage.ArtistPage:
-                    App.RootPage.SplitShell.RightFlyoutContent = new ArtistPageBase();
+                    App.SplitShell.RightFlyoutContent = new ArtistPageBase();
                     break;
                 case VLCPage.PlaylistPage:
-                    App.RootPage.SplitShell.RightFlyoutContent = new PlaylistPage();
+                    App.SplitShell.RightFlyoutContent = new PlaylistPage();
                     break;
                 case VLCPage.CurrentPlaylistPage:
                     App.ApplicationFrame.Navigate(typeof(MusicPlaylistPage));
@@ -159,24 +159,24 @@ namespace VLC_WinRT.Services.RunTime
                     App.ApplicationFrame.Navigate(typeof(MusicPlayerPage));
                     break;
                 case VLCPage.SettingsPage:
-                    App.RootPage.SplitShell.RightFlyoutContent = new SettingsPage();
+                    App.SplitShell.RightFlyoutContent = new SettingsPage();
                     break;
                 case VLCPage.SpecialThanksPage:
-                    App.RootPage.SplitShell.RightFlyoutContent = new SpecialThanks();
+                    App.SplitShell.RightFlyoutContent = new SpecialThanks();
                     break;
                 case VLCPage.ArtistShowsPage:
-                    App.RootPage.SplitShell.RightFlyoutContent = new ArtistShowsPage();
+                    App.SplitShell.RightFlyoutContent = new ArtistShowsPage();
                     break;
                 case VLCPage.AddAlbumToPlaylistDialog:
                     var addToPlaylist = new AddAlbumToPlaylistBase();
-                    App.RootPage.SplitShell.RightFlyoutContent = addToPlaylist;
+                    App.SplitShell.RightFlyoutContent = addToPlaylist;
                     break;
                 case VLCPage.CreateNewPlaylistDialog:
                     var createPlaylist = new CreateNewPlaylist();
-                    App.RootPage.SplitShell.RightFlyoutContent = createPlaylist;
+                    App.SplitShell.RightFlyoutContent = createPlaylist;
                     break;
                 case VLCPage.LicensePage:
-                    App.RootPage.SplitShell.RightFlyoutContent = new LicensePage();
+                    App.SplitShell.RightFlyoutContent = new LicensePage();
                     break;
                 default:
                     break;
