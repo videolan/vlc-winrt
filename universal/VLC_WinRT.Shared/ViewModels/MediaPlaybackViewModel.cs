@@ -686,7 +686,7 @@ namespace VLC_WinRT.ViewModels
             }
             else
             {
-                TileUpdateManager.CreateTileUpdaterForApplication().Clear();
+                UpdateTileHelper.ClearTile();
             }
         }
 
@@ -699,7 +699,7 @@ namespace VLC_WinRT.ViewModels
             }
             else
             {
-                TileUpdateManager.CreateTileUpdaterForApplication().Clear();
+                UpdateTileHelper.ClearTile();
             }
         }
 

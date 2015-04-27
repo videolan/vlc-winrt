@@ -154,5 +154,16 @@ namespace VLC_WinRT.Helpers
             string tileId = "SecondaryTile-" + type.ToString() + "-" + id;
             return SecondaryTile.Exists(tileId);
         }
+
+        public static void ClearTile()
+        {
+            try
+            {
+                TileUpdateManager.CreateTileUpdaterForApplication().Clear();
+            }
+            catch
+            {
+            }
+        }
     }
 }
