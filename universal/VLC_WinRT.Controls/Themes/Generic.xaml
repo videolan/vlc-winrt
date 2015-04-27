@@ -78,93 +78,16 @@
                                 </ObjectAnimationUsingKeyFrames>
                             </Storyboard>
                         </Grid.Resources>
-                        <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup>
-                                <VisualState x:Name="TopBarVisualState">
-                                    <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="TopBarContentPresenter"
-                                                                       Storyboard.TargetProperty="Visibility">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="Visible" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="EdgePane"
-                                                                       Storyboard.TargetProperty="Visibility">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="Collapsed" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="AlwaysVisibleSidebarContentPresenter"
-                                                                       Storyboard.TargetProperty="Visibility">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="Collapsed" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState x:Name="SideBarVisualState">
-                                    <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="TopBarContentPresenter"
-                                                                       Storyboard.TargetProperty="Visibility">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="Collapsed" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="EdgePane"
-                                                                       Storyboard.TargetProperty="Visibility">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="Visible" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="AlwaysVisibleSidebarContentPresenter"
-                                                                       Storyboard.TargetProperty="Visibility">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="Collapsed" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState x:Name="AlwaysVisibleSideBarVisualState">
-                                    <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="TopBarContentPresenter"
-                                                                       Storyboard.TargetProperty="Visibility">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="Collapsed" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="EdgePane"
-                                                                       Storyboard.TargetProperty="Visibility">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="Collapsed" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="AlwaysVisibleSidebarContentPresenter"
-                                                                       Storyboard.TargetProperty="Visibility">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="Visible" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-                            </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-                        <Grid x:Name="EdgePane"
-                              Grid.Column="0"
-                              Grid.Row="0"
-                              Grid.RowSpan="3"
-                              Width="20" />
-                        <ContentPresenter x:Name="AlwaysVisibleSidebarContentPresenter"
-                                          Grid.Row="2"
-                                          Grid.Column="0" />
                         <ContentPresenter x:Name="TopBarContentPresenter"
-                                          Grid.Row="0"
-                                          Grid.Column="0"
-                                          Grid.ColumnSpan="2" />
+                                          Grid.Row="0"/>
                         <Grid x:Name="InformationGrid"
-                              Grid.Row="1"
-                              Grid.Column="0"
-                              Grid.ColumnSpan="2">
+                              Grid.Row="1">
                             <TextBlock x:Name="InformationTextBlock"
                                        TextWrapping="NoWrap"
                                        TextTrimming="CharacterEllipsis"
@@ -174,31 +97,13 @@
                         </Grid>
 
                         <ContentPresenter x:Name="ContentPresenter"
-                                          Grid.Column="1"
                                           Grid.Row="2" />
 
                         <ContentPresenter x:Name="FooterContentPresenter" 
                                           Grid.Row="3"
-                                          Grid.Column="0"
-                                          Grid.ColumnSpan="3"
                                           HorizontalAlignment="Stretch"/>
-                        
-                        <Grid x:Name="SidebarGridContainer"
-                              Grid.Column="0"
-                              Grid.ColumnSpan="2"
-                              Grid.Row="0"
-                              Grid.RowSpan="3"
-                              Background="Transparent">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition />
-                            </Grid.ColumnDefinitions>
-                            <ContentPresenter x:Name="SidebarContentPresenter" />
-                        </Grid>
 
                         <Grid x:Name="RightFlyoutGridContainer"
-                              Grid.Column="0"
-                              Grid.ColumnSpan="2"
                               Grid.Row="1"
                               Grid.RowSpan="3"
                               Background="#50000000"

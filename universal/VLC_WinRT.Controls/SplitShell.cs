@@ -10,11 +10,7 @@ using Windows.UI.Xaml.Media.Animation;
 namespace VLC_WinRT.Controls
 {
     public delegate void FlyoutCloseRequested(object sender, EventArgs e);
-
-    [TemplatePart(Name = EdgePaneName, Type = typeof(Grid))]
-    [TemplatePart(Name = SidebarGridContainerName, Type = typeof(Grid))]
-    [TemplatePart(Name = SidebarContentPresenterName, Type = typeof(ContentPresenter))]
-    [TemplatePart(Name = AlwaysVisibleSidebarContentPresenterName, Type = typeof(ContentPresenter))]
+    
     [TemplatePart(Name = TopBarContentPresenterName, Type = typeof(ContentPresenter))]
     [TemplatePart(Name = InformationGridName, Type = typeof(Grid))]
     [TemplatePart(Name = ContentPresenterName, Type = typeof(ContentPresenter))]
@@ -30,16 +26,9 @@ namespace VLC_WinRT.Controls
     {
         public event FlyoutCloseRequested FlyoutCloseRequested;
         public TaskCompletionSource<bool> TemplateApplied = new TaskCompletionSource<bool>();
-
-        private const string EdgePaneName = "EdgePane";
-        private const string SidebarGridContainerName = "SidebarGridContainer";
-        private const string SidebarContentPresenterName = "SidebarContentPresenter";
-        private const string AlwaysVisibleSidebarContentPresenterName = "AlwaysVisibleSidebarContentPresenter";
+        
         private const string ContentPresenterName = "ContentPresenter";
         private const string TopBarContentPresenterName = "TopBarContentPresenter";
-        private const string TopBarVisualStateName = "TopBarVisualState";
-        private const string SideBarVisualStateName = "SideBarVisualState";
-        private const string AlwaysVisibleSideBarVisualStateName = "AlwaysVisibleSideBarVisualState";
         private const string InformationGridName = "InformationGrid";
         private const string InformationTextBlockName = "InformationTextBlock";
         private const string RightFlyoutContentPresenterName = "RightFlyoutContentPresenter";
@@ -49,14 +38,10 @@ namespace VLC_WinRT.Controls
         private const string RightFlyoutGridContainerName = "RightFlyoutGridContainer";
         private const string FlyoutBackgroundGridName = "FlyoutBackgroundGrid";
         private const string FooterContentPresenterName = "FooterContentPresenter";
-
-        private Grid _edgePaneGrid;
-        private Grid _sidebarGridContainer;
+        
         private Grid _rightFlyoutGridContainer;
         private Grid _flyoutBackgroundGrid;
         private ContentPresenter _contentPresenter;
-        private ContentPresenter _sidebarContentPresenter;
-        private ContentPresenter _alwaysVisibleSidebarContentPresenter;
         private ContentPresenter _topBarContentPresenter;
         private ContentPresenter _rightFlyoutContentPresenter;
         private ContentPresenter _footerContentPresenter;
@@ -66,21 +51,13 @@ namespace VLC_WinRT.Controls
         private Storyboard _rightFlyoutFadeOut;
         private Grid _informationGrid;
         private TextBlock _informationTextBlock;
-        private bool _alwaysVisibleSideBarVisualState;
         
         public async void SetContentPresenter(object contentPresenter)
         {
             await TemplateApplied.Task;
             _contentPresenter.Content = contentPresenter;
         }
-
-        public async void SetSidebarContentPresenter(object contentPresenter)
-        {
-            await TemplateApplied.Task;
-            _sidebarContentPresenter.Content = contentPresenter;
-            _alwaysVisibleSidebarContentPresenter.Content = contentPresenter;
-        }
-
+        
         public async void SetTopbarContentPresenter(object contentPresenter)
         {
             await TemplateApplied.Task;
@@ -99,20 +76,7 @@ namespace VLC_WinRT.Controls
             await TemplateApplied.Task;
             _informationGrid.Background = brush;
         }
-
-        public async void SetEdgePaneColor(object color)
-        {
-            await TemplateApplied.Task;
-            _edgePaneGrid.Background = (Brush)color;
-        }
-
-        public async void SetAlwaysVisibleSidebar(bool alwaysVisible)
-        {
-            await TemplateApplied.Task;
-            _alwaysVisibleSideBarVisualState = alwaysVisible;
-            Responsive();
-        }
-
+        
         public async void SetRightPaneContentPresenter(object content)
         {
             await TemplateApplied.Task;
@@ -146,61 +110,6 @@ namespace VLC_WinRT.Controls
         {
             var that = (SplitShell)dependencyObject;
             that.SetContentPresenter(dependencyPropertyChangedEventArgs.NewValue);
-        }
-        #endregion
-        #region AlwaysVisibleSidebar Property
-
-        public bool AlwaysVisibleSidebar
-        {
-            get { return (bool)GetValue(AlwaysVisibleSidebarProperty); }
-            set { SetValue(AlwaysVisibleSidebarProperty, value); }
-        }
-
-        public static readonly DependencyProperty AlwaysVisibleSidebarProperty = DependencyProperty.Register("AlwaysVisibleSidebar",
-            typeof(DependencyProperty), typeof(SplitShell),
-            new PropertyMetadata(default(bool), AlwaysVisibleSidebarPropertyChangedCallback));
-
-        private static void AlwaysVisibleSidebarPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
-        {
-            var that = (SplitShell)dependencyObject;
-            that.SetAlwaysVisibleSidebar((bool)dependencyPropertyChangedEventArgs.NewValue);
-        }
-        #endregion
-
-        #region EdgePaneColor Property
-
-        public DependencyObject EdgePaneColor
-        {
-            get { return (DependencyObject)GetValue(EdgePaneColorProperty); }
-            set { SetValue(EdgePaneColorProperty, value); }
-        }
-
-        public static readonly DependencyProperty EdgePaneColorProperty = DependencyProperty.Register("EdgePaneColor",
-            typeof(DependencyProperty), typeof(SplitShell),
-            new PropertyMetadata(default(DependencyObject), EdgePaneColorPropertyChangedCallback));
-
-        private static void EdgePaneColorPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
-        {
-            var that = (SplitShell)dependencyObject;
-            that.SetEdgePaneColor(dependencyPropertyChangedEventArgs.NewValue);
-        }
-        #endregion
-
-        #region SideBarContent Property
-        public DependencyObject SideBarContent
-        {
-            get { return (DependencyObject)GetValue(SideBarContentProperty); }
-            set { SetValue(SideBarContentProperty, value); }
-        }
-
-        public static readonly DependencyProperty SideBarContentProperty = DependencyProperty.Register(
-            "SideBarContent", typeof(DependencyObject), typeof(SplitShell), new PropertyMetadata(default(DependencyObject), SideBarContentPropertyChangedCallback));
-
-
-        private static void SideBarContentPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
-        {
-            var that = (SplitShell)dependencyObject;
-            that.SetSidebarContentPresenter(dependencyPropertyChangedEventArgs.NewValue);
         }
         #endregion
 
@@ -300,13 +209,9 @@ namespace VLC_WinRT.Controls
         {
             base.OnApplyTemplate();
             _contentPresenter = (ContentPresenter)GetTemplateChild(ContentPresenterName);
-            _sidebarGridContainer = (Grid)GetTemplateChild(SidebarGridContainerName);
-            _sidebarContentPresenter = (ContentPresenter)GetTemplateChild(SidebarContentPresenterName);
-            _alwaysVisibleSidebarContentPresenter = (ContentPresenter)GetTemplateChild(AlwaysVisibleSidebarContentPresenterName);
             _topBarContentPresenter = (ContentPresenter)GetTemplateChild(TopBarContentPresenterName);
             _informationTextBlock = (TextBlock)GetTemplateChild(InformationTextBlockName);
             _informationGrid = (Grid)GetTemplateChild(InformationGridName);
-            _edgePaneGrid = (Grid)GetTemplateChild(EdgePaneName);
             _rightFlyoutContentPresenter = (ContentPresenter)GetTemplateChild(RightFlyoutContentPresenterName);
             _rightFlyoutFadeIn = (Storyboard)GetTemplateChild(RightFlyoutFadeInName);
             _rightFlyoutFadeOut = (Storyboard)GetTemplateChild(RightFlyoutFadeOutName);
@@ -316,47 +221,17 @@ namespace VLC_WinRT.Controls
             _footerContentPresenter = (ContentPresenter) GetTemplateChild(FooterContentPresenterName);
 
             TemplateApplied.SetResult(true);
-
-            _sidebarGridContainer.Visibility = Visibility.Collapsed;
+            
             _rightFlyoutGridContainer.Visibility = Visibility.Collapsed;
-            _edgePaneGrid.Tapped += _edgePaneGrid_Tapped;
-            _sidebarGridContainer.Tapped += _sidebarGridContainer_Tapped;
             _flyoutBackgroundGrid.Tapped += RightFlyoutGridContainerOnTapped;
-            Window.Current.SizeChanged += Current_SizeChanged;
-            Responsive();
-        }
-
-        void Current_SizeChanged(object sender, WindowSizeChangedEventArgs e)
-        {
-            Responsive();
-        }
-
-        private void Responsive()
-        {
-            VisualStateManager.GoToState(this, TopBarVisualStateName, false);
         }
         
-        void _edgePaneGrid_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            Open();
-        }
-
         private void RightFlyoutGridContainerOnTapped(object sender, TappedRoutedEventArgs tappedRoutedEventArgs)
         {
             if (FlyoutCloseRequested != null)
                 FlyoutCloseRequested.Invoke(null, new EventArgs());
         }
-
-        void _sidebarGridContainer_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            _sidebarGridContainer.Visibility = Visibility.Collapsed;
-        }
-
-        public void Open()
-        {
-            _sidebarGridContainer.Visibility = Visibility.Visible;
-        }
-
+        
         void ShowFlyout()
         {
             _rightFlyoutFadeIn.Begin();
