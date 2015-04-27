@@ -43,58 +43,59 @@ namespace VLC_WinRT.ViewModels
 
         public static MainVM MainVM
         {
-            get { return App.Container.Resolve<MainVM>(); }
+            get { return App.Container?.Resolve<MainVM>(); }
         }
 
         public static MediaPlaybackViewModel MediaPlaybackViewModel
         {
-            get { return App.Container.Resolve<MediaPlaybackViewModel>(); }
+            get { return App.Container?.Resolve<MediaPlaybackViewModel>(); }
         }
 
         public static MusicPlayerVM MusicPlayerVM
         {
-            get { return App.Container.Resolve<MusicPlayerVM>(); }
+            get { return App.Container?.Resolve<MusicPlayerVM>(); }
         }
 
         public static MusicLibraryVM MusicLibraryVM
         {
-            get { return App.Container.Resolve<MusicLibraryVM>(); }
+            get { return App.Container?.Resolve<MusicLibraryVM>(); }
         }
 
         public static VideoLibraryVM VideoLibraryVM
         {
-            get { return App.Container.Resolve<VideoLibraryVM>(); }
+            get { return App.Container?.Resolve<VideoLibraryVM>(); }
         }
 
         public static VideoPlayerVM VideoVm
         {
-            get { return App.Container.Resolve<VideoPlayerVM>(); }
+            get { return App.Container?.Resolve<VideoPlayerVM>(); }
         }
 
         public static VLCExplorerViewModel FileExplorerVM
         {
-            get { return App.Container.Resolve<VLCExplorerViewModel>(); }
+            get { return App.Container?.Resolve<VLCExplorerViewModel>(); }
         }
 
         public static DLNAVM DlnaVM
         {
-            get { return App.Container.Resolve<DLNAVM>(); }
+            get { return App.Container?.Resolve<DLNAVM>(); }
         }
+
         public static SettingsViewModel SettingsVM
         {
-            get { return App.Container.Resolve<SettingsViewModel>(); }
+            get { return App.Container?.Resolve<SettingsViewModel>(); }
         }
 
         public static SpecialThanksViewModel SpecialThanksVM
         {
-            get { return App.Container.Resolve<SpecialThanksViewModel>(); }
+            get { return App.Container?.Resolve<SpecialThanksViewModel>(); }
         }
 
         public static NavigationService NavigationService
         {
             get
             {
-                return App.Container.Resolve<NavigationService>();
+                return App.Container?.Resolve<NavigationService>();
             }
         }
     }
