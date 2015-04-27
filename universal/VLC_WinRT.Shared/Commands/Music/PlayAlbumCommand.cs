@@ -22,19 +22,10 @@ namespace VLC_WinRT.Commands.Music
         {
             Locator.NavigationService.GoBack_HideFlyout();
             Locator.NavigationService.Go(VLCPage.MusicPlayerPage);
-            try
+            if (parameter is AlbumItem)
             {
-                if (parameter is AlbumItem)
-                {
-                    var album = parameter as AlbumItem;
-                    await PlaylistHelper.AddAlbumToPlaylist(album.Id, true, true, null, 0);
-                }
-            }
-            catch (FileNotFoundException exception)
-            {
-                ToastHelper.Basic("The file doesn't exists anymore. Rebuilding the music database", true);
-                LogHelper.Log("It seems that file doesn't exist anymore. Needs to rebuild Music Library: " + exception.ToString());
-                return;
+                var album = parameter as AlbumItem;
+                await PlaylistHelper.AddAlbumToPlaylist(album.Id, true, true, null, 0);
             }
         }
     }
