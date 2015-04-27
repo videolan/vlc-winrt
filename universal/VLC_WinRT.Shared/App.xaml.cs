@@ -21,6 +21,7 @@ using System.Linq;
 using Windows.Storage.AccessCache;
 using VLC_WinRT.BackgroundHelpers;
 using VLC_WinRT.Utils;
+using VLC_WinRT.Controls;
 
 namespace VLC_WinRT
 {
