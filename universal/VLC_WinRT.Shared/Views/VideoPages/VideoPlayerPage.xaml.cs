@@ -49,6 +49,7 @@ namespace VLC_WinRT.Views.VideoPages
         void Responsive()
         {
             var width = Window.Current.Bounds.Width;
+            var height = Window.Current.Bounds.Height;
             if (width < 800)
             {
                 VisualStateManager.GoToState(this, "Narrow", false);
@@ -61,6 +62,7 @@ namespace VLC_WinRT.Views.VideoPages
             {
                 VisualStateManager.GoToState(this, "Full", false);
             }
+            Locator.MediaPlaybackViewModel._mediaService.SetSizeVideoPlayer((uint)width, (uint)height);
         }
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
