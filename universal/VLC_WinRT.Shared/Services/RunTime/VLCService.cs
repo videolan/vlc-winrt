@@ -85,7 +85,7 @@ namespace VLC_WinRT.Services.RunTime
                     mrl = "file://" + await GetToken(media.Path);
                 }
             }
-
+            await PlayerInstanceReady.Task;
             if (Instance == null) return;
             var mediaVLC = new Media(Instance, mrl);
             MediaPlayer = new MediaPlayer(mediaVLC);
