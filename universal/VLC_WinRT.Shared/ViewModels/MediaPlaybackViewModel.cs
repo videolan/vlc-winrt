@@ -419,6 +419,7 @@ namespace VLC_WinRT.ViewModels
         {
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
+                if (length < 0) return;
                 TimeTotal = TimeSpan.FromMilliseconds(length);
             });
         }
