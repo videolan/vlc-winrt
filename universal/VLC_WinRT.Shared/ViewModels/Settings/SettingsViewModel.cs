@@ -43,7 +43,6 @@ namespace VLC_WinRT.ViewModels.Settings
         private string _lastFmUserName;
         private string _lastFmPassword;
         private bool _lastFmIsConnected = false;
-        private ApplicationTheme _applicationTheme;
         private bool _forceAppTheme;
         private KeyboardActionDataRepository _keyboardActionDataRepository;
 
@@ -434,44 +433,11 @@ namespace VLC_WinRT.ViewModels.Settings
             {
                 ApplicationSettingsHelper.SaveSettingsValue("ForceAppTheme", value);
                 SetProperty(ref _forceAppTheme, value);
-                if (value) ApplicationTheme = App.Current.RequestedTheme;
+                if (value) Locator.MainVM.ApplicationTheme = App.Current.RequestedTheme;
                 OnPropertyChanged("ApplicationTheme");
             }
         }
-        public ApplicationTheme ApplicationTheme
-        {
-            get
-            {
-                if (App.ApplicationFrame != null && App.ApplicationFrame.CurrentSourcePageType == typeof(MusicPlayerPage))
-                    _applicationTheme = ApplicationTheme.Dark;
-                else if (ForceAppTheme)
-                {
-                    var appTheme = ApplicationSettingsHelper.ReadSettingsValue("ApplicationTheme");
-                    if (appTheme == null)
-                    {
-                        _applicationTheme = App.Current.RequestedTheme;
-                    }
-                    else
-                    {
-                        _applicationTheme = (ApplicationTheme)appTheme;
-                    }
-                }
-                else
-                {
-#if WINDOWS_APP
-                    _applicationTheme = ApplicationTheme.Light;
-#else
-                    _applicationTheme = App.Current.RequestedTheme;
-#endif
-                }
-                return _applicationTheme;
-            }
-            set
-            {
-                ApplicationSettingsHelper.SaveSettingsValue("ApplicationTheme", (int)value);
-                SetProperty(ref _applicationTheme, value);
-            }
-        }
+
 
         public SettingsViewModel()
         {
@@ -517,10 +483,5 @@ namespace VLC_WinRT.ViewModels.Settings
             VideoFolders = videosLib.Folders.ToList();
         }
 #endif
-
-        public void UpdateRequestedTheme()
-        {
-            OnPropertyChanged("ApplicationTheme");
-        }
     }
 }

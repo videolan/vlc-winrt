@@ -26,6 +26,8 @@ using libVLCX;
 using VLC_WinRT.Utils;
 using WinRTXamlToolkit.Controls.Extensions;
 using VLC_WinRT.Views.UserControls;
+using Windows.UI.Xaml;
+using VLC_WinRT.Views.MusicPages;
 
 namespace VLC_WinRT.ViewModels
 {
@@ -43,6 +45,7 @@ namespace VLC_WinRT.ViewModels
         private bool _preventAppExit = false;
         private string _informationText;
         private bool _isBackground = false;
+        private ApplicationTheme _applicationTheme;
 
         // Navigation props
         private VLCPage currentPage;
@@ -50,6 +53,41 @@ namespace VLC_WinRT.ViewModels
         #endregion
 
         #region public props
+        public ApplicationTheme ApplicationTheme
+        {
+            get
+            {
+                if (App.ApplicationFrame != null && App.ApplicationFrame.CurrentSourcePageType == typeof(MusicPlayerPage))
+                    _applicationTheme = ApplicationTheme.Dark;
+                else if (Locator.SettingsVM.ForceAppTheme)
+                {
+                    var appTheme = ApplicationSettingsHelper.ReadSettingsValue("ApplicationTheme");
+                    if (appTheme == null)
+                    {
+                        _applicationTheme = App.Current.RequestedTheme;
+                    }
+                    else
+                    {
+                        _applicationTheme = (ApplicationTheme)appTheme;
+                    }
+                }
+                else
+                {
+#if WINDOWS_APP
+                    _applicationTheme = ApplicationTheme.Light;
+#else
+                    _applicationTheme = App.Current.RequestedTheme;
+#endif
+                }
+                return _applicationTheme;
+            }
+            set
+            {
+                ApplicationSettingsHelper.SaveSettingsValue("ApplicationTheme", (int)value);
+                SetProperty(ref _applicationTheme, value);
+            }
+        }
+
         public bool MenuBarDisplayed
         {
             get { return _menuBarDisplayed; }
@@ -222,10 +260,12 @@ namespace VLC_WinRT.ViewModels
             PackageVersion version = thisPackage.Id.Version;
             if (ApplicationSettingsHelper.Contains(Strings.DatabaseVersion) && (int)ApplicationSettingsHelper.ReadSettingsValue(Strings.DatabaseVersion) == Numbers.DbVersion)
             {
+                LogHelper.Log("DB does not need to be dropped.");
                 return false;
             }
             else
             {
+                LogHelper.Log("DB needs to be dropped.");
                 ApplicationSettingsHelper.SaveSettingsValue(Strings.DatabaseVersion, Numbers.DbVersion);
                 return true;
             }
@@ -247,6 +287,11 @@ namespace VLC_WinRT.ViewModels
             Locator.MusicLibraryVM._trackDataRepository.Initialize();
             Locator.VideoLibraryVM.VideoRepository.Initialize();
             LogHelper.SignalUpdate();
+        }
+        
+        public void UpdateRequestedTheme()
+        {
+            OnPropertyChanged("ApplicationTheme");
         }
     }
 }
