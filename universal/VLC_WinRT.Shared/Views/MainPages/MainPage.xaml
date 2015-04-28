@@ -10,6 +10,7 @@
                 RequestedTheme="{Binding ApplicationTheme, Converter={StaticResource AppThemeElementThemeConverter}}"
                 Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <SwapChainPanel x:Name="SwapChainPanel"
+                    x:FieldModifier="public"
                     Loaded="SwapPanelLoaded" />
     <MediaElement x:Name="MfMediaElement"
                   x:FieldModifier="public"
