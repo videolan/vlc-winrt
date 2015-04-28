@@ -1,6 +1,24 @@
+Changes between 1.3.2 and 1.3.3.7
+--------------------------------
+Release : April 29th 2015
+
+Changelog
+* Better UX when connecting to Last.FM
+* Fix Subtitles and AudioTracks bugs (Windows only, still not working on Windows Phone)
+* Clean StatusBar code
+* Phones with virtual Navigation Bar are now supported by VLC. Users with Lumia like 735 won't have the UI under the virtual Navigation Bar
+* App should not crash anymore if a track does not exist/file is not found. It removes the track from the VLC library.
+* Hide Mouse cursor and let the screen ON only when playing videos, not music
+* App should start way faster. Example : On a Lumia 1020 it starts in 2 seconds instead of 7.
+* App commands : Open file, stream and Settings are now displayed in a "more" button on the top of the UI.
+* Adding Database versioning: this is the last version on WP that will drop the database at each update. Now it will use migration tools when the database is modified. 
+* Decrease app weight by removing unused files, pictures, placeholders and libraries
+* Usual bugfixing and refactoring
+
+
 Changes between 1.3.1 and 1.3.2
 -------------------------------
-Scheduled release : April 27th 2015
+Release : April 27th 2015
 
 Changelog:
  * Add back button in Search Pages
