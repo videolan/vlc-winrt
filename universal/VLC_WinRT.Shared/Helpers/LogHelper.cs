@@ -55,7 +55,7 @@ namespace VLC_WinRT.Helpers
             await WriteFileSemaphoreSlim.WaitAsync();
             try
             {
-                if(file != null && !usedForRead)
+                if (file != null && !usedForRead)
                 {
                     await FileIO.AppendLinesAsync(file, new string[1] { value });
                 }
