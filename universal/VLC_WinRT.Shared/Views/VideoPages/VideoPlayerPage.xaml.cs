@@ -23,7 +23,6 @@ namespace VLC_WinRT.Views.VideoPages
     {
         private bool isVisible = true;
         private bool isLocked = false;
-        private bool isVideoSettingsOpen = false;
         public VideoPlayerPage()
         {
             InitializeComponent();
@@ -105,10 +104,6 @@ namespace VLC_WinRT.Views.VideoPages
         private void PlaceholderInteractionGrid_OnTapped(object sender, TappedRoutedEventArgs e)
         {
             Locator.MediaPlaybackViewModel.MouseService.Content_Tapped(sender, e);
-            if (isVideoSettingsOpen)
-            {
-                VideoPlayerSettings.Visibility = Visibility.Collapsed;
-            }
         }
 
         private void LockToggleButton_Click(object sender, RoutedEventArgs e)
@@ -128,12 +123,6 @@ namespace VLC_WinRT.Views.VideoPages
             VolumeButton.IsEnabled = !isLocked;
             MenuButton.IsEnabled = !isLocked;
             DisplayProperties.AutoRotationPreferences = (isLocked) ? DisplayInformation.GetForCurrentView().CurrentOrientation : DisplayOrientations.None;
-        }
-
-        private void MenuButton_Click(object sender, RoutedEventArgs e)
-        {
-            isVideoSettingsOpen = true;
-            VideoPlayerSettings.Visibility = Visibility.Visible;
         }
     }
 }

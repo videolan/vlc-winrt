@@ -6,6 +6,7 @@
       xmlns:views="using:VLC_WINRT.Views"
       xmlns:controls="using:VLC_WinRT.Controls"
       xmlns:userControls="using:VLC_WinRT.Views.UserControls"
+      xmlns:videoControls="using:VLC_WinRT.Views.VideoPages.VideoNowPlayingControls"
       xmlns:placeholder="using:VLC_WinRT.Views.UserControls.Placeholder"
       mc:Ignorable="d"
       Background="Transparent"
@@ -60,9 +61,10 @@
             <Grid x:Name="PlaceholderInteractionGrid"
                   Background="Transparent"
                   Tapped="PlaceholderInteractionGrid_OnTapped" />
-            <userControls:VideoPlayerSettings x:Name="VideoPlayerSettings"
-                                              VerticalAlignment="Bottom"
-                                              Visibility="Collapsed" />
+            <videoControls:VideoPlayerSettings x:Name="VideoPlayerSettings" />
+            <videoControls:AudioTracksSettings />
+            <videoControls:SubtitlesSettings />
+            <videoControls:VolumeSliderSettings />
         </Grid>
 
         <Border x:Name="ControlsGrid"
@@ -111,9 +113,11 @@
                         <AppBarButton.Flyout>
                             <MenuFlyout>
                                 <MenuFlyoutItem Text="Audio Tracks"
-                                                x:Uid="AudioTracks" />
+                                                x:Uid="AudioTracks"
+                                                Command="{Binding Source={StaticResource Locator}, Path=VideoVm.ToggleIsVideoPlayerAudioTracksSettingsVisible}" />
                                 <MenuFlyoutItem x:Uid="Subtitles"
-                                                Text="Subtitles" />
+                                                Text="Subtitles"
+                                                Command="{Binding Source={StaticResource Locator}, Path=VideoVm.ToggleIsVideoPlayerSubtitlesSettingsVisible}"/>
                                 <MenuFlyoutItem Text="Select subtitle file"
                                                 Command="{Binding OpenSubtitleCommand}" />
                             </MenuFlyout>
@@ -150,7 +154,8 @@
                                   IsCompact="True"
                                   Style="{StaticResource AppBarButtonStyleHuge}"
                                   VerticalAlignment="Center"
-                                  HorizontalAlignment="Center">
+                                  HorizontalAlignment="Center"
+                                  Command="{Binding Source={StaticResource Locator}, Path=VideoVm.ToggleIsVideoPlayerVolumeSettingsVisible}">
                         <AppBarButton.Icon>
                             <FontIcon Glyph="{StaticResource VolumeSymbol}"
                                       FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets"
@@ -164,7 +169,7 @@
                                    IsTabStop="False"
                                    VerticalAlignment="Center"
                                    Style="{StaticResource AppBarButtonStyleHuge}"
-                                   Click="MenuButton_Click"/>
+                                   Command="{Binding Source={StaticResource Locator}, Path=VideoVm.ToggleIsVideoPlayerSettingsVisible}" />
                 </Grid>
             </Grid>
         </Border>
@@ -218,11 +223,6 @@
                                                     Value="Collapsed" />
                         </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HeaderGrid"
-                                                       Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Collapsed" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="VideoPlayerSettings"
                                                        Storyboard.TargetProperty="Visibility">
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="Collapsed" />
