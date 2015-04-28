@@ -55,8 +55,14 @@
                               Header="Application theme"
                               OffContent="Light"
                               OnContent="Dark"
-                              IsOn="{Binding ApplicationTheme, Converter={StaticResource ApplicationThemeBooleanConverter}, Mode=TwoWay}"
-                              Margin="-3,0,0,0" />
+                              Margin="-3,0,0,0">
+                    <ToggleSwitch.IsOn>
+                        <Binding Source="{Binding Source={StaticResource Locator}, Path=MainVM}"
+                                 Path="ApplicationTheme"
+                                 Converter="{StaticResource ApplicationThemeBooleanConverter}"
+                                 Mode="TwoWay" />
+                    </ToggleSwitch.IsOn>
+                </ToggleSwitch>
                 <Border Height="1"
                         Margin="0,12"
                         Background="{StaticResource SecondColor}" />
