@@ -591,10 +591,17 @@ namespace VLC_WinRT.Helpers.MusicLibrary
                     Locator.MusicLibraryVM.Tracks.Remove(Locator.MusicLibraryVM.Tracks.FirstOrDefault(x => x.Path == trackItem.Path));
                     var album = Locator.MusicLibraryVM.Albums.FirstOrDefault(x => x.Id == trackItem.AlbumId);
                     album?.Tracks.Remove(album.Tracks.FirstOrDefault(x => x.Path == trackItem.Path));
+
                     var artist = Locator.MusicLibraryVM.Artists.FirstOrDefault(x => x.Id == trackItem.ArtistId);
                     var artistalbum = artist?.Albums.FirstOrDefault(x => x.Id == trackItem.AlbumId);
                     artistalbum?.Tracks.Remove(artistalbum.Tracks.FirstOrDefault(x => x.Path == trackItem.Path));
-
+                    if (album.Tracks.Count == 0)
+                    {
+                        // We should remove the album as a whole
+                        Locator.MusicLibraryVM.Albums.Remove(album);
+                        Locator.MusicLibraryVM._albumDataRepository.Remove(album);
+                        artist.Albums.Remove(artistalbum);
+                    }
                     var playingTrack = Locator.MediaPlaybackViewModel.TrackCollection.Playlist.FirstOrDefault(x => x.Id == trackItem.Id);
                     if (playingTrack != null) Locator.MediaPlaybackViewModel.TrackCollection.Playlist.Remove(playingTrack);
                 }
