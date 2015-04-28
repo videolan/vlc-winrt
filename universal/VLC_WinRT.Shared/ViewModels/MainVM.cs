@@ -25,6 +25,7 @@ using VLC_WinRT.Model;
 using libVLCX;
 using VLC_WinRT.Utils;
 using WinRTXamlToolkit.Controls.Extensions;
+using VLC_WinRT.Views.UserControls;
 
 namespace VLC_WinRT.ViewModels
 {
@@ -133,6 +134,14 @@ namespace VLC_WinRT.ViewModels
             CoreWindow.GetForCurrentThread().Activated += ApplicationState_Activated;
             Locator.NavigationService.ViewNavigated += (sender, page) =>
             {
+                if (App.SplitShell.TopBarContent == null)
+                    App.SplitShell.TopBarContent = new TopBar();
+                if (App.SplitShell.FooterContent == null)
+                    App.SplitShell.FooterContent = new BottomMiniPlayer();
+                if (App.SplitShell.InformationText == null)
+                    App.SplitShell.InformationText = new MenuBarControl();
+                if (MenuBarDisplayed)
+                    MenuBarDisplayed = false;
                 CurrentPage = page;
                 CanGoBack = Locator.NavigationService.CanGoBack();
             };
