@@ -659,7 +659,7 @@ namespace VLC_WinRT.ViewModels
 
         async void OnEndReached()
         {
-            bool canGoNext = TrackCollection.Playlist.Count > 0 || TrackCollection.CanGoNext;
+            bool canGoNext = TrackCollection.Playlist.Count > 0 && TrackCollection.CanGoNext;
             if (!canGoNext)
             {
                 // Playlist is finished
