@@ -220,15 +220,13 @@ namespace VLC_WinRT.ViewModels
         {
             Package thisPackage = Package.Current;
             PackageVersion version = thisPackage.Id.Version;
-            string appVersion = string.Format("{0}.{1}.{2}.{3}",
-                version.Major, version.Minor, version.Build, version.Revision);
-            if (ApplicationSettingsHelper.Contains("CurrentVersion") && ApplicationSettingsHelper.ReadSettingsValue("CurrentVersion").ToString() == appVersion)
+            if (ApplicationSettingsHelper.Contains(Strings.DatabaseVersion) && (int)ApplicationSettingsHelper.ReadSettingsValue(Strings.DatabaseVersion) == Numbers.DbVersion)
             {
                 return false;
             }
             else
             {
-                ApplicationSettingsHelper.SaveSettingsValue("CurrentVersion", appVersion);
+                ApplicationSettingsHelper.SaveSettingsValue(Strings.DatabaseVersion, Numbers.DbVersion);
                 return true;
             }
         }
