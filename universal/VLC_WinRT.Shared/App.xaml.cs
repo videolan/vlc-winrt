@@ -22,6 +22,7 @@ using Windows.Storage.AccessCache;
 using VLC_WinRT.BackgroundHelpers;
 using VLC_WinRT.Utils;
 using VLC_WinRT.Controls;
+using VLC_WinRT.Views.UserControls;
 
 namespace VLC_WinRT
 {
@@ -35,7 +36,7 @@ namespace VLC_WinRT
         public static string ApiKeyLastFm = "a8eba7d40559e6f3d15e7cca1bfeaa1c";
         public static string DeezerAppID = "135671";
         public static OpenFilePickerReason OpenFilePickerReason = OpenFilePickerReason.Null;
-        public static AlbumItem SelectedAlbumItem;
+        public static Model.Music.AlbumItem SelectedAlbumItem;
         public static IContainer Container;
         public static BackgroundAudioHelper BackgroundAudioHelper = new BackgroundAudioHelper();
         /// <summary>

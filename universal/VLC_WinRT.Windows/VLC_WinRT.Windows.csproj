@@ -818,10 +818,6 @@
       <Project>{22532381-be8b-40e0-a881-22ce24342d5a}</Project>
       <Name>libVLCX</Name>
     </ProjectReference>
-    <ProjectReference Include="..\VLC_WinRT.Controls\VLC_WinRT.Controls.csproj">
-      <Project>{0627f270-00d9-45e8-8cae-74bfea436379}</Project>
-      <Name>VLC_WinRT.Controls</Name>
-    </ProjectReference>
     <ProjectReference Include="..\VLC_WinRT.Database\VLC_WinRT.Database.csproj">
       <Project>{1e0bf0fc-e5cb-4bdf-918f-d2de64f7a6c5}</Project>
       <Name>VLC_WinRT.Database</Name>

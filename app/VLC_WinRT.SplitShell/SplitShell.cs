@@ -12,10 +12,9 @@ namespace VLC_WinRT.Controls
     public delegate void FlyoutCloseRequested(object sender, EventArgs e);
     
     [TemplatePart(Name = TopBarContentPresenterName, Type = typeof(ContentPresenter))]
-    [TemplatePart(Name = InformationGridName, Type = typeof(Grid))]
+    [TemplatePart(Name = InformationContentPresenterName, Type = typeof(ContentPresenter))]
     [TemplatePart(Name = ContentPresenterName, Type = typeof(ContentPresenter))]
     [TemplatePart(Name = RightFlyoutContentPresenterName, Type = typeof(ContentPresenter))]
-    [TemplatePart(Name = InformationTextBlockName, Type = typeof(TextBlock))]
     [TemplatePart(Name = RightFlyoutFadeInName, Type = typeof(Storyboard))]
     [TemplatePart(Name = RightFlyoutFadeOutName, Type = typeof(Storyboard))]
     [TemplatePart(Name = RightFlyoutPlaneProjectionName, Type = typeof(PlaneProjection))]
@@ -29,8 +28,7 @@ namespace VLC_WinRT.Controls
         
         private const string ContentPresenterName = "ContentPresenter";
         private const string TopBarContentPresenterName = "TopBarContentPresenter";
-        private const string InformationGridName = "InformationGrid";
-        private const string InformationTextBlockName = "InformationTextBlock";
+        private const string InformationContentPresenterName = "InformationContentPresenter";
         private const string RightFlyoutContentPresenterName = "RightFlyoutContentPresenter";
         private const string RightFlyoutFadeInName = "RightFlyoutFadeIn";
         private const string RightFlyoutFadeOutName = "RightFlyoutFadeOut";
@@ -49,7 +47,7 @@ namespace VLC_WinRT.Controls
         private PlaneProjection _rightFlyoutPlaneProjection;
         private Storyboard _rightFlyoutFadeIn;
         private Storyboard _rightFlyoutFadeOut;
-        private Grid _informationGrid;
+        private ContentPresenter _informationGrid;
         private TextBlock _informationTextBlock;
         
         public async void SetContentPresenter(object contentPresenter)
@@ -64,19 +62,12 @@ namespace VLC_WinRT.Controls
             _topBarContentPresenter.Content = contentPresenter;
         }
 
-        public async void SetInformationText(string text)
+        public async void SetInformationContent(object contentPresenter)
         {
             await TemplateApplied.Task;
-            _informationGrid.Visibility = string.IsNullOrEmpty(text) ? Visibility.Collapsed : Visibility.Visible;
-            _informationTextBlock.Text = text;
+            _informationGrid.Content = contentPresenter;
         }
 
-        public async void SetInformationBrush(Brush brush)
-        {
-            await TemplateApplied.Task;
-            _informationGrid.Background = brush;
-        }
-        
         public async void SetRightPaneContentPresenter(object content)
         {
             await TemplateApplied.Task;
@@ -170,33 +161,19 @@ namespace VLC_WinRT.Controls
         #endregion
 
         #region InformationContent Property
-        public Brush InformationBackground
+
+        public DependencyObject InformationText
         {
-            get { return (Brush)GetValue(InformationBackgroundProperty); }
-            set { SetValue(InformationBackgroundProperty, value); }
-        }
-
-        public static readonly DependencyProperty InformationBackgroundProperty = DependencyProperty.Register("InformationBackground", typeof(DependencyObject), typeof(SplitShell), new PropertyMetadata(default(Brush), InformationBackgroundPropertyChangedCallback));
-
-        private static void InformationBackgroundPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
-        {
-            var that = (SplitShell)dependencyObject;
-            that.SetInformationBrush((Brush)dependencyPropertyChangedEventArgs.NewValue);
-        }
-
-
-        public string InformationText
-        {
-            get { return (string)GetValue(InformationTextProperty); }
+            get { return (DependencyObject)GetValue(InformationTextProperty); }
             set { SetValue(InformationTextProperty, value); }
         }
 
-        public static readonly DependencyProperty InformationTextProperty = DependencyProperty.Register("InformationText", typeof(DependencyObject), typeof(SplitShell), new PropertyMetadata(default(string), InformationContentPresenterPropertyChangedCallback));
+        public static readonly DependencyProperty InformationTextProperty = DependencyProperty.Register("InformationText", typeof(DependencyObject), typeof(SplitShell), new PropertyMetadata(default(DependencyObject), InformationContentPresenterPropertyChangedCallback));
 
         private static void InformationContentPresenterPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
             var that = (SplitShell)dependencyObject;
-            that.SetInformationText((string)dependencyPropertyChangedEventArgs.NewValue);
+            that.SetInformationContent(dependencyPropertyChangedEventArgs.NewValue);
         }
         #endregion
 
@@ -210,8 +187,7 @@ namespace VLC_WinRT.Controls
             base.OnApplyTemplate();
             _contentPresenter = (ContentPresenter)GetTemplateChild(ContentPresenterName);
             _topBarContentPresenter = (ContentPresenter)GetTemplateChild(TopBarContentPresenterName);
-            _informationTextBlock = (TextBlock)GetTemplateChild(InformationTextBlockName);
-            _informationGrid = (Grid)GetTemplateChild(InformationGridName);
+            _informationGrid = (ContentPresenter)GetTemplateChild(InformationContentPresenterName);
             _rightFlyoutContentPresenter = (ContentPresenter)GetTemplateChild(RightFlyoutContentPresenterName);
             _rightFlyoutFadeIn = (Storyboard)GetTemplateChild(RightFlyoutFadeInName);
             _rightFlyoutFadeOut = (Storyboard)GetTemplateChild(RightFlyoutFadeOutName);

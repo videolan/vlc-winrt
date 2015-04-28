@@ -793,10 +793,6 @@
       <Project>{6bdaba8a-b559-4007-a17f-42125d3aa7a3}</Project>
       <Name>VLC_WinRT.BackgroundAudioPlayer</Name>
     </ProjectReference>
-    <ProjectReference Include="..\VLC_WinRT.Controls\VLC_WinRT.Controls.csproj">
-      <Project>{0627f270-00d9-45e8-8cae-74bfea436379}</Project>
-      <Name>VLC_WinRT.Controls</Name>
-    </ProjectReference>
     <ProjectReference Include="..\VLC_WinRT.Database\VLC_WinRT.Database.csproj">
       <Project>{1e0bf0fc-e5cb-4bdf-918f-d2de64f7a6c5}</Project>
       <Name>VLC_WinRT.Database</Name>
@@ -828,6 +824,7 @@
   <Import Project="..\VLC_WinRT.Shared\VLC_WinRT.Shared.projitems" Label="Shared" />
   <Import Project="..\VLC_WinRT.MusicMetaFetcher\VLC_WinRT.MusicMetaFetcher.projitems" Label="Shared" Condition="Exists('..\VLC_WinRT.MusicMetaFetcher\VLC_WinRT.MusicMetaFetcher.projitems')" />
   <Import Project="..\VLC_WinRT.SharedBackground\VLC_WinRT.SharedBackground.projitems" Label="Shared" Condition="Exists('..\VLC_WinRT.SharedBackground\VLC_WinRT.SharedBackground.projitems')" />
+  <Import Project="..\..\app\VLC_WinRT.SplitShell\VLC_WinRT.SplitShell.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <Import Project="..\..\app\packages\SQLitePCL.raw_basic.0.7.0\build\wpa81\SQLitePCL.raw_basic.targets" Condition="Exists('..\..\app\packages\SQLitePCL.raw_basic.0.7.0\build\wpa81\SQLitePCL.raw_basic.targets')" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Multilingual App Toolkit\Microsoft.Multilingual.PriResources.targets" Label="MultilingualAppToolkit" />

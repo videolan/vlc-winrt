@@ -86,19 +86,10 @@
                         </Grid.RowDefinitions>
                         <ContentPresenter x:Name="TopBarContentPresenter"
                                           Grid.Row="0"/>
-                        <Grid x:Name="InformationGrid"
-                              Grid.Row="1">
-                            <TextBlock x:Name="InformationTextBlock"
-                                       TextWrapping="NoWrap"
-                                       TextTrimming="CharacterEllipsis"
-                                       Foreground="White"
-                                       HorizontalAlignment="Right"
-                                       Margin="0,0,12,0" />
-                        </Grid>
-
+                        <ContentPresenter x:Name="InformationContentPresenter"
+                                          Grid.Row="1" />
                         <ContentPresenter x:Name="ContentPresenter"
                                           Grid.Row="2" />
-
                         <ContentPresenter x:Name="FooterContentPresenter" 
                                           Grid.Row="3"
                                           HorizontalAlignment="Stretch"/>
