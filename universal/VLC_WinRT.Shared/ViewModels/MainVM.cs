@@ -38,6 +38,7 @@ namespace VLC_WinRT.ViewModels
         private KeyboardListenerService keyboardListenerService;
         private bool _isInternet;
         private string _searchTag = "";
+        private bool _menuBarDisplayed = false;
         private bool _preventAppExit = false;
         private string _informationText;
         private bool _isBackground = false;
@@ -48,6 +49,12 @@ namespace VLC_WinRT.ViewModels
         #endregion
 
         #region public props
+        public bool MenuBarDisplayed
+        {
+            get { return _menuBarDisplayed; }
+            set { SetProperty(ref _menuBarDisplayed, value); }
+        }
+
         public VLCPage CurrentPage
         {
             get { return currentPage; }
@@ -87,7 +94,8 @@ namespace VLC_WinRT.ViewModels
         public ChangeMainPageVideoViewCommand ChangeMainPageVideoViewCommand { get; } = new ChangeMainPageVideoViewCommand();
 
         public SearchClickedCommand SearchClickedCommand { get; }= new SearchClickedCommand();
-        
+        public DisplayMenuBarControlToggleCommand DisplayMenuBarControlToggleCommand { get; }= new DisplayMenuBarControlToggleCommand();
+
         public bool PreventAppExit
         {
             get { return _preventAppExit; }

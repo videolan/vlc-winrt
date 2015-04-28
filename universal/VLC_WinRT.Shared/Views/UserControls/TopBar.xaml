@@ -20,6 +20,7 @@
             <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition />
+            <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
         <StackPanel Orientation="Horizontal"
                     Width="80"
@@ -65,8 +66,8 @@
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <ItemsStackPanel Orientation="Horizontal"
-                                     Margin="12,0,0,0" 
-                                     Height="60"/>
+                                     Margin="12,0,0,0"
+                                     Height="60" />
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
             <ListView.ItemContainerTransitions>
@@ -75,5 +76,27 @@
                 </TransitionCollection>
             </ListView.ItemContainerTransitions>
         </ListView>
+        <AppBarButton Grid.Column="3"
+                      DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}"
+                      Visibility="{Binding MenuBarDisplayed, Converter={StaticResource NegatedBooleanToVisibilityConverter}}"
+                      VerticalAlignment="Center"
+                      Style="{StaticResource AppBarButtonStyleHorizontal}"
+                      Command="{Binding DisplayMenuBarControlToggleCommand}">
+            <AppBarButton.Icon>
+                <FontIcon Glyph="{StaticResource ChevronToBottomSymbol}"
+                          FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+            </AppBarButton.Icon>
+        </AppBarButton>
+        <AppBarButton Grid.Column="3"
+                      DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}"
+                      Visibility="{Binding MenuBarDisplayed, Converter={StaticResource BooleanToVisibilityConverter}}"
+                      VerticalAlignment="Center"
+                      Style="{StaticResource AppBarButtonStyleHorizontal}"
+                      Command="{Binding DisplayMenuBarControlToggleCommand}">
+            <AppBarButton.Icon>
+                <FontIcon Glyph="{StaticResource ChevronToTopSymbol}"
+                          FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+            </AppBarButton.Icon>
+        </AppBarButton> 
     </Grid>
 </UserControl>

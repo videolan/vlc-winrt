@@ -1,0 +1,54 @@
+﻿<UserControl x:Class="VLC_WinRT.Views.UserControls.MenuBarControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="using:VLC_WinRT.Views.UserControls"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             d:DesignHeight="300"
+             d:DesignWidth="400"
+             DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}"
+             Visibility="{Binding MenuBarDisplayed, Converter={StaticResource BooleanToVisibilityConverter}}">
+    <Grid Height="50"
+          Background="{ThemeResource ApplicationThirdForegroundThemeBrush}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="12" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="12" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="12" />
+        </Grid.ColumnDefinitions>
+        <AppBarButton Grid.Column="1"
+                      VerticalAlignment="Center"
+                      Style="{StaticResource AppBarButtonStyleHorizontal}"
+                      Label="file"
+                      Command="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.PickVideoCommand}">
+            <AppBarButton.Icon>
+                <FontIcon Glyph="{StaticResource OpenFileSymbol}"
+                          FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+            </AppBarButton.Icon>
+        </AppBarButton>
+        <AppBarButton Grid.Column="3"
+                      VerticalAlignment="Center"
+                      Style="{StaticResource AppBarButtonStyleHorizontal}"
+                      Label="stream"
+                      Flyout="{StaticResource PhoneOpenStreamFlyout}">
+            <AppBarButton.Icon>
+                <FontIcon Glyph="{StaticResource StreamSymbol}"
+                          FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+            </AppBarButton.Icon>
+        </AppBarButton>
+        <AppBarButton Grid.Column="5"
+                      VerticalAlignment="Center"
+                      Label="settings"
+                      Style="{StaticResource AppBarButtonStyleHorizontal}"
+                      Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToSettingsPageCommand}">
+            <AppBarButton.Icon>
+                <FontIcon Glyph="{StaticResource SettingsSymbol}"
+                          FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+            </AppBarButton.Icon>
+        </AppBarButton>
+    </Grid>
+</UserControl>
