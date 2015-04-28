@@ -9,7 +9,7 @@
              d:DesignWidth="400"
              DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}"
              Visibility="{Binding MenuBarDisplayed, Converter={StaticResource BooleanToVisibilityConverter}}">
-    <Grid Height="50"
+    <Grid Height="60"
           Background="{ThemeResource ApplicationThirdForegroundThemeBrush}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
