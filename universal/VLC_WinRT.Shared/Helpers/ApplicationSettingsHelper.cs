@@ -26,17 +26,17 @@ namespace VLC_WinRT.Helpers
         /// </summary>
         public static object ReadResetSettingsValue(string key)
         {
-            LogHelper.Log(key);
+            LogHelper.RuntimeLog(key);
             if (!ApplicationData.Current.LocalSettings.Values.ContainsKey(key))
             {
-                LogHelper.Log("null returned");
+                LogHelper.RuntimeLog("null returned");
                 return null;
             }
             else
             {
                 var value = ApplicationData.Current.LocalSettings.Values[key];
                 ApplicationData.Current.LocalSettings.Values.Remove(key);
-                LogHelper.Log("value found " + value.ToString());
+                LogHelper.RuntimeLog("value found " + value.ToString());
                 return value;
             }
         }
@@ -46,16 +46,16 @@ namespace VLC_WinRT.Helpers
         /// </summary>
         public static object ReadSettingsValue(string key)
         {
-            LogHelper.Log(key);
+            LogHelper.RuntimeLog(key);
             if (!ApplicationData.Current.LocalSettings.Values.ContainsKey(key))
             {
-                LogHelper.Log("null returned");
+                LogHelper.RuntimeLog("null returned");
                 return null;
             }
             else
             {
                 var value = ApplicationData.Current.LocalSettings.Values[key];
-                LogHelper.Log("value found " + value.ToString());
+                LogHelper.RuntimeLog("value found " + value.ToString());
                 return value;
             }
         }
@@ -65,7 +65,7 @@ namespace VLC_WinRT.Helpers
         /// </summary>
         public static void SaveSettingsValue(string key, object value)
         {
-            LogHelper.Log(key + ":" + value.ToString());
+            LogHelper.RuntimeLog(key + ":" + value.ToString());
             if (!ApplicationData.Current.LocalSettings.Values.ContainsKey(key))
             {
                 ApplicationData.Current.LocalSettings.Values.Add(key, value);

@@ -37,6 +37,11 @@ namespace VLC_WinRT.Helpers
             await WriteInLog(LogFile, o.ToString());
         }
 
+        public static void RuntimeLog(object o)
+        {
+            Debug.WriteLine(o.ToString());
+        }
+
         static async Task WriteInLog(StorageFile file, string value)
         {
             await WriteFileSemaphoreSlim.WaitAsync();
