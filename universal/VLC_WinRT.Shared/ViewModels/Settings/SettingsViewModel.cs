@@ -443,12 +443,11 @@ namespace VLC_WinRT.ViewModels.Settings
         {
             Initialize();
         }
-
-
+        
         public async Task Initialize()
         {
 #if WINDOWS_APP
-            App.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, async () =>
+            App.Dispatcher?.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, async () =>
             {
                 MusicLibraryId = KnownLibraryId.Music;
                 VideoLibraryId = KnownLibraryId.Videos;
