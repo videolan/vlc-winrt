@@ -230,7 +230,6 @@ namespace VLC_WinRT
         {
             Window.Current.Content = new MainPage();
             Dispatcher = Window.Current.Content.Dispatcher;
-            Window.Current.Activate();
             await SplitShell.TemplateApplied.Task;
 
 #if WINDOWS_APP
@@ -249,6 +248,7 @@ namespace VLC_WinRT
                 var _ = Task.Run(async () => await Locator.MusicLibraryVM.Initialize());
             }
             ApplicationFrame.Navigated += this.RootFrame_FirstNavigated;
+            Window.Current.Activate();
         }
     }
 }
