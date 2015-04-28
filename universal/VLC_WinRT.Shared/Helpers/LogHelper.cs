@@ -14,26 +14,34 @@ namespace VLC_WinRT.Helpers
         static readonly SemaphoreSlim WriteFileSemaphoreSlim = new SemaphoreSlim(1);
         static LogHelper()
         {
-            Initialize();
         }
 
         static async Task Initialize()
         {
-            LogFile = await ApplicationData.Current.LocalFolder.CreateFileAsync("LogFile.txt", CreationCollisionOption.OpenIfExists);
-            if (signalUpdate)
+            try
             {
-                await FileIO.WriteTextAsync(LogFile, "App updated on " + DateTime.Now.ToString());
-                signalUpdate = false;
+                LogFile = await ApplicationData.Current.LocalFolder.CreateFileAsync("LogFile.txt", CreationCollisionOption.OpenIfExists);
+                if (signalUpdate)
+                {
+                    await FileIO.WriteTextAsync(LogFile, "App updated on " + DateTime.Now.ToString());
+                    signalUpdate = false;
+                }
+                Log("------------------------------------------");
+                Log("------------------------------------------");
+                Log("------------------------------------------");
+                Log("App launch " + DateTime.Now.ToString());
             }
-            Log("------------------------------------------");
-            Log("------------------------------------------");
-            Log("------------------------------------------");
-            Log("App launch " + DateTime.Now.ToString());
+            catch { }
         }
 
         public static async void Log(object o)
         {
-            Debug.WriteLine(o.ToString());            
+            Debug.WriteLine(o.ToString());
+            if (LogFile == null)
+            {
+                await Initialize();
+            }
+            if (LogFile == null) return;
             await WriteInLog(LogFile, o.ToString());
         }
 
