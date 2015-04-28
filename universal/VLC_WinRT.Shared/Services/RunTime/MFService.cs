@@ -36,7 +36,6 @@ namespace VLC_WinRT.Services.RunTime
         public MFService()
         {
             PlayerInstanceReady = new TaskCompletionSource<bool>();
-            Initialize(Instance);
         }
 
         public void Initialize(object mediaElement)

@@ -29,10 +29,16 @@ namespace VLC_WinRT.Views.MainPages
         {
             App.Container.Resolve<VLCService>().Initialize(SwapChainPanel);
         }
-                
+
+        private void MfMediaElement_Loaded(object sender, RoutedEventArgs e)
+        {
+            App.Container.Resolve<MFService>().Initialize(MfMediaElement);
+        }
+
         private void SplitShell_FlyoutCloseRequested(object sender, System.EventArgs e)
         {
             Locator.NavigationService.GoBack_HideFlyout();
         }
+
     }
 }
