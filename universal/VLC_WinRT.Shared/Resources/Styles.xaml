@@ -52,9 +52,10 @@
     <x:String x:Key="FolderSymbol"></x:String>
     <x:String x:Key="DeleteSymbol"></x:String>
     <x:String x:Key="ThumbsupSymbol"></x:String>
+    <x:String x:Key="CloseSymbol"></x:String>
+    <x:String x:Key="ChevronToBottomSymbol"></x:String>
+    <x:String x:Key="ChevronToTopSymbol"></x:String>
     
-
-
     <!-- Segoe UI Symbol Font -->
     <x:String x:Key="VerticalDotsSymbol"></x:String>
 
