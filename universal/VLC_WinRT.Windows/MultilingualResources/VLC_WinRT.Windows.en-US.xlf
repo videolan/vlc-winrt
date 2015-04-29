@@ -263,8 +263,8 @@
           <target state="new">When playing an album, press the</target>
         </trans-unit>
         <trans-unit id="Resources\NoFavoriteAlbumsHeader\Text" translate="yes" xml:space="preserve">
-          <source>You don't have favorite albums...</source>
-          <target state="new">You don't have favorite albums...</target>
+          <source>You don't have favorite albums</source>
+          <target state="new">You don't have favorite albums</target>
         </trans-unit>
         <trans-unit id="Resources\MusicSettings\Text" translate="yes" xml:space="preserve">
           <source>VLC will only search for songs that are in your music library. You can add folders to your library here:</source>

@@ -363,6 +363,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\PivotHeaderControl.xaml.cs">
       <DependentUpon>PivotHeaderControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\Placeholders\FakeAlbumControl.xaml.cs">
+      <DependentUpon>FakeAlbumControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\Placeholders\FakeVideoControl.xaml.cs">
+      <DependentUpon>FakeVideoControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\Placeholders\NoCameraVideos.xaml.cs">
       <DependentUpon>NoCameraVideos.xaml</DependentUpon>
     </Compile>
@@ -386,6 +392,9 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\Placeholders\NothingToSeeHere.xaml.cs">
       <DependentUpon>NothingToSeeHere.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\Placeholders\NoVideosControl.xaml.cs">
+      <DependentUpon>NoVideosControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\Placeholders\NoVideosPlaceholder.xaml.cs">
       <DependentUpon>NoVideosPlaceholder.xaml</DependentUpon>
@@ -720,6 +729,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\Placeholders\FakeAlbumControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\Placeholders\FakeVideoControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\Placeholders\NoCameraVideos.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -749,6 +766,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\Placeholders\NothingToSeeHere.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\Placeholders\NoVideosControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

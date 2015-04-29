@@ -6,9 +6,9 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:triggers="using:WinRT.Triggers"
       xmlns:controls="using:VLC_WinRT.Controls"
+      xmlns:placeholders="using:VLC_WinRT.Views.UserControls.Placeholders"
       mc:Ignorable="d"
       DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}">
-
     <ScrollViewer Margin="{StaticResource FrameMargin}">
         <StackPanel>
             <Button x:Uid="TopAlbums"
@@ -75,11 +75,13 @@
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <ItemsWrapGrid Orientation="Horizontal"
-                                       SizeChanged="VideoWrapGrid_SizeChanged"
-                                       Margin="0,0,0,60" />
+                                       SizeChanged="VideoWrapGrid_SizeChanged" />
                     </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
             </ListView>
+            <placeholders:NoVideosControl HorizontalAlignment="Left"
+                                          DataContext="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM}"
+                                          Visibility="{Binding ViewedVideos.Count, Converter={StaticResource CountToVisibilityConverter}}" />
         </StackPanel>
     </ScrollViewer>
 </Page>

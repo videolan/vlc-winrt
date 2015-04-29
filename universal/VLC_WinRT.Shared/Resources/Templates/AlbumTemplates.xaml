@@ -5,7 +5,8 @@
                     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
                     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
                     xmlns:winrtext="using:WinRTXamlToolkit.Controls.Extensions"
-                    xmlns:userControls="using:VLC_WinRT.Views.UserControls">
+                    xmlns:userControls="using:VLC_WinRT.Views.UserControls"
+                    xmlns:placeholders="using:VLC_WinRT.Views.UserControls.Placeholders">
 
     <DataTemplate x:Key="PhoneSemanticZoomInViewAlbumTemplateLittleSize">
         <userControls:AlbumItem />
@@ -13,6 +14,10 @@
     
     <DataTemplate x:Key="AlbumHorizontalTemplate">
         <userControls:AlbumHorizontalTemplate />
+    </DataTemplate>
+    
+    <DataTemplate x:Key="FakeAlbumTemplate">
+        <placeholders:FakeAlbumControl />
     </DataTemplate>
 
     <DataTemplate x:Key="PopularAlbumTemplate">

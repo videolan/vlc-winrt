@@ -403,7 +403,7 @@
     <value>VLC will only search for songs that are in your music library. You can add folders to your library here:</value>
   </data>
   <data name="NoFavoriteAlbumsHeader.Text" xml:space="preserve">
-    <value>You don't have favorite albums...</value>
+    <value>You don't have favorite albums</value>
   </data>
   <data name="NoFavoriteAlbumText1.Text" xml:space="preserve">
     <value>When playing an album, press the</value>
