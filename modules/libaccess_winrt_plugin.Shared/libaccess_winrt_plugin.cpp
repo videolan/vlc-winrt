@@ -166,12 +166,12 @@ GetString(char* in)
 /**
  * Handles the file opening
  */
-static int OpenFileAsync(access_sys_t *p_sys, String^ token)
+static int OpenFileAsync(access_sys_t *p_sys, String^ path)
 {
-    auto openTask = create_task(StorageApplicationPermissions::FutureAccessList->GetFileAsync(token))
-        .then([p_sys](StorageFile^ newFile){
-        create_task(newFile->OpenReadAsync())
-            .then([p_sys](task<IRandomAccessStreamWithContentType^> task){
+    auto openTask = create_task(StorageFile::GetFileFromPathAsync(path)).then([=](StorageFile^ storageFile)
+    {
+        create_task(storageFile->OpenReadAsync()).then([p_sys](task<IRandomAccessStreamWithContentType^> task)
+        {
             p_sys->readStream = task.get();
         }).wait();
     });
@@ -188,6 +188,26 @@ static int OpenFileAsync(access_sys_t *p_sys, String^ token)
     return VLC_SUCCESS;
 }
 
+static int OpenFileAsyncWithToken(access_sys_t *p_sys, String^ token)
+{
+    auto openTask = create_task(StorageApplicationPermissions::FutureAccessList->GetFileAsync(token))
+        .then([p_sys](StorageFile^ newFile) {
+        create_task(newFile->OpenReadAsync())
+            .then([p_sys](task<IRandomAccessStreamWithContentType^> task) {
+            p_sys->readStream = task.get();
+        }).wait();
+    });
+    try
+    {
+        openTask.wait();  /* block with wait since we're in a worker thread */
+    }
+    catch (Exception^)
+    {
+        OutputDebugString(L"Failed to open file.");
+        return VLC_EGENERIC;
+    }
+    return VLC_SUCCESS;
+}
 
 /**
  * Open a WinRT StorageFile that has been added to the FutureAccessList
@@ -201,17 +221,27 @@ int Open(vlc_object_t *object)
     String^ futureAccesToken = GetString(access->psz_location);
     auto charBegin = futureAccesToken->Begin()[0];
     auto charEnd = (futureAccesToken->End() - 1)[0];
-    if ((charBegin != '{') && ((charEnd != '}') || futureAccesToken->Length() < 32) )
-        return VLC_EGENERIC;
+
 
     access_sys_t *p_sys = access->p_sys = new(std::nothrow) access_sys_t();
-    if( p_sys == nullptr )
+    if (p_sys == nullptr)
         return VLC_EGENERIC;
-
-    if( OpenFileAsync(p_sys, futureAccesToken) != VLC_SUCCESS ){
-        OutputDebugStringW(L"Error Opening File");
-        Close(object);
-        return VLC_EGENERIC;
+    if ((charBegin == '{') && ((charEnd == '}') && futureAccesToken->Length() >= 32))
+    {
+        if (OpenFileAsyncWithToken(p_sys, futureAccesToken) != VLC_SUCCESS)
+        {
+            OutputDebugStringW(L"Error opening file with Token");
+            Close(object);
+            return VLC_EGENERIC;
+        }
+    }
+    else
+    {
+        if (OpenFileAsync(p_sys, futureAccesToken) != VLC_SUCCESS) {
+            OutputDebugStringW(L"Error opening file with Path");
+            Close(object);
+            return VLC_EGENERIC;
+        }
     }
 
     p_sys->rawBuffer = Make<RawBuffer>();
