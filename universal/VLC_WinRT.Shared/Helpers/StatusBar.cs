@@ -21,7 +21,7 @@ namespace VLC_WinRT.Helpers
 
         public static void Default()
         {
-            Set(App.Current.Resources["StatusBarColor"] as SolidColorBrush, null, 1, "", ApplicationViewBoundsMode.UseVisible);
+            Set(App.Current.Resources["StatusBarColor"] as SolidColorBrush, new SolidColorBrush(Colors.WhiteSmoke), 1, "", ApplicationViewBoundsMode.UseVisible);
         }
 
         static void Set(SolidColorBrush background, SolidColorBrush foreground, double opacity, string text, ApplicationViewBoundsMode? boundsMode = ApplicationViewBoundsMode.UseVisible, double? progress = 0)
