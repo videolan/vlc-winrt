@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using System.Diagnostics;
 using Windows.Graphics.Display;
+using Windows.UI;
 
 namespace VLC_WinRT.Helpers
 {
