@@ -68,7 +68,6 @@ namespace VLC_WinRT.Services.RunTime
 
         public async Task SetMediaFile(IVLCMedia media)
         {
-            LogHelper.Log("SetMediaFile: " + media.Path);
             string mrl = null;
             if (media is StreamMedia)
             {
@@ -76,15 +75,10 @@ namespace VLC_WinRT.Services.RunTime
             }
             else
             {
-                if (media.File != null)
-                {
-                    mrl = "file://" + GetToken(media.File);
-                }
-                else
-                {
-                    mrl = "file://" + await GetToken(media.Path);
-                }
+                mrl = "file://" + media.Path;
             }
+            LogHelper.Log("SetMRL: " + mrl);
+
             await PlayerInstanceReady.Task;
             if (Instance == null) return;
             var mediaVLC = new Media(Instance, mrl);
