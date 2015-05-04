@@ -54,6 +54,9 @@ using namespace Microsoft::WRL;
 #include <vlc_plugin.h>
 #include <vlc_access.h>
 #include <vlc_input.h>
+#define GetACP() (0)
+#include <vlc_charset.h>
+#include <memory>
 
 static int                    Open(vlc_object_t *);
 static void                   Close(vlc_object_t *);
@@ -153,10 +156,8 @@ void Debug(const wchar_t *fmt, ...)
 Platform::String^
 GetString(char* in)
 {
-    std::string s_str = std::string(in);
-    std::wstring wid_str = std::wstring(s_str.begin(), s_str.end());
-    const wchar_t* w_char = wid_str.c_str();
-    return ref new Platform::String(w_char);
+    std::unique_ptr<wchar_t, void(*)(void*)> str( ToWide(in), free );
+    return ref new Platform::String(str.get());
 }
 
 /*****************************************************************************
