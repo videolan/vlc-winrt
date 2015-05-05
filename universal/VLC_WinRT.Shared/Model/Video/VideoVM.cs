@@ -16,6 +16,8 @@ using SQLite;
 using VLC_WinRT.Commands.Video;
 using VLC_WinRT.Helpers.VideoLibrary;
 using VLC_WinRT.Utils;
+using VLC_WinRT.ViewModels;
+using System.Diagnostics;
 
 namespace VLC_WinRT.Model.Video
 {
@@ -155,7 +157,6 @@ namespace VLC_WinRT.Model.Video
         [Ignore]
         public FavoriteVideoCommand FavoriteVideo { get; } = new FavoriteVideoCommand();
 
-        public VideoProperties VideoProperties;
 
         public DateTime LastWatched
         {
