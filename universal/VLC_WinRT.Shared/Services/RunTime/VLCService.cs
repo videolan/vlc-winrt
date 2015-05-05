@@ -139,7 +139,7 @@ namespace VLC_WinRT.Services.RunTime
 
         public string GetAlbumUrl(string filePath)
         {
-            var media = new Media(Instance, "file:///" + filePath);
+            var media = new Media(Instance, "file://" + filePath);
             media.parse();
             if (!media.isParsed()) return "";
             var url = media.meta(MediaMeta.ArtworkURL);
@@ -152,7 +152,7 @@ namespace VLC_WinRT.Services.RunTime
 
         public MediaProperties GetMusicProperties(string filePath)
         {
-            var media = new Media(Instance, "file:///" + filePath);
+            var media = new Media(Instance, "file://" + filePath);
             media.parse();
             if (!media.isParsed()) return null;
             var mP = new MediaProperties();
@@ -176,7 +176,7 @@ namespace VLC_WinRT.Services.RunTime
 
         public TimeSpan GetDuration(string filePath)
         {
-            var media = new Media(Instance, "file:///" + filePath);
+            var media = new Media(Instance, "file://" + filePath);
             media.parse();
             if (!media.isParsed()) return TimeSpan.Zero;
             var durationLong = media.duration();
