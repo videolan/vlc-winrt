@@ -13,7 +13,6 @@
 */
 
 using Autofac;
-using VLC_WinRT.ViewModels.NetworkVM;
 using VLC_WinRT.ViewModels.RemovableDevicesVM;
 using VLC_WinRT.ViewModels.Settings;
 using VLC_WinRT.ViewModels.MusicVM;
@@ -74,11 +73,6 @@ namespace VLC_WinRT.ViewModels
         public static VLCExplorerViewModel FileExplorerVM
         {
             get { return App.Container?.Resolve<VLCExplorerViewModel>(); }
-        }
-
-        public static DLNAVM DlnaVM
-        {
-            get { return App.Container?.Resolve<DLNAVM>(); }
         }
 
         public static SettingsViewModel SettingsVM

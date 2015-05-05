@@ -17,7 +17,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)BackgroundHelpers\BackgroundTaskTools.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\ActionCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\ClearHistoryCommand.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Commands\Dlna\DlnaClickedCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\MainPageCommands\ChangeMainPageMusicViewCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\MainPageCommands\ChangeMainPageVideoViewCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\MainPageCommands\DisplayMenuBarControlToggleCommand.cs" />
@@ -202,7 +201,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MusicVM\MusicLibraryVM.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MusicVM\MusicPlayerVM.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MusicVM\TrackCollection.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\NetworkVM\DLNAVM.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Others\BackerCountryViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Others\SpecialThanksViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Others\VlcExplorer\VLCExplorerViewModel.cs" />

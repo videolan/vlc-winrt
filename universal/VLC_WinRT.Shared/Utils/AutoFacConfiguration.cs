@@ -12,7 +12,6 @@ using VLC_WinRT.Services.Interface;
 using VLC_WinRT.Services.RunTime;
 using VLC_WinRT.ViewModels;
 using VLC_WinRT.ViewModels.MusicVM;
-using VLC_WinRT.ViewModels.NetworkVM;
 using VLC_WinRT.ViewModels.RemovableDevicesVM;
 using VLC_WinRT.ViewModels.Settings;
 using VLC_WinRT.ViewModels.VideoVM;
@@ -49,9 +48,7 @@ namespace VLC_WinRT.Utils
                 builder.RegisterType<SettingsViewModel>().SingleInstance();
 
                 builder.RegisterType<VLCExplorerViewModel>().SingleInstance();
-
-                builder.RegisterType<DLNAVM>().SingleInstance();
-
+                
                 // Register Services
                 builder.RegisterType<VLCService>().SingleInstance();
                 builder.RegisterType<MFService>().SingleInstance();
