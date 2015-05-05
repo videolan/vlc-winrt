@@ -66,21 +66,28 @@ namespace VLC_WinRT.Services.RunTime
 
         private bool _isAudioMedia;
 
-        public async Task SetMediaFile(IVLCMedia media)
+        private string getMrl(bool isStream, string path, StorageFile file)
         {
-            string mrl = null;
-            if (media is StreamMedia)
+            if (isStream)
             {
-                mrl = media.Path;
+                return path;
             }
             else
             {
-                if (string.IsNullOrEmpty(media.Path))
+                if (string.IsNullOrEmpty(path))
                 {
-                    mrl = "file://" + GetToken(media.File);
+                    if (file != null)
+                        return "file://" + GetToken(file);
+                    return null;
                 }
-                else mrl = "file://" + media.Path;
+                return "file://" + path;
             }
+        }
+
+        public async Task SetMediaFile(IVLCMedia media)
+        {
+            string mrl = getMrl(media is StreamMedia, media.Path, media.File);
+
             LogHelper.Log("SetMRL: " + mrl);
 
             await PlayerInstanceReady.Task;
@@ -143,7 +150,10 @@ namespace VLC_WinRT.Services.RunTime
 
         public string GetAlbumUrl(string filePath)
         {
-            var media = new Media(Instance, "file://" + filePath);
+            var mrl = getMrl(false, filePath, null);
+            if (mrl == null)
+                return null;
+            var media = new Media(Instance, "file://" + mrl);
             media.parse();
             if (!media.isParsed()) return "";
             var url = media.meta(MediaMeta.ArtworkURL);
@@ -156,7 +166,10 @@ namespace VLC_WinRT.Services.RunTime
 
         public MediaProperties GetMusicProperties(string filePath)
         {
-            var media = new Media(Instance, "file://" + filePath);
+            var mrl = getMrl(false, filePath, null);
+            if (mrl == null)
+                return null;
+            var media = new Media(Instance, "file://" + mrl);
             media.parse();
             if (!media.isParsed()) return null;
             var mP = new MediaProperties();
@@ -180,7 +193,9 @@ namespace VLC_WinRT.Services.RunTime
 
         public TimeSpan GetDuration(string filePath)
         {
-            var media = new Media(Instance, "file://" + filePath);
+            var mrl = getMrl(false, filePath, null);
+            if (mrl == null) return TimeSpan.Zero;
+            var media = new Media(Instance, "file://" + mrl);
             media.parse();
             if (!media.isParsed()) return TimeSpan.Zero;
             var durationLong = media.duration();
