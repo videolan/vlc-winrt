@@ -286,8 +286,8 @@
           <target state="translated">お気に入りアルバムを追加するために、</target>
         </trans-unit>
         <trans-unit id="Resources\NoFavoriteAlbumsHeader\Text" translate="yes" xml:space="preserve">
-          <source>You don't have favorite albums...</source>
-          <target state="translated">お気に入りアルバムがありません。</target>
+          <source>You don't have favorite albums</source>
+          <target state="needs-review-translation">お気に入りアルバムがありません。</target><note from="MultilingualUpdate" priority="2" annotates="source">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="Resources\MusicSettings\Text" translate="yes" xml:space="preserve">
           <source>VLC will only search for songs that are in your music library. You can add folders to your library here:</source>
