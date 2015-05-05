@@ -120,7 +120,7 @@ namespace VLC_WinRT.Services.RunTime
 
         void em_OnEncounteredError()
         {
-            Debug.WriteLine("An error occurred ");
+            Debug.WriteLine("VLCService: An error occurred ");
             MediaFailed?.Invoke(this, new EventArgs());
         }
 
