@@ -35,8 +35,6 @@
                 <placeholders:FakeAlbumControl />
                 <placeholders:FakeAlbumControl />
                 <placeholders:FakeAlbumControl />
-                <placeholders:FakeAlbumControl />
-                <placeholders:FakeAlbumControl />
             </ListView.Items>
         </ListView>
         <TextBlock Grid.Row="1"
