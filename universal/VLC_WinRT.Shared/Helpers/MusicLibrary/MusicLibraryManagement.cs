@@ -215,19 +215,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
             try
             {
                 if (!VLCFileExtensions.AudioExtensions.Contains(item.FileType.ToLower())) return;
-                MusicProperties properties = await item.Properties.GetMusicPropertiesAsync();
-                MediaProperties mP = null;
-                if (properties != null)
-                {
-                    mP = new MediaProperties();
-                    mP.Artist = properties.Artist;
-                    mP.Album = properties.Album;
-                    mP.Title = properties.Title;
-                    mP.Year = properties.Year;
-                    mP.Duration = properties.Duration;
-                    mP.Tracknumber = properties.TrackNumber;
-                    mP.Genre = (properties.Genre.Any()) ? properties.Genre[0] : null;
-                }
+                MediaProperties mP = Locator.VLCService.GetMusicProperties(item.Path);
                 if (mP != null)
                 {
                     var artistName = mP.Artist;
