@@ -27,7 +27,7 @@ namespace VLC_WinRT.Views.MainPages
         
         private void SwapPanelLoaded(object sender, RoutedEventArgs e)
         {
-            App.Container.Resolve<VLCService>().Initialize(SwapChainPanel);
+            Locator.VLCService.Initialize(SwapChainPanel);
         }
 
         private void MfMediaElement_Loaded(object sender, RoutedEventArgs e)

@@ -98,5 +98,13 @@ namespace VLC_WinRT.ViewModels
                 return App.Container?.Resolve<NavigationService>();
             }
         }
+
+        public static VLCService VLCService
+        {
+            get
+            {
+                return App.Container?.Resolve<VLCService>();
+            }
+        }
     }
 }

@@ -97,7 +97,7 @@ namespace VLC_WinRT.ViewModels
                 switch (_playerEngine)
                 {
                     case PlayerEngine.VLC:
-                        return App.Container.Resolve<VLCService>();
+                        return Locator.VLCService;
                     case PlayerEngine.MediaFoundation:
                         return App.Container.Resolve<MFService>();
 #if WINDOWS_PHONE_APP
@@ -107,7 +107,7 @@ namespace VLC_WinRT.ViewModels
                     default:
                         //todo : Implement properly BackgroundPlayerService 
                         //todo : so we get rid ASAP of this default switch
-                        return App.Container.Resolve<VLCService>();
+                        return Locator.VLCService;
                 }
             }
         }
