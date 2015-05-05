@@ -75,7 +75,11 @@ namespace VLC_WinRT.Services.RunTime
             }
             else
             {
-                mrl = "file://" + media.Path;
+                if (string.IsNullOrEmpty(media.Path))
+                {
+                    mrl = "file://" + GetToken(media.File);
+                }
+                else mrl = "file://" + media.Path;
             }
             LogHelper.Log("SetMRL: " + mrl);
 
