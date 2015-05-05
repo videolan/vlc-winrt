@@ -65,13 +65,13 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
             CurrentStorageVM = StorageVMs[0];
             Task.Run(() => CurrentStorageVM?.GetFiles());
 #if WINDOWS_APP
+            Task.Run(() => InitializeDLNA());
             _deviceService = App.Container.Resolve<ExternalDeviceService>();
             _deviceService.ExternalDeviceAdded += DeviceAdded;
             _deviceService.ExternalDeviceRemoved += DeviceRemoved;
 #else
             Task.Run(() => InitializeSDCard());
 #endif
-            Task.Run(() => InitializeDLNA());
         }
 
         private async Task InitializeSDCard()
