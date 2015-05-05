@@ -24,7 +24,8 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="40" />
-                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*"
+                               MaxHeight="200"/>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
@@ -40,7 +41,6 @@
                     HorizontalAlignment="Right"
                     Command="{Binding Source={StaticResource Locator}, Path=VideoVm.ToggleIsVideoPlayerSubtitlesSettingsVisible}" />
             <ListView Grid.Row="1"
-                      Height="100"
                       DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
                       ItemsSource="{Binding Subtitles}"
                       SelectedItem="{Binding CurrentSubtitle, Mode=TwoWay}"
