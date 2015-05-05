@@ -58,30 +58,40 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
 
         public VLCExplorerViewModel()
         {
-            RemovableDeviceClicked = new RemovableDeviceClickedCommand();
             var musicLibrary = new FileExplorerViewModel(KnownFolders.MusicLibrary);
             StorageVMs.Add(musicLibrary);
             var videoLibrary = new FileExplorerViewModel(KnownFolders.VideosLibrary);
             StorageVMs.Add(videoLibrary);
             CurrentStorageVM = StorageVMs[0];
-            CurrentStorageVM?.GetFiles();
+            Task.Run(() => CurrentStorageVM?.GetFiles());
 #if WINDOWS_APP
             _deviceService = App.Container.Resolve<ExternalDeviceService>();
             _deviceService.ExternalDeviceAdded += DeviceAdded;
             _deviceService.ExternalDeviceRemoved += DeviceRemoved;
 #else
-            Initialize();           
+            Task.Run(() => InitializeSDCard());
 #endif
+            Task.Run(() => InitializeDLNA());
         }
 
-        private async void Initialize()
+        private async Task InitializeSDCard()
         {
             var devices = KnownFolders.RemovableDevices;
             var cards = await devices.GetFoldersAsync();
             if (cards.Any())
             {
                 var external = new FileExplorerViewModel(cards[0]);
-                StorageVMs.Add(external);
+                await App.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () => StorageVMs.Add(external));
+            }
+        }
+
+        private async void InitializeDLNA()
+        {
+            var dlnaFolders = await KnownFolders.MediaServerDevices.GetFoldersAsync();
+            foreach (var dlnaFolder in dlnaFolders)
+            {
+                var folder = new FileExplorerViewModel(dlnaFolder);
+                await App.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () => StorageVMs.Add(folder));
             }
         }
 
