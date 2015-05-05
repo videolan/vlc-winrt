@@ -139,6 +139,7 @@ static int OpenFileAsyncWithToken(access_sys_t *p_sys, String^ token)
         create_task(newFile->OpenReadAsync())
             .then([p_sys](task<IRandomAccessStreamWithContentType^> task) {
             p_sys->readStream = task.get();
+            p_sys->dataReader = ref new DataReader(p_sys->readStream);
         }).wait();
     });
     try
