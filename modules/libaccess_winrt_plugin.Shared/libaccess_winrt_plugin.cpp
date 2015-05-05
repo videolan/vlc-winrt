@@ -42,6 +42,9 @@ int poll(struct pollfd *, unsigned, int);
 # define restrict __restrict
 #endif
 
+# define VLC_MODULE_COPYRIGHT "Copyright";
+# define VLC_MODULE_LICENSE  VLC_LICENSE_LGPL_2_1_PLUS;
+
 using namespace concurrency;
 using namespace Platform;
 using namespace Windows::Storage;
