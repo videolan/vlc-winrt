@@ -241,7 +241,8 @@
                 </ListView.ItemTemplate>
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <ItemsStackPanel />
+                        <ItemsWrapGrid Orientation="Horizontal"
+                                       ItemWidth="220" />
                     </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
             </ListView>
