@@ -45,17 +45,18 @@
                 </Grid>
                 <TextBlock Text="user interface"
                            Style="{StaticResource SubheaderTextBlockStyle}"
-                           Foreground="{StaticResource MainColor}" />
+                           Foreground="{StaticResource MainColor}" 
+                           Margin="0,12"/>
                 <CheckBox x:Uid="ManualSetThemeCheckbox"
                           Content="Manually set the application theme"
                           IsChecked="{Binding ForceAppTheme, Mode=TwoWay}"
-                          Margin="-3,6,0,0" />
+                          Margin="-6,-6,0,0" />
                 <ToggleSwitch IsEnabled="{Binding ForceAppTheme}"
                               x:Uid="ApplicationTheme"
                               Header="Application theme"
                               OffContent="Light"
                               OnContent="Dark"
-                              Margin="-3,0,0,0">
+                              Margin="-6,0,0,0">
                     <ToggleSwitch.IsOn>
                         <Binding Source="{Binding Source={StaticResource Locator}, Path=MainVM}"
                                  Path="ApplicationTheme"
@@ -63,13 +64,10 @@
                                  Mode="TwoWay" />
                     </ToggleSwitch.IsOn>
                 </ToggleSwitch>
-                <Border Height="1"
-                        Margin="0,12"
-                        Background="{StaticResource SecondColor}" />
-
                 <TextBlock Text="music"
                            Style="{StaticResource SubheaderTextBlockStyle}"
-                           Foreground="{StaticResource MainColor}" />
+                           Foreground="{StaticResource MainColor}"
+                           Margin="0,12" />
                 <TextBlock Text="CONNECT TO LAST.FM"
                            Style="{StaticResource TitleTextBlockStyle}" />
                 <userControls:FocusTextBox Height="30"
@@ -153,7 +151,8 @@
                         Content="Add a new folder"
                         x:Uid="AddFolder"
                         Command="{Binding AddFolderToLibrary}"
-                        CommandParameter="{Binding MusicLibraryId}" />
+                        CommandParameter="{Binding MusicLibraryId}"
+                        Margin="-3,0,0,0" />
                 <TextBlock Tag="WindowsOnly"
                            Text="NOTIFICATIONS"
                            Style="{StaticResource TitleTextBlockStyle}"
@@ -161,20 +160,20 @@
                 <ToggleSwitch  Tag="WindowsOnly"
                                x:Uid="NotificationSongStarts"
                                Header="Notification when a new song starts"
-                               IsOn="{Binding NotificationOnNewSong, Mode=TwoWay}" />
+                               IsOn="{Binding NotificationOnNewSong, Mode=TwoWay}"
+                               Margin="-6,0,0,0" />
                 <ToggleSwitch  Tag="WindowsOnly"
                                x:Uid="NotificationNotBackground"
                                Header="Even if the app is not in background"
                                IsOn="{Binding NotificationOnNewSongForeground, Mode=TwoWay}"
-                               Visibility="{Binding NotificationOnNewSong, Converter={StaticResource BooleanToVisibilityConverter}}" />
-                <Border Height="1"
-                        Margin="0,12"
-                        Background="{StaticResource SecondColor}" />
+                               Visibility="{Binding NotificationOnNewSong, Converter={StaticResource BooleanToVisibilityConverter}}"
+                               Margin="-6,0,0,0" />
 
                 <TextBlock Tag="WindowsOnly"
                            Text="video"
                            Style="{StaticResource SubheaderTextBlockStyle}"
-                           Foreground="{StaticResource MainColor}" />
+                           Foreground="{StaticResource MainColor}"
+                           Margin="0,12" />
                 <TextBlock Tag="WindowsOnly"
                            Text="VIDEO LIBRARY"
                            Style="{StaticResource TitleTextBlockStyle}" />
@@ -219,10 +218,12 @@
                         Content="Add a new folder"
                         x:Uid="AddFolder"
                         Command="{Binding AddFolderToLibrary}"
-                        CommandParameter="{Binding VideoLibraryId}" />
+                        CommandParameter="{Binding VideoLibraryId}"
+                        Margin="-3,0,0,0" />
                 <ToggleSwitch Tag="WindowsOnly"
                               Header="Video playback in background"
-                              IsOn="{Binding ContinueVideoPlaybackInBackground, Mode=TwoWay}" />
+                              IsOn="{Binding ContinueVideoPlaybackInBackground, Mode=TwoWay}"
+                              Margin="-6,0,0,0" />
             </StackPanel>
         </ScrollViewer>
     </Grid>
