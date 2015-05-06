@@ -26,7 +26,8 @@
                       ItemContainerStyle="{StaticResource ListViewItemStyle}"
                       IsItemClickEnabled="True"
                       SelectionMode="None"
-                      IsSwipeEnabled="False">
+                      IsSwipeEnabled="False"
+                      ScrollViewer.VerticalScrollMode="Disabled">
                 <triggers:Interactions.Triggers>
                     <triggers:EventTrigger EventName="ItemClick">
                         <triggers:InvokeCommandAction Command="{Binding AlbumClickedCommand}"
@@ -59,7 +60,8 @@
                       ItemContainerStyle="{StaticResource ListViewItemStyle}"
                       IsItemClickEnabled="True"
                       SelectionMode="None"
-                      IsSwipeEnabled="False">
+                      IsSwipeEnabled="False"
+                      ScrollViewer.VerticalScrollMode="Disabled">
                 <triggers:Interactions.Triggers>
                     <triggers:EventTrigger EventName="ItemClick">
                         <triggers:InvokeCommandAction Command="{Binding OpenVideo}"
