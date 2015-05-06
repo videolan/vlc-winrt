@@ -153,7 +153,7 @@ namespace VLC_WinRT.Services.RunTime
             var mrl = getMrl(false, filePath, null);
             if (mrl == null)
                 return null;
-            var media = new Media(Instance, "file://" + mrl);
+            var media = new Media(Instance, mrl);
             media.parse();
             if (!media.isParsed()) return "";
             var url = media.meta(MediaMeta.ArtworkURL);
@@ -169,7 +169,7 @@ namespace VLC_WinRT.Services.RunTime
             var mrl = getMrl(false, filePath, null);
             if (mrl == null)
                 return null;
-            var media = new Media(Instance, "file://" + mrl);
+            var media = new Media(Instance, mrl);
             media.parse();
             if (!media.isParsed()) return null;
             var mP = new MediaProperties();
@@ -195,7 +195,7 @@ namespace VLC_WinRT.Services.RunTime
         {
             var mrl = getMrl(false, filePath, null);
             if (mrl == null) return TimeSpan.Zero;
-            var media = new Media(Instance, "file://" + mrl);
+            var media = new Media(Instance, mrl);
             media.parse();
             if (!media.isParsed()) return TimeSpan.Zero;
             var durationLong = media.duration();
