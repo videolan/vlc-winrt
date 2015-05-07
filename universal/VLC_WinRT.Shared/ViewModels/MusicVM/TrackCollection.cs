@@ -12,7 +12,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using SQLite;
-using VLC_WinRT.Commands.Music;
+using VLC_WinRT.Commands.MusicLibrary;
 using VLC_WinRT.Model.Music;
 using System.Collections.Generic;
 using System.Linq;

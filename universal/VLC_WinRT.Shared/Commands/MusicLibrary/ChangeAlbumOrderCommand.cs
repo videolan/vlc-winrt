@@ -1,6 +1,6 @@
 ﻿using VLC_WinRT.Utils;
 
-namespace VLC_WinRT.Commands.Music
+namespace VLC_WinRT.Commands.MusicLibrary
 {
     public class ChangeAlbumOrderCommand : AlwaysExecutableCommand
     {

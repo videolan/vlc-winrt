@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel.Resources;
 using Windows.UI.Core;
 using VLC_WinRT.Commands.MediaPlayback;
-using VLC_WinRT.Commands.Music;
+using VLC_WinRT.Commands.MusicLibrary;
 using VLC_WinRT.Helpers;
 using VLC_WinRT.Model.Music;
 using VLC_WinRT.Commands.Social;

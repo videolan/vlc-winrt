@@ -7,7 +7,7 @@ using VLC_WinRT.Utils;
 using VLC_WinRT.ViewModels;
 using WinRTXamlToolkit.Tools;
 
-namespace VLC_WinRT.Commands.Music
+namespace VLC_WinRT.Commands.MusicPlayer
 {
     public class PlayAllRandomCommand : AlwaysExecutableCommand
     {

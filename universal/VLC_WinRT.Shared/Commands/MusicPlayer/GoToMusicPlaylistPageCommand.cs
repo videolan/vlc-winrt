@@ -2,7 +2,7 @@
 using VLC_WinRT.Model;
 using VLC_WinRT.Utils;
 
-namespace VLC_WinRT.Commands.Music
+namespace VLC_WinRT.Commands.MusicPlayer
 {
     public class GoToMusicPlaylistPageCommand : AlwaysExecutableCommand
     {

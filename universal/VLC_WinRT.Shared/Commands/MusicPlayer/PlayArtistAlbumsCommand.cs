@@ -4,7 +4,7 @@ using VLC_WinRT.Model;
 using VLC_WinRT.Utils;
 using VLC_WinRT.Helpers;
 
-namespace VLC_WinRT.Commands.Music
+namespace VLC_WinRT.Commands.MusicPlayer
 {
     public class PlayArtistAlbumsCommand: AlwaysExecutableCommand
     {
