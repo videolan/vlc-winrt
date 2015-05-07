@@ -13,13 +13,14 @@ using System.Threading.Tasks;
 using Windows.UI.Core;
 using SQLite;
 using VLC_WinRT.Commands;
-using VLC_WinRT.Commands.Video;
 using VLC_WinRT.DataRepository;
 using VLC_WinRT.Helpers;
 using VLC_WinRT.Helpers.VideoLibrary;
 using VLC_WinRT.Model;
 using VLC_WinRT.Model.Video;
 using VLC_WinRT.Utils;
+using VLC_WinRT.Commands.VideoPlayer;
+using VLC_WinRT.Commands.VideoLibrary;
 
 namespace VLC_WinRT.ViewModels.VideoVM
 {

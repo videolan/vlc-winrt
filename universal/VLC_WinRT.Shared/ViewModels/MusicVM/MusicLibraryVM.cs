@@ -23,6 +23,7 @@ using VLC_WinRT.Model.Music;
 using VLC_WinRT.Commands.MusicLibrary;
 using VLC_WinRT.Model.Search;
 using VLC_WinRT.Utils;
+using VLC_WinRT.Commands.MusicPlayer;
 
 namespace VLC_WinRT.ViewModels.MusicVM
 {

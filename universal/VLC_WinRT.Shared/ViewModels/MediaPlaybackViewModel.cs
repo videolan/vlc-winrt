@@ -10,7 +10,6 @@
 using Windows.Storage.AccessCache;
 using Windows.Media;
 using System.Collections.Generic;
-using VLC_WinRT.Commands.Video;
 using System.Diagnostics;
 using Windows.Storage;
 using System;
@@ -40,6 +39,8 @@ using Windows.Media.Playback;
 using libVLCX;
 using VLC_WinRT.Utils;
 using WinRTXamlToolkit.Controls.Extensions;
+using VLC_WinRT.Commands.VideoPlayer;
+using VLC_WinRT.Commands.VideoLibrary;
 
 namespace VLC_WinRT.ViewModels
 {

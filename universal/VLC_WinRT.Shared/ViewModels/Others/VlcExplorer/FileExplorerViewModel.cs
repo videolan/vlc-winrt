@@ -5,7 +5,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.UI.Core;
-using VLC_WinRT.Commands.RemovableDevices;
 using VLC_WinRT.Helpers;
 using VLC_WinRT.Model;
 using Windows.Storage.Search;

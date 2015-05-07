@@ -7,16 +7,21 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
+using VLC_WinRT.Model.Video;
 using VLC_WinRT.Utils;
-using VLC_WinRT.ViewModels;
 
-namespace VLC_WinRT.Commands.Video
+namespace VLC_WinRT.Commands.VideoLibrary
 {
-    public class SetSubtitleTrackCommand : AlwaysExecutableCommand
+    public class FavoriteVideoCommand : AlwaysExecutableCommand
     {
         public override void Execute(object parameter)
         {
-            Locator.MediaPlaybackViewModel.SetSubtitleTrack((int)parameter);
+            if (parameter as VideoItem != null)
+            {
+                (parameter as VideoItem).Favorite = !(parameter as VideoItem).Favorite;
+                //SerializationHelper.SerializeAsJson(Locator.MainVM.VideoVM.Media, "VideosDB.json", null,
+                //    CreationCollisionOption.ReplaceExisting);
+            }
         }
     }
 }

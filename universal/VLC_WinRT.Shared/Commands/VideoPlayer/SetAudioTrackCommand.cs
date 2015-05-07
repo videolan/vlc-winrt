@@ -10,7 +10,7 @@
 using VLC_WinRT.Utils;
 using VLC_WinRT.ViewModels;
 
-namespace VLC_WinRT.Commands.Video
+namespace VLC_WinRT.Commands.VideoPlayer
 {
     public class SetAudioTrackCommand : AlwaysExecutableCommand
     {
