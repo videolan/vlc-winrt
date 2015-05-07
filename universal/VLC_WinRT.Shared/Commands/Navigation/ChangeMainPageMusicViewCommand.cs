@@ -6,7 +6,7 @@ using VLC_WinRT.Views.MainPages.MainMusicControls;
 using VLC_WinRT.Views.MainPages.MusicPanes;
 using Windows.UI.Xaml.Controls;
 
-namespace VLC_WinRT.Commands.MainPageCommands
+namespace VLC_WinRT.Commands.Navigation
 {
     public class ChangeMainPageMusicViewCommand : AlwaysExecutableCommand
     {

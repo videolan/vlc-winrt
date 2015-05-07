@@ -14,7 +14,7 @@ using VLC_WinRT.Utils;
 using VLC_WinRT.ViewModels;
 using VLC_WinRT.Views.MainPages;
 
-namespace VLC_WinRT.Commands.MainPageCommands
+namespace VLC_WinRT.Commands.Navigation
 {
 
     public class GoToPanelCommand : AlwaysExecutableCommand

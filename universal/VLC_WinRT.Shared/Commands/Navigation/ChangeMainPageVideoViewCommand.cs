@@ -4,7 +4,7 @@ using VLC_WinRT.Views.MainPages;
 using VLC_WinRT.Views.MainPages.MainVideoControls;
 using Windows.UI.Xaml.Controls;
 
-namespace VLC_WinRT.Commands.MainPageCommands
+namespace VLC_WinRT.Commands.Navigation
 {
     public class ChangeMainPageVideoViewCommand : AlwaysExecutableCommand
     {

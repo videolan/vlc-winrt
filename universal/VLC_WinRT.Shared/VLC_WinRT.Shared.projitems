@@ -17,10 +17,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)BackgroundHelpers\BackgroundTaskTools.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\ActionCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\ClearHistoryCommand.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Commands\MainPageCommands\ChangeMainPageMusicViewCommand.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Commands\MainPageCommands\ChangeMainPageVideoViewCommand.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Commands\MainPageCommands\DisplayMenuBarControlToggleCommand.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Commands\MainPageCommands\GoToPanelCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\Navigation\ChangeMainPageMusicViewCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\Navigation\ChangeMainPageVideoViewCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\Navigation\DisplayMenuBarControlToggleCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Commands\Navigation\GoToPanelCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\MediaPlayback\PlayNextCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\MediaPlayback\PlayPauseCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\MediaPlayback\PlayPreviousCommand.cs" />
