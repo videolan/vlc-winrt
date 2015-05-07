@@ -7,7 +7,7 @@ using VLC_WinRT.Utils;
 using VLC_WinRT.ViewModels;
 using WinRTXamlToolkit.IO.Extensions;
 
-namespace VLC_WinRT.Commands.Social
+namespace VLC_WinRT.Commands.MusicPlayer
 {
     public class ShareNowPlayingMusicCommand : AlwaysExecutableCommand
     {

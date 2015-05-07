@@ -13,7 +13,7 @@ using VLC_WinRT.Model.Music;
 using VLC_WinRT.Utils;
 using VLC_WinRT.ViewModels;
 
-namespace VLC_WinRT.Commands.MusicLibraryPlayer
+namespace VLC_WinRT.Commands.MusicPlayer
 {
     public class FavoriteTrackCommand : AlwaysExecutableCommand
     {
