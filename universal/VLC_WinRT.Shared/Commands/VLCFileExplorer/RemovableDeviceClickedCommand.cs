@@ -4,7 +4,7 @@ using VLC_WinRT.Utils;
 using VLC_WinRT.ViewModels;
 using VLC_WinRT.ViewModels.Others.VlcExplorer;
 
-namespace VLC_WinRT.Commands.RemovableDevices
+namespace VLC_WinRT.Commands.VLCFileExplorer
 {
     public class RemovableDeviceClickedCommand : AlwaysExecutableCommand
     {

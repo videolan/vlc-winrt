@@ -2,7 +2,7 @@
 using VLC_WinRT.ViewModels;
 using VLC_WinRT.Views.MainPages;
 
-namespace VLC_WinRT.Commands.RemovableDevices
+namespace VLC_WinRT.Commands.VLCFileExplorer
 {
     public class GoUpperFolderCommand : AlwaysExecutableCommand
     {
