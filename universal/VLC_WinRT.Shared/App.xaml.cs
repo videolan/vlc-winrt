@@ -175,7 +175,7 @@ namespace VLC_WinRT
                         case OpenFilePickerReason.OnOpeningSubtitle:
                             {
                                 string mru = StorageApplicationPermissions.FutureAccessList.Add(continueArgs.Files[0]);
-                                string mrl = "file://" + mru;
+                                string mrl = "winrt://" + mru;
                                 Locator.MediaPlaybackViewModel.OpenSubtitle(mrl);
                             }
                             break;

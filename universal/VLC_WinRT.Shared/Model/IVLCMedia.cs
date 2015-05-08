@@ -11,5 +11,6 @@ namespace VLC_WinRT.Model
         TimeSpan Duration { get; set; }
         StorageFile File { get; set; }
         bool IsCurrentPlaying { get; set; }
+        Tuple<int, string> GetMrlAndFromType();
     }
 }

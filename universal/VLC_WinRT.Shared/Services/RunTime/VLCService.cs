@@ -66,33 +66,15 @@ namespace VLC_WinRT.Services.RunTime
 
         private bool _isAudioMedia;
 
-        private string getMrl(bool isStream, string path, StorageFile file)
-        {
-            if (isStream)
-            {
-                return path;
-            }
-            else
-            {
-                if (string.IsNullOrEmpty(path))
-                {
-                    if (file != null)
-                        return "file://" + GetToken(file);
-                    return null;
-                }
-                return "file://" + path;
-            }
-        }
 
         public async Task SetMediaFile(IVLCMedia media)
         {
-            string mrl = getMrl(media is StreamMedia, media.Path, media.File);
-
-            LogHelper.Log("SetMRL: " + mrl);
-
+            var mrl_fromType = media.GetMrlAndFromType();
+            LogHelper.Log("SetMRL: " + mrl_fromType.Item2);
             await PlayerInstanceReady.Task;
             if (Instance == null) return;
-            var mediaVLC = new Media(Instance, mrl);
+            var mediaVLC = new Media(Instance, mrl_fromType.Item2, mrl_fromType.Item1);
+
             MediaPlayer = new MediaPlayer(mediaVLC);
             LogHelper.Log("PLAYWITHVLC: MediaPlayer instance created");
             var em = MediaPlayer.eventManager();
@@ -142,18 +124,13 @@ namespace VLC_WinRT.Services.RunTime
             var file = await StorageFile.GetFileFromPathAsync(filePath);
             return StorageApplicationPermissions.FutureAccessList.Add(file);
         }
-
-        public string GetToken(StorageFile file)
-        {
-            return StorageApplicationPermissions.FutureAccessList.Add(file);
-        }
+        
 
         public string GetAlbumUrl(string filePath)
         {
-            var mrl = getMrl(false, filePath, null);
-            if (mrl == null)
+            if (string.IsNullOrEmpty(filePath))
                 return null;
-            var media = new Media(Instance, mrl);
+            var media = new Media(Instance, filePath, 0);
             media.parse();
             if (!media.isParsed()) return "";
             var url = media.meta(MediaMeta.ArtworkURL);
@@ -166,10 +143,9 @@ namespace VLC_WinRT.Services.RunTime
 
         public MediaProperties GetMusicProperties(string filePath)
         {
-            var mrl = getMrl(false, filePath, null);
-            if (mrl == null)
+            if (string.IsNullOrEmpty(filePath))
                 return null;
-            var media = new Media(Instance, mrl);
+            var media = new Media(Instance, filePath, 0);
             media.parse();
             if (!media.isParsed()) return null;
             var mP = new MediaProperties();
@@ -193,11 +169,12 @@ namespace VLC_WinRT.Services.RunTime
 
         public TimeSpan GetDuration(string filePath)
         {
-            var mrl = getMrl(false, filePath, null);
-            if (mrl == null) return TimeSpan.Zero;
-            var media = new Media(Instance, mrl);
+            if (string.IsNullOrEmpty(filePath))
+                return TimeSpan.Zero;
+            var media = new Media(Instance, filePath, 0);
             media.parse();
-            if (!media.isParsed()) return TimeSpan.Zero;
+            if (!media.isParsed())
+                return TimeSpan.Zero;
             var durationLong = media.duration();
             return TimeSpan.FromMilliseconds(durationLong);
         }

@@ -18,6 +18,7 @@ using VLC_WinRT.Helpers.VideoLibrary;
 using VLC_WinRT.Utils;
 using VLC_WinRT.ViewModels;
 using System.Diagnostics;
+using Windows.Storage.AccessCache;
 
 namespace VLC_WinRT.Model.Video
 {
@@ -233,6 +234,20 @@ namespace VLC_WinRT.Model.Video
                 TimeSpan duration = Locator.VLCService.GetDuration(_filePath);
                 Duration = duration;
             });
+        }
+
+        public Tuple<int, string> GetMrlAndFromType()
+        {
+            if (string.IsNullOrEmpty(Path))
+            {
+                if (File != null)
+                {
+                    // Using a Token
+                    // FromLocation : 1
+                    return new Tuple<int, string>(1, "winrt://" + StorageApplicationPermissions.FutureAccessList.Add(File));
+                }
+            }
+            return new Tuple<int, string>(0, Path);
         }
         #endregion
     }

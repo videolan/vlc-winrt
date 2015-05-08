@@ -44,5 +44,12 @@ namespace VLC_WinRT.Model.Stream
         {
             Path = mrl;
         }
+
+        public Tuple<int, string> GetMrlAndFromType()
+        {
+            // Using a Mrl
+            // FromLocation : 1
+            return new Tuple<int, string>(1, Path);
+        }
     }
 }

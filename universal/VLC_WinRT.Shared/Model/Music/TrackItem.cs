@@ -4,6 +4,7 @@ using SQLite;
 using VLC_WinRT.Commands.MusicLibrary;
 using VLC_WinRT.Commands.MusicPlayer;
 using VLC_WinRT.Utils;
+using Windows.Storage.AccessCache;
 
 namespace VLC_WinRT.Model.Music
 {
@@ -105,6 +106,20 @@ namespace VLC_WinRT.Model.Music
         {
             get { return _file; }
             set { SetProperty(ref _file, value); }
+        }
+
+        public Tuple<int, string> GetMrlAndFromType()
+        {
+            if (string.IsNullOrEmpty(Path))
+            {
+                if (File != null)
+                {
+                    // Using a Token
+                    // FromLocation : 1
+                    return new Tuple<int, string>(1, "winrt://" + StorageApplicationPermissions.FutureAccessList.Add(File));
+                }
+            }
+            return new Tuple<int, string>(0, Path);
         }
     }
 }

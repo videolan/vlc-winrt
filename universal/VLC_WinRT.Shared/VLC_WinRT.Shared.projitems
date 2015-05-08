@@ -169,7 +169,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Model\VLCFileExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\VLCFolder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\VLCItemType.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Model\VLCMedia.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\IVLCMedia.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\VLCPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\DesignTime\ThumbnailService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\Interface\IMediaService.cs" />
