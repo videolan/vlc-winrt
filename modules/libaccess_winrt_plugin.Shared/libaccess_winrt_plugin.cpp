@@ -162,31 +162,32 @@ static int OpenFileAsyncWithToken(access_sys_t *p_sys, String^ token)
 int Open(vlc_object_t *object)
 {
     access_t *access = (access_t *) object;
+    String^ futureAccesToken;
+    int (*pf_open)(access_sys_t *, String^);
 
-    String^ futureAccesToken = GetString(access->psz_location);
-    auto charBegin = futureAccesToken->Begin()[0];
-    auto charEnd = (futureAccesToken->End() - 1)[0];
-
+    if (strncmp(access->psz_access, "winrt", 5) == 0) {
+        futureAccesToken = GetString(access->psz_location);
+        auto charBegin = futureAccesToken->Begin()[0];
+        auto charEnd = (futureAccesToken->End() - 1)[0];
+        if ((charBegin != '{') || ((charEnd != '}') || futureAccesToken->Length() < 32))
+            return VLC_EGENERIC;
+        pf_open = OpenFileAsyncWithToken;
+    }
+    else if (strncmp(access->psz_access, "file", 4) == 0) {
+        pf_open = OpenFileAsync;
+        futureAccesToken = GetString(access->psz_filepath);
+    }
+    else
+        return VLC_EGENERIC;
 
     access_sys_t *p_sys = access->p_sys = new(std::nothrow) access_sys_t();
     if (p_sys == nullptr)
         return VLC_EGENERIC;
-    if ((charBegin == '{') && ((charEnd == '}') && futureAccesToken->Length() >= 32))
-    {
-        if (OpenFileAsyncWithToken(p_sys, futureAccesToken) != VLC_SUCCESS)
-        {
-            OutputDebugStringW(L"Error opening file with Token");
-            Close(object);
-            return VLC_EGENERIC;
-        }
-    }
-    else
-    {
-        if (OpenFileAsync(p_sys, futureAccesToken) != VLC_SUCCESS) {
-            OutputDebugStringW(L"Error opening file with Path");
-            Close(object);
-            return VLC_EGENERIC;
-        }
+
+    if (pf_open(p_sys, futureAccesToken ) != VLC_SUCCESS) {
+        OutputDebugStringW(L"Error opening file with Path");
+        Close(object);
+        return VLC_EGENERIC;
     }
 
     access->pf_read = &Read;
