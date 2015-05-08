@@ -203,8 +203,10 @@ find tmp \( -name "*.dll" -o -name "*.exe" \) -exec ../../appcontainer.pl {} \;
 cp lib/.libs/libvlc.dll.a tmp/libvlc.lib
 cp src/.libs/libvlccore.dll.a tmp/libvlccore.lib
 
+CURRENTDATE="$(date +%Y%m%d)"
+
 cd tmp
-7z a ../vlc-${MSVC_TUPLE}.7z *
+7z a ../vlc-${MSVC_TUPLE}-${CURRENTDATE}.7z *
 cd ..
 rm -rf tmp
 
