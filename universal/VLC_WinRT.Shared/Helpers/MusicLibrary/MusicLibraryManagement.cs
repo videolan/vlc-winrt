@@ -292,13 +292,11 @@ namespace VLC_WinRT.Helpers.MusicLibrary
             Locator.MusicLibraryVM.Tracks.Add(track);
         }
 
-        public static async Task<bool> SetAlbumCover(AlbumItem album, string filePath, bool useLibVLc, VLCService vlcService = null)
+        public static async Task<bool> SetAlbumCover(AlbumItem album, string filePath, bool useLibVLc)
         {
             if (useLibVLc)
             {
-                if (vlcService == null)
-                    vlcService = App.Container.Resolve<VLCService>();
-                var albumUrl = vlcService.GetAlbumUrl(filePath);
+                var albumUrl = Locator.VLCService.GetAlbumUrl(filePath);
                 if (!string.IsNullOrEmpty(albumUrl))
                 {
                     await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>

@@ -159,9 +159,8 @@ namespace VLC_WinRT.Model.Music
                     Debug.WriteLine("Searching local cover for " + Name);
                     IsLocalPictureIndexed = true;
                     await Locator.MusicLibraryVM._albumDataRepository.Update(this);
-                    var mediaService = Locator.VLCService;
                     var trackPath = await Locator.MusicLibraryVM._trackDataRepository.GetFirstTrackPathByAlbumId(Id);
-                    success = await MusicLibraryManagement.SetAlbumCover(this, trackPath, false, mediaService);
+                    success = await MusicLibraryManagement.SetAlbumCover(this, trackPath, true);
                     if (success) await ResetAlbumArt();
                 }
                 if (IsPictureLoaded || success)
