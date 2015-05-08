@@ -136,11 +136,26 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\libvlc.dll">
+      <Link>libvlc.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\libvlccore.dll">
+      <Link>libvlccore.dll</Link>
+    </Content>
     <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\access\libaccess_bd_plugin.dll">
       <Link>plugins\access\libaccess_bd_plugin.dll</Link>
     </Content>
+    <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\access\libaccess_imem_plugin.dll">
+      <Link>plugins\access\libaccess_imem_plugin.dll</Link>
+    </Content>
     <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\access\libaccess_mms_plugin.dll">
       <Link>plugins\access\libaccess_mms_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\access\libaccess_realrtsp_plugin.dll">
+      <Link>plugins\access\libaccess_realrtsp_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\access\libaccess_winrt_plugin.dll">
+      <Link>plugins\access\libaccess_winrt_plugin.dll</Link>
     </Content>
     <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\access\libattachment_plugin.dll">
       <Link>plugins\access\libattachment_plugin.dll</Link>
@@ -202,6 +217,9 @@
     <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\audio_filter\libdolby_surround_decoder_plugin.dll">
       <Link>plugins\audio_filter\libdolby_surround_decoder_plugin.dll</Link>
     </Content>
+    <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\audio_filter\libdtstofloat32_plugin.dll">
+      <Link>plugins\audio_filter\libdtstofloat32_plugin.dll</Link>
+    </Content>
     <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\audio_filter\libdtstospdif_plugin.dll">
       <Link>plugins\audio_filter\libdtstospdif_plugin.dll</Link>
     </Content>
@@ -216,6 +234,9 @@
     </Content>
     <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\audio_filter\libkaraoke_plugin.dll">
       <Link>plugins\audio_filter\libkaraoke_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\audio_filter\libmad_plugin.dll">
+      <Link>plugins\audio_filter\libmad_plugin.dll</Link>
     </Content>
     <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\audio_filter\libmono_plugin.dll">
       <Link>plugins\audio_filter\libmono_plugin.dll</Link>
@@ -237,6 +258,9 @@
     </Content>
     <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\audio_filter\libspatializer_plugin.dll">
       <Link>plugins\audio_filter\libspatializer_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\audio_filter\libspeex_resampler_plugin.dll">
+      <Link>plugins\audio_filter\libspeex_resampler_plugin.dll</Link>
     </Content>
     <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\audio_filter\libstereo_widen_plugin.dll">
       <Link>plugins\audio_filter\libstereo_widen_plugin.dll</Link>
@@ -262,6 +286,12 @@
     <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\audio_output\libamem_plugin.dll">
       <Link>plugins\audio_output\libamem_plugin.dll</Link>
     </Content>
+    <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\audio_output\libwasapi_plugin.dll">
+      <Link>plugins\audio_output\libwasapi_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\audio_output\libwinstore_plugin.dll">
+      <Link>plugins\audio_output\libwinstore_plugin.dll</Link>
+    </Content>
     <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\codec\liba52_plugin.dll">
       <Link>plugins\codec\liba52_plugin.dll</Link>
     </Content>
@@ -273,6 +303,9 @@
     </Content>
     <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\codec\libaraw_plugin.dll">
       <Link>plugins\codec\libaraw_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\codec\libaribsub_plugin.dll">
+      <Link>plugins\codec\libaribsub_plugin.dll</Link>
     </Content>
     <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\codec\libavcodec_plugin.dll">
       <Link>plugins\codec\libavcodec_plugin.dll</Link>
@@ -301,20 +334,35 @@
     <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\codec\libkate_plugin.dll">
       <Link>plugins\codec\libkate_plugin.dll</Link>
     </Content>
+    <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\codec\liblibass_plugin.dll">
+      <Link>plugins\codec\liblibass_plugin.dll</Link>
+    </Content>
     <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\codec\liblpcm_plugin.dll">
       <Link>plugins\codec\liblpcm_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\codec\libmft_plugin.dll">
+      <Link>plugins\codec\libmft_plugin.dll</Link>
     </Content>
     <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\codec\libmpeg_audio_plugin.dll">
       <Link>plugins\codec\libmpeg_audio_plugin.dll</Link>
     </Content>
+    <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\codec\libmpg123_plugin.dll">
+      <Link>plugins\codec\libmpg123_plugin.dll</Link>
+    </Content>
     <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\codec\libopus_plugin.dll">
       <Link>plugins\codec\libopus_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\codec\libpng_plugin.dll">
+      <Link>plugins\codec\libpng_plugin.dll</Link>
     </Content>
     <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\codec\librawvideo_plugin.dll">
       <Link>plugins\codec\librawvideo_plugin.dll</Link>
     </Content>
     <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\codec\libscte27_plugin.dll">
       <Link>plugins\codec\libscte27_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\codec\libspeex_plugin.dll">
+      <Link>plugins\codec\libspeex_plugin.dll</Link>
     </Content>
     <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\codec\libspudec_plugin.dll">
       <Link>plugins\codec\libspudec_plugin.dll</Link>
@@ -325,6 +373,9 @@
     <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\codec\libsubsdec_plugin.dll">
       <Link>plugins\codec\libsubsdec_plugin.dll</Link>
     </Content>
+    <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\codec\libsubsttml_plugin.dll">
+      <Link>plugins\codec\libsubsttml_plugin.dll</Link>
+    </Content>
     <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\codec\libsubstx3g_plugin.dll">
       <Link>plugins\codec\libsubstx3g_plugin.dll</Link>
     </Content>
@@ -333,6 +384,9 @@
     </Content>
     <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\codec\libsvcdsub_plugin.dll">
       <Link>plugins\codec\libsvcdsub_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\codec\libtheora_plugin.dll">
+      <Link>plugins\codec\libtheora_plugin.dll</Link>
     </Content>
     <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\codec\libuleaddvaudio_plugin.dll">
       <Link>plugins\codec\libuleaddvaudio_plugin.dll</Link>
@@ -445,8 +499,14 @@
     <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\demux\libsubtitle_plugin.dll">
       <Link>plugins\demux\libsubtitle_plugin.dll</Link>
     </Content>
+    <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\demux\libts_plugin.dll">
+      <Link>plugins\demux\libts_plugin.dll</Link>
+    </Content>
     <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\demux\libtta_plugin.dll">
       <Link>plugins\demux\libtta_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\demux\libttml_plugin.dll">
+      <Link>plugins\demux\libttml_plugin.dll</Link>
     </Content>
     <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\demux\libty_plugin.dll">
       <Link>plugins\demux\libty_plugin.dll</Link>
@@ -466,8 +526,20 @@
     <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\demux\libxa_plugin.dll">
       <Link>plugins\demux\libxa_plugin.dll</Link>
     </Content>
+    <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\logger\libconsole_logger_plugin.dll">
+      <Link>plugins\logger\libconsole_logger_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\logger\libfile_logger_plugin.dll">
+      <Link>plugins\logger\libfile_logger_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\lua\liblua_plugin.dll">
+      <Link>plugins\lua\liblua_plugin.dll</Link>
+    </Content>
     <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\meta_engine\libfolder_plugin.dll">
       <Link>plugins\meta_engine\libfolder_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\meta_engine\libtaglib_plugin.dll">
+      <Link>plugins\meta_engine\libtaglib_plugin.dll</Link>
     </Content>
     <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\misc\libaddonsfsstorage_plugin.dll">
       <Link>plugins\misc\libaddonsfsstorage_plugin.dll</Link>
@@ -547,17 +619,35 @@
     <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\video_chroma\libgrey_yuv_plugin.dll">
       <Link>plugins\video_chroma\libgrey_yuv_plugin.dll</Link>
     </Content>
+    <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\video_chroma\libi420_rgb_mmx_plugin.dll">
+      <Link>plugins\video_chroma\libi420_rgb_mmx_plugin.dll</Link>
+    </Content>
     <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\video_chroma\libi420_rgb_plugin.dll">
       <Link>plugins\video_chroma\libi420_rgb_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\video_chroma\libi420_rgb_sse2_plugin.dll">
+      <Link>plugins\video_chroma\libi420_rgb_sse2_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\video_chroma\libi420_yuy2_mmx_plugin.dll">
+      <Link>plugins\video_chroma\libi420_yuy2_mmx_plugin.dll</Link>
     </Content>
     <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\video_chroma\libi420_yuy2_plugin.dll">
       <Link>plugins\video_chroma\libi420_yuy2_plugin.dll</Link>
     </Content>
+    <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\video_chroma\libi420_yuy2_sse2_plugin.dll">
+      <Link>plugins\video_chroma\libi420_yuy2_sse2_plugin.dll</Link>
+    </Content>
     <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\video_chroma\libi422_i420_plugin.dll">
       <Link>plugins\video_chroma\libi422_i420_plugin.dll</Link>
     </Content>
+    <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\video_chroma\libi422_yuy2_mmx_plugin.dll">
+      <Link>plugins\video_chroma\libi422_yuy2_mmx_plugin.dll</Link>
+    </Content>
     <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\video_chroma\libi422_yuy2_plugin.dll">
       <Link>plugins\video_chroma\libi422_yuy2_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\video_chroma\libi422_yuy2_sse2_plugin.dll">
+      <Link>plugins\video_chroma\libi422_yuy2_sse2_plugin.dll</Link>
     </Content>
     <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\video_chroma\librv32_plugin.dll">
       <Link>plugins\video_chroma\librv32_plugin.dll</Link>
@@ -582,6 +672,9 @@
     </Content>
     <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\video_filter\libantiflicker_plugin.dll">
       <Link>plugins\video_filter\libantiflicker_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\video_filter\libaudiobargraph_v_plugin.dll">
+      <Link>plugins\video_filter\libaudiobargraph_v_plugin.dll</Link>
     </Content>
     <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\video_filter\libball_plugin.dll">
       <Link>plugins\video_filter\libball_plugin.dll</Link>
@@ -673,6 +766,9 @@
     <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\video_filter\libripple_plugin.dll">
       <Link>plugins\video_filter\libripple_plugin.dll</Link>
     </Content>
+    <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\video_filter\librotate_plugin.dll">
+      <Link>plugins\video_filter\librotate_plugin.dll</Link>
+    </Content>
     <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\video_filter\librss_plugin.dll">
       <Link>plugins\video_filter\librss_plugin.dll</Link>
     </Content>
@@ -703,6 +799,9 @@
     <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\video_filter\libyuvp_plugin.dll">
       <Link>plugins\video_filter\libyuvp_plugin.dll</Link>
     </Content>
+    <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\video_output\libdirect2d_winrt_plugin.dll">
+      <Link>plugins\video_output\libdirect2d_winrt_plugin.dll</Link>
+    </Content>
     <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\video_output\libdrawable_plugin.dll">
       <Link>plugins\video_output\libdrawable_plugin.dll</Link>
     </Content>
@@ -723,27 +822,6 @@
     </Content>
     <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\visualization\libvisual_plugin.dll">
       <Link>plugins\visualization\libvisual_plugin.dll</Link>
-    </Content>
-    <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\access\libaccess_winrt_plugin.dll">
-      <Link>plugins\access\libaccess_winrt_plugin.dll</Link>
-    </Content>
-    <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\audio_output\libwasapi_plugin.dll">
-      <Link>plugins\audio_output\libwasapi_plugin.dll</Link>
-    </Content>
-    <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\audio_output\libwinstore_plugin.dll">
-      <Link>plugins\audio_output\libwinstore_plugin.dll</Link>
-    </Content>
-    <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\video_output\libdirect2d_winrt_plugin.dll">
-      <Link>plugins\video_output\libdirect2d_winrt_plugin.dll</Link>
-    </Content>
-    <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\libvlc.dll">
-      <Link>libvlc.dll</Link>
-    </Content>
-    <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\libvlccore.dll">
-      <Link>libvlccore.dll</Link>
-    </Content>
-    <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\audio_filter\libdtstofloat32_plugin.dll">
-      <Link>plugins\audio_filter\libdtstofloat32_plugin.dll</Link>
     </Content>
     <Content Include="Assets\BadgeLogo.scale-100.png" />
     <Content Include="Assets\BadgeLogo.scale-140.png" />
