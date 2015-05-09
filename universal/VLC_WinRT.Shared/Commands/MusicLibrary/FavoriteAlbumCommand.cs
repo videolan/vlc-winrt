@@ -8,7 +8,7 @@
  **********************************************************************/
 
 using System.Linq;
-using VLC_WinRT.DataRepository;
+using VLC_WinRT.Database;
 using VLC_WinRT.Model.Music;
 using VLC_WinRT.Utils;
 using VLC_WinRT.ViewModels;
@@ -25,7 +25,7 @@ namespace VLC_WinRT.Commands.MusicLibrary
             // If the album is favorite, then now it is not
             // if the album was not favorite, now it is
             album.Favorite = !album.Favorite;
-            var albumDataRepository = new AlbumDataRepository();
+            var albumDatabase = new AlbumDatabase();
             // updating the FavoriteAlbums collection
             if (album.Favorite)
             {
@@ -40,7 +40,7 @@ namespace VLC_WinRT.Commands.MusicLibrary
                 Locator.MusicLibraryVM.RandomAlbums.Remove(album);
             }
             // Update database;
-            await albumDataRepository.Update(album);
+            await albumDatabase.Update(album);
         }
     }
 }

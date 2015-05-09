@@ -8,13 +8,13 @@ using VLC_WinRT.Model.Music;
 using System.Collections.Generic;
 using VLC_WinRT.Utils;
 
-namespace VLC_WinRT.DataRepository
+namespace VLC_WinRT.Database
 {
-    public class AlbumDataRepository : IDataRepository
+    public class AlbumDatabase : IDatabase
     {
         private static readonly string DbPath = Strings.MusicDatabase;
 
-        public AlbumDataRepository()
+        public AlbumDatabase()
         {
             Initialize();
         }

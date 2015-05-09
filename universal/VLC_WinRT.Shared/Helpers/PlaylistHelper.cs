@@ -94,7 +94,7 @@ namespace VLC_WinRT.Helpers
             {
                 await Locator.MediaPlaybackViewModel.TrackCollection.ResetCollection();
             }
-            var trackItems = await Locator.MusicLibraryVM._trackDataRepository.LoadTracksByAlbumId(albumId);
+            var trackItems = await Locator.MusicLibraryVM._trackDatabase.LoadTracksByAlbumId(albumId);
             await Locator.MediaPlaybackViewModel.TrackCollection.Add(trackItems);
             if (play)
             {
@@ -119,7 +119,7 @@ namespace VLC_WinRT.Helpers
             {
                 await Locator.MediaPlaybackViewModel.TrackCollection.ResetCollection();
             }
-            var trackItems = await Locator.MusicLibraryVM._trackDataRepository.LoadTracksByArtistId(artistId);
+            var trackItems = await Locator.MusicLibraryVM._trackDatabase.LoadTracksByArtistId(artistId);
             await Locator.MediaPlaybackViewModel.TrackCollection.Add(trackItems);
             if (play)
                 await PlayMusicTrack(trackItems[0].Id);

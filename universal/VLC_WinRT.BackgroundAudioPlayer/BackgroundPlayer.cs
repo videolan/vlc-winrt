@@ -7,7 +7,7 @@ using Windows.Foundation.Collections;
 using Windows.Media;
 using Windows.Media.Playback;
 using VLC_WinRT.BackgroundAudioPlayer.Model;
-using VLC_WinRT.Database.DataRepository;
+using VLC_WinRT.Database.Database;
 using VLC_WinRT.LastFmScrobbler;
 
 namespace VLC_WinRT.BackgroundAudioPlayer
@@ -32,7 +32,7 @@ namespace VLC_WinRT.BackgroundAudioPlayer
         private ForegroundAppStatus foregroundAppState = ForegroundAppStatus.Unknown;
         private AutoResetEvent BackgroundTaskStarted = new AutoResetEvent(false);
         private bool backgroundtaskrunning = false;
-        private BackgroundTrackRepository _backgroundTrackRepository = new BackgroundTrackRepository();
+        private BackgroundTrackDatabase _backgroundTrackRepository = new BackgroundTrackDatabase();
         /// <summary>
         /// Property to hold current playlist
         /// </summary>

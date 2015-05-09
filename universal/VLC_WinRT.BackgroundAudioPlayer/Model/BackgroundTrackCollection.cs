@@ -7,7 +7,7 @@ using Windows.Foundation.Collections;
 using Windows.Media;
 using Windows.Media.Playback;
 using Windows.Storage;
-using VLC_WinRT.Database.DataRepository;
+using VLC_WinRT.Database.Database;
 using VLC_WinRT.BackgroundAudioPlayer.Model;
 
 namespace VLC_WinRT.BackgroundAudioPlayer
@@ -15,7 +15,7 @@ namespace VLC_WinRT.BackgroundAudioPlayer
     public sealed class BackgroundTrackCollection
     {
         private SystemMediaTransportControls systemmediatransportcontrol;
-        private BackgroundTrackRepository _backgroundTrackRepository = new BackgroundTrackRepository();
+        private BackgroundTrackDatabase _backgroundTrackRepository = new BackgroundTrackDatabase();
         #region public properties
         public int Id { get; set; }
 

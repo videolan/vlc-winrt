@@ -14,7 +14,7 @@ using VLC_WinRT.Model;
 using VLC_WinRT.Model.Video;
 using VLC_WinRT.ViewModels;
 using WinRTXamlToolkit.IO.Extensions;
-using VLC_WinRT.DataRepository;
+using VLC_WinRT.Database;
 using VLC_WinRT.Services.Interface;
 using VLC_WinRT.Utils;
 

@@ -13,7 +13,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Windows.System;
 using Windows.UI.Xaml;
-using VLC_WinRT.DataRepository;
+using VLC_WinRT.Database;
 using VLC_WinRT.Helpers;
 using VLC_WinRT.Helpers.MusicLibrary;
 using VLC_WinRT.Model.Music;
@@ -44,15 +44,15 @@ namespace VLC_WinRT.ViewModels.Settings
         private string _lastFmPassword;
         private bool _lastFmIsConnected = false;
         private bool _forceAppTheme;
-        private KeyboardActionDataRepository _keyboardActionDataRepository;
+        private KeyboardActionDatabase _keyboardActionDatabase;
 
-        public KeyboardActionDataRepository KeyboardActionDataRepository
+        public KeyboardActionDatabase KeyboardActionDatabase
         {
             get
             {
-                _keyboardActionDataRepository = new KeyboardActionDataRepository();
+                _keyboardActionDatabase = new KeyboardActionDatabase();
 
-                var actions = _keyboardActionDataRepository.GetAllKeyboardActions();
+                var actions = _keyboardActionDatabase.GetAllKeyboardActions();
                 if (!actions.Any())
                 {
                     // never set before, we need to do it ...
@@ -148,9 +148,9 @@ namespace VLC_WinRT.ViewModels.Settings
                             SecondKey = VirtualKey.N
                         }
                     };
-                    _keyboardActionDataRepository.AddKeyboardActions(actionsToSet);
+                    _keyboardActionDatabase.AddKeyboardActions(actionsToSet);
                 }
-                return _keyboardActionDataRepository;
+                return _keyboardActionDatabase;
             }
         }
 

@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 using VLC_WinRT.Model.Video;
 using VLC_WinRT.Utils;
 
-namespace VLC_WinRT.DataRepository
+namespace VLC_WinRT.Database
 {
-    public class VideoRepository : IDataRepository
+    public class VideoRepository : IDatabase
     {
         private static readonly string DbPath = Strings.VideoDatabase;
 

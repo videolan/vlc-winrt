@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 using Windows.UI.Core;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
-using VLC_WinRT.DataRepository;
+using VLC_WinRT.Database;
 using VLC_WinRT.Helpers;
 using VLC_WinRT.Helpers.MusicLibrary;
 using VLC_WinRT.Model;
@@ -30,9 +30,9 @@ namespace VLC_WinRT.ViewModels.MusicVM
     public class MusicLibraryVM : BindableBase
     {
         #region databases
-        public ArtistDataRepository _artistDataRepository = new ArtistDataRepository();
-        public TrackDataRepository _trackDataRepository = new TrackDataRepository();
-        public AlbumDataRepository _albumDataRepository = new AlbumDataRepository();
+        public ArtistDatabase _artistDatabase = new ArtistDatabase();
+        public TrackDatabase _trackDatabase = new TrackDatabase();
+        public AlbumDatabase _albumDatabase = new AlbumDatabase();
         public TracklistItemRepository TracklistItemRepository = new TracklistItemRepository();
         public TrackCollectionRepository TrackCollectionRepository = new TrackCollectionRepository();
         #endregion
@@ -310,9 +310,9 @@ namespace VLC_WinRT.ViewModels.MusicVM
 
         public async Task StartIndexing()
         {
-            _artistDataRepository.Drop();
-            _trackDataRepository.Drop();
-            _albumDataRepository.Drop();
+            _artistDatabase.Drop();
+            _trackDatabase.Drop();
+            _albumDatabase.Drop();
 
             await DispatchHelper.InvokeAsync(() =>
             {
@@ -322,10 +322,10 @@ namespace VLC_WinRT.ViewModels.MusicVM
                 OnPropertyChanged("IsBusy");
                 OnPropertyChanged("IsLoaded");
             });
-            _artistDataRepository = new ArtistDataRepository();
-            _artistDataRepository.Initialize();
-            _trackDataRepository.Initialize();
-            _albumDataRepository.Initialize();
+            _artistDatabase = new ArtistDatabase();
+            _artistDatabase.Initialize();
+            _trackDatabase.Initialize();
+            _albumDatabase.Initialize();
 
             await MusicLibraryManagement.DoRoutineMusicLibraryCheck();
             await LoadFromDatabase();

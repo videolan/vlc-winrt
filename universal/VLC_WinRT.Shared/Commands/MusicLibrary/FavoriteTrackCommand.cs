@@ -8,7 +8,7 @@
  **********************************************************************/
 
 using System.Linq;
-using VLC_WinRT.DataRepository;
+using VLC_WinRT.Database;
 using VLC_WinRT.Model.Music;
 using VLC_WinRT.Utils;
 using VLC_WinRT.ViewModels;
@@ -22,7 +22,7 @@ namespace VLC_WinRT.Commands.MusicPlayer
             var track = parameter as TrackItem;
             if (track == null)
                 return;
-            var trackDataRepository = new TrackDataRepository();
+            var trackDatabase = new TrackDatabase();
             // searching the track in the trackcollection
             int i = Locator.MusicLibraryVM.Tracks.IndexOf(track);
 
@@ -44,7 +44,7 @@ namespace VLC_WinRT.Commands.MusicPlayer
                 .Tracks.FirstOrDefault(z => z == (parameter as TrackItem));
 
             // Update Database
-            await trackDataRepository.Update(Locator.MusicLibraryVM.Tracks[i]);
+            await trackDatabase.Update(Locator.MusicLibraryVM.Tracks[i]);
         }
     }
 }

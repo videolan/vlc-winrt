@@ -8,7 +8,7 @@
  **********************************************************************/
 
 using VLC_WinRT.Utils;
-using VLC_WinRT.DataRepository;
+using VLC_WinRT.Database;
 using System;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Resources;
@@ -18,7 +18,7 @@ using VLC_WinRT.Commands.MusicLibrary;
 using VLC_WinRT.Commands.MusicPlayer;
 using VLC_WinRT.Helpers;
 using VLC_WinRT.Model.Music;
-using VLC_WinRT.Database.DataRepository;
+using VLC_WinRT.Database.Database;
 using VLC_WinRT.BackgroundAudioPlayer.Model;
 using VLC_WinRT.LastFmScrobbler;
 #if WINDOWS_PHONE_APP
@@ -35,15 +35,15 @@ namespace VLC_WinRT.ViewModels.MusicVM
         #region private props
         private AlbumItem _currentAlbum;
         private ArtistItem _currentArist;
-        private ArtistDataRepository _artistDataRepository = new ArtistDataRepository();
-        private AlbumDataRepository _albumDataRepository = new AlbumDataRepository();
+        private ArtistDatabase _artistDatabase = new ArtistDatabase();
+        private AlbumDatabase _albumDatabase = new AlbumDatabase();
         #endregion
 
         #region private fields
         #endregion
 
         #region public props
-        public BackgroundTrackRepository BackgroundTrackRepository { get; set; } = new BackgroundTrackRepository();
+        public BackgroundTrackDatabase BackgroundTrackRepository { get; set; } = new BackgroundTrackDatabase();
 
         public AlbumItem CurrentAlbum
         {
@@ -150,7 +150,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
         {
             if (CurrentTrack == null) return;
             if (CurrentArtist != null && CurrentArtist.Id == CurrentTrack.ArtistId) return;
-            CurrentArtist = await _artistDataRepository.LoadArtist(CurrentTrack.ArtistId);
+            CurrentArtist = await _artistDatabase.LoadArtist(CurrentTrack.ArtistId);
         }
 
         public async Task SetCurrentAlbum()
@@ -158,7 +158,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
             if (CurrentTrack == null) return;
             if (CurrentArtist == null) return;
             if (CurrentAlbum != null && CurrentAlbum.Id == CurrentTrack.AlbumId) return;
-            CurrentAlbum = await _albumDataRepository.LoadAlbum(CurrentTrack.AlbumId);
+            CurrentAlbum = await _albumDatabase.LoadAlbum(CurrentTrack.AlbumId);
         }
 
 

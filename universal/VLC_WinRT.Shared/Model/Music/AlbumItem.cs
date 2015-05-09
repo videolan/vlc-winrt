@@ -158,8 +158,8 @@ namespace VLC_WinRT.Model.Music
                 {
                     Debug.WriteLine("Searching local cover for " + Name);
                     IsLocalPictureIndexed = true;
-                    await Locator.MusicLibraryVM._albumDataRepository.Update(this);
-                    var trackPath = await Locator.MusicLibraryVM._trackDataRepository.GetFirstTrackPathByAlbumId(Id);
+                    await Locator.MusicLibraryVM._albumDatabase.Update(this);
+                    var trackPath = await Locator.MusicLibraryVM._trackDatabase.GetFirstTrackPathByAlbumId(Id);
                     success = await MusicLibraryManagement.SetAlbumCover(this, trackPath, true);
                     if (success) await ResetAlbumArt();
                 }

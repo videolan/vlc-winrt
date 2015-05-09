@@ -9,13 +9,13 @@ using SQLite;
 using VLC_WinRT.Model;
 using VLC_WinRT.Utils;
 
-namespace VLC_WinRT.DataRepository
+namespace VLC_WinRT.Database
 {
-    public class KeyboardActionDataRepository : IDataRepository
+    public class KeyboardActionDatabase : IDatabase
     {
         private static readonly string DbPath = Strings.SettingsDatabase;
 
-        public KeyboardActionDataRepository()
+        public KeyboardActionDatabase()
         {
             Initialize();
         }

@@ -6,14 +6,14 @@ using VLC_WinRT.Model.Music;
 using System.Collections.Generic;
 using VLC_WinRT.Utils;
 
-namespace VLC_WinRT.DataRepository
+namespace VLC_WinRT.Database
 {
-    public class ArtistDataRepository : IDataRepository
+    public class ArtistDatabase : IDatabase
     {
         private static readonly string DbPath = Strings.MusicDatabase;
 
         private SQLiteConnection connection;
-        public ArtistDataRepository()
+        public ArtistDatabase()
         {
             Initialize();
         }

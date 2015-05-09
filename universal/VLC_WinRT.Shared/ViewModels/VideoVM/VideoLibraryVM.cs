@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 using Windows.UI.Core;
 using SQLite;
 using VLC_WinRT.Commands;
-using VLC_WinRT.DataRepository;
+using VLC_WinRT.Database;
 using VLC_WinRT.Helpers;
 using VLC_WinRT.Helpers.VideoLibrary;
 using VLC_WinRT.Model;

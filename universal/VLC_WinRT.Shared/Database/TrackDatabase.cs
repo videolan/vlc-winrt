@@ -7,13 +7,13 @@ using System.Collections.Generic;
 using VLC_WinRT.Utils;
 using VLC_WinRT.ViewModels;
 
-namespace VLC_WinRT.DataRepository
+namespace VLC_WinRT.Database
 {
-    public class TrackDataRepository : IDataRepository
+    public class TrackDatabase : IDatabase
     {
         private static readonly string DbPath = Strings.MusicDatabase;
 
-        public TrackDataRepository()
+        public TrackDatabase()
         {
             Initialize();
         }

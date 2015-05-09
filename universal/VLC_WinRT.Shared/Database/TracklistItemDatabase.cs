@@ -6,9 +6,9 @@ using VLC_WinRT.ViewModels.MusicVM;
 using System.Collections.Generic;
 using VLC_WinRT.Utils;
 
-namespace VLC_WinRT.DataRepository
+namespace VLC_WinRT.Database
 {
-    public class TracklistItemRepository : IDataRepository
+    public class TracklistItemRepository : IDatabase
     {
         private static readonly string DbPath = Strings.MusicDatabase;
 

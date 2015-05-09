@@ -276,15 +276,15 @@ namespace VLC_WinRT.ViewModels
             if (!NeedsToDrop()) return;
             Locator.MusicLibraryVM.TrackCollectionRepository.Drop();
             Locator.MusicLibraryVM.TracklistItemRepository.Drop();
-            Locator.MusicLibraryVM._albumDataRepository.Drop();
-            Locator.MusicLibraryVM._artistDataRepository.Drop();
-            Locator.MusicLibraryVM._trackDataRepository.Drop();
+            Locator.MusicLibraryVM._albumDatabase.Drop();
+            Locator.MusicLibraryVM._artistDatabase.Drop();
+            Locator.MusicLibraryVM._trackDatabase.Drop();
             Locator.VideoLibraryVM.VideoRepository.Drop();
             Locator.MusicLibraryVM.TrackCollectionRepository.Initialize();
             Locator.MusicLibraryVM.TracklistItemRepository.Initialize();
-            Locator.MusicLibraryVM._albumDataRepository.Initialize();
-            Locator.MusicLibraryVM._artistDataRepository.Initialize();
-            Locator.MusicLibraryVM._trackDataRepository.Initialize();
+            Locator.MusicLibraryVM._albumDatabase.Initialize();
+            Locator.MusicLibraryVM._artistDatabase.Initialize();
+            Locator.MusicLibraryVM._trackDatabase.Initialize();
             Locator.VideoLibraryVM.VideoRepository.Initialize();
             LogHelper.SignalUpdate();
         }

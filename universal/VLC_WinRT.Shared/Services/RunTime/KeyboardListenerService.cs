@@ -59,7 +59,7 @@ namespace VLC_WinRT.Services.RunTime
                 default:
                     Debug.WriteLine("OneShot key was pressed");
                     // look in the db for a match
-                    var action = await Locator.SettingsVM.KeyboardActionDataRepository.GetKeyboardAction(virtualKeys[0], virtualKeys[1]);
+                    var action = await Locator.SettingsVM.KeyboardActionDatabase.GetKeyboardAction(virtualKeys[0], virtualKeys[1]);
                     if (action != null)
                     {
                         // if there's a match, get the ActionId

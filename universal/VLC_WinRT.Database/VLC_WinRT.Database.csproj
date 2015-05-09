@@ -38,8 +38,8 @@
     <TargetPlatform Include="Windows, Version=8.1" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataRepository\BackgroundTrackRepository.cs" />
-    <Compile Include="DataRepository\IDataRepository.cs" />
+    <Compile Include="Database\BackgroundTrackDatabase.cs" />
+    <Compile Include="Database\IDatabase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SQLite.cs" />
     <Compile Include="SQLiteAsync.cs" />

@@ -6,16 +6,16 @@ using SQLite;
 using VLC_WinRT.BackgroundAudioPlayer;
 using VLC_WinRT.BackgroundAudioPlayer.Model;
 
-namespace VLC_WinRT.Database.DataRepository
+namespace VLC_WinRT.Database.Database
 {
-    public class BackgroundTrackRepository : IDataRepository
+    public class BackgroundTrackDatabase : IDatabase
     {
         private static readonly string DbPath =
 Path.Combine(
 Windows.Storage.ApplicationData.Current.LocalFolder.Path,
 "background.sqlite");
 
-        public BackgroundTrackRepository()
+        public BackgroundTrackDatabase()
         {
             Initialize();
         }
