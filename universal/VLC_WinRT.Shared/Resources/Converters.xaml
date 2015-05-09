@@ -24,7 +24,6 @@
     <converters:MiniPlayerVisibilityFromPlayingTypeConverter x:Key="MiniPlayerVisibilityFromPlayingTypeConverter" />
     <converters:DoubleSpeedToUnderstandableSpeedConverter x:Key="DoubleSpeedToUnderstandableSpeedConverter" />
     <converters:CurrentTrackForegroundConverter x:Key="CurrentTrackForegroundConverter" />
-    <converters:IsVisibleDependingOnSidebarState x:Key="IsVisibleDependingOnSidebarState" />
     <converters:OpacityDecreaserConverter  x:Key="OpacityDecreaserConverter" />
     <converters:OrderTypeStringifyConverter x:Key="OrderTypeStringifyConverter" />
     <converters:DateTimeToDayOfMonthConverter  x:Key="DateTimeToDayOfMonthConverter" />

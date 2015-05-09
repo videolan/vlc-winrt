@@ -92,7 +92,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\EmptyTimeSpanToVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\FavoriteLabelConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\FavoriteSymbolConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Converters\IsVisibleDependingOnSidebarState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\MillisecondsStringConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\MiniPlayerVisibilityFromPlayingTypeConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\MusicViewStringifyConverter.cs" />
