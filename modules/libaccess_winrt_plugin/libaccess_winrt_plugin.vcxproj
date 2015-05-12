@@ -135,7 +135,8 @@
       <AdditionalLibraryDirectories>$(SolutionDir)..\vlc\Windows\vlc-$(Platform)\$(Configuration)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y $(TargetPath) $(SolutionDir)..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\access\</Command>
+      <Command>copy /Y $(TargetPath) $(SolutionDir)..\vlc\Windows\vlc-win32\$(Configuration)\plugins\access\
+copy /Y $(TargetPath) $(SolutionDir)..\vlc\Windows\vlc-x86\$(Configuration)\plugins\access\</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -157,7 +158,8 @@
       <AdditionalLibraryDirectories>$(SolutionDir)..\vlc\Windows\vlc-$(Platform)\$(Configuration)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y $(TargetPath) $(SolutionDir)..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\access\</Command>
+      <Command>copy /Y $(TargetPath) $(SolutionDir)..\vlc\Windows\vlc-win32\$(Configuration)\plugins\access\
+copy /Y $(TargetPath) $(SolutionDir)..\vlc\Windows\vlc-x86\$(Configuration)\plugins\access\</Command>
     </PostBuildEvent>
     <Bscmake>
       <PreserveSbr>true</PreserveSbr>

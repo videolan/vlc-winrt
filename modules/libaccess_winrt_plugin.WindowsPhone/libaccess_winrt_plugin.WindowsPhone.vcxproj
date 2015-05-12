@@ -93,7 +93,8 @@
       <AdditionalLibraryDirectories>$(SolutionDir)..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y $(TargetPath) $(SolutionDir)..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\access\</Command>
+      <Command>copy /Y $(TargetPath) $(SolutionDir)..\vlc\WindowsPhone\vlc-x86\$(Configuration)\plugins\access\
+copy /Y $(TargetPath) $(SolutionDir)..\vlc\WindowsPhone\vlc-win32\$(Configuration)\plugins\access\</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -112,7 +113,8 @@
       <AdditionalLibraryDirectories>$(SolutionDir)..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y $(TargetPath) $(SolutionDir)..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\access\</Command>
+      <Command>copy /Y $(TargetPath) $(SolutionDir)..\vlc\WindowsPhone\vlc-x86\$(Configuration)\plugins\access\
+copy /Y $(TargetPath) $(SolutionDir)..\vlc\WindowsPhone\vlc-win32\$(Configuration)\plugins\access\</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
