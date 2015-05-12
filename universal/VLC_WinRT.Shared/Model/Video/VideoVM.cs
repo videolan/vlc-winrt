@@ -19,6 +19,7 @@ using VLC_WinRT.Utils;
 using VLC_WinRT.ViewModels;
 using System.Diagnostics;
 using Windows.Storage.AccessCache;
+using libVLCX;
 
 namespace VLC_WinRT.Model.Video
 {
@@ -237,7 +238,7 @@ namespace VLC_WinRT.Model.Video
             });
         }
 
-        public Tuple<int, string> GetMrlAndFromType()
+        public Tuple<FromType, string> GetMrlAndFromType()
         {
             if (string.IsNullOrEmpty(Path))
             {
@@ -245,10 +246,10 @@ namespace VLC_WinRT.Model.Video
                 {
                     // Using a Token
                     // FromLocation : 1
-                    return new Tuple<int, string>(1, "winrt://" + StorageApplicationPermissions.FutureAccessList.Add(File));
+                    return new Tuple<FromType, string>(FromType.FromLocation, "winrt://" + StorageApplicationPermissions.FutureAccessList.Add(File));
                 }
             }
-            return new Tuple<int, string>(0, Path);
+            return new Tuple<FromType, string>(FromType.FromPath, Path);
         }
         #endregion
     }

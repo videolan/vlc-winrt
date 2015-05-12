@@ -2,6 +2,7 @@
 using Windows.Storage;
 using SQLite;
 using VLC_WinRT.Utils;
+using libVLCX;
 
 namespace VLC_WinRT.Model.Stream
 {
@@ -45,11 +46,11 @@ namespace VLC_WinRT.Model.Stream
             Path = mrl;
         }
 
-        public Tuple<int, string> GetMrlAndFromType()
+        public Tuple<FromType, string> GetMrlAndFromType()
         {
             // Using a Mrl
             // FromLocation : 1
-            return new Tuple<int, string>(1, Path);
+            return new Tuple<FromType, string>(FromType.FromLocation, Path);
         }
     }
 }

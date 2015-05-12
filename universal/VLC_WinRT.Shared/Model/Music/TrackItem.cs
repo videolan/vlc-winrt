@@ -111,7 +111,7 @@ namespace VLC_WinRT.Model.Music
             set { SetProperty(ref _file, value); }
         }
 
-        public Tuple<int, string> GetMrlAndFromType()
+        public Tuple<FromType, string> GetMrlAndFromType()
         {
             if (string.IsNullOrEmpty(Path))
             {
@@ -119,10 +119,10 @@ namespace VLC_WinRT.Model.Music
                 {
                     // Using a Token
                     // FromLocation : 1
-                    return new Tuple<int, string>(1, "winrt://" + StorageApplicationPermissions.FutureAccessList.Add(File));
+                    return new Tuple<FromType, string>(FromType.FromLocation, "winrt://" + StorageApplicationPermissions.FutureAccessList.Add(File));
                 }
             }
-            return new Tuple<int, string>(0, Path);
+            return new Tuple<FromType, string>(FromType.FromPath, Path);
         }
     }
 }

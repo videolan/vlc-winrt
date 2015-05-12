@@ -1,4 +1,5 @@
-﻿using System;
+﻿using libVLCX;
+using System;
 using Windows.Storage;
 
 namespace VLC_WinRT.Model
@@ -11,6 +12,6 @@ namespace VLC_WinRT.Model
         TimeSpan Duration { get; set; }
         StorageFile File { get; set; }
         bool IsCurrentPlaying { get; set; }
-        Tuple<int, string> GetMrlAndFromType();
+        Tuple<FromType, string> GetMrlAndFromType();
     }
 }
