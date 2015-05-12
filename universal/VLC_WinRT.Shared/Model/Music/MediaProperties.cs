@@ -11,5 +11,6 @@ namespace VLC_WinRT.Model.Music
         public uint Tracknumber { get; set; }
         public uint Year { get; set; }
         public string Genre { get; set; }
+        public string AlbumArt { get; set; }
     }
 }

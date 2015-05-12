@@ -26,7 +26,6 @@ namespace VLC_WinRT.Model.Music
         private LoadingState _albumImageLoadingState = LoadingState.NotLoaded;
         private uint _year;
         private bool _favorite;
-        private bool _isPictureLoaded = false;
         private bool _isTracksLoaded = false;
         private ObservableCollection<TrackItem> _trackItems;
         private bool _isPinned;
@@ -109,8 +108,10 @@ namespace VLC_WinRT.Model.Music
             {
                 if (!string.IsNullOrEmpty(_picture)) // custom uri
                     return _picture;
-                else if (IsPictureLoaded && IsCoverInLocalFolder) // default album cover uri
+                else if (IsPictureLoaded) // default album cover uri
                 {
+                    if (IsVLCCover)
+                        return string.Format("ms-appdata:///local/vlc/art/artistalbum/{0}/{1}/art.jpg", Artist, Name);
                     return string.Format("ms-appdata:///local/albumPic/{0}.jpg", Id);
                 }
                 return null;
@@ -138,10 +139,8 @@ namespace VLC_WinRT.Model.Music
         }
 
         public bool IsPictureLoaded { get; set; }
-
-        public bool IsLocalPictureIndexed { get; set; }
-
-        public bool IsCoverInLocalFolder { get; set; }
+        
+        public bool IsVLCCover { get; set; }
 
         public uint Year
         {
@@ -153,19 +152,10 @@ namespace VLC_WinRT.Model.Music
         {
             try
             {
-                bool success = false;
-                if (!IsLocalPictureIndexed && !IsPictureLoaded)
-                {
-                    Debug.WriteLine("Searching local cover for " + Name);
-                    IsLocalPictureIndexed = true;
-                    await Locator.MusicLibraryVM._albumDatabase.Update(this);
-                    var trackPath = await Locator.MusicLibraryVM._trackDatabase.GetFirstTrackPathByAlbumId(Id);
-                    success = await MusicLibraryManagement.SetAlbumCover(this, trackPath, true);
-                    if (success) await ResetAlbumArt();
-                }
-                if (IsPictureLoaded || success)
+                if (IsPictureLoaded)
                     return;
                 Debug.WriteLine("Searching online cover for " + Name);
+                ToastHelper.Basic("Online C: " + Name);
                 await App.MusicMetaService.GetAlbumCover(this);
             }
             catch (Exception)

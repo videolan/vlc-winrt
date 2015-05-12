@@ -229,9 +229,10 @@ namespace VLC_WinRT.Model.Video
         private async Task GetTimeInformation()
         {
             if (_duration != TimeSpan.Zero) return;
+            var media = Locator.VLCService.GetMediaFromPath(_filePath);
+            var duration = Locator.VLCService.GetDuration(media);
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                TimeSpan duration = Locator.VLCService.GetDuration(_filePath);
                 Duration = duration;
             });
         }

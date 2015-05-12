@@ -94,7 +94,6 @@ namespace VLC_WinRT.Services.RunTime
                 await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                 {
                     album.IsPictureLoaded = true;
-                    album.IsCoverInLocalFolder = true;
                 });
                 await album.ResetAlbumArt();
                 return true;

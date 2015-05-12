@@ -124,30 +124,34 @@ namespace VLC_WinRT.Services.RunTime
             var file = await StorageFile.GetFileFromPathAsync(filePath);
             return StorageApplicationPermissions.FutureAccessList.Add(file);
         }
-        
 
-        public string GetAlbumUrl(string filePath)
+        public Media GetMediaFromPath(string filePath)
         {
             if (string.IsNullOrEmpty(filePath))
                 return null;
-            var media = new Media(Instance, filePath, 0);
-            media.parse();
-            if (!media.isParsed()) return "";
-            var url = media.meta(MediaMeta.ArtworkURL);
-            if (!string.IsNullOrEmpty(url))
-            {
-                return url;
-            }
-            return "";
+            return new Media(Instance, filePath, FromType.FromPath);
         }
 
-        public MediaProperties GetMusicProperties(string filePath)
+        public string GetAlbumUrl(Media media)
         {
-            if (string.IsNullOrEmpty(filePath))
+            if (media == null) return null;
+            if (!media.isParsed())
+                media.parse();
+            if (!media.isParsed())
                 return null;
-            var media = new Media(Instance, filePath, 0);
-            media.parse();
-            if (!media.isParsed()) return null;
+            var url = media.meta(MediaMeta.ArtworkURL);
+            if (!string.IsNullOrEmpty(url))
+                return url;
+            return null;
+        }
+
+        public MediaProperties GetMusicProperties(Media media)
+        {
+            if (media == null) return null;
+            if (!media.isParsed())
+                media.parse();
+            if (!media.isParsed())
+                return null;
             var mP = new MediaProperties();
             mP.Artist = media.meta(MediaMeta.Artist);
             mP.Album = media.meta(MediaMeta.Album);
@@ -164,14 +168,15 @@ namespace VLC_WinRT.Services.RunTime
             uint trackNbInt = 0;
             uint.TryParse(trackNbString, out trackNbInt);
             mP.Tracknumber = trackNbInt;
+
+            var albumArtUrl = media.meta(MediaMeta.ArtworkURL);
+            mP.AlbumArt = albumArtUrl;
             return mP;
         }
 
-        public TimeSpan GetDuration(string filePath)
+        public TimeSpan GetDuration(Media media)
         {
-            if (string.IsNullOrEmpty(filePath))
-                return TimeSpan.Zero;
-            var media = new Media(Instance, filePath, 0);
+            if (media == null) return TimeSpan.Zero;
             media.parse();
             if (!media.isParsed())
                 return TimeSpan.Zero;

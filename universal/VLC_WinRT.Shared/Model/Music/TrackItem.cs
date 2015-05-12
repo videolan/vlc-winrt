@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Linq;
 using Windows.Storage;
 using SQLite;
 using VLC_WinRT.Commands.MusicLibrary;
 using VLC_WinRT.Commands.MusicPlayer;
 using VLC_WinRT.Utils;
 using Windows.Storage.AccessCache;
+using libVLCX;
+using VLC_WinRT.ViewModels;
 
 namespace VLC_WinRT.Model.Music
 {
@@ -69,7 +72,7 @@ namespace VLC_WinRT.Model.Music
             get
             {
                 if (string.IsNullOrEmpty(_thumbnail))
-                    _thumbnail = "ms-appdata:///local/albumPic/" + AlbumId + ".jpg";
+                    _thumbnail = Locator.MusicLibraryVM.Albums.FirstOrDefault(x => x.Id == this.AlbumId)?.AlbumCoverUri;
                 return _thumbnail;
             }
             set { SetProperty(ref _thumbnail, value); }
