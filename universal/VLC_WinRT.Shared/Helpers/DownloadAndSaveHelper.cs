@@ -37,36 +37,13 @@ namespace VLC_WinRT.Helpers
             await download.StartAsync();
         }
 
-        public static async Task WriteableBitmapToStorageFile(WriteableBitmap WB, FileFormat fileFormat, string fileName)
+        public static async Task WriteableBitmapToStorageFile(WriteableBitmap WB, string fileName)
         {
             try
             {
                 LogHelper.Log("THUMBNAILER VIDEO: Start for videoid:" + fileName);
                 Guid BitmapEncoderGuid = BitmapEncoder.JpegEncoderId;
-                fileName += ".";
-                switch (fileFormat)
-                {
-                    case FileFormat.Jpeg:
-                        fileName += "jpg";
-                        BitmapEncoderGuid = BitmapEncoder.JpegEncoderId;
-                        break;
-                    case FileFormat.Png:
-                        fileName += "png";
-                        BitmapEncoderGuid = BitmapEncoder.PngEncoderId;
-                        break;
-                    case FileFormat.Bmp:
-                        fileName += "bmp";
-                        BitmapEncoderGuid = BitmapEncoder.BmpEncoderId;
-                        break;
-                    case FileFormat.Tiff:
-                        fileName += "tiff";
-                        BitmapEncoderGuid = BitmapEncoder.TiffEncoderId;
-                        break;
-                    case FileFormat.Gif:
-                        fileName += "gif";
-                        BitmapEncoderGuid = BitmapEncoder.GifEncoderId;
-                        break;
-                }
+                fileName += ".jpg";
                 StorageFolder videoPic = await ApplicationData.Current.LocalFolder.CreateFolderAsync("videoPic", CreationCollisionOption.OpenIfExists);
                 LogHelper.Log("THUMBNAILER VIDEO: opening file for videoid:" + fileName);
                 var file = await videoPic.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting);
@@ -95,14 +72,6 @@ namespace VLC_WinRT.Helpers
                 LogHelper.Log("Failed to save the video thunbnail for videoId:" + fileName);
                 ExceptionHelper.CreateMemorizedException("DownloadAndSaveHelper.WriteBitmapToStorageFile", e);
             }
-        }
-        public enum FileFormat
-        {
-            Jpeg,
-            Png,
-            Bmp,
-            Tiff,
-            Gif
         }
     }
 }
