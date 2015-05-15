@@ -55,7 +55,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Commands\MusicLibrary\ShowCreateNewPlaylistPane.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\MusicLibrary\StartMusicIndexingCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\PlayNetworkMRLCommand.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Commands\SearchClickedCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Settings\AddFolderToLibrary.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Settings\RemoveFolderFromMusicLibrary.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\Settings\RemoveFolderFromVideoLibrary.cs" />

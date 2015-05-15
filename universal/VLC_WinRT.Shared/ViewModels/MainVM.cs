@@ -131,8 +131,7 @@ namespace VLC_WinRT.ViewModels
         public ChangeMainPageMusicViewCommand ChangeMainPageMusicViewCommand { get; } = new ChangeMainPageMusicViewCommand();
         
         public ChangeMainPageVideoViewCommand ChangeMainPageVideoViewCommand { get; } = new ChangeMainPageVideoViewCommand();
-
-        public SearchClickedCommand SearchClickedCommand { get; }= new SearchClickedCommand();
+        
         public DisplayMenuBarControlToggleCommand DisplayMenuBarControlToggleCommand { get; }= new DisplayMenuBarControlToggleCommand();
 
         public bool PreventAppExit

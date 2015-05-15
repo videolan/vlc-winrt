@@ -14,39 +14,7 @@ using VLC_WinRT.Utils;
 namespace VLC_WinRT.Helpers
 {
     public static class SearchHelpers
-    {
-        public static async Task OpenSearchItem(VLCItemType type, string query, int idquery)
-        {
-            switch (type)
-            {
-                case VLCItemType.Track:
-                    TrackItem trackItem = Locator.MusicLibraryVM.Tracks.FirstOrDefault(node => node.Id == idquery);
-                    if (trackItem != null)
-                    {
-                        Locator.MusicLibraryVM.TrackClickedCommand.Execute(trackItem);
-                    }
-                    break;
-                case VLCItemType.Album:
-                    Locator.MusicLibraryVM.AlbumClickedCommand.Execute(idquery);
-                    break;
-                case VLCItemType.Artist:
-                    Locator.MusicLibraryVM.ArtistClickedCommand.Execute(idquery);
-                    break;
-                case VLCItemType.Video:
-                    VideoItem vm = Locator.VideoLibraryVM.Videos.FirstOrDefault(x => x.Name == query);
-                    await vm.Play();
-                    break;
-                case VLCItemType.VideoShow:
-                    VideoItem show = Locator.VideoLibraryVM.Shows.SelectMany(x => x.Episodes).FirstOrDefault(x => x.Name == query);
-                    await show.Play();
-                    break;
-                case VLCItemType.VideoCamera:
-                    VideoItem camera = Locator.VideoLibraryVM.CameraRoll.FirstOrDefault(x => x.Name == query);
-                    await camera.Play();
-                    break;
-            }
-        }
-        
+    {        
         public static ObservableCollection<SearchResult> SearchArtists(string tag)
         {
             var results = new ObservableCollection<SearchResult>();
