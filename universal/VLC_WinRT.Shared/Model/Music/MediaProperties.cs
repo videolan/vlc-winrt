@@ -9,7 +9,7 @@ namespace VLC_WinRT.Model.Music
         public TimeSpan Duration { get; set; }
         public string Title { get; set; }
         public uint Tracknumber { get; set; }
-        public uint Year { get; set; }
+        public int Year { get; set; }
         public string Genre { get; set; }
         public string AlbumArt { get; set; }
     }

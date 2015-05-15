@@ -156,9 +156,12 @@ namespace VLC_WinRT.Services.RunTime
             mP.Artist = media.meta(MediaMeta.Artist);
             mP.Album = media.meta(MediaMeta.Album);
             mP.Title = media.meta(MediaMeta.Title);
-            var dateTimeString = media.meta(MediaMeta.Date);
-            DateTime dateTime = new DateTime();
-            mP.Year = (uint)(DateTime.TryParse(dateTimeString, out dateTime) ? dateTime.Year : 0);
+            var yearString = media.meta(MediaMeta.Date);
+            var year = 0;
+            if(int.TryParse(yearString, out year))
+            {
+                mP.Year = year;
+            }
 
             var durationLong = media.duration();
             TimeSpan duration = TimeSpan.FromMilliseconds(durationLong);

@@ -24,7 +24,7 @@ namespace VLC_WinRT.Model.Music
         private string _picture;
         private BitmapImage _albumImage;
         private LoadingState _albumImageLoadingState = LoadingState.NotLoaded;
-        private uint _year;
+        private int _year;
         private bool _favorite;
         private bool _isTracksLoaded = false;
         private ObservableCollection<TrackItem> _trackItems;
@@ -142,7 +142,7 @@ namespace VLC_WinRT.Model.Music
         
         public bool IsVLCCover { get; set; }
 
-        public uint Year
+        public int Year
         {
             get { return _year; }
             set { SetProperty(ref _year, value); }
