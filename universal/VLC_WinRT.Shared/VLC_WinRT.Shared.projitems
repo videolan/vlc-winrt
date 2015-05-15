@@ -128,10 +128,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\LoadImageToMemoryHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\LogHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\MemoryUsageHelper.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Helpers\MusicLibrary\EchonestClient.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Helpers\MusicLibrary\EchoNest\Artists.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Helpers\MusicLibrary\EchoNest\Twitter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Helpers\MusicLibrary\EchoNest\Videos.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\MusicLibrary\MusicFlow.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\MusicLibrary\MusicLibraryManagement.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\PlaylistHelper.cs" />
