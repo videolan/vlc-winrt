@@ -259,7 +259,7 @@ namespace VLC_WinRT.ViewModels
             {
                 if (_currentSubtitle < 0 || _currentSubtitle >= Subtitles.Count)
                     return null;
-                return AudioTracks[_currentSubtitle];
+                return Subtitles[_currentSubtitle];
             }
             set
             {
