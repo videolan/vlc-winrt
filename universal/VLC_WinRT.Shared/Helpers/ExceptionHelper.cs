@@ -59,7 +59,7 @@ namespace VLC_WinRT.Helpers
                     string subject = Uri.EscapeDataString("VLC for Windows 8.1 v" + AppVersion);
                     string body = Uri.EscapeDataString(ApplicationSettingsHelper.ReadResetSettingsValue("ExceptionLog").ToString());
 
-                    var uri = new Uri(String.Format("mailto:modernvlc@outlook.com?subject={0}&body={1}", subject, body));
+                    var uri = new Uri(String.Format("mailto:" + Strings.FeedbackMailAdress + "?subject={0}&body={1}", subject, body));
                     await Launcher.LaunchUriAsync(uri);
 #endif
                 }));

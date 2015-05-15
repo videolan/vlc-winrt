@@ -307,8 +307,8 @@ namespace VLC_WinRT.Helpers.VideoLibrary
                             image = new WriteableBitmap((int)thumb.OriginalWidth, (int)thumb.OriginalHeight);
                             await image.SetSourceAsync(thumb);
                         }
-                        await DownloadAndSaveHelper.WriteableBitmapToStorageFile(image, DownloadAndSaveHelper.FileFormat.Jpeg, videoItem.Id.ToString());
-                        videoItem.ThumbnailPath = String.Format("ms-appdata:///local/videoPic/{0}.jpg", videoItem.Id);
+                        await DownloadAndSaveHelper.WriteableBitmapToStorageFile(image, videoItem.Id.ToString());
+                        videoItem.ThumbnailPath = String.Format("{0}{1}.jpg", Strings.VideoPicFolderPath, videoItem.Id);
                         tcs.SetResult(true);
                     });
                     await tcs.Task;

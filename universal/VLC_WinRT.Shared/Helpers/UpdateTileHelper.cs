@@ -14,6 +14,7 @@ using Windows.UI.StartScreen;
 using Windows.UI.Xaml;
 using VLC_WinRT.Model;
 using VLC_WinRT.ViewModels;
+using VLC_WinRT.Utils;
 
 namespace VLC_WinRT.Helpers
 {
@@ -88,7 +89,7 @@ namespace VLC_WinRT.Helpers
 
                 var tileImgAttribues = tileXml.GetElementsByTagName("image");
                 if (Locator.VideoVm.CurrentVideo != null)
-                    tileImgAttribues[0].Attributes[1].NodeValue = "ms-appdata:///local/videoPic/" + Locator.VideoVm.CurrentVideo.Id + ".jpg";
+                    tileImgAttribues[0].Attributes[1].NodeValue = Strings.VideoPicFolderPath + Locator.VideoVm.CurrentVideo.Id + ".jpg";
             }
             var tileNotification = new TileNotification(tileXml);
             TileUpdateManager.CreateTileUpdaterForApplication().Update(tileNotification);
@@ -108,7 +109,7 @@ namespace VLC_WinRT.Helpers
                 tileTextAttributes[0].InnerText = Locator.VideoVm.CurrentVideo.Name;
                 var tileImgAttribues = tileXml.GetElementsByTagName("image");
                 if (Locator.VideoVm.CurrentVideo != null)
-                    tileImgAttribues[0].Attributes[1].NodeValue = "ms-appdata:///local/videoPic/" + Locator.VideoVm.CurrentVideo.Id + ".jpg";
+                    tileImgAttribues[0].Attributes[1].NodeValue = Strings.VideoPicFolderPath + Locator.VideoVm.CurrentVideo.Id + ".jpg";
             }
             var tileNotification = new TileNotification(tileXml);
             TileUpdateManager.CreateTileUpdaterForApplication().Update(tileNotification);

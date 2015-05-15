@@ -78,7 +78,7 @@ namespace VLC_WinRT.Model.Video
                 }
                 else if (HasThumbnail)
                 {
-                    _thumbnailPath = String.Format("ms-appdata:///local/videoPic/{0}.jpg", Id);
+                    _thumbnailPath = String.Format("{0}{1}.jpg", Strings.VideoPicFolderPath, Id);
                 }
                 return _thumbnailPath;
             }
