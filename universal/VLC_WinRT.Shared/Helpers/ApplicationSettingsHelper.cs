@@ -16,26 +16,32 @@ namespace VLC_WinRT.Helpers
         /// <summary>
         /// Function that checks if the entry exists in Application settings
         /// </summary>
-        public static bool Contains(string key)
+        public static bool Contains(string key, bool localSettings = true)
         {
-            return ApplicationData.Current.LocalSettings.Values.ContainsKey(key);
+            if (localSettings)
+                return ApplicationData.Current.LocalSettings.Values.ContainsKey(key);
+            else
+                return ApplicationData.Current.RoamingSettings.Values.ContainsKey(key);
         }
 
         /// <summary>
         /// Function to read a setting value and clear it after reading it
         /// </summary>
-        public static object ReadResetSettingsValue(string key)
+        public static object ReadResetSettingsValue(string key, bool localSettings = true)
         {
             LogHelper.RuntimeLog(key);
-            if (!ApplicationData.Current.LocalSettings.Values.ContainsKey(key))
+            if (!Contains(key, localSettings))
             {
                 LogHelper.RuntimeLog("null returned");
                 return null;
             }
             else
             {
-                var value = ApplicationData.Current.LocalSettings.Values[key];
-                ApplicationData.Current.LocalSettings.Values.Remove(key);
+                var value = (localSettings) ? ApplicationData.Current.LocalSettings.Values[key] : ApplicationData.Current.RoamingSettings.Values[key];
+                if (localSettings)
+                    ApplicationData.Current.LocalSettings.Values.Remove(key);
+                else
+                    ApplicationData.Current.RoamingSettings.Values.Remove(key);
                 LogHelper.RuntimeLog("value found " + value.ToString());
                 return value;
             }
@@ -44,35 +50,41 @@ namespace VLC_WinRT.Helpers
         /// <summary>
         /// Function to read a setting value
         /// </summary>
-        public static object ReadSettingsValue(string key)
+        public static object ReadSettingsValue(string key, bool localSettings = true)
         {
             LogHelper.RuntimeLog(key);
-            if (!ApplicationData.Current.LocalSettings.Values.ContainsKey(key))
+            if (!Contains(key, localSettings))
             {
                 LogHelper.RuntimeLog("null returned");
                 return null;
             }
             else
             {
-                var value = ApplicationData.Current.LocalSettings.Values[key];
+                var value = (localSettings) ? ApplicationData.Current.LocalSettings.Values[key] : ApplicationData.Current.RoamingSettings.Values[key];
                 LogHelper.RuntimeLog("value found " + value.ToString());
                 return value;
             }
         }
-        
+
         /// <summary>
         /// Save a key value pair in settings. Create if it doesn't exist
         /// </summary>
-        public static void SaveSettingsValue(string key, object value)
+        public static void SaveSettingsValue(string key, object value, bool localSettings = true)
         {
             LogHelper.RuntimeLog(key + ":" + value.ToString());
-            if (!ApplicationData.Current.LocalSettings.Values.ContainsKey(key))
+            if (!Contains(key, localSettings))
             {
-                ApplicationData.Current.LocalSettings.Values.Add(key, value);
+                if (localSettings)
+                    ApplicationData.Current.LocalSettings.Values.Add(key, value);
+                else
+                    ApplicationData.Current.RoamingSettings.Values.Add(key, value);
             }
             else
             {
-                ApplicationData.Current.LocalSettings.Values[key] = value;
+                if (localSettings)
+                    ApplicationData.Current.LocalSettings.Values[key] = value;
+                else
+                    ApplicationData.Current.RoamingSettings.Values[key] = value;
             }
         }
     }
