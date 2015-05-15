@@ -155,7 +155,6 @@ namespace VLC_WinRT.Model.Music
                 if (IsPictureLoaded)
                     return;
                 Debug.WriteLine("Searching online cover for " + Name);
-                ToastHelper.Basic("Online C: " + Name);
                 await App.MusicMetaService.GetAlbumCover(this);
             }
             catch (Exception)
