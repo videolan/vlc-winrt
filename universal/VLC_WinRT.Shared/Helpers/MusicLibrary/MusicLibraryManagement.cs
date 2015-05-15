@@ -537,7 +537,8 @@ namespace VLC_WinRT.Helpers.MusicLibrary
             if (Locator.MusicLibraryVM.CurrentTrackCollection == null)
             {
 #if WINDOWS_PHONE_APP
-                ((ContentDialogButtonClickEventArgs)args).Cancel = true;
+                if(args is ContentDialogButtonClickEventArgs)
+                    ((ContentDialogButtonClickEventArgs)args).Cancel = true;
 #endif
                 ToastHelper.Basic(Strings.HaveToSelectPlaylist, false, "selectplaylist");
                 return;
