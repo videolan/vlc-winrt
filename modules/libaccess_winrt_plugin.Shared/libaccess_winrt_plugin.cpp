@@ -102,6 +102,12 @@ GetString(char* in)
     return ref new Platform::String(str.get());
 }
 
+bool IsTokenValid(Platform::String^ futureAccesToken) {
+    auto charBegin = futureAccesToken->Begin()[0];
+    auto charEnd = (futureAccesToken->End() - 1)[0];
+    return !((charBegin != '{') || ((charEnd != '}') || futureAccesToken->Length() < 32));
+}
+
 /*****************************************************************************
 * Local prototypes
 *****************************************************************************/
@@ -167,15 +173,27 @@ int Open(vlc_object_t *object)
 
     if (strncmp(access->psz_access, "winrt", 5) == 0) {
         futureAccesToken = GetString(access->psz_location);
-        auto charBegin = futureAccesToken->Begin()[0];
-        auto charEnd = (futureAccesToken->End() - 1)[0];
-        if ((charBegin != '{') || ((charEnd != '}') || futureAccesToken->Length() < 32))
+        if(!IsTokenValid(futureAccesToken))
             return VLC_EGENERIC;
         pf_open = OpenFileAsyncWithToken;
     }
     else if (strncmp(access->psz_access, "file", 4) == 0) {
-        pf_open = OpenFileAsync;
-        futureAccesToken = GetString(access->psz_filepath);
+        if (strcmp(access->psz_demux, "subtitle") == 0) {
+            char* pos = strstr(access->psz_filepath, "winrt:\\\\");
+            if (pos && strlen(pos) > 8) {
+                futureAccesToken = GetString(pos + 8);
+                if (!IsTokenValid(futureAccesToken))
+                    return VLC_EGENERIC;
+                pf_open = OpenFileAsyncWithToken;
+            }
+            else 
+                return VLC_EGENERIC;
+        }
+        else
+        {
+            pf_open = OpenFileAsync;
+            futureAccesToken = GetString(access->psz_filepath);
+        }
     }
     else
         return VLC_EGENERIC;
