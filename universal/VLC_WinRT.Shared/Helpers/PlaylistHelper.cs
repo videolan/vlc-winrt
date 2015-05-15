@@ -102,7 +102,7 @@ namespace VLC_WinRT.Helpers
                 {
                     index = trackItems.IndexOf(trackItems.FirstOrDefault(x => x.Id == track.Id));
                 }
-                if (index != -1)
+                if (index != -1 && index < trackItems.Count)
                     await PlayMusicTrack(trackItems[index].Id);
             }
         }
