@@ -313,6 +313,7 @@ namespace VLC_WinRT.ViewModels
         public async Task OpenFile(StorageFile file)
         {
             if (file == null) return;
+            await Locator.VLCService.PlayerInstanceReady.Task;
             if (VLCFileExtensions.FileTypeHelper(file.FileType) == VLCFileExtensions.VLCFileType.Video)
             {
                 var token = StorageApplicationPermissions.FutureAccessList.Add(file);
