@@ -121,7 +121,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Database\VideoDatabase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\ApplicationSettingsHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\AppViewHelper.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Helpers\CapabilitiesHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\DisplayHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\DownloadAndSaveHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\ExceptionHelper.cs" />
