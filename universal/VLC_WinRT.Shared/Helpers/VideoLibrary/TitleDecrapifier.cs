@@ -13,7 +13,7 @@ using System.Linq;
 using VLC_WinRT.Utils;
 using Windows.ApplicationModel.Resources;
 
-namespace VLC_WinRT.Helpers
+namespace VLC_WinRT.Helpers.VideoLibrary
 {
     public static class TitleDecrapifier
     {
