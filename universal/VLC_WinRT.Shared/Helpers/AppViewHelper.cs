@@ -18,6 +18,7 @@ namespace VLC_WinRT.Helpers
             }
             return false;
         }
+
         public static void SetAppView()
         {
 #if WINDOWS_APP
