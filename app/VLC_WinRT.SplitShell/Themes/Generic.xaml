@@ -102,7 +102,7 @@
                             <Grid Background="Transparent" 
                                   x:Name="FlyoutBackgroundGrid"/>
                             <ContentPresenter x:Name="RightFlyoutContentPresenter"
-                                              HorizontalAlignment="Stretch"
+                                              HorizontalAlignment="Right"
                                               MaxWidth="500">
                                 <ContentPresenter.Projection>
                                     <PlaneProjection x:Name="RightFlyoutPlaneProjection" />
