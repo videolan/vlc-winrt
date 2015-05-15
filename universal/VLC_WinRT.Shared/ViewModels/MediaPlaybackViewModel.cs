@@ -510,7 +510,7 @@ namespace VLC_WinRT.ViewModels
                     }
                     else
                     {
-                        Locator.NavigationService.GoBack_Specific();
+                        await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => Locator.NavigationService.GoBack_Specific());
                     }
                     return;
                 }
