@@ -16,7 +16,7 @@
     <Grid x:Name="ArtistsGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition x:Name="ArtistListColumnDefinition"
-                              Width="300" />
+                              Width="0" />
             <ColumnDefinition x:Name="AlbumListColumnDefinition"
                               Width="0" />
             <ColumnDefinition x:Name="TrackListColumnDefinition"
@@ -60,12 +60,12 @@
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="TrackListColumnDefinition"
                                                        Storyboard.TargetProperty="Width">
                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="300" />
+                                                    Value="350" />
                         </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ArtistListColumnDefinition"
                                                        Storyboard.TargetProperty="Width">
                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="250" />
+                                                    Value="300" />
                         </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>

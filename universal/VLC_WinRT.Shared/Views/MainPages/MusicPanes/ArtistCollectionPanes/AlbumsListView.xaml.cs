@@ -25,7 +25,7 @@ namespace VLC_WinRT.Views.MainPages.MusicPanes.ArtistCollectionPanes
         private void AlbumsList_OnItemClick(object sender, ItemClickEventArgs e)
         {
             var album = e.ClickedItem as AlbumItem;
-            if (Window.Current.Bounds.Width > 900)
+            if (Window.Current.Bounds.Width > 1220)
                 Locator.MusicLibraryVM.CurrentAlbum = album;
             else Locator.MusicLibraryVM.AlbumClickedCommand.Execute(album);
         }

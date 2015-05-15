@@ -26,6 +26,10 @@
                                      Color="White" />
                     <SolidColorBrush x:Key="SliderForegroundProgressTheneBrush"
                                      Color="{StaticResource MainColorBase}" />
+                    <SolidColorBrush x:Key="LightGray1ThemeBrush"
+                                     Color="#FF252525" />
+                    <SolidColorBrush x:Key="LightGray2ThemeBrush"
+                                     Color="#FF101010" />
                 </ResourceDictionary>
                 <ResourceDictionary x:Key="Light">
                     <Color x:Key="ApplicationPageBackgroundThemeColor">White</Color>
@@ -49,6 +53,10 @@
                                      Color="Black" />
                     <SolidColorBrush x:Key="SliderForegroundProgressTheneBrush"
                                      Color="{StaticResource MainColorBase}" />
+                    <SolidColorBrush x:Key="LightGray1ThemeBrush"
+                                     Color="#FFF3F3F3" />
+                    <SolidColorBrush x:Key="LightGray2ThemeBrush"
+                                     Color="#FFF9F9F9" /> 
                 </ResourceDictionary>
             </ResourceDictionary.ThemeDictionaries>
             <ResourceDictionary.MergedDictionaries>

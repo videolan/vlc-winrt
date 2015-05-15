@@ -20,6 +20,12 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
+        <ContentPresenter x:Name="MainPageMusicContentPresenter"
+                          x:FieldModifier="public"
+                          Grid.Row="1"
+                          Grid.Column="0"
+                          Grid.ColumnSpan="2"
+                          Loaded="MusicPanesFrame_OnLoaded" />
         <musicPanesControls:MusicPaneComboBox Grid.Row="0" />
         <Grid Grid.Column="1">
             <Grid.ColumnDefinitions>
@@ -63,12 +69,6 @@
                                        TextChanged="TextBox_TextChanged"
                                        HorizontalAlignment="Right" />
         </Grid>
-        <ContentPresenter x:Name="MainPageMusicContentPresenter"
-                          x:FieldModifier="public"
-                          Grid.Row="1"
-                          Grid.Column="0"
-                          Grid.ColumnSpan="2"
-                          Loaded="MusicPanesFrame_OnLoaded" />
 
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>

@@ -2473,6 +2473,8 @@
                 Value="Medium" />
         <Setter Property="TextTrimming"
                 Value="CharacterEllipsis" />
+        <Setter Property="VerticalAlignment"
+                Value="Center" />
     </Style>
 
 

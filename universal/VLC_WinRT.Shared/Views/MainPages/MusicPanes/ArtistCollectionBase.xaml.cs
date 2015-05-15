@@ -35,7 +35,7 @@ namespace VLC_WinRT.Views.MainPages.MusicPanes
             {
                 VisualStateUtilities.GoToState(this, "Narrow", false);
             }
-            else if (Window.Current.Bounds.Width < 900)
+            else if (Window.Current.Bounds.Width < 1220)
             {
                 VisualStateUtilities.GoToState(this, "Medium", false);
             }

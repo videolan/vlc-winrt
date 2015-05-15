@@ -16,13 +16,16 @@
                               Source="{Binding GroupedArtists}" />
     </UserControl.Resources>
 
-    <Grid>
+    <Grid Margin="-12,-50,-12,0"
+          Background="{ThemeResource LightGray1ThemeBrush}">
         <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
             <RowDefinition Height="40" />
             <RowDefinition />
         </Grid.RowDefinitions>
         <TextBlock Grid.Column="0"
-                   Grid.Row="0"
+                   Grid.Row="1"
+                   Margin="{StaticResource FrameMargin}"
                    Style="{StaticResource LittleHeaderTextBlockStyle}"
                    TextWrapping="NoWrap"
                    TextTrimming="CharacterEllipsis">
@@ -30,9 +33,10 @@
             <Run Text="ARTISTS" />
         </TextBlock>
         <SemanticZoom x:Name="SemanticZoom"
-                      Grid.Row="1"
+                      Grid.Row="2"
                       Grid.Column="0"
                       Padding="0"
+                      Margin="{StaticResource FrameMargin}"
                       IsZoomOutButtonEnabled="False"
                       ViewChangeCompleted="SemanticZoom_OnViewChangeCompleted">
             <SemanticZoom.ZoomedInView>
