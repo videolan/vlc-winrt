@@ -28,8 +28,8 @@ namespace VLC_WinRT.Commands.MusicPlayer
         private async void ShareLinkHandler(DataTransferManager sender, DataRequestedEventArgs e)
         {
             DataRequest request = e.Request;
-            var uri = string.Format("http://www.last.fm/music/{0}/{1}", Locator.MusicPlayerVM.CurrentArtist.Name, Locator.MusicPlayerVM.CurrentAlbum.Name);
-            var title = string.Format("#NowPlaying {0} - {1}", Locator.MusicPlayerVM.CurrentTrack.Name, Locator.MusicPlayerVM.CurrentArtist.Name);
+            var uri = string.Format("http://www.last.fm/music/{0}/{1}", Locator.MusicPlayerVM.CurrentArtist?.Name, Locator.MusicPlayerVM.CurrentAlbum?.Name);
+            var title = string.Format("#NowPlaying {0} - {1}", Locator.MusicPlayerVM.CurrentTrack?.Name, Locator.MusicPlayerVM.CurrentArtist?.Name);
 
             request.Data.Properties.Title = title;
             request.Data.Properties.Description = title;
