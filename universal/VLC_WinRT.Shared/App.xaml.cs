@@ -234,7 +234,6 @@ namespace VLC_WinRT
 
 #if WINDOWS_APP
             AppViewHelper.SetAppView();
-            AppViewHelper.SetBackgroundButtonColor();
 #else
             StatusBarHelper.Default();
 #endif

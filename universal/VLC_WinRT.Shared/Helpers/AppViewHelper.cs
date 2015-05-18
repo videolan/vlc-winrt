@@ -42,27 +42,16 @@ namespace VLC_WinRT.Helpers
                         bb.ButtonInactiveForegroundColor = Colors.WhiteSmoke;
                     if (DoesPropertyExist("InactiveForegroundColor", appViewProperties))
                         bb.InactiveForegroundColor = Colors.WhiteSmoke;
+
+                    bb.ButtonBackgroundColor = (Color)App.Current.Resources["StatusBarColorBase"];
+                    if (DoesPropertyExist("ButtonInactiveBackgroundColor", appViewProperties))
+                        bb.ButtonInactiveBackgroundColor = (Color)App.Current.Resources["InactiveMainColorBase"];
                 }
             }
             catch { }
 #endif
         }
-
-        public static void SetBackgroundButtonColor()
-        {
-#if WINDOWS_APP
-            var v = Windows.UI.ViewManagement.ApplicationView.GetForCurrentView();
-            var allProperties = v.GetType().GetRuntimeProperties();
-            titleBar = allProperties.FirstOrDefault(x => x.Name == "TitleBar");
-            if (titleBar == null) return;
-            dynamic bb = titleBar.GetMethod.Invoke(v, null);
-            bb.ButtonBackgroundColor = (Color)App.Current.Resources["StatusBarColorBase"];
-            var appViewProperties = bb.GetType().DeclaredProperties;
-            if (DoesPropertyExist("ButtonInactiveBackgroundColor", appViewProperties))
-                bb.ButtonInactiveBackgroundColor = (Color)App.Current.Resources["InactiveMainColorBase"];
-#endif
-        }
-
+        
         public static async void SetFullscren(bool isfullscreen)
         {
 #if WINDOWS_APP
