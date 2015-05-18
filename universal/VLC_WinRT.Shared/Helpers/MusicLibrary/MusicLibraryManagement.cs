@@ -82,11 +82,9 @@ namespace VLC_WinRT.Helpers.MusicLibrary
             {
                 LogHelper.Log("Loading artists from MusicDB ...");
                 var artists = await Locator.MusicLibraryVM._artistDatabase.Load();
-                var orderedArtists = artists.OrderBy(x => x.Name);
-                var groupedArtists = orderedArtists.GroupBy(x => string.IsNullOrEmpty(x.Name) ? Strings.UnknownString : (char.IsLetter(x.Name.ElementAt(0)) ? x.Name.ToUpper().ElementAt(0).ToString() : Strings.UnknownString));
-
                 LogHelper.Log("Found " + artists.Count + " artists from MusicDB");
-
+                await OrderArtists(artists);            
+                
                 var albums = await Locator.MusicLibraryVM._albumDatabase.LoadAlbums(x => x.ArtistId != 0).ToObservableAsync();
                 var orderedAlbums = albums.OrderBy(x => x.Artist).ThenBy(x => x.Name);
 
@@ -95,8 +93,6 @@ namespace VLC_WinRT.Helpers.MusicLibrary
 
                 await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                 {
-                    Locator.MusicLibraryVM.Artists = new ObservableCollection<ArtistItem>(orderedArtists);
-                    Locator.MusicLibraryVM.GroupedArtists = groupedArtists;
                     Locator.MusicLibraryVM.Tracks = tracks;
                     Locator.MusicLibraryVM.Albums = new ObservableCollection<AlbumItem>(orderedAlbums);
                     Locator.MusicLibraryVM.GroupedTracks = groupedTracks;
@@ -387,6 +383,18 @@ namespace VLC_WinRT.Helpers.MusicLibrary
 #else
             return 6;
 #endif
+        }
+
+        public static async Task OrderArtists(IEnumerable<ArtistItem> artists)
+        {
+            var orderedArtists = artists.OrderBy(x => x.Name);
+            var groupedArtists = orderedArtists.GroupBy(x => string.IsNullOrEmpty(x.Name) ? Strings.UnknownString : (char.IsLetter(x.Name.ElementAt(0)) ? x.Name.ToUpper().ElementAt(0).ToString() : Strings.UnknownString));
+
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                Locator.MusicLibraryVM.Artists = new ObservableCollection<ArtistItem>(orderedArtists);
+                Locator.MusicLibraryVM.GroupedArtists = groupedArtists;
+            });
         }
 
         public static void OrderAlbums()
