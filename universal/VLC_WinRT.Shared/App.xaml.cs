@@ -234,7 +234,7 @@ namespace VLC_WinRT
 
 #if WINDOWS_APP
             AppViewHelper.SetAppView();
-#else
+#elif WINDOWS_PHONE_APP
             StatusBarHelper.Default();
 #endif
             Locator.MainVM.DropTablesIfNeeded();

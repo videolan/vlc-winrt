@@ -928,7 +928,7 @@ namespace VLC_WinRT.ViewModels
         {
 #if WINDOWS_APP
             ForceMediaTransportControls(systemMediaTransportControls);
-#else
+#elif WINDOWS_PHONE_APP
             if (BackgroundMediaPlayer.Current != null &&
                 BackgroundMediaPlayer.Current.CurrentState == MediaPlayerState.Playing)
             {

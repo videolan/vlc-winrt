@@ -132,7 +132,8 @@ namespace VLC_WinRT.Helpers.MusicLibrary
         }
 
 
-#if WINDOWS_APP
+#if WINDOWS_PHONE_APP
+#else
         /// <summary>
         /// This method is Windows-only since the crappy WP OS throws a 
         /// NotImplementedexception when calling QueryOptions, CreateFileQueryWithOptions

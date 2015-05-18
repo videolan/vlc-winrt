@@ -1,8 +1,4 @@
-﻿using Windows.UI.Core;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Navigation;
-using Microsoft.Xaml.Interactivity;
+﻿using Windows.UI.Xaml.Controls;
 
 namespace VLC_WinRT.Views.MainPages.MainVideoControls
 {
