@@ -15,14 +15,15 @@
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
         <AppBarButton x:Name="ShuffleButton"
-                      Style="{StaticResource EllipseLessAppBarButtonStyle}"
+                      Label="Shuffle all"
+                      Style="{StaticResource AppBarButtonStyleHorizontal}"
                       Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.PlayAllRandomCommand}">
             <AppBarButton.Icon>
                 <FontIcon Glyph="{StaticResource ShuffleSymbol}"
                           FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
             </AppBarButton.Icon>
         </AppBarButton>
-        <Grid Background="DimGray"
+        <Grid Background="{ThemeResource PivotHeaderForegroundUnselectedBrush}"
               Grid.Column="1"
               Margin="0,6" />
         <AppBarButton x:Name="RefreshButton"

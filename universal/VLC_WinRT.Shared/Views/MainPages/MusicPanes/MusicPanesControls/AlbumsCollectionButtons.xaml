@@ -7,23 +7,22 @@
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400">
-    <Grid HorizontalAlignment="Right">
+    <Grid HorizontalAlignment="Right"
+          RequestedTheme="Light">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
         <ComboBox x:Name="OrderTypeComboBox"
                   Grid.Column="0"
-                  HorizontalAlignment="Left"
                   Height="40"
                   DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}"
                   ItemsSource="{Binding AlbumsOrderTypeCollection}"
                   SelectedItem="{Binding AlbumsOrderType, Mode=TwoWay}"
-                  BorderThickness="1"
-                  BorderBrush="{StaticResource MainColor}"
-                  Style="{StaticResource NormalComboBoxStyle}"
                   DropDownOpened="ComboBox_OnDropDownOpened"
-                  DropDownClosed="ComboBox_OnDropDownClosed">
+                  DropDownClosed="ComboBox_OnDropDownClosed"
+                  Style="{StaticResource VLCLightComboBox}"
+                  Foreground="White">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Margin="0,0,6,0"
@@ -33,17 +32,15 @@
         </ComboBox>
         <ComboBox x:Name="OrderByComboBox"
                   Grid.Column="1"
-                  Margin="12,0,0,0"
-                  HorizontalAlignment="Left"
+                  Margin="12,0"
                   Height="40"
                   DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}"
                   ItemsSource="{Binding AlbumsListingTypeCollection}"
                   SelectedItem="{Binding AlbumsOrderListing, Mode=TwoWay}"
-                  BorderThickness="1"
-                  BorderBrush="{StaticResource MainColor}"
-                  Style="{StaticResource NormalComboBoxStyle}"
                   DropDownOpened="ComboBox_OnDropDownOpened"
-                  DropDownClosed="ComboBox_OnDropDownClosed">
+                  DropDownClosed="ComboBox_OnDropDownClosed"
+                  Style="{StaticResource VLCLightComboBox}"
+                  Foreground="White">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Converter={StaticResource OrderTypeStringifyConverter}}" />

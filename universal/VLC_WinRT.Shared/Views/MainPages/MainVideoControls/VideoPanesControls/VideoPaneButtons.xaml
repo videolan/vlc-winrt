@@ -15,7 +15,7 @@
         </Grid.ColumnDefinitions>
         <AppBarButton x:Name="SearchButton"
                       Grid.Column="1"
-                      Style="{StaticResource EllipseLessAppBarButtonStyle}"
+                      Style="{StaticResource AppBarButtonStyleHorizontal}"
                       Command="{Binding Source={StaticResource Locator}, Path=MainVM.ChangeMainPageVideoViewCommand}"
                       CommandParameter="3">
             <AppBarButton.Icon>
@@ -24,7 +24,7 @@
             </AppBarButton.Icon>
         </AppBarButton>
         <AppBarButton x:Name="RefreshButton"
-                      Style="{StaticResource EllipseLessAppBarButtonStyle}"
+                      Style="{StaticResource AppBarButtonStyleHorizontal}"
                       DataContext="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM}"
                       Command="{Binding StartVideoIndexingCommand}"
                       IsEnabled="{Binding IsBusy, Converter={StaticResource BooleanNegationConverter}}">

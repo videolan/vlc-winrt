@@ -22,12 +22,7 @@
                   ItemsSource="{Binding StorageVMs}"
                   SelectedItem="{Binding CurrentStorageVM}"
                   Visibility="{Binding StorageVMs.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}"
-                  Style="{StaticResource HeaderComboBoxStyle}"
-                  FontSize="26"
-                  HorizontalAlignment="Left"
-                  VerticalAlignment="Center"
-                  Foreground="WhiteSmoke"
-                  FontWeight="Light">
+                  Style="{StaticResource VLCComboBox}">
             <triggers:Interactions.Triggers>
                 <triggers:EventTrigger EventName="SelectionChanged">
                     <triggers:InvokeCommandAction Command="{Binding RemovableDeviceClicked}"
