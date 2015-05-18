@@ -1,4 +1,6 @@
 ﻿using System.IO;
+using System.Linq;
+using VLC_WinRT.Model.Music;
 using Windows.ApplicationModel.Resources;
 using Windows.Storage;
 
@@ -80,6 +82,14 @@ namespace VLC_WinRT.Utils
             TrackAddedToYourPlaylist = "Track added to the playlist";
             TrackAlreadyExistsInPlaylist = "This track is already in the playlist";
             HaveToSelectPlaylist = "You need to select a playlist";
+        }
+
+        public static string HumanizedArtistName(string artistName) { return string.IsNullOrEmpty(artistName) ? Strings.UnknownArtist : artistName; }
+        public static string HumanizedAlbumName(string albumName) { return string.IsNullOrEmpty(albumName) ? Strings.UnknownAlbum : albumName; }
+        public static string HumanizedYear(int year) { return year == 0 ? Strings.UnknownString : year.ToString(); }
+        public static string HumanizedAlbumFirstLetter(string albumName)
+        {
+            return string.IsNullOrEmpty(albumName) ? Strings.UnknownString : (char.IsLetter(albumName.ElementAt(0)) ? albumName.ElementAt(0).ToString().ToUpper() : Strings.UnknownString);
         }
     }
 }
