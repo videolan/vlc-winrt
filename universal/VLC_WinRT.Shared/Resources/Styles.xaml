@@ -2644,12 +2644,12 @@
                         </VisualStateManager.VisualStateGroups>
                         <Grid HorizontalAlignment="Left"
                               Height="38.5"
-                              Width="28.5">
+                              Width="25">
                             <Grid x:Name="ContentRoot"
                                   Background="Transparent">
                                 <Viewbox Stretch="Uniform"
-                                         Height="28.5"
-                                         Width="28.5">
+                                         Height="25"
+                                         Width="25">
                                     <ContentPresenter x:Name="Content"
                                                       AutomationProperties.AccessibilityView="Raw"
                                                       Content="{TemplateBinding Icon}"
@@ -2663,7 +2663,7 @@
                                    Foreground="{TemplateBinding Foreground}"
                                    FontSize="14"
                                    FontFamily="{TemplateBinding FontFamily}"
-                                   Margin="12,0,0,0"
+                                   Margin="6,0,0,0"
                                    TextAlignment="Center"
                                    VerticalAlignment="Center"
                                    TextWrapping="Wrap"
