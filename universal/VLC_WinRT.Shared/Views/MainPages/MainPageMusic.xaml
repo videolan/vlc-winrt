@@ -11,63 +11,87 @@
       x:Name="MusicLibrary"
       DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
 
-    <Grid Margin="{StaticResource FrameMargin}">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="Auto" />
-        </Grid.ColumnDefinitions>
         <ContentPresenter x:Name="MainPageMusicContentPresenter"
                           x:FieldModifier="public"
                           Grid.Row="1"
-                          Grid.Column="0"
-                          Grid.ColumnSpan="2"
-                          Loaded="MusicPanesFrame_OnLoaded" />
-        <musicPanesControls:MusicPaneComboBox Grid.Row="0" />
-        <Grid Grid.Column="1">
+                          Loaded="MusicPanesFrame_OnLoaded"
+                          Margin="{StaticResource FrameMargin}" />
+        <Grid>
+            <Grid.Background>
+                <Binding Source="{Binding Source={StaticResource Locator}, Path=MainVM}"
+                         Path="IsBackground"
+                         Converter="{StaticResource BooleanToMainColorConverter}" />
+
+            </Grid.Background>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition />
+                <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
+                <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
             </Grid.ColumnDefinitions>
-            <musicPanesControls:AlbumsCollectionButtons Visibility="{Binding MusicView, Converter={StaticResource MusicViewVisibilityConverter}, ConverterParameter='0'}" />
-            <musicPanesControls:MusicPaneButtons Grid.Column="1"
-                                                 Visibility="{Binding MusicView, Converter={StaticResource MusicViewVisibilityConverter}, ConverterParameter='0,1,2'}" />
-            <AppBarButton x:Uid="NewPlaylist"
-                          Grid.Column="2"
-                          Label="new playlist"
-                          Style="{StaticResource AppBarButtonStyleHorizontal}"
-                          Command="{Binding ShowCreateNewPlaylistPaneCommand}"
-                          Margin="0,0,12,0"
-                          VerticalAlignment="Center"
-                          Visibility="{Binding MusicView, Converter={StaticResource MusicViewVisibilityConverter}, ConverterParameter='3'}">
-                <AppBarButton.Icon>
-                    <FontIcon Glyph="{StaticResource AddSymbol}"
-                              FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
-                </AppBarButton.Icon>
-            </AppBarButton>
-            <AppBarButton x:Name="SearchButton"
-                          Grid.Column="3"
-                          Style="{StaticResource EllipseLessAppBarButtonStyle}"
-                          Command="{Binding Source={StaticResource Locator}, Path=MainVM.ChangeMainPageMusicViewCommand}"
-                          CommandParameter="4">
-                <AppBarButton.Icon>
-                    <FontIcon Glyph="{StaticResource SearchSymbol}"
-                              FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
-                </AppBarButton.Icon>
-            </AppBarButton>
-            <userControls:FocusTextBox x:Name="MusicSearchBox"
-                                       Grid.Column="3"
-                                       Text="{Binding SearchTag}"
-                                       PlaceholderText="search an album"
-                                       Height="30"
-                                       Width="250"
-                                       TextChanged="TextBox_TextChanged"
-                                       HorizontalAlignment="Right" />
+            <ComboBox x:Name="MusicViewComboBox"
+                      Grid.Column="1"
+                      DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}"
+                      ItemsSource="{Binding MusicViewCollection}"
+                      SelectedItem="{Binding MusicView, Mode=TwoWay}"
+                      Foreground="White"
+                      Style="{StaticResource VLCComboBox}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Margin="0,0,6,0"
+                                   Text="{Binding Converter={StaticResource MusicViewStringifyConverter}}" />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <Grid Grid.Column="2"
+                  RequestedTheme="Dark">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <musicPanesControls:AlbumsCollectionButtons Visibility="{Binding MusicView, Converter={StaticResource MusicViewVisibilityConverter}, ConverterParameter='0'}" />
+                <musicPanesControls:MusicPaneButtons Grid.Column="1"
+                                                     Visibility="{Binding MusicView, Converter={StaticResource MusicViewVisibilityConverter}, ConverterParameter='0,1,2'}" />
+                <AppBarButton x:Uid="NewPlaylist"
+                              Grid.Column="2"
+                              Label="new playlist"
+                              Style="{StaticResource AppBarButtonStyleHorizontal}"
+                              Command="{Binding ShowCreateNewPlaylistPaneCommand}"
+                              Margin="0,0,12,0"
+                              VerticalAlignment="Center"
+                              Visibility="{Binding MusicView, Converter={StaticResource MusicViewVisibilityConverter}, ConverterParameter='3'}">
+                    <AppBarButton.Icon>
+                        <FontIcon Glyph="{StaticResource AddSymbol}"
+                                  FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+                    </AppBarButton.Icon>
+                </AppBarButton>
+                <AppBarButton x:Name="SearchButton"
+                              Grid.Column="3"
+                              Style="{StaticResource AppBarButtonStyleHorizontal}"
+                              Command="{Binding Source={StaticResource Locator}, Path=MainVM.ChangeMainPageMusicViewCommand}"
+                              CommandParameter="4">
+                    <AppBarButton.Icon>
+                        <FontIcon Glyph="{StaticResource SearchSymbol}"
+                                  FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+                    </AppBarButton.Icon>
+                </AppBarButton>
+                <userControls:FocusTextBox x:Name="MusicSearchBox"
+                                           Grid.Column="3"
+                                           Text="{Binding SearchTag}"
+                                           PlaceholderText="search an album"
+                                           Height="30"
+                                           Width="250"
+                                           TextChanged="TextBox_TextChanged"
+                                           HorizontalAlignment="Right" 
+                                           RequestedTheme="Light"/>
+            </Grid>
         </Grid>
 
         <VisualStateManager.VisualStateGroups>

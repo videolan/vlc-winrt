@@ -261,9 +261,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\MainPages\MusicPanes\MusicPanesControls\MusicPaneButtons.xaml.cs">
       <DependentUpon>MusicPaneButtons.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\MainPages\MusicPanes\MusicPanesControls\MusicPaneComboBox.xaml.cs">
-      <DependentUpon>MusicPaneComboBox.xaml</DependentUpon>
-    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\MainPages\MusicPanes\MusicSearchPane.xaml.cs">
       <DependentUpon>MusicSearchPane.xaml</DependentUpon>
     </Compile>
@@ -596,10 +593,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\MainPages\MusicPanes\MusicPanesControls\MusicPaneButtons.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Views\MainPages\MusicPanes\MusicPanesControls\MusicPaneComboBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
