@@ -3106,8 +3106,9 @@
         <Setter Property="FontSize"
                 Value="18" />
     </Style>
-
+    
     <Thickness x:Key="TextControlThemePadding">10,3,10,5</Thickness>
+    <x:Double x:Key="TextControlBorderThemeThickness">1</x:Double>
     <Style x:Key="FocusTextBoxStyle"
            TargetType="TextBox">
         <Setter Property="MinWidth"
@@ -3332,7 +3333,8 @@
                                       Padding="{TemplateBinding Padding}"
                                       IsTabStop="False"
                                       AutomationProperties.AccessibilityView="Raw"
-                                      ZoomMode="Disabled" />
+                                      ZoomMode="Disabled" 
+                                      VerticalAlignment="Center"/>
                         <ContentControl x:Name="PlaceholderTextContentPresenter"
                                         Grid.Row="1"
                                         Margin="{TemplateBinding BorderThickness}"
@@ -3341,7 +3343,8 @@
                                         IsTabStop="False"
                                         Grid.ColumnSpan="2"
                                         Content="{TemplateBinding PlaceholderText}"
-                                        IsHitTestVisible="False" />
+                                        IsHitTestVisible="False"
+                                        VerticalAlignment="Center"  />
                         <Button x:Name="DeleteButton"
                                 Grid.Row="1"
                                 Style="{StaticResource DeleteButtonStyle}"
