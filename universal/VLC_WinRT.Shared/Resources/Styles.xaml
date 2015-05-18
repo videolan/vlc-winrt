@@ -2560,7 +2560,7 @@
         <Setter Property="Foreground"
                 Value="{ThemeResource AppBarItemForegroundThemeBrush}" />
         <Setter Property="VerticalAlignment"
-                Value="Top" />
+                Value="Center" />
         <Setter Property="HorizontalAlignment"
                 Value="Left" />
         <Setter Property="FontFamily"
