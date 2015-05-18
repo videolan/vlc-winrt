@@ -61,7 +61,13 @@
                     <SolidColorBrush x:Key="LightGray1ThemeBrush"
                                      Color="#FFF3F3F3" />
                     <SolidColorBrush x:Key="LightGray2ThemeBrush"
-                                     Color="#FFF9F9F9" /> 
+                                     Color="#FFF9F9F9" />
+                    <!-- SDK Colors -->
+                    <SolidColorBrush x:Key="TextBoxBorderThemeBrush"
+                                     Color="#E5E5E5" />
+                    <SolidColorBrush x:Key="TextSelectionHighlightColorThemeBrush"
+                                     Color="{StaticResource MainColorBase}"/>
+
                 </ResourceDictionary>
             </ResourceDictionary.ThemeDictionaries>
             <ResourceDictionary.MergedDictionaries>
