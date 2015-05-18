@@ -16,11 +16,11 @@ namespace VLC_WinRT.Converters
                 switch ((VideoView)value)
                 {
                     case VideoView.Videos:
-                        return Strings.Videos.ToLower();
+                        return Strings.Videos.ToUpper();
                     case VideoView.Shows:
-                        return Strings.Shows.ToLower();
+                        return Strings.Shows.ToUpper();
                     case VideoView.CameraRoll:
-                        return Strings.CameraRoll.ToLower();
+                        return Strings.CameraRoll.ToUpper();
                 }
             }
             return "";
