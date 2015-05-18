@@ -9,9 +9,10 @@
              d:DesignHeight="300"
              d:DesignWidth="400"
              DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}"
-             Visibility="{Binding CurrentPage, Converter={StaticResource BottomMiniPlayerVisibilityConverter}}">
+             Visibility="{Binding CurrentPage, Converter={StaticResource BottomMiniPlayerVisibilityConverter}}"
+             RequestedTheme="Dark">
     <Grid x:Name="RootGrid"
-          Background="{ThemeResource ApplicationBarForegroundThemeBrush}">
+          Background="{ThemeResource MainColor}">
         <Grid.Visibility>
             <Binding Source="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.TrackCollection}"
                      Path="IsRunning"
