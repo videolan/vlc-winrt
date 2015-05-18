@@ -71,11 +71,11 @@
                 </ResourceDictionary>
             </ResourceDictionary.ThemeDictionaries>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Resources/Factory.xaml" />
-                <ResourceDictionary Source="Resources/Colors.xaml" />
-                <ResourceDictionary Source="Resources/Converters.xaml" />
-                <ResourceDictionary Source="Resources/Styles.xaml" />
-                <ResourceDictionary Source="Resources/Templates.xaml" />
+                <ResourceDictionary Source="ms-appx:///Resources/Factory.xaml" />
+                <ResourceDictionary Source="ms-appx:///Resources/Colors.xaml" />
+                <ResourceDictionary Source="ms-appx:///Resources/Converters.xaml" />
+                <ResourceDictionary Source="ms-appx:///Resources/Styles.xaml" />
+                <ResourceDictionary Source="ms-appx:///Resources/Templates.xaml" />
                 <ResourceDictionary Source="ms-appx:///Resources/Flyouts.xaml" />
                 <ResourceDictionary Source="ms-appx:///Resources/PlatformFlyouts.xaml" />
             </ResourceDictionary.MergedDictionaries>
