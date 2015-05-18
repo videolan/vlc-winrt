@@ -2464,11 +2464,11 @@
     <ItemsPanelTemplate x:Key="StackPanelTemplate">
         <ItemsStackPanel Margin="{StaticResource FrameMargin}" />
     </ItemsPanelTemplate>
-    
+
     <Style x:Key="LittleHeaderTextBlockStyle"
            TargetType="TextBlock">
         <Setter Property="FontSize"
-                Value="18" />
+                Value="16" />
         <Setter Property="FontWeight"
                 Value="Medium" />
         <Setter Property="TextTrimming"
