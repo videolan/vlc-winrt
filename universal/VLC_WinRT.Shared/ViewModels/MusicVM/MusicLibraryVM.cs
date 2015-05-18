@@ -49,7 +49,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
         private ObservableCollection<TrackCollection> _trackCollections = new ObservableCollection<TrackCollection>();
 
         private IEnumerable<IGrouping<char, TrackItem>> _groupedTracks;
-        private IEnumerable<IGrouping<string, AlbumItem>> _groupedAlbums;
+        private ObservableCollection<GroupItemList<AlbumItem>> _groupedAlbums;
         private IEnumerable<IGrouping<string, ArtistItem>> _groupedArtists;
         #endregion
         #region private props
@@ -122,8 +122,9 @@ namespace VLC_WinRT.ViewModels.MusicVM
             get { return _albums; }
             set { SetProperty(ref _albums, value); }
         }
+        
 
-        public IEnumerable<IGrouping<string, AlbumItem>> GroupedAlbums
+        public ObservableCollection<GroupItemList<AlbumItem>> GroupedAlbums
         {
             get { return _groupedAlbums; }
             set { SetProperty(ref _groupedAlbums, value); }

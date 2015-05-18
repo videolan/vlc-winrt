@@ -25,6 +25,8 @@ using VLC_WinRT.Views.MusicPages.PlaylistControls;
 using WinRTXamlToolkit.Controls.Extensions;
 using System.Collections.Generic;
 using libVLCX;
+using System.Collections;
+using System.Linq.Expressions;
 
 namespace VLC_WinRT.Helpers.MusicLibrary
 {
@@ -293,6 +295,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
         public static void AddAlbum(AlbumItem album, ArtistItem artist)
         {
             artist?.Albums.Add(album);
+            InsertIntoGroupAlbum(album);
             Locator.MusicLibraryVM.Albums.Add(album);
         }
 
@@ -399,39 +402,176 @@ namespace VLC_WinRT.Helpers.MusicLibrary
 
         public static void OrderAlbums()
         {
-            if (Locator.SettingsVM.AlbumsOrderType == OrderType.ByArtist)
+            Task.Run(async () =>
             {
-                if (Locator.SettingsVM.AlbumsOrderListing == OrderListing.Ascending)
+                var groupedAlbums = new ObservableCollection<GroupItemList<AlbumItem>>();
+                if (Locator.SettingsVM.AlbumsOrderType == OrderType.ByArtist)
                 {
-                    Locator.MusicLibraryVM.GroupedAlbums = Locator.MusicLibraryVM.Albums.OrderBy(x => x.Artist).GroupBy(x => string.IsNullOrEmpty(x.Artist) ? Strings.UnknownString : x.Artist);
+                    if (Locator.SettingsVM.AlbumsOrderListing == OrderListing.Ascending)
+                    {
+                        var groupQuery = from album in Locator.MusicLibraryVM.Albums
+                                         orderby album.Artist
+                                         group album by Strings.HumanizedArtistName(album.Artist) into a
+                                         select new { GroupName = a.Key, Items = a };
+                        foreach (var g in groupQuery)
+                        {
+                            GroupItemList<AlbumItem> albums = new GroupItemList<AlbumItem>();
+                            albums.Key = g.GroupName;
+                            foreach (var album in g.Items)
+                            {
+                                albums.Add(album);
+                            }
+                            groupedAlbums.Add(albums);
+                        }
+                    }
+                    else if (Locator.SettingsVM.AlbumsOrderListing == OrderListing.Descending)
+                    {
+                        var groupQuery = from album in Locator.MusicLibraryVM.Albums
+                                         orderby album.Artist descending
+                                         group album by Strings.HumanizedArtistName(album.Artist) into a
+                                         select new { GroupName = a.Key, Items = a };
+                        foreach (var g in groupQuery)
+                        {
+                            GroupItemList<AlbumItem> albums = new GroupItemList<AlbumItem>();
+                            albums.Key = g.GroupName;
+                            foreach (var album in g.Items)
+                            {
+                                albums.Add(album);
+                            }
+                            groupedAlbums.Add(albums);
+                        }
+                    }
                 }
-                else if (Locator.SettingsVM.AlbumsOrderListing == OrderListing.Descending)
+                else if (Locator.SettingsVM.AlbumsOrderType == OrderType.ByDate)
                 {
-                    Locator.MusicLibraryVM.GroupedAlbums = Locator.MusicLibraryVM.Albums.OrderByDescending(x => x.Artist).GroupBy(x => string.IsNullOrEmpty(x.Artist) ? Strings.UnknownString : x.Artist);
+                    if (Locator.SettingsVM.AlbumsOrderListing == OrderListing.Ascending)
+                    {
+                        var groupQuery = from album in Locator.MusicLibraryVM.Albums
+                                         orderby album.Year
+                                         group album by Strings.HumanizedYear(album.Year) into a
+                                         select new { GroupName = a.Key, Items = a };
+                        foreach (var g in groupQuery)
+                        {
+                            GroupItemList<AlbumItem> albums = new GroupItemList<AlbumItem>();
+                            albums.Key = g.GroupName;
+                            foreach (var album in g.Items)
+                            {
+                                albums.Add(album);
+                            }
+                            groupedAlbums.Add(albums);
+                        }
+                    }
+                    else if (Locator.SettingsVM.AlbumsOrderListing == OrderListing.Descending)
+                    {
+                        var groupQuery = from album in Locator.MusicLibraryVM.Albums
+                                         orderby album.Year descending
+                                         group album by Strings.HumanizedYear(album.Year) into a
+                                         select new { GroupName = a.Key, Items = a };
+                        foreach (var g in groupQuery)
+                        {
+                            GroupItemList<AlbumItem> albums = new GroupItemList<AlbumItem>();
+                            albums.Key = g.GroupName;
+                            foreach (var album in g.Items)
+                            {
+                                albums.Add(album);
+                            }
+                            groupedAlbums.Add(albums);
+                        }
+                    }
                 }
-            }
-            else if (Locator.SettingsVM.AlbumsOrderType == OrderType.ByDate)
+                else if (Locator.SettingsVM.AlbumsOrderType == OrderType.ByAlbum)
+                {
+                    if (Locator.SettingsVM.AlbumsOrderListing == OrderListing.Ascending)
+                    {
+                        var groupQuery = from album in Locator.MusicLibraryVM.Albums
+                                         orderby album.Name
+                                         group album by Strings.HumanizedAlbumFirstLetter(album.Name) into a
+                                         select new { GroupName = a.Key, Items = a };
+                        foreach (var g in groupQuery)
+                        {
+                            GroupItemList<AlbumItem> albums = new GroupItemList<AlbumItem>();
+                            albums.Key = g.GroupName;
+                            foreach (var album in g.Items)
+                            {
+                                albums.Add(album);
+                            }
+                            groupedAlbums.Add(albums);
+                        }
+                    }
+                    else if (Locator.SettingsVM.AlbumsOrderListing == OrderListing.Descending)
+                    {
+                        var groupQuery = from album in Locator.MusicLibraryVM.Albums
+                                         orderby album.Name descending
+                                         group album by Strings.HumanizedAlbumFirstLetter(album.Name) into a
+                                         select new { GroupName = a.Key, Items = a };
+                        foreach (var g in groupQuery)
+                        {
+                            GroupItemList<AlbumItem> albums = new GroupItemList<AlbumItem>();
+                            albums.Key = g.GroupName;
+                            foreach (var album in g.Items)
+                            {
+                                albums.Add(album);
+                            }
+                            groupedAlbums.Add(albums);
+                        }
+                    }
+                }
+                
+                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, ()=> Locator.MusicLibraryVM.GroupedAlbums = groupedAlbums);
+            });
+        }
+
+        static void InsertIntoGroupAlbum(AlbumItem album)
+        {
+            if (Locator.NavigationService.CurrentPage != VLCPage.MainPageMusic || Locator.MusicLibraryVM.MusicView != MusicView.Albums) return;
+            Task.Run(async () =>
             {
-                if (Locator.SettingsVM.AlbumsOrderListing == OrderListing.Ascending)
+                if (Locator.SettingsVM.AlbumsOrderType == OrderType.ByArtist)
                 {
-                    Locator.MusicLibraryVM.GroupedAlbums = Locator.MusicLibraryVM.Albums.OrderBy(x => x.Year).GroupBy(x => (x.Year == 0) ? Strings.UnknownString : x.Year.ToString());
+                    var artist = Locator.MusicLibraryVM.GroupedAlbums.FirstOrDefault(x => x.Key == Strings.HumanizedArtistName(album.Artist));
+                    if (artist == null)
+                    {
+                        var newArtist = new GroupItemList<AlbumItem>(album) { Key = Strings.HumanizedArtistName(album.Artist) };
+                        int i = Locator.MusicLibraryVM.GroupedAlbums.IndexOf(Locator.MusicLibraryVM.GroupedAlbums.LastOrDefault(x => string.Compare(x.Key, newArtist.Key) < 0));
+                        i++;
+                        await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low,() => Locator.MusicLibraryVM.GroupedAlbums.Insert(i, newArtist));
+                    }
+                    else
+                    {
+                        artist.Add(album);
+                    }
                 }
-                else if (Locator.SettingsVM.AlbumsOrderListing == OrderListing.Descending)
+                else if (Locator.SettingsVM.AlbumsOrderType == OrderType.ByDate)
                 {
-                    Locator.MusicLibraryVM.GroupedAlbums = Locator.MusicLibraryVM.Albums.OrderByDescending(x => x.Year).GroupBy(x => (x.Year == 0) ? Strings.UnknownString : x.Year.ToString());
+                    var year = Locator.MusicLibraryVM.GroupedAlbums.FirstOrDefault(x => x.Key == Strings.HumanizedYear(album.Year));
+                    if (year == null)
+                    {
+                        var newyear = new GroupItemList<AlbumItem>(album) { Key = Strings.HumanizedYear(album.Year) };
+                        int i = Locator.MusicLibraryVM.GroupedAlbums.IndexOf(Locator.MusicLibraryVM.GroupedAlbums.LastOrDefault(x => string.Compare(x.Key, newyear.Key) < 0));
+                        i++;
+                        await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => Locator.MusicLibraryVM.GroupedAlbums.Insert(i, newyear));
+                    }
+                    else
+                    {
+                        year.Add(album);
+                    }
                 }
-            }
-            else if (Locator.SettingsVM.AlbumsOrderType == OrderType.ByAlbum)
-            {
-                if (Locator.SettingsVM.AlbumsOrderListing == OrderListing.Ascending)
+                else if (Locator.SettingsVM.AlbumsOrderType == OrderType.ByAlbum)
                 {
-                    Locator.MusicLibraryVM.GroupedAlbums = Locator.MusicLibraryVM.Albums.OrderBy(x => x.Name).GroupBy(x => string.IsNullOrEmpty(x.Name) ? Strings.UnknownString : (char.IsLetter(x.Name.ElementAt(0)) ? x.Name.ElementAt(0).ToString().ToUpper() : Strings.UnknownString));
+                    var firstChar = Locator.MusicLibraryVM.GroupedAlbums.FirstOrDefault(x => x.Key == Strings.HumanizedAlbumFirstLetter(album.Name));
+                    if (firstChar == null)
+                    {
+                        var newChar = new GroupItemList<AlbumItem>(album) { Key = Strings.HumanizedAlbumFirstLetter(album.Name) };
+                        int i = Locator.MusicLibraryVM.GroupedAlbums.IndexOf(Locator.MusicLibraryVM.GroupedAlbums.LastOrDefault(x => string.Compare(x.Key, newChar.Key) < 0));
+                        i++;
+                        await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => Locator.MusicLibraryVM.GroupedAlbums.Insert(i, newChar));
+                    }
+                    else
+                    {
+                        firstChar.Add(album);
+                    }
                 }
-                else if (Locator.SettingsVM.AlbumsOrderListing == OrderListing.Descending)
-                {
-                    Locator.MusicLibraryVM.GroupedAlbums = Locator.MusicLibraryVM.Albums.OrderByDescending(x => x.Name).GroupBy(x => string.IsNullOrEmpty(x.Name) ? Strings.UnknownString : (char.IsLetter(x.Name.ElementAt(0)) ? x.Name.ElementAt(0).ToString().ToUpper() : Strings.UnknownString));
-                }
-            }
+            });
         }
 
         public static async Task AddNewPlaylist(string trackCollectionName)
