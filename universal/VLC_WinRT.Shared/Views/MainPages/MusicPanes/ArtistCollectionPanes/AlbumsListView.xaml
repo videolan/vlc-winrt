@@ -8,15 +8,14 @@
       mc:Ignorable="d"
       d:DesignHeight="300"
       d:DesignWidth="400"
-      Margin="12,-50,-12,0"
+      Margin="12,0,-12,0"
       Background="{ThemeResource LightGray2ThemeBrush}">
     <Grid.RowDefinitions>
-        <RowDefinition Height="50" />
         <RowDefinition Height="40" />
         <RowDefinition />
     </Grid.RowDefinitions>
 
-    <Grid Grid.Row="1"
+    <Grid Grid.Row="0"
           Height="40">
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
@@ -33,8 +32,8 @@
                    TextTrimming="CharacterEllipsis">
             <Run Text="{Binding Name, Converter={StaticResource StringToUpperConverter}}"
                  Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}" />
-            <Run Text="ALBUMS:" />
             <Run Text="{Binding Albums.Count}" />
+            <Run Text="ALBUMS" />
         </TextBlock>
         <AppBarButton Grid.Column="1"
                       Style="{StaticResource AppBarButtonStyleHorizontal}"
@@ -68,17 +67,15 @@
             </AppBarButton.Icon>
         </AppBarButton>
     </Grid>
-
     <ListView x:Name="AlbumsList"
-              Grid.Row="2"
-              Grid.Column="0"
+              Grid.Row="1"
               Margin="{StaticResource FrameMargin}"
               ItemsSource="{Binding Albums}"
               ItemTemplate="{StaticResource PhoneSemanticZoomInViewAlbumTemplateLittleSize}"
-              IsItemClickEnabled="True"
-              SelectionMode="None"
+              IsItemClickEnabled="False"
+              SelectionMode="Single"
               ItemContainerStyle="{StaticResource ListViewItemStyle}"
-              ItemClick="AlbumsList_OnItemClick">
+              SelectionChanged="AlbumsList_SelectionChanged">
         <ListView.ItemsPanel>
             <ItemsPanelTemplate>
                 <ItemsWrapGrid Orientation="Horizontal"

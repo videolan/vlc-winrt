@@ -1,9 +1,11 @@
-﻿using Windows.UI.Xaml;
+﻿using System.Linq;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using VLC_WinRT.Model.Music;
 using VLC_WinRT.ViewModels;
 using Windows.UI.Xaml.Data;
 using VLC_WinRT.Utils;
+using VLC_WinRT.Helpers.MusicLibrary;
 
 namespace VLC_WinRT.Views.MainPages.MusicPanes.ArtistCollectionPanes
 {
@@ -32,10 +34,11 @@ namespace VLC_WinRT.Views.MainPages.MusicPanes.ArtistCollectionPanes
         {
             ArtistsZoomedOutView.ItemsSource = GroupArtists.View.CollectionGroups;
         }
-
-        private void ArtistListView_OnItemClick(object sender, ItemClickEventArgs e)
+        
+        private void ArtistListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var artist = e.ClickedItem as ArtistItem;
+            if (!e.AddedItems.Any()) return;
+            var artist = e.AddedItems[0] as ArtistItem;
             if (Window.Current.Bounds.Width >= 800)
                 Locator.MusicLibraryVM.CurrentArtist = artist;
             else Locator.MusicLibraryVM.ArtistClickedCommand.Execute(artist);
