@@ -42,12 +42,6 @@
     <Page Include="$(MSBuildThisFileDirectory)Resources\Templates\VideoTemplates.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Views\MainPages\MainMusicControls\PlaylistPivotItem.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Views\MainPages\MainMusicControls\SongsPivotItem.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\MainPages\MainPage.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -103,6 +97,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\MainPages\MusicPanes\MusicSearchPane.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\MainPages\MusicPanes\PlaylistPivotItem.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\MainPages\MusicPanes\SongsPivotItem.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\MusicPages\AlbumPageControls\AlbumHeaderControls.xaml">
@@ -287,12 +287,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\MainPages\MainMusicControls\PlaylistPivotItem.xaml.cs">
-      <DependentUpon>PlaylistPivotItem.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\MainPages\MainMusicControls\SongsPivotItem.xaml.cs">
-      <DependentUpon>SongsPivotItem.xaml</DependentUpon>
-    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\MainPages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -349,6 +343,12 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\MainPages\MusicPanes\MusicSearchPane.xaml.cs">
       <DependentUpon>MusicSearchPane.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\MainPages\MusicPanes\PlaylistPivotItem.xaml.cs">
+      <DependentUpon>PlaylistPivotItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\MainPages\MusicPanes\SongsPivotItem.xaml.cs">
+      <DependentUpon>SongsPivotItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\MusicPages\AlbumPageControls\AlbumHeaderControls.xaml.cs">
       <DependentUpon>AlbumHeaderControls.xaml</DependentUpon>

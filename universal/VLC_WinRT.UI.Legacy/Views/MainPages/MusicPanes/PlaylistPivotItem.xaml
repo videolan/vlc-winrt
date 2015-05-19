@@ -1,4 +1,4 @@
-﻿<Page x:Class="VLC_WinRT.Views.MainPages.MainMusicControls.PlaylistPivotItem"
+﻿<Page x:Class="VLC_WinRT.Views.MainPages.MusicPanes.PlaylistPivotItem"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:local="using:VLC_WinRT.Views.MainPages.MainMusicControls"
