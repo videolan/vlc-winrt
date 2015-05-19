@@ -22,7 +22,7 @@
                   ItemsSource="{Binding StorageVMs}"
                   SelectedItem="{Binding CurrentStorageVM}"
                   Visibility="{Binding StorageVMs.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}"
-                  Style="{StaticResource VLCComboBox}">
+                  >
             <triggers:Interactions.Triggers>
                 <triggers:EventTrigger EventName="SelectionChanged">
                     <triggers:InvokeCommandAction Command="{Binding RemovableDeviceClicked}"
@@ -42,7 +42,7 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <AppBarButton Grid.Column="0"
-                          Style="{StaticResource AppBarButtonStyleHorizontal}"
+                          
                           Label="Back"
                           Command="{Binding CurrentStorageVM.GoBackCommand}"
                           Visibility="{Binding CurrentStorageVM.CanGoBack, Converter={StaticResource BooleanToVisibilityConverter}}"
@@ -53,7 +53,7 @@
                 </AppBarButton.Icon>
             </AppBarButton>
             <AppBarButton Grid.Column="1"
-                          Style="{StaticResource AppBarButtonStyleHorizontal}"
+                          
                           Label="play folder"
                           Command="{Binding CurrentStorageVM.PlayFolderCommand}"
                           CommandParameter="{Binding CurrentStorageVM.StorageItems}">
@@ -72,8 +72,8 @@
                       IsItemClickEnabled="True"
                       SelectionMode="None"
                       IsSwipeEnabled="False"
-                      ItemContainerStyle="{StaticResource ListViewItemStyle}"
-                      ItemsPanel="{StaticResource WrapPanelTemplate}"
+                     
+                      
                       Visibility="{Binding StorageVMs.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}">
                 <triggers:Interactions.Triggers>
                     <triggers:EventTrigger EventName="ItemClick">

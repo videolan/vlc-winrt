@@ -23,7 +23,7 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <TextBlock Text="VOLUME"
-                       Style="{StaticResource BaselineTextStyle}"
+                       
                        VerticalAlignment="Center"
                        Margin="0,-12,0,0" />
             <Button Style="{StaticResource TextBlockButtonStyle}"
@@ -36,7 +36,7 @@
             <Slider Grid.Row="1"
                     Value="{Binding Volume, Mode=TwoWay}"
                     Maximum="100"
-                    Style="{StaticResource VLCSlider}" />
+                     />
         </Grid>
     </Border>
 </UserControl>

@@ -45,21 +45,21 @@
     </TextBlock>
     <AppBarButton Grid.Row="2"
                   Grid.Column="4"
-                  Style="{StaticResource AppBarButtonStyleHorizontal}"
+                  
                   Icon="{Binding CurrentAlbum.Favorite, Converter={StaticResource FavoriteSymbolConverter}}"
                   VerticalAlignment="Top"
                   Command="{Binding CurrentAlbum.FavoriteAlbum}"
                   CommandParameter="{Binding CurrentAlbum}" />
     <AppBarButton Grid.Row="1"
                   Grid.Column="4"
-                  Style="{StaticResource AppBarButtonStyleHorizontal}"
+                  
                   Icon="{Binding CurrentAlbum.IsPinned, Converter={StaticResource PinConverter}, ConverterParameter='icon'}"
                   VerticalAlignment="Top"
                   Command="{Binding CurrentAlbum.PinAlbumCommand}"
                   CommandParameter="{Binding CurrentAlbum}" />
     <AppBarButton Grid.Row="1"
                   Grid.Column="3"
-                  Style="{StaticResource AppBarButtonStyleHorizontal}"
+                  
                   Label="add to playlist"
                   VerticalAlignment="Top"
                   DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}"
@@ -71,7 +71,7 @@
     </AppBarButton>
     <AppBarButton Grid.Row="2"
                   Grid.Column="3"
-                  Style="{StaticResource AppBarButtonStyleHorizontal}"
+                  
                   Label="Play album"
                   VerticalAlignment="Top"
                   Command="{Binding CurrentAlbum.PlayAlbum}"

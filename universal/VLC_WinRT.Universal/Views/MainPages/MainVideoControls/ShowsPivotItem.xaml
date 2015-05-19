@@ -23,7 +23,7 @@
                   Grid.Row="1"
                   ItemsSource="{Binding Source={StaticResource ShowsGroupedByName}}"
                   ItemTemplate="{StaticResource PhoneShowTemplate}"
-                  ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                 
                   IsItemClickEnabled="True"
                   SelectionMode="None">
             <triggers:Interactions.Triggers>

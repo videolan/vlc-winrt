@@ -44,7 +44,7 @@
             <StackPanel Grid.Row="3"
                         VerticalAlignment="Center">
                 <ProgressBar IsIndeterminate="True"
-                             Style="{StaticResource ThinProgressBar}"
+                             
                              VerticalAlignment="Top" />
                 <TextBlock x:Uid="RemoveableDeviceMessage2"
                            Text="Waiting for removable storages"

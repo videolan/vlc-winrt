@@ -103,7 +103,7 @@
                                   Grid.Column="1"
                                   HorizontalAlignment="Center"
                                   IsCompact="True"
-                                  Style="{StaticResource AppBarButtonStyleHuge}"
+                                  
                                   VerticalAlignment="Center">
                         <AppBarButton.Icon>
                             <FontIcon Glyph="{StaticResource ConversationSymbol}"
@@ -127,7 +127,7 @@
                                   Grid.Column="2"
                                   IsCompact="True"
                                   Visibility="{Binding IsPlaying, Converter={StaticResource NegatedBooleanToVisibilityConverter}}"
-                                  Style="{StaticResource AppBarButtonStyleHuge}"
+                                  
                                   VerticalAlignment="Center"
                                   Command="{Binding PlayOrPauseCommand}">
                         <AppBarButton.Icon>
@@ -140,7 +140,7 @@
                                   Grid.Column="2"
                                   IsCompact="True"
                                   Visibility="{Binding IsPlaying, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                  Style="{StaticResource AppBarButtonStyleHuge}"
+                                  
                                   VerticalAlignment="Center"
                                   Command="{Binding PlayOrPauseCommand}">
                         <AppBarButton.Icon>
@@ -152,7 +152,7 @@
                     <AppBarButton x:Name="VolumeButton"
                                   Grid.Column="3"
                                   IsCompact="True"
-                                  Style="{StaticResource AppBarButtonStyleHuge}"
+                                  
                                   VerticalAlignment="Center"
                                   HorizontalAlignment="Center"
                                   Command="{Binding Source={StaticResource Locator}, Path=VideoVm.ToggleIsVideoPlayerVolumeSettingsVisible}">
@@ -168,7 +168,7 @@
                                    IsCompact="True"
                                    IsTabStop="False"
                                    VerticalAlignment="Center"
-                                   Style="{StaticResource AppBarButtonStyleHuge}"
+                                   
                                    Command="{Binding Source={StaticResource Locator}, Path=VideoVm.ToggleIsVideoPlayerSettingsVisible}" />
                 </Grid>
             </Grid>

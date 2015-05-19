@@ -299,9 +299,6 @@
     <Compile Include="Views\UserControls\SliderControl.xaml.cs">
       <DependentUpon>SliderControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControls\TopBar.xaml.cs">
-      <DependentUpon>TopBar.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\UserControls\TrackItemTemplate.xaml.cs">
       <DependentUpon>TrackItemTemplate.xaml</DependentUpon>
     </Compile>
@@ -1445,10 +1442,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\UserControls\SliderControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\UserControls\TopBar.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

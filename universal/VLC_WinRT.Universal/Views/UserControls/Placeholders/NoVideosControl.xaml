@@ -14,7 +14,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <ListView ItemContainerStyle="{StaticResource ListViewItemStyle}"
+        <ListView
                   SelectionMode="None">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>

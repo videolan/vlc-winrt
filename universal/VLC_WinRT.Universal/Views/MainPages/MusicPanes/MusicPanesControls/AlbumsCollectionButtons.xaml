@@ -21,7 +21,7 @@
                   SelectedItem="{Binding AlbumsOrderType, Mode=TwoWay}"
                   DropDownOpened="ComboBox_OnDropDownOpened"
                   DropDownClosed="ComboBox_OnDropDownClosed"
-                  Style="{StaticResource VLCLightComboBox}"
+                  
                   Foreground="White">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
@@ -39,7 +39,7 @@
                   SelectedItem="{Binding AlbumsOrderListing, Mode=TwoWay}"
                   DropDownOpened="ComboBox_OnDropDownOpened"
                   DropDownClosed="ComboBox_OnDropDownClosed"
-                  Style="{StaticResource VLCLightComboBox}"
+                  
                   Foreground="White">
             <ComboBox.ItemTemplate>
                 <DataTemplate>

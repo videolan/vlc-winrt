@@ -10,15 +10,41 @@
              d:DesignWidth="400"
              DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}">
 
-    <Grid x:Name="SidebarGrid"
-          Loaded="Sidebar_Loaded"
-          Background="{ThemeResource ApplicationBarForegroundThemeBrush}">
+    <Grid x:Name="SidebarGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
+            <RowDefinition Height="50" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
+            <ColumnDefinition Width="50" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Path Grid.Row="1"
+              Grid.Column="1"
+              Data="{StaticResource VLCFlatPath}"
+              Width="26"
+              Stretch="Uniform"
+              VerticalAlignment="Center"
+              Fill="{ThemeResource PivotHeaderForegroundUnselectedBrush}" />
+
+        <TextBlock Grid.Row="1"
+                   Grid.Column="2"
+                   Text="VLC"
+                   Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}"
+                   Style="{StaticResource SubheaderTextBlockStyle}"
+                   Margin="6,0,0,0" />
+
         <ListView x:Name="PanelsListView"
+                  Grid.Row="2"
+                  Grid.Column="0"
+                  Grid.ColumnSpan="3"
                   ItemsSource="{Binding Panels}"
                   IsItemClickEnabled="True"
                   SelectionMode="None"
-                  ItemContainerStyle="{StaticResource ListViewItemContainerStyle}"
-                  ItemTemplate="{StaticResource SidebarMiniIconItemTemplate}"
+                  ItemTemplate="{StaticResource SidebarIconTemplate}"
                   ScrollViewer.VerticalScrollBarVisibility="Disabled"
                   VerticalAlignment="Top">
             <triggers:Interactions.Triggers>

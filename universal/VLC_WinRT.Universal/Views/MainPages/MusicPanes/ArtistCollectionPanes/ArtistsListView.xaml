@@ -27,7 +27,7 @@
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
         <TextBlock Margin="{StaticResource FrameMargin}"
-                   Style="{StaticResource LittleHeaderTextBlockStyle}"
+                   
                    TextWrapping="NoWrap"
                    TextTrimming="CharacterEllipsis">
             <Run Text="{Binding Artists.Count}" />
@@ -36,7 +36,7 @@
         <AppBarButton Grid.Column="1"
                       Label="Play all"
                       HorizontalAlignment="Right"
-                      Style="{StaticResource AppBarButtonStyleHorizontal}"
+                      
                       Command="{Binding PlayAllSongsCommand}"
                       Margin="0,0,12,0">
             <AppBarButton.Icon>
@@ -58,7 +58,7 @@
                           ItemsSource="{Binding Artists}"
                           SelectedItem="{Binding CurrentArtist}"
                           SelectionMode="Single"                          
-                          ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                         
                           ItemTemplate="{StaticResource ArtistHorizontalTemplate}"
                           SelectionChanged="ArtistListView_SelectionChanged">
                     <ListView.Header>

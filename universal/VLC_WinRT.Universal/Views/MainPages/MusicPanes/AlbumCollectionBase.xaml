@@ -23,7 +23,7 @@
             <SemanticZoom.ZoomedInView>
                 <ListView ItemsSource="{Binding Source={StaticResource GroupAlbums}}"
                           ItemTemplate="{StaticResource PhoneSemanticZoomInViewAlbumTemplateLittleSize}"
-                          ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                         
                           IsItemClickEnabled="True"
                           SelectionMode="None"
                           IsSwipeEnabled="False">

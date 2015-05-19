@@ -16,8 +16,8 @@
               IsItemClickEnabled="True"
               SelectionMode="None"
               ItemTemplate="{StaticResource WPTrackTemplateWNumber}"
-              ItemContainerStyle="{StaticResource ListViewItemStyle}"
-              ItemsPanel="{StaticResource StackPanelTemplate}"
+             
+              
               Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <ListView.HeaderTemplate>
             <DataTemplate>

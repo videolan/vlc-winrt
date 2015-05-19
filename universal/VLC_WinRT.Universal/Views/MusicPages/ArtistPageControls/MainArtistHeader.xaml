@@ -50,7 +50,7 @@
             <AppBarButton x:Name="SwitchBetweenViewsButton"
                           Loaded="SwitchBetweenViewsButton_Loaded"
                           Click="SwitchBetweenViewsButton_Click"
-                          Style="{StaticResource AppBarButtonStyleHorizontal}"
+                          
                           VerticalAlignment="Center"
                           Margin="{StaticResource FrameMargin}">
                 <AppBarButton.Icon>
@@ -59,7 +59,7 @@
                 </AppBarButton.Icon>
             </AppBarButton>
             <AppBarButton Grid.Column="0"
-                          Style="{StaticResource AppBarButtonStyleHorizontal}"
+                          
                           Label="Play all"
                           VerticalAlignment="Center"
                           Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.PlayArtistAlbumsCommand}"
@@ -71,13 +71,13 @@
                 </AppBarButton.Icon>
             </AppBarButton>
             <AppBarButton Grid.Column="2"
-                          Style="{StaticResource AppBarButtonStyleHorizontal}"
+                          
                           Icon="{Binding CurrentArtist.IsPinned, Converter={StaticResource PinConverter}, ConverterParameter='icon'}"
                           VerticalAlignment="Center"
                           Command="{Binding CurrentArtist.PinArtistCommand}"
                           CommandParameter="{Binding CurrentArtist}" />
             <AppBarButton Grid.Column="4"
-                          Style="{StaticResource AppBarButtonStyleHorizontal}"
+                          
                           VerticalAlignment="Center"
                           Command="{Binding CurrentArtist.SeeArtistShowsCommand}"
                           CommandParameter="{Binding CurrentArtist}">

@@ -13,7 +13,7 @@
         <ListView x:Name="CameraRollListView"
                   ItemsSource="{Binding CameraRoll}"
                   ItemTemplate="{StaticResource PhoneCompactVideoTemplate}"
-                  ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                 
                   IsItemClickEnabled="True">
             <triggers:Interactions.Triggers>
                 <triggers:EventTrigger EventName="ItemClick">

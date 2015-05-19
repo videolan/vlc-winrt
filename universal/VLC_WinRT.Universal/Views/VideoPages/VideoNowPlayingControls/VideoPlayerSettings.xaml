@@ -28,7 +28,7 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <TextBlock Text="SETTINGS" 
-                       Style="{StaticResource BaselineTextStyle}"
+                       
                        VerticalAlignment="Center"
                        Margin="0,-12,0,0"/>
             <Button Style="{StaticResource TextBlockButtonStyle}"
@@ -44,7 +44,7 @@
                        Style="{StaticResource TitleTextBlockStyle}" />
             <Slider Grid.Row="2"
                     Margin="0,12,0,0"
-                    Style="{StaticResource VLCSlider}"
+                    
                     Minimum="50"
                     Value="{Binding SpeedRate, Mode=TwoWay}"
                     Maximum="200"

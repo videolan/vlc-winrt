@@ -17,12 +17,22 @@
                   AudioCategory="BackgroundCapableMedia" 
                   Loaded="MfMediaElement_Loaded"/>
 
-    <controls:SplitShell x:Name="SplitShell"
-                         x:FieldModifier="public"
-                         FlyoutCloseRequested="SplitShell_FlyoutCloseRequested">
-        <controls:SplitShell.Content>
-            <userControls:ShellContent x:Name="ShellContent"
-                                       x:FieldModifier="public" />
-        </controls:SplitShell.Content>
-    </controls:SplitShell>
+    <SplitView PaneBackground="{ThemeResource ApplicationThirdForegroundThemeBrush}"
+               IsPaneOpen="True"
+               OpenPaneLength="250"
+               DisplayMode="Inline">
+        <SplitView.Pane>
+            <userControls:SideBar />
+        </SplitView.Pane>
+        <SplitView.Content>
+            <controls:SplitShell x:Name="SplitShell"
+                                 x:FieldModifier="public"
+                                 FlyoutCloseRequested="SplitShell_FlyoutCloseRequested">
+                <controls:SplitShell.Content>
+                    <userControls:ShellContent x:Name="ShellContent"
+                                               x:FieldModifier="public" />
+                </controls:SplitShell.Content>
+            </controls:SplitShell>
+        </SplitView.Content>
+    </SplitView>
 </Grid>

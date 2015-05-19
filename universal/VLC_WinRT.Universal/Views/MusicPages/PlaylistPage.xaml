@@ -13,8 +13,8 @@
               SelectionMode="Multiple"
               ItemsSource="{Binding CurrentTrackCollection.Playlist}"
               ItemTemplate="{StaticResource TrackTemplateDetailed}"
-              ItemContainerStyle="{StaticResource ListViewItemStyle}"
-              ItemsPanel="{StaticResource StackPanelTemplate}"
+             
+              
               SelectionChanged="PlayListView_OnSelectionChanged"
               IsItemClickEnabled="True"
               Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -69,21 +69,21 @@
                     </TextBlock>
                     <!--<AppBarButton Grid.Row="2"
                                   Grid.Column="4"
-                                  Style="{StaticResource AppBarButtonStyleHorizontal}"
+                                  
                                   Icon="{Binding CurrentAlbum.Favorite, Converter={StaticResource FavoriteSymbolConverter}}"
                                   VerticalAlignment="Top"
                                   Command="{Binding CurrentAlbum.FavoriteAlbum}"
                                   CommandParameter="{Binding CurrentAlbum}" />
                     <AppBarButton Grid.Row="1"
                                   Grid.Column="4"
-                                  Style="{StaticResource AppBarButtonStyleHorizontal}"
+                                  
                                   Icon="{Binding CurrentAlbum.IsPinned, Converter={StaticResource PinConverter}, ConverterParameter='icon'}"
                                   VerticalAlignment="Top"
                                   Command="{Binding CurrentAlbum.PinAlbumCommand}"
                                   CommandParameter="{Binding CurrentAlbum}" />-->
                     <AppBarButton Grid.Row="1"
                                   Grid.Column="3"
-                                  Style="{StaticResource AppBarButtonStyleHorizontal}"
+                                  
                                   Label="delete playlist"
                                   VerticalAlignment="Top"
                                   DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}"
@@ -95,7 +95,7 @@
                     </AppBarButton>
                     <AppBarButton Grid.Row="2"
                                   Grid.Column="3"
-                                  Style="{StaticResource AppBarButtonStyleHorizontal}"
+                                  
                                   Label="Play all"
                                   VerticalAlignment="Top"
                                   Command="{Binding CurrentTrackCollection.PlayTrackCollCommand}"

@@ -57,7 +57,7 @@
               RequestedTheme="Dark"
               Background="{ThemeResource ApplicationBackgroundSemiTranslucentThemeBrush}"
               PointerExited="Cover_PointerExited">
-            <AppBarButton Style="{StaticResource AppBarButtonStyleHuge}"
+            <AppBarButton 
                           Label="Play album"
                           VerticalAlignment="Center"
                           Command="{Binding PlayAlbum}"

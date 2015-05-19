@@ -39,7 +39,7 @@
         <AppBarButton Grid.Row="1"
                       Grid.Column="1"
                     Margin="{StaticResource FrameMargin}"
-                      Style="{StaticResource AppBarButtonStyleHorizontal}"
+                      
                       Label="view artist"
                       Command="{Binding CurrentAlbum.ViewArtist}"
                       CommandParameter="{Binding CurrentAlbum.ArtistId}">

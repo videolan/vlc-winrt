@@ -22,7 +22,7 @@
         </Grid.ColumnDefinitions>
         <AppBarButton Grid.Column="1"
                       VerticalAlignment="Center"
-                      Style="{StaticResource AppBarButtonStyleHorizontal}"
+                      
                       Label="file"
                       Command="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.PickVideoCommand}">
             <AppBarButton.Icon>
@@ -32,7 +32,7 @@
         </AppBarButton>
         <AppBarButton Grid.Column="3"
                       VerticalAlignment="Center"
-                      Style="{StaticResource AppBarButtonStyleHorizontal}"
+                      
                       Label="stream"
                       Flyout="{StaticResource PhoneOpenStreamFlyout}">
             <AppBarButton.Icon>
@@ -43,7 +43,7 @@
         <AppBarButton Grid.Column="5"
                       VerticalAlignment="Center"
                       Label="settings"
-                      Style="{StaticResource AppBarButtonStyleHorizontal}"
+                      
                       Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToSettingsPageCommand}">
             <AppBarButton.Icon>
                 <FontIcon Glyph="{StaticResource SettingsSymbol}"

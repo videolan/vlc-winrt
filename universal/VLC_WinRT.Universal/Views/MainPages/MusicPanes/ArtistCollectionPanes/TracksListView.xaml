@@ -16,7 +16,7 @@
         <RowDefinition />
     </Grid.RowDefinitions>
     <TextBlock Grid.Row="0"
-               Style="{StaticResource LittleHeaderTextBlockStyle}"
+               
                Margin="{StaticResource FrameMargin}">
             <Run Text="{Binding Tracks.Count}" />
             <Run Text="TRACKS" />
@@ -30,7 +30,7 @@
               Margin="{StaticResource FrameMargin}"
               ItemsSource="{Binding Tracks}"
               SelectionMode="None"
-              ItemContainerStyle="{StaticResource ListViewItemStyle}"
+             
               IsItemClickEnabled="True"
               ItemClick="ListViewBase_OnItemClick">
         <ListView.ItemTemplate>

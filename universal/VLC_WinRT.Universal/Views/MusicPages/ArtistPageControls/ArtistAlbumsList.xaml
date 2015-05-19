@@ -11,7 +11,7 @@
 
     <ListView ItemsSource="{Binding CurrentArtist.Albums}"
               ItemTemplate="{StaticResource PhoneSemanticZoomInViewAlbumTemplateLittleSize}"
-              ItemContainerStyle="{StaticResource ListViewItemStyle}"
+             
               IsItemClickEnabled="True"
               SelectionMode="None"
               Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">

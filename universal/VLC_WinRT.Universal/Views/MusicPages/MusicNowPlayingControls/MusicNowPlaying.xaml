@@ -85,7 +85,7 @@
                     <AppBarButton Grid.Column="0"
                                   HorizontalAlignment="Center"
                                   IsCompact="True"
-                                  Style="{StaticResource AppBarButtonStyleHuge}"
+                                  
                                   Height="50"
                                   Width="50"
                                   VerticalAlignment="Center"
@@ -102,7 +102,7 @@
                                   Visibility="{Binding IsPlaying, Converter={StaticResource NegatedBooleanToVisibilityConverter}}"
                                   Height="80"
                                   Width="80"
-                                  Style="{StaticResource AppBarButtonStyleHuge}"
+                                  
                                   VerticalAlignment="Center"
                                   Command="{Binding PlayOrPauseCommand}"
                                   Holding="PlayPauseHold">
@@ -117,7 +117,7 @@
                                   Visibility="{Binding IsPlaying, Converter={StaticResource BooleanToVisibilityConverter}}"
                                   Height="80"
                                   Width="80"
-                                  Style="{StaticResource AppBarButtonStyleHuge}"
+                                  
                                   VerticalAlignment="Center"
                                   Command="{Binding PlayOrPauseCommand}"
                                   Holding="PlayPauseHold">
@@ -129,7 +129,7 @@
                     </AppBarButton>
                     <AppBarButton Grid.Column="2"
                                   IsCompact="True"
-                                  Style="{StaticResource AppBarButtonStyleHuge}"
+                                  
                                   Height="50"
                                   Width="50"
                                   VerticalAlignment="Center"

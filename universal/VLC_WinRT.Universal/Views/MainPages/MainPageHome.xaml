@@ -23,7 +23,7 @@
                       DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}"
                       ItemsSource="{Binding RandomAlbums}"
                       ItemTemplate="{StaticResource PhoneSemanticZoomInViewAlbumTemplateLittleSize}"
-                      ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                     
                       IsItemClickEnabled="True"
                       SelectionMode="None"
                       IsSwipeEnabled="False"
@@ -57,7 +57,7 @@
                       DataContext="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM}"
                       ItemsSource="{Binding ViewedVideos}"
                       ItemTemplate="{StaticResource PhoneCompactVideoTemplate}"
-                      ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                     
                       IsItemClickEnabled="True"
                       SelectionMode="None"
                       IsSwipeEnabled="False"

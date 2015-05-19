@@ -17,7 +17,7 @@
               Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
               SelectionMode="None"
               IsItemClickEnabled="True"
-              ItemContainerStyle="{StaticResource ListViewItemStyle}">
+             >
         <ListView.HeaderTemplate>
             <DataTemplate>
                 <local:MainArtistHeader />

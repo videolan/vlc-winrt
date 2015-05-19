@@ -30,7 +30,7 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <TextBlock Text="SUBTITLES"
-                       Style="{StaticResource BaselineTextStyle}"
+                       
                        VerticalAlignment="Center"
                        Margin="0,-12,0,0" />
             <Button Style="{StaticResource TextBlockButtonStyle}"
@@ -44,7 +44,7 @@
                       DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
                       ItemsSource="{Binding Subtitles}"
                       SelectedItem="{Binding CurrentSubtitle, Mode=TwoWay}"
-                      ItemContainerStyle="{StaticResource ListViewItemStyle}">
+                     >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding Name}"

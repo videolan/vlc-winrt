@@ -72,7 +72,7 @@
                               Command="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM.CloseFlyoutAndPlayVideoCommand}"
                               CommandParameter="{Binding}"
                               Click="ActionButton_Click"
-                              Style="{StaticResource AppBarButtonStyleHorizontal}">
+                              >
                     <AppBarButton.Icon>
                         <FontIcon Glyph="{StaticResource PlaySymbol}"
                                   FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />

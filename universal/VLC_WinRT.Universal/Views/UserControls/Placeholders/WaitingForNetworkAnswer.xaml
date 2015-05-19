@@ -49,7 +49,7 @@
             <StackPanel Grid.Row="3"
                         VerticalAlignment="Center">
                 <ProgressBar IsIndeterminate="True"
-                             Style="{StaticResource ThinProgressBar}"
+                             
                              VerticalAlignment="Top" />
                 <TextBlock Text="We are searching for DLNA Servers."
                            x:Uid="SearchingDLNA"

@@ -305,7 +305,7 @@
                 Margin="24,0"
                 DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
                 Value="{Binding Position, Mode=TwoWay, Converter={StaticResource PositionToFixedPointConverter}}"
-                Style="{StaticResource VLCSlider}"
+                
                 Maximum="500"
                 ThumbToolTipValueConverter="{StaticResource PositionToTimeStampStringConverter}" />
         <Button x:Name="PreviousButton"

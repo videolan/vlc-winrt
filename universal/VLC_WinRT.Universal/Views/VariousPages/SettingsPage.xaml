@@ -20,7 +20,7 @@
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
                     <AppBarButton Label="license page"
-                                  Style="{StaticResource AppBarButtonStyleHorizontal}"
+                                  
                                   Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToLicensePageCommand}">
                         <AppBarButton.Icon>
                             <FontIcon Glyph="{StaticResource PylonSymbol}"
@@ -30,7 +30,7 @@
                     <AppBarButton Grid.Column="1"
                                   Margin="12,0,0,0"
                                   Label="thanks page"
-                                  Style="{StaticResource AppBarButtonStyleHorizontal}"
+                                  
                                   Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToThanksPageCommand}">
                         <AppBarButton.Icon>
                             <FontIcon Glyph="{StaticResource ThumbsupSymbol}"
@@ -99,7 +99,7 @@
                            Style="{StaticResource TitleTextBlockStyle}"
                            Visibility="Collapsed" />
                 <AppBarButton Label="connect"
-                              Style="{StaticResource AppBarButtonStyleHorizontal}"
+                              
                               Margin="0,12,0,0"
                               Click="ConnectToLastFM_Click">
                     <AppBarButton.Icon>

@@ -8,14 +8,5 @@ namespace VLC_WinRT.Views.UserControls
         {
             this.InitializeComponent();
         }
-
-        private void Sidebar_Loaded(object sender, RoutedEventArgs e)
-        {
-#if WINDOWS_APP
-            SidebarGrid.Width = 50;
-#else
-            SidebarGrid.Width = 60;
-#endif
-        }
     }
 }

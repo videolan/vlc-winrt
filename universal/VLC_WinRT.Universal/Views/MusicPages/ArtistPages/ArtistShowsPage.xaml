@@ -46,8 +46,8 @@
             <placeholder:NoMusicShowsPlaceholder Visibility="{Binding UpcomingShows.Count, Converter={StaticResource CountToVisibilityConverter}}"
                                                  Margin="{StaticResource FrameMargin}" />
             <ListView ItemsSource="{Binding UpcomingShows}"
-                      ItemsPanel="{StaticResource StackPanelTemplate}"
-                      ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                      
+                     
                       SelectionMode="None"
                       IsItemClickEnabled="True">
                 <triggers:Interactions.Triggers>

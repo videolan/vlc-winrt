@@ -14,7 +14,6 @@
     <Grid>
         <ListView ItemsSource="{Binding Videos}"
                   ItemTemplate="{StaticResource PhoneCompactVideoTemplate}"
-                  ItemContainerStyle="{StaticResource ListViewItemStyle}"
                   IsItemClickEnabled="True"
                   SelectionMode="None"
                   IsSwipeEnabled="False">

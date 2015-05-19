@@ -79,13 +79,12 @@
                   Grid.RowSpan="5"
                   Background="{StaticResource MainColor}"
                   Visibility="{Binding IsCurrent, Converter={StaticResource BooleanToVisibilityConverter}}" />
-            <Path Grid.Row="1"
-                  Data="{Binding PathData}"
-                  Height="36"
-                  Width="36"
-                  HorizontalAlignment="Center"
-                  Stretch="Uniform"
-                  Fill="{ThemeResource BasicForeground}" />
+            <FontIcon Grid.Row="1"
+                      FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets"
+                      Glyph="{Binding PathData}"
+                      FontSize="30"
+                      VerticalAlignment="Center"
+                      Foreground="{ThemeResource BasicForeground}" />
             <TextBlock Grid.Row="3"
                        Text="{Binding Title}"
                        FontSize="11"
@@ -96,7 +95,7 @@
         </Grid>
     </DataTemplate>
 
-    <DataTemplate x:Key="PivotHeaderDataTemplate">
+    <DataTemplate x:Key="SidebarIconTemplate">
         <userControls:PivotHeaderControl Panel="{Binding}"/>
     </DataTemplate>
 </ResourceDictionary>

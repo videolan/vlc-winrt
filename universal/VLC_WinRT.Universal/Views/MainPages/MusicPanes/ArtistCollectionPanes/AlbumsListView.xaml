@@ -27,7 +27,7 @@
         </Grid.ColumnDefinitions>
         <TextBlock Grid.Column="0"
                    Margin="{StaticResource FrameMargin}"
-                   Style="{StaticResource LittleHeaderTextBlockStyle}"
+                   
                    TextWrapping="NoWrap"
                    TextTrimming="CharacterEllipsis">
             <Run Text="{Binding Name, Converter={StaticResource StringToUpperConverter}}"
@@ -36,7 +36,7 @@
             <Run Text="ALBUMS" />
         </TextBlock>
         <AppBarButton Grid.Column="1"
-                      Style="{StaticResource AppBarButtonStyleHorizontal}"
+                      
                       Label="Play all"
                       VerticalAlignment="Center"
                       Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.PlayArtistAlbumsCommand}"
@@ -49,14 +49,14 @@
             </AppBarButton.Icon>
         </AppBarButton>
         <AppBarButton Grid.Column="3"
-                      Style="{StaticResource AppBarButtonStyleHorizontal}"
+                      
                       Icon="{Binding IsPinned, Converter={StaticResource PinConverter}, ConverterParameter='icon'}"
                       VerticalAlignment="Center"
                       Command="{Binding PinArtistCommand}"
                       CommandParameter="{Binding}"
                       Visibility="{Binding CurrentArtist, TargetNullValue=Collapsed}" />
         <AppBarButton Grid.Column="5"
-                      Style="{StaticResource AppBarButtonStyleHorizontal}"
+                      
                       VerticalAlignment="Center"
                       Command="{Binding SeeArtistShowsCommand}"
                       CommandParameter="{Binding}"
@@ -74,7 +74,7 @@
               ItemTemplate="{StaticResource PhoneSemanticZoomInViewAlbumTemplateLittleSize}"
               IsItemClickEnabled="False"
               SelectionMode="Single"
-              ItemContainerStyle="{StaticResource ListViewItemStyle}"
+             
               SelectionChanged="AlbumsList_SelectionChanged">
         <ListView.ItemsPanel>
             <ItemsPanelTemplate>

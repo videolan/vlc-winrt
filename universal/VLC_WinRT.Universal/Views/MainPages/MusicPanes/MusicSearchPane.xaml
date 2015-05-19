@@ -20,7 +20,7 @@
             <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <AppBarButton Style="{StaticResource AppBarButtonStyleHorizontal}"
+        <AppBarButton 
                       Label="Back"
                       VerticalAlignment="Center"
                       Command="{Binding Source={StaticResource Locator}, Path=MainVM.ChangeMainPageMusicViewCommand}"
@@ -43,7 +43,7 @@
                   Grid.ColumnSpan="3"
                   ItemsSource="{Binding SearchResults}"
                   ItemTemplate="{StaticResource PhoneSemanticZoomInViewAlbumTemplateLittleSize}"
-                  ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                 
                   IsItemClickEnabled="True"
                   SelectionMode="None"
                   IsSwipeEnabled="False">
