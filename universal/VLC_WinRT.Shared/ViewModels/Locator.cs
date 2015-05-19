@@ -39,66 +39,26 @@ namespace VLC_WinRT.ViewModels
         /// <summary>
         ///     Initializes a new instance of the Locator class.
         /// </summary>
+        public static MainVM MainVM => App.Container?.Resolve<MainVM>();
 
-        public static MainVM MainVM
-        {
-            get { return App.Container?.Resolve<MainVM>(); }
-        }
+        public static MediaPlaybackViewModel MediaPlaybackViewModel=> App.Container?.Resolve<MediaPlaybackViewModel>(); 
 
-        public static MediaPlaybackViewModel MediaPlaybackViewModel
-        {
-            get { return App.Container?.Resolve<MediaPlaybackViewModel>(); }
-        }
+        public static MusicPlayerVM MusicPlayerVM => App.Container?.Resolve<MusicPlayerVM>(); 
 
-        public static MusicPlayerVM MusicPlayerVM
-        {
-            get { return App.Container?.Resolve<MusicPlayerVM>(); }
-        }
+        public static MusicLibraryVM MusicLibraryVM => App.Container?.Resolve<MusicLibraryVM>(); 
 
-        public static MusicLibraryVM MusicLibraryVM
-        {
-            get { return App.Container?.Resolve<MusicLibraryVM>(); }
-        }
+        public static VideoLibraryVM VideoLibraryVM => App.Container?.Resolve<VideoLibraryVM>(); 
 
-        public static VideoLibraryVM VideoLibraryVM
-        {
-            get { return App.Container?.Resolve<VideoLibraryVM>(); }
-        }
+        public static VideoPlayerVM VideoVm => App.Container?.Resolve<VideoPlayerVM>(); 
 
-        public static VideoPlayerVM VideoVm
-        {
-            get { return App.Container?.Resolve<VideoPlayerVM>(); }
-        }
+        public static VLCExplorerViewModel FileExplorerVM => App.Container?.Resolve<VLCExplorerViewModel>(); 
 
-        public static VLCExplorerViewModel FileExplorerVM
-        {
-            get { return App.Container?.Resolve<VLCExplorerViewModel>(); }
-        }
+        public static SettingsViewModel SettingsVM => App.Container?.Resolve<SettingsViewModel>(); 
 
-        public static SettingsViewModel SettingsVM
-        {
-            get { return App.Container?.Resolve<SettingsViewModel>(); }
-        }
+        public static SpecialThanksViewModel SpecialThanksVM => App.Container?.Resolve<SpecialThanksViewModel>(); 
 
-        public static SpecialThanksViewModel SpecialThanksVM
-        {
-            get { return App.Container?.Resolve<SpecialThanksViewModel>(); }
-        }
+        public static NavigationService NavigationService => App.Container?.Resolve<NavigationService>();
 
-        public static NavigationService NavigationService
-        {
-            get
-            {
-                return App.Container?.Resolve<NavigationService>();
-            }
-        }
-
-        public static VLCService VLCService
-        {
-            get
-            {
-                return App.Container?.Resolve<VLCService>();
-            }
-        }
+        public static VLCService VLCService => App.Container?.Resolve<VLCService>();
     }
 }
