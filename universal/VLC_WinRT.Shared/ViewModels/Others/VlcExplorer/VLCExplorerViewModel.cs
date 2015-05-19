@@ -105,15 +105,19 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
         {
             await DispatchHelper.InvokeAsync(() =>
             {
-                if (StorageVMs.All(vm => vm.Id != newId))
+                try
                 {
-                    var external = new FileExplorerViewModel(StorageDevice.FromId(newId), newId);
-                    StorageVMs.Add(external);
+                    if (StorageVMs.All(vm => vm.Id != newId))
+                    {
+                        var external = new FileExplorerViewModel(StorageDevice.FromId(newId), newId);
+                        StorageVMs.Add(external);
+                    }
+                    if (StorageVMs.Any())
+                    {
+                        CurrentStorageVM = StorageVMs[0];
+                    }
                 }
-                if (StorageVMs.Any())
-                {
-                    CurrentStorageVM = StorageVMs[0];
-                }
+                catch { }
             });
         }
 
