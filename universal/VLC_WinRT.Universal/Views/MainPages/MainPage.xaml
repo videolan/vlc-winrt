@@ -1,0 +1,28 @@
+﻿<Grid x:Class="VLC_WinRT.Views.MainPages.MainPage"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                xmlns:userControls="using:VLC_WinRT.Views.UserControls"
+                xmlns:controls="using:VLC_WinRT.Controls"
+                mc:Ignorable="d"
+                DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}"
+                RequestedTheme="{Binding ApplicationTheme, Converter={StaticResource AppThemeElementThemeConverter}}"
+                Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <SwapChainPanel x:Name="SwapChainPanel"
+                    x:FieldModifier="public"
+                    Loaded="SwapPanelLoaded" />
+    <MediaElement x:Name="MfMediaElement"
+                  x:FieldModifier="public"
+                  AudioCategory="BackgroundCapableMedia" 
+                  Loaded="MfMediaElement_Loaded"/>
+
+    <controls:SplitShell x:Name="SplitShell"
+                         x:FieldModifier="public"
+                         FlyoutCloseRequested="SplitShell_FlyoutCloseRequested">
+        <controls:SplitShell.Content>
+            <userControls:ShellContent x:Name="ShellContent"
+                                       x:FieldModifier="public" />
+        </controls:SplitShell.Content>
+    </controls:SplitShell>
+</Grid>

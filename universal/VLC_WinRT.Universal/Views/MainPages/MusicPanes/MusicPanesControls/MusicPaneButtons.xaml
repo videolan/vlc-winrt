@@ -1,0 +1,65 @@
+﻿<UserControl x:Class="VLC_WinRT.Views.MainPages.MusicPanes.MusicPanesControls.MusicPaneButtons"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="using:VLC_WinRT.Views.MainPages.MusicPanes.MusicPanesControls"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:userControls="using:VLC_WinRT.Views.UserControls"
+             mc:Ignorable="d"
+             d:DesignHeight="300"
+             d:DesignWidth="400">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="1" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <AppBarButton x:Name="ShuffleButton"
+                      Label="Shuffle all"
+                      Style="{StaticResource AppBarButtonStyleHorizontal}"
+                      Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.PlayAllRandomCommand}">
+            <AppBarButton.Icon>
+                <FontIcon Glyph="{StaticResource ShuffleSymbol}"
+                          FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+            </AppBarButton.Icon>
+        </AppBarButton>
+        <Grid Background="{ThemeResource PivotHeaderForegroundUnselectedBrush}"
+              Grid.Column="1"
+              Margin="0,6" />
+        <AppBarButton x:Name="RefreshButton"
+                      Grid.Column="2"
+                      Margin="12,0,0,0"
+                      VerticalAlignment="Center"
+                      Style="{StaticResource AppBarButtonStyleHorizontal}"
+                      DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}"
+                      Command="{Binding StartMusicIndexingCommand}"
+                      IsEnabled="{Binding IsBusy, Converter={StaticResource BooleanNegationConverter}}">
+            <AppBarButton.Icon>
+                <FontIcon Glyph="{StaticResource RefreshSymbol}"
+                          FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+            </AppBarButton.Icon>
+        </AppBarButton>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="Minimal">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RefreshButton"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Normal">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RefreshButton"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+    </Grid>
+</UserControl>

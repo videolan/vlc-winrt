@@ -7,22 +7,14 @@
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400">
-
-    <Pivot x:Name="FlipViewFrameContainer"
-           Loaded="FlipViewFrameContainer_OnLoaded">
-        <PivotItem />
-        <PivotItem>
-            <Frame x:Name="NavigationFrame"
-                   x:FieldModifier="public"
-                   Background="Transparent">
-                <Frame.ContentTransitions>
-                    <TransitionCollection>
-                        <EntranceThemeTransition x:Name="EntranceThemeTransition"
-                                                 x:FieldModifier="public" />
-                    </TransitionCollection>
-                </Frame.ContentTransitions>
-            </Frame>
-        </PivotItem>
-        <PivotItem />
-    </Pivot>
+    <Frame x:Name="NavigationFrame"
+           x:FieldModifier="public">
+        <Frame.ContentTransitions>
+            <TransitionCollection>
+                <NavigationThemeTransition>
+                    <DrillInNavigationTransitionInfo />
+                </NavigationThemeTransition>
+            </TransitionCollection>
+        </Frame.ContentTransitions>
+    </Frame>
 </UserControl>

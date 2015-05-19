@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="VLC_WinRT.Views.UserControls.SideBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="using:VLC_WinRT.Views.UserControls"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:triggers="using:WinRT.Triggers"
+             mc:Ignorable="d"
+             d:DesignHeight="300"
+             d:DesignWidth="400"
+             DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}">
+
+    <Grid x:Name="SidebarGrid"
+          Loaded="Sidebar_Loaded"
+          Background="{ThemeResource ApplicationBarForegroundThemeBrush}">
+        <ListView x:Name="PanelsListView"
+                  ItemsSource="{Binding Panels}"
+                  IsItemClickEnabled="True"
+                  SelectionMode="None"
+                  ItemContainerStyle="{StaticResource ListViewItemContainerStyle}"
+                  ItemTemplate="{StaticResource SidebarMiniIconItemTemplate}"
+                  ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                  VerticalAlignment="Top">
+            <triggers:Interactions.Triggers>
+                <triggers:EventTrigger EventName="ItemClick">
+                    <triggers:InvokeCommandAction Command="{Binding GoToPanelCommand}"
+                                                  PassEventArgsToCommand="True" />
+                </triggers:EventTrigger>
+            </triggers:Interactions.Triggers>
+        </ListView>
+    </Grid>
+</UserControl>

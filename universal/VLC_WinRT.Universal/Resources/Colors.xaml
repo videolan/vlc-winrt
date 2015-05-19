@@ -1,0 +1,44 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="using:VLC_WinRT.Resources">
+    <Color x:Key="MainColorBase">#ff8800</Color>
+    <Color x:Key="InactiveMainColorBase">#EB974E</Color>
+    <Color x:Key="StatusBarColorBase">#ff7200</Color>
+    <SolidColorBrush x:Key="MainColor"
+                     Color="{StaticResource MainColorBase}" />
+    <SolidColorBrush x:Key="InactiveMainColor"
+                     Color="{StaticResource InactiveMainColorBase}" />
+    <SolidColorBrush x:Key="StatusBarColor"
+                     Color="{StaticResource StatusBarColorBase}" />
+    <SolidColorBrush x:Key="LightMainSolidColorBrush"
+                     Color="{StaticResource MainColorBase}"
+                     Opacity="0.1" />
+    <SolidColorBrush x:Key="SemiLightMainColor"
+                     Color="{StaticResource MainColorBase}" 
+                     Opacity="0.7"/>
+    <SolidColorBrush x:Key="ListViewItemSelectedBackgroundThemeBrush"
+                     Color="{StaticResource MainColorBase}"
+                     Opacity="0.7" />
+    <SolidColorBrush x:Key="ListViewItemPointerOverBackgroundThemeBrush"
+                     Color="LightGray" />
+    <SolidColorBrush x:Key="ListViewItemSelectedPointerOverBorderThemeBrush"
+                     Color="{StaticResource MainColorBase}" />
+    <SolidColorBrush x:Key="ListViewItemSelectedPointerOverBackgroundThemeBrush"
+                     Color="{StaticResource MainColorBase}"
+                     Opacity="0.7" />
+
+    <x:String x:Key="ProgressBarIndeterminateForegroundThemeBrush">#ff8800</x:String>
+    <x:String x:Key="ProgressBarForegroundThemeBrush">#ff8800</x:String>
+    <SolidColorBrush x:Key="ComboBoxItemSelectedBackgroundThemeBrush"
+                     Color="{StaticResource MainColorBase}" />
+    <SolidColorBrush x:Key="ComboBoxItemSelectedPointerOverBackgroundThemeBrush"
+                     Color="{StaticResource MainColorBase}"
+                     Opacity="0.8" />
+
+    <Color x:Key="SecondColorBase">#0092B2</Color>
+    <SolidColorBrush x:Key="SecondColor"
+                     Color="{StaticResource SecondColorBase}" />
+    <SolidColorBrush x:Key="MyTransparent"
+                     Color="Transparent"
+                     Opacity="0" />
+</ResourceDictionary>

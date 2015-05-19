@@ -1,0 +1,66 @@
+﻿<Page x:Class="VLC_WinRT.Views.MainPages.MainVideoControls.ShowsPivotItem"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:VLC_WinRT.Views.MainPages.MainVideoControls"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:triggers="using:WinRT.Triggers"
+      xmlns:placeholder="using:VLC_WinRT.Views.UserControls.Placeholder"
+      xmlns:videoPanesControls="using:VLC_WinRT.Views.MainPages.MainVideoControls.VideoPanesControls"
+      mc:Ignorable="d"
+      DataContext="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM}">
+
+    <Page.Resources>
+        <CollectionViewSource x:Key="ShowsGroupedByName"
+                              x:Name="ShowsGroupedByName"
+                              Source="{Binding Shows}"
+                              IsSourceGrouped="True"
+                              ItemsPath="Episodes" />
+    </Page.Resources>
+
+    <Grid>
+        <ListView x:Name="EpisodesListView"
+                  Grid.Row="1"
+                  ItemsSource="{Binding Source={StaticResource ShowsGroupedByName}}"
+                  ItemTemplate="{StaticResource PhoneShowTemplate}"
+                  ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                  IsItemClickEnabled="True"
+                  SelectionMode="None">
+            <triggers:Interactions.Triggers>
+                <triggers:EventTrigger EventName="ItemClick">
+                    <triggers:InvokeCommandAction Command="{Binding OpenVideo}"
+                                                  PassEventArgsToCommand="True" />
+                </triggers:EventTrigger>
+            </triggers:Interactions.Triggers>
+            <ListView.GroupStyle>
+                <GroupStyle>
+                    <GroupStyle.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding ShowTitle}"
+                                       Style="{StaticResource SubheaderTextBlockStyle}"
+                                       Foreground="{StaticResource MainColor}" />
+                        </DataTemplate>
+                    </GroupStyle.HeaderTemplate>
+                </GroupStyle>
+            </ListView.GroupStyle>
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <ItemsWrapGrid ItemWidth="330"
+                                   ItemHeight="102"
+                                   Orientation="Horizontal"
+                                   Margin="0,0,0,60">
+                        <ItemsWrapGrid.ChildrenTransitions>
+                            <TransitionCollection>
+                                <EntranceThemeTransition FromHorizontalOffset="50"
+                                                         FromVerticalOffset="0" />
+                            </TransitionCollection>
+                        </ItemsWrapGrid.ChildrenTransitions>
+                    </ItemsWrapGrid>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+        </ListView>
+        <placeholder:NoShowPlaceholder Grid.Row="1"
+                                       Margin="0,50,0,0"
+                                       Visibility="{Binding Shows.Count, Converter={StaticResource CountToVisibilityConverter}}" />
+    </Grid>
+</Page>

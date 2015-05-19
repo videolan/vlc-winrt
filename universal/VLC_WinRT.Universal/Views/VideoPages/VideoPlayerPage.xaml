@@ -1,0 +1,249 @@
+﻿<Page x:Class="VLC_WinRT.Views.VideoPages.VideoPlayerPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:views="using:VLC_WINRT.Views"
+      xmlns:controls="using:VLC_WinRT.Controls"
+      xmlns:userControls="using:VLC_WinRT.Views.UserControls"
+      xmlns:videoControls="using:VLC_WinRT.Views.VideoPages.VideoNowPlayingControls"
+      xmlns:placeholder="using:VLC_WinRT.Views.UserControls.Placeholder"
+      mc:Ignorable="d"
+      Background="Transparent"
+      DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
+      RequestedTheme="Dark">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Border x:Name="HeaderGrid">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1"
+                                     StartPoint="0.5,0">
+                    <GradientStop Color="#DD000000"
+                                  Offset="0.2" />
+                    <GradientStop Color="#00000000"
+                                  Offset="1" />
+                </LinearGradientBrush>
+            </Border.Background>
+            <Grid Margin="24">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Button x:Name="GoBackButton"
+                        Grid.Column="0"
+                        Style="{StaticResource TextBlockButtonStyle}"
+                        Command="{Binding GoBack}">
+                    <Viewbox Height="30"
+                             Width="30">
+                        <FontIcon Glyph="{StaticResource PreviousPageSymbol}"
+                                  FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+                    </Viewbox>
+                </Button>
+                <TextBlock Grid.Column="2"
+                           TextAlignment="Center"
+                           VerticalAlignment="Center"
+                           FontSize="20"
+                           DataContext="{Binding Source={StaticResource Locator}, Path=VideoVm}"
+                           Text="{Binding CurrentVideo.Name}" />
+            </Grid>
+        </Border>
+
+        <Grid Grid.Row="1">
+            <userControls:BufferingControl />
+            <!-- We will put there the control for swype, tap, double tap, etc -->
+            <Grid x:Name="PlaceholderInteractionGrid"
+                  Background="Transparent"
+                  Tapped="PlaceholderInteractionGrid_OnTapped" />
+            <videoControls:VideoPlayerSettings x:Name="VideoPlayerSettings" />
+            <videoControls:AudioTracksSettings />
+            <videoControls:SubtitlesSettings />
+            <videoControls:VolumeSliderSettings />
+        </Grid>
+
+        <Border x:Name="ControlsGrid"
+                Grid.Row="2"
+                Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}"
+                Margin="24"
+                Padding="24"
+                CornerRadius="6">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="50" />
+                </Grid.RowDefinitions>
+                <userControls:SliderControl x:Name="Slider" />
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <AppBarToggleButton Grid.Column="0"
+                                        Name="LockToggleButton"
+                                        IsCompact="True"
+                                        VerticalAlignment="Center"
+                                        Click="LockToggleButton_Click">
+                        <AppBarToggleButton.Icon>
+                            <FontIcon x:Name="LockToggleIcon"
+                                      Glyph="{StaticResource UnlockedSymbol}"
+                                      FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets"
+                                      FontSize="22" />
+                        </AppBarToggleButton.Icon>
+                    </AppBarToggleButton>
+                    <AppBarButton x:Name="SubtitlesButton"
+                                  Grid.Column="1"
+                                  HorizontalAlignment="Center"
+                                  IsCompact="True"
+                                  Style="{StaticResource AppBarButtonStyleHuge}"
+                                  VerticalAlignment="Center">
+                        <AppBarButton.Icon>
+                            <FontIcon Glyph="{StaticResource ConversationSymbol}"
+                                      FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets"
+                                      FontSize="22" />
+                        </AppBarButton.Icon>
+                        <AppBarButton.Flyout>
+                            <MenuFlyout>
+                                <MenuFlyoutItem Text="Audio Tracks"
+                                                x:Uid="AudioTracks"
+                                                Command="{Binding Source={StaticResource Locator}, Path=VideoVm.ToggleIsVideoPlayerAudioTracksSettingsVisible}" />
+                                <MenuFlyoutItem x:Uid="Subtitles"
+                                                Text="Subtitles"
+                                                Command="{Binding Source={StaticResource Locator}, Path=VideoVm.ToggleIsVideoPlayerSubtitlesSettingsVisible}"/>
+                                <MenuFlyoutItem Text="Select subtitle file"
+                                                Command="{Binding OpenSubtitleCommand}" />
+                            </MenuFlyout>
+                        </AppBarButton.Flyout>
+                    </AppBarButton>
+                    <AppBarButton x:Name="PlayButton"
+                                  Grid.Column="2"
+                                  IsCompact="True"
+                                  Visibility="{Binding IsPlaying, Converter={StaticResource NegatedBooleanToVisibilityConverter}}"
+                                  Style="{StaticResource AppBarButtonStyleHuge}"
+                                  VerticalAlignment="Center"
+                                  Command="{Binding PlayOrPauseCommand}">
+                        <AppBarButton.Icon>
+                            <FontIcon Glyph="{StaticResource PlaySymbol}"
+                                      FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets"
+                                      FontSize="42" />
+                        </AppBarButton.Icon>
+                    </AppBarButton>
+                    <AppBarButton x:Name="PauseButton"
+                                  Grid.Column="2"
+                                  IsCompact="True"
+                                  Visibility="{Binding IsPlaying, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                  Style="{StaticResource AppBarButtonStyleHuge}"
+                                  VerticalAlignment="Center"
+                                  Command="{Binding PlayOrPauseCommand}">
+                        <AppBarButton.Icon>
+                            <FontIcon Glyph="{StaticResource PauseSymbol}"
+                                      FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets"
+                                      FontSize="42" />
+                        </AppBarButton.Icon>
+                    </AppBarButton>
+                    <AppBarButton x:Name="VolumeButton"
+                                  Grid.Column="3"
+                                  IsCompact="True"
+                                  Style="{StaticResource AppBarButtonStyleHuge}"
+                                  VerticalAlignment="Center"
+                                  HorizontalAlignment="Center"
+                                  Command="{Binding Source={StaticResource Locator}, Path=VideoVm.ToggleIsVideoPlayerVolumeSettingsVisible}">
+                        <AppBarButton.Icon>
+                            <FontIcon Glyph="{StaticResource VolumeSymbol}"
+                                      FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets"
+                                      FontSize="24" />
+                        </AppBarButton.Icon>
+                    </AppBarButton>
+                    <AppBarButton  Grid.Column="4"
+                                   Name="MenuButton"
+                                   Icon="More"
+                                   IsCompact="True"
+                                   IsTabStop="False"
+                                   VerticalAlignment="Center"
+                                   Style="{StaticResource AppBarButtonStyleHuge}"
+                                   Command="{Binding Source={StaticResource Locator}, Path=VideoVm.ToggleIsVideoPlayerSettingsVisible}" />
+                </Grid>
+            </Grid>
+        </Border>
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="LayoutStates">
+                <VisualState x:Name="Narrow">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ControlsGrid"
+                                                       Storyboard.TargetProperty="Margin">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="0" />
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Medium">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ControlsGrid"
+                                                       Storyboard.TargetProperty="Margin">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="24" />
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Full">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ControlsGrid"
+                                                       Storyboard.TargetProperty="Margin">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="24" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ControlsGrid"
+                                                       Storyboard.TargetProperty="Padding">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="24,12" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ControlsGrid"
+                                                       Storyboard.TargetProperty="Width">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="800" />
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+            <VisualStateGroup x:Name="VisibilityStates">
+                <VisualState x:Name="ControlsCollapsed">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ControlsGrid"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Collapsed" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HeaderGrid"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Collapsed" />
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="ControlsVisible">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ControlsGrid"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HeaderGrid"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+    </Grid>
+</Page>

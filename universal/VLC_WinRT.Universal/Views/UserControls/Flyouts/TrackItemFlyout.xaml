@@ -1,0 +1,107 @@
+﻿<Flyout x:Class="VLC_WinRT.Views.UserControls.Flyouts.TrackItemFlyout"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="using:VLC_WinRT.Views.UserControls.Flyouts"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:placeholder="using:VLC_WinRT.Views.UserControls.Placeholder"
+        mc:Ignorable="d"
+        d:DesignHeight="300"
+        d:DesignWidth="400">
+    <Border  Background="WhiteSmoke"
+             BorderBrush="DimGray"
+             BorderThickness="1"
+             Loaded="Grid_Loaded">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="120" />
+                <RowDefinition Height="140" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal">
+                <Image Source="{Binding Thumbnail}"
+                       Height="120"
+                       Width="120"
+                       Stretch="UniformToFill" />
+                <StackPanel VerticalAlignment="Center"
+                            Margin="12,0,0,0">
+                    <TextBlock Text="{Binding Name}"
+                               TextWrapping="Wrap"
+                               Style="{StaticResource SubheaderTextBlockStyle}" />
+                    <TextBlock Text="{Binding AlbumName}"
+                               TextWrapping="Wrap"
+                               Style="{StaticResource BodyTextBlockStyle}" />
+                    <TextBlock Text="{Binding ArtistName}"
+                               TextWrapping="Wrap"
+                               Style="{StaticResource BodyTextBlockStyle}"
+                               Foreground="DimGray" />
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Grid.Row="1"
+                        Margin="12,0,0,0"
+                        VerticalAlignment="Center">
+                <AppBarButton x:Uid="PlayTrack"
+                              Label="play track"
+                              Style="{StaticResource AppBarButtonStyleHorizontal}"
+                              Foreground="{StaticResource MainColor}"
+                              Command="{Binding TrackClicked}"
+                              CommandParameter="{Binding}"
+                              Click="ActionButton_Click">
+                    <AppBarButton.Icon>
+                        <FontIcon Glyph="{StaticResource PlaySymbol}"
+                                  FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+                    </AppBarButton.Icon>
+                </AppBarButton>
+                <AppBarButton x:Uid="ViewAlbum"
+                              Label="view album"
+                              Style="{StaticResource AppBarButtonStyleHorizontal}"
+                              Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.AlbumClickedCommand}"
+                              CommandParameter="{Binding AlbumId}"
+                              Click="ActionButton_Click">
+                    <AppBarButton.Icon>
+                        <PathIcon Data="{StaticResource AlbumPathNarrow}" />
+                    </AppBarButton.Icon>
+                </AppBarButton>
+                <AppBarButton x:Uid="ViewArtistLabel"
+                              Label="view artist"
+                              Style="{StaticResource AppBarButtonStyleHorizontal}"
+                              Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.ArtistClickedCommand}"
+                              CommandParameter="{Binding ArtistId}"
+                              Click="ActionButton_Click">
+                    <AppBarButton.Icon>
+                        <PathIcon Data="{StaticResource UserPathNarrow}" />
+                    </AppBarButton.Icon>
+                </AppBarButton>
+            </StackPanel>
+            <Grid Grid.Row="2"
+                  Margin="12,12,12,0"
+                  DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <TextBlock x:Uid="AddToPlaylist"
+                           Text="Add to playlist"
+                           Style="{StaticResource SubheaderTextBlockStyle}" />
+                <AppBarButton Grid.Column="1"
+                              x:Uid="NewPlaylist"
+                              Label="new playlist"
+                              Icon="Add"
+                              Style="{StaticResource AppBarButtonStyleHorizontal}"
+                              Command="{Binding ShowCreateNewPlaylistPaneCommand}"
+                              Margin="0,-5,0,0" />
+            </Grid>
+            <Grid Grid.Row="3"
+                  DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
+                <ListView ItemsSource="{Binding TrackCollections}"
+                          Margin="24,0,0,0"
+                          ItemTemplate="{StaticResource PhoneTrackCollectionTemplate}"
+                          ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                          SelectionChanged="Selector_OnSelectionChanged" />
+                <placeholder:NoPlaylistPlaceholder Visibility="{Binding TrackCollections.Count, Converter={StaticResource CountToVisibilityConverter}}"
+                                                   Margin="12,50,0,0" />
+            </Grid>
+        </Grid>
+    </Border>
+</Flyout>

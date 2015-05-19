@@ -1,0 +1,34 @@
+﻿<Page x:Class="VLC_WinRT.Views.MainPages.MainMusicControls.PlaylistPivotItem"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:VLC_WinRT.Views.MainPages.MainMusicControls"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:triggers="using:WinRT.Triggers"
+      xmlns:placeholder="using:VLC_WinRT.Views.UserControls.Placeholder"
+      xmlns:musicPanesControls="using:VLC_WinRT.Views.MainPages.MusicPanes.MusicPanesControls"
+      mc:Ignorable="d"
+      d:DesignHeight="300"
+      d:DesignWidth="400"
+      d:DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
+
+    <Grid x:Name="RootGrid">
+        <ListView x:Name="PlaylistListView"
+                  ItemsSource="{Binding TrackCollections}"
+                  IsItemClickEnabled="True"
+                  ItemTemplate="{StaticResource PhoneTrackCollectionTemplate}"
+                  ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                  ItemsPanel="{StaticResource WrapPanelTemplate}">
+            <triggers:Interactions.Triggers>
+                <triggers:EventTrigger EventName="ItemClick">
+                    <triggers:InvokeCommandAction Command="{Binding TrackCollectionClickedCommand}"
+                                                  PassEventArgsToCommand="True"
+                                                  Margin="0,0,0,60" />
+                </triggers:EventTrigger>
+            </triggers:Interactions.Triggers>
+        </ListView>
+        <placeholder:NoPlaylistPlaceholder Margin="0,50,0,0"
+                                           VerticalAlignment="Center"
+                                           Visibility="{Binding TrackCollections.Count, Converter={StaticResource CountToVisibilityConverter}}" />
+    </Grid>
+</Page>

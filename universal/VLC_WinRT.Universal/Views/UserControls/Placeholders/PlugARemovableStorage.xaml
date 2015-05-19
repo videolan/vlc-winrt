@@ -1,0 +1,57 @@
+﻿<UserControl x:Class="VLC_WinRT.Controls.RemovableStorage.PlugARemovableStorage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="using:VLC_WINRT.Views.Controls"
+             xmlns:placeholder="using:VLC_WinRT.Views.UserControls.Placeholder"
+             mc:Ignorable="d">
+
+    <Border BorderThickness="1"
+            Background="WhiteSmoke"
+            BorderBrush="LightGray"
+            Margin="0,0,0,50">
+        <Grid HorizontalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Path Grid.RowSpan="4"
+                  Data="{StaticResource UsbKeyPath}"
+                  Fill="#99363636"
+                  Height="100"
+                  Stretch="Uniform"
+                  HorizontalAlignment="Center"
+                  VerticalAlignment="Center" />
+            <TextBlock Grid.Row="1"
+                       x:Uid="RemoveableDevice"
+                       TextWrapping="Wrap"
+                       Text="Plug-in a removable device"
+                       FontSize="42"
+                       FontWeight="Light"
+                       Foreground="{StaticResource MainColor}"
+                       VerticalAlignment="Top" />
+            <StackPanel Grid.Row="2"
+                        Margin="0,30,0,0">
+                <TextBlock x:Uid="RemoveableDeviceMessage1"
+                           TextWrapping="Wrap"
+                           Text="Plug in a removable storage and VLC will detects all the files in it."
+                           Foreground="DimGray"
+                           FontSize="17" />
+            </StackPanel>
+            <StackPanel Grid.Row="3"
+                        VerticalAlignment="Center">
+                <ProgressBar IsIndeterminate="True"
+                             Style="{StaticResource ThinProgressBar}"
+                             VerticalAlignment="Top" />
+                <TextBlock x:Uid="RemoveableDeviceMessage2"
+                           Text="Waiting for removable storages"
+                           VerticalAlignment="Top"
+                           HorizontalAlignment="Center"
+                           Foreground="DimGray" />
+            </StackPanel>
+        </Grid>
+    </Border>
+</UserControl>

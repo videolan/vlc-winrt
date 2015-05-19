@@ -1,0 +1,89 @@
+﻿<Page x:Class="VLC_WinRT.Views.MainPages.MainPageHome"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:VLC_WinRT.Views.MainPages"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:triggers="using:WinRT.Triggers"
+      xmlns:controls="using:VLC_WinRT.Controls"
+      xmlns:placeholders="using:VLC_WinRT.Views.UserControls.Placeholders"
+      mc:Ignorable="d"
+      DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}">
+    <ScrollViewer Margin="{StaticResource FrameMargin}">
+        <StackPanel>
+            <Button x:Uid="TopAlbums"
+                    Content="top albums"
+                    FontSize="30"
+                    Foreground="{StaticResource MainColor}"
+                    Style="{StaticResource TextBlockButtonStyle}"
+                    Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToPanelCommand}"
+                    CommandParameter="2"
+                    FontWeight="SemiLight" />
+            <ListView x:Name="AlbumsListView"
+                      DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}"
+                      ItemsSource="{Binding RandomAlbums}"
+                      ItemTemplate="{StaticResource PhoneSemanticZoomInViewAlbumTemplateLittleSize}"
+                      ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                      IsItemClickEnabled="True"
+                      SelectionMode="None"
+                      IsSwipeEnabled="False"
+                      ScrollViewer.VerticalScrollMode="Disabled">
+                <triggers:Interactions.Triggers>
+                    <triggers:EventTrigger EventName="ItemClick">
+                        <triggers:InvokeCommandAction Command="{Binding AlbumClickedCommand}"
+                                                      PassEventArgsToCommand="True" />
+                    </triggers:EventTrigger>
+                </triggers:Interactions.Triggers>
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <ItemsWrapGrid SizeChanged="AlbumsWrapGrid_SizeChanged"
+                                       Orientation="Horizontal"
+                                       Margin="0,0,0,0" />
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+            </ListView>
+            <controls:NoFavoriteAlbumsControl HorizontalAlignment="Left"
+                                              DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}" />
+            <Button x:Uid="TopVideos"
+                    Content="top videos"
+                    Margin="0,12,0,0"
+                    FontSize="30"
+                    Foreground="{StaticResource MainColor}"
+                    Style="{StaticResource TextBlockButtonStyle}"
+                    Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToPanelCommand}"
+                    CommandParameter="1"
+                    FontWeight="SemiLight" />
+            <ListView x:Name="VideosListView"
+                      DataContext="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM}"
+                      ItemsSource="{Binding ViewedVideos}"
+                      ItemTemplate="{StaticResource PhoneCompactVideoTemplate}"
+                      ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                      IsItemClickEnabled="True"
+                      SelectionMode="None"
+                      IsSwipeEnabled="False"
+                      ScrollViewer.VerticalScrollMode="Disabled">
+                <triggers:Interactions.Triggers>
+                    <triggers:EventTrigger EventName="ItemClick">
+                        <triggers:InvokeCommandAction Command="{Binding OpenVideo}"
+                                                      PassEventArgsToCommand="True" />
+                    </triggers:EventTrigger>
+                </triggers:Interactions.Triggers>
+                <ListView.ItemContainerTransitions>
+                    <TransitionCollection>
+                        <AddDeleteThemeTransition />
+                        <EntranceThemeTransition />
+                    </TransitionCollection>
+                </ListView.ItemContainerTransitions>
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <ItemsWrapGrid Orientation="Horizontal"
+                                       SizeChanged="VideoWrapGrid_SizeChanged" />
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+            </ListView>
+            <placeholders:NoVideosControl HorizontalAlignment="Left"
+                                          DataContext="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM}"
+                                          Visibility="{Binding ViewedVideos.Count, Converter={StaticResource CountToVisibilityConverter}}" />
+        </StackPanel>
+    </ScrollViewer>
+</Page>

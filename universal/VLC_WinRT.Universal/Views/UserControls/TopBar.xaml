@@ -1,0 +1,103 @@
+﻿<UserControl x:Class="VLC_WinRT.Views.UserControls.TopBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="using:VLC_WinRT.Views.UserControls"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="using:VLC_WINRT.Views.Controls"
+             xmlns:triggers="using:WinRT.Triggers"
+             mc:Ignorable="d"
+             d:DesignHeight="300"
+             d:DesignWidth="400"
+             DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}"
+             Visibility="{Binding CurrentPage, Converter={StaticResource PageToVisibilityConverter},ConverterParameter='VideoPlayerPage'}">
+
+    <Grid x:Name="ColumnGrid"
+          Height="60"
+          MinWidth="320"
+          Background="{Binding IsBackground, Converter={StaticResource BooleanToMainColorConverter}}"
+          RequestedTheme="Dark">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <StackPanel Orientation="Horizontal"
+                    Width="80"
+                    Grid.Column="1"
+                    VerticalAlignment="Center"
+                    Visibility="{Binding CanGoBack, Converter={StaticResource NegatedBooleanToVisibilityConverter}}">
+            <Path Data="{StaticResource VLCFlatPath}"
+                  Fill="White"
+                  Width="26"
+                  Stretch="Uniform" />
+            <TextBlock Text="VLC"
+                       Foreground="{ThemeResource BasicForeground}"
+                       Style="{StaticResource SubheaderTextBlockStyle}"
+                       Margin="6,-5,0,0" />
+        </StackPanel>
+        <Grid Grid.Column="1"
+              Visibility="{Binding CanGoBack, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <AppBarButton Style="{StaticResource AppBarButtonStyleHorizontal}"
+                          VerticalAlignment="Center"
+                          Click="GoBack_Click"
+                          Width="80">
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="{StaticResource PreviousPageSymbol}"
+                              Margin="0,3,0,0"
+                              FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+                </AppBarButton.Icon>
+            </AppBarButton>
+        </Grid>
+        <ListView Grid.Column="2"
+                  x:Name="PanelsListView"
+                  ItemsSource="{Binding Panels}"
+                  IsItemClickEnabled="True"
+                  SelectionMode="None"
+                  ItemContainerStyle="{StaticResource ListViewItemContainerStyle}"
+                  ItemTemplate="{StaticResource PivotHeaderDataTemplate}"
+                  ScrollViewer.VerticalScrollBarVisibility="Disabled">
+            <triggers:Interactions.Triggers>
+                <triggers:EventTrigger EventName="ItemClick">
+                    <triggers:InvokeCommandAction Command="{Binding GoToPanelCommand}"
+                                                  PassEventArgsToCommand="True" />
+                </triggers:EventTrigger>
+            </triggers:Interactions.Triggers>
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <ItemsStackPanel Orientation="Horizontal"
+                                     Margin="12,0,0,0"
+                                     Height="60" />
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemContainerTransitions>
+                <TransitionCollection>
+                    <RepositionThemeTransition />
+                </TransitionCollection>
+            </ListView.ItemContainerTransitions>
+        </ListView>
+        <AppBarButton Grid.Column="3"
+                      DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}"
+                      Visibility="{Binding MenuBarDisplayed, Converter={StaticResource NegatedBooleanToVisibilityConverter}}"
+                      VerticalAlignment="Center"
+                      Style="{StaticResource AppBarButtonStyleHorizontal}"
+                      Command="{Binding DisplayMenuBarControlToggleCommand}">
+            <AppBarButton.Icon>
+                <FontIcon Glyph="{StaticResource ChevronToBottomSymbol}"
+                          FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+            </AppBarButton.Icon>
+        </AppBarButton>
+        <AppBarButton Grid.Column="3"
+                      DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}"
+                      Visibility="{Binding MenuBarDisplayed, Converter={StaticResource BooleanToVisibilityConverter}}"
+                      VerticalAlignment="Center"
+                      Style="{StaticResource AppBarButtonStyleHorizontal}"
+                      Command="{Binding DisplayMenuBarControlToggleCommand}">
+            <AppBarButton.Icon>
+                <FontIcon Glyph="{StaticResource ChevronToTopSymbol}"
+                          FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+            </AppBarButton.Icon>
+        </AppBarButton> 
+    </Grid>
+</UserControl>

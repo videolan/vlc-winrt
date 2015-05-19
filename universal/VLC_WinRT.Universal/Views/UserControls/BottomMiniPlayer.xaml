@@ -1,0 +1,365 @@
+﻿<UserControl x:Class="VLC_WinRT.Views.UserControls.BottomMiniPlayer"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="using:VLC_WinRT.Views.UserControls"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:musicNowPlayingControls="using:VLC_WinRT.Views.MusicPages.MusicNowPlayingControls"
+             mc:Ignorable="d"
+             d:DesignHeight="300"
+             d:DesignWidth="400"
+             DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}"
+             Visibility="{Binding CurrentPage, Converter={StaticResource BottomMiniPlayerVisibilityConverter}}"
+             RequestedTheme="Dark">
+    <Grid x:Name="RootGrid"
+          Background="{ThemeResource MainColor}">
+        <Grid.Visibility>
+            <Binding Source="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.TrackCollection}"
+                     Path="IsRunning"
+                     Converter="{StaticResource BooleanToVisibilityConverter}" />
+        </Grid.Visibility>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition x:Name="NowPlayingInfoColumnDefinition"
+                              MinWidth="150"
+                              Width="*"
+                              MaxWidth="300" />
+            <ColumnDefinition x:Name="SliderColumnDefinition"
+                              Width="*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="FullWindows">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SecondaryMusicPlayerButtons"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SliderControl"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="NowPlayingArtistGrid"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames> 
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlayPauseGrid"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="NextButton"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PreviousButton"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="NextIcon"
+                                                       Storyboard.TargetProperty="FontSize">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="20" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PauseIcon"
+                                                       Storyboard.TargetProperty="FontSize">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="20" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PreviousIcon"
+                                                       Storyboard.TargetProperty="FontSize">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="20" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlayIcon"
+                                                       Storyboard.TargetProperty="FontSize">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="20" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SliderColumnDefinition"
+                                                       Storyboard.TargetProperty="Width">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="*" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="NowPlayingInfoColumnDefinition"
+                                                       Storyboard.TargetProperty="Width">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Auto" />
+                        </ObjectAnimationUsingKeyFrames> 
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Narrow">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SecondaryMusicPlayerButtons"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SliderControl"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Collapsed" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SliderColumnDefinition"
+                                                       Storyboard.TargetProperty="Width">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="0" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="NowPlayingArtistGrid"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="NowPlayingInfoColumnDefinition"
+                                                       Storyboard.TargetProperty="Width">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="*" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlayPauseGrid"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="NextButton"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PreviousButton"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="NextIcon"
+                                                       Storyboard.TargetProperty="FontSize">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="20" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PauseIcon"
+                                                       Storyboard.TargetProperty="FontSize">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="20" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PreviousIcon"
+                                                       Storyboard.TargetProperty="FontSize">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="20" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlayIcon"
+                                                       Storyboard.TargetProperty="FontSize">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="20" />
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="ExtraNarrow">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SecondaryMusicPlayerButtons"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Collapsed" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SliderControl"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Collapsed" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SliderColumnDefinition"
+                                                       Storyboard.TargetProperty="Width">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="0" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="NowPlayingArtistGrid"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="NowPlayingInfoColumnDefinition"
+                                                       Storyboard.TargetProperty="Width">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="*" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlayPauseGrid"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="NextButton"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PreviousButton"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="NextIcon"
+                                                       Storyboard.TargetProperty="FontSize">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="28" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PauseIcon"
+                                                       Storyboard.TargetProperty="FontSize">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="28" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PreviousIcon"
+                                                       Storyboard.TargetProperty="FontSize">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="28" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlayIcon"
+                                                       Storyboard.TargetProperty="FontSize">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="28" />
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Minimum">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SecondaryMusicPlayerButtons"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Collapsed" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SliderControl"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Collapsed" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SliderColumnDefinition"
+                                                       Storyboard.TargetProperty="Width">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="0" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="NowPlayingArtistGrid"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Collapsed" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="NowPlayingInfoColumnDefinition"
+                                                       Storyboard.TargetProperty="Width">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="*" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PlayPauseGrid"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Collapsed" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="NextButton"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Collapsed" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PreviousButton"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Collapsed" />
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        <Image Grid.Row="0"
+               DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}"
+               Source="{Binding CurrentAlbum.AlbumImage}"
+               Stretch="UniformToFill"
+               Tapped="RootMiniPlayer_Tapped" />
+        <Grid x:Name="NowPlayingArtistGrid"
+              Grid.Row="0"
+              Grid.Column="1"
+              Margin="12,0,0,0"
+              VerticalAlignment="Center"
+              Background="Transparent"
+              DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}"
+              Tapped="RootMiniPlayer_Tapped">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <TextBlock Text="{Binding CurrentTrack.Name}"
+                       TextWrapping="NoWrap"
+                       TextTrimming="CharacterEllipsis"
+                       FontSize="19" />
+            <TextBlock Grid.Row="1"
+                       Text="{Binding CurrentArtist.Name}"
+                       TextWrapping="NoWrap"
+                       TextTrimming="CharacterEllipsis"
+                       FontSize="15" />
+        </Grid>
+        <Slider x:Name="SliderControl"
+                Grid.Column="2"
+                RequestedTheme="Dark"
+                VerticalAlignment="Center"
+                Margin="24,0"
+                DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
+                Value="{Binding Position, Mode=TwoWay, Converter={StaticResource PositionToFixedPointConverter}}"
+                Style="{StaticResource VLCSlider}"
+                Maximum="500"
+                ThumbToolTipValueConverter="{StaticResource PositionToTimeStampStringConverter}" />
+        <Button x:Name="PreviousButton"
+                Grid.Row="0"
+                Grid.Column="3"
+                Margin="6,0,14,0"
+                Style="{StaticResource TextBlockButtonStyle}"
+                DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
+                Command="{Binding PlayPreviousCommand}"
+                Visibility="{Binding TrackCollection.CanGoPrevious, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <FontIcon x:Name="PreviousIcon"
+                      Glyph="{StaticResource PreviousSymbol}"
+                      FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+        </Button>
+        <Grid x:Name="PlayPauseGrid"
+              Grid.Row="0"
+              Grid.Column="4"
+              VerticalAlignment="Center"
+              Margin="0,0,14,0"
+              DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}">
+            <Button Style="{StaticResource TextBlockButtonStyle}"
+                    HorizontalAlignment="Left"
+                    Command="{Binding PlayOrPauseCommand}"
+                    Visibility="{Binding IsPlaying, Converter={StaticResource NegatedBooleanToVisibilityConverter}}"
+                    Holding="PlayPauseHold">
+                <FontIcon x:Name="PlayIcon"
+                          Glyph="{StaticResource PlaySymbol}"
+                          FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+            </Button>
+            <Button Style="{StaticResource TextBlockButtonStyle}"
+                    HorizontalAlignment="Left"
+                    Command="{Binding PlayOrPauseCommand}"
+                    Visibility="{Binding IsPlaying, Converter={StaticResource BooleanToVisibilityConverter}}"
+                    Holding="PlayPauseHold">
+                <FontIcon x:Name="PauseIcon"
+                          Glyph="{StaticResource PauseSymbol}"
+                          FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+            </Button>
+        </Grid>
+        <Button x:Name="NextButton"
+                Grid.Row="0"
+                Grid.Column="5"
+                Style="{StaticResource TextBlockButtonStyle}"
+                DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}"
+                Command="{Binding PlayNextCommand}"
+                Visibility="{Binding TrackCollection.CanGoNext, Converter={StaticResource BooleanToVisibilityConverter}}"
+                Margin="0,0,6,0">
+            <FontIcon x:Name="NextIcon"
+                      Glyph="{StaticResource SkipNextSymbol}"
+                      FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+        </Button>
+        <musicNowPlayingControls:SecondaryMusicPlayerButtons x:Name="SecondaryMusicPlayerButtons"
+                                                             Grid.Column="6"
+                                                             FontSize="20"
+                                                             Margin="6,0" />
+    </Grid>
+</UserControl>
