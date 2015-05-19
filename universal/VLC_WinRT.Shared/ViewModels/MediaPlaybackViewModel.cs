@@ -355,14 +355,18 @@ namespace VLC_WinRT.ViewModels
         private void privateDisplayCall(bool shouldActivate)
         {
             if (_displayAlwaysOnRequest == null) return;
-            if (shouldActivate)
+            try
             {
-                _displayAlwaysOnRequest.RequestActive();
+                if (shouldActivate)
+                {
+                    _displayAlwaysOnRequest.RequestActive();
+                }
+                else
+                {
+                    _displayAlwaysOnRequest.RequestRelease();
+                }
             }
-            else
-            {
-                _displayAlwaysOnRequest.RequestRelease();
-            }
+            catch { }
         }
 
         private async void UpdateTime(Int64 time)
