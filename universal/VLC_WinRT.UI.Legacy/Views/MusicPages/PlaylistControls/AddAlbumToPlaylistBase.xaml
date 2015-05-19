@@ -11,7 +11,8 @@
              d:DesignWidth="400">
 
     <Grid DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}"
-          Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+          Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+          MinWidth="320">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="12" />
             <ColumnDefinition />

@@ -12,12 +12,13 @@
     <ListView x:Name="PlayListView"
               SelectionMode="Multiple"
               ItemsSource="{Binding CurrentTrackCollection.Playlist}"
-              ItemTemplate="{StaticResource TrackTemplateDetailed}"
+              ItemTemplate="{StaticResource TrackTemplateDetailedNoFlyout}"
               ItemContainerStyle="{StaticResource ListViewItemStyle}"
               ItemsPanel="{StaticResource StackPanelTemplate}"
               SelectionChanged="PlayListView_OnSelectionChanged"
               IsItemClickEnabled="True"
-              Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+              Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+              MinWidth="320">
         <ListView.Header>
             <Grid x:Name="HeaderGrid"
                   Height="Auto">
