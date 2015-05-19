@@ -74,14 +74,19 @@
                                   Icon="{Binding CurrentAlbum.Favorite, Converter={StaticResource FavoriteSymbolConverter}}"
                                   VerticalAlignment="Top"
                                   Command="{Binding CurrentAlbum.FavoriteAlbum}"
-                                  CommandParameter="{Binding CurrentAlbum}" />
+                                  CommandParameter="{Binding CurrentAlbum}" />-->
                     <AppBarButton Grid.Row="1"
                                   Grid.Column="4"
+                                  Label="delete selected"
                                   Style="{StaticResource AppBarButtonStyleHorizontal}"
-                                  Icon="{Binding CurrentAlbum.IsPinned, Converter={StaticResource PinConverter}, ConverterParameter='icon'}"
+                                  Visibility="{Binding CurrentTrackCollection.SelectedTracks.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}"
                                   VerticalAlignment="Top"
-                                  Command="{Binding CurrentAlbum.PinAlbumCommand}"
-                                  CommandParameter="{Binding CurrentAlbum}" />-->
+                                  Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.DeletePlaylistTrackCommand}">
+                        <AppBarButton.Icon>
+                            <FontIcon Glyph="{StaticResource DeleteSymbol}"
+                                      FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+                        </AppBarButton.Icon>
+                    </AppBarButton>
                     <AppBarButton Grid.Row="1"
                                   Grid.Column="3"
                                   Style="{StaticResource AppBarButtonStyleHorizontal}"
