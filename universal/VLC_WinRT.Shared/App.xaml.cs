@@ -228,8 +228,8 @@ namespace VLC_WinRT
 
         private async Task LaunchTheApp()
         {
+            Dispatcher = Window.Current.Dispatcher;
             Window.Current.Content = new MainPage();
-            Dispatcher = Window.Current.Content.Dispatcher;
             await SplitShell.TemplateApplied.Task;
 #if WINDOWS_PHONE_APP
             StatusBarHelper.Default();
