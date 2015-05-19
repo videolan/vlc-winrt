@@ -46,32 +46,36 @@ namespace VLC_WinRT.Commands.VideoLibrary
 
         public async void Execute(object parameter)
         {
-            App.OpenFilePickerReason = OpenFilePickerReason.OnOpeningVideo;
-            var picker = new FileOpenPicker
+            try
             {
-                ViewMode = PickerViewMode.List,
-                SuggestedStartLocation = PickerLocationId.VideosLibrary
-            };
-            foreach(var ext in _allowedExtensions)
-                picker.FileTypeFilter.Add(ext);
-            
+                App.OpenFilePickerReason = OpenFilePickerReason.OnOpeningVideo;
+                var picker = new FileOpenPicker
+                {
+                    ViewMode = PickerViewMode.List,
+                    SuggestedStartLocation = PickerLocationId.VideosLibrary
+                };
+                foreach (var ext in _allowedExtensions)
+                    picker.FileTypeFilter.Add(ext);
+
 
 #if WINDOWS_APP
-            StorageFile file = null;
-            file = await picker.PickSingleFileAsync();
-            if (file != null)
-            {
-                LogHelper.Log("Opening file: " + file.Path);
-                await Locator.MediaPlaybackViewModel.OpenFile(file);
-            }
-            else
-            {
-                LogHelper.Log("Cancelled");
-            }
-            App.OpenFilePickerReason = OpenFilePickerReason.Null;
+                StorageFile file = null;
+                file = await picker.PickSingleFileAsync();
+                if (file != null)
+                {
+                    LogHelper.Log("Opening file: " + file.Path);
+                    await Locator.MediaPlaybackViewModel.OpenFile(file);
+                }
+                else
+                {
+                    LogHelper.Log("Cancelled");
+                }
+                App.OpenFilePickerReason = OpenFilePickerReason.Null;
 #else
             picker.PickSingleFileAndContinue();
 #endif
+            }
+            catch { }
         }
         public event EventHandler CanExecuteChanged;
     }
