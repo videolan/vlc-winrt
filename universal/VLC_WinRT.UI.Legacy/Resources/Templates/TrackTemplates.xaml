@@ -26,4 +26,9 @@
     <DataTemplate x:Key="TrackTemplateDetailed">
         <userControls:TrackItemTemplateDetailed />
     </DataTemplate>
+    
+    <DataTemplate x:Key="TrackTemplateDetailedNoFlyout">
+        <userControls:TrackItemTemplateDetailed IsFlyoutEnabled="False"/>
+    </DataTemplate>
+    
 </ResourceDictionary>
