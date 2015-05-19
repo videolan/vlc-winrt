@@ -92,10 +92,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Views\MainPages\MainMusicControls\PlaylistPivotItem.xaml.cs">
+    <Compile Include="Views\MainPages\MusicPanes\PlaylistPivotItem.xaml.cs">
       <DependentUpon>PlaylistPivotItem.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MainPages\MainMusicControls\SongsPivotItem.xaml.cs">
+    <Compile Include="Views\MainPages\MusicPanes\SongsPivotItem.xaml.cs">
       <DependentUpon>SongsPivotItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainPages\MainPage.xaml.cs">
@@ -1172,11 +1172,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\MainPages\MainMusicControls\PlaylistPivotItem.xaml">
+    <Page Include="Views\MainPages\MusicPanes\PlaylistPivotItem.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\MainPages\MainMusicControls\SongsPivotItem.xaml">
+    <Page Include="Views\MainPages\MusicPanes\SongsPivotItem.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

@@ -2,7 +2,6 @@
 using VLC_WinRT.Utils;
 using VLC_WinRT.ViewModels;
 using VLC_WinRT.Views.MainPages;
-using VLC_WinRT.Views.MainPages.MainMusicControls;
 using VLC_WinRT.Views.MainPages.MusicPanes;
 using Windows.UI.Xaml.Controls;
 
