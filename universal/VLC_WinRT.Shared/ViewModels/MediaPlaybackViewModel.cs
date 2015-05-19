@@ -669,6 +669,12 @@ namespace VLC_WinRT.ViewModels
             if (!canGoNext)
             {
                 // Playlist is finished
+                if (TrackCollection.Repeat)
+                {
+                    // ... One More Time!
+                    await StartAgain();
+                    return;
+                }
                 await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
                 {
                     TrackCollection.IsRunning = false;
@@ -702,6 +708,15 @@ namespace VLC_WinRT.ViewModels
                 await PlayNext();
         }
 
+        public async Task StartAgain()
+        {
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+            {
+                TrackCollection.CurrentTrack = 0;
+                await Locator.MediaPlaybackViewModel.SetMedia(CurrentMedia, false);
+            });
+        }
+        
         public async Task PlayNext()
         {
             if (TrackCollection.CanGoNext)

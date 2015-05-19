@@ -32,6 +32,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
         private int _currentTrack;
         private bool _isRunning;
         private bool _isShuffled;
+        private bool _repeat;
 
         // ui related management
         private ObservableCollection<IVLCMedia> _selectedTracks;
@@ -52,6 +53,14 @@ namespace VLC_WinRT.ViewModels.MusicVM
                 SetProperty(ref _currentTrack, value);
             }
         }
+
+        [Ignore]
+        public bool Repeat
+        {
+            get { return _repeat; }
+            set { SetProperty(ref _repeat, value); }
+        }
+
 
         [Ignore]
         public bool CanGoPrevious

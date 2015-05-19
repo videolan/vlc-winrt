@@ -15,6 +15,8 @@
         <ColumnDefinition />
         <ColumnDefinition Width="12" />
         <ColumnDefinition />
+        <ColumnDefinition Width="12" />
+        <ColumnDefinition />
     </Grid.ColumnDefinitions>
     <AppBarToggleButton Grid.Column="0"
                         Margin="0,6,0,0"
@@ -31,7 +33,7 @@
                       x:Name="ShuffleFontIcon" />
         </AppBarToggleButton.Icon>
     </AppBarToggleButton>
-    <Button Grid.Column="2"
+    <Button Grid.Column="6"
             Style="{StaticResource TextBlockButtonStyle}"
             HorizontalAlignment="Center"
             DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}"
@@ -46,6 +48,7 @@
         </Button.Content>
     </Button>
     <AppBarToggleButton Grid.Column="4"
+                        Margin="0,6,0,0"
                         IsCompact="True"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Center"
@@ -59,7 +62,21 @@
                       x:Name="FavoriteFontIcon" />
         </AppBarToggleButton.Icon>
     </AppBarToggleButton>
-    <Button Grid.Column="6"
+    <AppBarToggleButton Grid.Column="2"
+                        Margin="0,6,0,0"
+                        IsCompact="True"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.TrackCollection}"
+                        IsChecked="{Binding Repeat, Mode=TwoWay}">
+        <AppBarToggleButton.Icon>
+            <FontIcon Glyph="{StaticResource RefreshSymbol}"
+                      FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets"
+                      FontSize="26"
+                      x:Name="RepeatFontIcon" />
+        </AppBarToggleButton.Icon>
+    </AppBarToggleButton>
+    <Button Grid.Column="8"
             HorizontalAlignment="Center"
             Style="{StaticResource TextBlockButtonStyle}"
             DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}"
