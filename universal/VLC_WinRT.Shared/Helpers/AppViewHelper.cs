@@ -49,6 +49,9 @@ namespace VLC_WinRT.Helpers
                 }
             }
             catch { }
+#elif WINDOWS_UAP
+            var titleBar = Windows.UI.ViewManagement.ApplicationView.GetForCurrentView().TitleBar;
+            Windows.ApplicationModel.Core.CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
 #endif
         }
         

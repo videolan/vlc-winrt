@@ -18,6 +18,12 @@ namespace VLC_WinRT.Commands.Navigation
             Switch(index, frame);
         }
 
+#if WINDOWS_UAP
+        void Switch(int index, Pivot pivot)
+        {
+            pivot.SelectedIndex = index;
+        }
+#else
         void Switch(int index, ContentPresenter frame)
         {
             switch (index)
@@ -49,5 +55,6 @@ namespace VLC_WinRT.Commands.Navigation
                     break;
             }
         }
+#endif
     }
 }

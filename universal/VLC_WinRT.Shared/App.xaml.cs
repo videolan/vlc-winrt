@@ -231,11 +231,10 @@ namespace VLC_WinRT
             Window.Current.Content = new MainPage();
             Dispatcher = Window.Current.Content.Dispatcher;
             await SplitShell.TemplateApplied.Task;
-
-#if WINDOWS_APP
-            AppViewHelper.SetAppView();
-#elif WINDOWS_PHONE_APP
+#if WINDOWS_PHONE_APP
             StatusBarHelper.Default();
+#else
+            AppViewHelper.SetAppView();
 #endif
             Locator.MainVM.DropTablesIfNeeded();
             if (Locator.VideoLibraryVM.LoadingState == LoadingState.NotLoaded)
