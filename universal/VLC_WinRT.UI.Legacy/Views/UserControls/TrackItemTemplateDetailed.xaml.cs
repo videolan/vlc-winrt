@@ -12,9 +12,21 @@ namespace VLC_WinRT.Views.UserControls
         {
             this.InitializeComponent();
         }
+
+        public bool IsFlyoutEnabled
+        {
+            get { return (bool)GetValue(IsFlyoutEnabledProperty); }
+            set { SetValue(IsFlyoutEnabledProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for IsFlyoutEnabled.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty IsFlyoutEnabledProperty =
+            DependencyProperty.Register("IsFlyoutEnabled", typeof(bool), typeof(TrackItemTemplateDetailed), new PropertyMetadata(true));
+
         private void Grid_RightTapped(object sender, RightTappedRoutedEventArgs e)
         {
-            Flyout.ShowAttachedFlyout((Grid)sender);
+            if (IsFlyoutEnabled)
+                Flyout.ShowAttachedFlyout((Grid)sender);
         }
 
         private void NameTextBlock_OnLoaded(object sender, RoutedEventArgs e)
@@ -29,6 +41,12 @@ namespace VLC_WinRT.Views.UserControls
                 Path = new PropertyPath("IsCurrentPlaying"),
             };
             ((TextBlock)sender).SetBinding(TextBlock.ForegroundProperty, b);
+        }
+
+        private void Grid_Holding(object sender, HoldingRoutedEventArgs e)
+        {
+            if (IsFlyoutEnabled)
+                Flyout.ShowAttachedFlyout((Grid)sender);
         }
     }
 }

@@ -11,7 +11,8 @@
              d:DesignHeight="300"
              d:DesignWidth="400">
     <Grid FlyoutBase.AttachedFlyout="{StaticResource TrackItemFlyout}"
-          RightTapped="Grid_RightTapped">
+          RightTapped="Grid_RightTapped"
+          Holding="Grid_Holding">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition />
@@ -19,11 +20,6 @@
             <ColumnDefinition Width="12"/>
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
-        <interactivity:Interaction.Behaviors>
-            <core:EventTriggerBehavior EventName="Holding">
-                <utils:OpenMenuFlyoutAction />
-            </core:EventTriggerBehavior>
-        </interactivity:Interaction.Behaviors>
         <TextBlock Grid.Column="0"
                    x:Name="NameTextBlock"
                    Text="{Binding Name}"
