@@ -119,8 +119,12 @@ namespace VLC_WinRT.Services.RunTime
                 {
                     await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                     {
-                        Instance.AutoPlay = false;
-                        Instance.SetSource(randomAccessStream, randomAccessStream.ContentType);
+                        try
+                        {
+                            Instance.AutoPlay = false;
+                            Instance.SetSource(randomAccessStream, randomAccessStream.ContentType);
+                        }
+                        catch { }
                     });
                 }
             }
