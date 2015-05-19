@@ -217,9 +217,9 @@ namespace VLC_WinRT.ViewModels.MusicVM
             await App.BackgroundAudioHelper.AddToPlaylist(backgorundTracks);
         }
 
-        public void Remove(TrackItem trackItem)
+        public void Remove(IVLCMedia media)
         {
-            Playlist.Remove(trackItem);
+            Playlist.Remove(media);
         }
 
         public async Task Add(VideoItem videoItem, bool isPlayingPlaylist)
