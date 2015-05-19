@@ -125,8 +125,6 @@
                                 <Grid.Resources>
                                     <Flyout x:Key="RemoveFlyout">
                                         <Button Content="Remove this folder"
-                                                BorderThickness="0"
-                                                Background="#454545"
                                                 x:Uid="RemoveFolder"
                                                 Command="{Binding Source={StaticResource Locator}, Path=SettingsVM.RemoveFolderFromMusicLibrary}"
                                                 CommandParameter="{Binding}" />
@@ -192,8 +190,6 @@
                                 <Grid.Resources>
                                     <Flyout x:Key="RemoveFlyout">
                                         <Button Content="Remove this folder"
-                                                BorderThickness="0"
-                                                Background="#454545"
                                                 x:Uid="RemoveFolder"
                                                 Command="{Binding Source={StaticResource Locator}, Path=SettingsVM.RemoveFolderFromVideoLibrary}"
                                                 CommandParameter="{Binding}" />
