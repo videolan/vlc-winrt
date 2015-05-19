@@ -224,6 +224,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
         public BingLocationShowCommand BingLocationShowCommand { get; } = new BingLocationShowCommand();
 
         public DeletePlaylistCommand DeletePlaylistCommand { get; } = new DeletePlaylistCommand();
+        public DeletePlaylistTrackCommand DeletePlaylistTrackCommand { get; } = new DeletePlaylistTrackCommand();
 
         public DeleteSelectedTracksInPlaylistCommand DeleteSelectedTracksInPlaylistCommand { get; } = new DeleteSelectedTracksInPlaylistCommand();
 

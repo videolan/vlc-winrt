@@ -593,6 +593,11 @@ namespace VLC_WinRT.Helpers.MusicLibrary
             }
         }
 
+        public static Task DeletePlaylistTrack(TrackItem track, TrackCollection trackCollection)
+        {
+            return Locator.MusicLibraryVM.TracklistItemRepository.Remove(track.Id, trackCollection.Id);
+        }
+
         public static async Task DeletePlaylist(TrackCollection trackCollection)
         {
             await Locator.MusicLibraryVM.TrackCollectionRepository.Remove(trackCollection);
