@@ -884,10 +884,6 @@
       <Project>{22532381-be8b-40e0-a881-22ce24342d5a}</Project>
       <Name>libVLCX</Name>
     </ProjectReference>
-    <ProjectReference Include="..\VLC_WinRT.LastFmScrobbler\VLC_WinRT.LastFmScrobbler.csproj">
-      <Project>{f531474d-c881-4776-b519-e6374e80f4ce}</Project>
-      <Name>VLC_WinRT.LastFmScrobbler</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="MultilingualResources\VLC_WinRT.Windows.ja-JP.xlf" />

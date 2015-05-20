@@ -801,10 +801,6 @@
       <Project>{6bdaba8a-b559-4007-a17f-42125d3aa7a3}</Project>
       <Name>VLC_WinRT.BackgroundAudioPlayer</Name>
     </ProjectReference>
-    <ProjectReference Include="..\VLC_WinRT.LastFmScrobbler\VLC_WinRT.LastFmScrobbler.csproj">
-      <Project>{f531474d-c881-4776-b519-e6374e80f4ce}</Project>
-      <Name>VLC_WinRT.LastFmScrobbler</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="MultilingualResources\VLC_WinRT.WindowsPhone.qps-ploc.xlf" />
