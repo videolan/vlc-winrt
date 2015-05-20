@@ -18,6 +18,7 @@ namespace VLC_WinRT.Model.Music
         private string _name;
         private string _path;
         private uint _index;
+        private int _disc;
         private TimeSpan _duration;
         private bool _favorite;
         private int _currentPosition;
@@ -57,6 +58,12 @@ namespace VLC_WinRT.Model.Music
         {
             get { return _index; }
             set { SetProperty(ref _index, value); }
+        }
+
+        public int DiscNumber
+        {
+            get { return _disc; }
+            set { SetProperty(ref _disc, value); }
         }
 
         public TimeSpan Duration

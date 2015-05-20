@@ -279,6 +279,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
                         Name = string.IsNullOrEmpty(mP.Title) ? item.DisplayName : mP.Title,
                         Path = item.Path,
                         Index = mP.Tracknumber,
+                        DiscNumber = mP.DiscNumber,
                     };
                     await Locator.MusicLibraryVM._trackDatabase.Add(track);
                     await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => AddTrack(track));
@@ -310,7 +311,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
         public static async Task PopulateTracks(this AlbumItem album)
         {
             var tracks = await Locator.MusicLibraryVM._trackDatabase.LoadTracksByAlbumId(album.Id);
-            var orderedTracks = tracks.OrderBy(x => x.Index).ToObservable();
+            var orderedTracks = tracks.OrderBy(x => x.DiscNumber).ThenBy(x => x.Index).ToObservable();
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 album.Tracks = orderedTracks;

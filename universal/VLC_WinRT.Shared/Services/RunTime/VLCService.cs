@@ -173,8 +173,10 @@ namespace VLC_WinRT.Services.RunTime
             uint.TryParse(trackNbString, out trackNbInt);
             mP.Tracknumber = trackNbInt;
 
-            var albumArtUrl = media.meta(MediaMeta.ArtworkURL);
-            mP.AlbumArt = albumArtUrl;
+            var discNb = media.meta(MediaMeta.DiscNumber);
+            int discNbInt = 1;
+            int.TryParse(discNb, out discNbInt);
+            mP.DiscNumber = discNbInt;
             return mP;
         }
 
