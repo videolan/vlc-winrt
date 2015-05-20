@@ -7,8 +7,8 @@ using Windows.Foundation.Collections;
 using Windows.Media;
 using Windows.Media.Playback;
 using Windows.Storage;
-using VLC_WinRT.Database.Database;
 using VLC_WinRT.BackgroundAudioPlayer.Model;
+using VLC_WinRT.SharedBackground.Database;
 
 namespace VLC_WinRT.BackgroundAudioPlayer
 {

@@ -95,22 +95,18 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\VLC_WinRT.Database\VLC_WinRT.Database.csproj">
-      <Project>{1e0bf0fc-e5cb-4bdf-918f-d2de64f7a6c5}</Project>
-      <Name>VLC_WinRT.Database</Name>
-    </ProjectReference>
     <ProjectReference Include="..\VLC_WinRT.LastFmScrobbler\VLC_WinRT.LastFmScrobbler.csproj">
       <Project>{f531474d-c881-4776-b519-e6374e80f4ce}</Project>
       <Name>VLC_WinRT.LastFmScrobbler</Name>
     </ProjectReference>
   </ItemGroup>
+  <Import Project="..\VLC_WinRT.SharedBackground\VLC_WinRT.SharedBackground.projitems" Label="Shared" />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(TargetPlatformIdentifier)' == '' ">
     <TargetPlatformIdentifier>WindowsPhoneApp</TargetPlatformIdentifier>
   </PropertyGroup>
-  <Import Project="..\VLC_WinRT.SharedBackground\VLC_WinRT.SharedBackground.projitems" Label="Shared" Condition="Exists('..\VLC_WinRT.SharedBackground\VLC_WinRT.SharedBackground.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

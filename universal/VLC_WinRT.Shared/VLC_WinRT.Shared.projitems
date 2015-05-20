@@ -179,8 +179,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\MusicMetaService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\NetworkListenerService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\RunTime\ThumbnailService.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)SQLite.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)SQLiteAsync.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\AlwaysExecutableCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\AutoFacConfiguration.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Utils\BindableBase.cs" />

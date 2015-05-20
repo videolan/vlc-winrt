@@ -18,9 +18,9 @@ using VLC_WinRT.Commands.MusicLibrary;
 using VLC_WinRT.Commands.MusicPlayer;
 using VLC_WinRT.Helpers;
 using VLC_WinRT.Model.Music;
-using VLC_WinRT.Database.Database;
 using VLC_WinRT.BackgroundAudioPlayer.Model;
 using VLC_WinRT.LastFmScrobbler;
+using VLC_WinRT.SharedBackground.Database;
 #if WINDOWS_PHONE_APP
 using Windows.Media.Playback;
 #endif
