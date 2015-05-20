@@ -39,9 +39,18 @@ _ReSharper*/
 app/packages
 app/VLC_WINRT.sln.DotSettings
 *dll
+*.stackdump
 app/ui/plugins/access/libaccess_winrt_plugin.dll
 app/ui/plugins/video_output/libdirect2d_winrt_plugin.dll
 app/ui/plugins/audio_output/libxaudio2_winrt_plugin.dll
+wrapper/libvlcpp/
+universal/VLC_WinRT.Windows/BundleArtifacts
+universal/VLC_WinRT.Windows/Package.StoreAssociation.xml
+universal/VLC_WinRT.WindowsPhone/ApplicationInsights.config
+universal/VLC_WinRT.WindowsPhone/BundleArtifacts
+universal/VLC_WinRT.WindowsPhone/Package.StoreAssociation.xml
+universal/packages/
+
 
 # VLC files
 vlc/plugins/
