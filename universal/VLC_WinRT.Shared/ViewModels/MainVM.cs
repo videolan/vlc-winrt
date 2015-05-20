@@ -171,15 +171,12 @@ namespace VLC_WinRT.ViewModels
             CoreWindow.GetForCurrentThread().Activated += ApplicationState_Activated;
             Locator.NavigationService.ViewNavigated += (sender, page) =>
             {
-#if WINDOWS_UAP
-#else
                 if (App.SplitShell.TopBarContent == null)
                     App.SplitShell.TopBarContent = new TopBar();
                 if (App.SplitShell.InformationText == null)
                     App.SplitShell.InformationText = new MenuBarControl();
                 if (MenuBarDisplayed)
                     MenuBarDisplayed = false;
-#endif
                 if (App.SplitShell.FooterContent == null)
                     App.SplitShell.FooterContent = new BottomMiniPlayer();
                 CurrentPage = page;
