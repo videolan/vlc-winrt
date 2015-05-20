@@ -8,7 +8,7 @@
         // Under this number, list should not display SemanticZoom (letters or anything), only a flat list
         public static readonly int SemanticZoomItemCountThreshold = 25;
 
-        // Database Version 1
-        public static readonly int DbVersion = 2;
+        // Database Version 
+        public static readonly int DbVersion = 3;
     }
 }
