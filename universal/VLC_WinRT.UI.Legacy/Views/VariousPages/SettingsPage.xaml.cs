@@ -5,10 +5,10 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using VLC_WinRT.Helpers;
-using VLC_WinRT.LastFmScrobbler;
 using VLC_WinRT.ViewModels;
 using Windows.UI.Xaml.Media;
 using Windows.UI;
+using VLC_WinRT.SharedBackground.Helpers.MusicPlayer;
 
 namespace VLC_WinRT.Views.VariousPages
 {
@@ -45,7 +45,7 @@ namespace VLC_WinRT.Views.VariousPages
         
         private async void ConnectToLastFM_Click(object sender, RoutedEventArgs e)
         {
-            LastFmScrobblerHelper lastFm = new LastFmScrobblerHelper(App.ApiKeyLastFm, "bd9ad107438d9107296ef799703d478e");
+            LastFMScrobbler lastFm = new LastFMScrobbler(App.ApiKeyLastFm, "bd9ad107438d9107296ef799703d478e");
             
             string pseudo = (string) ApplicationSettingsHelper.ReadSettingsValue("LastFmUserName");
             string pd = (string) ApplicationSettingsHelper.ReadSettingsValue("LastFmPassword");

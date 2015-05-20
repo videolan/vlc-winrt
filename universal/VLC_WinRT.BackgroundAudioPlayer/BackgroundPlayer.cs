@@ -7,8 +7,8 @@ using Windows.Foundation.Collections;
 using Windows.Media;
 using Windows.Media.Playback;
 using VLC_WinRT.BackgroundAudioPlayer.Model;
-using VLC_WinRT.LastFmScrobbler;
 using VLC_WinRT.SharedBackground.Database;
+using VLC_WinRT.SharedBackground.Helpers.MusicPlayer;
 
 namespace VLC_WinRT.BackgroundAudioPlayer
 {
@@ -25,7 +25,7 @@ namespace VLC_WinRT.BackgroundAudioPlayer
     public sealed class BackgroundPlayer : IBackgroundTask
     {
         #region Private fields, properties
-        private LastFmScrobblerHelper lastFmScrobblerHelper;
+        private LastFMScrobbler LastFMScrobbler;
         private SystemMediaTransportControls systemmediatransportcontrol;
         private BackgroundTrackCollection playlistManager;
         private BackgroundTaskDeferral deferral; // Used to keep task alive
@@ -178,21 +178,21 @@ namespace VLC_WinRT.BackgroundAudioPlayer
             string pd = (string)ApplicationSettingsHelper.ReadSettingsValue("LastFmPassword");
             if (string.IsNullOrEmpty(pseudo) || string.IsNullOrEmpty(pd)) return;
 
-            if (lastFmScrobblerHelper == null)
+            if (LastFMScrobbler == null)
             {
                 // try to instanciate it
-                lastFmScrobblerHelper = new LastFmScrobblerHelper("a8eba7d40559e6f3d15e7cca1bfeaa1c", "bd9ad107438d9107296ef799703d478e");
+                LastFMScrobbler = new LastFMScrobbler("a8eba7d40559e6f3d15e7cca1bfeaa1c", "bd9ad107438d9107296ef799703d478e");
             }
 
-            if (!lastFmScrobblerHelper.IsConnected)
+            if (!LastFMScrobbler.IsConnected)
             {
-                var success = await lastFmScrobblerHelper.ConnectOperation(pseudo, pd);
+                var success = await LastFMScrobbler.ConnectOperation(pseudo, pd);
                 if (!success) return;
             }
 
-            if (lastFmScrobblerHelper != null && lastFmScrobblerHelper.IsConnected)
+            if (LastFMScrobbler != null && LastFMScrobbler.IsConnected)
             {
-                lastFmScrobblerHelper.ScrobbleTrack(Playlist.CurrentTrackItem.ArtistName, Playlist.CurrentTrackItem.AlbumName, Playlist.CurrentTrackItem.Name);
+                LastFMScrobbler.ScrobbleTrack(Playlist.CurrentTrackItem.ArtistName, Playlist.CurrentTrackItem.AlbumName, Playlist.CurrentTrackItem.Name);
             }
         }
 
