@@ -880,6 +880,16 @@
     </SDKReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="..\VLC_WinRT.Windows\Resources\PlatformFlyouts.xaml">
+      <Link>Resources\PlatformFlyouts.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="..\VLC_WinRT.Windows\Resources\PlatformStyles.xaml">
+      <Link>Resources\PlatformStyles.xaml</Link>
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="..\VLC_WinRT.Windows\Views\UserControls\ShellContent.xaml">
       <Link>Views\UserControls\ShellContent.xaml</Link>
       <Generator>MSBuild:Compile</Generator>
