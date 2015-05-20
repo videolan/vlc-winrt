@@ -78,6 +78,7 @@ Global
 		..\universal\VLC_WinRT.SharedBackground\VLC_WinRT.SharedBackground.projitems*{fb7c44ec-1ed4-4795-bebf-08841f5c1c1a}*SharedItemsImports = 4
 		..\universal\VLC_WinRT.Shared\VLC_WinRT.Shared.projitems*{fb7c44ec-1ed4-4795-bebf-08841f5c1c1a}*SharedItemsImports = 4
 		..\universal\VLC_WinRT.MusicMetaFetcher\VLC_WinRT.MusicMetaFetcher.projitems*{fb7c44ec-1ed4-4795-bebf-08841f5c1c1a}*SharedItemsImports = 4
+		..\universal\VLC_WinRT.UI.Legacy\VLC_WinRT.UI.Legacy.projitems*{fb7c44ec-1ed4-4795-bebf-08841f5c1c1a}*SharedItemsImports = 4
 		VLC_WinRT.SplitShell\VLC_WinRT.SplitShell.projitems*{fb7c44ec-1ed4-4795-bebf-08841f5c1c1a}*SharedItemsImports = 4
 		..\modules\libdirect2d_winrt_plugin.Shared\libdirect2d_winrt_plugin.Shared.vcxitems*{231dfaab-c462-49bf-8611-1fa6ee39983d}*SharedItemsImports = 4
 		..\universal\VLC_WinRT.UI.Legacy\VLC_WinRT.UI.Legacy.projitems*{d499d5a2-b899-4664-94e8-65c8114582de}*SharedItemsImports = 13
