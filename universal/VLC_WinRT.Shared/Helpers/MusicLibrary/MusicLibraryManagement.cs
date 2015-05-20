@@ -220,11 +220,12 @@ namespace VLC_WinRT.Helpers.MusicLibrary
                 if (mP != null)
                 {
                     var artistName = mP.Artist;
-                    ArtistItem artist = Locator.MusicLibraryVM._artistDatabase.LoadViaArtistName(artistName);
+                    var albumArtistName = mP.AlbumArtist;
+                    ArtistItem artist = Locator.MusicLibraryVM._artistDatabase.LoadViaArtistName(string.IsNullOrEmpty(albumArtistName) ? artistName : albumArtistName);
                     if (artist == null)
                     {
                         artist = new ArtistItem();
-                        artist.Name = string.IsNullOrEmpty(artistName) ? string.Empty : artistName;
+                        artist.Name = string.IsNullOrEmpty(albumArtistName) ? artistName : albumArtistName;
                         await Locator.MusicLibraryVM._artistDatabase.Add(artist);
                         await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
                         {
@@ -249,7 +250,8 @@ namespace VLC_WinRT.Helpers.MusicLibrary
                         album = new AlbumItem
                         {
                             Name = string.IsNullOrEmpty(albumName) ? string.Empty : albumName,
-                            Artist = string.IsNullOrEmpty(artistName) ? string.Empty : artistName,
+                            AlbumArtist = albumArtistName,
+                            Artist = string.IsNullOrEmpty(albumArtistName) ? artistName : albumArtistName,
                             ArtistId = artist.Id,
                             Favorite = false,
                             Year = albumYear,
@@ -270,7 +272,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
                         AlbumId = album.Id,
                         AlbumName = album.Name,
                         ArtistId = artist.Id,
-                        ArtistName = artist.Name,
+                        ArtistName = artistName,
                         CurrentPosition = 0,
                         Duration = mP.Duration,
                         Favorite = false,

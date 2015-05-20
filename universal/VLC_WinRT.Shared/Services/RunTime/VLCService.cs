@@ -153,6 +153,7 @@ namespace VLC_WinRT.Services.RunTime
             if (!media.isParsed())
                 return null;
             var mP = new MediaProperties();
+            mP.AlbumArtist = media.meta(MediaMeta.AlbumArtist);
             mP.Artist = media.meta(MediaMeta.Artist);
             mP.Album = media.meta(MediaMeta.Album);
             mP.Title = media.meta(MediaMeta.Title);

@@ -293,7 +293,7 @@
                        TextTrimming="CharacterEllipsis"
                        FontSize="19" />
             <TextBlock Grid.Row="1"
-                       Text="{Binding CurrentArtist.Name}"
+                       Text="{Binding CurrentTrack.ArtistName}"
                        TextWrapping="NoWrap"
                        TextTrimming="CharacterEllipsis"
                        FontSize="15" />

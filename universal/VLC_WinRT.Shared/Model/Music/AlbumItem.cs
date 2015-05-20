@@ -21,6 +21,7 @@ namespace VLC_WinRT.Model.Music
     {
         private string _name;
         private string _artist;
+        private string _albumArtist;
         private string _picture;
         private BitmapImage _albumImage;
         private LoadingState _albumImageLoadingState = LoadingState.NotLoaded;
@@ -48,6 +49,12 @@ namespace VLC_WinRT.Model.Music
             {
                 SetProperty(ref _artist, value);
             }
+        }
+
+        public string AlbumArtist
+        {
+            get { return _albumArtist; }
+            set { SetProperty(ref _albumArtist, value); }
         }
 
         public bool Favorite
