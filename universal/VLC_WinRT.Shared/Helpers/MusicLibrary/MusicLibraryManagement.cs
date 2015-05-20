@@ -299,7 +299,10 @@ namespace VLC_WinRT.Helpers.MusicLibrary
         public static void AddAlbum(AlbumItem album, ArtistItem artist)
         {
             artist?.Albums.Add(album);
-            InsertIntoGroupAlbum(album);
+            if (Locator.NavigationService.CurrentPage == VLCPage.MainPageMusic && Locator.MusicLibraryVM.MusicView == MusicView.Albums)
+            {
+                Task.Run(() => InsertIntoGroupAlbum(album));
+            }
             Locator.MusicLibraryVM.Albums.Add(album);
         }
 
@@ -520,62 +523,49 @@ namespace VLC_WinRT.Helpers.MusicLibrary
                         }
                     }
                 }
-                
-                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, ()=> Locator.MusicLibraryVM.GroupedAlbums = groupedAlbums);
+
+                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Locator.MusicLibraryVM.GroupedAlbums = groupedAlbums);
             });
         }
 
-        static void InsertIntoGroupAlbum(AlbumItem album)
+        static async Task InsertIntoGroupAlbum(AlbumItem album)
         {
-            if (Locator.NavigationService.CurrentPage != VLCPage.MainPageMusic || Locator.MusicLibraryVM.MusicView != MusicView.Albums) return;
-            Task.Run(async () =>
+            if (Locator.SettingsVM.AlbumsOrderType == OrderType.ByArtist)
             {
-                if (Locator.SettingsVM.AlbumsOrderType == OrderType.ByArtist)
+                var artist = Locator.MusicLibraryVM.GroupedAlbums.FirstOrDefault(x => x.Key == Strings.HumanizedArtistName(album.Artist));
+                if (artist == null)
                 {
-                    var artist = Locator.MusicLibraryVM.GroupedAlbums.FirstOrDefault(x => x.Key == Strings.HumanizedArtistName(album.Artist));
-                    if (artist == null)
-                    {
-                        var newArtist = new GroupItemList<AlbumItem>(album) { Key = Strings.HumanizedArtistName(album.Artist) };
-                        int i = Locator.MusicLibraryVM.GroupedAlbums.IndexOf(Locator.MusicLibraryVM.GroupedAlbums.LastOrDefault(x => string.Compare(x.Key, newArtist.Key) < 0));
-                        i++;
-                        await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low,() => Locator.MusicLibraryVM.GroupedAlbums.Insert(i, newArtist));
-                    }
-                    else
-                    {
-                        artist.Add(album);
-                    }
+                    artist = new GroupItemList<AlbumItem>(album) { Key = Strings.HumanizedArtistName(album.Artist) };
+                    int i = Locator.MusicLibraryVM.GroupedAlbums.IndexOf(Locator.MusicLibraryVM.GroupedAlbums.LastOrDefault(x => string.Compare(x.Key, artist.Key) < 0));
+                    i++;
+                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => Locator.MusicLibraryVM.GroupedAlbums.Insert(i, artist));
                 }
-                else if (Locator.SettingsVM.AlbumsOrderType == OrderType.ByDate)
+                else await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => artist.Add(album));
+            }
+            else if (Locator.SettingsVM.AlbumsOrderType == OrderType.ByDate)
+            {
+                var year = Locator.MusicLibraryVM.GroupedAlbums.FirstOrDefault(x => x.Key == Strings.HumanizedYear(album.Year));
+                if (year == null)
                 {
-                    var year = Locator.MusicLibraryVM.GroupedAlbums.FirstOrDefault(x => x.Key == Strings.HumanizedYear(album.Year));
-                    if (year == null)
-                    {
-                        var newyear = new GroupItemList<AlbumItem>(album) { Key = Strings.HumanizedYear(album.Year) };
-                        int i = Locator.MusicLibraryVM.GroupedAlbums.IndexOf(Locator.MusicLibraryVM.GroupedAlbums.LastOrDefault(x => string.Compare(x.Key, newyear.Key) < 0));
-                        i++;
-                        await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => Locator.MusicLibraryVM.GroupedAlbums.Insert(i, newyear));
-                    }
-                    else
-                    {
-                        year.Add(album);
-                    }
+                    var newyear = new GroupItemList<AlbumItem>(album) { Key = Strings.HumanizedYear(album.Year) };
+                    int i = Locator.MusicLibraryVM.GroupedAlbums.IndexOf(Locator.MusicLibraryVM.GroupedAlbums.LastOrDefault(x => string.Compare(x.Key, newyear.Key) < 0));
+                    i++;
+                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => Locator.MusicLibraryVM.GroupedAlbums.Insert(i, newyear));
                 }
-                else if (Locator.SettingsVM.AlbumsOrderType == OrderType.ByAlbum)
+                else await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => year.Add(album));
+            }
+            else if (Locator.SettingsVM.AlbumsOrderType == OrderType.ByAlbum)
+            {
+                var firstChar = Locator.MusicLibraryVM.GroupedAlbums.FirstOrDefault(x => x.Key == Strings.HumanizedAlbumFirstLetter(album.Name));
+                if (firstChar == null)
                 {
-                    var firstChar = Locator.MusicLibraryVM.GroupedAlbums.FirstOrDefault(x => x.Key == Strings.HumanizedAlbumFirstLetter(album.Name));
-                    if (firstChar == null)
-                    {
-                        var newChar = new GroupItemList<AlbumItem>(album) { Key = Strings.HumanizedAlbumFirstLetter(album.Name) };
-                        int i = Locator.MusicLibraryVM.GroupedAlbums.IndexOf(Locator.MusicLibraryVM.GroupedAlbums.LastOrDefault(x => string.Compare(x.Key, newChar.Key) < 0));
-                        i++;
-                        await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => Locator.MusicLibraryVM.GroupedAlbums.Insert(i, newChar));
-                    }
-                    else
-                    {
-                        firstChar.Add(album);
-                    }
+                    var newChar = new GroupItemList<AlbumItem>(album) { Key = Strings.HumanizedAlbumFirstLetter(album.Name) };
+                    int i = Locator.MusicLibraryVM.GroupedAlbums.IndexOf(Locator.MusicLibraryVM.GroupedAlbums.LastOrDefault(x => string.Compare(x.Key, newChar.Key) < 0));
+                    i++;
+                    await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => Locator.MusicLibraryVM.GroupedAlbums.Insert(i, newChar));
                 }
-            });
+                else await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => firstChar.Add(album));
+            }
         }
 
         public static async Task AddNewPlaylist(string trackCollectionName)
