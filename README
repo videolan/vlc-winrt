@@ -39,7 +39,7 @@ If you skipped step 0), take the most recent build, depending on your architectu
 For Win32 version, builds are located in http://people.videolan.org/~jb/WinRT/
 For ARM version, builds are located in http://people.videolan.org/~hugo/
 
-Extract the libVLC contents from the archive to vlc/vlc-<platform>/<configuration>
+Extract the libVLC contents from the archive to vlc/Windows/vlc-<platform>/<configuration>
 <platform> is either ARM or x86
 <configuration>  is Debug or Release
 
