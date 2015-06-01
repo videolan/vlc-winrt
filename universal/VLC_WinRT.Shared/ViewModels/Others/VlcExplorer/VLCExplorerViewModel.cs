@@ -17,6 +17,7 @@ using VLC_WinRT.ViewModels.Others.VlcExplorer;
 using System.Threading.Tasks;
 using Autofac;
 using VLC_WinRT.Utils;
+using VLC_WinRT.Helpers;
 #if WINDOWS_APP
 using Windows.Devices.Portable;
 #endif
@@ -87,11 +88,18 @@ namespace VLC_WinRT.ViewModels.RemovableDevicesVM
 
         private async void InitializeDLNA()
         {
-            var dlnaFolders = await KnownFolders.MediaServerDevices.GetFoldersAsync();
-            foreach (var dlnaFolder in dlnaFolders)
+            try
             {
-                var folder = new FileExplorerViewModel(dlnaFolder);
-                await App.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () => StorageVMs.Add(folder));
+                var dlnaFolders = await KnownFolders.MediaServerDevices.GetFoldersAsync();
+                foreach (var dlnaFolder in dlnaFolders)
+                {
+                    var folder = new FileExplorerViewModel(dlnaFolder);
+                    await App.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () => StorageVMs.Add(folder));
+                }
+            }
+            catch
+            {
+                LogHelper.Log("Failed to Get MediaServerDevices");
             }
         }
 
