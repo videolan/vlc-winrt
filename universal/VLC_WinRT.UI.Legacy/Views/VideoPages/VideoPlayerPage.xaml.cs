@@ -88,6 +88,11 @@ namespace VLC_WinRT.Views.VideoPages
 
         void DisplayOrHide()
         {
+            if (Locator.VideoVm.IsVideoPlayerAudioTracksSettingsVisible ||
+                Locator.VideoVm.IsVideoPlayerSettingsVisible ||
+                Locator.VideoVm.IsVideoPlayerSubtitlesSettingsVisible ||
+                Locator.VideoVm.IsVideoPlayerVolumeSettingsVisible)
+                return;
             VisualStateManager.GoToState(this, isVisible ? "ControlsCollapsed" : "ControlsVisible", false);
             isVisible = !isVisible;
         }
