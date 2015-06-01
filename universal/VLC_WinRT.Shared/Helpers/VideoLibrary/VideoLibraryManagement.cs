@@ -17,6 +17,7 @@ using WinRTXamlToolkit.IO.Extensions;
 using VLC_WinRT.Database;
 using VLC_WinRT.Services.Interface;
 using VLC_WinRT.Utils;
+using VLC_WinRT.Model.Music;
 
 namespace VLC_WinRT.Helpers.VideoLibrary
 {
@@ -76,10 +77,18 @@ namespace VLC_WinRT.Helpers.VideoLibrary
             {
                 foreach (StorageFile storageFile in files)
                 {
-                    Dictionary<string, string> showInfoDictionary = isCameraRoll
-                        ? null
-                        : TitleDecrapifier.tvShowEpisodeInfoFromString(storageFile.DisplayName);
-                    bool isTvShow = showInfoDictionary != null && showInfoDictionary.Count > 0;
+                    MediaProperties videoProperties = null;
+                    if (!isCameraRoll)
+                    {
+                        var media = Locator.VLCService.GetMediaFromPath(storageFile.Path);
+                        videoProperties = Locator.VLCService.GetVideoProperties(media);
+                        if(videoProperties == null)
+                        {
+                            TitleDecrapifier.tvShowEpisodeInfoFromString(storageFile.DisplayName);
+                        }
+                    }
+                    
+                    bool isTvShow = !string.IsNullOrEmpty(videoProperties?.ShowTitle) && videoProperties?.Season >= 0 && videoProperties?.Episode >= 0;
 
                     // Check if we know the file:
                     //FIXME: We need to check if the files in DB still exist on disk
@@ -89,7 +98,7 @@ namespace VLC_WinRT.Helpers.VideoLibrary
                         Debug.Assert(isTvShow == mediaVM.IsTvShow);
                         mediaVM.File = storageFile;
                         if (isTvShow)
-                            await AddTvShow(showInfoDictionary["tvShowName"], mediaVM);
+                            await AddTvShow(videoProperties.ShowTitle, mediaVM);
                     }
                     else
                     {
@@ -98,7 +107,7 @@ namespace VLC_WinRT.Helpers.VideoLibrary
 
                         mediaVM = !isTvShow
                             ? new VideoItem()
-                            : new VideoItem(showInfoDictionary["season"], showInfoDictionary["episode"]);
+                            : new VideoItem(videoProperties.Season, videoProperties.Episode);
                         await mediaVM.Initialize(storageFile);
                         mediaVM.IsCameraRoll = isCameraRoll;
                         if (string.IsNullOrEmpty(mediaVM.Name))
@@ -111,7 +120,7 @@ namespace VLC_WinRT.Helpers.VideoLibrary
                         }
 
                         if (isTvShow)
-                            await AddTvShow(showInfoDictionary["tvShowName"], mediaVM);
+                            await AddTvShow(videoProperties.ShowTitle, mediaVM);
                         await videoRepo.Insert(mediaVM);
                     }
                     // Get back to UI thread
