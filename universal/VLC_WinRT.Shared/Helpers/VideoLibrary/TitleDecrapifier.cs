@@ -10,6 +10,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using VLC_WinRT.Model.Music;
 using VLC_WinRT.Utils;
 using Windows.ApplicationModel.Resources;
 
@@ -77,12 +78,12 @@ namespace VLC_WinRT.Helpers.VideoLibrary
             return false;
         }
 
-        public static Dictionary<string, string> tvShowEpisodeInfoFromString(string title)
+        public static MediaProperties tvShowEpisodeInfoFromString(string title)
         {
             if (string.IsNullOrEmpty(title)) return null;
             title = title.ToLower();
             bool successfulSearch = false;
-            var dictionary = new Dictionary<string, string>();
+            var mP = new MediaProperties();
             int stringLength = title.Length;
 
             if (stringLength < 6) return null;
@@ -99,13 +100,13 @@ namespace VLC_WinRT.Helpers.VideoLibrary
                         // Inverted "if" statement to reduce nesting.
                         continue;
                     }
-                    string season = title.ElementAt(i + 1).ToString() + title.ElementAt(i + 2).ToString();
-                    string episode;
+                    string seasonString = title.ElementAt(i + 1).ToString() + title.ElementAt(i + 2).ToString();
+                    string episodeString;
                     if (title.Length > i + 6 && isDigit(title.ElementAt(i + 6)))
-                        episode = title.ElementAt(i + 4).ToString() + title.ElementAt(i + 5).ToString() +
+                        episodeString = title.ElementAt(i + 4).ToString() + title.ElementAt(i + 5).ToString() +
                                   title.ElementAt(i + 6).ToString();
                     else
-                        episode = title.ElementAt(i + 4).ToString() + title.ElementAt(i + 5).ToString();
+                        episodeString = title.ElementAt(i + 4).ToString() + title.ElementAt(i + 5).ToString();
 
                     string tvShowName = i > 0 ? title.Substring(0, i) : Strings.UnknownShow;
                     if (tvShowName != null)
@@ -119,15 +120,26 @@ namespace VLC_WinRT.Helpers.VideoLibrary
                         episodeName = Decrapify(episodeName);
                     }
 
-                    dictionary["season"] = season;
-                    dictionary["episode"] = episode;
+                    // Fill the MediaProperties object
+                    var season = 0;
+                    if(int.TryParse(seasonString, out season))
+                    {
+                        mP.Season = season;
+                    }
+
+                    var episode = 0;
+                    if(int.TryParse(episodeString, out episode))
+                    {
+                        mP.Episode = episode;
+                    }
+
                     if (!string.IsNullOrEmpty(tvShowName))
                     {
-                        dictionary["tvShowName"] = tvShowName;
+                        mP.ShowTitle = tvShowName;
                     }
                     if (!string.IsNullOrEmpty(episodeName))
                     {
-                        dictionary["tvEpisodeName"] = CapitalizedString(episodeName);
+                        mP.Title = CapitalizedString(episodeName);
                     }
                     successfulSearch = true;
                 }
@@ -144,8 +156,8 @@ namespace VLC_WinRT.Helpers.VideoLibrary
                             continue;
                         }
 
-                        string season = title.ElementAt(i).ToString();
-                        string episode = title.ElementAt(i + 2).ToString() + title.ElementAt(i + 3).ToString();
+                        string seasonString = title.ElementAt(i).ToString();
+                        string episodeString = title.ElementAt(i + 2).ToString() + title.ElementAt(i + 3).ToString();
 
                         string tvShowName = i > 0 ? title.Substring(0, i) : Strings.UnknownShow;
                         ;
@@ -160,28 +172,33 @@ namespace VLC_WinRT.Helpers.VideoLibrary
                             episodeName = Decrapify(episodeName);
                         }
 
-                        if (season != null)
+                        var season = 0;
+                        if (int.TryParse(seasonString, out season))
                         {
-                            dictionary["season"] = season;
+                            mP.Season = season;
                         }
 
                         // 'episode' will never be null according to conditions above, so checking for it is not needed.
-                        dictionary["episode"] = episode;
+                        var episode = 0;
+                        if(int.TryParse(episodeString, out episode))
+                        {
+                            mP.Episode = episode;
+                        }
 
                         if (!string.IsNullOrEmpty(tvShowName))
                         {
-                            dictionary["tvShowName"] = tvShowName;
+                            mP.ShowTitle = tvShowName;
                         }
                         if (!string.IsNullOrEmpty(episodeName))
                         {
-                            dictionary["tvEpisodeName"] = CapitalizedString(episodeName);
+                            mP.Title = CapitalizedString(episodeName);
                         }
                         successfulSearch = true;
                     }
                 }
             }
             catch { }
-            return successfulSearch ? dictionary : null;
+            return successfulSearch ? mP : null;
         }
 
         static bool isDigit(char c)
