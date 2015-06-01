@@ -51,7 +51,9 @@
                            VerticalAlignment="Center"
                            FontSize="20"
                            DataContext="{Binding Source={StaticResource Locator}, Path=VideoVm}"
-                           Text="{Binding CurrentVideo.Name}" />
+                           Text="{Binding CurrentVideo.Name}"
+                           TextWrapping="NoWrap"
+                           TextTrimming="CharacterEllipsis"/>
             </Grid>
         </Border>
 
