@@ -128,12 +128,6 @@ namespace VLC_WinRT.Model.Video
             set { SetProperty(ref _title, value); }
         }
 
-        public string Subtitle
-        {
-            get { return _subtitle; }
-            set { SetProperty(ref _subtitle, value); }
-        }
-
         public bool Favorite
         {
             get { return _favorite; }
@@ -205,7 +199,6 @@ namespace VLC_WinRT.Model.Video
                 File = storageFile;
                 Name = storageFile.DisplayName;
                 AlphaKey = Name.ToUpper()[0];
-                Subtitle = storageFile.FileType.ToUpper() + " File";
                 Type = storageFile.FileType.Replace(".", "").ToLower();
                 Path = storageFile.Path;
                 await GetTimeInformation();
