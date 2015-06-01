@@ -68,7 +68,6 @@ namespace VLC_WinRT.Views.VideoPages
         {
             base.OnNavigatedTo(e);
             App.RootPage.SwapChainPanel.Visibility = Visibility.Visible;
-            AppViewHelper.SetFullscren(true);
             Locator.MediaPlaybackViewModel.MouseService.OnHidden += MouseStateChanged;
             Locator.MediaPlaybackViewModel.MouseService.OnMoved += MouseStateChanged;
             // If no playback was ever started, ContinueIndexing can be null
@@ -88,11 +87,12 @@ namespace VLC_WinRT.Views.VideoPages
         {
             base.OnNavigatingFrom(e);
             App.RootPage.SwapChainPanel.Visibility = Visibility.Collapsed;
-            AppViewHelper.SetFullscren(false);
-            if (Locator.MediaPlaybackViewModel.ContinueIndexing != null && !Locator.MediaPlaybackViewModel.ContinueIndexing.Task.IsCompleted)
-            {
-                Locator.MediaPlaybackViewModel.ContinueIndexing.SetResult(true);
-            }
+            Locator.VideoVm.OnNavigatedFrom();
+        }
+
+        private void MouseStateChanged()
+        {
+            DisplayOrHide();
         }
 
         void DisplayOrHide()
@@ -103,7 +103,16 @@ namespace VLC_WinRT.Views.VideoPages
 
         private void PlaceholderInteractionGrid_OnTapped(object sender, TappedRoutedEventArgs e)
         {
-            Locator.MediaPlaybackViewModel.MouseService.Content_Tapped(sender, e);
+            if (e.PointerDeviceType == Windows.Devices.Input.PointerDeviceType.Touch && !isVisible)
+                Locator.MediaPlaybackViewModel.MouseService.Content_Tapped(sender, e);
+        }
+
+        private void PlaceholderInteractionGrid_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
+        {
+            if (e.PointerDeviceType != Windows.Devices.Input.PointerDeviceType.Touch)
+            {
+                AppViewHelper.SetFullscreen();
+            }
         }
 
         private void LockToggleButton_Click(object sender, RoutedEventArgs e)

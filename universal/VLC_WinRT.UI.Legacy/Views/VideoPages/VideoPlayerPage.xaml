@@ -60,7 +60,8 @@
             <!-- We will put there the control for swype, tap, double tap, etc -->
             <Grid x:Name="PlaceholderInteractionGrid"
                   Background="Transparent"
-                  Tapped="PlaceholderInteractionGrid_OnTapped" />
+                  Tapped="PlaceholderInteractionGrid_OnTapped" 
+                  DoubleTapped="PlaceholderInteractionGrid_DoubleTapped"/>
             <videoControls:VideoPlayerSettings x:Name="VideoPlayerSettings" />
             <videoControls:AudioTracksSettings />
             <videoControls:SubtitlesSettings />

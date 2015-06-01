@@ -7,6 +7,7 @@ namespace VLC_WinRT.Helpers
 
     public static class AppViewHelper
     {
+        private static bool isFullscreen = false;
         private static dynamic titleBar;
 
         private static bool DoesPropertyExist(string prop, dynamic list)
@@ -55,14 +56,13 @@ namespace VLC_WinRT.Helpers
 #endif
         }
         
-        public static async void SetFullscren(bool isfullscreen)
+        public static async void SetFullscreen()
         {
 #if WINDOWS_APP
-#if DEBUG
-#else
             var v = Windows.UI.ViewManagement.ApplicationView.GetForCurrentView();
             var runtimeMethods = v.GetType().GetRuntimeMethods();
-            if (isfullscreen)
+            
+            if (!isFullscreen)
             {
                 var tryEnterFullScreenMode = runtimeMethods.FirstOrDefault(x => x.Name == "TryEnterFullScreenMode");
                 tryEnterFullScreenMode?.Invoke(v, null);
@@ -72,7 +72,7 @@ namespace VLC_WinRT.Helpers
                 var exitFullScreenMode = runtimeMethods.FirstOrDefault(x => x.Name == "ExitFullScreenMode");
                 exitFullScreenMode?.Invoke(v, null);
             }
-#endif
+            isFullscreen = !isFullscreen;
 #endif
         }
     }
