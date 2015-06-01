@@ -70,18 +70,9 @@ namespace VLC_WinRT.Views.VideoPages
             App.RootPage.SwapChainPanel.Visibility = Visibility.Visible;
             Locator.MediaPlaybackViewModel.MouseService.OnHidden += MouseStateChanged;
             Locator.MediaPlaybackViewModel.MouseService.OnMoved += MouseStateChanged;
-            // If no playback was ever started, ContinueIndexing can be null
-            // If we navigate back and forth to the main page, we also don't want to 
-            // re-mark the task as completed.
-            Locator.MediaPlaybackViewModel.ContinueIndexing = new TaskCompletionSource<bool>();
+            Locator.VideoVm.OnNavigatedTo();
+            Responsive();
         }
-
-
-        private void MouseStateChanged()
-        {
-            DisplayOrHide();
-        }
-
 
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
