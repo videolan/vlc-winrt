@@ -7,9 +7,13 @@
  * Refer to COPYING file of the official project for license
  **********************************************************************/
 
+using System;
+using System.Threading.Tasks;
 using VLC_WinRT.Commands;
+using VLC_WinRT.Helpers;
 using VLC_WinRT.Model.Video;
 using VLC_WinRT.Utils;
+using Windows.UI.Xaml;
 
 namespace VLC_WinRT.ViewModels.VideoVM
 {
@@ -99,6 +103,25 @@ namespace VLC_WinRT.ViewModels.VideoVM
         #endregion
 
         #region methods
+        public void OnNavigatedTo()
+        {
+            // If no playback was ever started, ContinueIndexing can be null
+            // If we navigate back and forth to the main page, we also don't want to 
+            // re-mark the task as completed.
+            Locator.MediaPlaybackViewModel.ContinueIndexing = new TaskCompletionSource<bool>();
+        }
+
+        public void OnNavigatedFrom()
+        {
+            if (Locator.MediaPlaybackViewModel.ContinueIndexing != null && !Locator.MediaPlaybackViewModel.ContinueIndexing.Task.IsCompleted)
+            {
+                Locator.MediaPlaybackViewModel.ContinueIndexing.SetResult(true);
+            }
+            Locator.VideoVm.IsVideoPlayerAudioTracksSettingsVisible = false;
+            Locator.VideoVm.IsVideoPlayerSettingsVisible = false;
+            Locator.VideoVm.IsVideoPlayerSubtitlesSettingsVisible = false;
+            Locator.VideoVm.IsVideoPlayerVolumeSettingsVisible = false;
+        }
         #endregion
     }
 }
