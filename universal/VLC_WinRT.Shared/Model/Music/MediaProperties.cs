@@ -14,5 +14,11 @@ namespace VLC_WinRT.Model.Music
         public string Genre { get; set; }
         public string AlbumArt { get; set; }
         public int DiscNumber { get; set; }
+
+
+        public int Season { get; set; }
+        public int Episode { get; set; }
+        public int Episodes { get; set; }
+        public string ShowTitle { get; set; }
     }
 }
