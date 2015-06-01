@@ -28,6 +28,8 @@ using WinRTXamlToolkit.Controls.Extensions;
 using VLC_WinRT.Views.UserControls;
 using Windows.UI.Xaml;
 using VLC_WinRT.Views.MusicPages;
+using System.Threading.Tasks;
+using Windows.UI.ViewManagement;
 
 namespace VLC_WinRT.ViewModels
 {
@@ -171,6 +173,24 @@ namespace VLC_WinRT.ViewModels
             CoreWindow.GetForCurrentThread().Activated += ApplicationState_Activated;
             Locator.NavigationService.ViewNavigated += (sender, page) =>
             {
+                var appView = ApplicationView.GetForCurrentView();
+                if (page != VLCPage.VideoPlayerPage)
+                {
+                    // We shouldn't load music and video libraries if the app opens on video page, because it's bad
+                    if (Locator.VideoLibraryVM.LoadingState == LoadingState.NotLoaded)
+                    {
+                        var _ = Task.Run(async () => await Locator.VideoLibraryVM.Initialize());
+                    }
+                    if (Locator.MusicLibraryVM.LoadingState == LoadingState.NotLoaded)
+                    {
+                        var _ = Task.Run(async () => await Locator.MusicLibraryVM.Initialize());
+                    }
+                    appView.Title = "";
+                }
+                else
+                {
+                    appView.Title = Locator.VideoVm?.CurrentVideo?.Name;
+                }
                 if (App.SplitShell.TopBarContent == null)
                     App.SplitShell.TopBarContent = new TopBar();
                 if (App.SplitShell.InformationText == null)

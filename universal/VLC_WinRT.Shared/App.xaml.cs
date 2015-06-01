@@ -237,14 +237,6 @@ namespace VLC_WinRT
             AppViewHelper.SetAppView();
 #endif
             Locator.MainVM.DropTablesIfNeeded();
-            if (Locator.VideoLibraryVM.LoadingState == LoadingState.NotLoaded)
-            {
-                var _ = Task.Run(async () => await Locator.VideoLibraryVM.Initialize());
-            }
-            if (Locator.MusicLibraryVM.LoadingState == LoadingState.NotLoaded)
-            {
-                var _ = Task.Run(async () => await Locator.MusicLibraryVM.Initialize());
-            }
             ApplicationFrame.Navigated += this.RootFrame_FirstNavigated;
             Window.Current.Activate();
         }
