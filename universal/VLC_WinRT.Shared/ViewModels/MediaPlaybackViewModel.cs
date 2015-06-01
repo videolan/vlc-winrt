@@ -442,7 +442,7 @@ namespace VLC_WinRT.ViewModels
             mediaService.OnLengthChanged -= OnLengthChanged;
             mediaService.OnStopped -= OnStopped;
             mediaService.OnEndReached -= OnEndReached;
-            _mediaService.OnBuffering -= MediaServiceOnOnBuffering;
+            mediaService.OnBuffering -= MediaServiceOnOnBuffering;
 
             if (mediaService is VLCService)
             {
