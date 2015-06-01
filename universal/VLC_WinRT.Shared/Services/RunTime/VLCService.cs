@@ -145,6 +145,46 @@ namespace VLC_WinRT.Services.RunTime
             return null;
         }
 
+        public MediaProperties GetVideoProperties(Media media)
+        {
+            if (media == null) return null;
+            if (!media.isParsed())
+                media.parse();
+            if (!media.isParsed())
+                return null;
+            var mP = new MediaProperties();
+            mP.Title = media.meta(MediaMeta.Title);
+
+            var showName = media.meta(MediaMeta.ShowName);
+            if(string.IsNullOrEmpty(showName))
+            {
+                showName = media.meta(MediaMeta.Artist);
+            }
+            if (!string.IsNullOrEmpty(showName))
+            {
+                mP.ShowTitle = showName;
+            }
+
+            var episodeString = media.meta(MediaMeta.Episode);
+            if(string.IsNullOrEmpty(episodeString))
+            {
+                episodeString = media.meta(MediaMeta.TrackNumber);
+            }
+            var episode = 0;
+            if(!string.IsNullOrEmpty(episodeString) && int.TryParse(episodeString, out episode))
+            {
+                mP.Episode = episode;
+            }
+
+            var episodesTotal = 0;
+            var episodesTotalString = media.meta(MediaMeta.TrackTotal);
+            if(!string.IsNullOrEmpty(episodesTotalString) && int.TryParse(episodesTotalString, out episodesTotal))
+            {
+                mP.Episodes = episodesTotal;
+            }
+            return mP;
+        }
+
         public MediaProperties GetMusicProperties(Media media)
         {
             if (media == null) return null;
