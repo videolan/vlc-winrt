@@ -61,7 +61,7 @@ namespace VLC_WinRT.Views.VideoPages
             {
                 VisualStateManager.GoToState(this, "Full", false);
             }
-            Locator.MediaPlaybackViewModel._mediaService.SetSizeVideoPlayer((uint)width, (uint)height);
+            Locator.MediaPlaybackViewModel._mediaService.SetSizeVideoPlayer((uint)Math.Ceiling(width), (uint)Math.Ceiling(height));
         }
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
