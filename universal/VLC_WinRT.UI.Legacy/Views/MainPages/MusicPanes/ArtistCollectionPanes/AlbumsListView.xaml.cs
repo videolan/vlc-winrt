@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using VLC_WinRT.Model.Music;
@@ -24,13 +25,17 @@ namespace VLC_WinRT.Views.MainPages.MusicPanes.ArtistCollectionPanes
         }
 
 
-        private void AlbumsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private async void AlbumsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (!e.AddedItems.Any()) return;
             var album = e.AddedItems[0] as AlbumItem;
-            if (Window.Current.Bounds.Width > 1220)
-                Locator.MusicLibraryVM.CurrentAlbum = album;
-            else Locator.MusicLibraryVM.AlbumClickedCommand.Execute(album);
+            await App.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Low, () =>
+            {
+                if (Window.Current.Bounds.Width > 1220)
+                    Locator.MusicLibraryVM.CurrentAlbum = album;
+                else
+                    Locator.MusicLibraryVM.AlbumClickedCommand.Execute(album);
+            });
         }
     }
 }
