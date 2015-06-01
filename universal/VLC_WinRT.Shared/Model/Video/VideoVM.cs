@@ -182,14 +182,12 @@ namespace VLC_WinRT.Model.Video
         #region constructors
         public VideoItem()
         {
-            FavoriteVideo = new FavoriteVideoCommand();
         }
 
-        public VideoItem(string season, string episode)
+        public VideoItem(int season, int episode)
         {
-            FavoriteVideo = new FavoriteVideoCommand();
-            Season = int.Parse(season);
-            Episode = int.Parse(episode);
+            Season = season;
+            Episode = episode;
         }
 
         public async Task Initialize(StorageFile storageFile)
