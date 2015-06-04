@@ -322,11 +322,10 @@ namespace VLC_WinRT.Helpers.MusicLibrary
 
         public static async Task PopulateAlbums(this ArtistItem artist)
         {
-            var albums = await Locator.MusicLibraryVM._albumDatabase.LoadAlbumsFromId(artist.Id);
-            var orderedAlbums = albums.OrderBy(x => x.Name).ToObservable();
+            var albums = await Locator.MusicLibraryVM._albumDatabase.LoadAlbumsFromId(artist.Id).ToObservableAsync();
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                artist.Albums = orderedAlbums;
+                artist.Albums = albums;
             });
         }
 

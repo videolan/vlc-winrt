@@ -38,7 +38,7 @@ namespace VLC_WinRT.Database
         public async Task<List<AlbumItem>> LoadAlbumsFromId(int artistId)
         {
             var connection = new SQLiteAsyncConnection(DbPath);
-            return await connection.Table<AlbumItem>().Where(x => x.ArtistId == artistId).ToListAsync();
+            return await connection.Table<AlbumItem>().Where(x => x.ArtistId == artistId).OrderBy(x => x.Name).ToListAsync();
         }
 
         public async Task<AlbumItem> LoadAlbumViaName(int artistId, string albumName)
