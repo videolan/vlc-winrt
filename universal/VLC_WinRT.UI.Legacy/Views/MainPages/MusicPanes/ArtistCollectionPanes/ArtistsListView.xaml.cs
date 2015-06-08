@@ -11,7 +11,6 @@ namespace VLC_WinRT.Views.MainPages.MusicPanes.ArtistCollectionPanes
 {
     public sealed partial class ArtistsListView : UserControl
     {
-        private bool isNarrow = false;
         public ArtistsListView()
         {
             this.InitializeComponent();
@@ -20,6 +19,8 @@ namespace VLC_WinRT.Views.MainPages.MusicPanes.ArtistCollectionPanes
 
         async void ArtistCollectionBase_Loaded(object sender, RoutedEventArgs e)
         {
+            this.SizeChanged += ArtistsListView_SizeChanged;
+            this.Unloaded += ArtistsListView_Unloaded;
             await Locator.MusicLibraryVM.MusicCollectionLoaded.Task;
             if(Locator.MusicLibraryVM.Artists.Count > Numbers.SemanticZoomItemCountThreshold)
             {
@@ -30,6 +31,25 @@ namespace VLC_WinRT.Views.MainPages.MusicPanes.ArtistCollectionPanes
                 SemanticZoom.IsZoomOutButtonEnabled = true;
             }
         }
+
+        private void ArtistsListView_Unloaded(object sender, RoutedEventArgs e)
+        {
+            this.SizeChanged -= ArtistsListView_SizeChanged;
+        }
+
+        private void ArtistsListView_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            Responsive();
+        }
+
+        void Responsive()
+        {
+            if (Window.Current.Bounds.Width >= 800)
+                ArtistListView.HeaderTemplate = this.Resources["ListViewHeaderTemplate"] as DataTemplate;
+            else
+                ArtistListView.HeaderTemplate = null;
+        }
+
         private void SemanticZoom_OnViewChangeCompleted(object sender, SemanticZoomViewChangedEventArgs e)
         {
             ArtistsZoomedOutView.ItemsSource = GroupArtists.View.CollectionGroups;
