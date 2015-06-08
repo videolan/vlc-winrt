@@ -23,8 +23,13 @@
     </TextBlock>
 
     <albumControls:AlbumHeaderControls Grid.Row="1"
-                                       Visibility="{Binding CurrentAlbum, TargetNullValue=Collapsed}"
-                                       DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.CurrentAlbum}" />
+                                       DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.CurrentAlbum}">
+        <albumControls:AlbumHeaderControls.Visibility>
+            <Binding Source="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}"
+                     Path="CurrentAlbum"
+                     TargetNullValue="Collapsed"/>
+        </albumControls:AlbumHeaderControls.Visibility>
+    </albumControls:AlbumHeaderControls>
 
     <ListView Grid.Row="2"
               Margin="{StaticResource FrameMargin}"
