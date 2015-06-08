@@ -64,28 +64,6 @@
                           Background="{TemplateBinding Background}"
                           HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
                           VerticalAlignment="{TemplateBinding VerticalAlignment}">
-                        <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup x:Name="Orientation">
-                                <VisualState x:Name="Portrait">
-                                    <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ScrollViewer"
-                                                                       Storyboard.TargetProperty="Margin">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="0,25,0,0" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState x:Name="Landscape">
-                                    <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ScrollViewer"
-                                                                       Storyboard.TargetProperty="Margin">
-                                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="0,0,0,0" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-                            </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>
                         <ScrollViewer x:Name="ScrollViewer"
                                       HorizontalSnapPointsAlignment="Center"
                                       HorizontalSnapPointsType="MandatorySingle"
