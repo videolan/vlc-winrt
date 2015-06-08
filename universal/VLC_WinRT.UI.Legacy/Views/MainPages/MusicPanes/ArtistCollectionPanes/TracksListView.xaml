@@ -24,7 +24,7 @@
 
     <albumControls:AlbumHeaderControls Grid.Row="1"
                                        Visibility="{Binding CurrentAlbum, TargetNullValue=Collapsed}"
-                                       DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}" />
+                                       DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.CurrentAlbum}" />
 
     <ListView Grid.Row="2"
               Margin="{StaticResource FrameMargin}"

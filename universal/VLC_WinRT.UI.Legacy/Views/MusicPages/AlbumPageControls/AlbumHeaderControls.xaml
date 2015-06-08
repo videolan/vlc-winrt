@@ -29,7 +29,7 @@
            Grid.Row="0"
            Grid.RowSpan="3"
            x:Name="HeaderArtistImage"
-           Source="{Binding CurrentAlbum.AlbumImage}"
+           Source="{Binding AlbumImage}"
            Stretch="Uniform"
            Opacity="1"
            VerticalAlignment="Top" />
@@ -39,31 +39,30 @@
                VerticalAlignment="Top"
                TextWrapping="NoWrap"
                TextTrimming="CharacterEllipsis">
-                        <Run Text="{Binding CurrentAlbum.Name, Converter={StaticResource ArtistStringConverter}}"
+                        <Run Text="{Binding Name, Converter={StaticResource ArtistStringConverter}}"
                              FontWeight="Light"
                              FontSize="22" />
     </TextBlock>
     <AppBarButton Grid.Row="2"
                   Grid.Column="4"
                   Style="{StaticResource AppBarButtonStyleHorizontal}"
-                  Icon="{Binding CurrentAlbum.Favorite, Converter={StaticResource FavoriteSymbolConverter}}"
+                  Icon="{Binding Favorite, Converter={StaticResource FavoriteSymbolConverter}}"
                   VerticalAlignment="Top"
-                  Command="{Binding CurrentAlbum.FavoriteAlbum}"
+                  Command="{Binding FavoriteAlbum}"
                   CommandParameter="{Binding CurrentAlbum}" />
     <AppBarButton Grid.Row="1"
                   Grid.Column="4"
                   Style="{StaticResource AppBarButtonStyleHorizontal}"
-                  Icon="{Binding CurrentAlbum.IsPinned, Converter={StaticResource PinConverter}, ConverterParameter='icon'}"
+                  Icon="{Binding IsPinned, Converter={StaticResource PinConverter}, ConverterParameter='icon'}"
                   VerticalAlignment="Top"
-                  Command="{Binding CurrentAlbum.PinAlbumCommand}"
-                  CommandParameter="{Binding CurrentAlbum}" />
+                  Command="{Binding PinAlbumCommand}"
+                  CommandParameter="{Binding}" />
     <AppBarButton Grid.Row="1"
                   Grid.Column="3"
                   Style="{StaticResource AppBarButtonStyleHorizontal}"
                   Label="add to playlist"
                   VerticalAlignment="Top"
-                  DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}"
-                  Command="{Binding OpenAddAlbumToPlaylistDialogCommand}">
+                  Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.OpenAddAlbumToPlaylistDialogCommand}">
         <AppBarButton.Icon>
             <FontIcon Glyph="{StaticResource AddSymbol}"
                       FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
@@ -74,8 +73,8 @@
                   Style="{StaticResource AppBarButtonStyleHorizontal}"
                   Label="Play album"
                   VerticalAlignment="Top"
-                  Command="{Binding CurrentAlbum.PlayAlbum}"
-                  CommandParameter="{Binding CurrentAlbum}">
+                  Command="{Binding PlayAlbum}"
+                  CommandParameter="{Binding}">
         <AppBarButton.Icon>
             <FontIcon Glyph="{StaticResource PlaySymbol}"
                       FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />

@@ -25,7 +25,8 @@
         </Grid.ColumnDefinitions>
         <Image Grid.RowSpan="5"
                Grid.ColumnSpan="2"
-               Source="{Binding CurrentArtist.ArtistImage}"
+               DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.CurrentArtist}"
+               Source="{Binding ArtistImage}"
                Stretch="UniformToFill"
                Opacity="0.5" />
         <TextBlock  Grid.Row="1"
@@ -34,15 +35,15 @@
                     TextTrimming="CharacterEllipsis"
                     TextWrapping="NoWrap"
                     VerticalAlignment="Top"
-                    Text="{Binding CurrentArtist.Name, Converter={StaticResource AlbumStringConverter}}"
+                    Text="{Binding Artist, Converter={StaticResource AlbumStringConverter}}"
                     Style="{StaticResource SubheaderTextBlockStyle}" />
         <AppBarButton Grid.Row="1"
                       Grid.Column="1"
-                    Margin="{StaticResource FrameMargin}"
+                      Margin="{StaticResource FrameMargin}"
                       Style="{StaticResource AppBarButtonStyleHorizontal}"
                       Label="view artist"
-                      Command="{Binding CurrentAlbum.ViewArtist}"
-                      CommandParameter="{Binding CurrentAlbum.ArtistId}">
+                      Command="{Binding ViewArtist}"
+                      CommandParameter="{Binding ArtistId}">
             <AppBarButton.Icon>
                 <FontIcon Glyph="{StaticResource BuddySymbol}"
                           FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
