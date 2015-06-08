@@ -189,7 +189,9 @@ namespace VLC_WinRT.ViewModels
                 }
                 else
                 {
-                    appView.Title = Locator.VideoVm?.CurrentVideo?.Name;
+                    var title = Locator.VideoVm?.CurrentVideo?.Name;
+                    if (!string.IsNullOrEmpty(title))
+                        appView.Title = title;
                 }
                 if (App.SplitShell.TopBarContent == null)
                     App.SplitShell.TopBarContent = new TopBar();
