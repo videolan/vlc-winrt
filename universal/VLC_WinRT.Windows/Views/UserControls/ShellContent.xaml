@@ -14,7 +14,7 @@
            Navigated="MainFrame_OnNavigated">
         <Frame.ContentTransitions>
             <TransitionCollection>
-                <PaneThemeTransition />
+                <EntranceThemeTransition />
             </TransitionCollection>
         </Frame.ContentTransitions>
     </Frame>
