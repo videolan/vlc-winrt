@@ -71,7 +71,7 @@
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ScrollViewer"
                                                                        Storyboard.TargetProperty="Margin">
                                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                                    Value="0,28,0,0" />
+                                                                    Value="0,25,0,0" />
                                         </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
