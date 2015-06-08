@@ -28,9 +28,12 @@ namespace VLC_WinRT.Commands.MusicLibrary
                 var id = (int)parameter;
                 album = Locator.MusicLibraryVM.Albums.FirstOrDefault(x => x.Id == id);
             }
-            Locator.MusicLibraryVM.CurrentArtist = Locator.MusicLibraryVM.Artists.FirstOrDefault(x => x.Id == album.ArtistId);
-            Locator.MusicLibraryVM.CurrentAlbum = album;
-            
+            try
+            { 
+                Locator.MusicLibraryVM.CurrentArtist = Locator.MusicLibraryVM.Artists.FirstOrDefault(x => x.Id == album.ArtistId);
+                Locator.MusicLibraryVM.CurrentAlbum = album;
+            }
+            catch { }
             Locator.NavigationService.Go(VLCPage.AlbumPage);
         }
     }
