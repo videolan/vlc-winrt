@@ -23,8 +23,10 @@
             <ColumnDefinition />
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
-        <StackPanel Orientation="Horizontal"
-                    Width="80"
+        <StackPanel x:Name="VLCHeader" 
+                    Orientation="Horizontal"
+                    Width="80"                    
+                    Margin="0,0,12,0"
                     Grid.Column="1"
                     VerticalAlignment="Center"
                     Visibility="{Binding CanGoBack, Converter={StaticResource NegatedBooleanToVisibilityConverter}}">
@@ -38,7 +40,8 @@
                        Margin="6,-5,0,0" />
         </StackPanel>
         <Grid Grid.Column="1"
-              Visibility="{Binding CanGoBack, Converter={StaticResource BooleanToVisibilityConverter}}">
+              Visibility="{Binding CanGoBack, Converter={StaticResource BooleanToVisibilityConverter}}"
+              Margin="0,0,12,0">
             <AppBarButton Style="{StaticResource AppBarButtonStyleHorizontal}"
                           VerticalAlignment="Center"
                           Click="GoBack_Click"
@@ -67,7 +70,6 @@
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <ItemsStackPanel Orientation="Horizontal"
-                                     Margin="12,0,0,0"
                                      Height="60" />
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
