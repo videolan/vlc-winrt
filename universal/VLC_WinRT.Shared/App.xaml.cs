@@ -232,7 +232,7 @@ namespace VLC_WinRT
             Window.Current.Content = new MainPage();
             await SplitShell.TemplateApplied.Task;
 #if WINDOWS_PHONE_APP
-            StatusBarHelper.Default();
+            StatusBarHelper.Initialize();
 #else
             AppViewHelper.SetAppView();
 #endif

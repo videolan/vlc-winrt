@@ -13,42 +13,15 @@ namespace VLC_WinRT.Helpers
 {
     public static class StatusBarHelper
     {
-        static StatusBarHelper()
+        public static async Task Initialize()
         {
-            //DisplayInformation.GetForCurrentView().OrientationChanged += MainPage_OrientationChanged;
-            Responsive(ApplicationView.GetForCurrentView());
+            var appView = ApplicationView.GetForCurrentView();
+            var sB = StatusBar.GetForCurrentView();
+            await sB.HideAsync();
+            Responsive(appView);
+            appView.VisibleBoundsChanged += StatusBarHelper_VisibleBoundsChanged;
         }
-
-        public static void Default()
-        {
-            Set(App.Current.Resources["StatusBarColor"] as SolidColorBrush, new SolidColorBrush(Colors.WhiteSmoke), 1, "", ApplicationViewBoundsMode.UseVisible);
-        }
-
-        static void Set(SolidColorBrush background, SolidColorBrush foreground, double opacity, string text, ApplicationViewBoundsMode? boundsMode = ApplicationViewBoundsMode.UseVisible, double? progress = 0)
-        {
-            ApplicationView.GetForCurrentView().VisibleBoundsChanged += StatusBarHelper_VisibleBoundsChanged;
-            StatusBar sB = StatusBar.GetForCurrentView();
-            if (background != null)
-                sB.BackgroundColor = background.Color;
-            if (foreground != null)
-                sB.ForegroundColor = foreground.Color;
-
-            sB.BackgroundOpacity = opacity;
-            if (!string.IsNullOrEmpty(text))
-            {
-                var _ = sB.ProgressIndicator.ShowAsync();
-                if (text != null) sB.ProgressIndicator.Text = text;
-                var appView = ApplicationView.GetForCurrentView();
-                if (boundsMode != null && boundsMode.HasValue)
-                    appView.SetDesiredBoundsMode(boundsMode.Value);
-                sB.ProgressIndicator.ProgressValue = progress;
-            }
-            else
-            {
-                var _ = sB.ProgressIndicator.HideAsync();
-            }
-        }
-
+        
         private static void StatusBarHelper_VisibleBoundsChanged(ApplicationView sender, object args)
         {
             Responsive(sender);
@@ -62,13 +35,11 @@ namespace VLC_WinRT.Helpers
                 var statusBarHeight = OccludedRect.Height;
                 var tmpAppViewHeight = screenHeight - statusBarHeight;
                 var navBarHeight = tmpAppViewHeight - sender.VisibleBounds.Height;
-                await Show();
                 var rect = OccludedRect;
                 App.SplitShell.Margin = new Thickness(0, statusBarHeight, 0, navBarHeight);
             }
             else
             {
-                await Hide();
                 var screenWidth = Window.Current.Bounds.Width;
                 var tmpAppViewWidth = sender.VisibleBounds.Width;
                 double navBarWidth;
