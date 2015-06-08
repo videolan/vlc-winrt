@@ -49,7 +49,7 @@
                   Icon="{Binding Favorite, Converter={StaticResource FavoriteSymbolConverter}}"
                   VerticalAlignment="Top"
                   Command="{Binding FavoriteAlbum}"
-                  CommandParameter="{Binding CurrentAlbum}" />
+                  CommandParameter="{Binding}" />
     <AppBarButton Grid.Row="1"
                   Grid.Column="4"
                   Style="{StaticResource AppBarButtonStyleHorizontal}"
