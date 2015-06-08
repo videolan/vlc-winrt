@@ -9,23 +9,24 @@
       d:DesignWidth="400"
       DataContext="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM}">
 
-    <Grid Margin="{StaticResource FrameMargin}">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="Auto" />
-        </Grid.ColumnDefinitions>
-        <videoPanesControls:VideoPaneComboBox Grid.Row="0"
-                                              Grid.Column="0" />
-        <videoPanesControls:VideoPaneButtons Grid.Column="1" />
         <ContentPresenter x:Name="MainPageVideoContentPresenter"
                           x:FieldModifier="public"
+                          Margin="{StaticResource FrameMargin}"
                           Grid.Row="1"
-                          Grid.Column="0"
-                          Grid.ColumnSpan="2"
                           Loaded="MainPageVideoContentPresenter_OnLoaded" />
+        <Grid Background="{ThemeResource LightGray2ThemeBrush}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <videoPanesControls:VideoPaneComboBox Grid.Column="1" />
+            <videoPanesControls:VideoPaneButtons Grid.Column="2" />
+        </Grid>
     </Grid>
 </Page>

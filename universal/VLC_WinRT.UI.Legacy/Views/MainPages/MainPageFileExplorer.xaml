@@ -10,31 +10,37 @@
       mc:Ignorable="d"
       DataContext="{Binding Source={StaticResource Locator}, Path=FileExplorerVM}">
 
-    <Grid x:Name="RootGrid"
-          Margin="{StaticResource FrameMargin}">
+    <Grid x:Name="RootGrid">
         <Grid.RowDefinitions>
-            <RowDefinition Height="45" />
+            <RowDefinition Height="50" />
             <RowDefinition Height="60" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <ComboBox Grid.Row="0"
-                  Width="280"
-                  ItemsSource="{Binding StorageVMs}"
-                  SelectedItem="{Binding CurrentStorageVM}"
-                  Visibility="{Binding StorageVMs.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}"
-                  Style="{StaticResource VLCComboBox}">
-            <triggers:Interactions.Triggers>
-                <triggers:EventTrigger EventName="SelectionChanged">
-                    <triggers:InvokeCommandAction Command="{Binding RemovableDeviceClicked}"
+        <Grid Grid.Row="0" 
+              Background="{ThemeResource LightGray2ThemeBrush}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <ComboBox Grid.Column="1" 
+                      Width="280" 
+                      ItemsSource="{Binding StorageVMs}"
+                      SelectedItem="{Binding CurrentStorageVM}"
+                      Visibility="{Binding StorageVMs.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}"
+                      Style="{StaticResource VLCComboBox}">
+                <triggers:Interactions.Triggers>
+                    <triggers:EventTrigger EventName="SelectionChanged">
+                        <triggers:InvokeCommandAction Command="{Binding RemovableDeviceClicked}"
                                                   PassEventArgsToCommand="True" />
-                </triggers:EventTrigger>
-            </triggers:Interactions.Triggers>
-            <ComboBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding Name}" />
-                </DataTemplate>
-            </ComboBox.ItemTemplate>
-        </ComboBox>
+                    </triggers:EventTrigger>
+                </triggers:Interactions.Triggers>
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}" />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        </Grid>
         <Grid Grid.Row="1"
               Margin="6,0,0,0">
             <Grid.ColumnDefinitions>
@@ -63,7 +69,8 @@
                 </AppBarButton.Icon>
             </AppBarButton>
         </Grid>
-        <Grid Grid.Row="2">
+        <Grid Grid.Row="2"
+              Margin="{StaticResource FrameMargin}">
             <placeholder:NothingToSeeHere Margin="6,0,0,0"
                                           Visibility="{Binding CurrentStorageVM.IsFolderEmpty, Converter={StaticResource BooleanToVisibilityConverter}}" />
             <ListView x:Name="StorageItemsListView"

@@ -17,6 +17,8 @@
         <AppBarButton x:Name="ShuffleButton"
                       Label="Shuffle all"
                       Style="{StaticResource AppBarButtonStyleHorizontal}"
+                      Margin="6,0"
+                      Foreground="{StaticResource MainColor}"
                       Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.PlayAllRandomCommand}">
             <AppBarButton.Icon>
                 <FontIcon Glyph="{StaticResource ShuffleSymbol}"
@@ -31,6 +33,7 @@
                       Margin="12,0,0,0"
                       VerticalAlignment="Center"
                       Style="{StaticResource AppBarButtonStyleHorizontal}"
+                      Foreground="{StaticResource MainColor}"
                       DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}"
                       Command="{Binding StartMusicIndexingCommand}"
                       IsEnabled="{Binding IsBusy, Converter={StaticResource BooleanNegationConverter}}">

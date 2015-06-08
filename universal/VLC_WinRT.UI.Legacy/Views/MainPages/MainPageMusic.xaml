@@ -21,13 +21,7 @@
                           Grid.Row="1"
                           Loaded="MusicPanesFrame_OnLoaded"
                           Margin="{StaticResource FrameMargin}" />
-        <Grid>
-            <Grid.Background>
-                <Binding Source="{Binding Source={StaticResource Locator}, Path=MainVM}"
-                         Path="IsBackground"
-                         Converter="{StaticResource BooleanToMainColorConverter}" />
-
-            </Grid.Background>
+        <Grid Background="{ThemeResource LightGray2ThemeBrush}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
                 <ColumnDefinition Width="*" />
@@ -39,7 +33,6 @@
                       DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}"
                       ItemsSource="{Binding MusicViewCollection}"
                       SelectedItem="{Binding MusicView, Mode=TwoWay}"
-                      Foreground="White"
                       Style="{StaticResource VLCComboBox}">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
@@ -48,8 +41,7 @@
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
-            <Grid Grid.Column="2"
-                  RequestedTheme="Dark">
+            <Grid Grid.Column="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
                     <ColumnDefinition Width="Auto" />
@@ -63,6 +55,7 @@
                               Grid.Column="2"
                               Label="new playlist"
                               Style="{StaticResource AppBarButtonStyleHorizontal}"
+                      Foreground="{StaticResource MainColor}"
                               Command="{Binding ShowCreateNewPlaylistPaneCommand}"
                               Margin="0,0,12,0"
                               VerticalAlignment="Center"
@@ -75,6 +68,7 @@
                 <AppBarButton x:Name="SearchButton"
                               Grid.Column="3"
                               Style="{StaticResource AppBarButtonStyleHorizontal}"
+                      Foreground="{StaticResource MainColor}"
                               Command="{Binding Source={StaticResource Locator}, Path=MainVM.ChangeMainPageMusicViewCommand}"
                               CommandParameter="4">
                     <AppBarButton.Icon>

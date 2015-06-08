@@ -145,11 +145,13 @@
                 </Grid>
                 <local:SecondaryMusicPlayerButtons Grid.Column="1"
                                                    HorizontalAlignment="Right"
+                                                   FontSize="22"
                                                    DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}" />
             </Grid>
             <local:SecondaryMusicPlayerButtons x:Name="SecondaryMusicPlayerButtons"
                                                Grid.Row="4"
                                                HorizontalAlignment="Stretch"
+                                               FontSize="22"
                                                DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}" />
         </Grid>
 
