@@ -20,21 +20,13 @@
             <RowDefinition x:Name="PlayerRowDefinition" />
             <RowDefinition x:Name="PlaylistRowDefinition" />
         </Grid.RowDefinitions>
-        <Image Grid.Column="0"
-               Grid.ColumnSpan="2"
-               Grid.Row="0"
-               Grid.RowSpan="2"
-               DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}"
-               Source="{Binding CurrentArtist.ArtistImage}"
-               Stretch="UniformToFill"
-               Opacity="0.3" />
-
+        
         <musicNowPlayingControls:MusicNowPlayingFlipView x:Name="MusicNowPlaying"
                                                          Visibility="Collapsed" />
 
         <musicNowPlayingControls:PlaylistControl x:Name="PlaylistGrid"
                                                  VerticalAlignment="Bottom"
-                                                 Background="#B3000000"
+                                                 Background="{ThemeResource ApplicationBackgroundQuarterTranslucentThemeBrush}"
                                                  Visibility="Collapsed" />
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>

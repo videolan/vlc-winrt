@@ -57,12 +57,12 @@
                         <LineBreak />
                         <Run Text="{Binding AlbumName, Converter={StaticResource StringToUpperConverter}}"
                              FontSize="19"
-                             Foreground="{ThemeResource ApplicationBackgroundQuarterTranslucentThemeBrush}" />
+                             Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}" />
                         <Run Text=" | "
                              FontSize="16" />
                         <Run Text="{Binding ArtistName, Converter={StaticResource StringToUpperConverter}}"
                              FontSize="19"
-                             Foreground="{ThemeResource ApplicationBackgroundQuarterTranslucentThemeBrush}" />
+                             Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}" />
             </TextBlock>
             <Grid Grid.Row="2"
                   Visibility="{Binding IsCurrentPlaying, Converter={StaticResource BooleanToVisibilityConverter}}">

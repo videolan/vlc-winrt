@@ -20,4 +20,4 @@
                    Margin="{StaticResource FrameMargin}" />
         <musicNowPlayingControls:PlaylistControl Grid.Row="3" />
     </Grid>
-</Page>
+</UserControl>
