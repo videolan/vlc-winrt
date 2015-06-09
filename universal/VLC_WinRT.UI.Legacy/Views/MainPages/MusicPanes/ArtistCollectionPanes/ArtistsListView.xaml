@@ -59,10 +59,10 @@
         </DataTemplate>
     </UserControl.Resources>
 
-    <Grid Margin="-12,0,-12,0"
-          Background="{ThemeResource LightGray1ThemeBrush}">
+    <Grid Margin="-12,0,-12,0">
         <Grid.RowDefinitions>
-            <RowDefinition Height="40" />
+            <RowDefinition x:Name="HeaderRowDefinition" 
+                           Height="40" />
             <RowDefinition />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>

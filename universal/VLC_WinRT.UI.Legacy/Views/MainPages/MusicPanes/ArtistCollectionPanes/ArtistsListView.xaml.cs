@@ -45,9 +45,15 @@ namespace VLC_WinRT.Views.MainPages.MusicPanes.ArtistCollectionPanes
         void Responsive()
         {
             if (Window.Current.Bounds.Width >= 800)
+            {
+                HeaderRowDefinition.Height = new GridLength(40) ;
                 ArtistListView.HeaderTemplate = this.Resources["ListViewHeaderTemplate"] as DataTemplate;
+            }
             else
+            {
+                HeaderRowDefinition.Height = new GridLength(0);
                 ArtistListView.HeaderTemplate = null;
+            }
         }
 
         private void SemanticZoom_OnViewChangeCompleted(object sender, SemanticZoomViewChangedEventArgs e)
