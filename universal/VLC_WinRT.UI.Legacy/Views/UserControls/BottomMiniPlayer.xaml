@@ -12,7 +12,7 @@
              Visibility="{Binding CurrentPage, Converter={StaticResource BottomMiniPlayerVisibilityConverter}}"
              RequestedTheme="Dark">
     <Grid x:Name="RootGrid"
-          Background="{ThemeResource MainColor}">
+          Background="{ThemeResource ApplicationBackgroundSemiTranslucentThemeBrush}">
         <Grid.Visibility>
             <Binding Source="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.TrackCollection}"
                      Path="IsRunning"
