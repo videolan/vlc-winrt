@@ -43,7 +43,6 @@ namespace VLC_WinRT.ViewModels.Settings
         private string _lastFmUserName;
         private string _lastFmPassword;
         private bool _lastFmIsConnected = false;
-        private bool _forceAppTheme;
         private KeyboardActionDatabase _keyboardActionDatabase;
 
         public KeyboardActionDatabase KeyboardActionDatabase
@@ -413,31 +412,6 @@ namespace VLC_WinRT.ViewModels.Settings
                 SetProperty(ref _lastFmIsConnected, value);
             }
         }
-
-        public bool ForceAppTheme
-        {
-            get
-            {
-                var manualTheme = ApplicationSettingsHelper.ReadSettingsValue("ForceAppTheme");
-                if (manualTheme == null)
-                {
-                    _forceAppTheme = false;
-                }
-                else
-                {
-                    _forceAppTheme = (bool)manualTheme;
-                }
-                return _forceAppTheme;
-            }
-            set
-            {
-                ApplicationSettingsHelper.SaveSettingsValue("ForceAppTheme", value);
-                SetProperty(ref _forceAppTheme, value);
-                if (value) Locator.MainVM.ApplicationTheme = App.Current.RequestedTheme;
-                OnPropertyChanged("ApplicationTheme");
-            }
-        }
-
 
         public SettingsViewModel()
         {

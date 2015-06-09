@@ -6,8 +6,7 @@
                 xmlns:userControls="using:VLC_WinRT.Views.UserControls"
                 xmlns:controls="using:VLC_WinRT.Controls"
                 mc:Ignorable="d"
-                DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}"
-                RequestedTheme="{Binding ApplicationTheme, Converter={StaticResource AppThemeElementThemeConverter}}"
+                RequestedTheme="Dark"
                 Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <SwapChainPanel x:Name="SwapChainPanel"
                     x:FieldModifier="public"

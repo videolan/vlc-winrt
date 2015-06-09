@@ -47,7 +47,6 @@ namespace VLC_WinRT.ViewModels
         private bool _preventAppExit = false;
         private string _informationText;
         private bool _isBackground = false;
-        private ApplicationTheme _applicationTheme;
 
         // Navigation props
         private VLCPage currentPage;
@@ -55,41 +54,6 @@ namespace VLC_WinRT.ViewModels
         #endregion
 
         #region public props
-        public ApplicationTheme ApplicationTheme
-        {
-            get
-            {
-                if (App.ApplicationFrame != null && App.ApplicationFrame.CurrentSourcePageType == typeof(MusicPlayerPage))
-                    _applicationTheme = ApplicationTheme.Dark;
-                else if (Locator.SettingsVM.ForceAppTheme)
-                {
-                    var appTheme = ApplicationSettingsHelper.ReadSettingsValue("ApplicationTheme");
-                    if (appTheme == null)
-                    {
-                        _applicationTheme = App.Current.RequestedTheme;
-                    }
-                    else
-                    {
-                        _applicationTheme = (ApplicationTheme)appTheme;
-                    }
-                }
-                else
-                {
-#if WINDOWS_APP
-                    _applicationTheme = ApplicationTheme.Light;
-#else
-                    _applicationTheme = App.Current.RequestedTheme;
-#endif
-                }
-                return _applicationTheme;
-            }
-            set
-            {
-                ApplicationSettingsHelper.SaveSettingsValue("ApplicationTheme", (int)value);
-                SetProperty(ref _applicationTheme, value);
-            }
-        }
-
         public bool MenuBarDisplayed
         {
             get { return _menuBarDisplayed; }

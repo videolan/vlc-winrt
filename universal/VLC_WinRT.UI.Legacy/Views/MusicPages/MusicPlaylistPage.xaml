@@ -1,12 +1,13 @@
-﻿<Page x:Class="VLC_WinRT.Views.MusicPages.MusicPlaylistPage"
+﻿<UserControl x:Class="VLC_WinRT.Views.MusicPages.MusicPlaylistPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:local="using:VLC_WinRT.Views.MusicPages"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:musicNowPlayingControls="using:VLC_WinRT.Views.MusicPages.MusicNowPlayingControls"
-      mc:Ignorable="d">
-    <Grid>
+      mc:Ignorable="d"
+      RequestedTheme="Dark">
+    <Grid Background="{ThemeResource ApplicationBackgroundSemiTranslucentThemeBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
             <RowDefinition Height="Auto" />
