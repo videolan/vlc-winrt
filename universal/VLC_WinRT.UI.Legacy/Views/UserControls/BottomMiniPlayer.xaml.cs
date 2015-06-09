@@ -2,6 +2,7 @@
 using Windows.UI.Xaml.Input;
 using Microsoft.Xaml.Interactivity;
 using VLC_WinRT.ViewModels;
+using Windows.UI.Xaml;
 
 namespace VLC_WinRT.Views.UserControls
 {
@@ -44,7 +45,6 @@ namespace VLC_WinRT.Views.UserControls
 
         void Responsive()
         {
-            RootGrid.Height = 75;
             if (this.ActualWidth > 700)
                 VisualStateUtilities.GoToState(this, "FullWindows", false);
             else if (this.ActualWidth > 500)
@@ -53,6 +53,11 @@ namespace VLC_WinRT.Views.UserControls
                 VisualStateUtilities.GoToState(this, "ExtraNarrow", false);
             else
                 VisualStateUtilities.GoToState(this, "Minimum", false);
+
+            if (Window.Current.Bounds.Height < 700)
+                RootGrid.Height = 60;
+            else
+                RootGrid.Height = 75;
         }
     }
 }
