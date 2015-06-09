@@ -172,7 +172,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
         {
             try
             {
-                if (Playlist == null || _currentTrack == -1) return;
+                if (Playlist == null || !Playlist.Any() || _currentTrack == -1) return;
                 foreach (var trackItem in Playlist)
                 {
                     if (trackItem == null) continue;
