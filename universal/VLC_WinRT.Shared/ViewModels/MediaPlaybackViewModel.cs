@@ -504,7 +504,7 @@ namespace VLC_WinRT.ViewModels
                 {
                     currentTrackFile = track.File ?? await StorageFile.GetFileFromPathAsync(track.Path);
                 }
-                catch (FileNotFoundException exception)
+                catch (Exception exception)
                 {
                     await MusicLibraryManagement.RemoveTrackFromCollectionAndDatabase(track);
                     await Task.Delay(500);
