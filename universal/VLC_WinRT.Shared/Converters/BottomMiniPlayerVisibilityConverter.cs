@@ -9,7 +9,7 @@ namespace VLC_WinRT.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            if (value is VLCPage && (VLCPage) value != VLCPage.MusicPlayerPage && (VLCPage)value != VLCPage.VideoPlayerPage)
+            if (value is VLCPage && (VLCPage) value != VLCPage.CurrentPlaylistPage && (VLCPage) value != VLCPage.MusicPlayerPage && (VLCPage)value != VLCPage.VideoPlayerPage)
             {
                 return Visibility.Visible;
             }
