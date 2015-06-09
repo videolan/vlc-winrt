@@ -17,13 +17,13 @@ namespace VLC_WinRT.Views.UserControls
         void BottomMiniPlayer_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             Responsive();
-            this.SizeChanged += BottomMiniPlayer_SizeChanged;
+            Window.Current.SizeChanged += Current_SizeChanged;
             this.Unloaded += BottomMiniPlayer_Unloaded;
         }
 
         void BottomMiniPlayer_Unloaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            this.SizeChanged -= BottomMiniPlayer_SizeChanged;
+            Window.Current.SizeChanged -= Current_SizeChanged;
         }
 
         void BottomMiniPlayer_SizeChanged(object sender, Windows.UI.Xaml.SizeChangedEventArgs e)
@@ -41,6 +41,11 @@ namespace VLC_WinRT.Views.UserControls
         {
             Locator.MediaPlaybackViewModel.Stop();
             await Locator.MediaPlaybackViewModel.CleanViewModel();
+        }
+
+        private void Current_SizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)
+        {
+            Responsive();
         }
 
         void Responsive()
