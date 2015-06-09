@@ -21,6 +21,7 @@ namespace VLC_WinRT.Services.RunTime
         public bool PreventAppExit { get; set; } = false;
         public delegate void Navigated(object sender, VLCPage newPage);
         public Navigated ViewNavigated = delegate { };
+
         public NavigationService()
         {
 #if WINDOWS_PHONE_APP

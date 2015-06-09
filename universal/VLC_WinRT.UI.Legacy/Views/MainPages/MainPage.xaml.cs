@@ -39,6 +39,5 @@ namespace VLC_WinRT.Views.MainPages
         {
             Locator.NavigationService.GoBack_HideFlyout();
         }
-
     }
 }

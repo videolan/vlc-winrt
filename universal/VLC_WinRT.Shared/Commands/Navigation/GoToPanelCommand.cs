@@ -53,6 +53,7 @@ namespace VLC_WinRT.Commands.Navigation
                 {
                     Locator.NavigationService.GoBack_HideFlyout();
                 }
+
                 switch (panel.Index)
                 {
                     case 0:
