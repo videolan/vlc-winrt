@@ -39,8 +39,8 @@ namespace VLC_WinRT.Views.UserControls
             EntranceThemeTransition.FromVerticalOffset = 0;
             if (index == 0)
             {
-                EntranceThemeTransition.FromHorizontalOffset = -200;
-                if(Locator.NavigationService.CurrentPage == VLCPage.MainPageHome)
+                SetPivotAnimation(false);
+                if (Locator.NavigationService.CurrentPage == VLCPage.MainPageHome)
                     Locator.MainVM.GoToPanelCommand.Execute(3);
                 else if (Locator.NavigationService.CurrentPage == VLCPage.MainPageVideo)
                     Locator.MainVM.GoToPanelCommand.Execute(0);
@@ -51,7 +51,7 @@ namespace VLC_WinRT.Views.UserControls
             }
             else if (index == 2)
             {
-                EntranceThemeTransition.FromHorizontalOffset = 200;
+                SetPivotAnimation(true);
                 if (Locator.NavigationService.CurrentPage == VLCPage.MainPageHome)
                     Locator.MainVM.GoToPanelCommand.Execute(1);
                 else if (Locator.NavigationService.CurrentPage == VLCPage.MainPageVideo)
@@ -63,8 +63,19 @@ namespace VLC_WinRT.Views.UserControls
                 // Told ya ¯\_(ツ)_/¯
             }
             await Task.Delay(200);
-            EntranceThemeTransition.FromHorizontalOffset = 0;
-            EntranceThemeTransition.FromVerticalOffset = 100;
+        }
+
+        public void SetPivotAnimation(bool isNextPivot)
+        {
+            if (isNextPivot)
+            {
+                EntranceThemeTransition.FromHorizontalOffset = 200;
+            }
+            else
+            {
+
+                EntranceThemeTransition.FromHorizontalOffset = -200;
+            }
         }
     }
 }

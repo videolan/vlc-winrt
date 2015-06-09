@@ -35,10 +35,17 @@ namespace VLC_WinRT.Commands.Navigation
                 panel = Locator.MainVM.Panels.First(x => x.Index == int.Parse(parameter.ToString()));
             }
 
+            int iPreviousView = Locator.MainVM.Panels.IndexOf(Locator.MainVM.Panels.FirstOrDefault(x => x.IsCurrent));
+            int iNewView = Locator.MainVM.Panels.IndexOf(panel);
             foreach (Model.Panel panel1 in Locator.MainVM.Panels)
             {
                 panel1.IsCurrent = false;
             }
+
+#if WINDOWS_PHONE_APP
+            App.RootPage.ShellContent.SetPivotAnimation(iNewView > iPreviousView);
+#endif
+
             if (panel != null)
             {
                 panel.IsCurrent = true;
