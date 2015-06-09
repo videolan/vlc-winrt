@@ -7,7 +7,7 @@
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{6BDABA8A-B559-4007-A17F-42125D3AA7A3}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>winmdobj</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>VLC_WinRT.BackgroundAudioPlayer</RootNamespace>
     <AssemblyName>VLC_WinRT.BackgroundAudioPlayer</AssemblyName>

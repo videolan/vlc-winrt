@@ -22,11 +22,11 @@ namespace VLC_WinRT.BackgroundAudioPlayer
         public string Name { get; set; }
 
         public int CurrentTrack { get; set; }
-        public BackgroundTrackItem CurrentTrackItem { get; set; }
+        public object CurrentTrackItem { get; set; }
 
         public int CurrentTrackIndex
         {
-            get { return Playlist.IndexOf(CurrentTrackItem); }
+            get { return Playlist.IndexOf((BackgroundTrackItem)CurrentTrackItem); }
         }
 
         public bool CanGoPrevious
@@ -73,7 +73,7 @@ namespace VLC_WinRT.BackgroundAudioPlayer
             mediaPlayer.MediaEnded += MediaPlayerOnMediaEnded;
             mediaPlayer.CurrentStateChanged += MediaPlayerOnCurrentStateChanged;
             mediaPlayer.MediaFailed += MediaPlayerOnMediaFailed;
-            ResetCollection(ResetType.NormalReset);
+            ResetCollection((int)ResetType.NormalReset);
         }
 
         private void MediaPlayerOnMediaFailed(MediaPlayer sender, MediaPlayerFailedEventArgs args)
@@ -82,7 +82,7 @@ namespace VLC_WinRT.BackgroundAudioPlayer
             if (CurrentTrackItem != null)
                 BackgroundMediaPlayer.SendMessageToForeground(new ValueSet()
                 {
-                    new KeyValuePair<string, object>(BackgroundAudioConstants.MFFailed, CurrentTrackItem.Id)
+                    new KeyValuePair<string, object>(BackgroundAudioConstants.MFFailed, ((BackgroundTrackItem)CurrentTrackItem).Id)
                 });
         }
 
@@ -112,9 +112,10 @@ namespace VLC_WinRT.BackgroundAudioPlayer
 
         #region methods
 
-        public void ResetCollection(ResetType resetType)
+        public void ResetCollection(int resetType)
         {
-            switch (resetType)
+            var reset = (ResetType)resetType;
+            switch (reset)
             {
                 case ResetType.ShuffleReset:
                     CurrentTrack = -1;
@@ -168,7 +169,7 @@ namespace VLC_WinRT.BackgroundAudioPlayer
         {
             IsRunning = true;
             CurrentTrackItem = Playlist[CurrentTrack];
-            var file = await StorageFile.GetFileFromPathAsync(CurrentTrackItem.Path);
+            var file = await StorageFile.GetFileFromPathAsync(((BackgroundTrackItem)CurrentTrackItem).Path);
             mediaPlayer.SetFileSource(file);
 
             systemmediatransportcontrol = SystemMediaTransportControls.GetForCurrentView();

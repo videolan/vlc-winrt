@@ -141,7 +141,7 @@ namespace VLC_WinRT.BackgroundAudioPlayer
                 Playlist.TrackChanged -= playList_TrackChanged;
 
                 //clear objects task cancellation can happen uninterrupted
-                playlistManager.ResetCollection(ResetType.NormalReset);
+                playlistManager.ResetCollection((int)ResetType.NormalReset);
                 playlistManager = null;
 
                 // Send message to foreground task (if it's around) that this task was cancelled :(
@@ -167,8 +167,8 @@ namespace VLC_WinRT.BackgroundAudioPlayer
         {
             systemmediatransportcontrol.PlaybackStatus = MediaPlaybackStatus.Playing;
             systemmediatransportcontrol.DisplayUpdater.Type = MediaPlaybackType.Music;
-            systemmediatransportcontrol.DisplayUpdater.MusicProperties.Title = Playlist.CurrentTrackItem.Name;
-            systemmediatransportcontrol.DisplayUpdater.MusicProperties.Artist = Playlist.CurrentTrackItem.ArtistName;
+            systemmediatransportcontrol.DisplayUpdater.MusicProperties.Title = ((BackgroundTrackItem)Playlist.CurrentTrackItem).Name;
+            systemmediatransportcontrol.DisplayUpdater.MusicProperties.Artist = ((BackgroundTrackItem)Playlist.CurrentTrackItem).ArtistName;
             systemmediatransportcontrol.DisplayUpdater.Update();
         }
 
@@ -192,7 +192,9 @@ namespace VLC_WinRT.BackgroundAudioPlayer
 
             if (LastFMScrobbler != null && LastFMScrobbler.IsConnected)
             {
-                LastFMScrobbler.ScrobbleTrack(Playlist.CurrentTrackItem.ArtistName, Playlist.CurrentTrackItem.AlbumName, Playlist.CurrentTrackItem.Name);
+                LastFMScrobbler.ScrobbleTrack(((BackgroundTrackItem)Playlist.CurrentTrackItem).ArtistName, 
+                                              ((BackgroundTrackItem)Playlist.CurrentTrackItem).AlbumName,
+                                              ((BackgroundTrackItem)Playlist.CurrentTrackItem).Name);
             }
         }
 
@@ -379,7 +381,7 @@ namespace VLC_WinRT.BackgroundAudioPlayer
                         var arg = new object();
                         if (e.Data.TryGetValue(BackgroundAudioConstants.ResetPlaylist, out arg))
                         {
-                            Playlist.ResetCollection((ResetType)arg);
+                            Playlist.ResetCollection((int)arg);
                         }
                         break;
                     case BackgroundAudioConstants.AddTrack:
