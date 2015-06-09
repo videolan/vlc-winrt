@@ -22,6 +22,7 @@ using VLC_WinRT.Helpers;
 using VLC_WinRT.Model;
 using VLC_WinRT.Model.Video;
 using VLC_WinRT.Utils;
+using System.Diagnostics;
 
 namespace VLC_WinRT.ViewModels.MusicVM
 {
@@ -179,7 +180,10 @@ namespace VLC_WinRT.ViewModels.MusicVM
                     trackItem.IsCurrentPlaying = false;
                 }
                 if (Playlist[_currentTrack] != null)
+                {
                     Playlist[_currentTrack].IsCurrentPlaying = true;
+                    Debug.WriteLine(Playlist[_currentTrack].Path + " Is the active track");
+                }
                 OnPropertyChanged("CanGoPrevious");
                 OnPropertyChanged("CanGoNext");
             }
