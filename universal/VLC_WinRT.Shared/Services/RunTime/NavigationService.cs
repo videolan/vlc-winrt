@@ -63,7 +63,7 @@ namespace VLC_WinRT.Services.RunTime
                     GoBack_HideFlyout();
                     break;
                 case VLCPage.CurrentPlaylistPage:
-                    GoBack_Default();
+                    GoBack_HideFlyout();
                     break;
                 case VLCPage.VideoPlayerPage:
                     Locator.MediaPlaybackViewModel.GoBack.Execute(null);
@@ -150,7 +150,7 @@ namespace VLC_WinRT.Services.RunTime
                     App.SplitShell.RightFlyoutContent = new PlaylistPage();
                     break;
                 case VLCPage.CurrentPlaylistPage:
-                    App.ApplicationFrame.Navigate(typeof(MusicPlaylistPage));
+                    App.SplitShell.RightFlyoutContent = new MusicPlaylistPage();
                     break;
                 case VLCPage.VideoPlayerPage:
                     App.ApplicationFrame.Navigate(typeof(VideoPlayerPage));
@@ -196,7 +196,8 @@ namespace VLC_WinRT.Services.RunTime
                 page == VLCPage.PlaylistPage ||
                 page == VLCPage.SettingsPage ||
                 page == VLCPage.LicensePage ||
-                page == VLCPage.SpecialThanksPage;
+                page == VLCPage.SpecialThanksPage ||
+                page == VLCPage.CurrentPlaylistPage;
         }
 
         /// <summary>
