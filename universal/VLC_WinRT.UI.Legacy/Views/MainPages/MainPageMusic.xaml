@@ -21,7 +21,7 @@
                           Grid.Row="1"
                           Loaded="MusicPanesFrame_OnLoaded"
                           Margin="{StaticResource FrameMargin}" />
-        <Grid Background="{ThemeResource LightGray2ThemeBrush}">
+        <Grid Background="{ThemeResource ApplicationBackgroundQuarterTranslucentThemeBrush}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
                 <ColumnDefinition Width="*" />

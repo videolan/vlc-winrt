@@ -17,7 +17,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" 
-              Background="{ThemeResource LightGray2ThemeBrush}">
+              Background="{ThemeResource ApplicationBackgroundQuarterTranslucentThemeBrush}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
                 <ColumnDefinition />

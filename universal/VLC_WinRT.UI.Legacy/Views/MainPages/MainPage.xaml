@@ -16,6 +16,11 @@
                   AudioCategory="BackgroundCapableMedia" 
                   Loaded="MfMediaElement_Loaded"/>
 
+    <Image DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}"
+           Source="{Binding CurrentArtist.ArtistImage}"
+           Stretch="UniformToFill"
+           Opacity="0.2" />
+
     <controls:SplitShell x:Name="SplitShell"
                          x:FieldModifier="public"
                          FlyoutCloseRequested="SplitShell_FlyoutCloseRequested">
