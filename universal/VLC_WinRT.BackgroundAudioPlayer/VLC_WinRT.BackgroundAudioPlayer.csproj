@@ -82,6 +82,9 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\VLC_WinRT.ShareBackground\BackgroundHelpers\ApplicationSettingsHelper.cs">
+      <Link>Model\ApplicationSettingsHelper.cs</Link>
+    </Compile>
     <Compile Include="BackgroundPlayer.cs" />
     <Compile Include="Model\BackgroundAudioConstants.cs" />
     <Compile Include="Model\BackgroundTrackCollection.cs" />
@@ -101,7 +104,12 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <Import Project="..\VLC_WinRT.SharedBackground\VLC_WinRT.SharedBackground.projitems" Label="Shared" />
+  <ItemGroup>
+    <ProjectReference Include="..\VLC_WinRT.ShareBackground\VLC_WinRT.ShareBackground.csproj">
+      <Project>{b1e774a5-87a6-4d23-bec1-ad157333f69f}</Project>
+      <Name>VLC_WinRT.ShareBackground</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>
   </PropertyGroup>

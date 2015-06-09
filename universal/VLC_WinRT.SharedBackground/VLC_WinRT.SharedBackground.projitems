@@ -9,12 +9,6 @@
     <Import_RootNamespace>VLC_WinRT.SharedBackground</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)BackgroundHelpers\ApplicationSettingsHelper.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)BackgroundHelpers\BackgroundAudioInterface.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Database\BackgroundTrackDatabase.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Helpers\MusicPlayer\LastFMScrobbler.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Model\BackgroundTrackItem.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Model\ResetType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SQLite.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SQLiteAsync.cs" />
   </ItemGroup>

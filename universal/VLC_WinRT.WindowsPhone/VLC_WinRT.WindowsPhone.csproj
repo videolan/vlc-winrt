@@ -801,6 +801,10 @@
       <Project>{6bdaba8a-b559-4007-a17f-42125d3aa7a3}</Project>
       <Name>VLC_WinRT.BackgroundAudioPlayer</Name>
     </ProjectReference>
+    <ProjectReference Include="..\VLC_WinRT.ShareBackground\VLC_WinRT.ShareBackground.csproj">
+      <Project>{b1e774a5-87a6-4d23-bec1-ad157333f69f}</Project>
+      <Name>VLC_WinRT.ShareBackground</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="MultilingualResources\VLC_WinRT.WindowsPhone.qps-ploc.xlf" />
@@ -823,7 +827,6 @@
   </PropertyGroup>
   <Import Project="..\VLC_WinRT.Shared\VLC_WinRT.Shared.projitems" Label="Shared" />
   <Import Project="..\VLC_WinRT.MusicMetaFetcher\VLC_WinRT.MusicMetaFetcher.projitems" Label="Shared" Condition="Exists('..\VLC_WinRT.MusicMetaFetcher\VLC_WinRT.MusicMetaFetcher.projitems')" />
-  <Import Project="..\VLC_WinRT.SharedBackground\VLC_WinRT.SharedBackground.projitems" Label="Shared" Condition="Exists('..\VLC_WinRT.SharedBackground\VLC_WinRT.SharedBackground.projitems')" />
   <Import Project="..\..\app\VLC_WinRT.SplitShell\VLC_WinRT.SplitShell.projitems" Label="Shared" />
   <Import Project="..\VLC_WinRT.UI.Legacy\VLC_WinRT.UI.Legacy.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />

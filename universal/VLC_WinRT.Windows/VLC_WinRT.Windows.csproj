@@ -884,6 +884,10 @@
       <Project>{22532381-be8b-40e0-a881-22ce24342d5a}</Project>
       <Name>libVLCX</Name>
     </ProjectReference>
+    <ProjectReference Include="..\VLC_WinRT.ShareBackground\VLC_WinRT.ShareBackground.csproj">
+      <Project>{b1e774a5-87a6-4d23-bec1-ad157333f69f}</Project>
+      <Name>VLC_WinRT.ShareBackground</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="MultilingualResources\VLC_WinRT.Windows.ja-JP.xlf" />
@@ -897,7 +901,6 @@
   </PropertyGroup>
   <Import Project="..\VLC_WinRT.Shared\VLC_WinRT.Shared.projitems" Label="Shared" />
   <Import Project="..\VLC_WinRT.MusicMetaFetcher\VLC_WinRT.MusicMetaFetcher.projitems" Label="Shared" Condition="Exists('..\VLC_WinRT.MusicMetaFetcher\VLC_WinRT.MusicMetaFetcher.projitems')" />
-  <Import Project="..\VLC_WinRT.SharedBackground\VLC_WinRT.SharedBackground.projitems" Label="Shared" Condition="Exists('..\VLC_WinRT.SharedBackground\VLC_WinRT.SharedBackground.projitems')" />
   <Import Project="..\..\app\VLC_WinRT.SplitShell\VLC_WinRT.SplitShell.projitems" Label="Shared" />
   <Import Project="..\VLC_WinRT.UI.Legacy\VLC_WinRT.UI.Legacy.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
