@@ -43,27 +43,6 @@
                                VerticalAlignment="Center"
                                HorizontalAlignment="Right"/>
                 </Grid>
-                <TextBlock Text="user interface"
-                           Style="{StaticResource SubheaderTextBlockStyle}"
-                           Foreground="{StaticResource MainColor}" 
-                           Margin="0,12"/>
-                <CheckBox x:Uid="ManualSetThemeCheckbox"
-                          Content="Manually set the application theme"
-                          IsChecked="{Binding ForceAppTheme, Mode=TwoWay}"
-                          Margin="-6,-6,0,0" />
-                <ToggleSwitch IsEnabled="{Binding ForceAppTheme}"
-                              x:Uid="ApplicationTheme"
-                              Header="Application theme"
-                              OffContent="Light"
-                              OnContent="Dark"
-                              Margin="-6,0,0,0">
-                    <ToggleSwitch.IsOn>
-                        <Binding Source="{Binding Source={StaticResource Locator}, Path=MainVM}"
-                                 Path="ApplicationTheme"
-                                 Converter="{StaticResource ApplicationThemeBooleanConverter}"
-                                 Mode="TwoWay" />
-                    </ToggleSwitch.IsOn>
-                </ToggleSwitch>
                 <TextBlock Text="music"
                            Style="{StaticResource SubheaderTextBlockStyle}"
                            Foreground="{StaticResource MainColor}"
