@@ -61,6 +61,9 @@ void DirectXManger::CreateSwapPanel(SwapChainPanel^ panel){
     ComPtr<ID2D1Factory2> d2dFactory;
 
     UINT creationFlags = D3D11_CREATE_DEVICE_BGRA_SUPPORT;
+#ifndef NDEBUG
+    creationFlags |= D3D11_CREATE_DEVICE_DEBUG;
+#endif
     const auto displayInfo = Windows::Graphics::Display::DisplayInformation::GetForCurrentView();
 
     D2D1_BITMAP_PROPERTIES1 bitmapProperties =
