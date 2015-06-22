@@ -1,0 +1,3 @@
+[submodule "wrapper/libvlcpp"]
+	path = wrapper/libvlcpp
+	url = git://git.videolan.org/vlc-bindings/libvlcpp.git
