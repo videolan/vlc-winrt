@@ -799,8 +799,8 @@
     <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\video_filter\libyuvp_plugin.dll">
       <Link>plugins\video_filter\libyuvp_plugin.dll</Link>
     </Content>
-    <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\video_output\libdirect2d_winrt_plugin.dll">
-      <Link>plugins\video_output\libdirect2d_winrt_plugin.dll</Link>
+    <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\video_output\libdirect3d11_plugin.dll">
+      <Link>plugins\video_output\libdirect3d11_plugin.dll</Link>
     </Content>
     <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\video_output\libdrawable_plugin.dll">
       <Link>plugins\video_output\libdrawable_plugin.dll</Link>

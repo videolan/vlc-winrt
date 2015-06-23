@@ -710,8 +710,8 @@
     <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\access\libaccess_winphone_plugin.dll">
       <Link>plugins\access\libaccess_winphone_plugin.dll</Link>
     </Content>
-    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\video_output\libdirect2d_winphone_plugin.dll">
-      <Link>plugins\video_output\libdirect2d_winphone_plugin.dll</Link>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\video_output\libdirect3d11_plugin.dll">
+      <Link>plugins\video_output\libdirect3d11_plugin.dll</Link>
     </Content>
     <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\access\liblive555_plugin.dll">
       <Link>plugins\access\liblive555_plugin.dll</Link>

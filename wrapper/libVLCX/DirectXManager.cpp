@@ -93,12 +93,12 @@ void DirectXManger::CreateSwapPanel(SwapChainPanel^ panel){
         featureLevels,
         ARRAYSIZE(featureLevels),
         D3D11_SDK_VERSION,
-        &d3dDevice,
+        &cp_d3dDevice,
         nullptr,
-        nullptr
+        &cp_d3dContext
         );
     CheckDXOperation(hr, "Could not D3D11CreateDevice");
-    CheckDXOperation(d3dDevice.As(&dxgiDevice), "Could not transform to DXGIDevice");
+    CheckDXOperation(cp_d3dDevice.As(&dxgiDevice), "Could not transform to DXGIDevice");
     CheckDXOperation(dxgiDevice->GetAdapter(&dxgiAdapter), "Could not  get adapter");
     CheckDXOperation(dxgiAdapter->GetParent(IID_PPV_ARGS(&dxgiFactory)), "Could not get adapter parent");
 
@@ -110,29 +110,6 @@ void DirectXManger::CreateSwapPanel(SwapChainPanel^ panel){
     // If the project is in a debug build, enable Direct2D debugging via SDK Layers.
     options.debugLevel = D2D1_DEBUG_LEVEL_INFORMATION;
 #endif
-
-
-    D2D1CreateFactory(
-        D2D1_FACTORY_TYPE_MULTI_THREADED,
-        __uuidof(ID2D1Factory2),
-        &options,
-        &d2dFactory
-        );
-
-
-    // Create the Direct2D device object and a corresponding context.
-    d2dFactory->CreateDevice(dxgiDevice.Get(), &(d2dDevice));
-    CheckDXOperation(hr, "Could not create D2D1 device");
-
-    hr = d2dDevice->CreateDeviceContext(
-        D2D1_DEVICE_CONTEXT_OPTIONS_NONE,
-        &cp_d2dContext
-        );
-    CheckDXOperation(hr, "Could not create device context");
-
-    // Set DPI to the display's current DPI.
-    cp_d2dContext->SetDpi(displayInfo->RawDpiX, displayInfo->RawDpiY);
-    cp_d2dContext->SetUnitMode(D2D1_UNIT_MODE_PIXELS);
 
     //Create the swapchain
     DXGI_SWAP_CHAIN_DESC1 swapChainDesc = { 0 };
@@ -155,21 +132,13 @@ void DirectXManger::CreateSwapPanel(SwapChainPanel^ panel){
     swapChainDesc.AlphaMode = DXGI_ALPHA_MODE_UNSPECIFIED;
 
     hr = dxgiFactory->CreateSwapChainForComposition(
-        d3dDevice.Get(),
+        cp_d3dDevice.Get(),
         &swapChainDesc,
         nullptr,
         &cp_swapChain
         );
     CheckDXOperation(hr, "Could not create swapChain");
     CheckDXOperation(dxgiDevice->SetMaximumFrameLatency(1), "Could not set maximum Frame Latency");
-
-    // Configurer l'échelle inverse sur la chaîne de permutation
-    DXGI_MATRIX_3X2_F inverseScale = { 0 };
-    inverseScale._11 = 1.0f / panel->CompositionScaleX;
-    inverseScale._22 = 1.0f / panel->CompositionScaleY;
-    ComPtr<IDXGISwapChain2> spSwapChain2;
-    CheckDXOperation(cp_swapChain.As<IDXGISwapChain2>(&spSwapChain2), L"Could not retrieve SwapChain");
-    CheckDXOperation(spSwapChain2->SetMatrixTransform(&inverseScale), L"Failed to set matrix transform");
 
     //TODO: perform the next 2 calls on the UI thread
     ComPtr<ISwapChainPanelNative> panelNative;
