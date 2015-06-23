@@ -122,14 +122,8 @@ void Player::InitializeVLC()
 
 void Player::UpdateSize(float x, float y)
 {
-#if WINAPI_FAMILY == WINAPI_FAMILY_PHONE_APP
-    const float scaleFactor = Windows::Graphics::Display::DisplayInformation::GetForCurrentView()->RawPixelsPerViewPixel;
-#else
-    const float scaleFactor = (float) DisplayProperties::ResolutionScale / 100.f;
-#endif
-
-    m_displayWidth = x * scaleFactor;
-    m_displayHeight = y * scaleFactor;
+    m_displayWidth = x;
+    m_displayHeight = y;
 }
 
 void Player::MediaEndedCall(){
