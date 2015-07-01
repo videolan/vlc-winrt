@@ -348,9 +348,6 @@
     <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\demux\libcaf_plugin.dll">
       <Link>plugins\demux\libcaf_plugin.dll</Link>
     </Content>
-    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\demux\libdash_plugin.dll">
-      <Link>plugins\demux\libdash_plugin.dll</Link>
-    </Content>
     <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\demux\libdemuxdump_plugin.dll">
       <Link>plugins\demux\libdemuxdump_plugin.dll</Link>
     </Content>
@@ -386,9 +383,6 @@
     </Content>
     <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\demux\libmp4_plugin.dll">
       <Link>plugins\demux\libmp4_plugin.dll</Link>
-    </Content>
-    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\demux\libmpc_plugin.dll">
-      <Link>plugins\demux\libmpc_plugin.dll</Link>
     </Content>
     <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\demux\libmpgv_plugin.dll">
       <Link>plugins\demux\libmpgv_plugin.dll</Link>
@@ -720,9 +714,6 @@
     </Content>
     <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\video_output\libdirect3d11_plugin.dll">
       <Link>plugins\video_output\libdirect3d11_plugin.dll</Link>
-    </Content>
-    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\access\liblive555_plugin.dll">
-      <Link>plugins\access\liblive555_plugin.dll</Link>
     </Content>
     <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\audio_filter\libaudiobargraph_a_plugin.dll">
       <Link>plugins\audio_filter\libaudiobargraph_a_plugin.dll</Link>
