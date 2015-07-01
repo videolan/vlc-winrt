@@ -56,7 +56,6 @@ namespace VLC_WinRT.Services.RunTime
                 "--verbose=3",
                 "--no-stats",
                 "--avcodec-fast",
-                "--no-avcodec-dr",
                 String.Format("--freetype-font={0}\\segoeui.ttf", Windows.ApplicationModel.Package.Current.InstalledLocation.Path)
             };
             // So far, this NEEDS to be called from the main thread

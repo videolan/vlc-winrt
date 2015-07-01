@@ -110,7 +110,6 @@ void Player::InitializeVLC()
         widthstring,
         heightstring,
         "--avcodec-fast",
-        "--no-avcodec-dr",
         fontstring
     };
 

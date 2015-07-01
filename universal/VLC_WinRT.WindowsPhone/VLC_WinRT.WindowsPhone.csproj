@@ -266,6 +266,10 @@
     <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\codec\libcvdsub_plugin.dll">
       <Link>plugins\codec\libcvdsub_plugin.dll</Link>
     </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\codec\libd3d11va_plugin.dll">
+      <Link>plugins\codec\libd3d11va_plugin.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\codec\libddummy_plugin.dll">
       <Link>plugins\codec\libddummy_plugin.dll</Link>
     </Content>
@@ -526,6 +530,10 @@
     </Content>
     <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\video_chroma\libchain_plugin.dll">
       <Link>plugins\video_chroma\libchain_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\video_chroma\libd3d11_surface_plugin.dll">
+      <Link>plugins\video_chroma\libd3d11_surface_plugin.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\video_chroma\libgrey_yuv_plugin.dll">
       <Link>plugins\video_chroma\libgrey_yuv_plugin.dll</Link>

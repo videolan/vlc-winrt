@@ -472,7 +472,7 @@ namespace VLC_WinRT.ViewModels
             if (media == null)
                 throw new ArgumentNullException("media", "Media parameter is missing. Can't play anything");
             Stop();
-            UseVlcLib = forceVlcLib;
+            UseVlcLib = true; // forceVlcLib;
 
             if (media is VideoItem)
             {

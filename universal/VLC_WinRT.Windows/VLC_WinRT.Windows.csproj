@@ -310,6 +310,9 @@
     <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\codec\libavcodec_plugin.dll">
       <Link>plugins\codec\libavcodec_plugin.dll</Link>
     </Content>
+    <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\codec\libd3d11va_plugin.dll">
+      <Link>plugins\codec\libd3d11va_plugin.dll</Link>
+    </Content>
     <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\codec\libcc_plugin.dll">
       <Link>plugins\codec\libcc_plugin.dll</Link>
     </Content>
@@ -615,6 +618,9 @@
     </Content>
     <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\video_chroma\libchain_plugin.dll">
       <Link>plugins\video_chroma\libchain_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\video_chroma\libd3d11_surface_plugin.dll">
+      <Link>plugins\video_chroma\libd3d11_surface_plugin.dll</Link>
     </Content>
     <Content Include="..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\video_chroma\libgrey_yuv_plugin.dll">
       <Link>plugins\video_chroma\libgrey_yuv_plugin.dll</Link>
