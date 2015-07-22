@@ -10,40 +10,54 @@
              VerticalAlignment="Center"
              HorizontalAlignment="Center">
 
-    <Grid Margin="0,-50,0,0">
-        <TextBlock Text=""
-                   FontFamily="Segoe UI Symbol"
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="12"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="12"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <FontIcon Glyph="{StaticResource MovieSymbol}"
+                   FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets"
                    Foreground="#7AE3E3E3"
-                   FontSize="120"
+                   FontSize="80"
                    HorizontalAlignment="Center"
-                   TextAlignment="Center"
                    VerticalAlignment="Center" />
-        <StackPanel>
-            <TextBlock Style="{StaticResource SubheaderTextBlockStyle}"
-                       TextAlignment="Center">
+        <TextBlock Grid.Row="1"
+                   Style="{StaticResource SubheaderTextBlockStyle}"
+                   VerticalAlignment="Center"
+                   TextAlignment="Center">
             <Run x:Uid="WeDidNotFindVideos" Text="We did not find videos in your Videos folder"
                  FontSize="20" />
             <LineBreak />
             <Run x:Uid="HoweverSearch" Text="... however you may find what you want here"
                  FontSize="18" />
+        </TextBlock>
+        <Button Grid.Row="3"
+                Click="ShowsClick"
+                Style="{StaticResource TextBlockButtonStyle}"
+                HorizontalAlignment="Center">
+            <TextBlock>
+                <Run Text="shows"
+                     FontWeight="Light"
+                     FontSize="25"/>
+                <Run Text="{StaticResource ChevronToRightSymbol}"
+                     FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
             </TextBlock>
-            <Button Margin="0,24,0,0"
-                    x:Uid="ShowsButton"
-                    Content="shows"
-                    Click="ShowsClick"
-                    HorizontalAlignment="Center"
-                    Background="{StaticResource MainColor}"
-                    BorderThickness="0"
-                    Width="150"
-                    Foreground="WhiteSmoke" />
-            <Button x:Uid="CameraRollButton"
-                    Content="camera roll"
-                    Click="CameraRollClick"
-                    HorizontalAlignment="Center"
-                    Background="{StaticResource MainColor}"
-                    BorderThickness="0"
-                    Width="150"
-                    Foreground="WhiteSmoke" />
-        </StackPanel>
+        </Button>
+        <Button Grid.Row="5"
+                Click="CameraRollClick"
+                Style="{StaticResource TextBlockButtonStyle}"
+                HorizontalAlignment="Center">
+            <TextBlock>
+                <Run Text="camera roll"
+                     FontWeight="Light"
+                     FontSize="25"/>
+                <Run Text="{StaticResource ChevronToRightSymbol}"
+                     FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+            </TextBlock>
+        </Button>
     </Grid>
 </UserControl>

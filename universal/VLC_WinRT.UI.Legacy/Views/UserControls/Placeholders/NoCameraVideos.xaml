@@ -11,20 +11,28 @@
     VerticalAlignment="Center"
     HorizontalAlignment="Center">
 
-    <Grid Margin="0,-50,0,0">
-        <TextBlock Text=""
-                   FontFamily="Segoe UI Symbol"
-                   Foreground="#7AE3E3E3"
-                   FontSize="120"
-                   HorizontalAlignment="Center"
-                   TextAlignment="Center"
-                   VerticalAlignment="Center" />
-        <TextBlock Style="{StaticResource SubheaderTextBlockStyle}"
-                   TextAlignment="Center">
-            <Run x:Uid="EmptyText"  Text="It's empty here" />
-            <LineBreak />
-            <Run x:Uid="NoCameraVideos" Text="We did not find videos in your camera roll"
-                 FontSize="20" />
-        </TextBlock>
-    </Grid>
+  <Grid>
+    <Grid.RowDefinitions>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+    </Grid.RowDefinitions>
+    <FontIcon Glyph=""
+               FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets"
+               Foreground="#7AE3E3E3"
+               FontSize="80"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center" />
+    <TextBlock Grid.Row="1"
+               Style="{StaticResource SubheaderTextBlockStyle}"
+               VerticalAlignment="Center"
+               TextAlignment="Center">
+        <Run x:Uid="EmptyText"
+             Text="It's empty here"
+             FontSize="20" />
+        <LineBreak />
+        <Run x:Uid="NoCameraVideos"
+        Text="We did not find videos in your camera roll"
+             FontSize="18" />
+    </TextBlock>
+  </Grid>
 </UserControl>

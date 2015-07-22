@@ -9,21 +9,28 @@
              d:DesignWidth="400"
              VerticalAlignment="Center"
              HorizontalAlignment="Center">
-
-    <Grid Margin="0,-50,0,0">
-        <TextBlock Text=""
-                   FontFamily="Segoe UI Symbol"
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <FontIcon Glyph="{StaticResource MusicPlaylistSymbol}"
+                   FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets"
                    Foreground="#7AE3E3E3"
-                   FontSize="120"
+                   FontSize="80"
                    HorizontalAlignment="Center"
-                   TextAlignment="Center"
                    VerticalAlignment="Center" />
-        <TextBlock Style="{StaticResource SubheaderTextBlockStyle}"
+        <TextBlock Grid.Row="1"
+                   Style="{StaticResource SubheaderTextBlockStyle}"
+                   VerticalAlignment="Center"
                    TextAlignment="Center">
-            <Run x:Uid="EmptyText" Text="It's empty here" />
-            <LineBreak />
-            <Run x:Uid="NoPlaylists" Text="You don't have playlists ... yet"
+            <Run x:Uid="EmptyText"
+                 Text="It's empty here"
                  FontSize="20" />
+            <LineBreak />
+            <Run x:Uid="NoPlaylists"
+            Text="You don't have playlists ... yet"
+                 FontSize="18" />
         </TextBlock>
     </Grid>
 </UserControl>

@@ -9,24 +9,28 @@
              d:DesignWidth="400"
              VerticalAlignment="Center"
              HorizontalAlignment="Center">
-
-    <Grid Margin="0,-50,0,0">
-        <TextBlock Text=""
-                   FontFamily="Segoe UI Symbol"
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <FontIcon Glyph="{StaticResource MultimediaFileSymbol}"
+                   FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets"
                    Foreground="#7AE3E3E3"
-                   FontSize="120"
+                   FontSize="80"
                    HorizontalAlignment="Center"
-                   TextAlignment="Center"
                    VerticalAlignment="Center" />
-        <TextBlock TextWrapping="Wrap"
+        <TextBlock Grid.Row="1"
                    Style="{StaticResource SubheaderTextBlockStyle}"
+                   VerticalAlignment="Center"
                    TextAlignment="Center">
             <Run x:Uid="NothingToSeeHere"
-                 Text="Nothing to see here." />
+                 Text="Nothing to see here." 
+                 FontSize="20" />
             <LineBreak />
             <Run x:Uid="ElementsNotFound"
                  Text="It seems that we didn't find any elements in there."
-                 FontSize="20" />
+                 FontSize="18" />
         </TextBlock>
     </Grid>
 </UserControl>

@@ -8,18 +8,24 @@
              VerticalAlignment="Center"
              HorizontalAlignment="Center">
 
-    <Grid>
-        <TextBlock Text=""
-                   FontFamily="Segoe UI Symbol"
-                   Foreground="#7AE3E3E3"
-                   FontSize="120"
-                   HorizontalAlignment="Center"
-                   TextAlignment="Center"
-                   VerticalAlignment="Center" />
-        <TextBlock Text="This artist doesn't have upcoming shows"
-                   FontSize="23"
-                   Style="{StaticResource SubheaderTextBlockStyle}"
-                   TextAlignment="Center"
-                   Margin="0,50,0,0" />
-    </Grid>
+   <Grid>
+    <Grid.RowDefinitions>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+    </Grid.RowDefinitions>
+    <TextBlock Text=""
+               FontFamily="Segoe UI Symbol"
+               Foreground="#7AE3E3E3"
+               FontSize="80"
+               HorizontalAlignment="Center"
+               TextAlignment="Center"
+               VerticalAlignment="Center" />
+    <TextBlock Grid.Row="1"
+               Style="{StaticResource SubheaderTextBlockStyle}"
+               VerticalAlignment="Center"
+               TextAlignment="Center">
+        <Run Text="This artist doesn't have upcoming shows"
+             FontSize="20" />
+    </TextBlock>
+  </Grid>
 </UserControl>
