@@ -32,16 +32,16 @@
         <Grid Grid.Row="0"
               Grid.RowSpan="2">
             <Ellipse Fill="{ThemeResource ApplicationThirdForegroundThemeBrush}"
-                     Height="60"
-                     Width="60" />
+                     Height="80"
+                     Width="80" />
             <FontIcon Glyph="{StaticResource BuddySymbol}"
                       FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets"
-                      FontSize="26"
+                      FontSize="29"
                       Foreground="{ThemeResource MainColor}" />
         </Grid>
         <Ellipse Grid.RowSpan="2"
-                 Height="60"
-                 Width="60">
+                 Height="80"
+                 Width="80">
             <Ellipse.Fill>
                 <ImageBrush Stretch="UniformToFill"
                             ImageSource="{Binding ArtistImage}" />
