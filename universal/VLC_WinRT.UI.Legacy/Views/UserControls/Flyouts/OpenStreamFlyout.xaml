@@ -12,10 +12,8 @@
     <Border RequestedTheme="Dark" 
             Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}"
             BorderBrush="DimGray"
-            BorderThickness="1">
-        <Grid VerticalAlignment="Center"
-              Background="WhiteSmoke"
-              Margin="12">
+            BorderThickness="1"
+            Padding="3">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="12"/>
@@ -45,6 +43,5 @@
                     </Button.Content>
                 </Button>
             </Grid>
-        </Grid>
     </Border>
 </Flyout>
