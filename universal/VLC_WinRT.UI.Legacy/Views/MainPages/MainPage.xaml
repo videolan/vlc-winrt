@@ -5,9 +5,18 @@
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:userControls="using:VLC_WinRT.Views.UserControls"
                 xmlns:controls="using:VLC_WinRT.Controls"
+                xmlns:local="using:Win2DBlurEffect"
+                xmlns:canvas="using:Microsoft.Graphics.Canvas.UI.Xaml"
                 mc:Ignorable="d"
                 RequestedTheme="Dark"
                 Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+  <canvas:CanvasAnimatedControl x:Name="Slideshower"
+                                Loaded="Slideshower_Loaded_1"
+                                IsFixedTimeStep="False"
+                                ClearColor="Black"
+                                TargetElapsedTime="0:0:0.3"/>
+
     <SwapChainPanel x:Name="SwapChainPanel"
                     x:FieldModifier="public"
                     Loaded="SwapPanelLoaded" />
@@ -16,10 +25,6 @@
                   AudioCategory="BackgroundCapableMedia" 
                   Loaded="MfMediaElement_Loaded"/>
 
-    <Image DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}"
-           Source="{Binding CurrentArtist.ArtistImage}"
-           Stretch="UniformToFill"
-           Opacity="0.2" />
 
     <controls:SplitShell x:Name="SplitShell"
                          x:FieldModifier="public"

@@ -15,6 +15,7 @@ using VLC_WinRT.Helpers;
 using VLC_WinRT.Services.RunTime;
 using VLC_WinRT.ViewModels;
 using Windows.UI.ViewManagement;
+using Slide2D;
 
 namespace VLC_WinRT.Views.MainPages
 {
@@ -24,7 +25,12 @@ namespace VLC_WinRT.Views.MainPages
         {
             InitializeComponent();
         }
-        
+
+        private void Slideshower_Loaded_1(object sender, RoutedEventArgs e)
+        {
+            Locator.Slideshow.Initialize(ref Slideshower);
+        }
+
         private void SwapPanelLoaded(object sender, RoutedEventArgs e)
         {
             Locator.VLCService.Initialize(SwapChainPanel);
