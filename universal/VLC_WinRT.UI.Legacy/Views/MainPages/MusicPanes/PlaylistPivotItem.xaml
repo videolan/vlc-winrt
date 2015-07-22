@@ -27,8 +27,6 @@
                 </triggers:EventTrigger>
             </triggers:Interactions.Triggers>
         </ListView>
-        <placeholder:NoPlaylistPlaceholder Margin="0,50,0,0"
-                                           VerticalAlignment="Center"
-                                           Visibility="{Binding TrackCollections.Count, Converter={StaticResource CountToVisibilityConverter}}" />
+        <placeholder:NoPlaylistPlaceholder Visibility="{Binding TrackCollections.Count, Converter={StaticResource CountToVisibilityConverter}}" />
     </Grid>
 </Page>

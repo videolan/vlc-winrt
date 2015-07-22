@@ -16,8 +16,7 @@
                               Source="{Binding GroupedAlbums}" />
     </UserControl.Resources>
     <Grid>
-        <controls:NothingToSeeHere Grid.Row="0"
-                                   Visibility="{Binding Albums.Count, Converter={StaticResource CountToVisibilityConverter}}" />
+        <controls:NothingToSeeHere Visibility="{Binding Albums.Count, Converter={StaticResource CountToVisibilityConverter}}" />
         <SemanticZoom Padding="0"
                       ViewChangeCompleted="SemanticZoom_OnViewChangeCompleted">
             <SemanticZoom.ZoomedInView>

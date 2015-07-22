@@ -29,7 +29,6 @@
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
         </ListView>
-        <placeholder:NoCameraVideos Margin="0,50,0,0"
-                                    Visibility="{Binding CameraRoll.Count, Converter={StaticResource CountToVisibilityConverter}}" />
+        <placeholder:NoCameraVideos Visibility="{Binding CameraRoll.Count, Converter={StaticResource CountToVisibilityConverter}}" />
     </Grid>
 </Page>

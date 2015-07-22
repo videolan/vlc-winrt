@@ -39,8 +39,6 @@
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
         </ListView>
-        <placeholder:NoVideosPlaceholder Grid.Row="1"
-                                         Margin="0,50,0,0"
-                                         Visibility="{Binding Videos.Count, Converter={StaticResource CountToVisibilityConverter}}" />
+        <placeholder:NoVideosPlaceholder Visibility="{Binding Videos.Count, Converter={StaticResource CountToVisibilityConverter}}" />
     </Grid>
 </Page>

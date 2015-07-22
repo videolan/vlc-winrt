@@ -59,8 +59,6 @@
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
         </ListView>
-        <placeholder:NoShowPlaceholder Grid.Row="1"
-                                       Margin="0,50,0,0"
-                                       Visibility="{Binding Shows.Count, Converter={StaticResource CountToVisibilityConverter}}" />
+        <placeholder:NoShowPlaceholder Visibility="{Binding Shows.Count, Converter={StaticResource CountToVisibilityConverter}}" />
     </Grid>
 </Page>
