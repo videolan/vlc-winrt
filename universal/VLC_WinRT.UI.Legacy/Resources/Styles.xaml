@@ -7,10 +7,10 @@
     </ResourceDictionary.MergedDictionaries>
 
     <!-- DEFAULT MARGINS -->
-    <Thickness x:Key="FrameMargin">12,0</Thickness>
-    <Thickness x:Key="FrameMarginBothSides">12</Thickness>
-    <x:Double x:Key="FrameMarginSides">12</x:Double>
-    <GridLength x:Key="FrameMarginGridLength">12</GridLength>
+    <Thickness x:Key="FrameMargin">20,0</Thickness>
+    <Thickness x:Key="FrameMarginBothSides">20</Thickness>
+    <x:Double x:Key="FrameMarginSides">20</x:Double>
+    <GridLength x:Key="FrameMarginGridLength">20</GridLength>
 
     <!-- ICONS AND SYMBOLS -->
     <!-- Segoe MLD2 Font -->
