@@ -10,11 +10,11 @@ namespace VLC_WinRT.Converters
         {
             if (value is StorageFolder)
             {
-                return App.Current.Resources["BasicFolderPath"].ToString();
+                return App.Current.Resources["FolderSymbol"];
             }
             else
             {
-                return App.Current.Resources["BasicFilePath"].ToString();
+                return App.Current.Resources["MultimediaFileSymbol"].ToString();
             }
         }
 
