@@ -8,10 +8,10 @@ namespace VLC_WinRT.Model.Video
         Normal,
         Compact
     }
+
     public static class TemplateSizer
     {
         private const int tileSize = 173;
-        const double contentGrid = 26;
         private const double contentGridWindows = 40;
         public static void ComputeCompactVideo(ItemsWrapGrid wrapGrid, double? width = null)
         {
