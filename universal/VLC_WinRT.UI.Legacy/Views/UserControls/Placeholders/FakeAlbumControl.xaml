@@ -13,7 +13,7 @@
             <RowDefinition Height="40" />
         </Grid.RowDefinitions>
         <Grid Grid.Row="0"
-              Background="{ThemeResource ApplicationThirdForegroundThemeBrush}">
+              Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}">
             <FontIcon Glyph="{StaticResource AlbumDiscSymbol}"
                       FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets"
                       FontSize="42"
@@ -27,12 +27,12 @@
             <Grid Width="95"
                   Height="13"
                   HorizontalAlignment="Left"
-                  Background="{ThemeResource ApplicationThirdForegroundThemeBrush}" />
+                  Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}"/>
             <Grid Grid.Row="1"
                   Height="13"
                   Width="60"
                   HorizontalAlignment="Left"
-                  Background="{ThemeResource ApplicationThirdForegroundThemeBrush}" />
+                  Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}" />
         </Grid>
     </Grid>
 </UserControl>

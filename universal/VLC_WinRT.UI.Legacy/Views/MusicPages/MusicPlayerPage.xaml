@@ -20,13 +20,12 @@
             <RowDefinition x:Name="PlayerRowDefinition" />
             <RowDefinition x:Name="PlaylistRowDefinition" />
         </Grid.RowDefinitions>
-        
+
         <musicNowPlayingControls:MusicNowPlayingFlipView x:Name="MusicNowPlaying"
                                                          Visibility="Collapsed" />
 
         <musicNowPlayingControls:PlaylistControl x:Name="PlaylistGrid"
                                                  VerticalAlignment="Bottom"
-                                                 Background="{ThemeResource ApplicationBackgroundQuarterTranslucentThemeBrush}"
                                                  Visibility="Collapsed" />
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>

@@ -8,7 +8,7 @@
              d:DesignHeight="300"
              d:DesignWidth="400">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}">
         <ScrollViewer>
             <StackPanel Margin="{StaticResource FrameMargin}">
                 <TextBlock Margin="0,12,0,0"

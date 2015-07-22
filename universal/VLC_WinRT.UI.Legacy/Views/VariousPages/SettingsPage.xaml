@@ -8,7 +8,7 @@
              mc:Ignorable="d">
 
     <Grid x:Name="RootGrid"
-          Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+          Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}"
           DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}">
         <ScrollViewer Style="{StaticResource VerticalScrollViewerStyle}">
             <StackPanel x:Name="RootPanel"

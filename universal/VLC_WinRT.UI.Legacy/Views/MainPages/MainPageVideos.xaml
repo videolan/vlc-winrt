@@ -19,14 +19,12 @@
                           Margin="{StaticResource FrameMargin}"
                           Grid.Row="1"
                           Loaded="MainPageVideoContentPresenter_OnLoaded" />
-        <Grid Background="{ThemeResource ApplicationBackgroundQuarterTranslucentThemeBrush}">
+        <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
                 <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <videoPanesControls:VideoPaneComboBox Grid.Column="1" />
-            <videoPanesControls:VideoPaneButtons Grid.Column="2" />
         </Grid>
     </Grid>
 </Page>
