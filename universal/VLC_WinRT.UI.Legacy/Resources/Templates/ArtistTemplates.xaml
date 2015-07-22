@@ -5,11 +5,6 @@
                     xmlns:winrtext="using:WinRTXamlToolkit.Controls.Extensions"
                     xmlns:userControls="using:VLC_WinRT.Views.UserControls">
 
-    <!-- WINDOWS PHONE -->
-    <DataTemplate x:Key="PhoneArtistSquareTemplate">
-        <userControls:ArtistItemTemplate />
-    </DataTemplate>
-
     <DataTemplate x:Key="ArtistHorizontalTemplate">
         <userControls:ArtistHorizontalTemplate />
     </DataTemplate>
