@@ -9,46 +9,89 @@
              d:DesignWidth="400"
              DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}"
              Visibility="{Binding MenuBarDisplayed, Converter={StaticResource BooleanToVisibilityConverter}}">
-    <Grid Height="60"
-          Background="{ThemeResource ApplicationThirdForegroundThemeBrush}">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="12" />
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="12" />
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="12" />
-        </Grid.ColumnDefinitions>
-        <AppBarButton Grid.Column="1"
-                      VerticalAlignment="Center"
-                      Style="{StaticResource AppBarButtonStyleHorizontal}"
-                      Label="file"
-                      Command="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.PickVideoCommand}">
+    <Grid Height="120">
+        <Grid.RowDefinitions>
+          <RowDefinition />
+          <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid>
+          <Grid.ColumnDefinitions>
+              <ColumnDefinition />
+              <ColumnDefinition Width="Auto" />
+              <ColumnDefinition Width="12" />
+              <ColumnDefinition Width="Auto" />
+              <ColumnDefinition Width="12" />
+              <ColumnDefinition Width="Auto" />
+              <ColumnDefinition Width="12" />
+          </Grid.ColumnDefinitions>
+
+          <AppBarButton Grid.Column="1"
+                        VerticalAlignment="Center"
+                        Style="{StaticResource AppBarButtonStyleHorizontal}"
+                        Label="file"
+                        Command="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.PickVideoCommand}">
+              <AppBarButton.Icon>
+                  <FontIcon Glyph="{StaticResource OpenFileSymbol}"
+                            FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+              </AppBarButton.Icon>
+          </AppBarButton>
+          <AppBarButton Grid.Column="3"
+                        VerticalAlignment="Center"
+                        Style="{StaticResource AppBarButtonStyleHorizontal}"
+                        Label="stream"
+                        Flyout="{StaticResource PhoneOpenStreamFlyout}">
+              <AppBarButton.Icon>
+                  <FontIcon Glyph="{StaticResource StreamSymbol}"
+                            FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+              </AppBarButton.Icon>
+          </AppBarButton>
+          <AppBarButton Grid.Column="5"
+                        VerticalAlignment="Center"
+                        Label="settings"
+                        Style="{StaticResource AppBarButtonStyleHorizontal}"
+                        Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToSettingsPageCommand}">
+              <AppBarButton.Icon>
+                  <FontIcon Glyph="{StaticResource SettingsSymbol}"
+                            FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+              </AppBarButton.Icon>
+          </AppBarButton>
+
+        </Grid>
+
+        <Grid Grid.Row="1">
+          <Grid.ColumnDefinitions>
+              <ColumnDefinition />
+              <ColumnDefinition Width="Auto" />
+              <ColumnDefinition Width="12" />
+              <ColumnDefinition Width="Auto" />
+              <ColumnDefinition Width="12" />
+          </Grid.ColumnDefinitions>
+          <AppBarButton Grid.Column="1"
+                        VerticalAlignment="Center"
+                        Label="refresh video library"
+                        Style="{StaticResource AppBarButtonStyleHorizontal}"
+                        DataContext="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM}"
+                        Command="{Binding StartVideoIndexingCommand}"
+                        IsEnabled="{Binding IsBusy, Converter={StaticResource BooleanNegationConverter}}">
             <AppBarButton.Icon>
-                <FontIcon Glyph="{StaticResource OpenFileSymbol}"
+                <FontIcon Glyph="{StaticResource RefreshSymbol}"
                           FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
             </AppBarButton.Icon>
-        </AppBarButton>
-        <AppBarButton Grid.Column="3"
-                      VerticalAlignment="Center"
-                      Style="{StaticResource AppBarButtonStyleHorizontal}"
-                      Label="stream"
-                      Flyout="{StaticResource PhoneOpenStreamFlyout}">
-            <AppBarButton.Icon>
-                <FontIcon Glyph="{StaticResource StreamSymbol}"
-                          FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
-            </AppBarButton.Icon>
-        </AppBarButton>
-        <AppBarButton Grid.Column="5"
-                      VerticalAlignment="Center"
-                      Label="settings"
-                      Style="{StaticResource AppBarButtonStyleHorizontal}"
-                      Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToSettingsPageCommand}">
-            <AppBarButton.Icon>
-                <FontIcon Glyph="{StaticResource SettingsSymbol}"
-                          FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
-            </AppBarButton.Icon>
-        </AppBarButton>
+          </AppBarButton>
+
+          <AppBarButton x:Name="RefreshButton"
+                        Grid.Column="3"
+                        VerticalAlignment="Center"
+                        Label="refresh music library"
+                        Style="{StaticResource AppBarButtonStyleHorizontal}"
+                        DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}"
+                        Command="{Binding StartMusicIndexingCommand}"
+                        IsEnabled="{Binding IsBusy, Converter={StaticResource BooleanNegationConverter}}">
+              <AppBarButton.Icon>
+                  <FontIcon Glyph="{StaticResource RefreshSymbol}"
+                            FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+              </AppBarButton.Icon>
+          </AppBarButton>
+        </Grid>
     </Grid>
 </UserControl>
