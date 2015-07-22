@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:controls="using:VLC_WINRT.Views.Controls"
+             xmlns:userControls="using:VLC_WinRT.Views.UserControls"
              xmlns:triggers="using:WinRT.Triggers"
              mc:Ignorable="d"
              d:DesignHeight="300"
@@ -12,40 +13,25 @@
              DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}"
              Visibility="{Binding CurrentPage, Converter={StaticResource PageToVisibilityConverter},ConverterParameter='VideoPlayerPage'}">
 
-    <Grid x:Name="ColumnGrid"
+  <Grid x:Name="ColumnGrid"
           Height="60"
           MinWidth="320"
-          Background="{Binding IsBackground, Converter={StaticResource BooleanToMainColorConverter}}"
           RequestedTheme="Dark">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
             <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
             <ColumnDefinition />
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
-        <StackPanel x:Name="VLCHeader" 
-                    Orientation="Horizontal"
-                    Width="80"                    
-                    Margin="0,0,12,0"
-                    Grid.Column="1"
-                    VerticalAlignment="Center"
-                    Visibility="{Binding CanGoBack, Converter={StaticResource NegatedBooleanToVisibilityConverter}}">
-            <Path Data="{StaticResource VLCFlatPath}"
-                  Fill="White"
-                  Width="26"
-                  Stretch="Uniform" />
-            <TextBlock Text="VLC"
-                       Foreground="{ThemeResource BasicForeground}"
-                       Style="{StaticResource SubheaderTextBlockStyle}"
-                       Margin="6,-5,0,0" />
-        </StackPanel>
         <Grid Grid.Column="1"
               Visibility="{Binding CanGoBack, Converter={StaticResource BooleanToVisibilityConverter}}"
               Margin="0,0,12,0">
             <AppBarButton Style="{StaticResource AppBarButtonStyleHorizontal}"
                           VerticalAlignment="Center"
+                          HorizontalAlignment="Right"
                           Click="GoBack_Click"
-                          Width="80">
+                          Width="50">
                 <AppBarButton.Icon>
                     <FontIcon Glyph="{StaticResource PreviousPageSymbol}"
                               Margin="0,3,0,0"
@@ -79,27 +65,73 @@
                 </TransitionCollection>
             </ListView.ItemContainerTransitions>
         </ListView>
-        <AppBarButton Grid.Column="3"
+
+        <AppBarButton Grid.Column="4"
                       DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}"
-                      Visibility="{Binding MenuBarDisplayed, Converter={StaticResource NegatedBooleanToVisibilityConverter}}"
                       VerticalAlignment="Center"
                       Style="{StaticResource AppBarButtonStyleHorizontal}"
-                      Command="{Binding DisplayMenuBarControlToggleCommand}">
+                      Command="{Binding DisplayMenuBarControlToggleCommand}"
+                      Width="50">
             <AppBarButton.Icon>
-                <FontIcon Glyph="{StaticResource ChevronToBottomSymbol}"
+                <FontIcon Glyph="{StaticResource VerticalDotsSymbol}"
+                          FontFamily="Segoe UI Symbol" />
+            </AppBarButton.Icon>
+        </AppBarButton>
+
+        <userControls:FocusTextBox x:Name="MusicSearchBox"
+                                   Grid.Column="3"
+                                   Text="{Binding SearchTag}"
+                                   PlaceholderText="search"
+                                   Height="30"
+                                   Width="210"
+                                   HorizontalAlignment="Right"
+                                   Margin="0,0,12,0"
+                                   TextChanged="TextBox_TextChanged"/>
+
+        <AppBarButton x:Name="SearchButton"
+                      Grid.Column="3"
+                      HorizontalAlignment="Right"
+                      Style="{StaticResource AppBarButtonStyleHorizontal}"
+                      Command="{Binding Source={StaticResource Locator}, Path=MainVM.ChangeMainPageMusicViewCommand}"
+                      CommandParameter="4">
+            <AppBarButton.Icon>
+                <FontIcon Glyph="{StaticResource SearchSymbol}"
                           FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
             </AppBarButton.Icon>
         </AppBarButton>
-        <AppBarButton Grid.Column="3"
-                      DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}"
-                      Visibility="{Binding MenuBarDisplayed, Converter={StaticResource BooleanToVisibilityConverter}}"
-                      VerticalAlignment="Center"
-                      Style="{StaticResource AppBarButtonStyleHorizontal}"
-                      Command="{Binding DisplayMenuBarControlToggleCommand}">
-            <AppBarButton.Icon>
-                <FontIcon Glyph="{StaticResource ChevronToTopSymbol}"
-                          FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
-            </AppBarButton.Icon>
-        </AppBarButton> 
+
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="Minimal">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MusicSearchBox"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Collapsed" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SearchButton"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Normal">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SearchButton"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Collapsed" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MusicSearchBox"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
     </Grid>
 </UserControl>
