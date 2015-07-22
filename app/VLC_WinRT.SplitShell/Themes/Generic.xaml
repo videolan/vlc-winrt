@@ -14,7 +14,7 @@
                                                                Storyboard.TargetProperty="Visibility">
                                     <DiscreteObjectKeyFrame KeyTime="0"
                                                             Value="Visible" />
-                                </ObjectAnimationUsingKeyFrames>            
+                                </ObjectAnimationUsingKeyFrames>
                                 <DoubleAnimationUsingKeyFrames Storyboard.TargetName="RightFlyoutGridContainer"
                                                                Storyboard.TargetProperty="Opacity">
                                     <EasingDoubleKeyFrame KeyTime="0:0:0.4"
@@ -60,7 +60,7 @@
                                                              EasingMode="EaseOut" />
                                         </EasingDoubleKeyFrame.EasingFunction>
                                     </EasingDoubleKeyFrame>
-                                </DoubleAnimationUsingKeyFrames>                                
+                                </DoubleAnimationUsingKeyFrames>
                                 <DoubleAnimationUsingKeyFrames Storyboard.TargetName="RightFlyoutGridContainer"
                                                                Storyboard.TargetProperty="Opacity">
                                     <EasingDoubleKeyFrame KeyTime="0:0:0.4"
@@ -90,7 +90,7 @@
                                           Grid.Row="1" />
                         <ContentPresenter x:Name="ContentPresenter"
                                           Grid.Row="2" />
-                        <ContentPresenter x:Name="FooterContentPresenter" 
+                        <ContentPresenter x:Name="FooterContentPresenter"
                                           Grid.Row="3"
                                           HorizontalAlignment="Stretch"/>
 
@@ -99,7 +99,7 @@
                               Grid.RowSpan="3"
                               Background="#50000000"
                               Opacity="0">
-                            <Grid Background="Transparent" 
+                            <Grid Background="Transparent"
                                   x:Name="FlyoutBackgroundGrid"/>
                             <ContentPresenter x:Name="RightFlyoutContentPresenter"
                                               HorizontalAlignment="Right"
