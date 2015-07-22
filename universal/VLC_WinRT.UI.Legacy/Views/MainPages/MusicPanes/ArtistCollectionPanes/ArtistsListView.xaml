@@ -14,96 +14,27 @@
                               x:Name="GroupArtists"
                               IsSourceGrouped="True"
                               Source="{Binding GroupedArtists}" />
-        
-        <DataTemplate x:Key="ListViewHeaderTemplate">
-            <Button Style="{StaticResource TextBlockButtonStyle}"
-                    Command="{Binding ResetCurrentArtistAndAlbumCommand}">
-                <Grid Margin="0,0,0,12">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="12" />
-                        <ColumnDefinition />
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition />
-                        <RowDefinition />
-                    </Grid.RowDefinitions>
-                    <Grid Grid.Row="0"
-                      Grid.RowSpan="2">
-                        <Ellipse Fill="{ThemeResource MainColor}"
-                                             Height="60"
-                                             Width="60" />
-                        <FontIcon Glyph="{StaticResource BuddySymbol}"
-                                              FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets"
-                                              FontSize="26"
-                                              Foreground="{ThemeResource ApplicationThirdForegroundThemeBrush}" />
-                    </Grid>
-                    <TextBlock Grid.Column="2"
-                           Grid.Row="0"
-                           Text="All artists"
-                           FontSize="21"
-                           FontWeight="Light"
-                           VerticalAlignment="Bottom" />
-                    <TextBlock Grid.Column="2"
-                           Grid.Row="1"
-                           Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
-                           VerticalAlignment="Top"
-                           FontWeight="SemiLight">
-                        <Run Text="{Binding Albums.Count}" />
-                        <Run Text="albums," />
-                        <Run Text="{Binding Tracks.Count}" />
-                        <Run Text="tracks" />
-                    </TextBlock>
-                </Grid>
-            </Button>
-        </DataTemplate>
     </UserControl.Resources>
 
     <Grid Margin="-12,0,-12,0">
-        <Grid.RowDefinitions>
-            <RowDefinition x:Name="HeaderRowDefinition" 
-                           Height="40" />
-            <RowDefinition />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition Width="Auto" />
-        </Grid.ColumnDefinitions>
-        <TextBlock Margin="{StaticResource FrameMargin}"
-                   Style="{StaticResource LittleHeaderTextBlockStyle}"
-                   TextWrapping="NoWrap"
-                   TextTrimming="CharacterEllipsis">
-            <Run Text="{Binding Artists.Count}" />
-            <Run Text="ARTISTS" />
-        </TextBlock>
-        <AppBarButton Grid.Column="1"
-                      Label="Play all"
-                      HorizontalAlignment="Right"
-                      Style="{StaticResource AppBarButtonStyleHorizontal}"
-                      Command="{Binding PlayAllSongsCommand}"
-                      Margin="0,0,12,0">
-            <AppBarButton.Icon>
-                <FontIcon Glyph="{StaticResource PlaySymbol}"
-                          FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
-            </AppBarButton.Icon>
-        </AppBarButton>
         <SemanticZoom x:Name="SemanticZoom"
-                      Grid.Row="1"
-                      Grid.Column="0"
-                      Grid.ColumnSpan="2"
                       Padding="0"
                       Margin="{StaticResource FrameMargin}"
                       IsZoomOutButtonEnabled="False"
                       ViewChangeCompleted="SemanticZoom_OnViewChangeCompleted">
             <SemanticZoom.ZoomedInView>
                 <ListView x:Name="ArtistListView"
-                          IsItemClickEnabled="False"
+                          IsItemClickEnabled="True"
                           ItemsSource="{Binding Artists}"
-                          SelectedItem="{Binding CurrentArtist}"
-                          SelectionMode="Single"                          
+                          SelectionMode="None"
                           ItemContainerStyle="{StaticResource ListViewItemStyle}"
-                          ItemTemplate="{StaticResource ArtistHorizontalTemplate}"
-                          SelectionChanged="ArtistListView_SelectionChanged">
+                          ItemTemplate="{StaticResource ArtistHorizontalTemplate}">
+                    <triggers:Interactions.Triggers>
+                        <triggers:EventTrigger EventName="ItemClick">
+                            <triggers:InvokeCommandAction Command="{Binding ArtistClickedCommand}"
+                                                          PassEventArgsToCommand="True" />
+                        </triggers:EventTrigger>
+                    </triggers:Interactions.Triggers>
                     <ListView.GroupStyle>
                         <GroupStyle>
                             <GroupStyle.HeaderTemplate>

@@ -47,12 +47,37 @@
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <musicPanesControls:AlbumsCollectionButtons Visibility="{Binding MusicView, Converter={StaticResource MusicViewVisibilityConverter}, ConverterParameter='0'}" />
-                <musicPanesControls:MusicPaneButtons Grid.Column="1"
-                                                     Visibility="{Binding MusicView, Converter={StaticResource MusicViewVisibilityConverter}, ConverterParameter='0,1,2'}" />
+                <AppBarButton Grid.Column="1"
+                			  Label="Play all"
+                              HorizontalAlignment="Right"
+				              Foreground="{StaticResource MainColor}"
+                              Style="{StaticResource AppBarButtonStyleHorizontal}"
+                              Command="{Binding PlayAllSongsCommand}"
+                              Margin="0,0,12,0">
+                    <AppBarButton.Icon>
+                        <FontIcon Glyph="{StaticResource PlaySymbol}"
+                                  FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+                    </AppBarButton.Icon>
+                </AppBarButton>
+                  <AppBarButton x:Name="ShuffleButton"
+			                    Grid.Column="2"
+                  				Visibility="{Binding MusicView, Converter={StaticResource MusicViewVisibilityConverter}, ConverterParameter='0,1,2'}"
+				                Label="Shuffle all"
+				                Style="{StaticResource AppBarButtonStyleHorizontal}"
+				                Margin="6,0"
+				                Foreground="{StaticResource MainColor}"
+				                Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.PlayAllRandomCommand}">
+				      <AppBarButton.Icon>
+				          <FontIcon Glyph="{StaticResource ShuffleSymbol}"
+				                    FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+				      </AppBarButton.Icon>
+				  </AppBarButton>
+
                 <AppBarButton x:Uid="NewPlaylist"
-                              Grid.Column="2"
+                              Grid.Column="3"
                               Label="new playlist"
                               Style="{StaticResource AppBarButtonStyleHorizontal}"
                       Foreground="{StaticResource MainColor}"
@@ -65,60 +90,7 @@
                                   FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
                     </AppBarButton.Icon>
                 </AppBarButton>
-                <AppBarButton x:Name="SearchButton"
-                              Grid.Column="3"
-                              Style="{StaticResource AppBarButtonStyleHorizontal}"
-                      Foreground="{StaticResource MainColor}"
-                              Command="{Binding Source={StaticResource Locator}, Path=MainVM.ChangeMainPageMusicViewCommand}"
-                              CommandParameter="4">
-                    <AppBarButton.Icon>
-                        <FontIcon Glyph="{StaticResource SearchSymbol}"
-                                  FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
-                    </AppBarButton.Icon>
-                </AppBarButton>
-                <userControls:FocusTextBox x:Name="MusicSearchBox"
-                                           Grid.Column="3"
-                                           Text="{Binding SearchTag}"
-                                           PlaceholderText="search an album"
-                                           Height="30"
-                                           Width="250"
-                                           TextChanged="TextBox_TextChanged"
-                                           HorizontalAlignment="Right" 
-                                           RequestedTheme="Light"/>
             </Grid>
         </Grid>
-
-        <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup>
-                <VisualState x:Name="Minimal">
-                    <Storyboard>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SearchButton"
-                                                       Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Visible" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MusicSearchBox"
-                                                       Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Collapsed" />
-                        </ObjectAnimationUsingKeyFrames>
-                    </Storyboard>
-                </VisualState>
-                <VisualState x:Name="Normal">
-                    <Storyboard>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SearchButton"
-                                                       Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Collapsed" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MusicSearchBox"
-                                                       Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Visible" />
-                        </ObjectAnimationUsingKeyFrames>
-                    </Storyboard>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
     </Grid>
 </Page>

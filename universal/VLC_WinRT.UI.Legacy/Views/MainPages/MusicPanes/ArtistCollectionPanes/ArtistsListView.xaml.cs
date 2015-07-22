@@ -19,8 +19,6 @@ namespace VLC_WinRT.Views.MainPages.MusicPanes.ArtistCollectionPanes
 
         async void ArtistCollectionBase_Loaded(object sender, RoutedEventArgs e)
         {
-            this.SizeChanged += ArtistsListView_SizeChanged;
-            this.Unloaded += ArtistsListView_Unloaded;
             await Locator.MusicLibraryVM.MusicCollectionLoaded.Task;
             if(Locator.MusicLibraryVM.Artists.Count > Numbers.SemanticZoomItemCountThreshold)
             {
@@ -32,42 +30,9 @@ namespace VLC_WinRT.Views.MainPages.MusicPanes.ArtistCollectionPanes
             }
         }
 
-        private void ArtistsListView_Unloaded(object sender, RoutedEventArgs e)
-        {
-            this.SizeChanged -= ArtistsListView_SizeChanged;
-        }
-
-        private void ArtistsListView_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            Responsive();
-        }
-
-        void Responsive()
-        {
-            if (Window.Current.Bounds.Width >= 800)
-            {
-                HeaderRowDefinition.Height = new GridLength(40) ;
-                ArtistListView.HeaderTemplate = this.Resources["ListViewHeaderTemplate"] as DataTemplate;
-            }
-            else
-            {
-                HeaderRowDefinition.Height = new GridLength(0);
-                ArtistListView.HeaderTemplate = null;
-            }
-        }
-
         private void SemanticZoom_OnViewChangeCompleted(object sender, SemanticZoomViewChangedEventArgs e)
         {
             ArtistsZoomedOutView.ItemsSource = GroupArtists.View.CollectionGroups;
-        }
-        
-        private void ArtistListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (!e.AddedItems.Any()) return;
-            var artist = e.AddedItems[0] as ArtistItem;
-            if (Window.Current.Bounds.Width >= 800)
-                Locator.MusicLibraryVM.CurrentArtist = artist;
-            else Locator.MusicLibraryVM.ArtistClickedCommand.Execute(artist);
         }
     }
 }

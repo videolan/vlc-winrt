@@ -22,11 +22,6 @@ namespace VLC_WinRT.Views.MainPages.MainVideoControls
             Responsive(Window.Current.Bounds.Width);
             Window.Current.SizeChanged += Current_SizeChanged;
             this.Unloaded += SearchVideoPage_Unloaded;
-
-            var videoPane = (App.ApplicationFrame.Content as MainPageVideos).GetDescendantsOfType<VideoPaneButtons>().FirstOrDefault();
-            var textbox = videoPane.GetFirstDescendantOfType<TextBox>();
-            textbox.Focus(FocusState.Keyboard);
-            textbox.SelectionStart = 0;
         }
 
         void Current_SizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)
