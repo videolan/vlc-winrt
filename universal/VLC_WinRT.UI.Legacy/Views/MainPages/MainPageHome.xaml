@@ -22,7 +22,7 @@
             <ListView x:Name="AlbumsListView"
                       DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}"
                       ItemsSource="{Binding RandomAlbums}"
-                      ItemTemplate="{StaticResource PhoneSemanticZoomInViewAlbumTemplateLittleSize}"
+                      ItemTemplate="{StaticResource AlbumItemTemplate}"
                       ItemContainerStyle="{StaticResource ListViewItemStyle}"
                       IsItemClickEnabled="True"
                       SelectionMode="None"

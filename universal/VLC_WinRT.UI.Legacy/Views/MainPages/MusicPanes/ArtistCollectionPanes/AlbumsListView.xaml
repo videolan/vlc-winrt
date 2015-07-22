@@ -70,7 +70,7 @@
               Grid.Row="1"
               Margin="{StaticResource FrameMargin}"
               ItemsSource="{Binding Albums}"
-              ItemTemplate="{StaticResource PhoneSemanticZoomInViewAlbumTemplateLittleSize}"
+              ItemTemplate="{StaticResource AlbumItemTemplate}"
               IsItemClickEnabled="False"
               SelectionMode="Single"
               ItemContainerStyle="{StaticResource ListViewItemStyle}"

@@ -8,14 +8,14 @@
                     xmlns:userControls="using:VLC_WinRT.Views.UserControls"
                     xmlns:placeholders="using:VLC_WinRT.Views.UserControls.Placeholders">
 
-    <DataTemplate x:Key="PhoneSemanticZoomInViewAlbumTemplateLittleSize">
+    <DataTemplate x:Key="AlbumItemTemplate">
         <userControls:AlbumItem />
-    </DataTemplate>  
-    
+    </DataTemplate>
+
     <DataTemplate x:Key="AlbumHorizontalTemplate">
         <userControls:AlbumHorizontalTemplate />
     </DataTemplate>
-    
+
     <DataTemplate x:Key="FakeAlbumTemplate">
         <placeholders:FakeAlbumControl />
     </DataTemplate>

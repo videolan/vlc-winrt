@@ -42,7 +42,7 @@
                   Grid.Column="0"
                   Grid.ColumnSpan="3"
                   ItemsSource="{Binding SearchResults}"
-                  ItemTemplate="{StaticResource PhoneSemanticZoomInViewAlbumTemplateLittleSize}"
+                  ItemTemplate="{StaticResource AlbumItemTemplate}"
                   ItemContainerStyle="{StaticResource ListViewItemStyle}"
                   IsItemClickEnabled="True"
                   SelectionMode="None"
