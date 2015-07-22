@@ -126,6 +126,7 @@ namespace VLC_WinRT.Services.RunTime
 
         public Media GetMediaFromPath(string filePath)
         {
+            if (Instance == null) return null;
             if (string.IsNullOrEmpty(filePath))
                 return null;
             return new Media(Instance, filePath, FromType.FromPath);
