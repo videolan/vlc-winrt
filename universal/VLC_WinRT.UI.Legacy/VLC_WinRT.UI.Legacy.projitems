@@ -69,9 +69,6 @@
     <Page Include="$(MSBuildThisFileDirectory)Views\MainPages\MainVideoControls\ShowsPivotItem.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Views\MainPages\MainVideoControls\VideoPanesControls\VideoPaneButtons.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\MainPages\MainVideoControls\VideoPanesControls\VideoPaneComboBox.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -91,9 +88,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\MainPages\MusicPanes\MusicPanesControls\AlbumsCollectionButtons.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Views\MainPages\MusicPanes\MusicPanesControls\MusicPaneButtons.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\MainPages\MusicPanes\MusicSearchPane.xaml">
@@ -163,9 +157,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\ArtistHorizontalTemplate.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\ArtistItemTemplate.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\BottomMiniPlayer.xaml">
@@ -314,9 +305,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\MainPages\MainVideoControls\ShowsPivotItem.xaml.cs">
       <DependentUpon>ShowsPivotItem.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\MainPages\MainVideoControls\VideoPanesControls\VideoPaneButtons.xaml.cs">
-      <DependentUpon>VideoPaneButtons.xaml</DependentUpon>
-    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\MainPages\MainVideoControls\VideoPanesControls\VideoPaneComboBox.xaml.cs">
       <DependentUpon>VideoPaneComboBox.xaml</DependentUpon>
     </Compile>
@@ -337,9 +325,6 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\MainPages\MusicPanes\MusicPanesControls\AlbumsCollectionButtons.xaml.cs">
       <DependentUpon>AlbumsCollectionButtons.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\MainPages\MusicPanes\MusicPanesControls\MusicPaneButtons.xaml.cs">
-      <DependentUpon>MusicPaneButtons.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\MainPages\MusicPanes\MusicSearchPane.xaml.cs">
       <DependentUpon>MusicSearchPane.xaml</DependentUpon>
@@ -409,9 +394,6 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\ArtistHorizontalTemplate.xaml.cs">
       <DependentUpon>ArtistHorizontalTemplate.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\ArtistItemTemplate.xaml.cs">
-      <DependentUpon>ArtistItemTemplate.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\BottomMiniPlayer.xaml.cs">
       <DependentUpon>BottomMiniPlayer.xaml</DependentUpon>
