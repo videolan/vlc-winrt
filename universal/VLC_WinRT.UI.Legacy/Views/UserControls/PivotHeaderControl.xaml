@@ -30,6 +30,11 @@
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="24" />
                         </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Title"
+                                                       Storyboard.TargetProperty="Width">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="120" />
+                        </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
                 <VisualState x:Name="HalfSnap">
@@ -43,6 +48,11 @@
                                                        Storyboard.TargetProperty="FontSize">
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="19" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Title"
+                                                       Storyboard.TargetProperty="Width">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="75" />
                         </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
