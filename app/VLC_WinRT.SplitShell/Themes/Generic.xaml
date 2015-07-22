@@ -95,8 +95,8 @@
                                           HorizontalAlignment="Stretch"/>
 
                         <Grid x:Name="RightFlyoutGridContainer"
-                              Grid.Row="1"
-                              Grid.RowSpan="3"
+                              Grid.Row="2"
+                              Grid.RowSpan="2"
                               Background="#50000000"
                               Opacity="0">
                             <Grid Background="Transparent"
