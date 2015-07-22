@@ -19,6 +19,7 @@ using VLC_WinRT.ViewModels.MusicVM;
 using VLC_WinRT.ViewModels.VideoVM;
 using VLC_WinRT.Services.RunTime;
 using VLC_WinRT.Utils;
+using Slide2D;
 
 namespace VLC_WinRT.ViewModels
 {
@@ -60,5 +61,7 @@ namespace VLC_WinRT.ViewModels
         public static NavigationService NavigationService => App.Container?.Resolve<NavigationService>();
 
         public static VLCService VLCService => App.Container?.Resolve<VLCService>();
+
+        public static MetroSlideshow Slideshow => App.Container?.Resolve<MetroSlideshow>();
     }
 }
