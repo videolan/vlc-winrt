@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>ad0c8b4f-7a03-42cc-b8da-bf8d50df822b</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>VLC_WinRT.Slideshow</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Images\Img.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Images\ImgClassicSlideshow.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Images\ImgGridSlideshow.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Images\ImgSlideshow.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Slideshow.cs" />
+  </ItemGroup>
+</Project>
