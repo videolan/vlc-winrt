@@ -129,9 +129,9 @@ namespace VLC_WinRT.ViewModels
             _isInternet = NetworkListenerService.IsConnected;
             
             Panels.Add(new Panel(Strings.Home, 0, App.Current.Resources["HomeSymbol"].ToString(), true));
-            Panels.Add(new Panel(Strings.Videos, 1, App.Current.Resources["VideoSymbol"].ToString()));
+            Panels.Add(new Panel(Strings.Videos, 1, App.Current.Resources["MovieSymbol"].ToString()));
             Panels.Add(new Panel(Strings.Music, 2, App.Current.Resources["MusicSymbol"].ToString()));
-            Panels.Add(new Panel(Strings.FileExplorer, 3, App.Current.Resources["FolderSymbol"].ToString()));
+            Panels.Add(new Panel(Strings.FileExplorer, 3, App.Current.Resources["FileExplorerSymbol"].ToString()));
             Initialize();
 
             CoreWindow.GetForCurrentThread().Activated += ApplicationState_Activated;
