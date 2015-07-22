@@ -33,7 +33,7 @@ namespace VLC_WinRT.Helpers
                 if (bb != null)
                 {
                     var appViewProperties = bb.GetType().DeclaredProperties;
-                    bb.BackgroundColor = (Color)App.Current.Resources["StatusBarColorBase"];
+                    bb.BackgroundColor = (Color)App.Current.Resources["ApplicationBarForegroundThemeColor"];
                     bb.ForegroundColor = Colors.WhiteSmoke;
 
                     bb.ButtonForegroundColor = Colors.WhiteSmoke;
@@ -44,7 +44,7 @@ namespace VLC_WinRT.Helpers
                     if (DoesPropertyExist("InactiveForegroundColor", appViewProperties))
                         bb.InactiveForegroundColor = Colors.WhiteSmoke;
 
-                    bb.ButtonBackgroundColor = (Color)App.Current.Resources["StatusBarColorBase"];
+                    bb.ButtonBackgroundColor = (Color)App.Current.Resources["ApplicationBarForegroundThemeColor"];
                     if (DoesPropertyExist("ButtonInactiveBackgroundColor", appViewProperties))
                         bb.ButtonInactiveBackgroundColor = (Color)App.Current.Resources["InactiveMainColorBase"];
                 }
