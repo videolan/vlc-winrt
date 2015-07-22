@@ -3127,7 +3127,7 @@
         <Setter Property="FontSize"
                 Value="18" />
     </Style>
-    
+
     <Thickness x:Key="TextControlThemePadding">10,3,10,5</Thickness>
     <x:Double x:Key="TextControlBorderThemeThickness">1</x:Double>
     <Style x:Key="FocusTextBoxStyle"
