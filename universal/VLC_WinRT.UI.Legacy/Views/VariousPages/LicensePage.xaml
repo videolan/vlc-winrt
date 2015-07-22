@@ -27,7 +27,7 @@
                             <LineBreak />
                             <LineBreak />
                             <Run Text="Sources"
-                                 FontSize="22" />                            
+                                 FontSize="22" />
                             <LineBreak />
                             <Run Text="The sources to this application can be retrieved at http://git.videolan.org/?p=vlc-ports/winrt.git" />
                             <LineBreak />
@@ -36,7 +36,7 @@
                             <LineBreak />
                             <LineBreak />
                             <Run Text="Libraries"
-                                 FontSize="22" />                            
+                                 FontSize="22" />
                             <LineBreak />
                             <Run Text="Some VLC plugins use external libraries that make extensive use of the following persons' or companies' code:" />
                             <LineBreak />
