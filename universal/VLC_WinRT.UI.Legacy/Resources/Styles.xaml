@@ -3145,7 +3145,7 @@
         <Setter Property="SelectionHighlightColor"
                 Value="{ThemeResource TextSelectionHighlightColorThemeBrush}" />
         <Setter Property="BorderThickness"
-                Value="{ThemeResource TextControlBorderThemeThickness}" />
+                Value="0" />
         <Setter Property="FontFamily"
                 Value="{ThemeResource ContentControlThemeFontFamily}" />
         <Setter Property="FontSize"
@@ -3230,13 +3230,13 @@
                                                 <Border x:Name="BackgroundElement"
                                                         Background="{ThemeResource TextBoxButtonBackgroundThemeBrush}"
                                                         Margin="{TemplateBinding BorderThickness}">
-                                                    <TextBlock x:Name="GlyphElement"
-                                                               Foreground="{ThemeResource TextBoxButtonForegroundThemeBrush}"
+                                                    <FontIcon x:Name="GlyphElement"
+                                                               Foreground="{ThemeResource BasicForeground}"
                                                                VerticalAlignment="Center"
                                                                HorizontalAlignment="Center"
                                                                FontStyle="Normal"
-                                                               Text="&#xE0A4;"
-                                                               FontFamily="{ThemeResource SymbolThemeFontFamily}"
+                                                               FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets"
+                                                               Glyph="{StaticResource CloseSymbol}"
                                                                AutomationProperties.AccessibilityView="Raw" />
                                                 </Border>
                                             </Grid>
@@ -3351,10 +3351,11 @@
                                       IsVerticalRailEnabled="{TemplateBinding ScrollViewer.IsVerticalRailEnabled}"
                                       IsDeferredScrollingEnabled="{TemplateBinding ScrollViewer.IsDeferredScrollingEnabled}"
                                       Margin="{TemplateBinding BorderThickness}"
+                                      Foreground="{ThemeResource BasicForeground}"
                                       Padding="{TemplateBinding Padding}"
                                       IsTabStop="False"
                                       AutomationProperties.AccessibilityView="Raw"
-                                      ZoomMode="Disabled" 
+                                      ZoomMode="Disabled"
                                       VerticalAlignment="Center"/>
                         <ContentControl x:Name="PlaceholderTextContentPresenter"
                                         Grid.Row="1"
