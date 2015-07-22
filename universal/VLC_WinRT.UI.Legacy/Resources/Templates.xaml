@@ -41,24 +41,14 @@
     <DataTemplate x:Key="FolderDataTemplate">
         <StackPanel Orientation="Horizontal"
                     Width="300">
-            <Path Height="35"
-                  Width="35"
-                  Stretch="UniformToFill"
-                  Fill="WhiteSmoke"
-                  Data="M0,23.667L64,23.667 64,52.667 0,52.667z M0,0L25.802,0 25.802,6.862999 64,6.862999 64,14.818 0,14.818 0,13.727 0,6.862999z" />
-            <TextBlock Margin="15,0,0,0"
+            <FontIcon Foreground="WhiteSmoke"
+                      FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" 
+                      Glyph="{Binding Converter={StaticResource StorageTypeToIconConverter}}"/>
+            <TextBlock Margin="12,0,0,0"
                        Text="{Binding Name}"
-                       Style="{StaticResource SubheaderTextBlockStyle}" />
+                       VerticalAlignment="Center"
+                       TextTrimming="CharacterEllipsis"/>
         </StackPanel>
-    </DataTemplate>
-    <DataTemplate x:Key="FileDataTemplate">
-        <TextBlock Margin="15,0,0,0"
-                   Style="{StaticResource TitleTextBlockStyle}"
-                   Width="300">
-                    <Run Text="{Binding Name}" />
-                    <Run Text=""
-                         FontFamily="Segoe UI Symbol" />
-        </TextBlock>
     </DataTemplate>
 
     <DataTemplate x:Key="PhoneHeaderTemplate">
