@@ -212,6 +212,7 @@
     <Content Include="$(MSBuildThisFileDirectory)Assets\DeezerApplats_RVB_Noir.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Icons\circleShadow.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\Icons\icons.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\wallpaper.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)backers.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
