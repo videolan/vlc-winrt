@@ -16,14 +16,13 @@
             <RowDefinition Height="60" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0" 
-              Background="{ThemeResource ApplicationBackgroundQuarterTranslucentThemeBrush}">
+        <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <ComboBox Grid.Column="1" 
-                      Width="280" 
+            <ComboBox Grid.Column="1"
+                      Width="280"
                       ItemsSource="{Binding StorageVMs}"
                       SelectedItem="{Binding CurrentStorageVM}"
                       Visibility="{Binding StorageVMs.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}"
@@ -42,7 +41,7 @@
             </ComboBox>
         </Grid>
         <Grid Grid.Row="1"
-              Margin="6,0,0,0">
+              Margin="{StaticResource FrameMargin}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
@@ -71,13 +70,13 @@
         </Grid>
         <Grid Grid.Row="2"
               Margin="{StaticResource FrameMargin}">
-            <placeholder:NothingToSeeHere Margin="6,0,0,0"
-                                          Visibility="{Binding CurrentStorageVM.IsFolderEmpty, Converter={StaticResource BooleanToVisibilityConverter}}" />
+            <placeholder:NothingToSeeHere Visibility="{Binding CurrentStorageVM.IsFolderEmpty, Converter={StaticResource BooleanToVisibilityConverter}}" />
             <ListView x:Name="StorageItemsListView"
                       ItemsSource="{Binding CurrentStorageVM.StorageItems}"
                       Margin="6,0,0,0"
                       IsItemClickEnabled="True"
                       SelectionMode="None"
+                      ItemTemplate="{StaticResource FolderDataTemplate}"
                       IsSwipeEnabled="False"
                       ItemContainerStyle="{StaticResource ListViewItemStyle}"
                       ItemsPanel="{StaticResource WrapPanelTemplate}"
@@ -88,27 +87,6 @@
                                                       PassEventArgsToCommand="True" />
                     </triggers:EventTrigger>
                 </triggers:Interactions.Triggers>
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid VerticalAlignment="Center">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="30" />
-                                <ColumnDefinition Width="220" />
-                            </Grid.ColumnDefinitions>
-                            <Path Data="{Binding Converter={StaticResource StorageTypeToIconConverter}}"
-                                  Height="26"
-                                  Width="26"
-                                  Stretch="Uniform"
-                                  Fill="DimGray"
-                                  HorizontalAlignment="Left" />
-                            <TextBlock Grid.Column="1"
-                                       Text="{Binding Name}"
-                                       TextWrapping="Wrap"
-                                       FontSize="14"
-                                       Margin="3,4,0,0" />
-                        </Grid>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
             </ListView>
         </Grid>
         <removableStorage:PlugARemovableStorage Grid.Row="1"
