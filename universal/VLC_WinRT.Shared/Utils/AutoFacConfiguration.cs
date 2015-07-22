@@ -8,6 +8,7 @@
  **********************************************************************/
 
 using Autofac;
+using Slide2D;
 using VLC_WinRT.Services.Interface;
 using VLC_WinRT.Services.RunTime;
 using VLC_WinRT.ViewModels;
@@ -48,8 +49,9 @@ namespace VLC_WinRT.Utils
                 builder.RegisterType<SettingsViewModel>().SingleInstance();
 
                 builder.RegisterType<VLCExplorerViewModel>().SingleInstance();
-                
+
                 // Register Services
+                builder.RegisterType<MetroSlideshow>().SingleInstance();
                 builder.RegisterType<VLCService>().SingleInstance();
                 builder.RegisterType<MFService>().SingleInstance();
 #if WINDOWS_PHONE_APP
