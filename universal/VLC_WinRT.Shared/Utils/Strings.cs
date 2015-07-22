@@ -32,7 +32,7 @@ namespace VLC_WinRT.Utils
         public static readonly string Home = _resourcesLoader.GetString("Home");
         public static readonly string Music = _resourcesLoader.GetString("Music");
         public static readonly string RemovableStorage = _resourcesLoader.GetString("RemovableStorage");
-        public static readonly string FileExplorer = "file explorer";
+        public static readonly string FileExplorer = "files";
         
         public static readonly string UnknownArtist = _resourcesLoader.GetString("UnknownArtist");
         public static readonly string UnknownAlbum = _resourcesLoader.GetString("UnknownAlbum");
