@@ -36,6 +36,8 @@
                                      Color="#FFFFFFFF" />
                     <SolidColorBrush x:Key="TextSelectionHighlightColorThemeBrush"
                                      Color="{StaticResource MainColorBase}" />
+                    <SolidColorBrush x:Key="TextBoxBackgroundThemeBrush"
+                                     Color="#50FFFFFF" />
                 </ResourceDictionary>
                 <ResourceDictionary x:Key="Light">
                     <Color x:Key="ApplicationPageBackgroundThemeColor">White</Color>
@@ -68,7 +70,8 @@
                                      Color="#E5E5E5" />
                     <SolidColorBrush x:Key="TextSelectionHighlightColorThemeBrush"
                                      Color="{StaticResource MainColorBase}"/>
-
+                    <SolidColorBrush x:Key="TextBoxBackgroundThemeBrush"
+                                     Color="#50FFFFFF" />
                 </ResourceDictionary>
             </ResourceDictionary.ThemeDictionaries>
             <ResourceDictionary.MergedDictionaries>
