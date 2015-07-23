@@ -13,7 +13,7 @@
             Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}"
             BorderBrush="DimGray"
             BorderThickness="1"
-            Padding="3">
+            Padding="12">
       <Grid>
         <Grid.RowDefinitions>
           <RowDefinition Height="Auto" />
