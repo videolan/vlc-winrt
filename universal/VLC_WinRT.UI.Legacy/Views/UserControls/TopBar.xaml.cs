@@ -34,6 +34,8 @@ namespace VLC_WinRT.Views.UserControls
         {
             if (width <= 600)
                 VisualStateUtilities.GoToState(this, "Minimal", false);
+            else if(width <= 900)
+                VisualStateUtilities.GoToState(this, "Medium", false);
             else
                 VisualStateUtilities.GoToState(this, "Normal", false);
         }

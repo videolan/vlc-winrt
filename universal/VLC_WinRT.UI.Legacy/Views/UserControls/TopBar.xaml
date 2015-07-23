@@ -83,7 +83,7 @@
                                    Text="{Binding SearchTag}"
                                    PlaceholderText="search"
                                    Height="30"
-                                   Width="210"
+                                   Width="270"
                                    HorizontalAlignment="Right"
                                    Margin="0,0,12,0"
                                    TextChanged="TextBox_TextChanged"/>
@@ -114,6 +114,25 @@
                                                        Storyboard.TargetProperty="Visibility">
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Medium">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MusicSearchBox"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MusicSearchBox"
+                                                       Storyboard.TargetProperty="Width">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="200" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SearchButton"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Collapsed" />
                         </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
