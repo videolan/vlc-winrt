@@ -140,7 +140,16 @@ namespace VLC_WinRT.Model.Video
             set
             {
                 SetProperty(ref _timeWatched, value);
-                OnPropertyChanged("PortionWatched");
+                OnPropertyChanged("HasBeenSeen");
+            }
+        }
+
+        [Ignore]
+        public bool HasBeenSeen
+        {
+            get
+            {
+                return TimeWatched.Seconds > 0;
             }
         }
 
