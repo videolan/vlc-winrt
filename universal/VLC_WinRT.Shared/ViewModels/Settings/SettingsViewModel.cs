@@ -176,38 +176,39 @@ namespace VLC_WinRT.ViewModels.Settings
         public List<OrderType> AlbumsOrderTypeCollection
         { get; set; }
         = new List<OrderType>()
-                                                                        {
-                                                                            OrderType.ByArtist,
-                                                                            OrderType.ByDate,
-                                                                            OrderType.ByAlbum,
-                                                                        };
+        {
+            OrderType.ByArtist,
+            OrderType.ByDate,
+            OrderType.ByAlbum,
+        };
 
         public List<OrderListing> AlbumsListingTypeCollection
         { get; set; }
         = new List<OrderListing>()
-                                                                            {
-                                                                                OrderListing.Ascending,
-                                                                                OrderListing.Descending
-                                                                            };
+        {
+            OrderListing.Ascending,
+            OrderListing.Descending
+        };
 
 
         public List<MusicView> MusicViewCollection
         { get; set; }
         = new List<MusicView>()
-                                                                {
-                                                                    MusicView.Albums,
-                                                                    MusicView.Artists,
-                                                                    MusicView.Songs,
-                                                                    MusicView.Playlists
-                                                                };
+        {
+            MusicView.Artists,
+            MusicView.Albums,
+            MusicView.Songs,
+            MusicView.Playlists
+        };
+
         public List<VideoView> VideoViewCollection
         { get; set; }
         = new List<VideoView>()
-                                                                    {
-                                                                        VideoView.Videos,
-                                                                        VideoView.Shows,
-                                                                        VideoView.CameraRoll
-                                                                    };
+        {
+            VideoView.Videos,
+            VideoView.Shows,
+            VideoView.CameraRoll
+        };
 #if WINDOWS_APP
         public List<StorageFolder> MusicFolders
         {
