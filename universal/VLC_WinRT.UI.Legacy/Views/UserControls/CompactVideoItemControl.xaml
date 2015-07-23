@@ -14,8 +14,8 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition />
-                <RowDefinition Height="40" />
                 <RowDefinition Height="2" />
+                <RowDefinition Height="40" />
             </Grid.RowDefinitions>
             <Grid Grid.Row="0"
                   Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}">
@@ -30,35 +30,51 @@
                    Width="Auto"
                    Height="Auto"
                    HorizontalAlignment="Center" />
-            <Grid Grid.Row="1"
-                  Width="Auto"
-                  Margin="0,0,0,0">
+            <ProgressBar Grid.Row="1"
+                         VerticalAlignment="Bottom"
+                         Style="{StaticResource ThinProgressBar}"
+                         Value="{Binding TimeWatched, Converter={StaticResource TimeSpanSecondsDoubleConverter}}"
+                         Maximum="{Binding Duration, Converter={StaticResource TimeSpanSecondsDoubleConverter}}"
+                         Visibility="{Binding TimeWatched.TotalSeconds, Converter={StaticResource NegatedCountToVisibilityConverter}}" />
+            <Grid Grid.Row="2">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
-                <TextBlock Text="{Binding Name}"
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.ColumnSpan="2"
+                           Text="{Binding Name}"
                            TextWrapping="NoWrap"
                            TextTrimming="CharacterEllipsis"
                            FontSize="15"
                            FontWeight="Normal"
-                           Margin="0,3,7,0" />
+                           Margin="0,3,3,0" />
                 <TextBlock Grid.Row="1"
+                         Grid.Column="0"
+                           Visibility="{Binding HasBeenSeen, Converter={StaticResource BooleanToVisibilityConverter}}"
+                         Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
+                         TextWrapping="NoWrap"
+                         TextTrimming="CharacterEllipsis"
+                         FontSize="14"
+                         Margin="0,0,3,0"
+                         FontWeight="Light" >
+                    <Run Text="{Binding TimeWatched, Converter={StaticResource TimeSpanShortStringConverter}}"/>
+                    <Run Text="-"/>
+                </TextBlock>
+                
+                <TextBlock Grid.Row="1"
+                           Grid.Column="1"
                            Text="{Binding Duration, Converter={StaticResource TimeSpanShortStringConverter}}"
                            Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
                            TextWrapping="NoWrap"
                            TextTrimming="CharacterEllipsis"
                            FontSize="14"
-                           Margin="0,0,7,0"
+                           Margin="0,0,3,0"
                            FontWeight="Light" />
             </Grid>
-            <ProgressBar Grid.Row="2"
-                         VerticalAlignment="Bottom"
-                         Margin="0,0,7,0"
-                         Style="{StaticResource ThinProgressBar}"
-                         Value="{Binding TimeWatched, Converter={StaticResource TimeSpanSecondsDoubleConverter}}"
-                         Maximum="{Binding Duration, Converter={StaticResource TimeSpanSecondsDoubleConverter}}"
-                         Visibility="{Binding TimeWatched.TotalSeconds, Converter={StaticResource NegatedCountToVisibilityConverter}}" />
         </Grid>
     </Border>
 </UserControl>
