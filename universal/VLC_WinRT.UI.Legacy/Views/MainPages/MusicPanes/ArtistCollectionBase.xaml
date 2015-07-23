@@ -12,5 +12,108 @@
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400">
-  <artistCollectionPanes:ArtistsListView x:Name="ArtistsListView" />
+    
+    <UserControl.Resources>
+        <CollectionViewSource x:Key="GroupArtists"
+                              x:Name="GroupArtists"
+                              IsSourceGrouped="True"
+                              Source="{Binding GroupedArtists}" />
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.Transitions>
+            <TransitionCollection>
+                <EntranceThemeTransition/>
+            </TransitionCollection>
+        </Grid.Transitions>
+        <SemanticZoom x:Name="SemanticZoom"
+                      Padding="0"
+                      Margin="{StaticResource FrameMargin}"
+                      IsZoomOutButtonEnabled="False"
+                      ViewChangeCompleted="SemanticZoom_OnViewChangeCompleted">
+            <SemanticZoom.ZoomedInView>
+                <ListView x:Name="ArtistListView"
+                          IsItemClickEnabled="True"
+                          ItemsSource="{Binding Artists}"
+                          SelectionMode="None"
+                          ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                          ItemTemplate="{StaticResource ArtistHorizontalTemplate}">
+                    <triggers:Interactions.Triggers>
+                        <triggers:EventTrigger EventName="ItemClick">
+                            <triggers:InvokeCommandAction Command="{Binding ArtistClickedCommand}"
+                                                          PassEventArgsToCommand="True" />
+                        </triggers:EventTrigger>
+                    </triggers:Interactions.Triggers>
+                    <ListView.GroupStyle>
+                        <GroupStyle>
+                            <GroupStyle.HeaderTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="12" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Grid.Row="1"
+                                                   Text="{Binding Key}"
+                                                   Foreground="{StaticResource MainColor}"
+                                                   FontSize="23" />
+                                    </Grid>
+                                </DataTemplate>
+                            </GroupStyle.HeaderTemplate>
+                        </GroupStyle>
+                    </ListView.GroupStyle>
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <ItemsWrapGrid Orientation="Horizontal">
+                                <ItemsWrapGrid.ChildrenTransitions>
+                                    <TransitionCollection>
+                                        <RepositionThemeTransition />
+                                    </TransitionCollection>
+                                </ItemsWrapGrid.ChildrenTransitions>
+                            </ItemsWrapGrid>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                </ListView>
+            </SemanticZoom.ZoomedInView>
+            <SemanticZoom.ZoomedOutView>
+                <ListView x:Name="ArtistsZoomedOutView"
+                          Background="{ThemeResource ApplicationBackgroundSemiTranslucentThemeBrush}"
+                          VerticalContentAlignment="Center"
+                          SelectionMode="None">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="VerticalContentAlignment"
+                                    Value="Stretch" />
+                            <Setter Property="HorizontalContentAlignment"
+                                    Value="Stretch" />
+                            <Setter Property="Margin"
+                                    Value="6" />
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <ItemsWrapGrid Orientation="Horizontal"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           ItemWidth="200" />
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}">
+                                <TextBlock Text="{Binding Group.Key}"
+                                           Margin="5,0,0,3"
+                                           VerticalAlignment="Center"
+                                           FontSize="26"
+                                           TextTrimming="CharacterEllipsis"
+                                           TextWrapping="NoWrap"
+                                           FontWeight="Light"
+                                           Foreground="{ThemeResource MainColor}" />
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </SemanticZoom.ZoomedOutView>
+        </SemanticZoom>
+    </Grid>
 </UserControl>
