@@ -2455,9 +2455,9 @@
         <Setter Property="BorderThickness"
                 Value="1" />
         <Setter Property="RequestedTheme"
-                Value="Light" />
+                Value="Dark" />
         <Setter Property="Background"
-                Value="WhiteSmoke" />
+                Value="#cc000000" />
         <Setter Property="BorderBrush"
                 Value="#ff8800" />
     </Style>
