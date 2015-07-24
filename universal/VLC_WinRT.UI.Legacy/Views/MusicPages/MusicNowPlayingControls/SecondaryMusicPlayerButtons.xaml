@@ -15,8 +15,6 @@
         <ColumnDefinition />
         <ColumnDefinition Width="12" />
         <ColumnDefinition />
-        <ColumnDefinition Width="12" />
-        <ColumnDefinition />
     </Grid.ColumnDefinitions>
     <AppBarToggleButton Grid.Column="0"
                         Margin="0,6,0,0"
@@ -76,18 +74,4 @@
                       x:Name="RepeatFontIcon" />
         </AppBarToggleButton.Icon>
     </AppBarToggleButton>
-    <Button Grid.Column="8"
-            HorizontalAlignment="Center"
-            Style="{StaticResource TextBlockButtonStyle}"
-            DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM}"
-            Command="{Binding GoToMusicPlaylistPageCommand}">
-        <Button.Content>
-            <Path Data="{StaticResource PlaylistPath}"
-                  Fill="{ThemeResource BasicForeground}"
-                  Stretch="UniformToFill"
-                  Height="26"
-                  Width="26"
-                  x:Name="PlaylistPath" />
-        </Button.Content>
-    </Button>
 </Grid>

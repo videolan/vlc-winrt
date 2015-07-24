@@ -194,16 +194,6 @@
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="200" />
                         </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SongInformationTextBlock"
-                                                       Storyboard.TargetProperty="TextAlignment">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Left" />
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SongInformationTextBlock"
-                                                       Storyboard.TargetProperty="HorizontalAlignment">
-                            <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Left" />
-                        </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SecondPlaybackButtonColumnDefinition"
                                                        Storyboard.TargetProperty="Width">
                             <DiscreteObjectKeyFrame KeyTime="0"

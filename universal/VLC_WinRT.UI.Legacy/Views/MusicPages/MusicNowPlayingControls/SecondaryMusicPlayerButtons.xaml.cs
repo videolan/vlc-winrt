@@ -22,8 +22,6 @@ namespace VLC_WinRT.Views.MusicPages.MusicNowPlayingControls
             that.ShareFontIcon.FontSize = size;
             that.FavoriteFontIcon.FontSize = size;
             that.RepeatFontIcon.FontSize = size;
-            that.PlaylistPath.Height = size - 2;
-            that.PlaylistPath.Width = size - 2;
         }
 
         public double FontSize
