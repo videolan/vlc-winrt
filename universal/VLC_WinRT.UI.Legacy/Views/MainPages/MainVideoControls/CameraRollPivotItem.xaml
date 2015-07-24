@@ -25,8 +25,13 @@
                 <ItemsPanelTemplate>
                     <ItemsWrapGrid Orientation="Horizontal"
                                    SizeChanged="VideosWrapGrid_SizeChanged"
-                                   Margin="0,0,0,60" />
-                    <RepositionThemeTransition />
+                                   Margin="0,0,0,60" >
+                        <ItemsWrapGrid.ChildrenTransitions>
+                            <TransitionCollection>
+                                <RepositionThemeTransition />
+                            </TransitionCollection>
+                        </ItemsWrapGrid.ChildrenTransitions>
+                    </ItemsWrapGrid>
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
         </ListView>
