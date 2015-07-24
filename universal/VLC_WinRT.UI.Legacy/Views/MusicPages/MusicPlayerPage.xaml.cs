@@ -55,16 +55,11 @@ namespace VLC_WinRT.Views.MusicPages
         {
             if (Window.Current.Bounds.Width < 640)
             {
-                VisualStateUtilities.GoToState(this, this.ActualHeight < 900 ? "NarrowAndTiny" : "Narrow", false);
-            }
-            else if (this.ActualWidth < 1150)
-            {
-                VisualStateUtilities.GoToState(this, "Wide", false);
-                VisualStateUtilities.GoToState(this, this.ActualHeight < 700 ? "WideTiny" : "WideTall", false);
+                VisualStateUtilities.GoToState(this, "Narrow", false);
             }
             else
             {
-                VisualStateUtilities.GoToState(this, "ExtraWide", false);
+                VisualStateUtilities.GoToState(this, "Wide", false);
             }
         }
 
@@ -79,5 +74,10 @@ namespace VLC_WinRT.Views.MusicPages
             Frame.GoBack();
         }
         #endregion
+        
+        private void OpenPlaylist_Click(object sender, RoutedEventArgs e)
+        {
+            VisualStateUtilities.GoToState(this, "Wide", false);
+        }
     }
 }
