@@ -21,7 +21,7 @@
         <AppBarButton Grid.Row="1"
                         Style="{StaticResource AppBarButtonStyleHorizontal}"
                         Label="Show playlist"
-                        Click="OpenPlaylist_Click"
+                      Command="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM.GoToMusicPlaylistPageCommand}"
                         HorizontalAlignment="Center">
             <AppBarButton.Icon>
                 <FontIcon Glyph="{StaticResource MusicPlaylistSymbol}"

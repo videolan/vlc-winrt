@@ -7,7 +7,7 @@
       xmlns:musicNowPlayingControls="using:VLC_WinRT.Views.MusicPages.MusicNowPlayingControls"
       mc:Ignorable="d"
       RequestedTheme="Dark">
-    <Grid Background="{ThemeResource ApplicationBackgroundSemiTranslucentThemeBrush}">
+    <Grid Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
             <RowDefinition Height="Auto" />
