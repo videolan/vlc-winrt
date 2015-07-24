@@ -100,8 +100,7 @@
                           ItemTemplate="{StaticResource PhoneTrackCollectionTemplate}"
                           ItemContainerStyle="{StaticResource ListViewItemStyle}"
                           SelectionChanged="Selector_OnSelectionChanged" />
-                <placeholder:NoPlaylistPlaceholder Visibility="{Binding TrackCollections.Count, Converter={StaticResource CountToVisibilityConverter}}"
-                                                   Margin="12,50,0,0" />
+                <placeholder:NoPlaylistPlaceholder Visibility="{Binding TrackCollections.Count, Converter={StaticResource CountToVisibilityConverter}}" />
             </Grid>
         </Grid>
     </Border>
