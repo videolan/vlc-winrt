@@ -32,9 +32,9 @@ namespace VLC_WinRT.Views.UserControls
 
         void Responsive(double width)
         {
-            if (width <= 600)
+            if (width <= 700)
                 VisualStateUtilities.GoToState(this, "Minimal", false);
-            else if(width <= 900)
+            else if(width <= 1050)
                 VisualStateUtilities.GoToState(this, "Medium", false);
             else
                 VisualStateUtilities.GoToState(this, "Normal", false);
