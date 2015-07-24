@@ -28,7 +28,6 @@
         </Grid.Transitions>
         <SemanticZoom x:Name="SemanticZoom"
                       Padding="0"
-                      Margin="{StaticResource FrameMargin}"
                       IsZoomOutButtonEnabled="False"
                       ViewChangeCompleted="SemanticZoom_OnViewChangeCompleted">
             <SemanticZoom.ZoomedInView>
