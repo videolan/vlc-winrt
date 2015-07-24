@@ -8,7 +8,8 @@
         mc:Ignorable="d"
         d:DesignHeight="300"
         d:DesignWidth="400">
-    <Border  Background="WhiteSmoke"
+    <Border RequestedTheme="Dark" 
+            Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}"
              BorderBrush="DimGray"
              BorderThickness="1"
              Loaded="Grid_Loaded">
