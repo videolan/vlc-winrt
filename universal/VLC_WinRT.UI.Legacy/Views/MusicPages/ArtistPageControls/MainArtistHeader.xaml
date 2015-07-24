@@ -15,6 +15,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
             <RowDefinition />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
@@ -30,14 +31,14 @@
                    Text="{Binding CurrentArtist.Name, Converter={StaticResource ArtistStringConverter}}"
                    Style="{StaticResource SubheaderTextBlockStyle}" />
 
-        <TextBlock Grid.Row="2"
+        <TextBlock Grid.Row="3"
                    Text="{Binding CurrentArtist.Biography}"
                    Style="{StaticResource BodyTextBlockStyle}"
                    TextTrimming="CharacterEllipsis"
                    Margin="{StaticResource FrameMargin}"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Top" />
-        <Grid Grid.Row="3"
+        <Grid Grid.Row="4"
               Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}"
               Height="50">
             <Grid.ColumnDefinitions>
