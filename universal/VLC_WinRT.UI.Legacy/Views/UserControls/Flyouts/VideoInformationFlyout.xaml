@@ -6,7 +6,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d">
 
-    <Border Background="WhiteSmoke"
+    <Border RequestedTheme="Dark" 
+            Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}"
             BorderBrush="DimGray"
             BorderThickness="1"
             Loaded="Grid_Loaded">
