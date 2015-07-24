@@ -90,9 +90,6 @@
     <Page Include="$(MSBuildThisFileDirectory)Views\MainPages\MusicPanes\SongsPivotItem.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Views\MusicPages\AlbumPageControls\AlbumHeaderControls.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\MusicPages\AlbumPageControls\AlbumPageBase.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -168,6 +165,9 @@
     <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\Flyouts\TrackItemFlyout.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\Flyouts\VideoInformationFlyout.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\FocusTextBox.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -235,9 +235,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\TrackItemTemplateDetailed.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\VideoInformationFlyout.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\VLCLogoWithGradient.xaml">
@@ -317,9 +314,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\MainPages\MusicPanes\SongsPivotItem.xaml.cs">
       <DependentUpon>SongsPivotItem.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\MusicPages\AlbumPageControls\AlbumHeaderControls.xaml.cs">
-      <DependentUpon>AlbumHeaderControls.xaml</DependentUpon>
-    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\MusicPages\AlbumPageControls\AlbumPageBase.xaml.cs">
       <DependentUpon>AlbumPageBase.xaml</DependentUpon>
     </Compile>
@@ -395,6 +389,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\Flyouts\TrackItemFlyout.xaml.cs">
       <DependentUpon>TrackItemFlyout.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\Flyouts\VideoInformationFlyout.xaml.cs">
+      <DependentUpon>VideoInformationFlyout.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\FocusTextBox.xaml.cs">
       <DependentUpon>FocusTextBox.xaml</DependentUpon>
     </Compile>
@@ -463,9 +460,6 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\TrackItemTemplateDetailed.xaml.cs">
       <DependentUpon>TrackItemTemplateDetailed.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\VideoInformationFlyout.xaml.cs">
-      <DependentUpon>VideoInformationFlyout.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\VLCLogoWithGradient.xaml.cs">
       <DependentUpon>VLCLogoWithGradient.xaml</DependentUpon>
