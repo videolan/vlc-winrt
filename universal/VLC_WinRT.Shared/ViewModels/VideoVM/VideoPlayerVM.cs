@@ -109,6 +109,7 @@ namespace VLC_WinRT.ViewModels.VideoVM
             // If we navigate back and forth to the main page, we also don't want to 
             // re-mark the task as completed.
             Locator.MediaPlaybackViewModel.ContinueIndexing = new TaskCompletionSource<bool>();
+            Locator.Slideshow.IsPaused = true;
         }
 
         public void OnNavigatedFrom()
@@ -121,6 +122,7 @@ namespace VLC_WinRT.ViewModels.VideoVM
             Locator.VideoVm.IsVideoPlayerSettingsVisible = false;
             Locator.VideoVm.IsVideoPlayerSubtitlesSettingsVisible = false;
             Locator.VideoVm.IsVideoPlayerVolumeSettingsVisible = false;
+            Locator.Slideshow.IsPaused = false;
         }
         #endregion
     }
