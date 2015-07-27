@@ -237,8 +237,8 @@ namespace VLC_WinRT.Helpers.MusicLibrary
                 }
                 if (mP != null)
                 {
-                    var artistName = mP.Artist;
-                    var albumArtistName = mP.AlbumArtist;
+                    var artistName = mP.Artist?.Trim();
+                    var albumArtistName = mP.AlbumArtist?.Trim();
                     ArtistItem artist = Locator.MusicLibraryVM._artistDatabase.LoadViaArtistName(string.IsNullOrEmpty(albumArtistName) ? artistName : albumArtistName);
                     if (artist == null)
                     {
@@ -251,7 +251,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
                         });
                     }
 
-                    var albumName = mP.Album;
+                    var albumName = mP.Album?.Trim();
                     var albumYear = mP.Year;
                     AlbumItem album = await Locator.MusicLibraryVM._albumDatabase.LoadAlbumViaName(artist.Id, albumName);
                     if (album == null)
