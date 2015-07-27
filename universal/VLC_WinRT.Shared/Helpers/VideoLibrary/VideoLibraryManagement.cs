@@ -81,10 +81,10 @@ namespace VLC_WinRT.Helpers.VideoLibrary
                     if (!isCameraRoll)
                     {
                         var media = Locator.VLCService.GetMediaFromPath(storageFile.Path);
-                        videoProperties = Locator.VLCService.GetVideoProperties(media);
+                        videoProperties = TitleDecrapifier.tvShowEpisodeInfoFromString(storageFile.DisplayName);
                         if(videoProperties == null)
                         {
-                            TitleDecrapifier.tvShowEpisodeInfoFromString(storageFile.DisplayName);
+                            videoProperties = Locator.VLCService.GetVideoProperties(media);
                         }
                     }
                     
