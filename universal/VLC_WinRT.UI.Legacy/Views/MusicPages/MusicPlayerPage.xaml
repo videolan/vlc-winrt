@@ -22,12 +22,15 @@
                         Style="{StaticResource AppBarButtonStyleHorizontal}"
                         Label="Show playlist"
                       Command="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM.GoToMusicPlaylistPageCommand}"
-                        HorizontalAlignment="Center">
+                        HorizontalAlignment="Center"
+                      VerticalAlignment="Center"
+                      FontSize="16">
             <AppBarButton.Icon>
                 <FontIcon Glyph="{StaticResource MusicPlaylistSymbol}"
                             FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
             </AppBarButton.Icon>
         </AppBarButton>
+        
         <ListView x:Name="PlaylistGrid"
                   Grid.Row="2"
                   Margin="{StaticResource FrameMargin}"
