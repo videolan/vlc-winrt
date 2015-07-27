@@ -149,7 +149,7 @@ namespace VLC_WinRT.Model.Video
         {
             get
             {
-                return TimeWatched.Seconds > 0;
+                return TimeWatched.Seconds > 0 && Duration.Seconds > 30 && ((double)TimeWatched.Seconds / Duration.Seconds) < 0.98;
             }
         }
 
