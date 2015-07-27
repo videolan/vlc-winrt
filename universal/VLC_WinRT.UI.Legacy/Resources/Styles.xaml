@@ -2574,6 +2574,8 @@
                 Value="{ThemeResource ContentControlThemeFontFamily}" />
         <Setter Property="FontWeight"
                 Value="Normal" />
+        <Setter Property="FontSize"
+                Value="14" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="AppBarButton">
@@ -2668,7 +2670,7 @@
                         </Grid>
                         <TextBlock x:Name="TextLabel"
                                    Foreground="{TemplateBinding Foreground}"
-                                   FontSize="14"
+                                   FontSize="{TemplateBinding FontSize}"
                                    FontFamily="{TemplateBinding FontFamily}"
                                    Margin="6,0,0,0"
                                    TextAlignment="Center"
