@@ -4,6 +4,7 @@ using Slide2D.Images;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using VLC_WinRT.Slideshow.Texts;
 using VLC_WinRT.ViewModels;
 using Windows.Storage;
 using Windows.Storage.Streams;
@@ -68,6 +69,17 @@ namespace Slide2D
                 await img.Initialize(canvas);
             }
             slideshow.CreateResources(ref canvas, ref ImgQueue);
+        }
+
+        public void AddText(List<Txt> texts)
+        {
+            slideshow.CreateResources(ref canvas, texts);
+        }
+
+        public bool IsPaused
+        {
+            get { return canvas.Paused; }
+            set { canvas.Paused = value; }
         }
     }
 }

@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VLC_WinRT.Slideshow.Texts;
 using Windows.Foundation;
 using Windows.UI;
 
@@ -23,6 +24,8 @@ namespace Slide2D.Images
         int frame = 0;
         private float zoom = 0;
         private List<Img> Imgs = new List<Img>();
+        private List<Txt> Texts = new List<Txt>();
+
         private int ImgIndex = 0;
         private Img currentImg
         {
@@ -47,6 +50,16 @@ namespace Slide2D.Images
                 AddImg(img);
             }
             imgQueue.Clear();
+        }
+
+        public void CreateResources(ref CanvasAnimatedControl sender, List<Txt> txtQueue)
+        {
+            Texts.Clear();
+            foreach (var txt in txtQueue)
+            {
+                Texts.Add(txt);
+            }
+            txtQueue.Clear();
         }
 
         public void Draw(CanvasAnimatedDrawEventArgs args)
