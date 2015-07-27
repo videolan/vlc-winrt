@@ -21,6 +21,10 @@ using VLC_WinRT.Model.Music;
 using VLC_WinRT.BackgroundAudioPlayer.Model;
 using VLC_WinRT.SharedBackground.Database;
 using VLC_WinRT.SharedBackground.Helpers.MusicPlayer;
+using System.Collections.Generic;
+using VLC_WinRT.Slideshow.Texts;
+using Windows.UI;
+using Microsoft.Graphics.Canvas.Text;
 #if WINDOWS_PHONE_APP
 using Windows.Media.Playback;
 #endif
@@ -151,6 +155,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
             if (CurrentTrack == null) return;
             if (CurrentArtist != null && CurrentArtist.Id == CurrentTrack.ArtistId) return;
             CurrentArtist = await _artistDatabase.LoadArtist(CurrentTrack.ArtistId);
+            SetUpSlideshow();
         }
 
         public async Task SetCurrentAlbum()
@@ -185,6 +190,20 @@ namespace VLC_WinRT.ViewModels.MusicVM
                                                     Locator.MusicPlayerVM.CurrentTrack.AlbumName,
                                                     Locator.MusicPlayerVM.CurrentTrack.Name);
             }
+        }
+
+        public void SetUpSlideshow()
+        {
+            Locator.Slideshow.AddImg(Locator.MusicPlayerVM.CurrentArtist.Picture);
+            var listText = new List<Txt>();
+            listText.Add(new Txt(Locator.MusicPlayerVM.CurrentArtist.Name,
+                                Color.FromArgb(155, 255, 255, 255),
+                                new CanvasTextFormat()
+                                {
+                                    FontSize = 36,
+                                    Direction = CanvasTextDirection.LeftToRightThenTopToBottom
+                                }));
+            Locator.Slideshow.AddText(listText);
         }
     }
 }
