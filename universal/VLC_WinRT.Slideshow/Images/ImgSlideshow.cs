@@ -113,25 +113,17 @@ namespace Slide2D.Images
                 currentImg.Opacity -= 0.003f;
             }
 
+            foreach(var text in Texts)
+            {
+                text.Draw(ref args);
+            }
+
             args.DrawingSession.DrawImage(scaleEffect, new Vector2(), new Rect()
             {
                 Height = MetroSlideshow.WindowHeight,
                 Width = MetroSlideshow.WindowWidth
             }, currentImg.Opacity);
-
-            //args.DrawingSession.DrawText("COLDPLAY", new Vector2()
-            //{
-            //    X = x,
-            //    Y = (float)(MetroSlideshow.WindowHeight / 2)
-            //}, col, texts[0].TextForm);
-
-            //args.DrawingSession.DrawText("clocks", new Vector2()
-            //{
-            //    X = (float)(MetroSlideshow.WindowWidth / 2),
-            //    Y = y
-            //}, col, texts[0].TextForm);
-
-            //args.DrawingSession.DrawText(frame.ToString(), new Vector2(), col, texts[0].TextForm);
+            
             x = x + 2;
             y++;
             threshold++;
