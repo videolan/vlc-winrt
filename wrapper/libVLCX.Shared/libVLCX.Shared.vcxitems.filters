@@ -48,6 +48,42 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)..\libvlcpp\cppcx\StructuresCX.hpp">
       <Filter>libvlcpp\cppcx</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\libvlcpp\vlcpp\MediaDiscoverer.hpp">
+      <Filter>libvlcpp</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\libvlcpp\vlcpp\Internal.hpp">
+      <Filter>libvlcpp</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\libvlcpp\vlcpp\Media.hpp">
+      <Filter>libvlcpp</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\libvlcpp\vlcpp\MediaLibrary.hpp">
+      <Filter>libvlcpp</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\libvlcpp\vlcpp\MediaList.hpp">
+      <Filter>libvlcpp</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\libvlcpp\vlcpp\MediaListPlayer.hpp">
+      <Filter>libvlcpp</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\libvlcpp\vlcpp\MediaPlayer.hpp">
+      <Filter>libvlcpp</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\libvlcpp\vlcpp\structures.hpp">
+      <Filter>libvlcpp</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\libvlcpp\vlcpp\common.hpp">
+      <Filter>libvlcpp</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\libvlcpp\vlcpp\Equalizer.hpp">
+      <Filter>libvlcpp</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\libvlcpp\vlcpp\EventManager.hpp">
+      <Filter>libvlcpp</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\libvlcpp\vlcpp\Instance.hpp">
+      <Filter>libvlcpp</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="libvlcpp">
