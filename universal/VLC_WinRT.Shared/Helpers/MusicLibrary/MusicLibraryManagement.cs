@@ -148,6 +148,11 @@ namespace VLC_WinRT.Helpers.MusicLibrary
             var files = await fileQueryResult.GetFilesAsync();
             foreach (var item in files)
             {
+                if (Locator.MediaPlaybackViewModel.ContinueIndexing != null) // We prevent indexing this file and upcoming files when a video is playing
+                {
+                    await Locator.MediaPlaybackViewModel.ContinueIndexing.Task;
+                    Locator.MediaPlaybackViewModel.ContinueIndexing = null;
+                }
                 await DiscoverTrackItemOrWaitAsync(item);
             }
         }
@@ -179,7 +184,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
         {
             try
             {
-                if (Locator.MediaPlaybackViewModel.ContinueIndexing != null)
+                if (Locator.MediaPlaybackViewModel.ContinueIndexing != null) // We prevent indexing new folder and files recursively when a Video is playing
                 {
                     await Locator.MediaPlaybackViewModel.ContinueIndexing.Task;
                     Locator.MediaPlaybackViewModel.ContinueIndexing = null;
