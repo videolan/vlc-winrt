@@ -452,6 +452,9 @@
     <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\meta_engine\libfolder_plugin.dll">
       <Link>plugins\meta_engine\libfolder_plugin.dll</Link>
     </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\meta_engine\libtaglib_plugin.dll">
+      <Link>plugins\meta_engine\libtaglib_plugin.dll</Link>
+    </Content>
     <Content Include="..\..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\plugins\misc\libaddonsfsstorage_plugin.dll">
       <Link>plugins\misc\libaddonsfsstorage_plugin.dll</Link>
     </Content>
