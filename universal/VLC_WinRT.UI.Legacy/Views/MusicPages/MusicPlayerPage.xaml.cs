@@ -74,10 +74,5 @@ namespace VLC_WinRT.Views.MusicPages
             Frame.GoBack();
         }
         #endregion
-        
-        private void OpenPlaylist_Click(object sender, RoutedEventArgs e)
-        {
-            VisualStateUtilities.GoToState(this, "Wide", false);
-        }
     }
 }
