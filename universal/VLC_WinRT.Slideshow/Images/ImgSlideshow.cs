@@ -36,7 +36,6 @@ namespace Slide2D.Images
             }
         }
         
-        Color col = Color.FromArgb(150, 255, 255, 255);
         GaussianBlurEffect bl;
         public void AddImg(Img img)
         {
