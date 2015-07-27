@@ -37,16 +37,12 @@ namespace Slide2D.Images
         }
         
         GaussianBlurEffect bl;
-        public void AddImg(Img img)
-        {
-            Imgs.Add(img);
-        }
-
+        
         public void CreateResources(ref CanvasAnimatedControl sender, ref List<Img> imgQueue)
         {
             foreach (var img in imgQueue)
             {
-                AddImg(img);
+                Imgs.Add(img);
             }
             imgQueue.Clear();
         }
