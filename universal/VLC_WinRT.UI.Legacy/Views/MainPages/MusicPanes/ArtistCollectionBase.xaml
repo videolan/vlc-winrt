@@ -26,6 +26,7 @@
                 <EntranceThemeTransition/>
             </TransitionCollection>
         </Grid.Transitions>
+        <placeholder:NothingToSeeHere Visibility="{Binding Artists.Count, Converter={StaticResource CountToVisibilityConverter}}" />
         <SemanticZoom x:Name="SemanticZoom"
                       Padding="0"
                       IsZoomOutButtonEnabled="False"
