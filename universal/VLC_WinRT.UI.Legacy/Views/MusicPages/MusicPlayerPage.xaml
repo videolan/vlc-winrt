@@ -120,7 +120,7 @@
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="OpenPlaylistRowDefinition"
                                                        Storyboard.TargetProperty="Height">
                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="50" />
+                                                    Value="60" />
                         </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
