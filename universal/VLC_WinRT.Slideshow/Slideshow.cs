@@ -22,6 +22,7 @@ namespace Slide2D
 
         private ImgSlideshow slideshow;
         private List<Img> ImgQueue = new List<Img>();
+
         public MetroSlideshow()
         {
             SetWindowSize();
