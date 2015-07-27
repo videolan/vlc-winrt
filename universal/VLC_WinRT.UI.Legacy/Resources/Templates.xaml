@@ -39,15 +39,16 @@
     </DataTemplate>
 
     <DataTemplate x:Key="FolderDataTemplate">
-        <StackPanel Orientation="Horizontal"
-                    Width="300">
+        <StackPanel Orientation="Horizontal">
             <FontIcon Foreground="WhiteSmoke"
                       FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" 
                       Glyph="{Binding Converter={StaticResource StorageTypeToIconConverter}}"/>
             <TextBlock Margin="12,0,0,0"
                        Text="{Binding Name}"
+                       FontSize="16"
                        VerticalAlignment="Center"
-                       TextTrimming="CharacterEllipsis"/>
+                       TextTrimming="CharacterEllipsis"
+                       Width="300"/>
         </StackPanel>
     </DataTemplate>
 
