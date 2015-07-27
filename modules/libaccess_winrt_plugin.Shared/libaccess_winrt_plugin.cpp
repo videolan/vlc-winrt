@@ -90,7 +90,7 @@ void Debug(const wchar_t *fmt, ...)
     wchar_t buf[255];
     va_list args;
     va_start(args, fmt);
-    vswprintf_s(buf, fmt, args);
+    vswprintf_s(buf, 255, fmt, args);
     va_end(args);
     OutputDebugStringW(buf);
 }
