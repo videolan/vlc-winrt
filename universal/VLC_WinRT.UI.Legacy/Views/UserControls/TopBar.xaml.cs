@@ -47,18 +47,11 @@ namespace VLC_WinRT.Views.UserControls
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (Locator.NavigationService.CurrentPage == Model.VLCPage.MainPageMusic)
+            if (string.IsNullOrEmpty(MusicSearchBox.Text) && !string.IsNullOrEmpty(Locator.SearchVM.SearchTag))
             {
-                if (string.IsNullOrEmpty(MusicSearchBox.Text) && !string.IsNullOrEmpty(Locator.MusicLibraryVM.SearchTag))
-                    Locator.MainVM.ChangeMainPageMusicViewCommand.Execute((int)Locator.SettingsVM.MusicView);
-                Locator.MusicLibraryVM.SearchTag = MusicSearchBox.Text;
+                Locator.NavigationService.GoBack_HideFlyout();
             }
-            else if (Locator.NavigationService.CurrentPage == Model.VLCPage.MainPageVideo)
-            {
-                if (string.IsNullOrEmpty(MusicSearchBox.Text) && !string.IsNullOrEmpty(Locator.VideoLibraryVM.SearchTag))
-                    Locator.MainVM.ChangeMainPageVideoViewCommand.Execute((int)Locator.SettingsVM.VideoView);
-                Locator.VideoLibraryVM.SearchTag = MusicSearchBox.Text;
-            }
+            Locator.SearchVM.SearchTag = MusicSearchBox.Text;
         }
     }
 }
