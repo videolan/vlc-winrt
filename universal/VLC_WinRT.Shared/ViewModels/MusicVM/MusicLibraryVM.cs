@@ -40,7 +40,6 @@ namespace VLC_WinRT.ViewModels.MusicVM
         public TaskCompletionSource<bool> MusicCollectionLoaded = new TaskCompletionSource<bool>();
         #endregion
         #region private fields
-        private ObservableCollection<AlbumItem> _searchResults = new ObservableCollection<AlbumItem>();
         private ObservableCollection<ArtistItem> _artists = new ObservableCollection<ArtistItem>();
         private ObservableCollection<TrackItem> _tracks = new ObservableCollection<TrackItem>();
         private ObservableCollection<AlbumItem> _favoriteAlbums = new ObservableCollection<AlbumItem>();
@@ -63,15 +62,9 @@ namespace VLC_WinRT.ViewModels.MusicVM
         private bool _isBusy = false;
         private bool _isMusicLibraryEmpty = true;
         public MusicView _musicView;
-        private string _searchTag;
         #endregion
 
         #region public fields
-        public ObservableCollection<AlbumItem> SearchResults
-        {
-            get { return _searchResults; }
-            set { SetProperty(ref _searchResults, value); }
-        }
 
         public ObservableCollection<TrackCollection> TrackCollections
         {
@@ -134,13 +127,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
             get { return _musicView; }
             set { SetProperty(ref _musicView, value); }
         }
-
-        public SidebarState SidebarState
-        {
-            get { return _sidebarState; }
-            set { SetProperty(ref _sidebarState, value); }
-        }
-
+        
         public LoadingState LoadingState
         {
             get { return _loadingState; }
@@ -164,20 +151,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
             get { return _isMusicLibraryEmpty; }
             set { SetProperty(ref _isMusicLibraryEmpty, value); }
         }
-
-        public string SearchTag
-        {
-            get { return _searchTag; }
-            set
-            {
-                if (string.IsNullOrEmpty(_searchTag) && !string.IsNullOrEmpty(value) && (int)MusicView != 4)
-                    Locator.MainVM.ChangeMainPageMusicViewCommand.Execute(4);
-                if (!string.IsNullOrEmpty(value) && value.Length > 1)
-                    SearchHelpers.SearchAlbums(value, SearchResults);
-                SetProperty(ref _searchTag, value);
-            }
-        }
-
+        
         public StartMusicIndexingCommand StartMusicIndexingCommand { get; } = new StartMusicIndexingCommand();
 
         public AddToPlaylistCommand AddToPlaylistCommand { get; } = new AddToPlaylistCommand();

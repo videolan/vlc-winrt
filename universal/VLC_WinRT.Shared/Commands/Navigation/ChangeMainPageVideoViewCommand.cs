@@ -31,15 +31,6 @@ namespace VLC_WinRT.Commands.Navigation
                     if (!(frame.Content is CameraRollPivotItem))
                         frame.Content = new CameraRollPivotItem();
                     break;
-                case 3:
-                    if (frame.Content is SearchVideoPage)
-                    {
-                        Switch((int)Locator.SettingsVM.VideoView, frame);
-                        Locator.VideoLibraryVM.SearchTag = "";
-                    }
-                    else
-                        frame.Content = new SearchVideoPage();
-                    break;
             }
         }
     }

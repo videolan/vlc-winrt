@@ -1,5 +1,6 @@
 ﻿using System;
 using VLC_WinRT.Model;
+using VLC_WinRT.UI.Legacy.Views.VariousPages;
 using VLC_WinRT.ViewModels;
 using VLC_WinRT.Views.MainPages;
 using VLC_WinRT.Views.MusicPages;
@@ -88,6 +89,9 @@ namespace VLC_WinRT.Services.RunTime
                     GoBack_HideFlyout();
                     break;
                 case VLCPage.LicensePage:
+                    GoBack_HideFlyout();
+                    break;
+                case VLCPage.SearchPage:
                     GoBack_HideFlyout();
                     break;
                 default:
@@ -179,6 +183,9 @@ namespace VLC_WinRT.Services.RunTime
                 case VLCPage.LicensePage:
                     App.SplitShell.RightFlyoutContent = new LicensePage();
                     break;
+                case VLCPage.SearchPage:
+                    App.SplitShell.RightFlyoutContent = new SearchPage();
+                    break;
                 default:
                     break;
             }
@@ -198,7 +205,8 @@ namespace VLC_WinRT.Services.RunTime
                 page == VLCPage.SettingsPage ||
                 page == VLCPage.LicensePage ||
                 page == VLCPage.SpecialThanksPage ||
-                page == VLCPage.CurrentPlaylistPage;
+                page == VLCPage.CurrentPlaylistPage ||
+                page == VLCPage.SearchPage;
         }
 
         /// <summary>

@@ -20,6 +20,7 @@ using VLC_WinRT.ViewModels.VideoVM;
 using VLC_WinRT.Services.RunTime;
 using VLC_WinRT.Utils;
 using Slide2D;
+using VLC_WinRT.ViewModels.Others;
 
 namespace VLC_WinRT.ViewModels
 {
@@ -52,9 +53,10 @@ namespace VLC_WinRT.ViewModels
 
         public static VideoPlayerVM VideoVm => App.Container?.Resolve<VideoPlayerVM>(); 
 
-        public static VLCExplorerViewModel FileExplorerVM => App.Container?.Resolve<VLCExplorerViewModel>(); 
+        public static VLCExplorerViewModel FileExplorerVM => App.Container?.Resolve<VLCExplorerViewModel>();
 
-        public static SettingsViewModel SettingsVM => App.Container?.Resolve<SettingsViewModel>(); 
+        public static SettingsViewModel SettingsVM => App.Container?.Resolve<SettingsViewModel>();
+        public static SearchViewModel SearchVM => App.Container?.Resolve<SearchViewModel>();
 
         public static SpecialThanksViewModel SpecialThanksVM => App.Container?.Resolve<SpecialThanksViewModel>(); 
 

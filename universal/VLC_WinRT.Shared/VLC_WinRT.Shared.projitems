@@ -197,6 +197,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MusicVM\MusicPlayerVM.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MusicVM\TrackCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Others\BackerCountryViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Others\SearchViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Others\SpecialThanksViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Others\VlcExplorer\VLCExplorerViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\Others\VlcExplorer\FileExplorerViewModel.cs" />

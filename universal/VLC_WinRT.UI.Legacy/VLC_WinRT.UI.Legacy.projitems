@@ -63,9 +63,6 @@
     <Page Include="$(MSBuildThisFileDirectory)Views\MainPages\MainVideoControls\CameraRollPivotItem.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Views\MainPages\MainVideoControls\SearchVideoPage.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\MainPages\MainVideoControls\ShowsPivotItem.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -79,9 +76,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\MainPages\MusicPanes\MusicPanesControls\AlbumsCollectionButtons.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Views\MainPages\MusicPanes\MusicSearchPane.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\MainPages\MusicPanes\PlaylistPivotItem.xaml">
@@ -243,6 +237,10 @@
     <Page Include="$(MSBuildThisFileDirectory)Views\VariousPages\LicensePage.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\VariousPages\SearchPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\VariousPages\SettingsPage.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -287,9 +285,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\MainPages\MainVideoControls\CameraRollPivotItem.xaml.cs">
       <DependentUpon>CameraRollPivotItem.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\MainPages\MainVideoControls\SearchVideoPage.xaml.cs">
-      <DependentUpon>SearchVideoPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\MainPages\MainVideoControls\ShowsPivotItem.xaml.cs">
       <DependentUpon>ShowsPivotItem.xaml</DependentUpon>
     </Compile>
@@ -304,9 +299,6 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\MainPages\MusicPanes\MusicPanesControls\AlbumsCollectionButtons.xaml.cs">
       <DependentUpon>AlbumsCollectionButtons.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\MainPages\MusicPanes\MusicSearchPane.xaml.cs">
-      <DependentUpon>MusicSearchPane.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\MainPages\MusicPanes\PlaylistPivotItem.xaml.cs">
       <DependentUpon>PlaylistPivotItem.xaml</DependentUpon>
@@ -466,6 +458,9 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\VariousPages\LicensePage.xaml.cs">
       <DependentUpon>LicensePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\VariousPages\SearchPage.xaml.cs">
+      <DependentUpon>SearchPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\VariousPages\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>

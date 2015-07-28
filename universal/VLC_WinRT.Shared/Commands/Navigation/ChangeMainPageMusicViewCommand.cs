@@ -38,15 +38,6 @@ namespace VLC_WinRT.Commands.Navigation
                     if (!(frame.Content is PlaylistPivotItem))
                         frame.Content = new PlaylistPivotItem();
                     break;
-                case 4:
-                    if (frame.Content is SearchMusicPane)
-                    {
-                        Switch((int)Locator.SettingsVM.MusicView, frame);
-                        Locator.MusicLibraryVM.SearchTag = "";
-                    }
-                    else
-                        frame.Content = new SearchMusicPane();
-                    break;
             }
         }
     }

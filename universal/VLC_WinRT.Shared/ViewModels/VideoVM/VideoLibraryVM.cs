@@ -28,7 +28,6 @@ namespace VLC_WinRT.ViewModels.VideoVM
     {
         public VideoRepository VideoRepository = new VideoRepository();
         #region private fields
-        private ObservableCollection<VideoItem> _searchResults = new ObservableCollection<VideoItem>();
         private ObservableCollection<VideoItem> _videos;
         private ObservableCollection<VideoItem> _viewedVideos;
         private ObservableCollection<VideoItem> _cameraRoll;
@@ -40,16 +39,9 @@ namespace VLC_WinRT.ViewModels.VideoVM
         private bool _isBusy = false;
         private bool _hasNoMedia = true;
         private TvShow _currentShow;
-        private string _searchTag;
         #endregion
 
         #region public fields
-
-        public ObservableCollection<VideoItem> SearchResults
-        {
-            get { return _searchResults; }
-            set { SetProperty(ref _searchResults, value); }
-        }
 
         public ObservableCollection<VideoItem> Videos
         {
@@ -103,20 +95,7 @@ namespace VLC_WinRT.ViewModels.VideoVM
         public PlayNetworkMRLCommand PlayNetworkMRL { get; }=new PlayNetworkMRLCommand();
 
         public StartVideoIndexingCommand StartVideoIndexingCommand { get; }=new StartVideoIndexingCommand();
-
-        public string SearchTag
-        {
-            get { return _searchTag; }
-            set
-            {
-                if (string.IsNullOrEmpty(_searchTag) && !string.IsNullOrEmpty(value))
-                    Locator.MainVM.ChangeMainPageVideoViewCommand.Execute(3);
-                if (!string.IsNullOrEmpty(value) && value.Length > 1)
-                    SearchHelpers.SearchVideos(value, SearchResults);
-                SetProperty(ref _searchTag, value);
-            }
-        }
-
+        
         public bool IsBusy
         {
             get { return _isBusy; }
