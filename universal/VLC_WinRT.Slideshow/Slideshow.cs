@@ -56,7 +56,6 @@ namespace Slide2D
 
         private async void Canvas_CreateResources(CanvasAnimatedControl sender, Microsoft.Graphics.Canvas.UI.CanvasCreateResourcesEventArgs args)
         {
-            AddImg("ms-appx:///Assets/wallpaper.jpg");
         }
 
         public async void AddImg(string file)
