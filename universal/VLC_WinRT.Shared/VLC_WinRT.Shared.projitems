@@ -40,7 +40,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Commands\MusicLibrary\AddToPlaylistCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\MusicLibrary\AlbumClickedCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\MusicLibrary\AlbumTrackClickedCommand.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Commands\MusicLibrary\ArtistAlbumsSemanticZoomInvertZoomCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\MusicLibrary\ArtistClickedCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\MusicLibrary\BingLocationShowCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Commands\MusicLibrary\ChangeAlbumArtCommand.cs" />
