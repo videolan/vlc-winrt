@@ -195,15 +195,6 @@ namespace VLC_WinRT.ViewModels.MusicVM
         public void SetUpSlideshow()
         {
             Locator.Slideshow.AddImg(Locator.MusicPlayerVM.CurrentArtist.Picture);
-            var listText = new List<Txt>();
-            listText.Add(new Txt(Locator.MusicPlayerVM.CurrentArtist.Name,
-                                Color.FromArgb(155, 255, 255, 255),
-                                new CanvasTextFormat()
-                                {
-                                    FontSize = 36,
-                                    Direction = CanvasTextDirection.LeftToRightThenTopToBottom
-                                }));
-            Locator.Slideshow.AddText(listText);
         }
     }
 }
