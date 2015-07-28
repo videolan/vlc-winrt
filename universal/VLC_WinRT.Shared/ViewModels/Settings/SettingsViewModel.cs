@@ -36,6 +36,7 @@ namespace VLC_WinRT.ViewModels.Settings
         private bool _notificationOnNewSongForeground;
         private bool _continueVideoPlaybackInBackground;
 #endif
+        private bool _hardwareAcceleration;
         private OrderType _albumsOrderType;
         private OrderListing _albumsOrderListing;
         private MusicView _musicView;
@@ -411,6 +412,28 @@ namespace VLC_WinRT.ViewModels.Settings
             {
                 ApplicationSettingsHelper.SaveSettingsValue("LastFmIsConnected", value);
                 SetProperty(ref _lastFmIsConnected, value);
+            }
+        }
+
+        public bool HardwareAccelerationEnabled
+        {
+            get
+            {
+                var hardwareAccelerationEnabled = ApplicationSettingsHelper.ReadSettingsValue("HardwareAccelerationEnabled");
+                if(hardwareAccelerationEnabled == null)
+                {
+                    _hardwareAcceleration = true;
+                }
+                else
+                {
+                    _hardwareAcceleration = (bool)hardwareAccelerationEnabled;
+                }
+                return _hardwareAcceleration;
+            }
+            set
+            {
+                ApplicationSettingsHelper.SaveSettingsValue("HardwareAccelerationEnabled", value);
+                SetProperty(ref _hardwareAcceleration, value);
             }
         }
 

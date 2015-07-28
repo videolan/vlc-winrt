@@ -21,6 +21,7 @@ using VLC_WinRT.Model.Music;
 using VLC_WinRT.Model.Stream;
 using libVLCX;
 using MediaPlayer = libVLCX.MediaPlayer;
+using VLC_WinRT.ViewModels;
 
 namespace VLC_WinRT.Services.RunTime
 {
@@ -55,9 +56,14 @@ namespace VLC_WinRT.Services.RunTime
                 "--no-osd",
                 "--verbose=3",
                 "--no-stats",
-                "--avcodec-fast",
-                String.Format("--freetype-font={0}\\segoeui.ttf", Windows.ApplicationModel.Package.Current.InstalledLocation.Path)
+                "--avcodec-fast"
             };
+            if (!Locator.SettingsVM.HardwareAccelerationEnabled)
+            {
+                param.Add("--no-avcodec-dr");
+            }
+            param.Add(String.Format("--freetype-font={0}\\segoeui.ttf", Windows.ApplicationModel.Package.Current.InstalledLocation.Path));
+
             // So far, this NEEDS to be called from the main thread
             Instance = new Instance(param, swapchain);
             PlayerInstanceReady.SetResult(true);

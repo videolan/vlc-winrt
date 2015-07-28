@@ -146,8 +146,7 @@
                                Visibility="{Binding NotificationOnNewSong, Converter={StaticResource BooleanToVisibilityConverter}}"
                                Margin="-6,0,0,0" />
 
-                <TextBlock Tag="WindowsOnly"
-                           Text="video"
+                <TextBlock Text="video"
                            Style="{StaticResource SubheaderTextBlockStyle}"
                            Foreground="{StaticResource MainColor}"
                            Margin="0,12" />
@@ -198,6 +197,9 @@
                 <ToggleSwitch Tag="WindowsOnly"
                               Header="Video playback in background"
                               IsOn="{Binding ContinueVideoPlaybackInBackground, Mode=TwoWay}"
+                              Margin="-6,0,0,0" />
+                <ToggleSwitch Header="Hardware decoding when possible"
+                              IsOn="{Binding HardwareAccelerationEnabled, Mode=TwoWay}"
                               Margin="-6,0,0,0" />
             </StackPanel>
         </ScrollViewer>
