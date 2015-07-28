@@ -13,7 +13,6 @@ namespace VLC_WinRT.Commands.MusicLibrary
         {
             Locator.NavigationService.GoBack_HideFlyout();
             Locator.NavigationService.Go(VLCPage.MusicPlayerPage);
-            Locator.MusicLibraryVM.IsAlbumPageShown = false;
             TrackItem track = null;
             if (parameter is ItemClickEventArgs)
             {

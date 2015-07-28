@@ -21,7 +21,6 @@ namespace VLC_WinRT.Commands.MusicPlayer
         public async override void Execute(object parameter)
         {
             Locator.NavigationService.Go(VLCPage.MusicPlayerPage);
-            Locator.MusicLibraryVM.IsAlbumPageShown = false;
             TrackItem track = null;
             if (parameter is ItemClickEventArgs)
             {

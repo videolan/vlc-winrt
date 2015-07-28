@@ -11,7 +11,6 @@ namespace VLC_WinRT.Commands.MusicLibrary
     {
         public override async void Execute(object parameter)
         {
-            Locator.MusicLibraryVM.IsAlbumPageShown = true;
             AlbumItem album = null;
             if (parameter is AlbumItem)
             {

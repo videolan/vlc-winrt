@@ -62,8 +62,6 @@ namespace VLC_WinRT.ViewModels.MusicVM
         private bool _isLoaded = false;
         private bool _isBusy = false;
         private bool _isMusicLibraryEmpty = true;
-        private bool _isAlbumPageShown = false;
-        private bool _isMainPageMusicArtistAlbumsSemanticZoomViewedIn;
         public MusicView _musicView;
         private string _searchTag;
         #endregion
@@ -149,17 +147,6 @@ namespace VLC_WinRT.ViewModels.MusicVM
             set { SetProperty(ref _loadingState, value); }
         }
         
-        public bool IsAlbumPageShown
-        {
-            get { return _isAlbumPageShown; }
-            set { SetProperty(ref _isAlbumPageShown, value); }
-        }
-
-        public bool IsMainPageMusicArtistAlbumsSemanticZoomViewedIn
-        {
-            get { return _isMainPageMusicArtistAlbumsSemanticZoomViewedIn; }
-            set { SetProperty(ref _isMainPageMusicArtistAlbumsSemanticZoomViewedIn, value); }
-        }
         public bool IsLoaded
         {
             get { return _isLoaded; }

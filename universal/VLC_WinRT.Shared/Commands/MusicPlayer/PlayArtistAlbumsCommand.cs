@@ -11,7 +11,6 @@ namespace VLC_WinRT.Commands.MusicPlayer
         public override async void Execute(object parameter)
         {
             Locator.NavigationService.Go(VLCPage.MusicPlayerPage);
-            Locator.MusicLibraryVM.IsAlbumPageShown = false;
             if (parameter is ArtistItem)
             {
                 var artist = parameter as ArtistItem;
