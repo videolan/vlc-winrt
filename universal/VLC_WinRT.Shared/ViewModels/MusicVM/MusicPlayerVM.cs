@@ -90,7 +90,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
 
         public ShuffleCommand Shuffle { get; }= new ShuffleCommand();
 
-        public ShareNowPlayingMusicCommand ShareNowPlayingMusicCommand { get; }=new ShareNowPlayingMusicCommand();
+        public ShareNowPlayingMusicCommand ShareNowPlayingMusicCommand { get; } = new ShareNowPlayingMusicCommand();
 
         public GoToMusicPlaylistPageCommand GoToMusicPlaylistPageCommand { get; } = new GoToMusicPlaylistPageCommand();
         #endregion
