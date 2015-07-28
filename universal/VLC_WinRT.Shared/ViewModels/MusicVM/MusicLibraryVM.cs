@@ -52,7 +52,6 @@ namespace VLC_WinRT.ViewModels.MusicVM
         private IEnumerable<IGrouping<string, ArtistItem>> _groupedArtists;
         #endregion
         #region private props
-        private SidebarState _sidebarState;
         private LoadingState _loadingState = LoadingState.NotLoaded;
 
         private AlbumItem _currentAlbum;

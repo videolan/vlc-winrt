@@ -403,7 +403,6 @@ namespace VLC_WinRT.Helpers.MusicLibrary
                 width = Window.Current.Bounds.Width;
             });
             // an album is 220 pixels wide
-            width -= (int)Locator.MusicLibraryVM.SidebarState;
             var nbAlbumsPerRow = width / 220;
             return (int)nbAlbumsPerRow * 2;
 #else
