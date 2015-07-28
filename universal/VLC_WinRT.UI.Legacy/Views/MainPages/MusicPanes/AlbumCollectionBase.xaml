@@ -33,22 +33,7 @@
                         </triggers:EventTrigger>
                     </triggers:Interactions.Triggers>
                     <ListView.GroupStyle>
-                        <GroupStyle>
-                            <GroupStyle.HeaderTemplate>
-                                <DataTemplate>
-                                    <Grid>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="12" />
-                                            <RowDefinition Height="Auto" />
-                                        </Grid.RowDefinitions>
-                                        <TextBlock Grid.Row="1"
-                                                   Text="{Binding Key}"
-                                                   Foreground="{StaticResource MainColor}"
-                                                   FontSize="23" />
-                                    </Grid>
-                                </DataTemplate>
-                            </GroupStyle.HeaderTemplate>
-                        </GroupStyle>
+                        <GroupStyle HeaderTemplate="{StaticResource ListviewGroupHeaderDataTemplate}"/>
                     </ListView.GroupStyle>
                     <ListView.ItemsPanel>
                         <ItemsPanelTemplate>

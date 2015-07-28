@@ -60,26 +60,7 @@
                         </triggers:EventTrigger>
                     </triggers:Interactions.Triggers>
                     <ListView.GroupStyle>
-                        <GroupStyle>
-                            <GroupStyle.HeaderTemplate>
-                                <DataTemplate>
-                                    <Border BorderThickness="2"
-                                            BorderBrush="{StaticResource MainColor}"
-                                            Background="Transparent"
-                                            Height="63"
-                                            Width="63"
-                                            Margin="0,12,0,0">
-                                        <Grid>
-                                            <TextBlock Text="{Binding Key}"
-                                                       Foreground="{StaticResource MainColor}"
-                                                       Margin="3,0,0,3"
-                                                       VerticalAlignment="Bottom"
-                                                       FontSize="23" />
-                                        </Grid>
-                                    </Border>
-                                </DataTemplate>
-                            </GroupStyle.HeaderTemplate>
-                        </GroupStyle>
+                        <GroupStyle HeaderTemplate="{StaticResource ListviewGroupHeaderDataTemplate}"/>
                     </ListView.GroupStyle>
                 </ListView>
             </SemanticZoom.ZoomedInView>
