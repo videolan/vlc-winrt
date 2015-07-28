@@ -15,26 +15,16 @@
         <ResourceDictionary Source="Templates/TrackCollectionTemplates.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <DataTemplate x:Key="ListViewHeaderTemplate">
-        <TextBlock Text="{Binding}"
-                   VerticalAlignment="Bottom"
-                   Foreground="White"
-                   TextWrapping="Wrap"
-                   Typography.Capitals="SmallCaps"
-                   FontSize="22"
-                   FontWeight="Light" />
-    </DataTemplate>
-
-    <DataTemplate x:Key="AlphaLetterDataTemplate">
-        <Grid Background="#30FFFFFF"
-              Height="100"
-              Width="100">
-            <TextBlock Text="{Binding Group.Key}"
-                       Height="Auto"
-                       Margin="12,0,0,12"
-                       FontSize="42"
-                       VerticalAlignment="Bottom"
-                       Style="{StaticResource SubheaderTextBlockStyle}" />
+    <DataTemplate x:Key="ListviewGroupHeaderDataTemplate">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="12" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="1"
+                       Text="{Binding Key}"
+                       Foreground="{StaticResource MainColor}"
+                       FontSize="23" />
         </Grid>
     </DataTemplate>
 
@@ -50,11 +40,6 @@
                        TextTrimming="CharacterEllipsis"
                        Width="300"/>
         </StackPanel>
-    </DataTemplate>
-
-    <DataTemplate x:Key="PhoneHeaderTemplate">
-        <TextBlock Text="{Binding}"
-                   Style="{StaticResource SubheaderTextBlockStyle}" />
     </DataTemplate>
 
     <DataTemplate x:Key="SidebarMiniIconItemTemplate">
