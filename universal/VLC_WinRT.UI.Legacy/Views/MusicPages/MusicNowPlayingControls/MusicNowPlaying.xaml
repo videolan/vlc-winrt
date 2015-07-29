@@ -31,7 +31,8 @@
 
         <Image Grid.Row="1"
                Grid.Column="0"
-               Source="{Binding Thumbnail}"
+               DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM.CurrentAlbum}"
+               Source="{Binding AlbumImage}"
                Stretch="Uniform"
                VerticalAlignment="Top"
                extensions:ImageExtensions.FadeInOnLoaded="True"
