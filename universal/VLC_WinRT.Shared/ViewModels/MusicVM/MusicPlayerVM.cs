@@ -194,7 +194,8 @@ namespace VLC_WinRT.ViewModels.MusicVM
 
         public void SetUpSlideshow()
         {
-            Locator.Slideshow.AddImg(Locator.MusicPlayerVM.CurrentArtist.Picture);
+            if(Locator.MusicPlayerVM.CurrentArtist?.Picture != null)
+                Locator.Slideshow.AddImg(Locator.MusicPlayerVM.CurrentArtist.Picture);
         }
     }
 }
