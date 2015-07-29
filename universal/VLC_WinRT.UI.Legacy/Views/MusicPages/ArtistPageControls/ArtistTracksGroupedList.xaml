@@ -25,12 +25,11 @@
         </ListView.HeaderTemplate>
         <ListView.GroupStyle>
             <GroupStyle HeaderTemplate="{StaticResource AlbumHorizontalTemplate}" />
-
         </ListView.GroupStyle>
         <ListView.ItemsPanel>
             <ItemsPanelTemplate>
                 <VirtualizingStackPanel Margin="{StaticResource FrameMargin}" />
             </ItemsPanelTemplate>
-            </ListView.ItemsPanel>
+        </ListView.ItemsPanel>
     </ListView>
 </UserControl>
