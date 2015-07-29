@@ -2,6 +2,7 @@
 using VLC_WinRT.ViewModels;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using VLC_WinRT.Model;
 
 namespace VLC_WinRT.Views.UserControls
 {
@@ -47,7 +48,19 @@ namespace VLC_WinRT.Views.UserControls
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (string.IsNullOrEmpty(MusicSearchBox.Text) && !string.IsNullOrEmpty(Locator.SearchVM.SearchTag))
+            if (string.IsNullOrEmpty(Locator.SearchVM.SearchTag) && !string.IsNullOrEmpty(MusicSearchBox.Text))
+            {
+                if (Locator.NavigationService.CurrentPage == VLCPage.MainPageMusic)
+                {
+                    Locator.SearchVM.MusicSearchEnabled = true;
+                }
+                else if (Locator.NavigationService.CurrentPage == VLCPage.MainPageVideo)
+                {
+                    Locator.SearchVM.VideoSearchEnabled = true;
+                }
+                Locator.NavigationService.Go(VLCPage.SearchPage);
+            }
+            else if (string.IsNullOrEmpty(MusicSearchBox.Text) && !string.IsNullOrEmpty(Locator.SearchVM.SearchTag))
             {
                 Locator.NavigationService.GoBack_HideFlyout();
             }

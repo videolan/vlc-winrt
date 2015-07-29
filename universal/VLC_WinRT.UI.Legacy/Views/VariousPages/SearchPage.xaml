@@ -1,88 +1,165 @@
-﻿<UserControl
-    x:Class="VLC_WinRT.UI.Legacy.Views.VariousPages.SearchPage"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:VLC_WinRT.UI.Legacy.Views.VariousPages"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:placeholder="using:VLC_WinRT.Views.UserControls.Placeholder"
-    xmlns:triggers="using:WinRT.Triggers"
-    xmlns:userControls="using:VLC_WinRT.Views.UserControls"
-    mc:Ignorable="d"
-    DataContext="{Binding Source={StaticResource Locator}, Path=SearchVM}">
+﻿<UserControl x:Class="VLC_WinRT.UI.Legacy.Views.VariousPages.SearchPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="using:VLC_WinRT.UI.Legacy.Views.VariousPages"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:placeholder="using:VLC_WinRT.Views.UserControls.Placeholder"
+             xmlns:triggers="using:WinRT.Triggers"
+             xmlns:userControls="using:VLC_WinRT.Views.UserControls"
+             mc:Ignorable="d"
+             DataContext="{Binding Source={StaticResource Locator}, Path=SearchVM}">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+          Width="320">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="12" />
             <RowDefinition />
-            <RowDefinition />
-        </Grid.RowDefinitions> <!-- this design is of course temporary-->
+        </Grid.RowDefinitions>
+        <userControls:FocusTextBox x:Name="MusicSearchBox"
+                                   PlaceholderText="search"
+                                   Height="30"
+                                   HorizontalAlignment="Stretch"
+                                   Margin="0,0,0,12"
+                                   TextChanged="TextBox_TextChanged"
+                                   DataContext="{Binding Source={StaticResource Locator}, Path=SearchVM}"
+                                   Text="{Binding SearchTag}" />
+        <TextBlock Grid.Row="1"
+                   Text="Search"
+                   Style="{StaticResource SubheaderTextBlockStyle}"
+                   Margin="{StaticResource FrameMargin}" />
+        <Grid x:Name="MusicSearch"
+              Grid.Row="3"
+              Visibility="{Binding MusicSearchEnabled, Converter={StaticResource BooleanToVisibilityConverter}}"
+              Margin="{StaticResource FrameMargin}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="12" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal">
+                <Button Content="music"
+                        Style="{StaticResource TextBlockButtonStyle}"
+                        FontSize="20"
+                        FontWeight="Light" />
+                <Button Content="videos"
+                        Style="{StaticResource TextBlockButtonStyle}"
+                        FontSize="20"
+                        FontWeight="Light"
+                        Margin="20,0,0,0"
+                        Opacity="0.6" 
+                        Click="ToggleSearchMode_Click"/>
+            </StackPanel>
+            <ListView Grid.Row="2"
+                      ItemsSource="{Binding SearchResultsAlbums}"
+                      ItemTemplate="{StaticResource AlbumItemTemplate}"
+                      ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                      IsItemClickEnabled="True"
+                      SelectionMode="None"
+                      IsSwipeEnabled="False">
+                <triggers:Interactions.Triggers>
+                    <triggers:EventTrigger EventName="ItemClick">
+                        <triggers:InvokeCommandAction Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.AlbumClickedCommand}"
+                                                      PassEventArgsToCommand="True" />
+                    </triggers:EventTrigger>
+                </triggers:Interactions.Triggers>
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <ItemsWrapGrid Orientation="Horizontal"
+                                       SizeChanged="MusicWrapGrid_SizeChanged">
+                            <ItemsWrapGrid.ChildrenTransitions>
+                                <TransitionCollection>
+                                    <AddDeleteThemeTransition />
+                                </TransitionCollection>
+                            </ItemsWrapGrid.ChildrenTransitions>
+                        </ItemsWrapGrid>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemContainerTransitions>
+                    <TransitionCollection>
+                        <AddDeleteThemeTransition />
+                        <EntranceThemeTransition FromHorizontalOffset="50"
+                                                 FromVerticalOffset="0" />
+                    </TransitionCollection>
+                </ListView.ItemContainerTransitions>
+            </ListView>
+        </Grid>
 
-        <placeholder:NoResults Grid.Row="1"
-                               Grid.Column="0"
-                               Grid.ColumnSpan="3"
-                               Visibility="{Binding SearchResults.Count, Converter={StaticResource CountToVisibilityConverter}}" />
-        <ListView ItemsSource="{Binding SearchResultsAlbums}"
-                  ItemTemplate="{StaticResource AlbumItemTemplate}"
-                  ItemContainerStyle="{StaticResource ListViewItemStyle}"
-                  IsItemClickEnabled="True"
-                  SelectionMode="None"
-                  IsSwipeEnabled="False">
-            <triggers:Interactions.Triggers>
-                <triggers:EventTrigger EventName="ItemClick">
-                    <triggers:InvokeCommandAction Command="{Binding AlbumClickedCommand}"
-                                                  PassEventArgsToCommand="True" />
-                </triggers:EventTrigger>
-            </triggers:Interactions.Triggers>
-            <ListView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <ItemsWrapGrid SizeChanged="MusicWrapGrid_SizeChanged"
-                                   Orientation="Horizontal"
-                                   Margin="0,0,0,60">
-                        <ItemsWrapGrid.ChildrenTransitions>
-                            <TransitionCollection>
-                                <AddDeleteThemeTransition />
-                            </TransitionCollection>
-                        </ItemsWrapGrid.ChildrenTransitions>
-                    </ItemsWrapGrid>
-                </ItemsPanelTemplate>
-            </ListView.ItemsPanel>
-            <ListView.ItemContainerTransitions>
-                <TransitionCollection>
-                    <AddDeleteThemeTransition />
-                    <EntranceThemeTransition FromHorizontalOffset="50"
-                                             FromVerticalOffset="0" />
-                </TransitionCollection>
-            </ListView.ItemContainerTransitions>
-        </ListView>
+        <Grid x:Name="VideoSearch"
+              Grid.Row="3"
+              Visibility="{Binding VideoSearchEnabled, Converter={StaticResource BooleanToVisibilityConverter}}"
+              Margin="{StaticResource FrameMargin}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="12" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal">
+                <Button Content="music"
+                        Style="{StaticResource TextBlockButtonStyle}"
+                        FontSize="20"
+                        FontWeight="Light"
+                        Opacity="0.6"
+                        Click="ToggleSearchMode_Click" />
+                <Button Content="videos"
+                        Style="{StaticResource TextBlockButtonStyle}"
+                        FontSize="20"
+                        FontWeight="Light"
+                        Margin="20,0,0,0"/>
+            </StackPanel>
+            <ListView Grid.Row="2"
+                      ItemsSource="{Binding SearchResultsVideos}"
+                      ItemTemplate="{StaticResource PhoneCompactVideoTemplate}"
+                      ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                      IsItemClickEnabled="True"
+                      SelectionMode="None"
+                      IsSwipeEnabled="False">
+                <triggers:Interactions.Triggers>
+                    <triggers:EventTrigger EventName="ItemClick">
+                        <triggers:InvokeCommandAction Command="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM.OpenVideo}"
+                                                      PassEventArgsToCommand="True" />
+                    </triggers:EventTrigger>
+                </triggers:Interactions.Triggers>
+                <ListView.ItemContainerTransitions>
+                    <TransitionCollection>
+                        <AddDeleteThemeTransition />
+                        <EntranceThemeTransition FromHorizontalOffset="50"
+                                                 FromVerticalOffset="0" />
+                    </TransitionCollection>
+                </ListView.ItemContainerTransitions>
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <ItemsWrapGrid Orientation="Horizontal"
+                                       SizeChanged="VideosWrapGrid_SizeChanged"
+                                       Margin="0,0,0,60" />
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+            </ListView>
+        </Grid>
 
-        <ListView Grid.Row="1"
-                  ItemsSource="{Binding SearchResultsVideos}"
-                  ItemTemplate="{StaticResource PhoneCompactVideoTemplate}"
-                  ItemContainerStyle="{StaticResource ListViewItemStyle}"
-                  IsItemClickEnabled="True"
-                  SelectionMode="None"
-                  IsSwipeEnabled="False">
-            <triggers:Interactions.Triggers>
-                <triggers:EventTrigger EventName="ItemClick">
-                    <triggers:InvokeCommandAction Command="{Binding OpenVideo}"
-                                                  PassEventArgsToCommand="True" />
-                </triggers:EventTrigger>
-            </triggers:Interactions.Triggers>
-            <ListView.ItemContainerTransitions>
-                <TransitionCollection>
-                    <AddDeleteThemeTransition />
-                    <EntranceThemeTransition FromHorizontalOffset="50"
-                                             FromVerticalOffset="0" />
-                </TransitionCollection>
-            </ListView.ItemContainerTransitions>
-            <ListView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <ItemsWrapGrid Orientation="Horizontal"
-                                   SizeChanged="VideosWrapGrid_SizeChanged"
-                                   Margin="0,0,0,60" />
-                </ItemsPanelTemplate>
-            </ListView.ItemsPanel>
-        </ListView>
-        
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="Minimal">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MusicSearchBox"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Normal">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MusicSearchBox"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Collapsed" />
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
     </Grid>
 </UserControl>
