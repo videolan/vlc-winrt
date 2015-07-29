@@ -60,7 +60,7 @@ namespace VLC_WinRT.Services.RunTime
             };
             if (!Locator.SettingsVM.HardwareAccelerationEnabled)
             {
-                param.Add("--no-avcodec-dr");
+                param.Add("--avcodec-hw=none");
             }
             param.Add(String.Format("--freetype-font={0}\\segoeui.ttf", Windows.ApplicationModel.Package.Current.InstalledLocation.Path));
 
