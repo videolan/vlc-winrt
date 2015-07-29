@@ -24,7 +24,7 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0"
               Grid.RowSpan="2"
-              Background="{ThemeResource ApplicationThirdForegroundThemeBrush}">
+              Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}">
             <FontIcon Glyph="{StaticResource AlbumDiscSymbol}"
                       FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets"
                       FontSize="26"
