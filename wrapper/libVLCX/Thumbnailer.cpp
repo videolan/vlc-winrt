@@ -56,7 +56,8 @@ Thumbnailer::Thumbnailer()
         "--no-video-title-show",
         "--no-stats",
         "--no-audio",
-        "--no-spu"
+        "--no-spu",
+        "--avcodec-hw=none",
     };
     p_instance = libvlc_new(sizeof(argv) / sizeof(*argv), argv);
     if (!p_instance) {
