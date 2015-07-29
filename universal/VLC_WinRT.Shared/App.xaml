@@ -38,6 +38,8 @@
                                      Color="{StaticResource MainColorBase}" />
                     <SolidColorBrush x:Key="TextBoxBackgroundThemeBrush"
                                      Color="#50FFFFFF" />
+                    <SolidColorBrush x:Key="ToggleSwitchCurtainBackgroundThemeBrush"
+                                     Color="{StaticResource MainColorBase}"/>
                 </ResourceDictionary>
                 <ResourceDictionary x:Key="Light">
                     <Color x:Key="ApplicationPageBackgroundThemeColor">White</Color>
@@ -72,6 +74,8 @@
                                      Color="{StaticResource MainColorBase}"/>
                     <SolidColorBrush x:Key="TextBoxBackgroundThemeBrush"
                                      Color="#50FFFFFF" />
+                    <SolidColorBrush x:Key="ToggleSwitchCurtainBackgroundThemeBrush"
+                                     Color="{StaticResource MainColorBase}" />
                 </ResourceDictionary>
             </ResourceDictionary.ThemeDictionaries>
             <ResourceDictionary.MergedDictionaries>
