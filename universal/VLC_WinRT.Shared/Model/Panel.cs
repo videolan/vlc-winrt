@@ -16,24 +16,17 @@ namespace VLC_WinRT.Model
         private string _title;
         private int _index;
         private string _pathData;
-        private bool _isCurrent;
 
         public Panel(string t, int i, string pd, bool isdefault = false)
         {
             _title = t;
             _index = i;
             _pathData = pd;
-            _isCurrent = isdefault;
         }
 
         public string Title { get { return _title; } set { SetProperty(ref _title, value); } }
         public int Index { get { return _index; } set { SetProperty(ref _index, value); } }
         public string PathData { get { return _pathData; } set { SetProperty(ref _pathData, value); } }
 
-        public bool IsCurrent
-        {
-            get { return _isCurrent; }
-            set { SetProperty(ref _isCurrent, value); }
-        }
     }
 }

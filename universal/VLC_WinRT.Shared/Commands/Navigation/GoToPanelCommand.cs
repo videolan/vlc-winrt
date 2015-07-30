@@ -35,40 +35,31 @@ namespace VLC_WinRT.Commands.Navigation
                 panel = Locator.MainVM.Panels.First(x => x.Index == int.Parse(parameter.ToString()));
             }
 
-            int iPreviousView = Locator.MainVM.Panels.IndexOf(Locator.MainVM.Panels.FirstOrDefault(x => x.IsCurrent));
-            int iNewView = Locator.MainVM.Panels.IndexOf(panel);
-            foreach (Model.Panel panel1 in Locator.MainVM.Panels)
-            {
-                panel1.IsCurrent = false;
-            }
-
 #if WINDOWS_PHONE_APP
+            var iPreviousView = Locator.MainVM.Panels.IndexOf(Locator.MainVM.Panels.FirstOrDefault(x => x.IsCurrent));
+            var iNewView = Locator.MainVM.Panels.IndexOf(panel);
             App.RootPage.ShellContent.SetPivotAnimation(iNewView > iPreviousView);
 #endif
 
-            if (panel != null)
+            switch (panel.Index)
             {
-                panel.IsCurrent = true;
-                if (App.SplitShell.IsRightFlyoutOpen)
-                {
-                    Locator.NavigationService.GoBack_HideFlyout();
-                }
-
-                switch (panel.Index)
-                {
-                    case 0:
-                        Locator.NavigationService.Go(VLCPage.MainPageHome);
-                        break;
-                    case 1:
-                        Locator.NavigationService.Go(VLCPage.MainPageVideo);
-                        break;
-                    case 2:
-                        Locator.NavigationService.Go(VLCPage.MainPageMusic);
-                        break;
-                    case 3:
-                        Locator.NavigationService.Go(VLCPage.MainPageFileExplorer);
-                        break;
-                }
+                case 0:
+                    Locator.NavigationService.Go(VLCPage.MainPageHome);
+                    break;
+                case 1:
+                    Locator.NavigationService.Go(VLCPage.MainPageVideo);
+                    break;
+                case 2:
+                    Locator.NavigationService.Go(VLCPage.MainPageMusic);
+                    break;
+                case 3:
+                    Locator.NavigationService.Go(VLCPage.MainPageFileExplorer);
+                    break;
+            }
+            
+            if (App.SplitShell.IsRightFlyoutOpen)
+            {
+                Locator.NavigationService.GoBack_HideFlyout();
             }
         }
     }

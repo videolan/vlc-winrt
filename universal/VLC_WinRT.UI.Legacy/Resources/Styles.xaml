@@ -1532,6 +1532,10 @@
                                                          Storyboard.TargetProperty="Opacity"
                                                          Duration="0"
                                                          To="1" />
+                                        <DoubleAnimation Storyboard.TargetName="contentPresenter"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         SpeedRatio="2"
+                                                         To="0.5" />
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="UnselectedPointerOver">
@@ -1575,7 +1579,7 @@
                                                          To="1" />
                                         <DoubleAnimation Storyboard.TargetName="HintGlyphBorder"
                                                          Storyboard.TargetProperty="Opacity"
-                                                         Duration="0"
+                                                         SpeedRatio="3"
                                                          To="1" />
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="contentPresenter"
                                                                        Storyboard.TargetProperty="Foreground">
@@ -1586,18 +1590,6 @@
                                 </VisualState>
                                 <VisualState x:Name="Selected">
                                     <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="SelectionBackground"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         Duration="0"
-                                                         To="1" />
-                                        <DoubleAnimation Storyboard.TargetName="SelectedBorder"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         Duration="0"
-                                                         To="1" />
-                                        <DoubleAnimation Storyboard.TargetName="SelectedCheckMark"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         Duration="0"
-                                                         To="1" />
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="contentPresenter"
                                                                        Storyboard.TargetProperty="Foreground">
                                             <DiscreteObjectKeyFrame KeyTime="0"
@@ -1607,18 +1599,6 @@
                                 </VisualState>
                                 <VisualState x:Name="SelectedSwiping">
                                     <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="SelectionBackground"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         Duration="0"
-                                                         To="1" />
-                                        <DoubleAnimation Storyboard.TargetName="SelectedBorder"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         Duration="0"
-                                                         To="1" />
-                                        <DoubleAnimation Storyboard.TargetName="SelectedCheckMark"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         Duration="0"
-                                                         To="1" />
                                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="contentPresenter"
                                                                        Storyboard.TargetProperty="Foreground">
                                             <DiscreteObjectKeyFrame KeyTime="0"
@@ -1628,15 +1608,7 @@
                                 </VisualState>
                                 <VisualState x:Name="SelectedUnfocused">
                                     <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="SelectionBackground"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         Duration="0"
-                                                         To="1" />
-                                        <DoubleAnimation Storyboard.TargetName="SelectedBorder"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         Duration="0"
-                                                         To="1" />
-                                        <DoubleAnimation Storyboard.TargetName="SelectedCheckMark"
+                                        <DoubleAnimation Storyboard.TargetName="contentPresenter"
                                                          Storyboard.TargetProperty="Opacity"
                                                          Duration="0"
                                                          To="1" />

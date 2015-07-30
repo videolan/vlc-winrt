@@ -41,6 +41,7 @@ namespace VLC_WinRT.ViewModels
         #region private props
         private NetworkListenerService networkListenerService;
         private KeyboardListenerService keyboardListenerService;
+        private Panel _currentPanel;
         private bool _isInternet;
         private string _searchTag = "";
         private bool _menuBarDisplayed = false;
@@ -64,6 +65,12 @@ namespace VLC_WinRT.ViewModels
         {
             get { return currentPage; }
             set { SetProperty(ref currentPage, value); }
+        }
+
+        public Panel CurrentPanel
+        {
+            get { return _currentPanel; }
+            set { SetProperty(ref _currentPanel, value); }
         }
 
         public bool CanGoBack

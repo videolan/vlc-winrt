@@ -135,15 +135,19 @@ namespace VLC_WinRT.Services.RunTime
             {
                 case VLCPage.MainPageHome:
                     App.ApplicationFrame.Navigate(typeof(MainPageHome));
+                    Locator.MainVM.CurrentPanel = Locator.MainVM.Panels[0];
                     break;
                 case VLCPage.MainPageVideo:
                     App.ApplicationFrame.Navigate(typeof(MainPageVideos));
+                    Locator.MainVM.CurrentPanel = Locator.MainVM.Panels[1];
                     break;
                 case VLCPage.MainPageMusic:
                     App.ApplicationFrame.Navigate(typeof(MainPageMusic));
+                    Locator.MainVM.CurrentPanel = Locator.MainVM.Panels[2];
                     break;
                 case VLCPage.MainPageFileExplorer:
                     App.ApplicationFrame.Navigate(typeof(MainPageFileExplorer));
+                    Locator.MainVM.CurrentPanel = Locator.MainVM.Panels[3];
                     break;
                 case VLCPage.AlbumPage:
                     App.SplitShell.RightFlyoutContent = new AlbumPageBase();

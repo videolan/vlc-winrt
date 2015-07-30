@@ -69,13 +69,13 @@
         </VisualStateManager.VisualStateGroups>
         <FontIcon x:Name="Icon"
                   FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets"
-                  Glyph="{Binding Panel.PathData}"
+                  Glyph="{Binding PathData}"
                   FontSize="26"
                   VerticalAlignment="Center"
                   Foreground="{ThemeResource BasicForeground}" />
         <TextBlock x:Name="Title"
                    Grid.Column="2"
-                   Text="{Binding Panel.Title}"
+                   Text="{Binding Title}"
                    Foreground="{ThemeResource BasicForeground}"
                    VerticalAlignment="Center"
                    FontWeight="Light"/>
