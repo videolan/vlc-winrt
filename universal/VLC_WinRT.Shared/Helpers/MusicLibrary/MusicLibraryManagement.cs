@@ -97,6 +97,10 @@ namespace VLC_WinRT.Helpers.MusicLibrary
                 {
                     Locator.MusicLibraryVM.Tracks = tracks;
                     Locator.MusicLibraryVM.Albums = new ObservableCollection<AlbumItem>(orderedAlbums);
+                    if(Locator.MainVM.CurrentPage == VLCPage.MainPageMusic && Locator.MusicLibraryVM.MusicView == MusicView.Albums && (Locator.MusicLibraryVM.GroupedAlbums == null || !Locator.MusicLibraryVM.GroupedAlbums.Any()))
+                    {
+                        OrderAlbums();
+                    }
                     Locator.MusicLibraryVM.GroupedTracks = groupedTracks;
                 });
 
