@@ -476,6 +476,8 @@ namespace VLC_WinRT.ViewModels
 
             if (media is VideoItem)
             {
+                // First things first: we need to pause the slideshow here before any action is done by VLC
+                Locator.Slideshow.IsPaused = true;
                 await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                 {
                     PlayingType = PlayingType.Video;
