@@ -81,13 +81,13 @@
       <PrecompiledHeaderOutputFile>$(IntDir)pch.pch</PrecompiledHeaderOutputFile>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\include;$(ProjectDir)..\libvlcpp\;$(ProjectDir)..\libvlcX;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\vlc\WindowsPhone\vlc-$(PlatformTarget)\$(Configuration)\include;$(ProjectDir)..\libvlcpp\;$(ProjectDir)..\libvlcX;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalUsingDirectories>$(WindowsSDK_WindowsMetadata);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\vlc\WindowsPhone\vlc-$(PlatformTarget)\$(Configuration)</AdditionalLibraryDirectories>
       <AdditionalDependencies>runtimeobject.lib;d3d11.lib;d2d1.lib;libvlc.lib;MMDevAPI.lib;runtimeobject.lib;libvlc.lib;d3d11.lib;d2d1.lib;dxgi.lib;MMDevAPI.lib;MFuuid.lib;MFReadWrite.lib;MFplat.lib;uuid.lib;WindowsCodecs.lib;WindowsPhoneCore.lib;PhoneAppModelHost.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -100,14 +100,14 @@
       <PrecompiledHeaderOutputFile>$(IntDir)pch.pch</PrecompiledHeaderOutputFile>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\include;$(ProjectDir)..\libvlcpp\;$(ProjectDir)..\libvlcX;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\vlc\WindowsPhone\vlc-$(PlatformTarget)\$(Configuration)\include;$(ProjectDir)..\libvlcpp\;$(ProjectDir)..\libvlcX;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalUsingDirectories>$(WindowsSDK_WindowsMetadata);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <AdditionalDependencies>runtimeobject.lib;d3d11.lib;d2d1.lib;libvlc.lib;MMDevAPI.lib;WindowsPhoneCore.lib;RuntimeObject.lib;PhoneAppModelHost.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\vlc\WindowsPhone\vlc-$(PlatformTarget)\$(Configuration)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
@@ -118,14 +118,14 @@
       <PrecompiledHeaderOutputFile>$(IntDir)pch.pch</PrecompiledHeaderOutputFile>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\include;$(ProjectDir)..\libvlcpp\;$(ProjectDir)..\libvlcX;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\vlc\WindowsPhone\vlc-$(PlatformTarget)\$(Configuration)\include;$(ProjectDir)..\libvlcpp\;$(ProjectDir)..\libvlcX;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalUsingDirectories>$(WindowsSDK_WindowsMetadata);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <AdditionalDependencies>d3d11.lib;d2d1.lib;libvlc.lib;MMDevAPI.lib;WindowsPhoneCore.lib;RuntimeObject.lib;PhoneAppModelHost.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\vlc\WindowsPhone\vlc-$(PlatformTarget)\$(Configuration)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
@@ -137,7 +137,7 @@
       <PrecompiledHeaderOutputFile>$(IntDir)pch.pch</PrecompiledHeaderOutputFile>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)\include;$(ProjectDir)..\libvlcpp\;$(ProjectDir)..\libvlcX;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\vlc\WindowsPhone\vlc-$(PlatformTarget)\$(Configuration)\include;$(ProjectDir)..\libvlcpp\;$(ProjectDir)..\libvlcX;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalUsingDirectories>$(WindowsSDK_WindowsMetadata);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
       <DebugInformationFormat>None</DebugInformationFormat>
     </ClCompile>
@@ -145,7 +145,7 @@
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <AdditionalDependencies>runtimeobject.lib;d3d11.lib;d2d1.lib;libvlc.lib;MMDevAPI.lib;WindowsPhoneCore.lib;RuntimeObject.lib;PhoneAppModelHost.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\vlc\WindowsPhone\vlc-$(Platform)\$(Configuration)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\vlc\WindowsPhone\vlc-$(PlatformTarget)\$(Configuration)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>false</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>

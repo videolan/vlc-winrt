@@ -126,13 +126,13 @@
       <AdditionalUsingDirectories>$(WindowsSDK_WindowsMetadata);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
       <AdditionalOptions>/D "__PLUGIN__" /bigobj %(AdditionalOptions)</AdditionalOptions>
       <DisableSpecificWarnings>28204</DisableSpecificWarnings>
-      <AdditionalIncludeDirectories>$(ProjectDir)\..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\include\vlc\plugins;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\..\..\vlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\include\vlc\plugins;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <AdditionalDependencies>runtimeobject.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\vlc\Windows\vlc-$(Platform)\$(Configuration)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\vlc\Windows\vlc-$(PlatformTarget)\$(Configuration)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Command>copy /Y $(TargetPath) $(SolutionDir)..\vlc\Windows\vlc-win32\$(Configuration)\plugins\access\
@@ -147,7 +147,7 @@ copy /Y $(TargetPath) $(SolutionDir)..\vlc\Windows\vlc-x86\$(Configuration)\plug
       <PrecompiledHeaderOutputFile>$(IntDir)pch.pch</PrecompiledHeaderOutputFile>
       <AdditionalUsingDirectories>$(WindowsSDK_WindowsMetadata);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
       <AdditionalOptions>/D "__PLUGIN__" /bigobj %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\vlc\Windows\vlc-$(Platform)\$(Configuration)\include\vlc\plugins;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\vlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\include\vlc\plugins;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>28204</DisableSpecificWarnings>
       <BrowseInformation>true</BrowseInformation>
     </ClCompile>
@@ -155,7 +155,7 @@ copy /Y $(TargetPath) $(SolutionDir)..\vlc\Windows\vlc-x86\$(Configuration)\plug
       <SubSystem>Console</SubSystem>
       <AdditionalDependencies>runtimeobject.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\vlc\Windows\vlc-$(Platform)\$(Configuration)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\vlc\Windows\vlc-$(PlatformTarget)\$(Configuration)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Command>copy /Y $(TargetPath) $(SolutionDir)..\vlc\Windows\vlc-win32\$(Configuration)\plugins\access\
@@ -174,16 +174,16 @@ copy /Y $(TargetPath) $(SolutionDir)..\vlc\Windows\vlc-x86\$(Configuration)\plug
       <AdditionalUsingDirectories>$(WindowsSDK_WindowsMetadata);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
       <AdditionalOptions>/D "__PLUGIN__" /bigobj %(AdditionalOptions)</AdditionalOptions>
       <DisableSpecificWarnings>28204</DisableSpecificWarnings>
-      <AdditionalIncludeDirectories>$(ProjectDir)\..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\include\vlc\plugins;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\..\..\vlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\include\vlc\plugins;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <AdditionalDependencies>runtimeobject.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\vlc\Windows\vlc-$(Platform)\$(Configuration)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\vlc\Windows\vlc-$(PlatformTarget)\$(Configuration)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y $(TargetPath) $(SolutionDir)..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\access\</Command>
+      <Command>copy /Y $(TargetPath) $(SolutionDir)..\vlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\access\</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
@@ -195,7 +195,7 @@ copy /Y $(TargetPath) $(SolutionDir)..\vlc\Windows\vlc-x86\$(Configuration)\plug
       <AdditionalUsingDirectories>$(WindowsSDK_WindowsMetadata);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
       <AdditionalOptions>/D "__PLUGIN__" /bigobj %(AdditionalOptions)</AdditionalOptions>
       <DisableSpecificWarnings>28204</DisableSpecificWarnings>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\vlc\Windows\vlc-$(Platform)\$(Configuration)\include\vlc\plugins;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\vlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\include\vlc\plugins;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <BrowseInformation>true</BrowseInformation>
       <DebugInformationFormat>None</DebugInformationFormat>
     </ClCompile>
@@ -204,10 +204,10 @@ copy /Y $(TargetPath) $(SolutionDir)..\vlc\Windows\vlc-x86\$(Configuration)\plug
       <AdditionalDependencies>runtimeobject.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateDebugInformation>false</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\vlc\Windows\vlc-$(Platform)\$(Configuration)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\vlc\Windows\vlc-$(PlatformTarget)\$(Configuration)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y $(TargetPath) $(SolutionDir)..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\access\</Command>
+      <Command>copy /Y $(TargetPath) $(SolutionDir)..\vlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\access\</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -219,16 +219,16 @@ copy /Y $(TargetPath) $(SolutionDir)..\vlc\Windows\vlc-x86\$(Configuration)\plug
       <AdditionalUsingDirectories>$(WindowsSDK_WindowsMetadata);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
       <AdditionalOptions>/D "__PLUGIN__" /bigobj %(AdditionalOptions)</AdditionalOptions>
       <DisableSpecificWarnings>28204</DisableSpecificWarnings>
-      <AdditionalIncludeDirectories>$(ProjectDir)\..\..\vlc\Windows\vlc-$(Platform)\$(Configuration)\include\vlc\plugins;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\..\..\vlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\include\vlc\plugins;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <AdditionalDependencies>runtimeobject.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\vlc\Windows\vlc-$(Platform)\$(Configuration)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\vlc\Windows\vlc-$(PlatformTarget)\$(Configuration)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y $(TargetPath) $(SolutionDir)..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\access\</Command>
+      <Command>copy /Y $(TargetPath) $(SolutionDir)..\vlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\access\</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -240,17 +240,17 @@ copy /Y $(TargetPath) $(SolutionDir)..\vlc\Windows\vlc-x86\$(Configuration)\plug
       <AdditionalUsingDirectories>$(WindowsSDK_WindowsMetadata);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
       <AdditionalOptions>/D "__PLUGIN__" /bigobj %(AdditionalOptions)</AdditionalOptions>
       <DisableSpecificWarnings>28204</DisableSpecificWarnings>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\vlc\Windows\vlc-$(Platform)\$(Configuration)\include\vlc\plugins;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\vlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\include\vlc\plugins;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <BrowseInformation>true</BrowseInformation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <AdditionalDependencies>runtimeobject.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\vlc\Windows\vlc-$(Platform)\$(Configuration)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\vlc\Windows\vlc-$(PlatformTarget)\$(Configuration)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y $(TargetPath) $(SolutionDir)..\vlc\Windows\vlc-$(Platform)\$(Configuration)\plugins\access\</Command>
+      <Command>copy /Y $(TargetPath) $(SolutionDir)..\vlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\access\</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
