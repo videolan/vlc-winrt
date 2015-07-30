@@ -36,14 +36,15 @@ namespace VLC_WinRT.ViewModels.Settings
         private bool _notificationOnNewSongForeground;
         private bool _continueVideoPlaybackInBackground;
 #endif
-        private bool _hardwareAcceleration;
         private OrderType _albumsOrderType;
         private OrderListing _albumsOrderListing;
         private MusicView _musicView;
         private VideoView _videoView;
+        private VLCPage _homePage;
         private string _lastFmUserName;
         private string _lastFmPassword;
         private bool _lastFmIsConnected = false;
+        private bool _hardwareAcceleration;
         private KeyboardActionDatabase _keyboardActionDatabase;
 
         public KeyboardActionDatabase KeyboardActionDatabase
@@ -174,6 +175,14 @@ namespace VLC_WinRT.ViewModels.Settings
             }
         }
 #endif
+
+        public List<VLCPage> HomePageCollection { get; set; } = new List<VLCPage>()
+        {
+            VLCPage.MainPageHome,
+            VLCPage.MainPageVideo,
+            VLCPage.MainPageMusic
+        };
+
         public List<OrderType> AlbumsOrderTypeCollection
         { get; set; }
         = new List<OrderType>()
@@ -434,6 +443,28 @@ namespace VLC_WinRT.ViewModels.Settings
             {
                 ApplicationSettingsHelper.SaveSettingsValue("HardwareAccelerationEnabled", value);
                 SetProperty(ref _hardwareAcceleration, value);
+            }
+        }
+
+        public VLCPage HomePage
+        {
+            get
+            {
+                var homePage = ApplicationSettingsHelper.ReadSettingsValue("Homepage");
+                if (homePage == null)
+                {
+                    _homePage = VLCPage.MainPageHome;
+                }
+                else
+                {
+                    _homePage = (VLCPage)homePage;
+                }
+                return _homePage;
+            }
+            set
+            {
+                ApplicationSettingsHelper.SaveSettingsValue("Homepage", (int)value);
+                SetProperty(ref _homePage, value);
             }
         }
 

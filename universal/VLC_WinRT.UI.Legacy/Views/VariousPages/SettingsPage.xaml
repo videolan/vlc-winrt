@@ -43,6 +43,32 @@
                                VerticalAlignment="Center"
                                HorizontalAlignment="Right"/>
                 </Grid>
+                <TextBlock Text="user interface"
+                           Style="{StaticResource SubheaderTextBlockStyle}"
+                           FontSize="32"
+                           Foreground="{StaticResource MainColor}"
+                           Margin="0,12" />
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Tag="WindowsOnly"
+                               Text="Home page"
+                               FontSize="22"
+                               Style="{StaticResource SubheaderTextBlockStyle}" />
+                    <ComboBox Grid.Column="1"
+                              Margin="0,6,0,0"
+                              ItemsSource="{Binding HomePageCollection}"
+                              SelectedItem="{Binding HomePage, Mode=TwoWay}"
+                              Style="{StaticResource VLCLightComboBox}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Converter={StaticResource VLCPageStringifyConverter}}" />
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </Grid>
                 <TextBlock Text="music"
                            Style="{StaticResource SubheaderTextBlockStyle}"
                            FontSize="32"

@@ -112,6 +112,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\TimeSpanSecondsDoubleConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\TimespanShortStringConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\VideoViewStringifyConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\VLCPageStringifyConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\AlbumDatabase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\ArtistDatabase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Database\IDatabase.cs" />

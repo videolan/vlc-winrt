@@ -95,7 +95,8 @@ namespace VLC_WinRT
             if (Window.Current.Content == null)
             {
                 await LaunchTheApp();
-                Locator.NavigationService.Go(VLCPage.MainPageHome);
+
+                Locator.NavigationService.Go(Locator.SettingsVM.HomePage);
                 try
                 {
                     await ExceptionHelper.ExceptionLogCheckup();

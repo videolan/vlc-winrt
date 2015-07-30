@@ -33,6 +33,7 @@
     <converters:FavoriteLabelConverter x:Key="FavoriteLabelConverter" />
     <converters:VideoViewStringifyConverter x:Key="VideoViewStringifyConverter" />
     <converters:MusicViewStringifyConverter x:Key="MusicViewStringifyConverter" />
+    <converters:VLCPageStringifyConverter x:Key="VLCPageStringifyConverter" /> 
     <converters:PositionToFixedPointConverter x:Key="PositionToFixedPointConverter" />
     <converters:CurrentTrackEnhancifierConverter x:Key="CurrentTrackEnhancifierConverter" />
     <converters:NullIntConverter x:Key="NullIntConverter" />
