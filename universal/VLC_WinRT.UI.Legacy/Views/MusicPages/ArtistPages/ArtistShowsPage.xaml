@@ -64,7 +64,7 @@
                 </ListView.ItemContainerTransitions>
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Grid Background="{ThemeResource ApplicationThirdForegroundThemeBrush}">
+                        <Grid Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="12" />
                                 <ColumnDefinition />
