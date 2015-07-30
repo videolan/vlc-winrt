@@ -34,9 +34,9 @@ namespace VLC_WinRT.Helpers
                 {
                     var appViewProperties = bb.GetType().DeclaredProperties;
                     bb.BackgroundColor = (Color)App.Current.Resources["ApplicationBarForegroundThemeColor"];
-                    bb.ForegroundColor = Colors.WhiteSmoke;
+                    bb.ForegroundColor = (Color)App.Current.Resources["MainColorBase"];
+                    bb.ButtonForegroundColor = (Color)App.Current.Resources["MainColorBase"];
 
-                    bb.ButtonForegroundColor = Colors.WhiteSmoke;
                     if (DoesPropertyExist("InactiveBackgroundColor", appViewProperties))
                         bb.InactiveBackgroundColor = (Color)App.Current.Resources["InactiveMainColorBase"];
                     if (DoesPropertyExist("ButtonInactiveForegroundColor", appViewProperties))
