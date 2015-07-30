@@ -59,7 +59,6 @@ namespace VLC_WinRT.Views.VariousPages
             {
                 ErrorConnectLastFmTextBox.Text = "";
                 ErrorConnectLastFmTextBox.Visibility = Visibility.Collapsed;
-                ToastHelper.Basic("Congrats! You're connected to Last.Fm!");
                 Locator.SettingsVM.LastFmIsConnected = true;
             }
             else
