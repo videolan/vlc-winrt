@@ -15,13 +15,13 @@ namespace VLC_WinRT.Converters
                 switch ((MusicView)value)
                 {
                     case MusicView.Albums:
-                        return Strings.Albums.ToUpper();
+                        return Strings.Albums.ToUpperFirstChar();
                     case MusicView.Artists:
-                        return Strings.Artists.ToUpper();
+                        return Strings.Artists.ToUpperFirstChar();
                     case MusicView.Playlists:
-                        return Strings.Playlists.ToUpper();
+                        return Strings.Playlists.ToUpperFirstChar();
                     case MusicView.Songs:
-                        return Strings.Songs.ToUpper();
+                        return Strings.Songs.ToUpperFirstChar();
                 }
             }
             return "";

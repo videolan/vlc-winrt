@@ -34,5 +34,17 @@ namespace VLC_WinRT.Utils
         {
             return source.OfType<TrackItem>().ToList();
         }
+
+        public static string ToUpperFirstChar(this string s)
+        {
+            if (string.IsNullOrEmpty(s))
+            {
+                return string.Empty;
+            }
+            char[] a = s.ToCharArray();
+            a[0] = char.ToUpper(a[0]);
+            return new string(a);
+        }
+
     }
 }

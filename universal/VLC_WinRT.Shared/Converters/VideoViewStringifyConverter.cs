@@ -10,17 +10,16 @@ namespace VLC_WinRT.Converters
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            var resourceLoader = new ResourceLoader();
             if (value is VideoView)
             {
                 switch ((VideoView)value)
                 {
                     case VideoView.Videos:
-                        return Strings.Videos.ToUpper();
+                        return Strings.Videos.ToUpperFirstChar();
                     case VideoView.Shows:
-                        return Strings.Shows.ToUpper();
+                        return Strings.Shows.ToUpperFirstChar();
                     case VideoView.CameraRoll:
-                        return Strings.CameraRoll.ToUpper();
+                        return Strings.CameraRoll.ToUpperFirstChar();
                 }
             }
             return "";
