@@ -49,20 +49,17 @@ namespace VLC_WinRT.Services.RunTime
         {
             var swapchain = panel as SwapChainPanel;
             if (swapchain == null) throw new ArgumentNullException("panel", "VLCService needs a SwapChainpanel");
-            var param = new List<String>()
+            var param = new List<string>
             {
                 "-I",
                 "dummy",
                 "--no-osd",
                 "--verbose=3",
                 "--no-stats",
-                "--avcodec-fast"
+                "--avcodec-fast",
+                !Locator.SettingsVM.HardwareAccelerationEnabled ? "--avcodec-hw=none" : "--avcodec-hw=d3d11va",
+                string.Format("--freetype-font={0}\\segoeui.ttf",Windows.ApplicationModel.Package.Current.InstalledLocation.Path)
             };
-            if (!Locator.SettingsVM.HardwareAccelerationEnabled)
-            {
-                param.Add("--avcodec-hw=none");
-            }
-            param.Add(String.Format("--freetype-font={0}\\segoeui.ttf", Windows.ApplicationModel.Package.Current.InstalledLocation.Path));
 
             // So far, this NEEDS to be called from the main thread
             Instance = new Instance(param, swapchain);
