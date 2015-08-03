@@ -140,7 +140,6 @@ namespace VLC_WinRT.ViewModels
             Panels.Add(new Panel(Strings.Videos, 1, App.Current.Resources["MovieSymbol"].ToString()));
             Panels.Add(new Panel(Strings.Music, 2, App.Current.Resources["MusicSymbol"].ToString()));
             Panels.Add(new Panel(Strings.FileExplorer, 3, App.Current.Resources["FileExplorerSymbol"].ToString()));
-            Initialize();
 
             CoreWindow.GetForCurrentThread().Activated += ApplicationState_Activated;
             Locator.NavigationService.ViewNavigated += (sender, page) =>
@@ -219,13 +218,7 @@ namespace VLC_WinRT.ViewModels
                 }
             });
         }
-
-        void Initialize()
-        {
-            if (ApplicationSettingsHelper.ReadSettingsValue("ContinueVideoPlaybackInBackground") == null)
-                ApplicationSettingsHelper.SaveSettingsValue("ContinueVideoPlaybackInBackground", true);
-        }
-
+        
         public void CloseStreamFlyout()
         {
             var streamFLyout = App.Current.Resources["PhoneOpenStreamFlyout"] as Flyout;
