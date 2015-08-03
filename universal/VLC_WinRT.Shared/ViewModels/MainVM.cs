@@ -175,6 +175,14 @@ namespace VLC_WinRT.ViewModels
                 CurrentPage = page;
                 CanGoBack = Locator.NavigationService.CanGoBack();
             };
+            InitializeSlideshow();
+        }
+
+        private async void InitializeSlideshow()
+        {
+            await Locator.Slideshow.IsLoaded.Task;
+            Locator.Slideshow.RichAnimations = Locator.SettingsVM.RichAnimations;
+            Locator.Slideshow.AddImg("ms-appx:///Assets/wallpaper.jpg");
         }
 
         private void ApplicationState_Activated(object sender, WindowActivatedEventArgs e)

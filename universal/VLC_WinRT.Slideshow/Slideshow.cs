@@ -17,13 +17,14 @@ namespace Slide2D
 {
     public class MetroSlideshow
     {
+        public TaskCompletionSource<bool> IsLoaded = new TaskCompletionSource<bool>(); 
         public static CanvasAnimatedControl canvas;
         public static double WindowHeight;
         public static double WindowWidth;
-
+        
         private ImgSlideshow slideshow;
         private List<Img> ImgQueue = new List<Img>();
-
+        
         public MetroSlideshow()
         {
             SetWindowSize();
@@ -57,7 +58,7 @@ namespace Slide2D
 
         private async void Canvas_CreateResources(CanvasAnimatedControl sender, Microsoft.Graphics.Canvas.UI.CanvasCreateResourcesEventArgs args)
         {
-            AddImg("ms-appx:///Assets/wallpaper.jpg");
+            IsLoaded.TrySetResult(true);
         }
 
         public async void AddImg(string file)
@@ -82,6 +83,12 @@ namespace Slide2D
         {
             get { return canvas.Paused; }
             set { canvas.Paused = value; }
+        }
+
+        public bool RichAnimations
+        {
+            get { return slideshow.RichAnimations; }
+            set { slideshow.RichAnimations = value; }
         }
     }
 }

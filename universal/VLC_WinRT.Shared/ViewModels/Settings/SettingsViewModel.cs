@@ -48,6 +48,7 @@ namespace VLC_WinRT.ViewModels.Settings
         private string _lastFmPassword;
         private bool _lastFmIsConnected = false;
         private bool _hardwareAcceleration;
+        private bool _richAnimations;
         private KeyboardActionDatabase _keyboardActionDatabase;
 
         public KeyboardActionDatabase KeyboardActionDatabase
@@ -469,6 +470,22 @@ namespace VLC_WinRT.ViewModels.Settings
             {
                 ApplicationSettingsHelper.SaveSettingsValue("HardwareAccelerationEnabled", value);
                 SetProperty(ref _hardwareAcceleration, value);
+            }
+        }
+
+        public bool RichAnimations
+        {
+            get
+            {
+                var richAnims = ApplicationSettingsHelper.ReadSettingsValue("RichAnimationsEnabled");
+                _richAnimations = (richAnims is bool) ? (bool)richAnims : true;
+                return _richAnimations;
+            }
+            set
+            {
+                ApplicationSettingsHelper.SaveSettingsValue("RichAnimationsEnabled", value);
+                SetProperty(ref _richAnimations, value);
+                Locator.Slideshow.RichAnimations = value;
             }
         }
 
