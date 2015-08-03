@@ -91,7 +91,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
                 var orderedAlbums = albums.OrderBy(x => x.Artist).ThenBy(x => x.Name);
 
                 var tracks = await Locator.MusicLibraryVM._trackDatabase.LoadTracks().ToObservableAsync();
-                var groupedTracks = tracks.GroupBy(x => string.IsNullOrEmpty(x.Name) ? Strings.UnknownChar : (char.IsLetter(x.Name.ElementAt(0)) ? x.Name.ToLower().ElementAt(0) : Strings.UnknownChar));
+                var groupedTracks = tracks.GroupBy(x => string.IsNullOrEmpty(x.Name) ? Strings.UnknownChar : (char.IsLetter(x.Name.ElementAt(0)) ? x.Name.ToUpper().ElementAt(0) : Strings.UnknownChar));
 
                 await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                 {
