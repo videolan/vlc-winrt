@@ -13,7 +13,8 @@ namespace VLC_WinRT.Commands.Settings
             KnownLibraryId id = (KnownLibraryId)parameter;
             var lib = await StorageLibrary.GetLibraryAsync(id);
             await lib.RequestAddFolderAsync();
-            await Locator.SettingsVM.GetLibrariesFolders();
+            await Locator.SettingsVM.GetVideoLibraryFolders();
+            await Locator.SettingsVM.GetMusicLibraryFolders();
 #endif
         }
     }

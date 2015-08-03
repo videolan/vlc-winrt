@@ -21,6 +21,7 @@ using VLC_WinRT.Model.Video;
 using VLC_WinRT.Model;
 using VLC_WinRT.Views.MusicPages;
 using Windows.Storage;
+using Windows.UI.Core;
 using VLC_WinRT.Commands.Settings;
 using VLC_WinRT.Utils;
 
@@ -32,6 +33,8 @@ namespace VLC_WinRT.ViewModels.Settings
         private bool _isSidebarAlwaysMinimized = false;
         private List<StorageFolder> _musicFolders;
         private List<StorageFolder> _videoFolders;
+        private bool musicFoldersLoaded;
+        private bool videoFoldersLoaded;
         private bool _notificationOnNewSong;
         private bool _notificationOnNewSongForeground;
         private bool _continueVideoPlaybackInBackground;
@@ -158,20 +161,16 @@ namespace VLC_WinRT.ViewModels.Settings
 #if WINDOWS_APP
         public bool ContinueVideoPlaybackInBackground
         {
-            get { return _continueVideoPlaybackInBackground; }
+            get
+            {
+                var continuePlaybackInBackground = ApplicationSettingsHelper.ReadSettingsValue("ContinueVideoPlaybackInBackground");
+                _continueVideoPlaybackInBackground = continuePlaybackInBackground is bool && (bool)continuePlaybackInBackground;
+                return _continueVideoPlaybackInBackground;
+            }
             set
             {
                 SetProperty(ref _continueVideoPlaybackInBackground, value);
                 ApplicationSettingsHelper.SaveSettingsValue("ContinueVideoPlaybackInBackground", value);
-            }
-        }
-        public bool IsSidebarAlwaysMinimized
-        {
-            get { return _isSidebarAlwaysMinimized; }
-            set
-            {
-                SetProperty(ref _isSidebarAlwaysMinimized, value);
-                ApplicationSettingsHelper.SaveSettingsValue("IsSidebarAlwaysMinimized", value);
             }
         }
 #endif
@@ -222,42 +221,69 @@ namespace VLC_WinRT.ViewModels.Settings
 #if WINDOWS_APP
         public List<StorageFolder> MusicFolders
         {
-            get { return _musicFolders; }
+            get
+            {
+                if (!musicFoldersLoaded)
+                {
+                    musicFoldersLoaded = true;
+                    Task.Run(()=>GetMusicLibraryFolders());
+                }
+                return _musicFolders;
+            }
             set { SetProperty(ref _musicFolders, value); }
         }
 
         public List<StorageFolder> VideoFolders
         {
-            get { return _videoFolders; }
+            get
+            {
+                if (!videoFoldersLoaded)
+                {
+                    videoFoldersLoaded = true;
+                    Task.Run(() => GetVideoLibraryFolders());
+                }
+                return _videoFolders;
+            }
             set { SetProperty(ref _videoFolders, value); }
         }
 
-        public AddFolderToLibrary AddFolderToLibrary { get; set; }
-        public RemoveFolderFromVideoLibrary RemoveFolderFromVideoLibrary { get; set; }
-        public RemoveFolderFromMusicLibrary RemoveFolderFromMusicLibrary { get; set; }
-        public KnownLibraryId MusicLibraryId { get; set; }
-        public KnownLibraryId VideoLibraryId { get; set; }
+        public AddFolderToLibrary AddFolderToLibrary { get; set; } = new AddFolderToLibrary();
+        public RemoveFolderFromVideoLibrary RemoveFolderFromVideoLibrary { get; set; } = new RemoveFolderFromVideoLibrary();
+        public RemoveFolderFromMusicLibrary RemoveFolderFromMusicLibrary { get; set; } = new RemoveFolderFromMusicLibrary();
+        public KnownLibraryId MusicLibraryId { get; set; } = KnownLibraryId.Music;
+        public KnownLibraryId VideoLibraryId { get; set; } = KnownLibraryId.Videos;
 
         public bool NotificationOnNewSong
         {
-            get { return _notificationOnNewSong; }
+            get
+            {
+                var notificationOnNewSong = ApplicationSettingsHelper.ReadSettingsValue("NotificationOnNewSong");
+                _notificationOnNewSong = notificationOnNewSong as bool? ?? false;
+                return _notificationOnNewSong;
+            }
             set
             {
-                SetProperty(ref _notificationOnNewSong, value);
                 ApplicationSettingsHelper.SaveSettingsValue("NotificationOnNewSong", value);
+                SetProperty(ref _notificationOnNewSong, value);
             }
         }
 
         public bool NotificationOnNewSongForeground
         {
-            get { return _notificationOnNewSongForeground; }
+            get
+            {
+                var notificationOnNewSongForeground = ApplicationSettingsHelper.ReadSettingsValue("NotificationOnNewSongForeground");
+                _notificationOnNewSongForeground = notificationOnNewSongForeground as bool? ?? false;
+                return _notificationOnNewSongForeground;
+            }
             set
             {
-                SetProperty(ref _notificationOnNewSongForeground, value);
                 ApplicationSettingsHelper.SaveSettingsValue("NotificationOnNewSongForeground", value);
+                SetProperty(ref _notificationOnNewSongForeground, value);
             }
         }
 #endif
+
         public OrderType AlbumsOrderType
         {
             get
@@ -467,48 +493,18 @@ namespace VLC_WinRT.ViewModels.Settings
                 SetProperty(ref _homePage, value);
             }
         }
-
-        public SettingsViewModel()
-        {
-            Initialize();
-        }
         
-        public async Task Initialize()
-        {
 #if WINDOWS_APP
-            App.Dispatcher?.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, async () =>
-            {
-                MusicLibraryId = KnownLibraryId.Music;
-                VideoLibraryId = KnownLibraryId.Videos;
-
-                AddFolderToLibrary = new AddFolderToLibrary();
-                RemoveFolderFromMusicLibrary = new RemoveFolderFromMusicLibrary();
-                RemoveFolderFromVideoLibrary = new RemoveFolderFromVideoLibrary();
-
-                var notificationOnNewSong = ApplicationSettingsHelper.ReadSettingsValue("NotificationOnNewSong");
-                NotificationOnNewSong = notificationOnNewSong != null && (bool)notificationOnNewSong;
-
-                var notificationOnNewSongForeground = ApplicationSettingsHelper.ReadSettingsValue("NotificationOnNewSongForeground");
-                NotificationOnNewSongForeground = notificationOnNewSongForeground != null && (bool)notificationOnNewSongForeground;
-                var sidebar = ApplicationSettingsHelper.ReadSettingsValue("IsSidebarAlwaysMinimized");
-                if (sidebar != null) IsSidebarAlwaysMinimized = (bool)sidebar;
-
-                var continuePlaybackInBackground = ApplicationSettingsHelper.ReadSettingsValue("ContinueVideoPlaybackInBackground");
-                if (continuePlaybackInBackground != null)
-                    ContinueVideoPlaybackInBackground = (bool)continuePlaybackInBackground;
-                await GetLibrariesFolders();
-            });
-#endif
-        }
-
-#if WINDOWS_APP
-        public async Task GetLibrariesFolders()
+        public async Task GetMusicLibraryFolders()
         {
             var musicLib = await StorageLibrary.GetLibraryAsync(KnownLibraryId.Music);
-            MusicFolders = musicLib.Folders.ToList();
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, ()=> MusicFolders = musicLib.Folders.ToList());
+        }
 
+        public async Task GetVideoLibraryFolders()
+        {
             var videosLib = await StorageLibrary.GetLibraryAsync(KnownLibraryId.Videos);
-            VideoFolders = videosLib.Folders.ToList();
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => VideoFolders = videosLib.Folders.ToList());
         }
 #endif
     }
