@@ -36,7 +36,7 @@ namespace VLC_WinRT.Commands.Navigation
             }
 
 #if WINDOWS_PHONE_APP
-            var iPreviousView = Locator.MainVM.Panels.IndexOf(Locator.MainVM.Panels.FirstOrDefault(x => x.IsCurrent));
+            var iPreviousView = Locator.MainVM.CurrentPanel.Index;
             var iNewView = Locator.MainVM.Panels.IndexOf(panel);
             App.RootPage.ShellContent.SetPivotAnimation(iNewView > iPreviousView);
 #endif
