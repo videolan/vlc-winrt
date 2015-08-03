@@ -53,8 +53,7 @@
                         <ColumnDefinition />
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Tag="WindowsOnly"
-                               Text="Home page"
+                    <TextBlock Text="Home page"
                                FontSize="22"
                                Style="{StaticResource SubheaderTextBlockStyle}" />
                     <ComboBox Grid.Column="1"
