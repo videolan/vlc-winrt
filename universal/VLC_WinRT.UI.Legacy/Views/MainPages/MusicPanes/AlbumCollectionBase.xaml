@@ -53,19 +53,10 @@
             </SemanticZoom.ZoomedInView>
             <SemanticZoom.ZoomedOutView>
                 <ListView x:Name="AlbumsZoomedOutView"
-                          Background="{ThemeResource ApplicationBackgroundSemiTranslucentThemeBrush}"
+                          Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}"
                           VerticalContentAlignment="Center"
-                          SelectionMode="None">
-                    <ListView.ItemContainerStyle>
-                        <Style TargetType="ListViewItem">
-                            <Setter Property="VerticalContentAlignment"
-                                    Value="Stretch" />
-                            <Setter Property="HorizontalContentAlignment"
-                                    Value="Stretch" />
-                            <Setter Property="Margin"
-                                    Value="6" />
-                        </Style>
-                    </ListView.ItemContainerStyle>
+                          SelectionMode="None"
+                          ItemContainerStyle="{StaticResource ListViewItemStyle}">
                     <ListView.ItemsPanel>
                         <ItemsPanelTemplate>
                             <ItemsWrapGrid Orientation="Horizontal"
@@ -76,11 +67,11 @@
                     </ListView.ItemsPanel>
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <Grid Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}">
+                            <Grid>
                                 <TextBlock Text="{Binding Group.Key}"
                                            Margin="5,0,0,3"
                                            VerticalAlignment="Center"
-                                           FontSize="26"
+                                           FontSize="30"
                                            TextTrimming="CharacterEllipsis"
                                            TextWrapping="NoWrap"
                                            FontWeight="Light"

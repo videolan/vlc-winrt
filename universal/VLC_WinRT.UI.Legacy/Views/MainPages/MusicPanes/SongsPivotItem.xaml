@@ -65,40 +65,35 @@
                 </ListView>
             </SemanticZoom.ZoomedInView>
             <SemanticZoom.ZoomedOutView>
-                <GridView x:Name="TracksZoomedOutView"
-                          Background="{ThemeResource ApplicationBackgroundSemiTranslucentThemeBrush}"
-                          VerticalContentAlignment="Center">
-                    <GridView.ItemContainerStyle>
-                        <Style TargetType="GridViewItem">
-                            <Setter Property="VerticalContentAlignment"
-                                    Value="Stretch" />
-                            <Setter Property="HorizontalContentAlignment"
-                                    Value="Stretch" />
-                        </Style>
-                    </GridView.ItemContainerStyle>
-                    <GridView.ItemsPanel>
+                <ListView x:Name="TracksZoomedOutView"
+                          Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}"
+                          VerticalContentAlignment="Center"
+                          SelectionMode="None"
+                          ItemContainerStyle="{StaticResource ListViewItemStyle}">
+                    <ListView.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <ItemsWrapGrid Loaded="ItemsWrapGrid_Loaded"
-                                           SizeChanged="ItemsWrapGrid_SizeChanged"
-                                           Orientation="Horizontal"
-                                           Margin="0,0,-12,0"
+                            <ItemsWrapGrid Orientation="Horizontal"
                                            HorizontalAlignment="Center"
-                                           VerticalAlignment="Center" />
+                                           VerticalAlignment="Center"
+                                           GroupPadding="30,0"
+                                           ItemWidth="50" />
                         </ItemsPanelTemplate>
-                    </GridView.ItemsPanel>
-                    <GridView.ItemTemplate>
+                    </ListView.ItemsPanel>
+                    <ListView.ItemTemplate>
                         <DataTemplate>
-                            <Grid Background="{StaticResource MainColor}">
+                            <Grid>
                                 <TextBlock Text="{Binding Group.Key}"
-                                           Foreground="White"
                                            Margin="5,0,0,3"
-                                           VerticalAlignment="Bottom"
-                                           HorizontalAlignment="Left"
-                                           FontSize="36" />
+                                           VerticalAlignment="Center"
+                                           FontSize="30"
+                                           TextTrimming="CharacterEllipsis"
+                                           TextWrapping="NoWrap"
+                                           FontWeight="Light"
+                                           Foreground="{ThemeResource MainColor}" />
                             </Grid>
                         </DataTemplate>
-                    </GridView.ItemTemplate>
-                </GridView>
+                    </ListView.ItemTemplate>
+                </ListView>
             </SemanticZoom.ZoomedOutView>
         </SemanticZoom>
     </Grid>
