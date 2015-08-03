@@ -87,6 +87,7 @@ namespace Slide2D.Images
             {
                 currentImg.Scale = (float)(MetroSlideshow.WindowWidth / currentImg.Width);
             }
+
             if (frame <= 900)
             {
                 if (frame == 0)
@@ -128,7 +129,7 @@ namespace Slide2D.Images
                 currentImg.Opacity -= 0.003f;
             }
 
-            foreach(var text in Texts)
+            foreach (var text in Texts)
             {
                 text.Draw(ref args);
             }

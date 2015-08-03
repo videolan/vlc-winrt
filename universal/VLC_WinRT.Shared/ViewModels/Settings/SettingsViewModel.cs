@@ -389,14 +389,7 @@ namespace VLC_WinRT.ViewModels.Settings
             get
             {
                 var username = ApplicationSettingsHelper.ReadSettingsValue("LastFmUserName");
-                if (username == null)
-                {
-                    _lastFmUserName = "";
-                }
-                else
-                {
-                    _lastFmUserName = username.ToString();
-                }
+                _lastFmUserName = username == null ? "" : username.ToString();
                 return _lastFmUserName;
             }
             set
@@ -411,14 +404,7 @@ namespace VLC_WinRT.ViewModels.Settings
             get
             {
                 var password = ApplicationSettingsHelper.ReadSettingsValue("LastFmPassword");
-                if (password == null)
-                {
-                    _lastFmPassword = "";
-                }
-                else
-                {
-                    _lastFmPassword = password.ToString();
-                }
+                _lastFmPassword = password == null ? "" : password.ToString();
                 return _lastFmPassword;
             }
             set
@@ -439,7 +425,7 @@ namespace VLC_WinRT.ViewModels.Settings
                 }
                 else
                 {
-                    _lastFmIsConnected = (bool) lastFmIsConnected;
+                    _lastFmIsConnected = (bool)lastFmIsConnected;
                 }
                 return _lastFmIsConnected;
             }
@@ -455,7 +441,7 @@ namespace VLC_WinRT.ViewModels.Settings
             get
             {
                 var hardwareAccelerationEnabled = ApplicationSettingsHelper.ReadSettingsValue("HardwareAccelerationEnabled");
-                if(hardwareAccelerationEnabled == null)
+                if (hardwareAccelerationEnabled == null)
                 {
                     _hardwareAcceleration = true;
                 }
