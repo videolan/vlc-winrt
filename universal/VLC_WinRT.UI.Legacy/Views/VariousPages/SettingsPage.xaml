@@ -68,6 +68,13 @@
                         </ComboBox.ItemTemplate>
                     </ComboBox>
                 </Grid>
+
+                <TextBlock Text="Animations"
+                           FontSize="22"
+                           Style="{StaticResource SubheaderTextBlockStyle}" />
+                <ToggleSwitch  Header="Use rich animations in the slideshows"
+                               IsOn="{Binding RichAnimations, Mode=TwoWay}"
+                               Margin="-6,0,0,0" />
                 <TextBlock Text="music"
                            Style="{StaticResource SubheaderTextBlockStyle}"
                            FontSize="32"
