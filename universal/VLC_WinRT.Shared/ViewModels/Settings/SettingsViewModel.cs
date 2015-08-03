@@ -30,7 +30,6 @@ namespace VLC_WinRT.ViewModels.Settings
     public class SettingsViewModel : BindableBase
     {
 #if WINDOWS_APP
-        private bool _isSidebarAlwaysMinimized = false;
         private List<StorageFolder> _musicFolders;
         private List<StorageFolder> _videoFolders;
         private bool musicFoldersLoaded;
