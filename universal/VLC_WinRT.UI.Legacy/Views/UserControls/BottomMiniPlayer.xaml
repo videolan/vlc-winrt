@@ -30,11 +30,17 @@
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
                 <VisualState x:Name="FullWindows">
                     <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ExpandWindowButton"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Visible" />
+                        </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SliderControl"
                                                        Storyboard.TargetProperty="Visibility">
                             <DiscreteObjectKeyFrame KeyTime="0"
@@ -94,6 +100,11 @@
                 </VisualState>
                 <VisualState x:Name="Narrow">
                     <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ExpandWindowButton"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Collapsed" />
+                        </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SliderControl"
                                                        Storyboard.TargetProperty="Visibility">
                             <DiscreteObjectKeyFrame KeyTime="0"
@@ -153,6 +164,11 @@
                 </VisualState>
                 <VisualState x:Name="ExtraNarrow">
                     <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ExpandWindowButton"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Collapsed" />
+                        </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SliderControl"
                                                        Storyboard.TargetProperty="Visibility">
                             <DiscreteObjectKeyFrame KeyTime="0"
@@ -222,6 +238,11 @@
                 </VisualState>
                 <VisualState x:Name="Minimum">
                     <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ExpandWindowButton"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Collapsed" />
+                        </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SliderControl"
                                                        Storyboard.TargetProperty="Visibility">
                             <DiscreteObjectKeyFrame KeyTime="0"
@@ -398,5 +419,14 @@
                           x:Name="RepeatFontIcon" />
             </AppBarToggleButton.Icon>
         </AppBarToggleButton>
+        <Button x:Name="ExpandWindowButton"
+                Grid.Column="7"
+                Style="{StaticResource TextBlockButtonStyle}"
+                Command="{Binding Source={StaticResource Locator}, Path=MainVM.CreateMiniPlayerView}"
+                Margin="12,0,6,0">
+            <FontIcon Glyph="{StaticResource ReduceWindow}"
+                      FontSize="22"
+                      FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+        </Button>
     </Grid>
 </UserControl>

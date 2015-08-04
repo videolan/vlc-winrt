@@ -1,5 +1,10 @@
 ﻿using System;
+using Windows.UI;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Documents;
+using VLC_WinRT.Helpers;
 using VLC_WinRT.Model;
+using VLC_WinRT.UI.Legacy.Views.MusicPages;
 using VLC_WinRT.UI.Legacy.Views.VariousPages;
 using VLC_WinRT.ViewModels;
 using VLC_WinRT.Views.MainPages;
@@ -93,6 +98,14 @@ namespace VLC_WinRT.Services.RunTime
                     break;
                 case VLCPage.SearchPage:
                     GoBack_HideFlyout();
+                    break;
+                case VLCPage.MiniPlayerView:
+                    AppViewHelper.SetAppView((Color)App.Current.Resources["MainColorBase"]);
+                    AppViewHelper.ResizeWindow(750, 600);
+                    App.SplitShell.TopBarVisibility = Visibility.Visible;
+                    App.SplitShell.FooterVisibility = Visibility.Visible;
+                    GoBack_Default();
+                    Locator.Slideshow.IsPaused = false;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -189,6 +202,14 @@ namespace VLC_WinRT.Services.RunTime
                     break;
                 case VLCPage.SearchPage:
                     App.SplitShell.RightFlyoutContent = new SearchPage();
+                    break;
+                case VLCPage.MiniPlayerView:
+                    Locator.Slideshow.IsPaused = true;
+                    AppViewHelper.ResizeWindow(400, 80);
+                    AppViewHelper.SetAppView(Colors.WhiteSmoke, false);
+                    App.SplitShell.TopBarVisibility = Visibility.Collapsed;
+                    App.SplitShell.FooterVisibility = Visibility.Collapsed;
+                    App.ApplicationFrame.Navigate(typeof (MiniPlayerWindow));
                     break;
                 default:
                     break;

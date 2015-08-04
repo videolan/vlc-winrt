@@ -1,6 +1,13 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
+using Windows.ApplicationModel.Core;
+using Windows.Foundation;
 using Windows.UI;
+using Windows.UI.ViewManagement;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 
 namespace VLC_WinRT.Helpers
 {
@@ -20,7 +27,7 @@ namespace VLC_WinRT.Helpers
             return false;
         }
 
-        public static void SetAppView()
+        public static void SetAppView(Color fgColor, bool changeWhenInBackground = true)
         {
 #if WINDOWS_APP
             try
@@ -34,19 +41,32 @@ namespace VLC_WinRT.Helpers
                 {
                     var appViewProperties = bb.GetType().DeclaredProperties;
                     bb.BackgroundColor = (Color)App.Current.Resources["ApplicationBarForegroundThemeColor"];
-                    bb.ForegroundColor = (Color)App.Current.Resources["MainColorBase"];
-                    bb.ButtonForegroundColor = (Color)App.Current.Resources["MainColorBase"];
-
-                    if (DoesPropertyExist("InactiveBackgroundColor", appViewProperties))
-                        bb.InactiveBackgroundColor = (Color)App.Current.Resources["InactiveMainColorBase"];
-                    if (DoesPropertyExist("ButtonInactiveForegroundColor", appViewProperties))
-                        bb.ButtonInactiveForegroundColor = Colors.WhiteSmoke;
-                    if (DoesPropertyExist("InactiveForegroundColor", appViewProperties))
-                        bb.InactiveForegroundColor = Colors.WhiteSmoke;
-
+                    bb.ForegroundColor = fgColor;
+                    bb.ButtonForegroundColor = fgColor;
                     bb.ButtonBackgroundColor = (Color)App.Current.Resources["ApplicationBarForegroundThemeColor"];
-                    if (DoesPropertyExist("ButtonInactiveBackgroundColor", appViewProperties))
-                        bb.ButtonInactiveBackgroundColor = (Color)App.Current.Resources["InactiveMainColorBase"];
+
+                    if (changeWhenInBackground)
+                    {
+                        if (DoesPropertyExist("InactiveBackgroundColor", appViewProperties))
+                            bb.InactiveBackgroundColor = (Color) App.Current.Resources["InactiveMainColorBase"];
+                        if (DoesPropertyExist("ButtonInactiveForegroundColor", appViewProperties))
+                            bb.ButtonInactiveForegroundColor = Colors.WhiteSmoke;
+                        if (DoesPropertyExist("InactiveForegroundColor", appViewProperties))
+                            bb.InactiveForegroundColor = Colors.WhiteSmoke;
+                        if (DoesPropertyExist("ButtonInactiveBackgroundColor", appViewProperties))
+                            bb.ButtonInactiveBackgroundColor = (Color) App.Current.Resources["InactiveMainColorBase"];
+                    }
+                    else
+                    {
+                        if (DoesPropertyExist("InactiveBackgroundColor", appViewProperties))
+                            bb.InactiveBackgroundColor = bb.BackgroundColor;
+                        if (DoesPropertyExist("ButtonInactiveForegroundColor", appViewProperties))
+                            bb.ButtonInactiveForegroundColor = bb.ButtonForegroundColor;
+                        if (DoesPropertyExist("InactiveForegroundColor", appViewProperties))
+                            bb.InactiveForegroundColor = bb.ButtonForegroundColor;
+                        if (DoesPropertyExist("ButtonInactiveBackgroundColor", appViewProperties))
+                            bb.ButtonInactiveBackgroundColor = bb.BackgroundColor;
+                    }
                 }
             }
             catch { }
@@ -74,6 +94,65 @@ namespace VLC_WinRT.Helpers
             }
             isFullscreen = !isFullscreen;
 #endif
+        }
+
+
+        public static async Task CreateNewWindow(Type view, double width, double height)
+        {
+            var newCoreAppView = CoreApplication.CreateNewView();
+            var appView = ApplicationView.GetForCurrentView();
+            await newCoreAppView.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Low, async () =>
+            {
+                var window = Window.Current;
+                var newAppView = ApplicationView.GetForCurrentView();
+
+                var allMethods = newAppView.GetType().GetRuntimeMethods();
+                var setPrefferedMinSize = allMethods.FirstOrDefault(x => x.Name == "SetPreferredMinSize");
+                if (setPrefferedMinSize != null)
+                {
+                    setPrefferedMinSize.Invoke(newAppView, new object[1]
+                    {
+                        new Size(width, height),
+                    });
+                }
+
+                var frame = new Frame();
+                window.Content = frame;
+                frame.Navigate(view);
+                window.Activate();
+
+                await ApplicationViewSwitcher.TryShowAsStandaloneAsync(newAppView.Id, ViewSizePreference.UseMore, appView.Id, ViewSizePreference.Default);
+                var tryResizeView = allMethods.FirstOrDefault(x => x.Name == "TryResizeView");
+                if (tryResizeView != null)
+                {
+                    tryResizeView.Invoke(newAppView, new object[1]
+                    {
+                        new Size(width, height),
+                    });
+                }
+            });
+        }
+
+        public static void ResizeWindow(double width, double height)
+        {
+            var appView = ApplicationView.GetForCurrentView();
+            var allMethods = appView.GetType().GetRuntimeMethods();
+            var setPrefferedMinSize = allMethods.FirstOrDefault(x => x.Name == "SetPreferredMinSize");
+            if (setPrefferedMinSize != null)
+            {
+                setPrefferedMinSize.Invoke(appView, new object[1]
+                {
+                        new Size(width, height),
+                });
+            }
+            var tryResizeView = allMethods.FirstOrDefault(x => x.Name == "TryResizeView");
+            if (tryResizeView != null)
+            {
+                tryResizeView.Invoke(appView, new object[1]
+                {
+                    new Size(width, height),
+                });
+            }
         }
     }
 }

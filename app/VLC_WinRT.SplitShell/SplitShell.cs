@@ -62,6 +62,13 @@ namespace VLC_WinRT.Controls
             _topBarContentPresenter.Content = contentPresenter;
         }
 
+        public async void SetTopbarVisibility(object visibility)
+        {
+            await TemplateApplied.Task;
+            _topBarContentPresenter.Visibility = (Visibility) visibility;
+        }
+        
+
         public async void SetInformationContent(object contentPresenter)
         {
             await TemplateApplied.Task;
@@ -85,6 +92,11 @@ namespace VLC_WinRT.Controls
             await TemplateApplied.Task;
             _footerContentPresenter.Content = content;
         }
+        public async void SetFooterVisibility(object visibility)
+        {
+            await TemplateApplied.Task;
+            _footerContentPresenter.Visibility = (Visibility)visibility;
+        }
 
         #region Content Property
         public DependencyObject Content
@@ -105,6 +117,21 @@ namespace VLC_WinRT.Controls
         #endregion
 
         #region TopBarContent Property
+        public Visibility TopBarVisibility
+        {
+            get { return (Visibility)GetValue(TopBarVisibilityProperty); }
+            set { SetValue(TopBarVisibilityProperty, value); }
+        }
+        
+        public static readonly DependencyProperty TopBarVisibilityProperty = DependencyProperty.Register(
+            "TopBarVisibility", typeof(Visibility), typeof(SplitShell), new PropertyMetadata(Visibility.Visible, TopbarVisibilityPropertyChangedCallback));
+
+        private static void TopbarVisibilityPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
+        {
+            var that = (SplitShell) dependencyObject;
+            that.SetTopbarVisibility(dependencyPropertyChangedEventArgs.NewValue);
+        }
+
         public DependencyObject TopBarContent
         {
             get { return (DependencyObject)GetValue(TopBarContentProperty); }
@@ -142,6 +169,21 @@ namespace VLC_WinRT.Controls
         #endregion
 
         #region FooterContent Property
+
+        public Visibility FooterVisibility
+        {
+            get { return (Visibility)GetValue(FooterVisibilityProperty); }
+            set { SetValue(FooterVisibilityProperty, value); }
+        }
+
+        public static readonly DependencyProperty FooterVisibilityProperty = DependencyProperty.Register(
+            "FooterVisibility", typeof(Visibility), typeof(SplitShell), new PropertyMetadata(Visibility.Visible, FooterVisibilityPropertyChangedCallback));
+
+        private static void FooterVisibilityPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
+        {
+            var that = (SplitShell)dependencyObject;
+            that.SetFooterVisibility(dependencyPropertyChangedEventArgs.NewValue);
+        }
 
         public DependencyObject FooterContent
         {

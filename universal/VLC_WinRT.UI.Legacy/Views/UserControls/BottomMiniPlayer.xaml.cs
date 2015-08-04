@@ -1,8 +1,10 @@
-﻿using Windows.UI.Xaml.Controls;
+﻿using Windows.Devices.Input;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Microsoft.Xaml.Interactivity;
 using VLC_WinRT.ViewModels;
 using Windows.UI.Xaml;
+using VLC_WinRT.Helpers;
 
 namespace VLC_WinRT.Views.UserControls
 {
@@ -10,28 +12,22 @@ namespace VLC_WinRT.Views.UserControls
     {
         public BottomMiniPlayer()
         {
-            this.InitializeComponent();
-            this.Loaded += BottomMiniPlayer_Loaded;
+            InitializeComponent();
+            Loaded += BottomMiniPlayer_Loaded;
         }
 
-        void BottomMiniPlayer_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        void BottomMiniPlayer_Loaded(object sender, RoutedEventArgs e)
         {
             Responsive();
             Window.Current.SizeChanged += Current_SizeChanged;
-            this.Unloaded += BottomMiniPlayer_Unloaded;
+            Unloaded += BottomMiniPlayer_Unloaded;
         }
 
-        void BottomMiniPlayer_Unloaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        void BottomMiniPlayer_Unloaded(object sender, RoutedEventArgs e)
         {
             Window.Current.SizeChanged -= Current_SizeChanged;
         }
-
-        void BottomMiniPlayer_SizeChanged(object sender, Windows.UI.Xaml.SizeChangedEventArgs e)
-        {
-            Responsive();
-        }
-
-
+        
         private void RootMiniPlayer_Tapped(object sender, TappedRoutedEventArgs e)
         {
             Locator.MusicPlayerVM.GoToMusicPlayerPage.Execute(null);

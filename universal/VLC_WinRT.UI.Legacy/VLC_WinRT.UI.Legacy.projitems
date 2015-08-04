@@ -108,6 +108,10 @@
     <Page Include="$(MSBuildThisFileDirectory)Views\MusicPages\CreateNewPlaylist.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\MusicPages\MiniPlayerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\MusicPages\MusicNowPlayingControls\MusicNowPlaying.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -329,6 +333,9 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\MusicPages\CreateNewPlaylist.xaml.cs">
       <DependentUpon>CreateNewPlaylist.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\MusicPages\MiniPlayerWindow.xaml.cs">
+      <DependentUpon>MiniPlayerWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\MusicPages\MusicNowPlayingControls\MusicNowPlaying.xaml.cs">
       <DependentUpon>MusicNowPlaying.xaml</DependentUpon>

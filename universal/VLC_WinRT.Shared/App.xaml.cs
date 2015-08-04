@@ -18,7 +18,10 @@ using VLC_WinRT.ViewModels;
 using VLC_WinRT.Views.MainPages;
 using VLC_WinRT.ViewModels.MusicVM;
 using System.Linq;
+using Windows.ApplicationModel.Core;
 using Windows.Storage.AccessCache;
+using Windows.UI;
+using Windows.UI.ViewManagement;
 using VLC_WinRT.BackgroundHelpers;
 using VLC_WinRT.Utils;
 using VLC_WinRT.Controls;
@@ -235,7 +238,7 @@ namespace VLC_WinRT
 #if WINDOWS_PHONE_APP
             StatusBarHelper.Initialize();
 #else
-            AppViewHelper.SetAppView();
+            AppViewHelper.SetAppView((Color)App.Current.Resources["MainColorBase"]);
 #endif
             Locator.MainVM.DropTablesIfNeeded();
             ApplicationFrame.Navigated += this.RootFrame_FirstNavigated;

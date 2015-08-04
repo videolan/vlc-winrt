@@ -19,6 +19,7 @@
         AddAlbumToPlaylistDialog,
         CreateNewPlaylistDialog,
         LicensePage,
-        SearchPage
+        SearchPage,
+        MiniPlayerView
     }
 }
