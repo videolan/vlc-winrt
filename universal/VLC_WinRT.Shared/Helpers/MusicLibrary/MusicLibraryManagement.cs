@@ -698,7 +698,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
             });
         }
 
-        public static void AddAlbumToPlaylist(object args)
+        public static bool AddAlbumToPlaylist(object args)
         {
             if (Locator.MusicLibraryVM.CurrentTrackCollection == null)
             {
@@ -707,13 +707,14 @@ namespace VLC_WinRT.Helpers.MusicLibrary
                     ((ContentDialogButtonClickEventArgs)args).Cancel = true;
 #endif
                 ToastHelper.Basic(Strings.HaveToSelectPlaylist, false, "selectplaylist");
-                return;
+                return false;
             }
 #if WINDOWS_APP
             var flyout = ((AddAlbumToPlaylistBase)args).GetFirstDescendantOfType<SettingsFlyout>();
             flyout?.Hide();
 #endif
             Locator.MusicLibraryVM.AddToPlaylistCommand.Execute(Locator.MusicLibraryVM.CurrentAlbum);
+            return true;
         }
 
         public async static Task<TrackItem> GetTrackItemFromFile(StorageFile track)
