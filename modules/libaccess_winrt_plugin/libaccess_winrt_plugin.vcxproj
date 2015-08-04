@@ -126,7 +126,7 @@
       <AdditionalUsingDirectories>$(WindowsSDK_WindowsMetadata);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
       <AdditionalOptions>/D "__PLUGIN__" /bigobj %(AdditionalOptions)</AdditionalOptions>
       <DisableSpecificWarnings>28204</DisableSpecificWarnings>
-      <AdditionalIncludeDirectories>$(ProjectDir)\..\..\vlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\include\vlc\plugins;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\vlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\include\vlc\plugins;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -135,8 +135,8 @@
       <AdditionalLibraryDirectories>$(SolutionDir)..\vlc\Windows\vlc-$(PlatformTarget)\$(Configuration)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y $(TargetPath) $(SolutionDir)..\vlc\Windows\vlc-win32\$(Configuration)\plugins\access\
-copy /Y $(TargetPath) $(SolutionDir)..\vlc\Windows\vlc-x86\$(Configuration)\plugins\access\</Command>
+      <Command>copy /Y $(TargetPath) $(SolutionDir)..\vlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\access\
+</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -158,8 +158,8 @@ copy /Y $(TargetPath) $(SolutionDir)..\vlc\Windows\vlc-x86\$(Configuration)\plug
       <AdditionalLibraryDirectories>$(SolutionDir)..\vlc\Windows\vlc-$(PlatformTarget)\$(Configuration)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y $(TargetPath) $(SolutionDir)..\vlc\Windows\vlc-win32\$(Configuration)\plugins\access\
-copy /Y $(TargetPath) $(SolutionDir)..\vlc\Windows\vlc-x86\$(Configuration)\plugins\access\</Command>
+      <Command>copy /Y $(TargetPath) $(SolutionDir)..\vlc\Windows\vlc-$(PlatformTarget)\$(Configuration)\plugins\access\
+</Command>
     </PostBuildEvent>
     <Bscmake>
       <PreserveSbr>true</PreserveSbr>
