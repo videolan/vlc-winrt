@@ -19,13 +19,13 @@
             <ColumnDefinition Width="12" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0"
                    Grid.Column="1"
@@ -49,15 +49,15 @@
                        VerticalAlignment="Center"
                        FontWeight="Light">
                     <Run Text="{Binding CurrentAlbum.Name}"
-                         FontSize="20"/>
+                         FontSize="20" />
                     <LineBreak />
-                    <Run Text="{Binding CurrentAlbum.Artist}" 
-                         FontSize="16"/>
+                    <Run Text="{Binding CurrentAlbum.Artist}"
+                         FontSize="16" />
             </TextBlock>
         </Grid>
         <TextBlock Grid.Row="2"
                    Grid.Column="1"
-                   Text="Add a playlist"
+                   Text="Create a new playlist"
                    Margin="0,12,0,0"
                    Style="{StaticResource TitleTextBlockStyle}" />
         <Grid Grid.Row="3"
@@ -89,11 +89,27 @@
                                            Grid.Column="1"
                                            Visibility="{Binding TrackCollections.Count, Converter={StaticResource CountToVisibilityConverter}}"
                                            Margin="0,12,0,0" />
-        <Button Grid.Row="6"
-                Grid.Column="1"
-                x:Uid="AddToPlaylistButton"
-                Content="Add to playlist"
-                Click="AddToPlaylistButton_Click" 
-                Margin="0,12,0,0"/>
+        <Grid Grid.Row="6"
+              Grid.Column="1"
+              Margin="{StaticResource FrameMarginTop}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition MaxWidth="3*" 
+                                  Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Uid="AddToPlaylistButton"
+                    Content="Add to playlist"
+                    Click="AddToPlaylistButton_Click" 
+                    Background="{StaticResource MainColor}"
+                    HorizontalAlignment="Stretch"/>
+            <Button Grid.Column="1"
+                    Margin="{StaticResource FrameMarginLeft}"
+                    Width="168"
+                    Content="Add to current playlist"
+                    Command="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM.AddToPlayingPlaylist}"
+                    CommandParameter="{Binding CurrentAlbum}"
+                    Visibility="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.TrackCollection.IsRunning, Converter={StaticResource BooleanToVisibilityConverter}}"
+                    HorizontalAlignment="Stretch" />
+        </Grid>
     </Grid>
 </UserControl>

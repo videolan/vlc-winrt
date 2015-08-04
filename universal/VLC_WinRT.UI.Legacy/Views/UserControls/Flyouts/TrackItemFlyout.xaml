@@ -10,37 +10,58 @@
         d:DesignWidth="400">
     <Border RequestedTheme="Dark" 
             Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}"
-             BorderBrush="DimGray"
-             BorderThickness="1"
-             Loaded="Grid_Loaded">
+            BorderBrush="DimGray"
+            BorderThickness="1"
+            Loaded="Grid_Loaded">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="120" />
-                <RowDefinition Height="140" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <StackPanel Orientation="Horizontal">
-                <Image Source="{Binding Thumbnail}"
-                       Height="120"
-                       Width="120"
+            <Grid Margin="{StaticResource FrameMarginRight}">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Image Grid.Column="0"
+                       Grid.RowSpan="3"
+                       Source="{Binding Thumbnail}"
+                       MaxHeight="120"
+                       MaxWidth="120"
                        Stretch="UniformToFill" />
-                <StackPanel VerticalAlignment="Center"
-                            Margin="12,0,0,0">
-                    <TextBlock Text="{Binding Name}"
-                               TextWrapping="Wrap"
-                               Style="{StaticResource SubheaderTextBlockStyle}" />
-                    <TextBlock Text="{Binding AlbumName}"
-                               TextWrapping="Wrap"
-                               Style="{StaticResource BodyTextBlockStyle}" />
-                    <TextBlock Text="{Binding ArtistName}"
-                               TextWrapping="Wrap"
-                               Style="{StaticResource BodyTextBlockStyle}"
-                               Foreground="DimGray" />
-                </StackPanel>
-            </StackPanel>
+                    <TextBlock Grid.Column="2"
+                               Grid.Row="0"
+                               Text="{Binding Name}"
+                               TextWrapping="NoWrap"
+                               TextTrimming="CharacterEllipsis"
+                               Style="{StaticResource SubheaderTextBlockStyle}" 
+                               VerticalAlignment="Bottom"/>
+                <TextBlock Grid.Column="2"
+                           Grid.Row="1"
+                           Text="{Binding AlbumName}"
+                           TextWrapping="NoWrap"
+                           TextTrimming="CharacterEllipsis"
+                           Style="{StaticResource BodyTextBlockStyle}" />
+                <TextBlock Grid.Column="2"
+                           Grid.Row="2"
+                           Text="{Binding ArtistName}"
+                           TextWrapping="NoWrap"
+                           TextTrimming="CharacterEllipsis"
+                           Style="{StaticResource BodyTextBlockStyle}"
+                               Foreground="DimGray" 
+                           VerticalAlignment="Top"/>
+            </Grid>
             <StackPanel Grid.Row="1"
-                        Margin="12,0,0,0"
+                        Margin="{StaticResource FrameMarginBothSides}"
                         VerticalAlignment="Center">
                 <AppBarButton x:Uid="PlayTrack"
                               Label="play track"
@@ -76,27 +97,43 @@
                 </AppBarButton>
             </StackPanel>
             <Grid Grid.Row="2"
-                  Margin="12,12,12,0"
+                  Margin="{StaticResource FrameMargin}"
                   DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
+                    <ColumnDefinition Width="{StaticResource FrameMarginGridLength}"/>
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <TextBlock x:Uid="AddToPlaylist"
                            Text="Add to playlist"
                            Style="{StaticResource SubheaderTextBlockStyle}" />
-                <AppBarButton Grid.Column="1"
+                <AppBarButton Grid.Column="2"
                               x:Uid="NewPlaylist"
                               Label="new playlist"
-                              Icon="Add"
                               Style="{StaticResource AppBarButtonStyleHorizontal}"
-                              Command="{Binding ShowCreateNewPlaylistPaneCommand}"
-                              Margin="0,-5,0,0" />
+                              Command="{Binding ShowCreateNewPlaylistPaneCommand}">
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="{StaticResource AddSymbol}"
+                              FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+                </AppBarButton.Icon>
+                </AppBarButton>
             </Grid>
-            <Grid Grid.Row="3"
-                  DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}">
+            <AppBarButton Grid.Row="3"
+                          Margin="{StaticResource FrameMargin}"
+                          Label="Add to current playlist"
+                          Style="{StaticResource AppBarButtonStyleHorizontal}"
+                          Command="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM.AddToPlayingPlaylist}"
+                          CommandParameter="{Binding}"
+                          Visibility="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.TrackCollection.IsRunning, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="{StaticResource MusicPlaylistSymbol}"
+                              FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+                </AppBarButton.Icon>
+            </AppBarButton>
+            <Grid Grid.Row="4"
+                  DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}"
+                  Margin="{StaticResource FrameMarginBothSides}">
                 <ListView ItemsSource="{Binding TrackCollections}"
-                          Margin="24,0,0,0"
                           ItemTemplate="{StaticResource PhoneTrackCollectionTemplate}"
                           ItemContainerStyle="{StaticResource ListViewItemStyle}"
                           SelectionChanged="Selector_OnSelectionChanged" />

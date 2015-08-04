@@ -43,7 +43,7 @@ namespace VLC_WinRT.Views.UserControls.Flyouts
             root.MaxHeight = 500;
             root.Margin = new Thickness(24,0,24,0);
 #else
-            root.MaxHeight = 500;
+            root.MaxHeight = 600;
             root.MaxWidth = 400;
 #endif
         }

@@ -80,7 +80,7 @@
                               Grid.Column="3"
                               Label="new playlist"
                               Style="{StaticResource AppBarButtonStyleHorizontal}"
-                      Foreground="{StaticResource MainColor}"
+                              Foreground="{StaticResource MainColor}"
                               Command="{Binding ShowCreateNewPlaylistPaneCommand}"
                               Margin="0,0,12,0"
                               VerticalAlignment="Center"

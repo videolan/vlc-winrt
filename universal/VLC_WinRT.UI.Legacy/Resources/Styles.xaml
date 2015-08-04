@@ -9,6 +9,9 @@
     <!-- DEFAULT MARGINS -->
     <Thickness x:Key="FrameMargin">16,0</Thickness>
     <Thickness x:Key="FrameMarginBothSides">16</Thickness>
+    <Thickness x:Key="FrameMarginTop">0,16,0,0</Thickness>
+    <Thickness x:Key="FrameMarginLeft">16,0,0,0</Thickness>
+    <Thickness x:Key="FrameMarginRight">0,0,0,16</Thickness>
     <x:Double x:Key="FrameMarginSides">16</x:Double>
     <GridLength x:Key="FrameMarginGridLength">16</GridLength>
 

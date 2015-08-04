@@ -11,6 +11,10 @@
                     Text="play all"
                     Command="{Binding PlayAlbum}"
                     CommandParameter="{Binding}" />
+    <MenuFlyoutItem Text="add to current playlist"
+                    Command="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM.AddToPlayingPlaylist}"
+                    CommandParameter="{Binding}" 
+                    Visibility="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel.TrackCollection.IsRunning, Converter={StaticResource BooleanToVisibilityConverter}}"/>
     <MenuFlyoutItem x:Uid="ViewArtist"
                     Text="view artist"
                     Command="{Binding ViewArtist}"

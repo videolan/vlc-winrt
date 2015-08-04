@@ -93,6 +93,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
         public ShareNowPlayingMusicCommand ShareNowPlayingMusicCommand { get; } = new ShareNowPlayingMusicCommand();
 
         public GoToMusicPlaylistPageCommand GoToMusicPlaylistPageCommand { get; } = new GoToMusicPlaylistPageCommand();
+        public AddToPlayingPlaylist AddToPlayingPlaylist { get; } = new AddToPlayingPlaylist();
         #endregion
 
         public MusicPlayerVM()
