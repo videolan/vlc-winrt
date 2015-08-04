@@ -178,7 +178,10 @@ int Open(vlc_object_t *object)
         pf_open = OpenFileAsyncWithToken;
     }
     else if (strncmp(access->psz_access, "file", 4) == 0) {
-        if (strcmp(access->psz_demux, "subtitle") == 0) {
+#if 0
+        if (strcmp(access->psz_demux, "subtitle") == 0)
+#endif
+        {
             char* pos = strstr(access->psz_filepath, "winrt:\\\\");
             if (pos && strlen(pos) > 8) {
                 futureAccesToken = GetString(pos + 8);
@@ -186,14 +189,19 @@ int Open(vlc_object_t *object)
                     return VLC_EGENERIC;
                 pf_open = OpenFileAsyncWithToken;
             }
-            else 
-                return VLC_EGENERIC;
+            else
+            {
+                pf_open = OpenFileAsync;
+                futureAccesToken = GetString(access->psz_filepath);
+            }
         }
+#if 0
         else
         {
             pf_open = OpenFileAsync;
             futureAccesToken = GetString(access->psz_filepath);
         }
+#endif
     }
     else
         return VLC_EGENERIC;
