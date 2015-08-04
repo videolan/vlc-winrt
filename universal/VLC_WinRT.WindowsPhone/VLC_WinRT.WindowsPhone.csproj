@@ -112,6 +112,9 @@
     <Content Include="..\..\vlc\WindowsPhone\vlc-$(PlatformTarget)\$(Configuration)\plugins\access\libaccess_bd_plugin.dll">
       <Link>plugins\access\libaccess_bd_plugin.dll</Link>
     </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(PlatformTarget)\$(Configuration)\plugins\access\libaccess_concat_plugin.dll">
+      <Link>plugins\access\libaccess_concat_plugin.dll</Link>
+    </Content>
     <Content Include="..\..\vlc\WindowsPhone\vlc-$(PlatformTarget)\$(Configuration)\plugins\access\libaccess_mms_plugin.dll">
       <Link>plugins\access\libaccess_mms_plugin.dll</Link>
     </Content>
@@ -287,6 +290,9 @@
     <Content Include="..\..\vlc\WindowsPhone\vlc-$(PlatformTarget)\$(Configuration)\plugins\codec\libkate_plugin.dll">
       <Link>plugins\codec\libkate_plugin.dll</Link>
     </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(PlatformTarget)\$(Configuration)\plugins\codec\liblibass_plugin.dll">
+      <Link>plugins\codec\liblibass_plugin.dll</Link>
+    </Content>
     <Content Include="..\..\vlc\WindowsPhone\vlc-$(PlatformTarget)\$(Configuration)\plugins\codec\liblpcm_plugin.dll">
       <Link>plugins\codec\liblpcm_plugin.dll</Link>
     </Content>
@@ -334,6 +340,9 @@
     </Content>
     <Content Include="..\..\vlc\WindowsPhone\vlc-$(PlatformTarget)\$(Configuration)\plugins\control\libhotkeys_plugin.dll">
       <Link>plugins\control\libhotkeys_plugin.dll</Link>
+    </Content>
+    <Content Include="..\..\vlc\WindowsPhone\vlc-$(PlatformTarget)\$(Configuration)\plugins\demux\libadaptative_plugin.dll">
+      <Link>plugins\demux\libadaptative_plugin.dll</Link>
     </Content>
     <Content Include="..\..\vlc\WindowsPhone\vlc-$(PlatformTarget)\$(Configuration)\plugins\demux\libaiff_plugin.dll">
       <Link>plugins\demux\libaiff_plugin.dll</Link>
