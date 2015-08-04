@@ -113,7 +113,7 @@
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SliderColumnDefinition"
                                                        Storyboard.TargetProperty="Width">
                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="0" />
+                                                    Value="*" />
                         </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="NowPlayingArtistGrid"
                                                        Storyboard.TargetProperty="Visibility">
