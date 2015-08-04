@@ -36,8 +36,8 @@ namespace VLC_WinRT.ViewModels.Settings
         private bool videoFoldersLoaded;
         private bool _notificationOnNewSong;
         private bool _notificationOnNewSongForeground;
-        private bool _continueVideoPlaybackInBackground;
 #endif
+        private bool _continueVideoPlaybackInBackground;
         private OrderType _albumsOrderType;
         private OrderListing _albumsOrderListing;
         private MusicView _musicView;
@@ -173,6 +173,8 @@ namespace VLC_WinRT.ViewModels.Settings
                 ApplicationSettingsHelper.SaveSettingsValue("ContinueVideoPlaybackInBackground", value);
             }
         }
+#else
+        public bool ContinueVideoPlaybackInBackground { get; } = false;
 #endif
 
         public List<VLCPage> HomePageCollection { get; set; } = new List<VLCPage>()

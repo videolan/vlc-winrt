@@ -196,8 +196,10 @@ namespace VLC_WinRT.ViewModels
                 if (Locator.MediaPlaybackViewModel.PlayingType == PlayingType.Video)
                 {
                     // TODO: Route Video Player calls through Media Service
-                    if (!(bool)ApplicationSettingsHelper.ReadSettingsValue("ContinueVideoPlaybackInBackground"))
+                    if (!Locator.SettingsVM.ContinueVideoPlaybackInBackground)
+                    {
                         Locator.MediaPlaybackViewModel._mediaService.Pause();
+                    }
                 }
             }
             else
