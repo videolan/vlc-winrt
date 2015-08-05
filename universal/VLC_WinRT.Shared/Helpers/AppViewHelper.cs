@@ -140,5 +140,19 @@ namespace VLC_WinRT.Helpers
                 });
             }
         }
+
+        public static void SetTitleBar()
+        {
+            var coreAppView = CoreApplication.GetCurrentView();
+            var allProperties = coreAppView.GetType().GetRuntimeProperties();
+            var titleBar = allProperties.FirstOrDefault(x => x.Name == "TitleBar");
+            if (titleBar == null) return;
+            dynamic titleBarInstance = titleBar.GetMethod.Invoke(coreAppView, null);
+            var titleBarInstanceProperties = titleBarInstance.GetType().DeclaredProperties;
+            if (titleBarInstanceProperties != null)
+            {
+                titleBarInstance.ExtendViewIntoTitleBar = true;
+            }
+        }
     }
 }
