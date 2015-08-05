@@ -32,7 +32,7 @@ namespace VLC_WinRT.Helpers
 #if WINDOWS_APP
             try
             {
-                var v = Windows.UI.ViewManagement.ApplicationView.GetForCurrentView();
+                var v = ApplicationView.GetForCurrentView();
                 var allProperties = v.GetType().GetRuntimeProperties();
                 titleBar = allProperties.FirstOrDefault(x => x.Name == "TitleBar");
                 if (titleBar == null) return;
