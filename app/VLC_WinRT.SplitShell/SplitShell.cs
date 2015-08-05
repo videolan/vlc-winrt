@@ -10,7 +10,8 @@ using Windows.UI.Xaml.Media.Animation;
 namespace VLC_WinRT.Controls
 {
     public delegate void FlyoutCloseRequested(object sender, EventArgs e);
-    
+
+    [TemplatePart(Name = TitleBarContentPresenterName, Type = typeof(ContentPresenter))]
     [TemplatePart(Name = TopBarContentPresenterName, Type = typeof(ContentPresenter))]
     [TemplatePart(Name = InformationContentPresenterName, Type = typeof(ContentPresenter))]
     [TemplatePart(Name = ContentPresenterName, Type = typeof(ContentPresenter))]
@@ -28,6 +29,7 @@ namespace VLC_WinRT.Controls
         
         private const string ContentPresenterName = "ContentPresenter";
         private const string TopBarContentPresenterName = "TopBarContentPresenter";
+        private const string TitleBarContentPresenterName = "TitleBarContentPresenter";
         private const string InformationContentPresenterName = "InformationContentPresenter";
         private const string RightFlyoutContentPresenterName = "RightFlyoutContentPresenter";
         private const string RightFlyoutFadeInName = "RightFlyoutFadeIn";
@@ -41,6 +43,7 @@ namespace VLC_WinRT.Controls
         private Grid _flyoutBackgroundGrid;
         private ContentPresenter _contentPresenter;
         private ContentPresenter _topBarContentPresenter;
+        private ContentPresenter _titleBarContentPresenter;
         private ContentPresenter _rightFlyoutContentPresenter;
         private ContentPresenter _footerContentPresenter;
 
@@ -55,7 +58,13 @@ namespace VLC_WinRT.Controls
             await TemplateApplied.Task;
             _contentPresenter.Content = contentPresenter;
         }
-        
+
+        public async void SetTitleBarContentPresenter(object contentPresenter)
+        {
+            await TemplateApplied.Task;
+            _titleBarContentPresenter.Content = contentPresenter;
+        }
+
         public async void SetTopbarContentPresenter(object contentPresenter)
         {
             await TemplateApplied.Task;
@@ -219,6 +228,28 @@ namespace VLC_WinRT.Controls
         }
         #endregion
 
+        #region TitleBar Property
+
+        public DependencyObject TitleBarContent
+        {
+            get { return (DependencyObject)GetValue(TitleBarContentProperty); }
+            set { SetValue(TitleBarContentProperty, value); }
+        }
+
+        public static readonly DependencyProperty TitleBarContentProperty = DependencyProperty.Register(
+            "TitleBarContent", typeof(DependencyObject), typeof(SplitShell), new PropertyMetadata(default(DependencyObject), TitleBarContentPropertyChangedCallback));
+
+
+        private static void TitleBarContentPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
+        {
+#if WINDOWS_PHONE_APP
+            return;
+#endif
+            var that = (SplitShell)dependencyObject;
+            that.SetTitleBarContentPresenter(dependencyPropertyChangedEventArgs.NewValue);
+        }
+        #endregion
+
         public SplitShell()
         {
             DefaultStyleKey = typeof(SplitShell);
@@ -237,6 +268,7 @@ namespace VLC_WinRT.Controls
             _rightFlyoutGridContainer = (Grid)GetTemplateChild(RightFlyoutGridContainerName);
             _flyoutBackgroundGrid = (Grid)GetTemplateChild(FlyoutBackgroundGridName);
             _footerContentPresenter = (ContentPresenter) GetTemplateChild(FooterContentPresenterName);
+            _titleBarContentPresenter = (ContentPresenter) GetTemplateChild(TitleBarContentPresenterName);
 
             TemplateApplied.SetResult(true);
             
