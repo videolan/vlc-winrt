@@ -12,7 +12,7 @@ using VLC_WinRT.SharedBackground.Helpers.MusicPlayer;
 
 namespace VLC_WinRT.Views.VariousPages
 {
-    public sealed partial class SettingsPage : UserControl
+    public sealed partial class SettingsPage : Page
     {
         public SettingsPage()
         {
