@@ -6,7 +6,7 @@
             <ResourceDictionary.ThemeDictionaries>
                 <ResourceDictionary x:Key="Dark">
                     <Color x:Key="ApplicationPageBackgroundThemeColor">Black</Color>
-                    <Color x:Key="ApplicationBarForegroundThemeColor">#252525</Color>
+                    <Color x:Key="ApplicationBarForegroundThemeColor">#151515</Color>
                     <SolidColorBrush x:Key="ApplicationPageBackgroundThemeBrush"
                                      Color="{StaticResource ApplicationPageBackgroundThemeColor}" />
                     <SolidColorBrush x:Key="PivotHeaderForegroundUnselectedBrush"
