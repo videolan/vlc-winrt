@@ -21,11 +21,13 @@
               Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}">
         <ListView.HeaderTemplate>
             <DataTemplate>
-                <local:MainAlbumHeader/>
+                <local:MainAlbumHeader />
             </DataTemplate>
         </ListView.HeaderTemplate>
         <ListView.ItemContainerTransitions>
             <TransitionCollection>
+                <EntranceThemeTransition FromHorizontalOffset="0"
+                                         FromVerticalOffset="50"/>
                 <AddDeleteThemeTransition />
             </TransitionCollection>
         </ListView.ItemContainerTransitions>

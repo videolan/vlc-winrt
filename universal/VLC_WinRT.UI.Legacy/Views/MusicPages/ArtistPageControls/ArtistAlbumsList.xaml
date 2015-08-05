@@ -28,13 +28,15 @@
         </ListView.HeaderTemplate>
         <ListView.ItemContainerTransitions>
             <TransitionCollection>
+                <EntranceThemeTransition FromHorizontalOffset="0"
+                                         FromVerticalOffset="50" />
                 <AddDeleteThemeTransition />
             </TransitionCollection>
         </ListView.ItemContainerTransitions>
         <ListView.ItemsPanel>
             <ItemsPanelTemplate>
                 <ItemsWrapGrid Orientation="Horizontal"
-                               Margin="12,12,0,60"
+                               Margin="{StaticResource FrameMarginBothSides}"
                                SizeChanged="ItemsWrapGrid_OnSizeChanged"/>
             </ItemsPanelTemplate>
         </ListView.ItemsPanel>
