@@ -103,7 +103,7 @@
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ExpandWindowButton"
                                                        Storyboard.TargetProperty="Visibility">
                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Collapsed" />
+                                                    Value="Visible" />
                         </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SliderControl"
                                                        Storyboard.TargetProperty="Visibility">
