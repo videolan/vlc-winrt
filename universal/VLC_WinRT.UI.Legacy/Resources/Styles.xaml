@@ -2442,13 +2442,13 @@
     </Style>
 
     <ItemsPanelTemplate x:Key="WrapPanelTemplate">
-        <ItemsWrapGrid Margin="0,0,0,60"
+        <ItemsWrapGrid Margin="{StaticResource FrameMarginBothSides}"
                        Orientation="Horizontal"
                        ItemWidth="300" />
     </ItemsPanelTemplate>
 
     <ItemsPanelTemplate x:Key="StackPanelTemplate">
-        <ItemsStackPanel Margin="{StaticResource FrameMargin}" />
+        <ItemsStackPanel Margin="{StaticResource FrameMarginBothSides}" />
     </ItemsPanelTemplate>
 
     <Style x:Key="LittleHeaderTextBlockStyle"
