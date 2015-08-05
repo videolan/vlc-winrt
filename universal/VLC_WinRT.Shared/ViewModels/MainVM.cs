@@ -30,6 +30,7 @@ using Windows.UI.Xaml;
 using VLC_WinRT.Views.MusicPages;
 using System.Threading.Tasks;
 using Windows.UI.ViewManagement;
+using VLC_WinRT.UI.Legacy.Views.UserControls;
 
 namespace VLC_WinRT.ViewModels
 {
@@ -173,6 +174,8 @@ namespace VLC_WinRT.ViewModels
                     MenuBarDisplayed = false;
                 if (App.SplitShell.FooterContent == null)
                     App.SplitShell.FooterContent = new BottomMiniPlayer();
+                if (App.SplitShell.TitleBarContent == null)
+                    App.SplitShell.TitleBarContent = new TitleBar();
                 CurrentPage = page;
                 CanGoBack = Locator.NavigationService.CanGoBack();
             };
