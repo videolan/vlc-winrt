@@ -445,7 +445,7 @@ namespace VLC_WinRT.ViewModels.Settings
                 var hardwareAccelerationEnabled = ApplicationSettingsHelper.ReadSettingsValue("HardwareAccelerationEnabled");
                 if (hardwareAccelerationEnabled == null)
                 {
-                    _hardwareAcceleration = true;
+                    _hardwareAcceleration = false;
                 }
                 else
                 {
