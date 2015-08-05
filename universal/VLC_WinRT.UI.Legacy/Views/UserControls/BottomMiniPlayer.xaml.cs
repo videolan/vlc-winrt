@@ -1,4 +1,5 @@
-﻿using Windows.Devices.Input;
+﻿using System.Diagnostics;
+using Windows.Devices.Input;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Microsoft.Xaml.Interactivity;
@@ -46,11 +47,11 @@ namespace VLC_WinRT.Views.UserControls
 
         void Responsive()
         {
-            if (ActualWidth > 700)
+            if (Window.Current.Bounds.Width > 700)
                 VisualStateUtilities.GoToState(this, "FullWindows", false);
-            else if (ActualWidth > 500)
+            else if (Window.Current.Bounds.Width > 500)
                 VisualStateUtilities.GoToState(this, "Narrow", false);
-            else if (ActualWidth > 200)
+            else if (Window.Current.Bounds.Width > 200)
                 VisualStateUtilities.GoToState(this, "ExtraNarrow", false);
             else
                 VisualStateUtilities.GoToState(this, "Minimum", false);
