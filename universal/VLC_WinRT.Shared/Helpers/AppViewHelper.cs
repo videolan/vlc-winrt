@@ -27,7 +27,7 @@ namespace VLC_WinRT.Helpers
             return false;
         }
 
-        public static void SetAppView(Color fgColor, bool changeWhenInBackground = true)
+        public static void SetAppView(Color fgColor)
         {
 #if WINDOWS_APP
             try
@@ -44,29 +44,15 @@ namespace VLC_WinRT.Helpers
                     bb.ForegroundColor = fgColor;
                     bb.ButtonForegroundColor = fgColor;
                     bb.ButtonBackgroundColor = (Color)App.Current.Resources["ApplicationBarForegroundThemeColor"];
-
-                    if (changeWhenInBackground)
-                    {
-                        if (DoesPropertyExist("InactiveBackgroundColor", appViewProperties))
-                            bb.InactiveBackgroundColor = (Color) App.Current.Resources["InactiveMainColorBase"];
-                        if (DoesPropertyExist("ButtonInactiveForegroundColor", appViewProperties))
-                            bb.ButtonInactiveForegroundColor = Colors.WhiteSmoke;
-                        if (DoesPropertyExist("InactiveForegroundColor", appViewProperties))
-                            bb.InactiveForegroundColor = Colors.WhiteSmoke;
-                        if (DoesPropertyExist("ButtonInactiveBackgroundColor", appViewProperties))
-                            bb.ButtonInactiveBackgroundColor = (Color) App.Current.Resources["InactiveMainColorBase"];
-                    }
-                    else
-                    {
-                        if (DoesPropertyExist("InactiveBackgroundColor", appViewProperties))
-                            bb.InactiveBackgroundColor = bb.BackgroundColor;
-                        if (DoesPropertyExist("ButtonInactiveForegroundColor", appViewProperties))
-                            bb.ButtonInactiveForegroundColor = bb.ButtonForegroundColor;
-                        if (DoesPropertyExist("InactiveForegroundColor", appViewProperties))
-                            bb.InactiveForegroundColor = bb.ButtonForegroundColor;
-                        if (DoesPropertyExist("ButtonInactiveBackgroundColor", appViewProperties))
-                            bb.ButtonInactiveBackgroundColor = bb.BackgroundColor;
-                    }
+                    
+                    if (DoesPropertyExist("InactiveBackgroundColor", appViewProperties))
+                        bb.InactiveBackgroundColor = bb.BackgroundColor;
+                    if (DoesPropertyExist("ButtonInactiveForegroundColor", appViewProperties))
+                        bb.ButtonInactiveForegroundColor = bb.ButtonForegroundColor;
+                    if (DoesPropertyExist("InactiveForegroundColor", appViewProperties))
+                        bb.InactiveForegroundColor = bb.ButtonForegroundColor;
+                    if (DoesPropertyExist("ButtonInactiveBackgroundColor", appViewProperties))
+                        bb.ButtonInactiveBackgroundColor = bb.BackgroundColor;
                 }
             }
             catch { }
