@@ -85,6 +85,7 @@ namespace VLC_WinRT.Helpers
 
         public static async Task CreateNewWindow(Type view, double width, double height)
         {
+#if WINDOWS_APP
             var newCoreAppView = CoreApplication.CreateNewView();
             var appView = ApplicationView.GetForCurrentView();
             await newCoreAppView.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Low, async () =>
@@ -117,10 +118,12 @@ namespace VLC_WinRT.Helpers
                     });
                 }
             });
+#endif
         }
 
         public static void ResizeWindow(double width, double height)
         {
+#if WINDOWS_APP
             var appView = ApplicationView.GetForCurrentView();
             var allMethods = appView.GetType().GetRuntimeMethods();
             var setPrefferedMinSize = allMethods.FirstOrDefault(x => x.Name == "SetPreferredMinSize");
@@ -139,6 +142,7 @@ namespace VLC_WinRT.Helpers
                     new Size(width, height),
                 });
             }
+#endif
         }
 
         public static void SetTitleBar()
