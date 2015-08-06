@@ -327,9 +327,17 @@ namespace VLC_WinRT.Helpers.MusicLibrary
             }
         }
 
-        public static void AddArtist(ArtistItem artist)
+        public static async void AddArtist(ArtistItem artist)
         {
             Locator.MusicLibraryVM.Artists.Add(artist);
+            if (Locator.MusicLibraryVM.Artists.Count < 3)
+            {
+                await artist.LoadPicture();
+                if (artist.IsPictureLoaded)
+                {
+                    Locator.Slideshow.AddImg(artist.Picture);
+                }
+            }
         }
 
         public static void AddAlbum(AlbumItem album, ArtistItem artist)
