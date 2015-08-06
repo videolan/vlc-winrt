@@ -56,10 +56,7 @@ namespace VLC_WinRT.Views.UserControls
             else
                 VisualStateUtilities.GoToState(this, "Minimum", false);
 
-            if (Window.Current.Bounds.Height < 700)
-                RootGrid.Height = 60;
-            else
-                RootGrid.Height = 75;
+            RootGrid.Height = 60;
         }
     }
 }
