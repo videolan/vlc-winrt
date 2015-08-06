@@ -40,7 +40,7 @@ namespace VLC_WinRT.Services.RunTime
         private void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
         {
             e.Handled = true;
-            if(CurrentPage == VLCPage.MainPageHome)
+            if (CurrentPage == VLCPage.MainPageHome)
                 e.Handled = false;
             GoBack_Specific();
         }
