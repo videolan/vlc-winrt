@@ -20,12 +20,15 @@
                     <triggers:InvokeCommandAction Command="{Binding OpenVideo}"
                                                   PassEventArgsToCommand="True" />
                 </triggers:EventTrigger>
+                <triggers:EventTrigger EventName="GoingTopOrBottom">
+                    <triggers:InvokeCommandAction Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoingTopOrBottomCommand}"
+                                                    PassEventArgsToCommand="True" />
+                </triggers:EventTrigger>
             </triggers:Interactions.Triggers>
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <ItemsWrapGrid Orientation="Horizontal"
-                                   SizeChanged="VideosWrapGrid_SizeChanged"
-                                   Margin="0,0,0,60" >
+                                   SizeChanged="VideosWrapGrid_SizeChanged">
                         <ItemsWrapGrid.ChildrenTransitions>
                             <TransitionCollection>
                                 <RepositionThemeTransition />
