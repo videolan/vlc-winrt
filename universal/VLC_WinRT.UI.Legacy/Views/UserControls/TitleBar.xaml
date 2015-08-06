@@ -8,8 +8,7 @@
              d:DesignHeight="300"
              d:DesignWidth="400">
 
-    <Grid Height="32"
-          Background="{StaticResource ApplicationBackgroundSemiTranslucentThemeBrush}">
+    <Grid Background="{StaticResource ApplicationBackgroundSemiTranslucentThemeBrush}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="47" />
             <ColumnDefinition Width="6" />
