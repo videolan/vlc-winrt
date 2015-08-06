@@ -10,6 +10,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.UI.Core;
@@ -239,6 +240,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => IsMusicLibraryEmpty = false);
             if (!Artists.Any())
             {
+                Debug.WriteLine("Starting music indexation");
                 await StartIndexing();
                 return;
             }
