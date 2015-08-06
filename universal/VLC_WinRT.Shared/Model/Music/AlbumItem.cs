@@ -102,30 +102,44 @@ namespace VLC_WinRT.Model.Music
             set { SetProperty(ref _trackItems, value); }
         }
 
-        public string Picture
-        {
-            get { return _picture; }
-            set { SetProperty(ref _picture, value); }
-        }
 
-        [Ignore]
         public string AlbumCoverUri
         {
             get
             {
-                if (!string.IsNullOrEmpty(_picture)) // custom uri
+                if (!string.IsNullOrEmpty(_picture))
                     return _picture;
-                else if (IsPictureLoaded) // default album cover uri
-                {
-                    if (IsVLCCover)
-                        return string.Format("ms-appdata:///local/vlc/art/artistalbum/{0}/{1}/art.jpg", Artist, Name);
-                    return string.Format("ms-appdata:///local/albumPic/{0}.jpg", Id);
-                }
+                return null;
+            }
+            set
+            {
+                SetProperty(ref _picture, value);
+            }
+        }
+
+        /// <summary>
+        /// Returns the full Album cover Uri with the correct ms-appdata prefix.
+        /// <returns></returns>
+        /// Should be used on runtime only, and not in XAML.
+        /// For XAML displaying, consider using AlbumCoverImage
+        /// </summary>
+        [Ignore]
+        public string AlbumCoverFullUri
+        {
+            get
+            {
+                if (!string.IsNullOrEmpty(_picture))
+                    return "ms-appdata:///local/" + _picture;
                 return null;
             }
         }
 
-        [Ignore]
+        /// <summary>
+        /// If the CoverImage bitmap is not loaded, it spawns a thread which will wait through a mutex, and try to get the picture from the local folders or the Internet.
+        /// <returns></returns>
+        /// Then, the property is refreshed and the XAML receives the OnNotifyPropertyChanged event, updating the picture and displaying it
+        /// </summary>
+        [Ignore] // When we need Cover BitmapImage on runtime
         public BitmapImage AlbumImage
         {
             get
@@ -145,9 +159,8 @@ namespace VLC_WinRT.Model.Music
             return LoadImageToMemoryHelper.LoadImageToMemory(this);
         }
 
-        public bool IsPictureLoaded { get; set; }
-        
-        public bool IsVLCCover { get; set; }
+        [Ignore]
+        public bool IsPictureLoaded => (!string.IsNullOrEmpty(_picture));
 
         public int Year
         {

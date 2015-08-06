@@ -33,7 +33,7 @@ namespace VLC_WinRT.Helpers
 
                 var tileImgAttribues = tileXml.GetElementsByTagName("image");
                 if (Locator.MusicPlayerVM.CurrentAlbum != null)
-                    tileImgAttribues[0].Attributes[1].NodeValue = Locator.MusicPlayerVM.CurrentAlbum.AlbumCoverUri;
+                    tileImgAttribues[0].Attributes[1].NodeValue = Locator.MusicPlayerVM.CurrentAlbum.AlbumCoverFullUri;
             }
 
             var tileNotification = new TileNotification(tileXml);
@@ -65,10 +65,10 @@ namespace VLC_WinRT.Helpers
                     tileImgAttribues[0].Attributes[1].NodeValue = Locator.MusicPlayerVM.CurrentArtist.Picture;
                 
                 if (Locator.MusicPlayerVM.CurrentAlbum != null)
-                    tileImgAttribues[1].Attributes[1].NodeValue = Locator.MusicPlayerVM.CurrentAlbum.AlbumCoverUri;
+                    tileImgAttribues[1].Attributes[1].NodeValue = Locator.MusicPlayerVM.CurrentAlbum.AlbumCoverFullUri;
 #else
                 if (Locator.MusicPlayerVM.CurrentAlbum != null)
-                    tileImgAttribues[0].Attributes[1].NodeValue = Locator.MusicPlayerVM.CurrentAlbum.AlbumCoverUri;
+                    tileImgAttribues[0].Attributes[1].NodeValue = Locator.MusicPlayerVM.CurrentAlbum.AlbumCoverFullUri;
 #endif
             }
 

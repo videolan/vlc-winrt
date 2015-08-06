@@ -261,12 +261,17 @@ namespace VLC_WinRT.Helpers.MusicLibrary
                     if (album == null)
                     {
                         var albumUrl = Locator.VLCService.GetAlbumUrl(media);
-                        var hasVLCFoundCover = false;
+                        string albumSimplifiedUrl = null;
                         if (!string.IsNullOrEmpty(albumUrl) && albumUrl.StartsWith("file://"))
                         {
                             // The Uri will be like
                             // ms-appdata:///local/vlc/art/artistalbum/30 Seconds To Mars/B-sides & Rarities/art.jpg
-                            hasVLCFoundCover = true;
+                            var indexStart = albumUrl.IndexOf("vlc/art/artistalbum/", StringComparison.Ordinal);
+                            if (indexStart != -1)
+                            {
+                                albumSimplifiedUrl = albumUrl.Substring(indexStart, albumUrl.Length - indexStart);
+                                Debug.WriteLine("VLC_WinRT : found album cover with TagLib - " + albumName);
+                            }
                         }
 
                         album = new AlbumItem
@@ -277,8 +282,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
                             ArtistId = artist.Id,
                             Favorite = false,
                             Year = albumYear,
-                            IsPictureLoaded = hasVLCFoundCover,
-                            IsVLCCover = hasVLCFoundCover,
+                            AlbumCoverUri = albumSimplifiedUrl
                         };
                         await Locator.MusicLibraryVM._albumDatabase.Add(album);
                         await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>

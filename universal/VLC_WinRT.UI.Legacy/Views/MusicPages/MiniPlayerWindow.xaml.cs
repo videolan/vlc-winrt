@@ -115,7 +115,7 @@ namespace VLC_WinRT.UI.Legacy.Views.MusicPages
             {
                 if (fileExists)
                 {
-                    var file = await StorageFile.GetFileFromApplicationUriAsync(new Uri(Locator.MusicPlayerVM.CurrentAlbum.AlbumCoverUri));
+                    var file = await StorageFile.GetFileFromApplicationUriAsync(new Uri(Locator.MusicPlayerVM.CurrentAlbum.AlbumCoverFullUri));
                     using (var stream = await file.OpenAsync(FileAccessMode.Read))
                     {
                         await this.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>

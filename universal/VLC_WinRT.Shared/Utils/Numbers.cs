@@ -9,6 +9,6 @@
         public static readonly int SemanticZoomItemCountThreshold = 25;
 
         // Database Version 
-        public static readonly int DbVersion = 3;
+        public static readonly int DbVersion = 4;
     }
 }
