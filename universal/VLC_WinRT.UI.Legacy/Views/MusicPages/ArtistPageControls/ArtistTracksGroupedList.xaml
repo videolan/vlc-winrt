@@ -4,6 +4,7 @@
              xmlns:local="using:VLC_WinRT.Views.MusicPages.ArtistPageControls"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:triggers="using:WinRT.Triggers"
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400">
@@ -31,5 +32,11 @@
                 <VirtualizingStackPanel Margin="{StaticResource FrameMargin}" />
             </ItemsPanelTemplate>
         </ListView.ItemsPanel>
+        <triggers:Interactions.Triggers>
+            <triggers:EventTrigger EventName="ItemClick">
+                <triggers:InvokeCommandAction Command="{Binding TrackClickedCommand}"
+                                              PassEventArgsToCommand="True" />
+            </triggers:EventTrigger>
+        </triggers:Interactions.Triggers>
     </ListView>
 </UserControl>
