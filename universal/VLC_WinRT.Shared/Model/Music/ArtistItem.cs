@@ -24,6 +24,7 @@ namespace VLC_WinRT.Model.Music
         private bool _isAlbumsLoaded = false;
 
         // more informations
+        private int _listenCount;
         private bool _isFavorite;
         private bool _isOnlinePopularAlbumItemsLoaded = false;
         private List<Album> _onlinePopularAlbumItems;
@@ -240,6 +241,12 @@ namespace VLC_WinRT.Model.Music
         {
             get { return _isFavorite; }
             set { SetProperty(ref _isFavorite, value); }
+        }
+
+        public int ListenCount
+        {
+            get { return _listenCount; }
+            set { SetProperty(ref _listenCount, value); }
         }
     }
 }

@@ -42,11 +42,14 @@ namespace VLC_WinRT.ViewModels.MusicVM
         #endregion
         #region private fields
         private ObservableCollection<ArtistItem> _artists = new ObservableCollection<ArtistItem>();
+        private ObservableCollection<ArtistItem> _topArtists = new ObservableCollection<ArtistItem>(); 
+
         private ObservableCollection<TrackItem> _tracks = new ObservableCollection<TrackItem>();
+        private ObservableCollection<TrackCollection> _trackCollections = new ObservableCollection<TrackCollection>();
+
+        private ObservableCollection<AlbumItem> _albums = new ObservableCollection<AlbumItem>();
         private ObservableCollection<AlbumItem> _favoriteAlbums = new ObservableCollection<AlbumItem>();
         private ObservableCollection<AlbumItem> _randomAlbums = new ObservableCollection<AlbumItem>();
-        private ObservableCollection<AlbumItem> _albums = new ObservableCollection<AlbumItem>();
-        private ObservableCollection<TrackCollection> _trackCollections = new ObservableCollection<TrackCollection>();
 
         private IEnumerable<IGrouping<char, TrackItem>> _groupedTracks;
         private ObservableCollection<GroupItemList<AlbumItem>> _groupedAlbums;
@@ -88,6 +91,11 @@ namespace VLC_WinRT.ViewModels.MusicVM
         {
             get { return _artists; }
             set { SetProperty(ref _artists, value); }
+        }
+        public ObservableCollection<ArtistItem> TopArtists
+        {
+            get { return _topArtists; }
+            set { SetProperty(ref _topArtists, value); }
         }
 
         public IEnumerable<IGrouping<string, ArtistItem>> GroupedArtists
