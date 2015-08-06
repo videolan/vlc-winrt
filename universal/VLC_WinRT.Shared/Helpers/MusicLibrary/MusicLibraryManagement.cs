@@ -353,9 +353,8 @@ namespace VLC_WinRT.Helpers.MusicLibrary
 
         public static async Task PopulateTracksByAlbum(this ArtistItem artist)
         {
-            var t = new Tuple<string, string>("", "");
             var tracks = await Locator.MusicLibraryVM._trackDatabase.LoadTracksByArtistId(artist.Id);
-            var groupedTracks = tracks.GroupBy(x => new Tuple<string, string>(x.AlbumName, x.Thumbnail));
+            var groupedTracks = tracks.GroupBy(x => new Tuple<string, string, int>(x.AlbumName, x.Thumbnail, x.AlbumId));
             await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 artist.TracksGroupedByAlbum = groupedTracks;
