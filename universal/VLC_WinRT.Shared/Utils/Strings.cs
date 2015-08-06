@@ -56,8 +56,9 @@ namespace VLC_WinRT.Utils
         public static readonly string OrderAscending = _resourcesLoader.GetString("OrderAscending");
         public static readonly string OrderDescending = _resourcesLoader.GetString("OrderDescending");
 
-        public static readonly string AlbumsFound = _resourcesLoader.GetString("AlbumsFound");
-
+        public static readonly string AlbumsFound = "Albums found : {0}"/*_resourcesLoader.GetString("AlbumsFound")*/;
+        public static readonly string NewVideo = "New video : {0}";
+        
         public static readonly string PlaylistAlreadyExists = _resourcesLoader.GetString("PlaylistAlreadyExists");
         public static readonly string TrackAlreadyExistsInPlaylist = _resourcesLoader.GetString("TrackAlreadyExistsInPlaylist");
         public static readonly string TrackAddedToYourPlaylist = _resourcesLoader.GetString("TrackAddedToYourPlaylist");
