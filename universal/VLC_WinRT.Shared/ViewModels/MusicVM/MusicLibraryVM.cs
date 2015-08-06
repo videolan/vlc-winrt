@@ -266,6 +266,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
                 await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
                 {
                     IsBusy = false;
+                    Locator.MainVM.InformationText = "";
                 });
             }
         }

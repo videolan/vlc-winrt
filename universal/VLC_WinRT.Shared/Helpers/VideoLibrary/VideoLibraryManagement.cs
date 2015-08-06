@@ -122,6 +122,7 @@ namespace VLC_WinRT.Helpers.VideoLibrary
                         if (isTvShow)
                             await AddTvShow(videoProperties.ShowTitle, mediaVM);
                         await videoRepo.Insert(mediaVM);
+                        Locator.MainVM.InformationText = string.Format(Strings.NewVideo, mediaVM.Name);
                     }
                     // Get back to UI thread
                     await DispatchHelper.InvokeAsync(() =>
