@@ -277,10 +277,19 @@ namespace VLC_WinRT.ViewModels.MusicVM
 
         public async Task StartIndexing()
         {
+            // Clean DBs
             _artistDatabase.Drop();
             _trackDatabase.Drop();
             _albumDatabase.Drop();
-
+            
+            // Clear runtime collections
+            _albums?.Clear();
+            _artists?.Clear();
+            _tracks?.Clear();
+            _randomAlbums?.Clear();
+            _favoriteAlbums?.Clear();
+            _groupedAlbums?.Clear();
+            
             await DispatchHelper.InvokeAsync(() =>
             {
                 Locator.MainVM.InformationText = "Searching for music";
