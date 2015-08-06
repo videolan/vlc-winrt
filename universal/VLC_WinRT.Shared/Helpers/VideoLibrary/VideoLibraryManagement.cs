@@ -93,6 +93,7 @@ namespace VLC_WinRT.Helpers.VideoLibrary
                     // Check if we know the file:
                     //FIXME: We need to check if the files in DB still exist on disk
                     var mediaVM = await videoRepo.GetFromPath(storageFile.Path).ConfigureAwait(false);
+                    bool isNewVideo = false;
                     if (mediaVM != null)
                     {
                         Debug.Assert(isTvShow == mediaVM.IsTvShow);
@@ -104,7 +105,7 @@ namespace VLC_WinRT.Helpers.VideoLibrary
                     {
                         // Analyse to see if it's a tv show
                         // if the file is from a tv show, we push it to this tvshow item
-
+                        isNewVideo = true;
                         mediaVM = !isTvShow
                             ? new VideoItem()
                             : new VideoItem(videoProperties.Season, videoProperties.Episode);
@@ -122,11 +123,15 @@ namespace VLC_WinRT.Helpers.VideoLibrary
                         if (isTvShow)
                             await AddTvShow(videoProperties.ShowTitle, mediaVM);
                         await videoRepo.Insert(mediaVM);
-                        Locator.MainVM.InformationText = string.Format(Strings.NewVideo, mediaVM.Name);
                     }
                     // Get back to UI thread
                     await DispatchHelper.InvokeAsync(() =>
                     {
+                        if (isNewVideo)
+                        {
+                            Locator.MainVM.InformationText = string.Format(Strings.NewVideo, mediaVM.Name);
+                        }
+
                         if (mediaVM.IsCameraRoll)
                         {
                             // TODO: Find a more efficient way to know if it's already in the list or not
