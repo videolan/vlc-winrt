@@ -1,4 +1,5 @@
 ﻿using System;
+using VLC_WinRT.Helpers;
 using Windows.Graphics.Display;
 using Windows.UI.Xaml.Controls;
 namespace VLC_WinRT.UI.Legacy.Views.UserControls
@@ -8,7 +9,7 @@ namespace VLC_WinRT.UI.Legacy.Views.UserControls
         public TitleBar()
         {
             this.InitializeComponent();
-            this.Height = Math.Floor(32 * (DisplayInformation.GetForCurrentView().LogicalDpi / 100));
+            this.Height = AppViewHelper.TitleBarHeight;
         }
     }
 }

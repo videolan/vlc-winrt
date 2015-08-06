@@ -4,6 +4,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Core;
 using Windows.Foundation;
+using Windows.Graphics.Display;
 using Windows.UI;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
@@ -16,6 +17,22 @@ namespace VLC_WinRT.Helpers
     {
         private static bool isFullscreen = false;
         private static dynamic titleBar;
+        public static double TitleBarHeight = ComputeTitleBarHeight();
+
+        static AppViewHelper()
+        {
+            DisplayInformation.GetForCurrentView().DpiChanged += AppViewHelper_DpiChanged;
+        }
+
+        private static void AppViewHelper_DpiChanged(DisplayInformation sender, object args)
+        {
+            TitleBarHeight = ComputeTitleBarHeight();
+        }
+
+        static double ComputeTitleBarHeight()
+        {
+            return Math.Floor(32 * (DisplayInformation.GetForCurrentView().LogicalDpi / 100));
+        }
 
         private static bool DoesPropertyExist(string prop, dynamic list)
         {
