@@ -1,9 +1,11 @@
-﻿using Windows.UI.Xaml;
+﻿using System;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Microsoft.Xaml.Interactivity;
 using VLC_WinRT.ViewModels;
 using VLC_WinRT.Utils;
 using Windows.UI.Xaml.Data;
+using ScrollWatchedSelector;
 
 namespace VLC_WinRT.Views.MainPages.MusicPanes
 {

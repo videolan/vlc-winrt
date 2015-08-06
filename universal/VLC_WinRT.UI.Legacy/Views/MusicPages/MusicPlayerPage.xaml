@@ -6,6 +6,7 @@
       xmlns:triggers="using:WinRT.Triggers"
       xmlns:musicNowPlayingControls="using:VLC_WinRT.Views.MusicPages.MusicNowPlayingControls"
       xmlns:extensions="using:WinRTXamlToolkit.Controls.Extensions"
+      xmlns:scrollWatchedSelector="using:ScrollWatchedSelector"
       mc:Ignorable="d"
       DataContext="{Binding Source={StaticResource Locator}, Path=MediaPlaybackViewModel}">
 
@@ -31,7 +32,7 @@
             </AppBarButton.Icon>
         </AppBarButton>
         
-        <ListView x:Name="PlaylistGrid"
+        <scrollWatchedSelector:ScrollWatchedListView x:Name="PlaylistGrid"
                   Grid.Row="2"
                   Margin="{StaticResource FrameMargin}"
               ItemsSource="{Binding TrackCollection.Playlist}"
@@ -50,7 +51,7 @@
                                               PassEventArgsToCommand="True" />
                 </triggers:EventTrigger>
             </triggers:Interactions.Triggers>
-        </ListView>
+        </scrollWatchedSelector:ScrollWatchedListView>
         
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>

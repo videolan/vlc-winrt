@@ -7,10 +7,11 @@
       xmlns:triggers="using:WinRT.Triggers"
       xmlns:placeholder="using:VLC_WinRT.Views.UserControls.Placeholder"
       xmlns:videoPanesControls="using:VLC_WinRT.Views.MainPages.MainVideoControls.VideoPanesControls"
+      xmlns:scrollWatchedSelector="using:ScrollWatchedSelector"
       mc:Ignorable="d">
 
     <Grid>
-        <ListView x:Name="CameraRollListView"
+        <scrollWatchedSelector:ScrollWatchedListView x:Name="CameraRollListView"
                   ItemsSource="{Binding CameraRoll}"
                   ItemTemplate="{StaticResource PhoneCompactVideoTemplate}"
                   ItemContainerStyle="{StaticResource ListViewItemStyle}"
@@ -37,7 +38,7 @@
                     </ItemsWrapGrid>
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
-        </ListView>
+        </scrollWatchedSelector:ScrollWatchedListView>
         <placeholder:NoCameraVideos Visibility="{Binding CameraRoll.Count, Converter={StaticResource CountToVisibilityConverter}}" />
     </Grid>
 </Page>

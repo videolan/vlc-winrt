@@ -47,7 +47,7 @@
       
         <SemanticZoom ViewChangeCompleted="SemanticZoom_OnViewChangeCompleted">
             <SemanticZoom.ZoomedInView>
-                <ListView x:Name="TracksZoomedInView"
+                <scrollWatchedSelector:ScrollWatchedListView x:Name="TracksZoomedInView"
                           ItemsSource="{Binding Source={StaticResource GroupTracks}}"
                           SelectionMode="None"
                           IsItemClickEnabled="True"
@@ -62,7 +62,7 @@
                     <ListView.GroupStyle>
                         <GroupStyle HeaderTemplate="{StaticResource ListviewGroupHeaderDataTemplate}"/>
                     </ListView.GroupStyle>
-                </ListView>
+                </scrollWatchedSelector:ScrollWatchedListView>
             </SemanticZoom.ZoomedInView>
             <SemanticZoom.ZoomedOutView>
                 <ListView x:Name="TracksZoomedOutView"

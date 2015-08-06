@@ -9,6 +9,7 @@
              xmlns:artistPageControls="using:VLC_WinRT.Views.MusicPages.ArtistPageControls"
              xmlns:artistCollectionPanes="using:VLC_WinRT.Views.MainPages.MusicPanes.ArtistCollectionPanes"
              xmlns:musicPanesControls="using:VLC_WinRT.Views.MainPages.MusicPanes.MusicPanesControls"
+             xmlns:scrollWatchedSelector="using:ScrollWatchedSelector"
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400">
@@ -32,12 +33,12 @@
                       IsZoomOutButtonEnabled="False"
                       ViewChangeCompleted="SemanticZoom_OnViewChangeCompleted">
             <SemanticZoom.ZoomedInView>
-                <ListView x:Name="ArtistListView"
-                          IsItemClickEnabled="True"
-                          ItemsSource="{Binding Artists}"
-                          SelectionMode="None"
-                          ItemContainerStyle="{StaticResource ListViewItemStyle}"
-                          ItemTemplate="{StaticResource ArtistHorizontalTemplate}">
+                <scrollWatchedSelector:ScrollWatchedListView x:Name="ArtistListView"
+                                                             IsItemClickEnabled="True"
+                                                             ItemsSource="{Binding Artists}"
+                                                             SelectionMode="None"
+                                                             ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                                                             ItemTemplate="{StaticResource ArtistHorizontalTemplate}">
                     <triggers:Interactions.Triggers>
                         <triggers:EventTrigger EventName="ItemClick">
                             <triggers:InvokeCommandAction Command="{Binding ArtistClickedCommand}"
@@ -59,7 +60,7 @@
                             </ItemsWrapGrid>
                         </ItemsPanelTemplate>
                     </ListView.ItemsPanel>
-                </ListView>
+                </scrollWatchedSelector:ScrollWatchedListView>
             </SemanticZoom.ZoomedInView>
             <SemanticZoom.ZoomedOutView>
                 <ListView x:Name="ArtistsZoomedOutView"

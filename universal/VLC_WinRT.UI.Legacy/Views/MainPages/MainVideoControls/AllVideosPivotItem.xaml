@@ -6,13 +6,14 @@
       xmlns:triggers="using:WinRT.Triggers"
       xmlns:placeholder="using:VLC_WinRT.Views.UserControls.Placeholder"
       xmlns:videoPanesControls="using:VLC_WinRT.Views.MainPages.MainVideoControls.VideoPanesControls"
+      xmlns:scrollWatchedSelector="using:ScrollWatchedSelector"
       mc:Ignorable="d"
       d:DesignHeight="300"
       d:DesignWidth="400"
       DataContext="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM}">
 
     <Grid>
-        <ListView ItemsSource="{Binding Videos}"
+        <scrollWatchedSelector:ScrollWatchedListView ItemsSource="{Binding Videos}"
                   ItemTemplate="{StaticResource PhoneCompactVideoTemplate}"
                   ItemContainerStyle="{StaticResource ListViewItemStyle}"
                   IsItemClickEnabled="True"

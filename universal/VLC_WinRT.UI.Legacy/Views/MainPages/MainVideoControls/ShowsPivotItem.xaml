@@ -7,6 +7,7 @@
       xmlns:triggers="using:WinRT.Triggers"
       xmlns:placeholder="using:VLC_WinRT.Views.UserControls.Placeholder"
       xmlns:videoPanesControls="using:VLC_WinRT.Views.MainPages.MainVideoControls.VideoPanesControls"
+      xmlns:scrollWatchedSelector="using:ScrollWatchedSelector"
       mc:Ignorable="d"
       DataContext="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM}">
 
@@ -19,8 +20,7 @@
     </Page.Resources>
 
     <Grid>
-        <ListView x:Name="EpisodesListView"
-                  Grid.Row="1"
+        <scrollWatchedSelector:ScrollWatchedListView x:Name="EpisodesListView"
                   ItemsSource="{Binding Source={StaticResource ShowsGroupedByName}}"
                   ItemTemplate="{StaticResource PhoneShowTemplate}"
                   ItemContainerStyle="{StaticResource ListViewItemStyle}"
@@ -58,7 +58,7 @@
                     </ItemsWrapGrid>
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
-        </ListView>
+        </scrollWatchedSelector:ScrollWatchedListView>
         <placeholder:NoShowPlaceholder Visibility="{Binding Shows.Count, Converter={StaticResource CountToVisibilityConverter}}" />
     </Grid>
 </Page>

@@ -6,6 +6,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:triggers="using:WinRT.Triggers"
              xmlns:controls="using:VLC_WinRT.Views.UserControls.Placeholder"
+             xmlns:scrollWatchedSelector="using:ScrollWatchedSelector"
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400">
@@ -20,7 +21,7 @@
         <SemanticZoom Padding="0"
                       ViewChangeCompleted="SemanticZoom_OnViewChangeCompleted">
             <SemanticZoom.ZoomedInView>
-                <ListView ItemsSource="{Binding Source={StaticResource GroupAlbums}}"
+                <scrollWatchedSelector:ScrollWatchedListView ItemsSource="{Binding Source={StaticResource GroupAlbums}}"
                           ItemTemplate="{StaticResource AlbumItemTemplate}"
                           ItemContainerStyle="{StaticResource ListViewItemStyle}"
                           IsItemClickEnabled="True"
@@ -48,7 +49,7 @@
                             </ItemsWrapGrid>
                         </ItemsPanelTemplate>
                     </ListView.ItemsPanel>
-                </ListView>
+                </scrollWatchedSelector:ScrollWatchedListView>
             </SemanticZoom.ZoomedInView>
             <SemanticZoom.ZoomedOutView>
                 <ListView x:Name="AlbumsZoomedOutView"
