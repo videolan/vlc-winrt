@@ -8,7 +8,11 @@ namespace VLC_WinRT.Commands.MusicLibrary
     {
         public override async void Execute(object parameter)
         {
-            await Locator.MusicLibraryVM.PerformRoutineCheckIfNotBusy();
+            if (parameter != null && parameter.ToString() == "True")
+            {
+                await Locator.MusicLibraryVM.StartIndexing();
+            }
+            else await Locator.MusicLibraryVM.PerformRoutineCheckIfNotBusy();
         }
     }
 }
