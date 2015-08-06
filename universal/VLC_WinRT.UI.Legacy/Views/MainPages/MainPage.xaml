@@ -23,6 +23,7 @@
                     Margin="{StaticResource TitleMargin}"/>
     <MediaElement x:Name="MfMediaElement"
                   x:FieldModifier="public"
+                  AudioDeviceType="Multimedia"
                   AudioCategory="BackgroundCapableMedia"
                   Loaded="MfMediaElement_Loaded"
                   Margin="{StaticResource TitleMargin}" />
