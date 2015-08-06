@@ -48,20 +48,7 @@ namespace VLC_WinRT.Views.MainPages
         {
             TemplateSizer.ComputeAlbums(sender as ItemsWrapGrid, AlbumsListView.ActualWidth);
         }
-
-        private void VideoWrapGrid_Loaded(object sender, RoutedEventArgs e)
-        {
-            itemsWrapGrid = sender as ItemsWrapGrid;
-            Window.Current.SizeChanged += Current_SizeChanged;
-        }
-
-        private void Current_SizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)
-        {
-            Debug.WriteLine(VideosListView.ActualWidth);
-            //TemplateSizer.ComputeCompactVideo(itemsWrapGrid, VideosListView.ActualWidth);
-
-        }
-
+        
         private void VideoWrapGrid_OnSizeChanged(object sender, SizeChangedEventArgs e)
         {
             TemplateSizer.ComputeCompactVideo(sender as ItemsWrapGrid, VideosListView.ActualWidth);
