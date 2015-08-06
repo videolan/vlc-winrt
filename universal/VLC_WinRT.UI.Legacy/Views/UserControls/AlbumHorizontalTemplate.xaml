@@ -10,11 +10,11 @@
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400"
-             Margin="0,12,0,0">
+             Margin="{StaticResource FrameMarginVertical}" >
 
-    <Grid>
+    <Grid Height="80">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="80" />
             <ColumnDefinition Width="12" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
@@ -30,23 +30,29 @@
                       FontSize="26"
                       Foreground="{ThemeResource MainColor}" />
         </Grid>
-        <Image Grid.RowSpan="2"
-               Height="60"
-               Width="60"
+        <Image Grid.Row="0"
+               Grid.RowSpan="2"
+               Height="80"
+               Width="80"
                Stretch="UniformToFill"
                Source="{Binding Key.Item2}" />
-        <TextBlock Grid.Column="2"
-                   Grid.Row="0"
+        <TextBlock Grid.Row="0"
+                   Grid.Column="2"
                    Text="{Binding Key.Item1, Converter={StaticResource ArtistStringConverter}}"
                    FontSize="21"
                    FontWeight="Light"
-                   VerticalAlignment="Bottom" />
-        <TextBlock Grid.Column="2"
-                   Grid.Row="1"
-                   Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
-                   VerticalAlignment="Top">
-            <Run Text="{Binding Key.Item3}" />
-            <Run Text="albums" />
-        </TextBlock>
+                   VerticalAlignment="Bottom"/>
+
+        <AppBarButton Grid.Row="1"
+                      Grid.Column="2"
+                      Style="{StaticResource AppBarButtonStyleHorizontal}"
+                      Label="Play album"
+                      Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.PlayAlbumCommand}"
+                      CommandParameter="{Binding Key.Item3}">
+            <AppBarButton.Icon>
+                <FontIcon Glyph="{StaticResource PlaySymbol}"
+                          FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+            </AppBarButton.Icon>
+        </AppBarButton>
     </Grid>
 </UserControl>
