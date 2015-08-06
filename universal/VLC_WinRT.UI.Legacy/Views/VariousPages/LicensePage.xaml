@@ -11,12 +11,27 @@
     <Grid Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}">
         <ScrollViewer>
             <StackPanel Margin="{StaticResource FrameMargin}">
+                <StackPanel Orientation="Horizontal">
+                    <AppBarButton Style="{StaticResource AppBarButtonStyleHorizontal}"
+                                  HorizontalAlignment="Right"
+                                  Command="{Binding Source={StaticResource Locator}, Path=SettingsVM.ChangeSettingsViewCommand}"
+                                  CommandParameter="-1"
+                                  Width="50">
+                        <AppBarButton.Icon>
+                            <FontIcon Glyph="{StaticResource PreviousPageSymbol}"
+                                      Margin="0,3,0,0"
+                                      FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+                        </AppBarButton.Icon>
+                    </AppBarButton>
+                    <TextBlock Text="VLC for Windows (Universal)"
+                               Style="{StaticResource SubheaderTextBlockStyle}"
+                               FontSize="32"
+                               Foreground="{StaticResource MainColor}"
+                               Margin="0,12" />
+                </StackPanel>
                 <TextBlock Margin="0,12,0,0"
                            TextWrapping="Wrap"
                            FontSize="14">
-                            <Run Text="VLC for Windows (Universal)"
-                                 FontSize="28" />
-                            <LineBreak />
                             <Run Text="Copyleft 1994-2014 VideoLAN, VLC Authors" />
                             <LineBreak />
                             <LineBreak />

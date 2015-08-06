@@ -20,6 +20,9 @@
         CreateNewPlaylistDialog,
         LicensePage,
         SearchPage,
-        MiniPlayerView
+        MiniPlayerView,
+        SettingsPageUI,
+        SettingsPageMusic,
+        SettingsPageVideo
     }
 }

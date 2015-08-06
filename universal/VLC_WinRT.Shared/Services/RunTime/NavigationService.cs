@@ -5,6 +5,7 @@ using Windows.UI.Xaml.Documents;
 using VLC_WinRT.Helpers;
 using VLC_WinRT.Model;
 using VLC_WinRT.UI.Legacy.Views.MusicPages;
+using VLC_WinRT.UI.Legacy.Views.SettingsPages;
 using VLC_WinRT.UI.Legacy.Views.VariousPages;
 using VLC_WinRT.ViewModels;
 using VLC_WinRT.Views.MainPages;
@@ -78,9 +79,6 @@ namespace VLC_WinRT.Services.RunTime
                 case VLCPage.MusicPlayerPage:
                     GoBack_Default();
                     break;
-                case VLCPage.SettingsPage:
-                    GoBack_Default();
-                    break;
                 case VLCPage.SpecialThanksPage:
                     GoBack_HideFlyout();
                     break;
@@ -106,6 +104,19 @@ namespace VLC_WinRT.Services.RunTime
                     App.SplitShell.FooterVisibility = Visibility.Visible;
                     GoBack_Default();
                     Locator.Slideshow.IsPaused = false;
+                    break;
+                // Settings pages
+                case VLCPage.SettingsPage:
+                    GoBack_HideFlyout();
+                    break;
+                case VLCPage.SettingsPageUI:
+                    GoBack_HideFlyout();
+                    break;
+                case VLCPage.SettingsPageMusic:
+                    GoBack_HideFlyout();
+                    break;
+                case VLCPage.SettingsPageVideo:
+                    GoBack_HideFlyout();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -180,9 +191,6 @@ namespace VLC_WinRT.Services.RunTime
                 case VLCPage.MusicPlayerPage:
                     App.ApplicationFrame.Navigate(typeof(MusicPlayerPage));
                     break;
-                case VLCPage.SettingsPage:
-                    App.ApplicationFrame.Navigate(typeof(SettingsPage));
-                    break;
                 case VLCPage.SpecialThanksPage:
                     App.SplitShell.RightFlyoutContent = new SpecialThanks();
                     break;
@@ -209,7 +217,20 @@ namespace VLC_WinRT.Services.RunTime
                     AppViewHelper.SetAppView(Colors.WhiteSmoke);
                     App.SplitShell.TopBarVisibility = Visibility.Collapsed;
                     App.SplitShell.FooterVisibility = Visibility.Collapsed;
-                    App.ApplicationFrame.Navigate(typeof (MiniPlayerWindow));
+                    App.ApplicationFrame.Navigate(typeof(MiniPlayerWindow));
+                    break;
+                // Settings pages
+                case VLCPage.SettingsPage:
+                    App.SplitShell.RightFlyoutContent = new SettingsPage();
+                    break;
+                case VLCPage.SettingsPageUI:
+                    App.SplitShell.RightFlyoutContent = new SettingsPageUI();
+                    break;
+                case VLCPage.SettingsPageMusic:
+                    App.SplitShell.RightFlyoutContent = new SettingsPageMusic();
+                    break;
+                case VLCPage.SettingsPageVideo:
+                    App.SplitShell.RightFlyoutContent = new SettingsPageVideo();
                     break;
                 default:
                     break;
@@ -222,15 +243,19 @@ namespace VLC_WinRT.Services.RunTime
         bool isFlyout(VLCPage page)
         {
             return page == VLCPage.AlbumPage ||
-                page == VLCPage.ArtistPage ||
-                page == VLCPage.AddAlbumToPlaylistDialog ||
-                page == VLCPage.CreateNewPlaylistDialog ||
-                page == VLCPage.ArtistShowsPage ||
-                page == VLCPage.PlaylistPage ||
-                page == VLCPage.LicensePage ||
-                page == VLCPage.SpecialThanksPage ||
-                page == VLCPage.CurrentPlaylistPage ||
-                page == VLCPage.SearchPage;
+                   page == VLCPage.ArtistPage ||
+                   page == VLCPage.AddAlbumToPlaylistDialog ||
+                   page == VLCPage.CreateNewPlaylistDialog ||
+                   page == VLCPage.ArtistShowsPage ||
+                   page == VLCPage.PlaylistPage ||
+                   page == VLCPage.LicensePage ||
+                   page == VLCPage.SpecialThanksPage ||
+                   page == VLCPage.CurrentPlaylistPage ||
+                   page == VLCPage.SearchPage ||
+                   page == VLCPage.SettingsPageUI ||
+                   page == VLCPage.SettingsPageMusic ||
+                   page == VLCPage.SettingsPageVideo ||
+                   page == VLCPage.SettingsPage;
         }
 
         /// <summary>
@@ -259,7 +284,7 @@ namespace VLC_WinRT.Services.RunTime
                 return VLCPage.VideoPlayerPage;
             if (page == typeof(MusicPlayerPage))
                 return VLCPage.MusicPlayerPage;
-            if (page == typeof (SettingsPage))
+            if (page == typeof(SettingsPage))
                 return VLCPage.SettingsPage;
             return VLCPage.None;
         }

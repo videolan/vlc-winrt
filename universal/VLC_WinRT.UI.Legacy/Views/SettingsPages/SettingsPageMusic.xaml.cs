@@ -1,36 +1,29 @@
 ﻿using System;
-using Windows.ApplicationModel;
-using Windows.UI.Popups;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.Foundation;
+using Windows.Foundation.Collections;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Primitives;
+using Windows.UI.Xaml.Data;
+using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using VLC_WinRT.Helpers;
-using VLC_WinRT.ViewModels;
-using Windows.UI.Xaml.Media;
-using Windows.UI;
 using VLC_WinRT.SharedBackground.Helpers.MusicPlayer;
+using VLC_WinRT.ViewModels;
 
-namespace VLC_WinRT.Views.VariousPages
+namespace VLC_WinRT.UI.Legacy.Views.SettingsPages
 {
-    public sealed partial class SettingsPage : Page
+    public sealed partial class SettingsPageMusic : UserControl
     {
-        public SettingsPage()
+        public SettingsPageMusic()
         {
             this.InitializeComponent();
-            Package thisPackage = Package.Current;
-            PackageVersion version = thisPackage.Id.Version;
-            string appVersion = string.Format("{0}.{1}.{2}.{3}",
-                version.Major, version.Minor, version.Build, version.Revision);
-            AppVersion.Text = "v" + appVersion;
-            foreach(var element in RootPanel.Children)
-            {
-#if WINDOWS_PHONE_APP
-                if((string)((FrameworkElement)element).Tag == "WindowsOnly")
-                {
-                    element.Visibility = Visibility.Collapsed;
-                }
-#endif
-            }
         }
 
         void FocusTextBox_LostFocus(object sender, RoutedEventArgs e)
@@ -42,13 +35,13 @@ namespace VLC_WinRT.Views.VariousPages
         {
             Locator.MainVM.KeyboardListenerService.CanListen = false;
         }
-        
+
         private async void ConnectToLastFM_Click(object sender, RoutedEventArgs e)
         {
             LastFMScrobbler lastFm = new LastFMScrobbler(App.ApiKeyLastFm, "bd9ad107438d9107296ef799703d478e");
-            
-            string pseudo = (string) ApplicationSettingsHelper.ReadSettingsValue("LastFmUserName");
-            string pd = (string) ApplicationSettingsHelper.ReadSettingsValue("LastFmPassword");
+
+            string pseudo = (string)ApplicationSettingsHelper.ReadSettingsValue("LastFmUserName");
+            string pd = (string)ApplicationSettingsHelper.ReadSettingsValue("LastFmPassword");
 
             if (string.IsNullOrEmpty(pseudo) || string.IsNullOrEmpty(pd)) return;
             ErrorConnectLastFmTextBox.Text = "Connecting";

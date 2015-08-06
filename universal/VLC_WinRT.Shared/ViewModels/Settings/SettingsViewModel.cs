@@ -22,6 +22,7 @@ using VLC_WinRT.Model;
 using VLC_WinRT.Views.MusicPages;
 using Windows.Storage;
 using Windows.UI.Core;
+using VLC_WinRT.Commands.Navigation;
 using VLC_WinRT.Commands.Settings;
 using VLC_WinRT.Utils;
 
@@ -497,7 +498,9 @@ namespace VLC_WinRT.ViewModels.Settings
                 SetProperty(ref _homePage, value);
             }
         }
-        
+
+        public ChangeSettingsViewCommand ChangeSettingsViewCommand { get; } = new ChangeSettingsViewCommand();
+
 #if WINDOWS_APP
         public async Task GetMusicLibraryFolders()
         {

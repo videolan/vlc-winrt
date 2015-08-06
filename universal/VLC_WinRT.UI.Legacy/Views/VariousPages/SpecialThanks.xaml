@@ -25,13 +25,31 @@
             <RowDefinition Height="{StaticResource FrameMarginGridLength}" />
             <RowDefinition />
         </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal">
+            <AppBarButton Style="{StaticResource AppBarButtonStyleHorizontal}"
+                          HorizontalAlignment="Right"
+                          Command="{Binding Source={StaticResource Locator}, Path=SettingsVM.ChangeSettingsViewCommand}"
+                          CommandParameter="-1"
+                          Width="50"
+                          Margin="{StaticResource FrameMargin}">
+                <AppBarButton.Icon>
+                    <FontIcon Glyph="{StaticResource PreviousPageSymbol}"
+                              Margin="0,3,0,0"
+                              FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+                </AppBarButton.Icon>
+            </AppBarButton>
+            <TextBlock Text="Special thanks"
+                       x:Uid="SpecialThanks"
+                       Style="{StaticResource SubheaderTextBlockStyle}"
+                       FontSize="32"
+                       Foreground="{StaticResource MainColor}"
+                       Margin="0,12" />
+        </StackPanel>
         <TextBlock Grid.Row="0"
                    Margin="{StaticResource FrameMargin}"
                    TextTrimming="CharacterEllipsis"
                    TextWrapping="NoWrap"
                    VerticalAlignment="Center"
-                   Text="Special thanks"
-                   x:Uid="SpecialThanks"
                    Style="{StaticResource SubheaderTextBlockStyle}" />
         <TextBlock Grid.Row="1"
                    x:Uid="VlcThankYou"

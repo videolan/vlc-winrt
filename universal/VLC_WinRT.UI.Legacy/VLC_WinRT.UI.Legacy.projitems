@@ -136,6 +136,21 @@
     <Page Include="$(MSBuildThisFileDirectory)Views\MusicPages\PlaylistPage.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\SettingsPages\SettingsPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\SettingsPages\SettingsPageMusic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\SettingsPages\SettingsPageUI.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Views\SettingsPages\SettingsPageVideo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\UserControls\AlbumHorizontalTemplate.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -248,9 +263,6 @@
     <Page Include="$(MSBuildThisFileDirectory)Views\VariousPages\SearchPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Views\VariousPages\SettingsPage.xaml">
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Views\VariousPages\SpecialThanks.xaml">
       <SubType>Designer</SubType>
@@ -365,6 +377,18 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\MusicPages\PlaylistPage.xaml.cs">
       <DependentUpon>PlaylistPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\SettingsPages\SettingsPage.xaml.cs">
+      <DependentUpon>SettingsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\SettingsPages\SettingsPageMusic.xaml.cs">
+      <DependentUpon>SettingsPageMusic.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\SettingsPages\SettingsPageUI.xaml.cs">
+      <DependentUpon>SettingsPageUI.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\SettingsPages\SettingsPageVideo.xaml.cs">
+      <DependentUpon>SettingsPageVideo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\UserControls\AlbumHorizontalTemplate.xaml.cs">
       <DependentUpon>AlbumHorizontalTemplate.xaml</DependentUpon>
     </Compile>
@@ -475,9 +499,6 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\VariousPages\SearchPage.xaml.cs">
       <DependentUpon>SearchPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\VariousPages\SettingsPage.xaml.cs">
-      <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\VariousPages\SpecialThanks.xaml.cs">
       <DependentUpon>SpecialThanks.xaml</DependentUpon>
