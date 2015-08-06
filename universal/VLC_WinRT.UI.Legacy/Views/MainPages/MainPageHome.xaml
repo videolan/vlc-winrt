@@ -119,7 +119,7 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <controls:NoFavoriteAlbumsControl HorizontalAlignment="Stretch"
+            <controls:NoFavoriteAlbumsControl HorizontalAlignment="Center"
                                               DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}" />
             <Button x:Uid="TopVideos"
                     Content="top videos"
