@@ -34,6 +34,8 @@ namespace VLC_WinRT.Controls
         private const string RightFlyoutContentPresenterName = "RightFlyoutContentPresenter";
         private const string RightFlyoutFadeInName = "RightFlyoutFadeIn";
         private const string RightFlyoutFadeOutName = "RightFlyoutFadeOut";
+        private const string TopBarFadeOutName = "TopBarFadeOut";
+        private const string TopBarFadeInName = "TopBarFadeIn";
         private const string RightFlyoutPlaneProjectionName = "RightFlyoutPlaneProjection";
         private const string RightFlyoutGridContainerName = "RightFlyoutGridContainer";
         private const string FlyoutBackgroundGridName = "FlyoutBackgroundGrid";
@@ -50,6 +52,8 @@ namespace VLC_WinRT.Controls
         private PlaneProjection _rightFlyoutPlaneProjection;
         private Storyboard _rightFlyoutFadeIn;
         private Storyboard _rightFlyoutFadeOut;
+        private Storyboard _topBarFadeOut;
+        private Storyboard _topBarFadeIn;
         private ContentPresenter _informationGrid;
         private TextBlock _informationTextBlock;
         
@@ -264,6 +268,8 @@ namespace VLC_WinRT.Controls
             _rightFlyoutContentPresenter = (ContentPresenter)GetTemplateChild(RightFlyoutContentPresenterName);
             _rightFlyoutFadeIn = (Storyboard)GetTemplateChild(RightFlyoutFadeInName);
             _rightFlyoutFadeOut = (Storyboard)GetTemplateChild(RightFlyoutFadeOutName);
+            _topBarFadeOut = (Storyboard) GetTemplateChild(TopBarFadeOutName);
+            _topBarFadeIn = (Storyboard) GetTemplateChild(TopBarFadeInName);
             _rightFlyoutPlaneProjection = (PlaneProjection)GetTemplateChild(RightFlyoutPlaneProjectionName);
             _rightFlyoutGridContainer = (Grid)GetTemplateChild(RightFlyoutGridContainerName);
             _flyoutBackgroundGrid = (Grid)GetTemplateChild(FlyoutBackgroundGridName);
@@ -294,6 +300,19 @@ namespace VLC_WinRT.Controls
             IsRightFlyoutOpen = false;
         }
 
+        public void HideTopBar()
+        {
+            _topBarFadeOut.Begin();
+            IsTopBarOpen = false;
+        }
+
+        public void ShowTopBar()
+        {
+            _topBarFadeIn.Begin();
+            IsTopBarOpen = true;
+        }
+
         public bool IsRightFlyoutOpen { get; set; }
+        public bool IsTopBarOpen { get; set; }
     }
 }
