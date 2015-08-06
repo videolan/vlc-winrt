@@ -17,6 +17,9 @@
     <x:Double x:Key="FrameMarginSides">16</x:Double>
     <GridLength x:Key="FrameMarginGridLength">16</GridLength>
 
+    <Thickness x:Key="FooterMarginBottom">0,0,0,60</Thickness>
+    <Thickness x:Key="FrameMarginAtTopAndFooterMarginAtBottom">0,16,0,60</Thickness>
+    
     <!-- ICONS AND SYMBOLS -->
     <!-- Segoe MLD2 Font -->
     <x:String x:Key="HomeSymbol"></x:String>
