@@ -24,6 +24,8 @@ namespace VLC_WinRT.Views.MainPages
         public MainPage()
         {
             InitializeComponent();
+            var smtc = SystemMediaTransportControls.GetForCurrentView();
+            Locator.MediaPlaybackViewModel.SetMediaTransportControls(smtc);
         }
 
         private void Slideshower_Loaded_1(object sender, RoutedEventArgs e)
