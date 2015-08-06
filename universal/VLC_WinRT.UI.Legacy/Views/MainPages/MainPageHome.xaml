@@ -9,20 +9,48 @@
       xmlns:placeholders="using:VLC_WinRT.Views.UserControls.Placeholders"
       mc:Ignorable="d"
       DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}">
-    <ScrollViewer Margin="{StaticResource FrameMargin}">
+    <ScrollViewer>
         <StackPanel>
-            <Button x:Uid="TopAlbums"
-                    Content="top albums"
-                    FontSize="30"
+            <Button Content="your music"
+                    FontSize="36"
+                    FontWeight="SemiLight"
                     Foreground="{StaticResource MainColor}"
                     Style="{StaticResource TextBlockButtonStyle}"
+                    HorizontalAlignment="Center"
                     Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToPanelCommand}"
-                    CommandParameter="2"
-                    FontWeight="SemiLight" />
+                    CommandParameter="2" />
+            <ListView x:Name="ArtistListView"
+                      Margin="{StaticResource FrameMarginVertical}"
+                      IsItemClickEnabled="True"
+                      DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}"
+                      ItemsSource="{Binding TopArtists}"
+                      SelectionMode="None"
+                      ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                      ItemTemplate="{StaticResource ArtistHorizontalTemplate}">
+                <triggers:Interactions.Triggers>
+                    <triggers:EventTrigger EventName="ItemClick">
+                        <triggers:InvokeCommandAction Command="{Binding ArtistClickedCommand}"
+                                                      PassEventArgsToCommand="True" />
+                    </triggers:EventTrigger>
+                </triggers:Interactions.Triggers>
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <ItemsWrapGrid Orientation="Horizontal"
+                                       HorizontalAlignment="Center"
+                                       ItemWidth="300">
+                            <ItemsWrapGrid.ChildrenTransitions>
+                                <TransitionCollection>
+                                    <RepositionThemeTransition />
+                                </TransitionCollection>
+                            </ItemsWrapGrid.ChildrenTransitions>
+                        </ItemsWrapGrid>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+            </ListView>
+
             <ListView x:Name="AlbumsListView"
                       DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}"
                       ItemsSource="{Binding RandomAlbums}"
-                      ItemTemplate="{StaticResource AlbumItemTemplate}"
                       ItemContainerStyle="{StaticResource ListViewItemStyle}"
                       IsItemClickEnabled="True"
                       SelectionMode="None"
@@ -36,24 +64,74 @@
                 </triggers:Interactions.Triggers>
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <ItemsWrapGrid SizeChanged="AlbumsWrapGrid_SizeChanged"
+                        <ItemsWrapGrid ItemWidth="300"
                                        Orientation="Horizontal"
-                                       Margin="0,0,0,0" />
+                                       HorizontalAlignment="Center"/>
                     </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Height="80"
+                              Width="300">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="80" />
+                                <ColumnDefinition Width="12" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid Grid.Row="0"
+                                  Grid.RowSpan="2"
+                                  Background="{ThemeResource ApplicationOverlayTranslucentThemeBrush}">
+                                <FontIcon Glyph="{StaticResource AlbumDiscSymbol}"
+                                          FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets"
+                                          FontSize="26"
+                                          Foreground="{ThemeResource MainColor}" />
+                            </Grid>
+                            <Image Grid.Row="0"
+                                   Grid.RowSpan="2"
+                                   Height="80"
+                                   Width="80"
+                                   Stretch="UniformToFill"
+                                   Source="{Binding AlbumImage}" />
+                            <TextBlock Grid.Row="0"
+                                       Grid.Column="2"
+                                       Text="{Binding Name, Converter={StaticResource ArtistStringConverter}}"
+                                       TextTrimming="CharacterEllipsis"
+                                       FontSize="21"
+                                       FontWeight="Light"
+                                       VerticalAlignment="Bottom" />
+
+                            <AppBarButton Grid.Row="1"
+                                          Grid.Column="2"
+                                          Style="{StaticResource AppBarButtonStyleHorizontal}"
+                                          Label="Play album"
+                                          Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.PlayAlbumCommand}"
+                                          CommandParameter="{Binding Id}">
+                                <AppBarButton.Icon>
+                                    <FontIcon Glyph="{StaticResource PlaySymbol}"
+                                              FontFamily="ms-appx:SEGMDL2.TTF#Segoe MDL2 Assets" />
+                                </AppBarButton.Icon>
+                            </AppBarButton>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
             </ListView>
-            <controls:NoFavoriteAlbumsControl HorizontalAlignment="Left"
+            <controls:NoFavoriteAlbumsControl HorizontalAlignment="Stretch"
                                               DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}" />
             <Button x:Uid="TopVideos"
                     Content="top videos"
-                    Margin="0,12,0,0"
-                    FontSize="30"
+                    FontSize="36"
                     Foreground="{StaticResource MainColor}"
                     Style="{StaticResource TextBlockButtonStyle}"
+                    HorizontalAlignment="Center"
                     Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToPanelCommand}"
                     CommandParameter="1"
                     FontWeight="SemiLight" />
             <ListView x:Name="VideosListView"
+                      Margin="16,16"
                       DataContext="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM}"
                       ItemsSource="{Binding ViewedVideos}"
                       ItemTemplate="{StaticResource PhoneCompactVideoTemplate}"
@@ -77,12 +155,13 @@
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <ItemsWrapGrid Orientation="Horizontal"
-                                       SizeChanged="VideoWrapGrid_SizeChanged"
+                                       HorizontalAlignment="Center"
+                                       SizeChanged="VideoWrapGrid_OnSizeChanged"
                                        Margin="0,0,0,60" />
                     </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
             </ListView>
-            <placeholders:NoVideosControl HorizontalAlignment="Left"
+            <placeholders:NoVideosControl HorizontalAlignment="Stretch"
                                           DataContext="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM}"
                                           Visibility="{Binding ViewedVideos.Count, Converter={StaticResource CountToVisibilityConverter}}" />
         </StackPanel>
