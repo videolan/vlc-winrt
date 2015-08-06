@@ -290,16 +290,15 @@ namespace VLC_WinRT.ViewModels.MusicVM
             _trackDatabase.Drop();
             _albumDatabase.Drop();
             
-            // Clear runtime collections
-            _albums?.Clear();
-            _artists?.Clear();
-            _tracks?.Clear();
-            _randomAlbums?.Clear();
-            _favoriteAlbums?.Clear();
-            _groupedAlbums?.Clear();
-            
             await DispatchHelper.InvokeAsync(() =>
-            {
+            {            
+                // Clear runtime collections
+                _albums?.Clear();
+                _artists?.Clear();
+                _tracks?.Clear();
+                _randomAlbums?.Clear();
+                _favoriteAlbums?.Clear();
+                _groupedAlbums?.Clear();
                 Locator.MainVM.InformationText = "Searching for music";
                 IsBusy = true;
                 IsLoaded = false;
