@@ -22,10 +22,18 @@ namespace VLC_WinRT.Commands.MusicPlayer
         {
             Locator.NavigationService.GoBack_HideFlyout();
             Locator.NavigationService.Go(VLCPage.MusicPlayerPage);
-            if (parameter is AlbumItem)
+            AlbumItem albumItem = parameter as AlbumItem;
+            if (albumItem != null)
             {
-                var album = parameter as AlbumItem;
-                await PlaylistHelper.AddAlbumToPlaylist(album.Id, true, true, null, 0);
+            }
+            else if (parameter is int)
+            {
+                var id = (int)parameter;
+                albumItem = Locator.MusicLibraryVM.Albums.FirstOrDefault(x => x.Id == id);
+            }
+            if (albumItem != null)
+            {
+                await PlaylistHelper.AddAlbumToPlaylist(albumItem.Id, true, true, null, 0);
             }
         }
     }
