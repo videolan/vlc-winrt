@@ -23,8 +23,11 @@
             <triggers:Interactions.Triggers>
                 <triggers:EventTrigger EventName="ItemClick">
                     <triggers:InvokeCommandAction Command="{Binding TrackCollectionClickedCommand}"
-                                                  PassEventArgsToCommand="True"
-                                                  Margin="0,0,0,60" />
+                                                  PassEventArgsToCommand="True" />
+                </triggers:EventTrigger>
+                <triggers:EventTrigger EventName="GoingTopOrBottom">
+                    <triggers:InvokeCommandAction Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoingTopOrBottomCommand}"
+                                                    PassEventArgsToCommand="True" />
                 </triggers:EventTrigger>
             </triggers:Interactions.Triggers>
         </scrollWatchedSelector:ScrollWatchedListView>

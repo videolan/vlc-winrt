@@ -24,6 +24,10 @@
                     <triggers:InvokeCommandAction Command="{Binding OpenVideo}"
                                                   PassEventArgsToCommand="True" />
                 </triggers:EventTrigger>
+                <triggers:EventTrigger EventName="GoingTopOrBottom">
+                    <triggers:InvokeCommandAction Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoingTopOrBottomCommand}"
+                                                    PassEventArgsToCommand="True" />
+                </triggers:EventTrigger>
             </triggers:Interactions.Triggers>
             <ListView.ItemContainerTransitions>
                 <TransitionCollection>

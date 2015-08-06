@@ -32,6 +32,10 @@
                             <triggers:InvokeCommandAction Command="{Binding AlbumClickedCommand}"
                                                           PassEventArgsToCommand="True" />
                         </triggers:EventTrigger>
+                        <triggers:EventTrigger EventName="GoingTopOrBottom">
+                            <triggers:InvokeCommandAction Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoingTopOrBottomCommand}"
+                                                          PassEventArgsToCommand="True" />
+                        </triggers:EventTrigger>
                     </triggers:Interactions.Triggers>
                     <ListView.GroupStyle>
                         <GroupStyle HeaderTemplate="{StaticResource ListviewGroupHeaderDataTemplate}"/>
