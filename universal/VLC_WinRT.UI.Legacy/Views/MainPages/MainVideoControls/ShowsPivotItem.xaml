@@ -47,8 +47,7 @@
                 <ItemsPanelTemplate>
                     <ItemsWrapGrid ItemWidth="330"
                                    ItemHeight="102"
-                                   Orientation="Horizontal"
-                                   Margin="0,0,0,60">
+                                   Orientation="Horizontal">
                         <ItemsWrapGrid.ChildrenTransitions>
                             <TransitionCollection>
                                 <EntranceThemeTransition FromHorizontalOffset="50"
