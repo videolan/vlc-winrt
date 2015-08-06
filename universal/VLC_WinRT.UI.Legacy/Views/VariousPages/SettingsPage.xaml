@@ -12,7 +12,7 @@
           DataContext="{Binding Source={StaticResource Locator}, Path=SettingsVM}">
         <ScrollViewer Style="{StaticResource VerticalScrollViewerStyle}">
             <StackPanel x:Name="RootPanel"
-                        Margin="{StaticResource FrameMargin}"
+                        Margin="{StaticResource FrameMarginAtTopAndFooterMarginAtBottom}"
                         MaxWidth="550">
                 <TextBlock Text="User interface"
                            Style="{StaticResource SubheaderTextBlockStyle}"
