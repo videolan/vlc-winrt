@@ -22,7 +22,7 @@
         <Image Grid.RowSpan="4"
                Source="{Binding CurrentArtist.ArtistImage}"
                Stretch="UniformToFill"
-               Opacity="0.5" />
+               Opacity="0.3" />
         <TextBlock Grid.Row="1"
                    Margin="{StaticResource FrameMargin}"
                    TextTrimming="CharacterEllipsis"

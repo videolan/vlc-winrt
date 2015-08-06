@@ -29,7 +29,7 @@
                DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.CurrentArtist}"
                Source="{Binding ArtistImage}"
                Stretch="UniformToFill"
-               Opacity="0.5" />
+               Opacity="0.35" />
         <TextBlock  Grid.Row="1"
                     Grid.Column="0"
                     Margin="{StaticResource FrameMargin}"
