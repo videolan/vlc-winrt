@@ -122,11 +122,11 @@ namespace Slide2D.Images
 
             if (frame < 200)
             {
-                currentImg.Opacity += 0.002f;
+                currentImg.Opacity += 0.0016f;
             }
             else if (frame > 900)
             {
-                currentImg.Opacity -= 0.003f;
+                currentImg.Opacity -= 0.0027f;
             }
 
             foreach (var text in Texts)
