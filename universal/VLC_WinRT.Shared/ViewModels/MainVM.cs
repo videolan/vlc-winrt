@@ -174,6 +174,8 @@ namespace VLC_WinRT.ViewModels
                     App.SplitShell.InformationText = new MenuBarControl();
                 if (MenuBarDisplayed)
                     MenuBarDisplayed = false;
+                if (!App.SplitShell.IsTopBarOpen)
+                    App.SplitShell.ShowTopBar();
                 if (App.SplitShell.FooterContent == null)
                     App.SplitShell.FooterContent = new BottomMiniPlayer();
                 if (App.SplitShell.TitleBarContent == null)
