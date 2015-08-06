@@ -113,8 +113,7 @@ namespace VLC_WinRT.Helpers.VideoLibrary
                         mediaVM.IsCameraRoll = isCameraRoll;
                         if (string.IsNullOrEmpty(mediaVM.Name))
                             continue;
-                        VideoItem searchVideo =
-                            Locator.VideoLibraryVM.ViewedVideos.FirstOrDefault(x => x.Name == mediaVM.Name);
+                        VideoItem searchVideo = Locator.VideoLibraryVM.ViewedVideos.FirstOrDefault(x => x.Name == mediaVM.Name);
                         if (searchVideo != null)
                         {
                             mediaVM.TimeWatched = searchVideo.TimeWatched;
