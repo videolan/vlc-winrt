@@ -23,7 +23,6 @@ namespace Slide2D
         public static double WindowWidth;
         
         private ImgSlideshow slideshow;
-        private List<Img> ImgQueue = new List<Img>();
         
         public MetroSlideshow()
         {
@@ -63,22 +62,41 @@ namespace Slide2D
 
         public async void AddImg(string file)
         {
+            await IsLoaded.Task;
             if (string.IsNullOrEmpty(file)) return;
             var i = new Img(file);
-            ImgQueue.Add(i);
+            await i.Initialize(canvas);
+            slideshow.Imgs.Add(i);
+        }
 
-            foreach (var img in ImgQueue.ToList())
-            {
-                await img.Initialize(canvas);
-            }
-            slideshow.CreateResources(ref canvas, ref ImgQueue);
+        public async void SetDefaultPic(string file)
+        {
+            await IsLoaded.Task;
+            if (string.IsNullOrEmpty(file)) return;
+            var i = new Img(file);
+            await i.Initialize(canvas);
+            slideshow.DefaultImg = i;
+        }
+
+        public async void GoDefaultPic()
+        {
+            await IsLoaded.Task;
+            slideshow.UseDefaultPic = true;
+            slideshow.ChangePicFast();
+        }
+
+        public async void RestoreSlideshow()
+        {
+            await IsLoaded.Task;
+            slideshow.UseDefaultPic = false;
+            slideshow.ChangePicFast();
         }
 
         public void AddText(List<Txt> texts)
         {
             slideshow.CreateResources(ref canvas, texts);
         }
-
+        
         public bool IsPaused
         {
             get { return canvas.Paused; }

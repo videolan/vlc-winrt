@@ -10,11 +10,15 @@ using System.Threading.Tasks;
 using VLC_WinRT.Slideshow.Texts;
 using Windows.Foundation;
 using Windows.UI;
+using Windows.UI.Xaml;
 
 namespace Slide2D.Images
 {
     public abstract class ImgSlideshow
     {
+        private const int IntroFrameThreshold = 200;
+        private const int OutroFrameThreshold = 900;
+        private const int EndFrameThreshold = 1200;
         // Debug only, to slow down frames
         int threshold = 0;
 
@@ -23,15 +27,20 @@ namespace Slide2D.Images
         int y;
         int frame = 0;
         private float zoom = 0;
-        private List<Img> Imgs = new List<Img>();
-        private List<Txt> Texts = new List<Txt>();
+        public bool UseDefaultPic;
+        public Img DefaultImg;
+        public List<Img> Imgs = new List<Img>();
+        public List<Txt> Texts = new List<Txt>();
 
         private int ImgIndex = 0;
         private Img currentImg
         {
             get
             {
-                if (ImgIndex >= Imgs.Count) return null;
+                if (UseDefaultPic)
+                    return DefaultImg;
+                if (ImgIndex >= Imgs.Count)
+                    return null;
                 return Imgs[ImgIndex];
             }
         }
@@ -45,16 +54,7 @@ namespace Slide2D.Images
         }
 
         GaussianBlurEffect bl;
-
-        public void CreateResources(ref CanvasAnimatedControl sender, ref List<Img> imgQueue)
-        {
-            foreach (var img in imgQueue)
-            {
-                Imgs.Add(img);
-            }
-            imgQueue.Clear();
-        }
-
+        
         public void CreateResources(ref CanvasAnimatedControl sender, List<Txt> txtQueue)
         {
             Texts.Clear();
@@ -88,7 +88,7 @@ namespace Slide2D.Images
                 currentImg.Scale = (float)(MetroSlideshow.WindowWidth / currentImg.Width);
             }
 
-            if (frame <= 900)
+            if (frame <= OutroFrameThreshold)
             {
                 if (frame == 0)
                 {
@@ -120,11 +120,11 @@ namespace Slide2D.Images
                 Y = 0
             };
 
-            if (frame < 200)
+            if (frame < IntroFrameThreshold)
             {
                 currentImg.Opacity += 0.0016f;
             }
-            else if (frame > 900)
+            else if (frame > OutroFrameThreshold)
             {
                 currentImg.Opacity -= 0.0027f;
             }
@@ -142,13 +142,15 @@ namespace Slide2D.Images
             
             x = x + 2;
             y++;
+
             threshold++;
+
             if (threshold == 1)
             {
                 threshold = 0;
                 frame++;
             }
-            if (frame == 1200)
+            if (frame == EndFrameThreshold)
             {
                 // Resetting variables
                 if (ImgIndex < Imgs.Count - 1)
@@ -162,6 +164,12 @@ namespace Slide2D.Images
                 frame = 0;
                 zoom = 0;
             }
+        }
+
+        public void ChangePicFast()
+        {
+            // seek to outro
+            frame = 0;
         }
     }
 }

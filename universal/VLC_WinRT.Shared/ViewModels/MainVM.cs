@@ -190,7 +190,7 @@ namespace VLC_WinRT.ViewModels
         {
             await Locator.Slideshow.IsLoaded.Task;
             Locator.Slideshow.RichAnimations = Locator.SettingsVM.RichAnimations;
-            Locator.Slideshow.AddImg("ms-appx:///Assets/wallpaper.jpg");
+            Locator.Slideshow.SetDefaultPic("ms-appx:///Assets/wallpaper.jpg");
         }
 
         private void ApplicationState_Activated(object sender, WindowActivatedEventArgs e)
