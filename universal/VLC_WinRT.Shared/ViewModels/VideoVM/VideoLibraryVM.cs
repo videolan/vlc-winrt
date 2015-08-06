@@ -117,8 +117,12 @@ namespace VLC_WinRT.ViewModels.VideoVM
             await VideoLibraryManagement.GetViewedVideos().ConfigureAwait(false);
             await VideoLibraryManagement.GetVideos(VideoRepository).ConfigureAwait(false);
             await VideoLibraryManagement.GetVideosFromCameraRoll(VideoRepository).ConfigureAwait(false);
-            Locator.MainVM.InformationText = "";
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+            {
+                Locator.MainVM.InformationText = "";
+            });
         }
+
         #endregion
 
         #region methods
