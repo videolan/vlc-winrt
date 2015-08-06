@@ -12,7 +12,11 @@
           Background="{StaticResource ApplicationBackgroundSemiTranslucentThemeBrush}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="47" />
-            <ColumnDefinition Width="12" />
+            <ColumnDefinition Width="6" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="{StaticResource FrameMarginGridLength}" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="6" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <Path Data="{StaticResource VLCFlatPath}"
@@ -24,5 +28,15 @@
                    Text="VLC"
                    VerticalAlignment="Center"
                    FontSize="15" />
+        <ProgressRing Grid.Column="4"
+                      IsActive="True"
+                      DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}"
+                      Visibility="{Binding IsBusy, Converter={StaticResource BooleanToVisibilityConverter}}" />
+        <TextBlock Grid.Column="6"
+                   VerticalAlignment="Center"
+                   FontSize="15"
+                   Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}"
+                   DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}"
+                   Text="{Binding InformationText}" />
     </Grid>
 </UserControl>
