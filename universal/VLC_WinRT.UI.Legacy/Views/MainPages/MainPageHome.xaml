@@ -31,6 +31,7 @@
                       SelectionMode="None"
                       ItemContainerStyle="{StaticResource ListViewItemStyle}"
                       ItemTemplate="{StaticResource ArtistHorizontalTemplate}"
+                      DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}"
                       Visibility="{Binding TopArtists.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}">
                 <triggers:Interactions.Triggers>
                     <triggers:EventTrigger EventName="ItemClick">
