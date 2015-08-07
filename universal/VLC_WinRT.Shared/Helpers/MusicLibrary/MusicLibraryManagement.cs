@@ -95,15 +95,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
 
                 await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                 {
-                    Locator.MusicLibraryVM.TopArtists = new ObservableCollection<ArtistItem>(artists.FindAll(x => x.PlayCount > 20).Take(20));
-                    foreach (var artistItem in Locator.MusicLibraryVM.TopArtists)
-                    {
-                        if (artistItem.IsPictureLoaded)
-                        {
-                            Locator.Slideshow.AddImg(artistItem.Picture);
-                        }
-                    }
-
+                    Locator.MusicLibraryVM.TopArtists = new ObservableCollection<ArtistItem>(artists.FindAll(x => x.PlayCount > 00).Take(20));
                     Locator.MusicLibraryVM.Tracks = tracks;
                     Locator.MusicLibraryVM.Albums = new ObservableCollection<AlbumItem>(orderedAlbums);
 
