@@ -258,6 +258,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
                     {
                         artist = new ArtistItem();
                         artist.Name = string.IsNullOrEmpty(albumArtistName) ? artistName : albumArtistName;
+                        artist.PlayCount = 0;
                         await Locator.MusicLibraryVM._artistDatabase.Add(artist);
                         await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
                         {
