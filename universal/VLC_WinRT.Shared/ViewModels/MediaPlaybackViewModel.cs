@@ -533,6 +533,11 @@ namespace VLC_WinRT.ViewModels
 #if WINDOWS_APP
                         await Locator.MusicPlayerVM.UpdateWindows8UI();
 #endif
+                        if (Locator.MusicPlayerVM.CurrentArtist != null)
+                        {
+                            Locator.MusicPlayerVM.CurrentArtist.PlayCount++;
+                            await Locator.MusicLibraryVM._artistDatabase.Update(Locator.MusicPlayerVM.CurrentArtist);
+                        }
                     });
                 }
                 ApplicationSettingsHelper.SaveSettingsValue(BackgroundAudioConstants.CurrentTrack, TrackCollection.CurrentTrack);
