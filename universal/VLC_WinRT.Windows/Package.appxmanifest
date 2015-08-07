@@ -16,13 +16,14 @@
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="VLC_WinRT.Windows.App">
       <m2:VisualElements DisplayName="VLC for Windows Store" Square150x150Logo="Assets\Logo.png" Square30x30Logo="Assets\SmallLogo.png" Description="VLC for the Windows Store experience" ForegroundText="light" BackgroundColor="transparent" ToastCapable="true">
-        <m2:DefaultTile ShortName="VLC" Wide310x150Logo="Assets\Wide310x150Logo.png" Square70x70Logo="Assets\Square70x70Logo.png">
+        <m2:DefaultTile ShortName="VLC Media Player" Wide310x150Logo="Assets\Wide310x150Logo.png" Square70x70Logo="Assets\Square70x70Logo.png" DefaultSize="square150x150Logo" Square310x310Logo="Assets\Square310x310Logo.png">
           <m2:ShowNameOnTiles>
             <m2:ShowOn Tile="square150x150Logo" />
             <m2:ShowOn Tile="wide310x150Logo" />
+            <m2:ShowOn Tile="square310x310Logo" />
           </m2:ShowNameOnTiles>
         </m2:DefaultTile>
-        <m2:SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="#f5f5f5" />
+        <m2:SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="#ffffff" />
         <m2:ApplicationView MinWidth="width320" />
       </m2:VisualElements>
       <Extensions>
