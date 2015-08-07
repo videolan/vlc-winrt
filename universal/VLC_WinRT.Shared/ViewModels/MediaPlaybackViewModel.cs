@@ -529,9 +529,9 @@ namespace VLC_WinRT.ViewModels
                         await Locator.MusicPlayerVM.SetCurrentArtist();
                         await Locator.MusicPlayerVM.SetCurrentAlbum();
                         await Locator.MusicPlayerVM.UpdatePlayingUI();
+                        await Locator.MusicPlayerVM.Scrobble();
 #if WINDOWS_APP
                         await Locator.MusicPlayerVM.UpdateWindows8UI();
-                        await Locator.MusicPlayerVM.Scrobble();
 #endif
                     });
                 }
