@@ -70,16 +70,16 @@ namespace VLC_WinRT.Helpers.MusicLibrary
 
         private async Task<List<ArtistItem>> GetFollowingArtistViaGenre(ArtistItem currentArtist)
         {
-            if (currentArtist.Genre == null)
-#if DEBUG
-                currentArtist.Genre = "Rock";
-#else 
-                return null;
-#endif
-            var artists = await App.MusicMetaService.GetTopArtistGenre(currentArtist.Genre);
-            if (artists == null || !artists.Any()) return null;
-            var artistsInCollection = InCollection(artists.Select(x => x.Name).ToList());
-            return artistsInCollection;
+            //            if (currentArtist.Genre == null)
+            //#if DEBUG
+            //                currentArtist.Genre = "Rock";
+            //#else 
+            return null;
+            //#endif
+            //            var artists = await App.MusicMetaService.GetTopArtistGenre(currentArtist.Genre);
+            //            if (artists == null || !artists.Any()) return null;
+            //            var artistsInCollection = InCollection(artists.Select(x => x.Name).ToList());
+            //            return artistsInCollection;
         }
 
         private async Task<List<ArtistItem>> GetFollowingArtistViaSimilarity(ArtistItem currentArtist)
