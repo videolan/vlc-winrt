@@ -239,7 +239,7 @@ namespace VLC_WinRT
             StatusBarHelper.Initialize();
 #else
             AppViewHelper.SetAppView((Color)App.Current.Resources["MainColorBase"]);
-            AppViewHelper.SetTitleBar();
+            AppViewHelper.SetTitleBar(true);
 #endif
             Locator.MainVM.DropTablesIfNeeded();
             ApplicationFrame.Navigated += this.RootFrame_FirstNavigated;

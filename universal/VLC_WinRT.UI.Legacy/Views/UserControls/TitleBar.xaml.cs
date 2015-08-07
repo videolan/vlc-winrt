@@ -9,7 +9,6 @@ namespace VLC_WinRT.UI.Legacy.Views.UserControls
         public TitleBar()
         {
             this.InitializeComponent();
-            this.Height = AppViewHelper.TitleBarHeight;
         }
     }
 }

@@ -17,21 +17,17 @@ namespace VLC_WinRT.Helpers
     {
         private static bool isFullscreen = false;
         private static dynamic titleBar;
-        public static double TitleBarHeight = ComputeTitleBarHeight();
-
+        public static double TitleBarHeight = 32;
         static AppViewHelper()
         {
             DisplayInformation.GetForCurrentView().DpiChanged += AppViewHelper_DpiChanged;
         }
 
-        private static void AppViewHelper_DpiChanged(DisplayInformation sender, object args)
+        private static async void AppViewHelper_DpiChanged(DisplayInformation sender, object args)
         {
-            TitleBarHeight = ComputeTitleBarHeight();
-        }
-
-        static double ComputeTitleBarHeight()
-        {
-            return Math.Floor(32 * (DisplayInformation.GetForCurrentView().LogicalDpi / 100));
+            SetTitleBar(false);
+            await Task.Delay(200);
+            SetTitleBar(true);
         }
 
         private static bool DoesPropertyExist(string prop, dynamic list)
@@ -162,7 +158,7 @@ namespace VLC_WinRT.Helpers
 #endif
         }
 
-        public static void SetTitleBar()
+        public static void SetTitleBar(bool extend)
         {
             var coreAppView = CoreApplication.GetCurrentView();
             var allProperties = coreAppView.GetType().GetRuntimeProperties();
@@ -172,7 +168,20 @@ namespace VLC_WinRT.Helpers
             var titleBarInstanceProperties = titleBarInstance.GetType().DeclaredProperties;
             if (titleBarInstanceProperties != null)
             {
-                titleBarInstance.ExtendViewIntoTitleBar = true;
+                if (extend)
+                {
+                    var heightOriginal = Window.Current.Bounds.Height;
+                    WindowSizeChangedEventHandler resizeHandler = null;
+                    resizeHandler = (s, e) =>
+                     {
+                         Window.Current.SizeChanged -= resizeHandler;
+                         var heightNew = Window.Current.Bounds.Height;
+                         TitleBarHeight = heightNew - heightOriginal;
+                         App.SplitShell.TitleBarHeight = TitleBarHeight;
+                     };
+                    Window.Current.SizeChanged += resizeHandler;
+                }
+                titleBarInstance.ExtendViewIntoTitleBar = extend;
             }
         }
     }

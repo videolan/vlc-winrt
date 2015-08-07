@@ -69,6 +69,12 @@ namespace VLC_WinRT.Controls
             _titleBarContentPresenter.Content = contentPresenter;
         }
 
+        public async void SetTitleBarHeight(double h)
+        {
+            await TemplateApplied.Task;
+            _titleBarContentPresenter.Height = h;
+        }
+
         public async void SetTopbarContentPresenter(object contentPresenter)
         {
             await TemplateApplied.Task;
@@ -251,6 +257,27 @@ namespace VLC_WinRT.Controls
 #endif
             var that = (SplitShell)dependencyObject;
             that.SetTitleBarContentPresenter(dependencyPropertyChangedEventArgs.NewValue);
+        }
+
+
+
+        public double TitleBarHeight
+        {
+            get { return (int)GetValue(TitleBarHeightProperty); }
+            set { SetValue(TitleBarHeightProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for TitleBarHeight.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty TitleBarHeightProperty =
+            DependencyProperty.Register("TitleBarHeight", typeof(int), typeof(SplitShell), new PropertyMetadata(32, TitleBarHeightPropertyChangedCallback));
+
+        private static void TitleBarHeightPropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
+        {
+#if WINDOWS_PHONE_APP
+            return;
+#endif
+            var that = (SplitShell)dependencyObject;
+            that.SetTitleBarHeight((double)dependencyPropertyChangedEventArgs.NewValue);
         }
         #endregion
 
