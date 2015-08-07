@@ -309,6 +309,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
                         Path = item.Path,
                         Index = mP.Tracknumber,
                         DiscNumber = mP.DiscNumber,
+                        Genre = mP.Genre
                     };
                     await Locator.MusicLibraryVM._trackDatabase.Add(track);
                     await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => AddTrack(track));

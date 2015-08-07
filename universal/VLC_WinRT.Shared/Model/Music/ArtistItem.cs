@@ -36,7 +36,6 @@ namespace VLC_WinRT.Model.Music
         private bool _isUpcomingShowsLoading = false;
         private bool _isUpcomingShowsItemsLoaded = false;
         private bool _isPinned;
-        private string _genre;
         private BitmapImage _artistImage;
         private LoadingState _artistImageLoadingState = LoadingState.NotLoaded;
 
@@ -219,12 +218,6 @@ namespace VLC_WinRT.Model.Music
                 return _upcomingShowItems;
             }
             set { SetProperty(ref _upcomingShowItems, value); }
-        }
-
-        public string Genre
-        {
-            get { return _genre; }
-            set { SetProperty(ref _genre, value); }
         }
 
         [Ignore]

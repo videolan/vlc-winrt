@@ -220,6 +220,9 @@ namespace VLC_WinRT.Services.RunTime
             int discNbInt = 1;
             int.TryParse(discNb, out discNbInt);
             mP.DiscNumber = discNbInt;
+
+            var genre = media.meta(MediaMeta.Genre);
+            mP.Genre = genre;
             return mP;
         }
 

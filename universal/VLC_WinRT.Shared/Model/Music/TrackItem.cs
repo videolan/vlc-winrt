@@ -24,6 +24,7 @@ namespace VLC_WinRT.Model.Music
         private int _currentPosition;
         private bool _isCurrentPlaying;
         private string _thumbnail;
+        private string _genre;
         private StorageFile _file;
 
         [PrimaryKey, AutoIncrement, Column("_id")]
@@ -71,7 +72,14 @@ namespace VLC_WinRT.Model.Music
             get { return _duration; }
             set { SetProperty(ref _duration, value); }
         }
+
         public bool Favorite { get { return _favorite; } set { SetProperty(ref _favorite, value); } }
+
+        public string Genre
+        {
+            get { return _genre; }
+            set { SetProperty(ref _genre, value); }
+        }
 
         [Ignore]
         public string Thumbnail
