@@ -7,6 +7,7 @@
       xmlns:removableStorage="using:VLC_WinRT.Controls.RemovableStorage"
       xmlns:controls="using:VLC_WINRT.Views.Controls"
       xmlns:placeholder="using:VLC_WinRT.Views.UserControls.Placeholder"
+      xmlns:scrollWatchedSelector="using:ScrollWatchedSelector"
       mc:Ignorable="d"
       DataContext="{Binding Source={StaticResource Locator}, Path=FileExplorerVM}">
 
@@ -30,7 +31,7 @@
                 <triggers:Interactions.Triggers>
                     <triggers:EventTrigger EventName="SelectionChanged">
                         <triggers:InvokeCommandAction Command="{Binding RemovableDeviceClicked}"
-                                                  PassEventArgsToCommand="True" />
+                                                      PassEventArgsToCommand="True" />
                     </triggers:EventTrigger>
                 </triggers:Interactions.Triggers>
                 <ComboBox.ItemTemplate>
@@ -71,23 +72,26 @@
         <Grid Grid.Row="2"
               Margin="{StaticResource FrameMargin}">
             <placeholder:NothingToSeeHere Visibility="{Binding CurrentStorageVM.IsFolderEmpty, Converter={StaticResource BooleanToVisibilityConverter}}" />
-            <ListView x:Name="StorageItemsListView"
-                      ItemsSource="{Binding CurrentStorageVM.StorageItems}"
-                      Margin="6,0,0,0"
-                      IsItemClickEnabled="True"
-                      SelectionMode="None"
-                      ItemTemplate="{StaticResource FolderDataTemplate}"
-                      IsSwipeEnabled="False"
-                      ItemContainerStyle="{StaticResource ListViewItemStyle}"
-                      ItemsPanel="{StaticResource WrapPanelTemplate}"
-                      Visibility="{Binding StorageVMs.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}">
+            <scrollWatchedSelector:ScrollWatchedListView x:Name="StorageItemsListView"
+                                                         ItemsSource="{Binding CurrentStorageVM.StorageItems}"
+                                                         IsItemClickEnabled="True"
+                                                         SelectionMode="None"
+                                                         ItemTemplate="{StaticResource FolderDataTemplate}"
+                                                         IsSwipeEnabled="False"
+                                                         ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                                                         ItemsPanel="{StaticResource WrapPanelTemplate}"
+                                                         Visibility="{Binding StorageVMs.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}">
                 <triggers:Interactions.Triggers>
                     <triggers:EventTrigger EventName="ItemClick">
                         <triggers:InvokeCommandAction Command="{Binding CurrentStorageVM.NavigateToCommand}"
                                                       PassEventArgsToCommand="True" />
                     </triggers:EventTrigger>
+                    <triggers:EventTrigger EventName="GoingTopOrBottom">
+                        <triggers:InvokeCommandAction Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoingTopOrBottomCommand}"
+                                                      PassEventArgsToCommand="True" />
+                    </triggers:EventTrigger>
                 </triggers:Interactions.Triggers>
-            </ListView>
+            </scrollWatchedSelector:ScrollWatchedListView>
         </Grid>
         <removableStorage:PlugARemovableStorage Grid.Row="1"
                                                 Grid.RowSpan="2"
