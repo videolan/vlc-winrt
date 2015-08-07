@@ -77,12 +77,18 @@ namespace VLC_WinRT.Database
             }
         }
 
-        public async Task<string> GetFirstTrackPathByAlbumId(int albumId)
+        public async Task<TrackItem> GetFirstTrackOfAlbumId(int albumId)
         {
             var connection = new SQLiteAsyncConnection(DbPath);
             var query = connection.Table<TrackItem>().Where(x => x.AlbumId == albumId);
             var result = await query.FirstOrDefaultAsync();
-            return result != null ? result.Path : null;
+            return result;
+        }
+
+        public async Task<string> GetFirstTrackPathByAlbumId(int albumId)
+        {
+            var trackItem = await GetFirstTrackOfAlbumId(albumId);
+            return trackItem?.Path;
         }
 
         public async Task<List<TrackItem>> LoadTracksByArtistId(int artistId)
