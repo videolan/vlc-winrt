@@ -32,7 +32,7 @@
             </AppBarButton.Icon>
         </AppBarButton>
         
-        <scrollWatchedSelector:ScrollWatchedListView x:Name="PlaylistGrid"
+        <ListView x:Name="PlaylistGrid"
                   Grid.Row="2"
                   Margin="{StaticResource FrameMargin}"
               ItemsSource="{Binding TrackCollection.Playlist}"
@@ -50,12 +50,8 @@
                     <triggers:InvokeCommandAction Command="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM.TrackClickedCommand}"
                                               PassEventArgsToCommand="True" />
                 </triggers:EventTrigger>
-                <triggers:EventTrigger EventName="GoingTopOrBottom">
-                    <triggers:InvokeCommandAction Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoingTopOrBottomCommand}"
-                                                  PassEventArgsToCommand="True" />
-                </triggers:EventTrigger>
             </triggers:Interactions.Triggers>
-        </scrollWatchedSelector:ScrollWatchedListView>
+        </ListView>
         
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
