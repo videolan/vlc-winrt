@@ -19,14 +19,53 @@
                     HorizontalAlignment="Center"
                     Command="{Binding Source={StaticResource Locator}, Path=MainVM.GoToPanelCommand}"
                     CommandParameter="2" />
+            <TextBlock Text="most played artists"
+                       Style="{StaticResource SubheaderTextBlockStyle}"
+                       HorizontalAlignment="Center"
+                       DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}"
+                       Visibility="{Binding TopArtists.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}"/>
             <ListView x:Name="ArtistListView"
                       Margin="{StaticResource FrameMarginVertical}"
                       IsItemClickEnabled="True"
-                      DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}"
                       ItemsSource="{Binding TopArtists}"
                       SelectionMode="None"
                       ItemContainerStyle="{StaticResource ListViewItemStyle}"
-                      ItemTemplate="{StaticResource ArtistHorizontalTemplate}">
+                      ItemTemplate="{StaticResource ArtistHorizontalTemplate}"
+                      Visibility="{Binding TopArtists.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}">
+                <triggers:Interactions.Triggers>
+                    <triggers:EventTrigger EventName="ItemClick">
+                        <triggers:InvokeCommandAction Command="{Binding ArtistClickedCommand}"
+                                                      PassEventArgsToCommand="True" />
+                    </triggers:EventTrigger>
+                </triggers:Interactions.Triggers>
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <ItemsWrapGrid Orientation="Horizontal"
+                                       HorizontalAlignment="Center"
+                                       ItemWidth="300">
+                            <ItemsWrapGrid.ChildrenTransitions>
+                                <TransitionCollection>
+                                    <RepositionThemeTransition />
+                                </TransitionCollection>
+                            </ItemsWrapGrid.ChildrenTransitions>
+                        </ItemsWrapGrid>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+            </ListView>
+            <TextBlock Text="recommended for you"
+                       Style="{StaticResource SubheaderTextBlockStyle}"
+                       HorizontalAlignment="Center"
+                       DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}"
+                       Visibility="{Binding RecommendedArtists.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}" />
+            <ListView x:Name="RecommendedArtistListView"
+                      Margin="{StaticResource FrameMarginVertical}"
+                      IsItemClickEnabled="True"
+                      DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}"
+                      ItemsSource="{Binding RecommendedArtists}"
+                      SelectionMode="None"
+                      ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                      ItemTemplate="{StaticResource ArtistHorizontalTemplate}"
+                      Visibility="{Binding RecommendedArtists.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}">
                 <triggers:Interactions.Triggers>
                     <triggers:EventTrigger EventName="ItemClick">
                         <triggers:InvokeCommandAction Command="{Binding ArtistClickedCommand}"
@@ -122,6 +161,7 @@
             <controls:NoFavoriteAlbumsControl HorizontalAlignment="Center"
                                               DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}" />
             <Button x:Uid="TopVideos"
+                    Margin="{StaticResource FrameMarginTop}"
                     Content="top videos"
                     FontSize="36"
                     Foreground="{StaticResource MainColor}"
@@ -131,7 +171,7 @@
                     CommandParameter="1"
                     FontWeight="SemiLight" />
             <ListView x:Name="VideosListView"
-                      Margin="16,16"
+                      Margin="10,16"
                       DataContext="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM}"
                       ItemsSource="{Binding ViewedVideos}"
                       ItemTemplate="{StaticResource PhoneCompactVideoTemplate}"
