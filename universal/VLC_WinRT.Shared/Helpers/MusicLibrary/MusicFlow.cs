@@ -82,7 +82,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
             //            return artistsInCollection;
         }
 
-        private async Task<List<ArtistItem>> GetFollowingArtistViaSimilarity(ArtistItem currentArtist)
+        public static async Task<List<ArtistItem>> GetFollowingArtistViaSimilarity(ArtistItem currentArtist)
         {
             await App.MusicMetaService.GetSimilarArtists(currentArtist);
             if (currentArtist.OnlineRelatedArtists == null || !currentArtist.OnlineRelatedArtists.Any())
