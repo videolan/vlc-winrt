@@ -163,7 +163,11 @@ namespace VLC_WinRT.Helpers
             var coreAppView = CoreApplication.GetCurrentView();
             var allProperties = coreAppView.GetType().GetRuntimeProperties();
             var titleBar = allProperties.FirstOrDefault(x => x.Name == "TitleBar");
-            if (titleBar == null) return;
+            if (titleBar == null)
+            {
+                App.SplitShell.TitleBarHeight = TitleBarHeight;
+                return;
+            }
             dynamic titleBarInstance = titleBar.GetMethod.Invoke(coreAppView, null);
             var titleBarInstanceProperties = titleBarInstance.GetType().DeclaredProperties;
             if (titleBarInstanceProperties != null)
