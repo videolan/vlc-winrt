@@ -19,14 +19,18 @@
     <Grid>
         <controls:NothingToSeeHere Visibility="{Binding Albums.Count, Converter={StaticResource CountToVisibilityConverter}}" />
         <SemanticZoom Padding="0"
-                      ViewChangeCompleted="SemanticZoom_OnViewChangeCompleted">
+                      ViewChangeCompleted="SemanticZoom_OnViewChangeCompleted"
+                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                      ScrollViewer.HorizontalScrollMode="Disabled">
             <SemanticZoom.ZoomedInView>
                 <scrollWatchedSelector:ScrollWatchedListView ItemsSource="{Binding Source={StaticResource GroupAlbums}}"
                           ItemTemplate="{StaticResource AlbumItemTemplate}"
                           ItemContainerStyle="{StaticResource ListViewItemStyle}"
                           IsItemClickEnabled="True"
                           SelectionMode="None"
-                          IsSwipeEnabled="False">
+                          IsSwipeEnabled="False"
+                        ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                        ScrollViewer.HorizontalScrollMode="Disabled">
                     <triggers:Interactions.Triggers>
                         <triggers:EventTrigger EventName="ItemClick">
                             <triggers:InvokeCommandAction Command="{Binding AlbumClickedCommand}"

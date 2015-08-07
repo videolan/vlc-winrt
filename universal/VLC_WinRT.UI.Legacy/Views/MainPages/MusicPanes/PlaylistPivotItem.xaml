@@ -19,7 +19,9 @@
                   IsItemClickEnabled="True"
                   ItemTemplate="{StaticResource PhoneTrackCollectionTemplate}"
                   ItemContainerStyle="{StaticResource ListViewItemStyle}"
-                  ItemsPanel="{StaticResource WrapPanelTemplate}">
+                                                     ItemsPanel="{StaticResource WrapPanelTemplate}"
+                                                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                                     ScrollViewer.HorizontalScrollMode="Disabled">
             <triggers:Interactions.Triggers>
                 <triggers:EventTrigger EventName="ItemClick">
                     <triggers:InvokeCommandAction Command="{Binding TrackCollectionClickedCommand}"

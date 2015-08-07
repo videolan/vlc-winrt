@@ -9,7 +9,7 @@
       xmlns:placeholders="using:VLC_WinRT.Views.UserControls.Placeholders"
       mc:Ignorable="d"
       DataContext="{Binding Source={StaticResource Locator}, Path=MainVM}">
-    <ScrollViewer>
+    <ScrollViewer Style="{StaticResource VerticalScrollViewerStyle}">
         <StackPanel>
             <Button Content="your music"
                     FontSize="36"

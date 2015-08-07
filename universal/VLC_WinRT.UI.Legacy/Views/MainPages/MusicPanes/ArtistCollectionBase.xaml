@@ -31,14 +31,18 @@
         <SemanticZoom x:Name="SemanticZoom"
                       Padding="0"
                       IsZoomOutButtonEnabled="False"
-                      ViewChangeCompleted="SemanticZoom_OnViewChangeCompleted">
+                      ViewChangeCompleted="SemanticZoom_OnViewChangeCompleted"
+                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                      ScrollViewer.HorizontalScrollMode="Disabled">
             <SemanticZoom.ZoomedInView>
                 <scrollWatchedSelector:ScrollWatchedListView x:Name="ArtistListView"
                                                              IsItemClickEnabled="True"
                                                              ItemsSource="{Binding Artists}"
                                                              SelectionMode="None"
                                                              ItemContainerStyle="{StaticResource ListViewItemStyle}"
-                                                             ItemTemplate="{StaticResource ArtistHorizontalTemplate}">
+                                                             ItemTemplate="{StaticResource ArtistHorizontalTemplate}"
+                                                             ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                                             ScrollViewer.HorizontalScrollMode="Disabled">
                     <triggers:Interactions.Triggers>
                         <triggers:EventTrigger EventName="ItemClick">
                             <triggers:InvokeCommandAction Command="{Binding ArtistClickedCommand}"

@@ -52,7 +52,9 @@
                           SelectionMode="None"
                           IsItemClickEnabled="True"
                           ItemContainerStyle="{StaticResource ListViewItemContainerStyleNoSelectCheck}"
-                          ItemTemplate="{StaticResource WPTrackTemplateWONumber}">
+                                                             ItemTemplate="{StaticResource WPTrackTemplateWONumber}"
+                                                             ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                                             ScrollViewer.HorizontalScrollMode="Disabled">
                     <triggers:Interactions.Triggers>
                         <triggers:EventTrigger EventName="ItemClick">
                             <triggers:InvokeCommandAction Command="{Binding PlayAllSongsCommand}"
