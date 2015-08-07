@@ -60,7 +60,7 @@ void DirectXManger::CreateSwapPanel(SwapChainPanel^ panel){
     ComPtr<ID2D1Device1> d2dDevice;
     ComPtr<ID2D1Factory2> d2dFactory;
 
-    UINT creationFlags = D3D11_CREATE_DEVICE_BGRA_SUPPORT;
+    UINT creationFlags = D3D11_CREATE_DEVICE_BGRA_SUPPORT | D3D11_CREATE_DEVICE_VIDEO_SUPPORT;
 #ifndef NDEBUG
     creationFlags |= D3D11_CREATE_DEVICE_DEBUG;
 #endif
