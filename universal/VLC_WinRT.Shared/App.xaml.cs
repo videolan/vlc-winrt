@@ -37,6 +37,7 @@ namespace VLC_WinRT
         public static CoreDispatcher Dispatcher;
         public static IPropertySet LocalSettings = ApplicationData.Current.LocalSettings.Values;
         public static string ApiKeyLastFm = "a8eba7d40559e6f3d15e7cca1bfeaa1c";
+        public static string ApiSecretLastFm = "bd9ad107438d9107296ef799703d478e"; 
         public static string DeezerAppID = "135671";
         public static OpenFilePickerReason OpenFilePickerReason = OpenFilePickerReason.Null;
         public static Model.Music.AlbumItem SelectedAlbumItem;
