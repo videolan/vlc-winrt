@@ -421,7 +421,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
         {
             try
             {
-                int howManyAlbumsToFill = await HowManyAlbumsToDisplayWithTwoRows();
+                var howManyAlbumsToFill = 3;
                 if (Locator.MusicLibraryVM.RandomAlbums != null && Locator.MusicLibraryVM.RandomAlbums.Any()) return;
                 ObservableCollection<AlbumItem> favAlbums = await Locator.MusicLibraryVM._albumDatabase.LoadAlbums(x => x.Favorite).ToObservableAsync();
                 if (favAlbums != null && favAlbums.Any())
@@ -451,22 +451,6 @@ namespace VLC_WinRT.Helpers.MusicLibrary
             {
                 LogHelper.Log("Error selecting random albums.");
             }
-        }
-
-        public static async Task<int> HowManyAlbumsToDisplayWithTwoRows()
-        {
-#if WINDOWS_APP
-            var width = 0.0;
-            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-            {
-                width = Window.Current.Bounds.Width;
-            });
-            // an album is 220 pixels wide
-            var nbAlbumsPerRow = width / 220;
-            return (int)nbAlbumsPerRow * 2;
-#else
-            return 6;
-#endif
         }
 
         public static async Task OrderArtists(IEnumerable<ArtistItem> artists)
