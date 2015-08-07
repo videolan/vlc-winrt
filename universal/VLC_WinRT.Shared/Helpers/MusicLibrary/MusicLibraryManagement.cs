@@ -128,6 +128,46 @@ namespace VLC_WinRT.Helpers.MusicLibrary
             }
         }
 
+        public static async Task LoadMusicFlow()
+        {
+            // We use user top artists to generated background images
+            foreach (var artistItem in Locator.MusicLibraryVM.TopArtists)
+            {
+                if (artistItem.IsPictureLoaded)
+                {
+                    Locator.Slideshow.AddImg(artistItem.Picture);
+                }
+            }
+
+            // We use user top artists to search for similar artists in its collection, to recommend them
+            if (Locator.MusicLibraryVM.TopArtists.Any())
+            {
+                var random = new Random().Next(0, Locator.MusicLibraryVM.TopArtists.Count - 1);
+                var suggestedArtists = await MusicFlow.GetFollowingArtistViaSimilarity(Locator.MusicLibraryVM.TopArtists[random]);
+                await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => Locator.MusicLibraryVM.RecommendedArtists = new ObservableCollection<ArtistItem>(suggestedArtists));
+            }
+
+            // We use the user top artists and top albums to search for "popular Music" with the Same genre, that are in its collection, to recommend them
+            // Example. TopArtist = [ Muse, Coldplay ]. Genre is Rock, Pop. We'll search on the Internet popular rock/pop artists. If some of them are in the local user's collection,
+            // We add them to the list
+            // The code below is not fully implemented
+            return;
+            if (Locator.MusicLibraryVM.FavoriteAlbums.Any())
+            {
+                var random = new Random().Next(0, Locator.MusicLibraryVM.FavoriteAlbums.Count - 1);
+                var trackItem = await Locator.MusicLibraryVM._trackDatabase.GetFirstTrackOfAlbumId(Locator.MusicLibraryVM.FavoriteAlbums[random].Id);
+                if (trackItem != null)
+                {
+                    var popularArtists = await MusicFlow.GetPopularArtistFromGenre(trackItem.Genre);
+                    if (popularArtists != null && popularArtists.Any())
+                    {
+                        random = new Random().Next(0, popularArtists.Count - 1);
+                        Locator.MusicLibraryVM.FocusOnAnArtist = popularArtists[random];
+                    }
+                }
+            }
+        }
+
         public static Task DoRoutineMusicLibraryCheck()
         {
 #if WINDOWS_PHONE_APP

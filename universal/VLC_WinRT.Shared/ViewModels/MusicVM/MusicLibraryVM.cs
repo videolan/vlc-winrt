@@ -43,7 +43,8 @@ namespace VLC_WinRT.ViewModels.MusicVM
         #region private fields
         private ObservableCollection<ArtistItem> _artists = new ObservableCollection<ArtistItem>();
         private ObservableCollection<ArtistItem> _topArtists = new ObservableCollection<ArtistItem>(); 
-
+        private ObservableCollection<ArtistItem> _recommendedArtists = new ObservableCollection<ArtistItem>(); // recommanded with MusicFlow
+         
         private ObservableCollection<TrackItem> _tracks = new ObservableCollection<TrackItem>();
         private ObservableCollection<TrackCollection> _trackCollections = new ObservableCollection<TrackCollection>();
 
@@ -58,6 +59,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
         #region private props
         private LoadingState _loadingState = LoadingState.NotLoaded;
 
+        private ArtistItem _focusOnAnArtist; // recommended with MusicFlow
         private AlbumItem _currentAlbum;
         private ArtistItem _currentArtist;
         private TrackCollection _currentTrackCollection;
@@ -92,10 +94,17 @@ namespace VLC_WinRT.ViewModels.MusicVM
             get { return _artists; }
             set { SetProperty(ref _artists, value); }
         }
+
         public ObservableCollection<ArtistItem> TopArtists
         {
             get { return _topArtists; }
             set { SetProperty(ref _topArtists, value); }
+        }
+
+        public ObservableCollection<ArtistItem> RecommendedArtists
+        {
+            get { return _recommendedArtists; }
+            set { SetProperty(ref _recommendedArtists, value); }
         }
 
         public IEnumerable<IGrouping<string, ArtistItem>> GroupedArtists
@@ -121,7 +130,6 @@ namespace VLC_WinRT.ViewModels.MusicVM
             get { return _albums; }
             set { SetProperty(ref _albums, value); }
         }
-        
 
         public ObservableCollection<GroupItemList<AlbumItem>> GroupedAlbums
         {
@@ -196,6 +204,12 @@ namespace VLC_WinRT.ViewModels.MusicVM
         public DeletePlaylistTrackCommand DeletePlaylistTrackCommand { get; } = new DeletePlaylistTrackCommand();
 
         public DeleteSelectedTracksInPlaylistCommand DeleteSelectedTracksInPlaylistCommand { get; } = new DeleteSelectedTracksInPlaylistCommand();
+
+        public ArtistItem FocusOnAnArtist // Music Flow recommandation
+        {
+            get { return _focusOnAnArtist; }
+            set { SetProperty(ref _focusOnAnArtist, value); }
+        }
 
         public ArtistItem CurrentArtist
         {
@@ -338,6 +352,7 @@ namespace VLC_WinRT.ViewModels.MusicVM
                 Tracks.Clear();
             });
             await MusicLibraryManagement.LoadFromSQL();
+            await MusicLibraryManagement.LoadMusicFlow();
             await DispatchHelper.InvokeAsync(() =>
             {
                 IsMusicLibraryEmpty = !Artists.Any();
