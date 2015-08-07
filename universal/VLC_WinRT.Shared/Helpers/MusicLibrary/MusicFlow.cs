@@ -91,6 +91,13 @@ namespace VLC_WinRT.Helpers.MusicLibrary
             return artistsInCollection;
         }
 
+        public static async Task<List<ArtistItem>> GetPopularArtistFromGenre(string genre)
+        {
+            var popularArtists = await App.MusicMetaService.GetTopArtistGenre(genre);
+            var artistsInCollection = InCollection(popularArtists.Select(x=>x.Name).ToList());
+            return artistsInCollection;
+        }
+
         static List<ArtistItem> InCollection(List<string> artistsName)
         {
             return artistsName.Select(artistName => Locator.MusicLibraryVM.Artists.FirstOrDefault(x => String.Equals(x.Name, artistName, StringComparison.CurrentCultureIgnoreCase))).Where(artistItem => artistItem != null).ToList();
