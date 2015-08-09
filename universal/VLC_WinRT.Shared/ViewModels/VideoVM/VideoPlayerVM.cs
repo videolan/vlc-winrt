@@ -13,6 +13,8 @@ using VLC_WinRT.Commands;
 using VLC_WinRT.Helpers;
 using VLC_WinRT.Model.Video;
 using VLC_WinRT.Utils;
+using Windows.Storage;
+using Windows.Storage.AccessCache;
 using Windows.UI.Xaml;
 
 namespace VLC_WinRT.ViewModels.VideoVM
@@ -123,6 +125,45 @@ namespace VLC_WinRT.ViewModels.VideoVM
             Locator.VideoVm.IsVideoPlayerSubtitlesSettingsVisible = false;
             Locator.VideoVm.IsVideoPlayerVolumeSettingsVisible = false;
             Locator.Slideshow.IsPaused = false;
+        }
+
+        public async Task<bool> TryUseSubtitleFromFolder()
+        {
+            // Trying to get the path of the current video
+            var videoPath = "";
+            if (CurrentVideo.File != null)
+            {
+                videoPath = CurrentVideo.File.Path;
+            }
+            else if (!string.IsNullOrEmpty(CurrentVideo.Path))
+            {
+                videoPath = CurrentVideo.Path;
+            }
+            else return false;
+            var folderPath = System.IO.Path.GetDirectoryName(videoPath);
+            var fileNameWithoutExtensions = System.IO.Path.GetFileNameWithoutExtension(videoPath);
+            // Since we checked Video Libraries capability and SD Card compatibility, and DLNA discovery
+            // I think WinRT will let us create a StorageFolder instance of the parent folder of the file we're playing
+            // Unfortunately, if the video is opened via a filepicker AND that the video is in an unusual folder, like C:/randomfolder/
+            // This might now work, hence the try catch
+            var storageFolderParent = await StorageFolder.GetFolderFromPathAsync(folderPath);
+            // Here we need to search for a file with the same name, but with .srt or .ssa (when supported) extension
+            StorageFile storageFolderParentSubtitle = null;
+            try
+            {
+                storageFolderParentSubtitle = await storageFolderParent.GetFileAsync(fileNameWithoutExtensions + ".srt");
+            }
+            catch
+            {
+                // File doesn't exist
+                return false;
+            }
+            if (storageFolderParentSubtitle != null)
+            {
+                Locator.MediaPlaybackViewModel.OpenSubtitleCommand.Execute(storageFolderParentSubtitle);
+                return true;
+            }
+            return false;
         }
         #endregion
     }

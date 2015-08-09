@@ -486,6 +486,7 @@ namespace VLC_WinRT.ViewModels
                 });
                 var video = (VideoItem)media;
                 await Locator.MediaPlaybackViewModel.InitializePlayback(video, autoPlay);
+                await Locator.VideoVm.TryUseSubtitleFromFolder();
 
                 if (video.TimeWatched != TimeSpan.FromSeconds(0))
                     await App.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => Locator.MediaPlaybackViewModel.Time = (Int64)video.TimeWatched.TotalMilliseconds);
