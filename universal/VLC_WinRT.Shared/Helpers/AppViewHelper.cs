@@ -187,6 +187,8 @@ namespace VLC_WinRT.Helpers
                          Window.Current.SizeChanged -= resizeHandler;
                          var heightNew = Window.Current.Bounds.Height;
                          TitleBarHeight = heightNew - heightOriginal;
+                         if (TitleBarHeight < 0)
+                             TitleBarHeight = 32;
                          App.SplitShell.TitleBarHeight = TitleBarHeight;
                      };
                     Window.Current.SizeChanged += resizeHandler;

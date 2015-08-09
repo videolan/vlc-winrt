@@ -72,6 +72,8 @@ namespace VLC_WinRT.Controls
         public async void SetTitleBarHeight(double h)
         {
             await TemplateApplied.Task;
+            if (h < 0)
+                h = 0;
             _titleBarContentPresenter.Height = h;
         }
 
