@@ -84,7 +84,7 @@ namespace VLC_WinRT.Helpers
         public static async void SetFullscreen()
         {
 #if WINDOWS_APP
-            var v = Windows.UI.ViewManagement.ApplicationView.GetForCurrentView();
+            var v = ApplicationView.GetForCurrentView();
             var runtimeMethods = v.GetType().GetRuntimeMethods();
             
             if (!isFullscreen)

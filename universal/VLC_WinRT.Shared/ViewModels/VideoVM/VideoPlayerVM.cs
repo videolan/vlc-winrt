@@ -63,8 +63,8 @@ namespace VLC_WinRT.ViewModels.VideoVM
             get { return isVideoPlayerVolumeSettingsVisible; }
             set { SetProperty(ref isVideoPlayerVolumeSettingsVisible, value); }
         }
-        
-        public ActionCommand ToggleIsVideoPlayerSettingsVisible { get; } = new ActionCommand(() => 
+
+        public ActionCommand ToggleIsVideoPlayerSettingsVisible { get; } = new ActionCommand(() =>
         {
             Locator.VideoVm.IsVideoPlayerSettingsVisible = !Locator.VideoVm.IsVideoPlayerSettingsVisible;
             Locator.VideoVm.IsVideoPlayerAudioTracksSettingsVisible = false;
@@ -90,7 +90,7 @@ namespace VLC_WinRT.ViewModels.VideoVM
         });
 
 
-        public ActionCommand ToggleIsVideoPlayerVolumeSettingsVisible { get; } = new ActionCommand(() => 
+        public ActionCommand ToggleIsVideoPlayerVolumeSettingsVisible { get; } = new ActionCommand(() =>
         {
             Locator.VideoVm.IsVideoPlayerSubtitlesSettingsVisible = false;
             Locator.VideoVm.IsVideoPlayerSettingsVisible = false;
