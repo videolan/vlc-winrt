@@ -23,42 +23,52 @@ namespace VLC_WinRT.Commands.VideoPlayer
     {
         public async override void Execute(object parameter)
         {
-            String error;
-            try
+            if (parameter is StorageFile)
             {
-                App.OpenFilePickerReason = OpenFilePickerReason.OnOpeningSubtitle;
-                var picker = new FileOpenPicker
+                OpenSubtitleFile((StorageFile)parameter);
+            }
+            else
+            {
+                String error;
+                try
                 {
-                    ViewMode = PickerViewMode.List,
-                    SuggestedStartLocation = PickerLocationId.VideosLibrary
-                };
-                picker.FileTypeFilter.Add(".srt");
-                picker.FileTypeFilter.Add(".ass");
+                    App.OpenFilePickerReason = OpenFilePickerReason.OnOpeningSubtitle;
+                    var picker = new FileOpenPicker
+                    {
+                        ViewMode = PickerViewMode.List,
+                        SuggestedStartLocation = PickerLocationId.VideosLibrary
+                    };
+                    picker.FileTypeFilter.Add(".srt");
+                    picker.FileTypeFilter.Add(".ass");
 #if WINDOWS_APP
-                StorageFile file = await picker.PickSingleFileAsync();
-                if (file != null)
-                {
-                    string mru = StorageApplicationPermissions.FutureAccessList.Add(file);
-
-                    string mrl = "winrt://" + mru;
-                    Locator.MediaPlaybackViewModel.OpenSubtitle(mrl);
-                }
-                else
-                {
-                    LogHelper.Log("Cancelled Opening subtitle");
-                }
-                App.OpenFilePickerReason = OpenFilePickerReason.Null;
+                    StorageFile file = await picker.PickSingleFileAsync();
+                    if (file != null)
+                    {
+                        OpenSubtitleFile(file);
+                    }
+                    else
+                    {
+                        LogHelper.Log("Cancelled Opening subtitle");
+                    }
+                    App.OpenFilePickerReason = OpenFilePickerReason.Null;
 #else
-                picker.PickSingleFileAndContinue();
+                    picker.PickSingleFileAndContinue();
 #endif
-                return;
+                    return;
+                }
+                catch (Exception exception)
+                {
+                    error = exception.ToString();
+                }
+                var dialog = new MessageDialog(error);
+                await dialog.ShowAsync();
             }
-            catch(Exception exception)
-            {
-                error = exception.ToString();
-            }
-            var dialog = new MessageDialog(error);
-            await dialog.ShowAsync();
+        }
+
+        void OpenSubtitleFile(StorageFile file)
+        {
+            string mrl = "winrt://" + StorageApplicationPermissions.FutureAccessList.Add(file);
+            Locator.MediaPlaybackViewModel.OpenSubtitleMrl(mrl);
         }
     }
 }

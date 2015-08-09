@@ -797,7 +797,7 @@ namespace VLC_WinRT.ViewModels
             }
         }
 
-        public void OpenSubtitle(string mrl)
+        public void OpenSubtitleMrl(string mrl)
         {
             switch (_playerEngine)
             {
