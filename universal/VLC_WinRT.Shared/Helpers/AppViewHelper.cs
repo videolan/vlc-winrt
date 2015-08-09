@@ -30,6 +30,12 @@ namespace VLC_WinRT.Helpers
             SetTitleBar(true);
         }
 
+        public static bool IsFullScreen()
+        {
+            var v = ApplicationView.GetForCurrentView();
+            return v.IsFullScreen;
+        }
+
         private static bool DoesPropertyExist(string prop, dynamic list)
         {
             foreach (dynamic property in list)

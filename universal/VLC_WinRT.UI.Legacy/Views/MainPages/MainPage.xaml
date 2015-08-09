@@ -20,13 +20,13 @@
     <SwapChainPanel x:Name="SwapChainPanel"
                     x:FieldModifier="public"
                     Loaded="SwapPanelLoaded"
-                    Margin="{StaticResource TitleMargin}"/>
+                    Margin="{Binding ElementName=SplitShell, Path=TitleBarHeight}"/>
     <MediaElement x:Name="MfMediaElement"
                   x:FieldModifier="public"
                   AudioDeviceType="Multimedia"
                   AudioCategory="BackgroundCapableMedia"
                   Loaded="MfMediaElement_Loaded"
-                  Margin="{StaticResource TitleMargin}" />
+                  Margin="{Binding ElementName=SplitShell, Path=TitleBarHeight}"/>
 
     <controls:SplitShell x:Name="SplitShell"
                          x:FieldModifier="public"
