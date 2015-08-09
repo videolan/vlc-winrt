@@ -69,7 +69,7 @@ namespace VLC_WinRT.Views.VideoPages
             base.OnNavigatedTo(e);
             App.RootPage.SwapChainPanel.Visibility = Visibility.Visible;
             Locator.MediaPlaybackViewModel.MouseService.OnHidden += MouseStateChanged;
-            Locator.MediaPlaybackViewModel.MouseService.OnMoved += MouseStateChanged;
+            Locator.MediaPlaybackViewModel.MouseService.OnMoved += MouseMoved;
             Locator.VideoVm.OnNavigatedTo();
             Responsive();
         }
@@ -81,8 +81,25 @@ namespace VLC_WinRT.Views.VideoPages
             Locator.VideoVm.OnNavigatedFrom();
         }
 
+        private void MouseMoved()
+        {
+            Display();
+        }
+
         private void MouseStateChanged()
         {
+            Hide();
+        }
+
+        void Display()
+        {
+            isVisible = true;
+            DisplayOrHide();
+        }
+
+        void Hide()
+        {
+            isVisible = false;
             DisplayOrHide();
         }
 
@@ -93,8 +110,7 @@ namespace VLC_WinRT.Views.VideoPages
                 Locator.VideoVm.IsVideoPlayerSubtitlesSettingsVisible ||
                 Locator.VideoVm.IsVideoPlayerVolumeSettingsVisible)
                 return;
-            VisualStateManager.GoToState(this, isVisible ? "ControlsCollapsed" : "ControlsVisible", false);
-            isVisible = !isVisible;
+            VisualStateManager.GoToState(this, !isVisible ? "ControlsCollapsed" : "ControlsVisible", false);
         }
 
         private void PlaceholderInteractionGrid_OnTapped(object sender, TappedRoutedEventArgs e)
