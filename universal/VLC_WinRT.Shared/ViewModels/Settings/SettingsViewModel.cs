@@ -182,7 +182,8 @@ namespace VLC_WinRT.ViewModels.Settings
         {
             VLCPage.MainPageHome,
             VLCPage.MainPageVideo,
-            VLCPage.MainPageMusic
+            VLCPage.MainPageMusic,
+            VLCPage.MainPageFileExplorer
         };
 
         public List<OrderType> AlbumsOrderTypeCollection

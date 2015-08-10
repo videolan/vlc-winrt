@@ -19,6 +19,8 @@ namespace VLC_WinRT.Converters
                         return Strings.Music;
                     case VLCPage.MainPageVideo:
                         return Strings.Videos;
+                    case VLCPage.MainPageFileExplorer:
+                        return Strings.FileExplorer;
                     default:
                         throw new NotImplementedException();
                 }
