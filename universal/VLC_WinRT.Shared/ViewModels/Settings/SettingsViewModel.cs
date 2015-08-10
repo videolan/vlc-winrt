@@ -165,7 +165,14 @@ namespace VLC_WinRT.ViewModels.Settings
             get
             {
                 var continuePlaybackInBackground = ApplicationSettingsHelper.ReadSettingsValue("ContinueVideoPlaybackInBackground");
-                _continueVideoPlaybackInBackground = continuePlaybackInBackground is bool && (bool)continuePlaybackInBackground;
+                if (continuePlaybackInBackground == null)
+                {
+                    _continueVideoPlaybackInBackground = true;
+                }
+                else
+                {
+                    _continueVideoPlaybackInBackground = (bool) continuePlaybackInBackground;
+                }
                 return _continueVideoPlaybackInBackground;
             }
             set

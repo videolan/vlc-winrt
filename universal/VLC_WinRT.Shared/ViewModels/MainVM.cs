@@ -213,11 +213,6 @@ namespace VLC_WinRT.ViewModels
             else
             {
                 IsBackground = false;
-                if (Locator.MediaPlaybackViewModel.CurrentMedia == null) return;
-                if (Locator.MediaPlaybackViewModel.PlayingType != PlayingType.Video)
-                    return;
-                if (Locator.MediaPlaybackViewModel.MediaState == MediaState.Paused)
-                    Locator.MediaPlaybackViewModel._mediaService.Pause();
             }
         }
 
