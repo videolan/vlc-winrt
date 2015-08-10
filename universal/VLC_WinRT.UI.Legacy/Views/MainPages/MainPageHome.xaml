@@ -23,7 +23,7 @@
                        Style="{StaticResource SubheaderTextBlockStyle}"
                        HorizontalAlignment="Center"
                        DataContext="{Binding Source={StaticResource Locator}, Path=MusicLibraryVM}"
-                       Visibility="{Binding TopArtists.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}"/>
+                       Visibility="{Binding TopArtists.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}" />
             <ListView x:Name="ArtistListView"
                       Margin="{StaticResource FrameMarginVertical}"
                       IsItemClickEnabled="True"
@@ -106,7 +106,7 @@
                     <ItemsPanelTemplate>
                         <ItemsWrapGrid ItemWidth="300"
                                        Orientation="Horizontal"
-                                       HorizontalAlignment="Center"/>
+                                       HorizontalAlignment="Center" />
                     </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
                 <ListView.ItemTemplate>
