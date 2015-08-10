@@ -13,5 +13,6 @@ namespace VLC_WinRT.Model
         StorageFile File { get; set; }
         bool IsCurrentPlaying { get; set; }
         Tuple<FromType, string> GetMrlAndFromType();
+        string Token { get; set; }
     }
 }

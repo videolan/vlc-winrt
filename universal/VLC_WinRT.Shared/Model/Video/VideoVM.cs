@@ -246,16 +246,20 @@ namespace VLC_WinRT.Model.Video
 
         public Tuple<FromType, string> GetMrlAndFromType()
         {
-            if (string.IsNullOrEmpty(Path))
+            if (!string.IsNullOrEmpty(_token))
             {
-                if (File != null)
-                {
-                    // Using a Token
-                    // FromLocation : 1
-                    return new Tuple<FromType, string>(FromType.FromLocation, "winrt://" + StorageApplicationPermissions.FutureAccessList.Add(File));
-                }
+                // Using an already created token
+                return new Tuple<FromType, string>(FromType.FromLocation, "winrt://" + _token);
             }
-            return new Tuple<FromType, string>(FromType.FromPath, Path);
+            if (File != null && string.IsNullOrEmpty(Path))
+            {
+                // Using a Token
+                // FromLocation : 1
+                return new Tuple<FromType, string>(FromType.FromLocation, "winrt://" + StorageApplicationPermissions.FutureAccessList.Add(File));
+            }
+            if (!string.IsNullOrEmpty(Path))
+                return new Tuple<FromType, string>(FromType.FromPath, Path);
+            return null;
         }
         #endregion
     }

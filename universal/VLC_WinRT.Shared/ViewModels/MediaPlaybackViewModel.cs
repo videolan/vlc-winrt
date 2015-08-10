@@ -314,14 +314,14 @@ namespace VLC_WinRT.ViewModels
         {
             if (file == null) return;
             await Locator.VLCService.PlayerInstanceReady.Task;
+            var token = StorageApplicationPermissions.FutureAccessList.Add(file);
             if (VLCFileExtensions.FileTypeHelper(file.FileType) == VLCFileExtensions.VLCFileType.Video)
             {
-                var token = StorageApplicationPermissions.FutureAccessList.Add(file);
                 await PlayVideoFile(file, token);
             }
             else
             {
-                await PlayAudioFile(file);
+                await PlayAudioFile(file, token);
             }
         }
 
@@ -329,10 +329,11 @@ namespace VLC_WinRT.ViewModels
         /// Navigates to the Audio Player screen with the requested file a parameter.
         /// </summary>
         /// <param name="file">The file to be played.</param>
-        public async Task PlayAudioFile(StorageFile file)
+        /// <param name="token">Token is for files that are NOT in the sandbox, such as files taken from the filepicker from a sd card but not in the Video/Music folder.</param>
+        public async Task PlayAudioFile(StorageFile file, string token = null)
         {
             Locator.NavigationService.Go(VLCPage.MusicPlayerPage);
-            var trackItem = await MusicLibraryManagement.GetTrackItemFromFile(file);
+            var trackItem = await MusicLibraryManagement.GetTrackItemFromFile(file, token);
             await PlaylistHelper.PlayTrackFromFilePicker(trackItem);
         }
 

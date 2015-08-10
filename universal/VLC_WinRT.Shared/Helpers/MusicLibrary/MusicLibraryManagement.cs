@@ -756,7 +756,7 @@ namespace VLC_WinRT.Helpers.MusicLibrary
             return true;
         }
 
-        public async static Task<TrackItem> GetTrackItemFromFile(StorageFile track)
+        public async static Task<TrackItem> GetTrackItemFromFile(StorageFile track, string token = null)
         {
             //TODO: Warning, is it safe to consider this a good idea?
             var trackItem = await Locator.MusicLibraryVM._trackDatabase.LoadTrackByPath(track.Path);
@@ -781,8 +781,12 @@ namespace VLC_WinRT.Helpers.MusicLibrary
                 Name = (string.IsNullOrEmpty(trackInfos?.Title)) ? track.DisplayName : trackInfos?.Title,
                 Path = track.Path,
                 Duration = trackInfos?.Duration ?? TimeSpan.Zero,
-                File = track
+                File = track,
             };
+            if (!string.IsNullOrEmpty(token))
+            {
+                trackItem.Token = token;
+            }
             return trackItem;
         }
     }

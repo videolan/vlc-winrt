@@ -17,6 +17,7 @@ namespace VLC_WinRT.Model.Music
         private string _albumName;
         private string _name;
         private string _path;
+        private string _token;
         private uint _index;
         private int _disc;
         private TimeSpan _duration;
@@ -111,6 +112,13 @@ namespace VLC_WinRT.Model.Music
         }
 
         [Ignore]
+        public String Token
+        {
+            get { return _token; }
+            set { SetProperty(ref _token, value); }
+        }
+
+        [Ignore]
         public TrackClickedCommand TrackClicked { get; } = new TrackClickedCommand();
 
         [Ignore]
@@ -128,16 +136,20 @@ namespace VLC_WinRT.Model.Music
 
         public Tuple<FromType, string> GetMrlAndFromType()
         {
-            if (string.IsNullOrEmpty(Path))
+            if (!string.IsNullOrEmpty(_token))
             {
-                if (File != null)
-                {
-                    // Using a Token
-                    // FromLocation : 1
-                    return new Tuple<FromType, string>(FromType.FromLocation, "winrt://" + StorageApplicationPermissions.FutureAccessList.Add(File));
-                }
+                // Using an already created token
+                return new Tuple<FromType, string>(FromType.FromLocation, "winrt://" + _token);
             }
-            return new Tuple<FromType, string>(FromType.FromPath, Path);
+            if (File != null && string.IsNullOrEmpty(Path))
+            {
+                // Using a Token
+                // FromLocation : 1
+                return new Tuple<FromType, string>(FromType.FromLocation, "winrt://" + StorageApplicationPermissions.FutureAccessList.Add(File));
+            }
+            if (!string.IsNullOrEmpty(Path))
+                return new Tuple<FromType, string>(FromType.FromPath, Path);
+            return null;
         }
     }
 }
