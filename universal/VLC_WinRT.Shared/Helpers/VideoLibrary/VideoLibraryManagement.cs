@@ -43,8 +43,9 @@ namespace VLC_WinRT.Helpers.VideoLibrary
 
         public static async Task GetViewedVideos()
         {
-            var result = await Locator.VideoLibraryVM.VideoRepository.GetLastViewed(6).ConfigureAwait(false);
+            await App.Dispatcher.RunAsync(CoreDispatcherPriority.Low, () => Locator.VideoLibraryVM.ViewedVideos.Clear());
 
+            var result = await Locator.VideoLibraryVM.VideoRepository.GetLastViewed(6).ConfigureAwait(false);
             foreach (VideoItem videoVm in result)
             {
                 try

@@ -57,7 +57,7 @@ namespace VLC_WinRT.Database
         public Task<List<VideoItem>> GetLastViewed(int nbElements)
         {
             var connection = new SQLiteAsyncConnection(DbPath);
-            var req = connection.Table<VideoItem>().OrderByDescending(x => x.LastWatched).Take(nbElements);
+            var req = connection.Table<VideoItem>().Where(x => x.TimeWatched != TimeSpan.Zero).OrderByDescending(x => x.LastWatched).Take(nbElements);
             return req.ToListAsync();
         }
     }
