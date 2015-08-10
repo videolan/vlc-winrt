@@ -145,8 +145,7 @@ namespace VLC_WinRT.Helpers.VideoLibrary
                                 Locator.VideoLibraryVM.Videos.Add(mediaVM);
                         }
                         if (Locator.VideoLibraryVM.ViewedVideos.Count < 6 &&
-                            Locator.VideoLibraryVM.ViewedVideos.FirstOrDefault(
-                                x => x.Path == mediaVM.Path && x.TimeWatched == TimeSpan.Zero) == null)
+                            Locator.VideoLibraryVM.ViewedVideos.FirstOrDefault(x => x.Path == mediaVM.Path && x.TimeWatched == TimeSpan.Zero) == null)
                         {
                             if (Locator.VideoLibraryVM.ViewedVideos.FirstOrDefault(x => x.Id == mediaVM.Id) == null)
                                 Locator.VideoLibraryVM.ViewedVideos.Add(mediaVM);
