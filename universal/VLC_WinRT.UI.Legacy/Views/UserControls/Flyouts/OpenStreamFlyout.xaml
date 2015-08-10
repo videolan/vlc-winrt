@@ -32,6 +32,7 @@
                    PlaceholderText="Enter a URL"
                    InputScope="Url"
                    MinWidth="200"
+                                     MaxWidth="300"
                    TextWrapping="Wrap"/>
           <Button Grid.Column="1"
                   Style="{StaticResource TextBlockButtonStyle}"
