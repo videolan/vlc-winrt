@@ -180,7 +180,8 @@
                       IsItemClickEnabled="True"
                       SelectionMode="None"
                       IsSwipeEnabled="False"
-                      ScrollViewer.VerticalScrollMode="Disabled">
+                      ScrollViewer.VerticalScrollMode="Disabled"
+                      Visibility="{Binding ViewedVideos.Count, Converter={StaticResource NegatedCountToVisibilityConverter}}">
                 <triggers:Interactions.Triggers>
                     <triggers:EventTrigger EventName="ItemClick">
                         <triggers:InvokeCommandAction Command="{Binding OpenVideo}"
@@ -202,7 +203,7 @@
                     </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
             </ListView>
-            <placeholders:NoVideosControl HorizontalAlignment="Stretch"
+            <placeholders:NoVideosControl HorizontalAlignment="Center"
                                           DataContext="{Binding Source={StaticResource Locator}, Path=VideoLibraryVM}"
                                           Visibility="{Binding ViewedVideos.Count, Converter={StaticResource CountToVisibilityConverter}}" />
         </StackPanel>
