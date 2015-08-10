@@ -38,7 +38,8 @@ namespace VLC_WinRT.Model.Video
         private LoadingState _thumbnailLoadingState = LoadingState.NotLoaded;
         private StorageFile _file;
         private DateTime _lastWatched;
-        // TVShows related
+        // TVShows related // Todo create a class ShowEpisodeItem that inherits from VideoItem
+        private string _showTitle;
         private int _season = -1;
         private int _episode;
 
@@ -50,6 +51,14 @@ namespace VLC_WinRT.Model.Video
 
         #region public props
         #region tvshows related
+        public bool IsTvShow => _season != -1 && !string.IsNullOrEmpty(_showTitle);
+
+        public string ShowTitle
+        {
+            get { return _showTitle; }
+            set { SetProperty(ref _showTitle, value); }
+        }
+
         public int Season
         {
             get { return _season; }
@@ -174,12 +183,7 @@ namespace VLC_WinRT.Model.Video
         public Boolean IsCameraRoll { get; set; }
 
         private string _filePath;
-
-        public bool IsTvShow
-        {
-            get { return _season != -1; }
-        }
-
+        
         public bool IsCurrentPlaying { get; set; }
 
         #endregion
@@ -193,8 +197,9 @@ namespace VLC_WinRT.Model.Video
         {
         }
 
-        public VideoItem(int season, int episode)
+        public VideoItem(string showName, int season, int episode)
         {
+            ShowTitle = showName;
             Season = season;
             Episode = episode;
         }
