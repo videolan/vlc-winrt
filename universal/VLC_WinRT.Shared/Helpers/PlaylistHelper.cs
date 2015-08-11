@@ -22,22 +22,6 @@ namespace VLC_WinRT.Helpers
 
         public static async Task Play(this VideoItem videoVm, bool resetPlaylist = true)
         {
-            if (string.IsNullOrEmpty(videoVm.Token))
-            {
-                string token = "";
-                try
-                {
-                    token = StorageApplicationPermissions.FutureAccessList.Add(videoVm.File);
-                    LogHelper.Log("PLAYVIDEO: Getting video path token");
-
-                }
-                catch
-                {
-                    LogHelper.Log("PLAYVIDEO: Failed to get token");
-                }
-                videoVm.Token = token;
-            }
-            if (string.IsNullOrEmpty(videoVm.Token)) return;
             await videoVm.AddVideoToPlaylist(resetPlaylist);
             LogHelper.Log("PLAYVIDEO: Settings videoVm as Locator.VideoVm.CurrentVideo");
             Locator.VideoVm.CurrentVideo = videoVm;
