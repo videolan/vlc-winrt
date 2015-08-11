@@ -28,22 +28,32 @@
                    FontSize="36"
                    FontWeight="ExtraLight"
                    Margin="0,0,0,24" />
-
-        <Image Grid.Row="1"
-               Grid.Column="0"
-               DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM.CurrentAlbum}"
-               Source="{Binding AlbumImage}"
-               Stretch="Uniform"
-               VerticalAlignment="Top"
-               extensions:ImageExtensions.FadeInOnLoaded="True"
-               MaxHeight="400"
-               MaxWidth="400" />
-        <Grid x:Name="NowPlayingGrid">
+        <FlipView x:Name="MusicNowPlayingFlipView"
+                  Grid.Row="1"
+                  Grid.Column="0"
+                  ItemsSource="{Binding TrackCollection.Playlist}"
+                  Loaded="MusicNowPlaying_OnLoaded"
+                  VerticalAlignment="Top">
+            <FlipView.ItemTemplate>
+                <DataTemplate>
+                    <Image DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM.CurrentTrack}"
+                           Source="{Binding Thumbnail}"
+                           Stretch="Uniform"
+                           VerticalAlignment="Top"
+                           MaxHeight="400"
+                           MaxWidth="400" />
+                </DataTemplate>
+            </FlipView.ItemTemplate>
+        </FlipView>
+        <Grid x:Name="NowPlayingGrid"
+              DataContext="{Binding Source={StaticResource Locator}, Path=MusicPlayerVM.CurrentTrack}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="12" />
-                <RowDefinition Height="52" />
-                <RowDefinition Height="Auto" />
+                <RowDefinition MinHeight="52"
+                               Height="*" />
+                <RowDefinition Height="Auto"
+                               x:Name="PrimaryPlaybackButtonRowDefinition" />
                 <RowDefinition Height="Auto"
                                x:Name="SecondPlaybackButtonNarrowRowDefinition" />
             </Grid.RowDefinitions>
@@ -52,24 +62,25 @@
                        x:Name="SongInformationTextBlock"
                        TextWrapping="NoWrap"
                        TextTrimming="CharacterEllipsis">
-                        <Run Text="{Binding Name}"
-                             FontSize="30"
-                             FontWeight="Light" />
-                        <LineBreak />
-                        <Run Text="{Binding AlbumName, Converter={StaticResource StringToUpperConverter}}"
-                             FontSize="19"
-                             Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}" />
-                        <Run Text=" | "
-                             FontSize="16" />
-                        <Run Text="{Binding ArtistName, Converter={StaticResource StringToUpperConverter}}"
-                             FontSize="19"
-                             Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}" />
+                <Run Text="{Binding Name}"
+                     FontSize="30"
+                     FontWeight="Light" />
+                <LineBreak />
+                <Run Text="{Binding AlbumName, Converter={StaticResource StringToUpperConverter}}"
+                     FontSize="19"
+                     Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}" />
+                <Run Text=" | "
+                     FontSize="16" />
+                <Run Text="{Binding ArtistName, Converter={StaticResource StringToUpperConverter}}"
+                     FontSize="19"
+                     Foreground="{ThemeResource PivotHeaderForegroundUnselectedBrush}" />
             </TextBlock>
             <Grid Grid.Row="2"
                   Visibility="{Binding IsCurrentPlaying, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <userControls:SliderControl />
+                <userControls:SliderControl VerticalAlignment="Center" />
             </Grid>
-            <Grid Grid.Row="3">
+            <Grid Grid.Row="3"
+                  VerticalAlignment="Bottom">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition x:Name="MainPlaybackButtonColumnDefinition"
                                       Width="Auto" />
@@ -84,12 +95,10 @@
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
                     <AppBarButton Grid.Column="0"
-                                  HorizontalAlignment="Center"
                                   IsCompact="True"
                                   Style="{StaticResource AppBarButtonStyleHuge}"
                                   Height="50"
                                   Width="50"
-                                  VerticalAlignment="Center"
                                   Command="{Binding PlayPreviousCommand}"
                                   IsEnabled="{Binding TrackCollection.CanGoPrevious}">
                         <AppBarButton.Icon>
@@ -101,10 +110,9 @@
                     <AppBarButton Grid.Column="1"
                                   IsCompact="True"
                                   Visibility="{Binding IsPlaying, Converter={StaticResource NegatedBooleanToVisibilityConverter}}"
-                                  Height="80"
+                                  Height="50"
                                   Width="80"
                                   Style="{StaticResource AppBarButtonStyleHuge}"
-                                  VerticalAlignment="Center"
                                   Command="{Binding PlayOrPauseCommand}"
                                   Holding="PlayPauseHold">
                         <AppBarButton.Icon>
@@ -116,10 +124,9 @@
                     <AppBarButton Grid.Column="1"
                                   IsCompact="True"
                                   Visibility="{Binding IsPlaying, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                  Height="80"
+                                  Height="50"
                                   Width="80"
                                   Style="{StaticResource AppBarButtonStyleHuge}"
-                                  VerticalAlignment="Center"
                                   Command="{Binding PlayOrPauseCommand}"
                                   Holding="PlayPauseHold">
                         <AppBarButton.Icon>
@@ -133,8 +140,6 @@
                                   Style="{StaticResource AppBarButtonStyleHuge}"
                                   Height="50"
                                   Width="50"
-                                  VerticalAlignment="Center"
-                                  HorizontalAlignment="Center"
                                   Command="{Binding PlayNextCommand}"
                                   IsEnabled="{Binding TrackCollection.CanGoNext}">
                         <AppBarButton.Icon>
@@ -195,6 +200,11 @@
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="200" />
                         </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MusicNowPlayingFlipView"
+                                                       Storyboard.TargetProperty="Height">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="200" />
+                        </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SecondPlaybackButtonColumnDefinition"
                                                        Storyboard.TargetProperty="Width">
                             <DiscreteObjectKeyFrame KeyTime="0"
@@ -209,6 +219,11 @@
                                                        Storyboard.TargetProperty="HorizontalAlignment">
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="Left" />
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PrimaryPlaybackButtonRowDefinition"
+                                                       Storyboard.TargetProperty="Height">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="*" />
                         </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SecondPlaybackButtonNarrowRowDefinition"
                                                        Storyboard.TargetProperty="Height">
@@ -264,6 +279,11 @@
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="*" />
                         </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MusicNowPlayingFlipView"
+                                                       Storyboard.TargetProperty="Height">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="Auto" />
+                        </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SecondPlaybackButtonColumnDefinition"
                                                        Storyboard.TargetProperty="Width">
                             <DiscreteObjectKeyFrame KeyTime="0"
@@ -279,10 +299,15 @@
                             <DiscreteObjectKeyFrame KeyTime="0"
                                                     Value="Stretch" />
                         </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PrimaryPlaybackButtonRowDefinition"
+                                                       Storyboard.TargetProperty="Height">
+                            <DiscreteObjectKeyFrame KeyTime="0"
+                                                    Value="*" />
+                        </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SecondPlaybackButtonNarrowRowDefinition"
                                                        Storyboard.TargetProperty="Height">
                             <DiscreteObjectKeyFrame KeyTime="0"
-                                                    Value="Auto" />
+                                                    Value="*" />
                         </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RootGrid"
                                                        Storyboard.TargetProperty="Margin">
